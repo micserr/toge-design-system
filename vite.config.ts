@@ -1,8 +1,24 @@
+// npm i -D @types/node
+// so you can import "path" without error
+import path from 'node:path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import tsconfigPaths from 'vite-tsconfig-paths';
+import Components from 'unplugin-vue-components/vite'
 
-// https://vitejs.dev/config/
+import tailwind from 'tailwindcss'
+import autoprefixer from 'autoprefixer'
+
 export default defineConfig({
-  plugins: [vue(), tsconfigPaths()],
+  css: {
+    postcss: {
+      plugins: [tailwind(), autoprefixer()],
+    },
+  },
+  plugins: [vue(), tsconfigPaths(), Components()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
 })

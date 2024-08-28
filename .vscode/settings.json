@@ -136,6 +136,8 @@
     "json5"
   ],
 
+  "eslint.useFlatConfig": true,
+
   "tailwindCSS.experimental.classRegex": [
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
   ],

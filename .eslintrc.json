@@ -1,0 +1,16 @@
+{
+  "root": true,
+  "plugins": ["vue", "prettier", "@typescript-eslint"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:vue/vue3-recommended"],
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser"
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "vue/component-name-in-template-casing": ["error", "PascalCase"],
+    "no-console": "error",
+    "no-debugger": "error",
+    "comma-dangle": ["error", "always-multiline"]
+  }
+}

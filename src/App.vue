@@ -1,10 +1,9 @@
 <script setup lang="ts">
-
 import { ref } from "vue";
 
 defineProps<{ msg: string }>();
 
-const count = ref(0);
+let count = ref(0)
 </script>
 
 <template>
@@ -15,8 +14,8 @@ const count = ref(0);
 .logo {
   height: 6em;
   padding: 1.5em;
-  will-change: filter;
   transition: filter 300ms;
+  will-change: filter;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);

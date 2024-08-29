@@ -1,5 +1,3 @@
-// npm i -D @types/node
-// so you can import "path" without error
 import path from 'node:path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'

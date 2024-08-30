@@ -11,6 +11,8 @@
       "@/*": ["./src/*"]
     },
     "allowJs": true,
+    "outDir": "dist",
+    "declaration": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",

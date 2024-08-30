@@ -3,11 +3,23 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/design-system-next.umd.cjs",
+  "module": "./dist/design-system-next.js",
+  "exports": {
+    ".": {
+      "import": "./dist/design-system-next.js",
+      "require": "./dist/design-system-next.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build",
+    "build": "vue-tsc --emitDeclarationOnly && vite build",
+    "types": "vue-tsc",
     "preview": "vite preview",
-    "lint:script": "eslint \"**/*.{js,ts,vue}\" --ignore-pattern \"dist/\"",
+    "lint:script": "eslint \"**/*.{js,ts,vue}\"",
     "lint:style": "stylelint \"**/*.{vue,css}\"",
     "fix:style": "stylelint --fix \"**/*.{vue,css}\"",
     "lint": "npm run lint:script && npm run lint:style"
@@ -35,6 +47,7 @@
     "typescript": "^5.5.4",
     "unplugin-vue-components": "^0.27.4",
     "vite": "^5.4.2",
+    "vite-plugin-dts": "^4.0.3",
     "vite-tsconfig-paths": "^5.0.1",
     "vue-tsc": "^2.1.2"
   }

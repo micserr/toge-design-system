@@ -156,5 +156,10 @@
   "vue.server.hybridMode": true,
   "typescript.tsdk": "node_modules/typescript/lib",
   "vitest.disableWorkspaceWarning": true,
-  "stylelint.validate": ["vue"]
+  "stylelint.validate": [
+    "vue"
+  ],
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

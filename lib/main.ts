@@ -1,2 +1,14 @@
 import TheButton from "../src/components/TheButton.vue";
-export { TheButton };
+// import { App } from "vue";
+
+// import "../src/style.css";
+
+export default { TheButton };
+
+// // Export as Plugin
+// export default {
+//   install: (app: App) => {
+//     app.component("TheButton", TheButton);
+//   },
+// };
+

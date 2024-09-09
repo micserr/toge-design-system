@@ -7,7 +7,10 @@ let count = ref(0)
 </script>
 
 <template>
-  <TheButton @click="count++"> count is {{ count }}</TheButton>
+  <div class="w-80 mx-auto">
+    <TheInput />
+    <TheButton @click="count++"> count is {{ count }}</TheButton>
+  </div>
 </template>
 
 <style scoped>
@@ -17,9 +20,11 @@ let count = ref(0)
   transition: filter 300ms;
   will-change: filter;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }

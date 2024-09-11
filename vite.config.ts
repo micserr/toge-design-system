@@ -4,7 +4,7 @@ import vue from "@vitejs/plugin-vue";
 import tsconfigPaths from "vite-tsconfig-paths";
 import Components from "unplugin-vue-components/vite";
 import dts from "vite-plugin-dts";
-// import gzipPlugin from "rollup-plugin-gzip";
+import gzipPlugin from "rollup-plugin-gzip";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
 
 import tailwind from "tailwindcss";
@@ -20,8 +20,8 @@ export default defineConfig({
     vue(),
     tsconfigPaths(),
     Components(),
-    dts(/* { tsconfigPath: "./tsconfig.app.json", rollupTypes: true } */),
-    // gzipPlugin(),
+    dts(),
+    gzipPlugin(),
     libInjectCss(),
   ],
   resolve: {

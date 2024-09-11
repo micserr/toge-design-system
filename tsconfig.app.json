@@ -11,8 +11,7 @@
       "@/*": ["./src/*"]
     },
     "allowJs": true,
-    "outDir": "dist",
-    "declaration": true,
+    "rootDir": "./",
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -29,5 +28,5 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": false
   },
-  "include": ["src/**/*.ts", "src/**/*.vue"]
+  "include": ["src/**/*.ts", "src/**/*.vue"],
 }

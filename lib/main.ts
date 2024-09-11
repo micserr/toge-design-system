@@ -1,14 +1,12 @@
 import TheButton from "../src/components/TheButton.vue";
-// import { App } from "vue";
+import TheInput from "../src/components/TheInput.vue";
 
-// import "../src/style.css";
+export { TheButton, TheInput };
 
-export default { TheButton };
-
-// // Export as Plugin
-// export default {
-//   install: (app: App) => {
-//     app.component("TheButton", TheButton);
-//   },
-// };
-
+export default {
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  install: (app: any) => {
+    app.components("ds-button", TheButton);
+    app.components("ds-input", TheInput);
+  },
+};

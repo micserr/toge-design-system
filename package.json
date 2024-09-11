@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JefMari/design-system-next"
+    "url": "git+https://github.com/JefMari/design-system-next.git"
   },
   "type": "module",
   "files": [

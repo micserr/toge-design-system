@@ -1,7 +1,7 @@
 import TheButton from "../src/components/TheButton.vue";
 import TheInput from "../src/components/TheInput.vue";
 
-export { TheButton, TheInput };
+// export default { TheButton, TheInput };
 
 export default {
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any

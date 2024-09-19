@@ -1,7 +1,7 @@
 {
   "name": "@jefmari/design-system-next",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JefMari/design-system-next.git"

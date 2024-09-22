@@ -1,12 +1,11 @@
-import { resolve } from "path";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import tsconfigPaths from "vite-tsconfig-paths";
 import Components from "unplugin-vue-components/vite";
 import dts from "vite-plugin-dts";
-import gzipPlugin from "rollup-plugin-gzip";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
-
+import { resolve } from "path";
+import gzipPlugin from "rollup-plugin-gzip";
 import tailwind from "tailwindcss";
 import autoprefixer from "autoprefixer";
 
@@ -21,8 +20,8 @@ export default defineConfig({
     tsconfigPaths(),
     Components(),
     dts(),
-    gzipPlugin(),
-    libInjectCss(),
+    libInjectCss(), // Moved to ensure CSS is processed after Tailwind
+    gzipPlugin(), // Consider conditionally applying this for production
   ],
   resolve: {
     alias: {
@@ -37,12 +36,13 @@ export default defineConfig({
       formats: ["es"],
     },
     rollupOptions: {
-      external: ["vue"],
+      external: ["vue"], // Add other external libraries if needed
       output: {
         globals: {
           vue: "Vue",
         },
       },
     },
+    cssCodeSplit: true, // Ensures CSS is split into its own file
   },
 });

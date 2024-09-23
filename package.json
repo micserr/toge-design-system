@@ -2,18 +2,24 @@
   "name": "@jefmari/design-system-next",
   "private": false,
   "version": "1.0.1",
+  "main": "./dist/design-system-next.js",
+  "module": "./dist/design-system-next.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JefMari/design-system-next.git"
   },
   "type": "module",
   "files": [
-    "dist"
+    "dist",
+    "dist/",
+    "src/",
+    "README.md",
+    "LICENSE"
   ],
-  "module": "./dist/design-system-next.js",
   "exports": {
     ".": {
-      "import": "./dist/design-system-next.js"
+      "import": "./dist/design-system-next.js",
+      "require": "./dist/design-system-next.js"
     }
   },
   "scripts": {
@@ -43,6 +49,7 @@
   "devDependencies": {
     "@stylistic/stylelint-plugin": "^3.0.1",
     "@types/node": "^22.5.4",
+    "@types/vue": "^2.0.0",
     "@vitejs/plugin-vue": "^5.1.3",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.10.0",

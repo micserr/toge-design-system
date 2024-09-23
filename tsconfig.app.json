@@ -20,6 +20,7 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "preserve",
+    "esModuleInterop": true,
 
     /* Linting */
     "strict": true,
@@ -28,5 +29,5 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": false
   },
-  "include": ["src/**/*.ts", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.vue", "dist/lib/main.d.ts"]
 }

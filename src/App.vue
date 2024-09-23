@@ -1,17 +1,10 @@
-<script setup lang="ts">
-import { ref } from "vue";
-
-defineProps<{ msg: string }>();
-
-let count = ref(0)
-</script>
-
 <template>
-  <div class="w-80 mx-auto">
-    <TheInput />
-    <TheButton @click="count++"> count is {{ count }}</TheButton>
-  </div>
+  <SDS_Button>Samples</SDS_Button>
 </template>
+
+<script setup>
+import SDS_Button from "./components/SDS_Button.vue";
+</script>
 
 <style scoped>
 .logo {

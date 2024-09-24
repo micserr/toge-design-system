@@ -4,10 +4,12 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import Components from "unplugin-vue-components/vite";
 import dts from "vite-plugin-dts";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
-import { resolve } from "path";
 import gzipPlugin from "rollup-plugin-gzip";
+
 import tailwind from "tailwindcss";
 import autoprefixer from "autoprefixer";
+
+import { resolve } from "path";
 
 export default defineConfig({
   css: {

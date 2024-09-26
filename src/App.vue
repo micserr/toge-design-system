@@ -1,9 +1,9 @@
 <template>
-  <SDS_Button>Samples</SDS_Button>
+  <DSN_Button>Samples</DSN_Button>
 </template>
 
 <script setup>
-import SDS_Button from "./components/SDS_Button.vue";
+import DSN_Button from './components/DSN_Button/DSN-ButtonBase.vue';
 </script>
 
 <style scoped>

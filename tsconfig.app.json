@@ -29,5 +29,5 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": false
   },
-  "include": ["src/**/*.ts", "src/**/*.vue", "dist/lib/main.d.ts"]
+  "include": ["src/**/*.ts", "src/**/*.vue", "dist/lib/main.d.ts", "toge-ds-color-v3.0.ts"]
 }

@@ -1,14 +1,12 @@
-import { App } from "vue";
+import { App } from 'vue';
 
-import "../src/tailwind.css";
+import '../src/tailwind.css';
 
 // Import the components
-import SDS_Button from "../src/components/SDS_Button.vue";
-import SDS_Input from "../src/components/SDS_Input.vue";
+import DSN_ButtonBase from '../src/components/DSN-Button/DSN_ButtonBase.vue';
 
 const components = {
-  SDS_Button: SDS_Button,
-  SDS_Input: SDS_Input,
+  DSN_ButtonBase: DSN_ButtonBase,
 };
 
 const _default = {
@@ -18,12 +16,15 @@ const _default = {
       app.component(name, component);
     });
 
-    console.log("%c🚀⭐ Sprout's Design System Installed ⭐🚀", "color: green; font-weight: bold; font-size: 18px;");
+    console.log(
+      '%c🚀⭐ Design System Next Installed ⭐🚀',
+      'color: green; font-weight: bold; font-size: 18px;',
+    );
   },
 };
 
 // Export components for individual import
-export { SDS_Button, SDS_Input };
+export { DSN_ButtonBase };
 
 // Export default for plugin install
 export default _default;

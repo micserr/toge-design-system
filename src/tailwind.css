@@ -3,3 +3,379 @@
 @tailwind components;
 
 @tailwind utilities;
+
+@layer utilities {
+  /*#region - Text Colors */
+  .tw-text-color-strong {
+    @apply tw-text-mushroom-950;
+  }
+
+  .tw-text-color-supporting {
+    @apply tw-text-mushroom-400;
+  }
+
+  .tw-text-color-base {
+    @apply tw-text-mushroom-600;
+  }
+
+  .tw-text-color-weak {
+    @apply tw-text-mushroom-300;
+  }
+
+  .tw-text-color-disabled {
+    @apply tw-text-white-300;
+  }
+
+  .tw-text-color-on-fill-disabled {
+    @apply tw-text-white-400;
+  }
+
+  .tw-text-color-inverted-strong {
+    @apply tw-text-white-50;
+  }
+
+  .tw-text-color-inverted-base {
+    @apply tw-text-mushroom-200;
+  }
+
+  .tw-text-color-inverted-weak {
+    @apply tw-text-mushroom-400;
+  }
+
+  .tw-text-color-inverted-disabled {
+    @apply tw-text-white-600;
+  }
+
+  .tw-text-color-brand-base {
+    @apply tw-text-kangkong-700;
+  }
+
+  .tw-text-color-success-hover {
+    @apply tw-text-kangkong-800;
+  }
+
+  .tw-text-color-success-pressed {
+    @apply tw-text-kangkong-900;
+  }
+
+  .tw-text-color-information-base {
+    @apply tw-text-blueberry-700;
+  }
+
+  .tw-text-color-information-hover {
+    @apply tw-text-blueberry-800;
+  }
+
+  .tw-text-color-information-pressed {
+    @apply tw-text-blueberry-900;
+  }
+
+  .tw-text-color-danger-base {
+    @apply tw-text-tomato-600;
+  }
+
+  .tw-text-color-danger-hover {
+    @apply tw-text-tomato-700;
+  }
+
+  .tw-text-color-danger-pressed {
+    @apply tw-text-tomato-800;
+  }
+
+  .tw-text-color-pending-base {
+    @apply tw-text-mango-700;
+  }
+
+  .tw-text-color-pending-hover {
+    @apply tw-text-mango-800;
+  }
+
+  .tw-text-color-pending-pressed {
+    @apply tw-text-mango-900;
+  }
+
+  .tw-text-color-caution-pressed {
+    @apply tw-text-carrot-700;
+  }
+
+  .tw-text-color-caution-pressed {
+    @apply tw-text-carrot-800;
+  }
+
+  .tw-text-color-caution-pressed {
+    @apply tw-text-carrot-900;
+  }
+
+  .tw-text-color-accent-base {
+    @apply tw-text-wintermelon-700;
+  }
+
+  .tw-text-color-accent-hover {
+    @apply tw-text-wintermelon-800;
+  }
+
+  .tw-text-color-accent-pressed {
+    @apply tw-text-wintermelon-900;
+  }
+  /*#endregion */
+
+  /*#region - Background Colors */
+  .tw-background-color {
+    @apply tw-bg-white-50;
+  }
+
+  .tw-background-color-surface {
+    @apply tw-bg-white-100;
+  }
+
+  .tw-background-color-inverted {
+    @apply tw-bg-mushroom-950;
+  }
+
+  .tw-background-color-inverted-hover {
+    @apply tw-bg-mushroom-900;
+  }
+
+  .tw-background-color-inverted-pressed {
+    @apply tw-bg-mushroom-800;
+  }
+
+  .tw-background-color-base {
+    @apply tw-bg-mushroom-50;
+  }
+
+  .tw-background-color-single-active {
+    @apply tw-bg-kangkong-100;
+  }
+
+  .tw-background-color-multiple-active {
+    @apply tw-bg-kangkong-50;
+  }
+
+  .tw-background-color-hover {
+    @apply tw-bg-mushroom-100;
+  }
+
+  .tw-background-color-pressed {
+    @apply tw-bg-mushroom-200;
+  }
+
+  .tw-background-color-disabled {
+    @apply tw-bg-white-100;
+  }
+
+  .tw-background-color-brand-base {
+    @apply tw-bg-kangkong-700;
+  }
+
+  .tw-background-color-brand-hover {
+    @apply tw-bg-kangkong-800;
+  }
+
+  .tw-background-color-brand-pressed {
+    @apply tw-bg-kangkong-900;
+  }
+
+  .tw-background-color-brand-weak {
+    @apply tw-bg-kangkong-100;
+  }
+
+  .tw-background-color-success-base {
+    @apply tw-bg-kangkong-600;
+  }
+
+  .tw-background-color-success-hover {
+    @apply tw-bg-kangkong-700;
+  }
+
+  .tw-background-color-success-pressed {
+    @apply tw-bg-kangkong-800;
+  }
+
+  .tw-background-color-success-weak {
+    @apply tw-bg-kangkong-100;
+  }
+
+  .tw-background-color-information-base {
+    @apply tw-bg-blueberry-600;
+  }
+
+  .tw-background-color-information-hover {
+    @apply tw-bg-blueberry-700;
+  }
+
+  .tw-background-color-information-pressed {
+    @apply tw-bg-blueberry-800;
+  }
+
+  .tw-background-color-information-weak {
+    @apply tw-bg-blueberry-100;
+  }
+
+  .tw-background-color-pending-base {
+    @apply tw-bg-mango-500;
+  }
+
+  .tw-background-color-pending-hover {
+    @apply tw-bg-mango-600;
+  }
+
+  .tw-background-color-pending-pressed {
+    @apply tw-bg-mango-700;
+  }
+
+  .tw-background-color-pending-weak {
+    @apply tw-bg-mango-100;
+  }
+
+  .tw-background-color-caution-base {
+    @apply tw-bg-carrot-500;
+  }
+
+  .tw-background-color-caution-hover {
+    @apply tw-bg-carrot-600;
+  }
+
+  .tw-background-color-caution-pressed {
+    @apply tw-bg-carrot-700;
+  }
+
+  .tw-background-color-caution-weak {
+    @apply tw-bg-carrot-1000;
+  }
+
+  .tw-background-color-accent-base {
+    @apply tw-bg-wintermelon-600;
+  }
+
+  .tw-background-color-accent-hover {
+    @apply tw-bg-wintermelon-700;
+  }
+
+  .tw-background-color-accent-pressed {
+    @apply tw-bg-wintermelon-800;
+  }
+
+  .tw-background-color-accent-weak {
+    @apply tw-bg-wintermelon-100;
+  }
+  /*#endregion */
+
+  /*#region - Border Colors */
+  .tw-border-color-strong {
+    @apply tw-border-mushroom-500;
+  }
+
+  .tw-border-color-supporting {
+    @apply tw-border-mushroom-400;
+  }
+
+  .tw-border-color-base {
+    @apply tw-border-mushroom-300;
+  }
+
+  .tw-border-color-hover {
+    @apply tw-border-mushroom-400;
+  }
+
+  .tw-border-color-pressed {
+    @apply tw-border-mushroom-500;
+  }
+
+  .tw-border-color-weak {
+    @apply tw-border-mushroom-200;
+  }
+
+  .tw-border-color-disabled {
+    @apply tw-border-white-100;
+  }
+
+  .tw-border-color-on-fill-disabled {
+    @apply tw-border-white-200;
+  }
+
+  .tw-border-color-brand-base {
+    @apply tw-border-kangkong-700;
+  }
+
+  .tw-border-color-brand-hover {
+    @apply tw-border-kangkong-800;
+  }
+
+  .tw-border-color-brand-pressed {
+    @apply tw-border-kangkong-900;
+  }
+
+  .tw-border-color-success-base {
+    @apply tw-border-kangkong-700;
+  }
+
+  .tw-border-color-success-hover {
+    @apply tw-border-kangkong-800;
+  }
+
+  .tw-border-color-success-pressed {
+    @apply tw-border-kangkong-900;
+  }
+
+  .tw-border-color-information-base {
+    @apply tw-border-blueberry-700;
+  }
+
+  .tw-border-color-information-hover {
+    @apply tw-border-blueberry-800;
+  }
+
+  .tw-border-color-information-pressed {
+    @apply tw-border-blueberry-900;
+  }
+
+  .tw-border-color-danger-base {
+    @apply tw-border-tomato-600;
+  }
+
+  .tw-border-color-danger-hover {
+    @apply tw-border-tomato-700;
+  }
+
+  .tw-border-color-danger-pressed {
+    @apply tw-border-tomato-800;
+  }
+
+  .tw-border-color-pending-base {
+    @apply tw-border-mango-700;
+  }
+
+  .tw-border-color-pending-hover {
+    @apply tw-border-mango-800;
+  }
+
+  .tw-border-color-pending-pressed {
+    @apply tw-border-mango-900;
+  }
+
+  .tw-border-color-caution-base {
+    @apply tw-border-carrot-700;
+  }
+
+  .tw-border-color-caution-hover {
+    @apply tw-border-carrot-800;
+  }
+
+  .tw-border-color-caution-pressed {
+    @apply tw-border-carrot-900;
+  }
+
+  .tw-border-color-accent-base {
+    @apply tw-border-wintermelon-700;
+  }
+
+  .tw-border-color-accent-hover {
+    @apply tw-border-wintermelon-800;
+  }
+
+  .tw-border-color-accent-pressed {
+    @apply tw-border-wintermelon-900;
+  }
+  /*#endregion */
+}

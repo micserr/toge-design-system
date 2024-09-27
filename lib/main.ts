@@ -29,4 +29,4 @@ export default { install };
 
 //#region - Export components for individual import
 export { default as DSN_ButtonBase } from '../src/components/DSN_Button/DSN_ButtonBase.vue';
-//#endrigion
+//#endregion

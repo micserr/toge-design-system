@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import DSN_Button from './components/DSN_Button/DSN-ButtonBase.vue';
+import DSN_Button from './components/DSN_Button/DSN_ButtonBase.vue';
 </script>
 
 <style scoped>

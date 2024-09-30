@@ -2,29 +2,31 @@ import { App } from 'vue';
 
 import '../src/tailwind.css';
 
-// Import the components
-import DSN_ButtonBase from '../src/components/DSN-Button/DSN_ButtonBase.vue';
+//#region - Install components globally
 
-const components = {
-  DSN_ButtonBase: DSN_ButtonBase,
+// Dynamically import all components from the components directory
+const components = import.meta.glob('../src/components/**/*.vue', {
+  eager: true, // Load components immediately
+});
+
+const install = (app: App) => {
+  Object.entries(components).forEach(([path, component]) => {
+    // Extract the component name from the file path
+    const componentName = path.split('/').pop()?.replace('.vue', '') as string;
+
+    // Register each component globally
+    app.component(componentName, (component as any).default);
+  });
+
+  console.log(
+    '%c🚀⭐ Design System Next Installed ⭐🚀',
+    'color: green; font-weight: bold; font-size: 14px;',
+  );
 };
 
-const _default = {
-  install(app: App) {
-    // Register components
-    Object.entries(components).forEach(([name, component]) => {
-      app.component(name, component);
-    });
+export default { install };
+//#endregion
 
-    console.log(
-      '%c🚀⭐ Design System Next Installed ⭐🚀',
-      'color: green; font-weight: bold; font-size: 18px;',
-    );
-  },
-};
-
-// Export components for individual import
-export { DSN_ButtonBase };
-
-// Export default for plugin install
-export default _default;
+//#region - Export components for individual import
+export { default as DSN_ButtonBase } from '../src/components/DSN_Button/DSN_ButtonBase.vue';
+//#endregion

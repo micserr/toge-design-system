@@ -1,9 +1,9 @@
 <template>
-  <DSN_Button>Samples</DSN_Button>
+  <ButtonBase>Samples</ButtonBase>
 </template>
 
 <script setup>
-import DSN_Button from './components/DSN_Button/DSN_ButtonBase.vue';
+import ButtonBase from './components/Buttons/ButtonBase.vue';
 </script>
 
 <style scoped>

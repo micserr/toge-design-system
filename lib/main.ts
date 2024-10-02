@@ -2,7 +2,7 @@ import { App } from 'vue';
 
 import '../src/tailwind.css';
 
-//#region - Utility to get and set prefix
+//#region - Get and set prefix
 let globalPrefix = '';
 
 export const setPrefix = (prefix: string) => {

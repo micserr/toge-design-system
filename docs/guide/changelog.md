@@ -6,7 +6,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 2024-10-02
 
 ### Updates
-- Initialized project in Vue + Vite ([#5717d94](https://github.com/JefMari/design-system-next/commit/99eace9a993d5ce41d76bceef8ebfe79096df32d) by [@JefMari]({{ githubProfile.jef }}))
+- Initialized project in Vue + Vite ([#5717d94](https://github.com/JefMari/design-system-next/commit/99eace9a993d5ce41d76bceef8ebfe79096df32d) by @JefMari)
 
 
 ### Features

@@ -4,7 +4,7 @@ import colorScheme from './toge-ds-color-v3.0';
 
 export default {
   prefix: 'tw-',
-  content: ['./index.html', './src/**/*.{vue,js,ts}'],
+  content: ['./index.html', './src/**/*.{vue,js,ts}', './docs/**/*.{md,ts,js}'],
   theme: {
     container: {
       padding: {

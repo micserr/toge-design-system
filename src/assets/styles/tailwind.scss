@@ -1,11 +1,49 @@
+@use 'fonts';
+
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
 
+@layer base {
+  *::-webkit-scrollbar {
+    @apply tw-h-[8px] tw-w-[8px];
+  }
+
+  *::-webkit-scrollbar-track {
+    @apply tw-bg-white-200;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply tw-rounded-full tw-bg-white-300;
+  }
+}
+
+@layer components {
+  .tw-sidenav-wrapper[sidenav-type='push'] {
+    @apply tw-grid tw-h-screen tw-grid-cols-[auto,1fr] tw-overflow-y-hidden md:tw-block md:tw-overflow-y-auto;
+
+    .tw-sidenav-content {
+      @apply tw-m-[20px];
+    }
+  }
+}
+
 @layer utilities {
-  /*#region - Text Colors */
+  /*#region - Text Colors*/
+  .font-main {
+    @apply tw-font-rubik;
+  }
+
+  .font-inbound {
+    @apply tw-font-roboto;
+  }
+
+  .font-code {
+    @apply tw-font-roboto-mono;
+  }
+  /*endregion*/
+
+  /*#region - Text Colors*/
   .tw-text-color-strong {
     @apply tw-text-mushroom-950;
   }
@@ -117,9 +155,9 @@
   .tw-text-color-accent-pressed {
     @apply tw-text-wintermelon-900;
   }
-  /*#endregion */
+  /*#endregion*/
 
-  /*#region - Background Colors */
+  /*#region - Background Colors*/
   .tw-background-color {
     @apply tw-bg-white-50;
   }
@@ -259,9 +297,9 @@
   .tw-background-color-accent-weak {
     @apply tw-bg-wintermelon-100;
   }
-  /*#endregion */
+  /*#endregion*/
 
-  /*#region - Border Colors */
+  /*#region - Border Colors*/
   .tw-border-color-strong {
     @apply tw-border-mushroom-500;
   }
@@ -377,5 +415,5 @@
   .tw-border-color-accent-pressed {
     @apply tw-border-wintermelon-900;
   }
-  /*#endregion */
+  /*#endregion*/
 }

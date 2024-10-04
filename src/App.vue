@@ -1,24 +1,25 @@
 <template>
-  <ButtonBase>Samples</ButtonBase>
+  <div class="tw-sidenav-wrapper" sidenav-type="push">
+    <SidenavOlympus />
+    <div class="tw-sidenav-content">
+      <ButtonBase>Samples</ButtonBase>
+
+      <h1 class="font-main">rubik</h1>
+
+      <h1 class="font-inbound">robot</h1>
+
+      <h1 class="font-code">roboto mono</h1>
+    </div>
+  </div>
 </template>
 
 <script setup>
+import SidenavOlympus from './components/Sidenav/SidenavOlympus.vue';
 import ButtonBase from './components/Buttons/ButtonBase.vue';
 </script>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  transition: filter 300ms;
-  will-change: filter;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+<style>
+body {
+  margin: 0;
 }
 </style>

@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
-import colorScheme from './toge-ds-color-v3.0';
+import colorScheme from './src/assets/scripts/toge-ds-color-v3.0';
 
 export default {
   prefix: 'tw-',
@@ -25,6 +25,11 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        rubik: ['Rubik', 'sans-serif'],
+        roboto: ['Roboto', 'sans-serif'],
+        'roboto-mono': ['Roboto Mono', 'sans-serif'],
+      },
       colors: colorScheme,
     },
     screens: {

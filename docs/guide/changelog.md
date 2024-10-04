@@ -1,11 +1,3 @@
-<script setup>
-  const githubProfile = {
-    jef: "https://github.com/JefMari",
-    jarias: "https://github.com/jarias-sprout",
-    jupau: "https://github.com/JuPauBan"
-  };
-</script>
-
 # Changelog
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -14,7 +6,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 2024-10-02
 
 ### Updates
-- Initialized project in Vue + Vite ([#5717d94](https://github.com/JefMari/design-system-next/commit/99eace9a993d5ce41d76bceef8ebfe79096df32d) by @JefMari)
+- Initialized project in Vue + Vite ([#5717d94](https://github.com/JefMari/design-system-next/commit/99eace9a993d5ce41d76bceef8ebfe79096df32d) by [@JefMari]({{ githubProfile.jef }}))
 
 
 ### Features

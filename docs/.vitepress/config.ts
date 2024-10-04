@@ -7,22 +7,47 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Guide', link: '/guide/changelog' },
+      { text: 'Component', link: '/component/overview' },
+      { text: 'Resource', link: '/resource/resource' },
     ],
 
-    sidebar: [
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      }
-    ],
+    sidebar: {
+      '/guide/': [
+        {
+          text: 'Basics',
+          items: [
+            { text: 'Design', link: '/' },
+            { text: 'Navigation', link: '/' },
+            { text: 'Installation', link: '/' },
+            { text: 'Quick Start', link: '/' },
+          ],
+        },
+        {
+          text: 'Advanced',
+          items: [
+            { text: 'Changelog', link: '/guide/changelog' },
+          ]
+        }
+      ],
+      '/component/': [
+        {
+          text: 'Overview',
+          items: [
+            { text: 'Overview', link: '/component/overview' },
+          ]
+        },
+        {
+          text: 'Basic',
+          items: [
+            { text: 'Button', link: '/component/button' },
+          ]
+        }
+      ],
+    },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/JefMari/design-system-next' }
     ]
   }
 })

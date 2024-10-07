@@ -1,6 +1,6 @@
 import { App } from 'vue';
 
-import '../src/tailwind.css';
+import '@/assets/styles/tailwind.scss';
 
 //#region - Get and set prefix
 let globalPrefix = '';

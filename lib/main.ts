@@ -17,7 +17,7 @@ const applyPrefix = (componentName: string) => `${getPrefix()}${componentName}`;
 //#region - Install components globally
 
 // Dynamically import all components from the components directory
-const components = (import.meta as any).glob('../src/components/**/*.vue', {
+const components = import.meta.glob('../src/components/**/*.vue', {
   eager: true, // Load components immediately
 });
 
@@ -33,7 +33,8 @@ const install = (app: App, options: { prefix?: string } = {}) => {
     const prefixedComponentName = applyPrefix(componentName);
 
     // Register each component globally
-    app.component(prefixedComponentName, (component as any).default);
+    // eslint-disable-next-line
+    app.component(prefixedComponentName, (component as any).default);  
   });
 
   console.log(

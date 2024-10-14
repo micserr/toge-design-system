@@ -27,7 +27,7 @@
     "build": "vue-tsc --emitDeclarationOnly && vite build",
     "types": "vue-tsc",
     "preview": "vite preview",
-    "lint:script": "eslint \"**/*.{js,ts,vue}\" --ignore-pattern \"dist\"",
+    "lint:script": "eslint \"**/*.{js,ts,vue}\" --ignore-pattern \"dist\" --ignore-pattern \"docs/.vitepress/cache/*\"",
     "lint:style": "stylelint \"**/*.{vue,css}\"",
     "fix:style": "stylelint --fix \"**/*.{vue,css}\"",
     "lint": "npm run lint:script && npm run lint:style",

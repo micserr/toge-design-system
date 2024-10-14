@@ -19,7 +19,7 @@ export default tseslint.config(
         sourceType: "module",
       },
     },
-    ignores: ["node_modules/*", "dist/*", ".git", "*.config.js", "*.d.ts", "vite.config.ts","lib/*"], // dist not working here for some reason T_T
+    ignores: ["node_modules/*", "dist/*", ".git", "*.config.js", "*.d.ts", "**/vite.config.ts", "lib/*"], // dist not working here for some reason T_T
   },
   eslintConfigPrettier,
 );

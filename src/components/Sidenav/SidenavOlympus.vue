@@ -5,7 +5,7 @@
       'hover:tw-overflow-y-auto',
     ]"
   >
-    <div class="tw-m-[10px] tw-bg-tomato-300" v-for="i in 100" :key="i">
+    <div v-for="i in 100" :key="i" class="tw-m-[10px] tw-bg-tomato-300">
       {{ i }}
     </div>
   </div>

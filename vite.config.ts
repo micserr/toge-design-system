@@ -5,6 +5,7 @@ import Components from 'unplugin-vue-components/vite';
 import dts from 'vite-plugin-dts';
 import { libInjectCss } from 'vite-plugin-lib-inject-css';
 import gzipPlugin from 'rollup-plugin-gzip';
+import Icons from 'unplugin-icons/vite';
 
 import tailwind from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
@@ -24,6 +25,10 @@ export default defineConfig({
     dts(),
     libInjectCss(), // Moved to ensure CSS is processed after Tailwind
     gzipPlugin(), // Consider conditionally applying this for production
+    Icons({
+      autoInstall: true,
+      compiler: 'vue3',
+    }),
   ],
   resolve: {
     alias: {

@@ -1,4 +1,4 @@
-/*#region - Rubik*/
+/* #region - Rubik */
 @font-face {
   font-family: 'Rubik';
   src: url('../fonts/Rubik/Rubik-Light.ttf') format('truetype');
@@ -96,9 +96,9 @@
   font-weight: 900;
   font-style: italic;
 }
-/*#endregion*/
+/* #endregion */
 
-/*#region - Roboto*/
+/* #region - Roboto */
 @font-face {
   font-family: 'Roboto';
   src: url('../fonts/Roboto/Roboto-Light.ttf') format('truetype');
@@ -168,9 +168,9 @@
   font-weight: 900;
   font-style: italic;
 }
-/*#endregion*/
+/* #endregion */
 
-/*#region - Roboto Mono*/
+/* #region - Roboto Mono */
 @font-face {
   font-family: 'Roboto Mono';
   src: url('../fonts/Roboto_Mono/RobotoMono-Thin.ttf') format('truetype');
@@ -271,4 +271,4 @@
   font-weight: 700;
   font-style: italic;
 }
-/*#endregion*/
+/* #endregion */

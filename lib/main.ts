@@ -1,8 +1,8 @@
 import { App } from 'vue';
 
-import '@/assets/styles/tailwind.scss';
+import '@/assets/styles/tailwind.css';
 
-//#region - Get and set prefix
+// #region - Get and set prefix
 let globalPrefix = '';
 
 export const setPrefix = (prefix: string) => {
@@ -12,9 +12,9 @@ export const setPrefix = (prefix: string) => {
 export const getPrefix = (): string => globalPrefix;
 
 const applyPrefix = (componentName: string) => `${getPrefix()}${componentName}`;
-//#endregion
+// #endregion
 
-//#region - Install components globally
+// #region - Install components globally
 
 // Dynamically import all components from the components directory
 const components = import.meta.glob('../src/components/**/*.vue', {
@@ -34,7 +34,7 @@ const install = (app: App, options: { prefix?: string } = {}) => {
 
     // Register each component globally
     // eslint-disable-next-line
-    app.component(prefixedComponentName, (component as any).default);  
+    app.component(prefixedComponentName, (component as any).default);
   });
 
   console.log(
@@ -44,8 +44,8 @@ const install = (app: App, options: { prefix?: string } = {}) => {
 };
 
 export default { install };
-//#endregion
+// #endregion
 
-//#region - Export components for individual import
+// #region - Export components for individual import
 // export { default as ButtonBase } from '../src/components/Buttons/ButtonBase.vue';  // Does not support prefix
-//#endregion
+// #endregion

@@ -1,25 +1,15 @@
+// @ts-check
+
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import pluginVue from 'eslint-plugin-vue';
+import vueParser from 'vue-eslint-parser';
 import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default tseslint.config(
-  eslint.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...pluginVue.configs['flat/recommended'],
   {
-    plugins: {
-      'typescript-eslint': tseslint.plugin,
-    },
-    languageOptions: {
-      parserOptions: {
-        parser: '@typescript-eslint/parser',
-        project: './tsconfig.app.json',
-        extraFileExtensions: ['.vue'],
-        sourceType: 'module',
-      },
-    },
     ignores: [
+      'eslint.config.js',
       'node_modules/*',
       'dist/*',
       '.git',
@@ -27,7 +17,27 @@ export default tseslint.config(
       '*.d.ts',
       '**/vite.config.ts',
       'lib/*',
+      'docs/.vitepress/dist',
+      'docs/.vitepress/cache',
     ],
+  },
+  eslint.configs.recommended,
+  ...tseslint.configs.recommended,
+  ...pluginVue.configs['flat/recommended'],
+  {
+    plugins: {
+      vue: pluginVue,
+      'typescript-eslint': tseslint.plugin,
+    },
+    languageOptions: {
+      parser: vueParser,
+      parserOptions: {
+        parser: '@typescript-eslint/parser',
+        project: './tsconfig.app.json',
+        extraFileExtensions: ['.vue'],
+        sourceType: 'module',
+      },
+    },
   },
   eslintConfigPrettier,
 );

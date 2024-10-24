@@ -6,7 +6,7 @@
   "module": "./dist/design-system-next.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JefMari/design-system-next.git"
+    "url": "git+https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next"
   },
   "type": "module",
   "files": [
@@ -24,10 +24,10 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --emitDeclarationOnly && vite build",
+    "build": "vue-tsc && vite build",
     "types": "vue-tsc",
     "preview": "vite preview",
-    "lint:script": "eslint \"**/*.{js,ts,vue}\" --ignore-pattern \"dist\" --ignore-pattern \"docs/.vitepress/cache/*\"",
+    "lint:script": "eslint \"**/*.{js,ts,vue}\"",
     "lint:style": "stylelint \"**/*.{vue,css}\"",
     "fix:style": "stylelint --fix \"**/*.{vue,css}\"",
     "lint": "npm run lint:script && npm run lint:style",
@@ -38,42 +38,45 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
-    "@eslint/js": "^9.10.0",
+    "@eslint/js": "^9.13.0",
     "@iconify-json/ph": "^1.2.1",
-    "stylelint": "^16.9.0",
-    "stylelint-config-recess-order": "^5.1.0",
+    "stylelint": "^16.10.0",
+    "stylelint-config-recess-order": "^5.1.1",
     "stylelint-config-recommended": "^14.0.1",
     "stylelint-config-recommended-vue": "^1.5.0",
-    "typescript-eslint": "^8.5.0",
+    "typescript-eslint": "^8.10.0",
     "vite-plugin-lib-inject-css": "^2.1.1",
     "vite-plugin-sass": "^0.1.0",
     "vue": "^3.0.0"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.263",
-    "@stylistic/stylelint-plugin": "^3.0.1",
-    "@types/node": "^22.5.4",
-    "@types/vue": "^2.0.0",
-    "@vitejs/plugin-vue": "^5.1.3",
+    "@stylistic/stylelint-plugin": "^3.1.1",
+    "@types/node": "^22.7.7",
+    "@vitejs/plugin-vue": "^5.1.4",
     "autoprefixer": "^10.4.20",
-    "eslint": "^9.10.0",
+    "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-vue": "^9.28.0",
+    "eslint-plugin-vue": "^9.29.1",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
     "rollup-plugin-gzip": "^4.0.1",
-    "sass-embedded": "^1.79.4",
-    "tailwindcss": "^3.4.10",
-    "typescript": "^5.6.0",
+    "sass-embedded": "^1.80.3",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3",
     "unplugin-icons": "^0.19.3",
     "unplugin-vue-components": "^0.27.4",
-    "vite": "^5.4.3",
-    "vite-plugin-dts": "^4.2.1",
+    "vite": "^5.4.9",
+    "vite-plugin-dts": "^4.2.4",
     "vite-tsconfig-paths": "^5.0.1",
-    "vitepress": "^1.3.4",
+    "vitepress": "^1.4.1",
+    "vue-eslint-parser": "^9.4.3",
     "vue-tsc": "^2.1.6"
   },
   "peerDependencies": {
     "vue": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
   }
 }

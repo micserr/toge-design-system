@@ -5,10 +5,10 @@
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
-    "types": ["node"],
+    "types": ["node","unplugin-icons/types/vue"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
     },
     "allowJs": true,
     "rootDir": "./",
@@ -27,7 +27,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "forceConsistentCasingInFileNames": false
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*.ts", "src/**/*.vue", "dist/lib/main.d.ts", "**/docs/.vitepress/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.vue",
+    "dist/lib/main.d.ts",
+    "**/docs/.vitepress/**/*.ts"
+  ],
+  "exclude": ["dist/"]
 }

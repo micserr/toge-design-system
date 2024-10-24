@@ -1,18 +1,12 @@
 {
   "files": [],
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "node",
+    "types": ["vite/client"],
+  },
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
   ],
-  "compilerOptions": {
-    "module": "esnext",
-    "outDir": "dist",
-    "declaration": true,
-    "moduleResolution": "node",
-    "types": ["vite/client"],
-    "paths": {
-      "vue": ["./node_modules/vue"]
-    }
-  },
-  "exclude": ["dist/"]
 }

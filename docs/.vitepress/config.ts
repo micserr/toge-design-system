@@ -9,14 +9,23 @@ export default defineConfig({
     ['meta', { name: 'theme-color', content: '#5f67ee' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'en' }],
-    ['meta', { property: 'og:title', content: 'Welcome to TOGE - The Sprout Design System' }],
+    [
+      'meta',
+      {
+        property: 'og:title',
+        content: 'Welcome to TOGE - The Sprout Design System',
+      },
+    ],
     ['meta', { property: 'og:site_name', content: 'Toge' }],
   ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Guide', link: '/guide/changelog' },
-      { text: 'Component', link: '/component/overview' },
+      {
+        text: 'Documentation',
+        link: '/documentation/development/installation',
+      },
       { text: 'Resource', link: '/resource/resource' },
     ],
 
@@ -26,8 +35,6 @@ export default defineConfig({
           text: 'Basics',
           items: [
             { text: 'Design', link: '/' },
-            { text: 'Navigation', link: '/' },
-            { text: 'Installation', link: '/' },
             { text: 'Quick Start', link: '/' },
           ],
         },
@@ -36,14 +43,55 @@ export default defineConfig({
           items: [{ text: 'Changelog', link: '/guide/changelog' }],
         },
       ],
-      '/component/': [
+      '/documentation/': [
         {
-          text: 'Overview',
-          items: [{ text: 'Overview', link: '/component/overview' }],
+          text: 'Development',
+          items: [
+            {
+              text: 'Installation',
+              link: '/documentation/development/installation',
+            },
+            {
+              text: 'Quick Start',
+              link: '/documentation/development/quick-start',
+            },
+          ],
         },
         {
-          text: 'Basic',
-          items: [{ text: 'Button', link: '/component/button' }],
+          text: 'Components',
+          items: [
+            {
+              text: 'Button',
+              items: [
+                {
+                  text: 'Base Buttons',
+                  link: '/documentation/components/button/base',
+                },
+              ],
+            },
+            {
+              text: 'Side Navigation',
+              items: [
+                {
+                  text: 'Olympus',
+                  link: '/documentation/components/side-navigation/olympus',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          text: 'Utilities',
+          items: [
+            {
+              text: 'Colors',
+              link: '/documentation/utilities/colors',
+            },
+            {
+              text: 'Typography',
+              link: '/documentation/utilities/typography',
+            },
+          ],
         },
       ],
     },

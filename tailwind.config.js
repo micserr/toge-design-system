@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
-import colorScheme from './src/assets/scripts/toge-ds-color-v3.0';
+import colorScheme from './src/assets/scripts/colors';
 
 export default {
   prefix: 'tw-',
@@ -53,6 +53,8 @@ export default {
         'drop-top-sm': '0px -2px 4px -1px #262B2B1F',
         'drop-top': '0px -2px 8px -2px #262B2B33',
         'drop-top-md': '0px -4px 12px 0px #262B2B29',
+        button: '0px 2px 1px 0px rgba(0, 0, 0, 0.15) inset;',
+        'button-active': '0px 0px 0px 2px #394141',
       },
     },
     container: {

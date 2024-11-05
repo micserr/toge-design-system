@@ -62,12 +62,7 @@ export default defineConfig({
           items: [
             {
               text: 'Button',
-              items: [
-                {
-                  text: 'Base Buttons',
-                  link: '/documentation/components/button/base',
-                },
-              ],
+              link: '/documentation/components/button',
             },
             {
               text: 'Side Navigation',
@@ -105,6 +100,10 @@ export default defineConfig({
         ariaLabel: 'Link To Azure DevOps',
       },
     ],
+
+    search: {
+      provider: 'local',
+    },
 
     footer: {
       copyright: 'Copyright © 2024 Sprout Frontend Engineers',

@@ -21,9 +21,8 @@ The Toge Design System v3.0 - Color Scheme includes the following primary colors
 </div>
 
 <script setup>
-import colorScheme from '@/assets/scripts/toge-ds-color-v3.0.ts';
+import colorScheme from '@/assets/scripts/colors';
 
-console.log('wew', colorScheme);
 </script>
 
 <style>

@@ -38,6 +38,14 @@ export default tseslint.config(
         sourceType: 'module',
       },
     },
+    rules: {
+      'vue/multi-word-component-names': [
+        'error',
+        {
+          ignores: ['Button'],
+        },
+      ],
+    },
   },
   eslintConfigPrettier,
 );

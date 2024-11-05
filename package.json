@@ -40,6 +40,7 @@
   "dependencies": {
     "@eslint/js": "^9.13.0",
     "@iconify-json/ph": "^1.2.1",
+    "classnames": "^2.5.1",
     "floating-vue": "^5.2.2",
     "stylelint": "^16.10.0",
     "stylelint-config-recess-order": "^5.1.1",

@@ -1,7 +1,8 @@
-/*#region - Rubik*/
+/* #region - Rubik */
 @font-face {
   font-family: 'Rubik';
   src: url('../fonts/Rubik/Rubik-Light.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
 }
@@ -9,6 +10,7 @@
 @font-face {
   font-family: 'Rubik';
   src: url('../fonts/Rubik/Rubik-LightItalic.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 300;
   font-style: italic;
 }
@@ -16,6 +18,7 @@
 @font-face {
   font-family: 'Rubik';
   src: url('../fonts/Rubik/Rubik-Regular.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
@@ -23,6 +26,7 @@
 @font-face {
   font-family: 'Rubik';
   src: url('../fonts/Rubik/Rubik-Italic.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 400;
   font-style: italic;
 }
@@ -30,6 +34,7 @@
 @font-face {
   font-family: 'Rubik';
   src: url('../fonts/Rubik/Rubik-Medium.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
 }
@@ -37,6 +42,7 @@
 @font-face {
   font-family: 'Rubik';
   src: url('../fonts/Rubik/Rubik-MediumItalic.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 500;
   font-style: italic;
 }
@@ -44,6 +50,7 @@
 @font-face {
   font-family: 'Rubik';
   src: url('../fonts/Rubik/Rubik-SemiBold.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
 }
@@ -51,6 +58,7 @@
 @font-face {
   font-family: 'Rubik';
   src: url('../fonts/Rubik/Rubik-SemiBoldItalic.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 600;
   font-style: italic;
 }
@@ -58,6 +66,7 @@
 @font-face {
   font-family: 'Rubik';
   src: url('../fonts/Rubik/Rubik-Bold.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
 }
@@ -65,6 +74,7 @@
 @font-face {
   font-family: 'Rubik';
   src: url('../fonts/Rubik/Rubik-BoldItalic.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 700;
   font-style: italic;
 }
@@ -72,6 +82,7 @@
 @font-face {
   font-family: 'Rubik';
   src: url('../fonts/Rubik/Rubik-ExtraBold.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 800;
   font-style: normal;
 }
@@ -79,6 +90,7 @@
 @font-face {
   font-family: 'Rubik';
   src: url('../fonts/Rubik/Rubik-ExtraBoldItalic.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 800;
   font-style: italic;
 }
@@ -86,6 +98,7 @@
 @font-face {
   font-family: 'Rubik';
   src: url('../fonts/Rubik/Rubik-Black.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 900;
   font-style: normal;
 }
@@ -93,15 +106,17 @@
 @font-face {
   font-family: 'Rubik';
   src: url('../fonts/Rubik/Rubik-BlackItalic.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 900;
   font-style: italic;
 }
-/*#endregion*/
+/* #endregion */
 
-/*#region - Roboto*/
+/* #region - Roboto */
 @font-face {
   font-family: 'Roboto';
   src: url('../fonts/Roboto/Roboto-Light.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
 }
@@ -109,6 +124,7 @@
 @font-face {
   font-family: 'Roboto';
   src: url('../fonts/Roboto/Roboto-LightItalic.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 300;
   font-style: italic;
 }
@@ -116,6 +132,7 @@
 @font-face {
   font-family: 'Roboto';
   src: url('../fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
@@ -123,6 +140,7 @@
 @font-face {
   font-family: 'Roboto';
   src: url('../fonts/Roboto/Roboto-Italic.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 400;
   font-style: italic;
 }
@@ -130,6 +148,7 @@
 @font-face {
   font-family: 'Roboto';
   src: url('../fonts/Roboto/Roboto-Medium.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
 }
@@ -137,6 +156,7 @@
 @font-face {
   font-family: 'Roboto';
   src: url('../fonts/Roboto/Roboto-MediumItalic.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 500;
   font-style: italic;
 }
@@ -144,6 +164,7 @@
 @font-face {
   font-family: 'Roboto';
   src: url('../fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
 }
@@ -151,6 +172,7 @@
 @font-face {
   font-family: 'Roboto';
   src: url('../fonts/Roboto/Roboto-BoldItalic.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 700;
   font-style: italic;
 }
@@ -158,6 +180,7 @@
 @font-face {
   font-family: 'Roboto';
   src: url('../fonts/Roboto/Roboto-Black.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 900;
   font-style: normal;
 }
@@ -165,15 +188,17 @@
 @font-face {
   font-family: 'Roboto';
   src: url('../fonts/Roboto/Roboto-BlackItalic.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 900;
   font-style: italic;
 }
-/*#endregion*/
+/* #endregion */
 
-/*#region - Roboto Mono*/
+/* #region - Roboto Mono */
 @font-face {
   font-family: 'Roboto Mono';
   src: url('../fonts/Roboto_Mono/RobotoMono-Thin.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 100;
   font-style: normal;
 }
@@ -181,6 +206,7 @@
 @font-face {
   font-family: 'Roboto Mono';
   src: url('../fonts/Roboto_Mono/RobotoMono-ThinItalic.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 100;
   font-style: italic;
 }
@@ -188,6 +214,7 @@
 @font-face {
   font-family: 'Roboto Mono';
   src: url('../fonts/Roboto_Mono/RobotoMono-ExtraLight.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 100;
   font-style: normal;
 }
@@ -196,6 +223,7 @@
   font-family: 'Roboto Mono';
   src: url('../fonts/Roboto_Mono/RobotoMono-ExtraLightItalic.ttf')
     format('truetype');
+  font-optical-sizing: auto;
   font-weight: 100;
   font-style: italic;
 }
@@ -203,6 +231,7 @@
 @font-face {
   font-family: 'Roboto Mono';
   src: url('../fonts/Roboto_Mono/RobotoMono-Light.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
 }
@@ -210,6 +239,7 @@
 @font-face {
   font-family: 'Roboto Mono';
   src: url('../fonts/Roboto_Mono/RobotoMono-LightItalic.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 300;
   font-style: italic;
 }
@@ -217,6 +247,7 @@
 @font-face {
   font-family: 'Roboto Mono';
   src: url('../fonts/Roboto_Mono/RobotoMono-Regular.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
 }
@@ -224,6 +255,7 @@
 @font-face {
   font-family: 'Roboto Mono';
   src: url('../fonts/Roboto_Mono/RobotoMono-Italic.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 400;
   font-style: italic;
 }
@@ -231,6 +263,7 @@
 @font-face {
   font-family: 'Roboto Mono';
   src: url('../fonts/Roboto_Mono/RobotoMono-Medium.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
 }
@@ -239,6 +272,7 @@
   font-family: 'Roboto Mono';
   src: url('../fonts/Roboto_Mono/RobotoMono-MediumItalic.ttf')
     format('truetype');
+  font-optical-sizing: auto;
   font-weight: 500;
   font-style: italic;
 }
@@ -246,6 +280,7 @@
 @font-face {
   font-family: 'Roboto Mono';
   src: url('../fonts/Roboto_Mono/RobotoMono-SemiBold.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
 }
@@ -254,6 +289,7 @@
   font-family: 'Roboto Mono';
   src: url('../fonts/Roboto_Mono/RobotoMono-SemiBoldItalic.ttf')
     format('truetype');
+  font-optical-sizing: auto;
   font-weight: 600;
   font-style: italic;
 }
@@ -261,6 +297,7 @@
 @font-face {
   font-family: 'Roboto Mono';
   src: url('../fonts/Roboto_Mono/RobotoMono-Bold.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
 }
@@ -268,7 +305,8 @@
 @font-face {
   font-family: 'Roboto Mono';
   src: url('../fonts/Roboto_Mono/RobotoMono-BoldItalic.ttf') format('truetype');
+  font-optical-sizing: auto;
   font-weight: 700;
   font-style: italic;
 }
-/*#endregion*/
+/* #endregion */

@@ -22,7 +22,7 @@
   "editor.suggestSelection": "recentlyUsedByPrefix",
   "editor.acceptSuggestionOnEnter": "smart",
   "editor.suggest.snippetsPreventQuickSuggestions": false,
-  "editor.stickyScroll.enabled": true,
+  "editor.stickyScroll.enabled": false,
   "editor.hover.sticky": true,
   "editor.suggest.insertMode": "replace",
   "editor.bracketPairColorization.enabled": true,
@@ -129,8 +129,9 @@
     "json5"
   ],
 
-
-  "tailwindCSS.experimental.classRegex": [["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]],
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
 
   "github.copilot.enable": {
     "*": true,
@@ -150,15 +151,13 @@
     "package.json": ".gitattributes,.gitignore,.gitpod.yml,.npmrc,.browserslistrc,.node-version,.git*,.tazerc.json,package-lock.json",
     "Dockerfile": "Dockerfile,.docker*,docker-entrypoint.sh,build-local-docker*,nginx.conf",
     "vite.config.ts": "tailwind.config.js,eslint.config.js,.eslintignore,.prettierignore,.stylelintrc.json,.stylelintignore,.commitlintrc.*,.prettierrc.*,stylelint.config.*,.lintstagedrc.mjs,.ls-lint*,cspell.json",
-    "tailwind.config.js": "postcss.*",
+    "tailwind.config.js": "postcss.*"
   },
   "i18n-ally.keystyle": "nested",
   "vue.server.hybridMode": true,
   "typescript.tsdk": "node_modules/typescript/lib",
   "vitest.disableWorkspaceWarning": true,
-  "stylelint.validate": [
-    "vue"
-  ],
+  "stylelint.validate": ["vue"],
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }

@@ -1,5 +1,3 @@
-@use 'fonts';
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -19,31 +17,152 @@
 }
 
 @layer components {
-  .tw-sidenav-wrapper[sidenav-type='push'] {
-    @apply tw-grid tw-h-screen tw-grid-cols-[auto,1fr] tw-overflow-y-hidden md:tw-block md:tw-overflow-y-auto;
-
-    .tw-sidenav-content {
-      @apply tw-m-[20px];
-    }
-  }
 }
 
 @layer utilities {
-  /*#region - Text Colors*/
-  .font-main {
-    @apply tw-font-rubik;
+  .tw-hidden-scrolls {
+    &::-webkit-scrollbar {
+      @apply tw-hidden;
+    }
   }
 
-  .font-inbound {
-    @apply tw-font-roboto;
+  /* #region - Headings */
+  .tw-heading-xl {
+    @apply tw-font-size-1000 tw-line-height-1000 tw-letter-spacing-densest tw-font-main tw-font-medium;
   }
 
-  .font-code {
-    @apply tw-font-roboto-mono;
+  .tw-heading-lg {
+    @apply tw-font-size-800 tw-line-height-900 tw-letter-spacing-denser tw-font-main tw-font-medium;
   }
-  /*#endregion*/
 
-  /*#region - Text Colors*/
+  .tw-heading-md {
+    @apply tw-font-size-700 tw-line-height-800 tw-letter-spacing-denser tw-font-main tw-font-medium;
+  }
+
+  .tw-heading-sm {
+    @apply tw-font-size-600 tw-line-height-600 tw-letter-spacing-dense tw-font-main tw-font-medium;
+  }
+
+  .tw-heading-xs {
+    @apply tw-font-size-500 tw-line-height-600 tw-letter-spacing-dense tw-font-main tw-font-medium;
+  }
+  /* #endregion */
+
+  /* #region - Font Size */
+  .tw-font-size-100 {
+    @apply tw-text-100;
+  }
+
+  .tw-font-size-200 {
+    @apply tw-text-200;
+  }
+
+  .tw-font-size-300 {
+    @apply tw-text-300;
+  }
+
+  .tw-font-size-400 {
+    @apply tw-text-400;
+  }
+
+  .tw-font-size-500 {
+    @apply tw-text-500;
+  }
+
+  .tw-font-size-600 {
+    @apply tw-text-600;
+  }
+
+  .tw-font-size-700 {
+    @apply tw-text-700;
+  }
+
+  .tw-font-size-800 {
+    @apply tw-text-800;
+  }
+
+  .tw-font-size-900 {
+    @apply tw-text-900;
+  }
+
+  .tw-font-size-1000 {
+    @apply tw-text-1000;
+  }
+  /* #endregion */
+
+  /* #region - Line Height */
+  .tw-line-height-100 {
+    @apply tw-leading-100;
+  }
+
+  .tw-line-height-200 {
+    @apply tw-leading-200;
+  }
+
+  .tw-line-height-300 {
+    @apply tw-leading-300;
+  }
+
+  .tw-line-height-400 {
+    @apply tw-leading-400;
+  }
+
+  .tw-line-height-500 {
+    @apply tw-leading-500;
+  }
+
+  .tw-line-height-600 {
+    @apply tw-leading-600;
+  }
+
+  .tw-line-height-700 {
+    @apply tw-leading-700;
+  }
+
+  .tw-line-height-800 {
+    @apply tw-leading-800;
+  }
+
+  .tw-line-height-900 {
+    @apply tw-leading-900;
+  }
+
+  .tw-line-height-1000 {
+    @apply tw-leading-1000;
+  }
+  /* #endregion */
+
+  /* #region - Letter Spacing */
+  .tw-letter-spacing-densest {
+    @apply tw-tracking-spacing-densest;
+  }
+
+  .tw-letter-spacing-denser {
+    @apply tw-tracking-spacing-denser;
+  }
+
+  .tw-letter-spacing-dense {
+    @apply tw-tracking-spacing-dense;
+  }
+
+  .tw-letter-spacing-normal {
+    @apply tw-tracking-spacing-normal;
+  }
+
+  .tw-letter-spacing-wide {
+    @apply tw-tracking-spacing-wide;
+  }
+
+  .tw-letter-spacing-wider {
+    @apply tw-tracking-spacing-wider;
+  }
+
+  .tw-letter-spacing-widest {
+    @apply tw-tracking-spacing-widest;
+  }
+  /* #endregion */
+
+  /* #region - Text Colors */
   .tw-text-color-strong {
     @apply tw-text-mushroom-950;
   }
@@ -155,9 +274,9 @@
   .tw-text-color-accent-pressed {
     @apply tw-text-wintermelon-900;
   }
-  /*#endregion*/
+  /* #endregion */
 
-  /*#region - Background Colors*/
+  /* #region - Background Colors */
   .tw-background-color {
     @apply tw-bg-white-50;
   }
@@ -297,9 +416,9 @@
   .tw-background-color-accent-weak {
     @apply tw-bg-wintermelon-100;
   }
-  /*#endregion*/
+  /* #endregion */
 
-  /*#region - Border Colors*/
+  /* #region - Border Colors */
   .tw-border-color-strong {
     @apply tw-border-mushroom-500;
   }
@@ -415,5 +534,31 @@
   .tw-border-color-accent-pressed {
     @apply tw-border-wintermelon-900;
   }
-  /*#endregion*/
+  /* #endregion */
+
+  /* #region - Box Shadows */
+  .drop-shadow-sm {
+    @apply tw-shadow-drop-sm;
+  }
+
+  .drop-shadow {
+    @apply tw-shadow-drop;
+  }
+
+  .drop-shadow-md {
+    @apply tw-shadow-drop-md;
+  }
+
+  .drop-shadow-top-sm {
+    @apply tw-shadow-drop-top-sm;
+  }
+
+  .drop-shadow-top {
+    @apply tw-shadow-drop-top;
+  }
+
+  .drop-shadow-top-md {
+    @apply tw-shadow-drop-top-md;
+  }
+  /* #endregion */
 }

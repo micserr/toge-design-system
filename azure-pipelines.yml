@@ -1,0 +1,34 @@
+name: Auto Publish to Artifact
+
+trigger:
+  branches:
+    include:
+      - 2024/FEATURE/JEF/azure-pipeline
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '20.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'npm install and build'
+
+# Authenticate to Azure Artifacts
+- task: UseNpmAuth@1
+  inputs:
+    feedUri: '$(System.ArtifactsDirectory)/Design-System-Next'
+  displayName: 'Authenticate to Azure Artifacts'
+
+# Publish the package to Azure Artifacts
+- script: |
+    npm publish --registry $(npm_registry)
+  displayName: 'Publish to Azure Artifacts'
+  env:
+    npm_registry: 'https://pkgs.dev.azure.com/sproutphil/Sprout%20Design%20System/_packaging/Design-System-Next/npm/registry/'
+    SYSTEM_ACCESSTOKEN: $(System.AccessToken) # Use the pipeline's access token for authentication

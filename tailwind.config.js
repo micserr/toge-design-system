@@ -1,12 +1,64 @@
 /** @type {import('tailwindcss').Config} */
 
-import colorScheme from './src/assets/scripts/toge-ds-color-v3.0';
+import colorScheme from './src/assets/scripts/colors';
 
 export default {
   prefix: 'tw-',
   content: ['./index.html', './src/**/*.{vue,js,ts}', './docs/**/*.{md,ts,js}'],
   theme: {
+    extend: {
+      colors: colorScheme,
+      fontFamily: {
+        main: ['Rubik', 'sans-serif'],
+        inbound: ['Roboto', 'sans-serif'],
+        code: ['Roboto Mono', 'sans-serif'],
+      },
+      fontSize: {
+        100: '12px',
+        200: '14px',
+        300: '16px',
+        400: '20px',
+        500: '24px',
+        600: '28px',
+        700: '32px',
+        800: '40px',
+        900: '48px',
+        1000: '56px',
+      },
+      lineHeight: {
+        100: '12px',
+        200: '14px',
+        300: '16px',
+        400: '20px',
+        500: '24px',
+        600: '32px',
+        700: '36px',
+        800: '40px',
+        900: '48px',
+        1000: '60px',
+      },
+      letterSpacing: {
+        'spacing-densest': '-1.3px',
+        'spacing-denser': '-1px',
+        'spacing-dense': '-0.7px',
+        'spacing-normal': '0px',
+        'spacing-wide': '0.7px',
+        'spacing-wider': '1px',
+        'spacing-widest': '1.3px',
+      },
+      boxShadow: {
+        'drop-sm': '0px 2px 4px -1px #262B2B1F',
+        drop: '0px 2px 8px -2px #262B2B33',
+        'drop-md': '0px 4px 12px 0px #262B2B29',
+        'drop-top-sm': '0px -2px 4px -1px #262B2B1F',
+        'drop-top': '0px -2px 8px -2px #262B2B33',
+        'drop-top-md': '0px -4px 12px 0px #262B2B29',
+        button: '0px 2px 1px 0px rgba(0, 0, 0, 0.15) inset;',
+        'button-active': '0px 0px 0px 2px #394141',
+      },
+    },
     container: {
+      center: true,
       padding: {
         DEFAULT: '16px',
         sm: '32px',
@@ -15,7 +67,6 @@ export default {
         xl: '96px',
         xxl: '104px',
       },
-      center: true,
       screens: {
         sm: '575.98px',
         md: '767.98px',
@@ -24,28 +75,11 @@ export default {
         xxl: '1399.98px',
       },
     },
-    extend: {
-      fontFamily: {
-        rubik: ['Rubik', 'sans-serif'],
-        roboto: ['Roboto', 'sans-serif'],
-        'roboto-mono': ['Roboto Mono', 'sans-serif'],
-      },
-      colors: colorScheme,
-    },
     screens: {
-      // `xxl` applies to x-large devices (large desktops, less than 1400px)
       xxl: { max: '1399.98px' },
-
-      // `xl` applies to large devices (desktops, less than 1200px)
       xl: { max: '1199.98px' },
-
-      // `lg` applies to medium devices (tablets, less than 992px)
       lg: { max: '991.98px' },
-
-      // `md` applies to small devices (landscape phones, less than 768px)
       md: { max: '767.98px' },
-
-      // `sm` applies to x-small devices (portrait phones, less than 576px)
       sm: { max: '575.98px' },
     },
   },

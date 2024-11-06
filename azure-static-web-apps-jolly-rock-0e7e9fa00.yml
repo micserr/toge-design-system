@@ -20,6 +20,8 @@ jobs:
   steps:
   - checkout: self
     submodules: true
+  - script: echo "//pkgs.dev.azure.com/sproutphil/2f357eec-7fbb-4d00-a381-868738c3e9d5/_packaging/Design-System-Next/npm/registry/:_authToken=$(NPM_AUTH_TOKEN)" > ~/.npmrc
+    displayName: "Configure npm authentication"
   - task: AzureStaticWebApp@0
     inputs:
       azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN_JOLLY_ROCK_0E7E9FA00)

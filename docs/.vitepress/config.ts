@@ -26,18 +26,10 @@ export default defineConfig({
         text: 'Documentation',
         link: '/documentation/development/installation',
       },
-      { text: 'Resource', link: '/resource/resource' },
     ],
 
     sidebar: {
       '/guide/': [
-        {
-          text: 'Basics',
-          items: [
-            { text: 'Design', link: '/' },
-            { text: 'Quick Start', link: '/' },
-          ],
-        },
         {
           text: 'Advanced',
           items: [{ text: 'Changelog', link: '/guide/changelog' }],

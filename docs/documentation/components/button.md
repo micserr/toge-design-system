@@ -1,5 +1,5 @@
 <script setup>
-  import Button from "@/components/button/button.vue"
+  import Btn from "@/components/button/button.vue"
 </script>
 
 # Button
@@ -9,86 +9,86 @@ Commonly used button.
 ## Basic Usage
 
 <div  class="tw-flex tw-items-center tw-gap-2">
-  <Button>Button</Button>
+  <Btn>Buttons</Btn>
 </div>
 
 ```jsx
-<Button>Button</Button>
+<Btn>Button</Btn>
 ```
 
 ## Tone
 
 <div  class="tw-flex tw-items-center tw-gap-2">
-  <Button>Neutral</Button>
-  <Button tone="success">Success</Button>
-  <Button tone="danger">Danger</Button>
+  <Btn>Neutral</Btn>
+  <Btn tone="success">Success</Btn>
+  <Btn tone="danger">Danger</Btn>
 </div>
 
 ```jsx
-<Button>Neutral/Default</Button>
-<Button tone="success">Success</Button>
-<Button tone="danger">Danger</Button>
+<Btn>Neutral/Default</Btn>
+<Btn tone="success">Success</Btn>
+<Btn tone="danger">Danger</Btn>
 ```
 
 ## Sizes
 
 <div class="tw-flex tw-items-center tw-gap-2">
-  <Button size="small">Small</Button>
-  <Button>Medium</Button>
-  <Button size="large">Large</Button>
+  <Btn size="small">Small</Btn>
+  <Btn>Medium</Btn>
+  <Btn size="large">Large</Btn>
 </div>
 
 ```jsx
-<Button size="small">Small</Button>
-<Button>Medium/Default</Button>
-<Button size="large">Large</Button>
+<Btn size="small">Small</Btn>
+<Btn>Medium/Default</Btn>
+<Btn size="large">Large</Btn>
 ```
 
 ## Variant
 
 <div class="tw-flex tw-items-center tw-gap-2 tw-mb-2">
-  <Button>Primary</Button>
-  <Button variant="secondary">Secondary</Button>
-  <Button variant="tertiary">Tertiary</Button>
+  <Btn>Primary</Btn>
+  <Btn variant="secondary">Secondary</Btn>
+  <Btn variant="tertiary">Tertiary</Btn>
 </div>
 <div class="tw-flex tw-items-center tw-gap-2 tw-mb-2">
-  <Button tone="success">Primary</Button>
-  <Button tone="success" variant="secondary">Secondary</Button>
-  <Button tone="success" variant="tertiary">Tertiary</Button>
+  <Btn tone="success">Primary</Btn>
+  <Btn tone="success" variant="secondary">Secondary</Btn>
+  <Btn tone="success" variant="tertiary">Tertiary</Btn>
 </div>
 <div class="tw-flex tw-items-center tw-gap-2">
-  <Button tone="danger">Primary</Button>
-  <Button tone="danger" variant="secondary">Secondary</Button>
-  <Button tone="danger" variant="tertiary">Tertiary</Button>
+  <Btn tone="danger">Primary</Btn>
+  <Btn tone="danger" variant="secondary">Secondary</Btn>
+  <Btn tone="danger" variant="tertiary">Tertiary</Btn>
 </div>
 
 ```jsx
 // Primary/Default
-<Button>Primary/Default</Button>
-<Button variant="secondary">Secondary</Button>
-<Button variant="tertiary">Tertiary</Button>
+<Btn>Primary/Default</Btn>
+<Btn variant="secondary">Secondary</Btn>
+<Btn variant="tertiary">Tertiary</Btn>
 // Succees
-<Button tone="success">Primary/Default</Button>
-<Button tone="success" variant="secondary">Secondary</Button>
-<Button tone="success" variant="tertiary">Tertiary</Button>
+<Btn tone="success">Primary/Default</Btn>
+<Btn tone="success" variant="secondary">Secondary</Btn>
+<Btn tone="success" variant="tertiary">Tertiary</Btn>
 // Danger
-<Button tone="danger">Primary/Default</Button>
-<Button tone="danger" variant="secondary">Secondary</Button>
-<Button tone="danger" variant="tertiary">Tertiary</Button>
+<Btn tone="danger">Primary/Default</Btn>
+<Btn tone="danger" variant="secondary">Secondary</Btn>
+<Btn tone="danger" variant="tertiary">Tertiary</Btn>
 ```
 
 ## Disabled
 
 <div class="tw-flex tw-items-center tw-gap-2">
-  <Button disabled size="small">Small</Button>
-  <Button disabled>Default</Button>
-  <Button disabled size="large">Large</Button>
+  <Btn disabled size="small">Small</Btn>
+  <Btn disabled>Default</Btn>
+  <Btn disabled size="large">Large</Btn>
 </div>
 
 ```jsx
-<Button disabled ize="small">Small</Button>
-<Button disabled>Medium/Default</Button>
-<Button disabled size="large">Large</Button>
+<Btn disabled ize="small">Small</Btn>
+<Btn disabled>Medium/Default</Btn>
+<Btn disabled size="large">Large</Btn>
 ```
 
 ## Button API

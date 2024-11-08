@@ -11,6 +11,9 @@
 </template>
 
 <script lang="ts" setup>
+defineOptions({
+  name: 'Btn',
+});
 import { useButton } from './use-button';
 import { buttonEmitTypes, buttonPropTypes } from './button';
 

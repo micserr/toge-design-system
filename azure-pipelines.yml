@@ -1,0 +1,24 @@
+trigger:
+  branches:
+    include:
+      - 2024/FEATURE/JEF/azure-pipeline
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '20.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'npm install and build'
+
+- task: Npm@1
+  inputs:
+    command: 'publish'
+    publishRegistry: 'useFeed'
+    publishFeed: '2f357eec-7fbb-4d00-a381-868738c3e9d5/8c5c80bb-b669-4f4e-b4bb-306394a4c68b'

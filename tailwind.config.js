@@ -38,6 +38,7 @@ export default {
         1000: '60px',
       },
       letterSpacing: {
+        'spacing-none': '0',
         'spacing-densest': '-1.3px',
         'spacing-denser': '-1px',
         'spacing-dense': '-0.7px',

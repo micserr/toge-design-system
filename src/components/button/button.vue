@@ -11,11 +11,12 @@
 </template>
 
 <script lang="ts" setup>
-defineOptions({
-  name: 'Btn',
-});
-import { useButton } from './use-button';
 import { buttonEmitTypes, buttonPropTypes } from './button';
+import { useButton } from './use-button';
+
+defineOptions({
+  name: 'ButtonBase',
+});
 
 const props = defineProps(buttonPropTypes);
 const emit = defineEmits(buttonEmitTypes);

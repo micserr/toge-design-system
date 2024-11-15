@@ -20,6 +20,7 @@ export default defineConfig({
   ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+
     nav: [
       { text: 'Guide', link: '/guide/changelog' },
       {
@@ -57,13 +58,8 @@ export default defineConfig({
               link: '/documentation/components/button',
             },
             {
-              text: 'Side Navigation',
-              items: [
-                {
-                  text: 'Olympus',
-                  link: '/documentation/components/side-navigation/olympus',
-                },
-              ],
+              text: 'Sidenav',
+              link: '/documentation/components/sidenav',
             },
           ],
         },

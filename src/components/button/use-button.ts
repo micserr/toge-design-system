@@ -1,6 +1,8 @@
 import { computed, ref, ComputedRef } from 'vue';
-import classNames from 'classnames';
 import { useElementHover, useMousePressed, useFocus } from '@vueuse/core';
+
+import classNames from 'classnames';
+
 import type { SetupContext } from 'vue';
 import type { ButtonEmitTypes, ButtonPropTypes } from './button';
 
@@ -51,8 +53,7 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
     });
   });
 
-  //#region  Background Css Class
-
+  // #region - Background Css Class
   const buttonBackgroundCssClass: ComputedRef<string> = computed(() => {
     if (variant === 'tertiary') {
       return getTertiaryBackground();
@@ -108,8 +109,7 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
     };
     return backgrounds[tone] || '';
   }
-
-  //#endregion
+  // #endregion - Background Css Class
 
   const buttonBorderCssClass: ComputedRef<string> = computed(() => {
     if (variant === 'primary' || variant === 'tertiary') {

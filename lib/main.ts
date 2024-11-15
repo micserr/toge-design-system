@@ -12,7 +12,7 @@ export const setPrefix = (prefix: string) => {
 export const getPrefix = (): string => globalPrefix;
 
 const applyPrefix = (componentName: string) => `${getPrefix()}${componentName}`;
-// #endregion
+// #endregion - Get and set prefix
 
 // #region - Install components globally
 
@@ -37,15 +37,12 @@ const install = (app: App, options: { prefix?: string } = {}) => {
     app.component(prefixedComponentName, (component as any).default);
   });
 
-  console.log(
-    '%c🚀⭐ Design System Next Installed ⭐🚀',
-    'color: green; font-weight: bold; font-size: 14px;',
-  );
+  console.log('%c🚀⭐ Design System Next Installed ⭐🚀', 'color: green; font-weight: bold; font-size: 14px;');
 };
 
 export default { install };
-// #endregion
+// #endregion  - Install components globally
 
 // #region - Export components for individual import
 // export { default as ButtonBase } from '../src/components/Buttons/ButtonBase.vue';  // Does not support prefix
-// #endregion
+// #endregion - Export components for individual import

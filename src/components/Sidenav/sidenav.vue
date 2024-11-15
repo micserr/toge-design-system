@@ -12,13 +12,10 @@
     >
       <slot name="logo-image" />
     </div>
-    <div
-      :class="[
-        'tw-grid tw-justify-center tw-gap-[6px] tw-px-[12px] tw-pb-[16px] tw-pt-[8px]',
-      ]"
-    >
+    <div :class="['tw-grid tw-justify-center tw-gap-[6px] tw-px-[12px] tw-pb-[16px] tw-pt-[8px]']">
+      <!-- #region - Quick Actions -->
       <div
-        v-if="hasQuickActions"
+        v-if="props.hasQuickActions"
         :class="[
           'tw-text-color-brand-base tw-mx-auto tw-h-[32px] tw-cursor-pointer tw-text-[28px] tw-transition tw-duration-150 tw-ease-in-out',
           'hover:tw-text-color-success-hover',
@@ -27,8 +24,11 @@
       >
         <IconPlusCircleFill />
       </div>
+      <!-- #endregion - Quick Actions -->
+
+      <!-- #region - Search -->
       <div
-        v-if="hasQuickActions"
+        v-if="props.hasSearch"
         :class="[
           'justify-center tw-flex tw-cursor-pointer tw-items-center tw-rounded-[8px] tw-px-[8px] tw-py-[6px] tw-transition tw-duration-150 tw-ease-in-out',
           'hover:tw-background-color-hover',
@@ -37,16 +37,13 @@
       >
         <IconMagnifyingGlass />
       </div>
+      <!-- #endregion - Search -->
 
-      <template v-for="(navLink, navLinkIndex) in navLinks" :key="navLinkIndex">
-        <template
-          v-for="(parentLink, parentLinkIndex) in navLink.parentLinks"
-          :key="parentLinkIndex"
-        >
+      <!-- #region - Grouped Nav Links -->
+      <template v-for="(navLink, navLinkIndex) in props.navLinks" :key="navLinkIndex">
+        <template v-for="(parentLink, parentLinkIndex) in navLink.parentLinks" :key="parentLinkIndex">
           <!-- #region - Parent link with menu links -->
-          <template
-            v-if="parentLink.menuLinks && parentLink.menuLinks.length > 0"
-          >
+          <template v-if="parentLink.menuLinks && parentLink.menuLinks.length > 0">
             <VMenu theme="sidenav-olympus-menu">
               <div
                 :class="[
@@ -55,38 +52,21 @@
                   'active:tw-background-color-single-active active:tw-scale-90',
                 ]"
               >
-                <component
-                  :is="parentLink.icon"
-                  v-if="parentLink.icon"
-                  class="icon-class"
-                />
+                <component :is="parentLink.icon" v-if="parentLink.icon" class="icon-class" />
                 <IconGlobe v-else />
               </div>
               <template #popper>
                 <div
-                  :class="[
-                    'tw-border-color-weak tw-border-x-0 tw-border-b tw-border-t-0 tw-border-solid tw-p-[8px]',
-                  ]"
+                  :class="['tw-border-color-weak tw-border-x-0 tw-border-b tw-border-t-0 tw-border-solid tw-p-[8px]']"
                 >
-                  <h3
-                    :class="[
-                      'tw-text-size-100 tw-font-size-300 tw-line-height-400 tw-m-0 tw-font-medium',
-                    ]"
-                  >
+                  <h3 :class="['tw-text-size-100 tw-font-size-300 tw-line-height-400 tw-m-0 tw-font-medium']">
                     {{ parentLink.title }}
                   </h3>
                 </div>
 
-                <template
-                  v-for="(menuLink, menuLinkIndex) in parentLink.menuLinks"
-                  :key="menuLinkIndex"
-                >
+                <template v-for="(menuLink, menuLinkIndex) in parentLink.menuLinks" :key="menuLinkIndex">
                   <!-- #region - Menu link with submenu links -->
-                  <template
-                    v-if="
-                      menuLink.subMenuLinks && menuLink.subMenuLinks.length > 0
-                    "
-                  >
+                  <template v-if="menuLink.subMenuLinks && menuLink.subMenuLinks.length > 0">
                     <VMenu
                       theme="sidenav-olympus-submenu"
                       :shown="activeMenu === menuLink.title ? true : false"
@@ -96,10 +76,8 @@
                         :class="[
                           'tw-text-size-100 tw-font-size-300 tw-line-height-400 tw-relative tw-m-0 tw-flex tw-cursor-pointer tw-justify-between tw-px-[8px] tw-py-[6px] tw-align-middle tw-duration-300 tw-ease-in-out',
                           {
-                            'tw-background-color-single-active':
-                              activeMenu === menuLink.title,
-                            'hover:tw-background-color-hover':
-                              activeMenu !== menuLink.title,
+                            'tw-background-color-single-active': activeMenu === menuLink.title,
+                            'hover:tw-background-color-hover': activeMenu !== menuLink.title,
                           },
                         ]"
                         @mouseenter="activeMenu = menuLink.title"
@@ -116,9 +94,7 @@
                         <IconCaretRight
                           :class="[
                             'tw-transform tw-transition-transform tw-duration-300',
-                            activeMenu === menuLink.title
-                              ? '-tw-rotate-90'
-                              : 'hover:-tw-rotate-90',
+                            activeMenu === menuLink.title ? '-tw-rotate-90' : 'hover:-tw-rotate-90',
                           ]"
                         />
                       </div>
@@ -126,9 +102,7 @@
                       <template #popper>
                         <div @mouseleave="activeMenu = ''">
                           <template
-                            v-for="(
-                              subMenuLink, subMenuLinkIndex
-                            ) in menuLink.subMenuLinks"
+                            v-for="(subMenuLink, subMenuLinkIndex) in menuLink.subMenuLinks"
                             :key="subMenuLinkIndex"
                           >
                             <div
@@ -138,6 +112,7 @@
                                 'first:tw-rounded-t-[12px]',
                                 'last:tw-rounded-b-[12px]',
                               ]"
+                              @click="handleRedirect($event, parentLink.redirect)"
                             >
                               <span>{{ subMenuLink.title }}</span>
                             </div>
@@ -157,6 +132,7 @@
                         'last:tw-rounded-b-[12px]',
                       ]"
                       @mouseenter="activeMenu = menuLink.title"
+                      @click="handleRedirect($event, parentLink.redirect)"
                     >
                       <span>{{ menuLink.title }}</span>
                     </div>
@@ -176,12 +152,9 @@
                 'hover:tw-background-color-hover',
                 'active:tw-background-color-single-active active:tw-scale-90',
               ]"
+              @click="handleRedirect($event, parentLink.redirect)"
             >
-              <component
-                :is="parentLink.icon"
-                v-if="parentLink.icon"
-                class="icon-class"
-              />
+              <component :is="parentLink.icon" v-if="parentLink.icon" class="icon-class" />
               <IconGlobe v-else />
             </div>
           </template>
@@ -192,26 +165,27 @@
           :class="['tw-background-color-hover tw-h-[2px] tw-w-full']"
         ></div>
       </template>
+      <!-- #endregion - Grouped Nav Links -->
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref } from 'vue';
-import { NavLink } from './SidenavOlympusInterface';
+<script lang="ts" setup>
+import { sidenavPropTypes } from './sidenav';
+import { useSidenav } from './use-sidenav';
 
 import IconPlusCircleFill from '~icons/ph/plus-circle-fill';
 import IconMagnifyingGlass from '~icons/ph/magnifying-glass';
 import IconGlobe from '~icons/ph/globe';
 import IconCaretRight from '~icons/ph/caret-right';
 
-defineProps<{
-  hasQuickActions: boolean;
-  hasSearch: boolean;
-  navLinks: NavLink[];
-}>();
+defineOptions({
+  name: 'Sidenav',
+});
 
-const activeMenu = ref<string>('');
+const props = defineProps(sidenavPropTypes);
+
+const { activeMenu, handleRedirect } = useSidenav();
 </script>
 
 <style>

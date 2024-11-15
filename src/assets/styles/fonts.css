@@ -110,7 +110,7 @@
   font-weight: 900;
   font-style: italic;
 }
-/* #endregion */
+/* #endregion - Rubik */
 
 /* #region - Roboto */
 @font-face {
@@ -192,7 +192,7 @@
   font-weight: 900;
   font-style: italic;
 }
-/* #endregion */
+/* #endregion - Roboto */
 
 /* #region - Roboto Mono */
 @font-face {
@@ -221,8 +221,7 @@
 
 @font-face {
   font-family: 'Roboto Mono';
-  src: url('../fonts/Roboto_Mono/RobotoMono-ExtraLightItalic.ttf')
-    format('truetype');
+  src: url('../fonts/Roboto_Mono/RobotoMono-ExtraLightItalic.ttf') format('truetype');
   font-optical-sizing: auto;
   font-weight: 100;
   font-style: italic;
@@ -270,8 +269,7 @@
 
 @font-face {
   font-family: 'Roboto Mono';
-  src: url('../fonts/Roboto_Mono/RobotoMono-MediumItalic.ttf')
-    format('truetype');
+  src: url('../fonts/Roboto_Mono/RobotoMono-MediumItalic.ttf') format('truetype');
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: italic;
@@ -287,8 +285,7 @@
 
 @font-face {
   font-family: 'Roboto Mono';
-  src: url('../fonts/Roboto_Mono/RobotoMono-SemiBoldItalic.ttf')
-    format('truetype');
+  src: url('../fonts/Roboto_Mono/RobotoMono-SemiBoldItalic.ttf') format('truetype');
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: italic;
@@ -309,4 +306,4 @@
   font-weight: 700;
   font-style: italic;
 }
-/* #endregion */
+/* #endregion - Roboto Mono */

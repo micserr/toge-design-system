@@ -46,7 +46,125 @@
   .tw-heading-xs {
     @apply tw-font-size-500 tw-line-height-600 tw-letter-spacing-dense tw-font-main tw-font-medium;
   }
-  /* #endregion */
+  /* #endregion - Headings */
+
+  /* #region - Subheadings */
+  .tw-subheading-sm {
+    @apply tw-font-size-400 tw-line-height-500 tw-letter-spacing-dense tw-font-main tw-font-medium;
+  }
+
+  .tw-subheading-xs {
+    @apply tw-font-size-300 tw-line-height-400 tw-letter-spacing-normal tw-font-main tw-font-medium;
+  }
+  /* #endregion - Subheadings */
+
+  /* #region - Paragraphs */
+  .tw-body-lg {
+    @apply tw-font-size-400 tw-line-height-600 tw-letter-spacing-none tw-font-main;
+  }
+
+  .tw-body-lg-regular {
+    @apply tw-body-lg tw-font-normal;
+  }
+
+  .tw-body-lg-regular-underline {
+    @apply tw-body-lg tw-font-normal tw-decoration-solid;
+  }
+
+  .tw-body-lg-regular-medium {
+    @apply tw-body-lg tw-font-medium;
+  }
+
+  .tw-body-lg-medium-underline {
+    @apply tw-body-lg tw-font-medium tw-decoration-solid;
+  }
+
+  .tw-body-md {
+    @apply tw-font-size-300 tw-line-height-500 tw-letter-spacing-none tw-font-main;
+  }
+
+  .tw-body-md-regular {
+    @apply tw-body-md tw-font-normal;
+  }
+
+  .tw-body-md-regular-underline {
+    @apply tw-body-md tw-font-normal tw-decoration-solid;
+  }
+
+  .tw-body-md-regular-medium {
+    @apply tw-body-md tw-font-medium;
+  }
+
+  .tw-body-md-medium-underline {
+    @apply tw-body-md tw-font-medium tw-decoration-solid;
+  }
+
+  .tw-body-sm {
+    @apply tw-font-size-200 tw-line-height-400 tw-letter-spacing-none tw-font-main;
+  }
+
+  .tw-body-sm-regular {
+    @apply tw-body-sm tw-font-normal;
+  }
+
+  .tw-body-sm-regular-underline {
+    @apply tw-body-sm tw-font-normal tw-decoration-solid;
+  }
+
+  .tw-body-sm-regular-medium {
+    @apply tw-body-sm tw-font-medium;
+  }
+
+  .tw-body-sm-medium-underline {
+    @apply tw-body-sm tw-font-medium tw-decoration-solid;
+  }
+
+  .tw-body-xs {
+    @apply tw-font-size-100 tw-line-height-300 tw-letter-spacing-none tw-font-main;
+  }
+
+  .tw-body-xs-regular {
+    @apply tw-body-xs tw-font-normal;
+  }
+
+  .tw-body-xs-regular-underline {
+    @apply tw-body-xs tw-font-normal tw-decoration-solid;
+  }
+
+  .tw-body-xs-regular-medium {
+    @apply tw-body-xs tw-font-medium;
+  }
+
+  .tw-body-xs-medium-underline {
+    @apply tw-body-xs tw-font-medium tw-decoration-solid;
+  }
+  /* #endregion - Paragraphs */
+
+  /* #region - Labels */
+  .tw-label-sm {
+    @apply tw-font-size-200 tw-line-height-200 tw-letter-spacing-wide tw-font-main;
+  }
+
+  .tw-label-sm-regular {
+    @apply tw-label-sm tw-font-normal;
+  }
+
+  .tw-label-sm-medium {
+    @apply tw-label-sm tw-font-medium;
+  }
+
+  .tw-label-xs {
+    @apply tw-font-size-100 tw-line-height-none tw-letter-spacing-wide tw-font-main;
+  }
+
+  .tw-label-xs-regular {
+    @apply tw-label-xs tw-font-normal;
+  }
+
+  .tw-label-xs-medium {
+    @apply tw-label-xs tw-font-medium;
+  }
+  /* #endregion - Labels */
 
   /* #region - Font Size */
   .tw-font-size-100 {
@@ -88,9 +206,13 @@
   .tw-font-size-1000 {
     @apply tw-text-1000;
   }
-  /* #endregion */
+  /* #endregion - Font Size */
 
   /* #region - Line Height */
+  .tw-line-height-none {
+    @apply tw-leading-none;
+  }
+
   .tw-line-height-100 {
     @apply tw-leading-100;
   }
@@ -130,9 +252,13 @@
   .tw-line-height-1000 {
     @apply tw-leading-1000;
   }
-  /* #endregion */
+  /* #endregion - Line Height */
 
   /* #region - Letter Spacing */
+  .tw-letter-spacing-none {
+    @apply tw-tracking-spacing-none;
+  }
+
   .tw-letter-spacing-densest {
     @apply tw-tracking-spacing-densest;
   }
@@ -160,7 +286,8 @@
   .tw-letter-spacing-widest {
     @apply tw-tracking-spacing-widest;
   }
-  /* #endregion */
+
+  /* #endregion - Letter Spacing */
 
   /* #region - Text Colors */
   .tw-text-color-strong {
@@ -274,7 +401,7 @@
   .tw-text-color-accent-pressed {
     @apply tw-text-wintermelon-900;
   }
-  /* #endregion */
+  /* #endregion - Text Colors */
 
   /* #region - Background Colors */
   .tw-background-color {
@@ -416,7 +543,7 @@
   .tw-background-color-accent-weak {
     @apply tw-bg-wintermelon-100;
   }
-  /* #endregion */
+  /* #endregion - Background Colors */
 
   /* #region - Border Colors */
   .tw-border-color-strong {
@@ -534,7 +661,7 @@
   .tw-border-color-accent-pressed {
     @apply tw-border-wintermelon-900;
   }
-  /* #endregion */
+  /* #endregion - Border Colors */
 
   /* #region - Box Shadows */
   .drop-shadow-sm {
@@ -560,5 +687,5 @@
   .drop-shadow-top-md {
     @apply tw-shadow-drop-top-md;
   }
-  /* #endregion */
+  /* #endregion - Box Shadows */
 }

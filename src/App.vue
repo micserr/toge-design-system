@@ -1,12 +1,9 @@
 <template>
-  <SidenavOlympus has-quick-actions has-search :nav-links="navLinks">
+  <Sidenav has-quick-actions has-search :nav-links="navLinks">
     <template #logo-image>
-      <img
-        src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg"
-        alt="logo"
-      />
+      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
     </template>
-  </SidenavOlympus>
+  </Sidenav>
 
   <h1 class="tw-heading-xl">askhdjahskjdhasjkhdjkashkjdas</h1>
   <h1 class="tw-heading-lg">askhdjahskjdhasjkhdjkashkjdas</h1>
@@ -18,7 +15,9 @@
 </template>
 
 <script setup>
-import SidenavOlympus from './components/Sidenav/SidenavOlympus.vue';
+import { ref } from 'vue';
+
+import Sidenav from './components/Sidenav/sidenav.vue';
 
 import IconHouseSimple from '~icons/ph/house-simple';
 import IconUsersThree from '~icons/ph/users-three';
@@ -31,13 +30,12 @@ import IconFlowArrow from '~icons/ph/flow-arrow';
 import IconGear from '~icons/ph/gear';
 import IconBookOpenText from '~icons/ph/book-open-text';
 
-const navLinks = [
+const navLinks = ref([
   {
     parentLinks: [
       {
         title: 'Home',
         icon: IconHouseSimple,
-        navTooltip: 'Tooltip Label',
         menuLinks: [
           {
             title: 'Dashboard',
@@ -115,12 +113,10 @@ const navLinks = [
       {
         title: 'Employees',
         icon: IconUsersThree,
-        navTooltip: 'Tooltip Label',
       },
       {
         title: 'Absctract',
         icon: IconShapes,
-        navTooltip: 'Tooltip Label',
       },
     ],
   },
@@ -128,7 +124,6 @@ const navLinks = [
     parentLinks: [
       {
         title: 'Payroll',
-        navTooltip: 'Tooltip Label',
         icon: IconLeaf,
         menuLinks: [
           {
@@ -195,22 +190,18 @@ const navLinks = [
       {
         title: 'Money',
         icon: IconCurrencyRub,
-        navTooltip: 'Tooltip Label',
       },
       {
         title: 'Car',
         icon: IconWallet,
-        navTooltip: 'Tooltip Label',
       },
       {
         title: 'Bar',
         icon: IconChartBar,
-        navTooltip: 'Tooltip Label',
       },
       {
         title: 'Music',
         icon: IconFlowArrow,
-        navTooltip: 'Tooltip Label',
       },
     ],
   },
@@ -219,7 +210,6 @@ const navLinks = [
       {
         title: 'Settings',
         icon: IconGear,
-        navTooltip: 'Tooltip Label',
         menuLinks: [
           {
             title: 'User Profile',
@@ -243,11 +233,10 @@ const navLinks = [
       {
         title: 'About Us',
         icon: IconBookOpenText,
-        navTooltip: 'Tooltip Label',
       },
     ],
   },
-];
+]);
 </script>
 
 <style>

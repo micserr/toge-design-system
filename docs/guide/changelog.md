@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.5 (2024-11-18)
+
+### Features
+
+- Update documentation, Added default prefix for components, Fix Sidenavigation Integration ([#b3b3b3b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/64b3a0ec2a462328da22ca079b82867730872e99) by @JohnArias)
+
+## 1.0.4 (2024-11-15)
+
+### Features
+
+- Update Sprout Design System Documentation ([#b3b3b3b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8a6d76a1ffb881c1cc57229a6b5d6f0122a3a7f0) by @JohnArias)
+
 ## 1.0.3 (2024-11-06)
 
 ### Updates

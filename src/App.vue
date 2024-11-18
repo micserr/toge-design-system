@@ -1,9 +1,16 @@
 <template>
-  <Sidenav has-quick-actions has-search :nav-links="navLinks">
+  <spr-sidenav has-quick-actions has-search :active-nav="activeNav" :nav-links="navLinks">
     <template #logo-image>
       <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
     </template>
-  </Sidenav>
+
+    <template #avatar-image>
+      <img
+        src="https://lh3.googleusercontent.com/a/ACg8ocK50-sMjINMLwvJ93HYET2GSzk6E3JyGZspnDTtetgs9OxCcWg=s360-c-no"
+        alt="avatar"
+      />
+    </template>
+  </spr-sidenav>
 
   <h1 class="tw-heading-xl">askhdjahskjdhasjkhdjkashkjdas</h1>
   <h1 class="tw-heading-lg">askhdjahskjdhasjkhdjkashkjdas</h1>
@@ -17,7 +24,7 @@
 <script setup>
 import { ref } from 'vue';
 
-import Sidenav from './components/Sidenav/sidenav.vue';
+import SprSidenav from './components/sidenav/sidenav.vue';
 
 import IconHouseSimple from '~icons/ph/house-simple';
 import IconUsersThree from '~icons/ph/users-three';
@@ -30,6 +37,12 @@ import IconFlowArrow from '~icons/ph/flow-arrow';
 import IconGear from '~icons/ph/gear';
 import IconBookOpenText from '~icons/ph/book-open-text';
 
+const activeNav = ref({
+  parentNav: 'Home',
+  menu: 'Dashboard',
+  submenu: 'Home 4',
+});
+
 const navLinks = ref([
   {
     parentLinks: [
@@ -39,7 +52,7 @@ const navLinks = ref([
         menuLinks: [
           {
             title: 'Dashboard',
-            subMenuLinks: [
+            submenuLinks: [
               {
                 title: 'Home 1',
               },
@@ -131,7 +144,7 @@ const navLinks = ref([
           },
           {
             title: 'Reports',
-            subMenuLinks: [
+            submenuLinks: [
               {
                 title: 'Payroll',
               },
@@ -219,7 +232,7 @@ const navLinks = ref([
           },
           {
             title: 'Company Settings',
-            subMenuLinks: [
+            submenuLinks: [
               {
                 title: 'Team Members',
               },

@@ -1,5 +1,5 @@
 <script setup>
-  import Btn from "@/components/button/button.vue"
+  import SprButton from "@/components/button/button.vue"
 </script>
 
 # Button
@@ -8,87 +8,89 @@ Commonly used button.
 
 ## Basic Usage
 
-<div  class="tw-flex tw-items-center tw-gap-2">
-  <Btn>Buttons</Btn>
+<div class="tw-flex tw-items-center tw-gap-2">
+  <spr-button>Buttons</spr-button>
 </div>
 
 ```jsx
-<Btn>Button</Btn>
+<spr-button>Button</spr-button>
 ```
 
 ## Tone
 
-<div  class="tw-flex tw-items-center tw-gap-2">
-  <Btn>Neutral</Btn>
-  <Btn tone="success">Success</Btn>
-  <Btn tone="danger">Danger</Btn>
+<div class="tw-flex tw-items-center tw-gap-2">
+  <spr-button>Neutral</spr-button>
+  <spr-button tone="success">Success</spr-button>
+  <spr-button tone="danger">Danger</spr-button>
 </div>
 
 ```jsx
-<Btn>Neutral/Default</Btn>
-<Btn tone="success">Success</Btn>
-<Btn tone="danger">Danger</Btn>
+<spr-button>Neutral/Default</spr-button>
+<spr-button tone="success">Success</spr-button>
+<spr-button tone="danger">Danger</spr-button>
 ```
 
 ## Sizes
 
 <div class="tw-flex tw-items-center tw-gap-2">
-  <Btn size="small">Small</Btn>
-  <Btn>Medium</Btn>
-  <Btn size="large">Large</Btn>
+  <spr-button size="small">Small</spr-button>
+  <spr-button>Medium</spr-button>
+  <spr-button size="large">Large</spr-button>
 </div>
 
 ```jsx
-<Btn size="small">Small</Btn>
-<Btn>Medium/Default</Btn>
-<Btn size="large">Large</Btn>
+<spr-button size="small">Small</spr-button>
+<spr-button>Medium/Default</spr-button>
+<spr-button size="large">Large</spr-button>
 ```
 
 ## Variant
 
 <div class="tw-flex tw-items-center tw-gap-2 tw-mb-2">
-  <Btn>Primary</Btn>
-  <Btn variant="secondary">Secondary</Btn>
-  <Btn variant="tertiary">Tertiary</Btn>
+  <spr-button>Primary</spr-button>
+  <spr-button variant="secondary">Secondary</spr-button>
+  <spr-button variant="tertiary">Tertiary</spr-button>
 </div>
 <div class="tw-flex tw-items-center tw-gap-2 tw-mb-2">
-  <Btn tone="success">Primary</Btn>
-  <Btn tone="success" variant="secondary">Secondary</Btn>
-  <Btn tone="success" variant="tertiary">Tertiary</Btn>
+  <spr-button tone="success">Primary</spr-button>
+  <spr-button tone="success" variant="secondary">Secondary</spr-button>
+  <spr-button tone="success" variant="tertiary">Tertiary</spr-button>
 </div>
 <div class="tw-flex tw-items-center tw-gap-2">
-  <Btn tone="danger">Primary</Btn>
-  <Btn tone="danger" variant="secondary">Secondary</Btn>
-  <Btn tone="danger" variant="tertiary">Tertiary</Btn>
+  <spr-button tone="danger">Primary</spr-button>
+  <spr-button tone="danger" variant="secondary">Secondary</spr-button>
+  <spr-button tone="danger" variant="tertiary">Tertiary</spr-button>
 </div>
 
 ```jsx
 // Primary/Default
-<Btn>Primary/Default</Btn>
-<Btn variant="secondary">Secondary</Btn>
-<Btn variant="tertiary">Tertiary</Btn>
+<spr-button>Primary/Default</spr-button>
+<spr-button variant="secondary">Secondary</spr-button>
+<spr-button variant="tertiary">Tertiary</spr-button>
+
 // Succees
-<Btn tone="success">Primary/Default</Btn>
-<Btn tone="success" variant="secondary">Secondary</Btn>
-<Btn tone="success" variant="tertiary">Tertiary</Btn>
+<spr-button tone="success">Primary/Default</spr-button>
+<spr-button tone="success" variant="secondary">Secondary</spr-button>
+<spr-button tone="success" variant="tertiary">Tertiary</spr-button>
+
 // Danger
-<Btn tone="danger">Primary/Default</Btn>
-<Btn tone="danger" variant="secondary">Secondary</Btn>
-<Btn tone="danger" variant="tertiary">Tertiary</Btn>
+<spr-button tone="danger">Primary/Default</spr-button>
+<spr-button tone="danger" variant="secondary">Secondary</spr-button>
+<spr-button tone="danger" variant="tertiary">Tertiary</spr-button>
 ```
 
 ## Disabled
 
 <div class="tw-flex tw-items-center tw-gap-2">
-  <Btn disabled size="small">Small</Btn>
-  <Btn disabled>Default</Btn>
-  <Btn disabled size="large">Large</Btn>
+  <spr-button disabled size="small">Small</spr-button>
+  <spr-button disabled>Default</spr-button>
+  <spr-button disabled size="large">Large</spr-button>
 </div>
 
 ```jsx
-<Btn disabled ize="small">Small</Btn>
-<Btn disabled>Medium/Default</Btn>
-<Btn disabled size="large">Large</Btn>
+<spr-button disabled ize="small">Small</spr-button>
+<spr-button disabled>Medium/Default</spr-button>
+<spr-button disabled size="large">Large</spr-button>
 ```
 
 ## Button API

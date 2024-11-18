@@ -6,7 +6,7 @@ import '@/assets/styles/tailwind.css';
 let globalPrefix = '';
 
 export const setPrefix = (prefix: string) => {
-  globalPrefix = prefix || '';
+  globalPrefix = prefix || 'spr-';
 };
 
 export const getPrefix = (): string => globalPrefix;
@@ -23,7 +23,7 @@ const components = import.meta.glob('../src/components/**/*.vue', {
 
 const install = (app: App, options: { prefix?: string } = {}) => {
   // Set the global prefix from options
-  setPrefix(options.prefix || '');
+  setPrefix(options.prefix || 'spr-');
 
   Object.entries(components).forEach(([path, component]) => {
     // Extract the component name from the file path

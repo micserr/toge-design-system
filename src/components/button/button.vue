@@ -14,10 +14,6 @@
 import { buttonEmitTypes, buttonPropTypes } from './button';
 import { useButton } from './use-button';
 
-defineOptions({
-  name: 'ButtonBase',
-});
-
 const props = defineProps(buttonPropTypes);
 const emit = defineEmits(buttonEmitTypes);
 

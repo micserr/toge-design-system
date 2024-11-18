@@ -16,33 +16,6 @@ This library provides a collection of highly customizable, reusable components t
 - 💅 **Prettier** - Code formatter to keep everything clean and readable
 - 🧽 **Styling** - Maintain style consistency across the project
 
-## Installation
-
-To get started with **Design System Next**, install the package via npm:
-
-```bash
-npm install design-system-next
-```
-
-Import the library in your Vue 3 project:
-
-```javascript
-import SproutDesignSystem from '@jefmari/design-system-next';
-
-import App from './App.vue';
-
-const app = createApp(App);
-
-app.use(SproutDesignSystem);
-app.mount('#app');
-```
-
-Optional: Adding Components Prefixes
-
-```javascript
-app.use(SproutDesignSystem, { prefix: 'tsl_' });
-```
-
 ## Contributing
 
 🛠 TODO

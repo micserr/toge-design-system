@@ -13,11 +13,13 @@ app.use(SproutDesignSystem);
 app.mount('#app');
 ```
 
-Optional: Add Component Prefixes
+### Optional: Custom Component Prefixes
 
-If you'd like to add a custom prefix to the components, you can pass an options object when using the plugin:
+By default, components are prefixed with `spr-`. When you use the plugin, all components will automatically include this prefix. However, if you prefer to use your own custom prefix, you can specify it by passing an options object with the prefix property. See the example below:
 
 ```javascript
 app.use(SproutDesignSystem); // [!code --]
-app.use(SproutDesignSystem, { prefix: 'tsl_' }); // [!code ++]
+
+// 'spr-' is the default prefix if not specified
+app.use(SproutDesignSystem, { prefix: 'spa-' }); // [!code ++]
 ```

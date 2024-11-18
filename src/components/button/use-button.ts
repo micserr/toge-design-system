@@ -14,7 +14,7 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
   const { state, tag, type, href, size, tone, variant, disabled } = props;
 
   const buttonProps: ComputedRef<Record<string, unknown>> = computed(() => {
-    if (tag === 'button') {
+    if (tag === 'spr-button') {
       return {
         ...(disabled && { ariaDisabled: true }),
         disabled: disabled,

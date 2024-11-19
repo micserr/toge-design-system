@@ -1,10 +1,19 @@
 # Changelog
 
+## 1.0.6 (2024-11-19)
+
+### Features
+
+- Chore: Update Packages ([#905e2b63](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/905e2b63337fb0e8d21125961e4fb90ff3057349) by @JefMari)
+- Feat: Add Sidenav Image ([#9b56e88d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/9b56e88daa0122cc14f0dc720239d6b8e26818d0) by @JefMari)
+
+
 ## 1.0.5 (2024-11-18)
 
 ### Features
 
-- Update documentation, Added default prefix for components, Fix Sidenavigation Integration ([#b3b3b3b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/64b3a0ec2a462328da22ca079b82867730872e99) by @JohnArias)
+- Update Sidenav and Typography Documentations, Refactor Sidenav Component ([#64b3a0ec](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/64b3a0ec2a462328da22ca079b82867730872e99) by @JohnArias)
+- Update documentation, Added default prefix for components, Fix Sidenavigation Integration ([#b8658ff3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b8658ff3ed37627ad0d61d35629ade68e6e45e07?refName=refs%2Fheads%2Fdev) by @JohnArias)
 
 ## 1.0.4 (2024-11-15)
 

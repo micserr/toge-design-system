@@ -2,6 +2,8 @@
 
 The side navigation provides a customizable navigation bar that includes a logo, navigation links, quick actions, and a search bar.
 
+![Sidenav Sample](../../public/sidenav-sample.png)
+
 ## Basic Implementation
 
 To implement the Sidenav component, use the following syntax:

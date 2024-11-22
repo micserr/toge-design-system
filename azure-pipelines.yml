@@ -1,7 +1,3 @@
-pr:
-  branches:
-    include:
-      - dev
 trigger:
   branches:
     include:

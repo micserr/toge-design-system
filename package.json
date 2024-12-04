@@ -1,6 +1,6 @@
 {
   "name": "design-system-next",
-  "private": true,
+  "private": false,
   "version": "1.0.6",
   "main": "./dist/design-system-next.js",
   "module": "./dist/design-system-next.js",

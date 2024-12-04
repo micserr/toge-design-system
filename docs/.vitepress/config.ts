@@ -24,32 +24,32 @@ export default defineConfig({
     nav: [
       { text: 'Guide', link: '/guide/changelog' },
       {
-        text: 'Documentation',
-        link: '/documentation/development/installation',
+        text: 'Components',
+        link: '/documentation/components/button',
       },
     ],
 
     sidebar: {
       '/guide/': [
         {
+          text: 'Basics',
+          items: [
+            {
+              text: 'Installation',
+              link: '/guide/basics/installation',
+            },
+            {
+              text: 'Quick Start',
+              link: '/guide/basics/quick-start',
+            },
+          ],
+        },
+        {
           text: 'Advanced',
           items: [{ text: 'Changelog', link: '/guide/changelog' }],
         },
       ],
       '/documentation/': [
-        {
-          text: 'Development',
-          items: [
-            {
-              text: 'Installation',
-              link: '/documentation/development/installation',
-            },
-            {
-              text: 'Quick Start',
-              link: '/documentation/development/quick-start',
-            },
-          ],
-        },
         {
           text: 'Components',
           items: [

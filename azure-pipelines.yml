@@ -17,8 +17,8 @@ steps:
     displayName: 'Install Node.js'
 
   - script: |
-      git config --global user.email "$(gitUserEmail)"
-      git config --global user.name "$(gitUserName)"
+      git config --global user.email "jefersonm@sprout.ph" # Temporary, should be assign to devops account instead
+      git config --global user.name "Jef Mari" # Temporary, should be assign to devops account instead
     displayName: 'Configure Git user'
 
   - script: |

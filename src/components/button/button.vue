@@ -1,13 +1,12 @@
 <template>
-  <component
-    :is="tag"
+  <button
     ref="buttonRef"
     v-bind="buttonProps"
     :class="['tw-inline-flex tw-min-h-3 tw-items-center tw-justify-center tw-rounded-md', buttonClass]"
     @click="handleClick"
   >
     <slot />
-  </component>
+  </button>
 </template>
 
 <script lang="ts" setup>

@@ -11,23 +11,15 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
   const isHovered = useElementHover(buttonRef);
   const { pressed } = useMousePressed({ target: buttonRef });
   const { focused } = useFocus(buttonRef);
-  const { state, tag, type, href, size, tone, variant, disabled } = props;
+  const { state, type, size, tone, variant, disabled } = props;
 
   const buttonProps: ComputedRef<Record<string, unknown>> = computed(() => {
-    if (tag === 'spr-button') {
-      return {
-        ...(disabled && { ariaDisabled: true }),
-        disabled: disabled,
-        autofocus: state === 'focus',
-        type: type ?? 'button',
-      };
-    }
-    if (tag === 'a') {
-      return {
-        href: href ?? '#',
-      };
-    }
-    return {};
+    return {
+      ...(disabled && { ariaDisabled: true }),
+      disabled: disabled,
+      autofocus: state === 'focus',
+      type: type ?? 'button',
+    };
   });
 
   const buttonSizeCssClass: ComputedRef<string> = computed(() =>

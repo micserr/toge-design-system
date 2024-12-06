@@ -61,6 +61,10 @@ export default defineConfig({
               text: 'Sidenav',
               link: '/documentation/components/sidenav',
             },
+            {
+              text: 'Lozenge',
+              link: '/documentation/components/lozenge',
+            },
           ],
         },
         {

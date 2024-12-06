@@ -8,7 +8,7 @@ The side navigation provides a customizable navigation bar that includes a logo,
 
 To implement the Sidenav component, use the following syntax:
 
-```html
+```vue
 <spr-sidenav :has-quick-actions="true" :has-search="true" :nav-links="navLinks">
   <template #logo-image>
     <img src="[logo_image_path]" alt="logo" />
@@ -49,7 +49,7 @@ To implement the Sidenav component, use the following syntax:
 
 The `logo-image` slot allows you to insert a custom logo in the side navigation. Use the following template to add a logo:
 
-```html
+```vue
 <template #logo-image>
   <img src="[image_path]" alt="logo" />
 </template>
@@ -59,7 +59,7 @@ The `logo-image` slot allows you to insert a custom logo in the side navigation.
 
 The `avatar-image` slot allows you to insert a custom avatar image, typically used for the user's profile picture. Use the following template to add an avatar:
 
-```html
+```vue
 <template #avatar-image>
   <img src="[image_path]" alt="logo" />
 </template>
@@ -91,14 +91,9 @@ The `active-nav` property allows you to highlight the active state across differ
 
 Here’s a example of how to implement the active navigation property:
 
-```Html
+```vue
 <template>
-  <spr-sidenav
-    :has-quick-actions="true"
-    :has-search="true"
-    :active-nav="activeNav"
-    :nav-links="navLinks"
-  >
+  <spr-sidenav :has-quick-actions="true" :has-search="true" :active-nav="activeNav" :nav-links="navLinks">
     <template #logo-image>
       <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
     </template>
@@ -318,14 +313,9 @@ The nav-links attribute expects an array of objects that define the navigation m
 
 Here’s a full example of how to implement the Sidenav component with the above attributes:
 
-```Html
+```vue
 <template>
-  <spr-sidenav
-    :has-quick-actions="true"
-    :has-search="true"
-    :active-nav="activeNav"
-    :nav-links="navLinks"
-  >
+  <spr-sidenav :has-quick-actions="true" :has-search="true" :active-nav="activeNav" :nav-links="navLinks">
     <template #logo-image>
       <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
     </template>

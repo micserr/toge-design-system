@@ -1,12 +1,18 @@
 # Changelog
 
+## 1.0.7 (2024-12-09)
+
+### Features
+
+- Chore: Update Verion ([#18cf6501](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/18cf6501f526111506e6196f675e7f6b9f820b08?refName=refs%2Fheads%2F2024%2Fchore%2Fandrea%2Fversion) by @adestajo)
+- Features: Lozenge ([#b66fc6d8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b66fc6d82003eea9d6331b3f282b54f7f532a32e?refName=refs%2Fheads%2F2024%2Fchore%2Fandrea%2Fversion) by @adestajo)
+
 ## 1.0.6 (2024-11-19)
 
 ### Features
 
 - Chore: Update Packages ([#905e2b63](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/905e2b63337fb0e8d21125961e4fb90ff3057349) by @JefMari)
 - Feat: Add Sidenav Image ([#9b56e88d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/9b56e88daa0122cc14f0dc720239d6b8e26818d0) by @JefMari)
-
 
 ## 1.0.5 (2024-11-18)
 

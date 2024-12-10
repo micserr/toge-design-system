@@ -334,6 +334,10 @@
     @apply tw-text-kangkong-700;
   }
 
+  .tw-text-color-success-base {
+    @apply tw-text-kangkong-700;
+  }
+
   .tw-text-color-success-hover {
     @apply tw-text-kangkong-800;
   }
@@ -378,11 +382,11 @@
     @apply tw-text-mango-900;
   }
 
-  .tw-text-color-caution-pressed {
+  .tw-text-color-caution-base {
     @apply tw-text-carrot-700;
   }
 
-  .tw-text-color-caution-pressed {
+  .tw-text-color-caution-hover {
     @apply tw-text-carrot-800;
   }
 
@@ -525,7 +529,7 @@
   }
 
   .tw-background-color-caution-weak {
-    @apply tw-bg-carrot-1000;
+    @apply tw-bg-carrot-100;
   }
 
   .tw-background-color-accent-base {
@@ -542,6 +546,22 @@
 
   .tw-background-color-accent-weak {
     @apply tw-bg-wintermelon-100;
+  }
+
+  .tw-background-color-danger-base {
+    @apply tw-bg-tomato-600;
+  }
+
+  .tw-background-color-danger-hover {
+    @apply tw-bg-tomato-700;
+  }
+
+  .tw-background-color-danger-pressed {
+    @apply tw-bg-tomato-800;
+  }
+
+  .tw-background-color-danger-weak {
+    @apply tw-bg-tomato-100;
   }
   /* #endregion - Background Colors */
 

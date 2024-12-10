@@ -18,7 +18,7 @@ export const lozengePropTypes = {
   tone: {
     type: String as PropType<(typeof LOZENGE_TONE)[number]>,
     validator: (value: (typeof LOZENGE_TONE)[number]) => LOZENGE_TONE.includes(value),
-    default: 'neutral',
+    default: 'plain',
   },
   /**
    * @description Lozenge type (fill or outline)

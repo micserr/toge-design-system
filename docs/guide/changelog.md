@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.8 (2024-12-10)
+
+### Features
+
+- Chore: Lozenge Version 2 ([#fa9655ea](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/fa9655ea18eaf8171a6a5688e658b09e9c950c1c?refName=refs%2Fheads%2F2024%2FFEATURE%2FAndrea%2Flozenge-remove-close-btn) by @adestajo)
+
 ## 1.0.7 (2024-12-09)
 
 ### Features

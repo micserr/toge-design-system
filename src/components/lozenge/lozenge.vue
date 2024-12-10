@@ -19,50 +19,45 @@
       </div>
 
       <div>{{ label }}</div>
-
-      <div v-if="removable" :class="['tw-flex tw-cursor-pointer tw-items-center']" @click="hanndleRemoveLozenge">
-        <IconXThin />
-      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import IconXThin from '~icons/ph/x-thin';
 import { lozengePropTypes } from './lozenge';
-import { useLozenge } from './use-lozenge';
 
 defineProps(lozengePropTypes);
-
-const emit = defineEmits(['onRemove']);
-const { hanndleRemoveLozenge } = useLozenge(emit);
 </script>
 
 <style lang="scss" scoped>
 .lozenge {
-  @apply tw-flex tw-flex-wrap tw-gap-2;
+  @apply tw-flex tw-flex-wrap tw-gap-2 tw-rounded-md;
 
   .pending {
-    @apply tw-border-mango-700 tw-bg-mango-100 tw-text-mango-700;
+    @apply tw-text-color-pending-base tw-background-color-pending-weak tw-border-color-pending-base;
   }
 
   .information {
-    @apply tw-border-blueberry-700 tw-bg-blueberry-100 tw-text-blueberry-700;
+    @apply tw-text-color-information-base tw-background-color-information-weak tw-border-color-information-base;
   }
 
   .success {
-    @apply tw-border-kangkong-700 tw-bg-kangkong-100 tw-text-kangkong-700;
+    @apply tw-text-color-success-base tw-background-color-success-weak tw-border-color-success-base;
   }
   .neutral {
-    @apply tw-border-mushroom-300 tw-bg-mushroom-50 tw-text-mushroom-600;
+    @apply tw-text-color-base tw-background-color-base tw-border-color-base;
   }
 
   .danger {
-    @apply tw-border-tomato-600 tw-bg-tomato-100 tw-text-tomato-600;
+    @apply tw-text-color-danger-base tw-background-color-danger-weak tw-border-color-danger-base;
   }
 
   .caution {
-    @apply tw-border-carrot-700 tw-bg-carrot-100 tw-text-carrot-700;
+    @apply tw-text-color-caution-base tw-background-color-caution-weak tw-border-color-caution-base;
+  }
+
+  .plain {
+    @apply tw-text-color-strong tw-border-color-base tw-background-color;
   }
 }
 
@@ -70,27 +65,31 @@ const { hanndleRemoveLozenge } = useLozenge(emit);
   @apply tw-flex tw-flex-wrap tw-gap-2;
 
   .pending {
-    @apply tw-border-none tw-bg-mango-500 tw-text-mushroom-950;
+    @apply tw-background-color-pending-base tw-text-color-strong tw-border-none;
   }
 
   .information {
-    @apply tw-border-none tw-bg-blueberry-600 tw-text-white-50;
+    @apply tw-background-color-information-base tw-text-color-inverted-strong tw-border-none;
   }
 
   .success {
-    @apply tw-bg-kangkong-600 tw-text-white-50;
-  }
-
-  .neutral {
-    @apply tw-border-none tw-bg-mushroom-50 tw-text-mushroom-950;
+    @apply tw-background-color-success-base tw-text-color-inverted-strong;
   }
 
   .danger {
-    @apply tw-border-none tw-bg-tomato-600 tw-text-white-50;
+    @apply tw-background-color-danger-base tw-text-color-inverted-strong tw-border-none;
+  }
+
+  .neutral {
+    @apply tw-background-color-base tw-text-color-strong tw-border-none;
   }
 
   .caution {
-    @apply tw-border-none tw-bg-carrot-500 tw-text-mushroom-950;
+    @apply tw-background-color-caution-base tw-text-color-strong tw-border-none;
+  }
+
+  .plain {
+    @apply tw-text-color-strong tw-background-color tw-border-none;
   }
 }
 </style>

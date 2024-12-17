@@ -2,7 +2,11 @@
   <button
     ref="buttonRef"
     v-bind="buttonProps"
-    :class="['tw-inline-flex tw-min-h-3 tw-items-center tw-justify-center tw-rounded-md', buttonClass]"
+    :class="[
+      'tw-inline-flex tw-min-h-3 tw-w-fit tw-cursor-pointer tw-items-center tw-justify-center tw-rounded-md tw-outline-none tw-duration-150 tw-ease-in-out',
+      'active:tw-scale-90',
+      buttonClass,
+    ]"
     @click="handleClick"
   >
     <slot />

@@ -44,6 +44,7 @@ defineProps(lozengePropTypes);
   .success {
     @apply tw-text-color-success-base tw-background-color-success-weak tw-border-color-success-base;
   }
+
   .neutral {
     @apply tw-text-color-base tw-background-color-base tw-border-color-base;
   }

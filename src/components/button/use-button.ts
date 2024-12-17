@@ -33,26 +33,26 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
   const buttonTextCssClass: ComputedRef<string> = computed(() => {
     if (variant === 'secondary' || variant === 'tertiary') {
       return classNames({
-        'tw-text-mushroom-950': tone === 'neutral',
-        'tw-text-kangkong-700': tone === 'success',
-        'tw-text-tomato-600': tone === 'danger',
+        'tw-text-color-strong': tone === 'neutral',
+        'tw-text-color-brand-base': tone === 'success',
+        'tw-text-color-danger-base': tone === 'danger',
       });
     }
 
     return classNames({
-      'tw-text-mushroom-950': tone === 'neutral',
-      'tw-text-white-50': tone === 'success' || tone === 'danger',
+      'tw-text-color-strong': tone === 'neutral',
+      'tw-text-color-inverted-strong': tone === 'success' || tone === 'danger',
     });
   });
 
   // #region - Background Css Class
   const buttonBackgroundCssClass: ComputedRef<string> = computed(() => {
-    if (variant === 'tertiary') {
-      return getTertiaryBackground();
+    if (variant === 'secondary') {
+      return isHovered.value ? 'tw-background-color-hover' : '';
     }
 
-    if (variant === 'secondary') {
-      return isHovered.value ? 'tw-bg-mushroom-100' : '';
+    if (variant === 'tertiary') {
+      return getTertiaryBackground();
     }
 
     return getBackgroundBasedOnState();
@@ -60,45 +60,51 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   function getTertiaryBackground(): string {
     if (pressed.value) {
-      return 'tw-bg-mushroom-200';
+      return 'tw-background-color-pressed';
     }
-    return isHovered.value ? 'tw-bg-mushroom-100' : '';
+
+    return isHovered.value ? 'tw-background-color-hover' : '';
   }
 
   function getBackgroundBasedOnState(): string {
     if (pressed.value) {
       return getPressedBackground();
     }
+
     if (isHovered.value) {
       return getHoveredBackground();
     }
+
     return getDefaultBackground();
   }
 
   function getPressedBackground(): string {
     const backgrounds: Record<string, string> = {
-      neutral: 'tw-bg-mushroom-200',
-      success: 'tw-bg-kangkong-900',
-      danger: 'tw-bg-tomato-800',
+      neutral: 'tw-background-color-pressed',
+      success: 'tw-background-color-brand-pressed',
+      danger: 'tw-background-color-danger-pressed',
     };
+
     return backgrounds[tone] || '';
   }
 
   function getHoveredBackground(): string {
     const backgrounds: Record<string, string> = {
-      neutral: 'tw-bg-mushroom-100',
-      success: 'tw-bg-kangkong-800',
-      danger: 'tw-bg-tomato-700',
+      neutral: 'tw-background-color-hover',
+      success: 'tw-background-color-success-pressed',
+      danger: 'tw-background-color-danger-hover',
     };
+
     return backgrounds[tone] || '';
   }
 
   function getDefaultBackground(): string {
     const backgrounds: Record<string, string> = {
-      neutral: 'tw-bg-white-50',
-      success: 'tw-bg-kangkong-700',
-      danger: 'tw-bg-tomato-600',
+      neutral: 'tw-background-color',
+      success: 'tw-background-color-brand-base',
+      danger: 'tw-background-color-danger-base',
     };
+
     return backgrounds[tone] || '';
   }
   // #endregion - Background Css Class
@@ -108,13 +114,14 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
       if (focused.value) {
         return 'tw-border-solid tw-border tw-border-white-50';
       }
+
       return 'tw-border-solid tw-border tw-border-transparent';
     }
 
     return classNames({
-      'tw-border-solid tw-border tw-border-mushroom-300': tone === 'neutral',
-      'tw-border-solid tw-border tw-border-kangkong-700': tone === 'success',
-      'tw-border-solid tw-border tw-border-tomato-600': tone === 'danger',
+      'tw-border-solid tw-border tw-border-color-base': tone === 'neutral',
+      'tw-border-solid tw-border tw-border-color-brand-base': tone === 'success',
+      'tw-border-solid tw-border tw-border-color-danger-base': tone === 'danger',
     });
   });
 
@@ -128,21 +135,25 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
     } else if (focused.value) {
       return 'tw-shadow-button-active';
     }
+
     return '';
   });
 
   const buttonAllCssClass: ComputedRef<string> = computed(() => {
     if (disabled) {
-      return classNames(buttonSizeCssClass.value, 'tw-text-white-300');
+      return classNames(buttonSizeCssClass.value, 'tw-text-color-disabled');
     }
+
     return classNames(buttonSizeCssClass.value, buttonToneCssClass.value, buttonShadowClass.value);
   });
 
   const handleClick = (evt: MouseEvent) => {
     if (disabled) {
       evt.stopPropagation();
+
       return;
     }
+
     emit('click', evt);
   };
 

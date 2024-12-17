@@ -4,6 +4,10 @@ The side navigation provides a customizable navigation bar that includes a logo,
 
 ![Sidenav Sample](../../public/sidenav-sample.png)
 
+<a href="/guide/sample-implementation/sidenav.html" target="_blank" class="tw-text-primary">
+  View Example Implementation
+</a>
+
 ## Basic Implementation
 
 To implement the Sidenav component, use the following syntax:

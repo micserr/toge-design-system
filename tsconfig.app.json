@@ -5,10 +5,10 @@
     "module": "ESNext",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
-    "types": ["node","unplugin-icons/types/vue"],
+    "types": ["node", "unplugin-icons/types/vue"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["./src/*"]
     },
     "allowJs": true,
     "rootDir": "./",
@@ -33,7 +33,8 @@
     "src/**/*.ts",
     "src/**/*.vue",
     "dist/lib/main.d.ts",
-    "**/docs/.vitepress/**/*.ts"
+    "**/docs/.vitepress/**/*.ts",
+    "**/docs/documentation/**/*.vue"
   ],
   "exclude": ["dist/"]
 }

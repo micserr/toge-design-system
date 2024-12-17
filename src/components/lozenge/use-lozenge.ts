@@ -5,6 +5,7 @@ export const useLozenge = (emit: SetupContext<RemoveEmitTypes>['emit']) => {
   const hanndleRemoveLozenge = (evt: MouseEvent) => {
     emit('onRemove', evt);
   };
+
   return {
     hanndleRemoveLozenge,
   };

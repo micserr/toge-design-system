@@ -1,7 +1,3 @@
-<script setup>
-  import SprButton from "@/components/button/button.vue"
-</script>
-
 # Button
 
 Commonly used button.
@@ -104,3 +100,7 @@ Commonly used button.
 | variant  | button varaint     | `'primary' \| 'secondary' \| 'tertiary'` | tertiary |
 | disabled | disable the button | `boolean`                                | false    |
 | tag      | custom element tag | `string` / `Component`                   | button   |
+
+<script setup lang="ts">
+  import SprButton from "@/components/button/button.vue"
+</script>

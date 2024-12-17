@@ -5,10 +5,7 @@
     </template>
 
     <template #avatar-image>
-      <img
-        src="https://lh3.googleusercontent.com/a/ACg8ocK50-sMjINMLwvJ93HYET2GSzk6E3JyGZspnDTtetgs9OxCcWg=s360-c-no"
-        alt="avatar"
-      />
+      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
     </template>
   </spr-sidenav>
 

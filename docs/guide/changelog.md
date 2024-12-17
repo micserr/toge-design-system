@@ -1,6 +1,10 @@
 # Changelog
 
-## 1.0.9 (2024-12-10)
+## 1.0.10 (2024-12-17)
+
+- Fix: Docs Issues ([#36da57c9](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/36da57c98481aac2480af4c25523a1c60dbf617c?refName=refs%2Fheads%2F2024%2Ffeature%2Farias%2Fcomponent-code-cleanup) by @jarias)
+
+## 1.0.9 ((2024-12-17)
 
 ### Fixes
 

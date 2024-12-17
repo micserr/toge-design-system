@@ -1,11 +1,3 @@
-<script setup lang="ts">
-  import { ref } from 'vue';
-  import SprLozenge from "@/components/lozenge/lozenge.vue"
-  import IconUsersThree from '~icons/ph/users-three';
-
-  const visible = ref<boolean>(true);
-</script>
-
 # Lozenge
 
 Lozenge represents entities using icons, labels, and images.
@@ -197,3 +189,12 @@ import IconUsersThree from '~icons/ph/users-three';
 | fill  | lozenge type (fill = true, hollow = false) | `boolean`                                                                      | false   |
 | label | Label                                      | `string`                                                                       | label   |
 | url   | avatar image url                           | `string`                                                                       | none    |
+
+<script setup lang="ts">
+  import { ref } from 'vue';
+  
+  import SprLozenge from "@/components/lozenge/lozenge.vue"
+  import IconUsersThree from '~icons/ph/users-three';
+
+  const visible = ref<boolean>(true);
+</script>

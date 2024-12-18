@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 import colorScheme from './src/assets/scripts/colors';
+import spacing from './src/assets/scripts/spacing';
 
 export default {
   prefix: 'tw-',
@@ -57,6 +58,7 @@ export default {
         button: '0px 2px 1px 0px rgba(0, 0, 0, 0.15) inset;',
         'button-active': '0px 0px 0px 2px #394141',
       },
+      spacing: spacing,
     },
     container: {
       center: true,

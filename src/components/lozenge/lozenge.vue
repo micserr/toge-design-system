@@ -2,11 +2,11 @@
   <div v-if="visible" :class="[fill ? 'lozenge-fill' : 'lozenge']">
     <div
       :class="[
-        'tw-inline-flex tw-items-center tw-gap-1 tw-rounded-md tw-border tw-border-solid tw-p-1 tw-text-xs tw-font-medium tw-uppercase',
+        'tw-label-xs tw-gap-size-spacing-6xs tw-p-size-spacing-5xs tw-inline-flex tw-items-center tw-rounded-md tw-border tw-border-solid tw-text-xs tw-font-medium tw-uppercase',
         tone,
       ]"
     >
-      <div v-if="$slots.icon" class="tw-flex tw-items-center">
+      <div v-if="$slots.icon" class="tw-flex tw-h-3 tw-w-3 tw-items-center tw-overflow-hidden">
         <slot name="icon" />
       </div>
 
@@ -14,7 +14,7 @@
         <slot name="avatar" />
       </div>
 
-      <div v-if="url && !$slots.avatar" class="tw-h-4 tw-w-4">
+      <div v-if="url && !$slots.avatar" class="tw-h-4 tw-w-4 tw-overflow-hidden">
         <img class="tw-h-full tw-w-full tw-rounded-full tw-object-cover" :src="url" alt="avatar" />
       </div>
 
@@ -31,7 +31,7 @@ defineProps(lozengePropTypes);
 
 <style lang="scss" scoped>
 .lozenge {
-  @apply tw-flex tw-flex-wrap tw-gap-2 tw-rounded-md;
+  @apply tw-flex tw-flex-wrap tw-rounded-md;
 
   .pending {
     @apply tw-text-color-pending-base tw-background-color-pending-weak tw-border-color-pending-base;
@@ -63,7 +63,7 @@ defineProps(lozengePropTypes);
 }
 
 .lozenge-fill {
-  @apply tw-flex tw-flex-wrap tw-gap-2;
+  @apply tw-flex tw-flex-wrap;
 
   .pending {
     @apply tw-background-color-pending-base tw-text-color-strong tw-border-none;

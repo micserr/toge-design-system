@@ -1,6 +1,11 @@
 # Changelog
 
+## 1.0.12 (2024-12-18)
+
+- Chore: setup tailwind configuration for spacing ([#9c6349af](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/9c6349affe6116fd7aae26e9dd7fca213d4fcf89?refName=refs%2Fheads%2Fdev) by @adestajo)
+
 ## 1.0.11 (2024-12-17)
+
 - Feat: Switch component and documentation ([#22a704dd](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/22a704ddd0ae15b279b5de1ac1312fa8354f0a3a?refName=refs%2Fheads%2F2024%2FFEATURE%2FPaulo%2FSwitch-component) by @jbanares)
 
 ## 1.0.10 (2024-12-17)

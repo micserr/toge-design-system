@@ -3,6 +3,23 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --size-50: 2px;
+    --size-100: 4px;
+    --size-150: 6px;
+    --size-200: 8px;
+    --size-250: 12px;
+    --size-300: 16px;
+    --size-400: 24px;
+    --size-500: 32px;
+    --size-600: 40px;
+    --size-700: 48px;
+    --size-800: 64px;
+    --size-900: 72px;
+    --size-1000: 80px;
+    --size-1100: 96px;
+    --size-1200: 128px;
+  }
   *::-webkit-scrollbar {
     @apply tw-h-[8px] tw-w-[8px];
   }

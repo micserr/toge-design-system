@@ -65,6 +65,10 @@ export default defineConfig({
               text: 'Lozenge',
               link: '/documentation/components/lozenge',
             },
+            {
+              text: 'Switch',
+              link: '/documentation/components/switch',
+            },
           ],
         },
         {

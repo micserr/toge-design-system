@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.11 (2024-12-17)
+- Feat: Switch component and documentation ([#22a704dd](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/22a704ddd0ae15b279b5de1ac1312fa8354f0a3a?refName=refs%2Fheads%2F2024%2FFEATURE%2FPaulo%2FSwitch-component) by @jbanares)
+
 ## 1.0.10 (2024-12-17)
 
 - Fix: Docs Issues ([#36da57c9](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/36da57c98481aac2480af4c25523a1c60dbf617c?refName=refs%2Fheads%2F2024%2Ffeature%2Farias%2Fcomponent-code-cleanup) by @jarias)

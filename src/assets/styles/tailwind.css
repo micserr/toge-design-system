@@ -614,6 +614,18 @@
   .tw-background-color-danger-weak {
     @apply tw-bg-tomato-100;
   }
+
+  .tw-switch-background-default {
+    @apply tw-bg-mushroom-200;
+  }
+
+  .tw-switch-background-hover {
+    @apply tw-bg-mushroom-300;
+  }
+
+  .tw-switch-background-pressed {
+    @apply tw-bg-mushroom-400;
+  }
   /* #endregion - Background Colors */
 
   /* #region - Border Colors */

@@ -55,7 +55,7 @@ Switch component to show a boolean state (similar to a checkbox).
     <template #rightText> Right </template>
   </spr-switch>
   <spr-switch v-model="switchValue4" class="tw-mb-2">
-    <template #leftText> Right </template>
+    <template #leftText> Left </template>
     <template #rightText> Right </template>
   </spr-switch>
 

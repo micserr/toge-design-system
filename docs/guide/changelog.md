@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.13 (2024-12-18)
+
+- Feat: Setup tailwind configuration for max-width and border radius ([#90264808](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/90264808421240676e1f2228b03fd7b94e2e90a9?refName=refs%2Fheads%2F2024%2FFEATURE%2FPaulo%2Fmax-width-and-border-radius-config) by @jbanares)
+
 ## 1.0.12 (2024-12-18)
 
 - Chore: setup tailwind configuration for spacing ([#9c6349af](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/9c6349affe6116fd7aae26e9dd7fca213d4fcf89?refName=refs%2Fheads%2Fdev) by @adestajo)

@@ -2,6 +2,8 @@
 
 import colorScheme from './src/assets/scripts/colors';
 import spacing from './src/assets/scripts/spacing';
+import maxWidth from './src/assets/scripts/maxWidth';
+import borderRadius from './src/assets/scripts/borderRadius';
 
 export default {
   prefix: 'tw-',
@@ -59,6 +61,8 @@ export default {
         'button-active': '0px 0px 0px 2px #394141',
       },
       spacing: spacing,
+      maxWidth: maxWidth,
+      borderRadius: borderRadius,
     },
     container: {
       center: true,

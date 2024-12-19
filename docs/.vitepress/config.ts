@@ -82,6 +82,18 @@ export default defineConfig({
               text: 'Typography',
               link: '/documentation/utilities/typography',
             },
+            {
+              text: 'Spacing',
+              link: '/documentation/utilities/spacing',
+            },
+            {
+              text: 'Max Width',
+              link: '/documentation/utilities/maxWidth',
+            },
+            {
+              text: 'Border Radius',
+              link: '/documentation/utilities/borderRadius',
+            },
           ],
         },
       ],

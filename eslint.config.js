@@ -42,7 +42,7 @@ export default tseslint.config(
       'vue/multi-word-component-names': [
         'error',
         {
-          ignores: ['button', 'sidenav', 'lozenge', 'switch'],
+          ignores: ['button', 'sidenav', 'lozenge', 'switch', 'radio'],
         },
       ],
     },

@@ -69,6 +69,10 @@ export default defineConfig({
               text: 'Switch',
               link: '/documentation/components/switch',
             },
+            {
+              text: 'Radio',
+              link: '/documentation/components/radio',
+            },
           ],
         },
         {

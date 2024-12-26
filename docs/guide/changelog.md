@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.14 (2024-12-20)
+
+- Feat: Radio component and documentation ([#7519c656](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7519c656350375165116f238eace70275c7dfb9a?refName=refs/heads/2024/FEATURE/NIC/radio-component) by @nicalla)
+
 ## 1.0.13 (2024-12-18)
 
 - Feat: Setup tailwind configuration for max-width and border radius ([#90264808](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/90264808421240676e1f2228b03fd7b94e2e90a9?refName=refs%2Fheads%2F2024%2FFEATURE%2FPaulo%2Fmax-width-and-border-radius-config) by @jbanares)

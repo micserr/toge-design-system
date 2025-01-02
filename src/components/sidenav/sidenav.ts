@@ -29,10 +29,15 @@ export const sidenavPropTypes = {
    * @description Sidenav navlinks
    */
   navLinks: {
-    type: Array as PropType<Array<{ parentLinks: Array }>>,
+    type: Array as PropType<Array<{ parentLinks: Array<unknown> }>>,
     validator: (value: unknown) => Array.isArray(value),
     default: () => [],
   },
 };
 
+export const sidenavEmitTypes = {
+  'route-push': String,
+};
+
 export type SidenavPropTypes = ExtractPropTypes<typeof sidenavPropTypes>;
+export type SidenavEmitTypes = typeof sidenavEmitTypes;

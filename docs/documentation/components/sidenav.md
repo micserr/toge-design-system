@@ -128,14 +128,16 @@ const navLinks = ref([
               {
                 title: 'Home 1',
                 redirect: {
-                  isThirdPartyLink: false,
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
                   link: '/',
                 },
               },
               {
                 title: 'Home 2',
                 redirect: {
-                  isThirdPartyLink: false,
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
                   link: '/',
                 },
               },
@@ -212,6 +214,15 @@ The following table outlines the available attributes for the Sidenav component:
       <td>See below for structure</td>
       <td>-</td>
     </tr>
+    <tr>
+      <td>
+        <code>@route-push</code>
+      </td>
+      <td>Will return link that is indicated in nav-links. This will be the conection to handle your router push.</td>
+      <td>string</td>
+      <td>[indicated in nav-links (link)]</td>
+      <td>-</td>
+    </tr>
   </tbody>
 </table>
 
@@ -245,14 +256,19 @@ The nav-links attribute expects an array of objects that define the navigation m
   <li>
     <code class="tw-mr-2">redirect:</code>
     <span>
-      The URL or path to which the user is redirected when they click on the navigation item. 
-      This is object is composed of <code>isThirdPartyLink</code> and <code>link</code>. Redirection wont work if <code>menuLinks</code> or <code>submenuLinks</code> is present.
+      The URL or path to which the user is redirected when they click on the navigation item. Redirection wont work if <code>menuLinks</code> or <code>submenuLinks</code> is present.
     </span>
   </li>
   <li>
-    <code class="tw-mr-2">isThirdPartyLink:</code>
+    <code class="tw-mr-2">openInNewTab:</code>
     <span>
-      A boolean flag indicating whether the link is to a third-party external site.
+      A boolean flag indicating whether the link is to open in a new tab.
+    </span>
+  </li>
+  <li>
+    <code class="tw-mr-2">isAbsoluteURL:</code>
+    <span>
+      A boolean flag indicating whether the link will be open using href.
     </span>
   </li>
   <li>
@@ -283,19 +299,22 @@ The nav-links attribute expects an array of objects that define the navigation m
         title: <String>,
         icon: <Compoent>,   // Example icon component using Unplugin Icons
         redirect: {
-          isThirdPartyLink: <Boleean>,
+          openInNewTab: <Boleean>,
+          isAbsoluteURL: <Boleean>,
           link: <String>,
         },
         menuLinks: [{
           title: <String>,
           redirect: {
-            isThirdPartyLink: <Boleean>,
+            openInNewTab: <Boleean>,
+            isAbsoluteURL: <Boleean>,
             link: <String>,
           },
           submenuLinks: [{
             title: <String>,
             redirect: {
-              isThirdPartyLink: <Boleean>,
+              openInNewTab: <Boleean>,
+              isAbsoluteURL: <Boleean>,
               link: <String>,
             },
           }],
@@ -344,7 +363,13 @@ Here’s a full example of how to implement the Sidenav component with the above
 
 ```vue
 <template>
-  <spr-sidenav :has-quick-actions="true" :has-search="true" :active-nav="activeNav" :nav-links="navLinks">
+  <spr-sidenav
+    :has-quick-actions="true"
+    :has-search="true"
+    :active-nav="activeNav"
+    :nav-links="navLinks"
+    @route-push="handleRoutePush"
+  >
     <template #logo-image>
       <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
     </template>
@@ -385,14 +410,16 @@ const navLinks = ref([
               {
                 title: 'Home 1',
                 redirect: {
-                  isThirdPartyLink: false,
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
                   link: '/',
                 },
               },
               {
                 title: 'Home 2',
                 redirect: {
-                  isThirdPartyLink: false,
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
                   link: '/',
                 },
               },
@@ -401,7 +428,8 @@ const navLinks = ref([
           {
             title: 'Dashboard 2',
             redirect: {
-              isThirdPartyLink: false,
+              openInNewTab: false,
+              isAbsoluteURL: false,
               link: '/',
             },
           },
@@ -411,7 +439,8 @@ const navLinks = ref([
         title: 'Employees',
         icon: IconUsersThree,
         redirect: {
-          isThirdPartyLink: false,
+          openInNewTab: false,
+          isAbsoluteURL: false,
           link: '/',
         },
       },
@@ -425,6 +454,11 @@ const navLinks = ref([
         menuLinks: [
           {
             title: 'Payroll Runs',
+            redirect: {
+              openInNewTab: false,
+              isAbsoluteURL: false,
+              link: '/',
+            },
           },
           {
             title: 'Reports',
@@ -432,21 +466,24 @@ const navLinks = ref([
               {
                 title: 'Payroll',
                 redirect: {
-                  isThirdPartyLink: false,
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
                   link: '/',
                 },
               },
               {
                 title: 'SSS',
                 redirect: {
-                  isThirdPartyLink: false,
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
                   link: '/',
                 },
               },
               {
                 title: 'PHILHEALTH',
                 redirect: {
-                  isThirdPartyLink: false,
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
                   link: '/',
                 },
               },
@@ -455,14 +492,16 @@ const navLinks = ref([
           {
             title: 'Setup',
             redirect: {
-              isThirdPartyLink: false,
+              openInNewTab: false,
+              isAbsoluteURL: false,
               link: '/',
             },
           },
           {
             title: 'Employees',
             redirect: {
-              isThirdPartyLink: false,
+              openInNewTab: false,
+              isAbsoluteURL: false,
               link: '/',
             },
           },
@@ -472,7 +511,8 @@ const navLinks = ref([
         title: 'Money',
         icon: IconCurrencyRub,
         redirect: {
-          isThirdPartyLink: false,
+          openInNewTab: false,
+          isAbsoluteURL: false,
           link: '/',
         },
       },
@@ -480,13 +520,18 @@ const navLinks = ref([
         title: 'Car',
         icon: IconWallet,
         redirect: {
-          isThirdPartyLink: false,
+          openInNewTab: false,
+          isAbsoluteURL: false,
           link: '/',
         },
       },
     ],
   },
 ]);
+
+const handleRoutePush = (route) => {
+  console.log(route);
+};
 </script>
 ```
 
@@ -610,6 +655,11 @@ const navLinks = ref([
         menuLinks: [
           {
             title: 'Payroll Runs',
+            redirect: {
+              openInNewTab: false,
+              isAbsoluteURL: false,
+              link: '/',
+            },
           },
           {
             title: 'Reports',

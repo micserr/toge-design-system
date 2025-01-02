@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.15 (2025-01-02)
+
+- Feat: DQA Sidenav and Typography ([#4e22a8b3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4e22a8b320b5916140156f971153e44011746d3c?refName=refs%2Fheads%2F2024%2Ffeature%2Farias%2Fsidenav-dqa-2) by @jarias)
+
 ## 1.0.14 (2024-12-20)
 
 - Feat: Radio component and documentation ([#7519c656](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7519c656350375165116f238eace70275c7dfb9a?refName=refs/heads/2024/FEATURE/NIC/radio-component) by @nicalla)

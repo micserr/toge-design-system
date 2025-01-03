@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.18 (2025-01-03)
+
+- Fix: Font Style and Weight Issues ([#8eba1e48](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8eba1e489f9864c12a64f6d081d99b8260a0dd3a?refName=refs%2Fheads%2F2024%2Ffeature%2Farias%2Ffix-font-styles-weights) by @jarias)
+
+- Fix: DQA Lozenge change font weight format tw-label-xs to tw-label-xs-medium ([#2bd152ef](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2bd152ef5f2e428a475c3a48adf49ba180595594?refName=refs%2Fheads%2Fdev) by @adestajo)
+
+## 1.0.17 (2025-01-03)
+
+- Feat: DQA Switch - updated animation and pointer ([#d17b58e4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d17b58e481d1179a1dfb72bd208fb9c35f2347a2?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2Fupdated-switch-animation-and-pointer) by @jbanares)
+
+## 1.0.16 (2025-01-02)
+
+- Feat: DQA Lozenge ([#a457f328](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a457f32874e3ffd22cfedbe932e865b4b8b2b79b?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2FDQA-Lozenge) by @adestajo)
+
 ## 1.0.15 (2025-01-02)
 
 - Feat: DQA Sidenav and Typography ([#4e22a8b3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4e22a8b320b5916140156f971153e44011746d3c?refName=refs%2Fheads%2F2024%2Ffeature%2Farias%2Fsidenav-dqa-2) by @jarias)

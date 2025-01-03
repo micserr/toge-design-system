@@ -2,7 +2,7 @@
   <div v-if="visible" :class="[fill ? 'lozenge-fill' : 'lozenge']">
     <div
       :class="[
-        'tw-label-xs tw-gap-size-spacing-6xs tw-p-size-spacing-5xs tw-inline-flex tw-items-center tw-rounded-md tw-border tw-border-solid tw-text-xs tw-font-medium tw-uppercase',
+        'tw-label-xs-medium tw-inline-flex tw-items-center tw-gap-size-spacing-6xs tw-rounded-md tw-border tw-border-solid tw-p-size-spacing-5xs tw-text-xs tw-uppercase',
         tone,
       ]"
     >

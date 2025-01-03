@@ -1,5 +1,5 @@
 <template>
-  <div v-bind="switchProps" :class="['switch', switchTextCssClass]">
+  <div v-bind="switchProps" :class="['switch', switchTextClass]">
     <label class="switch_text switch_left-text">
       <slot name="leftText">
         <slot></slot>
@@ -11,7 +11,7 @@
         v-model="proxyValue" 
         type="checkbox" 
         name="checkbox" 
-        class="switch_input"
+        :class="['switch_input', switchInputClass]"
         :disabled="props.disabled"
       >
       <span :class="['switch_mark', switchMarkClass]"></span>
@@ -37,7 +37,8 @@ const {
   switchRef,
   switchProps,
   switchMarkClass,
-  switchTextCssClass,
+  switchTextClass,
+  switchInputClass,
 } = useSwitch(props);
 </script>
 
@@ -58,7 +59,6 @@ const {
   &_wrapper{
     position: relative;
     display: inline;
-    cursor: pointer;
     height: 24px;
   }
 
@@ -71,7 +71,6 @@ const {
     width: 48px;
     height: 24px;
     margin: 0;
-    cursor: pointer;
 
     &:checked ~ .switch_mark:before{
       left: 28px;

@@ -8,14 +8,13 @@ export const useSwitch = (props: SwitchPropTypes) => {
   const switchRef = ref<HTMLInputElement | null>(null);
   const isHovered = useElementHover(switchWrapperRef);
   const { pressed } = useMousePressed({ target: switchRef });
-  const { disabled, state, animated, modelValue } = props;
+  const { disabled, state, modelValue } = props;
 
   const switchProps: ComputedRef<Record<string, unknown>> = computed(() => {
     return {
       ...(disabled && { ariaDisabled: true }),
       disabled: disabled,
       autofocus: state === 'hover',
-      animated: animated,
       modelValue: modelValue,
     };
   });
@@ -64,7 +63,7 @@ export const useSwitch = (props: SwitchPropTypes) => {
   }
   // #endregion - Background CSS Class
 
-  const switchTextCssClass: ComputedRef<string> = computed(() => {
+  const switchTextClass: ComputedRef<string> = computed(() => {
     if (props.disabled) {
       return 'tw-text-color-disabled';
     }
@@ -73,17 +72,13 @@ export const useSwitch = (props: SwitchPropTypes) => {
   });
 
   const switchAnimationCssClass: ComputedRef<string> = computed(() => {
-    if (props.animated) {
-      return classNames(
-        'tw-transition-colors',
-        'before:tw-transition-all',
-        'before:tw-duration-500',
-        'after:tw-transition-all',
-        'after:tw-duration-500',
-      );
-    }
-
-    return '';
+    return classNames(
+      'tw-transition-colors',
+      'before:tw-transition-all',
+      'before:tw-duration-150',
+      'after:tw-transition-all',
+      'after:tw-duration-150',
+    );
   });
 
   const switchMarkClass: ComputedRef<string> = computed(() => {
@@ -93,11 +88,19 @@ export const useSwitch = (props: SwitchPropTypes) => {
     );
   });
 
+  const switchInputClass: ComputedRef<string> = computed(() => {
+    return classNames({
+      'tw-cursor-not-allowed': props.disabled,
+      'tw-cursor-pointer': !props.disabled,
+    });
+  });
+
   return {
     switchWrapperRef,
     switchRef,
     switchProps,
     switchMarkClass,
-    switchTextCssClass,
+    switchTextClass,
+    switchInputClass
   };
 };

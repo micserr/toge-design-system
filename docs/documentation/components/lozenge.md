@@ -190,11 +190,7 @@ import IconUsersThree from '~icons/ph/users-three';
 | label | Label                                      | `string`                                                                       | label   |
 | url   | avatar image url                           | `string`                                                                       | none    |
 
-<script setup lang="ts">
-  import { ref } from 'vue';
-  
+<script setup lang="ts">  
   import SprLozenge from "@/components/lozenge/lozenge.vue"
   import IconUsersThree from '~icons/ph/users-three';
-
-  const visible = ref<boolean>(true);
 </script>

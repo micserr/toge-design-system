@@ -27,7 +27,7 @@ const colorScheme: ColorPaletteTypes = {
   },
   mushroom: {
     50: '#EFF1F1',
-    100: '#F1F2F3',
+    100: '#E6EAEA',
     200: '#D9DEDE',
     300: '#B8C1C0',
     400: '#919F9D',
@@ -104,7 +104,7 @@ const colorScheme: ColorPaletteTypes = {
     950: '#073345',
   },
   blueberry: {
-    50: '#EEF9FF',
+    50: '#EEF7FF',
     100: '#D8EBFF',
     200: '#BADCFF',
     300: '#8BBDFF',

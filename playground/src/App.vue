@@ -11,7 +11,7 @@ const { importMap } = useVueImportMap();
 const builtinImportMap = computed(() => {
   return mergeImportMap(importMap.value, {
     imports: {
-      '@jefmari/design-system-next': `https://unpkg.com/@jefmari/design-system-next@${packageVersion}/dist/design-system-next.js`,
+      'design-system-next': `https://unpkg.com/design-system-next@${packageVersion}/dist/design-system-next.js`,
     },
   });
 });
@@ -24,9 +24,9 @@ const store = useStore({
   template,
 });
 const previewOptions = {
-  headHTML: `<link rel="stylesheet" href="https://unpkg.com/@jefmari/design-system-next@${packageVersion}/dist/main.css">`,
+  headHTML: `<link rel="stylesheet" href="https://unpkg.com/design-system-next@${packageVersion}/dist/main.css">`,
   customCode: {
-    importCode: `import SproutDesignSystem  from '@jefmari/design-system-next'`,
+    importCode: `import SproutDesignSystem  from 'design-system-next'`,
     useCode: 'app.use(SproutDesignSystem )',
   },
 };

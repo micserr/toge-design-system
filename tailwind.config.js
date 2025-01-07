@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 
 import colorScheme from './src/assets/scripts/colors';
+import spacing from './src/assets/scripts/spacing';
+import maxWidth from './src/assets/scripts/maxWidth';
+import borderRadius from './src/assets/scripts/borderRadius';
 
 export default {
   prefix: 'tw-',
@@ -54,9 +57,13 @@ export default {
         'drop-top-sm': '0px -2px 4px -1px #262B2B1F',
         'drop-top': '0px -2px 8px -2px #262B2B33',
         'drop-top-md': '0px -4px 12px 0px #262B2B29',
-        button: '0px 2px 1px 0px rgba(0, 0, 0, 0.15) inset;',
+        button: '0px 2px 1px 0px rgba(0, 0, 0, 0.15) inset',
+        'button-hover': '0px -2px 1px 0px rgba(0, 0, 0, 0.10) inset',
         'button-active': '0px 0px 0px 2px #394141',
       },
+      spacing: spacing,
+      maxWidth: maxWidth,
+      borderRadius: borderRadius,
     },
     container: {
       center: true,

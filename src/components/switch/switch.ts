@@ -20,13 +20,6 @@ export const switchPropTypes = {
     default: false,
   },
   /**
-   * @description Switch UI state when to display CSS animations
-   */
-  animated: {
-    type: Boolean,
-    default: true,
-  },
-  /**
    * @description Required prop value for v-model
    */
   modelValue: {

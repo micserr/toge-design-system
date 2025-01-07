@@ -70,6 +70,10 @@ export default defineConfig({
               link: '/documentation/components/switch',
             },
             {
+              text: 'Badge',
+              link: '/documentation/components/badge',
+            },
+            {
               text: 'Radio',
               link: '/documentation/components/radio',
             },

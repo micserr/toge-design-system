@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.19 (2025-01-03)
+
+- Feat: Badge and Documentation ([#dd6529e6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dd6529e61b8d7ad481f6dc30f17754359ccc50f7?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fbadge) by @adestajo)
+
 ## 1.0.18 (2025-01-03)
 
 - Fix: Font Style and Weight Issues ([#8eba1e48](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8eba1e489f9864c12a64f6d081d99b8260a0dd3a?refName=refs%2Fheads%2F2024%2Ffeature%2Farias%2Ffix-font-styles-weights) by @jarias)

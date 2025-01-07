@@ -6,7 +6,7 @@
   "module": "./dist/design-system-next.js",
   "repository": {
     "type": "git",
-    "url": "git+https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next"
+    "url": "https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next"
   },
   "type": "module",
   "files": [

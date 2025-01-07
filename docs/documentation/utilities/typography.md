@@ -46,7 +46,7 @@ The following font families are used in our typography system:
 <p>- is the main typeface used for general UI text. It has a modern, rounded design that ensures clarity and smooth readability.</p>
 
 <h3>Roboto</h3>
-<p>- is used for inbound content like notifications or forms, providing a clean and neutral appearance.</p>
+<p>- It is used specifically for inbound products from SAIL.</p>
 
 <h3>Roboto Mono</h3>
 <p>- is used for code blocks and technical content to distinguish it clearly from body text.</p>
@@ -390,7 +390,7 @@ They typically use larger font sizes, bolder weights, and generous line heights.
         <small>Heading XL</small>
         <h3 class="!tw-m-0">tw-heading-xl</h3>
         <ul>
-          <li>tw-font-size-1000</li>
+          <li>tw-font-size-900</li>
           <li>tw-line-height-1000</li>
           <li>tw-letter-spacing-densest</li>
           <li>tw-font-main</li>
@@ -406,8 +406,8 @@ They typically use larger font sizes, bolder weights, and generous line heights.
         <small>Heading LG</small>
         <h3 class="!tw-m-0">tw-heading-lg</h3>
         <ul>
+          <li>tw-font-size-800</li>
           <li>tw-line-height-900</li>
-          <li>tw-line-height-1000</li>
           <li>tw-letter-spacing-denser</li>
           <li>tw-font-main</li>
           <li>tw-font-medium</li>
@@ -439,7 +439,7 @@ They typically use larger font sizes, bolder weights, and generous line heights.
         <h3 class="!tw-m-0">tw-heading-sm</h3>
         <ul>
           <li>tw-font-size-600</li>
-          <li>tw-line-height-600</li>
+          <li>tw-line-height-700</li>
           <li>tw-letter-spacing-dense</li>
           <li>tw-font-main</li>
           <li>tw-font-medium</li>
@@ -528,7 +528,7 @@ Body text uses standard font size (16px) and is typically set to a regular or me
               <ul>
                 <li>tw-font-size-400</li>
                 <li>tw-line-height-600</li>
-                <li>tw-letter-spacing-none</li>
+                <li>tw-letter-spacing-normal</li>
                 <li>tw-font-main</li>
               </ul>
             </div>
@@ -578,7 +578,7 @@ Body text uses standard font size (16px) and is typically set to a regular or me
               <ul>
                 <li>tw-font-size-300</li>
                 <li>tw-line-height-500</li>
-                <li>tw-letter-spacing-none</li>
+                <li>tw-letter-spacing-normal</li>
                 <li>tw-font-main</li>
               </ul>
             </div>
@@ -631,7 +631,7 @@ Body text uses standard font size (16px) and is typically set to a regular or me
               <ul>
                 <li>tw-font-size-200</li>
                 <li>tw-line-height-400</li>
-                <li>tw-letter-spacing-none</li>
+                <li>tw-letter-spacing-normal</li>
                 <li>tw-font-main</li>
               </ul>
             </div>
@@ -681,7 +681,7 @@ Body text uses standard font size (16px) and is typically set to a regular or me
               <ul>
                 <li>tw-font-size-100</li>
                 <li>tw-line-height-300</li>
-                <li>tw-letter-spacing-none</li>
+                <li>tw-letter-spacing-normal</li>
                 <li>tw-font-main</li>
               </ul>
             </div>
@@ -772,7 +772,7 @@ and require a high contrast to stand out clearly. Labels also use consistent let
               <h3 class="!tw-m-0 tw-font-bold">tw-label-xs</h3>
               <ul>
                 <li>tw-font-size-100</li>
-                <li>tw-line-height-none</li>
+                <li>tw-line-height-100</li>
                 <li>tw-letter-spacing-wide</li>
                 <li>tw-font-main</li>
               </ul>

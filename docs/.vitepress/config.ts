@@ -69,6 +69,14 @@ export default defineConfig({
               text: 'Switch',
               link: '/documentation/components/switch',
             },
+            {
+              text: 'Badge',
+              link: '/documentation/components/badge',
+            },
+            {
+              text: 'Radio',
+              link: '/documentation/components/radio',
+            },
           ],
         },
         {
@@ -81,6 +89,18 @@ export default defineConfig({
             {
               text: 'Typography',
               link: '/documentation/utilities/typography',
+            },
+            {
+              text: 'Spacing',
+              link: '/documentation/utilities/spacing',
+            },
+            {
+              text: 'Max Width',
+              link: '/documentation/utilities/maxWidth',
+            },
+            {
+              text: 'Border Radius',
+              link: '/documentation/utilities/borderRadius',
             },
           ],
         },

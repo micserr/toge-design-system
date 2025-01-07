@@ -1,8 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --size-50: 2px;
+    --size-100: 4px;
+    --size-150: 6px;
+    --size-200: 8px;
+    --size-250: 12px;
+    --size-300: 16px;
+    --size-400: 24px;
+    --size-500: 32px;
+    --size-600: 40px;
+    --size-700: 48px;
+    --size-800: 64px;
+    --size-900: 72px;
+    --size-1000: 80px;
+    --size-1100: 96px;
+    --size-1200: 128px;
+  }
   *::-webkit-scrollbar {
     @apply tw-h-[8px] tw-w-[8px];
   }
@@ -52,11 +73,11 @@
   #default-tooltip {
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply tw-label-xs tw-background-color-inverted tw-rounded tw-font-main tw-opacity-100;
+        @apply tw-label-xs tw-background-color-inverted tw-rounded-border-radius-md tw-font-main tw-opacity-100;
       }
 
       .v-popper__arrow-outer {
-        @apply tw-border-mushroom-950;
+        @apply tw-hidden;
       }
     }
   }
@@ -71,7 +92,7 @@
 
   /* #region - Headings */
   .tw-heading-xl {
-    @apply tw-font-size-1000 tw-line-height-1000 tw-letter-spacing-densest tw-font-main tw-font-medium;
+    @apply tw-font-size-900 tw-line-height-1000 tw-letter-spacing-densest tw-font-main tw-font-medium;
   }
 
   .tw-heading-lg {
@@ -83,7 +104,7 @@
   }
 
   .tw-heading-sm {
-    @apply tw-font-size-600 tw-line-height-600 tw-letter-spacing-dense tw-font-main tw-font-medium;
+    @apply tw-font-size-600 tw-line-height-700 tw-letter-spacing-dense tw-font-main tw-font-medium;
   }
 
   .tw-heading-xs {
@@ -103,7 +124,7 @@
 
   /* #region - Paragraphs */
   .tw-body-lg {
-    @apply tw-font-size-400 tw-line-height-600 tw-letter-spacing-none tw-font-main;
+    @apply tw-font-size-400 tw-line-height-600 tw-letter-spacing-normal tw-font-main;
   }
 
   .tw-body-lg-regular {
@@ -123,7 +144,7 @@
   }
 
   .tw-body-md {
-    @apply tw-font-size-300 tw-line-height-500 tw-letter-spacing-none tw-font-main;
+    @apply tw-font-size-300 tw-line-height-500 tw-letter-spacing-normal tw-font-main;
   }
 
   .tw-body-md-regular {
@@ -143,7 +164,7 @@
   }
 
   .tw-body-sm {
-    @apply tw-font-size-200 tw-line-height-400 tw-letter-spacing-none tw-font-main;
+    @apply tw-font-size-200 tw-line-height-400 tw-letter-spacing-normal tw-font-main;
   }
 
   .tw-body-sm-regular {
@@ -163,7 +184,7 @@
   }
 
   .tw-body-xs {
-    @apply tw-font-size-100 tw-line-height-300 tw-letter-spacing-none tw-font-main;
+    @apply tw-font-size-100 tw-line-height-300 tw-letter-spacing-normal tw-font-main;
   }
 
   .tw-body-xs-regular {
@@ -197,7 +218,7 @@
   }
 
   .tw-label-xs {
-    @apply tw-font-size-100 tw-line-height-none tw-letter-spacing-wide tw-font-main;
+    @apply tw-font-size-100 tw-line-height-100 tw-letter-spacing-wide tw-font-main;
   }
 
   .tw-label-xs-regular {
@@ -492,11 +513,11 @@
   }
 
   .tw-background-color-hover {
-    @apply tw-bg-mushroom-100;
+    @apply tw-bg-mushroom-50;
   }
 
   .tw-background-color-pressed {
-    @apply tw-bg-mushroom-200;
+    @apply tw-bg-mushroom-100;
   }
 
   .tw-background-color-disabled {

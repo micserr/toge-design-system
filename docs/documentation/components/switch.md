@@ -11,14 +11,11 @@
   // Disabled
   const switchValue5 = ref(false);
   const switchValue6 = ref(true);
-  // Animated
-  const switchValue7 = ref(false);
-  const switchValue8 = ref(true);
   // Emit
-  const switchValue9 = ref(true);
-  const switch9Label = ref("No event yet.");
-  const switch9UpdateHandler = (value) => {
-    switch9Label.value = "Value changed to " + value;
+  const switchValue7 = ref(true);
+  const switch7Label = ref("No event yet.");
+  const switch7UpdateHandler = (value) => {
+    switch7Label.value = "Value changed to " + value;
   };
 </script>
 
@@ -55,7 +52,7 @@ Switch component to show a boolean state (similar to a checkbox).
     <template #rightText> Right </template>
   </spr-switch>
   <spr-switch v-model="switchValue4" class="tw-mb-2">
-    <template #leftText> Right </template>
+    <template #leftText> Left </template>
     <template #rightText> Right </template>
   </spr-switch>
 
@@ -87,31 +84,19 @@ Switch component to show a boolean state (similar to a checkbox).
 <spr-switch v-model="switchValue6" :disabled="true">Disabled true switch</spr-switch>
 ```
 
-## Animated
-<spr-switch v-model="switchValue7" class="tw-mb-2" :animated="true">with Animation</spr-switch>
-<spr-switch v-model="switchValue8" class="tw-mb-2" :animated="false">without Animation</spr-switch>
-
-```vue
-<!-- Switch with animation -->
-<spr-switch v-model="switchValue7" :animated="true">with Animation</spr-switch>
-
-<!-- Switch without animation -->
-<spr-switch v-model="switchValue8" :animated="false">without Animation</spr-switch>
-```
-
 ## Emit
 The switch component uses ```@vueuse/core```'s ```useVModel``` for properties and emit v-model binding. By default, ```update:modelValue``` emit is defined and can be used to listen for any value changes with  ```modelValue``` property.
 
 <div class="tw-mt-10">
-  <spr-switch v-model="switchValue9" @update:modelValue = "switch9UpdateHandler">Switch</spr-switch>
-  <p>{{ switch9Label }}</p>
+  <spr-switch v-model="switchValue7" @update:modelValue = "switch7UpdateHandler">Switch</spr-switch>
+  <p>{{ switch7Label }}</p>
 </div>
 
 ```vue
 <template>
   <div>
-    <spr-switch v-model="switchValue9" @update:modelValue = "switch9UpdateHandler">Switch</spr-switch>
-    <p>{{ switch9Label }}</p>
+    <spr-switch v-model="switchValue7" @update:modelValue = "switch7UpdateHandler">Switch</spr-switch>
+    <p>{{ switch7Label }}</p>
   </div>
 </template>
 
@@ -119,10 +104,10 @@ The switch component uses ```@vueuse/core```'s ```useVModel``` for properties an
   import { ref } from 'vue';
   import SprSwitch from "@/components/switch/switch.vue";
 
-  const switchValue9 = ref(true);
-  const switch9Label = ref("No event yet.");
-  const switch9UpdateHandler = (value) => {
-    switch9Label.value = "Value changed to " + value;
+  const switchValue7 = ref(true);
+  const switch7Label = ref("No event yet.");
+  const switch7UpdateHandler = (value) => {
+    switch7Label.value = "Value changed to " + value;
   };
 </script>
 ```
@@ -134,4 +119,11 @@ The switch component uses ```@vueuse/core```'s ```useVModel``` for properties an
 | Name     | Description        | Type                                     | Default  |
 | -------- | ------------------ | ---------------------------------------- | -------- |
 | disabled | disable the switch | `boolean`                                | false    |
-| animated | show CSS animation when clicked | `boolean`                   | true     |
+
+
+### Switch Slots
+
+| Name      | Description        | Type                                      |
+| --------- | ------------------ | ----------------------------------------  |
+| rightText | right text label   | `string`                                  |
+| leftText  | left text label    | `string`                                 |

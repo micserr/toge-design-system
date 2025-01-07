@@ -1,5 +1,5 @@
 <template>
-  <spr-sidenav has-quick-actions has-search :active-nav="activeNav" :nav-links="navLinks">
+  <spr-sidenav has-quick-actions has-search :active-nav="activeNav" :nav-links="navLinks" @route-push="handleRoutePush">
     <template #logo-image>
       <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
     </template>
@@ -25,14 +25,9 @@ import SprSidenav from './components/sidenav/sidenav.vue';
 
 import IconHouseSimple from '~icons/ph/house-simple';
 import IconUsersThree from '~icons/ph/users-three';
-import IconShapes from '~icons/ph/shapes';
 import IconLeaf from '~icons/ph/leaf';
 import IconCurrencyRub from '~icons/ph/currency-rub';
 import IconWallet from '~icons/ph/wallet';
-import IconChartBar from '~icons/ph/chart-bar';
-import IconFlowArrow from '~icons/ph/flow-arrow';
-import IconGear from '~icons/ph/gear';
-import IconBookOpenText from '~icons/ph/book-open-text';
 
 const activeNav = ref({
   parentNav: 'Home',
@@ -52,81 +47,40 @@ const navLinks = ref([
             submenuLinks: [
               {
                 title: 'Home 1',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: true,
+                  link: 'https://www.google.com/',
+                },
               },
               {
                 title: 'Home 2',
-              },
-              {
-                title: 'Home 3',
-              },
-              {
-                title: 'Home 4',
-              },
-              {
-                title: 'Home 5',
-              },
-              {
-                title: 'Home 6',
-              },
-              {
-                title: 'Home 7',
-              },
-              {
-                title: 'Home 8',
-              },
-              {
-                title: 'Home 9',
-              },
-              {
-                title: 'Home 10',
-              },
-              {
-                title: 'Home 11',
-              },
-              {
-                title: 'Home 12',
-              },
-              {
-                title: 'Home 13',
-              },
-              {
-                title: 'Home 14',
-              },
-              {
-                title: 'Home 15',
-              },
-              {
-                title: 'Home 16',
-              },
-              {
-                title: 'Home 17',
-              },
-              {
-                title: 'Home 18',
-              },
-              {
-                title: 'Home 19',
-              },
-              {
-                title: 'Home 20',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
               },
             ],
           },
           {
             title: 'Dashboard 2',
-          },
-          {
-            title: 'Dashboard 3',
+            redirect: {
+              openInNewTab: false,
+              isAbsoluteURL: false,
+              link: '/',
+            },
           },
         ],
       },
       {
         title: 'Employees',
         icon: IconUsersThree,
-      },
-      {
-        title: 'Absctract',
-        icon: IconShapes,
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
       },
     ],
   },
@@ -138,115 +92,84 @@ const navLinks = ref([
         menuLinks: [
           {
             title: 'Payroll Runs',
+            redirect: {
+              openInNewTab: false,
+              isAbsoluteURL: false,
+              link: '/',
+            },
           },
           {
             title: 'Reports',
             submenuLinks: [
               {
                 title: 'Payroll',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
               },
               {
                 title: 'SSS',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
               },
               {
                 title: 'PHILHEALTH',
-              },
-              {
-                title: 'PAG-IBIG',
-              },
-              {
-                title: 'BIR',
-              },
-              {
-                title: 'ONEHUB DAT FILES',
-              },
-              {
-                title: 'BPI',
-              },
-              {
-                title: 'SECURITY BANK',
-              },
-              {
-                title: 'Certificate of Contribution',
-              },
-              {
-                title: 'certificate of Loan',
-              },
-              {
-                title: 'Statutory Reports',
-              },
-              {
-                title: 'Demographic',
-              },
-              {
-                title: 'Salary History Report',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
               },
             ],
           },
           {
             title: 'Setup',
+            redirect: {
+              openInNewTab: false,
+              isAbsoluteURL: false,
+              link: '/',
+            },
           },
           {
             title: 'Employees',
-          },
-          {
-            title: 'Users',
-          },
-          {
-            title: 'Reports Logs',
+            redirect: {
+              openInNewTab: false,
+              isAbsoluteURL: false,
+              link: '/',
+            },
           },
         ],
       },
       {
         title: 'Money',
         icon: IconCurrencyRub,
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
       },
       {
         title: 'Car',
         icon: IconWallet,
-      },
-      {
-        title: 'Bar',
-        icon: IconChartBar,
-      },
-      {
-        title: 'Music',
-        icon: IconFlowArrow,
-      },
-    ],
-  },
-  {
-    parentLinks: [
-      {
-        title: 'Settings',
-        icon: IconGear,
-        menuLinks: [
-          {
-            title: 'User Profile',
-          },
-          {
-            title: 'Account Settings',
-          },
-          {
-            title: 'Company Settings',
-            submenuLinks: [
-              {
-                title: 'Team Members',
-              },
-              {
-                title: 'Team Scores',
-              },
-            ],
-          },
-        ],
-      },
-      {
-        title: 'About Us',
-        icon: IconBookOpenText,
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
       },
     ],
   },
 ]);
+
+const handleRoutePush = (route) => {
+  console.log(route);
+};
 </script>
 
 <style>

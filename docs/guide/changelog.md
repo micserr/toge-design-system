@@ -1,6 +1,49 @@
 # Changelog
 
+## 1.0.21 (2025-01-07)
+
+- Feat - Badge 2.0 added props for Positioning ([#3dde72a6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3dde72a6eeca6eb07432a17cd9b586dea83bd23e?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2FBadge2.0) by @adestajo)
+
+## 1.0.20 (2025-01-07)
+
+- Fix: DQA Updates - Typograpghy, Sidenav, Button, Colors ([#28b1755a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/28b1755aa63748a92a40f530a79980719eeb217c?refName=refs%2Fheads%2F2024%2Ffeature%2Farias%2Fdqa-updates) by @jarias)
+
+## 1.0.19 (2025-01-03)
+
+- Feat: Badge and Documentation ([#dd6529e6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dd6529e61b8d7ad481f6dc30f17754359ccc50f7?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fbadge) by @adestajo)
+
+## 1.0.18 (2025-01-03)
+
+- Fix: Font Style and Weight Issues ([#8eba1e48](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8eba1e489f9864c12a64f6d081d99b8260a0dd3a?refName=refs%2Fheads%2F2024%2Ffeature%2Farias%2Ffix-font-styles-weights) by @jarias)
+
+- Fix: DQA Lozenge change font weight format tw-label-xs to tw-label-xs-medium ([#2bd152ef](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2bd152ef5f2e428a475c3a48adf49ba180595594?refName=refs%2Fheads%2Fdev) by @adestajo)
+
+## 1.0.17 (2025-01-03)
+
+- Feat: DQA Switch - updated animation and pointer ([#d17b58e4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d17b58e481d1179a1dfb72bd208fb9c35f2347a2?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2Fupdated-switch-animation-and-pointer) by @jbanares)
+
+## 1.0.16 (2025-01-02)
+
+- Feat: DQA Lozenge ([#a457f328](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a457f32874e3ffd22cfedbe932e865b4b8b2b79b?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2FDQA-Lozenge) by @adestajo)
+
+## 1.0.15 (2025-01-02)
+
+- Feat: DQA Sidenav and Typography ([#4e22a8b3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4e22a8b320b5916140156f971153e44011746d3c?refName=refs%2Fheads%2F2024%2Ffeature%2Farias%2Fsidenav-dqa-2) by @jarias)
+
+## 1.0.14 (2024-12-20)
+
+- Feat: Radio component and documentation ([#7519c656](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7519c656350375165116f238eace70275c7dfb9a?refName=refs/heads/2024/FEATURE/NIC/radio-component) by @nicalla)
+
+## 1.0.13 (2024-12-18)
+
+- Feat: Setup tailwind configuration for max-width and border radius ([#90264808](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/90264808421240676e1f2228b03fd7b94e2e90a9?refName=refs%2Fheads%2F2024%2FFEATURE%2FPaulo%2Fmax-width-and-border-radius-config) by @jbanares)
+
+## 1.0.12 (2024-12-18)
+
+- Chore: setup tailwind configuration for spacing ([#9c6349af](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/9c6349affe6116fd7aae26e9dd7fca213d4fcf89?refName=refs%2Fheads%2Fdev) by @adestajo)
+
 ## 1.0.11 (2024-12-17)
+
 - Feat: Switch component and documentation ([#22a704dd](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/22a704ddd0ae15b279b5de1ac1312fa8354f0a3a?refName=refs%2Fheads%2F2024%2FFEATURE%2FPaulo%2FSwitch-component) by @jbanares)
 
 ## 1.0.10 (2024-12-17)

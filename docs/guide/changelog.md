@@ -1,6 +1,10 @@
 # Changelog
 
-## 1.0.19 (2025-01-07)
+## 1.0.21 (2025-01-07)
+
+- Feat - Badge 2.0 added props for Positioning ([#3dde72a6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3dde72a6eeca6eb07432a17cd9b586dea83bd23e?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2FBadge2.0) by @adestajo)
+
+## 1.0.20 (2025-01-07)
 
 - Fix: DQA Updates - Typograpghy, Sidenav, Button, Colors ([#28b1755a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/28b1755aa63748a92a40f530a79980719eeb217c?refName=refs%2Fheads%2F2024%2Ffeature%2Farias%2Fdqa-updates) by @jarias)
 

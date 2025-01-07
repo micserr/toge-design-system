@@ -41,7 +41,7 @@
           <div
             v-if="props.hasSearch"
             :class="[
-              'justify-center tw-flex tw-cursor-pointer tw-items-center tw-rounded-[8px] tw-px-[8px] tw-py-[6px] tw-transition tw-duration-150 tw-ease-in-out',
+              'justify-center tw-flex tw-cursor-pointer tw-items-center tw-rounded-[8px] tw-p-[8px] tw-transition tw-duration-150 tw-ease-in-out',
               'hover:tw-background-color-hover',
               'active:tw-background-color-single-active active:tw-scale-90',
             ]"
@@ -65,8 +65,8 @@
                   <div
                     :class="[
                       {
-                        'justify-center tw-flex tw-cursor-pointer tw-items-center tw-rounded-[8px] tw-px-[8px] tw-py-[6px] tw-transition tw-duration-150 tw-ease-in-out': true,
-                        'tw-background-color-single-active active:tw-scale-90':
+                        'justify-center tw-flex tw-cursor-pointer tw-items-center tw-rounded-[8px] tw-p-[8px] tw-transition tw-duration-150 tw-ease-in-out': true,
+                        'tw-background-color-single-active tw-border-color-brand-base tw-border-[1.5px] tw-border-solid active:tw-scale-90':
                           props.activeNav.parentNav === parentLink.title,
                         'hover:tw-background-color-hover': props.activeNav.parentNav != parentLink.title,
                         'active:tw-background-color-single-active active:tw-scale-90': true,
@@ -173,13 +173,13 @@
 
               <!-- #region - Parent link only  -->
               <template v-else>
-                <Tooltip aria-id="default-tooltip" placement="right" distance="18">
+                <Tooltip aria-id="default-tooltip" placement="right" distance="18" :triggers="['click']">
                   <template #popper>
-                    <span>{{ parentLink.title }}</span>
+                    <span class="tw-label-xs-medium">{{ parentLink.title }}</span>
                   </template>
                   <div
                     :class="[
-                      'justify-center tw-flex tw-cursor-pointer tw-items-center tw-rounded-[8px] tw-px-[8px] tw-py-[6px] tw-transition tw-duration-150 tw-ease-in-out',
+                      'justify-center tw-flex tw-cursor-pointer tw-items-center tw-rounded-[8px] tw-p-[8px] tw-transition tw-duration-150 tw-ease-in-out',
                       'hover:tw-background-color-hover',
                       'active:tw-background-color-single-active active:tw-scale-90',
                     ]"

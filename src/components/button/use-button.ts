@@ -24,9 +24,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   const buttonSizeCssClass: ComputedRef<string> = computed(() =>
     classNames({
-      'tw-min-w-9 tw-px-1 tw-py-1.5': size === 'small',
-      'tw-min-w-9 tw-p-2': size === 'medium',
-      'tw-min-w-10 tw-px-2 tw-py-3': size === 'large',
+      'tw-px-[4px] tw-py-[6px] tw-font-medium tw-font-size-100 tw-leading-100': size === 'small',
+      'tw-p-[8px] tw-font-medium tw-font-size-100 tw-leading-100': size === 'medium',
+      'tw-px-[8px] tw-py-[12px] tw-font-medium tw-font-size-200 tw-leading-300': size === 'large',
     }),
   );
 
@@ -100,7 +100,7 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   function getDefaultBackground(): string {
     const backgrounds: Record<string, string> = {
-      neutral: 'tw-background-color',
+      neutral: 'tw-background-color-base',
       success: 'tw-background-color-brand-base',
       danger: 'tw-background-color-danger-base',
     };

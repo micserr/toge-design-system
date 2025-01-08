@@ -43,7 +43,7 @@ const previewOptions = {
   />
 </template>
 
-<style lang="scss">
+<style>
 html,
 body {
   width: 100vw;

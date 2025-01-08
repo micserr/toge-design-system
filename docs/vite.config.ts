@@ -7,6 +7,11 @@ export default {
     postcss: {
       plugins: [tailwind()],
     },
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+      },
+    },
   },
   plugins: [
     Icons({

@@ -20,6 +20,13 @@ jobs:
   steps:
   - checkout: self
     submodules: true
+
+  # Increase Node.js memory limit for the build process
+  - script: |
+      npm install
+      node --max-old-space-size=4096 ./node_modules/.bin/vue-cli-service build
+    displayName: 'Install Dependencies and Build Project'
+
   - task: AzureStaticWebApp@0
     inputs:
       azure_static_web_apps_api_token: $(AZURE_STATIC_WEB_APPS_API_TOKEN_ZEALOUS_FLOWER_090CD4100)
@@ -29,4 +36,3 @@ jobs:
       api_location: "" # Api source code path - optional
       output_location: "dist" # Built app content directory - optional
 ###### End of Repository/Build Configurations ######
-

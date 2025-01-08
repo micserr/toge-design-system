@@ -36,5 +36,5 @@
     "**/docs/.vitepress/**/*.ts",
     "**/docs/documentation/**/*.vue"
   ],
-  "exclude": ["dist/"]
+  "exclude": ["dist/", "playground/"]
 }

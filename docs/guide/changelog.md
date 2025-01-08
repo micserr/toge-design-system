@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.22 (2025-01-08)
+
+- Feat - Playground
+  - ([#4ca65690](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4ca6569063af6ec6ff48a639b74946b69419904c) by @JefMari)
+  - ([#819265bb](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/819265bb94cb2f3d728cf35c33d7c5fbf20194ab) by @JefMari)
+  - ([#1bd53cd6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1bd53cd6117319bb7ca9f89ed810dc659b33d8bb) by @JefMari)
+
 ## 1.0.21 (2025-01-07)
 
 - Feat - Badge 2.0 added props for Positioning ([#3dde72a6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3dde72a6eeca6eb07432a17cd9b586dea83bd23e?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2FBadge2.0) by @adestajo)

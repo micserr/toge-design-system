@@ -21,7 +21,11 @@ jobs:
   - checkout: self
     submodules: true
 
-  # Increase Node.js memory limit for the build process
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '20.x'
+    displayName: 'Install Node.js'
+
   - script: |
       npm install
       node --max-old-space-size=4096 ./node_modules/.bin/vue-cli-service build

@@ -772,7 +772,7 @@ and require a high contrast to stand out clearly. Labels also use consistent let
               <h3 class="!tw-m-0 tw-font-bold">tw-label-xs</h3>
               <ul>
                 <li>tw-font-size-100</li>
-                <li>tw-line-height-200</li>
+                <li>tw-line-height-100</li>
                 <li>tw-letter-spacing-wide</li>
                 <li>tw-font-main</li>
               </ul>

@@ -22,10 +22,14 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
 
     nav: [
-      { text: 'Guide', link: '/guide/changelog' },
+      { text: 'Guide', link: '/guide/basics/installation' },
       {
         text: 'Components',
         link: '/documentation/components/button',
+      },
+      {
+        text: 'Playground',
+        link: 'https://zealous-flower-090cd4100.4.azurestaticapps.net/',
       },
     ],
 
@@ -122,7 +126,7 @@ export default defineConfig({
     },
 
     footer: {
-      copyright: 'Copyright © 2024 Sprout Frontend Engineers',
+      copyright: 'Copyright © 2025 Sprout Frontend Engineers',
     },
   },
 });

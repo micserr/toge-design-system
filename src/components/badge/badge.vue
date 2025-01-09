@@ -1,12 +1,12 @@
 <template>
-  <div class="tw-flex">
-    <div class="tw-relative">
-      <section class="tw-absolute tw-right-0 tw-top-0 tw--mr-1.5 tw--mt-1">
-        <div :class="[badgeClasses, 'tw-flex tw-items-center tw-justify-center tw-font-medium']">
+  <div class="tw-flex tw-gap-2">
+    <slot />
+    <div :class="[badgeElementWrapper]">
+      <section :class="[badgePositionClasses]">
+        <div :class="[badgeClasses, 'tw-flex tw-items-center tw-justify-center']">
           {{ props.size === 'tiny' ? '' : text }}
         </div>
       </section>
-      <slot />
     </div>
   </div>
 </template>
@@ -16,5 +16,5 @@ import { badgePropTypes } from './badge';
 import { useBadge } from './use-badge';
 
 const props = defineProps(badgePropTypes);
-const { badgeClasses } = useBadge(props);
+const { badgeClasses, badgePositionClasses, badgeElementWrapper } = useBadge(props);
 </script>

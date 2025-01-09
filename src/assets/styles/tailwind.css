@@ -73,7 +73,7 @@
   #default-tooltip {
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply tw-label-xs tw-background-color-inverted tw-rounded tw-font-main tw-opacity-100;
+        @apply tw-label-xs tw-background-color-inverted tw-rounded-border-radius-md tw-font-main tw-opacity-100;
       }
 
       .v-popper__arrow-outer {
@@ -218,7 +218,7 @@
   }
 
   .tw-label-xs {
-    @apply tw-font-size-100 tw-line-height-200 tw-letter-spacing-wide tw-font-main;
+    @apply tw-font-size-100 tw-line-height-100 tw-letter-spacing-wide tw-font-main;
   }
 
   .tw-label-xs-regular {
@@ -513,11 +513,11 @@
   }
 
   .tw-background-color-hover {
-    @apply tw-bg-mushroom-100;
+    @apply tw-bg-mushroom-50;
   }
 
   .tw-background-color-pressed {
-    @apply tw-bg-mushroom-200;
+    @apply tw-bg-mushroom-100;
   }
 
   .tw-background-color-disabled {

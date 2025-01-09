@@ -2,7 +2,8 @@
 
 ## 1.0.23 (2025-01-09)
 
-- Chore - Export styles ([#f7cf32a3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f7cf32a3bea36f624df1db4bce18f5f0891d4d61?refName=refs%2Fheads%2F2025%2FChore%2Fandrea%2Fexport-styles) by @adestajo)
+- Feat - Playground Build ([#d1da2911](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d1da29117baf94c093c720aee0b339b3b03cac12) by @JefMari)
+- Fix - Package build chunk ([#367e8ec4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/367e8ec4800e269173e32a15a5872bc50bb6cd29) by @JefMari)
 
 ## 1.0.22 (2025-01-08)
 

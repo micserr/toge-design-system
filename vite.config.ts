@@ -38,20 +38,13 @@ export default defineConfig({
       entry: resolve(__dirname, 'lib/main.ts'),
       name: 'Design System Next',
       fileName: 'design-system-next',
-      formats: ['es', 'umd'],
+      formats: ['es'],
     },
     rollupOptions: {
       external: ['vue'], // Add other external libraries if needed
       output: {
-        exports: 'named',
         globals: {
           vue: 'Vue',
-        },
-        intro: (chunk) => {
-          if (chunk.fileName === 'design-system-next.js') {
-            return `import "./main.css";`;
-          }
-          return '';
         },
       },
     },

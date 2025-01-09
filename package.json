@@ -20,7 +20,8 @@
     ".": {
       "import": "./dist/design-system-next.js",
       "require": "./dist/design-system-next.js"
-    }
+    },
+    "./style.css": "./dist/main.css"
   },
   "scripts": {
     "dev": "vite",

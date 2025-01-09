@@ -1,13 +1,19 @@
 # Changelog
 
+## 1.0.23 (2025-01-09)
+
+- Chore - Export styles ([#f7cf32a3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f7cf32a3bea36f624df1db4bce18f5f0891d4d61?refName=refs%2Fheads%2F2025%2FChore%2Fandrea%2Fexport-styles) by @adestajo)
+
 ## 1.0.22 (2025-01-08)
 
 - Feat - Playground
+
   - ([#4ca65690](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4ca6569063af6ec6ff48a639b74946b69419904c) by @JefMari)
   - ([#819265bb](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/819265bb94cb2f3d728cf35c33d7c5fbf20194ab) by @JefMari)
   - ([#1bd53cd6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1bd53cd6117319bb7ca9f89ed810dc659b33d8bb) by @JefMari)
 
 - Fix - Sass warning for docs build
+
   - ([#4ca65690](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4ca6569063af6ec6ff48a639b74946b69419904c) by @JefMari)
 
 - Chore - Update packages

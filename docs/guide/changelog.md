@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.24 (2025-01-09)
+
+- Fix - Package Build for Playground ([#16b668e7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/16b668e782989b100afddd481b466480f563ca09) by @JefMari)
+- Chore - Improve Basic Section in Docs ([#a3c8ac084](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a3c8ac084ca9b39013d716c6eeed4ec01af28c34) by @JefMari)
+
 ## 1.0.23 (2025-01-09)
 
 - Feat - Playground Build ([#d1da2911](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d1da29117baf94c093c720aee0b339b3b03cac12) by @JefMari)

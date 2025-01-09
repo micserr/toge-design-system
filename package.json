@@ -1,7 +1,7 @@
 {
   "name": "design-system-next",
   "private": false,
-  "version": "1.0.23",
+  "version": "1.0.24",
   "main": "./dist/design-system-next.js",
   "module": "./dist/design-system-next.js",
   "repository": {
@@ -20,7 +20,8 @@
     ".": {
       "import": "./dist/design-system-next.js",
       "require": "./dist/design-system-next.js"
-    }
+    },
+    "./style.css": "./dist/main.css"
   },
   "scripts": {
     "dev": "vite",

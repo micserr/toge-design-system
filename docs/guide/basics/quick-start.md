@@ -1,25 +1,32 @@
 # Quick Start
 
-To get started with Design System Next in your Vue 3 project, import the library and use it as a plugin:
+### Import the Library
+
+First, import the library and its style, then use it as a plugin in your Vue app:
 
 ```javascript
-import SproutDesignSystem from 'design-system-next';
+import SproutDesignSystem from 'design-system-next'; // [!code ++]
 
+import 'design-system-next/style.css'; // import the library's style // [!code ++]
 import App from './App.vue';
 
 const app = createApp(App);
 
-app.use(SproutDesignSystem);
+app.use(SproutDesignSystem); // Register the design system plugin // [!code ++]
 app.mount('#app');
 ```
 
 ### Optional: Custom Component Prefixes
 
-By default, components are prefixed with `spr-`. When you use the plugin, all components will automatically include this prefix. However, if you prefer to use your own custom prefix, you can specify it by passing an options object with the prefix property. See the example below:
+By default, all components are prefixed with `spr-`. For example, a button component would be used as `<spr-button />`.
+If you'd like to use a custom prefix, you can specify it when registering the plugin by passing an options object:
 
 ```javascript
+// Default prefix: 'spr-'
 app.use(SproutDesignSystem); // [!code --]
 
-// 'spr-' is the default prefix if not specified
+// Custom prefix: 'spa-'
 app.use(SproutDesignSystem, { prefix: 'spa-' }); // [!code ++]
 ```
+
+With a custom prefix of `spa-`, the button component would be used as `<spa-button />`.

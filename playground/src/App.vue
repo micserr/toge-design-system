@@ -11,7 +11,7 @@ const { importMap } = useVueImportMap();
 const builtinImportMap = computed(() => {
   return mergeImportMap(importMap.value, {
     imports: {
-      'design-system-next': `https://unpkg.com/design-system-next@${packageVersion}/dist/design-system-next.js`,
+      'design-system-next': `https://unpkg.com/design-system-next@${packageVersion}/dist/design-system-next.umd.cjs`,
     },
   });
 });

@@ -1,5 +1,32 @@
 # Changelog
 
+## 1.0.23 (2025-01-09)
+
+- Chore - Export styles ([#f7cf32a3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f7cf32a3bea36f624df1db4bce18f5f0891d4d61?refName=refs%2Fheads%2F2025%2FChore%2Fandrea%2Fexport-styles) by @adestajo)
+
+## 1.0.22 (2025-01-08)
+
+- Feat - Playground
+
+  - ([#4ca65690](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4ca6569063af6ec6ff48a639b74946b69419904c) by @JefMari)
+  - ([#819265bb](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/819265bb94cb2f3d728cf35c33d7c5fbf20194ab) by @JefMari)
+  - ([#1bd53cd6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1bd53cd6117319bb7ca9f89ed810dc659b33d8bb) by @JefMari)
+
+- Fix - Sass warning for docs build
+
+  - ([#4ca65690](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4ca6569063af6ec6ff48a639b74946b69419904c) by @JefMari)
+
+- Chore - Update packages
+  - ([#5a93b3cb](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5a93b3cb91936dc2aea2c871e951c0aefb179169) by @JefMari)
+
+## 1.0.21 (2025-01-07)
+
+- Feat - Badge 2.0 added props for Positioning ([#3dde72a6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3dde72a6eeca6eb07432a17cd9b586dea83bd23e?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2FBadge2.0) by @adestajo)
+
+## 1.0.20 (2025-01-07)
+
+- Fix: DQA Updates - Typograpghy, Sidenav, Button, Colors ([#28b1755a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/28b1755aa63748a92a40f530a79980719eeb217c?refName=refs%2Fheads%2F2024%2Ffeature%2Farias%2Fdqa-updates) by @jarias)
+
 ## 1.0.19 (2025-01-03)
 
 - Feat: Badge and Documentation ([#dd6529e6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dd6529e61b8d7ad481f6dc30f17754359ccc50f7?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fbadge) by @adestajo)

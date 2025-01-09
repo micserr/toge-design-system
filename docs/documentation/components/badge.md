@@ -1,289 +1,234 @@
 # Badge
 
-A status to indicate a notification.
+A badge is a small, visual indicator used to convey information, status, or count in a concise and attention-grabbing manner. Badges are commonly used in user interfaces to highlight notifications, statuses, or counts associated with an element.
 
 ## Key Features
 
 <ul>
-  <li><strong>Text:</strong> The main text displayed on the badge.
+  <li><strong>Text:</strong>  Badges typically contain a short piece of text or a number to convey information.
   </li>
-  <li><strong>Variant:</strong> A property that likely changes the visual style of the badge to indicate different statuses or types (e.g., "brand", "information", "danger", "disabled").
+  <li><strong>Variant:</strong>  Badges can have different color schemes to indicate various statuses, such as success, danger, or information.
   </li>
-  <li><strong>Size:</strong> A property to specify the size of the badge (e.g, "big", "small", tiny).
+  <li><strong>Size:</strong> Badges can come in different sizes to fit various design requirements. (e.g, "big", "small", tiny).
+  </li>
+    <li><strong>Positioning:</strong> Badges can be positioned relative to the element they are attached to, such as at the top-right or bottom-right corner.
   </li>
 </ul>
 
 ## Basic Usage
 
-<div class="tw-flex tw-items-center tw-gap-2">
-<spr-badge text="9" variant="danger"size="big">
-    <spr-lozenge
-      label="Notification"
-    />
-</spr-badge>
+<div class="tw-flex tw-items-center tw-gap-2 tw-p-1">
+  <spr-badge variant="disabled" size="big" />
+  <spr-badge variant="danger" size="big" />
+  <spr-badge variant="information" size="big" />
+  <spr-badge variant="brand" size="big" />
+</div>
 
-<spr-badge text="99+" variant="danger"size="big">
-<spr-lozenge
-      label="Notification"
-    />
-</spr-badge>
+<div class="tw-flex tw-items-center tw-gap-2  tw-p-1">
+  <spr-badge  variant="disabled" size="small" />
+  <spr-badge  variant="danger" size="small" />
+  <spr-badge  variant="information" size="small" />
+  <spr-badge  variant="brand" size="small" />
+</div>
 
-<spr-badge text="9" variant="disabled"size="small">
-<spr-lozenge
-      label="Notification"
-    />
-</spr-badge>
-<spr-badge text="99+"  size="small"  variant="information">
-<spr-lozenge
-      label="Notification"
-    />
-</spr-badge>
-<spr-badge  size="tiny"  variant="brand">
-<spr-lozenge
-      label="Notification"
-    />
-</spr-badge>
-
+<div class="tw-flex tw-items-center tw-gap-2  tw-p-1">
+  <spr-badge variant="disabled" size="tiny" />
+  <spr-badge variant="danger" size="tiny" />
+  <spr-badge variant="information" size="tiny" />
+  <spr-badge variant="brand" size="tiny" />
 </div>
 
 ```vue
-<spr-badge text="9" variant="danger" size="big">
-    <spr-lozenge
-      label="Notification"
-    />
-</spr-badge>
+<div class="tw-flex tw-items-center tw-gap-2 tw-p-1">
+  <spr-badge text="9" variant="disabled" size="big" />
+  <spr-badge text="9" variant="danger" size="big" />
+  <spr-badge text="9" variant="information" size="big" />
+  <spr-badge text="9" variant="brand" size="big" />
+</div>
 
-<spr-badge text="99+" variant="danger" size="big">
-    <spr-lozenge
-      label="Notification"
-    />
-</spr-badge>
+<div class="tw-flex tw-items-center tw-gap-2 tw-p-1">
+  <spr-badge text="9" variant="disabled" size="small" />
+  <spr-badge text="9" variant="danger" size="small" />
+  <spr-badge text="9" variant="information" size="small" />
+  <spr-badge text="9" variant="brand" size="small" />
+</div>
 
-<spr-badge text="9" variant="disabled" size="small">
-    <spr-lozenge
-      label="Notification"
-    />
-</spr-badge>
-<spr-badge text="99+" size="small" variant="information">
-    <spr-lozenge
-      label="Notification"
-    />
-</spr-badge>
-<spr-badge size="tiny" variant="brand">
-    <spr-lozenge
-      label="Notification"
-    />
-</spr-badge>
-
-<script setup lang="ts">
-import SprBadge from '@/components/badge/badge.vue';
-import SprLozenge from '@/components/lozenge/lozenge.vue';
-</script>
+<div class="tw-flex tw-items-center tw-gap-2 tw-p-1">
+  <spr-badge variant="disabled" size="tiny" />
+  <spr-badge variant="danger" size="tiny" />
+  <spr-badge variant="information" size="tiny" />
+  <spr-badge variant="brand" size="tiny" />
+</div>
 ```
 
 ## Variant
 
 used to customize the background of the badge
 
-<div class="tw-flex tw-gap-4">
-  <spr-badge size="small" variant="brand" text="99+">
-      <spr-lozenge
-        label="brand"
-      />
-  </spr-badge>
-
-  <spr-badge size="small" variant="danger" text="99+">
-      <spr-lozenge
-        label="danger"
-      />
-  </spr-badge>
-
-  <spr-badge size="small" variant="information" text="99+">
-      <spr-lozenge
-        label="information"
-      />
-  </spr-badge>
-
-  <spr-badge size="small" variant="disabled" text="99+">
-      <spr-lozenge
-        label="disabled"
-      />
-  </spr-badge>
-  
+<div class="tw-p-1 tw-flex tw-gap-4">
+  <spr-badge text="9" variant="disabled" size="big" />
+  <spr-badge text="9" variant="danger" size="big" />
+  <spr-badge text="9" variant="information" size="big" />
+  <spr-badge text="9" variant="brand" size="big" />
 </div>
 
 ```vue
-<spr-badge size="small" variant="brand" text="99+">
-      <spr-lozenge
-        label="brand"
-      />
-  </spr-badge>
-
-<spr-badge size="small" variant="danger" text="99+">
-      <spr-lozenge
-        label="danger"
-      />
-  </spr-badge>
-
-<spr-badge size="small" variant="information" text="99+">
-      <spr-lozenge
-        label="information"
-      />
-  </spr-badge>
-
-<spr-badge size="small" variant="disabled" text="99+">
-      <spr-lozenge
-        label="disabled"
-      />
-  </spr-badge>
+<div class="tw-flex tw-gap-4 tw-p-1">
+  <spr-badge text="9" variant="disabled" size="big" />
+  <spr-badge text="9" variant="danger" size="big" />
+  <spr-badge text="9" variant="information" size="big" />
+  <spr-badge text="9" variant="brand" size="big" />
+</div>
 ```
 
 ## Size
 
-<div class="tw-flex tw-gap-4 tw-flex-col">
-  <div class="tw-flex tw-gap-4">
-   <spr-badge size="tiny" variant="brand">
-      <spr-lozenge
-        label="tiny"
-      />
-  </spr-badge>
-
-  <spr-badge size="small" variant="brand">
-      <spr-lozenge
-        label="small"
-      />
-  </spr-badge>
-
-  <spr-badge size="big" variant="brand">
-      <spr-lozenge
-        label="big"
-      />
-  </spr-badge>
-  </div>
-
-  <div class="tw-flex tw-gap-4">
-   <spr-badge size="tiny" variant="information">
-      <spr-lozenge
-        label="tiny"
-      />
-  </spr-badge>
-
-  <spr-badge size="small" variant="information">
-      <spr-lozenge
-        label="small"
-      />
-  </spr-badge>
-
-  <spr-badge size="big" variant="information">
-      <spr-lozenge
-        label="big"
-      />
-  </spr-badge>
-  </div>
-
-  <div class="tw-flex tw-gap-4">
-   <spr-badge size="tiny" variant="danger">
-      <spr-lozenge
-        label="tiny"
-      />
-  </spr-badge>
-
-  <spr-badge size="small" variant="danger">
-      <spr-lozenge
-        label="small"
-      />
-  </spr-badge>
-
-  <spr-badge size="big" variant="danger">
-      <spr-lozenge
-        label="big"
-      />
-  </spr-badge>
-  </div>
-
-  <div class="tw-flex tw-gap-4">
-   <spr-badge size="tiny" variant="disabled">
-      <spr-lozenge
-        label="tiny"
-      />
-  </spr-badge>
-
-  <spr-badge size="small" variant="disabled">
-      <spr-lozenge
-        label="small"
-      />
-  </spr-badge>
-
-  <spr-badge size="big" variant="disabled">
-      <spr-lozenge
-        label="big"
-      />
-  </spr-badge>
-  </div>
+<div class="tw-flex tw-gap-4">
+  <spr-badge text="0" variant="information" size="tiny" />
+  <spr-badge text="0" variant="information" size="small" />
+  <spr-badge text="0" variant="information" size="big" />
 </div>
 
 ```vue
-<spr-badge size="tiny" variant="brand">
-      <spr-lozenge
-        label="tiny"
-      />
-  </spr-badge>
-
-<spr-badge size="small" variant="brand">
-      <spr-lozenge
-        label="small"
-      />
-  </spr-badge>
-
-<spr-badge size="big" variant="brand">
-      <spr-lozenge
-        label="big"
-      />
-  </spr-badge>
+<div class="tw-flex tw-gap-4">
+  <spr-badge text="9" variant="information" size="tiny" />
+  <spr-badge text="9" variant="information" size="small" />
+  <spr-badge text="9" variant="information" size="big" />
+</div>
 ```
 
-## Slot
+## Position
 
-used to customize the content that will use a badge
+used to display the badge in different positions (top, bottom).
 
-<div class="tw-flex tw-gap-4">
-  <spr-badge size="tiny" variant="brand">
-      <spr-lozenge
-        label="Notification"
-      />
-  </spr-badge>
+<div class="tw-flex  tw-flex-col tw-gap-4">
+  <div class="tw-flex tw-gap-4">
+      <spr-badge text="9" variant="brand" size="big" position="top">
+        <spr-lozenge label="top"/>
+      </spr-badge>
+      <spr-badge text="9" variant="brand" size="small" position="top">
+        <spr-lozenge label="top"/>
+      </spr-badge>    
+      <spr-badge text="9" variant="brand" size="tiny" position="top">
+        <spr-lozenge label="top"/>
+      </spr-badge>
+  </div>
 
-  <spr-badge size="small" variant="danger">
-      <spr-lozenge
-        label="Notification"
-      />
-  </spr-badge>
+  <div class="tw-flex tw-gap-4">
+      <spr-badge text="9" variant="information" size="big" position="bottom">
+        <spr-lozenge label="bottom"/>
+      </spr-badge>
+      <spr-badge text="9" variant="information" size="small" position="bottom">
+        <spr-lozenge label="bottom"/>
+      </spr-badge>    
+      <spr-badge text="9" variant="information" size="tiny" position="bottom">
+        <spr-lozenge label="bottom"/>
+      </spr-badge>
+  </div>
 
-  <spr-badge size="big" variant="information">
-      <spr-lozenge
-        label="Notification"
-      />
-  </spr-badge>
+  <div class="tw-flex tw-gap-4">
+      <spr-badge text="9" variant="danger" size="big" >
+        <spr-lozenge label="default"/>
+      </spr-badge>
+      <spr-badge text="9" variant="danger" size="small">
+        <spr-lozenge label="default"/>
+      </spr-badge>    
+      <spr-badge text="9" variant="danger" size="tiny">
+        <spr-lozenge label="default"/>
+      </spr-badge>
+  </div>
 </div>
 
 ```vue
-<spr-badge size="tiny" variant="brand">
-      <spr-lozenge
-        label="Notification"
-      />
-  </spr-badge>
+<div class="tw-flex  tw-flex-col tw-gap-4">
+  <div class="tw-flex tw-gap-4">
+      <spr-badge text="9" variant="brand" size="big" position="top">
+        <spr-lozenge label="top"/>
+      </spr-badge>
+      <spr-badge text="9" variant="brand" size="small" position="top">
+        <spr-lozenge label="top"/>
+      </spr-badge>
+      <spr-badge text="9" variant="brand" size="tiny" position="top">
+        <spr-lozenge label="top"/>
+      </spr-badge>
+  </div>
 
-<spr-badge size="small" variant="danger">
-      <spr-lozenge
-        label="Notification"
-      />
-  </spr-badge>
+  <div class="tw-flex tw-gap-4">
+      <spr-badge text="9" variant="information" size="big" position="bottom">
+        <spr-lozenge label="bottom"/>
+      </spr-badge>
+      <spr-badge text="9" variant="information" size="small" position="bottom">
+        <spr-lozenge label="bottom"/>
+      </spr-badge>
+      <spr-badge text="9" variant="information" size="tiny" position="bottom">
+        <spr-lozenge label="bottom"/>
+      </spr-badge>
+  </div>
 
-<spr-badge size="big" variant="information">
-      <spr-lozenge
-        label="Notification"
-      />
-  </spr-badge>
+  <div class="tw-flex tw-gap-4">
+      <spr-badge text="9" variant="danger" size="big" >
+        <spr-lozenge label="default"/>
+      </spr-badge>
+      <spr-badge text="9" variant="danger" size="small">
+        <spr-lozenge label="default"/>
+      </spr-badge>
+      <spr-badge text="9" variant="danger" size="tiny">
+        <spr-lozenge label="default"/>
+      </spr-badge>
+  </div>
+</div>
+```
+
+### Position - default using slot
+
+When using the default position, use can use the slot to wrap the element to which you want to attach the badge.
+
+  <div class="tw-flex tw-gap-4">
+      <spr-badge text="9" variant="brand" size="big" position="top">
+        <spr-lozenge label="top"/>
+      </spr-badge>
+      <spr-badge text="9" variant="brand" size="small" position="top">
+        <spr-lozenge label="top"/>
+      </spr-badge>
+      <spr-badge text="9" variant="brand" size="tiny" position="top">
+        <spr-lozenge label="top"/>
+      </spr-badge>
+  </div>
+
+```vue
+<div class="tw-flex tw-gap-4">
+    <spr-badge text="9" variant="brand" size="big" position="top">
+      <spr-lozenge label="top"/>
+    </spr-badge>
+    <spr-badge text="9" variant="brand" size="small" position="top">
+      <spr-lozenge label="top"/>
+    </spr-badge>
+    <spr-badge text="9" variant="brand" size="tiny" position="top">
+      <spr-lozenge label="top"/>
+    </spr-badge>
+</div>
+```
+
+### Position - default without using slot
+
+When using the default position, use can use the slot to wrap the element to which you want to attach the badge.
+
+  <div class="tw-flex tw-gap-4">
+      <spr-lozenge label="notification"/>
+      <spr-badge text="9" variant="brand" size="big"/>
+      <spr-badge text="9" variant="disabled" size="big"/>
+      <spr-badge text="9" variant="information" size="big"/>
+      <spr-badge text="9" variant="danger" size="big"/>
+  </div>
+
+```vue
+<div class="tw-flex tw-gap-4">
+    <spr-lozenge label="notification"/>
+    <spr-badge text="9" variant="brand" size="big"/>
+    <spr-badge text="9" variant="disabled" size="big"/>
+    <spr-badge text="9" variant="information" size="big"/>
+    <spr-badge text="9" variant="danger" size="big"/>
+</div>
 ```
 
 <script setup lang="ts">

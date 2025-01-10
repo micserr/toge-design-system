@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.25 (2025-01-09)
+
+- Feat - Sidenav Quick Action & Update Sidenav Documentation ([#ae0a6678](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ae0a667881165cfc1a553fc5f704b6bfcaca10ca?refName=refs/heads/2024/feature/arias/sidenav&path=/src/components/sidenav/use-sidenav.ts) by @jarias)
+- Feat - Update Sidenav Documentation ([#cbb3ace7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cbb3ace77c4bc9c2a7aec1152b71b77e0be5576d?refName=refs%2Fheads%2F2024%2Ffeature%2Farias%2Fsidenav) by @jarias)
+- Refactor - Handle Sidenav Grouped Menu and Submenu Items ([#d50f2d20](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d50f2d20cff8e03095508f37b1497efbc7fccd42?refName=refs%2Fheads%2F2024%2Ffeature%2Farias%2Fsidenav) by @jarias)
+
 ## 1.0.24 (2025-01-09)
 
 - Fix - Package Build for Playground ([#16b668e7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/16b668e782989b100afddd481b466480f563ca09) by @JefMari)

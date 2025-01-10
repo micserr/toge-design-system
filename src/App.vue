@@ -1,5 +1,11 @@
 <template>
-  <spr-sidenav has-quick-actions has-search :active-nav="activeNav" :nav-links="navLinks" @route-push="handleRoutePush">
+  <spr-sidenav
+    :quick-actions="quickActions"
+    has-search
+    :active-nav="activeNav"
+    :nav-links="navLinks"
+    @get-navlink-item="handleGetNavLinkItem"
+  >
     <template #logo-image>
       <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
     </template>
@@ -29,11 +35,85 @@ import IconLeaf from '~icons/ph/leaf';
 import IconCurrencyRub from '~icons/ph/currency-rub';
 import IconWallet from '~icons/ph/wallet';
 
-const activeNav = ref({
-  parentNav: 'Home',
-  menu: 'Dashboard',
-  submenu: 'Home 4',
-});
+const quickActions = ref([
+  {
+    title: 'Leave Request',
+    description: 'Lorem ipsum dolor sit amet consectetur.',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'Onboarding Request',
+    description: 'Seamlessly onboard new employees into your Sprout ecosystem',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'Certificate of Employee',
+    description: 'Lorem ipsum dolor sit amet consectetur. ',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'ReadyWage',
+    description: 'Request Form',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'Create Workflow',
+    description: 'Access your hard-earned salary in advance',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'Create Something 1',
+    description: 'Lorem ipsum dolor sit amet consectetur.',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'Create Something 2',
+    description: 'Lorem ipsum dolor sit amet consectetur.',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+]);
 
 const navLinks = ref([
   {
@@ -43,18 +123,53 @@ const navLinks = ref([
         icon: IconHouseSimple,
         menuLinks: [
           {
-            title: 'Dashboard',
-            submenuLinks: [
+            menuHeading: 'Sub Heading 1',
+            items: [
               {
-                title: 'Home 1',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: true,
-                  link: 'https://www.google.com/',
-                },
+                title: 'Dashboard 1',
+                submenuLinks: [
+                  {
+                    subMenuHeading: 'Sub Heading 1',
+                    items: [
+                      {
+                        title: 'Home 1',
+                        redirect: {},
+                      },
+                      {
+                        title: 'Home 2',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                    ],
+                  },
+                  {
+                    subMenuHeading: 'Sub Heading 2',
+                    items: [
+                      {
+                        title: 'Home 3',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: true,
+                          link: 'https://www.google.com/',
+                        },
+                      },
+                      {
+                        title: 'Home 4',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                    ],
+                  },
+                ],
               },
               {
-                title: 'Home 2',
+                title: 'Dashboard 2',
                 redirect: {
                   openInNewTab: false,
                   isAbsoluteURL: false,
@@ -62,14 +177,6 @@ const navLinks = ref([
                 },
               },
             ],
-          },
-          {
-            title: 'Dashboard 2',
-            redirect: {
-              openInNewTab: false,
-              isAbsoluteURL: false,
-              link: '/',
-            },
           },
         ],
       },
@@ -91,18 +198,57 @@ const navLinks = ref([
         icon: IconLeaf,
         menuLinks: [
           {
-            title: 'Payroll Runs',
-            redirect: {
-              openInNewTab: false,
-              isAbsoluteURL: false,
-              link: '/',
-            },
+            menuHeading: 'Sub Heading 1',
+            items: [
+              {
+                title: 'Payroll Runs',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
+              },
+              {
+                title: 'Reports',
+                submenuLinks: [
+                  {
+                    subMenuHeading: '',
+                    items: [
+                      {
+                        title: 'Payroll',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                      {
+                        title: 'SSS',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                      {
+                        title: 'PHILHEALTH',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
           },
           {
-            title: 'Reports',
-            submenuLinks: [
+            menuHeading: 'Sub Heading 2',
+            items: [
               {
-                title: 'Payroll',
+                title: 'Setup',
                 redirect: {
                   openInNewTab: false,
                   isAbsoluteURL: false,
@@ -110,15 +256,7 @@ const navLinks = ref([
                 },
               },
               {
-                title: 'SSS',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
-                },
-              },
-              {
-                title: 'PHILHEALTH',
+                title: 'Employees',
                 redirect: {
                   openInNewTab: false,
                   isAbsoluteURL: false,
@@ -126,22 +264,6 @@ const navLinks = ref([
                 },
               },
             ],
-          },
-          {
-            title: 'Setup',
-            redirect: {
-              openInNewTab: false,
-              isAbsoluteURL: false,
-              link: '/',
-            },
-          },
-          {
-            title: 'Employees',
-            redirect: {
-              openInNewTab: false,
-              isAbsoluteURL: false,
-              link: '/',
-            },
           },
         ],
       },
@@ -162,12 +284,41 @@ const navLinks = ref([
           isAbsoluteURL: false,
           link: '/',
         },
+        menuLinks: [
+          {
+            menuHeading: '',
+            items: [
+              {
+                title: 'Car 1',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
+              },
+              {
+                title: 'Car 2',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
+              },
+            ],
+          },
+        ],
       },
     ],
   },
 ]);
 
-const handleRoutePush = (route) => {
+const activeNav = ref({
+  parentNav: 'Home',
+  menu: 'Dashboard 1',
+  submenu: 'Home 2',
+});
+
+const handleGetNavLinkItem = (route) => {
   console.log(route);
 };
 </script>

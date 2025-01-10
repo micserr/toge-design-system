@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.27 (2025-01-10)
+
+- Fix: Lozenge build docs error ([#59fd4372](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/59fd4372983e28f4097c1fc22f3a318bb6a959ee?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Finput) by @adestajo)
+
 ## 1.0.26 (2025-01-10)
 
 - Fix: Lozenge build docs error ([#711e82c1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/711e82c14f269c505e43066fc916a4c1bf8d97ec?refName=refs%2Fheads%2F2024%2Ffeature%2Farias%2Fsidenav) by @jarias)

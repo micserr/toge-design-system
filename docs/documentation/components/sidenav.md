@@ -9,7 +9,7 @@ The side navigation provides a customizable navigation bar that includes a logo,
 To implement the Sidenav component, use the following syntax:
 
 ```vue
-<spr-sidenav :has-quick-actions="true" :has-search="true" :nav-links="navLinks">
+<spr-sidenav>
   <template #logo-image>
     <img src="[logo_image_path]" alt="logo" />
   </template>
@@ -19,29 +19,6 @@ To implement the Sidenav component, use the following syntax:
   </template>
 </spr-sidenav>
 ```
-
-<ul>
-  <li>
-    <code>has-quick-actions</code>
-    <span> : </span>
-    <span>Shows the quick action button.</span>
-  </li>
-  <li>
-    <code class="tw-font-bold">has-search</code>
-    <span> : </span>
-    <span>Shows the search bar.</span>
-  </li>
-  <li>
-    <code class="tw-font-bold">nav-links</code>
-    <span> : </span>
-    <span>Accepts an array of objects that define the navigation structure.</span>
-  </li>
-  <li>
-    <code class="tw-font-bold">active-nav</code>
-    <span> : </span>
-    <span>Set the active state for navigation, including the parent navigation, menu, and submenu.</span>
-  </li>
-</ul>
 
 ## Slots
 
@@ -85,15 +62,13 @@ import IconShapes from '~icons/ph/shapes';
 The icon property in each link (e.g., DashboardIcon, SettingsIcon) must be a Vue component. This allows the navigation to render the appropriate icons
 :::
 
-## Active Navigation
+## Navigation Links
 
-The `active-nav` property allows you to highlight the active state across different levels of navigation (parent, menu, and submenu). To integrate it with your Sidenav component, ensure that the values for active navigation correspond to the titles of the respective items in your active navigation structure, and pass the active navigation object along with your other props.
-
-Here’s a example of how to implement the active navigation property:
+The navigation links are organized into grouped sections, each containing several categories. Each category includes links that may have nested menus and submenus.
 
 ```vue
 <template>
-  <spr-sidenav :has-quick-actions="true" :has-search="true" :active-nav="activeNav" :nav-links="navLinks">
+  <spr-sidenav :nav-links="navLinks">
     <template #logo-image>
       <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
     </template>
@@ -109,12 +84,6 @@ import { ref } from 'vue';
 
 import IconHouseSimple from '~icons/ph/house-simple';
 
-const activeNav = ref({
-  parentNav: 'Home',
-  menu: 'Dashboard',
-  submenu: 'Home 4',
-});
-
 const navLinks = ref([
   {
     parentLinks: [
@@ -123,18 +92,57 @@ const navLinks = ref([
         icon: IconHouseSimple,
         menuLinks: [
           {
-            title: 'Dashboard',
-            submenuLinks: [
+            menuHeading: 'Sub Heading 1',
+            items: [
               {
-                title: 'Home 1',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
-                },
+                title: 'Dashboard 1',
+                submenuLinks: [
+                  {
+                    subMenuHeading: 'Sub Heading 1',
+                    items: [
+                      {
+                        title: 'Home 1',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: true,
+                          link: 'https://www.google.com/',
+                        },
+                      },
+                      {
+                        title: 'Home 2',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                    ],
+                  },
+                  {
+                    subMenuHeading: 'Sub Heading 2',
+                    items: [
+                      {
+                        title: 'Home 3',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: true,
+                          link: 'https://www.google.com/',
+                        },
+                      },
+                      {
+                        title: 'Home 4',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                    ],
+                  },
+                ],
               },
               {
-                title: 'Home 2',
+                title: 'Dashboard 2',
                 redirect: {
                   openInNewTab: false,
                   isAbsoluteURL: false,
@@ -150,81 +158,6 @@ const navLinks = ref([
 ]);
 </script>
 ```
-
-## Sidenav API
-
-The following table outlines the available attributes for the Sidenav component:
-
-<table>
-  <thead>
-    <tr>
-      <td class="tw-min-w-[180px]">Attribute</td>
-      <td>Description</td>
-      <td>Type</td>
-      <td>Accepted Values</td>
-      <td>Default Value</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <code>has-quick-actions</code>
-      </td>
-      <td>Shows quick action button.</td>
-      <td>boolean</td>
-      <td>true | false</td>
-      <td>true</td>
-    </tr>
-    <tr>
-      <td>
-        <code>has-search</code>
-      </td>
-      <td>Shows search button.</td>
-      <td>boolean</td>
-      <td>true | false</td>
-      <td>true</td>
-    </tr>
-    <tr>
-      <td>
-        <code>active-nav</code>
-      </td>
-      <td>Set the active state for navigation, including the parent navigation, menu, and submenu.</td>
-      <td>Object</td>
-      <td>
-        {
-          parentNav: [parent link title],
-          menu: [menu link title],
-          submenu: [submenu link title],
-        }
-      </td>
-      <td>
-        {
-          parentNav: '',
-          menu: '',
-          submenu: '',
-        }
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code>nav-links</code>
-      </td>
-      <td>Will generate navigation links including submenu links.</td>
-      <td>Array</td>
-      <td>See below for structure</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>
-        <code>@route-push</code>
-      </td>
-      <td>Will return link that is indicated in nav-links. This will be the conection to handle your router push.</td>
-      <td>string</td>
-      <td>[indicated in nav-links (link)]</td>
-      <td>-</td>
-    </tr>
-  </tbody>
-</table>
 
 ### Nav Links Structure
 
@@ -291,46 +224,405 @@ The nav-links attribute expects an array of objects that define the navigation m
   </li>
 </ul>
 
+<p>Here's the structure for the nav-links attribute:</p>
+
 ```Javascript
 [
   {
     parentLinks: [
       {
         title: <String>,
-        icon: <Compoent>,   // Example icon component using Unplugin Icons
+        icon: <COMPONENT>,   // Example icon component using Unplugin Icons
         redirect: {
           openInNewTab: <Boleean>,
           isAbsoluteURL: <Boleean>,
           link: <String>,
         },
-        menuLinks: [{
-          title: <String>,
-          redirect: {
-            openInNewTab: <Boleean>,
-            isAbsoluteURL: <Boleean>,
-            link: <String>,
-          },
-          submenuLinks: [{
-            title: <String>,
-            redirect: {
-              openInNewTab: <Boleean>,
-              isAbsoluteURL: <Boleean>,
-              link: <String>,
-            },
-          }],
-        }],
+        menuLinks: [
+          {
+            menuHeading: <String>,
+            items: [
+              {
+                title: <String>,
+                redirect: {
+                  openInNewTab: <Boleean>,
+                  isAbsoluteURL: <Boleean>,
+                  link: <String>,
+                },
+                submenuLinks: [
+                  {
+                    subMenuHeading: <String>,
+                    items: [
+                      {
+                        title: <String>,
+                        redirect: {
+                          openInNewTab: <Boleean>,
+                          isAbsoluteURL: <Boleean>,
+                          link: <String>,
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          }
+        ],
       },
     ],
   },
 ]
 ```
 
+## Active Navigation
+
+The `active-nav` property allows you to highlight the active state across different levels of navigation (parent, menu, and submenu). To integrate it with your Sidenav component, ensure that the values for active navigation correspond to the titles of the respective items in your active navigation structure, and pass the active navigation object along with your other props.
+
+Here’s a example of how to implement the active navigation property:
+
+```vue
+<template>
+  <spr-sidenav :active-nav="activeNav" :nav-links="navLinks">
+    <template #logo-image>
+      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+    </template>
+
+    <template #avatar-image>
+      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+    </template>
+  </spr-sidenav>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+import IconHouseSimple from '~icons/ph/house-simple';
+
+const activeNav = ref({
+  parentNav: 'Home',
+  menu: 'Dashboard 1',
+  submenu: 'Home 2',
+});
+
+const navLinks = ref([
+  {
+    parentLinks: [
+      {
+        title: 'Home',
+        icon: IconHouseSimple,
+        menuLinks: [
+          {
+            menuHeading: 'Sub Heading 1',
+            items: [
+              {
+                title: 'Dashboard 1',
+                submenuLinks: [
+                  {
+                    subMenuHeading: 'Sub Heading 1',
+                    items: [
+                      {
+                        title: 'Home 1',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: true,
+                          link: 'https://www.google.com/',
+                        },
+                      },
+                      {
+                        title: 'Home 2',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                    ],
+                  },
+                  {
+                    subMenuHeading: 'Sub Heading 2',
+                    items: [
+                      {
+                        title: 'Home 3',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: true,
+                          link: 'https://www.google.com/',
+                        },
+                      },
+                      {
+                        title: 'Home 4',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                title: 'Dashboard 2',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]);
+</script>
+```
+
+## Quick Actions
+
+This feature allows you to add quick action buttons to the side navigation. Each quick action button can have a title, description, icon, and redirection link.
+
+::: info Important to note:
+The `iconBgColor` property currently can only handle 2 values `green` or `purple`.
+:::
+
+```vue
+<template>
+  <spr-sidenav :quick-actions="quickActions" :active-nav="activeNav" :nav-links="navLinks">
+    <template #logo-image>
+      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+    </template>
+
+    <template #avatar-image>
+      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+    </template>
+  </spr-sidenav>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+import IconHouseSimple from '~icons/ph/house-simple';
+
+const quickActions = ref([
+  {
+    title: 'Leave Request',
+    description: 'Lorem ipsum dolor sit amet consectetur.',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple', // green | purple
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'Onboarding Request',
+    description: 'Seamlessly onboard new employees into your Sprout ecosystem',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple', // green | purple
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'Certificate of Employee',
+    description: 'Lorem ipsum dolor sit amet consectetur. ',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple', // green | purple
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+]);
+
+const activeNav = ref({
+  parentNav: 'Home',
+  menu: 'Dashboard 1',
+  submenu: 'Home 2',
+});
+
+const navLinks = ref([
+  {
+    parentLinks: [
+      {
+        title: 'Home',
+        icon: IconHouseSimple,
+        menuLinks: [
+          {
+            menuHeading: 'Sub Heading 1',
+            items: [
+              {
+                title: 'Dashboard 1',
+                submenuLinks: [
+                  {
+                    subMenuHeading: 'Sub Heading 1',
+                    items: [
+                      {
+                        title: 'Home 1',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: true,
+                          link: 'https://www.google.com/',
+                        },
+                      },
+                      {
+                        title: 'Home 2',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                    ],
+                  },
+                  {
+                    subMenuHeading: 'Sub Heading 2',
+                    items: [
+                      {
+                        title: 'Home 3',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: true,
+                          link: 'https://www.google.com/',
+                        },
+                      },
+                      {
+                        title: 'Home 4',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                title: 'Dashboard 2',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+]);
+</script>
+```
+
+## Search
+
+Side navigation also includes a search functionality. Add `has-search` property to enable the search.
+
+```vue
+<template>
+  <spr-sidenav has-search>
+    <template #logo-image>
+      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+    </template>
+
+    <template #avatar-image>
+      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+    </template>
+  </spr-sidenav>
+</template>
+```
+
+## Sidenav API
+
+The following table outlines the available attributes for the Sidenav component:
+
+<table>
+  <thead>
+    <tr>
+      <td class="tw-min-w-[180px]">Attribute</td>
+      <td>Description</td>
+      <td>Type</td>
+      <td>Accepted Values</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>quick-actions</code>
+      </td>
+      <td>Shows quick action menu.</td>
+      <td>Array</td>
+      <td>
+        [
+          {
+            title: [string],
+            description: [string],
+            icon: [component],
+            iconBgColor: ['green' | 'purple'],
+            redirect: {
+              openInNewTab: [boolean],
+              isAbsoluteURL: [boolean],
+              link: [string],
+            },
+          },
+        ]
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>has-search</code>
+      </td>
+      <td>Shows search button.</td>
+      <td>boolean</td>
+      <td>true | false</td>
+    </tr>
+    <tr>
+      <td>
+        <code>active-nav</code>
+      </td>
+      <td>Set the active state for navigation, including the parent navigation, menu, and submenu.</td>
+      <td>Object</td>
+      <td>
+        {
+          parentNav: [string],
+          menu: [string],
+          submenu: [string],
+        }
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>nav-links</code>
+      </td>
+      <td>Will generate navigation links including submenu links.</td>
+      <td>Array</td>
+      <td>See <a href="#navigation-links">Navigation Link</a></td>
+    </tr>
+    <tr>
+      <td>
+        <code>@get-navlink-item</code>
+      </td>
+      <td>Will return link that is indicated in nav-links. This will be the conection to handle your router push.</td>
+      <td>-</td>
+      <td>function</td>
+    </tr>
+  </tbody>
+</table>
+
 ## Full Example
 
 Here’s a full example of how to implement the Sidenav component with the above attributes:
 
 <div class="no-darkmode tw-m-0 tw-bg-mushroom-100 tw-text-mushroom-950 tw-font-main tw-rounded-md tw-h-[40em] tw-w-full tw-relative tw-flex">
-  <spr-sidenav class="tw-absolute tw-z-[1]" has-quick-actions has-search :active-nav="activeNav" :nav-links="navLinks">
+  <spr-sidenav class="tw-absolute tw-z-[1]" :quick-actions="quickActions" has-search :active-nav="activeNav" :nav-links="navLinks">
     <template #logo-image>
       <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
     </template>
@@ -364,11 +656,11 @@ Here’s a full example of how to implement the Sidenav component with the above
 ```vue
 <template>
   <spr-sidenav
-    :has-quick-actions="true"
-    :has-search="true"
+    :quick-actions="quickActions"
+    has-search
     :active-nav="activeNav"
     :nav-links="navLinks"
-    @route-push="handleRoutePush"
+    @get-navlink-item="handleGetNavLinkItem"
   >
     <template #logo-image>
       <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
@@ -391,10 +683,68 @@ import IconLeaf from '~icons/ph/leaf';
 import IconCurrencyRub from '~icons/ph/currency-rub';
 import IconWallet from '~icons/ph/wallet';
 
+const quickActions = ref([
+  {
+    title: 'Leave Request',
+    description: 'Lorem ipsum dolor sit amet consectetur.',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'Onboarding Request',
+    description: 'Seamlessly onboard new employees into your Sprout ecosystem',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'Certificate of Employee',
+    description: 'Lorem ipsum dolor sit amet consectetur. ',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'ReadyWage',
+    description: 'Request Form',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'Create Workflow',
+    description: 'Access your hard-earned salary in advance',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+]);
+
 const activeNav = ref({
   parentNav: 'Home',
-  menu: 'Dashboard',
-  submenu: 'Home 4',
+  menu: 'Dashboard 1',
+  submenu: 'Home 2',
 });
 
 const navLinks = ref([
@@ -405,18 +755,57 @@ const navLinks = ref([
         icon: IconHouseSimple,
         menuLinks: [
           {
-            title: 'Dashboard',
-            submenuLinks: [
+            menuHeading: 'Sub Heading 1',
+            items: [
               {
-                title: 'Home 1',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
-                },
+                title: 'Dashboard 1',
+                submenuLinks: [
+                  {
+                    subMenuHeading: 'Sub Heading 1',
+                    items: [
+                      {
+                        title: 'Home 1',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: true,
+                          link: 'https://www.google.com/',
+                        },
+                      },
+                      {
+                        title: 'Home 2',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                    ],
+                  },
+                  {
+                    subMenuHeading: 'Sub Heading 2',
+                    items: [
+                      {
+                        title: 'Home 3',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: true,
+                          link: 'https://www.google.com/',
+                        },
+                      },
+                      {
+                        title: 'Home 4',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                    ],
+                  },
+                ],
               },
               {
-                title: 'Home 2',
+                title: 'Dashboard 2',
                 redirect: {
                   openInNewTab: false,
                   isAbsoluteURL: false,
@@ -424,14 +813,6 @@ const navLinks = ref([
                 },
               },
             ],
-          },
-          {
-            title: 'Dashboard 2',
-            redirect: {
-              openInNewTab: false,
-              isAbsoluteURL: false,
-              link: '/',
-            },
           },
         ],
       },
@@ -453,18 +834,57 @@ const navLinks = ref([
         icon: IconLeaf,
         menuLinks: [
           {
-            title: 'Payroll Runs',
-            redirect: {
-              openInNewTab: false,
-              isAbsoluteURL: false,
-              link: '/',
-            },
+            menuHeading: 'Sub Heading 1',
+            items: [
+              {
+                title: 'Payroll Runs',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
+              },
+              {
+                title: 'Reports',
+                submenuLinks: [
+                  {
+                    subMenuHeading: '',
+                    items: [
+                      {
+                        title: 'Payroll',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                      {
+                        title: 'SSS',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                      {
+                        title: 'PHILHEALTH',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
           },
           {
-            title: 'Reports',
-            submenuLinks: [
+            menuHeading: 'Sub Heading 2',
+            items: [
               {
-                title: 'Payroll',
+                title: 'Setup',
                 redirect: {
                   openInNewTab: false,
                   isAbsoluteURL: false,
@@ -472,15 +892,7 @@ const navLinks = ref([
                 },
               },
               {
-                title: 'SSS',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
-                },
-              },
-              {
-                title: 'PHILHEALTH',
+                title: 'Employees',
                 redirect: {
                   openInNewTab: false,
                   isAbsoluteURL: false,
@@ -488,22 +900,6 @@ const navLinks = ref([
                 },
               },
             ],
-          },
-          {
-            title: 'Setup',
-            redirect: {
-              openInNewTab: false,
-              isAbsoluteURL: false,
-              link: '/',
-            },
-          },
-          {
-            title: 'Employees',
-            redirect: {
-              openInNewTab: false,
-              isAbsoluteURL: false,
-              link: '/',
-            },
           },
         ],
       },
@@ -524,12 +920,35 @@ const navLinks = ref([
           isAbsoluteURL: false,
           link: '/',
         },
+        menuLinks: [
+          {
+            menuHeading: '',
+            items: [
+              {
+                title: 'Car 1',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
+              },
+              {
+                title: 'Car 2',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
+              },
+            ],
+          },
+        ],
       },
     ],
   },
 ]);
 
-const handleRoutePush = (route) => {
+const handleGetNavLinkItem = (route) => {
   console.log(route);
 };
 </script>
@@ -551,10 +970,90 @@ import IconFlowArrow from '~icons/ph/flow-arrow';
 import IconGear from '~icons/ph/gear';
 import IconBookOpenText from '~icons/ph/book-open-text';
 
+const quickActions = ref([
+  {
+    title: 'Leave Request',
+    description: 'Lorem ipsum dolor sit amet consectetur.',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'Onboarding Request',
+    description: 'Seamlessly onboard new employees into your Sprout ecosystem',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'Certificate of Employee',
+    description: 'Lorem ipsum dolor sit amet consectetur. ',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'ReadyWage',
+    description: 'Request Form',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'Create Workflow',
+    description: 'Access your hard-earned salary in advance',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'Create Something 1',
+    description: 'Lorem ipsum dolor sit amet consectetur.',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+  {
+    title: 'Create Something 2',
+    description: 'Lorem ipsum dolor sit amet consectetur.',
+    icon: IconHouseSimple,
+    iconBgColor: 'purple',
+    redirect: {
+      openInNewTab: false,
+      isAbsoluteURL: false,
+      link: '/',
+    },
+  },
+]);
+
 const activeNav = ref({
   parentNav: 'Home',
-  menu: 'Dashboard',
-  submenu: 'Home 4',
+  menu: 'Dashboard 1',
+  submenu: 'Home 2',
 });
 
 const navLinks = ref([
@@ -565,85 +1064,75 @@ const navLinks = ref([
         icon: IconHouseSimple,
         menuLinks: [
           {
-            title: 'Dashboard',
-            submenuLinks: [
+            menuHeading: 'Sub Heading 1',
+            items: [
               {
-                title: 'Home 1',
+                title: 'Dashboard 1',
+                submenuLinks: [
+                  {
+                    subMenuHeading: 'Sub Heading 1',
+                    items: [
+                      {
+                        title: 'Home 1',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: true,
+                          link: 'https://www.google.com/',
+                        },
+                      },
+                      {
+                        title: 'Home 2',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                    ],
+                  },
+                  {
+                    subMenuHeading: 'Sub Heading 2',
+                    items: [
+                      {
+                        title: 'Home 3',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: true,
+                          link: 'https://www.google.com/',
+                        },
+                      },
+                      {
+                        title: 'Home 4',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                    ],
+                  },
+                ],
               },
               {
-                title: 'Home 2',
-              },
-              {
-                title: 'Home 3',
-              },
-              {
-                title: 'Home 4',
-              },
-              {
-                title: 'Home 5',
-              },
-              {
-                title: 'Home 6',
-              },
-              {
-                title: 'Home 7',
-              },
-              {
-                title: 'Home 8',
-              },
-              {
-                title: 'Home 9',
-              },
-              {
-                title: 'Home 10',
-              },
-              {
-                title: 'Home 11',
-              },
-              {
-                title: 'Home 12',
-              },
-              {
-                title: 'Home 13',
-              },
-              {
-                title: 'Home 14',
-              },
-              {
-                title: 'Home 15',
-              },
-              {
-                title: 'Home 16',
-              },
-              {
-                title: 'Home 17',
-              },
-              {
-                title: 'Home 18',
-              },
-              {
-                title: 'Home 19',
-              },
-              {
-                title: 'Home 20',
+                title: 'Dashboard 2',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
               },
             ],
-          },
-          {
-            title: 'Dashboard 2',
-          },
-          {
-            title: 'Dashboard 3',
           },
         ],
       },
       {
         title: 'Employees',
         icon: IconUsersThree,
-      },
-      {
-        title: 'Absctract',
-        icon: IconShapes,
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
       },
     ],
   },
@@ -654,117 +1143,115 @@ const navLinks = ref([
         icon: IconLeaf,
         menuLinks: [
           {
-            title: 'Payroll Runs',
-            redirect: {
-              openInNewTab: false,
-              isAbsoluteURL: false,
-              link: '/',
-            },
-          },
-          {
-            title: 'Reports',
-            submenuLinks: [
+            menuHeading: 'Sub Heading 1',
+            items: [
               {
-                title: 'Payroll',
+                title: 'Payroll Runs',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
               },
               {
-                title: 'SSS',
-              },
-              {
-                title: 'PHILHEALTH',
-              },
-              {
-                title: 'PAG-IBIG',
-              },
-              {
-                title: 'BIR',
-              },
-              {
-                title: 'ONEHUB DAT FILES',
-              },
-              {
-                title: 'BPI',
-              },
-              {
-                title: 'SECURITY BANK',
-              },
-              {
-                title: 'Certificate of Contribution',
-              },
-              {
-                title: 'certificate of Loan',
-              },
-              {
-                title: 'Statutory Reports',
-              },
-              {
-                title: 'Demographic',
-              },
-              {
-                title: 'Salary History Report',
+                title: 'Reports',
+                submenuLinks: [
+                  {
+                    subMenuHeading: '',
+                    items: [
+                      {
+                        title: 'Payroll',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                      {
+                        title: 'SSS',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                      {
+                        title: 'PHILHEALTH',
+                        redirect: {
+                          openInNewTab: false,
+                          isAbsoluteURL: false,
+                          link: '/',
+                        },
+                      },
+                    ],
+                  },
+                ],
               },
             ],
           },
           {
-            title: 'Setup',
-          },
-          {
-            title: 'Employees',
-          },
-          {
-            title: 'Users',
-          },
-          {
-            title: 'Reports Logs',
+            menuHeading: 'Sub Heading 2',
+            items: [
+              {
+                title: 'Setup',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
+              },
+              {
+                title: 'Employees',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
+              },
+            ],
           },
         ],
       },
       {
         title: 'Money',
         icon: IconCurrencyRub,
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
       },
       {
         title: 'Car',
         icon: IconWallet,
-      },
-      {
-        title: 'Bar',
-        icon: IconChartBar,
-      },
-      {
-        title: 'Music',
-        icon: IconFlowArrow,
-      },
-    ],
-  },
-  {
-    parentLinks: [
-      {
-        title: 'Settings',
-        icon: IconGear,
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
         menuLinks: [
           {
-            title: 'User Profile',
-          },
-          {
-            title: 'Account Settings',
-          },
-          {
-            title: 'Company Settings',
-            submenuLinks: [
+            menuHeading: '',
+            items: [
               {
-                title: 'Team Members',
+                title: 'Car 1',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
               },
               {
-                title: 'Team Scores',
+                title: 'Car 2',
+                redirect: {
+                  openInNewTab: false,
+                  isAbsoluteURL: false,
+                  link: '/',
+                },
               },
             ],
           },
         ],
-      },
-      {
-        title: 'About Us',
-        icon: IconBookOpenText,
       },
     ],
   },

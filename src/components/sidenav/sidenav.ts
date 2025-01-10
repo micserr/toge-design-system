@@ -2,15 +2,27 @@ import type { PropType, ExtractPropTypes } from 'vue';
 
 export const sidenavPropTypes = {
   /**
-   * @description Sidenav has quick actions
+   * @description Quick actions
    */
-  hasQuickActions: {
-    type: Boolean,
-    validator: (value: unknown) => typeof value === 'boolean',
-    default: false,
+  quickActions: {
+    type: Array as PropType<
+      Array<{
+        title: string;
+        description: string;
+        icon: string;
+        iconBgColor: string;
+        redirect: {
+          openInNewTab: boolean;
+          isAbsoluteURL: boolean;
+          link: string;
+        };
+      }>
+    >,
+    validator: (value: unknown) => Array.isArray(value),
+    default: () => [],
   },
   /**
-   * @description Sidenav has search
+   * @description Search
    */
   hasSearch: {
     type: Boolean,
@@ -18,7 +30,7 @@ export const sidenavPropTypes = {
     default: false,
   },
   /**
-   * @description Sidenav active navigation
+   * @description Active Navlink
    */
   activeNav: {
     type: Object as PropType<{ parentNav: string; menu: string; submenu: string }>,
@@ -26,17 +38,52 @@ export const sidenavPropTypes = {
     default: () => ({ parentNav: '', menu: '', submenu: '' }),
   },
   /**
-   * @description Sidenav navlinks
+   * @description Navlinks
    */
   navLinks: {
-    type: Array as PropType<Array<{ parentLinks: Array<unknown> }>>,
+    type: Array as PropType<
+      Array<{
+        parentLinks: Array<{
+          title: string;
+          icon: string;
+          link: string;
+          redirect: {
+            openInNewTab: boolean;
+            isAbsoluteURL: boolean;
+            link: string;
+          };
+          menuLinks: Array<{
+            menuHeading: string;
+            items: Array<{
+              title: string;
+              redirect: {
+                openInNewTab: boolean;
+                isAbsoluteURL: boolean;
+                link: string;
+              };
+              submenuLinks: Array<{
+                subMenuHeading: string;
+                items: Array<{
+                  title: string;
+                  redirect: {
+                    openInNewTab: boolean;
+                    isAbsoluteURL: boolean;
+                    link: string;
+                  };
+                }>;
+              }>;
+            }>;
+          }>;
+        }>;
+      }>
+    >,
     validator: (value: unknown) => Array.isArray(value),
     default: () => [],
   },
 };
 
 export const sidenavEmitTypes = {
-  'route-push': String,
+  'get-navlink-item': String,
 };
 
 export type SidenavPropTypes = ExtractPropTypes<typeof sidenavPropTypes>;

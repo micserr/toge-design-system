@@ -1,3 +1,4 @@
+import { ref } from 'vue';
 import type { SetupContext } from 'vue';
 
 import type { SidenavPropTypes, SidenavEmitTypes } from './sidenav';
@@ -6,26 +7,31 @@ interface MouseEventWithCtrl extends MouseEvent {
   ctrlKey: boolean;
 }
 
-interface Redirect {
-  openInNewTab: boolean;
-  isAbsoluteURL: boolean;
-  link: string;
+interface ObjectItem {
+  redirect: {
+    openInNewTab: boolean;
+    isAbsoluteURL: boolean;
+    link: string;
+  };
 }
 
 export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEmitTypes>['emit']) => {
-  const handleRedirect = (e: MouseEventWithCtrl, redirect: Redirect) => {
-    if (redirect) {
-      if (redirect.openInNewTab) {
-        window.open(redirect.link, '_blank');
-      } else if (redirect.isAbsoluteURL) {
-        location.href = redirect.link;
+  const isQuckActionMenuVisible = ref(false);
+
+  const handleRedirect = (e: MouseEventWithCtrl, objectItem: ObjectItem) => {
+    if (objectItem && objectItem.redirect) {
+      if (objectItem.redirect.openInNewTab) {
+        window.open(objectItem.redirect.link, '_blank');
+      } else if (objectItem.redirect.isAbsoluteURL) {
+        location.href = objectItem.redirect.link;
       } else {
-        emit('route-push', redirect.link);
+        emit('get-navlink-item', objectItem);
       }
     }
   };
 
   return {
+    isQuckActionMenuVisible,
     handleRedirect,
   };
 };

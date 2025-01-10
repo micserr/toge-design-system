@@ -81,6 +81,10 @@ export default defineConfig({
               text: 'Radio',
               link: '/documentation/components/radio',
             },
+            {
+              text: 'Input',
+              link: '/documentation/components/input',
+            },
           ],
         },
         {

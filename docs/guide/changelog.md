@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.29 (2025-01-14)
+
+- Fix: DQA Radio ([#2774cea7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2774cea7b3077762207a5ac2bc7f410f5c8213ad?refName=refs%2Fheads%2F2025%2FFEATURE%2FNIC%2Fdqa-radio-component) by @nicalla)
+
 ## 1.0.28 (2025-01-13)
 
 - Feat: Timepicker ([#bf205dfe](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/bf205dfed18cc077b602c627245650839aa8023f?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Ftimeselect) by @adestajo)

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.31 (2025-01-14)
+
+- Fix: DQA Timepicker ([#d4512cdb](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d4512cdbfbf29af6bb8f2b1a4ffe5d5a44d1a099?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FDQA-timepicker) by @andrea)
+
 ## 1.0.30 (2025-01-14)
 
 - Feat: Tab Component ([#8a8886a6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8a8886a6e4726a6e7c08288dfc70e102223523f2?refName=refs%2Fheads%2F2025%2Ffeature%2Fandrea%2Ftabs) by @andrea)

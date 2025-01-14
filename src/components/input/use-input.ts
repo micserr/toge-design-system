@@ -29,6 +29,8 @@ export const useInput = (props: InputPropTypes) => {
       'focus:tw-border-kangkong-700',
       'focus:tw-text-color-strong',
       'focus:tw-border-[1.5px]',
+      'tw-outline-none',
+      'tw-ring-0',
       {
         'tw-border-[1.5px]': error,
         'tw-border-tomato-600': error,

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.30 (2025-01-14)
+
+- Feat: Tab Component ([#8a8886a6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8a8886a6e4726a6e7c08288dfc70e102223523f2?refName=refs%2Fheads%2F2025%2Ffeature%2Fandrea%2Ftabs) by @andrea)
+
 ## 1.0.29 (2025-01-14)
 
 - Fix: DQA Radio ([#2774cea7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2774cea7b3077762207a5ac2bc7f410f5c8213ad?refName=refs%2Fheads%2F2025%2FFEATURE%2FNIC%2Fdqa-radio-component) by @nicalla)

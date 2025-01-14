@@ -10,7 +10,6 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
 
   const isOpen = ref<boolean>(false);
   const selectedValue = ref<string>('');
-  const selectedIndex = ref<number>(0);
 
   const timepickerClasses: ComputedRef<string> = computed(() => {
     return classNames(
@@ -46,7 +45,7 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
       'tw-absolute',
       'tw-z-50 ',
       'tw-mt-1',
-      'tw-max-h-[300px]',
+      'tw-max-h-[240px]',
       'tw-w-[160px]',
       'tw-overflow-y-auto',
       'tw-background-color ',
@@ -60,7 +59,7 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
   });
 
   const iconClasses: ComputedRef<string> = computed(() => {
-    return classNames('tw-absolute tw-right-3 tw-top-[55%]  tw-h-5 tw-w-5  tw-text-mushroom-300', {
+    return classNames('tw-absolute tw-right-3  tw-h-5 tw-w-5  tw-text-color-supporting', {
       '!tw-text-tomato-600': error,
     });
   });
@@ -77,12 +76,19 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
 
   const filterInput = (event: Event) => {
     const target = event.target as HTMLInputElement | null;
+
     if (!target) return;
-    const input = target.value;
-    const regex = format === '12' ? /^[0-9:APMapm\s]*$/ : /^[0-9:]*$/;
+
+    const input = target.value.toUpperCase();
+    const regex = format === '12' ? /^[0-9:APM\s]*$/ : /^[0-9:]*$/;
+
     if (!regex.test(input)) {
       selectedValue.value = selectedValue.value.slice(0, -1);
+    } else {
+      selectedValue.value = input;
     }
+
+    emit('update:modelValue', selectedValue.value);
   };
 
   const generateTimeOptions = (): string[] => {
@@ -116,19 +122,6 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
     return timeOptions.value;
   });
 
-  const handleEnter = () => {
-    if (filteredOptions.value.length > 0) {
-      selectOption(filteredOptions.value[selectedIndex.value]);
-    }
-  };
-
-  const navigateOptions = (direction: number) => {
-    const newIndex = selectedIndex.value + direction;
-    if (newIndex >= 0 && newIndex < filteredOptions.value.length) {
-      selectedIndex.value = newIndex;
-    }
-  };
-
   const selectOption = (option: string) => {
     selectedValue.value = option;
     emit('update:modelValue', option);
@@ -156,12 +149,9 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
     filteredOptions,
     selectedValue,
     isOpen,
-    selectedIndex,
     getPlaceHolder,
 
     filterInput,
-    navigateOptions,
-    handleEnter,
     selectOption,
     handleClick,
   };

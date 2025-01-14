@@ -4,7 +4,7 @@ A Radio Button is a component that enables a user to select a single option from
 
 ## Basic Usage
 
-<div class="tw-grid tw-items-center tw-gap-2">
+<div class="tw-flex tw-flex-col tw-items-start tw-gap-2">
   <spr-radio id="sample1" v-model="sampleradio" name="sampleradio" value="sample1">
     Default Checked Radio
   </spr-radio>
@@ -17,7 +17,7 @@ A Radio Button is a component that enables a user to select a single option from
 
 ```vue
 <template>
-  <div class="tw-grid tw-items-center tw-gap-2">
+  <div class="tw-flex tw-flex-col tw-items-start tw-gap-2">
     <spr-radio id="sample1" v-model="sampleradio" name="sampleradio" value="sample1">
       Default Checked Radio
     </spr-radio>
@@ -30,7 +30,6 @@ A Radio Button is a component that enables a user to select a single option from
 
 <script setup>
   import { ref } from 'vue';
-  import SprRadio from "@/components/radio/radio.vue";
 
   const sampleradio = ref<string>("sample1");
 </script>
@@ -40,7 +39,7 @@ A Radio Button is a component that enables a user to select a single option from
 
 Add the ```disabled``` attribute to the ```<spr-radio>``` component to disable the radio button.
 
-<div class="tw-grid tw-items-center tw-gap-2">
+<div class="tw-flex tw-flex-col tw-items-start tw-gap-2">
   <spr-radio id="disabledradio1" v-model="disabledradio" name="disabledradio" value="disabledradio1" disabled>
     Disabled Checked Radio
   </spr-radio>
@@ -53,7 +52,7 @@ Add the ```disabled``` attribute to the ```<spr-radio>``` component to disable t
 
 ```vue
 <template>
-  <div class="tw-grid tw-items-center tw-gap-2">
+  <div class="tw-flex tw-flex-col tw-items-start tw-gap-2">
     <spr-radio id="disabledradio1" v-model="disabledradio" name="disabledradio" value="disabledradio1" disabled>
       Disabled Checked Radio
     </spr-radio>
@@ -66,7 +65,6 @@ Add the ```disabled``` attribute to the ```<spr-radio>``` component to disable t
 
 <script setup>
   import { ref } from 'vue';
-  import SprRadio from "@/components/radio/radio.vue";
 
   const disabledradio = ref<string>("disabledradio");
 </script>

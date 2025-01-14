@@ -24,6 +24,27 @@ allows users to select a time from a dropdown list. It supports both 12-hour and
 <spr-time-picker v-model="selectedValue" :label="`Timepicker value: ${selectedValue || ''}`" />
 ```
 
+## Format
+
+<div class="tw-flex tw-flex-col tw-gap-4">
+  <spr-time-picker 
+      v-model="selectedValue"
+      :label="`Timepicker value: ${selectedValue || ''}`"
+      format="12"
+    />
+
+<spr-time-picker 
+      v-model="selectedValue"
+      :label="`Timepicker value: ${selectedValue || ''}`"
+      format="24"
+    />
+
+</div>
+
+```vue
+<spr-time-picker v-model="selectedValue" :label="`Timepicker value: ${selectedValue || ''}`" />
+```
+
 ## Disable Typing
 
 <spr-time-picker 

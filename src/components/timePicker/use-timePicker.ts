@@ -46,7 +46,7 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
       'tw-absolute',
       'tw-z-50 ',
       'tw-mt-1',
-      'tw-max-h-[300px]',
+      'tw-max-h-[240px]',
       'tw-w-[160px]',
       'tw-overflow-y-auto',
       'tw-background-color ',
@@ -60,7 +60,7 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
   });
 
   const iconClasses: ComputedRef<string> = computed(() => {
-    return classNames('tw-absolute tw-right-3 tw-top-[55%]  tw-h-5 tw-w-5  tw-text-mushroom-300', {
+    return classNames('tw-absolute tw-right-3  tw-h-5 tw-w-5  tw-text-color-supporting', {
       '!tw-text-tomato-600': error,
     });
   });
@@ -77,12 +77,16 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
 
   const filterInput = (event: Event) => {
     const target = event.target as HTMLInputElement | null;
+
     if (!target) return;
+
     const input = target.value;
     const regex = format === '12' ? /^[0-9:APMapm\s]*$/ : /^[0-9:]*$/;
+
     if (!regex.test(input)) {
       selectedValue.value = selectedValue.value.slice(0, -1);
     }
+    emit('update:modelValue', selectedValue.value);
   };
 
   const generateTimeOptions = (): string[] => {

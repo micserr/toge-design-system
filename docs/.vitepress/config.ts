@@ -85,6 +85,10 @@ export default defineConfig({
               text: 'Input',
               link: '/documentation/components/input',
             },
+            {
+              text: 'Time Picker',
+              link: '/documentation/components/timePicker',
+            },
           ],
         },
         {

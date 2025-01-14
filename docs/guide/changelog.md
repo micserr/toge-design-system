@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.28 (2025-01-13)
+
+- Feat: Timepicker ([#bf205dfe](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/bf205dfed18cc077b602c627245650839aa8023f?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Ftimeselect) by @adestajo)
+- Feat: Install Day Js Library ([#bf205dfe](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/bf205dfed18cc077b602c627245650839aa8023f?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Ftimeselect) by @adestajo)
+
 ## 1.0.27 (2025-01-10)
 
 - Fix: Lozenge build docs error ([#59fd4372](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/59fd4372983e28f4097c1fc22f3a318bb6a959ee?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Finput) by @adestajo)

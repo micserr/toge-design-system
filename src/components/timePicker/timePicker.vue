@@ -13,9 +13,8 @@
         :readonly="disableTyping"
         :disabled="disabled"
         @focus="handleClick"
-        @keydown.enter="handleEnter"
-        @keydown.up.prevent="(navigateOptions(-1), (isOpen = true))"
-        @keydown.down.prevent="(navigateOptions(1), (isOpen = true))"
+        @keydown.up.prevent="isOpen = true"
+        @keydown.down.prevent="isOpen = true"
         @click="handleClick"
         @input="filterInput"
         @focusout="isOpen = false"
@@ -37,13 +36,18 @@
             'hover:tw-background-color-hover',
             'tw-rounded-border-radius-md',
             'tw-cursor-pointer',
-            { 'tw-background-color-single-active tw-rounded-border-radius-md': option === selectedValue },
+            {
+              'tw-background-color-single-active tw-rounded-border-radius-md':
+                option.toUpperCase() === selectedValue.toUpperCase(),
+            },
           ]"
           @mousedown.prevent="selectOption(option)"
         >
           {{ option }}
 
-          <span v-if="option === selectedValue" class="tw-text-color-brand-base"><IconCheck /></span>
+          <span v-if="option.toUpperCase() === selectedValue.toUpperCase()" class="tw-text-color-brand-base"
+            ><IconCheck
+          /></span>
         </div>
       </div>
       <div v-else class="tw-px-3 tw-py-2 tw-text-gray-500">No matching options found</div>
@@ -69,14 +73,11 @@ const {
   labelClasses,
   wrapperClasses,
   isOpen,
-  selectedIndex,
   filteredOptions,
   selectedValue,
   getPlaceHolder,
   selectOption,
   filterInput,
-  navigateOptions,
-  handleEnter,
   handleClick,
 } = useTimePicker(props, emit);
 </script>

@@ -1,7 +1,7 @@
 {
   "name": "design-system-next",
   "private": false,
-  "version": "1.0.27",
+  "version": "1.0.28",
   "main": "./dist/design-system-next.js",
   "module": "./dist/design-system-next.js",
   "repository": {
@@ -43,6 +43,7 @@
     "@eslint/js": "^9.17.0",
     "@iconify-json/ph": "^1.2.2",
     "classnames": "^2.5.1",
+    "dayjs": "^1.11.13",
     "floating-vue": "^5.2.2",
     "stylelint": "^16.12.0",
     "stylelint-config-recess-order": "^5.1.1",
@@ -50,7 +51,7 @@
     "stylelint-config-recommended-vue": "^1.5.0",
     "typescript-eslint": "^8.19.1",
     "vite-plugin-sass": "^0.1.0",
-    "vue": "^3.5.13"
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@stylistic/stylelint-plugin": "^3.1.1",

@@ -26,5 +26,6 @@ import { defineProps } from 'vue';
 import { useInput } from './use-input';
 
 const props = defineProps(inputPropTypes);
+defineEmits(['update:modelValue']);
 const { inputClasses, wrapperClasses, labelClasses, iconSlotClasses } = useInput(props);
 </script>

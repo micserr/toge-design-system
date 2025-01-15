@@ -94,6 +94,10 @@ export default defineConfig({
               link: '/documentation/components/timePicker',
             },
             {
+              text: 'Tooltip',
+              link: '/documentation/components/tooltip',
+            },
+            {
               text: 'Modal',
               link: '/documentation/components/modal',
             },

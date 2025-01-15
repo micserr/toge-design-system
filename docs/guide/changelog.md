@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.34 (2025-01-15)
+
+- Feat: Tooltip ([#6f76cb4a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6f76cb4a4a40ac9ff863642d820dad8a8c374a45?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Ftooltip) by @andrea)
+
 ## 1.0.33 (2025-01-15)
 
 - Feat: Modal ([#00e617af](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/00e617afb426868b033b48014b4b7818b81fb529?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fmodal) by @andrea)

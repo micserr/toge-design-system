@@ -5,7 +5,7 @@
       :key="index"
       :class="[
         tabsClasses,
-        'tw-label-xs-regular tw-cursor-default tw-cursor-pointer tw-border-solid',
+        'tw-label-xs-regular tw-cursor-pointer tw-border-solid',
         {
           'tw-background-color-single-active tw-border-color-success-base tw-border':
             !underlined && selectedTabIndex === index,

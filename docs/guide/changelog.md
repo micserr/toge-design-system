@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.32 (2025-01-15)
+
+- Fix: icon and Input Spacing ([#39de5f76](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/39de5f767ac5287c1555f6b7a4420c04e922fcea?refName=refs%2Fheads%2F2024%2Ffix%2Fandrea%2Ffix-icon-spacing) by @andrea)
+
 ## 1.0.31 (2025-01-14)
 
 - Fix: DQA Timepicker ([#d4512cdb](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d4512cdbfbf29af6bb8f2b1a4ffe5d5a44d1a099?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FDQA-timepicker) by @andrea)

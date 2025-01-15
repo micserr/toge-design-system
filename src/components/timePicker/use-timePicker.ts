@@ -59,7 +59,7 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
   });
 
   const iconClasses: ComputedRef<string> = computed(() => {
-    return classNames('tw-absolute tw-right-3  tw-h-5 tw-w-5  tw-text-color-supporting', {
+    return classNames('tw-absolute tw-right-3 tw-text-color-supporting', {
       '!tw-text-tomato-600': error,
     });
   });

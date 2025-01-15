@@ -6,7 +6,7 @@ export const useInput = (props: InputPropTypes) => {
   const { error, disabled } = props;
 
   const wrapperClasses = computed(() => {
-    return 'tw-mb-4 tw-flex tw-flex-col tw-gap-size-spacing-4xs';
+    return 'tw-flex tw-flex-col tw-gap-size-spacing-4xs';
   });
 
   const labelClasses = computed(() => {

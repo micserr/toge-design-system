@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.33 (2025-01-15)
+
+- Feat: Modal ([#00e617af](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/00e617afb426868b033b48014b4b7818b81fb529?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fmodal) by @andrea)
+
 ## 1.0.32 (2025-01-15)
 
 - Fix: icon and Input Spacing ([#39de5f76](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/39de5f767ac5287c1555f6b7a4420c04e922fcea?refName=refs%2Fheads%2F2024%2Ffix%2Fandrea%2Ffix-icon-spacing) by @andrea)

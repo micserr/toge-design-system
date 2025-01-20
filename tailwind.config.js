@@ -4,6 +4,9 @@ import colorScheme from './src/assets/scripts/colors';
 import spacing from './src/assets/scripts/spacing';
 import maxWidth from './src/assets/scripts/maxWidth';
 import borderRadius from './src/assets/scripts/borderRadius';
+import utilities from './src/assets/scripts/utilities';
+
+const plugin = require('tailwindcss/plugin');
 
 export default {
   prefix: 'tw-',
@@ -91,7 +94,15 @@ export default {
       sm: { max: '575.98px' },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      const newUtilities = {};
+      for (const [key, value] of Object.entries(utilities)) {
+        newUtilities[`.${key}`] = value;
+      }
+      addUtilities(newUtilities, ['responsive', 'hover']);
+    }),
+  ],
   corePlugins: {
     preflight: false,
   },

@@ -2,7 +2,7 @@
   <dialog
     ref="dialog"
     :class="[
-      'tw-border-color-weak tw-background-color tw-rounded-border-radius-xl tw-p-0 tw-drop-shadow-[0_2px_8px_-2px_rgba(38,43,43,0.20)]',
+      'modal-dialog tw-border-color-weak tw-background-color tw-bg-over tw-rounded-border-radius-xl tw-p-0 tw-drop-shadow-[0_2px_8px_-2px_rgba(38,43,43,0.20)]',
       modalSizesClasses,
     ]"
   >
@@ -17,10 +17,12 @@
 
       <div v-if="!$slots.header">{{ title }}</div>
 
-      <span v-if="hasClose" class="tw-text-color-weak tw-font-size-100" @click="closeModal"><IconClose /></span>
+      <span v-if="hasClose" class="tw-text-color-weak tw-subheading-xs" @click="closeModal"><IconClose /></span>
     </header>
 
-    <slot />
+    <div class="tw-body-sm-regular">
+      <slot />
+    </div>
 
     <footer
       v-if="hasFooter"
@@ -45,3 +47,10 @@ const emit = defineEmits(modalEmitTypes);
 
 const { dialog, closeModal, modalSizesClasses } = useModal(props, emit);
 </script>
+
+<style scoped>
+/* Tailwind CSS does not directly support the ::backdrop pseudo-element, need to add this */
+.modal-dialog::backdrop {
+  @apply tw-bg-overlay;
+}
+</style>

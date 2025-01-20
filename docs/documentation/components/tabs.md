@@ -33,12 +33,15 @@ Tabs are used to organize content into different sections. They are commonly use
   import SprTabs from "@/components/tabs/tabs.vue";
   import IconPlantLight from '~icons/ph/plant-light';
   import IconPlantFill from '~icons/ph/plant-fill';
-  import IconPlantThin from '~icons/ph/plant-thin';
+  import IconLeafLight from '~icons/ph/leaf-light';
+  import IconLeafFill from '~icons/ph/leaf-fill';
+  import IconTreeLight from '~icons/ph/tree-light';
+  import IconTreeFill from '~icons/ph/tree-fill';
 
   const tabsWithIcon = [
-    { label: "tab", icon: IconPlantLight },
-    { label: "tab", icon: IconPlantFill },
-    { label: "tab", icon: IconPlantThin },
+    { label: "tab", icon: IconPlantLight, iconFill: IconPlantFill },
+    { label: "tab", icon: IconLeafLight, iconFill: IconLeafFill },
+    { label: "tab", icon: icon: IconTreeLight, iconFill: IconTreeFill },
   ]
 </script>
 ```
@@ -55,12 +58,15 @@ Tabs are used to organize content into different sections. They are commonly use
   import SprTabs from "@/components/tabs/tabs.vue";
   import IconPlantLight from '~icons/ph/plant-light';
   import IconPlantFill from '~icons/ph/plant-fill';
-  import IconPlantThin from '~icons/ph/plant-thin';
+  import IconLeafLight from '~icons/ph/leaf-light';
+  import IconLeafFill from '~icons/ph/leaf-fill';
+  import IconTreeLight from '~icons/ph/tree-light';
+  import IconTreeFill from '~icons/ph/tree-fill';
 
   const tabsIconOnly = [
-    { icon: IconPlantLight },
-    { icon: IconPlantFill },
-    { icon: IconPlantThin },
+    { icon: IconPlantLight, iconFill: IconPlantFill },
+    { icon: IconLeafLight, iconFill: IconLeafFill },
+    { icon: icon: IconTreeLight, iconFill: IconTreeFill },
   ]
 </script>
 ```
@@ -115,12 +121,15 @@ Tabs are used to organize content into different sections. They are commonly use
   import SprTabs from "@/components/tabs/tabs.vue";
   import IconPlantLight from '~icons/ph/plant-light';
   import IconPlantFill from '~icons/ph/plant-fill';
-  import IconPlantThin from '~icons/ph/plant-thin';
+  import IconLeafLight from '~icons/ph/leaf-light';
+  import IconLeafFill from '~icons/ph/leaf-fill';
+  import IconTreeLight from '~icons/ph/tree-light';
+  import IconTreeFill from '~icons/ph/tree-fill';
 
   const tabsUnderlinedWithIcon = [
-    { label: "title", disabled: false, icon: IconPlantLight },
-    { label: "title", disabled: false, icon: IconPlantFill },
-    { label: "title", disabled: false, icon: IconPlantThin },
+    { label: "title", disabled: false, icon: IconPlantLight, iconFill: IconPlantFill },
+    { label: "title", disabled: false, icon: IconLeafLight, iconFill: IconLeafFill },
+    { label: "title", disabled: false, icon: icon: IconTreeLight, iconFill: IconTreeFill },
   ]
 </script>
 ```
@@ -129,7 +138,10 @@ Tabs are used to organize content into different sections. They are commonly use
   import SprTabs from "@/components/tabs/tabs.vue";
   import IconPlantLight from '~icons/ph/plant-light';
   import IconPlantFill from '~icons/ph/plant-fill';
-  import IconPlantThin from '~icons/ph/plant-thin';
+  import IconLeafLight from '~icons/ph/leaf-light';
+  import IconLeafFill from '~icons/ph/leaf-fill';
+  import IconTreeLight from '~icons/ph/tree-light';
+  import IconTreeFill from '~icons/ph/tree-fill';
 
   const tabsBasic = [
     { label: "tab" },
@@ -138,15 +150,15 @@ Tabs are used to organize content into different sections. They are commonly use
   ]
 
   const tabsWithIcon = [
-    { label: "tab", icon: IconPlantLight },
-    { label: "tab", icon: IconPlantFill },
-    { label: "tab", icon: IconPlantThin },
+    { label: "tab", icon: IconPlantLight, iconFill: IconPlantFill },
+    { label: "tab", icon: IconLeafLight, iconFill: IconLeafFill },
+    { label: "tab", icon: IconTreeLight, iconFill: IconTreeFill },
   ]
 
   const tabsIconOnly = [
-    { icon: IconPlantLight },
-    { icon: IconPlantFill },
-    { icon: IconPlantThin },
+    { icon: IconPlantLight, iconFill: IconPlantFill },
+    { icon: IconLeafLight, iconFill: IconLeafFill },
+    { icon: IconTreeLight, iconFill: IconTreeFill },
   ]
 
   const tabsUnderlined = [
@@ -162,8 +174,8 @@ Tabs are used to organize content into different sections. They are commonly use
   ]
 
   const tabsUnderlinedWithIcon = [
-    { label: "title", disabled: false, icon: IconPlantLight },
-    { label: "title", disabled: false, icon: IconPlantFill },
-    { label: "title", disabled: false, icon: IconPlantThin },
+    { label: "title", disabled: false, icon: IconPlantLight, iconFill: IconPlantFill },
+    { label: "title", disabled: false, icon: IconLeafLight, iconFill: IconLeafFill },
+    { label: "title", disabled: false, icon: IconTreeLight, iconFill: IconTreeFill },
   ]
 </script>

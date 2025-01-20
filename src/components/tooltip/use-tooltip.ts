@@ -1,7 +1,6 @@
-
-import {  computed, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useElementHover } from '@vueuse/core';
-import { TooltipPropTypes } from './tooltip'
+import { TooltipPropTypes } from './tooltip';
 
 import classNames from 'classnames';
 
@@ -9,7 +8,7 @@ export const useTooltip = (props: TooltipPropTypes) => {
   const { position, text } = props as {
     text: string;
     position:
-        'top'
+      | 'top'
       | 'top-start'
       | 'top-end'
       | 'bottom'
@@ -21,7 +20,7 @@ export const useTooltip = (props: TooltipPropTypes) => {
       | 'right'
       | 'right-start'
       | 'right-end';
-  }
+  };
 
   const componentRef = ref<HTMLDivElement | null>(null);
   const isHovered = useElementHover(componentRef);
@@ -48,6 +47,6 @@ export const useTooltip = (props: TooltipPropTypes) => {
   return {
     componentRef,
     tooltipClasses,
-    text
-  }
-}
+    text,
+  };
+};

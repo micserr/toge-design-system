@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.35 (2025-01-17)
+
+- Fix: DQA - Tab ([#d2d9bc9b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d2d9bc9ba867a4307bf2bdb5bcf7d6826f7c66ec?refName=refs%2Fheads%2F2025%2Ffix%2Fandrea%2FDQA-Tabs) by @andrea)
+
+- Fix: DQA - Badge, Modal ([#c5cc5d15](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c5cc5d1559e00030b83a55792ee2428171e786a8?refName=refs%2Fheads%2F2025%2Ffix%2Fandrea%2FDQA-Tabs) by @andrea)
+
+- Fix: Registered Custom Utilities ([#d8f3500e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d8f3500ee4495c3b8ccce9dd07877cbcb1559c8f?refName=refs%2Fheads%2F2025%2Ffix%2Fandrea%2FDQA-Tabs) by @andrea)
+
 ## 1.0.34 (2025-01-15)
 
 - Feat: Tooltip ([#6f76cb4a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6f76cb4a4a40ac9ff863642d820dad8a8c374a45?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Ftooltip) by @andrea)

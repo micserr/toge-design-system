@@ -5,6 +5,7 @@ export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<
 type List = {
   label: string;
   icon?: Component
+  iconFill?: Component
   disabled?: boolean;
 }
 

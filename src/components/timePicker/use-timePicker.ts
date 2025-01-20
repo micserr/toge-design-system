@@ -6,7 +6,7 @@ import type { SetupContext } from 'vue';
 import classNames from 'classnames';
 
 export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<TimePickerEmitTypes>['emit']) => {
-  const { error, disabled, format, interval, disableTyping } = props;
+  const { error, disabled, format, interval, disableTyping, fullWidth } = props;
 
   const isOpen = ref<boolean>(false);
   const selectedValue = ref<string>('');
@@ -45,8 +45,8 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
       'tw-absolute',
       'tw-z-50 ',
       'tw-mt-1',
-      'tw-max-h-[240px]',
-      'tw-w-[160px]',
+      'tw-max-h-[300px]',
+      'tw-w-[240px]',
       'tw-overflow-y-auto',
       'tw-background-color ',
       'tw-text-mushroom-950',
@@ -55,6 +55,9 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
       'tw-border-color-weak',
       'tw-shadow-[0_2px_8px_-2px_rgba(38, 43, 43, 0.20)]',
       'tw-p-size-spacing-3xs',
+      {
+        'tw-w-full': fullWidth,
+      },
     );
   });
 

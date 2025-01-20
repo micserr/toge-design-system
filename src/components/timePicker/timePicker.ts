@@ -40,6 +40,13 @@ export const timePickerPropTypes = {
     type: Boolean,
     default: false,
   },
+  /**
+   * @description disable user to type
+   */
+  fullWidth: {
+    type: Boolean,
+    default: false,
+  },
 };
 export const timePickerEmitTypes = {
   'update:modelValue': (evt: MouseEvent): evt is MouseEvent => evt instanceof MouseEvent,

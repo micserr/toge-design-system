@@ -5,7 +5,7 @@
       :key="index"
       :class="[
         tabsClasses,
-        'tw-label-xs-regular tw-cursor-pointer tw-border-solid',
+        'tw-body-sm-regular tw-text-color-strong tw-cursor-pointer tw-border-solid',
         {
           'tw-background-color-single-active tw-border': !underlined && selectedTabIndex === index,
           'tw-border-color-weak hover:tw-background-color-hover tw-border-x-[0.5px] tw-border-y':
@@ -14,7 +14,7 @@
           'tw-border-b-2': underlined && selectedTabIndex === index,
           'tw-border-color-disabled tw-text-color-disabled !tw-cursor-not-allowed tw-border-b':
             underlined && tab.disabled,
-          'tw-label-sm-regular tw-text-color-base': selectedTabIndex !== index,
+          'tw-body-sm-regular': selectedTabIndex !== index,
           'tw-body-sm-regular tw-text-color-brand-base tw-border-color-success-base': selectedTabIndex === index,
           'tw-border-l-0': selectedTabIndex - index === -1,
           'tw-border-r-0': selectedTabIndex - index === 1,
@@ -26,7 +26,7 @@
         <div v-if="!!tab.icon">
           <component
             :is="selectedTabIndex === index && !!tab.iconFill ? tab.iconFill : tab.icon"
-            class="tw-h-4 tw-w-4"
+            class="tw-body-sm-regular"
           />
         </div>
         <div v-if="!!tab.label">

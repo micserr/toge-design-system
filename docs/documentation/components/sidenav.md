@@ -66,6 +66,8 @@ The icon property in each link (e.g., DashboardIcon, SettingsIcon) must be a Vue
 
 The navigation links are organized into grouped sections, each containing several categories. Each category includes links that may have nested menus and submenus.
 
+defining the navigation links has 2 sections, `top` and `bottom`. Each section can contain multiple `parentLinks` that represent the top-level navigation items.
+
 ```vue
 <template>
   <spr-sidenav :nav-links="navLinks">
@@ -84,78 +86,152 @@ import { ref } from 'vue';
 
 import IconHouseSimple from '~icons/ph/house-simple';
 
-const navLinks = ref([
-  {
-    parentLinks: [
-      {
-        title: 'Home',
-        icon: IconHouseSimple,
-        menuLinks: [
-          {
-            menuHeading: 'Sub Heading 1',
-            items: [
-              {
-                title: 'Dashboard 1',
-                submenuLinks: [
-                  {
-                    subMenuHeading: 'Sub Heading 1',
-                    items: [
-                      {
-                        title: 'Home 1',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: true,
-                          link: 'https://www.google.com/',
+const navLinks = ref({
+  top: [
+    {
+      parentLinks: [
+        {
+          title: 'Home',
+          icon: IconHouseSimple,
+          menuLinks: [
+            {
+              menuHeading: 'Sub Heading 1',
+              items: [
+                {
+                  title: 'Dashboard 1',
+                  submenuLinks: [
+                    {
+                      subMenuHeading: 'Sub Heading 1',
+                      items: [
+                        {
+                          title: 'Home 1',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: true,
+                            link: 'https://www.google.com/',
+                          },
                         },
-                      },
-                      {
-                        title: 'Home 2',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: false,
-                          link: '/',
+                        {
+                          title: 'Home 2',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
                         },
-                      },
-                    ],
-                  },
-                  {
-                    subMenuHeading: 'Sub Heading 2',
-                    items: [
-                      {
-                        title: 'Home 3',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: true,
-                          link: 'https://www.google.com/',
+                      ],
+                    },
+                    {
+                      subMenuHeading: 'Sub Heading 2',
+                      items: [
+                        {
+                          title: 'Home 3',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: true,
+                            link: 'https://www.google.com/',
+                          },
                         },
-                      },
-                      {
-                        title: 'Home 4',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: false,
-                          link: '/',
+                        {
+                          title: 'Home 4',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
                         },
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                title: 'Dashboard 2',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
+                      ],
+                    },
+                  ],
                 },
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-]);
+                {
+                  title: 'Dashboard 2',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  bottom: [
+    {
+      parentLinks: [
+        {
+          title: 'Home',
+          icon: IconHouseSimple,
+          menuLinks: [
+            {
+              menuHeading: 'Sub Heading 1',
+              items: [
+                {
+                  title: 'Dashboard 1',
+                  submenuLinks: [
+                    {
+                      subMenuHeading: 'Sub Heading 1',
+                      items: [
+                        {
+                          title: 'Home 1',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: true,
+                            link: 'https://www.google.com/',
+                          },
+                        },
+                        {
+                          title: 'Home 2',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                      ],
+                    },
+                    {
+                      subMenuHeading: 'Sub Heading 2',
+                      items: [
+                        {
+                          title: 'Home 3',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: true,
+                            link: 'https://www.google.com/',
+                          },
+                        },
+                        {
+                          title: 'Home 4',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  title: 'Dashboard 2',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+});
 </script>
 ```
 
@@ -164,6 +240,18 @@ const navLinks = ref([
 The nav-links attribute expects an array of objects that define the navigation menu. Each object can contain:
 
 <ul>
+  <li>
+    <code class="tw-mr-2">top:</code>
+    <span> 
+      You can define the top-level navigation links in the top section of the side navigation.
+    </span>
+  </li>
+  <li>
+    <code class="tw-mr-2">bottom:</code>
+    <span> 
+      You can define the top-level navigation links in the bottom section of the side navigation.
+    </span>
+  </li>
   <li>
     <code class="tw-mr-2">parentLinks:</code>
     <span> 
@@ -222,56 +310,112 @@ The nav-links attribute expects an array of objects that define the navigation m
       Links nested under the <code>menuLinks</code>, enabling multi-level navigation. These are further breakdowns or child items under each <code>menuLinks</code> section.
     </span>
   </li>
+  <li>
+    <code class="tw-mr-2">hidden:</code>
+    <span>
+      A boolean flag indicating whether the quick action item should be hidden.
+    </span>
+  </li>
 </ul>
 
 <p>Here's the structure for the nav-links attribute:</p>
 
 ```Javascript
-[
-  {
-    parentLinks: [
-      {
-        title: <String>,
-        icon: <COMPONENT>,   // Example icon component using Unplugin Icons
-        redirect: {
-          openInNewTab: <Boleean>,
-          isAbsoluteURL: <Boleean>,
-          link: <String>,
-        },
-        menuLinks: [
-          {
-            menuHeading: <String>,
-            items: [
-              {
-                title: <String>,
-                redirect: {
-                  openInNewTab: <Boleean>,
-                  isAbsoluteURL: <Boleean>,
-                  link: <String>,
-                },
-                submenuLinks: [
-                  {
-                    subMenuHeading: <String>,
-                    items: [
-                      {
-                        title: <String>,
-                        redirect: {
-                          openInNewTab: <Boleean>,
-                          isAbsoluteURL: <Boleean>,
-                          link: <String>,
-                        },
-                      },
-                    ],
+{
+  top: [
+    {
+      parentLinks: [
+        {
+          title: <String>,
+          icon: <COMPONENT>,   // Example icon component using Unplugin Icons
+          hidden: <Boleean>,
+          redirect: {
+            openInNewTab: <Boleean>,
+            isAbsoluteURL: <Boleean>,
+            link: <String>,
+          },
+          menuLinks: [
+            {
+              menuHeading: <String>,
+              items: [
+                {
+                  title: <String>,
+                  hidden: <Boleean>,
+                  redirect: {
+                    openInNewTab: <Boleean>,
+                    isAbsoluteURL: <Boleean>,
+                    link: <String>,
                   },
-                ],
-              },
-            ],
-          }
-        ],
-      },
-    ],
-  },
-]
+                  submenuLinks: [
+                    {
+                      subMenuHeading: <String>,
+                      items: [
+                        {
+                          title: <String>,
+                          hidden: <Boleean>,
+                          redirect: {
+                            openInNewTab: <Boleean>,
+                            isAbsoluteURL: <Boleean>,
+                            link: <String>,
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            }
+          ],
+        },
+      ],
+    },
+  ],
+  bottom: [
+    {
+      parentLinks: [
+        {
+          title: <String>,
+          icon: <COMPONENT>,   // Example icon component using Unplugin Icons
+          redirect: {
+            openInNewTab: <Boleean>,
+            isAbsoluteURL: <Boleean>,
+            link: <String>,
+          },
+          menuLinks: [
+            {
+              menuHeading: <String>,
+              items: [
+                {
+                  title: <String>,
+                  redirect: {
+                    openInNewTab: <Boleean>,
+                    isAbsoluteURL: <Boleean>,
+                    link: <String>,
+                  },
+                  submenuLinks: [
+                    {
+                      subMenuHeading: <String>,
+                      items: [
+                        {
+                          title: <String>,
+                          redirect: {
+                            openInNewTab: <Boleean>,
+                            isAbsoluteURL: <Boleean>,
+                            link: <String>,
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            }
+          ],
+        },
+      ],
+    },
+  ]
+}
 ```
 
 ## Active Navigation
@@ -304,78 +448,152 @@ const activeNav = ref({
   submenu: 'Home 2',
 });
 
-const navLinks = ref([
-  {
-    parentLinks: [
-      {
-        title: 'Home',
-        icon: IconHouseSimple,
-        menuLinks: [
-          {
-            menuHeading: 'Sub Heading 1',
-            items: [
-              {
-                title: 'Dashboard 1',
-                submenuLinks: [
-                  {
-                    subMenuHeading: 'Sub Heading 1',
-                    items: [
-                      {
-                        title: 'Home 1',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: true,
-                          link: 'https://www.google.com/',
+const navLinks = ref({
+  top: [
+    {
+      parentLinks: [
+        {
+          title: 'Home',
+          icon: IconHouseSimple,
+          menuLinks: [
+            {
+              menuHeading: 'Sub Heading 1',
+              items: [
+                {
+                  title: 'Dashboard 1',
+                  submenuLinks: [
+                    {
+                      subMenuHeading: 'Sub Heading 1',
+                      items: [
+                        {
+                          title: 'Home 1',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: true,
+                            link: 'https://www.google.com/',
+                          },
                         },
-                      },
-                      {
-                        title: 'Home 2',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: false,
-                          link: '/',
+                        {
+                          title: 'Home 2',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
                         },
-                      },
-                    ],
-                  },
-                  {
-                    subMenuHeading: 'Sub Heading 2',
-                    items: [
-                      {
-                        title: 'Home 3',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: true,
-                          link: 'https://www.google.com/',
+                      ],
+                    },
+                    {
+                      subMenuHeading: 'Sub Heading 2',
+                      items: [
+                        {
+                          title: 'Home 3',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: true,
+                            link: 'https://www.google.com/',
+                          },
                         },
-                      },
-                      {
-                        title: 'Home 4',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: false,
-                          link: '/',
+                        {
+                          title: 'Home 4',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
                         },
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                title: 'Dashboard 2',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
+                      ],
+                    },
+                  ],
                 },
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-]);
+                {
+                  title: 'Dashboard 2',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  bottom: [
+    {
+      parentLinks: [
+        {
+          title: 'Home',
+          icon: IconHouseSimple,
+          menuLinks: [
+            {
+              menuHeading: 'Sub Heading 1',
+              items: [
+                {
+                  title: 'Dashboard 1',
+                  submenuLinks: [
+                    {
+                      subMenuHeading: 'Sub Heading 1',
+                      items: [
+                        {
+                          title: 'Home 1',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: true,
+                            link: 'https://www.google.com/',
+                          },
+                        },
+                        {
+                          title: 'Home 2',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                      ],
+                    },
+                    {
+                      subMenuHeading: 'Sub Heading 2',
+                      items: [
+                        {
+                          title: 'Home 3',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: true,
+                            link: 'https://www.google.com/',
+                          },
+                        },
+                        {
+                          title: 'Home 4',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  title: 'Dashboard 2',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+});
 </script>
 ```
 
@@ -407,37 +625,91 @@ import IconHouseSimple from '~icons/ph/house-simple';
 
 const quickActions = ref([
   {
-    title: 'Leave Request',
-    description: 'Lorem ipsum dolor sit amet consectetur.',
-    icon: IconHouseSimple,
-    iconBgColor: 'purple', // green | purple
-    redirect: {
-      openInNewTab: false,
-      isAbsoluteURL: false,
-      link: '/',
-    },
+    menuHeading: 'Sub Heading 1',
+    items: [
+      {
+        title: 'Leave Request',
+        description: 'Lorem ipsum dolor sit amet consectetur.',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+      {
+        title: 'Onboarding Request',
+        description: 'Seamlessly onboard new employees into your Sprout ecosystem',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+      {
+        title: 'Certificate of Employee',
+        description: 'Lorem ipsum dolor sit amet consectetur. ',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+    ],
   },
   {
-    title: 'Onboarding Request',
-    description: 'Seamlessly onboard new employees into your Sprout ecosystem',
-    icon: IconHouseSimple,
-    iconBgColor: 'purple', // green | purple
-    redirect: {
-      openInNewTab: false,
-      isAbsoluteURL: false,
-      link: '/',
-    },
-  },
-  {
-    title: 'Certificate of Employee',
-    description: 'Lorem ipsum dolor sit amet consectetur. ',
-    icon: IconHouseSimple,
-    iconBgColor: 'purple', // green | purple
-    redirect: {
-      openInNewTab: false,
-      isAbsoluteURL: false,
-      link: '/',
-    },
+    menuHeading: 'Sub Heading 2',
+    items: [
+      {
+        title: 'ReadyWage',
+        description: 'Request Form',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+      {
+        title: 'Create Workflow',
+        description: 'Access your hard-earned salary in advance',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+      {
+        title: 'Create Something 1',
+        description: 'Lorem ipsum dolor sit amet consectetur.',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+      {
+        title: 'Create Something 2',
+        description: 'Lorem ipsum dolor sit amet consectetur.',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+    ],
   },
 ]);
 
@@ -447,78 +719,152 @@ const activeNav = ref({
   submenu: 'Home 2',
 });
 
-const navLinks = ref([
-  {
-    parentLinks: [
-      {
-        title: 'Home',
-        icon: IconHouseSimple,
-        menuLinks: [
-          {
-            menuHeading: 'Sub Heading 1',
-            items: [
-              {
-                title: 'Dashboard 1',
-                submenuLinks: [
-                  {
-                    subMenuHeading: 'Sub Heading 1',
-                    items: [
-                      {
-                        title: 'Home 1',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: true,
-                          link: 'https://www.google.com/',
+const navLinks = ref({
+  top: [
+    {
+      parentLinks: [
+        {
+          title: 'Home',
+          icon: IconHouseSimple,
+          menuLinks: [
+            {
+              menuHeading: 'Sub Heading 1',
+              items: [
+                {
+                  title: 'Dashboard 1',
+                  submenuLinks: [
+                    {
+                      subMenuHeading: 'Sub Heading 1',
+                      items: [
+                        {
+                          title: 'Home 1',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: true,
+                            link: 'https://www.google.com/',
+                          },
                         },
-                      },
-                      {
-                        title: 'Home 2',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: false,
-                          link: '/',
+                        {
+                          title: 'Home 2',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
                         },
-                      },
-                    ],
-                  },
-                  {
-                    subMenuHeading: 'Sub Heading 2',
-                    items: [
-                      {
-                        title: 'Home 3',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: true,
-                          link: 'https://www.google.com/',
+                      ],
+                    },
+                    {
+                      subMenuHeading: 'Sub Heading 2',
+                      items: [
+                        {
+                          title: 'Home 3',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: true,
+                            link: 'https://www.google.com/',
+                          },
                         },
-                      },
-                      {
-                        title: 'Home 4',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: false,
-                          link: '/',
+                        {
+                          title: 'Home 4',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
                         },
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                title: 'Dashboard 2',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
+                      ],
+                    },
+                  ],
                 },
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-]);
+                {
+                  title: 'Dashboard 2',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  bottom: [
+    {
+      parentLinks: [
+        {
+          title: 'Home',
+          icon: IconHouseSimple,
+          menuLinks: [
+            {
+              menuHeading: 'Sub Heading 1',
+              items: [
+                {
+                  title: 'Dashboard 1',
+                  submenuLinks: [
+                    {
+                      subMenuHeading: 'Sub Heading 1',
+                      items: [
+                        {
+                          title: 'Home 1',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: true,
+                            link: 'https://www.google.com/',
+                          },
+                        },
+                        {
+                          title: 'Home 2',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                      ],
+                    },
+                    {
+                      subMenuHeading: 'Sub Heading 2',
+                      items: [
+                        {
+                          title: 'Home 3',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: true,
+                            link: 'https://www.google.com/',
+                          },
+                        },
+                        {
+                          title: 'Home 4',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  title: 'Dashboard 2',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+});
 </script>
 ```
 
@@ -526,9 +872,11 @@ const navLinks = ref([
 
 Side navigation also includes a search functionality. Add `has-search` property to enable the search.
 
+Using the `@search` event, you can handle the search functionality.
+
 ```vue
 <template>
-  <spr-sidenav has-search>
+  <spr-sidenav has-search @search="handleSearch">
     <template #logo-image>
       <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
     </template>
@@ -538,6 +886,106 @@ Side navigation also includes a search functionality. Add `has-search` property 
     </template>
   </spr-sidenav>
 </template>
+
+<script setup>
+const handleSearch = (search) => {
+  console.log(search);
+};
+</script>
+```
+
+## Notifications
+
+Side navigation also includes a notification counter badge. Add `notification-count` property to enable the notification counter.
+
+Using the `@notifications` event, you can handle the notification functionality.
+
+```vue
+<template>
+  <spr-sidenav :notification-count="5" @notifications="handleNotifications">
+    <template #logo-image>
+      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+    </template>
+
+    <template #avatar-image>
+      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+    </template>
+  </spr-sidenav>
+</template>
+
+<script setup>
+const handleNotifications = (notifications) => {
+  console.log(notifications);
+};
+</script>
+```
+
+## User Menu
+
+The user menu allows you to add a user avatar at the bottom of the side navigation along with a menu. The user menu can contain items such as profile, settings, and logout.
+
+```vue
+<template>
+  <spr-sidenav :user-menu="userMenu">
+    <template #logo-image>
+      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+    </template>
+
+    <template #avatar-image>
+      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+    </template>
+  </spr-sidenav>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+import IconHouseSimple from '~icons/ph/house-simple';
+
+const userMenu = ref({
+  name: 'John Rafael M. Arias',
+  email: 'jarias@sprout.ph',
+  profileImage: 'https://lh3.googleusercontent.com/ogw/AF2bZyiCP8eaKX7KiduREcMAogl0Ml2TwYJAPTgcKeNap81ztg=s32-c-mo',
+  items: [
+    {
+      title: 'My Profile',
+      icon: IconHouseSimple,
+      redirect: {
+        openInNewTab: false,
+        isAbsoluteURL: false,
+        link: '/',
+      },
+    },
+    {
+      title: 'Privacy Policy',
+      icon: IconHouseSimple,
+      redirect: {
+        openInNewTab: false,
+        isAbsoluteURL: false,
+        link: '/',
+      },
+    },
+    {
+      title: 'Terms of Service',
+      icon: IconHouseSimple,
+      redirect: {
+        openInNewTab: false,
+        isAbsoluteURL: false,
+        link: '/',
+      },
+    },
+    {
+      title: 'Logout',
+      icon: IconHouseSimple,
+      redirect: {
+        openInNewTab: false,
+        isAbsoluteURL: false,
+        link: '/',
+      },
+    },
+  ],
+});
+</script>
 ```
 
 ## Sidenav API
@@ -608,9 +1056,40 @@ The following table outlines the available attributes for the Sidenav component:
     </tr>
     <tr>
       <td>
+        <code>notification-count</code>
+      </td>
+      <td>Show notification counter badge</td>
+      <td>Number</td>
+    </tr>
+    <tr>
+      <td>
+        <code>user-menu</code>
+      </td>
+      <td>Shows user avatar at the bottom of the sidenavigation along with a menu.</td>
+      <td>-</td>
+      <td>See <a href="#user-menu">User Menu</a></td>
+    </tr>
+    <tr>
+      <td>
         <code>@get-navlink-item</code>
       </td>
       <td>Will return link that is indicated in nav-links. This will be the conection to handle your router push.</td>
+      <td>-</td>
+      <td>function</td>
+    </tr>
+    <tr>
+      <td>
+        <code>@search</code>
+      </td>
+      <td>Handle the search functionality.</td>
+      <td>-</td>
+      <td>function</td>
+    </tr>
+    <tr>
+      <td>
+        <code>@notifications</code>
+      </td>
+      <td>Handle the notifications functionality.</td>
       <td>-</td>
       <td>function</td>
     </tr>
@@ -621,8 +1100,19 @@ The following table outlines the available attributes for the Sidenav component:
 
 Here’s a full example of how to implement the Sidenav component with the above attributes:
 
-<div class="no-darkmode tw-m-0 tw-bg-mushroom-100 tw-text-mushroom-950 tw-font-main tw-rounded-md tw-h-[40em] tw-w-full tw-relative tw-flex">
-  <spr-sidenav class="tw-absolute tw-z-[1]" :quick-actions="quickActions" has-search :active-nav="activeNav" :nav-links="navLinks">
+<div class="no-darkmode tw-m-0 tw-bg-mushroom-100 tw-text-mushroom-950 tw-font-main tw-rounded-md tw-h-[100vh] tw-w-full tw-relative tw-flex">
+  <spr-sidenav 
+    class="tw-absolute tw-z-[1]" 
+    :quick-actions="quickActions"
+    has-search
+    :active-nav="activeNav"
+    :nav-links="navLinks"
+    :notification-count="5"
+    :user-menu="userMenu"
+    @get-navlink-item="handleGetNavLinkItem"
+    @search="handleSearch"
+    @notifications="handleNotifications"
+  >
     <template #logo-image>
       <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
     </template>
@@ -660,7 +1150,11 @@ Here’s a full example of how to implement the Sidenav component with the above
     has-search
     :active-nav="activeNav"
     :nav-links="navLinks"
+    :notification-count="5"
+    :user-menu="userMenu"
     @get-navlink-item="handleGetNavLinkItem"
+    @search="handleSearch"
+    @notifications="handleNotifications"
   >
     <template #logo-image>
       <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
@@ -682,62 +1176,97 @@ import IconUsersThree from '~icons/ph/users-three';
 import IconLeaf from '~icons/ph/leaf';
 import IconCurrencyRub from '~icons/ph/currency-rub';
 import IconWallet from '~icons/ph/wallet';
+import IconAddressBook from '~icons/ph/address-book';
+import IconAlien from '~icons/ph/alien';
+import IconAlignLeft from '~icons/ph/align-left';
 
 const quickActions = ref([
   {
-    title: 'Leave Request',
-    description: 'Lorem ipsum dolor sit amet consectetur.',
-    icon: IconHouseSimple,
-    iconBgColor: 'purple',
-    redirect: {
-      openInNewTab: false,
-      isAbsoluteURL: false,
-      link: '/',
-    },
+    menuHeading: 'Sub Heading 1',
+    items: [
+      {
+        title: 'Leave Request',
+        description: 'Lorem ipsum dolor sit amet consectetur.',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+      {
+        title: 'Onboarding Request',
+        description: 'Seamlessly onboard new employees into your Sprout ecosystem',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+      {
+        title: 'Certificate of Employee',
+        description: 'Lorem ipsum dolor sit amet consectetur. ',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+    ],
   },
   {
-    title: 'Onboarding Request',
-    description: 'Seamlessly onboard new employees into your Sprout ecosystem',
-    icon: IconHouseSimple,
-    iconBgColor: 'purple',
-    redirect: {
-      openInNewTab: false,
-      isAbsoluteURL: false,
-      link: '/',
-    },
-  },
-  {
-    title: 'Certificate of Employee',
-    description: 'Lorem ipsum dolor sit amet consectetur. ',
-    icon: IconHouseSimple,
-    iconBgColor: 'purple',
-    redirect: {
-      openInNewTab: false,
-      isAbsoluteURL: false,
-      link: '/',
-    },
-  },
-  {
-    title: 'ReadyWage',
-    description: 'Request Form',
-    icon: IconHouseSimple,
-    iconBgColor: 'purple',
-    redirect: {
-      openInNewTab: false,
-      isAbsoluteURL: false,
-      link: '/',
-    },
-  },
-  {
-    title: 'Create Workflow',
-    description: 'Access your hard-earned salary in advance',
-    icon: IconHouseSimple,
-    iconBgColor: 'purple',
-    redirect: {
-      openInNewTab: false,
-      isAbsoluteURL: false,
-      link: '/',
-    },
+    menuHeading: 'Sub Heading 2',
+    items: [
+      {
+        title: 'ReadyWage',
+        description: 'Request Form',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+      {
+        title: 'Create Workflow',
+        description: 'Access your hard-earned salary in advance',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+      {
+        title: 'Create Something 1',
+        description: 'Lorem ipsum dolor sit amet consectetur.',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+      {
+        title: 'Create Something 2',
+        description: 'Lorem ipsum dolor sit amet consectetur.',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+    ],
   },
 ]);
 
@@ -747,210 +1276,350 @@ const activeNav = ref({
   submenu: 'Home 2',
 });
 
-const navLinks = ref([
-  {
-    parentLinks: [
-      {
-        title: 'Home',
-        icon: IconHouseSimple,
-        menuLinks: [
-          {
-            menuHeading: 'Sub Heading 1',
-            items: [
-              {
-                title: 'Dashboard 1',
-                submenuLinks: [
-                  {
-                    subMenuHeading: 'Sub Heading 1',
-                    items: [
-                      {
-                        title: 'Home 1',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: true,
-                          link: 'https://www.google.com/',
+const navLinks = ref({
+  top: [
+    {
+      parentLinks: [
+        {
+          title: 'Home',
+          icon: IconHouseSimple,
+          menuLinks: [
+            {
+              menuHeading: 'Sub Heading 1',
+              items: [
+                {
+                  title: 'Dashboard 1',
+                  submenuLinks: [
+                    {
+                      subMenuHeading: 'Sub Heading 1',
+                      items: [
+                        {
+                          title: 'Home 1',
+                          redirect: {},
                         },
-                      },
-                      {
-                        title: 'Home 2',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: false,
-                          link: '/',
+                        {
+                          title: 'Home 2',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
                         },
-                      },
-                    ],
+                      ],
+                    },
+                    {
+                      subMenuHeading: 'Sub Heading 2',
+                      items: [
+                        {
+                          title: 'Home 3',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: true,
+                            link: 'https://www.google.com/',
+                          },
+                        },
+                        {
+                          title: 'Home 4',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  title: 'Dashboard 2',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
                   },
-                  {
-                    subMenuHeading: 'Sub Heading 2',
-                    items: [
-                      {
-                        title: 'Home 3',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: true,
-                          link: 'https://www.google.com/',
-                        },
-                      },
-                      {
-                        title: 'Home 4',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: false,
-                          link: '/',
-                        },
-                      },
-                    ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          title: 'Employees',
+          icon: IconUsersThree,
+          redirect: {
+            openInNewTab: false,
+            isAbsoluteURL: false,
+            link: '/',
+          },
+        },
+      ],
+    },
+    {
+      parentLinks: [
+        {
+          title: 'Payroll',
+          icon: IconLeaf,
+          menuLinks: [
+            {
+              menuHeading: 'Sub Heading 1',
+              items: [
+                {
+                  title: 'Payroll Runs',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
                   },
-                ],
-              },
-              {
-                title: 'Dashboard 2',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
                 },
-              },
-            ],
-          },
-        ],
-      },
-      {
-        title: 'Employees',
-        icon: IconUsersThree,
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-      },
-    ],
-  },
-  {
-    parentLinks: [
-      {
-        title: 'Payroll',
-        icon: IconLeaf,
-        menuLinks: [
-          {
-            menuHeading: 'Sub Heading 1',
-            items: [
-              {
-                title: 'Payroll Runs',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
+                {
+                  title: 'Reports',
+                  submenuLinks: [
+                    {
+                      subMenuHeading: '',
+                      items: [
+                        {
+                          title: 'Payroll',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                        {
+                          title: 'SSS',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                        {
+                          title: 'PHILHEALTH',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                      ],
+                    },
+                  ],
                 },
-              },
-              {
-                title: 'Reports',
-                submenuLinks: [
-                  {
-                    subMenuHeading: '',
-                    items: [
-                      {
-                        title: 'Payroll',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: false,
-                          link: '/',
-                        },
-                      },
-                      {
-                        title: 'SSS',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: false,
-                          link: '/',
-                        },
-                      },
-                      {
-                        title: 'PHILHEALTH',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: false,
-                          link: '/',
-                        },
-                      },
-                    ],
+              ],
+            },
+            {
+              menuHeading: 'Sub Heading 2',
+              items: [
+                {
+                  title: 'Setup',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
                   },
-                ],
-              },
-            ],
-          },
-          {
-            menuHeading: 'Sub Heading 2',
-            items: [
-              {
-                title: 'Setup',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
                 },
-              },
-              {
-                title: 'Employees',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
+                {
+                  title: 'Employees',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
                 },
-              },
-            ],
-          },
-        ],
-      },
-      {
-        title: 'Money',
-        icon: IconCurrencyRub,
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
+              ],
+            },
+          ],
         },
-      },
-      {
-        title: 'Car',
-        icon: IconWallet,
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-        menuLinks: [
-          {
-            menuHeading: '',
-            items: [
-              {
-                title: 'Car 1',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
-                },
-              },
-              {
-                title: 'Car 2',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
-                },
-              },
-            ],
+        {
+          title: 'Money',
+          icon: IconCurrencyRub,
+          redirect: {
+            openInNewTab: false,
+            isAbsoluteURL: false,
+            link: '/',
           },
-        ],
-      },
-    ],
-  },
-]);
+        },
+        {
+          title: 'Car',
+          icon: IconWallet,
+          redirect: {
+            openInNewTab: false,
+            isAbsoluteURL: false,
+            link: '/',
+          },
+          menuLinks: [
+            {
+              menuHeading: '',
+              items: [
+                {
+                  title: 'Car 1',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+                {
+                  title: 'Car 2',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  bottom: [
+    {
+      parentLinks: [
+        {
+          title: 'Gallery',
+          icon: IconAddressBook,
+          menuLinks: [
+            {
+              menuHeading: 'Sub Heading 1',
+              items: [
+                {
+                  title: 'Dashboard 1',
+                  submenuLinks: [
+                    {
+                      subMenuHeading: 'Sub Heading 1',
+                      items: [
+                        {
+                          title: 'Home 1',
+                          redirect: {},
+                        },
+                        {
+                          title: 'Home 2',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                      ],
+                    },
+                    {
+                      subMenuHeading: 'Sub Heading 2',
+                      items: [
+                        {
+                          title: 'Home 3',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: true,
+                            link: 'https://www.google.com/',
+                          },
+                        },
+                        {
+                          title: 'Home 4',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  title: 'Dashboard 2',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      parentLinks: [
+        {
+          title: 'Resources',
+          icon: IconAlien,
+          redirect: {
+            openInNewTab: false,
+            isAbsoluteURL: false,
+            link: '/',
+          },
+        },
+        {
+          title: 'News',
+          icon: IconAlignLeft,
+          redirect: {
+            openInNewTab: false,
+            isAbsoluteURL: false,
+            link: '/',
+          },
+        },
+      ],
+    },
+  ],
+});
 
 const handleGetNavLinkItem = (route) => {
   console.log(route);
 };
+
+const handleSearch = (search) => {
+  console.log(search);
+};
+
+const handleNotifications = (notifications) => {
+  console.log(notifications);
+};
+
+const userMenu = ref({
+  name: 'John Rafael M. Arias',
+  email: 'jarias@sprout.ph',
+  profileImage: 'https://lh3.googleusercontent.com/ogw/AF2bZyiCP8eaKX7KiduREcMAogl0Ml2TwYJAPTgcKeNap81ztg=s32-c-mo',
+  items: [
+    {
+      title: 'My Profile',
+      icon: IconHouseSimple,
+      redirect: {
+        openInNewTab: false,
+        isAbsoluteURL: false,
+        link: '/',
+      },
+    },
+    {
+      title: 'Privacy Policy',
+      icon: IconHouseSimple,
+      redirect: {
+        openInNewTab: false,
+        isAbsoluteURL: false,
+        link: '/',
+      },
+    },
+    {
+      title: 'Terms of Service',
+      icon: IconHouseSimple,
+      redirect: {
+        openInNewTab: false,
+        isAbsoluteURL: false,
+        link: '/',
+      },
+    },
+    {
+      title: 'Logout',
+      icon: IconHouseSimple,
+      redirect: {
+        openInNewTab: false,
+        isAbsoluteURL: false,
+        link: '/',
+      },
+    },
+  ],
+});
 </script>
 ```
 
@@ -961,92 +1630,100 @@ import SprSidenav from '@/components/sidenav/sidenav.vue';
 
 import IconHouseSimple from '~icons/ph/house-simple';
 import IconUsersThree from '~icons/ph/users-three';
-import IconShapes from '~icons/ph/shapes';
 import IconLeaf from '~icons/ph/leaf';
 import IconCurrencyRub from '~icons/ph/currency-rub';
 import IconWallet from '~icons/ph/wallet';
-import IconChartBar from '~icons/ph/chart-bar';
-import IconFlowArrow from '~icons/ph/flow-arrow';
-import IconGear from '~icons/ph/gear';
-import IconBookOpenText from '~icons/ph/book-open-text';
+import IconAddressBook from '~icons/ph/address-book';
+import IconAlien from '~icons/ph/alien';
+import IconAlignLeft from '~icons/ph/align-left';
 
 const quickActions = ref([
   {
-    title: 'Leave Request',
-    description: 'Lorem ipsum dolor sit amet consectetur.',
-    icon: IconHouseSimple,
-    iconBgColor: 'purple',
-    redirect: {
-      openInNewTab: false,
-      isAbsoluteURL: false,
-      link: '/',
-    },
+    menuHeading: 'Sub Heading 1',
+    items: [
+      {
+        title: 'Leave Request',
+        description: 'Lorem ipsum dolor sit amet consectetur.',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+      {
+        title: 'Onboarding Request',
+        description: 'Seamlessly onboard new employees into your Sprout ecosystem',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+      {
+        title: 'Certificate of Employee',
+        description: 'Lorem ipsum dolor sit amet consectetur. ',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+    ],
   },
   {
-    title: 'Onboarding Request',
-    description: 'Seamlessly onboard new employees into your Sprout ecosystem',
-    icon: IconHouseSimple,
-    iconBgColor: 'purple',
-    redirect: {
-      openInNewTab: false,
-      isAbsoluteURL: false,
-      link: '/',
-    },
-  },
-  {
-    title: 'Certificate of Employee',
-    description: 'Lorem ipsum dolor sit amet consectetur. ',
-    icon: IconHouseSimple,
-    iconBgColor: 'purple',
-    redirect: {
-      openInNewTab: false,
-      isAbsoluteURL: false,
-      link: '/',
-    },
-  },
-  {
-    title: 'ReadyWage',
-    description: 'Request Form',
-    icon: IconHouseSimple,
-    iconBgColor: 'purple',
-    redirect: {
-      openInNewTab: false,
-      isAbsoluteURL: false,
-      link: '/',
-    },
-  },
-  {
-    title: 'Create Workflow',
-    description: 'Access your hard-earned salary in advance',
-    icon: IconHouseSimple,
-    iconBgColor: 'purple',
-    redirect: {
-      openInNewTab: false,
-      isAbsoluteURL: false,
-      link: '/',
-    },
-  },
-  {
-    title: 'Create Something 1',
-    description: 'Lorem ipsum dolor sit amet consectetur.',
-    icon: IconHouseSimple,
-    iconBgColor: 'purple',
-    redirect: {
-      openInNewTab: false,
-      isAbsoluteURL: false,
-      link: '/',
-    },
-  },
-  {
-    title: 'Create Something 2',
-    description: 'Lorem ipsum dolor sit amet consectetur.',
-    icon: IconHouseSimple,
-    iconBgColor: 'purple',
-    redirect: {
-      openInNewTab: false,
-      isAbsoluteURL: false,
-      link: '/',
-    },
+    menuHeading: 'Sub Heading 2',
+    items: [
+      {
+        title: 'ReadyWage',
+        description: 'Request Form',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+      {
+        title: 'Create Workflow',
+        description: 'Access your hard-earned salary in advance',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+      {
+        title: 'Create Something 1',
+        description: 'Lorem ipsum dolor sit amet consectetur.',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+      {
+        title: 'Create Something 2',
+        description: 'Lorem ipsum dolor sit amet consectetur.',
+        icon: IconHouseSimple,
+        iconBgColor: 'purple',
+        redirect: {
+          openInNewTab: false,
+          isAbsoluteURL: false,
+          link: '/',
+        },
+      },
+    ],
   },
 ]);
 
@@ -1056,204 +1733,348 @@ const activeNav = ref({
   submenu: 'Home 2',
 });
 
-const navLinks = ref([
-  {
-    parentLinks: [
-      {
-        title: 'Home',
-        icon: IconHouseSimple,
-        menuLinks: [
-          {
-            menuHeading: 'Sub Heading 1',
-            items: [
-              {
-                title: 'Dashboard 1',
-                submenuLinks: [
-                  {
-                    subMenuHeading: 'Sub Heading 1',
-                    items: [
-                      {
-                        title: 'Home 1',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: true,
-                          link: 'https://www.google.com/',
+const navLinks = ref({
+  top: [
+    {
+      parentLinks: [
+        {
+          title: 'Home',
+          icon: IconHouseSimple,
+          menuLinks: [
+            {
+              menuHeading: 'Sub Heading 1',
+              items: [
+                {
+                  title: 'Dashboard 1',
+                  submenuLinks: [
+                    {
+                      subMenuHeading: 'Sub Heading 1',
+                      items: [
+                        {
+                          title: 'Home 1',
+                          redirect: {},
                         },
-                      },
-                      {
-                        title: 'Home 2',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: false,
-                          link: '/',
+                        {
+                          title: 'Home 2',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
                         },
-                      },
-                    ],
+                      ],
+                    },
+                    {
+                      subMenuHeading: 'Sub Heading 2',
+                      items: [
+                        {
+                          title: 'Home 3',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: true,
+                            link: 'https://www.google.com/',
+                          },
+                        },
+                        {
+                          title: 'Home 4',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  title: 'Dashboard 2',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
                   },
-                  {
-                    subMenuHeading: 'Sub Heading 2',
-                    items: [
-                      {
-                        title: 'Home 3',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: true,
-                          link: 'https://www.google.com/',
-                        },
-                      },
-                      {
-                        title: 'Home 4',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: false,
-                          link: '/',
-                        },
-                      },
-                    ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          title: 'Employees',
+          icon: IconUsersThree,
+          redirect: {
+            openInNewTab: false,
+            isAbsoluteURL: false,
+            link: '/',
+          },
+        },
+      ],
+    },
+    {
+      parentLinks: [
+        {
+          title: 'Payroll',
+          icon: IconLeaf,
+          menuLinks: [
+            {
+              menuHeading: 'Sub Heading 1',
+              items: [
+                {
+                  title: 'Payroll Runs',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
                   },
-                ],
-              },
-              {
-                title: 'Dashboard 2',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
                 },
-              },
-            ],
-          },
-        ],
-      },
-      {
-        title: 'Employees',
-        icon: IconUsersThree,
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-      },
-    ],
-  },
-  {
-    parentLinks: [
-      {
-        title: 'Payroll',
-        icon: IconLeaf,
-        menuLinks: [
-          {
-            menuHeading: 'Sub Heading 1',
-            items: [
-              {
-                title: 'Payroll Runs',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
+                {
+                  title: 'Reports',
+                  submenuLinks: [
+                    {
+                      subMenuHeading: '',
+                      items: [
+                        {
+                          title: 'Payroll',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                        {
+                          title: 'SSS',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                        {
+                          title: 'PHILHEALTH',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                      ],
+                    },
+                  ],
                 },
-              },
-              {
-                title: 'Reports',
-                submenuLinks: [
-                  {
-                    subMenuHeading: '',
-                    items: [
-                      {
-                        title: 'Payroll',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: false,
-                          link: '/',
-                        },
-                      },
-                      {
-                        title: 'SSS',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: false,
-                          link: '/',
-                        },
-                      },
-                      {
-                        title: 'PHILHEALTH',
-                        redirect: {
-                          openInNewTab: false,
-                          isAbsoluteURL: false,
-                          link: '/',
-                        },
-                      },
-                    ],
+              ],
+            },
+            {
+              menuHeading: 'Sub Heading 2',
+              items: [
+                {
+                  title: 'Setup',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
                   },
-                ],
-              },
-            ],
-          },
-          {
-            menuHeading: 'Sub Heading 2',
-            items: [
-              {
-                title: 'Setup',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
                 },
-              },
-              {
-                title: 'Employees',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
+                {
+                  title: 'Employees',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
                 },
-              },
-            ],
-          },
-        ],
-      },
-      {
-        title: 'Money',
-        icon: IconCurrencyRub,
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
+              ],
+            },
+          ],
         },
-      },
-      {
-        title: 'Car',
-        icon: IconWallet,
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-        menuLinks: [
-          {
-            menuHeading: '',
-            items: [
-              {
-                title: 'Car 1',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
-                },
-              },
-              {
-                title: 'Car 2',
-                redirect: {
-                  openInNewTab: false,
-                  isAbsoluteURL: false,
-                  link: '/',
-                },
-              },
-            ],
+        {
+          title: 'Money',
+          icon: IconCurrencyRub,
+          redirect: {
+            openInNewTab: false,
+            isAbsoluteURL: false,
+            link: '/',
           },
-        ],
+        },
+        {
+          title: 'Car',
+          icon: IconWallet,
+          redirect: {
+            openInNewTab: false,
+            isAbsoluteURL: false,
+            link: '/',
+          },
+          menuLinks: [
+            {
+              menuHeading: '',
+              items: [
+                {
+                  title: 'Car 1',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+                {
+                  title: 'Car 2',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  bottom: [
+    {
+      parentLinks: [
+        {
+          title: 'Gallery',
+          icon: IconAddressBook,
+          menuLinks: [
+            {
+              menuHeading: 'Sub Heading 1',
+              items: [
+                {
+                  title: 'Dashboard 1',
+                  submenuLinks: [
+                    {
+                      subMenuHeading: 'Sub Heading 1',
+                      items: [
+                        {
+                          title: 'Home 1',
+                          redirect: {},
+                        },
+                        {
+                          title: 'Home 2',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                      ],
+                    },
+                    {
+                      subMenuHeading: 'Sub Heading 2',
+                      items: [
+                        {
+                          title: 'Home 3',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: true,
+                            link: 'https://www.google.com/',
+                          },
+                        },
+                        {
+                          title: 'Home 4',
+                          redirect: {
+                            openInNewTab: false,
+                            isAbsoluteURL: false,
+                            link: '/',
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  title: 'Dashboard 2',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      parentLinks: [
+        {
+          title: 'Resources',
+          icon: IconAlien,
+          redirect: {
+            openInNewTab: false,
+            isAbsoluteURL: false,
+            link: '/',
+          },
+        },
+        {
+          title: 'News',
+          icon: IconAlignLeft,
+          redirect: {
+            openInNewTab: false,
+            isAbsoluteURL: false,
+            link: '/',
+          },
+        },
+      ],
+    },
+  ],
+});
+
+const handleGetNavLinkItem = (route) => {
+  console.log(route);
+};
+
+const handleSearch = (search) => {
+  console.log(search);
+};
+
+const handleNotifications = (notifications) => {
+  console.log(notifications);
+};
+
+const userMenu = ref({
+  name: 'John Rafael M. Arias',
+  email: 'jarias@sprout.ph',
+  profileImage: 'https://lh3.googleusercontent.com/ogw/AF2bZyiCP8eaKX7KiduREcMAogl0Ml2TwYJAPTgcKeNap81ztg=s32-c-mo',
+  items: [
+    {
+      title: 'My Profile',
+      icon: IconHouseSimple,
+      redirect: {
+        openInNewTab: false,
+        isAbsoluteURL: false,
+        link: '/',
       },
-    ],
-  },
-]);
+    },
+    {
+      title: 'Privacy Policy',
+      icon: IconHouseSimple,
+      redirect: {
+        openInNewTab: false,
+        isAbsoluteURL: false,
+        link: '/',
+      },
+    },
+    {
+      title: 'Terms of Service',
+      icon: IconHouseSimple,
+      redirect: {
+        openInNewTab: false,
+        isAbsoluteURL: false,
+        link: '/',
+      },
+    },
+    {
+      title: 'Logout',
+      icon: IconHouseSimple,
+      redirect: {
+        openInNewTab: false,
+        isAbsoluteURL: false,
+        link: '/',
+      },
+    },
+  ],
+});
 </script>

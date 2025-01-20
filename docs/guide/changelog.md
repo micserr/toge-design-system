@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.0.37 (2025-01-17)
+
+- Feat:
+
+  - Sidenav DQA Updates
+  - Sidenav Top and Buttom Section
+  - Quick Action - Sectionized
+  - Notification
+  - Fix Issue - Parent Link Does not active if no menulinks
+  - Add activeNav on click on navigation item, User Menu
+
+  - ([#7a11fe86](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7a11fe86c2b85d2a35b92847a1213bfbe22ccd66?refName=refs/heads/2024/feature/arias/sidenav) by @jarias)
+  - ([#0493bcc5](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0493bcc5001064d66e9755f74ed8808a1701a15b?refName=refs/heads/2024/feature/arias/sidenav) by @jarias)
+  - ([#28b8a52b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/28b8a52b6c1dd10024192ecdfc2c3d4e246d0420?refName=refs/heads/2024/feature/arias/sidenav) by @jarias)
+
 ## 1.0.36 (2025-01-17)
 
 - Feat: Tabs, TimePicker ([#83e94c5c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/83e94c5c6848e83d82137ac1f4b64d65036b879d?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FDQA-tabs-timepicker) by @andrea)

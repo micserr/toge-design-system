@@ -18,8 +18,10 @@ export const useBadge = (props: BadgePropTypes) => {
     });
 
     const sizeClasses = classNames({
-      'tw-label-sm-medium tw-h-[20px] tw-min-w-[20px] tw-rounded-[32px]': size === 'big',
-      'tw-label-xs-medium tw-h-[16px] tw-min-w-[16px] tw-rounded-[32px]': size === 'small',
+      'tw-label-sm-medium  !tw-leading-[0] !tw-tracking-normal tw-h-[20px] tw-min-w-[20px] tw-rounded-[32px] tw-py-size-spacing-3xs tw-px-size-spacing-5xs':
+        size === 'big',
+      'tw-label-xs-medium !tw-leading-[0] !tw-tracking-normal tw-h-[16px] tw-min-w-[16px] tw-rounded-[32px] tw-py-size-spacing-6xs tw-px-size-spacing-5xs':
+        size === 'small',
       'tw-h-[10px] tw-min-w-[10px] tw-rounded-full': size === 'tiny',
     });
 

@@ -7,22 +7,27 @@
         tabsClasses,
         'tw-label-xs-regular tw-cursor-pointer tw-border-solid',
         {
-          'tw-background-color-single-active tw-border-color-success-base tw-border':
-            !underlined && selectedTabIndex === index,
+          'tw-background-color-single-active tw-border': !underlined && selectedTabIndex === index,
           'tw-border-color-weak hover:tw-background-color-hover tw-border-x-[0.5px] tw-border-y':
             !underlined && selectedTabIndex !== index,
-          'tw-border-color-base tw-text-color-base tw-border-b': underlined && selectedTabIndex !== index,
-          'tw-border-color-success-base tw-text-color-brand-base tw-label-xs-medium tw-border-b-2':
-            underlined && selectedTabIndex === index,
-          'tw-border-color-disabled tw-text-color-disabled tw-cursor-not-allowed tw-border-b':
+          'tw-border-color-base tw-border-b': underlined && selectedTabIndex !== index,
+          'tw-border-b-2': underlined && selectedTabIndex === index,
+          'tw-border-color-disabled tw-text-color-disabled !tw-cursor-not-allowed tw-border-b':
             underlined && tab.disabled,
+          'tw-label-sm-regular tw-text-color-base': selectedTabIndex !== index,
+          'tw-body-sm-regular tw-text-color-brand-base tw-border-color-success-base': selectedTabIndex === index,
+          'tw-border-l-0': selectedTabIndex - index === -1,
+          'tw-border-r-0': selectedTabIndex - index === 1,
         },
       ]"
       @click="updateSelectedTabIndex(index, tab.disabled)"
     >
-      <div class="tw-flex tw-items-center tw-gap-size-spacing-5xs">
-        <div v-if="!!tab.icon" class="tw-h-4 tw-w-4">
-          <component :is="tab.icon" />
+      <div class="tw-flex tw-items-center tw-gap-size-spacing-5xs tw-leading-none">
+        <div v-if="!!tab.icon">
+          <component
+            :is="selectedTabIndex === index && !!tab.iconFill ? tab.iconFill : tab.icon"
+            class="tw-h-4 tw-w-4"
+          />
         </div>
         <div v-if="!!tab.label">
           {{ tab.label }}

@@ -15,24 +15,24 @@ allows users to select a time from a dropdown list. It supports both 12-hour and
 
 ## Basic Usage
 
-<spr-time-picker 
+<spr-timePicker 
     v-model="selectedValue"
     :label="`Timepicker value: ${selectedValue || ''}`"
   />
 
 ```vue
-<spr-time-picker v-model="selectedValue" :label="`Timepicker value: ${selectedValue || ''}`" />
+<spr-timePicker v-model="selectedValue" :label="`Timepicker value: ${selectedValue || ''}`" />
 ```
 
 ## Format
 
 <div class="tw-flex tw-flex-col tw-gap-4">
-  <spr-time-picker 
+  <spr-timePicker 
       v-model="selectedValue"
       label="12 hour format"
       format="12"
     />
-  <spr-time-picker
+  <spr-timePicker
       v-model="selectedValue"
       label="24 hour format"
       format="24"
@@ -41,13 +41,13 @@ allows users to select a time from a dropdown list. It supports both 12-hour and
 
 ```vue
 <div class="tw-flex tw-flex-col tw-gap-4">
-  <spr-time-picker 
+  <spr-timePicker 
       v-model="selectedValue"
       label="12 hour format"
       format="12"
     />
 
-  <spr-time-picker
+  <spr-timePicker
       v-model="selectedValue"
       label="24 hour format"
       format="24"
@@ -57,7 +57,7 @@ allows users to select a time from a dropdown list. It supports both 12-hour and
 
 ## Disable Typing
 
-<spr-time-picker 
+<spr-timePicker 
     v-model="selectedValue"
     label="Timepicker"
     disableTyping
@@ -65,19 +65,31 @@ allows users to select a time from a dropdown list. It supports both 12-hour and
   />
 
 ```vue
-<spr-time-picker v-model="selectedValue" label="Timepicker" disableTyping format="12" />
+<spr-timePicker v-model="selectedValue" label="Timepicker" disableTyping format="12" />
 ```
 
 ## Disabled
 
-<spr-time-picker 
+<spr-timePicker 
     v-model="selectedValue"
-    :label="`Timepicker value: ${selectedValue || ''}`"
+    label="Timepicker"
     disabled
   />
 
 ```vue
-<spr-time-picker v-model="selectedValue" label="Timepicker" disabled />
+<spr-timePicker v-model="selectedValue" label="Timepicker" disabled />
+```
+
+## Full width
+
+<spr-timePicker 
+    v-model="selectedValue"
+    label="Timepicker"
+    fullWidth
+  />
+
+```vue
+<spr-timePicker v-model="selectedValue" label="Timepicker" fullWidth />
 ```
 
 ## Attributes
@@ -88,6 +100,7 @@ allows users to select a time from a dropdown list. It supports both 12-hour and
 | disableTyping | make the input field read-only | `boolean`       | false   |
 | interval      | set time interval              | `string`        | 30      |
 | label         | Field Label                    | `string`        | ''      |
+| fullWidth     | Set full width to option       | `boolean`       | false   |
 
 <script setup lang="ts">
   import { ref } from 'vue';

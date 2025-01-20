@@ -45,7 +45,9 @@
         >
           {{ option }}
 
-          <span v-if="option.toUpperCase() === selectedValue.toUpperCase()" class="tw-text-color-brand-base"
+          <span
+            v-if="option.toUpperCase() === selectedValue.toUpperCase()"
+            class="tw-text-color-brand-base tw-font-bold"
             ><IconCheck
           /></span>
         </div>
@@ -61,7 +63,7 @@ import { defineProps } from 'vue';
 import { timePickerPropTypes, timePickerEmitTypes } from './timePicker';
 import { useTimePicker } from './use-timePicker';
 import IconCheck from '~icons/ph/check';
-import IconClock from '~icons/ph/clock-thin';
+import IconClock from '~icons/ph/clock';
 
 const props = defineProps(timePickerPropTypes);
 const emit = defineEmits(timePickerEmitTypes);

@@ -7,7 +7,7 @@
     </div>
 
     <section class="flex flex-col items-center justify-center gap-size-spacing-md">
-      <div class="text-color-strong body-md flex flex-col">
+      <div class="text-color-strong body-md flex flex-col body-md-regular-medium">
         {{ description }}
         <div class="text-color-base body-sm-regular">
           {{ subDescription }}

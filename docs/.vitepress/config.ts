@@ -105,6 +105,10 @@ export default defineConfig({
               text: 'Empty State',
               link: '/documentation/components/emptyState',
             },
+            {
+              text: 'Avatar',
+              link: '/documentation/components/avatar',
+            },
           ],
         },
         {

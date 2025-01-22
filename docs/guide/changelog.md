@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.40 (2025-01-22)
+
+- Fix: Empty State pipeline error ([#1d441db1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1d441db1ad7f25313d511e5b5556bc137726427f?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fempty-state) by @andrea)
+
 ## 1.0.39 (2025-01-22)
 
 - Feat: Empty State ([#0cb488ac](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0cb488ac8e74622d9c2529d8af3b4b1b7e71e56e?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fempty-state) by @andrea)

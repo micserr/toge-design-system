@@ -76,5 +76,5 @@ Image size can be controlled by passing the `size` prop. The default size is `sm
 | onClick | emits when button click |
 
 <script setup lang="ts">
-  import SprEmptyState from "@/components/emptyState/EmptyState.vue";
+  import SprEmptyState from "@/components/emptyState/emptyState.vue";
 </script>

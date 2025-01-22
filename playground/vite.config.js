@@ -12,6 +12,10 @@ export default defineConfig({
         },
       },
     },
+    optimizeDeps: {
+      include: ['vue', '@vue/shared'],
+      exclude: ['@vue/repl', '@vue/repl/monaco-editor']
+    },
     chunkSizeWarningLimit: 6000,
   },
   plugins: [vue()],

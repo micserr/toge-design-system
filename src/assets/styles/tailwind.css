@@ -24,6 +24,7 @@
     --size-1100: 96px;
     --size-1200: 128px;
   }
+
   *::-webkit-scrollbar {
     @apply tw-h-[8px] tw-w-[8px];
   }
@@ -38,9 +39,32 @@
 }
 
 @layer components {
-  #sidenav-menu-wrapper,
+  /* #region - Sidenav */
+  #quick-action-menu-wrapper {
+    @apply tw-max-h-[500px] tw-w-[400px];
+  }
+
+  #sidenav-menu-wrapper {
+    @apply tw-max-h-[500px] tw-w-[215px];
+  }
+
   #sidenav-submenu-wrapper {
-    @apply tw-background-color tw-max-h-[500px] tw-w-[215px] tw-overflow-y-auto tw-overflow-x-hidden tw-rounded-[12px] tw-drop-shadow-md;
+    @apply tw-max-h-[500px] tw-w-[215px];
+  }
+
+  #user-menu-wrapper {
+    @apply !tw-top-[-20px] tw-max-h-[500px] tw-w-[300px];
+  }
+
+  #sidenav-sub-submenu-wrapper {
+    @apply tw-hidden;
+  }
+
+  #quick-action-menu-wrapper,
+  #sidenav-menu-wrapper,
+  #sidenav-submenu-wrapper,
+  #user-menu-wrapper {
+    @apply tw-background-color tw-border-color-base tw-overflow-y-auto tw-overflow-x-hidden tw-rounded-[12px] tw-border tw-border-solid tw-drop-shadow-md;
 
     .v-popper__wrapper {
       .v-popper__inner {
@@ -66,14 +90,13 @@
     }
   }
 
-  #sidenav-sub-submenu-wrapper {
-    @apply tw-hidden;
-  }
+  /* #endregion - Sidenav */
 
+  /* #region - Tooltips */
   #default-tooltip {
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply tw-label-xs tw-background-color-inverted tw-rounded-border-radius-md tw-font-main tw-opacity-100;
+        @apply tw-label-xs tw-background-color-inverted tw-rounded-border-radius-md tw-px-2 tw-py-1.5 tw-font-main tw-opacity-100;
       }
 
       .v-popper__arrow-outer {
@@ -81,6 +104,73 @@
       }
     }
   }
+  /* #endregion - Tooltips */
+
+  /* #region - Lozange */
+  .lozenge {
+    @apply tw-flex tw-flex-wrap tw-rounded-md;
+
+    .pending {
+      @apply tw-text-color-pending-base tw-background-color-pending-weak tw-border-color-pending-base;
+    }
+
+    .information {
+      @apply tw-text-color-information-base tw-background-color-information-weak tw-border-color-information-base;
+    }
+
+    .success {
+      @apply tw-text-color-success-base tw-background-color-success-weak tw-border-color-success-base;
+    }
+
+    .neutral {
+      @apply tw-text-color-base tw-background-color-base tw-border-color-base;
+    }
+
+    .danger {
+      @apply tw-text-color-danger-base tw-background-color-danger-weak tw-border-color-danger-base;
+    }
+
+    .caution {
+      @apply tw-text-color-caution-base tw-background-color-caution-weak tw-border-color-caution-base;
+    }
+
+    .plain {
+      @apply tw-text-color-strong tw-border-color-base tw-background-color;
+    }
+  }
+
+  .lozenge-fill {
+    @apply tw-flex tw-flex-wrap;
+
+    .pending {
+      @apply tw-background-color-pending-base tw-text-color-strong tw-border-none;
+    }
+
+    .information {
+      @apply tw-background-color-information-base tw-text-color-inverted-strong tw-border-none;
+    }
+
+    .success {
+      @apply tw-background-color-success-base tw-text-color-inverted-strong;
+    }
+
+    .danger {
+      @apply tw-background-color-danger-base tw-text-color-inverted-strong tw-border-none;
+    }
+
+    .neutral {
+      @apply tw-background-color-base tw-text-color-strong tw-border-none;
+    }
+
+    .caution {
+      @apply tw-background-color-caution-base tw-text-color-strong tw-border-none;
+    }
+
+    .plain {
+      @apply tw-text-color-strong tw-background-color tw-border-none;
+    }
+  }
+  /* #endregion - Lozange */
 }
 
 @layer utilities {
@@ -205,8 +295,20 @@
   /* #endregion - Paragraphs */
 
   /* #region - Labels */
+  .tw-label-xs {
+    @apply tw-font-size-100 tw-line-height-100 tw-letter-spacing-wide tw-font-main tw-uppercase;
+  }
+
+  .tw-label-xs-regular {
+    @apply tw-label-xs tw-font-normal;
+  }
+
+  .tw-label-xs-medium {
+    @apply tw-label-xs tw-font-medium;
+  }
+
   .tw-label-sm {
-    @apply tw-font-size-200 tw-line-height-200 tw-letter-spacing-wide tw-font-main;
+    @apply tw-font-size-200 tw-line-height-200 tw-letter-spacing-wide tw-font-main tw-uppercase;
   }
 
   .tw-label-sm-regular {
@@ -217,17 +319,6 @@
     @apply tw-label-sm tw-font-medium;
   }
 
-  .tw-label-xs {
-    @apply tw-font-size-100 tw-line-height-100 tw-letter-spacing-wide tw-font-main;
-  }
-
-  .tw-label-xs-regular {
-    @apply tw-label-xs tw-font-normal;
-  }
-
-  .tw-label-xs-medium {
-    @apply tw-label-xs tw-font-medium;
-  }
   /* #endregion - Labels */
 
   /* #region - Font Size */

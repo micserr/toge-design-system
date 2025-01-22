@@ -14,7 +14,7 @@
     :for="props.id"
     :disabled="props.disabled"
     :class="[
-      'tw-flex tw-items-center tw-space-x-2',
+      'tw-w-auto tw-inline-flex tw-items-center tw-space-x-2 tw-p-0 tw-m-0',
       radioLabelClasses
     ]"
   >

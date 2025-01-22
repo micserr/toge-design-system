@@ -81,6 +81,30 @@ export default defineConfig({
               text: 'Radio',
               link: '/documentation/components/radio',
             },
+            {
+              text: 'Input',
+              link: '/documentation/components/input',
+            },
+            {
+              text: 'Tabs',
+              link: '/documentation/components/tabs',
+            },
+            {
+              text: 'Time Picker',
+              link: '/documentation/components/timePicker',
+            },
+            {
+              text: 'Tooltip',
+              link: '/documentation/components/tooltip',
+            },
+            {
+              text: 'Modal',
+              link: '/documentation/components/modal',
+            },
+            {
+              text: 'Empty State',
+              link: '/documentation/components/emptyState',
+            },
           ],
         },
         {

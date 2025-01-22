@@ -1,31 +1,63 @@
+import { ref } from 'vue';
 import type { SetupContext } from 'vue';
 
 import type { SidenavPropTypes, SidenavEmitTypes } from './sidenav';
 
-interface MouseEventWithCtrl extends MouseEvent {
-  ctrlKey: boolean;
-}
-
-interface Redirect {
-  openInNewTab: boolean;
-  isAbsoluteURL: boolean;
-  link: string;
+interface ObjectItem {
+  redirect: {
+    openInNewTab: boolean;
+    isAbsoluteURL: boolean;
+    link: string;
+  };
+  activeNav?: {
+    parentNav: string;
+    menu: string;
+    submenu: string;
+  };
 }
 
 export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEmitTypes>['emit']) => {
-  const handleRedirect = (e: MouseEventWithCtrl, redirect: Redirect) => {
-    if (redirect) {
-      if (redirect.openInNewTab) {
-        window.open(redirect.link, '_blank');
-      } else if (redirect.isAbsoluteURL) {
-        location.href = redirect.link;
+  const isQuckActionMenuVisible = ref(false);
+
+  const isUserMenuVisible = ref(false);
+
+  const userProfileError = ref(false);
+
+  const getUserInitials = (name: string) => {
+    const nameArray = name.split(' ');
+
+    const initials = nameArray[0].charAt(0) + (nameArray[1] ? nameArray[1].charAt(0) : '');
+
+    return initials.toUpperCase();
+  };
+
+  const handleRedirect = (objectItem: ObjectItem, parentNav: string, menu: string, submenu: string) => {
+    if (objectItem && objectItem.redirect) {
+      if (objectItem.redirect.openInNewTab) {
+        window.open(objectItem.redirect.link, '_blank');
+      } else if (objectItem.redirect.isAbsoluteURL) {
+        location.href = objectItem.redirect.link;
       } else {
-        emit('route-push', redirect.link);
+        const modifiedObjectItem = { ...objectItem };
+
+        if (parentNav || menu || submenu) {
+          modifiedObjectItem.activeNav = {
+            parentNav: parentNav,
+            menu: menu,
+            submenu: submenu,
+          };
+        }
+
+        emit('get-navlink-item', modifiedObjectItem);
       }
     }
   };
 
   return {
+    isQuckActionMenuVisible,
+    isUserMenuVisible,
+    userProfileError,
+    getUserInitials,
     handleRedirect,
   };
 };

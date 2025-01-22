@@ -7,7 +7,11 @@ export const useEmptyState = (props: EmptyStatePropTypes) => {
 
   const emptyStateWrapperClasses = computed(() => {
     return classNames(
-      'background-color-surface flex h-full w-full flex-col items-center justify-center gap-size-spacing-2xs px-size-spacing-2xl py-size-spacing-3xl text-center',
+      'background-color flex h-full w-full flex-col items-center justify-center gap-size-spacing-2xs px-size-spacing-2xl py-size-spacing-3xl text-center min-h-[240px]',
+      {
+        'px-size-spacing-sm py-size-spacing-md min-h-[240px]': size === 'small',
+        'px-size-spacing-sm py-size-spacing-2xl min-h-[360px]': size === 'large',
+      },
     );
   });
 

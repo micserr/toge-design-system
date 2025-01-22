@@ -3,7 +3,7 @@ import type { InputPropTypes } from './input';
 
 import classNames from 'classnames';
 export const useInput = (props: InputPropTypes, slots: Record<string, unknown>) => {
-  const { error, disabled, offset, offsetSize } = props;
+  const { error, disabled, offsetSize } = props;
 
   const wrapperClasses = computed(() => {
     return classNames('flex flex-col gap-size-spacing-4xs');
@@ -41,9 +41,9 @@ export const useInput = (props: InputPropTypes, slots: Record<string, unknown>) 
         'text-color-on-fill-disabled': disabled,
         'pr-[5%]': slots.icon,
         'pl-size-spacing-lg': slots.prefix,
-        'pr-[94%] sm:pr-[85%]': offsetSize === 'xs' && slots.trailing && offset[0] === '0',
-        'pr-[90%]': offsetSize === 'sm' && slots.trailing && offset[0] === '0',
-        'pr-[50%]': offsetSize === 'md' && slots.trailing && offset[0] === '0',
+        'pr-[94%] sm:pr-[85%]': offsetSize === 'xs' && slots.trailing,
+        'pr-[90%]': offsetSize === 'sm' && slots.trailing,
+        'pr-[50%]': offsetSize === 'md' && slots.trailing,
       },
     );
   });
@@ -63,9 +63,9 @@ export const useInput = (props: InputPropTypes, slots: Record<string, unknown>) 
   const trailingSlotClasses = computed(() => {
     return classNames('absolute left-[55%] top-1/2 -translate-y-1/2 transform text-mushroom-300', {
       '!text-tomato-600': error,
-      'left-[7%] sm:left-[16%]': offsetSize === 'xs' && slots.trailing && offset[1] === '0',
-      'left-[11%]': offsetSize === 'sm' && slots.trailing && offset[1] === '0',
-      'left-[51%]': offsetSize === 'md' && slots.trailing && offset[1] === '0',
+      'left-[7%] sm:left-[16%]': offsetSize === 'xs' && slots.trailing,
+      'left-[11%]': offsetSize === 'sm' && slots.trailing,
+      'left-[51%]': offsetSize === 'md' && slots.trailing,
     });
   });
 

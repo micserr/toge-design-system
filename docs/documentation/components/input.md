@@ -87,7 +87,7 @@ UI element that allows users to enter and edit text or other data.
   </template>
 </spr-input>
 
-<spr-input v-model="inputValue" label="offset sm" placeholder="00" offset-size="sm" type="number">
+<spr-input v-model="inputValue" label="offset sm" placeholder="0000000" offset-size="sm" type="number">
   <template #trailing>
   minutes
   </template>

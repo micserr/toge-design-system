@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.38 (2025-01-22)
+
+- Feat: Input Prefix and trailing ([#d69c9751](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d69c9751be3ba3e73fbcbfadc4f7ea0562d5ebda?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Finput) by @andrea)
+
 ## 1.0.37 (2025-01-17)
 
 - Feat:

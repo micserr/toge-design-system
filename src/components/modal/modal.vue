@@ -2,7 +2,7 @@
   <dialog
     ref="dialog"
     :class="[
-      'modal-dialog tw-border-color-weak tw-background-color tw-bg-over tw-rounded-border-radius-xl tw-p-0 tw-drop-shadow-[0_2px_8px_-2px_rgba(38,43,43,0.20)]',
+      'modal-dialog tw-border-color-weak tw-background-color tw-bg-over tw-rounded-border-radius-xl tw-border tw-p-0 tw-drop-shadow-[0_2px_8px_-2px_rgba(38,43,43,0.20)]',
       modalSizesClasses,
     ]"
   >

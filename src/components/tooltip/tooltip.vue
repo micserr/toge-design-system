@@ -1,13 +1,13 @@
 <template>
-  <div v-if="$slots.default" ref="componentRef" class="tw-relative tw-h-min tw-w-min tw-whitespace-nowrap">
+  <div v-if="$slots.default" ref="componentRef" class="relative h-min w-min whitespace-nowrap">
     <slot />
     <div
       :class="[
         tooltipClasses,
-        'tw-background-color-inverted tw-absolute tw-z-50 tw-w-max tw-min-w-10 tw-max-w-72 tw-text-wrap tw-rounded-md tw-px-size-spacing-4xs tw-py-size-spacing-3xs',
+        'background-color-inverted absolute z-50 w-max min-w-10 max-w-72 text-wrap rounded-md px-size-spacing-4xs py-size-spacing-3xs',
       ]"
     >
-      <div class="tw-text-color-inverted-strong tw-body-xs-regular">
+      <div class="text-color-inverted-strong body-xs-regular">
         {{ text }}
       </div>
     </div>

@@ -26,52 +26,52 @@
   }
 
   *::-webkit-scrollbar {
-    @apply tw-h-[8px] tw-w-[8px];
+    @apply h-[8px] w-[8px];
   }
 
   *::-webkit-scrollbar-track {
-    @apply tw-bg-white-200;
+    @apply bg-white-200;
   }
 
   *::-webkit-scrollbar-thumb {
-    @apply tw-rounded-full tw-bg-white-300;
+    @apply rounded-full bg-white-300;
   }
 }
 
 @layer components {
   /* #region - Sidenav */
   #quick-action-menu-wrapper {
-    @apply tw-max-h-[500px] tw-w-[400px];
+    @apply max-h-[500px] w-[400px];
   }
 
   #sidenav-menu-wrapper {
-    @apply tw-max-h-[500px] tw-w-[215px];
+    @apply max-h-[500px] w-[215px];
   }
 
   #sidenav-submenu-wrapper {
-    @apply tw-max-h-[500px] tw-w-[215px];
+    @apply max-h-[500px] w-[215px];
   }
 
   #user-menu-wrapper {
-    @apply !tw-top-[-20px] tw-max-h-[500px] tw-w-[300px];
+    @apply !top-[-20px] max-h-[500px] w-[300px];
   }
 
   #sidenav-sub-submenu-wrapper {
-    @apply tw-hidden;
+    @apply hidden;
   }
 
   #quick-action-menu-wrapper,
   #sidenav-menu-wrapper,
   #sidenav-submenu-wrapper,
   #user-menu-wrapper {
-    @apply tw-background-color tw-border-color-base tw-overflow-y-auto tw-overflow-x-hidden tw-rounded-[12px] tw-border tw-border-solid tw-drop-shadow-md;
+    @apply background-color border-color-base overflow-y-auto overflow-x-hidden rounded-[12px] border border-solid drop-shadow-md;
 
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply tw-overflow-hidden tw-rounded-none tw-border-none tw-bg-transparent tw-shadow-none;
+        @apply overflow-hidden rounded-none border-none bg-transparent shadow-none;
 
         .slide-fade-enter-active {
-          @apply tw-duration-300 tw-ease-out;
+          @apply duration-300 ease-out;
         }
 
         .slide-fade-leave-active {
@@ -80,12 +80,12 @@
 
         .slide-fade-enter-from,
         .slide-fade-leave-to {
-          @apply tw-translate-x-[-20px] tw-opacity-0;
+          @apply translate-x-[-20px] opacity-0;
         }
       }
 
       .v-popper__arrow-container {
-        @apply tw-hidden;
+        @apply hidden;
       }
     }
   }
@@ -96,11 +96,11 @@
   #default-tooltip {
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply tw-label-xs tw-background-color-inverted tw-rounded-border-radius-md tw-px-2 tw-py-1.5 tw-font-main tw-opacity-100;
+        @apply label-xs background-color-inverted rounded-border-radius-md px-2 py-1.5 font-main opacity-100;
       }
 
       .v-popper__arrow-outer {
-        @apply tw-hidden;
+        @apply hidden;
       }
     }
   }
@@ -108,779 +108,779 @@
 
   /* #region - Lozange */
   .lozenge {
-    @apply tw-flex tw-flex-wrap tw-rounded-md;
+    @apply flex flex-wrap rounded-md;
 
     .pending {
-      @apply tw-text-color-pending-base tw-background-color-pending-weak tw-border-color-pending-base;
+      @apply text-color-pending-base background-color-pending-weak border-color-pending-base;
     }
 
     .information {
-      @apply tw-text-color-information-base tw-background-color-information-weak tw-border-color-information-base;
+      @apply text-color-information-base background-color-information-weak border-color-information-base;
     }
 
     .success {
-      @apply tw-text-color-success-base tw-background-color-success-weak tw-border-color-success-base;
+      @apply text-color-success-base background-color-success-weak border-color-success-base;
     }
 
     .neutral {
-      @apply tw-text-color-base tw-background-color-base tw-border-color-base;
+      @apply text-color-base background-color-base border-color-base;
     }
 
     .danger {
-      @apply tw-text-color-danger-base tw-background-color-danger-weak tw-border-color-danger-base;
+      @apply text-color-danger-base background-color-danger-weak border-color-danger-base;
     }
 
     .caution {
-      @apply tw-text-color-caution-base tw-background-color-caution-weak tw-border-color-caution-base;
+      @apply text-color-caution-base background-color-caution-weak border-color-caution-base;
     }
 
     .plain {
-      @apply tw-text-color-strong tw-border-color-base tw-background-color;
+      @apply text-color-strong border-color-base background-color;
     }
   }
 
   .lozenge-fill {
-    @apply tw-flex tw-flex-wrap;
+    @apply flex flex-wrap;
 
     .pending {
-      @apply tw-background-color-pending-base tw-text-color-strong tw-border-none;
+      @apply background-color-pending-base text-color-strong border-none;
     }
 
     .information {
-      @apply tw-background-color-information-base tw-text-color-inverted-strong tw-border-none;
+      @apply background-color-information-base text-color-inverted-strong border-none;
     }
 
     .success {
-      @apply tw-background-color-success-base tw-text-color-inverted-strong;
+      @apply background-color-success-base text-color-inverted-strong;
     }
 
     .danger {
-      @apply tw-background-color-danger-base tw-text-color-inverted-strong tw-border-none;
+      @apply background-color-danger-base text-color-inverted-strong border-none;
     }
 
     .neutral {
-      @apply tw-background-color-base tw-text-color-strong tw-border-none;
+      @apply background-color-base text-color-strong border-none;
     }
 
     .caution {
-      @apply tw-background-color-caution-base tw-text-color-strong tw-border-none;
+      @apply background-color-caution-base text-color-strong border-none;
     }
 
     .plain {
-      @apply tw-text-color-strong tw-background-color tw-border-none;
+      @apply text-color-strong background-color border-none;
     }
   }
   /* #endregion - Lozange */
 }
 
 @layer utilities {
-  .tw-hidden-scrolls {
+  .hidden-scrolls {
     &::-webkit-scrollbar {
-      @apply tw-hidden;
+      @apply hidden;
     }
   }
 
   /* #region - Headings */
-  .tw-heading-xl {
-    @apply tw-font-size-900 tw-line-height-1000 tw-letter-spacing-densest tw-font-main tw-font-medium;
+  .heading-xl {
+    @apply font-size-900 line-height-1000 letter-spacing-densest font-main font-medium;
   }
 
-  .tw-heading-lg {
-    @apply tw-font-size-800 tw-line-height-900 tw-letter-spacing-denser tw-font-main tw-font-medium;
+  .heading-lg {
+    @apply font-size-800 line-height-900 letter-spacing-denser font-main font-medium;
   }
 
-  .tw-heading-md {
-    @apply tw-font-size-700 tw-line-height-800 tw-letter-spacing-denser tw-font-main tw-font-medium;
+  .heading-md {
+    @apply font-size-700 line-height-800 letter-spacing-denser font-main font-medium;
   }
 
-  .tw-heading-sm {
-    @apply tw-font-size-600 tw-line-height-700 tw-letter-spacing-dense tw-font-main tw-font-medium;
+  .heading-sm {
+    @apply font-size-600 line-height-700 letter-spacing-dense font-main font-medium;
   }
 
-  .tw-heading-xs {
-    @apply tw-font-size-500 tw-line-height-600 tw-letter-spacing-dense tw-font-main tw-font-medium;
+  .heading-xs {
+    @apply font-size-500 line-height-600 letter-spacing-dense font-main font-medium;
   }
   /* #endregion - Headings */
 
   /* #region - Subheadings */
-  .tw-subheading-sm {
-    @apply tw-font-size-400 tw-line-height-500 tw-letter-spacing-dense tw-font-main tw-font-medium;
+  .subheading-sm {
+    @apply font-size-400 line-height-500 letter-spacing-dense font-main font-medium;
   }
 
-  .tw-subheading-xs {
-    @apply tw-font-size-300 tw-line-height-400 tw-letter-spacing-normal tw-font-main tw-font-medium;
+  .subheading-xs {
+    @apply font-size-300 line-height-400 letter-spacing-normal font-main font-medium;
   }
   /* #endregion - Subheadings */
 
   /* #region - Paragraphs */
-  .tw-body-lg {
-    @apply tw-font-size-400 tw-line-height-600 tw-letter-spacing-normal tw-font-main;
+  .body-lg {
+    @apply font-size-400 line-height-600 letter-spacing-normal font-main;
   }
 
-  .tw-body-lg-regular {
-    @apply tw-body-lg tw-font-normal;
+  .body-lg-regular {
+    @apply body-lg font-normal;
   }
 
-  .tw-body-lg-regular-underline {
-    @apply tw-body-lg tw-font-normal tw-decoration-solid;
+  .body-lg-regular-underline {
+    @apply body-lg font-normal decoration-solid;
   }
 
-  .tw-body-lg-regular-medium {
-    @apply tw-body-lg tw-font-medium;
+  .body-lg-regular-medium {
+    @apply body-lg font-medium;
   }
 
-  .tw-body-lg-medium-underline {
-    @apply tw-body-lg tw-font-medium tw-decoration-solid;
+  .body-lg-medium-underline {
+    @apply body-lg font-medium decoration-solid;
   }
 
-  .tw-body-md {
-    @apply tw-font-size-300 tw-line-height-500 tw-letter-spacing-normal tw-font-main;
+  .body-md {
+    @apply font-size-300 line-height-500 letter-spacing-normal font-main;
   }
 
-  .tw-body-md-regular {
-    @apply tw-body-md tw-font-normal;
+  .body-md-regular {
+    @apply body-md font-normal;
   }
 
-  .tw-body-md-regular-underline {
-    @apply tw-body-md tw-font-normal tw-decoration-solid;
+  .body-md-regular-underline {
+    @apply body-md font-normal decoration-solid;
   }
 
-  .tw-body-md-regular-medium {
-    @apply tw-body-md tw-font-medium;
+  .body-md-regular-medium {
+    @apply body-md font-medium;
   }
 
-  .tw-body-md-medium-underline {
-    @apply tw-body-md tw-font-medium tw-decoration-solid;
+  .body-md-medium-underline {
+    @apply body-md font-medium decoration-solid;
   }
 
-  .tw-body-sm {
-    @apply tw-font-size-200 tw-line-height-400 tw-letter-spacing-normal tw-font-main;
+  .body-sm {
+    @apply font-size-200 line-height-400 letter-spacing-normal font-main;
   }
 
-  .tw-body-sm-regular {
-    @apply tw-body-sm tw-font-normal;
+  .body-sm-regular {
+    @apply body-sm font-normal;
   }
 
-  .tw-body-sm-regular-underline {
-    @apply tw-body-sm tw-font-normal tw-decoration-solid;
+  .body-sm-regular-underline {
+    @apply body-sm font-normal decoration-solid;
   }
 
-  .tw-body-sm-regular-medium {
-    @apply tw-body-sm tw-font-medium;
+  .body-sm-regular-medium {
+    @apply body-sm font-medium;
   }
 
-  .tw-body-sm-medium-underline {
-    @apply tw-body-sm tw-font-medium tw-decoration-solid;
+  .body-sm-medium-underline {
+    @apply body-sm font-medium decoration-solid;
   }
 
-  .tw-body-xs {
-    @apply tw-font-size-100 tw-line-height-300 tw-letter-spacing-normal tw-font-main;
+  .body-xs {
+    @apply font-size-100 line-height-300 letter-spacing-normal font-main;
   }
 
-  .tw-body-xs-regular {
-    @apply tw-body-xs tw-font-normal;
+  .body-xs-regular {
+    @apply body-xs font-normal;
   }
 
-  .tw-body-xs-regular-underline {
-    @apply tw-body-xs tw-font-normal tw-decoration-solid;
+  .body-xs-regular-underline {
+    @apply body-xs font-normal decoration-solid;
   }
 
-  .tw-body-xs-regular-medium {
-    @apply tw-body-xs tw-font-medium;
+  .body-xs-regular-medium {
+    @apply body-xs font-medium;
   }
 
-  .tw-body-xs-medium-underline {
-    @apply tw-body-xs tw-font-medium tw-decoration-solid;
+  .body-xs-medium-underline {
+    @apply body-xs font-medium decoration-solid;
   }
   /* #endregion - Paragraphs */
 
   /* #region - Labels */
-  .tw-label-xs {
-    @apply tw-font-size-100 tw-line-height-100 tw-letter-spacing-wide tw-font-main tw-uppercase;
+  .label-xs {
+    @apply font-size-100 line-height-100 letter-spacing-wide font-main uppercase;
   }
 
-  .tw-label-xs-regular {
-    @apply tw-label-xs tw-font-normal;
+  .label-xs-regular {
+    @apply label-xs font-normal;
   }
 
-  .tw-label-xs-medium {
-    @apply tw-label-xs tw-font-medium;
+  .label-xs-medium {
+    @apply label-xs font-medium;
   }
 
-  .tw-label-sm {
-    @apply tw-font-size-200 tw-line-height-200 tw-letter-spacing-wide tw-font-main tw-uppercase;
+  .label-sm {
+    @apply font-size-200 line-height-200 letter-spacing-wide font-main uppercase;
   }
 
-  .tw-label-sm-regular {
-    @apply tw-label-sm tw-font-normal;
+  .label-sm-regular {
+    @apply label-sm font-normal;
   }
 
-  .tw-label-sm-medium {
-    @apply tw-label-sm tw-font-medium;
+  .label-sm-medium {
+    @apply label-sm font-medium;
   }
 
   /* #endregion - Labels */
 
   /* #region - Font Size */
-  .tw-font-size-100 {
-    @apply tw-text-100;
+  .font-size-100 {
+    @apply text-100;
   }
 
-  .tw-font-size-200 {
-    @apply tw-text-200;
+  .font-size-200 {
+    @apply text-200;
   }
 
-  .tw-font-size-300 {
-    @apply tw-text-300;
+  .font-size-300 {
+    @apply text-300;
   }
 
-  .tw-font-size-400 {
-    @apply tw-text-400;
+  .font-size-400 {
+    @apply text-400;
   }
 
-  .tw-font-size-500 {
-    @apply tw-text-500;
+  .font-size-500 {
+    @apply text-500;
   }
 
-  .tw-font-size-600 {
-    @apply tw-text-600;
+  .font-size-600 {
+    @apply text-600;
   }
 
-  .tw-font-size-700 {
-    @apply tw-text-700;
+  .font-size-700 {
+    @apply text-700;
   }
 
-  .tw-font-size-800 {
-    @apply tw-text-800;
+  .font-size-800 {
+    @apply text-800;
   }
 
-  .tw-font-size-900 {
-    @apply tw-text-900;
+  .font-size-900 {
+    @apply text-900;
   }
 
-  .tw-font-size-1000 {
-    @apply tw-text-1000;
+  .font-size-1000 {
+    @apply text-1000;
   }
   /* #endregion - Font Size */
 
   /* #region - Line Height */
-  .tw-line-height-none {
-    @apply tw-leading-none;
+  .line-height-none {
+    @apply leading-none;
   }
 
-  .tw-line-height-100 {
-    @apply tw-leading-100;
+  .line-height-100 {
+    @apply leading-100;
   }
 
-  .tw-line-height-200 {
-    @apply tw-leading-200;
+  .line-height-200 {
+    @apply leading-200;
   }
 
-  .tw-line-height-300 {
-    @apply tw-leading-300;
+  .line-height-300 {
+    @apply leading-300;
   }
 
-  .tw-line-height-400 {
-    @apply tw-leading-400;
+  .line-height-400 {
+    @apply leading-400;
   }
 
-  .tw-line-height-500 {
-    @apply tw-leading-500;
+  .line-height-500 {
+    @apply leading-500;
   }
 
-  .tw-line-height-600 {
-    @apply tw-leading-600;
+  .line-height-600 {
+    @apply leading-600;
   }
 
-  .tw-line-height-700 {
-    @apply tw-leading-700;
+  .line-height-700 {
+    @apply leading-700;
   }
 
-  .tw-line-height-800 {
-    @apply tw-leading-800;
+  .line-height-800 {
+    @apply leading-800;
   }
 
-  .tw-line-height-900 {
-    @apply tw-leading-900;
+  .line-height-900 {
+    @apply leading-900;
   }
 
-  .tw-line-height-1000 {
-    @apply tw-leading-1000;
+  .line-height-1000 {
+    @apply leading-1000;
   }
   /* #endregion - Line Height */
 
   /* #region - Letter Spacing */
-  .tw-letter-spacing-none {
-    @apply tw-tracking-spacing-none;
+  .letter-spacing-none {
+    @apply tracking-spacing-none;
   }
 
-  .tw-letter-spacing-densest {
-    @apply tw-tracking-spacing-densest;
+  .letter-spacing-densest {
+    @apply tracking-spacing-densest;
   }
 
-  .tw-letter-spacing-denser {
-    @apply tw-tracking-spacing-denser;
+  .letter-spacing-denser {
+    @apply tracking-spacing-denser;
   }
 
-  .tw-letter-spacing-dense {
-    @apply tw-tracking-spacing-dense;
+  .letter-spacing-dense {
+    @apply tracking-spacing-dense;
   }
 
-  .tw-letter-spacing-normal {
-    @apply tw-tracking-spacing-normal;
+  .letter-spacing-normal {
+    @apply tracking-spacing-normal;
   }
 
-  .tw-letter-spacing-wide {
-    @apply tw-tracking-spacing-wide;
+  .letter-spacing-wide {
+    @apply tracking-spacing-wide;
   }
 
-  .tw-letter-spacing-wider {
-    @apply tw-tracking-spacing-wider;
+  .letter-spacing-wider {
+    @apply tracking-spacing-wider;
   }
 
-  .tw-letter-spacing-widest {
-    @apply tw-tracking-spacing-widest;
+  .letter-spacing-widest {
+    @apply tracking-spacing-widest;
   }
 
   /* #endregion - Letter Spacing */
 
   /* #region - Text Colors */
-  .tw-text-color-strong {
-    @apply tw-text-mushroom-950;
+  .text-color-strong {
+    @apply text-mushroom-950;
   }
 
-  .tw-text-color-supporting {
-    @apply tw-text-mushroom-400;
+  .text-color-supporting {
+    @apply text-mushroom-400;
   }
 
-  .tw-text-color-base {
-    @apply tw-text-mushroom-600;
+  .text-color-base {
+    @apply text-mushroom-600;
   }
 
-  .tw-text-color-weak {
-    @apply tw-text-mushroom-300;
+  .text-color-weak {
+    @apply text-mushroom-300;
   }
 
-  .tw-text-color-disabled {
-    @apply tw-text-white-300;
+  .text-color-disabled {
+    @apply text-white-300;
   }
 
-  .tw-text-color-on-fill-disabled {
-    @apply tw-text-white-400;
+  .text-color-on-fill-disabled {
+    @apply text-white-400;
   }
 
-  .tw-text-color-inverted-strong {
-    @apply tw-text-white-50;
+  .text-color-inverted-strong {
+    @apply text-white-50;
   }
 
-  .tw-text-color-inverted-base {
-    @apply tw-text-mushroom-200;
+  .text-color-inverted-base {
+    @apply text-mushroom-200;
   }
 
-  .tw-text-color-inverted-weak {
-    @apply tw-text-mushroom-400;
+  .text-color-inverted-weak {
+    @apply text-mushroom-400;
   }
 
-  .tw-text-color-inverted-disabled {
-    @apply tw-text-white-600;
+  .text-color-inverted-disabled {
+    @apply text-white-600;
   }
 
-  .tw-text-color-brand-base {
-    @apply tw-text-kangkong-700;
+  .text-color-brand-base {
+    @apply text-kangkong-700;
   }
 
-  .tw-text-color-brand-hover {
-    @apply tw-text-kangkong-800;
+  .text-color-brand-hover {
+    @apply text-kangkong-800;
   }
 
-  .tw-text-color-brand-pressed {
-    @apply tw-text-kangkong-900;
+  .text-color-brand-pressed {
+    @apply text-kangkong-900;
   }
 
-  .tw-text-color-success-base {
-    @apply tw-text-kangkong-700;
+  .text-color-success-base {
+    @apply text-kangkong-700;
   }
 
-  .tw-text-color-success-hover {
-    @apply tw-text-kangkong-800;
+  .text-color-success-hover {
+    @apply text-kangkong-800;
   }
 
-  .tw-text-color-success-pressed {
-    @apply tw-text-kangkong-900;
+  .text-color-success-pressed {
+    @apply text-kangkong-900;
   }
 
-  .tw-text-color-information-base {
-    @apply tw-text-blueberry-700;
+  .text-color-information-base {
+    @apply text-blueberry-700;
   }
 
-  .tw-text-color-information-hover {
-    @apply tw-text-blueberry-800;
+  .text-color-information-hover {
+    @apply text-blueberry-800;
   }
 
-  .tw-text-color-information-pressed {
-    @apply tw-text-blueberry-900;
+  .text-color-information-pressed {
+    @apply text-blueberry-900;
   }
 
-  .tw-text-color-danger-base {
-    @apply tw-text-tomato-600;
+  .text-color-danger-base {
+    @apply text-tomato-600;
   }
 
-  .tw-text-color-danger-hover {
-    @apply tw-text-tomato-700;
+  .text-color-danger-hover {
+    @apply text-tomato-700;
   }
 
-  .tw-text-color-danger-pressed {
-    @apply tw-text-tomato-800;
+  .text-color-danger-pressed {
+    @apply text-tomato-800;
   }
 
-  .tw-text-color-pending-base {
-    @apply tw-text-mango-700;
+  .text-color-pending-base {
+    @apply text-mango-700;
   }
 
-  .tw-text-color-pending-hover {
-    @apply tw-text-mango-800;
+  .text-color-pending-hover {
+    @apply text-mango-800;
   }
 
-  .tw-text-color-pending-pressed {
-    @apply tw-text-mango-900;
+  .text-color-pending-pressed {
+    @apply text-mango-900;
   }
 
-  .tw-text-color-caution-base {
-    @apply tw-text-carrot-700;
+  .text-color-caution-base {
+    @apply text-carrot-700;
   }
 
-  .tw-text-color-caution-hover {
-    @apply tw-text-carrot-800;
+  .text-color-caution-hover {
+    @apply text-carrot-800;
   }
 
-  .tw-text-color-caution-pressed {
-    @apply tw-text-carrot-900;
+  .text-color-caution-pressed {
+    @apply text-carrot-900;
   }
 
-  .tw-text-color-accent-base {
-    @apply tw-text-wintermelon-700;
+  .text-color-accent-base {
+    @apply text-wintermelon-700;
   }
 
-  .tw-text-color-accent-hover {
-    @apply tw-text-wintermelon-800;
+  .text-color-accent-hover {
+    @apply text-wintermelon-800;
   }
 
-  .tw-text-color-accent-pressed {
-    @apply tw-text-wintermelon-900;
+  .text-color-accent-pressed {
+    @apply text-wintermelon-900;
   }
   /* #endregion - Text Colors */
 
   /* #region - Background Colors */
-  .tw-background-color {
-    @apply tw-bg-white-50;
+  .background-color {
+    @apply bg-white-50;
   }
 
-  .tw-background-color-surface {
-    @apply tw-bg-white-100;
+  .background-color-surface {
+    @apply bg-white-100;
   }
 
-  .tw-background-color-inverted {
-    @apply tw-bg-mushroom-950;
+  .background-color-inverted {
+    @apply bg-mushroom-950;
   }
 
-  .tw-background-color-inverted-hover {
-    @apply tw-bg-mushroom-900;
+  .background-color-inverted-hover {
+    @apply bg-mushroom-900;
   }
 
-  .tw-background-color-inverted-pressed {
-    @apply tw-bg-mushroom-800;
+  .background-color-inverted-pressed {
+    @apply bg-mushroom-800;
   }
 
-  .tw-background-color-base {
-    @apply tw-bg-mushroom-50;
+  .background-color-base {
+    @apply bg-mushroom-50;
   }
 
-  .tw-background-color-single-active {
-    @apply tw-bg-kangkong-100;
+  .background-color-single-active {
+    @apply bg-kangkong-100;
   }
 
-  .tw-background-color-multiple-active {
-    @apply tw-bg-kangkong-50;
+  .background-color-multiple-active {
+    @apply bg-kangkong-50;
   }
 
-  .tw-background-color-hover {
-    @apply tw-bg-mushroom-50;
+  .background-color-hover {
+    @apply bg-mushroom-50;
   }
 
-  .tw-background-color-pressed {
-    @apply tw-bg-mushroom-100;
+  .background-color-pressed {
+    @apply bg-mushroom-100;
   }
 
-  .tw-background-color-disabled {
-    @apply tw-bg-white-100;
+  .background-color-disabled {
+    @apply bg-white-100;
   }
 
-  .tw-background-color-brand-base {
-    @apply tw-bg-kangkong-700;
+  .background-color-brand-base {
+    @apply bg-kangkong-700;
   }
 
-  .tw-background-color-brand-hover {
-    @apply tw-bg-kangkong-800;
+  .background-color-brand-hover {
+    @apply bg-kangkong-800;
   }
 
-  .tw-background-color-brand-pressed {
-    @apply tw-bg-kangkong-900;
+  .background-color-brand-pressed {
+    @apply bg-kangkong-900;
   }
 
-  .tw-background-color-brand-weak {
-    @apply tw-bg-kangkong-100;
+  .background-color-brand-weak {
+    @apply bg-kangkong-100;
   }
 
-  .tw-background-color-success-base {
-    @apply tw-bg-kangkong-600;
+  .background-color-success-base {
+    @apply bg-kangkong-600;
   }
 
-  .tw-background-color-success-hover {
-    @apply tw-bg-kangkong-700;
+  .background-color-success-hover {
+    @apply bg-kangkong-700;
   }
 
-  .tw-background-color-success-pressed {
-    @apply tw-bg-kangkong-800;
+  .background-color-success-pressed {
+    @apply bg-kangkong-800;
   }
 
-  .tw-background-color-success-weak {
-    @apply tw-bg-kangkong-100;
+  .background-color-success-weak {
+    @apply bg-kangkong-100;
   }
 
-  .tw-background-color-information-base {
-    @apply tw-bg-blueberry-600;
+  .background-color-information-base {
+    @apply bg-blueberry-600;
   }
 
-  .tw-background-color-information-hover {
-    @apply tw-bg-blueberry-700;
+  .background-color-information-hover {
+    @apply bg-blueberry-700;
   }
 
-  .tw-background-color-information-pressed {
-    @apply tw-bg-blueberry-800;
+  .background-color-information-pressed {
+    @apply bg-blueberry-800;
   }
 
-  .tw-background-color-information-weak {
-    @apply tw-bg-blueberry-100;
+  .background-color-information-weak {
+    @apply bg-blueberry-100;
   }
 
-  .tw-background-color-pending-base {
-    @apply tw-bg-mango-500;
+  .background-color-pending-base {
+    @apply bg-mango-500;
   }
 
-  .tw-background-color-pending-hover {
-    @apply tw-bg-mango-600;
+  .background-color-pending-hover {
+    @apply bg-mango-600;
   }
 
-  .tw-background-color-pending-pressed {
-    @apply tw-bg-mango-700;
+  .background-color-pending-pressed {
+    @apply bg-mango-700;
   }
 
-  .tw-background-color-pending-weak {
-    @apply tw-bg-mango-100;
+  .background-color-pending-weak {
+    @apply bg-mango-100;
   }
 
-  .tw-background-color-caution-base {
-    @apply tw-bg-carrot-500;
+  .background-color-caution-base {
+    @apply bg-carrot-500;
   }
 
-  .tw-background-color-caution-hover {
-    @apply tw-bg-carrot-600;
+  .background-color-caution-hover {
+    @apply bg-carrot-600;
   }
 
-  .tw-background-color-caution-pressed {
-    @apply tw-bg-carrot-700;
+  .background-color-caution-pressed {
+    @apply bg-carrot-700;
   }
 
-  .tw-background-color-caution-weak {
-    @apply tw-bg-carrot-100;
+  .background-color-caution-weak {
+    @apply bg-carrot-100;
   }
 
-  .tw-background-color-accent-base {
-    @apply tw-bg-wintermelon-600;
+  .background-color-accent-base {
+    @apply bg-wintermelon-600;
   }
 
-  .tw-background-color-accent-hover {
-    @apply tw-bg-wintermelon-700;
+  .background-color-accent-hover {
+    @apply bg-wintermelon-700;
   }
 
-  .tw-background-color-accent-pressed {
-    @apply tw-bg-wintermelon-800;
+  .background-color-accent-pressed {
+    @apply bg-wintermelon-800;
   }
 
-  .tw-background-color-accent-weak {
-    @apply tw-bg-wintermelon-100;
+  .background-color-accent-weak {
+    @apply bg-wintermelon-100;
   }
 
-  .tw-background-color-danger-base {
-    @apply tw-bg-tomato-600;
+  .background-color-danger-base {
+    @apply bg-tomato-600;
   }
 
-  .tw-background-color-danger-hover {
-    @apply tw-bg-tomato-700;
+  .background-color-danger-hover {
+    @apply bg-tomato-700;
   }
 
-  .tw-background-color-danger-pressed {
-    @apply tw-bg-tomato-800;
+  .background-color-danger-pressed {
+    @apply bg-tomato-800;
   }
 
-  .tw-background-color-danger-weak {
-    @apply tw-bg-tomato-100;
+  .background-color-danger-weak {
+    @apply bg-tomato-100;
   }
 
-  .tw-switch-background-default {
-    @apply tw-bg-mushroom-200;
+  .switch-background-default {
+    @apply bg-mushroom-200;
   }
 
-  .tw-switch-background-hover {
-    @apply tw-bg-mushroom-300;
+  .switch-background-hover {
+    @apply bg-mushroom-300;
   }
 
-  .tw-switch-background-pressed {
-    @apply tw-bg-mushroom-400;
+  .switch-background-pressed {
+    @apply bg-mushroom-400;
   }
   /* #endregion - Background Colors */
 
   /* #region - Border Colors */
-  .tw-border-color-strong {
-    @apply tw-border-mushroom-500;
+  .border-color-strong {
+    @apply border-mushroom-500;
   }
 
-  .tw-border-color-supporting {
-    @apply tw-border-mushroom-400;
+  .border-color-supporting {
+    @apply border-mushroom-400;
   }
 
-  .tw-border-color-base {
-    @apply tw-border-mushroom-300;
+  .border-color-base {
+    @apply border-mushroom-300;
   }
 
-  .tw-border-color-hover {
-    @apply tw-border-mushroom-400;
+  .border-color-hover {
+    @apply border-mushroom-400;
   }
 
-  .tw-border-color-pressed {
-    @apply tw-border-mushroom-500;
+  .border-color-pressed {
+    @apply border-mushroom-500;
   }
 
-  .tw-border-color-weak {
-    @apply tw-border-mushroom-200;
+  .border-color-weak {
+    @apply border-mushroom-200;
   }
 
-  .tw-border-color-disabled {
-    @apply tw-border-white-100;
+  .border-color-disabled {
+    @apply border-white-100;
   }
 
-  .tw-border-color-on-fill-disabled {
-    @apply tw-border-white-200;
+  .border-color-on-fill-disabled {
+    @apply border-white-200;
   }
 
-  .tw-border-color-brand-base {
-    @apply tw-border-kangkong-700;
+  .border-color-brand-base {
+    @apply border-kangkong-700;
   }
 
-  .tw-border-color-brand-hover {
-    @apply tw-border-kangkong-800;
+  .border-color-brand-hover {
+    @apply border-kangkong-800;
   }
 
-  .tw-border-color-brand-pressed {
-    @apply tw-border-kangkong-900;
+  .border-color-brand-pressed {
+    @apply border-kangkong-900;
   }
 
-  .tw-border-color-success-base {
-    @apply tw-border-kangkong-700;
+  .border-color-success-base {
+    @apply border-kangkong-700;
   }
 
-  .tw-border-color-success-hover {
-    @apply tw-border-kangkong-800;
+  .border-color-success-hover {
+    @apply border-kangkong-800;
   }
 
-  .tw-border-color-success-pressed {
-    @apply tw-border-kangkong-900;
+  .border-color-success-pressed {
+    @apply border-kangkong-900;
   }
 
-  .tw-border-color-information-base {
-    @apply tw-border-blueberry-700;
+  .border-color-information-base {
+    @apply border-blueberry-700;
   }
 
-  .tw-border-color-information-hover {
-    @apply tw-border-blueberry-800;
+  .border-color-information-hover {
+    @apply border-blueberry-800;
   }
 
-  .tw-border-color-information-pressed {
-    @apply tw-border-blueberry-900;
+  .border-color-information-pressed {
+    @apply border-blueberry-900;
   }
 
-  .tw-border-color-danger-base {
-    @apply tw-border-tomato-600;
+  .border-color-danger-base {
+    @apply border-tomato-600;
   }
 
-  .tw-border-color-danger-hover {
-    @apply tw-border-tomato-700;
+  .border-color-danger-hover {
+    @apply border-tomato-700;
   }
 
-  .tw-border-color-danger-pressed {
-    @apply tw-border-tomato-800;
+  .border-color-danger-pressed {
+    @apply border-tomato-800;
   }
 
-  .tw-border-color-pending-base {
-    @apply tw-border-mango-700;
+  .border-color-pending-base {
+    @apply border-mango-700;
   }
 
-  .tw-border-color-pending-hover {
-    @apply tw-border-mango-800;
+  .border-color-pending-hover {
+    @apply border-mango-800;
   }
 
-  .tw-border-color-pending-pressed {
-    @apply tw-border-mango-900;
+  .border-color-pending-pressed {
+    @apply border-mango-900;
   }
 
-  .tw-border-color-caution-base {
-    @apply tw-border-carrot-700;
+  .border-color-caution-base {
+    @apply border-carrot-700;
   }
 
-  .tw-border-color-caution-hover {
-    @apply tw-border-carrot-800;
+  .border-color-caution-hover {
+    @apply border-carrot-800;
   }
 
-  .tw-border-color-caution-pressed {
-    @apply tw-border-carrot-900;
+  .border-color-caution-pressed {
+    @apply border-carrot-900;
   }
 
-  .tw-border-color-accent-base {
-    @apply tw-border-wintermelon-700;
+  .border-color-accent-base {
+    @apply border-wintermelon-700;
   }
 
-  .tw-border-color-accent-hover {
-    @apply tw-border-wintermelon-800;
+  .border-color-accent-hover {
+    @apply border-wintermelon-800;
   }
 
-  .tw-border-color-accent-pressed {
-    @apply tw-border-wintermelon-900;
+  .border-color-accent-pressed {
+    @apply border-wintermelon-900;
   }
   /* #endregion - Border Colors */
 
   /* #region - Box Shadows */
   .drop-shadow-sm {
-    @apply tw-shadow-drop-sm;
+    @apply shadow-drop-sm;
   }
 
   .drop-shadow {
-    @apply tw-shadow-drop;
+    @apply shadow-drop;
   }
 
   .drop-shadow-md {
-    @apply tw-shadow-drop-md;
+    @apply shadow-drop-md;
   }
 
   .drop-shadow-top-sm {
-    @apply tw-shadow-drop-top-sm;
+    @apply shadow-drop-top-sm;
   }
 
   .drop-shadow-top {
-    @apply tw-shadow-drop-top;
+    @apply shadow-drop-top;
   }
 
   .drop-shadow-top-md {
-    @apply tw-shadow-drop-top-md;
+    @apply shadow-drop-top-md;
   }
   /* #endregion - Box Shadows */
 }

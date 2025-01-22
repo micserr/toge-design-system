@@ -3,9 +3,9 @@
     ref="buttonRef"
     v-bind="buttonProps"
     :class="[
-      'tw-inline-flex tw-w-fit tw-min-w-[56px] tw-cursor-pointer tw-items-center tw-justify-center tw-rounded-md tw-outline-none tw-duration-150 tw-ease-in-out',
-      'hover:tw-shadow-button-hover',
-      'active:tw-scale-95',
+      'inline-flex w-fit min-w-[56px] cursor-pointer items-center justify-center rounded-md outline-none duration-150 ease-in-out',
+      'hover:shadow-button-hover',
+      'active:scale-95',
       buttonClass,
     ]"
     @click="handleClick"

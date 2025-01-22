@@ -7,9 +7,9 @@ Display important information without navigating away from the current page. It 
 <spr-button tone="success" @click="isModalOpen = true">Open Modal</spr-button>
 <spr-modal title="Modal title" :open="isModalOpen" @onClose="isModalOpen = false" >
 
-  <div class="tw-p-4">Content Here!</div>
+  <div class="p-4">Content Here!</div>
   <template #footer>
-  <div class="tw-flex tw-justify-end tw-w-full">
+  <div class="flex justify-end w-full">
   <spr-button tone="success" @click="isModalOpen = false">Close</spr-button>
   </div>
   </template>
@@ -17,10 +17,10 @@ Display important information without navigating away from the current page. It 
 
 ```vue
 <spr-modal title="Modal title" :open="isModalOpen" @onClose="isModalOpen = false">
-  <div class="tw-p-4">Content Here!</div>
+  <div class="p-4">Content Here!</div>
 
   <template #footer>
-    <div class="tw-flex tw-justify-end tw-w-full">
+    <div class="flex justify-end w-full">
     <spr-button tone="success" @click="isModalOpen = false">Close</spr-button>
     </div>
   </template>
@@ -29,7 +29,7 @@ Display important information without navigating away from the current page. It 
 
 ## Size
 
-<div class="  tw-flex tw-space-x-4">
+<div class="flex space-x-4">
   <spr-button tone="success" @click="isModalSizesOpen = true">Small</spr-button>
   <spr-button tone="success" @click="isModalSizes1Open = true">Medium</spr-button>
   <spr-button tone="success" @click="isModalSizes2Open = true">Large</spr-button>
@@ -38,9 +38,9 @@ Display important information without navigating away from the current page. It 
 
 <div>
 <spr-modal title="Modal title" size="sm" :open="isModalSizesOpen" @onClose="isModalSizesOpen = false" >
-  <div class="tw-p-4">Content Here!</div>
+  <div class="p-4">Content Here!</div>
   <template #footer>
-  <div class="tw-flex tw-justify-end tw-w-full">
+  <div class="flex justify-end w-full">
   <spr-button tone="success" @click="isModalSizesOpen = false">Close</spr-button>
   </div>
   </template>
@@ -48,9 +48,9 @@ Display important information without navigating away from the current page. It 
 
 <spr-modal title="Modal title" size="md" :open="isModalSizes1Open" @onClose="isModalSizes1Open = false" >
 
-  <div class="tw-p-4">Content Here!</div>
+  <div class="p-4">Content Here!</div>
   <template #footer>
-  <div class="tw-flex tw-justify-end tw-w-full">
+  <div class="flex justify-end w-full">
   <spr-button tone="success" @click="isModalSizes1Open = false">Close</spr-button>
   </div>
   </template>
@@ -58,9 +58,9 @@ Display important information without navigating away from the current page. It 
 
 <spr-modal title="Modal title" size="lg" :open="isModalSizes2Open" @onClose="isModalSizes2Open = false" >
 
-  <div class="tw-p-4">Content Here!</div>
+  <div class="p-4">Content Here!</div>
   <template #footer>
-  <div class="tw-flex tw-justify-end tw-w-full">
+  <div class="flex justify-end w-full">
   <spr-button tone="success" @click="isModalSizes2Open = false">Close</spr-button>
   </div>
   </template>
@@ -68,9 +68,9 @@ Display important information without navigating away from the current page. It 
 
 <spr-modal title="Modal title" size="xl" :open="isModalSizes3Open" @onClose="isModalSizes3Open = false" >
 
-  <div class="tw-p-4">Content Here!</div>
+  <div class="p-4">Content Here!</div>
   <template #footer>
-  <div class="tw-flex tw-justify-end tw-w-full">
+  <div class="flex justify-end w-full">
   <spr-button tone="success" @click="isModalSizes3Open = false">Close</spr-button>
   </div>
   </template>
@@ -79,10 +79,10 @@ Display important information without navigating away from the current page. It 
 
 ```vue
 <spr-modal title="Modal title" size="sm" :open="isModalSizesOpen" @onClose="isModalSizesOpen = false">
-  <div class="tw-p-4">Content Here!</div>
+  <div class="p-4">Content Here!</div>
 
   <template #footer>
-    <div class="tw-flex tw-justify-end tw-w-full">
+    <div class="flex justify-end w-full">
       <spr-button tone="success" @click="isModalSizesOpen = false">Close</spr-button>
     </div>
   </template>

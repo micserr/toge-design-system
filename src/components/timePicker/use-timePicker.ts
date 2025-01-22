@@ -13,68 +13,68 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
 
   const timepickerClasses: ComputedRef<string> = computed(() => {
     return classNames(
-      'tw-block',
-      'tw-w-full',
-      'tw-px-size-spacing-2xs',
-      'tw-py-size-spacing-4xs',
-      'tw-rounded-border-radius-md',
-      'placeholder:tw-text-mushroom-300',
-      'tw-text-color-strong',
-      'tw-font-size-200',
-      'tw-border tw-border-solid tw-border-mushroom-200',
-      'focus:tw-border-kangkong-700',
-      'focus:tw-text-color-strong',
-      'focus:tw-border-[1.5px]',
-      'tw-outline-none',
-      'tw-ring-0',
+      'block',
+      'w-full',
+      'px-size-spacing-2xs',
+      'py-size-spacing-4xs',
+      'rounded-border-radius-md',
+      'placeholder:text-mushroom-300',
+      'text-color-strong',
+      'font-size-200',
+      'border border-solid border-mushroom-200',
+      'focus:border-kangkong-700',
+      'focus:text-color-strong',
+      'focus:border-[1.5px]',
+      'outline-none',
+      'ring-0',
       {
-        'tw-border-[1.5px]': error,
-        'tw-border-tomato-600': error,
-        'focus:tw-border-tomato-600': error,
-        'tw-border-white-100': disabled,
-        'tw-background-color-disabled': disabled,
-        'tw-cursor-not-allowed': disabled,
-        'tw-text-color-on-fill-disabled': disabled,
-        'tw-cursor-pointer': disableTyping,
+        'border-[1.5px]': error,
+        'border-tomato-600': error,
+        'focus:border-tomato-600': error,
+        'border-white-100': disabled,
+        'background-color-disabled': disabled,
+        'cursor-not-allowed': disabled,
+        'text-color-on-fill-disabled': disabled,
+        'cursor-pointer': disableTyping,
       },
     );
   });
 
   const optionClasses: ComputedRef<string> = computed(() => {
     return classNames(
-      'tw-absolute',
-      'tw-z-50 ',
-      'tw-mt-1',
-      'tw-max-h-[300px]',
-      'tw-w-[240px]',
-      'tw-overflow-y-auto',
-      'tw-background-color ',
-      'tw-text-mushroom-950',
-      'tw-border tw-border-solid',
-      'tw-rounded-border-radius-md',
-      'tw-border-color-weak',
-      'tw-shadow-[0_2px_8px_-2px_rgba(38, 43, 43, 0.20)]',
-      'tw-p-size-spacing-3xs',
+      'absolute',
+      'z-50 ',
+      'mt-1',
+      'max-h-[300px]',
+      'w-[240px]',
+      'overflow-y-auto',
+      'background-color ',
+      'text-mushroom-950',
+      'border border-solid',
+      'rounded-border-radius-md',
+      'border-color-weak',
+      'shadow-[0_2px_8px_-2px_rgba(38, 43, 43, 0.20)]',
+      'p-size-spacing-3xs',
       {
-        'tw-w-full': fullWidth,
+        'w-full': fullWidth,
       },
     );
   });
 
   const iconClasses: ComputedRef<string> = computed(() => {
-    return classNames('tw-absolute tw-right-3 tw-text-color-supporting', {
-      '!tw-text-tomato-600': error,
+    return classNames('absolute right-3 text-color-supporting', {
+      '!text-tomato-600': error,
     });
   });
 
   const labelClasses: ComputedRef<string> = computed(() => {
-    return classNames('tw-body-sm-regular tw-text-color-strong tw-block  tw-mb-size-spacing-4xs ', {
-      'tw-text-color-on-fill-disabled': disabled,
+    return classNames('body-sm-regular text-color-strong block  mb-size-spacing-4xs ', {
+      'text-color-on-fill-disabled': disabled,
     });
   });
 
   const wrapperClasses: ComputedRef<string> = computed(() => {
-    return 'tw-relative tw-w-full';
+    return 'relative w-full';
   });
 
   const filterInput = (event: Event) => {

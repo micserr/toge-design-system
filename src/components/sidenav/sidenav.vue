@@ -1,27 +1,24 @@
 <template>
   <div
     :class="[
-      'tw-hidden-scrolls tw-fixed tw-bottom-0 tw-left-0 tw-top-0',
-      'tw-background-color tw-w-auto tw-overflow-y-auto tw-overflow-x-hidden',
-      'tw-border-color-weak tw-border-b-0 tw-border-l-0 tw-border-r tw-border-t-0 tw-border-solid',
-      'tw-transition tw-duration-150 tw-ease-in-out',
+      'hidden-scrolls fixed bottom-0 left-0 top-0',
+      'background-color w-auto overflow-y-auto overflow-x-hidden',
+      'border-color-weak border-b-0 border-l-0 border-r border-t-0 border-solid',
+      'transition duration-150 ease-in-out',
     ]"
   >
     <div
       :class="{
-        'tw-hidden-scrolls tw-flex tw-h-full tw-flex-col tw-justify-between tw-overflow-auto': true,
-        'tw-max-h-[calc(100vh-145px)]': props.notificationCount,
-        'tw-max-h-[calc(100vh-60px)]': !props.notificationCount,
+        'hidden-scrolls flex h-full flex-col justify-between overflow-auto': true,
+        'max-h-[calc(100vh-145px)]': props.notificationCount,
+        'max-h-[calc(100vh-60px)]': !props.notificationCount,
       }"
     >
       <!-- Top Section -->
-      <div class="tw-grid tw-justify-center tw-gap-2 tw-px-3 tw-pb-4 tw-pt-4">
+      <div class="grid justify-center gap-2 px-3 pb-4 pt-4">
         <!-- Logo -->
         <div
-          :class="[
-            'tw-grid tw-justify-center tw-p-2',
-            '[&>img]:tw-mx-auto [&>img]:tw-h-[24px] [&>img]:tw-w-[24px] [&>img]:tw-object-cover',
-          ]"
+          :class="['grid justify-center p-2', '[&>img]:mx-auto [&>img]:h-[24px] [&>img]:w-[24px] [&>img]:object-cover']"
         >
           <slot name="logo-image" />
         </div>
@@ -39,43 +36,43 @@
         >
           <div
             :class="{
-              'tw-flex tw-w-full tw-cursor-pointer tw-items-center tw-text-center tw-text-[28px] tw-transition tw-duration-150 tw-ease-in-out': true,
-              'hover:tw-brightness-75': true,
-              'active:tw-text-color-success-pressed active:tw-scale-90': true,
-              'tw-text-color-inverted-disabled tw-rotate-180': isQuckActionMenuVisible,
-              'tw-text-color-brand-base': !isQuckActionMenuVisible,
+              'flex w-full cursor-pointer items-center text-center text-[28px] transition duration-150 ease-in-out': true,
+              'hover:brightness-75': true,
+              'active:text-color-success-pressed active:scale-90': true,
+              'text-color-inverted-disabled rotate-180': isQuckActionMenuVisible,
+              'text-color-brand-base': !isQuckActionMenuVisible,
             }"
             @click="isQuckActionMenuVisible = !isQuckActionMenuVisible"
           >
-            <IconPlusCircleFill class="tw-w-full" />
+            <IconPlusCircleFill class="w-full" />
           </div>
 
           <template #popper>
             <div
               :class="[
-                'tw-px-4 tw-py-3',
-                'tw-border-color-weak tw-flex tw-justify-between tw-border-x-0 tw-border-b tw-border-t-0 tw-border-solid',
+                'px-4 py-3',
+                'border-color-weak flex justify-between border-x-0 border-b border-t-0 border-solid',
               ]"
             >
-              <h3 class="tw-body-sm-regular-medium tw-m-0">Quick Actions</h3>
+              <h3 class="body-sm-regular-medium m-0">Quick Actions</h3>
               <IconX
                 :class="[
-                  'tw-text-color-weak tw-h-[20px] tw-w-[20px] tw-cursor-pointer',
-                  'tw-transition tw-duration-150 tw-ease-in-out',
-                  'active:tw-scale-90',
+                  'text-color-weak h-[20px] w-[20px] cursor-pointer',
+                  'transition duration-150 ease-in-out',
+                  'active:scale-90',
                 ]"
                 @click="isQuckActionMenuVisible = !isQuckActionMenuVisible"
               />
             </div>
 
-            <div class="tw-max-h-[268px] tw-overflow-auto">
+            <div class="max-h-[268px] overflow-auto">
               <template v-for="(quickAction, quickActionIndex) in props.quickActions" :key="quickActionIndex">
                 <h5
                   v-if="quickAction.menuHeading"
                   :class="[
                     {
-                      'tw-label-xs-medium tw-text-color-supporting tw-m-0 tw-p-2': true,
-                      'tw-mt-3': quickActionIndex !== 0,
+                      'label-xs-medium text-color-supporting m-0 p-2': true,
+                      'mt-3': quickActionIndex !== 0,
                     },
                   ]"
                 >
@@ -85,32 +82,28 @@
                   <div
                     v-if="!menuLinkItem.hidden"
                     :class="[
-                      'tw-flex tw-cursor-pointer tw-gap-2 tw-px-4 tw-py-3 tw-align-middle tw-duration-150 tw-ease-in-out',
-                      'hover:tw-background-color-hover',
-                      'active:tw-background-color-pressed',
+                      'flex cursor-pointer gap-2 px-4 py-3 align-middle duration-150 ease-in-out',
+                      'hover:background-color-hover',
+                      'active:background-color-pressed',
                     ]"
                     @click="handleRedirect(menuLinkItem, '', '', '')"
                   >
                     <div
                       :class="{
-                        'tw-flex tw-items-center tw-rounded-border-radius-md tw-p-2': true,
-                        'tw-border tw-border-solid tw-border-kangkong-400 tw-bg-kangkong-50 tw-text-kangkong-800':
+                        'flex items-center rounded-border-radius-md p-2': true,
+                        'border border-solid border-kangkong-400 bg-kangkong-50 text-kangkong-800':
                           menuLinkItem.iconBgColor === 'green',
-                        'tw-border tw-border-solid tw-border-ubas-400 tw-bg-ubas-50 tw-text-ubas-800':
+                        'border border-solid border-ubas-400 bg-ubas-50 text-ubas-800':
                           menuLinkItem.iconBgColor === 'purple',
                       }"
                     >
-                      <component
-                        :is="menuLinkItem.icon"
-                        v-if="menuLinkItem.icon"
-                        class="tw-h-[1em] tw-w-[1em] tw-text-[20px]"
-                      />
+                      <component :is="menuLinkItem.icon" v-if="menuLinkItem.icon" class="h-[1em] w-[1em] text-[20px]" />
                     </div>
-                    <div class="tw-grid tw-justify-between">
-                      <h5 class="tw-body-sm-regular-medium tw-text-color-strong tw-m-0 tw-truncate">
+                    <div class="grid justify-between">
+                      <h5 class="body-sm-regular-medium text-color-strong m-0 truncate">
                         {{ menuLinkItem.title }}
                       </h5>
-                      <p class="tw-body-xs-regular tw-text-color-base tw-m-0 tw-truncate">
+                      <p class="body-xs-regular text-color-base m-0 truncate">
                         {{ menuLinkItem.description }}
                       </p>
                     </div>
@@ -125,9 +118,9 @@
         <div
           v-if="props.hasSearch"
           :class="[
-            'tw-flex tw-cursor-pointer tw-items-center tw-justify-center tw-rounded-border-radius-md tw-p-2 tw-transition tw-duration-150 tw-ease-in-out',
-            'hover:tw-background-color-hover',
-            'active:tw-background-color-single-active active:tw-scale-90',
+            'flex cursor-pointer items-center justify-center rounded-border-radius-md p-2 transition duration-150 ease-in-out',
+            'hover:background-color-hover',
+            'active:background-color-single-active active:scale-90',
           ]"
           @click="emit('search', 'search-triggered')"
         >
@@ -148,20 +141,20 @@
               >
                 <div
                   :class="{
-                    'tw-flex tw-cursor-pointer tw-items-center tw-justify-center tw-rounded-border-radius-md tw-p-2 tw-transition tw-duration-150 tw-ease-in-out': true,
-                    'tw-background-color-single-active tw-border-color-brand-base tw-border-[1.5px] tw-border-solid active:tw-scale-90':
+                    'flex cursor-pointer items-center justify-center rounded-border-radius-md p-2 transition duration-150 ease-in-out': true,
+                    'background-color-single-active border-color-brand-base border-[1.5px] border-solid active:scale-90':
                       props.activeNav.parentNav === parentLink.title,
-                    'hover:tw-background-color-hover': props.activeNav.parentNav != parentLink.title,
-                    'active:tw-background-color-single-active active:tw-scale-90': true,
+                    'hover:background-color-hover': props.activeNav.parentNav != parentLink.title,
+                    'active:background-color-single-active active:scale-90': true,
                   }"
                 >
-                  <component :is="parentLink.icon" v-if="parentLink.icon" class="tw-h-[1.25em] tw-w-[1.25em]" />
+                  <component :is="parentLink.icon" v-if="parentLink.icon" class="h-[1.25em] w-[1.25em]" />
                   <IconGlobe v-else />
                 </div>
 
                 <template #popper>
-                  <div class="tw-border-color-weak tw-border-x-0 tw-border-b tw-border-t-0 tw-border-solid tw-p-2">
-                    <h3 class="tw-body-sm-regular-medium tw-m-0">
+                  <div class="border-color-weak border-x-0 border-b border-t-0 border-solid p-2">
+                    <h3 class="body-sm-regular-medium m-0">
                       {{ parentLink.title }}
                     </h3>
                   </div>
@@ -170,8 +163,8 @@
                     <h5
                       v-if="menuLink.menuHeading"
                       :class="{
-                        'tw-label-xs-medium tw-text-color-supporting tw-m-0 tw-p-2': true,
-                        'tw-mt-3': menuLinkIndex !== 0,
+                        'label-xs-medium text-color-supporting m-0 p-2': true,
+                        'mt-3': menuLinkIndex !== 0,
                       }"
                     >
                       {{ menuLink.menuHeading }}
@@ -189,19 +182,19 @@
                         >
                           <div
                             :class="{
-                              'tw-body-sm-regular tw-relative tw-m-0 tw-flex tw-cursor-pointer tw-justify-between tw-px-2 tw-py-1.5 tw-align-middle tw-duration-150 tw-ease-in-out': true,
-                              'tw-background-color-single-active': props.activeNav.menu === menuLinkItem.title,
-                              'hover:tw-background-color-hover': props.activeNav.menu !== menuLinkItem.title,
-                              'active:tw-background-color-pressed': true,
+                              'body-sm-regular relative m-0 flex cursor-pointer justify-between px-2 py-1.5 align-middle duration-150 ease-in-out': true,
+                              'background-color-single-active': props.activeNav.menu === menuLinkItem.title,
+                              'hover:background-color-hover': props.activeNav.menu !== menuLinkItem.title,
+                              'active:background-color-pressed': true,
                             }"
                           >
                             <div
                               v-if="props.activeNav.menu === menuLinkItem.title"
-                              class="tw-background-color-brand-base tw-absolute tw-left-0 tw-top-0 tw-h-full tw-w-[2px]"
+                              class="background-color-brand-base absolute left-0 top-0 h-full w-[2px]"
                             ></div>
                             <span>{{ menuLinkItem.title }}</span>
                             <IconCaretRight
-                              class="tw-h-[16px] tw-w-[16px] tw-transform tw-font-normal tw-transition-transform tw-duration-300"
+                              class="h-[16px] w-[16px] transform font-normal transition-transform duration-300"
                             />
                           </div>
 
@@ -213,8 +206,8 @@
                               <h5
                                 v-if="submenuLink.subMenuHeading"
                                 :class="{
-                                  'tw-label-xs-medium tw-text-color-supporting tw-m-0 tw-p-2': true,
-                                  'tw-mt-3': submenuLinkIndex !== 0,
+                                  'label-xs-medium text-color-supporting m-0 p-2': true,
+                                  'mt-3': submenuLinkIndex !== 0,
                                 }"
                               >
                                 {{ submenuLink.subMenuHeading }}
@@ -227,12 +220,11 @@
                                   <div
                                     v-if="!submenuLinkItem.hidden"
                                     :class="{
-                                      'tw-body-sm-regular tw-relative tw-m-0 tw-flex tw-cursor-pointer tw-justify-between tw-px-2 tw-py-1.5 tw-align-middle tw-duration-150 tw-ease-in-out': true,
-                                      'tw-background-color-single-active':
+                                      'body-sm-regular relative m-0 flex cursor-pointer justify-between px-2 py-1.5 align-middle duration-150 ease-in-out': true,
+                                      'background-color-single-active':
                                         props.activeNav.submenu === submenuLinkItem.title,
-                                      'hover:tw-background-color-hover':
-                                        props.activeNav.submenu !== submenuLinkItem.title,
-                                      'active:tw-background-color-pressed': true,
+                                      'hover:background-color-hover': props.activeNav.submenu !== submenuLinkItem.title,
+                                      'active:background-color-pressed': true,
                                     }"
                                     @click="
                                       handleRedirect(
@@ -245,7 +237,7 @@
                                   >
                                     <div
                                       v-show="props.activeNav.submenu === submenuLinkItem.title"
-                                      class="tw-background-color-brand-base tw-absolute tw-left-0 tw-top-0 tw-h-full tw-w-[2px]"
+                                      class="background-color-brand-base absolute left-0 top-0 h-full w-[2px]"
                                     ></div>
                                     <span>{{ submenuLinkItem.title }}</span>
                                   </div>
@@ -261,10 +253,10 @@
                         <div
                           v-if="!menuLinkItem.hidden"
                           :class="[
-                            'tw-body-sm-regular tw-m-0 tw-flex tw-cursor-pointer tw-justify-between tw-px-2 tw-py-1.5 tw-align-middle tw-duration-300 tw-ease-in-out',
-                            'hover:tw-background-color-hover',
-                            'active:tw-background-color-pressed',
-                            'last:tw-rounded-b-xl',
+                            'body-sm-regular m-0 flex cursor-pointer justify-between px-2 py-1.5 align-middle duration-300 ease-in-out',
+                            'hover:background-color-hover',
+                            'active:background-color-pressed',
+                            'last:rounded-b-xl',
                           ]"
                           @click="handleRedirect(menuLinkItem, parentLink.title, menuLinkItem.title, '')"
                         >
@@ -287,19 +279,19 @@
                 :triggers="['hover']"
               >
                 <template #popper>
-                  <span class="tw-label-xs-medium tw-uppercase">{{ parentLink.title }}</span>
+                  <span class="label-xs-medium uppercase">{{ parentLink.title }}</span>
                 </template>
                 <div
                   :class="{
-                    'tw-flex tw-cursor-pointer tw-items-center tw-justify-center tw-rounded-border-radius-md tw-p-2 tw-transition tw-duration-150 tw-ease-in-out': true,
-                    'tw-background-color-single-active tw-border-color-brand-base tw-border-[1.5px] tw-border-solid active:tw-scale-90':
+                    'flex cursor-pointer items-center justify-center rounded-border-radius-md p-2 transition duration-150 ease-in-out': true,
+                    'background-color-single-active border-color-brand-base border-[1.5px] border-solid active:scale-90':
                       props.activeNav.parentNav === parentLink.title,
-                    'hover:tw-background-color-hover': props.activeNav.parentNav != parentLink.title,
-                    'active:tw-background-color-single-active active:tw-scale-90': true,
+                    'hover:background-color-hover': props.activeNav.parentNav != parentLink.title,
+                    'active:background-color-single-active active:scale-90': true,
                   }"
                   @click="handleRedirect(parentLink, parentLink.title, '', '')"
                 >
-                  <component :is="parentLink.icon" v-if="parentLink.icon" class="tw-h-[1.25em] tw-w-[1.25em]" />
+                  <component :is="parentLink.icon" v-if="parentLink.icon" class="h-[1.25em] w-[1.25em]" />
                   <IconGlobe v-else />
                 </div>
               </Tooltip>
@@ -307,7 +299,7 @@
           </template>
           <div
             v-if="props.navLinks.top.length > 0 && navLinkIndex < props.navLinks.top.length - 1"
-            class="tw-background-color-hover tw-h-[2px] tw-w-full"
+            class="background-color-hover h-[2px] w-full"
           ></div>
         </template>
       </div>
@@ -315,7 +307,7 @@
       <!-- Bottom Section -->
       <div
         v-if="props.navLinks.bottom && props.navLinks.bottom.length > 0"
-        class="tw-grid tw-justify-center tw-gap-2 tw-px-3 tw-pb-4 tw-pt-0"
+        class="grid justify-center gap-2 px-3 pb-4 pt-0"
       >
         <!-- Grouped Nav Links -->
         <template v-for="(navLink, navLinkIndex) in props.navLinks.bottom" :key="navLinkIndex">
@@ -331,20 +323,20 @@
               >
                 <div
                   :class="{
-                    'tw-flex tw-cursor-pointer tw-items-center tw-justify-center tw-rounded-border-radius-md tw-p-2 tw-transition tw-duration-150 tw-ease-in-out': true,
-                    'tw-background-color-single-active tw-border-color-brand-base tw-border-[1.5px] tw-border-solid active:tw-scale-90':
+                    'flex cursor-pointer items-center justify-center rounded-border-radius-md p-2 transition duration-150 ease-in-out': true,
+                    'background-color-single-active border-color-brand-base border-[1.5px] border-solid active:scale-90':
                       props.activeNav.parentNav === parentLink.title,
-                    'hover:tw-background-color-hover': props.activeNav.parentNav != parentLink.title,
-                    'active:tw-background-color-single-active active:tw-scale-90': true,
+                    'hover:background-color-hover': props.activeNav.parentNav != parentLink.title,
+                    'active:background-color-single-active active:scale-90': true,
                   }"
                 >
-                  <component :is="parentLink.icon" v-if="parentLink.icon" class="tw-h-[1.25em] tw-w-[1.25em]" />
+                  <component :is="parentLink.icon" v-if="parentLink.icon" class="h-[1.25em] w-[1.25em]" />
                   <IconGlobe v-else />
                 </div>
 
                 <template #popper>
-                  <div class="tw-border-color-weak tw-border-x-0 tw-border-b tw-border-t-0 tw-border-solid tw-p-2">
-                    <h3 class="tw-body-sm-regular-medium tw-m-0">
+                  <div class="border-color-weak border-x-0 border-b border-t-0 border-solid p-2">
+                    <h3 class="body-sm-regular-medium m-0">
                       {{ parentLink.title }}
                     </h3>
                   </div>
@@ -353,8 +345,8 @@
                     <h5
                       v-if="menuLink.menuHeading"
                       :class="{
-                        'tw-label-xs-medium tw-text-color-supporting tw-m-0 tw-p-2': true,
-                        'tw-mt-3': menuLinkIndex !== 0,
+                        'label-xs-medium text-color-supporting m-0 p-2': true,
+                        'mt-3': menuLinkIndex !== 0,
                       }"
                     >
                       {{ menuLink.menuHeading }}
@@ -372,19 +364,19 @@
                         >
                           <div
                             :class="{
-                              'tw-body-sm-regular tw-relative tw-m-0 tw-flex tw-cursor-pointer tw-justify-between tw-px-2 tw-py-1.5 tw-align-middle tw-duration-150 tw-ease-in-out': true,
-                              'tw-background-color-single-active': props.activeNav.menu === menuLinkItem.title,
-                              'hover:tw-background-color-hover': props.activeNav.menu !== menuLinkItem.title,
-                              'active:tw-background-color-pressed': true,
+                              'body-sm-regular relative m-0 flex cursor-pointer justify-between px-2 py-1.5 align-middle duration-150 ease-in-out': true,
+                              'background-color-single-active': props.activeNav.menu === menuLinkItem.title,
+                              'hover:background-color-hover': props.activeNav.menu !== menuLinkItem.title,
+                              'active:background-color-pressed': true,
                             }"
                           >
                             <div
                               v-if="props.activeNav.menu === menuLinkItem.title"
-                              class="tw-background-color-brand-base tw-absolute tw-left-0 tw-top-0 tw-h-full tw-w-[2px]"
+                              class="background-color-brand-base absolute left-0 top-0 h-full w-[2px]"
                             ></div>
                             <span>{{ menuLinkItem.title }}</span>
                             <IconCaretRight
-                              class="tw-h-[16px] tw-w-[16px] tw-transform tw-font-normal tw-transition-transform tw-duration-300"
+                              class="h-[16px] w-[16px] transform font-normal transition-transform duration-300"
                             />
                           </div>
 
@@ -396,8 +388,8 @@
                               <h5
                                 v-if="submenuLink.subMenuHeading"
                                 :class="{
-                                  'tw-label-xs-medium tw-text-color-supporting tw-m-0 tw-p-2': true,
-                                  'tw-mt-3': submenuLinkIndex !== 0,
+                                  'label-xs-medium text-color-supporting m-0 p-2': true,
+                                  'mt-3': submenuLinkIndex !== 0,
                                 }"
                               >
                                 {{ submenuLink.subMenuHeading }}
@@ -410,12 +402,11 @@
                                   <div
                                     v-if="!submenuLinkItem.hidden"
                                     :class="{
-                                      'tw-body-sm-regular tw-relative tw-m-0 tw-flex tw-cursor-pointer tw-justify-between tw-px-2 tw-py-1.5 tw-align-middle tw-duration-150 tw-ease-in-out': true,
-                                      'tw-background-color-single-active':
+                                      'body-sm-regular relative m-0 flex cursor-pointer justify-between px-2 py-1.5 align-middle duration-150 ease-in-out': true,
+                                      'background-color-single-active':
                                         props.activeNav.submenu === submenuLinkItem.title,
-                                      'hover:tw-background-color-hover':
-                                        props.activeNav.submenu !== submenuLinkItem.title,
-                                      'active:tw-background-color-pressed': true,
+                                      'hover:background-color-hover': props.activeNav.submenu !== submenuLinkItem.title,
+                                      'active:background-color-pressed': true,
                                     }"
                                     @click="
                                       handleRedirect(
@@ -428,7 +419,7 @@
                                   >
                                     <div
                                       v-show="props.activeNav.submenu === submenuLinkItem.title"
-                                      class="tw-background-color-brand-base tw-absolute tw-left-0 tw-top-0 tw-h-full tw-w-[2px]"
+                                      class="background-color-brand-base absolute left-0 top-0 h-full w-[2px]"
                                     ></div>
                                     <span>{{ submenuLinkItem.title }}</span>
                                   </div>
@@ -444,10 +435,10 @@
                         <div
                           v-if="!menuLinkItem.hidden"
                           :class="[
-                            'tw-body-sm-regular tw-m-0 tw-flex tw-cursor-pointer tw-justify-between tw-px-2 tw-py-1.5 tw-align-middle tw-duration-300 tw-ease-in-out',
-                            'hover:tw-background-color-hover',
-                            'active:tw-background-color-pressed',
-                            'last:tw-rounded-b-xl',
+                            'body-sm-regular m-0 flex cursor-pointer justify-between px-2 py-1.5 align-middle duration-300 ease-in-out',
+                            'hover:background-color-hover',
+                            'active:background-color-pressed',
+                            'last:rounded-b-xl',
                           ]"
                           @click="handleRedirect(menuLinkItem, parentLink.title, menuLinkItem.title, '')"
                         >
@@ -470,19 +461,19 @@
                 :triggers="['hover']"
               >
                 <template #popper>
-                  <span class="tw-label-xs-medium tw-uppercase">{{ parentLink.title }}</span>
+                  <span class="label-xs-medium uppercase">{{ parentLink.title }}</span>
                 </template>
                 <div
                   :class="{
-                    'tw-flex tw-cursor-pointer tw-items-center tw-justify-center tw-rounded-border-radius-md tw-p-2 tw-transition tw-duration-150 tw-ease-in-out': true,
-                    'tw-background-color-single-active tw-border-color-brand-base tw-border-[1.5px] tw-border-solid active:tw-scale-90':
+                    'flex cursor-pointer items-center justify-center rounded-border-radius-md p-2 transition duration-150 ease-in-out': true,
+                    'background-color-single-active border-color-brand-base border-[1.5px] border-solid active:scale-90':
                       props.activeNav.parentNav === parentLink.title,
-                    'hover:tw-background-color-hover': props.activeNav.parentNav != parentLink.title,
-                    'active:tw-background-color-single-active active:tw-scale-90': true,
+                    'hover:background-color-hover': props.activeNav.parentNav != parentLink.title,
+                    'active:background-color-single-active active:scale-90': true,
                   }"
                   @click="handleRedirect(parentLink, parentLink.title, '', '')"
                 >
-                  <component :is="parentLink.icon" v-if="parentLink.icon" class="tw-h-[1.25em] tw-w-[1.25em]" />
+                  <component :is="parentLink.icon" v-if="parentLink.icon" class="h-[1.25em] w-[1.25em]" />
                   <IconGlobe v-else />
                 </div>
               </Tooltip>
@@ -490,26 +481,26 @@
           </template>
           <div
             v-if="props.navLinks.bottom.length > 0 && navLinkIndex < props.navLinks.bottom.length - 1"
-            class="tw-background-color-hover tw-h-[2px] tw-w-full"
+            class="background-color-hover h-[2px] w-full"
           ></div>
         </template>
       </div>
     </div>
 
-    <div v-if="props.notificationCount" class="tw-grid tw-gap-2 tw-py-6">
+    <div v-if="props.notificationCount" class="grid gap-2 py-6">
       <!-- Notification -->
       <div
         v-if="props.notificationCount"
         :class="[
-          'tw-relative tw-flex tw-cursor-pointer tw-items-center tw-justify-center tw-p-2',
-          'tw-transition tw-duration-150 tw-ease-in-out',
-          'active:tw-scale-90',
+          'relative flex cursor-pointer items-center justify-center p-2',
+          'transition duration-150 ease-in-out',
+          'active:scale-90',
         ]"
         @click="emit('notifications', 'notifications-triggered')"
       >
-        <IconBell class="tw-h-[1.25em] tw-w-[1.25em]" />
+        <IconBell class="h-[1.25em] w-[1.25em]" />
         <badge
-          class="tw-absolute tw-right-4 tw-top-0.5"
+          class="absolute right-2.5 -top-0.5"
           :text="String(props.notificationCount)"
           variant="danger"
           size="small"
@@ -521,8 +512,8 @@
     <div
       v-if="props.userMenu"
       :class="[
-        'tw-border-color-weak tw-absolute tw-bottom-0 tw-w-full tw-p-3.5',
-        'tw-border-b-0 tw-border-l-0 tw-border-r-0 tw-border-t tw-border-solid',
+        'border-color-weak absolute bottom-0 w-full p-3.5',
+        'border-b-0 border-l-0 border-r-0 border-t border-solid',
       ]"
     >
       <Menu
@@ -535,12 +526,12 @@
       >
         <div
           :class="[
-            'tw-background-color tw-flex tw-h-[36px] tw-w-[36px] tw-cursor-pointer tw-items-center tw-justify-center tw-rounded-full',
-            'tw-border-color-weak tw-border tw-border-solid',
-            'tw-transition tw-duration-150 tw-ease-in-out',
-            'hover:tw-background-color-hover',
-            'active:tw-background-color-pressed active:tw-scale-90',
-            '[&>img]:tw-h-[36px] [&>img]:tw-w-[36px] [&>img]:tw-rounded-full [&>img]:tw-object-cover',
+            'background-color flex h-[36px] w-[36px] cursor-pointer items-center justify-center rounded-full',
+            'border-color-weak border border-solid',
+            'transition duration-150 ease-in-out',
+            'hover:background-color-hover',
+            'active:background-color-pressed active:scale-90',
+            '[&>img]:h-[36px] [&>img]:w-[36px] [&>img]:rounded-full [&>img]:object-cover',
           ]"
           @click="isUserMenuVisible = !isUserMenuVisible"
         >
@@ -554,17 +545,14 @@
 
         <template #popper>
           <div
-            :class="[
-              'tw-px-4 tw-py-3',
-              'tw-border-color-weak tw-flex tw-justify-between tw-border-x-0 tw-border-b tw-border-t-0 tw-border-solid',
-            ]"
+            :class="['px-4 py-3', 'border-color-weak flex justify-between border-x-0 border-b border-t-0 border-solid']"
           >
-            <div class="tw-flex tw-items-center tw-gap-2">
+            <div class="flex items-center gap-2">
               <div
                 :class="[
-                  'tw-background-color tw-flex tw-h-[36px] tw-w-[36px] tw-items-center tw-justify-center tw-rounded-full',
-                  'tw-border-color-weak tw-border tw-border-solid',
-                  '[&>img]:tw-h-[36px] [&>img]:tw-w-[36px] [&>img]:tw-rounded-full [&>img]:tw-object-cover',
+                  'background-color flex h-[36px] w-[36px] items-center justify-center rounded-full',
+                  'border-color-weak border border-solid',
+                  '[&>img]:h-[36px] [&>img]:w-[36px] [&>img]:rounded-full [&>img]:object-cover',
                 ]"
               >
                 <template v-if="props.userMenu.profileImage && !userProfileError">
@@ -574,34 +562,30 @@
                   <span>{{ getUserInitials(props.userMenu.name) }}</span>
                 </template>
               </div>
-              <div class="tw-grid tw-justify-between tw-gap-1">
-                <h3 class="tw-body-sm-regular-medium tw-m-0 tw-truncate">
+              <div class="grid justify-between gap-1">
+                <h3 class="body-sm-regular-medium m-0 truncate">
                   {{ props.userMenu.name }}
                 </h3>
-                <p class="tw-body-xs-regular tw-m-0 tw-truncate">
+                <p class="body-xs-regular m-0 truncate">
                   {{ props.userMenu.email }}
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="tw-max-h-[268px] tw-overflow-auto">
+          <div class="max-h-[268px] overflow-auto">
             <template v-for="(userMenuItem, userMenuItemIndex) in props.userMenu.items" :key="userMenuItemIndex">
               <div
                 v-if="!userMenuItem.hidden"
                 :class="[
-                  'tw-flex tw-cursor-pointer tw-gap-2 tw-p-2 tw-align-middle tw-duration-150 tw-ease-in-out',
-                  'hover:tw-background-color-hover',
-                  'active:tw-background-color-pressed',
+                  'flex cursor-pointer gap-2 p-2 align-middle duration-150 ease-in-out',
+                  'hover:background-color-hover',
+                  'active:background-color-pressed',
                 ]"
                 @click="handleRedirect(userMenuItem, '', '', '')"
               >
-                <component
-                  :is="userMenuItem.icon"
-                  v-if="userMenuItem.icon"
-                  class="tw-h-[1em] tw-w-[1em] tw-text-[20px]"
-                />
-                <h5 class="tw-body-sm-regular tw-text-color-strong tw-m-0 tw-truncate">
+                <component :is="userMenuItem.icon" v-if="userMenuItem.icon" class="h-[1em] w-[1em] text-[20px]" />
+                <h5 class="body-sm-regular text-color-strong m-0 truncate">
                   {{ userMenuItem.title }}
                 </h5>
               </div>

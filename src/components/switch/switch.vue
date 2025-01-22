@@ -5,15 +5,15 @@
         <slot></slot>
       </slot>
     </label>
-    <div ref="switchWrapperRef" class="switch_wrapper" >
-      <input 
-        ref="switchRef" 
-        v-model="proxyValue" 
-        type="checkbox" 
-        name="checkbox" 
+    <div ref="switchWrapperRef" class="switch_wrapper">
+      <input
+        ref="switchRef"
+        v-model="proxyValue"
+        type="checkbox"
+        name="checkbox"
         :class="['switch_input', switchInputClass]"
         :disabled="props.disabled"
-      >
+      />
       <span :class="['switch_mark', switchMarkClass]"></span>
     </div>
     <label class="switch_text switch_right-text">
@@ -30,16 +30,10 @@ import { useVModel } from '@vueuse/core';
 const props = defineProps(switchPropTypes);
 const emit = defineEmits(switchEmitTypes);
 
-const proxyValue = useVModel(props, "modelValue", emit);
+const proxyValue = useVModel(props, 'modelValue', emit);
 
-const { 
-  switchWrapperRef, 
-  switchRef,
-  switchProps,
-  switchMarkClass,
-  switchTextClass,
-  switchInputClass,
-} = useSwitch(props);
+const { switchWrapperRef, switchRef, switchProps, switchMarkClass, switchTextClass, switchInputClass } =
+  useSwitch(props);
 </script>
 
 <style lang="scss" scoped>
@@ -56,13 +50,13 @@ const {
     margin-left: 8px;
   }
 
-  &_wrapper{
+  &_wrapper {
     position: relative;
     display: inline;
     height: 24px;
   }
 
-  &_input{
+  &_input {
     position: absolute;
     top: 0;
     left: 0;
@@ -72,12 +66,12 @@ const {
     height: 24px;
     margin: 0;
 
-    &:checked ~ .switch_mark:before{
+    &:checked ~ .switch_mark:before {
       left: 28px;
     }
   }
 
-  &_mark{
+  &_mark {
     display: inline-block;
     position: relative;
     box-sizing: border-box;
@@ -87,13 +81,13 @@ const {
     padding: 4px;
 
     &:before,
-    &:after{
-      content: "";
+    &:after {
+      content: '';
       position: absolute;
     }
 
-    &:before{
-      @apply tw-bg-white-50;
+    &:before {
+      @apply bg-white-50;
 
       top: 4px;
       left: 4px;

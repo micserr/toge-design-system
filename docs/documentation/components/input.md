@@ -62,6 +62,67 @@ UI element that allows users to enter and edit text or other data.
 <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" disabled />
 ```
 
+## Prefix
+
+<spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username"  >
+  <template #prefix>
+    <IconWarning />
+  </template>
+</spr-input>
+
+```vue
+<spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username">
+  <template #prefix>
+    <IconWarning />
+  </template>
+</spr-input>
+```
+
+## Trailing Label
+
+<div class="tw-flex tw-flex-col tw-gap-2">
+<spr-input v-model="inputValue" label="Offset xs" placeholder="00" offset-size="xs" type="number">
+  <template #trailing>
+  minutes
+  </template>
+</spr-input>
+
+<spr-input v-model="inputValue" label="offset sm" placeholder="00" offset-size="sm" type="number">
+  <template #trailing>
+  minutes
+  </template>
+</spr-input>
+
+<spr-input v-model="inputValue" label="offset md" placeholder="Enter your name" offset-size="md" >
+  <template #trailing>
+  Name of the user
+  </template>
+</spr-input>
+</div>
+
+```vue
+<!-- xs -->
+<spr-input v-model="inputValue" label="Offset xs" placeholder="00" offset-size="xs" type="number">
+  <template #trailing>
+    minutes
+  </template>
+</spr-input>
+
+<!-- sm -->
+<spr-input v-model="inputValue" label="offset sm" placeholder="00" offset-size="sm" type="number">
+  <template #trailing>
+    minutes
+  </template>
+</spr-input>
+
+<!-- md -->
+<spr-input v-model="inputValue" label="offset md" placeholder="Enter your name" offset-size="md">
+  <template #trailing>
+    Name of the user
+  </template>
+</spr-input>
+```
+
 <script setup lang="ts">
   import { ref } from 'vue';
   import SprInput from "@/components/input/input.vue"

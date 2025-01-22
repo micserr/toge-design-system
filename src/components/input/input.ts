@@ -2,6 +2,8 @@ import type { PropType, ExtractPropTypes } from 'vue';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
+const TRAILING_SIZES = ['xs', 'sm', 'md'] as const;
+
 export const inputPropTypes = {
   modelValue: {
     type: String,
@@ -30,6 +32,15 @@ export const inputPropTypes = {
   disabled: {
     type: Boolean,
     default: false,
+  },
+  offsetSize: {
+    type: String as PropType<(typeof TRAILING_SIZES)[number]>,
+    validator: (value: (typeof TRAILING_SIZES)[number]) => TRAILING_SIZES.includes(value),
+    default: 'sm',
+  },
+  offset: {
+    type: Array as unknown as PropType<[string, string]>,
+    default: ['0', '0'],
   },
 };
 

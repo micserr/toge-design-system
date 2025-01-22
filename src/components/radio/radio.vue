@@ -13,10 +13,7 @@
     ref="radioRef"
     :for="props.id"
     :disabled="props.disabled"
-    :class="[
-      'tw-w-auto tw-inline-flex tw-items-center tw-space-x-2 tw-p-0 tw-m-0',
-      radioLabelClasses
-    ]"
+    :class="['w-auto inline-flex items-center space-x-2 p-0 m-0', radioLabelClasses]"
   >
     <span :class="indicatorClasses"></span>
     <slot />
@@ -24,13 +21,13 @@
 </template>
 
 <script lang="ts" setup>
-import { radioPropTypes, radioEmitTypes } from "./radio";
-import { useVModel } from "@vueuse/core";
-import { useRadioButton } from "./use-radio";
+import { radioPropTypes, radioEmitTypes } from './radio';
+import { useVModel } from '@vueuse/core';
+import { useRadioButton } from './use-radio';
 
 const props = defineProps(radioPropTypes);
 const emit = defineEmits(radioEmitTypes);
 
-const proxyValue = useVModel(props, "modelValue", emit);
+const proxyValue = useVModel(props, 'modelValue', emit);
 const { radioRef, radioClasses, indicatorClasses, radioLabelClasses } = useRadioButton(props);
 </script>

@@ -7,14 +7,14 @@ export const useEmptyState = (props: EmptyStatePropTypes) => {
 
   const emptyStateWrapperClasses = computed(() => {
     return classNames(
-      'tw-background-color-surface tw-flex tw-h-full tw-w-full tw-flex-col tw-items-center tw-justify-center tw-gap-size-spacing-2xs tw-px-size-spacing-2xl tw-py-size-spacing-3xl tw-text-center',
+      'background-color-surface flex h-full w-full flex-col items-center justify-center gap-size-spacing-2xs px-size-spacing-2xl py-size-spacing-3xl text-center',
     );
   });
 
   const imageSizeClasses = computed(() => {
     return classNames({
-      'tw-h-[200px] tw-w-[200px]': size === 'large',
-      'tw-h-[120px] tw-w-[120px]': size === 'small',
+      'h-[200px] w-[200px]': size === 'large',
+      'h-[120px] w-[120px]': size === 'small',
     });
   });
 

@@ -4,7 +4,7 @@
       {{ label }}
     </label>
 
-    <div class="tw-relative tw-flex tw-items-center">
+    <div class="relative flex items-center">
       <input
         v-model="selectedValue"
         type="text"
@@ -31,13 +31,13 @@
           v-for="option in filteredOptions"
           :key="option"
           :class="[
-            'tw-flex tw-justify-between',
-            'tw-body-xs-regular tw-p-size-spacing-3xs',
-            'hover:tw-background-color-hover',
-            'tw-rounded-border-radius-md',
-            'tw-cursor-pointer',
+            'flex justify-between',
+            'body-xs-regular p-size-spacing-3xs',
+            'hover:background-color-hover',
+            'rounded-border-radius-md',
+            'cursor-pointer',
             {
-              'tw-background-color-single-active tw-rounded-border-radius-md':
+              'background-color-single-active rounded-border-radius-md':
                 option.toUpperCase() === selectedValue.toUpperCase(),
             },
           ]"
@@ -45,14 +45,12 @@
         >
           {{ option }}
 
-          <span
-            v-if="option.toUpperCase() === selectedValue.toUpperCase()"
-            class="tw-text-color-brand-base tw-font-bold"
+          <span v-if="option.toUpperCase() === selectedValue.toUpperCase()" class="text-color-brand-base font-bold"
             ><IconCheck
           /></span>
         </div>
       </div>
-      <div v-else class="tw-px-3 tw-py-2 tw-text-gray-500">No matching options found</div>
+      <div v-else class="px-3 py-2 text-gray-500">No matching options found</div>
     </div>
   </div>
 </template>

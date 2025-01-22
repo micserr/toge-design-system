@@ -2,20 +2,20 @@
   <div v-if="visible" :class="[fill ? 'lozenge-fill' : 'lozenge']">
     <div
       :class="[
-        'tw-label-xs-medium tw-inline-flex tw-items-center tw-gap-size-spacing-6xs tw-rounded-md tw-border tw-border-solid tw-p-size-spacing-5xs tw-text-xs tw-uppercase',
+        'label-xs-medium inline-flex items-center gap-size-spacing-6xs rounded-md border border-solid p-size-spacing-5xs text-xs uppercase',
         tone,
       ]"
     >
-      <div v-if="$slots.icon" class="tw-flex tw-h-3 tw-w-3 tw-items-center tw-overflow-hidden">
+      <div v-if="$slots.icon" class="flex h-3 w-3 items-center overflow-hidden">
         <slot name="icon" />
       </div>
 
-      <div v-if="$slots.avatar" class="tw-flex tw-items-center">
+      <div v-if="$slots.avatar" class="flex items-center">
         <slot name="avatar" />
       </div>
 
-      <div v-if="url && !$slots.avatar" class="tw-h-4 tw-w-4 tw-overflow-hidden">
-        <img class="tw-h-full tw-w-full tw-rounded-full tw-object-cover" :src="url" alt="avatar" />
+      <div v-if="url && !$slots.avatar" class="h-4 w-4 overflow-hidden">
+        <img class="h-full w-full rounded-full object-cover" :src="url" alt="avatar" />
       </div>
 
       <div>{{ label }}</div>
@@ -28,4 +28,3 @@ import { lozengePropTypes } from './lozenge';
 
 defineProps(lozengePropTypes);
 </script>
-

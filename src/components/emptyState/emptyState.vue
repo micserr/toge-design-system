@@ -3,13 +3,13 @@
     <slot :class="imageSizeClasses" />
 
     <div v-if="!$slots.default" :class="imageSizeClasses">
-      <img :src="getImageUrl" alt="empty-image" class="tw-h-full tw-w-full tw-object-cover" />
+      <img :src="getImageUrl" alt="empty-image" class="h-full w-full object-cover" />
     </div>
 
-    <section class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-gap-size-spacing-md">
-      <div class="tw-text-color-strong tw-body-md tw-flex tw-flex-col">
+    <section class="flex flex-col items-center justify-center gap-size-spacing-md">
+      <div class="text-color-strong body-md flex flex-col">
         {{ description }}
-        <div class="tw-text-color-base tw-body-sm-regular">
+        <div class="text-color-base body-sm-regular">
           {{ subDescription }}
         </div>
       </div>

@@ -101,6 +101,10 @@ export default defineConfig({
               text: 'Modal',
               link: '/documentation/components/modal',
             },
+            {
+              text: 'Empty State',
+              link: '/documentation/components/emptyState',
+            },
           ],
         },
         {

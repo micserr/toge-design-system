@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.39 (2025-01-22)
+
+- Feat: Empty State ([#0cb488ac](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0cb488ac8e74622d9c2529d8af3b4b1b7e71e56e?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fempty-state) by @andrea)
+
 ## 1.0.38 (2025-01-22)
 
 - Feat: Input Prefix and trailing ([#d69c9751](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d69c9751be3ba3e73fbcbfadc4f7ea0562d5ebda?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Finput) by @andrea)

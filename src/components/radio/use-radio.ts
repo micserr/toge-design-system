@@ -8,26 +8,34 @@ export const useRadioButton = (props: RadioPropTypes) => {
   const isHovered = useElementHover(radioRef);
 
   const radioClasses: ComputedRef<string> = computed(() => {
-    const baseClasses = "tw-sr-only tw-peer";
-
+    const baseClasses = "tw-sr-only tw-peer tw-inline-block";
+  
     if (props.disabled) {
-      return classNames(baseClasses, "tw-cursor-default");
+      return classNames(baseClasses, "tw-cursor-not-allowed");
     }
-
+  
     return baseClasses;
   });
 
   const indicatorClasses: ComputedRef<string> = computed(() => {
-    console.log(props.disabled);
     const baseClasses =
-      "tw-inline-block tw-w-4 tw-h-4 tw-rounded-full tw-border-2 tw-border-solid tw-mr-2";
+      "tw-inline-block tw-w-4 tw-h-4 tw-rounded-full tw-border-2 tw-border-solid tw-mr-2 tw-shrink-0";
 
     if (props.disabled) {
       return classNames(
         baseClasses,
         props.modelValue === props.value
-          ? "tw-border-color-disabled tw-background-color-disabled tw-shadow-[inset_0px_0px_0px_2.5px_#fff] tw-cursor-default"
-          : "tw-border-color-disabled tw-background-color tw-cursor-default"
+          ? "tw-border-color-disabled tw-background-color-disabled tw-shadow-[inset_0px_0px_0px_2.5px_#fff] tw-cursor-not-allowed"
+          : "tw-border-color-disabled tw-background-color tw-cursor-not-allowed"
+      );
+    }
+
+    if (isHovered.value) {
+      return classNames(
+        baseClasses,
+        props.modelValue === props.value
+          ? "tw-background-color-brand-hover tw-border-2 tw-border-color-brand-hover tw-shadow-[inset_0px_0px_0px_2.5px_#fff]"
+          : "tw-background-color-base tw-border-2 tw-border-color-supporting tw-shadow-[inset_0px_0px_0px_2.5px_#fff]"
       );
     }
 
@@ -38,22 +46,15 @@ export const useRadioButton = (props: RadioPropTypes) => {
       );
     }
 
-    if (isHovered.value) {
-      return classNames(
-        baseClasses,
-        "tw-background-color-base tw-border-2 tw-border-color-supporting tw-shadow-[inset_0px_0px_0px_2.5px_#fff]"
-      );
-    }
-
     return classNames(baseClasses, "tw-border-color-supporting tw-shadow-[inset_0px_0px_0px_2.5px_#fff]");
   });
 
   const radioLabelClasses: ComputedRef<string> = computed(() => {
     if (props.disabled) {
-      return "tw-text-color-disabled tw-cursor-default";
+      return "tw-text-color-disabled tw-cursor-not-allowed";
     }
-
-    return "tw-text-color-strong tw-cursor-pointer";
+  
+    return "tw-text-color-strong tw-cursor-pointer tw-inline-flex tw-items-center tw-p-0";
   });
 
   return {

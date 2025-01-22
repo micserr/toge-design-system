@@ -1,8 +1,96 @@
 # Changelog
 
+## 1.0.40 (2025-01-22)
+
+- Fix: Empty State pipeline error ([#1d441db1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1d441db1ad7f25313d511e5b5556bc137726427f?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fempty-state) by @andrea)
+
+## 1.0.39 (2025-01-22)
+
+- Feat: Empty State ([#0cb488ac](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0cb488ac8e74622d9c2529d8af3b4b1b7e71e56e?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fempty-state) by @andrea)
+
+## 1.0.38 (2025-01-22)
+
+- Feat: Input Prefix and trailing ([#d69c9751](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d69c9751be3ba3e73fbcbfadc4f7ea0562d5ebda?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Finput) by @andrea)
+
+## 1.0.37 (2025-01-17)
+
+- Feat:
+
+  - Sidenav DQA Updates
+  - Sidenav Top and Buttom Section
+  - Quick Action - Sectionized
+  - Notification
+  - Fix Issue - Parent Link Does not active if no menulinks
+  - Add activeNav on click on navigation item, User Menu
+
+  - ([#7a11fe86](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7a11fe86c2b85d2a35b92847a1213bfbe22ccd66?refName=refs/heads/2024/feature/arias/sidenav) by @jarias)
+  - ([#0493bcc5](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0493bcc5001064d66e9755f74ed8808a1701a15b?refName=refs/heads/2024/feature/arias/sidenav) by @jarias)
+  - ([#28b8a52b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/28b8a52b6c1dd10024192ecdfc2c3d4e246d0420?refName=refs/heads/2024/feature/arias/sidenav) by @jarias)
+
+## 1.0.36 (2025-01-17)
+
+- Feat: Tabs, TimePicker ([#83e94c5c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/83e94c5c6848e83d82137ac1f4b64d65036b879d?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FDQA-tabs-timepicker) by @andrea)
+
+## 1.0.35 (2025-01-17)
+
+- Fix: DQA - Tab ([#d2d9bc9b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d2d9bc9ba867a4307bf2bdb5bcf7d6826f7c66ec?refName=refs%2Fheads%2F2025%2Ffix%2Fandrea%2FDQA-Tabs) by @andrea)
+
+- Fix: DQA - Badge, Modal ([#c5cc5d15](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c5cc5d1559e00030b83a55792ee2428171e786a8?refName=refs%2Fheads%2F2025%2Ffix%2Fandrea%2FDQA-Tabs) by @andrea)
+
+- Fix: Registered Custom Utilities ([#d8f3500e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d8f3500ee4495c3b8ccce9dd07877cbcb1559c8f?refName=refs%2Fheads%2F2025%2Ffix%2Fandrea%2FDQA-Tabs) by @andrea)
+
+## 1.0.34 (2025-01-15)
+
+- Feat: Tooltip ([#6f76cb4a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6f76cb4a4a40ac9ff863642d820dad8a8c374a45?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Ftooltip) by @andrea)
+
+## 1.0.33 (2025-01-15)
+
+- Feat: Modal ([#00e617af](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/00e617afb426868b033b48014b4b7818b81fb529?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fmodal) by @andrea)
+
+## 1.0.32 (2025-01-15)
+
+- Fix: icon and Input Spacing ([#39de5f76](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/39de5f767ac5287c1555f6b7a4420c04e922fcea?refName=refs%2Fheads%2F2024%2Ffix%2Fandrea%2Ffix-icon-spacing) by @andrea)
+
+## 1.0.31 (2025-01-14)
+
+- Fix: DQA Timepicker ([#d4512cdb](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d4512cdbfbf29af6bb8f2b1a4ffe5d5a44d1a099?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FDQA-timepicker) by @andrea)
+
+## 1.0.30 (2025-01-14)
+
+- Feat: Tab Component ([#8a8886a6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8a8886a6e4726a6e7c08288dfc70e102223523f2?refName=refs%2Fheads%2F2025%2Ffeature%2Fandrea%2Ftabs) by @andrea)
+
+## 1.0.29 (2025-01-14)
+
+- Fix: DQA Radio ([#2774cea7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2774cea7b3077762207a5ac2bc7f410f5c8213ad?refName=refs%2Fheads%2F2025%2FFEATURE%2FNIC%2Fdqa-radio-component) by @nicalla)
+
+## 1.0.28 (2025-01-13)
+
+- Feat: Timepicker ([#bf205dfe](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/bf205dfed18cc077b602c627245650839aa8023f?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Ftimeselect) by @adestajo)
+- Feat: Install Day Js Library ([#bf205dfe](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/bf205dfed18cc077b602c627245650839aa8023f?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Ftimeselect) by @adestajo)
+
+## 1.0.27 (2025-01-10)
+
+- Fix: Lozenge build docs error ([#59fd4372](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/59fd4372983e28f4097c1fc22f3a318bb6a959ee?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Finput) by @adestajo)
+
+## 1.0.26 (2025-01-10)
+
+- Fix: Lozenge build docs error ([#711e82c1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/711e82c14f269c505e43066fc916a4c1bf8d97ec?refName=refs%2Fheads%2F2024%2Ffeature%2Farias%2Fsidenav) by @jarias)
+
+## 1.0.25 (2025-01-09)
+
+- Feat - Sidenav Quick Action & Update Sidenav Documentation ([#ae0a6678](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ae0a667881165cfc1a553fc5f704b6bfcaca10ca?refName=refs/heads/2024/feature/arias/sidenav&path=/src/components/sidenav/use-sidenav.ts) by @jarias)
+- Feat - Update Sidenav Documentation ([#cbb3ace7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cbb3ace77c4bc9c2a7aec1152b71b77e0be5576d?refName=refs%2Fheads%2F2024%2Ffeature%2Farias%2Fsidenav) by @jarias)
+- Refactor - Handle Sidenav Grouped Menu and Submenu Items ([#d50f2d20](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d50f2d20cff8e03095508f37b1497efbc7fccd42?refName=refs%2Fheads%2F2024%2Ffeature%2Farias%2Fsidenav) by @jarias)
+
+## 1.0.24 (2025-01-09)
+
+- Fix - Package Build for Playground ([#16b668e7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/16b668e782989b100afddd481b466480f563ca09) by @JefMari)
+- Chore - Improve Basic Section in Docs ([#a3c8ac084](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a3c8ac084ca9b39013d716c6eeed4ec01af28c34) by @JefMari)
+
 ## 1.0.23 (2025-01-09)
 
-- Chore - Export styles ([#f7cf32a3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f7cf32a3bea36f624df1db4bce18f5f0891d4d61?refName=refs%2Fheads%2F2025%2FChore%2Fandrea%2Fexport-styles) by @adestajo)
+- Feat - Playground Build ([#d1da2911](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d1da29117baf94c093c720aee0b339b3b03cac12) by @JefMari)
+- Fix - Package build chunk ([#367e8ec4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/367e8ec4800e269173e32a15a5872bc50bb6cd29) by @JefMari)
 
 ## 1.0.22 (2025-01-08)
 

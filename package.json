@@ -1,7 +1,7 @@
 {
   "name": "design-system-next",
   "private": false,
-  "version": "1.0.38",
+  "version": "1.0.39",
   "main": "./dist/design-system-next.js",
   "module": "./dist/design-system-next.js",
   "repository": {

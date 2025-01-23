@@ -9,7 +9,6 @@ import utilities from './src/assets/scripts/utilities';
 const plugin = require('tailwindcss/plugin');
 
 export default {
-  prefix: 'tw-',
   content: ['./index.html', './src/**/*.{vue,js,ts}', './docs/**/*.{md,ts,js}'],
   theme: {
     extend: {

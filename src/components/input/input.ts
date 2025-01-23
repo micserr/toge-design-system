@@ -38,10 +38,6 @@ export const inputPropTypes = {
     validator: (value: (typeof TRAILING_SIZES)[number]) => TRAILING_SIZES.includes(value),
     default: 'sm',
   },
-  offset: {
-    type: Array as unknown as PropType<[string, string]>,
-    default: ['0', '0'],
-  },
 };
 
 export type InputPropTypes = ExtractPropTypes<typeof inputPropTypes>;

@@ -10,10 +10,10 @@ export const useModal = (props: ModalPropTypes, emit: SetupContext<ModalEmitType
 
   const modalSizesClasses = computed(() => {
     return classNames({
-      'tw-min-w-[360px] tw-max-w-[800px] ': size === 'sm',
-      'tw-min-w-[480px] tw-max-w-[800px] ': size === 'md',
-      'tw-w-[720px]': size === 'lg',
-      'tw-w-[1280px]': size === 'xl',
+      'min-w-[360px] max-w-[800px] ': size === 'sm',
+      'min-w-[480px] max-w-[800px] ': size === 'md',
+      'w-[720px]': size === 'lg',
+      'w-[1280px]': size === 'xl',
     });
   });
 

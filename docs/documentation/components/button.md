@@ -4,7 +4,7 @@ Commonly used button.
 
 ## Basic Usage
 
-<div class="tw-flex tw-items-center tw-gap-2">
+<div class="flex items-center gap-2">
   <spr-button>Buttons</spr-button>
 </div>
 
@@ -14,7 +14,7 @@ Commonly used button.
 
 ## Tone
 
-<div class="tw-flex tw-items-center tw-gap-2">
+<div class="flex items-center gap-2">
   <spr-button>Neutral</spr-button>
   <spr-button tone="success">Success</spr-button>
   <spr-button tone="danger">Danger</spr-button>
@@ -28,7 +28,7 @@ Commonly used button.
 
 ## Sizes
 
-<div class="tw-flex tw-items-center tw-gap-2">
+<div class="flex items-center gap-2">
   <spr-button size="small">Small</spr-button>
   <spr-button>Medium</spr-button>
   <spr-button size="large">Large</spr-button>
@@ -42,17 +42,17 @@ Commonly used button.
 
 ## Variant
 
-<div class="tw-flex tw-items-center tw-gap-2 tw-mb-2">
+<div class="flex items-center gap-2 mb-2">
   <spr-button>Primary</spr-button>
   <spr-button variant="secondary">Secondary</spr-button>
   <spr-button variant="tertiary">Tertiary</spr-button>
 </div>
-<div class="tw-flex tw-items-center tw-gap-2 tw-mb-2">
+<div class="flex items-center gap-2 mb-2">
   <spr-button tone="success">Primary</spr-button>
   <spr-button tone="success" variant="secondary">Secondary</spr-button>
   <spr-button tone="success" variant="tertiary">Tertiary</spr-button>
 </div>
-<div class="tw-flex tw-items-center tw-gap-2">
+<div class="flex items-center gap-2">
   <spr-button tone="danger">Primary</spr-button>
   <spr-button tone="danger" variant="secondary">Secondary</spr-button>
   <spr-button tone="danger" variant="tertiary">Tertiary</spr-button>
@@ -77,7 +77,7 @@ Commonly used button.
 
 ## Disabled
 
-<div class="tw-flex tw-items-center tw-gap-2">
+<div class="flex items-center gap-2">
   <spr-button disabled size="small">Small</spr-button>
   <spr-button disabled>Default</spr-button>
   <spr-button disabled size="large">Large</spr-button>

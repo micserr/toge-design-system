@@ -2,7 +2,7 @@
 
 ## Basic Usage
 
-<div class="tw-p-8 tw-bg-white-500">
+<div class="p-8 bg-white-500">
 <Spr-empty-state  description="No results found" subDescription="Try a different search term" >
   <div>
     Image Here
@@ -30,7 +30,7 @@ List of images that can be used in the empty state component. ( 'bug',
 'employees',
 'location')
 
-<div class="tw-p-8 tw-bg-white-500">
+<div class="p-8 bg-white-500">
   <Spr-empty-state
     description="No results found"
     subDescription="Try a different search term"
@@ -46,7 +46,7 @@ List of images that can be used in the empty state component. ( 'bug',
 
 Image size can be controlled by passing the `size` prop. The default size is `small`. (`small` and `large`)
 
-<div class="tw-p-8 tw-bg-white-500">
+<div class="p-8 bg-white-500">
   <Spr-empty-state
     description="No results found"
     subDescription="Try a different search term"
@@ -55,7 +55,7 @@ Image size can be controlled by passing the `size` prop. The default size is `sm
   />
 </div>
 
-<div class="tw-p-8 tw-bg-white-500">
+<div class="p-8 bg-white-500">
   <Spr-empty-state
     description="No results found"
     subDescription="Try a different search term"

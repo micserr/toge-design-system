@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.1 (2025-01-22)
+
+- Feat: Avatar ([#c0227ccf](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c0227ccfccca2e58e5d624771818d7b3a1b26c6c?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Favatar) by @andrea)
+
+## 1.1.0 (2025-01-22)
+
+- Refactor: Remove tailwind prefixes ([#2d9be4ee](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2d9be4ee913c84d991e2510a9a98a320ba1facef?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fprefix-tailwind-styles) by @jarias)
+
 ## 1.0.40 (2025-01-22)
 
 - Fix: Empty State pipeline error ([#1d441db1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1d441db1ad7f25313d511e5b5556bc137726427f?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fempty-state) by @andrea)

@@ -26,7 +26,7 @@ allows users to select a time from a dropdown list. It supports both 12-hour and
 
 ## Format
 
-<div class="tw-flex tw-flex-col tw-gap-4">
+<div class="flex flex-col gap-4">
   <spr-timePicker 
       v-model="selectedValue"
       label="12 hour format"
@@ -40,7 +40,7 @@ allows users to select a time from a dropdown list. It supports both 12-hour and
 </div>
 
 ```vue
-<div class="tw-flex tw-flex-col tw-gap-4">
+<div class="flex flex-col gap-4">
   <spr-timePicker 
       v-model="selectedValue"
       label="12 hour format"

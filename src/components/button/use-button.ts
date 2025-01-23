@@ -24,31 +24,31 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   const buttonSizeCssClass: ComputedRef<string> = computed(() =>
     classNames({
-      'tw-px-[4px] tw-py-[6px] tw-font-medium tw-font-size-100 tw-leading-100': size === 'small',
-      'tw-p-[8px] tw-font-medium tw-font-size-100 tw-leading-100': size === 'medium',
-      'tw-px-[8px] tw-py-[12px] tw-font-medium tw-font-size-200 tw-leading-300': size === 'large',
+      'px-[4px] py-[6px] font-medium font-size-100 leading-100': size === 'small',
+      'p-[8px] font-medium font-size-100 leading-100': size === 'medium',
+      'px-[8px] py-[12px] font-medium font-size-200 leading-300': size === 'large',
     }),
   );
 
   const buttonTextCssClass: ComputedRef<string> = computed(() => {
     if (variant === 'secondary' || variant === 'tertiary') {
       return classNames({
-        'tw-text-color-strong': tone === 'neutral',
-        'tw-text-color-brand-base': tone === 'success',
-        'tw-text-color-danger-base': tone === 'danger',
+        'text-color-strong': tone === 'neutral',
+        'text-color-brand-base': tone === 'success',
+        'text-color-danger-base': tone === 'danger',
       });
     }
 
     return classNames({
-      'tw-text-color-strong': tone === 'neutral',
-      'tw-text-color-inverted-strong': tone === 'success' || tone === 'danger',
+      'text-color-strong': tone === 'neutral',
+      'text-color-inverted-strong': tone === 'success' || tone === 'danger',
     });
   });
 
   // #region - Background Css Class
   const buttonBackgroundCssClass: ComputedRef<string> = computed(() => {
     if (variant === 'secondary') {
-      return isHovered.value ? 'tw-background-color-hover' : '';
+      return isHovered.value ? 'background-color-hover' : '';
     }
 
     if (variant === 'tertiary') {
@@ -60,10 +60,10 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   function getTertiaryBackground(): string {
     if (pressed.value) {
-      return 'tw-background-color-pressed';
+      return 'background-color-pressed';
     }
 
-    return isHovered.value ? 'tw-background-color-hover' : '';
+    return isHovered.value ? 'background-color-hover' : '';
   }
 
   function getBackgroundBasedOnState(): string {
@@ -80,9 +80,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   function getPressedBackground(): string {
     const backgrounds: Record<string, string> = {
-      neutral: 'tw-background-color-pressed',
-      success: 'tw-background-color-brand-pressed',
-      danger: 'tw-background-color-danger-pressed',
+      neutral: 'background-color-pressed',
+      success: 'background-color-brand-pressed',
+      danger: 'background-color-danger-pressed',
     };
 
     return backgrounds[tone] || '';
@@ -90,9 +90,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   function getHoveredBackground(): string {
     const backgrounds: Record<string, string> = {
-      neutral: 'tw-background-color-hover',
-      success: 'tw-background-color-success-pressed',
-      danger: 'tw-background-color-danger-hover',
+      neutral: 'background-color-hover',
+      success: 'background-color-success-pressed',
+      danger: 'background-color-danger-hover',
     };
 
     return backgrounds[tone] || '';
@@ -100,9 +100,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   function getDefaultBackground(): string {
     const backgrounds: Record<string, string> = {
-      neutral: 'tw-background-color-base',
-      success: 'tw-background-color-brand-base',
-      danger: 'tw-background-color-danger-base',
+      neutral: 'background-color-base',
+      success: 'background-color-brand-base',
+      danger: 'background-color-danger-base',
     };
 
     return backgrounds[tone] || '';
@@ -112,16 +112,16 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
   const buttonBorderCssClass: ComputedRef<string> = computed(() => {
     if (variant === 'primary' || variant === 'tertiary') {
       if (focused.value) {
-        return 'tw-border-solid tw-border tw-border-white-50';
+        return 'border-solid border border-white-50';
       }
 
-      return 'tw-border-solid tw-border tw-border-transparent';
+      return 'border-solid border border-transparent';
     }
 
     return classNames({
-      'tw-border-solid tw-border tw-border-color-base': tone === 'neutral',
-      'tw-border-solid tw-border tw-border-color-brand-base': tone === 'success',
-      'tw-border-solid tw-border tw-border-color-danger-base': tone === 'danger',
+      'border-solid border border-color-base': tone === 'neutral',
+      'border-solid border border-color-brand-base': tone === 'success',
+      'border-solid border border-color-danger-base': tone === 'danger',
     });
   });
 
@@ -131,9 +131,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   const buttonShadowClass: ComputedRef<string> = computed(() => {
     if (pressed.value) {
-      return 'tw-shadow-button';
+      return 'shadow-button';
     } else if (focused.value) {
-      return 'tw-shadow-button-active';
+      return 'shadow-button-active';
     }
 
     return '';
@@ -141,7 +141,7 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   const buttonAllCssClass: ComputedRef<string> = computed(() => {
     if (disabled) {
-      return classNames(buttonSizeCssClass.value, 'tw-text-color-disabled');
+      return classNames(buttonSizeCssClass.value, 'text-color-disabled');
     }
 
     return classNames(buttonSizeCssClass.value, buttonToneCssClass.value, buttonShadowClass.value);

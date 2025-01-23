@@ -80,14 +80,14 @@ UI element that allows users to enter and edit text or other data.
 
 ## Trailing Label
 
-<div class="tw-flex tw-flex-col tw-gap-2">
+<div class="flex flex-col gap-2">
 <spr-input v-model="inputValue" label="Offset xs" placeholder="00" offset-size="xs" type="number">
   <template #trailing>
   minutes
   </template>
 </spr-input>
 
-<spr-input v-model="inputValue" label="offset sm" placeholder="00" offset-size="sm" type="number">
+<spr-input v-model="inputValue" label="offset sm" placeholder="0000000" offset-size="sm" type="number">
   <template #trailing>
   minutes
   </template>

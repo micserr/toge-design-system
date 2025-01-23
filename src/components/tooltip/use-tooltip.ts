@@ -28,19 +28,19 @@ export const useTooltip = (props: TooltipPropTypes) => {
   const tooltipClasses = computed(() => {
     // Tooltip Gap: 6px
     return classNames({
-      'tw-hidden': !isHovered.value,
-      'tw-bottom-[calc(100%+6px)] tw-left-[50%] tw-translate-x-[-50%]': position === 'top',
-      'tw-bottom-[calc(100%+6px)] tw-left-0': position === 'top-start',
-      'tw-bottom-[calc(100%+6px)] tw-right-0': position === 'top-end',
-      'tw-top-[calc(100%+6px)] tw-left-[50%] tw-translate-x-[-50%]': position === 'bottom',
-      'tw-top-[calc(100%+6px)] tw-left-0': position === 'bottom-start',
-      'tw-top-[calc(100%+6px)] tw-right-0': position === 'bottom-end',
-      'tw-left-[calc(100%+6px)] tw-top-[50%] tw-translate-y-[-50%]': position === 'right',
-      'tw-left-[calc(100%+6px)] tw-top-0': position === 'right-start',
-      'tw-left-[calc(100%+6px)] tw-bottom-0': position === 'right-end',
-      'tw-right-[calc(100%+6px)] tw-top-[50%] tw-translate-y-[-50%]': position === 'left',
-      'tw-right-[calc(100%+6px)] tw-top-0': position === 'left-start',
-      'tw-right-[calc(100%+6px)] tw-bottom-0': position === 'left-end',
+      hidden: !isHovered.value,
+      'bottom-[calc(100%+6px)] left-[50%] translate-x-[-50%]': position === 'top',
+      'bottom-[calc(100%+6px)] left-0': position === 'top-start',
+      'bottom-[calc(100%+6px)] right-0': position === 'top-end',
+      'top-[calc(100%+6px)] left-[50%] translate-x-[-50%]': position === 'bottom',
+      'top-[calc(100%+6px)] left-0': position === 'bottom-start',
+      'top-[calc(100%+6px)] right-0': position === 'bottom-end',
+      'left-[calc(100%+6px)] top-[50%] translate-y-[-50%]': position === 'right',
+      'left-[calc(100%+6px)] top-0': position === 'right-start',
+      'left-[calc(100%+6px)] bottom-0': position === 'right-end',
+      'right-[calc(100%+6px)] top-[50%] translate-y-[-50%]': position === 'left',
+      'right-[calc(100%+6px)] top-0': position === 'left-start',
+      'right-[calc(100%+6px)] bottom-0': position === 'left-end',
     });
   });
 

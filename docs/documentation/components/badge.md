@@ -17,21 +17,21 @@ A badge is a small, visual indicator used to convey information, status, or coun
 
 ## Basic Usage
 
-<div class="tw-flex tw-items-center tw-gap-2 tw-p-1">
+<div class="flex items-center gap-2 p-1">
   <spr-badge variant="disabled" size="big" />
   <spr-badge variant="danger" size="big" />
   <spr-badge variant="information" size="big" />
   <spr-badge variant="brand" size="big" />
 </div>
 
-<div class="tw-flex tw-items-center tw-gap-2  tw-p-1">
+<div class="flex items-center gap-2  p-1">
   <spr-badge  variant="disabled" size="small" />
   <spr-badge  variant="danger" size="small" />
   <spr-badge  variant="information" size="small" />
   <spr-badge  variant="brand" size="small" />
 </div>
 
-<div class="tw-flex tw-items-center tw-gap-2  tw-p-1">
+<div class="flex items-center gap-2  p-1">
   <spr-badge variant="disabled" size="tiny" />
   <spr-badge variant="danger" size="tiny" />
   <spr-badge variant="information" size="tiny" />
@@ -39,21 +39,21 @@ A badge is a small, visual indicator used to convey information, status, or coun
 </div>
 
 ```vue
-<div class="tw-flex tw-items-center tw-gap-2 tw-p-1">
+<div class="flex items-center gap-2 p-1">
   <spr-badge text="9" variant="disabled" size="big" />
   <spr-badge text="9" variant="danger" size="big" />
   <spr-badge text="9" variant="information" size="big" />
   <spr-badge text="9" variant="brand" size="big" />
 </div>
 
-<div class="tw-flex tw-items-center tw-gap-2 tw-p-1">
+<div class="flex items-center gap-2 p-1">
   <spr-badge text="9" variant="disabled" size="small" />
   <spr-badge text="9" variant="danger" size="small" />
   <spr-badge text="9" variant="information" size="small" />
   <spr-badge text="9" variant="brand" size="small" />
 </div>
 
-<div class="tw-flex tw-items-center tw-gap-2 tw-p-1">
+<div class="flex items-center gap-2 p-1">
   <spr-badge variant="disabled" size="tiny" />
   <spr-badge variant="danger" size="tiny" />
   <spr-badge variant="information" size="tiny" />
@@ -65,7 +65,7 @@ A badge is a small, visual indicator used to convey information, status, or coun
 
 used to customize the background of the badge
 
-<div class="tw-p-1 tw-flex tw-gap-4">
+<div class="p-1 flex gap-4">
   <spr-badge text="9" variant="disabled" size="big" />
   <spr-badge text="9" variant="danger" size="big" />
   <spr-badge text="9" variant="information" size="big" />
@@ -73,7 +73,7 @@ used to customize the background of the badge
 </div>
 
 ```vue
-<div class="tw-flex tw-gap-4 tw-p-1">
+<div class="flex gap-4 p-1">
   <spr-badge text="9" variant="disabled" size="big" />
   <spr-badge text="9" variant="danger" size="big" />
   <spr-badge text="9" variant="information" size="big" />
@@ -83,14 +83,14 @@ used to customize the background of the badge
 
 ## Size
 
-<div class="tw-flex tw-gap-4">
+<div class="flex gap-4">
   <spr-badge text="0" variant="information" size="tiny" />
   <spr-badge text="0" variant="information" size="small" />
   <spr-badge text="0" variant="information" size="big" />
 </div>
 
 ```vue
-<div class="tw-flex tw-gap-4">
+<div class="flex gap-4">
   <spr-badge text="9" variant="information" size="tiny" />
   <spr-badge text="9" variant="information" size="small" />
   <spr-badge text="9" variant="information" size="big" />
@@ -101,8 +101,8 @@ used to customize the background of the badge
 
 used to display the badge in different positions (top, bottom).
 
-<div class="tw-flex  tw-flex-col tw-gap-4">
-  <div class="tw-flex tw-gap-4">
+<div class="flex  flex-col gap-4">
+  <div class="flex gap-4">
       <spr-badge text="9" variant="brand" size="big" position="top">
         <spr-lozenge label="top"/>
       </spr-badge>
@@ -114,7 +114,7 @@ used to display the badge in different positions (top, bottom).
       </spr-badge>
   </div>
 
-  <div class="tw-flex tw-gap-4">
+  <div class="flex gap-4">
       <spr-badge text="9" variant="information" size="big" position="bottom">
         <spr-lozenge label="bottom"/>
       </spr-badge>
@@ -126,7 +126,7 @@ used to display the badge in different positions (top, bottom).
       </spr-badge>
   </div>
 
-  <div class="tw-flex tw-gap-4">
+  <div class="flex gap-4">
       <spr-badge text="9" variant="danger" size="big" >
         <spr-lozenge label="default"/>
       </spr-badge>
@@ -140,8 +140,8 @@ used to display the badge in different positions (top, bottom).
 </div>
 
 ```vue
-<div class="tw-flex  tw-flex-col tw-gap-4">
-  <div class="tw-flex tw-gap-4">
+<div class="flex  flex-col gap-4">
+  <div class="flex gap-4">
       <spr-badge text="9" variant="brand" size="big" position="top">
         <spr-lozenge label="top"/>
       </spr-badge>
@@ -153,7 +153,7 @@ used to display the badge in different positions (top, bottom).
       </spr-badge>
   </div>
 
-  <div class="tw-flex tw-gap-4">
+  <div class="flex gap-4">
       <spr-badge text="9" variant="information" size="big" position="bottom">
         <spr-lozenge label="bottom"/>
       </spr-badge>
@@ -165,7 +165,7 @@ used to display the badge in different positions (top, bottom).
       </spr-badge>
   </div>
 
-  <div class="tw-flex tw-gap-4">
+  <div class="flex gap-4">
       <spr-badge text="9" variant="danger" size="big" >
         <spr-lozenge label="default"/>
       </spr-badge>
@@ -183,7 +183,7 @@ used to display the badge in different positions (top, bottom).
 
 When using the default position, use can use the slot to wrap the element to which you want to attach the badge.
 
-  <div class="tw-flex tw-gap-4">
+  <div class="flex gap-4">
       <spr-badge text="9" variant="brand" size="big" position="top">
         <spr-lozenge label="top"/>
       </spr-badge>
@@ -196,7 +196,7 @@ When using the default position, use can use the slot to wrap the element to whi
   </div>
 
 ```vue
-<div class="tw-flex tw-gap-4">
+<div class="flex gap-4">
     <spr-badge text="9" variant="brand" size="big" position="top">
       <spr-lozenge label="top"/>
     </spr-badge>
@@ -213,7 +213,7 @@ When using the default position, use can use the slot to wrap the element to whi
 
 When using the default position, use can use the slot to wrap the element to which you want to attach the badge.
 
-  <div class="tw-flex tw-gap-4">
+  <div class="flex gap-4">
       <spr-lozenge label="notification"/>
       <spr-badge text="9" variant="brand" size="big"/>
       <spr-badge text="9" variant="disabled" size="big"/>
@@ -222,7 +222,7 @@ When using the default position, use can use the slot to wrap the element to whi
   </div>
 
 ```vue
-<div class="tw-flex tw-gap-4">
+<div class="flex gap-4">
     <spr-lozenge label="notification"/>
     <spr-badge text="9" variant="brand" size="big"/>
     <spr-badge text="9" variant="disabled" size="big"/>

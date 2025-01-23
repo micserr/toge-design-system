@@ -241,19 +241,19 @@ The nav-links attribute expects an array of objects that define the navigation m
 
 <ul>
   <li>
-    <code class="tw-mr-2">top:</code>
+    <code class="mr-2">top:</code>
     <span> 
       You can define the top-level navigation links in the top section of the side navigation.
     </span>
   </li>
   <li>
-    <code class="tw-mr-2">bottom:</code>
+    <code class="mr-2">bottom:</code>
     <span> 
       You can define the top-level navigation links in the bottom section of the side navigation.
     </span>
   </li>
   <li>
-    <code class="tw-mr-2">parentLinks:</code>
+    <code class="mr-2">parentLinks:</code>
     <span> 
       List of top-level navigation links. Each link may contain additional properties such as a 
       <code>title</code>, 
@@ -261,57 +261,57 @@ The nav-links attribute expects an array of objects that define the navigation m
     </span>
   </li>
   <li>
-    <code class="tw-mr-2">title:</code>
+    <code class="mr-2">title:</code>
     <span>
       The title of each nav link item. When <code>menulinks</code> is empty or not indicated. 
       Title will shows when parent link is hovered.
     </span>
   </li>
   <li>
-    <code class="tw-mr-2">icon:</code>
+    <code class="mr-2">icon:</code>
     <span>
       The icon associated only with <code>parentLinks</code>, usually an icon component (e.g., `IconHouseSimple`, `IconUsersThree`).
       See more on <a href="https://iconify.design/docs/usage/svg/unplugin/">Unplugin Icons</a>.
     </span>
   </li>
   <li>
-    <code class="tw-mr-2">redirect:</code>
+    <code class="mr-2">redirect:</code>
     <span>
       The URL or path to which the user is redirected when they click on the navigation item. Redirection wont work if <code>menuLinks</code> or <code>submenuLinks</code> is present.
     </span>
   </li>
   <li>
-    <code class="tw-mr-2">openInNewTab:</code>
+    <code class="mr-2">openInNewTab:</code>
     <span>
       A boolean flag indicating whether the link is to open in a new tab.
     </span>
   </li>
   <li>
-    <code class="tw-mr-2">isAbsoluteURL:</code>
+    <code class="mr-2">isAbsoluteURL:</code>
     <span>
       A boolean flag indicating whether the link will be open using href.
     </span>
   </li>
   <li>
-    <code class="tw-mr-2">link:</code>
+    <code class="mr-2">link:</code>
     <span>
       The actual URL or destination for the navigation item, often used for internal routing or linking to different parts of the app.
     </span>
   </li>
   <li>
-    <code class="tw-mr-2">menuLinks:</code>
+    <code class="mr-2">menuLinks:</code>
     <span>
       This appear under a <code>parentLinks</code> navigation item. These menu links define additional sections or categories under the parent link.
     </span>
   </li>
   <li>
-    <code class="tw-mr-2">submenuLinks:</code>
+    <code class="mr-2">submenuLinks:</code>
     <span>
       Links nested under the <code>menuLinks</code>, enabling multi-level navigation. These are further breakdowns or child items under each <code>menuLinks</code> section.
     </span>
   </li>
   <li>
-    <code class="tw-mr-2">hidden:</code>
+    <code class="mr-2">hidden:</code>
     <span>
       A boolean flag indicating whether the quick action item should be hidden.
     </span>
@@ -995,7 +995,7 @@ The following table outlines the available attributes for the Sidenav component:
 <table>
   <thead>
     <tr>
-      <td class="tw-min-w-[180px]">Attribute</td>
+      <td class="min-w-[180px]">Attribute</td>
       <td>Description</td>
       <td>Type</td>
       <td>Accepted Values</td>
@@ -1100,9 +1100,9 @@ The following table outlines the available attributes for the Sidenav component:
 
 Here’s a full example of how to implement the Sidenav component with the above attributes:
 
-<div class="no-darkmode tw-m-0 tw-bg-mushroom-100 tw-text-mushroom-950 tw-font-main tw-rounded-md tw-h-[100vh] tw-w-full tw-relative tw-flex">
+<div class="no-darkmode m-0 bg-mushroom-100 text-mushroom-950 font-main rounded-md h-[100vh] w-full relative flex">
   <spr-sidenav 
-    class="tw-absolute tw-z-[1]" 
+    class="absolute z-[1]" 
     :quick-actions="quickActions"
     has-search
     :active-nav="activeNav"
@@ -1123,7 +1123,7 @@ Here’s a full example of how to implement the Sidenav component with the above
       />
     </template>
   </spr-sidenav>
-  <div class="tw-flex-1 tw-px-4 tw-py-4 tw-w-full tw-max-w-[calc(100%-60px)] tw-ml-[60px] tw-overflow-auto">
+  <div class="flex-1 px-4 py-4 w-full max-w-[calc(100%-60px)] ml-[60px] overflow-auto">
     <h1>Lorem Ipsum</h1>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quis est in quam efficitur tempor. Integer blandit egestas risus, non consequat massa rhoncus eget. Donec commodo luctus diam, egestas scelerisque justo fermentum vel. Morbi vestibulum quis arcu sit amet sollicitudin. Vestibulum fringilla et risus at porttitor. Sed at augue non nunc tempus sagittis quis a magna. Mauris lacinia neque massa, sed fermentum libero dignissim et. Vivamus faucibus aliquet arcu, a viverra leo vehicula at. Aliquam ut turpis vitae mi scelerisque blandit in non diam. Nulla molestie, ipsum id interdum auctor, sem odio bibendum turpis, sed accumsan nisl nunc id lacus. Vestibulum ante eros, accumsan sit amet mollis et, fermentum at est. In hac habitasse platea dictumst.

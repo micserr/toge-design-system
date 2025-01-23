@@ -17,14 +17,15 @@ export const useTabs = (props: TabsPropTypes, emit: SetupContext<TabsEmitTypes>[
 
   const tabsClasses = computed(() => {
     return classNames({
-      'tw-px-size-spacing-xs tw-py-size-spacing-3xs tw-capitalize tw-text-color-strong first:tw-rounded-l-md first:tw-border-l last:tw-border-r last:tw-rounded-r-md': !underlined,
-      'tw-p-size-spacing-xs tw-uppercase tw-border-x-0 tw-border-t-0': underlined,
-    })
-  })
+      'px-size-spacing-xs py-size-spacing-3xs capitalize text-color-strong first:rounded-l-md first:border-l last:border-r last:rounded-r-md':
+        !underlined,
+      'p-size-spacing-xs uppercase border-x-0 border-t-0': underlined,
+    });
+  });
 
   return {
     tabsClasses,
     selectedTabIndex,
-    updateSelectedTabIndex
+    updateSelectedTabIndex,
   };
 };

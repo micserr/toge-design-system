@@ -19,7 +19,7 @@ Lozenge represents entities using icons, labels, and images.
 
 A basic lozenge with a text is created with the label property.
 
-<div class="tw-flex tw-items-center tw-gap-2">
+<div class="flex items-center gap-2">
     <spr-lozenge
       label="Lozenge"
     />
@@ -31,7 +31,7 @@ A basic lozenge with a text is created with the label property.
 
 ## Tone
 
-<div class="tw-flex tw-items-center tw-gap-2">
+<div class="flex items-center gap-2">
   <spr-lozenge label="Plain"/>
   <spr-lozenge label="pending" tone="pending" />
   <spr-lozenge label="information" tone="information" />
@@ -53,7 +53,7 @@ A basic lozenge with a text is created with the label property.
 
 ## Type
 
-<div class="tw-flex tw-items-center tw-gap-2">
+<div class="flex items-center gap-2">
   <spr-lozenge label="Hollow" tone="information" />
   <spr-lozenge label="Fill" tone="information" fill/>
 </div>
@@ -65,8 +65,8 @@ A basic lozenge with a text is created with the label property.
 
 ## Avatar
 
-<div class="tw-flex tw-flex-col  tw-gap-2 tw-bg-white-50 tw-p-4">
-  <div class="tw-flex tw-items-center tw-gap-2">
+<div class="flex flex-col  gap-2 bg-white-50 p-4">
+  <div class="flex items-center gap-2">
     <spr-lozenge label="pending" tone="pending" url="https://tinyurl.com/2vzn782p"/>
     <spr-lozenge label="information" tone="information" url="https://tinyurl.com/2vzn782p"/>
     <spr-lozenge label="success" tone="success" url="https://tinyurl.com/2vzn782p"/>
@@ -76,7 +76,7 @@ A basic lozenge with a text is created with the label property.
     <spr-lozenge label="plain"  url="https://tinyurl.com/2vzn782p" />
   </div>
 
-  <div class="tw-flex tw-items-center tw-gap-2">
+  <div class="flex items-center gap-2">
     <spr-lozenge label="pending" tone="pending" fill url="https://tinyurl.com/2vzn782p"/>
     <spr-lozenge label="information" tone="information" fill url="https://tinyurl.com/2vzn782p"/>
     <spr-lozenge label="success" tone="success" fill url="https://tinyurl.com/2vzn782p"/>
@@ -105,14 +105,14 @@ A basic lozenge with a text is created with the label property.
 
 ## Slot Avatar
 
-<div class="tw-flex tw-flex-col  tw-gap-2">
+<div class="flex flex-col  gap-2">
   <spr-lozenge
     label="Users"
     tone="information"
     >
     <template #avatar>
       <img
-        class=" tw-h-4 tw-w-4 tw-rounded-full tw-object-cover"
+        class=" h-4 w-4 rounded-full object-cover"
         src="https://tinyurl.com/2vzn782p"
         alt="avatar"
       />
@@ -131,11 +131,7 @@ A basic lozenge with a text is created with the label property.
     </template>
 
     <template #avatar>
-      <img
-        class="tw-h-full tw-w-full tw-rounded-full tw-object-cover"
-        src="https://tinyurl.com/2vzn782p"
-        alt="avatar"
-      />
+      <img class="h-full w-full rounded-full object-cover" src="https://tinyurl.com/2vzn782p" alt="avatar" />
     </template>
   </spr-lozenge>
 </template>
@@ -147,7 +143,7 @@ import IconUsersThree from '~icons/ph/users-three';
 
 ## Icon
 
-<div class="tw-flex tw-flex-col  tw-gap-2">
+<div class="flex flex-col  gap-2">
   <spr-lozenge
     label="Users"
     tone="information"

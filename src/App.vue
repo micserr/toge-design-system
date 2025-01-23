@@ -22,11 +22,11 @@
     </template>
   </spr-sidenav>
 
-  <h1 class="tw-heading-xl">askhdjahskjdhasjkhdjkashkjdas</h1>
-  <h1 class="tw-heading-lg">askhdjahskjdhasjkhdjkashkjdas</h1>
-  <h1 class="tw-heading-md">askhdjahskjdhasjkhdjkashkjdas</h1>
-  <h1 class="tw-heading-sm">askhdjahskjdhasjkhdjkashkjdas</h1>
-  <h1 class="tw-heading-xs">askhdjahskjdhasjkhdjkashkjdas</h1>
+  <h1 class="heading-xl">askhdjahskjdhasjkhdjkashkjdas</h1>
+  <h1 class="heading-lg">askhdjahskjdhasjkhdjkashkjdas</h1>
+  <h1 class="heading-md">askhdjahskjdhasjkhdjkashkjdas</h1>
+  <h1 class="heading-sm">askhdjahskjdhasjkhdjkashkjdas</h1>
+  <h1 class="heading-xs">askhdjahskjdhasjkhdjkashkjdas</h1>
 
   <h1 v-for="i in 100" :key="i">Sample kingkong {{ i }}</h1>
 </template>
@@ -489,6 +489,6 @@ const userMenu = ref({
 
 <style>
 body {
-  @apply tw-m-0 tw-bg-mushroom-100 tw-font-main;
+  @apply m-0 bg-mushroom-100 font-main;
 }
 </style>

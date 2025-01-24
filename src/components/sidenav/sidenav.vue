@@ -10,8 +10,10 @@
     <div
       :class="{
         'hidden-scrolls flex h-full flex-col justify-between overflow-auto': true,
-        'max-h-[calc(100vh-145px)]': props.notificationCount,
-        'max-h-[calc(100vh-60px)]': !props.notificationCount,
+        'max-h-[calc(100vh-194px)]': props.notificationCount && props.requestCount,
+        'max-h-[calc(100vh-60px)]': !props.notificationCount && !props.requestCount,
+        'max-h-[calc(100vh-150px)]':
+          (props.notificationCount || props.requestCount) && !(props.notificationCount && props.requestCount),
       }"
     >
       <!-- Top Section -->
@@ -252,12 +254,12 @@
                       <template v-else>
                         <div
                           v-if="!menuLinkItem.hidden"
-                          :class="[
-                            'body-sm-regular m-0 flex cursor-pointer justify-between px-2 py-1.5 align-middle duration-300 ease-in-out',
-                            'hover:background-color-hover',
-                            'active:background-color-pressed',
-                            'last:rounded-b-xl',
-                          ]"
+                          :class="{
+                            'body-sm-regular relative m-0 flex cursor-pointer justify-between px-2 py-1.5 align-middle duration-150 ease-in-out': true,
+                            'background-color-single-active': props.activeNav.menu === menuLinkItem.title,
+                            'hover:background-color-hover': props.activeNav.menu !== menuLinkItem.title,
+                            'active:background-color-pressed': true,
+                          }"
                           @click="handleRedirect(menuLinkItem, parentLink.title, menuLinkItem.title, '')"
                         >
                           <span>{{ menuLinkItem.title }}</span>
@@ -487,7 +489,7 @@
       </div>
     </div>
 
-    <div v-if="props.notificationCount" class="grid gap-2 py-6">
+    <div v-if="props.notificationCount || props.requestCount" class="grid gap-2 py-6">
       <!-- Notification -->
       <div
         v-if="props.notificationCount"
@@ -500,11 +502,25 @@
       >
         <IconBell class="h-[1.25em] w-[1.25em]" />
         <badge
-          class="absolute right-2.5 -top-0.5"
+          class="absolute -top-0.5 right-2.5"
           :text="String(props.notificationCount)"
           variant="danger"
           size="small"
         />
+      </div>
+
+      <!-- Requests -->
+      <div
+        v-if="props.requestCount"
+        :class="[
+          'relative flex cursor-pointer items-center justify-center p-2',
+          'transition duration-150 ease-in-out',
+          'active:scale-90',
+        ]"
+        @click="emit('requests', 'requests-triggered')"
+      >
+        <IconCheckSquare class="h-[1.25em] w-[1.25em]" />
+        <badge class="absolute -top-0.5 right-2.5" :text="String(props.requestCount)" variant="danger" size="small" />
       </div>
     </div>
 
@@ -611,6 +627,7 @@ import IconGlobe from '~icons/ph/globe';
 import IconCaretRight from '~icons/ph/caret-right';
 import IconX from '~icons/ph/x';
 import IconBell from '~icons/ph/bell';
+import IconCheckSquare from '~icons/ph/check-square';
 
 import 'floating-vue/dist/style.css';
 

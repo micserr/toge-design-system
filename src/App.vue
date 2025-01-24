@@ -4,11 +4,13 @@
     has-search
     :active-nav="activeNav"
     :nav-links="navLinks"
-    :notification-count="5"
     :user-menu="userMenu"
+    :notification-count="5"
+    :request-count="10"
     @get-navlink-item="handleGetNavLinkItem"
     @search="handleSearch"
     @notifications="handleNotifications"
+    @requests="handleRequest"
   >
     <template #logo-image>
       <img
@@ -154,46 +156,46 @@ const navLinks = ref({
               items: [
                 {
                   title: 'Dashboard 1',
-                  submenuLinks: [
-                    {
-                      subMenuHeading: 'Sub Heading 1',
-                      items: [
-                        {
-                          title: 'Home 1',
-                          redirect: {},
-                        },
-                        {
-                          title: 'Home 2',
-                          redirect: {
-                            openInNewTab: false,
-                            isAbsoluteURL: false,
-                            link: '/',
-                          },
-                        },
-                      ],
-                    },
-                    {
-                      subMenuHeading: 'Sub Heading 2',
-                      items: [
-                        {
-                          title: 'Home 3',
-                          redirect: {
-                            openInNewTab: false,
-                            isAbsoluteURL: true,
-                            link: 'https://www.google.com/',
-                          },
-                        },
-                        {
-                          title: 'Home 4',
-                          redirect: {
-                            openInNewTab: false,
-                            isAbsoluteURL: false,
-                            link: '/',
-                          },
-                        },
-                      ],
-                    },
-                  ],
+                  // submenuLinks: [
+                  //   {
+                  //     subMenuHeading: 'Sub Heading 1',
+                  //     items: [
+                  //       {
+                  //         title: 'Home 1',
+                  //         redirect: {},
+                  //       },
+                  //       {
+                  //         title: 'Home 2',
+                  //         redirect: {
+                  //           openInNewTab: false,
+                  //           isAbsoluteURL: false,
+                  //           link: '/',
+                  //         },
+                  //       },
+                  //     ],
+                  //   },
+                  //   {
+                  //     subMenuHeading: 'Sub Heading 2',
+                  //     items: [
+                  //       {
+                  //         title: 'Home 3',
+                  //         redirect: {
+                  //           openInNewTab: false,
+                  //           isAbsoluteURL: true,
+                  //           link: 'https://www.google.com/',
+                  //         },
+                  //       },
+                  //       {
+                  //         title: 'Home 4',
+                  //         redirect: {
+                  //           openInNewTab: false,
+                  //           isAbsoluteURL: false,
+                  //           link: '/',
+                  //         },
+                  //       },
+                  //     ],
+                  //   },
+                  // ],
                 },
                 {
                   title: 'Dashboard 2',
@@ -440,6 +442,10 @@ const handleSearch = (search) => {
 
 const handleNotifications = (notifications) => {
   console.log(notifications);
+};
+
+const handleRequest = (request) => {
+  console.log(request);
 };
 
 const userMenu = ref({

@@ -894,15 +894,20 @@ const handleSearch = (search) => {
 </script>
 ```
 
-## Notifications
+## Notifications & Requests
 
-Side navigation also includes a notification counter badge. Add `notification-count` property to enable the notification counter.
+Side navigation also includes a notification and request counter badge. Add `notification-count` or `request-count` attribute to the component to enable the notification or request counter.
 
-Using the `@notifications` event, you can handle the notification functionality.
+Using the `@notifications` or `@requests` event, you can handle the notification functionality.
 
 ```vue
 <template>
-  <spr-sidenav :notification-count="5" @notifications="handleNotifications">
+  <spr-sidenav
+    :notification-count="5"
+    :request-count="10"
+    @notifications="handleNotifications"
+    @requests="handleRequest"
+  >
     <template #logo-image>
       <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
     </template>
@@ -916,6 +921,10 @@ Using the `@notifications` event, you can handle the notification functionality.
 <script setup>
 const handleNotifications = (notifications) => {
   console.log(notifications);
+};
+
+const handleRequest = (request) => {
+  console.log(request);
 };
 </script>
 ```
@@ -1060,6 +1069,15 @@ The following table outlines the available attributes for the Sidenav component:
       </td>
       <td>Show notification counter badge</td>
       <td>Number</td>
+      <td>Integer</td>
+    </tr>
+    <tr>
+      <td>
+        <code>request-count</code>
+      </td>
+      <td>Show request counter badge</td>
+      <td>Number</td>
+      <td>Integer</td>
     </tr>
     <tr>
       <td>
@@ -1093,6 +1111,14 @@ The following table outlines the available attributes for the Sidenav component:
       <td>-</td>
       <td>function</td>
     </tr>
+    <tr>
+      <td>
+        <code>@requests</code>
+      </td>
+      <td>Handle the requests functionality.</td>
+      <td>-</td>
+      <td>function</td>
+    </tr>
   </tbody>
 </table>
 
@@ -1108,6 +1134,7 @@ Here’s a full example of how to implement the Sidenav component with the above
     :active-nav="activeNav"
     :nav-links="navLinks"
     :notification-count="5"
+    :request-count="10"
     :user-menu="userMenu"
     @get-navlink-item="handleGetNavLinkItem"
     @search="handleSearch"
@@ -1151,6 +1178,7 @@ Here’s a full example of how to implement the Sidenav component with the above
     :active-nav="activeNav"
     :nav-links="navLinks"
     :notification-count="5"
+    :request-count="10"
     :user-menu="userMenu"
     @get-navlink-item="handleGetNavLinkItem"
     @search="handleSearch"
@@ -1575,6 +1603,10 @@ const handleSearch = (search) => {
 
 const handleNotifications = (notifications) => {
   console.log(notifications);
+};
+
+const handleRequest = (request) => {
+  console.log(request);
 };
 
 const userMenu = ref({
@@ -2032,6 +2064,10 @@ const handleSearch = (search) => {
 
 const handleNotifications = (notifications) => {
   console.log(notifications);
+};
+
+const handleRequest = (request) => {
+  console.log(request);
 };
 
 const userMenu = ref({

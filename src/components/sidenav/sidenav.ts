@@ -96,6 +96,11 @@ export const sidenavPropTypes = {
     validator: (value: number) => typeof value === 'number',
     default: 0,
   },
+  requestCount: {
+    type: Number,
+    validator: (value: number) => typeof value === 'number',
+    default: 0,
+  },
   userMenu: {
     type: Object as PropType<UserMenu>,
     validator: (value: unknown) => typeof value === 'object',

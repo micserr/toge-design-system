@@ -38,15 +38,6 @@ import { ref } from 'vue';
 
 import SprSidenav from './components/sidenav/sidenav.vue';
 
-import IconHouseSimple from '~icons/ph/house-simple';
-import IconUsersThree from '~icons/ph/users-three';
-import IconLeaf from '~icons/ph/leaf';
-import IconCurrencyRub from '~icons/ph/currency-rub';
-import IconWallet from '~icons/ph/wallet';
-import IconAddressBook from '~icons/ph/address-book';
-import IconAlien from '~icons/ph/alien';
-import IconAlignLeft from '~icons/ph/align-left';
-
 const quickActions = ref([
   {
     menuHeading: 'Sub Heading 1',
@@ -54,7 +45,7 @@ const quickActions = ref([
       {
         title: 'Leave Request',
         description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -65,7 +56,7 @@ const quickActions = ref([
       {
         title: 'Onboarding Request',
         description: 'Seamlessly onboard new employees into your Sprout ecosystem',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -76,7 +67,7 @@ const quickActions = ref([
       {
         title: 'Certificate of Employee',
         description: 'Lorem ipsum dolor sit amet consectetur. ',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -92,7 +83,7 @@ const quickActions = ref([
       {
         title: 'ReadyWage',
         description: 'Request Form',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -103,7 +94,7 @@ const quickActions = ref([
       {
         title: 'Create Workflow',
         description: 'Access your hard-earned salary in advance',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -114,7 +105,7 @@ const quickActions = ref([
       {
         title: 'Create Something 1',
         description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -125,7 +116,7 @@ const quickActions = ref([
       {
         title: 'Create Something 2',
         description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -149,7 +140,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Home',
-          icon: IconHouseSimple,
+          icon: 'ph:house-simple',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -211,7 +202,7 @@ const navLinks = ref({
         },
         {
           title: 'Employees',
-          icon: IconUsersThree,
+          icon: 'ph:users-three',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -224,7 +215,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Payroll',
-          icon: IconLeaf,
+          icon: 'ph:leaf',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -298,7 +289,7 @@ const navLinks = ref({
         },
         {
           title: 'Money',
-          icon: IconCurrencyRub,
+          icon: 'ph:currency-rub',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -307,7 +298,7 @@ const navLinks = ref({
         },
         {
           title: 'Car',
-          icon: IconWallet,
+          icon: 'ph:wallet',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -345,7 +336,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Gallery',
-          icon: IconAddressBook,
+          icon: 'ph:address-book',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -411,7 +402,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Resources',
-          icon: IconAlien,
+          icon: 'ph:alien',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -420,7 +411,7 @@ const navLinks = ref({
         },
         {
           title: 'News',
-          icon: IconAlignLeft,
+          icon: 'ph:align-left',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -455,7 +446,7 @@ const userMenu = ref({
   items: [
     {
       title: 'My Profile',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -464,7 +455,7 @@ const userMenu = ref({
     },
     {
       title: 'Privacy Policy',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -473,7 +464,7 @@ const userMenu = ref({
     },
     {
       title: 'Terms of Service',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -482,7 +473,7 @@ const userMenu = ref({
     },
     {
       title: 'Logout',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,

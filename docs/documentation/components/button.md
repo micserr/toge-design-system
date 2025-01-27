@@ -93,14 +93,49 @@ Commonly used button.
 
 ### Button Attributes
 
-| Name     | Description        | Type                                     | Default  |
-| -------- | ------------------ | ---------------------------------------- | -------- |
-| tone     | button tone        | `'neutral' \| 'success' \|  'danger'`    | neutral  |
-| size     | button size        | `'small' \| 'medium' \| 'large'`         | medium   |
-| variant  | button varaint     | `'primary' \| 'secondary' \| 'tertiary'` | tertiary |
-| disabled | disable the button | `boolean`                                | false    |
-| tag      | custom element tag | `string` / `Component`                   | button   |
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>tone</td>
+      <td>button tone</td>
+      <td>'neutral' | 'success' | 'danger'</td>
+      <td>neutral</td>
+    </tr>
+    <tr>
+      <td>size</td>
+      <td>button size</td>
+      <td>'small' | 'medium' | 'large'</td>
+      <td>medium</td>
+    </tr>
+    <tr>
+      <td>variant</td>
+      <td>button variant</td>
+      <td>'primary' | 'secondary' | 'tertiary'</td>
+      <td>tertiary</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>disable the button</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>tag</td>
+      <td>custom element tag</td>
+      <td>string / Component</td>
+      <td>button</td>
+    </tr>
+  </tbody>
+</table>
 
-<script setup lang="ts">
-  import SprButton from "@/components/button/button.vue"
+<script lang="ts" setup>
+import SprButton from "@/components/button/button.vue"
 </script>

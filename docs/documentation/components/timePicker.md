@@ -5,11 +5,25 @@ allows users to select a time from a dropdown list. It supports both 12-hour and
 ## Key Features
 
 <ul>
-  <li><strong>Time Format:</strong> The component supports both 12-hour and 24-hour time formats, which can be specified using the `format` prop.
+  <li>
+    <strong>Time Format:</strong>
+    <span>
+      The component supports both 12-hour and 24-hour time formats, 
+      which can be specified using the <code>format</code> prop.
+    </span>
   </li>
-  <li><strong>Interval:</strong> The time options can be generated at specified intervals (e.g., every 30 minutes) using the `interval` prop.
+  <li>
+    <strong>Interval:</strong>
+    <span>
+      The time options can be generated at specified intervals (e.g., every 30 minutes) using the <code>interval</code> prop.
+    </span>
   </li>
-  <li><strong>Disable Typing:</strong> The `disableTyping` prop can be used to make the input field read-only, preventing users from typing in the input field.
+  <li>
+    <strong>Disable Typing:</strong>
+    <span>
+      The <code>disableTyping</code> prop can be used to make the input field read-only, 
+      preventing users from typing in the input field.
+    </span>
   </li>
 </ul>
 
@@ -94,18 +108,53 @@ allows users to select a time from a dropdown list. It supports both 12-hour and
 
 ## Attributes
 
-| Name          | Description                    | Type            | Default |
-| ------------- | ------------------------------ | --------------- | ------- |
-| format        | set time format                | `'12' \| '24' ` | 24      |
-| disableTyping | make the input field read-only | `boolean`       | false   |
-| interval      | set time interval              | `string`        | 30      |
-| label         | Field Label                    | `string`        | ''      |
-| fullWidth     | Set full width to option       | `boolean`       | false   |
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>format</td>
+      <td>set time format</td>
+      <td>'12' &#124; '24'</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <td>disableTyping</td>
+      <td>make the input field read-only</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>interval</td>
+      <td>set time interval</td>
+      <td>string</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>Field Label</td>
+      <td>string</td>
+      <td>''</td>
+    </tr>
+    <tr>
+      <td>fullWidth</td>
+      <td>Set full width to option</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+  </tbody>
+</table>
 
-<script setup lang="ts">
-  import { ref } from 'vue';
-  import SprTimePicker from "@/components/timePicker/timePicker.vue"
+<script lang="ts" setup>
+import { ref } from 'vue';
 
-  const selectedValue = ref();
+import SprTimePicker from "@/components/timePicker/timePicker.vue"
 
+const selectedValue = ref('');
 </script>

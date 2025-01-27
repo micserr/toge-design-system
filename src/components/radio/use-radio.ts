@@ -18,7 +18,11 @@ export const useRadioButton = (props: RadioPropTypes) => {
   });
 
   const indicatorClasses: ComputedRef<string> = computed(() => {
-    const baseClasses = 'inline-block w-4 h-4 rounded-full border-2 border-solid mr-2 shrink-0';
+    const baseClasses = [
+      'inline-block w-4 h-4 rounded-full border-2 border-solid mr-2 shrink-0',
+      'transition duration-150 ease-in-out',
+      'group-active:scale-90',
+    ];
 
     if (props.disabled) {
       return classNames(
@@ -33,7 +37,7 @@ export const useRadioButton = (props: RadioPropTypes) => {
       return classNames(
         baseClasses,
         props.modelValue === props.value
-          ? 'background-color-brand-hover border-2 border-color-brand-hover shadow-[inset_0px_0px_0px_2.5px_#fff]'
+          ? 'background-color-brand-hover border-2 border-color-brand-hover shadow-[inset_0px_0px_0px_2.5px_#fff] animate-shadow-grow'
           : 'background-color-base border-2 border-color-supporting shadow-[inset_0px_0px_0px_2.5px_#fff]',
       );
     }
@@ -41,7 +45,7 @@ export const useRadioButton = (props: RadioPropTypes) => {
     if (props.modelValue === props.value) {
       return classNames(
         baseClasses,
-        'border-color-brand-base background-color-brand-base shadow-[inset_0px_0px_0px_2.5px_#fff]',
+        'border-color-brand-base background-color-brand-base shadow-[inset_0px_0px_0px_2.5px_#fff] animate-shadow-grow',
       );
     }
 

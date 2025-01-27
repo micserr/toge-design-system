@@ -28,19 +28,13 @@ const tabsBasic = [{ label: 'tab' }, { label: 'tab' }, { label: 'tab' }];
 </template>
 
 <script setup>
-import SprTabs from "@/components/tabs/tabs.vue";
-import IconPlantLight from '~icons/ph/plant-light';
-import IconPlantFill from '~icons/ph/plant-fill';
-import IconLeafLight from '~icons/ph/leaf-light';
-import IconLeafFill from '~icons/ph/leaf-fill';
-import IconTreeLight from '~icons/ph/tree-light';
-import IconTreeFill from '~icons/ph/tree-fill';
+import SprTabs from '@/components/tabs/tabs.vue';
 
 const tabsWithIcon = [
-  { label: "tab", icon: IconPlantLight, iconFill: IconPlantFill },
-  { label: "tab", icon: IconLeafLight, iconFill: IconLeafFill },
-  { label: "tab", icon: icon: IconTreeLight, iconFill: IconTreeFill },
-]
+  { label: 'tab', icon: 'ph:plant-light', iconFill: 'ph:plant-fill' },
+  { label: 'tab', icon: 'ph:leaf-light', iconFill: 'ph:leaf-fill' },
+  { label: 'tab', icon: 'ph:tree-light', iconFill: 'ph:tree-fill' },
+];
 </script>
 ```
 
@@ -54,19 +48,13 @@ const tabsWithIcon = [
 </template>
 
 <script setup>
-import SprTabs from "@/components/tabs/tabs.vue";
-import IconPlantLight from '~icons/ph/plant-light';
-import IconPlantFill from '~icons/ph/plant-fill';
-import IconLeafLight from '~icons/ph/leaf-light';
-import IconLeafFill from '~icons/ph/leaf-fill';
-import IconTreeLight from '~icons/ph/tree-light';
-import IconTreeFill from '~icons/ph/tree-fill';
+import SprTabs from '@/components/tabs/tabs.vue';
 
 const tabsIconOnly = [
-  { icon: IconPlantLight, iconFill: IconPlantFill },
-  { icon: IconLeafLight, iconFill: IconLeafFill },
-  { icon: icon: IconTreeLight, iconFill: IconTreeFill },
-]
+  { icon: 'ph:plant-light', iconFill: 'ph:plant-fill' },
+  { icon: 'ph:leaf-light', iconFill: 'ph:leaf-fill' },
+  { icon: 'ph:tree-light', iconFill: 'ph:tree-fill' },
+];
 </script>
 ```
 
@@ -120,77 +108,96 @@ const tabsUnderlinedDisabled = [
 </template>
 
 <script setup>
-import SprTabs from "@/components/tabs/tabs.vue";
-import IconPlantLight from '~icons/ph/plant-light';
-import IconPlantFill from '~icons/ph/plant-fill';
-import IconLeafLight from '~icons/ph/leaf-light';
-import IconLeafFill from '~icons/ph/leaf-fill';
-import IconTreeLight from '~icons/ph/tree-light';
-import IconTreeFill from '~icons/ph/tree-fill';
+import SprTabs from '@/components/tabs/tabs.vue';
 
 const tabsUnderlinedWithIcon = [
-  { label: "title", disabled: false, icon: IconPlantLight, iconFill: IconPlantFill },
-  { label: "title", disabled: false, icon: IconLeafLight, iconFill: IconLeafFill },
-  { label: "title", disabled: false, icon: icon: IconTreeLight, iconFill: IconTreeFill },
-]
+  { label: 'title', disabled: false, icon: 'ph:plant-light', iconFill: 'ph:plant-fill' },
+  { label: 'title', disabled: false, icon: 'ph:leaf-light', iconFill: 'ph:leaf-fill' },
+  { label: 'title', disabled: false, icon: 'ph:tree-light', iconFill: 'ph:tree-fill' },
+];
 </script>
 ```
 
 ## Attributes
 
-| Name       | Description | Type      | Default |
-| ---------- | ----------- | --------- | ------- |
-| underlined | tabs type   | `boolean` | false   |
-| list       | List of tab | `Array`   | []      |
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>underlined</td>
+      <td>tabs type</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>list</td>
+      <td>List of tab</td>
+      <td>Array</td>
+      <td>[]</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Event
 
-| Name     | Description                  |
-| -------- | ---------------------------- |
-| tabIndex | emits the selected tab index |
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>tabIndex</td>
+      <td>emits the selected tab index</td>
+    </tr>
+  </tbody>
+</table>
 
-<script setup lang="ts">
-  import SprTabs from "@/components/tabs/tabs.vue";
-  import IconPlantLight from '~icons/ph/plant-light';
-  import IconPlantFill from '~icons/ph/plant-fill';
-  import IconLeafLight from '~icons/ph/leaf-light';
-  import IconLeafFill from '~icons/ph/leaf-fill';
-  import IconTreeLight from '~icons/ph/tree-light';
-  import IconTreeFill from '~icons/ph/tree-fill';
+<script lang="ts" setup>
+import SprTabs from "@/components/tabs/tabs.vue";
 
-  const tabsBasic = [
-    { label: "tab" },
-    { label: "tab" },
-    { label: "tab" },
-  ]
+const tabsBasic = [
+  { label: "tab" },
+  { label: "tab" },
+  { label: "tab" },
+]
 
-  const tabsWithIcon = [
-    { label: "tab", icon: IconPlantLight, iconFill: IconPlantFill },
-    { label: "tab", icon: IconLeafLight, iconFill: IconLeafFill },
-    { label: "tab", icon: IconTreeLight, iconFill: IconTreeFill },
-  ]
+const tabsWithIcon = [
+  { label: "tab", icon: 'ph:plant-light', iconFill: 'ph:plant-fill' },
+  { label: "tab", icon: 'ph:leaf-light', iconFill: 'ph:leaf-fill' },
+  { label: "tab", icon: 'ph:tree-light', iconFill: 'ph:tree-fill' },
+]
 
-  const tabsIconOnly = [
-    { icon: IconPlantLight, iconFill: IconPlantFill },
-    { icon: IconLeafLight, iconFill: IconLeafFill },
-    { icon: IconTreeLight, iconFill: IconTreeFill },
-  ]
+const tabsIconOnly = [
+  { icon: 'ph:plant-light', iconFill: 'ph:plant-fill' },
+  { icon: 'ph:leaf-light', iconFill: 'ph:leaf-fill' },
+  { icon: 'ph:tree-light', iconFill: 'ph:tree-fill' },
+]
 
-  const tabsUnderlined = [
-    { label: "title", disabled: false },
-    { label: "title", disabled: false },
-    { label: "title", disabled: false },
-  ]
+const tabsUnderlined = [
+  { label: "title", disabled: false },
+  { label: "title", disabled: false },
+  { label: "title", disabled: false },
+]
 
-  const tabsUnderlinedDisabled = [
-    { label: "title", disabled: false },
-    { label: "title", disabled: false },
-    { label: "title", disabled: true },
-  ]
+const tabsUnderlinedDisabled = [
+  { label: "title", disabled: false },
+  { label: "title", disabled: false },
+  { label: "title", disabled: true },
+]
 
-  const tabsUnderlinedWithIcon = [
-    { label: "title", disabled: false, icon: IconPlantLight, iconFill: IconPlantFill },
-    { label: "title", disabled: false, icon: IconLeafLight, iconFill: IconLeafFill },
-    { label: "title", disabled: false, icon: IconTreeLight, iconFill: IconTreeFill },
-  ]
+const tabsUnderlinedWithIcon = [
+  { label: "title", disabled: false, icon: 'ph:plant-light', iconFill: 'ph:plant-fill' },
+  { label: "title", disabled: false, icon: 'ph:leaf-light', iconFill: 'ph:leaf-fill' },
+  { label: "title", disabled: false, icon: 'ph:tree-light', iconFill: 'ph:tree-fill' },
+]
 </script>

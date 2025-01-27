@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.0 (2025-01-24)
+
+- Feat:
+  - Code Cleanup
+  - Documentation Cleanup
+  - Components Animations Enhancements
+  - Removal of Unplugin Icon and Integrate Iconify
+    ([#26c6a02f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/26c6a02fb4a0840d28985e99e8f6a3afec459fb2?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fcomponents-enchancements) by @jarias)
+
 ## 1.1.2 (2025-01-24)
 
 - Feat: Add Request Nav & Fix Active State Issues Encountered ([#2a8d2dfa](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2a8d2dfa80e1900c52c72808ef7b358a8cc9f6e0?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fsidenav) by @jarias)

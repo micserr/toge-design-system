@@ -9,7 +9,9 @@ export const useTabs = (props: TabsPropTypes, emit: SetupContext<TabsEmitTypes>[
 
   function updateSelectedTabIndex(index: number, disabled = false) {
     if (disabled) return;
+
     if (selectedTabIndex.value === index) return;
+
     selectedTabIndex.value = index;
 
     emit('tabIndex', index);

@@ -11,7 +11,7 @@
         :id="id"
         :type="type"
         :value="modelValue"
-        :class="inputClasses"
+        :class="[inputClasses, { 'number-input': type === 'number' }]"
         :placeholder="placeholder"
         :disabled="disabled"
         @input="$emit('update:modelValue', $event.target.value)"
@@ -38,3 +38,15 @@ defineEmits(['update:modelValue']);
 const { inputClasses, wrapperClasses, labelClasses, iconSlotClasses, prefixSlotClasses, trailingSlotClasses } =
   useInput(props, slots);
 </script>
+
+<style scoped>
+.number-input::-webkit-outer-spin-button,
+.number-input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.number-input {
+  -moz-appearance: textfield;
+}
+</style>

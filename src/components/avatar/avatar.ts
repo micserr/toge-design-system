@@ -7,7 +7,6 @@ const AVATAR_SIZE = ['2xl', 'xl', 'lg', 'md', 'sm', 'xs', '2xs'] as const;
 export const avatarPropTypes = {
   src: {
     type: String,
-    required: true,
   },
   alt: {
     type: String,
@@ -28,7 +27,7 @@ export const avatarPropTypes = {
   },
   badgeText: {
     type: String,
-    default: '',
+    default: '0',
   },
   initial: {
     type: String,

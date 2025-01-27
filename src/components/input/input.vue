@@ -19,7 +19,6 @@
       <div :class="trailingSlotClasses">
         <slot name="trailing" />
       </div>
-
       <div :class="iconSlotClasses">
         <slot name="icon" />
       </div>

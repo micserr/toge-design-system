@@ -122,18 +122,18 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
 
 Slot can be used to add custom content to the avatar. note: adjust your custom content to fit the avatar size.
 
-<div class="  space-x-3">
-<spr-avatar  :badge="true" :online="true" size="2xl" >
-  <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" class="  rounded-full   object-cover   h-20   w-20"/>
-</spr-avatar>
+<div class="space-x-3">
+  <spr-avatar  :badge="true" :online="true" size="2xl">
+    <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" class="  rounded-full   object-cover   h-20   w-20"/>
+  </spr-avatar>
 </div>
 
 ```jsx
-<spr-avatar  :badge="true" :online="true" size="2xl" >
+<spr-avatar :badge="true" :online="true" size="2xl">
   <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" class="  rounded-full   object-cover   h-20   w-20"/>
 </spr-avatar>
 ```
 
 <script setup lang="ts">
-  import SprAvatar from "@/components/avatar/avatar.vue";
+import SprAvatar from "@/components/avatar/avatar.vue";
 </script>

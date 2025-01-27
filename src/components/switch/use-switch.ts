@@ -24,9 +24,11 @@ export const useSwitch = (props: SwitchPropTypes) => {
     if (props.disabled) {
       return getDisabledBackground();
     }
+
     if (pressed.value) {
       return getPressedBackground();
     }
+
     if (isHovered.value) {
       return getHoveredBackground();
     }

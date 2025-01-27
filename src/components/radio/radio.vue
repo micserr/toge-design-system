@@ -13,7 +13,7 @@
     ref="radioRef"
     :for="props.id"
     :disabled="props.disabled"
-    :class="['w-auto inline-flex items-center space-x-2 p-0 m-0', radioLabelClasses]"
+    :class="['group m-0 inline-flex w-auto items-center space-x-2 p-0', radioLabelClasses]"
   >
     <span :class="indicatorClasses"></span>
     <slot />
@@ -31,3 +31,18 @@ const emit = defineEmits(radioEmitTypes);
 const proxyValue = useVModel(props, 'modelValue', emit);
 const { radioRef, radioClasses, indicatorClasses, radioLabelClasses } = useRadioButton(props);
 </script>
+
+<style scoped>
+@keyframes shadowGrow {
+  0% {
+    box-shadow: inset 0px 0px 0px 0px #fff;
+  }
+  100% {
+    box-shadow: inset 0px 0px 0px 2.5px #fff;
+  }
+}
+
+.animate-shadow-grow {
+  animation: shadowGrow 300ms ease-in-out forwards;
+}
+</style>

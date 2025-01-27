@@ -17,7 +17,9 @@
 
       <div v-if="!$slots.header">{{ title }}</div>
 
-      <span v-if="hasClose" class="text-color-weak subheading-xs" @click="closeModal"><IconClose /></span>
+      <span v-if="hasClose" class="text-color-weak subheading-xs" @click="closeModal">
+        <Icon icon="ph:x" />
+      </span>
     </header>
 
     <div class="body-sm-regular">
@@ -37,7 +39,7 @@
 </template>
 
 <script setup>
-import IconClose from '~icons/ph/x';
+import { Icon } from '@iconify/vue';
 
 import { modalPropTypes, modalEmitTypes } from './modal';
 import { useModal } from './use-modal';

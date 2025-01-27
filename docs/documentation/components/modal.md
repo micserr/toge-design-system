@@ -112,8 +112,9 @@ Display important information without navigating away from the current page. It 
 | ------- | ----------------------------------------- |
 | onClose | Function to call when the modal is closed |
 
-<script setup lang="ts">
+<script lang="ts" setup>
   import { ref } from 'vue';
+
   import SprModal from "@/components/modal/modal.vue"
   import SprButton from "@/components/button/button.vue"
 
@@ -122,5 +123,4 @@ Display important information without navigating away from the current page. It 
   const isModalSizes1Open = ref<boolean>(false);
   const isModalSizes2Open = ref<boolean>(false);
   const isModalSizes3Open = ref<boolean>(false);
-
 </script>

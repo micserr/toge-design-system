@@ -231,10 +231,9 @@ When using the default position, use can use the slot to wrap the element to whi
 </div>
 ```
 
-<script setup lang="ts">
-  import { ref } from 'vue';
-  import SprBadge from "@/components/badge/badge.vue"
-  
-import SprLozenge from '@/components/lozenge/lozenge.vue';
+<script lang="ts" setup>
+import { ref } from 'vue';
 
+import SprBadge from "@/components/badge/badge.vue"
+import SprLozenge from '@/components/lozenge/lozenge.vue';
 </script>

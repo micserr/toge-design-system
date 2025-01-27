@@ -1,7 +1,7 @@
 import { computed } from 'vue';
 import type { InputPropTypes } from './input';
-
 import classNames from 'classnames';
+
 export const useInput = (props: InputPropTypes, slots: Record<string, unknown>) => {
   const { error, disabled, offsetSize } = props;
 

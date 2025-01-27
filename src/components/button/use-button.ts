@@ -129,22 +129,12 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
     return classNames(buttonBackgroundCssClass.value, buttonTextCssClass.value, buttonBorderCssClass.value);
   });
 
-  const buttonShadowClass: ComputedRef<string> = computed(() => {
-    if (pressed.value) {
-      return 'shadow-button';
-    } else if (focused.value) {
-      return 'shadow-button-active';
-    }
-
-    return '';
-  });
-
   const buttonAllCssClass: ComputedRef<string> = computed(() => {
     if (disabled) {
       return classNames(buttonSizeCssClass.value, 'text-color-disabled');
     }
 
-    return classNames(buttonSizeCssClass.value, buttonToneCssClass.value, buttonShadowClass.value);
+    return classNames(buttonSizeCssClass.value, buttonToneCssClass.value);
   });
 
   const handleClick = (evt: MouseEvent) => {

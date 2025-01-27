@@ -112,6 +112,7 @@ export const sidenavEmitTypes = {
   'get-navlink-item': String,
   search: Function,
   notifications: Function,
+  requests: Function,
 };
 
 export type SidenavPropTypes = ExtractPropTypes<typeof sidenavPropTypes>;

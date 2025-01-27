@@ -11,11 +11,13 @@
 </div>
 
 ```vue
-<Spr-empty-state description="No results found" subDescription="Try a different search term">
-  <div>
-    slot
+<template>
+  <div class="bg-white-500 p-8">
+    <Spr-empty-state description="No results found" subDescription="Try a different search term">
+      <div>Image Here</div>
+    </Spr-empty-state>
   </div>
-</Spr-empty-state>
+</template>
 ```
 
 ## Images
@@ -39,7 +41,11 @@ List of images that can be used in the empty state component. ( 'bug',
 </div>
 
 ```vue
-<Spr-empty-state description="No results found" subDescription="Try a different search term" image="bug" />
+<template>
+  <div class="bg-white-500 p-8">
+    <Spr-empty-state description="No results found" subDescription="Try a different search term" image="bug" />
+  </div>
+</template>
 ```
 
 ## Image Size
@@ -65,8 +71,25 @@ Image size can be controlled by passing the `size` prop. The default size is `sm
 </div>
 
 ```vue
-<Spr-empty-state description="No results found" subDescription="Try a different search term" image="bug" size="small" />
-<Spr-empty-state description="No results found" subDescription="Try a different search term" image="bug" size="small" />
+<template>
+  <div class="bg-white-500 p-8">
+    <Spr-empty-state
+      description="No results found"
+      subDescription="Try a different search term"
+      image="bug"
+      size="small"
+    />
+  </div>
+
+  <div class="bg-white-500 p-8">
+    <Spr-empty-state
+      description="No results found"
+      subDescription="Try a different search term"
+      image="location"
+      size="large"
+    />
+  </div>
+</template>
 ```
 
 ## Event

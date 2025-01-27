@@ -41,6 +41,10 @@ export const emptyStatePropTypes = {
     validator: (value: (typeof STATE_IMAGE)[number]) => STATE_IMAGE.includes(value),
     default: 'bug',
   },
+  hasButton: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export type EmptyStatePropTypes = ExtractPropTypes<typeof emptyStatePropTypes>;

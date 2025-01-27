@@ -14,7 +14,7 @@
         </div>
       </div>
 
-      <spr-button tone="success" @click="$emit('onClick')">{{ buttonLabel }}</spr-button>
+      <spr-button v-if="hasButton" tone="success" @click="$emit('onClick')">{{ buttonLabel }}</spr-button>
     </section>
   </div>
 </template>

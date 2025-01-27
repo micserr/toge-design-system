@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.1 (2025-01-24)
+
+- Feat:
+  - Added Component Creation to Guide in Docs ([1cad1d936be4982da9c521f518a55e7ee04c7a95](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1cad1d936be4982da9c521f518a55e7ee04c7a95) by @JefMari)
+
 ## 1.2.0 (2025-01-24)
 
 - Feat:

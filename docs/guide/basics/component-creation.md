@@ -1,6 +1,6 @@
 # Creating Components
 
-This guide explains how to create a new component following our design system's architecture using the button component as an example. Each component consists of three main files:
+This guide provides step-by-step instructions for creating a new component based on our design system's architecture. Each component is structured around three core files:
 
 ## Component Structure
 

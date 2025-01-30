@@ -24,9 +24,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   const buttonSizeCssClass: ComputedRef<string> = computed(() =>
     classNames({
-      'px-[4px] py-[6px] font-medium font-size-100 leading-100': size === 'small',
-      'p-[8px] font-medium font-size-100 leading-100': size === 'medium',
-      'px-[8px] py-[12px] font-medium font-size-200 leading-300': size === 'large',
+      'min-w-6 px-1 py-[6px] font-medium font-size-100 leading-100': size === 'small',
+      'min-w-7 p-2 font-medium font-size-100 leading-100': size === 'medium',
+      'min-w-9 px-2 py-3 font-medium font-size-200 leading-300': size === 'large',
     }),
   );
 
@@ -48,7 +48,7 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
   // #region - Background Css Class
   const buttonBackgroundCssClass: ComputedRef<string> = computed(() => {
     if (variant === 'secondary') {
-      return isHovered.value ? 'background-color-hover' : '';
+      return isHovered.value ? 'background-color-hover' : 'background-color';
     }
 
     if (variant === 'tertiary') {
@@ -80,9 +80,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   function getPressedBackground(): string {
     const backgrounds: Record<string, string> = {
-      neutral: 'background-color-pressed',
-      success: 'background-color-brand-pressed',
-      danger: 'background-color-danger-pressed',
+      neutral: 'background-color-pressed !shadow-button',
+      success: 'background-color-brand-pressed !shadow-button',
+      danger: 'background-color-danger-pressed !shadow-button',
     };
 
     return backgrounds[tone] || '';
@@ -131,7 +131,17 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   const buttonAllCssClass: ComputedRef<string> = computed(() => {
     if (disabled) {
-      return classNames(buttonSizeCssClass.value, 'text-color-disabled');
+      if (variant === 'primary')
+        return classNames(buttonSizeCssClass.value, 'text-color-disabled background-color-disabled !shadow-none');
+
+      if (variant === 'secondary')
+        return classNames(
+          buttonSizeCssClass.value,
+          'text-color-disabled border-1 border-solid border border-color-disabled !shadow-none',
+        );
+
+      if (variant === 'tertiary')
+        return classNames(buttonSizeCssClass.value, 'text-color-disabled border-0 !shadow-none');
     }
 
     return classNames(buttonSizeCssClass.value, buttonToneCssClass.value);

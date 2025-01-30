@@ -57,15 +57,11 @@ List of images that can be used in the empty state component. ( 'bug',
 ```vue
 <template>
   <div class="bg-white-500 p-8">
-    <<<<<<< HEAD
     <Spr-empty-state description="No results found" subDescription="Try a different search term" image="bug">
       <template #button>
         <spr-button tone="success">Retry</spr-button>
       </template>
     </Spr-empty-state>
-    =======
-    <Spr-empty-state description="No results found" subDescription="Try a different search term" image="bug" />
-    >>>>>>> a0ac8dd81fb44439e7f3664112e590be1862fbeb
   </div>
 </template>
 ```

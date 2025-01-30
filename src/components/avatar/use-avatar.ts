@@ -37,12 +37,12 @@ export const useAvatar = (props: AvatarPropTypes) => {
 
   const avatarNotificationClassses = computed(() => {
     return classNames(' absolute  right-0  top-0', {
-      ' -right-[5px]  -top-[6.3px]': size === 'xl',
-      ' -right-[7px]  -top-[7.5px]': size === 'lg',
-      ' -right-[7px]  -top-[6px]': size === 'md',
+      ' right-[-5px]  top-[-6.3px]': size === 'xl',
+      ' right-[-7px]  top-[-8px]': size === 'lg',
+      ' right-[-5px]  top-[-6px]': size === 'md',
       ' right-[-7px]  top-[-7px]': size === 'sm',
-      ' right-[-4px]  top-[-4px]': size === 'xs',
-      ' -right-[6.8px]  -top-[5.3px]': size === '2xs',
+      ' right-[-5px]  top-[-4px]': size === 'xs',
+      ' right-[-4px]  top-[-4px]': size === '2xs',
     });
   });
 
@@ -52,7 +52,7 @@ export const useAvatar = (props: AvatarPropTypes) => {
       ' bottom-[1px]  right-[1px]': size === 'xl',
       ' bottom-[-3px]  right-[-4px]': size === 'sm',
       ' bottom-[-4px]  right-[-3px]': size === 'xs',
-      ' -bottom-[6.5px]  right-[-5.3px]': size === '2xs',
+      ' bottom-[-2px]  right-[-4px]': size === '2xs',
     });
   });
 

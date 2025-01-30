@@ -77,10 +77,46 @@ Commonly used button.
 
 ## Disabled
 
+<div class="flex items-center gap-2 mb-2">
+  <spr-button size="small" disabled>Primary</spr-button>
+  <spr-button size="small" variant="secondary" disabled>Secondary</spr-button>
+  <spr-button size="small" variant="tertiary" disabled>Tertiary</spr-button>
+</div>
+<div class="flex items-center gap-2 mb-2">
+  <spr-button  disabled>Primary</spr-button>
+  <spr-button variant="secondary" disabled>Secondary</spr-button>
+  <spr-button variant="tertiary" disabled>Tertiary</spr-button>
+</div>
 <div class="flex items-center gap-2">
-  <spr-button disabled size="small">Small</spr-button>
-  <spr-button disabled>Default</spr-button>
-  <spr-button disabled size="large">Large</spr-button>
+  <spr-button size="large" disabled>Primary</spr-button>
+  <spr-button size="large" variant="secondary" disabled>Secondary</spr-button>
+  <spr-button size="large" variant="tertiary" disabled>Tertiary</spr-button>
+</div>
+
+```jsx
+<spr-button disabled ize="small">Small</spr-button>
+<spr-button disabled>Medium/Default</spr-button>
+<spr-button disabled size="large">Large</spr-button>
+```
+
+## Icon
+
+<div class="flex items-center gap-2 mb-2">
+    <spr-button size="small"><Icon icon="ph:users-three" /></spr-button>
+    <spr-button variant="secondary" ><Icon icon="ph:users-three" /></spr-button>
+    <spr-button size="large" variant="tertiary" ><Icon icon="ph:users-three" /></spr-button>
+</div>
+
+<div class="flex items-center gap-2 mb-2">
+    <spr-button size="small" tone="success" ><Icon icon="ph:users-three" /></spr-button>
+    <spr-button tone="success"  variant="secondary" ><Icon icon="ph:users-three" /></spr-button>
+    <spr-button size="large" tone="success"variant="tertiary" ><Icon icon="ph:users-three" /></spr-button>
+</div>
+
+<div class="flex items-center gap-2 mb-2">
+    <spr-button size="small" tone="danger"><Icon icon="ph:users-three" /></spr-button>
+    <spr-button tone="danger" variant="secondary" ><Icon icon="ph:users-three" /></spr-button>
+    <spr-button size="large" tone="danger" variant="tertiary" ><Icon icon="ph:users-three" /></spr-button>
 </div>
 
 ```jsx
@@ -138,4 +174,5 @@ Commonly used button.
 
 <script lang="ts" setup>
 import SprButton from "@/components/button/button.vue"
+import { Icon } from '@iconify/vue';
 </script>

@@ -41,7 +41,7 @@ export const useInput = (props: InputPropTypes, slots: Record<string, unknown>) 
         'text-color-on-fill-disabled': disabled,
         'pr-[5%]': slots.icon,
         'pl-size-spacing-lg': slots.prefix,
-        'pr-[94%] sm:pr-[85%]': offsetSize === 'xs' && slots.trailing,
+        'pr-[93%] sm:pr-[85%]': offsetSize === 'xs' && slots.trailing,
         'pr-[90%]': offsetSize === 'sm' && slots.trailing,
         'pr-[50%]': offsetSize === 'md' && slots.trailing,
       },
@@ -64,8 +64,8 @@ export const useInput = (props: InputPropTypes, slots: Record<string, unknown>) 
     return classNames('absolute left-[55%] top-1/2 -translate-y-1/2 transform text-mushroom-300', {
       '!text-tomato-600': error,
       'left-[7%] sm:left-[16%]': offsetSize === 'xs' && slots.trailing,
-      'left-[11%]': offsetSize === 'sm' && slots.trailing,
-      'left-[51%]': offsetSize === 'md' && slots.trailing,
+      'left-[11%] sm:left-[16%]': offsetSize === 'sm' && slots.trailing,
+      'left-[52%]': offsetSize === 'md' && slots.trailing,
     });
   });
 

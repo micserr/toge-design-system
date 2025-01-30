@@ -3,7 +3,7 @@
     ref="buttonRef"
     v-bind="buttonProps"
     :class="[
-      'inline-flex w-fit min-w-[56px] cursor-pointer items-center justify-center rounded-md outline-2 outline-offset-4 duration-150 ease-in-out',
+      'background-color inline-flex w-fit min-w-[24px] cursor-pointer items-center justify-center rounded-md outline-2 outline-offset-4 duration-150 ease-in-out',
       'hover:shadow-button-hover',
       'active:scale-95',
       buttonClass,

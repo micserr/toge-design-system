@@ -8,7 +8,7 @@ Commonly used button.
   <spr-button>Buttons</spr-button>
 </div>
 
-```jsx
+```vue
 <spr-button>Button</spr-button>
 ```
 
@@ -20,7 +20,7 @@ Commonly used button.
   <spr-button tone="danger">Danger</spr-button>
 </div>
 
-```jsx
+```vue
 <spr-button>Neutral/Default</spr-button>
 <spr-button tone="success">Success</spr-button>
 <spr-button tone="danger">Danger</spr-button>
@@ -34,7 +34,7 @@ Commonly used button.
   <spr-button size="large">Large</spr-button>
 </div>
 
-```jsx
+```vue
 <spr-button size="small">Small</spr-button>
 <spr-button>Medium/Default</spr-button>
 <spr-button size="large">Large</spr-button>
@@ -58,7 +58,7 @@ Commonly used button.
   <spr-button tone="danger" variant="tertiary">Tertiary</spr-button>
 </div>
 
-```jsx
+```vue
 // Primary/Default
 <spr-button>Primary/Default</spr-button>
 <spr-button variant="secondary">Secondary</spr-button>
@@ -93,7 +93,7 @@ Commonly used button.
   <spr-button size="large" variant="tertiary" disabled>Tertiary</spr-button>
 </div>
 
-```jsx
+```vue
 <spr-button disabled ize="small">Small</spr-button>
 <spr-button disabled>Medium/Default</spr-button>
 <spr-button disabled size="large">Large</spr-button>
@@ -119,10 +119,26 @@ Commonly used button.
     <spr-button size="large" tone="danger" variant="tertiary" ><Icon icon="ph:users-three" /></spr-button>
 </div>
 
-```jsx
-<spr-button disabled ize="small">Small</spr-button>
-<spr-button disabled>Medium/Default</spr-button>
-<spr-button disabled size="large">Large</spr-button>
+<div class="flex items-center gap-2 mb-2">
+    <spr-button disabled size="small" tone="danger"><Icon icon="ph:users-three" /></spr-button>
+    <spr-button disabled tone="danger" variant="secondary" ><Icon icon="ph:users-three" /></spr-button>
+    <spr-button disabled size="large" tone="danger" variant="tertiary" ><Icon icon="ph:users-three" /></spr-button>
+</div>
+
+```vue
+<template>
+  <spr-button size="small">
+    <Icon icon="ph:users-three" />
+  </spr-button>
+
+  <spr-button>
+    <Icon icon="ph:users-three" />
+  </spr-button>
+
+  <spr-button size="large">
+    <Icon icon="ph:users-three" />
+  </spr-button>
+</template>
 ```
 
 ## Button API

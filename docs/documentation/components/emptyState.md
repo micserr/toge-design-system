@@ -7,15 +7,27 @@
   <div>
     Image Here
   </div>
+
+<template #button>
+<spr-button tone="success">Retry</spr-button>
+</template>
 </Spr-empty-state>
+
 </div>
 
 ```vue
-<Spr-empty-state description="No results found" subDescription="Try a different search term">
-  <div>
-    slot
-  </div>
-</Spr-empty-state>
+<template>
+  <div class="p-8 bg-white-500">
+  <Spr-empty-state  description="No results found" subDescription="Try a different search term" >
+    <div>
+      Image Here
+    </div>
+
+    <template #button>
+      <spr-button tone="success">Retry</spr-button>
+    </template>
+  </Spr-empty-state>
+</template>
 ```
 
 ## Images
@@ -35,11 +47,23 @@ List of images that can be used in the empty state component. ( 'bug',
     description="No results found"
     subDescription="Try a different search term"
     image="bug"
-  />
+  >
+  <template #button>
+    <spr-button tone="success">Retry</spr-button>
+  </template>
+  </Spr-empty-state>
 </div>
 
 ```vue
-<Spr-empty-state description="No results found" subDescription="Try a different search term" image="bug" />
+<template>
+  <div class="bg-white-500 p-8">
+    <Spr-empty-state description="No results found" subDescription="Try a different search term" image="bug">
+      <template #button>
+        <spr-button tone="success">Retry</spr-button>
+      </template>
+    </Spr-empty-state>
+  </div>
+</template>
 ```
 
 ## Image Size
@@ -52,7 +76,11 @@ Image size can be controlled by passing the `size` prop. The default size is `sm
     subDescription="Try a different search term"
     image="bug"
     size="small"
-  />
+  >
+    <template #button>
+      <spr-button tone="success">Retry</spr-button>
+    </template>
+  </Spr-empty-state>
 </div>
 
 <div class="p-8 bg-white-500">
@@ -61,20 +89,45 @@ Image size can be controlled by passing the `size` prop. The default size is `sm
     subDescription="Try a different search term"
     image="location"
     size="large"
-  />
+  >
+    <template #button>
+      <spr-button tone="success">Retry</spr-button>
+    </template>
+  </Spr-empty-state>
 </div>
 
 ```vue
-<Spr-empty-state description="No results found" subDescription="Try a different search term" image="bug" size="small" />
-<Spr-empty-state description="No results found" subDescription="Try a different search term" image="bug" size="small" />
+<template>
+  <div class="bg-white-500 p-8">
+    <Spr-empty-state
+      description="No results found"
+      subDescription="Try a different search term"
+      image="bug"
+      size="small"
+    >
+      <template #button>
+        <spr-button tone="success">Retry</spr-button>
+      </template>
+    </Spr-empty-state>
+  </div>
+
+  <div class="bg-white-500 p-8">
+    <Spr-empty-state
+      description="No results found"
+      subDescription="Try a different search term"
+      image="location"
+      size="large"
+    >
+      <template #button>
+        <spr-button tone="success">Retry</spr-button>
+      </template>
+    </Spr-empty-state>
+  </div>
+</template>
 ```
-
-## Event
-
-| Name    | Description             |
-| ------- | ----------------------- |
-| onClick | emits when button click |
 
 <script lang="ts" setup>
 import SprEmptyState from "@/components/emptyState/emptyState.vue";
+
+import SprButton from '@/components/button/button.vue';
 </script>

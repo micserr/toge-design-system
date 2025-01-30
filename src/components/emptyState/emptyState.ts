@@ -26,11 +26,6 @@ export const emptyStatePropTypes = {
     required: false,
     default: 'Try a different search term.',
   },
-  buttonLabel: {
-    type: String,
-    required: false,
-    default: 'Retry',
-  },
   size: {
     type: String as PropType<(typeof STATE_SIZE)[number]>,
     validator: (value: (typeof STATE_SIZE)[number]) => STATE_SIZE.includes(value),

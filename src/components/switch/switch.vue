@@ -41,12 +41,12 @@ const { switchWrapperRef, switchRef, switchProps, switchMarkClass, switchTextCla
 
 <style lang="scss" scoped>
 .input {
-  &:checked ~ .mark:before {
+  &:checked ~ .switch-mark:before {
     @apply left-[1.7rem];
   }
 }
 
-.mark {
+.switch-mark {
   &:before,
   &:after {
     @apply absolute;

@@ -1,11 +1,18 @@
 # Changelog
 
+## 1.2.3 (2025-01-30)
+
+- Fix:
+  - Icon button
+  - Empty State Update button slot
+  - Switch change class name ([1d9624ed](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1d9624ed2803cff2af3c9429ebc22e430134eaf9?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fdqa-button) by @adestajo)
+
 ## 1.2.2 (2025-01-27)
 
 - Fix:
   - Input
   - Modal
-  - Documentation ([28612](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/28612?_a=commits) by @JefMari)
+  - Documentation ([28612](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/28612?_a=commits) by @adestajo)
 
 ## 1.2.1 (2025-01-24)
 
@@ -27,7 +34,7 @@
 
 ## 1.1.1 (2025-01-22)
 
-- Feat: Avatar ([#c0227ccf](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c0227ccfccca2e58e5d624771818d7b3a1b26c6c?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Favatar) by @andrea)
+- Feat: Avatar ([#c0227ccf](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c0227ccfccca2e58e5d624771818d7b3a1b26c6c?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Favatar) by @adestajo)
 
 ## 1.1.0 (2025-01-22)
 
@@ -35,15 +42,15 @@
 
 ## 1.0.40 (2025-01-22)
 
-- Fix: Empty State pipeline error ([#1d441db1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1d441db1ad7f25313d511e5b5556bc137726427f?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fempty-state) by @andrea)
+- Fix: Empty State pipeline error ([#1d441db1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1d441db1ad7f25313d511e5b5556bc137726427f?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fempty-state) by @adestajo)
 
 ## 1.0.39 (2025-01-22)
 
-- Feat: Empty State ([#0cb488ac](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0cb488ac8e74622d9c2529d8af3b4b1b7e71e56e?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fempty-state) by @andrea)
+- Feat: Empty State ([#0cb488ac](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0cb488ac8e74622d9c2529d8af3b4b1b7e71e56e?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fempty-state) by @adestajo)
 
 ## 1.0.38 (2025-01-22)
 
-- Feat: Input Prefix and trailing ([#d69c9751](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d69c9751be3ba3e73fbcbfadc4f7ea0562d5ebda?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Finput) by @andrea)
+- Feat: Input Prefix and trailing ([#d69c9751](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d69c9751be3ba3e73fbcbfadc4f7ea0562d5ebda?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Finput) by @adestajo)
 
 ## 1.0.37 (2025-01-17)
 
@@ -62,35 +69,35 @@
 
 ## 1.0.36 (2025-01-17)
 
-- Feat: Tabs, TimePicker ([#83e94c5c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/83e94c5c6848e83d82137ac1f4b64d65036b879d?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FDQA-tabs-timepicker) by @andrea)
+- Feat: Tabs, TimePicker ([#83e94c5c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/83e94c5c6848e83d82137ac1f4b64d65036b879d?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FDQA-tabs-timepicker) by @adestajo)
 
 ## 1.0.35 (2025-01-17)
 
-- Fix: DQA - Tab ([#d2d9bc9b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d2d9bc9ba867a4307bf2bdb5bcf7d6826f7c66ec?refName=refs%2Fheads%2F2025%2Ffix%2Fandrea%2FDQA-Tabs) by @andrea)
+- Fix: DQA - Tab ([#d2d9bc9b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d2d9bc9ba867a4307bf2bdb5bcf7d6826f7c66ec?refName=refs%2Fheads%2F2025%2Ffix%2Fandrea%2FDQA-Tabs) by @adestajo)
 
-- Fix: DQA - Badge, Modal ([#c5cc5d15](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c5cc5d1559e00030b83a55792ee2428171e786a8?refName=refs%2Fheads%2F2025%2Ffix%2Fandrea%2FDQA-Tabs) by @andrea)
+- Fix: DQA - Badge, Modal ([#c5cc5d15](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c5cc5d1559e00030b83a55792ee2428171e786a8?refName=refs%2Fheads%2F2025%2Ffix%2Fandrea%2FDQA-Tabs) by @adestajo)
 
-- Fix: Registered Custom Utilities ([#d8f3500e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d8f3500ee4495c3b8ccce9dd07877cbcb1559c8f?refName=refs%2Fheads%2F2025%2Ffix%2Fandrea%2FDQA-Tabs) by @andrea)
+- Fix: Registered Custom Utilities ([#d8f3500e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d8f3500ee4495c3b8ccce9dd07877cbcb1559c8f?refName=refs%2Fheads%2F2025%2Ffix%2Fandrea%2FDQA-Tabs) by @adestajo)
 
 ## 1.0.34 (2025-01-15)
 
-- Feat: Tooltip ([#6f76cb4a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6f76cb4a4a40ac9ff863642d820dad8a8c374a45?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Ftooltip) by @andrea)
+- Feat: Tooltip ([#6f76cb4a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6f76cb4a4a40ac9ff863642d820dad8a8c374a45?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Ftooltip) by @adestajo)
 
 ## 1.0.33 (2025-01-15)
 
-- Feat: Modal ([#00e617af](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/00e617afb426868b033b48014b4b7818b81fb529?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fmodal) by @andrea)
+- Feat: Modal ([#00e617af](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/00e617afb426868b033b48014b4b7818b81fb529?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fmodal) by @adestajo)
 
 ## 1.0.32 (2025-01-15)
 
-- Fix: icon and Input Spacing ([#39de5f76](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/39de5f767ac5287c1555f6b7a4420c04e922fcea?refName=refs%2Fheads%2F2024%2Ffix%2Fandrea%2Ffix-icon-spacing) by @andrea)
+- Fix: icon and Input Spacing ([#39de5f76](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/39de5f767ac5287c1555f6b7a4420c04e922fcea?refName=refs%2Fheads%2F2024%2Ffix%2Fandrea%2Ffix-icon-spacing) by @adestajo)
 
 ## 1.0.31 (2025-01-14)
 
-- Fix: DQA Timepicker ([#d4512cdb](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d4512cdbfbf29af6bb8f2b1a4ffe5d5a44d1a099?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FDQA-timepicker) by @andrea)
+- Fix: DQA Timepicker ([#d4512cdb](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d4512cdbfbf29af6bb8f2b1a4ffe5d5a44d1a099?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FDQA-timepicker) by @adestajo)
 
 ## 1.0.30 (2025-01-14)
 
-- Feat: Tab Component ([#8a8886a6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8a8886a6e4726a6e7c08288dfc70e102223523f2?refName=refs%2Fheads%2F2025%2Ffeature%2Fandrea%2Ftabs) by @andrea)
+- Feat: Tab Component ([#8a8886a6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8a8886a6e4726a6e7c08288dfc70e102223523f2?refName=refs%2Fheads%2F2025%2Ffeature%2Fandrea%2Ftabs) by @adestajo)
 
 ## 1.0.29 (2025-01-14)
 

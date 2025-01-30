@@ -2,7 +2,7 @@
   <dialog
     ref="dialog"
     :class="[
-      'modal-dialog border-color-weak background-color bg-over rounded-border-radius-xl border p-0 drop-shadow-[0_2px_8px_-2px_rgba(38,43,43,0.20)]',
+      'spr-modal border-color-weak background-color rounded-border-radius-xl border p-0 drop-shadow-[0_2px_8px_-2px_rgba(38,43,43,0.20)]',
       modalSizesClasses,
     ]"
   >
@@ -52,7 +52,7 @@ const { dialog, closeModal, modalSizesClasses } = useModal(props, emit);
 
 <style scoped>
 /* Tailwind CSS does not directly support the ::backdrop pseudo-element, need to add this */
-.modal-dialog::backdrop {
+.spr-modal::backdrop {
   @apply bg-overlay;
 }
 </style>

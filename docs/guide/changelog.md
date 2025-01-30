@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.2 (2025-01-27)
+
+- Fix:
+  - Input
+  - Modal
+  - Documentation ([28612](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/28612?_a=commits) by @JefMari)
+
 ## 1.2.1 (2025-01-24)
 
 - Feat:

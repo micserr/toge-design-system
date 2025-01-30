@@ -4,24 +4,44 @@
 
 <spr-avatar src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" :badge="true" :online="true" size="2xl" />
 
-```jsx
-<spr-avatar src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" :badge="true" :online="true" size="2xl" />
+```vue
+<template>
+  <spr-avatar
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    alt="User Avatar"
+    :badge="true"
+    :online="true"
+    size="2xl"
+  />
+</template>
 ```
 
 ## Badge
 
 <spr-avatar src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" :badge="true" />
 
-```jsx
-<spr-avatar src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" :badge="true" />
+```vue
+<template>
+  <spr-avatar
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    alt="User Avatar"
+    :badge="true"
+  />
+</template>
 ```
 
 ## Online
 
 <spr-avatar src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" :online="true" />
 
-```jsx
-<spr-avatar src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" :online="true" />
+```vue
+<template>
+  <spr-avatar
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    alt="User Avatar"
+    :online="true"
+  />
+</template>
 ```
 
 ## Sizes
@@ -45,55 +65,59 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
 
 </div>
 
-```jsx
-<spr-avatar
-  src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-  :badge="true"
-  :online="true"
-  size="2xl"
-/>
+```vue
+<template>
+  <div class="space-x-3">
+    <spr-avatar
+      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+      :badge="true"
+      :online="true"
+      size="2xl"
+    />
 
-<spr-avatar
-  src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-  :badge="true"
-  :online="true"
-  size="xl"
-/>
+    <spr-avatar
+      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+      :badge="true"
+      :online="true"
+      size="xl"
+    />
 
-<spr-avatar
-  src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-  :badge="true"
-  :online="true"
-  size="lg"
-/>
+    <spr-avatar
+      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+      :badge="true"
+      :online="true"
+      size="lg"
+    />
 
-<spr-avatar
-  src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-  :badge="true"
-  :online="true"
-  size="md"
-/>
+    <spr-avatar
+      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+      :badge="true"
+      :online="true"
+      size="md"
+    />
 
-<spr-avatar
-  src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-  :badge="true"
-  :online="true"
-  size="sm"
-/>
+    <spr-avatar
+      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+      :badge="true"
+      :online="true"
+      size="sm"
+    />
 
-<spr-avatar
-  src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-  :badge="true"
-  :online="true"
-  size="xs"
-/>
+    <spr-avatar
+      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+      :badge="true"
+      :online="true"
+      size="xs"
+    />
 
-<spr-avatar
-  src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-  :badge="true"
-  :online="true"
-  size="2xs"
-/>
+    <spr-avatar
+      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+      :badge="true"
+      :online="true"
+      size="2xs"
+    />
+  </div>
+</template>
 ```
 
 ## Initial
@@ -108,14 +132,18 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
 <spr-avatar initial="A" :badge="true" :online="true" size="2xs" />
 </div>
 
-```jsx
-<spr-avatar initial="A" :badge="true" :online="true" size="2xl" />
-<spr-avatar initial="A" :badge="true" :online="true" size="xl" />
-<spr-avatar initial="A" :badge="true" :online="true" size="lg" />
-<spr-avatar initial="A" :badge="true" :online="true" size="md" />
-<spr-avatar initial="A" :badge="true" :online="true" size="sm" />
-<spr-avatar initial="A" :badge="true" :online="true" size="xs" />
-<spr-avatar initial="A" :badge="true" :online="true" size="2xs" />
+```vue
+<template>
+  <div class="space-x-3">
+    <spr-avatar initial="A" :badge="true" :online="true" size="2xl" />
+    <spr-avatar initial="A" :badge="true" :online="true" size="xl" />
+    <spr-avatar initial="A" :badge="true" :online="true" size="lg" />
+    <spr-avatar initial="A" :badge="true" :online="true" size="md" />
+    <spr-avatar initial="A" :badge="true" :online="true" size="sm" />
+    <spr-avatar initial="A" :badge="true" :online="true" size="xs" />
+    <spr-avatar initial="A" :badge="true" :online="true" size="2xs" />
+  </div>
+</template>
 ```
 
 ## Slot
@@ -128,10 +156,16 @@ Slot can be used to add custom content to the avatar. note: adjust your custom c
   </spr-avatar>
 </div>
 
-```jsx
-<spr-avatar :badge="true" :online="true" size="2xl">
-  <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" class="  rounded-full   object-cover   h-20   w-20"/>
-</spr-avatar>
+```vue
+<template>
+  <spr-avatar :badge="true" :online="true" size="2xl">
+    <img
+      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+      alt="User Avatar"
+      class="h-20 w-20 rounded-full object-cover"
+    />
+  </spr-avatar>
+</template>
 ```
 
 <script setup lang="ts">

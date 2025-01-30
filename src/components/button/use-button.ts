@@ -63,7 +63,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
       return 'background-color-pressed';
     }
 
-    return isHovered.value ? 'background-color-hover' : '';
+    return classNames('!border-none', {
+      'background-color-hover': isHovered.value,
+    });
   }
 
   function getBackgroundBasedOnState(): string {
@@ -141,7 +143,7 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
         );
 
       if (variant === 'tertiary')
-        return classNames(buttonSizeCssClass.value, 'text-color-disabled border-0 !shadow-none');
+        return classNames(buttonSizeCssClass.value, 'text-color-disabled !border-none !shadow-none');
     }
 
     return classNames(buttonSizeCssClass.value, buttonToneCssClass.value);

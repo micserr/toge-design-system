@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.4 (2025-01-30)
+
+- Fix:
+  -button Tertiary Border([d96fc96a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d96fc96ad4544b10bfa012e32eb8491112001585?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fbutton-tertiary-border) by @adestajo)
+
 ## 1.2.3 (2025-01-30)
 
 - Fix:

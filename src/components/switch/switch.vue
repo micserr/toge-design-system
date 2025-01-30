@@ -17,7 +17,9 @@
         :class="['input absolute left-0 top-0 z-10 m-0 h-6 w-12 opacity-0', switchInputClass]"
         :disabled="props.disabled"
       />
-      <span :class="['mark relative box-border inline-block h-6 w-12 rounded-[40px] p-1', switchMarkClass]"></span>
+      <span
+        :class="['switch-mark relative box-border inline-block h-6 w-12 rounded-[40px] p-1', switchMarkClass]"
+      ></span>
     </div>
     <label>
       <slot name="rightText"></slot>

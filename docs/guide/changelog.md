@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.5 (2025-01-31)
+
+- Fix:
+  -button Icon
+  -Lozenge Border ([6d60fd9c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6d60fd9c2d1b90cb48bf71ea8ac96de82324ad35?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fbutton) by @adestajo)
+
 ## 1.2.4 (2025-01-30)
 
 - Fix:

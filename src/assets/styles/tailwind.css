@@ -108,34 +108,34 @@
 
   /* #region - Lozange */
   .lozenge {
-    @apply flex flex-wrap rounded-md;
+    @apply flex flex-wrap rounded-md !border;
 
     .pending {
-      @apply text-color-pending-base background-color-pending-weak border-color-pending-base;
+      @apply text-color-pending-base background-color-pending-weak !border-color-pending-base;
     }
 
     .information {
-      @apply text-color-information-base background-color-information-weak border-color-information-base;
+      @apply text-color-information-base background-color-information-weak !border-color-information-base;
     }
 
     .success {
-      @apply text-color-success-base background-color-success-weak border-color-success-base;
+      @apply text-color-success-base background-color-success-weak !border-color-success-base;
     }
 
     .neutral {
-      @apply text-color-base background-color-base border-color-base;
+      @apply text-color-base background-color-base !border-color-base;
     }
 
     .danger {
-      @apply text-color-danger-base background-color-danger-weak border-color-danger-base;
+      @apply text-color-danger-base background-color-danger-weak !border-color-danger-base;
     }
 
     .caution {
-      @apply text-color-caution-base background-color-caution-weak border-color-caution-base;
+      @apply text-color-caution-base background-color-caution-weak !border-color-caution-base;
     }
 
     .plain {
-      @apply text-color-strong border-color-base background-color;
+      @apply text-color-strong !border-color-base background-color;
     }
   }
 

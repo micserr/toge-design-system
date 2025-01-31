@@ -102,41 +102,41 @@ Commonly used button.
 ## Icon
 
 <div class="flex items-center gap-2 mb-2">
-    <spr-button size="small"><Icon icon="ph:users-three" /></spr-button>
-    <spr-button variant="secondary" ><Icon icon="ph:users-three" /></spr-button>
-    <spr-button size="large" variant="tertiary" ><Icon icon="ph:users-three" /></spr-button>
+    <spr-button size="small" :isIcon="true"><Icon icon="ph:trash" /></spr-button>
+    <spr-button variant="secondary" :isIcon="true"><Icon icon="ph:trash" /></spr-button>
+    <spr-button size="large" variant="tertiary" :isIcon="true"><Icon icon="ph:trash" /></spr-button>
 </div>
 
 <div class="flex items-center gap-2 mb-2">
-    <spr-button size="small" tone="success" ><Icon icon="ph:users-three" /></spr-button>
-    <spr-button tone="success"  variant="secondary" ><Icon icon="ph:users-three" /></spr-button>
-    <spr-button size="large" tone="success"variant="tertiary" ><Icon icon="ph:users-three" /></spr-button>
+    <spr-button size="small" tone="success" isIcon><Icon icon="ph:trash" /></spr-button>
+    <spr-button tone="success"  variant="secondary" isIcon><Icon icon="ph:trash" /></spr-button>
+    <spr-button size="large" tone="success"variant="tertiary" isIcon><Icon icon="ph:trash" /></spr-button>
 </div>
 
 <div class="flex items-center gap-2 mb-2">
-    <spr-button size="small" tone="danger"><Icon icon="ph:users-three" /></spr-button>
-    <spr-button tone="danger" variant="secondary" ><Icon icon="ph:users-three" /></spr-button>
-    <spr-button size="large" tone="danger" variant="tertiary" ><Icon icon="ph:users-three" /></spr-button>
+    <spr-button isIcon size="small" tone="danger" ><Icon icon="ph:trash" /></spr-button>
+    <spr-button isIcon tone="danger" variant="secondary" ><Icon icon="ph:trash" /></spr-button>
+    <spr-button isIcon size="large" tone="danger" variant="tertiary" ><Icon icon="ph:trash" /></spr-button>
 </div>
 
 <div class="flex items-center gap-2 mb-2">
-    <spr-button disabled size="small" tone="danger"><Icon icon="ph:users-three" /></spr-button>
-    <spr-button disabled tone="danger" variant="secondary" ><Icon icon="ph:users-three" /></spr-button>
-    <spr-button disabled size="large" tone="danger" variant="tertiary" ><Icon icon="ph:users-three" /></spr-button>
+    <spr-button disabled isIcon size="small" tone="danger"><Icon icon="ph:trash" /></spr-button>
+    <spr-button disabled isIcon tone="danger" variant="secondary" ><Icon icon="ph:trash" /></spr-button>
+    <spr-button disabled isIcon size="large" tone="danger" variant="tertiary" ><Icon icon="ph:trash" /></spr-button>
 </div>
 
 ```vue
 <template>
   <spr-button size="small">
-    <Icon icon="ph:users-three" />
+    <Icon icon="ph:trash" />
   </spr-button>
 
   <spr-button>
-    <Icon icon="ph:users-three" />
+    <Icon icon="ph:trash" />
   </spr-button>
 
   <spr-button size="large">
-    <Icon icon="ph:users-three" />
+    <Icon icon="ph:trash" />
   </spr-button>
 </template>
 ```

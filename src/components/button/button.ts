@@ -53,7 +53,7 @@ export const buttonPropTypes = {
     type: Boolean,
     default: false,
   },
-  isIcon: {
+  hasIcon: {
     type: Boolean,
     default: false,
   },

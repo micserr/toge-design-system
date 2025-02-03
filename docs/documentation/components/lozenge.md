@@ -141,6 +141,10 @@ A basic lozenge with a text is created with the label property.
     </template>
   </spr-lozenge>
 </template>
+
+<script lang="ts" setup>
+import { Icon } from '@iconify/vue';
+</script>
 ```
 
 ## Icon
@@ -161,6 +165,10 @@ A basic lozenge with a text is created with the label property.
     </template>
   </spr-lozenge>
 </template>
+
+<script lang="ts" setup>
+import { Icon } from '@iconify/vue';
+</script>
 ```
 
 ## Slot

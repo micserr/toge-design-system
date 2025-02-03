@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.8 (2025-02-03)
+
+- Fix:
+  - reactivity of buttonProps (add toRefs to props in use-button.ts) ([c3e2110c])(https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c3e2110cf99614f50d1e917ccc4b2dbbaf26b3ba?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2Fdisabled-button by @despiritu)
+
 ## 1.2.7 (2025-02-03)
 
 - Fix:

@@ -11,7 +11,7 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
   const isHovered = useElementHover(buttonRef);
   const { pressed } = useMousePressed({ target: buttonRef });
   const { focused } = useFocus(buttonRef);
-  const { state, type, size, tone, variant, disabled, isIcon } = props;
+  const { state, type, size, tone, variant, disabled, hasIcon } = props;
 
   const buttonProps: ComputedRef<Record<string, unknown>> = computed(() => {
     return {
@@ -37,9 +37,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
       'min-w-6 p-size-spacing-4xs font-medium font-size-100 leading-100': size === 'small',
       'min-w-7 p-2 font-medium font-size-100 leading-100': size === 'medium',
       '!min-w-9 px-2 py-3 font-medium font-size-200 leading-300 max-h-9': size === 'large',
-      'font-size-400': isIcon && size === 'large',
-      'font-size-300': isIcon && size === 'medium',
-      'font-size-200': isIcon && size === 'small',
+      'font-size-400': hasIcon && size === 'large',
+      'font-size-300': hasIcon && size === 'medium',
+      'font-size-200': hasIcon && size === 'small',
     }),
   );
 

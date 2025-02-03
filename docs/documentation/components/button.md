@@ -102,43 +102,37 @@ Commonly used button.
 ## Icon
 
 <div class="flex items-center gap-2 mb-2">
-    <spr-button size="small" :isIcon="true"><Icon icon="ph:trash" /></spr-button>
-    <spr-button variant="secondary" :isIcon="true"><Icon icon="ph:trash" /></spr-button>
-    <spr-button size="large" variant="tertiary" :isIcon="true"><Icon icon="ph:trash" /></spr-button>
+    <spr-button size="small" hasIcon ><Icon icon="ph:trash" /></spr-button>
+    <spr-button variant="secondary" hasIcon><Icon icon="ph:trash" /></spr-button>
+    <spr-button size="large" variant="tertiary" hasIcon><Icon icon="ph:trash" /></spr-button>
 </div>
 
 <div class="flex items-center gap-2 mb-2">
-    <spr-button size="small" tone="success" isIcon><Icon icon="ph:trash" /></spr-button>
-    <spr-button tone="success"  variant="secondary" isIcon><Icon icon="ph:trash" /></spr-button>
-    <spr-button size="large" tone="success"variant="tertiary" isIcon><Icon icon="ph:trash" /></spr-button>
+    <spr-button size="small" tone="success" hasIcon><Icon icon="ph:trash" /></spr-button>
+    <spr-button tone="success"  variant="secondary" hasIcon><Icon icon="ph:trash" /></spr-button>
+    <spr-button size="large" tone="success"variant="tertiary" hasIcon><Icon icon="ph:trash" /></spr-button>
 </div>
 
 <div class="flex items-center gap-2 mb-2">
-    <spr-button isIcon size="small" tone="danger" ><Icon icon="ph:trash" /></spr-button>
-    <spr-button isIcon tone="danger" variant="secondary" ><Icon icon="ph:trash" /></spr-button>
-    <spr-button isIcon size="large" tone="danger" variant="tertiary" ><Icon icon="ph:trash" /></spr-button>
+    <spr-button hasIcon size="small" tone="danger" ><Icon icon="ph:trash" /></spr-button>
+    <spr-button hasIcon tone="danger" variant="secondary" ><Icon icon="ph:trash" /></spr-button>
+    <spr-button hasIcon size="large" tone="danger" variant="tertiary" ><Icon icon="ph:trash" /></spr-button>
 </div>
 
 <div class="flex items-center gap-2 mb-2">
-    <spr-button disabled isIcon size="small" tone="danger"><Icon icon="ph:trash" /></spr-button>
-    <spr-button disabled isIcon tone="danger" variant="secondary" ><Icon icon="ph:trash" /></spr-button>
-    <spr-button disabled isIcon size="large" tone="danger" variant="tertiary" ><Icon icon="ph:trash" /></spr-button>
+    <spr-button disabled hasIcon size="small" tone="danger"><Icon icon="ph:trash" /></spr-button>
+    <spr-button disabled hasIcon tone="danger" variant="secondary" ><Icon icon="ph:trash" /></spr-button>
+    <spr-button disabled hasIcon size="large" tone="danger" variant="tertiary" ><Icon icon="ph:trash" /></spr-button>
 </div>
 
 ```vue
 <template>
-  <spr-button size="small">
-    <Icon icon="ph:trash" />
-  </spr-button>
-
-  <spr-button>
-    <Icon icon="ph:trash" />
-  </spr-button>
-
-  <spr-button size="large">
-    <Icon icon="ph:trash" />
-  </spr-button>
+  <spr-button hasIcon><Icon icon="ph:trash" /></spr-button>
 </template>
+
+<script setup>
+import { Icon } from '@iconify/vue';
+</script>
 ```
 
 ## Button API

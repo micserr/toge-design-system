@@ -43,7 +43,7 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
   const optionClasses: ComputedRef<string> = computed(() => {
     return classNames(
       'absolute',
-      'z-50 ',
+      'z-30 ',
       'mt-1',
       'max-h-[300px]',
       'w-[240px]',

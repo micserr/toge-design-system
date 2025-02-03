@@ -11,19 +11,14 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
   const isHovered = useElementHover(buttonRef);
   const { pressed } = useMousePressed({ target: buttonRef });
   const { focused } = useFocus(buttonRef);
-  const { state, type, size, tone, variant, isIcon } = toRefs(props);
-  const { disabled } = toRefs(props);
-  
+  const { state, type, size, tone, variant, disabled, hasIcon } = toRefs(props);
+
   const buttonProps: ComputedRef<Record<string, unknown>> = computed(() => {
     return {
       ...(disabled.value && { ariaDisabled: true }),
       disabled: disabled.value,
       autofocus: state.value === 'focus',
       type: type.value,
-      size: size.value,
-      tone: tone.value,
-      variant: variant.value,
-      isIcon: isIcon.value
     };
   });
 
@@ -42,9 +37,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
       'min-w-6 p-size-spacing-4xs font-medium font-size-100 leading-100': size.value === 'small',
       'min-w-7 p-2 font-medium font-size-100 leading-100': size.value === 'medium',
       '!min-w-9 px-2 py-3 font-medium font-size-200 leading-300 max-h-9': size.value === 'large',
-      'font-size-400': isIcon.value && size.value === 'large',
-      'font-size-300': isIcon.value && size.value === 'medium',
-      'font-size-200': isIcon.value && size.value === 'small',
+      'font-size-400': hasIcon.value && size.value === 'large',
+      'font-size-300': hasIcon.value && size.value === 'medium',
+      'font-size-200': hasIcon.value && size.value === 'small',
     }),
   );
 

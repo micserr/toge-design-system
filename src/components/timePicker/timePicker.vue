@@ -20,7 +20,7 @@
         @focusout="isOpen = false"
       />
 
-      <div :class="iconClasses">
+      <div :class="iconClasses" @click="handleClick">
         <Icon icon="ph:clock" />
       </div>
     </div>

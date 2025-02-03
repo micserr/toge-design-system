@@ -617,15 +617,15 @@
 </template>
 
 <script lang="ts" setup>
-import { sidenavPropTypes, sidenavEmitTypes } from './sidenav';
-import { useSidenav } from './use-sidenav';
-
 import { Menu, Tooltip } from 'floating-vue';
 import { Icon } from '@iconify/vue';
 
-import badge from '../badge/badge.vue';
-
 import 'floating-vue/dist/style.css';
+
+import { sidenavPropTypes, sidenavEmitTypes } from './sidenav';
+import { useSidenav } from './use-sidenav';
+
+import badge from '../badge/badge.vue';
 
 const props = defineProps(sidenavPropTypes);
 const emit = defineEmits(sidenavEmitTypes);

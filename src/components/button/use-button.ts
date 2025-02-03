@@ -22,6 +22,16 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
     };
   });
 
+  const buttonDefaultCssClass: ComputedRef<string> = computed(() =>
+    classNames([
+      'background-color inline-flex w-fit min-w-[24px] items-center justify-center rounded-md outline-2 outline-offset-4',
+    ]),
+  );
+
+  const buttonTransitionCssClass: ComputedRef<string> = computed(() =>
+    classNames(['transition duration-150 ease-in-out', 'hover:shadow-button-hover', 'active:scale-95']),
+  );
+
   const buttonSizeCssClass: ComputedRef<string> = computed(() =>
     classNames({
       'min-w-6 p-size-spacing-4xs font-medium font-size-100 leading-100': size === 'small',
@@ -142,21 +152,32 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
     if (disabled) {
       if (variant === 'primary')
         return classNames(
+          buttonDefaultCssClass.value,
           buttonSizeCssClass.value,
           'text-color-disabled background-color-disabled !shadow-none !cursor-not-allowed',
         );
 
       if (variant === 'secondary')
         return classNames(
+          buttonDefaultCssClass.value,
           buttonSizeCssClass.value,
           'text-color-disabled border border-solid border border-color-disabled !shadow-none !cursor-not-allowed',
         );
 
       if (variant === 'tertiary')
-        return classNames(buttonSizeCssClass.value, 'text-color-disabled !border-0 !shadow-none !cursor-not-allowed');
+        return classNames(
+          buttonDefaultCssClass.value,
+          buttonSizeCssClass.value,
+          'text-color-disabled !border-0 !shadow-none !cursor-not-allowed',
+        );
     }
 
-    return classNames('hover:shadow-button-hover active:scale-95', buttonSizeCssClass.value, buttonToneCssClass.value);
+    return classNames(
+      buttonDefaultCssClass.value,
+      buttonSizeCssClass.value,
+      buttonToneCssClass.value,
+      buttonTransitionCssClass.value,
+    );
   });
 
   const handleClick = (evt: MouseEvent) => {

@@ -1,5 +1,5 @@
 import { computed } from 'vue';
-import type { EmptyStatePropTypes } from './emptyState';
+import type { EmptyStatePropTypes } from './empty-state';
 
 import classNames from 'classnames';
 export const useEmptyState = (props: EmptyStatePropTypes) => {

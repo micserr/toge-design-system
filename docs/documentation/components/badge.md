@@ -191,17 +191,17 @@ used to display the badge in different positions (top, bottom).
 
 When using the default position, use can use the slot to wrap the element to which you want to attach the badge.
 
-  <div class="flex gap-4">
-      <spr-badge text="9" variant="brand" size="big" position="top">
-        <spr-lozenge label="top"/>
-      </spr-badge>
-      <spr-badge text="9" variant="brand" size="small" position="top">
-        <spr-lozenge label="top"/>
-      </spr-badge>
-      <spr-badge text="9" variant="brand" size="tiny" position="top">
-        <spr-lozenge label="top"/>
-      </spr-badge>
-  </div>
+<div class="flex gap-4">
+    <spr-badge text="9" variant="brand" size="big" position="top">
+      <spr-lozenge label="top"/>
+    </spr-badge>
+    <spr-badge text="9" variant="brand" size="small" position="top">
+      <spr-lozenge label="top"/>
+    </spr-badge>
+    <spr-badge text="9" variant="brand" size="tiny" position="top">
+      <spr-lozenge label="top"/>
+    </spr-badge>
+</div>
 
 ```vue
 <template>
@@ -223,13 +223,13 @@ When using the default position, use can use the slot to wrap the element to whi
 
 When using the default position, use can use the slot to wrap the element to which you want to attach the badge.
 
-  <div class="flex gap-4">
-      <spr-lozenge label="notification"/>
-      <spr-badge text="9" variant="brand" size="big"/>
-      <spr-badge text="9" variant="disabled" size="big"/>
-      <spr-badge text="9" variant="information" size="big"/>
-      <spr-badge text="9" variant="danger" size="big"/>
-  </div>
+<div class="flex gap-4">
+    <spr-lozenge label="notification"/>
+    <spr-badge text="9" variant="brand" size="big"/>
+    <spr-badge text="9" variant="disabled" size="big"/>
+    <spr-badge text="9" variant="information" size="big"/>
+    <spr-badge text="9" variant="danger" size="big"/>
+</div>
 
 ```vue
 <template>
@@ -247,12 +247,38 @@ When using the default position, use can use the slot to wrap the element to whi
 
 ### Badge Attributes
 
-| Name     | Description                                             | Type     | Default |
-| -------- | ------------------------------------------------------- | -------- | ------- |
-| Text     | short piece of text or a number                         | `string` | 0       |
-| Variant  | color schemes to indicate various statuses              | `string` | brand   |
-| Size     | `big`, `small`, `tiny`                                  | `string` | small   |
-| Position | positioned relative to the element they are attached to | `string` | default |
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Type</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td>Text</td>
+    <td>short piece of text or a number</td>
+    <td>string</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Variant</td>
+    <td>color schemes to indicate various statuses</td>
+    <td>string</td>
+    <td>brand</td>
+  </tr>
+  <tr>
+    <td>Size</td>
+    <td>big, small, tiny</td>
+    <td>string</td>
+    <td>small</td>
+  </tr>
+  <tr>
+    <td>Position</td>
+    <td>positioned relative to the element they are attached to</td>
+    <td>string</td>
+    <td>default</td>
+  </tr>
+</table>
 
 <script lang="ts" setup>
 import { ref } from 'vue';

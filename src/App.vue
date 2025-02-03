@@ -13,14 +13,11 @@
     @requests="handleRequest"
   >
     <template #logo-image>
-      <img
-        src="https://play-lh.googleusercontent.com/IxaRjot8VjKDGBXNlrrTmgxJMsGc9Ky3JIaI4tk9ZyGgkjjBRl1wwKAd9UY1VqxhxlQ"
-        alt="logo"
-      />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
 
     <template #avatar-image>
-      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 

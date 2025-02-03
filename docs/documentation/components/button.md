@@ -190,5 +190,6 @@ Commonly used button.
 
 <script lang="ts" setup>
 import SprButton from "@/components/button/button.vue"
+
 import { Icon } from '@iconify/vue';
 </script>

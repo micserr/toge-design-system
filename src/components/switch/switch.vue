@@ -7,7 +7,10 @@
     </label>
     <div
       ref="switchWrapperRef"
-      :class="['relative flex items-center', 'transition duration-300 ease-in-out', 'active:scale-90']"
+      :class="{
+        'relative flex items-center': true,
+        'cursor-pointer transition duration-300 ease-in-out active:scale-90': !props.disabled,
+      }"
     >
       <input
         ref="switchRef"
@@ -28,9 +31,10 @@
 </template>
 
 <script lang="ts" setup>
+import { useVModel } from '@vueuse/core';
+
 import { switchEmitTypes, switchPropTypes } from './switch';
 import { useSwitch } from './use-switch';
-import { useVModel } from '@vueuse/core';
 
 const props = defineProps(switchPropTypes);
 const emit = defineEmits(switchEmitTypes);

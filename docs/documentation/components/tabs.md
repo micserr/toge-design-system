@@ -4,6 +4,8 @@ Tabs are used to organize content into different sections. They are commonly use
 
 ## Basic Usage
 
+<h5 class="mb-4">Regular Tabs:</h5>
+
 <spr-tabs :list="tabsBasic" />
 
 ```vue
@@ -18,47 +20,7 @@ const tabsBasic = [{ label: 'tab' }, { label: 'tab' }, { label: 'tab' }];
 </script>
 ```
 
-## With Icon
-
-<spr-tabs :list="tabsWithIcon" />
-
-```vue
-<template>
-  <spr-tabs :list="tabsWithIcon" />
-</template>
-
-<script setup>
-import SprTabs from '@/components/tabs/tabs.vue';
-
-const tabsWithIcon = [
-  { label: 'tab', icon: 'ph:plant-light', iconFill: 'ph:plant-fill' },
-  { label: 'tab', icon: 'ph:leaf-light', iconFill: 'ph:leaf-fill' },
-  { label: 'tab', icon: 'ph:tree-light', iconFill: 'ph:tree-fill' },
-];
-</script>
-```
-
-## Icon Only
-
-<spr-tabs :list="tabsIconOnly" />
-
-```vue
-<template>
-  <spr-tabs :list="tabsIconOnly" />
-</template>
-
-<script setup>
-import SprTabs from '@/components/tabs/tabs.vue';
-
-const tabsIconOnly = [
-  { icon: 'ph:plant-light', iconFill: 'ph:plant-fill' },
-  { icon: 'ph:leaf-light', iconFill: 'ph:leaf-fill' },
-  { icon: 'ph:tree-light', iconFill: 'ph:tree-fill' },
-];
-</script>
-```
-
-## Underlined
+<h5 class="mb-4">Underlined Tabs:</h5>
 
 <spr-tabs :list="tabsUnderlined" :underlined=true />
 
@@ -78,7 +40,29 @@ const tabsUnderlined = [
 </script>
 ```
 
-## Underlined Disabled
+## Disabled State
+
+<h5 class="mb-4">Regular Tabs:</h5>
+
+<spr-tabs :list="tabsBasicWithDisabled" />
+
+```vue
+<template>
+  <spr-tabs :list="tabsBasicWithDisabled" />
+</template>
+
+<script setup>
+import SprTabs from '@/components/tabs/tabs.vue';
+
+const tabsBasicWithDisabled = ref([
+  { label: 'tab', disabled: false },
+  { label: 'tab', disabled: false },
+  { label: 'tab', disabled: true },
+]);
+</script>
+```
+
+<h5 class="mb-4">Underlined Tabs:</h5>
 
 <spr-tabs :list="tabsUnderlinedDisabled" :underlined=true />
 
@@ -98,7 +82,29 @@ const tabsUnderlinedDisabled = [
 </script>
 ```
 
-## Underlined With Icon
+## With Icon
+
+<h5 class="mb-4">Regular Tabs:</h5>
+
+<spr-tabs :list="tabsWithIcon" />
+
+```vue
+<template>
+  <spr-tabs :list="tabsWithIcon" />
+</template>
+
+<script setup>
+import SprTabs from '@/components/tabs/tabs.vue';
+
+const tabsWithIcon = [
+  { label: 'tab', icon: 'ph:plant-light', iconFill: 'ph:plant-fill' },
+  { label: 'tab', icon: 'ph:leaf-light', iconFill: 'ph:leaf-fill' },
+  { label: 'tab', icon: 'ph:tree-light', iconFill: 'ph:tree-fill' },
+];
+</script>
+```
+
+<h5 class="mb-4">Underlined Tabs:</h5>
 
 <spr-tabs :list="tabsUnderlinedWithIcon" :underlined=true />
 
@@ -114,6 +120,48 @@ const tabsUnderlinedWithIcon = [
   { label: 'title', disabled: false, icon: 'ph:plant-light', iconFill: 'ph:plant-fill' },
   { label: 'title', disabled: false, icon: 'ph:leaf-light', iconFill: 'ph:leaf-fill' },
   { label: 'title', disabled: false, icon: 'ph:tree-light', iconFill: 'ph:tree-fill' },
+];
+</script>
+```
+
+## Icon Only
+
+<h5 class="mb-4">Regular Tabs:</h5>
+
+<spr-tabs :list="tabsIconOnly" />
+
+```vue
+<template>
+  <spr-tabs :list="tabsIconOnly" />
+</template>
+
+<script setup>
+import SprTabs from '@/components/tabs/tabs.vue';
+
+const tabsIconOnly = [
+  { icon: 'ph:plant-light', iconFill: 'ph:plant-fill' },
+  { icon: 'ph:leaf-light', iconFill: 'ph:leaf-fill' },
+  { icon: 'ph:tree-light', iconFill: 'ph:tree-fill' },
+];
+</script>
+```
+
+<h5 class="mb-4">Underlined Tabs:</h5>
+
+<spr-tabs :list="tabsIconOnly" :underlined="true" />
+
+```vue
+<template>
+  <spr-tabs :list="tabsIconOnly" :underlined="true" />
+</template>
+
+<script setup>
+import SprTabs from '@/components/tabs/tabs.vue';
+
+const tabsIconOnly = [
+  { icon: 'ph:plant-light', iconFill: 'ph:plant-fill' },
+  { icon: 'ph:leaf-light', iconFill: 'ph:leaf-fill' },
+  { icon: 'ph:tree-light', iconFill: 'ph:tree-fill' },
 ];
 </script>
 ```
@@ -163,41 +211,49 @@ const tabsUnderlinedWithIcon = [
 </table>
 
 <script lang="ts" setup>
+import {ref} from 'vue';
+
 import SprTabs from "@/components/tabs/tabs.vue";
 
-const tabsBasic = [
+const tabsBasic = ref([
   { label: "tab" },
   { label: "tab" },
   { label: "tab" },
-]
+]);
 
-const tabsWithIcon = [
+const tabsBasicWithDisabled = ref([
+  { label: "tab", disabled: false },
+  { label: "tab", disabled: false },
+  { label: "tab", disabled: true },
+]);
+
+const tabsWithIcon = ref([
   { label: "tab", icon: 'ph:plant-light', iconFill: 'ph:plant-fill' },
   { label: "tab", icon: 'ph:leaf-light', iconFill: 'ph:leaf-fill' },
   { label: "tab", icon: 'ph:tree-light', iconFill: 'ph:tree-fill' },
-]
+]);
 
-const tabsIconOnly = [
+const tabsIconOnly = ref([
   { icon: 'ph:plant-light', iconFill: 'ph:plant-fill' },
   { icon: 'ph:leaf-light', iconFill: 'ph:leaf-fill' },
   { icon: 'ph:tree-light', iconFill: 'ph:tree-fill' },
-]
+]);
 
-const tabsUnderlined = [
+const tabsUnderlined = ref([
   { label: "title", disabled: false },
   { label: "title", disabled: false },
   { label: "title", disabled: false },
-]
+]);
 
-const tabsUnderlinedDisabled = [
+const tabsUnderlinedDisabled = ref([
   { label: "title", disabled: false },
   { label: "title", disabled: false },
   { label: "title", disabled: true },
-]
+]);
 
-const tabsUnderlinedWithIcon = [
+const tabsUnderlinedWithIcon = ref([
   { label: "title", disabled: false, icon: 'ph:plant-light', iconFill: 'ph:plant-fill' },
   { label: "title", disabled: false, icon: 'ph:leaf-light', iconFill: 'ph:leaf-fill' },
   { label: "title", disabled: false, icon: 'ph:tree-light', iconFill: 'ph:tree-fill' },
-]
+]);
 </script>

@@ -3,16 +3,14 @@
 ## Basic Usage
 
 <div class="p-8 bg-white-500">
-<Spr-empty-state  description="No results found" subDescription="Try a different search term" >
-  <div>
-    Image Here
-  </div>
-
-<template #button>
-<spr-button tone="success">Retry</spr-button>
-</template>
-</Spr-empty-state>
-
+  <Spr-empty-state  description="No results found" subDescription="Try a different search term" >
+    <div>
+      Image Here
+    </div>
+    <template #button>
+      <spr-button tone="success">Retry</spr-button>
+    </template>
+  </Spr-empty-state>
 </div>
 
 ```vue
@@ -32,15 +30,8 @@
 
 ## Images
 
-List of images that can be used in the empty state component. ( 'bug',
-'clock',
-'dashboard',
-'id',
-'integration',
-'list',
-'saturation',
-'employees',
-'location')
+List of images that can be used in the empty state component.
+('bug', 'clock', 'dashboard', 'id', 'integration', 'list', 'saturation','employees', 'location')
 
 <div class="p-8 bg-white-500">
   <Spr-empty-state
@@ -127,7 +118,7 @@ Image size can be controlled by passing the `size` prop. The default size is `sm
 ```
 
 <script lang="ts" setup>
-import SprEmptyState from "@/components/emptyState/emptyState.vue";
+import SprEmptyState from "@/components/empty-state/empty-state.vue";
 
 import SprButton from '@/components/button/button.vue';
 </script>

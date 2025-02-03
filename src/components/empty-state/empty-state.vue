@@ -19,8 +19,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import { emptyStatePropTypes } from './emptyState';
-import { useEmptyState } from './use-emptyState';
+import { emptyStatePropTypes } from './empty-state';
+import { useEmptyState } from './use-empty-state';
+
 defineEmits(['onClick']);
 
 const props = defineProps(emptyStatePropTypes);

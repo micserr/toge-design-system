@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.6 (2025-02-03)
+
+- Feat: Code Cleanup and Animate Tabs ([ddee9cd3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ddee9cd329d1a9c8579f2ccc8c00199cd0680b05?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fcomponents-enchancements) by @jarias)
+
 ## 1.2.5 (2025-01-31)
 
 - Fix:

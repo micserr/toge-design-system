@@ -48,6 +48,10 @@ Replace `[image_path]` with the actual path to your image. This slot renders the
 
 ## Icon Component Integration
 
+Design System provides a property `icon` that allows you to use the Icon component. You can use the Icon component to display icons in the side navigation.
+
+Currently the Design System uses the Iconify library to display icons. You can use the Iconify icon names to display icons in the side navigation. For more information on Iconify, see the <a href="https://iconify.design/docs/usage/svg/iconify" target="_blank">Iconify documentation.</a>
+
 ---
 
 ## Navigation Links
@@ -60,11 +64,11 @@ defining the navigation links has 2 sections, `top` and `bottom`. Each section c
 <template>
   <spr-sidenav :nav-links="navLinks">
     <template #logo-image>
-      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
 
     <template #avatar-image>
-      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>
@@ -414,11 +418,11 @@ Here’s a example of how to implement the active navigation property:
 <template>
   <spr-sidenav :active-nav="activeNav" :nav-links="navLinks">
     <template #logo-image>
-      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
 
     <template #avatar-image>
-      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>
@@ -593,11 +597,11 @@ The `iconBgColor` property currently can only handle 2 values `green` or `purple
 <template>
   <spr-sidenav :quick-actions="quickActions" :active-nav="activeNav" :nav-links="navLinks">
     <template #logo-image>
-      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
 
     <template #avatar-image>
-      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>
@@ -860,11 +864,11 @@ Using the `@search` event, you can handle the search functionality.
 <template>
   <spr-sidenav has-search @search="handleSearch">
     <template #logo-image>
-      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
 
     <template #avatar-image>
-      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>
@@ -891,11 +895,11 @@ Using the `@notifications` or `@requests` event, you can handle the notification
     @requests="handleRequest"
   >
     <template #logo-image>
-      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
 
     <template #avatar-image>
-      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>
@@ -919,11 +923,11 @@ The user menu allows you to add a user avatar at the bottom of the side navigati
 <template>
   <spr-sidenav :user-menu="userMenu">
     <template #logo-image>
-      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
 
     <template #avatar-image>
-      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>
@@ -1121,13 +1125,10 @@ Here’s a full example of how to implement the Sidenav component with the above
     @notifications="handleNotifications"
   >
     <template #logo-image>
-      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
     <template #avatar-image>
-      <img
-        src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-        alt="avatar"
-      />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
   <div class="flex-1 px-4 py-4 w-full max-w-[calc(100%-60px)] ml-[60px] overflow-auto">
@@ -1165,11 +1166,11 @@ Here’s a full example of how to implement the Sidenav component with the above
     @notifications="handleNotifications"
   >
     <template #logo-image>
-      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
 
     <template #avatar-image>
-      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>

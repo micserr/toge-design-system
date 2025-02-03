@@ -95,7 +95,7 @@ export default defineConfig({
             },
             {
               text: 'Time Picker',
-              link: '/documentation/components/timePicker',
+              link: '/documentation/components/time-picker',
             },
             {
               text: 'Tooltip',
@@ -107,7 +107,7 @@ export default defineConfig({
             },
             {
               text: 'Empty State',
-              link: '/documentation/components/emptyState',
+              link: '/documentation/components/empty-state',
             },
             {
               text: 'Avatar',
@@ -132,11 +132,11 @@ export default defineConfig({
             },
             {
               text: 'Max Width',
-              link: '/documentation/utilities/maxWidth',
+              link: '/documentation/utilities/max-width',
             },
             {
               text: 'Border Radius',
-              link: '/documentation/utilities/borderRadius',
+              link: '/documentation/utilities/border-radius',
             },
           ],
         },

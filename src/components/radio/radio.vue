@@ -21,8 +21,9 @@
 </template>
 
 <script lang="ts" setup>
-import { radioPropTypes, radioEmitTypes } from './radio';
 import { useVModel } from '@vueuse/core';
+
+import { radioPropTypes, radioEmitTypes } from './radio';
 import { useRadioButton } from './use-radio';
 
 const props = defineProps(radioPropTypes);
@@ -35,7 +36,7 @@ const { radioRef, radioClasses, indicatorClasses, radioLabelClasses } = useRadio
 <style scoped>
 @keyframes shadowGrow {
   0% {
-    box-shadow: inset 0px 0px 0px 0px #fff;
+    box-shadow: inset 0px 0px 0px 25px #fff;
   }
   100% {
     box-shadow: inset 0px 0px 0px 2.5px #fff;

@@ -27,14 +27,16 @@
 </template>
 
 <script setup lang="ts">
+import { useSlots } from 'vue';
+
 import { inputPropTypes } from './input';
-import { defineProps, useSlots } from 'vue';
 import { useInput } from './use-input';
+
+defineEmits(['update:modelValue']);
 
 const props = defineProps(inputPropTypes);
 const slots = useSlots();
 
-defineEmits(['update:modelValue']);
 const { inputClasses, wrapperClasses, labelClasses, iconSlotClasses, prefixSlotClasses, trailingSlotClasses } =
   useInput(props, slots);
 </script>

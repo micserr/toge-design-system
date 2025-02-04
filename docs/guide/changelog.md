@@ -1,37 +1,41 @@
 # Changelog
 
+## 1.2.9 (2025-02-04)
+
+- Docs - Add component creation and contribution guidelines ([#23a246a5](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23a246a5a797cb58fcaa2958c88d049d3dc7d204))
+
 ## 1.2.8 (2025-02-03)
 
 - Fix:
-  - reactivity of buttonProps (add toRefs to props in use-button.ts) ([c3e2110c])(https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c3e2110cf99614f50d1e917ccc4b2dbbaf26b3ba?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2Fdisabled-button by @despiritu)
+  - reactivity of buttonProps (add toRefs to props in use-button.ts) ([#c3e2110c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c3e2110cf99614f50d1e917ccc4b2dbbaf26b3ba by @despiritu))
 
 ## 1.2.7 (2025-02-03)
 
 - Fix:
   -rename button attribute isIcon to hasIcon
-  -Lozenge Classes ([02de1f97](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/02de1f97997677100b852eee0f536afe40fe9c44?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fbutton) by @adestajo)
+  -Lozenge Classes ([#02de1f97](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/02de1f97997677100b852eee0f536afe40fe9c44) by @adestajo)
 
 ## 1.2.6 (2025-02-03)
 
-- Feat: Code Cleanup and Animate Tabs ([ddee9cd3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ddee9cd329d1a9c8579f2ccc8c00199cd0680b05?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fcomponents-enchancements) by @jarias)
+- Feat: Code Cleanup and Animate Tabs ([#ddee9cd3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ddee9cd329d1a9c8579f2ccc8c00199cd0680b05) by @jarias)
 
 ## 1.2.5 (2025-01-31)
 
 - Fix:
   -button Icon
-  -Lozenge Border ([6d60fd9c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6d60fd9c2d1b90cb48bf71ea8ac96de82324ad35?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fbutton) by @adestajo)
+  -Lozenge Border ([#6d60fd9c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6d60fd9c2d1b90cb48bf71ea8ac96de82324ad35?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fbutton) by @adestajo)
 
 ## 1.2.4 (2025-01-30)
 
 - Fix:
-  -button Tertiary Border([d96fc96a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d96fc96ad4544b10bfa012e32eb8491112001585?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fbutton-tertiary-border) by @adestajo)
+  -button Tertiary Border([#d96fc96a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d96fc96ad4544b10bfa012e32eb8491112001585?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fbutton-tertiary-border) by @adestajo)
 
 ## 1.2.3 (2025-01-30)
 
 - Fix:
   - Icon button
   - Empty State Update button slot
-  - Switch change class name ([1d9624ed](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1d9624ed2803cff2af3c9429ebc22e430134eaf9?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fdqa-button) by @adestajo)
+  - Switch change class name ([#1d9624ed](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1d9624ed2803cff2af3c9429ebc22e430134eaf9?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fdqa-button) by @adestajo)
 
 ## 1.2.2 (2025-01-27)
 
@@ -43,7 +47,7 @@
 ## 1.2.1 (2025-01-24)
 
 - Feat:
-  - Introduced a Comprehensive Guide for Component Creation ([1cad1d93](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1cad1d936be4982da9c521f518a55e7ee04c7a95) by @JefMari)
+  - Introduced a Comprehensive Guide for Component Creation ([#1cad1d93](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1cad1d936be4982da9c521f518a55e7ee04c7a95) by @JefMari)
 
 ## 1.2.0 (2025-01-24)
 

@@ -46,9 +46,22 @@ export default defineConfig({
               text: 'Quick Start',
               link: '/guide/basics/quick-start',
             },
+          ],
+        },
+        {
+          text: 'Contributing',
+          items: [
             {
               text: 'Component Creation',
-              link: '/guide/basics/component-creation',
+              link: '/guide/contributing/component-creation',
+            },
+            {
+              text: 'Component Documentation',
+              link: '/guide/contributing/component-documentation',
+            },
+            {
+              text: 'Contribution',
+              link: '/guide/contributing/contribution',
             },
           ],
         },

@@ -1,6 +1,6 @@
 # Creating Components
 
-This guide provides step-by-step instructions for creating a new component based on our design system's architecture. Each component is structured around three core files:
+Create a new component based on our design system's architecture. Each component is structured around three core files:
 
 ## Component Structure
 
@@ -11,7 +11,7 @@ src/components/your-component/
 └── use-your-component.ts # Component logic and composables
 ```
 
-## 1. Define Component Types (your-component.ts)
+## Define Component Types (your-component.ts)
 
 First, create the types file to define your component's props, emits, and types:
 
@@ -40,7 +40,7 @@ export type ComponentPropTypes = ExtractPropTypes<typeof componentPropTypes>;
 export type ComponentEmitTypes = typeof componentEmitTypes;
 ```
 
-## 2. Create Component Template (your-component.vue)
+## Create Component Template (your-component.vue)
 
 Create the Vue component file that defines the template and connects the props and composable:
 
@@ -59,9 +59,10 @@ const { componentRef, componentProps, componentClass, handleClick } = useCompone
 </script>
 ```
 
-## 3. Implement Component Logic (use-your-component.ts)
+## Implement Component Logic (use-your-component.ts)
 
-Create the composable that contains your component's logic:
+Create the composable that contains your component's logic.
+Use plain TypeScript to handle business logic with pure functions, while applying a layer of Vue reactivity on top.
 
 ```ts
 import { computed, ref, type ComputedRef } from 'vue';
@@ -98,16 +99,6 @@ export const useComponent = (props: ComponentPropTypes, emit: SetupContext<Compo
 };
 ```
 
-## Best Practices
-
-1. **Props Validation**: Always define prop validators to ensure correct usage
-2. **Type Safety**: Use TypeScript for better type checking and IDE support
-3. **Composables**: Keep component logic in composables for better reusability
-4. **Naming Conventions**: Follow the established naming pattern:
-   - Component files: `kebab-case.vue`
-   - Props and emits: `camelCase`
-   - Types: `PascalCase`
-
 ## Component Registration
 
 Components are automatically registered globally with the configured prefix. For example, if your component is named `your-component.vue`, it will be registered as:
@@ -136,5 +127,49 @@ const handleClick = (evt: MouseEvent) => {
 };
 </script>
 ```
+
+## Best Practices
+
+### Prop Validation
+
+1. Always describe prop types and validators to ensure proper use and avoid runtime issues.
+2. To properly handle undefined props, use default values when applicable.
+
+### Type Safety
+
+1. TypeScript provides type checking, improved IDE support, and safer development.
+2. Create interfaces for props, emitters, and slots to maintain consistency.
+
+### Composables
+
+1. Extract reusable logic into composables (useXYZ) to improve modularity and maintainability.
+2. Keep the composables concentrated on a particular task.
+
+### Naming Conventions
+
+1. Component Files: File names should be kebab-case.vue.
+2. For props and emits, use camelCase.
+3. Types and Interfaces: To define types and interfaces, use Pascal Case.
+
+### Scoped and Reusable Styles
+
+1. Avoid using inline styles unless absolutely necessary for dynamic behavior.
+2. Use Tailwind CSS to maintain design consistency between components.
+
+### Accessibility (A11y)
+
+1. Ensure that components are accessible by default, following ARIA principles.
+2. Test screen readers and keyboard navigation.
+3. Use semantic HTML elements and include fallback behaviors for bespoke components.
+
+### Slot Management
+
+1. Use named slots to improve readability and extensibility.
+2. Set default content for slots to handle edge circumstances where no content is given.
+
+### Responsive Design
+
+1. Build responsive components with Tailwind CSS or media queries.
+2. Test components on various screen sizes and devices.
 
 For more detailed examples, check out the button component implementation in the source code.

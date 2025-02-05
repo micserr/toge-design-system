@@ -1,9 +1,9 @@
-import { computed } from 'vue';
+import { computed, toRefs } from 'vue';
 import type { InputPropTypes } from './input';
 import classNames from 'classnames';
 
 export const useInput = (props: InputPropTypes, slots: Record<string, unknown>) => {
-  const { error, disabled, offsetSize } = props;
+  const { error, disabled, offsetSize } = toRefs(props);
 
   const wrapperClasses = computed(() => {
     return classNames('flex flex-col gap-size-spacing-4xs');
@@ -11,7 +11,7 @@ export const useInput = (props: InputPropTypes, slots: Record<string, unknown>) 
 
   const labelClasses = computed(() => {
     return classNames('body-sm-regular text-color-strong block', {
-      'text-color-on-fill-disabled': disabled,
+      'text-color-on-fill-disabled': disabled.value,
     });
   });
 
@@ -32,40 +32,40 @@ export const useInput = (props: InputPropTypes, slots: Record<string, unknown>) 
       'outline-none',
       'ring-0',
       {
-        '!border-[1.5px]': error,
-        '!border-tomato-600': error,
-        'focus:!border-tomato-600': error,
-        '!border-white-100': disabled,
-        'background-color-disabled': disabled,
-        'cursor-not-allowed': disabled,
-        'text-color-on-fill-disabled': disabled,
+        '!border-[1.5px]': error.value,
+        '!border-tomato-600': error.value,
+        'focus:!border-tomato-600': error.value,
+        '!border-white-100': disabled.value,
+        'background-color-disabled': disabled.value,
+        'cursor-not-allowed': disabled.value,
+        'text-color-on-fill-disabled': disabled.value,
         'pr-[5%]': slots.icon,
         'pl-size-spacing-lg': slots.prefix,
-        'pr-[93%] sm:pr-[85%]': offsetSize === 'xs' && slots.trailing,
-        'pr-[90%]': offsetSize === 'sm' && slots.trailing,
-        'pr-[50%]': offsetSize === 'md' && slots.trailing,
+        'pr-[93%] sm:pr-[85%]': offsetSize.value === 'xs' && slots.trailing,
+        'pr-[90%]': offsetSize.value === 'sm' && slots.trailing,
+        'pr-[50%]': offsetSize.value === 'md' && slots.trailing,
       },
     );
   });
 
   const iconSlotClasses = computed(() => {
     return classNames('absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-mushroom-300', {
-      '!text-tomato-600': error,
+      '!text-tomato-600': error.value,
     });
   });
 
   const prefixSlotClasses = computed(() => {
     return classNames('absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-mushroom-300', {
-      '!text-tomato-600': error,
+      '!text-tomato-600': error.value,
     });
   });
 
   const trailingSlotClasses = computed(() => {
     return classNames('absolute left-[55%] top-1/2 -translate-y-1/2 transform text-mushroom-300', {
-      '!text-tomato-600': error,
-      'left-[7%] sm:left-[16%]': offsetSize === 'xs' && slots.trailing,
-      'left-[11%] sm:left-[16%]': offsetSize === 'sm' && slots.trailing,
-      'left-[52%]': offsetSize === 'md' && slots.trailing,
+      '!text-tomato-600': error.value,
+      'left-[7%] sm:left-[16%]': offsetSize.value === 'xs' && slots.trailing,
+      'left-[11%] sm:left-[16%]': offsetSize.value === 'sm' && slots.trailing,
+      'left-[52%]': offsetSize.value === 'md' && slots.trailing,
     });
   });
 

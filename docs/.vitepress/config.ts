@@ -75,32 +75,45 @@ export default defineConfig({
           text: 'Components',
           items: [
             {
-              text: 'Button',
-              link: '/documentation/components/button',
-            },
-            {
-              text: 'Sidenav',
-              link: '/documentation/components/sidenav',
-            },
-            {
-              text: 'Lozenge',
-              link: '/documentation/components/lozenge',
-            },
-            {
-              text: 'Switch',
-              link: '/documentation/components/switch',
+              text: 'Avatar',
+              link: '/documentation/components/avatar',
             },
             {
               text: 'Badge',
               link: '/documentation/components/badge',
             },
             {
-              text: 'Radio',
-              link: '/documentation/components/radio',
+              text: 'Button',
+              link: '/documentation/components/button',
+            },
+            {
+              text: 'Empty State',
+              link: '/documentation/components/empty-state',
             },
             {
               text: 'Input',
               link: '/documentation/components/input',
+            },
+            {
+              text: 'Lozenge',
+              link: '/documentation/components/lozenge',
+            },
+            {
+              text: 'Modal',
+              link: '/documentation/components/modal',
+            },
+            {
+              text: 'Radio',
+              link: '/documentation/components/radio',
+            },
+            {
+              text: 'Sidenav',
+              link: '/documentation/components/sidenav',
+            },
+
+            {
+              text: 'Switch',
+              link: '/documentation/components/switch',
             },
             {
               text: 'Tabs',
@@ -113,18 +126,6 @@ export default defineConfig({
             {
               text: 'Tooltip',
               link: '/documentation/components/tooltip',
-            },
-            {
-              text: 'Modal',
-              link: '/documentation/components/modal',
-            },
-            {
-              text: 'Empty State',
-              link: '/documentation/components/empty-state',
-            },
-            {
-              text: 'Avatar',
-              link: '/documentation/components/avatar',
             },
           ],
         },

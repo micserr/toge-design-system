@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.10 (2025-02-05)
+
+- Fix
+  - Date Picker Reactivity of model value ([#d00db658](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d00db65807e6179b28b714cf56e4d9a694d9b9b9?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Ftime-picker-reactivity) by @adestajo )
+  - Update each component props to toRefs ([#66b77833](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/66b7783311fd334c86936302fca05784e714a059?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Ftime-picker-reactivity) by @adestajo )
+
 ## 1.2.9 (2025-02-04)
 
 - Docs - Add component creation and contribution guidelines ([#23a246a5](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23a246a5a797cb58fcaa2958c88d049d3dc7d204))

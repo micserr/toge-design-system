@@ -183,7 +183,6 @@ import { Icon } from '@iconify/vue';
 </table>
 
 <script lang="ts" setup>
-import SprButton from "@/components/button/button.vue"
-
+import SprButton from "@/components/button/button.vue";
 import { Icon } from '@iconify/vue';
 </script>

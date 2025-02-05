@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.11 (2025-02-05)
+
+- Fix: Added important property on border color of buttons ([#cfe4247f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cfe4247f60c41e829a16f88ec294564dca29853e?refName=refs%2Fheads%2F2025%2Ffix%2Fnichole%2Fbutton-border) by @nicalla)
+
 ## 1.2.10 (2025-02-05)
 
 - Fix

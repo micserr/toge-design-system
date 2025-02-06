@@ -14,7 +14,7 @@
         :class="[inputClasses, { 'number-input': type === 'number' }]"
         :placeholder="placeholder"
         :disabled="disabled"
-        @input="$emit('update:modelValue', $event.target.value)"
+        @input="onInput"
       />
       <div :class="trailingSlotClasses">
         <slot name="trailing" />
@@ -29,16 +29,16 @@
 <script setup lang="ts">
 import { useSlots } from 'vue';
 
-import { inputPropTypes } from './input';
+import { inputPropTypes, inputEmitTypes } from './input';
 import { useInput } from './use-input';
 
-defineEmits(['update:modelValue']);
+const emit = defineEmits(inputEmitTypes);
 
 const props = defineProps(inputPropTypes);
 const slots = useSlots();
 
-const { inputClasses, wrapperClasses, labelClasses, iconSlotClasses, prefixSlotClasses, trailingSlotClasses } =
-  useInput(props, slots);
+const { inputClasses, wrapperClasses, labelClasses, iconSlotClasses, prefixSlotClasses, trailingSlotClasses, onInput } =
+  useInput(props, slots, emit);
 </script>
 
 <style scoped>

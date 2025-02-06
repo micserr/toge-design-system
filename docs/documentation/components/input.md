@@ -35,7 +35,14 @@ UI element that allows users to enter and edit text or other data.
 <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" />
 
 ```vue
-<spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" />
+<template>
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+const inputValue = ref('');
+</script>
 ```
 
 ## Error State
@@ -47,11 +54,18 @@ UI element that allows users to enter and edit text or other data.
 </spr-input>
 
 ```vue
-<spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" :error="'error'">
-  <template #icon>
-    <Icon icon="ph:warning-circle-fill" />
-  </template>
-</spr-input>
+<template>
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" :error="'error'">
+    <template #icon>
+      <Icon icon="ph:warning-circle-fill" />
+    </template>
+  </spr-input>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+const inputValue = ref('');
+</script>
 ```
 
 ## Disabled State
@@ -59,7 +73,14 @@ UI element that allows users to enter and edit text or other data.
 <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" disabled />
 
 ```vue
-<spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" disabled />
+<template>
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" disabled />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+const inputValue = ref('');
+</script>
 ```
 
 ## Prefix
@@ -71,11 +92,18 @@ UI element that allows users to enter and edit text or other data.
 </spr-input>
 
 ```vue
-<spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username">
-  <template #prefix>
-    <Icon icon="ph:warning-circle-fill" />
-  </template>
-</spr-input>
+<template>
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username">
+    <template #prefix>
+      <Icon icon="ph:warning-circle-fill" />
+    </template>
+  </spr-input>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+const inputValue = ref('');
+</script>
 ```
 
 ## Trailing Label
@@ -101,26 +129,27 @@ UI element that allows users to enter and edit text or other data.
 </div>
 
 ```vue
-<!-- xs -->
-<spr-input v-model="inputValue" label="Offset xs" placeholder="00" offset-size="xs" type="number">
-  <template #trailing>
-    minutes
-  </template>
-</spr-input>
+<template>
+  <!-- xs -->
+  <spr-input v-model="inputValue" label="Offset xs" placeholder="00" offset-size="xs" type="number">
+    <template #trailing> minutes </template>
+  </spr-input>
 
-<!-- sm -->
-<spr-input v-model="inputValue" label="offset sm" placeholder="00" offset-size="sm" type="number">
-  <template #trailing>
-    minutes
-  </template>
-</spr-input>
+  <!-- sm -->
+  <spr-input v-model="inputValue" label="offset sm" placeholder="00" offset-size="sm" type="number">
+    <template #trailing> minutes </template>
+  </spr-input>
 
-<!-- md -->
-<spr-input v-model="inputValue" label="offset md" placeholder="Enter your name" offset-size="md">
-  <template #trailing>
-    Name of the user
-  </template>
-</spr-input>
+  <!-- md -->
+  <spr-input v-model="inputValue" label="offset md" placeholder="Enter your name" offset-size="md">
+    <template #trailing> Name of the user </template>
+  </spr-input>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+const inputValue = ref('');
+</script>
 ```
 
 <script lang="ts" setup>

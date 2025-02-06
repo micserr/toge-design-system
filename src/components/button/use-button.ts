@@ -154,7 +154,7 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
         return classNames(
           buttonDefaultCssClass.value,
           buttonSizeCssClass.value,
-          'text-color-disabled background-color-disabled !shadow-none !cursor-not-allowed',
+          'text-color-disabled background-color-disabled !border-0 !shadow-none !cursor-not-allowed',
         );
 
       if (variant.value === 'secondary')

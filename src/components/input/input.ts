@@ -40,4 +40,9 @@ export const inputPropTypes = {
   },
 };
 
+export const inputEmitTypes = {
+  'update:modelValue': (evt: KeyboardEvent): evt is KeyboardEvent => evt instanceof KeyboardEvent,
+};
+
+export type InputEmitTypes = { 'update:modelValue': typeof inputEmitTypes };
 export type InputPropTypes = ExtractPropTypes<typeof inputPropTypes>;

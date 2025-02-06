@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.14 (2025-02-06)
+
+- Fix
+  - Border Issue and Emit (Input and Lozenge) ([#2d3153d6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2d3153d60b779d911867586fa70fd61b4fc07d6b?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Finput-error-border) by @adestajo )
+
 ## 1.2.13 (2025-02-06)
 
 - Fix: Computation for Underlined Tab ([cc8478f5](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cc8478f556da27bf35b0852d86550306a72d7039?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fcomponents-enchancements) by @jarias)

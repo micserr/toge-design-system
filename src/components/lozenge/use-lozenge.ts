@@ -23,14 +23,14 @@ export const useLozenge = (props: LozengePropTypes) => {
         tone.value === 'caution' && !fill.value,
       'text-color-strong !border-color-base background-color': tone.value === 'plain' && !fill.value,
 
-      'background-color-pending-base text-color-strong !border-none': tone.value === 'pending' && fill.value,
-      'background-color-information-base text-color-inverted-strong !border-none':
+      'background-color-pending-base text-color-strong !border-0': tone.value === 'pending' && fill.value,
+      'background-color-information-base text-color-inverted-strong !border-0':
         tone.value === 'information' && fill.value,
-      'background-color-success-base text-color-inverted-strong': tone.value === 'success' && fill.value,
-      'background-color-base text-color-strong !border-none': tone.value === 'neutral' && fill.value,
-      'background-color-danger-base text-color-inverted-strong !border-none': tone.value === 'danger' && fill.value,
-      'background-color-caution-base text-color-strong !border-none': tone.value === 'caution' && fill.value,
-      'text-color-strong background-color !border-none': tone.value === 'plain' && fill.value,
+      'background-color-success-base text-color-inverted-strong !border-0': tone.value === 'success' && fill.value,
+      'background-color-base text-color-strong !border-0': tone.value === 'neutral' && fill.value,
+      'background-color-danger-base text-color-inverted-strong !border-0': tone.value === 'danger' && fill.value,
+      'background-color-caution-base text-color-strong !border-0': tone.value === 'caution' && fill.value,
+      'text-color-strong background-color !border-0': tone.value === 'plain' && fill.value,
     });
   });
 

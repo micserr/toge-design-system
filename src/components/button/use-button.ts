@@ -194,6 +194,6 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
     buttonRef,
     buttonProps,
     buttonClass: buttonAllCssClass,
-    handleClick
+    handleClick,
   };
 };

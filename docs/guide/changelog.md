@@ -1,7 +1,12 @@
 # Changelog
 
+## 1.2.13 (2025-02-06)
+
+- Fix: Computation for Underlined Tab ([cc8478f5](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cc8478f556da27bf35b0852d86550306a72d7039?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fcomponents-enchancements) by @jarias)
+
 ## 1.2.12 (2025-02-06)
-- Fix: Added important property on border of buttons([6273189f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6273189ffdee05a67ce5cef148f999de8c1bef00?refName=refs%2Fheads%2F2025%2Ffix%2Fnichole%2Fborder-button-2) by @nicalla) 
+
+- Fix: Added important property on border of buttons ([6273189f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6273189ffdee05a67ce5cef148f999de8c1bef00?refName=refs%2Fheads%2F2025%2Ffix%2Fnichole%2Fborder-button-2) by @nicalla)
 
 ## 1.2.11 (2025-02-05)
 

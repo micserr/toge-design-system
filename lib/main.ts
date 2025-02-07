@@ -46,3 +46,5 @@ export default { install };
 // #region - Export components for individual import
 // export { default as ButtonBase } from '../src/components/Buttons/ButtonBase.vue';  // Does not support prefix
 // #endregion - Export components for individual import
+
+export { useSnackbar } from '@/components/snackbar/use-snackbar.ts';  // Does not support prefix

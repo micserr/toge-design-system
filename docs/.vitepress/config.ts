@@ -110,7 +110,10 @@ export default defineConfig({
               text: 'Sidenav',
               link: '/documentation/components/sidenav',
             },
-
+            {
+              text: 'Snackbar',
+              link: '/documentation/components/snackbar',
+            },
             {
               text: 'Switch',
               link: '/documentation/components/switch',

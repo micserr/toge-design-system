@@ -1,4 +1,8 @@
 # Changelog
+## 1.2.15 (2025-02-07)
+- Feat
+  - Added snackbar
+  - Updated docs and version
 
 ## 1.2.14 (2025-02-06)
 

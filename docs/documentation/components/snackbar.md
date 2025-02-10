@@ -209,9 +209,6 @@ import SprSnackbar from "@/components/snackbar/snackbar.vue";
 import SprButton from "@/components/button/button.vue";
 import { useSnackbar } from "@/components/snackbar/use-snackbar.ts";
 import { ref } from "vue";
-import { createPinia, setActivePinia } from 'pinia'
-
-setActivePinia(createPinia())
 
 
 const snackbar = ref(null);

@@ -1,7 +1,11 @@
 # Changelog
+## 1.2.16 (2025-02-07)
+- Fix
+  -  Updated Pinia store for snackbar component ([#759c761c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/759c761ca57201d1411927133e56602844aabcff?refName=refs/heads/2025/FIX/Paulo/UPDATED_PINIA_STORE_FOR_SNACKBAR) by @jbanares)
+
 ## 1.2.15 (2025-02-07)
 - Feat
-  - Added snackbar
+  - Added snackbar ([#595cde45](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/595cde45667e9c333b375b230262209f36c75691?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FSNACKBAR) by @jbanares)
   - Updated docs and version
 
 ## 1.2.14 (2025-02-06)

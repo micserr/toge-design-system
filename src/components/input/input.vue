@@ -4,22 +4,20 @@
       {{ label }}
     </label>
     <div class="relative">
-      <div :class="prefixSlotClasses">
+      <div v-if="$slots.prefix" :class="prefixSlotClasses">
         <slot name="prefix" />
       </div>
       <input
-        :id="id"
-        :type="type"
-        :value="modelValue"
         :class="[inputClasses, { 'number-input': type === 'number' }]"
         :placeholder="placeholder"
         :disabled="disabled"
+        :readonly="readonly"
         @input="onInput"
       />
-      <div :class="trailingSlotClasses">
+      <div v-if="$slots.trailing" :class="trailingSlotClasses">
         <slot name="trailing" />
       </div>
-      <div :class="iconSlotClasses">
+      <div v-if="$slots.icon" :class="iconSlotClasses">
         <slot name="icon" />
       </div>
     </div>

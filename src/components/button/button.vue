@@ -1,5 +1,5 @@
 <template>
-  <button ref="buttonRef" v-bind="buttonProps" :class="buttonClass" @click="handleClick">
+  <button ref="buttonRef" :class="buttonClass" v-bind="buttonProps" @click="handleClick">
     <slot />
   </button>
 </template>

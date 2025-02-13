@@ -5,6 +5,10 @@ export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<
 const TRAILING_SIZES = ['xs', 'sm', 'md'] as const;
 
 export const inputPropTypes = {
+  id: {
+    type: String,
+    default: '',
+  },
   modelValue: {
     type: String,
     required: true,
@@ -21,15 +25,19 @@ export const inputPropTypes = {
     type: String,
     default: '',
   },
-  error: {
-    type: String,
-    default: '',
-  },
-  id: {
-    type: String,
-    default: '',
+  active: {
+    type: Boolean,
+    default: false,
   },
   disabled: {
+    type: Boolean,
+    default: false,
+  },
+  readonly: {
+    type: Boolean,
+    default: false,
+  },
+  error: {
     type: Boolean,
     default: false,
   },

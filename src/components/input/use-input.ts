@@ -9,7 +9,7 @@ export const useInput = (
   slots: Record<string, unknown>,
   emit: SetupContext<InputEmitTypes>['emit'],
 ) => {
-  const { error, disabled, offsetSize } = toRefs(props);
+  const { active, error, disabled, readonly, offsetSize } = toRefs(props);
   const modelValue = useVModel(props, 'modelValue', emit);
 
   const wrapperClasses = computed(() => {
@@ -51,6 +51,10 @@ export const useInput = (
         'pr-[93%] sm:pr-[85%]': offsetSize.value === 'xs' && slots.trailing,
         'pr-[90%] sm:pr-[80%]': offsetSize.value === 'sm' && slots.trailing,
         'pr-[50%]': offsetSize.value === 'md' && slots.trailing,
+        'cursor-pointer': readonly.value,
+        'border-kangkong-700': active.value,
+        'text-color-strong': active.value,
+        'border-[1.5px]': active.value,
       },
     );
   });
@@ -78,6 +82,7 @@ export const useInput = (
 
   const onInput = (event: Event) => {
     const target = event.target as HTMLInputElement;
+
     modelValue.value = target.value;
   };
 

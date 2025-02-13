@@ -24,7 +24,7 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   const buttonDefaultCssClass: ComputedRef<string> = computed(() =>
     classNames([
-      'background-color inline-flex w-fit min-w-[24px] items-center justify-center rounded-md outline-2 outline-offset-4',
+      'background-color flex items-center gap-1.5 w-fit min-w-[24px] items-center justify-center rounded-md outline-2 outline-offset-4',
     ]),
   );
 

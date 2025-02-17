@@ -12,24 +12,25 @@
           'rounded-r-md': !underlined && index === tabElements.length - 1,
 
           // Regular Tab - Active
-          'border-color-success-base cursor-pointer border border-solid': !underlined && activeTab.index === index,
+          'border-color-success-base cursor-pointer !border !border-solid': !underlined && activeTab.index === index,
 
           // Regular Tab - Inactive
-          'border-color-weak hover:background-color-hover cursor-pointer border-x-[0.5px] border-y border-solid':
+          'border-color-weak hover:background-color-hover cursor-pointer !border-x-[0.5px] !border-y !border-solid':
             !underlined && activeTab.index !== index,
 
           // Regular Tab - Disabled
-          'background-color-base !cursor-not-allowed': !underlined && tab.disabled,
+          'background-color-disabled !cursor-not-allowed': !underlined && tab.disabled,
 
           // Underlined Tab - Active
           'cursor-pointer': underlined && activeTab.index === index,
 
           // Underlined Tab - Inactive
-          'border-color-base cursor-pointer border-b border-solid': underlined && activeTab.index !== index,
+          'border-color-base cursor-pointer !border-b !border-solid': underlined && activeTab.index !== index,
           'hover:background-color-hover cursor-pointer': underlined && activeTab.index !== index && !tab.disabled,
 
           // Underlined Tab - Disabled
-          'border-color-disabled text-color-disabled !cursor-not-allowed border-b': underlined && tab.disabled,
+          'border-color-disabled text-color-on-fill-disabled background-color-disabled !cursor-not-allowed border-b':
+            underlined && tab.disabled,
         },
       ]"
       @click="updateSelectedTabIndex(index, tab.disabled)"

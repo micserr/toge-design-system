@@ -57,7 +57,8 @@ export default tseslint.config(
             'modal',
             'avatar',
             'snack',
-            'snackbar'
+            'snackbar',
+            'table',
           ],
         },
       ],

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.18 (2025-02-17)
+
+- Feat
+  - Table ([#e6dc765d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e6dc765dc7324f5bd41d0001a2ba9c0668c75d9f?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Finitial-tabl) by @adestajo)
+
 ## 1.2.17 (2025-02-13)
 
 - Fix: Input and Button Style ([#c381653a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c381653ac879038e8913ba917eb3261aa86bc41f?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fselect) by @jarias)

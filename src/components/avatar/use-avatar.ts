@@ -10,13 +10,13 @@ export const useAvatar = (props: AvatarPropTypes) => {
 
   const avatarImageClassses = computed(() => {
     return classNames('  rounded-full  object-cover ', {
-      ' h-20  w-20': size.value === '2xl',
-      ' h-14  w-14': size.value === 'xl',
-      ' h-10  w-10': size.value === 'lg',
-      ' h-9  w-9': size.value === 'md',
-      ' h-6  w-6': size.value === 'sm',
-      ' h-5  w-5': size.value === 'xs',
-      ' h-4  w-4': size.value === '2xs',
+      ' h-20 min-w-20': size.value === '2xl',
+      ' h-14 min-w-14': size.value === 'xl',
+      ' h-10 min-w-10': size.value === 'lg',
+      ' h-9  min-w-9': size.value === 'md',
+      ' h-6  min-w-6': size.value === 'sm',
+      ' h-5  min-w-5': size.value === 'xs',
+      ' h-4  min-w-4': size.value === '2xs',
     });
   });
 
@@ -24,13 +24,13 @@ export const useAvatar = (props: AvatarPropTypes) => {
     return classNames(
       '  rounded-full   background-color-surface  border-color-weak  border  border-solid  items-center  flex  justify-center  heading-xs  text-color-strong',
       {
-        ' h-20  w-20': size.value === '2xl',
-        ' h-14  w-14  body-lg-regular-medium': size.value === 'xl',
-        ' h-10  w-10  body-sm-regular-medium': size.value === 'lg',
-        ' h-9  w-9  body-sm-regular-medium': size.value === 'md',
-        ' h-6  w-6  body-xs-regular-medium': size.value === 'sm',
-        ' h-5  w-5 !text-[10px]': size.value === 'xs',
-        ' h-4  w-4 !text-[10px]': size.value === '2xs',
+        ' h-20 min-w-20': size.value === '2xl',
+        ' h-14 min-w-14  body-lg-regular-medium': size.value === 'xl',
+        ' h-10 min-w-10  body-sm-regular-medium': size.value === 'lg',
+        ' h-9  min-w-9  body-sm-regular-medium': size.value === 'md',
+        ' h-6  min-w-6  body-xs-regular-medium': size.value === 'sm',
+        ' h-5  min-w-5 !text-[10px]': size.value === 'xs',
+        ' h-4  min-w-4 !text-[10px]': size.value === '2xs',
       },
     );
   });

@@ -119,6 +119,10 @@ export default defineConfig({
               link: '/documentation/components/switch',
             },
             {
+              text: 'Table',
+              link: '/documentation/components/Table',
+            },
+            {
               text: 'Tabs',
               link: '/documentation/components/tabs',
             },

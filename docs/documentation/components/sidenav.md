@@ -988,7 +988,7 @@ The following table outlines the available attributes for the Sidenav component:
 <table>
   <thead>
     <tr>
-      <td class="min-w-[180px]">Attribute</td>
+      <td class="min-w-[180px]">Name</td>
       <td>Description</td>
       <td>Type</td>
       <td>Accepted Values</td>

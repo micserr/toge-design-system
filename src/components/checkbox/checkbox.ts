@@ -1,0 +1,31 @@
+import type { PropType, ExtractPropTypes } from 'vue';
+
+export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
+
+export const checkboxPropTypes = {
+  modelValue: {
+    type: Boolean,
+    required: true,
+  },
+  label: {
+    type: String,
+    default: '',
+  },
+  description: {
+    type: String,
+    default: '',
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  bordered: {
+    type: Boolean,
+    default: false,
+  },
+};
+
+export const checkboxEmitTypes = {};
+
+export type CheckboxPropTypes = ExtractPropTypes<typeof checkboxPropTypes>;
+export type CheckboxEmitTypes = typeof checkboxEmitTypes;

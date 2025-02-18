@@ -87,6 +87,14 @@ export default defineConfig({
               link: '/documentation/components/button',
             },
             {
+              text: 'Checkbox',
+              link: '/documentation/components/checkbox',
+            },
+            {
+              text: 'Dropdown',
+              link: '/documentation/components/dropdown',
+            },
+            {
               text: 'Empty State',
               link: '/documentation/components/empty-state',
             },
@@ -140,24 +148,24 @@ export default defineConfig({
           text: 'Utilities',
           items: [
             {
+              text: 'Border Radius',
+              link: '/documentation/utilities/border-radius',
+            },
+            {
               text: 'Colors',
               link: '/documentation/utilities/colors',
-            },
-            {
-              text: 'Typography',
-              link: '/documentation/utilities/typography',
-            },
-            {
-              text: 'Spacing',
-              link: '/documentation/utilities/spacing',
             },
             {
               text: 'Max Width',
               link: '/documentation/utilities/max-width',
             },
             {
-              text: 'Border Radius',
-              link: '/documentation/utilities/border-radius',
+              text: 'Spacing',
+              link: '/documentation/utilities/spacing',
+            },
+            {
+              text: 'Typography',
+              link: '/documentation/utilities/typography',
             },
           ],
         },

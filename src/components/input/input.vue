@@ -1,7 +1,7 @@
 <template>
   <div :class="wrapperClasses">
-    <label v-if="label" :for="id" :class="labelClasses">
-      {{ label }}
+    <label v-if="props.label" :for="id" :class="labelClasses">
+      {{ props.label }}
     </label>
     <div class="relative">
       <div v-if="$slots.prefix" :class="prefixSlotClasses">
@@ -9,9 +9,10 @@
       </div>
       <input
         :class="[inputClasses, { 'number-input': type === 'number' }]"
-        :placeholder="placeholder"
-        :disabled="disabled"
-        :readonly="readonly"
+        :placeholder="props.placeholder"
+        :disabled="props.disabled"
+        :readonly="props.readonly"
+        :value="props.modelValue"
         @input="onInput"
       />
       <div v-if="$slots.trailing" :class="trailingSlotClasses">

@@ -277,7 +277,7 @@
             <template v-else>
               <Tooltip
                 v-if="!parentLink.hidden"
-                aria-id="default-tooltip"
+                aria-id="sidenav-tooltip-wrapper"
                 placement="right"
                 distance="18"
                 :triggers="['hover']"
@@ -460,7 +460,7 @@
             <template v-else>
               <Tooltip
                 v-if="!parentLink.hidden"
-                aria-id="default-tooltip"
+                aria-id="sidenav-tooltip-wrapper"
                 placement="right"
                 distance="18"
                 :triggers="['hover']"

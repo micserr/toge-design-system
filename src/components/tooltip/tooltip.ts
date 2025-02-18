@@ -2,7 +2,7 @@ import type { PropType, ExtractPropTypes } from 'vue';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
-const TOOLTIP_POSITION = [
+const PLACEMENTS = [
   'top',
   'top-start',
   'top-end',
@@ -14,7 +14,7 @@ const TOOLTIP_POSITION = [
   'left-end',
   'right',
   'right-start',
-  'right-end'
+  'right-end',
 ] as const;
 
 export const tooltipPropTypes = {
@@ -26,12 +26,12 @@ export const tooltipPropTypes = {
     default: 'Sample tooltip',
   },
   /**
-   * @description Tooltip Position
+   * @description Tooltip Placement
    */
-  position: {
+  placement: {
     type: String,
-    validator: (value: (typeof TOOLTIP_POSITION)[number]) => TOOLTIP_POSITION.includes(value),
-    default: 'top-start',
+    validator: (value: (typeof PLACEMENTS)[number]) => PLACEMENTS.includes(value),
+    default: 'top',
   },
 };
 

@@ -35,7 +35,14 @@ allows users to select a time from a dropdown list. It supports both 12-hour and
   />
 
 ```vue
-<spr-timePicker v-model="selectedValue" :label="`Timepicker value: ${selectedValue || ''}`" />
+<template>
+  <spr-timePicker v-model="selectedValue" :label="`Timepicker value: ${selectedValue || ''}`" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+const selectedValue = ref('');
+</script>
 ```
 
 ## Format
@@ -54,19 +61,18 @@ allows users to select a time from a dropdown list. It supports both 12-hour and
 </div>
 
 ```vue
-<div class="flex flex-col gap-4">
-  <spr-timePicker 
-      v-model="selectedValue"
-      label="12 hour format"
-      format="12"
-    />
+<template>
+  <div class="flex flex-col gap-4">
+    <spr-timePicker v-model="selectedValue" label="12 hour format" format="12" />
 
-  <spr-timePicker
-      v-model="selectedValue"
-      label="24 hour format"
-      format="24"
-    />
-</div>
+    <spr-timePicker v-model="selectedValue" label="24 hour format" format="24" />
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+const selectedValue = ref('');
+</script>
 ```
 
 ## Disable Typing
@@ -79,7 +85,35 @@ allows users to select a time from a dropdown list. It supports both 12-hour and
   />
 
 ```vue
-<spr-timePicker v-model="selectedValue" label="Timepicker" disableTyping format="12" />
+<template>
+  <spr-timePicker v-model="selectedValue" label="Timepicker" disableTyping format="12" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+const selectedValue = ref('');
+</script>
+```
+
+## Error
+
+<spr-timePicker 
+    v-model="selectedValue"
+    label="Timepicker"
+    disableTyping
+    format="12"
+    error='true'
+  />
+
+```vue
+<template>
+  <spr-timePicker v-model="selectedValue" label="Timepicker" disableTyping format="12" error="true" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+const selectedValue = ref('');
+</script>
 ```
 
 ## Disabled
@@ -91,19 +125,30 @@ allows users to select a time from a dropdown list. It supports both 12-hour and
   />
 
 ```vue
-<spr-timePicker v-model="selectedValue" label="Timepicker" disabled />
+<template>
+  <spr-timePicker v-model="selectedValue" label="Timepicker" disabled />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+const selectedValue = ref('');
+</script>
 ```
 
 ## Full width
 
-<spr-timePicker 
-    v-model="selectedValue"
-    label="Timepicker"
-    fullWidth
-  />
+<spr-timePicker v-model="selectedValue" label="Timepicker" fullWidth />
 
 ```vue
-<spr-timePicker v-model="selectedValue" label="Timepicker" fullWidth />
+<template>
+  <spr-timePicker v-model="selectedValue" label="Timepicker" fullWidth />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedValue = ref('');
+</script>
 ```
 
 ## Attributes
@@ -155,6 +200,9 @@ allows users to select a time from a dropdown list. It supports both 12-hour and
 import { ref } from 'vue';
 
 import SprTimePicker from "@/components/timePicker/timePicker.vue"
+import SprSwitch from '@/components/switch/switch.vue';
 
+const switchValue7 = ref(true);
 const selectedValue = ref('');
+const selectedValue1 = ref('');
 </script>

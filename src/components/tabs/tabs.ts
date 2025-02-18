@@ -11,6 +11,14 @@ type List = {
 
 export const tabsPropTypes = {
   /**
+   * @description Tabs List,
+   * option list: label, icon, iconFill, disabled
+   */
+  list: {
+    type: Array<List>,
+    default: () => [],
+  },
+  /**
    * @description Tabs Type (underlined, not underlined)
    */
   underlined: {
@@ -18,12 +26,11 @@ export const tabsPropTypes = {
     default: false,
   },
   /**
-   * @description Tabs List,
-   * option list: label, icon, iconFill, disabled
+   * @description Active Tab
    */
-  list: {
-    type: Array<List>,
-    default: () => [],
+  activeTab: {
+    type: String,
+    default: '',
   },
 };
 

@@ -105,6 +105,26 @@
     }
   }
   /* #endregion - Tooltips */
+
+  /* #region - Dropdown */
+  #dropdown-wrapper {
+    @apply overflow-hidden;
+
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply border-color-weak max-h-[300px] w-[240px] overflow-y-auto rounded-xl border border-solid p-2 font-main shadow-none;
+
+        &::-webkit-scrollbar-track {
+          @apply rounded-br-xl rounded-tr-xl;
+        }
+      }
+
+      .v-popper__arrow-container {
+        @apply hidden;
+      }
+    }
+  }
+  /* #endregion - Dropdown */
 }
 
 @layer utilities {
@@ -700,7 +720,7 @@
   }
 
   .border-color-disabled {
-    @apply border-white-100;
+    @apply border-white-400;
   }
 
   .border-color-on-fill-disabled {

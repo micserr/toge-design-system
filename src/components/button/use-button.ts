@@ -24,7 +24,7 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   const buttonDefaultCssClass: ComputedRef<string> = computed(() =>
     classNames([
-      'background-color inline-flex w-fit min-w-[24px] items-center justify-center rounded-md outline-2 outline-offset-4',
+      'background-color flex items-center gap-1.5 w-fit min-w-[24px] items-center justify-center rounded-md outline-2 outline-offset-4',
     ]),
   );
 
@@ -131,16 +131,16 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
   const buttonBorderCssClass: ComputedRef<string> = computed(() => {
     if (variant.value === 'primary' || variant.value === 'tertiary') {
       if (focused.value) {
-        return 'border-solid border border-white-50';
+        return 'border-solid !border !border-white-50';
       }
 
-      return 'border-solid border border-transparent';
+      return 'border-solid !border !border-transparent';
     }
 
     return classNames({
-      'border-solid border border-color-base': tone.value === 'neutral',
-      'border-solid border border-color-brand-base': tone.value === 'success',
-      'border-solid border border-color-danger-base': tone.value === 'danger',
+      'border-solid !border !border-color-base': tone.value === 'neutral',
+      'border-solid !border !border-color-brand-base': tone.value === 'success',
+      'border-solid !border !border-color-danger-base': tone.value === 'danger',
     });
   });
 
@@ -154,14 +154,14 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
         return classNames(
           buttonDefaultCssClass.value,
           buttonSizeCssClass.value,
-          'text-color-disabled background-color-disabled !shadow-none !cursor-not-allowed',
+          'text-color-disabled background-color-disabled !border-0 !shadow-none !cursor-not-allowed',
         );
 
       if (variant.value === 'secondary')
         return classNames(
           buttonDefaultCssClass.value,
           buttonSizeCssClass.value,
-          'text-color-disabled border border-solid border border-color-disabled !shadow-none !cursor-not-allowed',
+          'text-color-disabled border-solid !border !border-color-disabled !shadow-none !cursor-not-allowed',
         );
 
       if (variant.value === 'tertiary')
@@ -194,6 +194,6 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
     buttonRef,
     buttonProps,
     buttonClass: buttonAllCssClass,
-    handleClick
+    handleClick,
   };
 };

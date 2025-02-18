@@ -1,8 +1,8 @@
 <template>
   <div 
+    v-if="isOpen && hasBackdrop"
     class="w-screen h-screen bg-mushroom-700/60 fixed top-0 left-0 z-[30]" 
     @click="handleBackdropClick"
-    v-if="isOpen && hasBackdrop"
   ></div>
   <Transition 
     :name="`sidepanel`"
@@ -15,13 +15,13 @@
     appear
   >
     <div
+      v-if="isOpen"
       ref="sidepanelRef"
       :class="[
         sidepanelSizesClasses,
         'h-[calc(100vh_-_32px)] bg-white-50 rounded-border-radius-xl fixed right-4 z-[30] min-h-[200px] flex flex-col top-1/2 translate-y-[-50%] drop-shadow'
       ]"
       :style="{ height: typeof height === 'number' ? `${height}px` : height }"
-      v-if="isOpen"
     >
       <template v-if="!hideHeader">
         <div v-if="!$slots.header" class="flex justify-between tw-min-h-12 p-4 border-mushroom-200 border-b border-solid border-0 subheading-xs text-color-strong">

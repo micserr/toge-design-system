@@ -13,16 +13,57 @@
     @requests="handleRequest"
   >
     <template #logo-image>
-      <img
-        src="https://play-lh.googleusercontent.com/IxaRjot8VjKDGBXNlrrTmgxJMsGc9Ky3JIaI4tk9ZyGgkjjBRl1wwKAd9UY1VqxhxlQ"
-        alt="logo"
-      />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
 
     <template #avatar-image>
-      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
+
+  <br />
+
+  <spr-snackbar ref="snackbar" />
+
+  <spr-button @click="successSnackbar"> Show success</spr-button>
+  <spr-button @click="errorSnackbar"> Show error</spr-button>
+
+  <div class="mock-snackbar">
+    <spr-snack
+      class="mock-snack"
+      text="Two line with long action should look like this when implemented. This is more additional text for lines."
+      tone="success"
+      action-text="action"
+      show-icon
+    />
+  
+    <spr-snack
+      class="mock-snack"
+      text="Yehey"
+      tone="danger"
+      action-text="action"
+      show-icon
+      show-action
+    />
+  
+    <spr-snack
+      class="mock-snack"
+      text="Two line with long action should look like this when implemented. This is more additional text for lines."
+      tone="caution"
+      action-text="action"
+      show-icon
+      show-action
+    />
+  
+    <spr-snack
+      class="mock-snack"
+      text="Hello"
+      tone="information"
+      action-text="action"
+      show-icon
+      show-action
+    />
+  </div>
 
   <h1 class="heading-xl">askhdjahskjdhasjkhdjkashkjdas</h1>
   <h1 class="heading-lg">askhdjahskjdhasjkhdjkashkjdas</h1>
@@ -37,105 +78,30 @@
 import { ref } from 'vue';
 
 import SprSidenav from './components/sidenav/sidenav.vue';
+import SprButton from './components/button/button.vue';
+import SprSnack from './components/snackbar/snack/snack.vue';
+import SprSnackbar from './components/snackbar/snackbar.vue';
 
-import IconHouseSimple from '~icons/ph/house-simple';
-import IconUsersThree from '~icons/ph/users-three';
-import IconLeaf from '~icons/ph/leaf';
-import IconCurrencyRub from '~icons/ph/currency-rub';
-import IconWallet from '~icons/ph/wallet';
-import IconAddressBook from '~icons/ph/address-book';
-import IconAlien from '~icons/ph/alien';
-import IconAlignLeft from '~icons/ph/align-left';
+const snackbar = ref(null);
+const successSnackbar = () => {
+  snackbar.value.showSuccess({
+    text: "Yehey!",
+    showIcon: true,
+    actionText: "close",
+    showAction: true,
+  });
+}
 
-const quickActions = ref([
-  {
-    menuHeading: 'Sub Heading 1',
-    items: [
-      {
-        title: 'Leave Request',
-        description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: IconHouseSimple,
-        iconBgColor: 'purple',
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-      },
-      {
-        title: 'Onboarding Request',
-        description: 'Seamlessly onboard new employees into your Sprout ecosystem',
-        icon: IconHouseSimple,
-        iconBgColor: 'purple',
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-      },
-      {
-        title: 'Certificate of Employee',
-        description: 'Lorem ipsum dolor sit amet consectetur. ',
-        icon: IconHouseSimple,
-        iconBgColor: 'purple',
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-      },
-    ],
-  },
-  {
-    menuHeading: 'Sub Heading 2',
-    items: [
-      {
-        title: 'ReadyWage',
-        description: 'Request Form',
-        icon: IconHouseSimple,
-        iconBgColor: 'purple',
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-      },
-      {
-        title: 'Create Workflow',
-        description: 'Access your hard-earned salary in advance',
-        icon: IconHouseSimple,
-        iconBgColor: 'purple',
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-      },
-      {
-        title: 'Create Something 1',
-        description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: IconHouseSimple,
-        iconBgColor: 'purple',
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-      },
-      {
-        title: 'Create Something 2',
-        description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: IconHouseSimple,
-        iconBgColor: 'purple',
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-      },
-    ],
-  },
-]);
+const errorSnackbar = () => {
+  snackbar.value.showCaution({
+    text: "Error!",
+    actionText: "action",
+    showAction: true,
+    showIcon: true,
+    duration: 8000,
+    action: () => console.log("Error action clicked"),
+  });
+}
 
 const activeNav = ref({
   parentNav: 'Home',
@@ -149,7 +115,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Home',
-          icon: IconHouseSimple,
+          icon: 'ph:house-simple',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -211,7 +177,7 @@ const navLinks = ref({
         },
         {
           title: 'Employees',
-          icon: IconUsersThree,
+          icon: 'ph:users-three',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -224,7 +190,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Payroll',
-          icon: IconLeaf,
+          icon: 'ph:leaf',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -298,7 +264,7 @@ const navLinks = ref({
         },
         {
           title: 'Money',
-          icon: IconCurrencyRub,
+          icon: 'ph:currency-rub',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -307,7 +273,7 @@ const navLinks = ref({
         },
         {
           title: 'Car',
-          icon: IconWallet,
+          icon: 'ph:wallet',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -345,7 +311,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Gallery',
-          icon: IconAddressBook,
+          icon: 'ph:address-book',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -411,7 +377,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Resources',
-          icon: IconAlien,
+          icon: 'ph:alien',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -420,7 +386,7 @@ const navLinks = ref({
         },
         {
           title: 'News',
-          icon: IconAlignLeft,
+          icon: 'ph:align-left',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -455,7 +421,7 @@ const userMenu = ref({
   items: [
     {
       title: 'My Profile',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -464,7 +430,7 @@ const userMenu = ref({
     },
     {
       title: 'Privacy Policy',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -473,7 +439,7 @@ const userMenu = ref({
     },
     {
       title: 'Terms of Service',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -482,7 +448,7 @@ const userMenu = ref({
     },
     {
       title: 'Logout',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -493,8 +459,10 @@ const userMenu = ref({
 });
 </script>
 
-<style>
+<style lang="scss">
 body {
   @apply m-0 bg-mushroom-100 font-main;
+  margin-left: 64px;
+  padding: 64px;
 }
 </style>

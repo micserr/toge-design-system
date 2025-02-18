@@ -1,4 +1,4 @@
-import { computed, ref, ComputedRef } from 'vue';
+import { computed, ref, ComputedRef, toRefs } from 'vue';
 import { useElementHover, useMousePressed, useFocus } from '@vueuse/core';
 
 import classNames from 'classnames';
@@ -11,47 +11,64 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
   const isHovered = useElementHover(buttonRef);
   const { pressed } = useMousePressed({ target: buttonRef });
   const { focused } = useFocus(buttonRef);
-  const { state, type, size, tone, variant, disabled } = props;
+  const { state, type, size, tone, variant, disabled, hasIcon } = toRefs(props);
 
   const buttonProps: ComputedRef<Record<string, unknown>> = computed(() => {
     return {
-      ...(disabled && { ariaDisabled: true }),
-      disabled: disabled,
-      autofocus: state === 'focus',
-      type: type ?? 'button',
+      ...(disabled.value && { ariaDisabled: true }),
+      disabled: disabled.value,
+      autofocus: state.value === 'focus',
+      type: type.value,
     };
   });
 
+  const buttonDefaultCssClass: ComputedRef<string> = computed(() =>
+    classNames([
+      'background-color flex items-center gap-1.5 w-fit min-w-[24px] items-center justify-center rounded-md outline-2 outline-offset-4',
+    ]),
+  );
+
+  const buttonTransitionCssClass: ComputedRef<string> = computed(() =>
+    classNames(['transition duration-150 ease-in-out', 'hover:shadow-button-hover', 'active:scale-95']),
+  );
+
   const buttonSizeCssClass: ComputedRef<string> = computed(() =>
     classNames({
-      'px-[4px] py-[6px] font-medium font-size-100 leading-100': size === 'small',
-      'p-[8px] font-medium font-size-100 leading-100': size === 'medium',
-      'px-[8px] py-[12px] font-medium font-size-200 leading-300': size === 'large',
+      'min-w-6 p-size-spacing-4xs font-medium font-size-100 leading-100': size.value === 'small',
+      'min-w-7 p-2 font-medium font-size-100 leading-100': size.value === 'medium',
+      '!min-w-9 px-2 py-3 font-medium font-size-200 leading-300 max-h-9': size.value === 'large',
+      'font-size-400': hasIcon.value && size.value === 'large',
+      'font-size-300': hasIcon.value && size.value === 'medium',
+      'font-size-200': hasIcon.value && size.value === 'small',
     }),
   );
 
   const buttonTextCssClass: ComputedRef<string> = computed(() => {
-    if (variant === 'secondary' || variant === 'tertiary') {
+    if (variant.value === 'secondary' || variant.value === 'tertiary') {
       return classNames({
-        'text-color-strong': tone === 'neutral',
-        'text-color-brand-base': tone === 'success',
-        'text-color-danger-base': tone === 'danger',
+        'text-color-strong': tone.value === 'neutral',
+        'text-color-brand-base': tone.value === 'success',
+        'text-color-danger-base': tone.value === 'danger',
       });
     }
 
     return classNames({
-      'text-color-strong': tone === 'neutral',
-      'text-color-inverted-strong': tone === 'success' || tone === 'danger',
+      'text-color-strong': tone.value === 'neutral',
+      'text-color-inverted-strong': tone.value === 'success' || tone.value === 'danger',
     });
   });
 
   // #region - Background Css Class
   const buttonBackgroundCssClass: ComputedRef<string> = computed(() => {
-    if (variant === 'secondary') {
-      return isHovered.value ? 'background-color-hover' : '';
+    if (variant.value === 'secondary') {
+      if (pressed.value) {
+        return 'background-color-pressed !shadow-button';
+      }
+
+      return isHovered.value ? 'background-color-hover' : 'background-color ';
     }
 
-    if (variant === 'tertiary') {
+    if (variant.value === 'tertiary') {
       return getTertiaryBackground();
     }
 
@@ -60,10 +77,12 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   function getTertiaryBackground(): string {
     if (pressed.value) {
-      return 'background-color-pressed';
+      return 'background-color-pressed !shadow-button';
     }
 
-    return isHovered.value ? 'background-color-hover' : '';
+    return classNames('!border-none', {
+      'background-color-hover': isHovered.value,
+    });
   }
 
   function getBackgroundBasedOnState(): string {
@@ -80,12 +99,12 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   function getPressedBackground(): string {
     const backgrounds: Record<string, string> = {
-      neutral: 'background-color-pressed',
-      success: 'background-color-brand-pressed',
-      danger: 'background-color-danger-pressed',
+      neutral: 'background-color-pressed !shadow-button',
+      success: 'background-color-brand-pressed !shadow-button',
+      danger: 'background-color-danger-pressed !shadow-button',
     };
 
-    return backgrounds[tone] || '';
+    return backgrounds[tone.value] || '';
   }
 
   function getHoveredBackground(): string {
@@ -95,7 +114,7 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
       danger: 'background-color-danger-hover',
     };
 
-    return backgrounds[tone] || '';
+    return backgrounds[tone.value] || '';
   }
 
   function getDefaultBackground(): string {
@@ -105,23 +124,23 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
       danger: 'background-color-danger-base',
     };
 
-    return backgrounds[tone] || '';
+    return backgrounds[tone.value] || '';
   }
   // #endregion - Background Css Class
 
   const buttonBorderCssClass: ComputedRef<string> = computed(() => {
-    if (variant === 'primary' || variant === 'tertiary') {
+    if (variant.value === 'primary' || variant.value === 'tertiary') {
       if (focused.value) {
-        return 'border-solid border border-white-50';
+        return 'border-solid !border !border-white-50';
       }
 
-      return 'border-solid border border-transparent';
+      return 'border-solid !border !border-transparent';
     }
 
     return classNames({
-      'border-solid border border-color-base': tone === 'neutral',
-      'border-solid border border-color-brand-base': tone === 'success',
-      'border-solid border border-color-danger-base': tone === 'danger',
+      'border-solid !border !border-color-base': tone.value === 'neutral',
+      'border-solid !border !border-color-brand-base': tone.value === 'success',
+      'border-solid !border !border-color-danger-base': tone.value === 'danger',
     });
   });
 
@@ -129,26 +148,40 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
     return classNames(buttonBackgroundCssClass.value, buttonTextCssClass.value, buttonBorderCssClass.value);
   });
 
-  const buttonShadowClass: ComputedRef<string> = computed(() => {
-    if (pressed.value) {
-      return 'shadow-button';
-    } else if (focused.value) {
-      return 'shadow-button-active';
-    }
-
-    return '';
-  });
-
   const buttonAllCssClass: ComputedRef<string> = computed(() => {
-    if (disabled) {
-      return classNames(buttonSizeCssClass.value, 'text-color-disabled');
+    if (disabled.value) {
+      if (variant.value === 'primary')
+        return classNames(
+          buttonDefaultCssClass.value,
+          buttonSizeCssClass.value,
+          'text-color-disabled background-color-disabled !border-0 !shadow-none !cursor-not-allowed',
+        );
+
+      if (variant.value === 'secondary')
+        return classNames(
+          buttonDefaultCssClass.value,
+          buttonSizeCssClass.value,
+          'text-color-disabled border-solid !border !border-color-disabled !shadow-none !cursor-not-allowed',
+        );
+
+      if (variant.value === 'tertiary')
+        return classNames(
+          buttonDefaultCssClass.value,
+          buttonSizeCssClass.value,
+          'text-color-disabled !border-0 !shadow-none !cursor-not-allowed',
+        );
     }
 
-    return classNames(buttonSizeCssClass.value, buttonToneCssClass.value, buttonShadowClass.value);
+    return classNames(
+      buttonDefaultCssClass.value,
+      buttonSizeCssClass.value,
+      buttonToneCssClass.value,
+      buttonTransitionCssClass.value,
+    );
   });
 
   const handleClick = (evt: MouseEvent) => {
-    if (disabled) {
+    if (disabled.value) {
       evt.stopPropagation();
 
       return;

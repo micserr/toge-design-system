@@ -2,130 +2,168 @@
 
 UI element that allows users to enter and edit text or other data.
 
-## Key Features
-
-<ul>
-  <li><strong>Label:</strong>  A descriptive text that indicates the purpose of the input field.
-  </li>
-  <li><strong>Placeholder:</strong> A hint displayed inside the input field when it is empty, guiding the user on what to enter.
-  </li>
-  <li><strong>Error State:</strong> Visual feedback indicating that the input value is invalid or required.
-  </li>
-  <li><strong>Icon Slot:</strong>An optional icon that can be displayed inside the input field, often used to indicate the type of input or provide additional context.
-  </li>
-    <li><strong>v-model Binding:</strong> Two-way data binding that keeps the input value in sync with a variable in the component's state.
-  </li>
-</ul>
-
 ## Basic Usage
 
-<spr-input 
-    v-model="inputValue"
-    label="Text Input"
-    placeholder="Enter your username"
-/>
+<spr-input v-model="inputValue.input1" label="Text Input" placeholder="Enter your username" />
 
 ```vue
-<spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" />
+<template>
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputValue = ref('');
+</script>
+```
+
+## Active State
+
+<spr-input v-model="inputValue.input2" label="Text Input" placeholder="Enter your username" :active="true" />
+
+```vue
+<template>
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputValue = ref('');
+</script>
 ```
 
 ## Error State
 
-<spr-input 
-    v-model="inputValue"
-    label="Text Input"
-    placeholder="Enter your username"
-    :error="'error'">
-<template #icon>
-<IconWarning />
-</template>
+<spr-input v-model="inputValue.input3" label="Text Input" placeholder="Enter your username" :error="true">
+  <template #icon>
+    <Icon icon="ph:warning-circle-fill" />
+  </template>
 </spr-input>
 
 ```vue
-<spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" :error="'error'">
-  <template #icon>
-    <IconWarning />
-  </template>
-</spr-input>
+<template>
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" :error="true">
+    <template #icon>
+      <Icon icon="ph:warning-circle-fill" />
+    </template>
+  </spr-input>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputValue = ref('');
+</script>
 ```
 
 ## Disabled State
 
-<spr-input 
-    v-model="inputValue"
-    label="Text Input"
-    placeholder="Enter your username"
-    disabled
-/>
+<spr-input v-model="inputValue.input4" label="Text Input" placeholder="Enter your username" :disabled="true" />
 
 ```vue
-<spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" disabled />
+<template>
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" :disabled="true" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputValue = ref('');
+</script>
 ```
 
 ## Prefix
 
-<spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username"  >
+<spr-input v-model="inputValue.input5" label="Text Input" placeholder="Enter your username"  >
   <template #prefix>
-    <IconWarning />
+    <Icon icon="ph:warning-circle-fill" />
   </template>
 </spr-input>
 
 ```vue
-<spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username">
-  <template #prefix>
-    <IconWarning />
-  </template>
-</spr-input>
+<template>
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username">
+    <template #prefix>
+      <Icon icon="ph:warning-circle-fill" />
+    </template>
+  </spr-input>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputValue = ref('');
+</script>
 ```
 
 ## Trailing Label
 
 <div class="flex flex-col gap-2">
-<spr-input v-model="inputValue" label="Offset xs" placeholder="00" offset-size="xs" type="number">
-  <template #trailing>
-  minutes
-  </template>
-</spr-input>
+  <spr-input v-model="inputValue.input6" label="Offset xs" placeholder="00" offset-size="xs" type="number">
+    <template #trailing>
+      minutes
+    </template>
+  </spr-input>
 
-<spr-input v-model="inputValue" label="offset sm" placeholder="0000000" offset-size="sm" type="number">
-  <template #trailing>
-  minutes
-  </template>
-</spr-input>
+  <spr-input v-model="inputValue.input7" label="offset sm" placeholder="0000000" offset-size="sm" type="number">
+    <template #trailing>
+      minutes
+    </template>
+  </spr-input>
 
-<spr-input v-model="inputValue" label="offset md" placeholder="Enter your name" offset-size="md" >
-  <template #trailing>
-  Name of the user
-  </template>
-</spr-input>
+  <spr-input v-model="inputValue.input8" label="offset md" placeholder="Enter your name" offset-size="md" >
+    <template #trailing>
+      Name of the user
+    </template>
+  </spr-input>
 </div>
 
 ```vue
-<!-- xs -->
-<spr-input v-model="inputValue" label="Offset xs" placeholder="00" offset-size="xs" type="number">
-  <template #trailing>
-    minutes
-  </template>
-</spr-input>
+<template>
+  <!-- xs -->
+  <spr-input v-model="inputValueXS" label="Offset xs" placeholder="00" offset-size="xs" type="number">
+    <template #trailing> minutes </template>
+  </spr-input>
 
-<!-- sm -->
-<spr-input v-model="inputValue" label="offset sm" placeholder="00" offset-size="sm" type="number">
-  <template #trailing>
-    minutes
-  </template>
-</spr-input>
+  <!-- sm -->
+  <spr-input v-model="inputValueSM" label="offset sm" placeholder="00" offset-size="sm" type="number">
+    <template #trailing> minutes </template>
+  </spr-input>
 
-<!-- md -->
-<spr-input v-model="inputValue" label="offset md" placeholder="Enter your name" offset-size="md">
-  <template #trailing>
-    Name of the user
-  </template>
-</spr-input>
+  <!-- md -->
+  <spr-input v-model="inputValueMD" label="offset md" placeholder="Enter your name" offset-size="md">
+    <template #trailing> Name of the user </template>
+  </spr-input>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputValueXS = ref('');
+
+const inputValueSM = ref('');
+
+const inputValueMD = ref('');
+</script>
 ```
 
-<script setup lang="ts">
-  import { ref } from 'vue';
-  import SprInput from "@/components/input/input.vue"
-  import IconWarning from '~icons/ph/warning-circle-fill';
+<script lang="ts" setup>
+import { ref } from 'vue';
 
+import { Icon } from '@iconify/vue';
+
+import SprInput from "@/components/input/input.vue"
+
+const inputValue = ref({
+  input1: '',
+  input2: '',
+  input3: '',
+  input4: '',
+  input5: '',
+  input6: '',
+  input7: '',
+  input8: '',
+});
 </script>

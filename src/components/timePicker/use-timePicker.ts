@@ -1,15 +1,16 @@
-import { computed, ref, ComputedRef } from 'vue';
+import { computed, ref, ComputedRef, toRefs } from 'vue';
 import dayjs from 'dayjs';
 import type { TimePickerPropTypes, TimePickerEmitTypes } from './timePicker';
 import type { SetupContext } from 'vue';
+import { useVModel } from '@vueuse/core';
 
 import classNames from 'classnames';
 
 export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<TimePickerEmitTypes>['emit']) => {
-  const { error, disabled, format, interval, disableTyping, fullWidth } = props;
+  const { error, disabled, format, interval, disableTyping, fullWidth } = toRefs(props);
 
   const isOpen = ref<boolean>(false);
-  const selectedValue = ref<string>('');
+  const selectedValue = useVModel(props, 'modelValue', emit);
 
   const timepickerClasses: ComputedRef<string> = computed(() => {
     return classNames(
@@ -22,20 +23,20 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
       'text-color-strong',
       'font-size-200',
       'border border-solid border-mushroom-200',
-      'focus:border-kangkong-700',
+      'focus:!border-kangkong-700',
       'focus:text-color-strong',
-      'focus:border-[1.5px]',
+      'focus:!border-[1.5px]',
       'outline-none',
       'ring-0',
       {
-        'border-[1.5px]': error,
-        'border-tomato-600': error,
-        'focus:border-tomato-600': error,
-        'border-white-100': disabled,
-        'background-color-disabled': disabled,
-        'cursor-not-allowed': disabled,
-        'text-color-on-fill-disabled': disabled,
-        'cursor-pointer': disableTyping,
+        '!border-[1.5px]': error.value,
+        '!border-tomato-600': error.value,
+        'focus:!border-tomato-600': error.value,
+        '!border-white-100': disabled.value,
+        'background-color-disabled': disabled.value,
+        'cursor-not-allowed': disabled.value,
+        'text-color-on-fill-disabled': disabled.value,
+        'cursor-pointer': disableTyping.value,
       },
     );
   });
@@ -56,20 +57,20 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
       'shadow-[0_2px_8px_-2px_rgba(38, 43, 43, 0.20)]',
       'p-size-spacing-3xs',
       {
-        'w-full': fullWidth,
+        'w-full': fullWidth.value,
       },
     );
   });
 
   const iconClasses: ComputedRef<string> = computed(() => {
     return classNames('absolute right-3 text-color-supporting', {
-      '!text-tomato-600': error,
+      '!text-tomato-600': error.value,
     });
   });
 
   const labelClasses: ComputedRef<string> = computed(() => {
     return classNames('body-sm-regular text-color-strong block  mb-size-spacing-4xs ', {
-      'text-color-on-fill-disabled': disabled,
+      'text-color-on-fill-disabled': disabled.value,
     });
   });
 
@@ -83,15 +84,13 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
     if (!target) return;
 
     const input = target.value.toUpperCase();
-    const regex = format === '12' ? /^[0-9:APM\s]*$/ : /^[0-9:]*$/;
+    const regex = format.value === '12' ? /^[0-9:APM\s]*$/ : /^[0-9:]*$/;
 
     if (!regex.test(input)) {
-      selectedValue.value = selectedValue.value.slice(0, -1);
+      selectedValue.value = selectedValue.value?.slice(0, -1);
     } else {
       selectedValue.value = input;
     }
-
-    emit('update:modelValue', selectedValue.value);
   };
 
   const generateTimeOptions = (): string[] => {
@@ -102,7 +101,7 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
     let current = start;
     while (current.isBefore(end) || current.isSame(end)) {
       options.push(formatTime(current));
-      current = current.add(interval, 'minute');
+      current = current.add(interval.value, 'minute');
     }
 
     return options;
@@ -127,12 +126,11 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
 
   const selectOption = (option: string) => {
     selectedValue.value = option;
-    emit('update:modelValue', option);
     isOpen.value = false;
   };
 
   const handleClick = (event: FocusEvent) => {
-    if (disabled) {
+    if (disabled.value) {
       event.preventDefault();
       return;
     }
@@ -140,7 +138,7 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
   };
 
   const getPlaceHolder: ComputedRef<string> = computed(() => {
-    return format === '12' ? 'HH : MM AM/PM' : 'HH : MM';
+    return format.value === '12' ? 'HH : MM AM/PM' : 'HH : MM';
   });
 
   return {

@@ -1,24 +1,3 @@
-<script setup>
-  import { ref } from 'vue';
-  import SprSwitch from "@/components/switch/switch.vue";
-
-  // Basic usage
-  const switchValue1 = ref(false);
-  // Text label
-  const switchValue2 = ref(false);
-  const switchValue3 = ref(false);
-  const switchValue4 = ref(false);
-  // Disabled
-  const switchValue5 = ref(false);
-  const switchValue6 = ref(true);
-  // Emit
-  const switchValue7 = ref(true);
-  const switch7Label = ref("No event yet.");
-  const switch7UpdateHandler = (value) => {
-    switch7Label.value = "Value changed to " + value;
-  };
-</script>
-
 # Switch
 
 Switch component to show a boolean state (similar to a checkbox).
@@ -27,7 +6,7 @@ Switch component to show a boolean state (similar to a checkbox).
 
 <div>
   <spr-switch v-model="switchValue1">Switch</spr-switch>
-  <p> switchValue1 : {{ switchValue1 }}</p>
+  <p>switchValue1 : {{ switchValue1 }}</p>
 </div>
 
 ```vue
@@ -40,6 +19,7 @@ Switch component to show a boolean state (similar to a checkbox).
 
 <script setup>
 import { ref } from 'vue';
+
 import SprSwitch from '@/components/switch/switch.vue';
 
 const switchValue1 = ref(false);
@@ -48,13 +28,17 @@ const switchValue1 = ref(false);
 
 ## Text Label
 
-<spr-switch v-model="switchValue2" class="mb-2">Left</spr-switch>
-<spr-switch v-model="switchValue3" class="mb-2">
-<template #rightText> Right </template>
+<spr-switch v-model="switchValue2" class="mb-2">
+  Left
 </spr-switch>
+
+<spr-switch v-model="switchValue3" class="mb-2">
+  <template #rightText>Right</template>
+</spr-switch>
+
 <spr-switch v-model="switchValue4" class="mb-2">
-<template #leftText> Left </template>
-<template #rightText> Right </template>
+  <template #leftText>Left</template>
+  <template #rightText>Right</template>
 </spr-switch>
 
 ```vue
@@ -63,27 +47,36 @@ const switchValue1 = ref(false);
 
 <!-- Text position using the rightText slot -->
 <spr-switch v-model="switchValue3">
-  <template #rightText> Right </template>
+  <template #rightText>Right</template>
 </spr-switch>
 
 <!-- Text position using both the leftText and rightText slots -->
 <spr-switch v-model="switchValue4">
-  <template #leftText> Left </template>
-  <template #rightText> Right </template>
+  <template #leftText>Left</template>
+  <template #rightText>Right</template>
 </spr-switch>
 ```
 
 ## Disabled
 
-<spr-switch v-model="switchValue5" class="mb-2" disabled>Disabled false switch</spr-switch>
-<spr-switch v-model="switchValue6" class="mb-2" :disabled="true">Disabled true switch</spr-switch>
+<spr-switch v-model="switchValue5" class="mb-2" disabled>
+  Disabled false switch
+</spr-switch>
+
+<spr-switch v-model="switchValue6" class="mb-2" :disabled="true">
+  Disabled true switch
+</spr-switch>
 
 ```vue
 <!-- Declare the disabled property -->
-<spr-switch v-model="switchValue5" disabled>Disabled false switch</spr-switch>
+<spr-switch v-model="switchValue5" disabled>
+  Disabled false switch
+</spr-switch>
 
 <!-- or set a value to the disabled property -->
-<spr-switch v-model="switchValue6" :disabled="true">Disabled true switch</spr-switch>
+<spr-switch v-model="switchValue6" :disabled="true">
+  Disabled true switch
+</spr-switch>
 ```
 
 ## Emit
@@ -105,6 +98,7 @@ The switch component uses `@vueuse/core`'s `useVModel` for properties and emit v
 
 <script setup>
 import { ref } from 'vue';
+
 import SprSwitch from '@/components/switch/switch.vue';
 
 const switchValue7 = ref(true);
@@ -119,13 +113,70 @@ const switch7UpdateHandler = (value) => {
 
 ### Switch Attributes
 
-| Name     | Description        | Type      | Default |
-| -------- | ------------------ | --------- | ------- |
-| disabled | disable the switch | `boolean` | false   |
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>disabled</td>
+      <td>disable the switch</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Switch Slots
 
-| Name      | Description      | Type     |
-| --------- | ---------------- | -------- |
-| rightText | right text label | `string` |
-| leftText  | left text label  | `string` |
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>rightText</td>
+      <td>right text label</td>
+      <td>string</td>
+    </tr>
+    <tr>
+      <td>leftText</td>
+      <td>left text label</td>
+      <td>string</td>
+    </tr>
+  </tbody>
+</table>
+
+<script lang="ts" setup>
+  import { ref } from 'vue';
+
+  import SprSwitch from "@/components/switch/switch.vue";
+
+  // Basic usage
+  const switchValue1 = ref(false);
+
+  // Text label
+  const switchValue2 = ref(false);
+  const switchValue3 = ref(false);
+  const switchValue4 = ref(false);
+
+  // Disabled
+  const switchValue5 = ref(false);
+  const switchValue6 = ref(true);
+
+  // Emit
+  const switchValue7 = ref(true);
+  const switch7Label = ref("No event yet.");
+  const switch7UpdateHandler = (value) => {
+    switch7Label.value = "Value changed to " + value;
+  };
+</script>

@@ -16,5 +16,6 @@ import { badgePropTypes } from './badge';
 import { useBadge } from './use-badge';
 
 const props = defineProps(badgePropTypes);
+
 const { badgeClasses, badgePositionClasses, badgeElementWrapper } = useBadge(props);
 </script>

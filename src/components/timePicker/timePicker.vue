@@ -20,8 +20,8 @@
         @focusout="isOpen = false"
       />
 
-      <div :class="iconClasses">
-        <IconClock />
+      <div :class="iconClasses" @click="handleClick">
+        <Icon icon="ph:clock" />
       </div>
     </div>
 
@@ -38,16 +38,16 @@
             'cursor-pointer',
             {
               'background-color-single-active rounded-border-radius-md':
-                option.toUpperCase() === selectedValue.toUpperCase(),
+                option.toUpperCase() === selectedValue?.toUpperCase(),
             },
           ]"
           @mousedown.prevent="selectOption(option)"
         >
           {{ option }}
 
-          <span v-if="option.toUpperCase() === selectedValue.toUpperCase()" class="text-color-brand-base font-bold"
-            ><IconCheck
-          /></span>
+          <span v-if="option.toUpperCase() === selectedValue?.toUpperCase()" class="text-color-brand-base font-bold">
+            <Icon icon="ph:check" />
+          </span>
         </div>
       </div>
       <div v-else class="px-3 py-2 text-gray-500">No matching options found</div>
@@ -56,12 +56,9 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-
+import { Icon } from '@iconify/vue';
 import { timePickerPropTypes, timePickerEmitTypes } from './timePicker';
 import { useTimePicker } from './use-timePicker';
-import IconCheck from '~icons/ph/check';
-import IconClock from '~icons/ph/clock';
 
 const props = defineProps(timePickerPropTypes);
 const emit = defineEmits(timePickerEmitTypes);

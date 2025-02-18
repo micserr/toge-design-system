@@ -21,9 +21,11 @@
 <script setup lang="ts">
 import { avatarPropTypes } from './avatar';
 import { useAvatar } from './use-avatar';
+
 import SprBadge from '@/components/badge/badge.vue';
 
 const props = defineProps(avatarPropTypes);
+
 const {
   avatarClassses,
   avatarImageClassses,

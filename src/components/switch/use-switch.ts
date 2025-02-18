@@ -1,4 +1,4 @@
-import { computed, ref, ComputedRef } from 'vue';
+import { computed, ref, ComputedRef, toRefs } from 'vue';
 import { useElementHover, useMousePressed } from '@vueuse/core';
 import classNames from 'classnames';
 import type { SwitchPropTypes } from './switch';
@@ -8,13 +8,13 @@ export const useSwitch = (props: SwitchPropTypes) => {
   const switchRef = ref<HTMLInputElement | null>(null);
   const isHovered = useElementHover(switchWrapperRef);
   const { pressed } = useMousePressed({ target: switchRef });
-  const { disabled, state, modelValue } = props;
+  const { disabled, state, modelValue } = toRefs(props);
 
   const switchProps: ComputedRef<Record<string, unknown>> = computed(() => {
     return {
-      ...(disabled && { ariaDisabled: true }),
-      disabled: disabled,
-      autofocus: state === 'hover',
+      ...(disabled.value && { ariaDisabled: true }),
+      disabled: disabled.value,
+      autofocus: state.value === 'hover',
       modelValue: modelValue,
     };
   });
@@ -24,9 +24,11 @@ export const useSwitch = (props: SwitchPropTypes) => {
     if (props.disabled) {
       return getDisabledBackground();
     }
+
     if (pressed.value) {
       return getPressedBackground();
     }
+
     if (isHovered.value) {
       return getHoveredBackground();
     }

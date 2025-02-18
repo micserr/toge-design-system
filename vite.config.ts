@@ -4,7 +4,6 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import Components from 'unplugin-vue-components/vite';
 import dts from 'vite-plugin-dts';
 import gzipPlugin from 'rollup-plugin-gzip';
-import Icons from 'unplugin-icons/vite';
 
 import tailwind from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
@@ -23,10 +22,6 @@ export default defineConfig({
     Components(),
     dts(),
     gzipPlugin(), // Consider conditionally applying this for production
-    Icons({
-      autoInstall: true,
-      compiler: 'vue3',
-    }),
   ],
   resolve: {
     alias: {

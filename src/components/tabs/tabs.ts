@@ -4,19 +4,12 @@ export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<
 
 type List = {
   label: string;
-  icon?: Component;
+  icon?: string;
   iconFill?: Component;
   disabled?: boolean;
 };
 
 export const tabsPropTypes = {
-  /**
-   * @description Tabs Type (underlined, not underlined)
-   */
-  underlined: {
-    type: Boolean,
-    default: false,
-  },
   /**
    * @description Tabs List,
    * option list: label, icon, iconFill, disabled
@@ -25,6 +18,20 @@ export const tabsPropTypes = {
     type: Array<List>,
     default: () => [],
   },
+  /**
+   * @description Tabs Type (underlined, not underlined)
+   */
+  underlined: {
+    type: Boolean,
+    default: false,
+  },
+  /**
+   * @description Active Tab
+   */
+  activeTab: {
+    type: String,
+    default: '',
+  },
 };
 
 export const tabsEmitTypes = {
@@ -32,4 +39,5 @@ export const tabsEmitTypes = {
 };
 
 export type TabsPropTypes = ExtractPropTypes<typeof tabsPropTypes>;
+
 export type TabsEmitTypes = typeof tabsEmitTypes;

@@ -504,7 +504,7 @@
         @click="emit('notifications', 'notifications-triggered')"
       >
         <Icon icon="ph:bell" class="h-[1.25em] w-[1.25em]" />
-        <badge
+        <spr-badge
           class="absolute -top-0.5 right-2.5"
           :text="String(props.notificationCount)"
           variant="danger"
@@ -523,7 +523,12 @@
         @click="emit('requests', 'requests-triggered')"
       >
         <Icon icon="ph:check-square" class="h-[1.25em] w-[1.25em]" />
-        <badge class="absolute -top-0.5 right-2.5" :text="String(props.requestCount)" variant="danger" size="small" />
+        <spr-badge
+          class="absolute -top-0.5 right-2.5"
+          :text="String(props.requestCount)"
+          variant="danger"
+          size="small"
+        />
       </div>
     </div>
 
@@ -625,7 +630,7 @@ import 'floating-vue/dist/style.css';
 import { sidenavPropTypes, sidenavEmitTypes } from './sidenav';
 import { useSidenav } from './use-sidenav';
 
-import badge from '../badge/badge.vue';
+import SprBadge from '../badge/badge.vue';
 
 const props = defineProps(sidenavPropTypes);
 const emit = defineEmits(sidenavEmitTypes);

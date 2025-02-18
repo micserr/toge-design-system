@@ -1,4 +1,4 @@
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, toRefs } from 'vue';
 import type { SetupContext } from 'vue';
 import type { ModalEmitTypes } from './modal';
 import type { ModalPropTypes } from './modal';
@@ -6,14 +6,14 @@ import type { ModalPropTypes } from './modal';
 import classNames from 'classnames';
 export const useModal = (props: ModalPropTypes, emit: SetupContext<ModalEmitTypes>['emit']) => {
   const dialog = ref<HTMLDialogElement | null>(null);
-  const { size } = props;
+  const { size } = toRefs(props);
 
   const modalSizesClasses = computed(() => {
     return classNames({
-      'min-w-[360px] max-w-[800px] ': size === 'sm',
-      'min-w-[480px] max-w-[800px] ': size === 'md',
-      'w-[720px]': size === 'lg',
-      'w-[1280px]': size === 'xl',
+      'min-w-[360px] max-w-[800px] ': size.value === 'sm',
+      'min-w-[480px] max-w-[800px] ': size.value === 'md',
+      'w-[720px]': size.value === 'lg',
+      'w-[1280px]': size.value === 'xl',
     });
   });
 

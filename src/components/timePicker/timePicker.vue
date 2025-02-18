@@ -38,14 +38,14 @@
             'cursor-pointer',
             {
               'background-color-single-active rounded-border-radius-md':
-                option.toUpperCase() === selectedValue.toUpperCase(),
+                option.toUpperCase() === selectedValue?.toUpperCase(),
             },
           ]"
           @mousedown.prevent="selectOption(option)"
         >
           {{ option }}
 
-          <span v-if="option.toUpperCase() === selectedValue.toUpperCase()" class="text-color-brand-base font-bold">
+          <span v-if="option.toUpperCase() === selectedValue?.toUpperCase()" class="text-color-brand-base font-bold">
             <Icon icon="ph:check" />
           </span>
         </div>
@@ -57,7 +57,6 @@
 
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
-
 import { timePickerPropTypes, timePickerEmitTypes } from './timePicker';
 import { useTimePicker } from './use-timePicker';
 

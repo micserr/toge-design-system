@@ -82,6 +82,24 @@ const tabsUnderlinedDisabled = [
 </script>
 ```
 
+## Active State
+
+By adding the `active-tab` attribute to the component, you can specify which tab should be set as active. This will highlight the tab and visually indicate that it is selected.
+
+<spr-tabs :list="tabsRandomLabel" active-tab="tab 2" />
+
+```vue
+<template>
+  <spr-tabs :list="tabsRandomLabel" active-tab="tab 2" />
+</template>
+
+<script setup>
+import SprTabs from '@/components/tabs/tabs.vue';
+
+const tabsRandomLabel = ref([{ label: 'tab 1' }, { label: 'tab 2' }, { label: 'tab 3' }]);
+</script>
+```
+
 ## With Icon
 
 <h5 class="mb-4">Regular Tabs:</h5>
@@ -225,6 +243,13 @@ const tabsBasicWithDisabled = ref([
   { label: "tab", disabled: false },
   { label: "tab", disabled: false },
   { label: "tab", disabled: true },
+]);
+
+
+const tabsRandomLabel = ref([
+  { label: "tab 1" },
+  { label: "tab 2" },
+  { label: "tab 3" },
 ]);
 
 const tabsWithIcon = ref([

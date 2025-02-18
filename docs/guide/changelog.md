@@ -1,37 +1,90 @@
 # Changelog
 
+## 1.2.19 (2025-02-18)
+
+- Feat
+  - Added Dropdown & Checkbox component and documentation
+    ([#4583fe30](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4583fe3036ca120c5d3e77e12f83783242d4dedf?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fdropdown) by @jarias)
+
+## 1.2.18 (2025-02-17)
+
+- Feat
+  - Table ([#e6dc765d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e6dc765dc7324f5bd41d0001a2ba9c0668c75d9f?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Finitial-tabl) by @adestajo)
+
+## 1.2.17 (2025-02-13)
+
+- Fix: Input and Button Style ([#c381653a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c381653ac879038e8913ba917eb3261aa86bc41f?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fselect) by @jarias)
+
+## 1.2.16 (2025-02-07)
+
+- Fix
+  - Updated Pinia store for snackbar component ([#759c761c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/759c761ca57201d1411927133e56602844aabcff?refName=refs/heads/2025/FIX/Paulo/UPDATED_PINIA_STORE_FOR_SNACKBAR) by @jbanares)
+
+## 1.2.15 (2025-02-07)
+
+- Feat
+  - Added snackbar ([#595cde45](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/595cde45667e9c333b375b230262209f36c75691?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FSNACKBAR) by @jbanares)
+  - Updated docs and version
+
+## 1.2.14 (2025-02-06)
+
+- Fix
+  - Border Issue and Emit (Input and Lozenge) ([#2d3153d6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2d3153d60b779d911867586fa70fd61b4fc07d6b?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Finput-error-border) by @adestajo )
+
+## 1.2.13 (2025-02-06)
+
+- Fix: Computation for Underlined Tab ([cc8478f5](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cc8478f556da27bf35b0852d86550306a72d7039?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fcomponents-enchancements) by @jarias)
+
+## 1.2.12 (2025-02-06)
+
+- Fix: Added important property on border of buttons ([6273189f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6273189ffdee05a67ce5cef148f999de8c1bef00?refName=refs%2Fheads%2F2025%2Ffix%2Fnichole%2Fborder-button-2) by @nicalla)
+
+## 1.2.11 (2025-02-05)
+
+- Fix: Added important property on border color of buttons ([#cfe4247f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cfe4247f60c41e829a16f88ec294564dca29853e?refName=refs%2Fheads%2F2025%2Ffix%2Fnichole%2Fbutton-border) by @nicalla)
+
+## 1.2.10 (2025-02-05)
+
+- Fix
+  - Date Picker Reactivity of model value ([#d00db658](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d00db65807e6179b28b714cf56e4d9a694d9b9b9?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Ftime-picker-reactivity) by @adestajo )
+  - Update each component props to toRefs ([#66b77833](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/66b7783311fd334c86936302fca05784e714a059?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Ftime-picker-reactivity) by @adestajo )
+
+## 1.2.9 (2025-02-04)
+
+- Docs - Add component creation and contribution guidelines ([#23a246a5](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23a246a5a797cb58fcaa2958c88d049d3dc7d204))
+
 ## 1.2.8 (2025-02-03)
 
 - Fix:
-  - reactivity of buttonProps (add toRefs to props in use-button.ts) ([c3e2110c])(https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c3e2110cf99614f50d1e917ccc4b2dbbaf26b3ba?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2Fdisabled-button by @despiritu)
+  - reactivity of buttonProps (add toRefs to props in use-button.ts) ([#c3e2110c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c3e2110cf99614f50d1e917ccc4b2dbbaf26b3ba by @despiritu))
 
 ## 1.2.7 (2025-02-03)
 
 - Fix:
   -rename button attribute isIcon to hasIcon
-  -Lozenge Classes ([02de1f97](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/02de1f97997677100b852eee0f536afe40fe9c44?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fbutton) by @adestajo)
+  -Lozenge Classes ([#02de1f97](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/02de1f97997677100b852eee0f536afe40fe9c44) by @adestajo)
 
 ## 1.2.6 (2025-02-03)
 
-- Feat: Code Cleanup and Animate Tabs ([ddee9cd3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ddee9cd329d1a9c8579f2ccc8c00199cd0680b05?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fcomponents-enchancements) by @jarias)
+- Feat: Code Cleanup and Animate Tabs ([#ddee9cd3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ddee9cd329d1a9c8579f2ccc8c00199cd0680b05) by @jarias)
 
 ## 1.2.5 (2025-01-31)
 
 - Fix:
   -button Icon
-  -Lozenge Border ([6d60fd9c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6d60fd9c2d1b90cb48bf71ea8ac96de82324ad35?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fbutton) by @adestajo)
+  -Lozenge Border ([#6d60fd9c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6d60fd9c2d1b90cb48bf71ea8ac96de82324ad35?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fbutton) by @adestajo)
 
 ## 1.2.4 (2025-01-30)
 
 - Fix:
-  -button Tertiary Border([d96fc96a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d96fc96ad4544b10bfa012e32eb8491112001585?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fbutton-tertiary-border) by @adestajo)
+  -button Tertiary Border([#d96fc96a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d96fc96ad4544b10bfa012e32eb8491112001585?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fbutton-tertiary-border) by @adestajo)
 
 ## 1.2.3 (2025-01-30)
 
 - Fix:
   - Icon button
   - Empty State Update button slot
-  - Switch change class name ([1d9624ed](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1d9624ed2803cff2af3c9429ebc22e430134eaf9?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fdqa-button) by @adestajo)
+  - Switch change class name ([#1d9624ed](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1d9624ed2803cff2af3c9429ebc22e430134eaf9?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fdqa-button) by @adestajo)
 
 ## 1.2.2 (2025-01-27)
 
@@ -43,7 +96,7 @@
 ## 1.2.1 (2025-01-24)
 
 - Feat:
-  - Introduced a Comprehensive Guide for Component Creation ([1cad1d93](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1cad1d936be4982da9c521f518a55e7ee04c7a95) by @JefMari)
+  - Introduced a Comprehensive Guide for Component Creation ([#1cad1d93](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1cad1d936be4982da9c521f518a55e7ee04c7a95) by @JefMari)
 
 ## 1.2.0 (2025-01-24)
 

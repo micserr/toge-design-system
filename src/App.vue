@@ -21,6 +21,50 @@
     </template>
   </spr-sidenav>
 
+  <br />
+
+  <spr-snackbar ref="snackbar" />
+
+  <spr-button @click="successSnackbar"> Show success</spr-button>
+  <spr-button @click="errorSnackbar"> Show error</spr-button>
+
+  <div class="mock-snackbar">
+    <spr-snack
+      class="mock-snack"
+      text="Two line with long action should look like this when implemented. This is more additional text for lines."
+      tone="success"
+      action-text="action"
+      show-icon
+    />
+  
+    <spr-snack
+      class="mock-snack"
+      text="Yehey"
+      tone="danger"
+      action-text="action"
+      show-icon
+      show-action
+    />
+  
+    <spr-snack
+      class="mock-snack"
+      text="Two line with long action should look like this when implemented. This is more additional text for lines."
+      tone="caution"
+      action-text="action"
+      show-icon
+      show-action
+    />
+  
+    <spr-snack
+      class="mock-snack"
+      text="Hello"
+      tone="information"
+      action-text="action"
+      show-icon
+      show-action
+    />
+  </div>
+
   <h1 class="heading-xl">askhdjahskjdhasjkhdjkashkjdas</h1>
   <h1 class="heading-lg">askhdjahskjdhasjkhdjkashkjdas</h1>
   <h1 class="heading-md">askhdjahskjdhasjkhdjkashkjdas</h1>
@@ -34,96 +78,30 @@
 import { ref } from 'vue';
 
 import SprSidenav from './components/sidenav/sidenav.vue';
+import SprButton from './components/button/button.vue';
+import SprSnack from './components/snackbar/snack/snack.vue';
+import SprSnackbar from './components/snackbar/snackbar.vue';
 
-const quickActions = ref([
-  {
-    menuHeading: 'Sub Heading 1',
-    items: [
-      {
-        title: 'Leave Request',
-        description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: 'ph:house-simple',
-        iconBgColor: 'purple',
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-      },
-      {
-        title: 'Onboarding Request',
-        description: 'Seamlessly onboard new employees into your Sprout ecosystem',
-        icon: 'ph:house-simple',
-        iconBgColor: 'purple',
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-      },
-      {
-        title: 'Certificate of Employee',
-        description: 'Lorem ipsum dolor sit amet consectetur. ',
-        icon: 'ph:house-simple',
-        iconBgColor: 'purple',
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-      },
-    ],
-  },
-  {
-    menuHeading: 'Sub Heading 2',
-    items: [
-      {
-        title: 'ReadyWage',
-        description: 'Request Form',
-        icon: 'ph:house-simple',
-        iconBgColor: 'purple',
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-      },
-      {
-        title: 'Create Workflow',
-        description: 'Access your hard-earned salary in advance',
-        icon: 'ph:house-simple',
-        iconBgColor: 'purple',
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-      },
-      {
-        title: 'Create Something 1',
-        description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: 'ph:house-simple',
-        iconBgColor: 'purple',
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-      },
-      {
-        title: 'Create Something 2',
-        description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: 'ph:house-simple',
-        iconBgColor: 'purple',
-        redirect: {
-          openInNewTab: false,
-          isAbsoluteURL: false,
-          link: '/',
-        },
-      },
-    ],
-  },
-]);
+const snackbar = ref(null);
+const successSnackbar = () => {
+  snackbar.value.showSuccess({
+    text: "Yehey!",
+    showIcon: true,
+    actionText: "close",
+    showAction: true,
+  });
+}
+
+const errorSnackbar = () => {
+  snackbar.value.showCaution({
+    text: "Error!",
+    actionText: "action",
+    showAction: true,
+    showIcon: true,
+    duration: 8000,
+    action: () => console.log("Error action clicked"),
+  });
+}
 
 const activeNav = ref({
   parentNav: 'Home',
@@ -481,8 +459,10 @@ const userMenu = ref({
 });
 </script>
 
-<style>
+<style lang="scss">
 body {
   @apply m-0 bg-mushroom-100 font-main;
+  margin-left: 64px;
+  padding: 64px;
 }
 </style>

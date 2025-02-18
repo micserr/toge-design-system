@@ -1,9 +1,16 @@
-import { computed } from 'vue';
-import type { InputPropTypes } from './input';
-
+import { computed, toRefs } from 'vue';
+import type { InputPropTypes, InputEmitTypes } from './input';
 import classNames from 'classnames';
-export const useInput = (props: InputPropTypes, slots: Record<string, unknown>) => {
-  const { error, disabled, offsetSize } = props;
+import { useVModel } from '@vueuse/core';
+import type { SetupContext } from 'vue';
+
+export const useInput = (
+  props: InputPropTypes,
+  slots: Record<string, unknown>,
+  emit: SetupContext<InputEmitTypes>['emit'],
+) => {
+  const { active, error, disabled, readonly, offsetSize } = toRefs(props);
+  const modelValue = useVModel(props, 'modelValue', emit);
 
   const wrapperClasses = computed(() => {
     return classNames('flex flex-col gap-size-spacing-4xs');
@@ -11,7 +18,7 @@ export const useInput = (props: InputPropTypes, slots: Record<string, unknown>) 
 
   const labelClasses = computed(() => {
     return classNames('body-sm-regular text-color-strong block', {
-      'text-color-on-fill-disabled': disabled,
+      'text-color-on-fill-disabled': disabled.value,
     });
   });
 
@@ -25,49 +32,59 @@ export const useInput = (props: InputPropTypes, slots: Record<string, unknown>) 
       'placeholder:text-mushroom-300',
       'text-color-strong',
       'font-size-200',
-      'border border-solid border-mushroom-200',
-      'focus:border-kangkong-700',
+      'focus:!border-kangkong-700',
       'focus:text-color-strong',
-      'focus:border-[1.5px]',
+      'focus:!border-[1.5px]',
       'outline-none',
       'ring-0',
       {
-        'border-[1.5px]': error,
-        'border-tomato-600': error,
-        'focus:border-tomato-600': error,
-        'border-white-100': disabled,
-        'background-color-disabled': disabled,
-        'cursor-not-allowed': disabled,
-        'text-color-on-fill-disabled': disabled,
+        'border border-solid border-mushroom-200': !error.value || !disabled.value,
+        '!border-[1.5px]': error.value,
+        '!border-tomato-600': error.value,
+        'focus:!border-tomato-600': error.value,
+        '!border-white-100': disabled.value,
+        'background-color-disabled': disabled.value,
+        'cursor-not-allowed': disabled.value,
+        'text-color-on-fill-disabled': disabled.value,
         'pr-[5%]': slots.icon,
         'pl-size-spacing-lg': slots.prefix,
-        'pr-[94%] sm:pr-[85%]': offsetSize === 'xs' && slots.trailing,
-        'pr-[90%]': offsetSize === 'sm' && slots.trailing,
-        'pr-[50%]': offsetSize === 'md' && slots.trailing,
+        'pr-[93%] sm:pr-[85%]': offsetSize.value === 'xs' && slots.trailing,
+        'pr-[90%] sm:pr-[80%]': offsetSize.value === 'sm' && slots.trailing,
+        'pr-[50%]': offsetSize.value === 'md' && slots.trailing,
+        'cursor-pointer': readonly.value,
+        'border-kangkong-700': active.value,
+        'text-color-strong': active.value,
+        'border-[1.5px]': active.value,
       },
     );
   });
 
   const iconSlotClasses = computed(() => {
     return classNames('absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-mushroom-300', {
-      '!text-tomato-600': error,
+      '!text-tomato-600': error.value,
     });
   });
 
   const prefixSlotClasses = computed(() => {
     return classNames('absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-mushroom-300', {
-      '!text-tomato-600': error,
+      '!text-tomato-600': error.value,
     });
   });
 
   const trailingSlotClasses = computed(() => {
     return classNames('absolute left-[55%] top-1/2 -translate-y-1/2 transform text-mushroom-300', {
-      '!text-tomato-600': error,
-      'left-[7%] sm:left-[16%]': offsetSize === 'xs' && slots.trailing,
-      'left-[11%]': offsetSize === 'sm' && slots.trailing,
-      'left-[51%]': offsetSize === 'md' && slots.trailing,
+      '!text-tomato-600': error.value,
+      'left-[7%] sm:left-[16%]': offsetSize.value === 'xs' && slots.trailing,
+      'left-[12%] sm:left-[24%]': offsetSize.value === 'sm' && slots.trailing,
+      'left-[52%]': offsetSize.value === 'md' && slots.trailing,
     });
   });
+
+  const onInput = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+
+    modelValue.value = target.value;
+  };
 
   return {
     inputClasses,
@@ -76,5 +93,6 @@ export const useInput = (props: InputPropTypes, slots: Record<string, unknown>) 
     iconSlotClasses,
     prefixSlotClasses,
     trailingSlotClasses,
+    onInput,
   };
 };

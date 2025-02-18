@@ -5,13 +5,24 @@ Lozenge represents entities using icons, labels, and images.
 ## Key Features
 
 <ul>
-  <li><strong>Label:</strong> The main text displayed on the lozenge.
+  <li>
+    <strong>Label:</strong>
+    <span>The main text displayed on the lozenge.</span>
   </li>
-  <li><strong>Tone:</strong> A property that likely changes the visual style of the lozenge to indicate different statuses or types (e.g., "caution", "information").
+  <li>
+    <strong>Tone:</strong>
+    <span>
+      A property that likely changes the visual style of the lozenge to indicate different 
+      statuses or types (e.g., "caution", "information").
+    </span>
   </li>
-  <li><strong>URL:</strong> A property to specify an image URL, which is used to display an avatar within the lozenge.
+  <li>
+    <strong>URL:</strong>
+    <span>A property to specify an image URL, which is used to display an avatar within the lozenge.</span>
   </li>
-  <li><strong>Icon Slot:</strong> A named slot (#icon) that allows you to pass a custom icon component to be displayed within the lozenge.
+  <li>
+    <strong>Icon Slot:</strong>
+    <span>A named slot (#icon) that allows you to pass a custom icon component to be displayed within the lozenge.</span>
   </li>
 </ul>
 
@@ -20,9 +31,7 @@ Lozenge represents entities using icons, labels, and images.
 A basic lozenge with a text is created with the label property.
 
 <div class="flex items-center gap-2">
-    <spr-lozenge
-      label="Lozenge"
-    />
+  <spr-lozenge label="Lozenge" />
 </div>
 
 ```vue
@@ -31,7 +40,7 @@ A basic lozenge with a text is created with the label property.
 
 ## Tone
 
-<div class="flex items-center gap-2">
+<div class="flex items-center gap-2 overflow-auto py-3">
   <spr-lozenge label="Plain"/>
   <spr-lozenge label="pending" tone="pending" />
   <spr-lozenge label="information" tone="information" />
@@ -53,7 +62,7 @@ A basic lozenge with a text is created with the label property.
 
 ## Type
 
-<div class="flex items-center gap-2">
+<div class="flex items-center gap-2 overflow-auto py-3">
   <spr-lozenge label="Hollow" tone="information" />
   <spr-lozenge label="Fill" tone="information" fill/>
 </div>
@@ -65,7 +74,7 @@ A basic lozenge with a text is created with the label property.
 
 ## Avatar
 
-<div class="flex flex-col  gap-2 bg-white-50 p-4">
+<div class="flex flex-col  gap-2 bg-white-50 p-4 overflow-auto py-3">
   <div class="flex items-center gap-2">
     <spr-lozenge label="pending" tone="pending" url="https://tinyurl.com/2vzn782p"/>
     <spr-lozenge label="information" tone="information" url="https://tinyurl.com/2vzn782p"/>
@@ -106,10 +115,7 @@ A basic lozenge with a text is created with the label property.
 ## Slot Avatar
 
 <div class="flex flex-col  gap-2">
-  <spr-lozenge
-    label="Users"
-    tone="information"
-    >
+  <spr-lozenge label="Users" tone="information">
     <template #avatar>
       <img
         class=" h-4 w-4 rounded-full object-cover"
@@ -118,7 +124,7 @@ A basic lozenge with a text is created with the label property.
       />
     </template>
     <template #icon>
-      <IconUsersThree />
+      <Icon icon="ph:users-three" />
     </template>
   </spr-lozenge>
 </div>
@@ -127,7 +133,7 @@ A basic lozenge with a text is created with the label property.
 <template>
   <spr-lozenge label="Users" tone="information">
     <template #icon>
-      <IconUsersThree />
+      <Icon icon="ph:users-three" />
     </template>
 
     <template #avatar>
@@ -136,20 +142,17 @@ A basic lozenge with a text is created with the label property.
   </spr-lozenge>
 </template>
 
-<script setup>
-import IconUsersThree from '~icons/ph/users-three';
+<script lang="ts" setup>
+import { Icon } from '@iconify/vue';
 </script>
 ```
 
 ## Icon
 
 <div class="flex flex-col  gap-2">
-  <spr-lozenge
-    label="Users"
-    tone="information"
-    >
+  <spr-lozenge label="Users" tone="information">
     <template #icon>
-      <IconUsersThree />
+      <Icon icon="ph:users-three" />
     </template>
   </spr-lozenge>
 </div>
@@ -158,13 +161,13 @@ import IconUsersThree from '~icons/ph/users-three';
 <template>
   <spr-lozenge label="Users" tone="information">
     <template #icon>
-      <IconUsersThree />
+      <Icon icon="ph:users-three" />
     </template>
   </spr-lozenge>
 </template>
 
-<script setup>
-import IconUsersThree from '~icons/ph/users-three';
+<script lang="ts" setup>
+import { Icon } from '@iconify/vue';
 </script>
 ```
 
@@ -177,16 +180,45 @@ import IconUsersThree from '~icons/ph/users-three';
 
 ## Lozenge API
 
-### Lozenge Attributes
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>tone</td>
+      <td>lozenge tone</td>
+      <td>'pending' | 'information' | 'success' | 'neutral' | 'caution' | 'danger'</td>
+      <td>neutral</td>
+    </tr>
+    <tr>
+      <td>fill</td>
+      <td>lozenge type (fill = true, hollow = false)</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>Label</td>
+      <td>string</td>
+      <td>label</td>
+    </tr>
+    <tr>
+      <td>url</td>
+      <td>avatar image url</td>
+      <td>string</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
 
-| Name  | Description                                | Type                                                                           | Default |
-| ----- | ------------------------------------------ | ------------------------------------------------------------------------------ | ------- |
-| tone  | lozenge tone                               | `'pending' \| 'information' \|  'success' \| 'neutral' \|'caution' \|'danger'` | neutral |
-| fill  | lozenge type (fill = true, hollow = false) | `boolean`                                                                      | false   |
-| label | Label                                      | `string`                                                                       | label   |
-| url   | avatar image url                           | `string`                                                                       | none    |
+<script lang="ts" setup>  
+import { Icon } from '@iconify/vue';
 
-<script setup lang="ts">  
-  import SprLozenge from "@/components/lozenge/lozenge.vue"
-  import IconUsersThree from '~icons/ph/users-three';
+import SprLozenge from "@/components/lozenge/lozenge.vue"
 </script>

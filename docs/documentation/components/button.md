@@ -8,7 +8,7 @@ Commonly used button.
   <spr-button>Buttons</spr-button>
 </div>
 
-```jsx
+```vue
 <spr-button>Button</spr-button>
 ```
 
@@ -20,7 +20,7 @@ Commonly used button.
   <spr-button tone="danger">Danger</spr-button>
 </div>
 
-```jsx
+```vue
 <spr-button>Neutral/Default</spr-button>
 <spr-button tone="success">Success</spr-button>
 <spr-button tone="danger">Danger</spr-button>
@@ -34,7 +34,7 @@ Commonly used button.
   <spr-button size="large">Large</spr-button>
 </div>
 
-```jsx
+```vue
 <spr-button size="small">Small</spr-button>
 <spr-button>Medium/Default</spr-button>
 <spr-button size="large">Large</spr-button>
@@ -58,7 +58,7 @@ Commonly used button.
   <spr-button tone="danger" variant="tertiary">Tertiary</spr-button>
 </div>
 
-```jsx
+```vue
 // Primary/Default
 <spr-button>Primary/Default</spr-button>
 <spr-button variant="secondary">Secondary</spr-button>
@@ -77,30 +77,112 @@ Commonly used button.
 
 ## Disabled
 
+<div class="flex items-center gap-2 mb-2">
+  <spr-button size="small" disabled>Primary</spr-button>
+  <spr-button size="small" variant="secondary" disabled>Secondary</spr-button>
+  <spr-button size="small" variant="tertiary" disabled>Tertiary</spr-button>
+</div>
+<div class="flex items-center gap-2 mb-2">
+  <spr-button  disabled>Primary</spr-button>
+  <spr-button variant="secondary" disabled>Secondary</spr-button>
+  <spr-button variant="tertiary" disabled>Tertiary</spr-button>
+</div>
 <div class="flex items-center gap-2">
-  <spr-button disabled size="small">Small</spr-button>
-  <spr-button disabled>Default</spr-button>
-  <spr-button disabled size="large">Large</spr-button>
+  <spr-button size="large" disabled>Primary</spr-button>
+  <spr-button size="large" variant="secondary" disabled>Secondary</spr-button>
+  <spr-button size="large" variant="tertiary" disabled>Tertiary</spr-button>
 </div>
 
-```jsx
+```vue
 <spr-button disabled ize="small">Small</spr-button>
 <spr-button disabled>Medium/Default</spr-button>
 <spr-button disabled size="large">Large</spr-button>
+```
+
+## Icon
+
+<div class="flex items-center gap-2 mb-2">
+    <spr-button size="small" hasIcon ><Icon icon="ph:trash" /></spr-button>
+    <spr-button variant="secondary" hasIcon><Icon icon="ph:trash" /></spr-button>
+    <spr-button size="large" variant="tertiary" hasIcon><Icon icon="ph:trash" /></spr-button>
+</div>
+
+<div class="flex items-center gap-2 mb-2">
+    <spr-button size="small" tone="success" hasIcon><Icon icon="ph:trash" /></spr-button>
+    <spr-button tone="success"  variant="secondary" hasIcon><Icon icon="ph:trash" /></spr-button>
+    <spr-button size="large" tone="success"variant="tertiary" hasIcon><Icon icon="ph:trash" /></spr-button>
+</div>
+
+<div class="flex items-center gap-2 mb-2">
+    <spr-button hasIcon size="small" tone="danger" ><Icon icon="ph:trash" /></spr-button>
+    <spr-button hasIcon tone="danger" variant="secondary" ><Icon icon="ph:trash" /></spr-button>
+    <spr-button hasIcon size="large" tone="danger" variant="tertiary" ><Icon icon="ph:trash" /></spr-button>
+</div>
+
+<div class="flex items-center gap-2 mb-2">
+    <spr-button disabled hasIcon size="small" tone="danger"><Icon icon="ph:trash" /></spr-button>
+    <spr-button disabled hasIcon tone="danger" variant="secondary" ><Icon icon="ph:trash" /></spr-button>
+    <spr-button disabled hasIcon size="large" tone="danger" variant="tertiary" ><Icon icon="ph:trash" /></spr-button>
+</div>
+
+```vue
+<template>
+  <spr-button hasIcon><Icon icon="ph:trash" /></spr-button>
+</template>
+
+<script setup>
+import { Icon } from '@iconify/vue';
+</script>
 ```
 
 ## Button API
 
 ### Button Attributes
 
-| Name     | Description        | Type                                     | Default  |
-| -------- | ------------------ | ---------------------------------------- | -------- |
-| tone     | button tone        | `'neutral' \| 'success' \|  'danger'`    | neutral  |
-| size     | button size        | `'small' \| 'medium' \| 'large'`         | medium   |
-| variant  | button varaint     | `'primary' \| 'secondary' \| 'tertiary'` | tertiary |
-| disabled | disable the button | `boolean`                                | false    |
-| tag      | custom element tag | `string` / `Component`                   | button   |
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>tone</td>
+      <td>button tone</td>
+      <td>'neutral' | 'success' | 'danger'</td>
+      <td>neutral</td>
+    </tr>
+    <tr>
+      <td>size</td>
+      <td>button size</td>
+      <td>'small' | 'medium' | 'large'</td>
+      <td>medium</td>
+    </tr>
+    <tr>
+      <td>variant</td>
+      <td>button variant</td>
+      <td>'primary' | 'secondary' | 'tertiary'</td>
+      <td>tertiary</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>disable the button</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>tag</td>
+      <td>custom element tag</td>
+      <td>string / Component</td>
+      <td>button</td>
+    </tr>
+  </tbody>
+</table>
 
-<script setup lang="ts">
-  import SprButton from "@/components/button/button.vue"
+<script lang="ts" setup>
+import SprButton from "@/components/button/button.vue";
+import { Icon } from '@iconify/vue';
 </script>

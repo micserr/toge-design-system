@@ -2,8 +2,8 @@
 
 import colorScheme from './src/assets/scripts/colors';
 import spacing from './src/assets/scripts/spacing';
-import maxWidth from './src/assets/scripts/maxWidth';
-import borderRadius from './src/assets/scripts/borderRadius';
+import maxWidth from './src/assets/scripts/max-width';
+import borderRadius from './src/assets/scripts/border-radius';
 import utilities from './src/assets/scripts/utilities';
 
 const plugin = require('tailwindcss/plugin');

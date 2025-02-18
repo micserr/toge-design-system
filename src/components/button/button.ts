@@ -53,6 +53,10 @@ export const buttonPropTypes = {
     type: Boolean,
     default: false,
   },
+  hasIcon: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const buttonEmitTypes = {

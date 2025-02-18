@@ -49,6 +49,23 @@ export default defineConfig({
           ],
         },
         {
+          text: 'Contributing',
+          items: [
+            {
+              text: 'Component Creation',
+              link: '/guide/contributing/component-creation',
+            },
+            {
+              text: 'Component Documentation',
+              link: '/guide/contributing/component-documentation',
+            },
+            {
+              text: 'Contribution',
+              link: '/guide/contributing/contribution',
+            },
+          ],
+        },
+        {
           text: 'Advanced',
           items: [{ text: 'Changelog', link: '/guide/changelog' }],
         },
@@ -58,32 +75,60 @@ export default defineConfig({
           text: 'Components',
           items: [
             {
-              text: 'Button',
-              link: '/documentation/components/button',
-            },
-            {
-              text: 'Sidenav',
-              link: '/documentation/components/sidenav',
-            },
-            {
-              text: 'Lozenge',
-              link: '/documentation/components/lozenge',
-            },
-            {
-              text: 'Switch',
-              link: '/documentation/components/switch',
+              text: 'Avatar',
+              link: '/documentation/components/avatar',
             },
             {
               text: 'Badge',
               link: '/documentation/components/badge',
             },
             {
-              text: 'Radio',
-              link: '/documentation/components/radio',
+              text: 'Button',
+              link: '/documentation/components/button',
+            },
+            {
+              text: 'Checkbox',
+              link: '/documentation/components/checkbox',
+            },
+            {
+              text: 'Dropdown',
+              link: '/documentation/components/dropdown',
+            },
+            {
+              text: 'Empty State',
+              link: '/documentation/components/empty-state',
             },
             {
               text: 'Input',
               link: '/documentation/components/input',
+            },
+            {
+              text: 'Lozenge',
+              link: '/documentation/components/lozenge',
+            },
+            {
+              text: 'Modal',
+              link: '/documentation/components/modal',
+            },
+            {
+              text: 'Radio',
+              link: '/documentation/components/radio',
+            },
+            {
+              text: 'Sidenav',
+              link: '/documentation/components/sidenav',
+            },
+            {
+              text: 'Snackbar',
+              link: '/documentation/components/snackbar',
+            },
+            {
+              text: 'Switch',
+              link: '/documentation/components/switch',
+            },
+            {
+              text: 'Table',
+              link: '/documentation/components/Table',
             },
             {
               text: 'Tabs',
@@ -91,23 +136,11 @@ export default defineConfig({
             },
             {
               text: 'Time Picker',
-              link: '/documentation/components/timePicker',
+              link: '/documentation/components/time-picker',
             },
             {
               text: 'Tooltip',
               link: '/documentation/components/tooltip',
-            },
-            {
-              text: 'Modal',
-              link: '/documentation/components/modal',
-            },
-            {
-              text: 'Empty State',
-              link: '/documentation/components/emptyState',
-            },
-            {
-              text: 'Avatar',
-              link: '/documentation/components/avatar',
             },
           ],
         },
@@ -115,24 +148,24 @@ export default defineConfig({
           text: 'Utilities',
           items: [
             {
+              text: 'Border Radius',
+              link: '/documentation/utilities/border-radius',
+            },
+            {
               text: 'Colors',
               link: '/documentation/utilities/colors',
             },
             {
-              text: 'Typography',
-              link: '/documentation/utilities/typography',
+              text: 'Max Width',
+              link: '/documentation/utilities/max-width',
             },
             {
               text: 'Spacing',
               link: '/documentation/utilities/spacing',
             },
             {
-              text: 'Max Width',
-              link: '/documentation/utilities/maxWidth',
-            },
-            {
-              text: 'Border Radius',
-              link: '/documentation/utilities/borderRadius',
+              text: 'Typography',
+              link: '/documentation/utilities/typography',
             },
           ],
         },

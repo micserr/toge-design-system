@@ -48,19 +48,11 @@ Replace `[image_path]` with the actual path to your image. This slot renders the
 
 ## Icon Component Integration
 
-If you're using icons in the navigation, ensure that you import the icon components properly into your Vue file.
+Design System provides a property `icon` that allows you to use the Icon component. You can use the Icon component to display icons in the side navigation.
 
-You can view more on how to implement Unplugin Icons in the [Unplugin Icons documentation](https://iconify.design/docs/usage/svg/unplugin/).
+Currently the Design System uses the Iconify library to display icons. You can use the Iconify icon names to display icons in the side navigation. For more information on Iconify, see the <a href="https://iconify.design/docs/usage/svg/iconify" target="_blank">Iconify documentation.</a>
 
-```Javascript
-import IconHouseSimple from '~icons/ph/house-simple';
-import IconUsersThree from '~icons/ph/users-three';
-import IconShapes from '~icons/ph/shapes';
-```
-
-::: info Important to note:
-The icon property in each link (e.g., DashboardIcon, SettingsIcon) must be a Vue component. This allows the navigation to render the appropriate icons
-:::
+---
 
 ## Navigation Links
 
@@ -72,11 +64,11 @@ defining the navigation links has 2 sections, `top` and `bottom`. Each section c
 <template>
   <spr-sidenav :nav-links="navLinks">
     <template #logo-image>
-      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
 
     <template #avatar-image>
-      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>
@@ -84,15 +76,13 @@ defining the navigation links has 2 sections, `top` and `bottom`. Each section c
 <script setup>
 import { ref } from 'vue';
 
-import IconHouseSimple from '~icons/ph/house-simple';
-
 const navLinks = ref({
   top: [
     {
       parentLinks: [
         {
           title: 'Home',
-          icon: IconHouseSimple,
+          icon: 'ph:house-simple',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -164,7 +154,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Home',
-          icon: IconHouseSimple,
+          icon: 'ph:house-simple',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -270,8 +260,8 @@ The nav-links attribute expects an array of objects that define the navigation m
   <li>
     <code class="mr-2">icon:</code>
     <span>
-      The icon associated only with <code>parentLinks</code>, usually an icon component (e.g., `IconHouseSimple`, `IconUsersThree`).
-      See more on <a href="https://iconify.design/docs/usage/svg/unplugin/">Unplugin Icons</a>.
+      The icon associated only with <code>parentLinks</code>, usually an iconify strong (e.g., `ph:home`, `ph:users-three`).
+      See more on <a href="https://iconify.design/docs/usage/svg/iconify/">Iconify</a>.
     </span>
   </li>
   <li>
@@ -327,7 +317,7 @@ The nav-links attribute expects an array of objects that define the navigation m
       parentLinks: [
         {
           title: <String>,
-          icon: <COMPONENT>,   // Example icon component using Unplugin Icons
+          icon: <String>,
           hidden: <Boleean>,
           redirect: {
             openInNewTab: <Boleean>,
@@ -375,7 +365,7 @@ The nav-links attribute expects an array of objects that define the navigation m
       parentLinks: [
         {
           title: <String>,
-          icon: <COMPONENT>,   // Example icon component using Unplugin Icons
+          icon: <String>,
           redirect: {
             openInNewTab: <Boleean>,
             isAbsoluteURL: <Boleean>,
@@ -428,19 +418,17 @@ Here’s a example of how to implement the active navigation property:
 <template>
   <spr-sidenav :active-nav="activeNav" :nav-links="navLinks">
     <template #logo-image>
-      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
 
     <template #avatar-image>
-      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-
-import IconHouseSimple from '~icons/ph/house-simple';
 
 const activeNav = ref({
   parentNav: 'Home',
@@ -454,7 +442,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Home',
-          icon: IconHouseSimple,
+          icon: 'ph:house-simple',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -526,7 +514,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Home',
-          icon: IconHouseSimple,
+          icon: 'ph:house-simple',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -609,19 +597,17 @@ The `iconBgColor` property currently can only handle 2 values `green` or `purple
 <template>
   <spr-sidenav :quick-actions="quickActions" :active-nav="activeNav" :nav-links="navLinks">
     <template #logo-image>
-      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
 
     <template #avatar-image>
-      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-
-import IconHouseSimple from '~icons/ph/house-simple';
 
 const quickActions = ref([
   {
@@ -630,7 +616,7 @@ const quickActions = ref([
       {
         title: 'Leave Request',
         description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -641,7 +627,7 @@ const quickActions = ref([
       {
         title: 'Onboarding Request',
         description: 'Seamlessly onboard new employees into your Sprout ecosystem',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -652,7 +638,7 @@ const quickActions = ref([
       {
         title: 'Certificate of Employee',
         description: 'Lorem ipsum dolor sit amet consectetur. ',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -668,7 +654,7 @@ const quickActions = ref([
       {
         title: 'ReadyWage',
         description: 'Request Form',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -679,7 +665,7 @@ const quickActions = ref([
       {
         title: 'Create Workflow',
         description: 'Access your hard-earned salary in advance',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -690,7 +676,7 @@ const quickActions = ref([
       {
         title: 'Create Something 1',
         description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -701,7 +687,7 @@ const quickActions = ref([
       {
         title: 'Create Something 2',
         description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -725,7 +711,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Home',
-          icon: IconHouseSimple,
+          icon: 'ph:house-simple',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -797,7 +783,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Home',
-          icon: IconHouseSimple,
+          icon: 'ph:house-simple',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -878,11 +864,11 @@ Using the `@search` event, you can handle the search functionality.
 <template>
   <spr-sidenav has-search @search="handleSearch">
     <template #logo-image>
-      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
 
     <template #avatar-image>
-      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>
@@ -909,11 +895,11 @@ Using the `@notifications` or `@requests` event, you can handle the notification
     @requests="handleRequest"
   >
     <template #logo-image>
-      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
 
     <template #avatar-image>
-      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>
@@ -937,19 +923,17 @@ The user menu allows you to add a user avatar at the bottom of the side navigati
 <template>
   <spr-sidenav :user-menu="userMenu">
     <template #logo-image>
-      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
 
     <template #avatar-image>
-      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-
-import IconHouseSimple from '~icons/ph/house-simple';
 
 const userMenu = ref({
   name: 'John Rafael M. Arias',
@@ -958,7 +942,7 @@ const userMenu = ref({
   items: [
     {
       title: 'My Profile',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -967,7 +951,7 @@ const userMenu = ref({
     },
     {
       title: 'Privacy Policy',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -976,7 +960,7 @@ const userMenu = ref({
     },
     {
       title: 'Terms of Service',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -985,7 +969,7 @@ const userMenu = ref({
     },
     {
       title: 'Logout',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -1004,7 +988,7 @@ The following table outlines the available attributes for the Sidenav component:
 <table>
   <thead>
     <tr>
-      <td class="min-w-[180px]">Attribute</td>
+      <td class="min-w-[180px]">Name</td>
       <td>Description</td>
       <td>Type</td>
       <td>Accepted Values</td>
@@ -1022,7 +1006,7 @@ The following table outlines the available attributes for the Sidenav component:
           {
             title: [string],
             description: [string],
-            icon: [component],
+            icon: [string],
             iconBgColor: ['green' | 'purple'],
             redirect: {
               openInNewTab: [boolean],
@@ -1141,13 +1125,10 @@ Here’s a full example of how to implement the Sidenav component with the above
     @notifications="handleNotifications"
   >
     <template #logo-image>
-      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
     <template #avatar-image>
-      <img
-        src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-        alt="avatar"
-      />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
   <div class="flex-1 px-4 py-4 w-full max-w-[calc(100%-60px)] ml-[60px] overflow-auto">
@@ -1185,11 +1166,11 @@ Here’s a full example of how to implement the Sidenav component with the above
     @notifications="handleNotifications"
   >
     <template #logo-image>
-      <img src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg" alt="logo" />
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
 
     <template #avatar-image>
-      <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="avatar" />
+      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>
@@ -1199,15 +1180,6 @@ import { ref } from 'vue';
 
 import SprSidenav from '@/components/sidenav/sidenav.vue';
 
-import IconHouseSimple from '~icons/ph/house-simple';
-import IconUsersThree from '~icons/ph/users-three';
-import IconLeaf from '~icons/ph/leaf';
-import IconCurrencyRub from '~icons/ph/currency-rub';
-import IconWallet from '~icons/ph/wallet';
-import IconAddressBook from '~icons/ph/address-book';
-import IconAlien from '~icons/ph/alien';
-import IconAlignLeft from '~icons/ph/align-left';
-
 const quickActions = ref([
   {
     menuHeading: 'Sub Heading 1',
@@ -1215,7 +1187,7 @@ const quickActions = ref([
       {
         title: 'Leave Request',
         description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -1226,7 +1198,7 @@ const quickActions = ref([
       {
         title: 'Onboarding Request',
         description: 'Seamlessly onboard new employees into your Sprout ecosystem',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -1237,7 +1209,7 @@ const quickActions = ref([
       {
         title: 'Certificate of Employee',
         description: 'Lorem ipsum dolor sit amet consectetur. ',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -1253,7 +1225,7 @@ const quickActions = ref([
       {
         title: 'ReadyWage',
         description: 'Request Form',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -1264,7 +1236,7 @@ const quickActions = ref([
       {
         title: 'Create Workflow',
         description: 'Access your hard-earned salary in advance',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -1275,7 +1247,7 @@ const quickActions = ref([
       {
         title: 'Create Something 1',
         description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -1286,7 +1258,7 @@ const quickActions = ref([
       {
         title: 'Create Something 2',
         description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -1310,7 +1282,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Home',
-          icon: IconHouseSimple,
+          icon: 'ph:house-simple',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -1372,7 +1344,7 @@ const navLinks = ref({
         },
         {
           title: 'Employees',
-          icon: IconUsersThree,
+          icon: 'ph:users-three',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -1385,7 +1357,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Payroll',
-          icon: IconLeaf,
+          icon: 'ph:leaf',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -1459,7 +1431,7 @@ const navLinks = ref({
         },
         {
           title: 'Money',
-          icon: IconCurrencyRub,
+          icon: 'ph:currency-rub',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -1468,7 +1440,7 @@ const navLinks = ref({
         },
         {
           title: 'Car',
-          icon: IconWallet,
+          icon: 'ph:wallet',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -1506,7 +1478,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Gallery',
-          icon: IconAddressBook,
+          icon: 'ph:address-book',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -1572,7 +1544,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Resources',
-          icon: IconAlien,
+          icon: 'ph:alien',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -1581,7 +1553,7 @@ const navLinks = ref({
         },
         {
           title: 'News',
-          icon: IconAlignLeft,
+          icon: 'ph:align-left',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -1616,7 +1588,7 @@ const userMenu = ref({
   items: [
     {
       title: 'My Profile',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -1625,7 +1597,7 @@ const userMenu = ref({
     },
     {
       title: 'Privacy Policy',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -1634,7 +1606,7 @@ const userMenu = ref({
     },
     {
       title: 'Terms of Service',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -1643,7 +1615,7 @@ const userMenu = ref({
     },
     {
       title: 'Logout',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -1655,19 +1627,10 @@ const userMenu = ref({
 </script>
 ```
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 import SprSidenav from '@/components/sidenav/sidenav.vue';
-
-import IconHouseSimple from '~icons/ph/house-simple';
-import IconUsersThree from '~icons/ph/users-three';
-import IconLeaf from '~icons/ph/leaf';
-import IconCurrencyRub from '~icons/ph/currency-rub';
-import IconWallet from '~icons/ph/wallet';
-import IconAddressBook from '~icons/ph/address-book';
-import IconAlien from '~icons/ph/alien';
-import IconAlignLeft from '~icons/ph/align-left';
 
 const quickActions = ref([
   {
@@ -1676,7 +1639,7 @@ const quickActions = ref([
       {
         title: 'Leave Request',
         description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -1687,7 +1650,7 @@ const quickActions = ref([
       {
         title: 'Onboarding Request',
         description: 'Seamlessly onboard new employees into your Sprout ecosystem',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -1698,7 +1661,7 @@ const quickActions = ref([
       {
         title: 'Certificate of Employee',
         description: 'Lorem ipsum dolor sit amet consectetur. ',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -1714,7 +1677,7 @@ const quickActions = ref([
       {
         title: 'ReadyWage',
         description: 'Request Form',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -1725,7 +1688,7 @@ const quickActions = ref([
       {
         title: 'Create Workflow',
         description: 'Access your hard-earned salary in advance',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -1736,7 +1699,7 @@ const quickActions = ref([
       {
         title: 'Create Something 1',
         description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -1747,7 +1710,7 @@ const quickActions = ref([
       {
         title: 'Create Something 2',
         description: 'Lorem ipsum dolor sit amet consectetur.',
-        icon: IconHouseSimple,
+        icon: 'ph:house-simple',
         iconBgColor: 'purple',
         redirect: {
           openInNewTab: false,
@@ -1771,7 +1734,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Home',
-          icon: IconHouseSimple,
+          icon: 'ph:house-simple',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -1833,7 +1796,7 @@ const navLinks = ref({
         },
         {
           title: 'Employees',
-          icon: IconUsersThree,
+          icon: 'ph:users-three',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -1846,7 +1809,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Payroll',
-          icon: IconLeaf,
+          icon: 'ph:leaf',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -1920,7 +1883,7 @@ const navLinks = ref({
         },
         {
           title: 'Money',
-          icon: IconCurrencyRub,
+          icon: 'ph:currency-rub',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -1929,7 +1892,7 @@ const navLinks = ref({
         },
         {
           title: 'Car',
-          icon: IconWallet,
+          icon: 'ph:wallet',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -1967,7 +1930,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Gallery',
-          icon: IconAddressBook,
+          icon: 'ph:address-book',
           menuLinks: [
             {
               menuHeading: 'Sub Heading 1',
@@ -2033,7 +1996,7 @@ const navLinks = ref({
       parentLinks: [
         {
           title: 'Resources',
-          icon: IconAlien,
+          icon: 'ph:alien',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -2042,7 +2005,7 @@ const navLinks = ref({
         },
         {
           title: 'News',
-          icon: IconAlignLeft,
+          icon: 'ph:align-left',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
@@ -2077,7 +2040,7 @@ const userMenu = ref({
   items: [
     {
       title: 'My Profile',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -2086,7 +2049,7 @@ const userMenu = ref({
     },
     {
       title: 'Privacy Policy',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -2095,7 +2058,7 @@ const userMenu = ref({
     },
     {
       title: 'Terms of Service',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,
@@ -2104,7 +2067,7 @@ const userMenu = ref({
     },
     {
       title: 'Logout',
-      icon: IconHouseSimple,
+      icon: 'ph:house-simple',
       redirect: {
         openInNewTab: false,
         isAbsoluteURL: false,

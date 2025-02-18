@@ -17,9 +17,9 @@ A Radio Button is a component that enables a user to select a single option from
 ```vue
 <template>
   <div class="flex flex-col items-start gap-2">
-    <spr-radio id="sample1" v-model="sampleradio" name="sampleradio" value="sample1"> Default Checked Radio </spr-radio>
+    <spr-radio id="sample1" v-model="sampleradio" name="sampleradio" value="sample1">Default Checked Radio</spr-radio>
 
-    <spr-radio id="sample2" v-model="sampleradio" name="sampleradio" value="sample2"> Default Radio </spr-radio>
+    <spr-radio id="sample2" v-model="sampleradio" name="sampleradio" value="sample2">Default Radio</spr-radio>
   </div>
 </template>
 
@@ -68,17 +68,48 @@ const disabledradio = ref < string > 'disabledradio';
 
 ### Radio Attributes
 
-| Name     | Description                               | Type      | Default |
-| -------- | ----------------------------------------- | --------- | ------- |
-| id       | the id of the `input` element             | `string`  | -       |
-| name     | the name attribute of the `input` element | `string`  | -       |
-| disabled | if `true`, the component is disabled      | `boolean` | false   |
-| value    | the value of the component                | `any`     | -       |
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>the id of the `input` element</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>the name attribute of the `input` element</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>if `true`, the component is disabled</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>the value of the component</td>
+      <td>any</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
 
-<script setup lang="ts">
-  import { ref } from "vue";
-  import SprRadio from "@/components/radio/radio.vue";
+<script lang="ts" setup>
+import { ref } from "vue";
 
-  const sampleradio = ref<string>("sample1");
-  const disabledradio = ref<string>("disabledradio1");
+import SprRadio from "@/components/radio/radio.vue";
+
+const sampleradio = ref<string>("sample1");
+const disabledradio = ref<string>("disabledradio1");
 </script>

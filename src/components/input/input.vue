@@ -1,26 +1,24 @@
 <template>
   <div :class="wrapperClasses">
-    <label v-if="label" :for="id" :class="labelClasses">
-      {{ label }}
+    <label v-if="props.label" :for="id" :class="labelClasses">
+      {{ props.label }}
     </label>
     <div class="relative">
-      <div :class="prefixSlotClasses">
+      <div v-if="$slots.prefix" :class="prefixSlotClasses">
         <slot name="prefix" />
       </div>
       <input
-        :id="id"
-        :type="type"
-        :value="modelValue"
-        :class="inputClasses"
-        :placeholder="placeholder"
-        :disabled="disabled"
-        @input="$emit('update:modelValue', $event.target.value)"
+        :class="[inputClasses, { 'number-input': type === 'number' }]"
+        :placeholder="props.placeholder"
+        :disabled="props.disabled"
+        :readonly="props.readonly"
+        :value="props.modelValue"
+        @input="onInput"
       />
-      <div :class="trailingSlotClasses">
+      <div v-if="$slots.trailing" :class="trailingSlotClasses">
         <slot name="trailing" />
       </div>
-
-      <div :class="iconSlotClasses">
+      <div v-if="$slots.icon" :class="iconSlotClasses">
         <slot name="icon" />
       </div>
     </div>
@@ -28,14 +26,28 @@
 </template>
 
 <script setup lang="ts">
-import { inputPropTypes } from './input';
-import { defineProps, useSlots } from 'vue';
+import { useSlots } from 'vue';
+
+import { inputPropTypes, inputEmitTypes } from './input';
 import { useInput } from './use-input';
+
+const emit = defineEmits(inputEmitTypes);
 
 const props = defineProps(inputPropTypes);
 const slots = useSlots();
 
-defineEmits(['update:modelValue']);
-const { inputClasses, wrapperClasses, labelClasses, iconSlotClasses, prefixSlotClasses, trailingSlotClasses } =
-  useInput(props, slots);
+const { inputClasses, wrapperClasses, labelClasses, iconSlotClasses, prefixSlotClasses, trailingSlotClasses, onInput } =
+  useInput(props, slots, emit);
 </script>
+
+<style scoped>
+.number-input::-webkit-outer-spin-button,
+.number-input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.number-input {
+  -moz-appearance: textfield;
+}
+</style>

@@ -39,26 +39,28 @@ A badge is a small, visual indicator used to convey information, status, or coun
 </div>
 
 ```vue
-<div class="flex items-center gap-2 p-1">
-  <spr-badge text="9" variant="disabled" size="big" />
-  <spr-badge text="9" variant="danger" size="big" />
-  <spr-badge text="9" variant="information" size="big" />
-  <spr-badge text="9" variant="brand" size="big" />
-</div>
+<template>
+  <div class="flex items-center gap-2 p-1">
+    <spr-badge text="9" variant="disabled" size="big" />
+    <spr-badge text="9" variant="danger" size="big" />
+    <spr-badge text="9" variant="information" size="big" />
+    <spr-badge text="9" variant="brand" size="big" />
+  </div>
 
-<div class="flex items-center gap-2 p-1">
-  <spr-badge text="9" variant="disabled" size="small" />
-  <spr-badge text="9" variant="danger" size="small" />
-  <spr-badge text="9" variant="information" size="small" />
-  <spr-badge text="9" variant="brand" size="small" />
-</div>
+  <div class="flex items-center gap-2 p-1">
+    <spr-badge text="9" variant="disabled" size="small" />
+    <spr-badge text="9" variant="danger" size="small" />
+    <spr-badge text="9" variant="information" size="small" />
+    <spr-badge text="9" variant="brand" size="small" />
+  </div>
 
-<div class="flex items-center gap-2 p-1">
-  <spr-badge variant="disabled" size="tiny" />
-  <spr-badge variant="danger" size="tiny" />
-  <spr-badge variant="information" size="tiny" />
-  <spr-badge variant="brand" size="tiny" />
-</div>
+  <div class="flex items-center gap-2 p-1">
+    <spr-badge variant="disabled" size="tiny" />
+    <spr-badge variant="danger" size="tiny" />
+    <spr-badge variant="information" size="tiny" />
+    <spr-badge variant="brand" size="tiny" />
+  </div>
+</template>
 ```
 
 ## Variant
@@ -73,12 +75,14 @@ used to customize the background of the badge
 </div>
 
 ```vue
-<div class="flex gap-4 p-1">
-  <spr-badge text="9" variant="disabled" size="big" />
-  <spr-badge text="9" variant="danger" size="big" />
-  <spr-badge text="9" variant="information" size="big" />
-  <spr-badge text="9" variant="brand" size="big" />
-</div>
+<template>
+  <div class="flex gap-4 p-1">
+    <spr-badge text="9" variant="disabled" size="big" />
+    <spr-badge text="9" variant="danger" size="big" />
+    <spr-badge text="9" variant="information" size="big" />
+    <spr-badge text="9" variant="brand" size="big" />
+  </div>
+</template>
 ```
 
 ## Size
@@ -90,11 +94,13 @@ used to customize the background of the badge
 </div>
 
 ```vue
-<div class="flex gap-4">
-  <spr-badge text="9" variant="information" size="tiny" />
-  <spr-badge text="9" variant="information" size="small" />
-  <spr-badge text="9" variant="information" size="big" />
-</div>
+<template>
+  <div class="flex gap-4">
+    <spr-badge text="9" variant="information" size="tiny" />
+    <spr-badge text="9" variant="information" size="small" />
+    <spr-badge text="9" variant="information" size="big" />
+  </div>
+</template>
 ```
 
 ## Position
@@ -140,62 +146,51 @@ used to display the badge in different positions (top, bottom).
 </div>
 
 ```vue
-<div class="flex  flex-col gap-4">
-  <div class="flex gap-4">
+<template>
+  <div class="flex flex-col gap-4">
+    <div class="flex gap-4">
       <spr-badge text="9" variant="brand" size="big" position="top">
-        <spr-lozenge label="top"/>
+        <spr-lozenge label="top" />
       </spr-badge>
       <spr-badge text="9" variant="brand" size="small" position="top">
-        <spr-lozenge label="top"/>
+        <spr-lozenge label="top" />
       </spr-badge>
       <spr-badge text="9" variant="brand" size="tiny" position="top">
-        <spr-lozenge label="top"/>
+        <spr-lozenge label="top" />
       </spr-badge>
-  </div>
+    </div>
 
-  <div class="flex gap-4">
+    <div class="flex gap-4">
       <spr-badge text="9" variant="information" size="big" position="bottom">
-        <spr-lozenge label="bottom"/>
+        <spr-lozenge label="bottom" />
       </spr-badge>
       <spr-badge text="9" variant="information" size="small" position="bottom">
-        <spr-lozenge label="bottom"/>
+        <spr-lozenge label="bottom" />
       </spr-badge>
       <spr-badge text="9" variant="information" size="tiny" position="bottom">
-        <spr-lozenge label="bottom"/>
+        <spr-lozenge label="bottom" />
       </spr-badge>
-  </div>
+    </div>
 
-  <div class="flex gap-4">
-      <spr-badge text="9" variant="danger" size="big" >
-        <spr-lozenge label="default"/>
+    <div class="flex gap-4">
+      <spr-badge text="9" variant="danger" size="big">
+        <spr-lozenge label="default" />
       </spr-badge>
       <spr-badge text="9" variant="danger" size="small">
-        <spr-lozenge label="default"/>
+        <spr-lozenge label="default" />
       </spr-badge>
       <spr-badge text="9" variant="danger" size="tiny">
-        <spr-lozenge label="default"/>
+        <spr-lozenge label="default" />
       </spr-badge>
+    </div>
   </div>
-</div>
+</template>
 ```
 
 ### Position - default using slot
 
 When using the default position, use can use the slot to wrap the element to which you want to attach the badge.
 
-  <div class="flex gap-4">
-      <spr-badge text="9" variant="brand" size="big" position="top">
-        <spr-lozenge label="top"/>
-      </spr-badge>
-      <spr-badge text="9" variant="brand" size="small" position="top">
-        <spr-lozenge label="top"/>
-      </spr-badge>
-      <spr-badge text="9" variant="brand" size="tiny" position="top">
-        <spr-lozenge label="top"/>
-      </spr-badge>
-  </div>
-
-```vue
 <div class="flex gap-4">
     <spr-badge text="9" variant="brand" size="big" position="top">
       <spr-lozenge label="top"/>
@@ -207,21 +202,27 @@ When using the default position, use can use the slot to wrap the element to whi
       <spr-lozenge label="top"/>
     </spr-badge>
 </div>
+
+```vue
+<template>
+  <div class="flex gap-4">
+    <spr-badge text="9" variant="brand" size="big" position="top">
+      <spr-lozenge label="top" />
+    </spr-badge>
+    <spr-badge text="9" variant="brand" size="small" position="top">
+      <spr-lozenge label="top" />
+    </spr-badge>
+    <spr-badge text="9" variant="brand" size="tiny" position="top">
+      <spr-lozenge label="top" />
+    </spr-badge>
+  </div>
+</template>
 ```
 
 ### Position - default without using slot
 
 When using the default position, use can use the slot to wrap the element to which you want to attach the badge.
 
-  <div class="flex gap-4">
-      <spr-lozenge label="notification"/>
-      <spr-badge text="9" variant="brand" size="big"/>
-      <spr-badge text="9" variant="disabled" size="big"/>
-      <spr-badge text="9" variant="information" size="big"/>
-      <spr-badge text="9" variant="danger" size="big"/>
-  </div>
-
-```vue
 <div class="flex gap-4">
     <spr-lozenge label="notification"/>
     <spr-badge text="9" variant="brand" size="big"/>
@@ -229,12 +230,59 @@ When using the default position, use can use the slot to wrap the element to whi
     <spr-badge text="9" variant="information" size="big"/>
     <spr-badge text="9" variant="danger" size="big"/>
 </div>
+
+```vue
+<template>
+  <div class="flex gap-4">
+    <spr-lozenge label="notification" />
+    <spr-badge text="9" variant="brand" size="big" />
+    <spr-badge text="9" variant="disabled" size="big" />
+    <spr-badge text="9" variant="information" size="big" />
+    <spr-badge text="9" variant="danger" size="big" />
+  </div>
+</template>
 ```
 
-<script setup lang="ts">
-  import { ref } from 'vue';
-  import SprBadge from "@/components/badge/badge.vue"
-  
-import SprLozenge from '@/components/lozenge/lozenge.vue';
+## Badge API
 
+### Badge Attributes
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Type</th>
+    <th>Default</th>
+  </tr>
+  <tr>
+    <td>Text</td>
+    <td>short piece of text or a number</td>
+    <td>string</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>Variant</td>
+    <td>color schemes to indicate various statuses</td>
+    <td>string</td>
+    <td>brand</td>
+  </tr>
+  <tr>
+    <td>Size</td>
+    <td>big, small, tiny</td>
+    <td>string</td>
+    <td>small</td>
+  </tr>
+  <tr>
+    <td>Position</td>
+    <td>positioned relative to the element they are attached to</td>
+    <td>string</td>
+    <td>default</td>
+  </tr>
+</table>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+import SprBadge from "@/components/badge/badge.vue"
+import SprLozenge from '@/components/lozenge/lozenge.vue';
 </script>

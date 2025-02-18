@@ -106,71 +106,25 @@
   }
   /* #endregion - Tooltips */
 
-  /* #region - Lozange */
-  .lozenge {
-    @apply flex flex-wrap rounded-md;
+  /* #region - Dropdown */
+  #dropdown-wrapper {
+    @apply overflow-hidden;
 
-    .pending {
-      @apply text-color-pending-base background-color-pending-weak border-color-pending-base;
-    }
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply border-color-weak max-h-[300px] w-[240px] overflow-y-auto rounded-xl border border-solid p-2 font-main shadow-none;
 
-    .information {
-      @apply text-color-information-base background-color-information-weak border-color-information-base;
-    }
+        &::-webkit-scrollbar-track {
+          @apply rounded-br-xl rounded-tr-xl;
+        }
+      }
 
-    .success {
-      @apply text-color-success-base background-color-success-weak border-color-success-base;
-    }
-
-    .neutral {
-      @apply text-color-base background-color-base border-color-base;
-    }
-
-    .danger {
-      @apply text-color-danger-base background-color-danger-weak border-color-danger-base;
-    }
-
-    .caution {
-      @apply text-color-caution-base background-color-caution-weak border-color-caution-base;
-    }
-
-    .plain {
-      @apply text-color-strong border-color-base background-color;
+      .v-popper__arrow-container {
+        @apply hidden;
+      }
     }
   }
-
-  .lozenge-fill {
-    @apply flex flex-wrap;
-
-    .pending {
-      @apply background-color-pending-base text-color-strong border-none;
-    }
-
-    .information {
-      @apply background-color-information-base text-color-inverted-strong border-none;
-    }
-
-    .success {
-      @apply background-color-success-base text-color-inverted-strong;
-    }
-
-    .danger {
-      @apply background-color-danger-base text-color-inverted-strong border-none;
-    }
-
-    .neutral {
-      @apply background-color-base text-color-strong border-none;
-    }
-
-    .caution {
-      @apply background-color-caution-base text-color-strong border-none;
-    }
-
-    .plain {
-      @apply text-color-strong background-color border-none;
-    }
-  }
-  /* #endregion - Lozange */
+  /* #endregion - Dropdown */
 }
 
 @layer utilities {
@@ -766,7 +720,7 @@
   }
 
   .border-color-disabled {
-    @apply border-white-100;
+    @apply border-white-400;
   }
 
   .border-color-on-fill-disabled {

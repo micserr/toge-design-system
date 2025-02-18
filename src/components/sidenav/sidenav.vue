@@ -46,7 +46,7 @@
             }"
             @click="isQuckActionMenuVisible = !isQuckActionMenuVisible"
           >
-            <IconPlusCircleFill class="w-full" />
+            <Icon icon="ph:plus-circle-fill" class="w-full" />
           </div>
 
           <template #popper>
@@ -57,7 +57,8 @@
               ]"
             >
               <h3 class="body-sm-regular-medium m-0">Quick Actions</h3>
-              <IconX
+              <Icon
+                icon="ph:x"
                 :class="[
                   'text-color-weak h-[20px] w-[20px] cursor-pointer',
                   'transition duration-150 ease-in-out',
@@ -99,7 +100,7 @@
                           menuLinkItem.iconBgColor === 'purple',
                       }"
                     >
-                      <component :is="menuLinkItem.icon" v-if="menuLinkItem.icon" class="h-[1em] w-[1em] text-[20px]" />
+                      <Icon v-if="menuLinkItem.icon" :icon="menuLinkItem.icon" class="h-[1em] w-[1em] text-[20px]" />
                     </div>
                     <div class="grid justify-between">
                       <h5 class="body-sm-regular-medium text-color-strong m-0 truncate">
@@ -126,7 +127,7 @@
           ]"
           @click="emit('search', 'search-triggered')"
         >
-          <IconMagnifyingGlass />
+          <Icon icon="ph:magnifying-glass" />
         </div>
 
         <!-- Grouped Nav Links -->
@@ -150,8 +151,8 @@
                     'active:background-color-single-active active:scale-90': true,
                   }"
                 >
-                  <component :is="parentLink.icon" v-if="parentLink.icon" class="h-[1.25em] w-[1.25em]" />
-                  <IconGlobe v-else />
+                  <Icon v-if="parentLink.icon" :icon="parentLink.icon" class="h-[1.25em] w-[1.25em]" />
+                  <Icon v-else icon="ph:globe" />
                 </div>
 
                 <template #popper>
@@ -195,7 +196,8 @@
                               class="background-color-brand-base absolute left-0 top-0 h-full w-[2px]"
                             ></div>
                             <span>{{ menuLinkItem.title }}</span>
-                            <IconCaretRight
+                            <Icon
+                              icon="ph:caret-right"
                               class="h-[16px] w-[16px] transform font-normal transition-transform duration-300"
                             />
                           </div>
@@ -293,8 +295,8 @@
                   }"
                   @click="handleRedirect(parentLink, parentLink.title, '', '')"
                 >
-                  <component :is="parentLink.icon" v-if="parentLink.icon" class="h-[1.25em] w-[1.25em]" />
-                  <IconGlobe v-else />
+                  <Icon v-if="parentLink.icon" class="h-[1.25em] w-[1.25em]" :icon="parentLink.icon" />
+                  <Icon v-else icon="ph:globe" />
                 </div>
               </Tooltip>
             </template>
@@ -332,8 +334,8 @@
                     'active:background-color-single-active active:scale-90': true,
                   }"
                 >
-                  <component :is="parentLink.icon" v-if="parentLink.icon" class="h-[1.25em] w-[1.25em]" />
-                  <IconGlobe v-else />
+                  <Icon v-if="parentLink.icon" :icon="parentLink.icon" class="h-[1.25em] w-[1.25em]" />
+                  <Icon v-else icon="ph:globe" />
                 </div>
 
                 <template #popper>
@@ -377,7 +379,8 @@
                               class="background-color-brand-base absolute left-0 top-0 h-full w-[2px]"
                             ></div>
                             <span>{{ menuLinkItem.title }}</span>
-                            <IconCaretRight
+                            <Icon
+                              icon="ph:caret-right"
                               class="h-[16px] w-[16px] transform font-normal transition-transform duration-300"
                             />
                           </div>
@@ -475,8 +478,8 @@
                   }"
                   @click="handleRedirect(parentLink, parentLink.title, '', '')"
                 >
-                  <component :is="parentLink.icon" v-if="parentLink.icon" class="h-[1.25em] w-[1.25em]" />
-                  <IconGlobe v-else />
+                  <Icon v-if="parentLink.icon" :icon="parentLink.icon" class="h-[1.25em] w-[1.25em]" />
+                  <Icon v-else icon="ph:globe" />
                 </div>
               </Tooltip>
             </template>
@@ -500,8 +503,8 @@
         ]"
         @click="emit('notifications', 'notifications-triggered')"
       >
-        <IconBell class="h-[1.25em] w-[1.25em]" />
-        <badge
+        <Icon icon="ph:bell" class="h-[1.25em] w-[1.25em]" />
+        <spr-badge
           class="absolute -top-0.5 right-2.5"
           :text="String(props.notificationCount)"
           variant="danger"
@@ -519,8 +522,13 @@
         ]"
         @click="emit('requests', 'requests-triggered')"
       >
-        <IconCheckSquare class="h-[1.25em] w-[1.25em]" />
-        <badge class="absolute -top-0.5 right-2.5" :text="String(props.requestCount)" variant="danger" size="small" />
+        <Icon icon="ph:check-square" class="h-[1.25em] w-[1.25em]" />
+        <spr-badge
+          class="absolute -top-0.5 right-2.5"
+          :text="String(props.requestCount)"
+          variant="danger"
+          size="small"
+        />
       </div>
     </div>
 
@@ -600,7 +608,7 @@
                 ]"
                 @click="handleRedirect(userMenuItem, '', '', '')"
               >
-                <component :is="userMenuItem.icon" v-if="userMenuItem.icon" class="h-[1em] w-[1em] text-[20px]" />
+                <Icon v-if="userMenuItem.icon" :icon="userMenuItem.icon" class="h-[1em] w-[1em] text-[20px]" />
                 <h5 class="body-sm-regular text-color-strong m-0 truncate">
                   {{ userMenuItem.title }}
                 </h5>
@@ -614,22 +622,15 @@
 </template>
 
 <script lang="ts" setup>
+import { Menu, Tooltip } from 'floating-vue';
+import { Icon } from '@iconify/vue';
+
+import 'floating-vue/dist/style.css';
+
 import { sidenavPropTypes, sidenavEmitTypes } from './sidenav';
 import { useSidenav } from './use-sidenav';
 
-import { Menu, Tooltip } from 'floating-vue';
-
-import badge from '../badge/badge.vue';
-
-import IconPlusCircleFill from '~icons/ph/plus-circle-fill';
-import IconMagnifyingGlass from '~icons/ph/magnifying-glass';
-import IconGlobe from '~icons/ph/globe';
-import IconCaretRight from '~icons/ph/caret-right';
-import IconX from '~icons/ph/x';
-import IconBell from '~icons/ph/bell';
-import IconCheckSquare from '~icons/ph/check-square';
-
-import 'floating-vue/dist/style.css';
+import SprBadge from '../badge/badge.vue';
 
 const props = defineProps(sidenavPropTypes);
 const emit = defineEmits(sidenavEmitTypes);

@@ -13,8 +13,8 @@ interface Header {
 interface TableData {
   [key: string]: {
     title: string;
-    subtext: string;
-    image: string;
+    subtext?: string;
+    image?: string;
   };
 }
 

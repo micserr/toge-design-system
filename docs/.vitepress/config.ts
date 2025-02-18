@@ -128,7 +128,7 @@ export default defineConfig({
             },
             {
               text: 'Table',
-              link: '/documentation/components/Table',
+              link: '/documentation/components/table',
             },
             {
               text: 'Tabs',

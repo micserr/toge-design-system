@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.22 (2025-02-18)
+
+- Fix
+  - Avatar ([#777b4a30](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/777b4a30399fb438fedd984c18c2cd6322f7763c?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FDQA-Avatar) by @adestajo)
+
 ## 1.2.21 (2025-02-18)
 
 - Feat

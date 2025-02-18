@@ -1,9 +1,15 @@
 # Changelog
 
-## 1.2.20 (2025-02-18)
+## 1.2.21 (2025-02-18)
 
 - Feat
   - Add Sidepanel Component ([#31efa9d2](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/31efa9d2ae91a24c9835b84b05e31200c44e6d65?refName=refs%2Fheads%2F2025%2Ffeature%2Feli%2Fsidepanel) by @elumilay)
+
+## 1.2.20 (2025-02-18)
+
+- Feat
+  - Optimized and Add HTML Support for Tooltips
+    ([#eb477dd4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/eb477dd467721bac7f837856a2233e8240153864?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Ftooltip) by @jarias)
 
 ## 1.2.19 (2025-02-18)
 

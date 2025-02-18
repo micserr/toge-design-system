@@ -10,6 +10,9 @@
       <template #action="{ row }">
         <spr-lozenge :label="row.status.title" :tone="row.status.title.toLowerCase()" />
       </template>
+      <template #action-name>
+        Status
+      </template>
     </spr-table>
   </div>
 
@@ -17,13 +20,11 @@
 <template>
   <div class="space-y-4 bg-white-50 p-size-spacing-sm">
     <spr-table action :headers="headers" :data-table="data">
-      <div>
-        <div class="text-color-strong font-size-400 font-weight-medium">Table Name</div>
-        <div>table description</div>
-      </div>
+      <div>Customize your content here!</div>
       <template #action="{ row }">
         <spr-lozenge :label="row.status.title" :tone="row.status.title.toLowerCase()" />
       </template>
+      <template #action-name> Status </template>
     </spr-table>
   </div>
 </template>

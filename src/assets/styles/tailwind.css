@@ -137,6 +137,12 @@
     }
   }
   /* #endregion - Dropdown */
+
+  /* #region - Avatar */
+  .avatar__slot img {
+    @apply h-full w-full object-cover;
+  }
+  /* #endregion - Avatar */
 }
 
 @layer utilities {

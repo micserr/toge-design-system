@@ -36,16 +36,21 @@
             <!-- for action Button -->
             <th
               v-if="action"
-              class="'background-color-surface text-color-strong font-size-100 font-line-height-100 font-letter-spacing-normal uppercase', sticky top-0 z-10 border-none px-size-spacing-2xs py-size-spacing-3xs text-start font-medium"
-            />
+              class="background-color-surface text-color-strong font-size-100 font-line-height-100 font-letter-spacing-normal sticky top-0 z-10 border-none px-size-spacing-2xs py-size-spacing-3xs text-start font-medium uppercase"
+            >
+              <slot
+                name="action-name"
+                class="background-color-surface text-color-strong font-size-100 font-line-height-100 font-letter-spacing-normal uppercase"
+              />
+            </th>
           </tr>
         </thead>
         <tbody v-if="sortedData.length > 0">
           <tr v-for="(item, keyIndex) in sortedData" :key="keyIndex" class="hover:background-color-hover min-h-[60px]">
             <td v-for="(column, headerKey) in headers" :key="headerKey" class="border-b px-6 py-3">
-              <div class="flex flex-row items-center gap-2">
+              <div v-if="sortedData[keyIndex][column.field]" class="flex flex-row items-center gap-2">
                 <spr-avatar
-                  v-if="column.hasAvatar"
+                  v-if="column.hasAvatar && sortedData[keyIndex][column.field].image"
                   size="lg"
                   :src="sortedData[keyIndex][column.field].image"
                   alt="User Avatar"

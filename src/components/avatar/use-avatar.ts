@@ -3,26 +3,29 @@ import type { AvatarPropTypes } from './avatar';
 
 import classNames from 'classnames';
 export const useAvatar = (props: AvatarPropTypes) => {
-  const { size } = toRefs(props);
+  const { size, color } = toRefs(props);
   const avatarClassses = computed(() => {
-    return classNames(' relative  inline-block');
+    return classNames(' relative  inline-block rounded-full', {
+      'background-color-surface': color.value === 'primary',
+      'background-color': color.value === 'secondary',
+    });
   });
 
   const avatarImageClassses = computed(() => {
-    return classNames('  rounded-full  object-cover ', {
-      ' h-20 min-w-20': size.value === '2xl',
-      ' h-14 min-w-14': size.value === 'xl',
-      ' h-10 min-w-10': size.value === 'lg',
-      ' h-9  min-w-9': size.value === 'md',
-      ' h-6  min-w-6': size.value === 'sm',
-      ' h-5  min-w-5': size.value === 'xs',
-      ' h-4  min-w-4': size.value === '2xs',
+    return classNames('rounded-full object-cover flex items-center justify-center overflow-hidden', {
+      'h-20 min-w-20': size.value === '2xl',
+      'h-14 min-w-14': size.value === 'xl',
+      'h-10 min-w-10': size.value === 'lg',
+      'h-9  min-w-9': size.value === 'md',
+      'h-6  min-w-6': size.value === 'sm',
+      'h-5  min-w-5': size.value === 'xs',
+      'h-4  min-w-4': size.value === '2xs',
     });
   });
 
   const initialClassses = computed(() => {
     return classNames(
-      '  rounded-full   background-color-surface  border-color-weak  border  border-solid  items-center  flex  justify-center  heading-xs  text-color-strong',
+      '  rounded-full  border-color-weak  border  border-solid  items-center  flex  justify-center  heading-xs  text-color-strong',
       {
         ' h-20 min-w-20': size.value === '2xl',
         ' h-14 min-w-14  body-lg-regular-medium': size.value === 'xl',
@@ -57,11 +60,11 @@ export const useAvatar = (props: AvatarPropTypes) => {
   });
 
   const getAvatarSize = computed(() => {
-    if (['2xl'].includes(size.value)) return { notif: 'big', online: 'big' };
-    if (['xl', 'lg'].includes(size.value)) return { notif: 'big', online: 'tiny' };
-    if (['md', 'sm'].includes(size.value)) return { notif: 'small', online: 'tiny' };
+    if (['2xl'].includes(size.value)) return { notif: 'big', badge: 'big' };
+    if (['xl', 'lg'].includes(size.value)) return { notif: 'big', badge: 'tiny' };
+    if (['md', 'sm'].includes(size.value)) return { notif: 'small', badge: 'tiny' };
 
-    return { notif: 'tiny', online: 'tiny' };
+    return { notif: 'tiny', badge: 'tiny' };
   });
 
   return {

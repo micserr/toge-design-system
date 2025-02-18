@@ -142,6 +142,10 @@ export default defineConfig({
               text: 'Tooltip',
               link: '/documentation/components/tooltip',
             },
+            {
+              text: 'Sidepanel',
+              link: '/documentation/components/sidepanel',
+            },
           ],
         },
         {

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.19 (2025-02-18)
+
+- Feat
+  - Added Dropdown & Checkbox component and documentation
+    ([#4583fe30](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4583fe3036ca120c5d3e77e12f83783242d4dedf?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fdropdown) by @jarias)
+
 ## 1.2.18 (2025-02-17)
 
 - Feat

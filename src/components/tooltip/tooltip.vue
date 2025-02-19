@@ -1,5 +1,9 @@
 <template>
-  <Tooltip class="w-fit" aria-id="tooltip-wrapper" :placement="placement">
+  <Tooltip
+    class="w-fit"
+    :aria-id="props.hasMaxWidth ? 'tooltip-full-width-wrapper' : 'tooltip-wrapper'"
+    :placement="placement"
+  >
     <template #popper>
       <p>{{ text }}</p>
 

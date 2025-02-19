@@ -61,6 +61,7 @@ export default tseslint.config(
             'table',
             'tabs',
             'tooltip',
+            'sidepanel',
           ],
         },
       ],

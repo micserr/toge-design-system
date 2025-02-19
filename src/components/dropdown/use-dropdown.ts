@@ -1,6 +1,6 @@
 import { ref, onMounted, watch, computed } from 'vue';
-import classNames from 'classnames';
 import type { SetupContext } from 'vue';
+import classNames from 'classnames';
 
 import type { DropdownPropTypes, DropdownEmitTypes } from './dropdown';
 

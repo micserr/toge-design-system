@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.24 (2025-02-19)
+
+- Fix
+  - Tooltip Text Condition ([#ae9c7cba](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ae9c7cba240b4800ccbeb762c842fda933d2122f?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Ftooltip) by @jarias)
+
 ## 1.2.23 (2025-02-19)
 
 - Fix

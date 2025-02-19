@@ -1,11 +1,14 @@
 import { computed, ref, ComputedRef, toRefs } from 'vue';
 import { useElementHover, useMousePressed } from '@vueuse/core';
+
 import classNames from 'classnames';
+
 import type { SwitchPropTypes } from './switch';
 
 export const useSwitch = (props: SwitchPropTypes) => {
   const switchWrapperRef = ref<HTMLDivElement | null>(null);
   const switchRef = ref<HTMLInputElement | null>(null);
+
   const isHovered = useElementHover(switchWrapperRef);
   const { pressed } = useMousePressed({ target: switchRef });
   const { disabled, state, modelValue } = toRefs(props);
@@ -37,43 +40,41 @@ export const useSwitch = (props: SwitchPropTypes) => {
   });
 
   function getDefaultBackground(): string {
-    return props.modelValue ? 'background-color-success-base' : 'switch-background-default';
+    return props.modelValue ? 'spr-background-color-success-base' : 'spr-switch-background-default';
   }
 
   function getHoveredBackground(): string {
-    return props.modelValue ? 'background-color-success-hover' : 'switch-background-hover';
+    return props.modelValue ? 'spr-background-color-success-hover' : 'spr-switch-background-hover';
   }
 
   function getPressedBackground(): string {
-    return props.modelValue ? 'background-color-success-pressed' : 'switch-background-pressed';
+    return props.modelValue ? 'spr-background-color-success-pressed' : 'spr-switch-background-pressed';
   }
 
   function getDisabledBackground(): string {
     return classNames(
       {
-        'background-color-success-base': props.modelValue,
-        'switch-background-default': !props.modelValue,
+        'spr-background-color-success-base': props.modelValue,
+        'spr-switch-background-default': !props.modelValue,
       },
-      'opacity-60',
+      'spr-opacity-60',
     );
   }
   // #endregion - Background CSS Class
 
   const switchTextClass: ComputedRef<string> = computed(() => {
     if (props.disabled) {
-      return 'text-color-disabled';
+      return 'spr-text-color-disabled';
     }
 
-    return 'text-color-strong';
+    return 'spr-text-color-strong';
   });
 
   const switchAnimationCssClass: ComputedRef<string> = computed(() => {
     return classNames(
-      'transition-colors',
-      'before:transition-all',
-      'before:duration-150',
-      'after:transition-all',
-      'after:duration-150',
+      'spr-transition-colors',
+      'before:spr-transition-all before:spr-duration-150',
+      'after:spr-transition-all after:spr-duration-150',
     );
   });
 
@@ -83,8 +84,8 @@ export const useSwitch = (props: SwitchPropTypes) => {
 
   const switchInputClass: ComputedRef<string> = computed(() => {
     return classNames({
-      'cursor-not-allowed': props.disabled,
-      'cursor-pointer': !props.disabled,
+      'spr-cursor-not-allowed': props.disabled,
+      'spr-cursor-pointer': !props.disabled,
     });
   });
 

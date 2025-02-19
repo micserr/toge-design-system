@@ -1,13 +1,13 @@
 <template>
-  <div 
+  <div
     v-if="isOpen && hasBackdrop"
-    class="w-screen h-screen bg-mushroom-700/60 fixed top-0 left-0 z-[30]" 
+    class="spr-w-screen spr-h-screen spr-bg-mushroom-700/60 spr-fixed spr-top-0 spr-left-0 spr-z-[30]"
     @click="handleBackdropClick"
   ></div>
-  <Transition 
-    :name="`sidepanel`"
-    enter-active-class="transition-transform duration-[0.3s] ease-[ease-out]"
-    leave-active-class="transition-transform duration-[0.3s] ease-[ease-out]"
+  <Transition
+    name="sidepanel"
+    enter-active-class="spr-transition-transform spr-duration-[150ms] spr-ease-[ease-in-out]"
+    leave-active-class="spr-transition-transform spr-duration-[150ms] spr-ease-[ease-in-out]"
     :enter-from-class="sidepanelStartEndState"
     :leave-to-class="sidepanelStartEndState"
     :enter-to-class="sidepanelMidState"
@@ -19,42 +19,50 @@
       ref="sidepanelRef"
       :class="[
         sidepanelSizesClasses,
-        'h-[calc(100vh_-_32px)] bg-white-50 rounded-border-radius-xl fixed right-4 z-[30] min-h-[200px] flex flex-col top-1/2 translate-y-[-50%] drop-shadow'
+        'spr-h-[calc(100vh-32px)] spr-bg-white-50 spr-pr-rounded-border-radius-xl spr-fixed spr-right-4 spr-z-[30] spr-min-h-[200px] spr-flex spr-flex-col spr-top-1/2 spr-translate-y-[-50%] spr-drop-shadow',
       ]"
       :style="{ height: typeof height === 'number' ? `${height}px` : height }"
     >
       <template v-if="!hideHeader">
-        <div v-if="!$slots.header" class="flex justify-between tw-min-h-12 p-4 border-mushroom-200 border-b border-solid border-0 subheading-xs text-color-strong">
+        <div
+          v-if="!$slots.header"
+          class="spr-tw-min-h-12 spr-subheading-xs spr-text-color-strong spr-flex spr-justify-between spr-border-0 spr-border-b spr-border-solid spr-border-mushroom-200 spr-p-4"
+        >
           {{ headerTitle }}
-          <Icon 
-            class="cursor-pointer"
-            icon="ph:x"
-            @click="handleClose"
-          />
+          <Icon class="spr-cursor-pointer" icon="ph:x" @click="handleClose" />
         </div>
         <div v-else>
           <slot name="header"></slot>
         </div>
       </template>
-      <div :class="['overflow-y-auto p-4', {'mb-[52px]': $slots.footer}]">
-        <slot>
-          Sidepanel Content
-        </slot>
+      <div :class="['spr-overflow-y-auto spr-p-4', { 'spr-mb-[52px]': $slots.footer }]">
+        <slot> Sidepanel Content </slot>
       </div>
-      <div v-if="$slots.footer" class="absolute bottom-0 left-0 w-full border-0 border-t border-mushroom-200 bg-white-50 border-solid py-3 rounded-b-border-radius-xl">
+      <div
+        v-if="$slots.footer"
+        class="spr-absolute spr-bottom-0 spr-left-0 spr-w-full spr-rounded-b-border-radius-xl spr-border-0 spr-border-t spr-border-solid spr-border-mushroom-200 spr-bg-white-50 spr-py-3"
+      >
         <slot name="footer"></slot>
       </div>
     </div>
   </Transition>
-  
 </template>
+
 <script lang="ts" setup>
+import { Icon } from '@iconify/vue';
+
 import { useSidepanel } from './use-sidepanel';
 import { sidepanelPropTypes, sidepanelEmitTypes } from './sidepanel';
-import { Icon } from '@iconify/vue';
 
 const props = defineProps(sidepanelPropTypes);
 const emit = defineEmits(sidepanelEmitTypes);
 
-const { sidepanelRef, sidepanelSizesClasses, sidepanelMidState, sidepanelStartEndState, handleClose, handleBackdropClick } = useSidepanel(props, emit);
+const {
+  sidepanelRef,
+  sidepanelSizesClasses,
+  sidepanelMidState,
+  sidepanelStartEndState,
+  handleClose,
+  handleBackdropClick,
+} = useSidepanel(props, emit);
 </script>

@@ -1,6 +1,8 @@
 import { computed, ref, ComputedRef } from 'vue';
 import { useElementHover } from '@vueuse/core';
+
 import classNames from 'classnames';
+
 import type { RadioPropTypes } from './radio';
 
 export const useRadioButton = (props: RadioPropTypes) => {
@@ -8,10 +10,10 @@ export const useRadioButton = (props: RadioPropTypes) => {
   const isHovered = useElementHover(radioRef);
 
   const radioClasses: ComputedRef<string> = computed(() => {
-    const baseClasses = 'sr-only peer inline-block';
+    const baseClasses = 'spr-sr-only spr-peer spr-inline-block';
 
     if (props.disabled) {
-      return classNames(baseClasses, 'cursor-not-allowed');
+      return classNames(baseClasses, 'spr-cursor-not-allowed');
     }
 
     return baseClasses;
@@ -19,17 +21,17 @@ export const useRadioButton = (props: RadioPropTypes) => {
 
   const indicatorClasses: ComputedRef<string> = computed(() => {
     const baseClasses = [
-      'inline-block w-4 h-4 rounded-full border-2 border-solid mr-2 shrink-0',
-      'transition duration-150 ease-in-out',
-      'group-active:scale-90',
+      'spr-inline-block spr-w-4 spr-h-4 spr-rounded-full spr-border-2 spr-border-solid spr-mr-2 spr-shrink-0',
+      'spr-transition spr-duration-150 spr-ease-in-out',
+      'group-active:spr-scale-90',
     ];
 
     if (props.disabled) {
       return classNames(
         baseClasses,
         props.modelValue === props.value
-          ? 'border-color-disabled background-color-disabled shadow-[inset_0px_0px_0px_2.5px_#fff] cursor-not-allowed'
-          : 'border-color-disabled background-color cursor-not-allowed',
+          ? 'spr-border-color-disabled spr-background-color-disabled spr-shadow-[inset_0px_0px_0px_2.5px_#fff] spr-cursor-not-allowed'
+          : 'spr-border-color-disabled spr-background-color spr-cursor-not-allowed',
       );
     }
 
@@ -37,27 +39,27 @@ export const useRadioButton = (props: RadioPropTypes) => {
       return classNames(
         baseClasses,
         props.modelValue === props.value
-          ? 'background-color-brand-hover border-2 border-color-brand-hover shadow-[inset_0px_0px_0px_2.5px_#fff] animate-shadow-grow'
-          : 'background-color-base border-2 border-color-supporting shadow-[inset_0px_0px_0px_2.5px_#fff]',
+          ? 'spr-background-color-brand-hover spr-border-2 spr-border-color-brand-hover spr-shadow-[inset_0px_0px_0px_2.5px_#fff] animate-shadow-grow'
+          : 'spr-background-color-base spr-border-2 spr-border-color-supporting spr-shadow-[inset_0px_0px_0px_2.5px_#fff]',
       );
     }
 
     if (props.modelValue === props.value) {
       return classNames(
         baseClasses,
-        'border-color-brand-base background-color-brand-base shadow-[inset_0px_0px_0px_2.5px_#fff] animate-shadow-grow',
+        'spr-border-color-brand-base spr-background-color-brand-base spr-shadow-[inset_0px_0px_0px_2.5px_#fff] animate-shadow-grow',
       );
     }
 
-    return classNames(baseClasses, 'border-color-supporting shadow-[inset_0px_0px_0px_2.5px_#fff]');
+    return classNames(baseClasses, 'spr-border-color-supporting spr-shadow-[inset_0px_0px_0px_2.5px_#fff]');
   });
 
   const radioLabelClasses: ComputedRef<string> = computed(() => {
     if (props.disabled) {
-      return 'text-color-disabled cursor-not-allowed';
+      return 'spr-text-color-disabled spr-cursor-not-allowed';
     }
 
-    return 'text-color-strong cursor-pointer inline-flex items-center p-0';
+    return 'spr-text-color-strong spr-cursor-pointer spr-inline-flex spr-items-center spr-p-0';
   });
 
   return {

@@ -1,6 +1,6 @@
 <template>
   <Tooltip
-    class="w-fit"
+    class="spr-w-fit"
     :aria-id="props.hasMaxWidth ? 'tooltip-full-width-wrapper' : 'tooltip-wrapper'"
     :placement="placement"
   >

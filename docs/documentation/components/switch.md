@@ -28,15 +28,15 @@ const switchValue1 = ref(false);
 
 ## Text Label
 
-<spr-switch v-model="switchValue2" class="mb-2">
+<spr-switch v-model="switchValue2" class="spr-mb-2">
   Left
 </spr-switch>
 
-<spr-switch v-model="switchValue3" class="mb-2">
+<spr-switch v-model="switchValue3" class="spr-mb-2">
   <template #rightText>Right</template>
 </spr-switch>
 
-<spr-switch v-model="switchValue4" class="mb-2">
+<spr-switch v-model="switchValue4" class="spr-mb-2">
   <template #leftText>Left</template>
   <template #rightText>Right</template>
 </spr-switch>
@@ -59,11 +59,11 @@ const switchValue1 = ref(false);
 
 ## Disabled
 
-<spr-switch v-model="switchValue5" class="mb-2" disabled>
+<spr-switch v-model="switchValue5" class="spr-mb-2" disabled>
   Disabled false switch
 </spr-switch>
 
-<spr-switch v-model="switchValue6" class="mb-2" :disabled="true">
+<spr-switch v-model="switchValue6" class="spr-mb-2" :disabled="true">
   Disabled true switch
 </spr-switch>
 
@@ -83,7 +83,7 @@ const switchValue1 = ref(false);
 
 The switch component uses `@vueuse/core`'s `useVModel` for properties and emit v-model binding. By default, `update:modelValue` emit is defined and can be used to listen for any value changes with `modelValue` property.
 
-<div class="mt-10">
+<div class="spr-mt-10">
   <spr-switch v-model="switchValue7" @update:modelValue = "switch7UpdateHandler">Switch</spr-switch>
   <p>{{ switch7Label }}</p>
 </div>

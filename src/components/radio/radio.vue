@@ -13,7 +13,7 @@
     ref="radioRef"
     :for="props.id"
     :disabled="props.disabled"
-    :class="['group m-0 inline-flex w-auto items-center space-x-2 p-0', radioLabelClasses]"
+    :class="['spr-group spr-m-0 spr-inline-flex spr-w-auto spr-items-center spr-space-x-2 spr-p-0', radioLabelClasses]"
   >
     <span :class="indicatorClasses"></span>
     <slot />

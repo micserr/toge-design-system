@@ -2,7 +2,7 @@
   <div :class="avatarClassses">
     <template v-if="!initial">
       <img v-if="!$slots.default && src" :src="src" :alt="alt" :class="avatarImageClassses" />
-      <div v-else :class="[avatarImageClassses, 'avatar__slot border-color-weak border border-solid']">
+      <div v-else :class="[avatarImageClassses, 'avatar__slot spr-border-color-weak spr-border spr-border-solid']">
         <slot />
       </div>
     </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex">
+  <div class="spr-relative spr-flex">
     <div
       v-for="(tab, index) in list"
       :key="index"
@@ -8,28 +8,31 @@
         tabsClasses,
         {
           // Regular Tab
-          'rounded-l-md': !underlined && index === 0,
-          'rounded-r-md': !underlined && index === tabElements.length - 1,
+          'spr-rounded-l-md': !underlined && index === 0,
+          'spr-rounded-r-md': !underlined && index === tabElements.length - 1,
 
           // Regular Tab - Active
-          'border-color-success-base cursor-pointer !border !border-solid': !underlined && activeTab.index === index,
+          'spr-border-color-success-base spr-cursor-pointer !spr-border !spr-border-solid':
+            !underlined && activeTab.index === index,
 
           // Regular Tab - Inactive
-          'border-color-weak hover:background-color-hover cursor-pointer !border-x-[0.5px] !border-y !border-solid':
+          'spr-border-color-weak hover:spr-background-color-hover spr-cursor-pointer !spr-border-x-[0.5px] !spr-border-y !spr-border-solid':
             !underlined && activeTab.index !== index,
 
           // Regular Tab - Disabled
-          'background-color-disabled !cursor-not-allowed': !underlined && tab.disabled,
+          'spr-background-color-disabled !spr-cursor-not-allowed': !underlined && tab.disabled,
 
           // Underlined Tab - Active
-          'cursor-pointer': underlined && activeTab.index === index,
+          'spr-cursor-pointer': underlined && activeTab.index === index,
 
           // Underlined Tab - Inactive
-          'border-color-base cursor-pointer !border-b !border-solid': underlined && activeTab.index !== index,
-          'hover:background-color-hover cursor-pointer': underlined && activeTab.index !== index && !tab.disabled,
+          'spr-border-color-base spr-cursor-pointer !spr-border-b !spr-border-solid':
+            underlined && activeTab.index !== index,
+          'hover:spr-background-color-hover spr-cursor-pointer':
+            underlined && activeTab.index !== index && !tab.disabled,
 
           // Underlined Tab - Disabled
-          'border-color-disabled text-color-on-fill-disabled background-color-disabled !cursor-not-allowed border-b':
+          'spr-border-color-disabled spr-text-color-on-fill-disabled spr-background-color-disabled !spr-cursor-not-allowed spr-border-b':
             underlined && tab.disabled,
         },
       ]"
@@ -39,25 +42,25 @@
       <div
         v-if="!underlined && activeTab.index === index"
         :class="[
-          'background-color-single-active tw-w-full absolute bottom-0 left-0 z-[5] block h-full w-full',
+          'spr-background-color-single-active spr-tw-w-full spr-absolute spr-bottom-0 spr-left-0 spr-z-[5] spr-block spr-h-full spr-w-full',
           {
-            'rounded-l-md': activeTab.index === 0,
-            'rounded-r-md': activeTab.index === tabElements.length - 1,
+            'spr-rounded-l-md': activeTab.index === 0,
+            'spr-rounded-r-md': activeTab.index === tabElements.length - 1,
           },
         ]"
       />
 
       <div
         :class="{
-          'relative z-[10] flex items-center gap-size-spacing-5xs leading-none': true,
-          'cursor-not-allowed': tab.disabled,
+          'spr-relative spr-z-[10] spr-flex spr-items-center spr-gap-size-spacing-5xs spr-leading-none': true,
+          'spr-cursor-not-allowed': tab.disabled,
         }"
       >
         <div v-if="!!tab.icon">
           <Icon
             :class="{
-              'body-sm-regular': true,
-              'text-color-brand-base': activeTab.index === index,
+              'spr-body-sm-regular': true,
+              'spr-text-color-brand-base': activeTab.index === index,
             }"
             :icon="activeTab.index === index && typeof tab.iconFill === 'string' ? tab.iconFill : tab.icon"
           />
@@ -72,8 +75,8 @@
     <div
       v-if="underlined"
       :class="[
-        'background-color-success-base absolute bottom-0 left-0 z-10 block h-0.5 rounded-full',
-        'transition-left duration-150 ease-in-out',
+        'spr-background-color-success-base spr-absolute spr-bottom-0 spr-left-0 spr-z-10 spr-block spr-h-0.5 spr-rounded-full',
+        'spr-transition-left spr-duration-150 spr-ease-in-out',
       ]"
       :style="{
         width: `${activeTab.width}px`,

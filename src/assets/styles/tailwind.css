@@ -93,7 +93,36 @@
   /* #endregion - Sidenav */
 
   /* #region - Tooltips */
-  #default-tooltip {
+  #tooltip-wrapper,
+  #tooltip-full-width-wrapper {
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply background-color-inverted text-color-inverted-strong body-xs-regular rounded-border-radius-md px-2 py-1.5 font-main opacity-100;
+      }
+
+      .v-popper__arrow-outer {
+        @apply hidden;
+      }
+    }
+  }
+
+  #tooltip-wrapper {
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply max-w-full;
+      }
+    }
+  }
+
+  #tooltip-full-width-wrapper {
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply max-w-[280px];
+      }
+    }
+  }
+
+  #sidenav-tooltip-wrapper {
     .v-popper__wrapper {
       .v-popper__inner {
         @apply label-xs background-color-inverted rounded-border-radius-md px-2 py-1.5 font-main opacity-100;
@@ -125,6 +154,12 @@
     }
   }
   /* #endregion - Dropdown */
+
+  /* #region - Avatar */
+  .avatar__slot img {
+    @apply h-full w-full object-cover;
+  }
+  /* #endregion - Avatar */
 }
 
 @layer utilities {

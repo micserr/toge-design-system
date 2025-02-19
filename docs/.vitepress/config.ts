@@ -128,7 +128,7 @@ export default defineConfig({
             },
             {
               text: 'Table',
-              link: '/documentation/components/Table',
+              link: '/documentation/components/table',
             },
             {
               text: 'Tabs',
@@ -141,6 +141,10 @@ export default defineConfig({
             {
               text: 'Tooltip',
               link: '/documentation/components/tooltip',
+            },
+            {
+              text: 'Sidepanel',
+              link: '/documentation/components/sidepanel',
             },
           ],
         },

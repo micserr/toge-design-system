@@ -13,13 +13,13 @@ export const useAvatar = (props: AvatarPropTypes) => {
 
   const avatarImageClassses = computed(() => {
     return classNames('rounded-full object-cover flex items-center justify-center overflow-hidden', {
-      'h-20 min-w-20': size.value === '2xl',
-      'h-14 min-w-14': size.value === 'xl',
-      'h-10 min-w-10': size.value === 'lg',
-      'h-9  min-w-9': size.value === 'md',
-      'h-6  min-w-6': size.value === 'sm',
-      'h-5  min-w-5': size.value === 'xs',
-      'h-4  min-w-4': size.value === '2xs',
+      'h-20 min-w-20 text-[36px]': size.value === '2xl',
+      'h-14 min-w-14 font-size-600': size.value === 'xl',
+      'h-10 min-w-10 font-size-400': size.value === 'lg',
+      'h-9  min-w-9 font-size-300': size.value === 'md',
+      'h-6  min-w-6 font-size-200': size.value === 'sm',
+      'h-5  min-w-5 text-[10px]': size.value === 'xs',
+      'h-4  min-w-4 text-[10px]': size.value === '2xs',
     });
   });
 

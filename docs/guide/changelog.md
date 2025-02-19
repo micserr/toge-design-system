@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.25 (2025-02-19)
+
+- Fix
+  - Avatar(slot)- added default size ([#faff2264](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/faff226470ac5558f7534445c05e2e9a2bd8df3a?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FDQA-avatar-icon-size) by @adestajo)
+
 ## 1.2.24 (2025-02-19)
 
 - Fix

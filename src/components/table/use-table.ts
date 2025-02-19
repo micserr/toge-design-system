@@ -2,7 +2,7 @@ import { ref, computed, toRefs } from 'vue';
 import type { TablePropTypes } from './table';
 
 export const useTable = (props: TablePropTypes) => {
-  const { dataTable } = toRefs(props);
+  const { dataTable, action, headers } = toRefs(props);
   const sortField = ref('');
   const sortOrder = ref('asc');
 
@@ -29,8 +29,11 @@ export const useTable = (props: TablePropTypes) => {
     }
   };
 
+  const getHeaderCount = computed(() => (action.value ? headers.value.length + 1 : headers.value.length));
+
   return {
     sortedData,
+    getHeaderCount,
     sortData,
   };
 };

@@ -5,23 +5,17 @@
     </div>
 
     <div class="h-[400px] overflow-auto">
-      <table aria-describedby="describe" class="w-full" cellspacing="0" cellpadding="0">
+      <table aria-describedby="describe" class="w-full table-fixed" cellspacing="0" cellpadding="0">
         <thead>
-          <tr
-            :class="[
-              'background-color-surface',
-              {
-                'rounded-t-border-radius-lg': !$slots.default,
-              },
-            ]"
-          >
+          <tr>
             <th
               v-for="(header, keyHeader) in headers"
               :key="keyHeader"
               :class="[
-                'background-color-surface text-color-strong font-size-100 font-line-height-100 font-letter-spacing-normal sticky top-0 z-10 min-h-12 border-none px-size-spacing-2xs py-size-spacing-3xs text-start font-medium uppercase',
+                'background-color-surface text-color-strong font-size-100 font-line-height-100 font-letter-spacing-normal background-color-surface border-color-weak sticky top-0 z-10 min-h-12 border-x-0 border-y border-solid px-size-spacing-2xs py-size-spacing-3xs text-start font-medium uppercase',
                 {
                   'cursor-pointer': header.sort,
+                  'first:rounded-tl-border-radius-lg last:rounded-tr-border-radius-lg': !$slots.default,
                 },
               ]"
               @click="header.sort && sortData(header.field)"
@@ -36,7 +30,7 @@
             <!-- for action Button -->
             <th
               v-if="action"
-              class="background-color-surface text-color-strong font-size-100 font-line-height-100 font-letter-spacing-normal sticky top-0 z-10 border-none px-size-spacing-2xs py-size-spacing-3xs text-start font-medium uppercase"
+              class="background-color-surface text-color-strong font-size-100 font-line-height-100 font-letter-spacing-normal background-color-surface border-color-weak sticky top-0 z-10 min-h-12 border-x-0 border-y border-solid px-size-spacing-2xs py-size-spacing-3xs text-start font-medium uppercase"
             >
               <slot
                 name="action-name"
@@ -47,7 +41,11 @@
         </thead>
         <tbody v-if="sortedData.length > 0">
           <tr v-for="(item, keyIndex) in sortedData" :key="keyIndex" class="hover:background-color-hover min-h-[60px]">
-            <td v-for="(column, headerKey) in headers" :key="headerKey" class="border-b px-6 py-3">
+            <td
+              v-for="(column, headerKey) in headers"
+              :key="headerKey"
+              class="border-color-weak overflow-hidden border-x-0 border-b border-t-0 border-solid px-6 py-3"
+            >
               <div v-if="sortedData[keyIndex][column.field]" class="flex flex-row items-center gap-2">
                 <spr-avatar
                   v-if="column.hasAvatar && sortedData[keyIndex][column.field].image"
@@ -70,7 +68,7 @@
                 </div>
               </div>
             </td>
-            <td v-if="action">
+            <td v-if="action" class="border-color-weak overflow-hidden border-x-0 border-b border-t-0 border-solid">
               <div class="flex items-center space-x-1 px-6 py-3">
                 <slot name="action" :row="item" />
               </div>
@@ -79,7 +77,7 @@
         </tbody>
         <tbody v-else>
           <tr>
-            <td :colspan="headers.length">
+            <td :colspan="getHeaderCount" class="overflow-hidden">
               <SprEmptyState />
             </td>
           </tr>
@@ -97,5 +95,5 @@ import { tablePropTypes } from './table';
 import { useTable } from './use-table';
 
 const props = defineProps(tablePropTypes);
-const { sortedData, sortData } = useTable(props);
+const { sortedData, sortData, getHeaderCount } = useTable(props);
 </script>

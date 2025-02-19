@@ -24,37 +24,42 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   const buttonDefaultCssClass: ComputedRef<string> = computed(() =>
     classNames([
-      'background-color flex items-center gap-1.5 w-fit min-w-[24px] items-center justify-center rounded-md outline-2 outline-offset-4',
+      'spr-background-color spr-flex spr-items-center spr-gap-1.5 spr-w-fit spr-min-w-[24px] spr-items-center spr-justify-center spr-rounded-md spr-outline-2 spr-outline-offset-4',
     ]),
   );
 
   const buttonTransitionCssClass: ComputedRef<string> = computed(() =>
-    classNames(['transition duration-150 ease-in-out', 'hover:shadow-button-hover', 'active:scale-95']),
+    classNames([
+      'spr-transition spr-duration-150 spr-ease-in-out',
+      'hover:spr-shadow-button-hover',
+      'active:spr-scale-95',
+    ]),
   );
 
   const buttonSizeCssClass: ComputedRef<string> = computed(() =>
     classNames({
-      'min-w-6 p-size-spacing-4xs font-medium font-size-100 leading-100': size.value === 'small',
-      'min-w-7 p-2 font-medium font-size-100 leading-100': size.value === 'medium',
-      '!min-w-9 px-2 py-3 font-medium font-size-200 leading-300 max-h-9': size.value === 'large',
-      'font-size-400': hasIcon.value && size.value === 'large',
-      'font-size-300': hasIcon.value && size.value === 'medium',
-      'font-size-200': hasIcon.value && size.value === 'small',
+      'spr-min-w-6 spr-p-size-spacing-4xs spr-font-medium spr-font-size-100 spr-leading-100': size.value === 'small',
+      'spr-min-w-7 spr-p-2 spr-font-medium spr-font-size-100 spr-leading-100': size.value === 'medium',
+      '!spr-min-w-9 spr-px-2 spr-py-3 spr-font-medium spr-font-size-200 spr-leading-300 spr-max-h-9':
+        size.value === 'large',
+      'spr-font-size-400': hasIcon.value && size.value === 'large',
+      'spr-font-size-300': hasIcon.value && size.value === 'medium',
+      'spr-font-size-200': hasIcon.value && size.value === 'small',
     }),
   );
 
   const buttonTextCssClass: ComputedRef<string> = computed(() => {
     if (variant.value === 'secondary' || variant.value === 'tertiary') {
       return classNames({
-        'text-color-strong': tone.value === 'neutral',
-        'text-color-brand-base': tone.value === 'success',
-        'text-color-danger-base': tone.value === 'danger',
+        'spr-text-color-strong': tone.value === 'neutral',
+        'spr-text-color-brand-base': tone.value === 'success',
+        'spr-text-color-danger-base': tone.value === 'danger',
       });
     }
 
     return classNames({
-      'text-color-strong': tone.value === 'neutral',
-      'text-color-inverted-strong': tone.value === 'success' || tone.value === 'danger',
+      'spr-text-color-strong': tone.value === 'neutral',
+      'spr-text-color-inverted-strong': tone.value === 'success' || tone.value === 'danger',
     });
   });
 
@@ -62,10 +67,10 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
   const buttonBackgroundCssClass: ComputedRef<string> = computed(() => {
     if (variant.value === 'secondary') {
       if (pressed.value) {
-        return 'background-color-pressed !shadow-button';
+        return 'spr-background-color-pressed !spr-shadow-button';
       }
 
-      return isHovered.value ? 'background-color-hover' : 'background-color ';
+      return isHovered.value ? 'spr-background-color-hover' : 'spr-background-color ';
     }
 
     if (variant.value === 'tertiary') {
@@ -77,11 +82,11 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   function getTertiaryBackground(): string {
     if (pressed.value) {
-      return 'background-color-pressed !shadow-button';
+      return 'spr-background-color-pressed !spr-shadow-button';
     }
 
     return classNames('!border-none', {
-      'background-color-hover': isHovered.value,
+      'spr-background-color-hover': isHovered.value,
     });
   }
 
@@ -99,9 +104,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   function getPressedBackground(): string {
     const backgrounds: Record<string, string> = {
-      neutral: 'background-color-pressed !shadow-button',
-      success: 'background-color-brand-pressed !shadow-button',
-      danger: 'background-color-danger-pressed !shadow-button',
+      neutral: 'spr-background-color-pressed !spr-shadow-button',
+      success: 'spr-background-color-brand-pressed !spr-shadow-button',
+      danger: 'spr-background-color-danger-pressed !spr-shadow-button',
     };
 
     return backgrounds[tone.value] || '';
@@ -109,9 +114,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   function getHoveredBackground(): string {
     const backgrounds: Record<string, string> = {
-      neutral: 'background-color-hover',
-      success: 'background-color-success-pressed',
-      danger: 'background-color-danger-hover',
+      neutral: 'spr-background-color-hover',
+      success: 'spr-background-color-success-pressed',
+      danger: 'spr-background-color-danger-hover',
     };
 
     return backgrounds[tone.value] || '';
@@ -119,9 +124,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   function getDefaultBackground(): string {
     const backgrounds: Record<string, string> = {
-      neutral: 'background-color-base',
-      success: 'background-color-brand-base',
-      danger: 'background-color-danger-base',
+      neutral: 'spr-background-color-base',
+      success: 'spr-background-color-brand-base',
+      danger: 'spr-background-color-danger-base',
     };
 
     return backgrounds[tone.value] || '';
@@ -131,16 +136,16 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
   const buttonBorderCssClass: ComputedRef<string> = computed(() => {
     if (variant.value === 'primary' || variant.value === 'tertiary') {
       if (focused.value) {
-        return 'border-solid !border !border-white-50';
+        return 'spr-border-solid !spr-border !spr-border-white-50';
       }
 
-      return 'border-solid !border !border-transparent';
+      return 'spr-border-solid !spr-border !spr-border-transparent';
     }
 
     return classNames({
-      'border-solid !border !border-color-base': tone.value === 'neutral',
-      'border-solid !border !border-color-brand-base': tone.value === 'success',
-      'border-solid !border !border-color-danger-base': tone.value === 'danger',
+      'spr-border-solid !spr-border !spr-border-color-base': tone.value === 'neutral',
+      'spr-border-solid !spr-border !spr-border-color-brand-base': tone.value === 'success',
+      'spr-border-solid !spr-border !spr-border-color-danger-base': tone.value === 'danger',
     });
   });
 
@@ -154,21 +159,21 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
         return classNames(
           buttonDefaultCssClass.value,
           buttonSizeCssClass.value,
-          'text-color-disabled background-color-disabled !border-0 !shadow-none !cursor-not-allowed',
+          'spr-text-color-disabled spr-background-color-disabled !spr-border-0 !spr-shadow-none !spr-cursor-not-allowed',
         );
 
       if (variant.value === 'secondary')
         return classNames(
           buttonDefaultCssClass.value,
           buttonSizeCssClass.value,
-          'text-color-disabled border-solid !border !border-color-disabled !shadow-none !cursor-not-allowed',
+          'spr-text-color-disabled spr-border-solid !spr-border !spr-border-color-disabled !spr-shadow-none !spr-cursor-not-allowed',
         );
 
       if (variant.value === 'tertiary')
         return classNames(
           buttonDefaultCssClass.value,
           buttonSizeCssClass.value,
-          'text-color-disabled !border-0 !shadow-none !cursor-not-allowed',
+          'spr-text-color-disabled !spr-border-0 !spr-shadow-none !spr-cursor-not-allowed',
         );
     }
 

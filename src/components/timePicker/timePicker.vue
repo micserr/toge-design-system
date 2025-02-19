@@ -4,7 +4,7 @@
       {{ label }}
     </label>
 
-    <div class="relative flex items-center">
+    <div class="spr-relative spr-flex spr-items-center">
       <input
         v-model="selectedValue"
         type="text"
@@ -31,13 +31,10 @@
           v-for="option in filteredOptions"
           :key="option"
           :class="[
-            'flex justify-between',
-            'body-xs-regular p-size-spacing-3xs',
-            'hover:background-color-hover',
-            'rounded-border-radius-md',
-            'cursor-pointer',
+            'spr-flex spr-justify-between spr-body-xs-regular spr-p-size-spacing-3xs spr-rounded-border-radius-md spr-cursor-pointer',
+            'hover:spr-background-color-hover',
             {
-              'background-color-single-active rounded-border-radius-md':
+              'spr-background-color-single-active spr-rounded-border-radius-md':
                 option.toUpperCase() === selectedValue?.toUpperCase(),
             },
           ]"
@@ -45,18 +42,22 @@
         >
           {{ option }}
 
-          <span v-if="option.toUpperCase() === selectedValue?.toUpperCase()" class="text-color-brand-base font-bold">
+          <span
+            v-if="option.toUpperCase() === selectedValue?.toUpperCase()"
+            class="spr-text-color-brand-base spr-font-bold"
+          >
             <Icon icon="ph:check" />
           </span>
         </div>
       </div>
-      <div v-else class="px-3 py-2 text-gray-500">No matching options found</div>
+      <div v-else class="spr-px-3 spr-py-2 spr-text-gray-500">No matching options found</div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
+
 import { timePickerPropTypes, timePickerEmitTypes } from './timePicker';
 import { useTimePicker } from './use-timePicker';
 

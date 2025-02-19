@@ -1,5 +1,5 @@
 <template>
-  <div v-bind="switchProps" :class="['flex items-center gap-2', switchTextClass]">
+  <div v-bind="switchProps" :class="['spr-flex spr-items-center spr-gap-2', switchTextClass]">
     <label>
       <slot name="leftText">
         <slot></slot>
@@ -8,8 +8,8 @@
     <div
       ref="switchWrapperRef"
       :class="{
-        'relative flex items-center': true,
-        'cursor-pointer transition duration-300 ease-in-out active:scale-90': !props.disabled,
+        'spr-relative spr-flex spr-items-center': true,
+        'spr-cursor-pointer spr-transition spr-duration-300 spr-ease-in-out active:spr-scale-90': !props.disabled,
       }"
     >
       <input
@@ -17,11 +17,17 @@
         v-model="proxyValue"
         type="checkbox"
         name="checkbox"
-        :class="['input absolute left-0 top-0 z-10 m-0 h-6 w-12 opacity-0', switchInputClass]"
+        :class="[
+          'input spr-absolute spr-left-0 spr-top-0 spr-z-10 spr-m-0 spr-h-6 spr-w-12 spr-opacity-0',
+          switchInputClass,
+        ]"
         :disabled="props.disabled"
       />
       <span
-        :class="['switch-mark relative box-border inline-block h-6 w-12 rounded-[40px] p-1', switchMarkClass]"
+        :class="[
+          'switch-mark spr-relative spr-box-border spr-inline-block spr-h-6 spr-w-12 spr-rounded-[40px] spr-p-1',
+          switchMarkClass,
+        ]"
       ></span>
     </div>
     <label>
@@ -48,19 +54,19 @@ const { switchWrapperRef, switchRef, switchProps, switchMarkClass, switchTextCla
 <style lang="scss" scoped>
 .input {
   &:checked ~ .switch-mark:before {
-    @apply left-[1.7rem];
+    @apply spr-left-[1.7rem];
   }
 }
 
 .switch-mark {
   &:before,
   &:after {
-    @apply absolute;
+    @apply spr-absolute;
     content: '';
   }
 
   &:before {
-    @apply left-1 top-1 h-4 w-4 rounded-[50%] bg-white-50;
+    @apply spr-left-1 spr-top-1 spr-h-4 spr-w-4 spr-rounded-[50%] spr-bg-white-50;
   }
 }
 </style>

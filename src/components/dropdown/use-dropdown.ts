@@ -1,7 +1,8 @@
 import { ref, onMounted, watch, computed } from 'vue';
-import type { SetupContext } from 'vue';
+
 import classNames from 'classnames';
 
+import type { SetupContext } from 'vue';
 import type { DropdownPropTypes, DropdownEmitTypes } from './dropdown';
 
 interface SelectedItem {
@@ -12,10 +13,10 @@ interface SelectedItem {
 export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<DropdownEmitTypes>['emit']) => {
   const dropdownItemBaseClasses = computed(() => {
     return classNames(
-      'flex cursor-pointer items-center justify-between gap-1.5 rounded-lg p-2',
-      'transition duration-150 ease-in-out',
-      'hover:background-color-hover',
-      'active:background-color-single-active active:scale-95',
+      'spr-flex spr-cursor-pointer spr-items-center spr-justify-between spr-gap-1.5 spr-rounded-lg spr-p-2',
+      'spr-transition spr-duration-150 spr-ease-in-out',
+      'hover:spr-background-color-hover',
+      'active:spr-background-color-single-active active:spr-scale-95',
     );
   });
 

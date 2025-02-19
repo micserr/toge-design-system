@@ -1,50 +1,26 @@
 import { App } from 'vue';
-
 import '@/assets/styles/tailwind.css';
 
-// #region - Get and set prefix
-let globalPrefix = '';
-
-export const setPrefix = (prefix: string) => {
-  globalPrefix = prefix || 'spr-';
-};
-
-export const getPrefix = (): string => globalPrefix;
-
-const applyPrefix = (componentName: string) => `${getPrefix()}${componentName}`;
-// #endregion - Get and set prefix
-
-// #region - Install components globally
+// Prefix constant (no need for dynamic setPrefix)
+const PREFIX = 'spr-';
 
 // Dynamically import all components from the components directory
-const components = import.meta.glob('../src/components/**/*.vue', {
-  eager: true, // Load components immediately
-});
+const components = import.meta.glob('../src/components/**/*.vue', { eager: true });
 
-const install = (app: App, options: { prefix?: string } = {}) => {
-  // Set the global prefix from options
-  setPrefix(options.prefix || 'spr-');
-
+const install = (app: App) => {
   Object.entries(components).forEach(([path, component]) => {
-    // Extract the component name from the file path
-    const componentName = path.split('/').pop()?.replace('.vue', '') as string;
+    // Extract component name from the file path and apply prefix
+    const componentName = path.split('/').pop()?.replace('.vue', '');
 
-    // Apply the global prefix to the component name
-    const prefixedComponentName = applyPrefix(componentName);
-
-    // Register each component globally
-    // eslint-disable-next-line
-    app.component(prefixedComponentName, (component as any).default);
+    if (componentName) {
+      app.component(`${PREFIX}${componentName}`, (component as any).default);
+    }
   });
 
   console.log('%c🚀⭐ Design System Next Installed ⭐🚀', 'color: green; font-weight: bold; font-size: 14px;');
 };
 
 export default { install };
-// #endregion  - Install components globally
 
-// #region - Export components for individual import
+// Export components for individual import
 // export { default as ButtonBase } from '../src/components/Buttons/ButtonBase.vue';  // Does not support prefix
-// #endregion - Export components for individual import
-
-export { useSnackbar } from '@/components/snackbar/use-snackbar.ts';  // Does not support prefix

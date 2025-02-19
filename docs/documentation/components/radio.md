@@ -4,7 +4,7 @@ A Radio Button is a component that enables a user to select a single option from
 
 ## Basic Usage
 
-<div class="flex flex-col items-start gap-2">
+<div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
   <spr-radio id="sample1" v-model="sampleradio" name="sampleradio" value="sample1">
     Default Checked Radio
   </spr-radio>
@@ -16,11 +16,8 @@ A Radio Button is a component that enables a user to select a single option from
 
 ```vue
 <template>
-  <div class="flex flex-col items-start gap-2">
-    <spr-radio id="sample1" v-model="sampleradio" name="sampleradio" value="sample1">Default Checked Radio</spr-radio>
-
-    <spr-radio id="sample2" v-model="sampleradio" name="sampleradio" value="sample2">Default Radio</spr-radio>
-  </div>
+  <spr-radio id="sample1" v-model="sampleradio" name="sampleradio" value="sample1">Default Checked Radio</spr-radio>
+  <spr-radio id="sample2" v-model="sampleradio" name="sampleradio" value="sample2">Default Radio</spr-radio>
 </template>
 
 <script setup>
@@ -34,7 +31,7 @@ const sampleradio = ref < string > 'sample1';
 
 Add the `disabled` attribute to the `<spr-radio>` component to disable the radio button.
 
-<div class="flex flex-col items-start gap-2">
+<div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
   <spr-radio id="disabledradio1" v-model="disabledradio" name="disabledradio" value="disabledradio1" disabled>
     Disabled Checked Radio
   </spr-radio>
@@ -46,7 +43,7 @@ Add the `disabled` attribute to the `<spr-radio>` component to disable the radio
 
 ```vue
 <template>
-  <div class="flex flex-col items-start gap-2">
+  <div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
     <spr-radio id="disabledradio1" v-model="disabledradio" name="disabledradio" value="disabledradio1" disabled>
       Disabled Checked Radio
     </spr-radio>

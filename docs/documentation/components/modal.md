@@ -4,20 +4,24 @@ Display important information without navigating away from the current page. It 
 
 ## Basic Usage
 
-<spr-button tone="success" @click="isModalOpen = true">Open Modal</spr-button>
-<spr-modal title="Modal title" :open="isModalOpen" @onClose="isModalOpen = false" >
-
-  <div class="p-4">Content Here!</div>
-  <template #footer>
-  <div class="flex justify-end w-full">
-  <spr-button tone="success" @click="isModalOpen = false">Close</spr-button>
-  </div>
-  </template>
-</spr-modal>
+<div>
+  <spr-button tone="success" @click="isModalOpen = true">
+    Open Modal
+  </spr-button>
+  <spr-modal title="Modal title" :open="isModalOpen" @onClose="isModalOpen = false">
+    <div class="spr-p-4">Content Here!</div>
+    <template #footer>
+      <div class="spr-flex spr-justify-end spr-w-full">
+        <spr-button tone="success" @click="isModalOpen = false">Close</spr-button>
+      </div>
+    </template>
+  </spr-modal>
+</div>
 
 ```vue
 <template>
   <spr-button tone="success" @click="isModalOpen = true">Open Modal</spr-button>
+
   <spr-modal title="Modal title" :open="isModalOpen" @onClose="isModalOpen = false">
     <div class="p-4">Content Here!</div>
 
@@ -28,6 +32,7 @@ Display important information without navigating away from the current page. It 
     </template>
   </spr-modal>
 </template>
+
 <script setup lang="ts">
 import { ref } from 'vue';
 
@@ -37,59 +42,50 @@ const isModalOpen = ref<boolean>(false);
 
 ## Size
 
-<div class="flex space-x-4">
+<div class="spr-flex spr-space-x-4">
   <spr-button tone="success" @click="isModalSizesOpen = true">Small</spr-button>
   <spr-button tone="success" @click="isModalSizes1Open = true">Medium</spr-button>
   <spr-button tone="success" @click="isModalSizes2Open = true">Large</spr-button>
   <spr-button tone="success" @click="isModalSizes3Open = true">Extra Large</spr-button>
 </div>
-
 <div>
-
-<spr-modal title="Modal title" size="sm" :open="isModalSizesOpen" @onClose="isModalSizesOpen = false" >
-
-  <div class="p-4">Content Here!</div>
-  <template #footer>
-  <div class="flex justify-end w-full">
-  <spr-button tone="success" @click="isModalSizesOpen = false">Close</spr-button>
-  </div>
+  <spr-modal title="Modal title" size="sm" :open="isModalSizesOpen" @onClose="isModalSizesOpen = false" >
+    <div class="spr-p-4">Content Here!</div>
+    <template #footer>
+      <div class="spr-flex spr-justify-end spr-w-full">
+        <spr-button tone="success" @click="isModalSizesOpen = false">Close</spr-button>
+      </div>
   </template>
-</spr-modal>
-
-<spr-modal title="Modal title" size="md" :open="isModalSizes1Open" @onClose="isModalSizes1Open = false" >
-
-  <div class="p-4">Content Here!</div>
-  <template #footer>
-  <div class="flex justify-end w-full">
-  <spr-button tone="success" @click="isModalSizes1Open = false">Close</spr-button>
-  </div>
-  </template>
-</spr-modal>
-
-<spr-modal title="Modal title" size="lg" :open="isModalSizes2Open" @onClose="isModalSizes2Open = false" >
-
-  <div class="p-4">Content Here!</div>
-  <template #footer>
-  <div class="flex justify-end w-full">
-  <spr-button tone="success" @click="isModalSizes2Open = false">Close</spr-button>
-  </div>
-  </template>
-</spr-modal>
-
-<spr-modal title="Modal title" size="xl" :open="isModalSizes3Open" @onClose="isModalSizes3Open = false" >
-
-  <div class="p-4">Content Here!</div>
-  <template #footer>
-  <div class="flex justify-end w-full">
-  <spr-button tone="success" @click="isModalSizes3Open = false">Close</spr-button>
-  </div>
-  </template>
-</spr-modal>
+  </spr-modal>
+  <spr-modal title="Modal title" size="md" :open="isModalSizes1Open" @onClose="isModalSizes1Open = false" >
+    <div class="spr-p-4">Content Here!</div>
+    <template #footer>
+      <div class="spr-flex spr-justify-end spr-w-full">
+        <spr-button tone="success" @click="isModalSizes1Open = false">Close</spr-button>
+      </div>
+    </template>
+  </spr-modal>
+  <spr-modal title="Modal title" size="lg" :open="isModalSizes2Open" @onClose="isModalSizes2Open = false" >
+    <div class="spr-p-4">Content Here!</div>
+    <template #footer>
+      <div class="spr-flex spr-justify-end spr-w-full">
+        <spr-button tone="success" @click="isModalSizes2Open = false">Close</spr-button>
+      </div>
+    </template>
+  </spr-modal>
+  <spr-modal title="Modal title" size="xl" :open="isModalSizes3Open" @onClose="isModalSizes3Open = false" >
+    <div class="spr-p-4">Content Here!</div>
+    <template #footer>
+      <div class="spr-flex spr-justify-end spr-w-full">
+        <spr-button tone="success" @click="isModalSizes3Open = false">Close</spr-button>
+      </div>
+    </template>
+  </spr-modal>
 </div>
 
 ```vue
 <template>
-  <div class="flex space-x-4">
+  <div>
     <spr-button tone="success" @click="isModalSizesOpen = true">Small</spr-button>
     <spr-button tone="success" @click="isModalSizes1Open = true">Medium</spr-button>
     <spr-button tone="success" @click="isModalSizes2Open = true">Large</spr-button>
@@ -170,14 +166,14 @@ const isModalSizes3Open = ref<boolean>(false);
 | onClose | Function to call when the modal is closed |
 
 <script lang="ts" setup>
-  import { ref } from 'vue';
+import { ref } from 'vue';
 
-  import SprModal from "@/components/modal/modal.vue"
-  import SprButton from "@/components/button/button.vue"
+import SprModal from "@/components/modal/modal.vue"
+import SprButton from "@/components/button/button.vue"
 
-  const isModalOpen = ref<boolean>(false);
-  const isModalSizesOpen = ref<boolean>(false);
-  const isModalSizes1Open = ref<boolean>(false);
-  const isModalSizes2Open = ref<boolean>(false);
-  const isModalSizes3Open = ref<boolean>(false);
+const isModalOpen = ref<boolean>(false);
+const isModalSizesOpen = ref<boolean>(false);
+const isModalSizes1Open = ref<boolean>(false);
+const isModalSizes2Open = ref<boolean>(false);
+const isModalSizes3Open = ref<boolean>(false);
 </script>

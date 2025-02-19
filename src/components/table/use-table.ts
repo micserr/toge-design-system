@@ -1,4 +1,5 @@
 import { ref, computed, toRefs } from 'vue';
+
 import type { TablePropTypes } from './table';
 
 export const useTable = (props: TablePropTypes) => {

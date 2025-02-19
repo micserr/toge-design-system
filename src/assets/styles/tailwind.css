@@ -93,7 +93,8 @@
   /* #endregion - Sidenav */
 
   /* #region - Tooltips */
-  #tooltip-wrapper {
+  #tooltip-wrapper,
+  #tooltip-full-width-wrapper {
     .v-popper__wrapper {
       .v-popper__inner {
         @apply background-color-inverted text-color-inverted-strong body-xs-regular rounded-border-radius-md px-2 py-1.5 font-main opacity-100;
@@ -101,6 +102,22 @@
 
       .v-popper__arrow-outer {
         @apply hidden;
+      }
+    }
+  }
+
+  #tooltip-wrapper {
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply max-w-full;
+      }
+    }
+  }
+
+  #tooltip-full-width-wrapper {
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply max-w-[280px];
       }
     }
   }

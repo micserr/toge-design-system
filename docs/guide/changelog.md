@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1 (2025-02-19)
+- Feat
+  - Add a search input for search type ([#](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ac4bf72bf82c7949b994f9b2da17eadaea580960?refName=refs/heads/2025/FEATURE/Xyrk/SEARCH_INPUT_FIELD) by @jfabula)
+
 ## 1.3.0 (2025-02-19)
 
 - Feat

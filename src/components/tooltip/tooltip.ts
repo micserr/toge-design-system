@@ -23,7 +23,7 @@ export const tooltipPropTypes = {
    */
   text: {
     type: String,
-    default: 'Sample tooltip',
+    default: '',
   },
   /**
    * @description Tooltip Placement
@@ -32,6 +32,10 @@ export const tooltipPropTypes = {
     type: String,
     validator: (value: (typeof PLACEMENTS)[number]) => PLACEMENTS.includes(value),
     default: 'top',
+  },
+  hasMaxWidth: {
+    type: Boolean,
+    default: true,
   },
 };
 

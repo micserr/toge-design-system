@@ -36,7 +36,21 @@ The Sidepanel component is a reusable UI element designed to display contextual 
       Sidepanel Content
     </div>
     <template #footer>
-      <div class="px-4 flex justify-end gap-2">
+      <div class="spr-px-4 spr-flex spr-justify-end spr-gap-2">
+        <spr-button>Cancel</spr-button>
+        <spr-button tone="success">Submit</spr-button>
+      </div>
+    </template>
+  </spr-sidepanel>
+</div>
+
+```vue
+<template>
+  <spr-button tone="success" @click="isSidepanelOpen = true">Open Sidepanel</spr-button>
+  <spr-sidepanel :is-open="isSidepanelOpen" @close="isSidepanelOpen = false" header-title="Sidepanel Example">
+    Sidepanel Content
+    <template #footer>
+      <div class="flex justify-end gap-2 px-4">
         <spr-button>Cancel</spr-button>
         <spr-button tone="success">Submit</spr-button>
       </div>
@@ -52,7 +66,7 @@ const isSidepanelOpen = ref<boolean>(false);
 
 ## Size
 
-<div class="flex space-x-4">
+<div class="spr-flex spr-space-x-4">
   <spr-button tone="success" @click="isSmallSidepanelOpen = true">Small</spr-button>
   <spr-button tone="success" @click="isMediumSidepanelOpen = true">Medium</spr-button>
   <spr-button tone="success" @click="isLargeSidepanelOpen = true">Large</spr-button>
@@ -109,7 +123,6 @@ const isSidepanelOpen = ref<boolean>(false);
     360px
   </div>
   </spr-sidepanel>
-
   <spr-sidepanel 
     size="md"
     :is-open="isMediumSidepanelOpen"
@@ -120,7 +133,6 @@ const isSidepanelOpen = ref<boolean>(false);
     420px
   </div>
   </spr-sidepanel>
-
   <spr-sidepanel 
     size="lg"
     :is-open="isLargeSidepanelOpen"
@@ -131,14 +143,47 @@ const isSidepanelOpen = ref<boolean>(false);
     480px
   </div>
   </spr-sidepanel>
+</div>
+
+```vue
+<template>
+  <div class="flex space-x-4">
+    <spr-button tone="success" @click="isSmallSidepanelOpen = true">Small</spr-button>
+    <spr-button tone="success" @click="isMediumSidepanelOpen = true">Medium</spr-button>
+    <spr-button tone="success" @click="isLargeSidepanelOpen = true">Large</spr-button>
+  </div>
+  <spr-sidepanel
+    size="sm"
+    :is-open="isSmallSidepanelOpen"
+    @close="isSmallSidepanelOpen = false"
+    header-title="Sidepanel Small"
+  >
+    360px
+  </spr-sidepanel>
+  <spr-sidepanel
+    size="md"
+    :is-open="isMediumSidepanelOpen"
+    @close="isMediumSidepanelOpen = false"
+    header-title="Sidepanel Medium"
+  >
+    420px
+  </spr-sidepanel>
+  <spr-sidepanel
+    size="lg"
+    :is-open="isLargeSidepanelOpen"
+    @close="isLargeSidepanelOpen = false"
+    header-title="Sidepanel Large"
+  >
+    480px
+  </spr-sidepanel>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const isSmallSidepanelOpen = ref(false)
-const isMediumSidepanelOpen = ref(false)
-const isLargeSidepanelOpen = ref(false)
+const isSmallSidepanelOpen = ref(false);
+const isMediumSidepanelOpen = ref(false);
+const isLargeSidepanelOpen = ref(false);
 </script>
 ```
 
@@ -166,10 +211,9 @@ const isLargeSidepanelOpen = ref(false)
 
 ## Event
 
-| Name    | Description                               |
-| ------- | ----------------------------------------- |
+| Name    | Description                                   |
+| ------- | --------------------------------------------- |
 | onClose | Function to call when the sidepanel is closed |
-
 
 <script lang="ts" setup>
 import { ref } from 'vue';

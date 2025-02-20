@@ -1,67 +1,76 @@
 import { computed, toRefs } from 'vue';
-import type { AvatarPropTypes } from './avatar';
 
 import classNames from 'classnames';
+
+import type { AvatarPropTypes } from './avatar';
+
 export const useAvatar = (props: AvatarPropTypes) => {
-  const { size } = toRefs(props);
+  const { size, color } = toRefs(props);
+
   const avatarClassses = computed(() => {
-    return classNames(' relative  inline-block');
+    return classNames('spr-relative spr-inline-block spr-rounded-full', {
+      'spr-background-color-surface': color.value === 'primary',
+      'spr-background-color': color.value === 'secondary',
+    });
   });
 
   const avatarImageClassses = computed(() => {
-    return classNames('  rounded-full  object-cover ', {
-      ' h-20 min-w-20': size.value === '2xl',
-      ' h-14 min-w-14': size.value === 'xl',
-      ' h-10 min-w-10': size.value === 'lg',
-      ' h-9  min-w-9': size.value === 'md',
-      ' h-6  min-w-6': size.value === 'sm',
-      ' h-5  min-w-5': size.value === 'xs',
-      ' h-4  min-w-4': size.value === '2xs',
-    });
+    return classNames(
+      'spr-rounded-full spr-object-cover spr-flex spr-items-center spr-justify-center spr-overflow-hidden',
+      {
+        'spr-h-20 spr-min-w-20 spr-text-[36px]': size.value === '2xl',
+        'spr-h-14 spr-min-w-14 spr-font-size-600': size.value === 'xl',
+        'spr-h-10 spr-min-w-10 spr-font-size-400': size.value === 'lg',
+        'spr-h-9  spr-min-w-9 spr-font-size-300': size.value === 'md',
+        'spr-h-6  spr-min-w-6 spr-font-size-200': size.value === 'sm',
+        'spr-h-5  spr-min-w-5 spr-text-[10px]': size.value === 'xs',
+        'spr-h-4  spr-min-w-4 spr-text-[10px]': size.value === '2xs',
+      },
+    );
   });
 
   const initialClassses = computed(() => {
     return classNames(
-      '  rounded-full   background-color-surface  border-color-weak  border  border-solid  items-center  flex  justify-center  heading-xs  text-color-strong',
+      'spr-rounded-full spr-border-color-weak spr-border spr-border-solid spr-items-center spr-flex spr-justify-center spr-heading-xs spr-text-color-strong',
       {
-        ' h-20 min-w-20': size.value === '2xl',
-        ' h-14 min-w-14  body-lg-regular-medium': size.value === 'xl',
-        ' h-10 min-w-10  body-sm-regular-medium': size.value === 'lg',
-        ' h-9  min-w-9  body-sm-regular-medium': size.value === 'md',
-        ' h-6  min-w-6  body-xs-regular-medium': size.value === 'sm',
-        ' h-5  min-w-5 !text-[10px]': size.value === 'xs',
-        ' h-4  min-w-4 !text-[10px]': size.value === '2xs',
+        'spr-h-20 spr-min-w-20': size.value === '2xl',
+        'spr-h-14 spr-min-w-14 spr-body-lg-regular-medium': size.value === 'xl',
+        'spr-h-10 spr-min-w-10 spr-body-sm-regular-medium': size.value === 'lg',
+        'spr-h-9 spr-min-w-9 spr-body-sm-regular-medium': size.value === 'md',
+        'spr-h-6 spr-min-w-6 spr-body-xs-regular-medium': size.value === 'sm',
+        'spr-h-5 spr-min-w-5 !spr-text-[10px]': size.value === 'xs',
+        'spr-h-4 spr-min-w-4 !spr-text-[10px]': size.value === '2xs',
       },
     );
   });
 
   const avatarNotificationClassses = computed(() => {
-    return classNames(' absolute  right-0  top-0', {
-      ' right-[-5px]  top-[-6.3px]': size.value === 'xl',
-      ' right-[-7px]  top-[-8px]': size.value === 'lg',
-      ' right-[-5px]  top-[-6px]': size.value === 'md',
-      ' right-[-7px]  top-[-7px]': size.value === 'sm',
-      ' right-[-5px]  top-[-4px]': size.value === 'xs',
-      ' right-[-4px]  top-[-4px]': size.value === '2xs',
+    return classNames('spr-absolute spr-right-0 spr-top-0', {
+      'spr-right-[-5px] spr-top-[-6.3px]': size.value === 'xl',
+      'spr-right-[-7px] spr-top-[-8px]': size.value === 'lg',
+      'spr-right-[-5px] spr-top-[-6px]': size.value === 'md',
+      'spr-right-[-7px] spr-top-[-7px]': size.value === 'sm',
+      'spr-right-[-5px] spr-top-[-4px]': size.value === 'xs',
+      'spr-right-[-4px] spr-top-[-4px]': size.value === '2xs',
     });
   });
 
   const onlineNotificationClassses = computed(() => {
-    return classNames(' absolute  bottom-0  right-0', {
-      ' bottom-0  right-0': size.value === 'xl' || size.value === 'lg' || size.value === 'md',
-      ' bottom-[1px]  right-[1px]': size.value === 'xl',
-      ' bottom-[-3px]  right-[-4px]': size.value === 'sm',
-      ' bottom-[-4px]  right-[-3px]': size.value === 'xs',
-      ' bottom-[-2px]  right-[-4px]': size.value === '2xs',
+    return classNames('spr-absolute spr-bottom-0 spr-right-0', {
+      'spr-bottom-0 spr-right-0': size.value === 'xl' || size.value === 'lg' || size.value === 'md',
+      'spr-bottom-[1px] spr-right-[1px]': size.value === 'xl',
+      'spr-bottom-[-3px] spr-right-[-4px]': size.value === 'sm',
+      'spr-bottom-[-4px] spr-right-[-3px]': size.value === 'xs',
+      'spr-bottom-[-2px] spr-right-[-4px]': size.value === '2xs',
     });
   });
 
   const getAvatarSize = computed(() => {
-    if (['2xl'].includes(size.value)) return { notif: 'big', online: 'big' };
-    if (['xl', 'lg'].includes(size.value)) return { notif: 'big', online: 'tiny' };
-    if (['md', 'sm'].includes(size.value)) return { notif: 'small', online: 'tiny' };
+    if (['2xl'].includes(size.value)) return { notif: 'big', badge: 'big' };
+    if (['xl', 'lg'].includes(size.value)) return { notif: 'big', badge: 'tiny' };
+    if (['md', 'sm'].includes(size.value)) return { notif: 'small', badge: 'tiny' };
 
-    return { notif: 'tiny', online: 'tiny' };
+    return { notif: 'tiny', badge: 'tiny' };
   });
 
   return {

@@ -4,7 +4,7 @@ Commonly used button.
 
 ## Basic Usage
 
-<div class="flex items-center gap-2">
+<div class="spr-flex spr-items-center spr-gap-2">
   <spr-button>Buttons</spr-button>
 </div>
 
@@ -14,7 +14,7 @@ Commonly used button.
 
 ## Tone
 
-<div class="flex items-center gap-2">
+<div class="spr-flex spr-items-center spr-gap-2">
   <spr-button>Neutral</spr-button>
   <spr-button tone="success">Success</spr-button>
   <spr-button tone="danger">Danger</spr-button>
@@ -28,7 +28,7 @@ Commonly used button.
 
 ## Sizes
 
-<div class="flex items-center gap-2">
+<div class="spr-flex spr-items-center spr-gap-2">
   <spr-button size="small">Small</spr-button>
   <spr-button>Medium</spr-button>
   <spr-button size="large">Large</spr-button>
@@ -42,17 +42,17 @@ Commonly used button.
 
 ## Variant
 
-<div class="flex items-center gap-2 mb-2">
+<div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
   <spr-button>Primary</spr-button>
   <spr-button variant="secondary">Secondary</spr-button>
   <spr-button variant="tertiary">Tertiary</spr-button>
 </div>
-<div class="flex items-center gap-2 mb-2">
+<div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
   <spr-button tone="success">Primary</spr-button>
   <spr-button tone="success" variant="secondary">Secondary</spr-button>
   <spr-button tone="success" variant="tertiary">Tertiary</spr-button>
 </div>
-<div class="flex items-center gap-2">
+<div class="spr-flex spr-items-center spr-gap-2">
   <spr-button tone="danger">Primary</spr-button>
   <spr-button tone="danger" variant="secondary">Secondary</spr-button>
   <spr-button tone="danger" variant="tertiary">Tertiary</spr-button>
@@ -77,17 +77,17 @@ Commonly used button.
 
 ## Disabled
 
-<div class="flex items-center gap-2 mb-2">
+<div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
   <spr-button size="small" disabled>Primary</spr-button>
   <spr-button size="small" variant="secondary" disabled>Secondary</spr-button>
   <spr-button size="small" variant="tertiary" disabled>Tertiary</spr-button>
 </div>
-<div class="flex items-center gap-2 mb-2">
+<div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
   <spr-button  disabled>Primary</spr-button>
   <spr-button variant="secondary" disabled>Secondary</spr-button>
   <spr-button variant="tertiary" disabled>Tertiary</spr-button>
 </div>
-<div class="flex items-center gap-2">
+<div class="spr-flex spr-items-center spr-gap-2">
   <spr-button size="large" disabled>Primary</spr-button>
   <spr-button size="large" variant="secondary" disabled>Secondary</spr-button>
   <spr-button size="large" variant="tertiary" disabled>Tertiary</spr-button>
@@ -101,25 +101,25 @@ Commonly used button.
 
 ## Icon
 
-<div class="flex items-center gap-2 mb-2">
+<div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
     <spr-button size="small" hasIcon ><Icon icon="ph:trash" /></spr-button>
     <spr-button variant="secondary" hasIcon><Icon icon="ph:trash" /></spr-button>
     <spr-button size="large" variant="tertiary" hasIcon><Icon icon="ph:trash" /></spr-button>
 </div>
 
-<div class="flex items-center gap-2 mb-2">
+<div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
     <spr-button size="small" tone="success" hasIcon><Icon icon="ph:trash" /></spr-button>
     <spr-button tone="success"  variant="secondary" hasIcon><Icon icon="ph:trash" /></spr-button>
     <spr-button size="large" tone="success"variant="tertiary" hasIcon><Icon icon="ph:trash" /></spr-button>
 </div>
 
-<div class="flex items-center gap-2 mb-2">
+<div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
     <spr-button hasIcon size="small" tone="danger" ><Icon icon="ph:trash" /></spr-button>
     <spr-button hasIcon tone="danger" variant="secondary" ><Icon icon="ph:trash" /></spr-button>
     <spr-button hasIcon size="large" tone="danger" variant="tertiary" ><Icon icon="ph:trash" /></spr-button>
 </div>
 
-<div class="flex items-center gap-2 mb-2">
+<div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
     <spr-button disabled hasIcon size="small" tone="danger"><Icon icon="ph:trash" /></spr-button>
     <spr-button disabled hasIcon tone="danger" variant="secondary" ><Icon icon="ph:trash" /></spr-button>
     <spr-button disabled hasIcon size="large" tone="danger" variant="tertiary" ><Icon icon="ph:trash" /></spr-button>

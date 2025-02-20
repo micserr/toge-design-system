@@ -100,7 +100,7 @@ const inputValue = ref('');
 
 ## Trailing Label
 
-<div class="flex flex-col gap-2">
+<div class="spr-flex spr-flex-col spr-gap-2">
   <spr-input v-model="inputValue.input6" label="Offset xs" placeholder="00" offset-size="xs" type="number">
     <template #trailing>
       minutes
@@ -148,6 +148,22 @@ const inputValueSM = ref('');
 const inputValueMD = ref('');
 </script>
 ```
+## Search Input
+<div>
+  <spr-input v-model="inputValue.input9" label="Search" placeholder="Enter search value" :active="true" type="search" />
+</div>
+
+```vue
+<template>
+  <spr-input v-model="inputValueSearch" label="Search" placeholder="Enter search value" :active="true" type="search" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputValueSearch = ref('');
+</script>
+``` 
 
 <script lang="ts" setup>
 import { ref } from 'vue';
@@ -165,5 +181,6 @@ const inputValue = ref({
   input6: '',
   input7: '',
   input8: '',
+  input9: '',
 });
 </script>

@@ -1,32 +1,34 @@
 import { ref, computed, toRefs, watch, onMounted, onUnmounted } from 'vue';
 
 import classNames from 'classnames';
+
 import type { SetupContext } from 'vue';
 import type { SidepanelPropTypes, SidepanelEmitTypes } from './sidepanel';
 
 export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<SidepanelEmitTypes>['emit']) => {
   const sidepanelRef = ref<HTMLDivElement | null>(null);
+
   const { size, position } = toRefs(props);
 
   const sidepanelSizesClasses = computed(() => {
     return classNames({
-      'w-[360px]': size.value === 'sm',
-      'w-[420px]': size.value === 'md',
-      'w-[480px]': size.value === 'lg',
+      'spr-w-[360px]': size.value === 'sm',
+      'spr-w-[420px]': size.value === 'md',
+      'spr-w-[480px]': size.value === 'lg',
     });
   });
 
   const sidepanelStartEndState = computed(() => {
     return classNames({
-      'translate-x-full -translate-y-2/4': position.value === 'right'
-    })
-  })
+      'spr-translate-x-full -spr-translate-y-2/4': position.value === 'right',
+    });
+  });
 
   const sidepanelMidState = computed(() => {
     return classNames({
-      'translate-x-0 -translate-y-2/4': position.value === 'right'
-    })
-  })
+      'spr-translate-x-0 -spr-translate-y-2/4': position.value === 'right',
+    });
+  });
 
   const handleClose = () => {
     emit('close');
@@ -37,7 +39,7 @@ export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<Sidep
   const handleClickOutside = (event: MouseEvent) => {
     if (ignoreClick) return;
     if (sidepanelRef.value && !sidepanelRef.value.contains(event.target as Node) && props.closeOutside) {
-      emit('close')
+      emit('close');
     }
   };
 

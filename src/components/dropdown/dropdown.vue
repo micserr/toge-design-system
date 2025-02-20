@@ -1,7 +1,7 @@
 <template>
   <Menu
     v-model:shown="menuOpened"
-    class="w-fit"
+    class="spr-w-fit"
     aria-id="dropdown-wrapper"
     distance="4"
     :placement="props.placement"
@@ -13,25 +13,25 @@
     </div>
 
     <template #popper>
-      <div class="grid gap-0.5">
+      <div class="spr-grid spr-gap-0.5">
         <div
           v-for="(item, index) in props.menu"
           :key="index"
           :class="[
             dropdownItemBaseClasses,
             {
-              'background-color-single-active': isItemSelected(item),
+              'spr-background-color-single-active': isItemSelected(item),
             },
           ]"
           @click="handleSelectedItem(item)"
         >
           <spr-checkbox v-if="props.dropdownType === 'multi-select'" v-model="checkboxModels[item.text]" />
-          <div class="flex w-full items-center">
-            <span class="text-xs">{{ item.text }}</span>
+          <div class="spr-flex spr-w-full spr-items-center">
+            <span class="spr-text-xs">{{ item.text }}</span>
           </div>
           <Icon
             v-if="props.dropdownType === 'single-select' && isItemSelected(item)"
-            class="text-color-brand-base w-[1.39em]"
+            class="spr-text-color-brand-base spr-w-[1.39em]"
             icon="ph:check"
           />
         </div>

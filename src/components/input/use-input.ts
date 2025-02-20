@@ -1,8 +1,10 @@
 import { computed, toRefs } from 'vue';
-import type { InputPropTypes, InputEmitTypes } from './input';
-import classNames from 'classnames';
 import { useVModel } from '@vueuse/core';
+
+import classNames from 'classnames';
+
 import type { SetupContext } from 'vue';
+import type { InputPropTypes, InputEmitTypes } from './input';
 
 export const useInput = (
   props: InputPropTypes,
@@ -13,71 +15,71 @@ export const useInput = (
   const modelValue = useVModel(props, 'modelValue', emit);
 
   const wrapperClasses = computed(() => {
-    return classNames('flex flex-col gap-size-spacing-4xs');
+    return classNames('spr-flex spr-flex-col spr-gap-size-spacing-4xs');
   });
 
   const labelClasses = computed(() => {
-    return classNames('body-sm-regular text-color-strong block', {
-      'text-color-on-fill-disabled': disabled.value,
+    return classNames('spr-body-sm-regular spr-text-color-strong spr-block', {
+      'spr-text-color-on-fill-disabled': disabled.value,
     });
   });
 
   const inputClasses = computed(() => {
     return classNames(
-      'block',
-      'w-full',
-      'px-size-spacing-2xs',
-      'py-size-spacing-4xs',
-      'rounded-border-radius-md',
-      'placeholder:text-mushroom-300',
-      'text-color-strong',
-      'font-size-200',
-      'focus:!border-kangkong-700',
-      'focus:text-color-strong',
-      'focus:!border-[1.5px]',
-      'outline-none',
-      'ring-0',
+      'spr-block spr-w-full spr-px-size-spacing-2xs spr-py-size-spacing-4xs spr-rounded-border-radius-md spr-outline-none spr-ring-0',
+      'spr-text-color-strong spr-font-size-200',
+      'focus:!spr-border-kangkong-700 focus:spr-text-color-strong focus:!spr-border-[1.5px]',
+      'placeholder:spr-text-mushroom-300',
       {
-        'border border-solid border-mushroom-200': !error.value || !disabled.value,
-        '!border-[1.5px]': error.value,
-        '!border-tomato-600': error.value,
-        'focus:!border-tomato-600': error.value,
-        '!border-white-100': disabled.value,
-        'background-color-disabled': disabled.value,
-        'cursor-not-allowed': disabled.value,
-        'text-color-on-fill-disabled': disabled.value,
-        'pr-[5%]': slots.icon,
-        'pl-size-spacing-lg': slots.prefix,
-        'pr-[93%] sm:pr-[85%]': offsetSize.value === 'xs' && slots.trailing,
-        'pr-[90%] sm:pr-[80%]': offsetSize.value === 'sm' && slots.trailing,
-        'pr-[50%]': offsetSize.value === 'md' && slots.trailing,
-        'cursor-pointer': readonly.value,
-        'border-kangkong-700': active.value,
-        'text-color-strong': active.value,
-        'border-[1.5px]': active.value,
+        'spr-border spr-border-solid spr-border-mushroom-200': !error.value || !disabled.value,
+        '!spr-border-[1.5px]': error.value,
+        '!spr-border-tomato-600': error.value,
+        'focus:!spr-border-tomato-600': error.value,
+        '!spr-border-white-100': disabled.value,
+        'spr-background-color-disabled': disabled.value,
+        'spr-cursor-not-allowed': disabled.value,
+        'spr-text-color-on-fill-disabled': disabled.value,
+        'spr-pr-[5%]': slots.icon,
+        'spr-pl-size-spacing-lg': slots.prefix,
+        'spr-pr-[93%] sm:spr-pr-[85%]': offsetSize.value === 'xs' && slots.trailing,
+        'spr-pr-[90%] sm:spr-pr-[80%]': offsetSize.value === 'sm' && slots.trailing,
+        'spr-pr-[50%]': offsetSize.value === 'md' && slots.trailing,
+        'spr-cursor-pointer': readonly.value,
+        'spr-border-kangkong-700': active.value,
+        'spr-text-color-strong': active.value,
+        'spr-border-[1.5px]': active.value,
       },
     );
   });
 
   const iconSlotClasses = computed(() => {
-    return classNames('absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-mushroom-300', {
-      '!text-tomato-600': error.value,
-    });
+    return classNames(
+      'spr-absolute spr-right-3 spr-top-1/2 spr-h-5 spr-w-5 -spr-translate-y-1/2 spr-transform spr-text-mushroom-300',
+      {
+        '!spr-text-tomato-600': error.value,
+      },
+    );
   });
 
   const prefixSlotClasses = computed(() => {
-    return classNames('absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-mushroom-300', {
-      '!text-tomato-600': error.value,
-    });
+    return classNames(
+      'spr-absolute spr-left-3 spr-top-1/2 spr-h-5 spr-w-5 -spr-translate-y-1/2 spr-transform spr-text-mushroom-300',
+      {
+        '!spr-text-tomato-600': error.value,
+      },
+    );
   });
 
   const trailingSlotClasses = computed(() => {
-    return classNames('absolute left-[55%] top-1/2 -translate-y-1/2 transform text-mushroom-300', {
-      '!text-tomato-600': error.value,
-      'left-[7%] sm:left-[16%]': offsetSize.value === 'xs' && slots.trailing,
-      'left-[12%] sm:left-[24%]': offsetSize.value === 'sm' && slots.trailing,
-      'left-[52%]': offsetSize.value === 'md' && slots.trailing,
-    });
+    return classNames(
+      'spr-absolute spr-left-[55%] spr-top-1/2 -spr-translate-y-1/2 spr-transform spr-text-mushroom-300',
+      {
+        '!spr-text-tomato-600': error.value,
+        'spr-left-[7%] sm:spr-left-[16%]': offsetSize.value === 'xs' && slots.trailing,
+        'spr-left-[12%] sm:spr-left-[24%]': offsetSize.value === 'sm' && slots.trailing,
+        'spr-left-[52%]': offsetSize.value === 'md' && slots.trailing,
+      },
+    );
   });
 
   const onInput = (event: Event) => {

@@ -26,52 +26,52 @@
   }
 
   *::-webkit-scrollbar {
-    @apply h-[8px] w-[8px];
+    @apply spr-h-[8px] spr-w-[8px];
   }
 
   *::-webkit-scrollbar-track {
-    @apply bg-white-200;
+    @apply spr-bg-white-200;
   }
 
   *::-webkit-scrollbar-thumb {
-    @apply rounded-full bg-white-300;
+    @apply spr-rounded-full spr-bg-white-300;
   }
 }
 
 @layer components {
   /* #region - Sidenav */
   #quick-action-menu-wrapper {
-    @apply max-h-[500px] w-[400px];
+    @apply spr-max-h-[500px] spr-w-[400px];
   }
 
   #sidenav-menu-wrapper {
-    @apply max-h-[500px] w-[215px];
+    @apply spr-max-h-[500px] spr-w-[215px];
   }
 
   #sidenav-submenu-wrapper {
-    @apply max-h-[500px] w-[215px];
+    @apply spr-max-h-[500px] spr-w-[215px];
   }
 
   #user-menu-wrapper {
-    @apply !top-[-20px] max-h-[500px] w-[300px];
+    @apply !spr-top-[-20px] spr-max-h-[500px] spr-w-[300px];
   }
 
   #sidenav-sub-submenu-wrapper {
-    @apply hidden;
+    @apply spr-hidden;
   }
 
   #quick-action-menu-wrapper,
   #sidenav-menu-wrapper,
   #sidenav-submenu-wrapper,
   #user-menu-wrapper {
-    @apply background-color border-color-base overflow-y-auto overflow-x-hidden rounded-[12px] border border-solid drop-shadow-md;
+    @apply spr-background-color spr-border-color-base spr-overflow-y-auto spr-overflow-x-hidden spr-rounded-[12px] spr-border spr-border-solid spr-drop-shadow-md;
 
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply overflow-hidden rounded-none border-none bg-transparent shadow-none;
+        @apply spr-overflow-hidden spr-rounded-none spr-border-none spr-bg-transparent spr-shadow-none;
 
         .slide-fade-enter-active {
-          @apply duration-300 ease-out;
+          @apply spr-duration-300 spr-ease-out;
         }
 
         .slide-fade-leave-active {
@@ -80,12 +80,12 @@
 
         .slide-fade-enter-from,
         .slide-fade-leave-to {
-          @apply translate-x-[-20px] opacity-0;
+          @apply spr-translate-x-[-20px] spr-opacity-0;
         }
       }
 
       .v-popper__arrow-container {
-        @apply hidden;
+        @apply spr-hidden;
       }
     }
   }
@@ -93,14 +93,31 @@
   /* #endregion - Sidenav */
 
   /* #region - Tooltips */
-  #tooltip-wrapper {
+  #tooltip-wrapper,
+  #tooltip-full-width-wrapper {
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply background-color-inverted text-color-inverted-strong body-xs-regular rounded-border-radius-md px-2 py-1.5 font-main opacity-100;
+        @apply spr-background-color-inverted spr-text-color-inverted-strong spr-body-xs-regular spr-rounded-border-radius-md spr-px-2 spr-py-1.5 spr-font-main spr-opacity-100;
       }
 
       .v-popper__arrow-outer {
-        @apply hidden;
+        @apply spr-hidden;
+      }
+    }
+  }
+
+  #tooltip-wrapper {
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-max-w-full;
+      }
+    }
+  }
+
+  #tooltip-full-width-wrapper {
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-max-w-[280px];
       }
     }
   }
@@ -108,11 +125,11 @@
   #sidenav-tooltip-wrapper {
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply label-xs background-color-inverted rounded-border-radius-md px-2 py-1.5 font-main opacity-100;
+        @apply spr-label-xs spr-background-color-inverted spr-rounded-border-radius-md spr-px-2 spr-py-1.5 spr-font-main spr-opacity-100;
       }
 
       .v-popper__arrow-outer {
-        @apply hidden;
+        @apply spr-hidden;
       }
     }
   }
@@ -120,733 +137,738 @@
 
   /* #region - Dropdown */
   #dropdown-wrapper {
-    @apply overflow-hidden;
+    @apply spr-overflow-hidden;
 
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply border-color-weak max-h-[300px] w-[240px] overflow-y-auto rounded-xl border border-solid p-2 font-main shadow-none;
+        @apply spr-border-color-weak spr-max-h-[300px] spr-w-[240px] spr-overflow-y-auto spr-rounded-xl spr-border spr-border-solid spr-p-2 spr-font-main spr-shadow-none;
 
         &::-webkit-scrollbar-track {
-          @apply rounded-br-xl rounded-tr-xl;
+          @apply spr-rounded-br-xl spr-rounded-tr-xl;
         }
       }
 
       .v-popper__arrow-container {
-        @apply hidden;
+        @apply spr-hidden;
       }
     }
   }
   /* #endregion - Dropdown */
+
+  /* #region - Avatar */
+  .avatar__slot img {
+    @apply spr-h-full spr-w-full spr-object-cover;
+  }
+  /* #endregion - Avatar */
 }
 
 @layer utilities {
-  .hidden-scrolls {
+  .spr-hidden-scrolls {
     &::-webkit-scrollbar {
-      @apply hidden;
+      @apply spr-hidden;
     }
   }
 
   /* #region - Headings */
-  .heading-xl {
-    @apply font-size-900 line-height-1000 letter-spacing-densest font-main font-medium;
+  .spr-heading-xl {
+    @apply spr-font-size-900 spr-line-height-1000 spr-letter-spacing-densest spr-font-main spr-font-medium;
   }
 
-  .heading-lg {
-    @apply font-size-800 line-height-900 letter-spacing-denser font-main font-medium;
+  .spr-heading-lg {
+    @apply spr-font-size-800 spr-line-height-900 spr-letter-spacing-denser spr-font-main spr-font-medium;
   }
 
-  .heading-md {
-    @apply font-size-700 line-height-800 letter-spacing-denser font-main font-medium;
+  .spr-heading-md {
+    @apply spr-font-size-700 spr-line-height-800 spr-letter-spacing-denser spr-font-main spr-font-medium;
   }
 
-  .heading-sm {
-    @apply font-size-600 line-height-700 letter-spacing-dense font-main font-medium;
+  .spr-heading-sm {
+    @apply spr-font-size-600 spr-line-height-700 spr-letter-spacing-dense spr-font-main spr-font-medium;
   }
 
-  .heading-xs {
-    @apply font-size-500 line-height-600 letter-spacing-dense font-main font-medium;
+  .spr-heading-xs {
+    @apply spr-font-size-500 spr-line-height-600 spr-letter-spacing-dense spr-font-main spr-font-medium;
   }
   /* #endregion - Headings */
 
   /* #region - Subheadings */
-  .subheading-sm {
-    @apply font-size-400 line-height-500 letter-spacing-dense font-main font-medium;
+  .spr-subheading-sm {
+    @apply spr-font-size-400 spr-line-height-500 spr-letter-spacing-dense spr-font-main spr-font-medium;
   }
 
-  .subheading-xs {
-    @apply font-size-300 line-height-400 letter-spacing-normal font-main font-medium;
+  .spr-subheading-xs {
+    @apply spr-font-size-300 spr-line-height-400 spr-letter-spacing-normal spr-font-main spr-font-medium;
   }
   /* #endregion - Subheadings */
 
   /* #region - Paragraphs */
-  .body-lg {
-    @apply font-size-400 line-height-600 letter-spacing-normal font-main;
+  .spr-body-lg {
+    @apply spr-font-size-400 spr-line-height-600 spr-letter-spacing-normal spr-font-main;
   }
 
-  .body-lg-regular {
-    @apply body-lg font-normal;
+  .spr-body-lg-regular {
+    @apply spr-body-lg spr-font-normal;
   }
 
-  .body-lg-regular-underline {
-    @apply body-lg font-normal decoration-solid;
+  .spr-body-lg-regular-underline {
+    @apply spr-body-lg spr-font-normal spr-decoration-solid;
   }
 
-  .body-lg-regular-medium {
-    @apply body-lg font-medium;
+  .spr-body-lg-regular-medium {
+    @apply spr-body-lg spr-font-medium;
   }
 
-  .body-lg-medium-underline {
-    @apply body-lg font-medium decoration-solid;
+  .spr-body-lg-medium-underline {
+    @apply spr-body-lg spr-font-medium spr-decoration-solid;
   }
 
-  .body-md {
-    @apply font-size-300 line-height-500 letter-spacing-normal font-main;
+  .spr-body-md {
+    @apply spr-font-size-300 spr-line-height-500 spr-letter-spacing-normal spr-font-main;
   }
 
-  .body-md-regular {
-    @apply body-md font-normal;
+  .spr-body-md-regular {
+    @apply spr-body-md spr-font-normal;
   }
 
-  .body-md-regular-underline {
-    @apply body-md font-normal decoration-solid;
+  .spr-body-md-regular-underline {
+    @apply spr-body-md spr-font-normal spr-decoration-solid;
   }
 
-  .body-md-regular-medium {
-    @apply body-md font-medium;
+  .spr-body-md-regular-medium {
+    @apply spr-body-md spr-font-medium;
   }
 
-  .body-md-medium-underline {
-    @apply body-md font-medium decoration-solid;
+  .spr-body-md-medium-underline {
+    @apply spr-body-md spr-font-medium spr-decoration-solid;
   }
 
-  .body-sm {
-    @apply font-size-200 line-height-400 letter-spacing-normal font-main;
+  .spr-body-sm {
+    @apply spr-font-size-200 spr-line-height-400 spr-letter-spacing-normal spr-font-main;
   }
 
-  .body-sm-regular {
-    @apply body-sm font-normal;
+  .spr-body-sm-regular {
+    @apply spr-body-sm spr-font-normal;
   }
 
-  .body-sm-regular-underline {
-    @apply body-sm font-normal decoration-solid;
+  .spr-body-sm-regular-underline {
+    @apply spr-body-sm spr-font-normal spr-decoration-solid;
   }
 
-  .body-sm-regular-medium {
-    @apply body-sm font-medium;
+  .spr-body-sm-regular-medium {
+    @apply spr-body-sm spr-font-medium;
   }
 
-  .body-sm-medium-underline {
-    @apply body-sm font-medium decoration-solid;
+  .spr-body-sm-medium-underline {
+    @apply spr-body-sm spr-font-medium spr-decoration-solid;
   }
 
-  .body-xs {
-    @apply font-size-100 line-height-300 letter-spacing-normal font-main;
+  .spr-body-xs {
+    @apply spr-font-size-100 spr-line-height-300 spr-letter-spacing-normal spr-font-main;
   }
 
-  .body-xs-regular {
-    @apply body-xs font-normal;
+  .spr-body-xs-regular {
+    @apply spr-body-xs spr-font-normal;
   }
 
-  .body-xs-regular-underline {
-    @apply body-xs font-normal decoration-solid;
+  .spr-body-xs-regular-underline {
+    @apply spr-body-xs spr-font-normal spr-decoration-solid;
   }
 
-  .body-xs-regular-medium {
-    @apply body-xs font-medium;
+  .spr-body-xs-regular-medium {
+    @apply spr-body-xs spr-font-medium;
   }
 
-  .body-xs-medium-underline {
-    @apply body-xs font-medium decoration-solid;
+  .spr-body-xs-medium-underline {
+    @apply spr-body-xs spr-font-medium spr-decoration-solid;
   }
   /* #endregion - Paragraphs */
 
   /* #region - Labels */
-  .label-xs {
-    @apply font-size-100 line-height-100 letter-spacing-wide font-main uppercase;
+  .spr-label-xs {
+    @apply spr-font-size-100 spr-line-height-100 spr-letter-spacing-wide spr-font-main spr-uppercase;
   }
 
-  .label-xs-regular {
-    @apply label-xs font-normal;
+  .spr-label-xs-regular {
+    @apply spr-label-xs spr-font-normal;
   }
 
-  .label-xs-medium {
-    @apply label-xs font-medium;
+  .spr-label-xs-medium {
+    @apply spr-label-xs spr-font-medium;
   }
 
-  .label-sm {
-    @apply font-size-200 line-height-200 letter-spacing-wide font-main uppercase;
+  .spr-label-sm {
+    @apply spr-font-size-200 spr-line-height-200 spr-letter-spacing-wide spr-font-main spr-uppercase;
   }
 
-  .label-sm-regular {
-    @apply label-sm font-normal;
+  .spr-label-sm-regular {
+    @apply spr-label-sm spr-font-normal;
   }
 
-  .label-sm-medium {
-    @apply label-sm font-medium;
+  .spr-label-sm-medium {
+    @apply spr-label-sm spr-font-medium;
   }
 
   /* #endregion - Labels */
 
   /* #region - Font Size */
-  .font-size-100 {
-    @apply text-100;
+  .spr-font-size-100 {
+    @apply spr-text-100;
   }
 
-  .font-size-200 {
-    @apply text-200;
+  .spr-font-size-200 {
+    @apply spr-text-200;
   }
 
-  .font-size-300 {
-    @apply text-300;
+  .spr-font-size-300 {
+    @apply spr-text-300;
   }
 
-  .font-size-400 {
-    @apply text-400;
+  .spr-font-size-400 {
+    @apply spr-text-400;
   }
 
-  .font-size-500 {
-    @apply text-500;
+  .spr-font-size-500 {
+    @apply spr-text-500;
   }
 
-  .font-size-600 {
-    @apply text-600;
+  .spr-font-size-600 {
+    @apply spr-text-600;
   }
 
-  .font-size-700 {
-    @apply text-700;
+  .spr-font-size-700 {
+    @apply spr-text-700;
   }
 
-  .font-size-800 {
-    @apply text-800;
+  .spr-font-size-800 {
+    @apply spr-text-800;
   }
 
-  .font-size-900 {
-    @apply text-900;
+  .spr-font-size-900 {
+    @apply spr-text-900;
   }
 
-  .font-size-1000 {
-    @apply text-1000;
+  .spr-font-size-1000 {
+    @apply spr-text-1000;
   }
   /* #endregion - Font Size */
 
   /* #region - Line Height */
-  .line-height-none {
-    @apply leading-none;
+  .spr-line-height-none {
+    @apply spr-leading-none;
   }
 
-  .line-height-100 {
-    @apply leading-100;
+  .spr-line-height-100 {
+    @apply spr-leading-100;
   }
 
-  .line-height-200 {
-    @apply leading-200;
+  .spr-line-height-200 {
+    @apply spr-leading-200;
   }
 
-  .line-height-300 {
-    @apply leading-300;
+  .spr-line-height-300 {
+    @apply spr-leading-300;
   }
 
-  .line-height-400 {
-    @apply leading-400;
+  .spr-line-height-400 {
+    @apply spr-leading-400;
   }
 
-  .line-height-500 {
-    @apply leading-500;
+  .spr-line-height-500 {
+    @apply spr-leading-500;
   }
 
-  .line-height-600 {
-    @apply leading-600;
+  .spr-line-height-600 {
+    @apply spr-leading-600;
   }
 
-  .line-height-700 {
-    @apply leading-700;
+  .spr-line-height-700 {
+    @apply spr-leading-700;
   }
 
-  .line-height-800 {
-    @apply leading-800;
+  .spr-line-height-800 {
+    @apply spr-leading-800;
   }
 
-  .line-height-900 {
-    @apply leading-900;
+  .spr-line-height-900 {
+    @apply spr-leading-900;
   }
 
-  .line-height-1000 {
-    @apply leading-1000;
+  .spr-line-height-1000 {
+    @apply spr-leading-1000;
   }
   /* #endregion - Line Height */
 
   /* #region - Letter Spacing */
-  .letter-spacing-none {
-    @apply tracking-spacing-none;
+  .spr-letter-spacing-none {
+    @apply spr-tracking-spacing-none;
   }
 
-  .letter-spacing-densest {
-    @apply tracking-spacing-densest;
+  .spr-letter-spacing-densest {
+    @apply spr-tracking-spacing-densest;
   }
 
-  .letter-spacing-denser {
-    @apply tracking-spacing-denser;
+  .spr-letter-spacing-denser {
+    @apply spr-tracking-spacing-denser;
   }
 
-  .letter-spacing-dense {
-    @apply tracking-spacing-dense;
+  .spr-letter-spacing-dense {
+    @apply spr-tracking-spacing-dense;
   }
 
-  .letter-spacing-normal {
-    @apply tracking-spacing-normal;
+  .spr-letter-spacing-normal {
+    @apply spr-tracking-spacing-normal;
   }
 
-  .letter-spacing-wide {
-    @apply tracking-spacing-wide;
+  .spr-letter-spacing-wide {
+    @apply spr-tracking-spacing-wide;
   }
 
-  .letter-spacing-wider {
-    @apply tracking-spacing-wider;
+  .spr-letter-spacing-wider {
+    @apply spr-tracking-spacing-wider;
   }
 
-  .letter-spacing-widest {
-    @apply tracking-spacing-widest;
+  .spr-letter-spacing-widest {
+    @apply spr-tracking-spacing-widest;
   }
-
   /* #endregion - Letter Spacing */
 
   /* #region - Text Colors */
-  .text-color-strong {
-    @apply text-mushroom-950;
+  .spr-text-color-strong {
+    @apply spr-text-mushroom-950;
   }
 
-  .text-color-supporting {
-    @apply text-mushroom-400;
+  .spr-text-color-supporting {
+    @apply spr-text-mushroom-400;
   }
 
-  .text-color-base {
-    @apply text-mushroom-600;
+  .spr-text-color-base {
+    @apply spr-text-mushroom-600;
   }
 
-  .text-color-weak {
-    @apply text-mushroom-300;
+  .spr-text-color-weak {
+    @apply spr-text-mushroom-300;
   }
 
-  .text-color-disabled {
-    @apply text-white-300;
+  .spr-text-color-disabled {
+    @apply spr-text-white-300;
   }
 
-  .text-color-on-fill-disabled {
-    @apply text-white-400;
+  .spr-text-color-on-fill-disabled {
+    @apply spr-text-white-400;
   }
 
-  .text-color-inverted-strong {
-    @apply text-white-50;
+  .spr-text-color-inverted-strong {
+    @apply spr-text-white-50;
   }
 
-  .text-color-inverted-base {
-    @apply text-mushroom-200;
+  .spr-text-color-inverted-base {
+    @apply spr-text-mushroom-200;
   }
 
-  .text-color-inverted-weak {
-    @apply text-mushroom-400;
+  .spr-text-color-inverted-weak {
+    @apply spr-text-mushroom-400;
   }
 
-  .text-color-inverted-disabled {
-    @apply text-white-600;
+  .spr-text-color-inverted-disabled {
+    @apply spr-text-white-600;
   }
 
-  .text-color-brand-base {
-    @apply text-kangkong-700;
+  .spr-text-color-brand-base {
+    @apply spr-text-kangkong-700;
   }
 
-  .text-color-brand-hover {
-    @apply text-kangkong-800;
+  .spr-text-color-brand-hover {
+    @apply spr-text-kangkong-800;
   }
 
-  .text-color-brand-pressed {
-    @apply text-kangkong-900;
+  .spr-text-color-brand-pressed {
+    @apply spr-text-kangkong-900;
   }
 
-  .text-color-success-base {
-    @apply text-kangkong-700;
+  .spr-text-color-success-base {
+    @apply spr-text-kangkong-700;
   }
 
-  .text-color-success-hover {
-    @apply text-kangkong-800;
+  .spr-text-color-success-hover {
+    @apply spr-text-kangkong-800;
   }
 
-  .text-color-success-pressed {
-    @apply text-kangkong-900;
+  .spr-text-color-success-pressed {
+    @apply spr-text-kangkong-900;
   }
 
-  .text-color-information-base {
-    @apply text-blueberry-700;
+  .spr-text-color-information-base {
+    @apply spr-text-blueberry-700;
   }
 
-  .text-color-information-hover {
-    @apply text-blueberry-800;
+  .spr-text-color-information-hover {
+    @apply spr-text-blueberry-800;
   }
 
-  .text-color-information-pressed {
-    @apply text-blueberry-900;
+  .spr-text-color-information-pressed {
+    @apply spr-text-blueberry-900;
   }
 
-  .text-color-danger-base {
-    @apply text-tomato-600;
+  .spr-text-color-danger-base {
+    @apply spr-text-tomato-600;
   }
 
-  .text-color-danger-hover {
-    @apply text-tomato-700;
+  .spr-text-color-danger-hover {
+    @apply spr-text-tomato-700;
   }
 
-  .text-color-danger-pressed {
-    @apply text-tomato-800;
+  .spr-text-color-danger-pressed {
+    @apply spr-text-tomato-800;
   }
 
-  .text-color-pending-base {
-    @apply text-mango-700;
+  .spr-text-color-pending-base {
+    @apply spr-text-mango-700;
   }
 
-  .text-color-pending-hover {
-    @apply text-mango-800;
+  .spr-text-color-pending-hover {
+    @apply spr-text-mango-800;
   }
 
-  .text-color-pending-pressed {
-    @apply text-mango-900;
+  .spr-text-color-pending-pressed {
+    @apply spr-text-mango-900;
   }
 
-  .text-color-caution-base {
-    @apply text-carrot-700;
+  .spr-text-color-caution-base {
+    @apply spr-text-carrot-700;
   }
 
-  .text-color-caution-hover {
-    @apply text-carrot-800;
+  .spr-text-color-caution-hover {
+    @apply spr-text-carrot-800;
   }
 
-  .text-color-caution-pressed {
-    @apply text-carrot-900;
+  .spr-text-color-caution-pressed {
+    @apply spr-text-carrot-900;
   }
 
-  .text-color-accent-base {
-    @apply text-wintermelon-700;
+  .spr-text-color-accent-base {
+    @apply spr-text-wintermelon-700;
   }
 
-  .text-color-accent-hover {
-    @apply text-wintermelon-800;
+  .spr-text-color-accent-hover {
+    @apply spr-text-wintermelon-800;
   }
 
-  .text-color-accent-pressed {
-    @apply text-wintermelon-900;
+  .spr-text-color-accent-pressed {
+    @apply spr-text-wintermelon-900;
   }
   /* #endregion - Text Colors */
 
   /* #region - Background Colors */
-  .background-color {
-    @apply bg-white-50;
+  .spr-background-color {
+    @apply spr-bg-white-50;
   }
 
-  .background-color-surface {
-    @apply bg-white-100;
+  .spr-background-color-surface {
+    @apply spr-bg-white-100;
   }
 
-  .background-color-inverted {
-    @apply bg-mushroom-950;
+  .spr-background-color-inverted {
+    @apply spr-bg-mushroom-950;
   }
 
-  .background-color-inverted-hover {
-    @apply bg-mushroom-900;
+  .spr-background-color-inverted-hover {
+    @apply spr-bg-mushroom-900;
   }
 
-  .background-color-inverted-pressed {
-    @apply bg-mushroom-800;
+  .spr-background-color-inverted-pressed {
+    @apply spr-bg-mushroom-800;
   }
 
-  .background-color-base {
-    @apply bg-mushroom-50;
+  .spr-background-color-base {
+    @apply spr-bg-mushroom-50;
   }
 
-  .background-color-single-active {
-    @apply bg-kangkong-100;
+  .spr-background-color-single-active {
+    @apply spr-bg-kangkong-100;
   }
 
-  .background-color-multiple-active {
-    @apply bg-kangkong-50;
+  .spr-background-color-multiple-active {
+    @apply spr-bg-kangkong-50;
   }
 
-  .background-color-hover {
-    @apply bg-mushroom-50;
+  .spr-background-color-hover {
+    @apply spr-bg-mushroom-50;
   }
 
-  .background-color-pressed {
-    @apply bg-mushroom-100;
+  .spr-background-color-pressed {
+    @apply spr-bg-mushroom-100;
   }
 
-  .background-color-disabled {
-    @apply bg-white-100;
+  .spr-background-color-disabled {
+    @apply spr-bg-white-100;
   }
 
-  .background-color-brand-base {
-    @apply bg-kangkong-700;
+  .spr-background-color-brand-base {
+    @apply spr-bg-kangkong-700;
   }
 
-  .background-color-brand-hover {
-    @apply bg-kangkong-800;
+  .spr-background-color-brand-hover {
+    @apply spr-bg-kangkong-800;
   }
 
-  .background-color-brand-pressed {
-    @apply bg-kangkong-900;
+  .spr-background-color-brand-pressed {
+    @apply spr-bg-kangkong-900;
   }
 
-  .background-color-brand-weak {
-    @apply bg-kangkong-100;
+  .spr-background-color-brand-weak {
+    @apply spr-bg-kangkong-100;
   }
 
-  .background-color-success-base {
-    @apply bg-kangkong-600;
+  .spr-background-color-success-base {
+    @apply spr-bg-kangkong-600;
   }
 
-  .background-color-success-hover {
-    @apply bg-kangkong-700;
+  .spr-background-color-success-hover {
+    @apply spr-bg-kangkong-700;
   }
 
-  .background-color-success-pressed {
-    @apply bg-kangkong-800;
+  .spr-background-color-success-pressed {
+    @apply spr-bg-kangkong-800;
   }
 
-  .background-color-success-weak {
-    @apply bg-kangkong-100;
+  .spr-background-color-success-weak {
+    @apply spr-bg-kangkong-100;
   }
 
-  .background-color-information-base {
-    @apply bg-blueberry-600;
+  .spr-background-color-information-base {
+    @apply spr-bg-blueberry-600;
   }
 
-  .background-color-information-hover {
-    @apply bg-blueberry-700;
+  .spr-background-color-information-hover {
+    @apply spr-bg-blueberry-700;
   }
 
-  .background-color-information-pressed {
-    @apply bg-blueberry-800;
+  .spr-background-color-information-pressed {
+    @apply spr-bg-blueberry-800;
   }
 
-  .background-color-information-weak {
-    @apply bg-blueberry-100;
+  .spr-background-color-information-weak {
+    @apply spr-bg-blueberry-100;
   }
 
-  .background-color-pending-base {
-    @apply bg-mango-500;
+  .spr-background-color-pending-base {
+    @apply spr-bg-mango-500;
   }
 
-  .background-color-pending-hover {
-    @apply bg-mango-600;
+  .spr-background-color-pending-hover {
+    @apply spr-bg-mango-600;
   }
 
-  .background-color-pending-pressed {
-    @apply bg-mango-700;
+  .spr-background-color-pending-pressed {
+    @apply spr-bg-mango-700;
   }
 
-  .background-color-pending-weak {
-    @apply bg-mango-100;
+  .spr-background-color-pending-weak {
+    @apply spr-bg-mango-100;
   }
 
-  .background-color-caution-base {
-    @apply bg-carrot-500;
+  .spr-background-color-caution-base {
+    @apply spr-bg-carrot-500;
   }
 
-  .background-color-caution-hover {
-    @apply bg-carrot-600;
+  .spr-background-color-caution-hover {
+    @apply spr-bg-carrot-600;
   }
 
-  .background-color-caution-pressed {
-    @apply bg-carrot-700;
+  .spr-background-color-caution-pressed {
+    @apply spr-bg-carrot-700;
   }
 
-  .background-color-caution-weak {
-    @apply bg-carrot-100;
+  .spr-background-color-caution-weak {
+    @apply spr-bg-carrot-100;
   }
 
-  .background-color-accent-base {
-    @apply bg-wintermelon-600;
+  .spr-background-color-accent-base {
+    @apply spr-bg-wintermelon-600;
   }
 
-  .background-color-accent-hover {
-    @apply bg-wintermelon-700;
+  .spr-background-color-accent-hover {
+    @apply spr-bg-wintermelon-700;
   }
 
-  .background-color-accent-pressed {
-    @apply bg-wintermelon-800;
+  .spr-background-color-accent-pressed {
+    @apply spr-bg-wintermelon-800;
   }
 
-  .background-color-accent-weak {
-    @apply bg-wintermelon-100;
+  .spr-background-color-accent-weak {
+    @apply spr-bg-wintermelon-100;
   }
 
-  .background-color-danger-base {
-    @apply bg-tomato-600;
+  .spr-background-color-danger-base {
+    @apply spr-bg-tomato-600;
   }
 
-  .background-color-danger-hover {
-    @apply bg-tomato-700;
+  .spr-background-color-danger-hover {
+    @apply spr-bg-tomato-700;
   }
 
-  .background-color-danger-pressed {
-    @apply bg-tomato-800;
+  .spr-background-color-danger-pressed {
+    @apply spr-bg-tomato-800;
   }
 
-  .background-color-danger-weak {
-    @apply bg-tomato-100;
+  .spr-background-color-danger-weak {
+    @apply spr-bg-tomato-100;
   }
 
-  .switch-background-default {
-    @apply bg-mushroom-200;
+  .spr-switch-background-default {
+    @apply spr-bg-mushroom-200;
   }
 
-  .switch-background-hover {
-    @apply bg-mushroom-300;
+  .spr-switch-background-hover {
+    @apply spr-bg-mushroom-300;
   }
 
-  .switch-background-pressed {
-    @apply bg-mushroom-400;
+  .spr-switch-background-pressed {
+    @apply spr-bg-mushroom-400;
   }
   /* #endregion - Background Colors */
 
   /* #region - Border Colors */
-  .border-color-strong {
-    @apply border-mushroom-500;
+  .spr-border-color-strong {
+    @apply spr-border-mushroom-500;
   }
 
-  .border-color-supporting {
-    @apply border-mushroom-400;
+  .spr-border-color-supporting {
+    @apply spr-border-mushroom-400;
   }
 
-  .border-color-base {
-    @apply border-mushroom-300;
+  .spr-border-color-base {
+    @apply spr-border-mushroom-300;
   }
 
-  .border-color-hover {
-    @apply border-mushroom-400;
+  .spr-border-color-hover {
+    @apply spr-border-mushroom-400;
   }
 
-  .border-color-pressed {
-    @apply border-mushroom-500;
+  .spr-border-color-pressed {
+    @apply spr-border-mushroom-500;
   }
 
-  .border-color-weak {
-    @apply border-mushroom-200;
+  .spr-border-color-weak {
+    @apply spr-border-mushroom-200;
   }
 
-  .border-color-disabled {
-    @apply border-white-400;
+  .spr-border-color-disabled {
+    @apply spr-border-white-400;
   }
 
-  .border-color-on-fill-disabled {
-    @apply border-white-200;
+  .spr-border-color-on-fill-disabled {
+    @apply spr-border-white-200;
   }
 
-  .border-color-brand-base {
-    @apply border-kangkong-700;
+  .spr-border-color-brand-base {
+    @apply spr-border-kangkong-700;
   }
 
-  .border-color-brand-hover {
-    @apply border-kangkong-800;
+  .spr-border-color-brand-hover {
+    @apply spr-border-kangkong-800;
   }
 
-  .border-color-brand-pressed {
-    @apply border-kangkong-900;
+  .spr-border-color-brand-pressed {
+    @apply spr-border-kangkong-900;
   }
 
-  .border-color-success-base {
-    @apply border-kangkong-700;
+  .spr-border-color-success-base {
+    @apply spr-border-kangkong-700;
   }
 
-  .border-color-success-hover {
-    @apply border-kangkong-800;
+  .spr-border-color-success-hover {
+    @apply spr-border-kangkong-800;
   }
 
-  .border-color-success-pressed {
-    @apply border-kangkong-900;
+  .spr-border-color-success-pressed {
+    @apply spr-border-kangkong-900;
   }
 
-  .border-color-information-base {
-    @apply border-blueberry-700;
+  .spr-border-color-information-base {
+    @apply spr-border-blueberry-700;
   }
 
-  .border-color-information-hover {
-    @apply border-blueberry-800;
+  .spr-border-color-information-hover {
+    @apply spr-border-blueberry-800;
   }
 
-  .border-color-information-pressed {
-    @apply border-blueberry-900;
+  .spr-border-color-information-pressed {
+    @apply spr-border-blueberry-900;
   }
 
-  .border-color-danger-base {
-    @apply border-tomato-600;
+  .spr-border-color-danger-base {
+    @apply spr-border-tomato-600;
   }
 
-  .border-color-danger-hover {
-    @apply border-tomato-700;
+  .spr-border-color-danger-hover {
+    @apply spr-border-tomato-700;
   }
 
-  .border-color-danger-pressed {
-    @apply border-tomato-800;
+  .spr-border-color-danger-pressed {
+    @apply spr-border-tomato-800;
   }
 
-  .border-color-pending-base {
-    @apply border-mango-700;
+  .spr-border-color-pending-base {
+    @apply spr-border-mango-700;
   }
 
-  .border-color-pending-hover {
-    @apply border-mango-800;
+  .spr-border-color-pending-hover {
+    @apply spr-border-mango-800;
   }
 
-  .border-color-pending-pressed {
-    @apply border-mango-900;
+  .spr-border-color-pending-pressed {
+    @apply spr-border-mango-900;
   }
 
-  .border-color-caution-base {
-    @apply border-carrot-700;
+  .spr-border-color-caution-base {
+    @apply spr-border-carrot-700;
   }
 
-  .border-color-caution-hover {
-    @apply border-carrot-800;
+  .spr-border-color-caution-hover {
+    @apply spr-border-carrot-800;
   }
 
-  .border-color-caution-pressed {
-    @apply border-carrot-900;
+  .spr-border-color-caution-pressed {
+    @apply spr-border-carrot-900;
   }
 
-  .border-color-accent-base {
-    @apply border-wintermelon-700;
+  .spr-border-color-accent-base {
+    @apply spr-border-wintermelon-700;
   }
 
-  .border-color-accent-hover {
-    @apply border-wintermelon-800;
+  .spr-border-color-accent-hover {
+    @apply spr-border-wintermelon-800;
   }
 
-  .border-color-accent-pressed {
-    @apply border-wintermelon-900;
+  .spr-border-color-accent-pressed {
+    @apply spr-border-wintermelon-900;
   }
   /* #endregion - Border Colors */
 
   /* #region - Box Shadows */
-  .drop-shadow-sm {
-    @apply shadow-drop-sm;
+  .spr-drop-shadow-sm {
+    @apply spr-shadow-drop-sm;
   }
 
-  .drop-shadow {
-    @apply shadow-drop;
+  .spr-drop-shadow {
+    @apply spr-shadow-drop;
   }
 
-  .drop-shadow-md {
-    @apply shadow-drop-md;
+  .spr-drop-shadow-md {
+    @apply spr-shadow-drop-md;
   }
 
-  .drop-shadow-top-sm {
-    @apply shadow-drop-top-sm;
+  .spr-drop-shadow-top-sm {
+    @apply spr-shadow-drop-top-sm;
   }
 
-  .drop-shadow-top {
-    @apply shadow-drop-top;
+  .spr-drop-shadow-top {
+    @apply spr-shadow-drop-top;
   }
 
-  .drop-shadow-top-md {
-    @apply shadow-drop-top-md;
+  .spr-drop-shadow-top-md {
+    @apply spr-shadow-drop-top-md;
   }
   /* #endregion - Box Shadows */
 }

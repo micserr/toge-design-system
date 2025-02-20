@@ -36,16 +36,9 @@
       action-text="action"
       show-icon
     />
-  
-    <spr-snack
-      class="mock-snack"
-      text="Yehey"
-      tone="danger"
-      action-text="action"
-      show-icon
-      show-action
-    />
-  
+
+    <spr-snack class="mock-snack" text="Yehey" tone="danger" action-text="action" show-icon show-action />
+
     <spr-snack
       class="mock-snack"
       text="Two line with long action should look like this when implemented. This is more additional text for lines."
@@ -54,24 +47,32 @@
       show-icon
       show-action
     />
-  
-    <spr-snack
-      class="mock-snack"
-      text="Hello"
-      tone="information"
-      action-text="action"
-      show-icon
-      show-action
-    />
+
+    <spr-snack class="mock-snack" text="Hello" tone="information" action-text="action" show-icon show-action />
   </div>
 
-  <h1 class="heading-xl">askhdjahskjdhasjkhdjkashkjdas</h1>
-  <h1 class="heading-lg">askhdjahskjdhasjkhdjkashkjdas</h1>
-  <h1 class="heading-md">askhdjahskjdhasjkhdjkashkjdas</h1>
-  <h1 class="heading-sm">askhdjahskjdhasjkhdjkashkjdas</h1>
-  <h1 class="heading-xs">askhdjahskjdhasjkhdjkashkjdas</h1>
+  <h1 class="spr-heading-xl">askhdjahskjdhasjkhdjkashkjdas</h1>
+  <h1 class="spr-heading-lg">askhdjahskjdhasjkhdjkashkjdas</h1>
+  <h1 class="spr-heading-md">askhdjahskjdhasjkhdjkashkjdas</h1>
+  <h1 class="spr-heading-sm">askhdjahskjdhasjkhdjkashkjdas</h1>
+  <h1 class="spr-heading-xs">askhdjahskjdhasjkhdjkashkjdas</h1>
 
   <h1 v-for="i in 100" :key="i">Sample kingkong {{ i }}</h1>
+
+  <div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
+    <spr-table action :headers="headers" :data-table="data">
+      <div>
+        <div class="spr-text-color-strong spr-font-size-400 spr-font-weight-medium">Table Name</div>
+        <div>table description</div>
+      </div>
+      <template #action="{ row }">
+        <spr-lozenge :label="row.status.title" tone="success" />
+      </template>
+      <template #action-name> Status </template>
+    </spr-table>
+
+    <spr-table :headers="headers" :data-table="data" />
+  </div>
 </template>
 
 <script setup>
@@ -81,27 +82,29 @@ import SprSidenav from './components/sidenav/sidenav.vue';
 import SprButton from './components/button/button.vue';
 import SprSnack from './components/snackbar/snack/snack.vue';
 import SprSnackbar from './components/snackbar/snackbar.vue';
+import SprTable from '@/components/table/table.vue';
+import SprLozenge from '@/components/lozenge/lozenge.vue';
 
 const snackbar = ref(null);
 const successSnackbar = () => {
   snackbar.value.showSuccess({
-    text: "Yehey!",
+    text: 'Yehey!',
     showIcon: true,
-    actionText: "close",
+    actionText: 'close',
     showAction: true,
   });
-}
+};
 
 const errorSnackbar = () => {
   snackbar.value.showCaution({
-    text: "Error!",
-    actionText: "action",
+    text: 'Error!',
+    actionText: 'action',
     showAction: true,
     showIcon: true,
     duration: 8000,
-    action: () => console.log("Error action clicked"),
+    action: () => console.log('Error action clicked'),
   });
-}
+};
 
 const activeNav = ref({
   parentNav: 'Home',
@@ -457,6 +460,209 @@ const userMenu = ref({
     },
   ],
 });
+
+const headers = ref([
+  { field: 'name', name: 'Role Name', sort: true, size: 'md', hasAvatar: true, hasSubtext: true },
+  { field: 'lastUpdate', name: 'Last Update', sort: true, size: 'xl', hasAvatar: false, hasSubtext: false },
+]);
+
+const data = ref([
+  {
+    name: {
+      title: 'Shift',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Success',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status1: {
+      title: 'sdsj',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+  {
+    name: {
+      title: 'Shift',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Success',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+  {
+    name: {
+      title: 'Shift',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Success',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status1: {
+      title: 'sdsj',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+  {
+    name: {
+      title: 'Shift',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Success',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+  {
+    name: {
+      title: 'Shift',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Success',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status1: {
+      title: 'sdsj',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+  {
+    name: {
+      title: 'Shift',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Success',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+  {
+    name: {
+      title: 'Shift',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Success',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status1: {
+      title: 'sdsj',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+  {
+    name: {
+      title: 'Shift',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Success',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+  {
+    name: {
+      title: 'Shift',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Success',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status1: {
+      title: 'sdsj',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+  {
+    name: {
+      title: 'Shift',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Success',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+]);
 </script>
 
 <style lang="scss">

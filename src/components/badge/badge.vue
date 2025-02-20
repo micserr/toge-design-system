@@ -1,9 +1,9 @@
 <template>
-  <div class="flex gap-2">
+  <div class="spr-flex spr-gap-2">
     <slot />
     <div :class="[badgeElementWrapper]">
       <section :class="[badgePositionClasses]">
-        <div :class="[badgeClasses, 'flex items-center justify-center']">
+        <div :class="[badgeClasses, 'spr-flex spr-items-center spr-justify-center']">
           {{ props.size === 'tiny' ? '' : text }}
         </div>
       </section>

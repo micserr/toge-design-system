@@ -1,5 +1,34 @@
 # Changelog
 
+## 1.3.1 (2025-02-19)
+- Feat
+  - Add a search input for search type ([#](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ac4bf72bf82c7949b994f9b2da17eadaea580960?refName=refs/heads/2025/FEATURE/Xyrk/SEARCH_INPUT_FIELD) by @jfabula)
+
+## 1.3.0 (2025-02-19)
+
+- Feat
+  - Add spr- Prefix on Class, Remove custom component prefix ([#3c784d17](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3c784d17198c20f048cfd9cd30485722c4ea51b0?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 1.2.25 (2025-02-19)
+
+- Fix
+  - Avatar(slot)- added default size ([#faff2264](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/faff226470ac5558f7534445c05e2e9a2bd8df3a?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FDQA-avatar-icon-size) by @adestajo)
+
+## 1.2.24 (2025-02-19)
+
+- Fix
+  - Tooltip Text Condition ([#ae9c7cba](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ae9c7cba240b4800ccbeb762c842fda933d2122f?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Ftooltip) by @jarias)
+
+## 1.2.23 (2025-02-19)
+
+- Fix
+  - Tooltip Max Width ([#ae9c7cba](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ae9c7cba240b4800ccbeb762c842fda933d2122f?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Ftooltip) by @jarias)
+
+## 1.2.22 (2025-02-18)
+
+- Fix
+  - Avatar ([#777b4a30](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/777b4a30399fb438fedd984c18c2cd6322f7763c?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FDQA-Avatar) by @adestajo)
+
 ## 1.2.21 (2025-02-18)
 
 - Feat

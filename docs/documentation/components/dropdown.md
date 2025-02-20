@@ -6,7 +6,7 @@ Dropdowns are toggleable, contextual overlays for displaying lists of items and 
 
 Here is a basic example of a dropdown. Since the dropdown is a wrapper component, you can put any component inside the dropdown. Then by handling the selected item, you can use the emit function `@get-selected-item`.
 
-<p class="flex gap-1 items-center"> 
+<p class="spr-flex spr-gap-1 spr-items-center"> 
   <span>Selected Item:</span>
   <code>{{ inputTextModels.inputText1 ? inputTextModels.inputText1 : 'Not Selected Yet' }}</code>
 </p>
@@ -127,9 +127,9 @@ You can change the placement of the dropdown by passing the `placement` prop. Th
 
 Here are the available placements:
 
-<div class="flex gap-20 mb-10">
+<div class="spr-flex spr-gap-20 spr-mb-10">
   <div>
-    <ul class="!m-0">
+    <ul class="!spr-m-0">
       <li>auto</li>
       <li>auto-start</li>
       <li>auto-end</li>
@@ -142,7 +142,7 @@ Here are the available placements:
     </ul>
   </div>
   <div>
-    <ul class="!m-0">
+    <ul class="!spr-m-0">
       <li>bottom</li>
       <li>bottom-start</li>
       <li>bottom-end</li>
@@ -153,8 +153,8 @@ Here are the available placements:
   </div>
 </div>
 
-<div class="grid gap-6">
-  <div class="flex gap-4 justify-between">
+<div class="spr-grid spr-gap-6">
+  <div class="spr-flex spr-gap-4 spr-justify-between">
     <spr-dropdown 
       :menu="menu" 
       dropdown-type="single-select" 
@@ -180,7 +180,7 @@ Here are the available placements:
       <spr-input v-model="inputTextModels.inputText3" label="Auto End" placeholder="Select item..."  :readonly="true" />
     </spr-dropdown>
   </div>
-  <div class="flex gap-4 justify-between">
+  <div class="spr-flex spr-gap-4 spr-justify-between">
     <spr-dropdown 
       :menu="menu" 
       dropdown-type="single-select" 
@@ -206,7 +206,7 @@ Here are the available placements:
       <spr-input v-model="inputTextModels.inputText3" label="Top End" placeholder="Select item..."  :readonly="true" />
     </spr-dropdown>
   </div>
-  <div class="flex gap-4 justify-between">
+  <div class="spr-flex spr-gap-4 spr-justify-between">
     <spr-dropdown 
       :menu="menu" 
       dropdown-type="single-select" 
@@ -232,7 +232,7 @@ Here are the available placements:
       <spr-input v-model="inputTextModels.inputText3" label="Right End" placeholder="Select item..."  :readonly="true" />
     </spr-dropdown>
   </div>
-  <div class="flex gap-4 justify-between">
+  <div class="spr-flex spr-gap-4 spr-justify-between">
     <spr-dropdown 
       :menu="menu" 
       dropdown-type="single-select" 
@@ -258,7 +258,7 @@ Here are the available placements:
       <spr-input v-model="inputTextModels.inputText3" label="Bottom End" placeholder="Select item..."  :readonly="true" />
     </spr-dropdown>
   </div>
-  <div class="flex gap-4 justify-between">
+  <div class="spr-flex spr-gap-4 spr-justify-between">
     <spr-dropdown 
       :menu="menu" 
       dropdown-type="single-select" 
@@ -308,8 +308,8 @@ You can also manually open the menu by passing the `menu-opened` prop. This prop
 
 Dropdowns also support multi-select. You can enable this feature by passing the `dropdown-type` prop with the value `multi-select`.
 
-<p class="flex gap-1 items-center"> 
-  <span class="w-[110px] min-w-[110px]">Selected Item:</span>
+<p class="spr-flex spr-gap-1 spr-items-center"> 
+  <span class="spr-w-[110px] spr-min-w-[110px]">Selected Item:</span>
   <code>{{ inputTextModels.inputText4 ? inputTextModels.inputText4 : 'Not Selected Yet' }}</code>
 </p>
 
@@ -366,7 +366,7 @@ const handleMultiSelectedItem = (item) => {
 
 ## Get Popper Sate
 
-<p class="flex gap-1 items-center"> 
+<p class="spr-flex spr-gap-1 spr-items-center"> 
   <span>Popper State:</span>
   <code>{{ popperState }}</code>
 </p>

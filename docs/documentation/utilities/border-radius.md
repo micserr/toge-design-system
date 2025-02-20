@@ -14,37 +14,37 @@ Border radius classes for consistent rounded elements.
     <tr>
       <td>2px</td>
       <td>--size-50</td>
-      <td>rounded-border-radius-2xs</td>
+      <td>spr-rounded-border-radius-2xs</td>
     </tr>
     <tr>
       <td>4px</td>
       <td>--size-100</td>
-      <td>rounded-border-radius-xs</td>
+      <td>spr-rounded-border-radius-xs</td>
     </tr>
     <tr>
       <td>6px</td>
       <td>--size-150</td>
-      <td>rounded-border-radius-sm</td>
+      <td>spr-rounded-border-radius-sm</td>
     </tr>
     <tr>
       <td>8px</td>
       <td>--size-200</td>
-      <td>rounded-border-radius-md</td>
+      <td>spr-rounded-border-radius-md</td>
     </tr>
     <tr>
       <td>12px</td>
       <td>--size-250</td>
-      <td>rounded-border-radius-lg</td>
+      <td>spr-rounded-border-radius-lg</td>
     </tr>
     <tr>
       <td>16px</td>
       <td>--size-300</td>
-      <td>rounded-border-radius-xl</td>
+      <td>spr-rounded-border-radius-xl</td>
     </tr>
     <tr>
       <td>999px</td>
       <td>-</td>
-      <td>rounded-border-radius-full</td>
+      <td>spr-rounded-border-radius-full</td>
     </tr>
   </tbody>
 </table>

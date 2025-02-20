@@ -3,7 +3,7 @@
     <label v-if="props.label" :for="id" :class="labelClasses">
       {{ props.label }}
     </label>
-    <div class="relative">
+    <div class="spr-relative">
       <div v-if="$slots.prefix" :class="prefixSlotClasses">
         <slot name="prefix" />
       </div>
@@ -18,8 +18,10 @@
       <div v-if="$slots.trailing" :class="trailingSlotClasses">
         <slot name="trailing" />
       </div>
-      <div v-if="$slots.icon" :class="iconSlotClasses">
-        <slot name="icon" />
+      <div v-if="$slots.icon || TYPE_HAS_TRAILING_ICONS.includes(props.type)" :class="iconSlotClasses">
+        <slot name="icon" >
+          <Icon  v-if="props.type === 'search'" icon="ph:magnifying-glass" />
+        </slot>
       </div>
     </div>
   </div>
@@ -28,8 +30,9 @@
 <script setup lang="ts">
 import { useSlots } from 'vue';
 
-import { inputPropTypes, inputEmitTypes } from './input';
+import { inputPropTypes, inputEmitTypes, TYPE_HAS_TRAILING_ICONS} from './input';
 import { useInput } from './use-input';
+import { Icon } from '@iconify/vue';
 
 const emit = defineEmits(inputEmitTypes);
 

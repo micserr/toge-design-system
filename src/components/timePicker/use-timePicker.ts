@@ -1,10 +1,11 @@
 import { computed, ref, ComputedRef, toRefs } from 'vue';
-import dayjs from 'dayjs';
-import type { TimePickerPropTypes, TimePickerEmitTypes } from './timePicker';
-import type { SetupContext } from 'vue';
 import { useVModel } from '@vueuse/core';
 
 import classNames from 'classnames';
+import dayjs from 'dayjs';
+
+import type { TimePickerPropTypes, TimePickerEmitTypes } from './timePicker';
+import type { SetupContext } from 'vue';
 
 export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<TimePickerEmitTypes>['emit']) => {
   const { error, disabled, format, interval, disableTyping, fullWidth } = toRefs(props);
@@ -14,68 +15,50 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
 
   const timepickerClasses: ComputedRef<string> = computed(() => {
     return classNames(
-      'block',
-      'w-full',
-      'px-size-spacing-2xs',
-      'py-size-spacing-4xs',
-      'rounded-border-radius-md',
-      'placeholder:text-mushroom-300',
-      'text-color-strong',
-      'font-size-200',
-      'border border-solid border-mushroom-200',
-      'focus:!border-kangkong-700',
-      'focus:text-color-strong',
-      'focus:!border-[1.5px]',
-      'outline-none',
-      'ring-0',
+      'spr-block spr-w-full spr-px-size-spacing-2xs spr-py-size-spacing-4xs spr-rounded-border-radius-md spr-outline-none spr-ring-0',
+      'spr-text-color-strong spr-font-size-200',
+      'spr-border spr-border-solid spr-border-mushroom-200',
+      'placeholder:spr-text-mushroom-300',
+      'focus:!spr-border-kangkong-700 focus:spr-text-color-strong focus:!spr-border-[1.5px]',
       {
-        '!border-[1.5px]': error.value,
-        '!border-tomato-600': error.value,
-        'focus:!border-tomato-600': error.value,
-        '!border-white-100': disabled.value,
-        'background-color-disabled': disabled.value,
-        'cursor-not-allowed': disabled.value,
-        'text-color-on-fill-disabled': disabled.value,
-        'cursor-pointer': disableTyping.value,
+        '!spr-border-[1.5px]': error.value,
+        '!spr-border-tomato-600': error.value,
+        'focus:!spr-border-tomato-600': error.value,
+        '!spr-border-white-100': disabled.value,
+        'spr-background-color-disabled': disabled.value,
+        'spr-cursor-not-allowed': disabled.value,
+        'spr-text-color-on-fill-disabled': disabled.value,
+        'spr-cursor-pointer': disableTyping.value,
       },
     );
   });
 
   const optionClasses: ComputedRef<string> = computed(() => {
     return classNames(
-      'absolute',
-      'z-50 ',
-      'mt-1',
-      'max-h-[300px]',
-      'w-[240px]',
-      'overflow-y-auto',
-      'background-color ',
-      'text-mushroom-950',
-      'border border-solid',
-      'rounded-border-radius-md',
-      'border-color-weak',
-      'shadow-[0_2px_8px_-2px_rgba(38, 43, 43, 0.20)]',
-      'p-size-spacing-3xs',
+      'spr-absolute spr-z-50',
+      'spr-mt-1 spr-max-h-[300px] spr-w-[240px] spr-overflow-y-auto spr-background-color spr-rounded-border-radius-md spr-shadow-[0_2px_8px_-2px_rgba(38, 43, 43, 0.20)] spr-p-size-spacing-3xs',
+      'spr-text-mushroom-950',
+      'spr-border spr-border-solid spr-border-color-weak',
       {
-        'w-full': fullWidth.value,
+        'spr-w-full': fullWidth.value,
       },
     );
   });
 
   const iconClasses: ComputedRef<string> = computed(() => {
-    return classNames('absolute right-3 text-color-supporting', {
-      '!text-tomato-600': error.value,
+    return classNames('spr-absolute spr-right-3 spr-text-color-supporting', {
+      '!spr-text-tomato-600': error.value,
     });
   });
 
   const labelClasses: ComputedRef<string> = computed(() => {
-    return classNames('body-sm-regular text-color-strong block  mb-size-spacing-4xs ', {
-      'text-color-on-fill-disabled': disabled.value,
+    return classNames('spr-body-sm-regular spr-text-color-strong spr-block spr-mb-size-spacing-4xs', {
+      'spr-text-color-on-fill-disabled': disabled.value,
     });
   });
 
   const wrapperClasses: ComputedRef<string> = computed(() => {
-    return 'relative w-full';
+    return 'spr-relative spr-w-full';
   });
 
   const filterInput = (event: Event) => {
@@ -99,6 +82,7 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
     const end = dayjs().endOf('day');
 
     let current = start;
+
     while (current.isBefore(end) || current.isSame(end)) {
       options.push(formatTime(current));
       current = current.add(interval.value, 'minute');
@@ -109,12 +93,15 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
 
   const formatTime = (date: dayjs.Dayjs): string => {
     let hours = date.hour();
+
     const minutes = date.minute().toString().padStart(2, '0');
+
     if (props.format === '12') {
       const period = hours >= 12 ? 'PM' : 'AM';
       hours = hours % 12 || 12; // Convert 0 to 12 for 12-hour format
       return `${hours.toString().padStart(2, '0')}:${minutes} ${period}`;
     }
+
     return `${hours.toString().padStart(2, '0')}:${minutes}`;
   };
 
@@ -151,7 +138,6 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
     selectedValue,
     isOpen,
     getPlaceHolder,
-
     filterInput,
     selectOption,
     handleClick,

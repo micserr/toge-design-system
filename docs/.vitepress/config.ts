@@ -25,7 +25,7 @@ export default defineConfig({
       { text: 'Guide', link: '/guide/basics/installation' },
       {
         text: 'Components',
-        link: '/documentation/components/button',
+        link: '/documentation/components/avatar',
       },
       {
         text: 'Playground',
@@ -132,7 +132,7 @@ export default defineConfig({
             },
             {
               text: 'Table',
-              link: '/documentation/components/Table',
+              link: '/documentation/components/table',
             },
             {
               text: 'Tabs',

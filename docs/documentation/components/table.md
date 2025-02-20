@@ -2,30 +2,29 @@
 
 ## Basic Usage
 
-  <div class="space-y-4 bg-white-50 p-size-spacing-sm">
-    <spr-table action :headers="headers" :data-table="data">
-      <div>
-        Customize your content here!
-      </div>
-      <template #action="{ row }">
-        <spr-lozenge :label="row.status.title" :tone="row.status.title.toLowerCase()" />
-      </template>
-    </spr-table>
-  </div>
+<div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
+  <spr-table action :headers="headers" :data-table="data">
+    <div>
+      Customize your content here!
+    </div>
+    <template #action="{ row }">
+      <spr-lozenge :label="row.status.title" :tone="row.status.title.toLowerCase()" />
+    </template>
+    <template #action-name>
+      Status
+    </template>
+  </spr-table>
+</div>
 
 ```vue
 <template>
-  <div class="space-y-4 bg-white-50 p-size-spacing-sm">
-    <spr-table action :headers="headers" :data-table="data">
-      <div>
-        <div class="text-color-strong font-size-400 font-weight-medium">Table Name</div>
-        <div>table description</div>
-      </div>
-      <template #action="{ row }">
-        <spr-lozenge :label="row.status.title" :tone="row.status.title.toLowerCase()" />
-      </template>
-    </spr-table>
-  </div>
+  <spr-table action :headers="headers" :data-table="data">
+    <div>Customize your content here!</div>
+    <template #action="{ row }">
+      <spr-lozenge :label="row.status.title" :tone="row.status.title.toLowerCase()" />
+    </template>
+    <template #action-name> Status </template>
+  </spr-table>
 </template>
 
 <script setup lang="ts">
@@ -60,15 +59,13 @@ const data = ref([
 
 ## No Slot and Action
 
-  <div class="space-y-4 bg-white-50 p-size-spacing-sm">
-    <spr-table  :headers="headers" :data-table="data"/>
-  </div>
+<div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
+  <spr-table  :headers="headers" :data-table="data"/>
+</div>
 
 ```vue
 <template>
-  <div class="space-y-4 bg-white-50 p-size-spacing-sm">
-    <spr-table :headers="headers" :data-table="data" />
-  </div>
+  <spr-table :headers="headers" :data-table="data" />
 </template>
 
 <script setup lang="ts">
@@ -106,57 +103,59 @@ const data = ref([
 ### Table Attributes
 
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Type</th>
-    <th>Value</th>
-  </tr>
-  <tr>
-    <td>action</td>
-    <td>Slot for for table data</td>
-    <td>boolean</td>
-    <td>false</td>
-  </tr>
-  <tr>
-    <td>dataTable</td>
-    <td>For table values</td>
-    <td>Object</td>
-    <td>TableData {
-      [key: string]: {
-        title: string;
-        subtext: string;
-        image: string;
-      };
-    }
-    </td>
-  </tr>
-  <tr>
-    <td>headers</td>
-    <td>define your table headers</td>
-    <td>Object</td>
-    <td>Header {
-      field: string;
-      name: string;
-      sort: boolean;
-      hasAvatar: boolean;
-      hasSubtext: boolean;
-    }
-    </td>
-  </tr>
-  <tr>
-    <td>emptyState</td>
-    <td>Customize table empty state</td>
-    <td>Object</td>
-    <td>
-    {
-      description: 'No results found',
-      subDescription: 'Try a different search term',
-      image: 'location',
-      size: 'large',
-    }
-    </td>
-  </tr>
+  <tbody>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Value</th>
+    </tr>
+    <tr>
+      <td>action</td>
+      <td>Slot for for table data</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>dataTable</td>
+      <td>For table values</td>
+      <td>Object</td>
+      <td>TableData {
+        [key: string]: {
+          title: string;
+          subtext: string;
+          image: string;
+        };
+      }
+      </td>
+    </tr>
+    <tr>
+      <td>headers</td>
+      <td>define your table headers</td>
+      <td>Object</td>
+      <td>Header {
+        field: string;
+        name: string;
+        sort: boolean;
+        hasAvatar: boolean;
+        hasSubtext: boolean;
+      }
+      </td>
+    </tr>
+    <tr>
+      <td>emptyState</td>
+      <td>Customize table empty state</td>
+      <td>Object</td>
+      <td>
+      {
+        description: 'No results found',
+        subDescription: 'Try a different search term',
+        image: 'location',
+        size: 'large',
+      }
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 <script setup lang="ts">

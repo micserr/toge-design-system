@@ -1,6 +1,14 @@
 # Changelog
 
+## 1.3.2 (2025-02-19)
+
+- Fix
+  - Table (header Border)
+  - added Loading state
+  - tab disbled color ([#a49e1136](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a49e11368244092bd821e1284059ea7d85ef23dc?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Ffix-table) by @adestajo)
+
 ## 1.3.1 (2025-02-19)
+
 - Feat
   - Add a search input for search type ([#](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ac4bf72bf82c7949b994f9b2da17eadaea580960?refName=refs/heads/2025/FEATURE/Xyrk/SEARCH_INPUT_FIELD) by @jfabula)
 

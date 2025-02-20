@@ -12,7 +12,9 @@ The Sidepanel component is a reusable UI element designed to display contextual 
   @close="isSidepanelOpen = false"
   header-title="Sidepanel Example"
 >
-  Sidepanel Content
+  <div class="p-4">
+    Sidepanel Content
+  </div>
   <template #footer>
     <div class="px-4 flex justify-end gap-2">
       <spr-button>Cancel</spr-button>
@@ -30,7 +32,9 @@ The Sidepanel component is a reusable UI element designed to display contextual 
     @close="isSidepanelOpen = false"
     header-title="Sidepanel Example"
   >
-    Sidepanel Content
+    <div class="p-4">
+      Sidepanel Content
+    </div>
     <template #footer>
       <div class="px-4 flex justify-end gap-2">
         <spr-button>Cancel</spr-button>
@@ -60,7 +64,9 @@ const isSidepanelOpen = ref<boolean>(false);
   @close="isSmallSidepanelOpen = false"
   header-title="Sidepanel Small"
 >
-  360px
+  <div class="p-4">
+    360px
+  </div>
 </spr-sidepanel>
 
 <spr-sidepanel 
@@ -69,7 +75,9 @@ const isSidepanelOpen = ref<boolean>(false);
   @close="isMediumSidepanelOpen = false"
   header-title="Sidepanel Medium"
 >
-  420px
+  <div class="p-4">
+    420px
+  </div>
 </spr-sidepanel>
 
 <spr-sidepanel 
@@ -78,7 +86,9 @@ const isSidepanelOpen = ref<boolean>(false);
   @close="isLargeSidepanelOpen = false"
   header-title="Sidepanel Large"
 >
-  480px
+  <div class="p-4">
+    480px
+  </div>
 </spr-sidepanel>
 
 ```vue
@@ -95,7 +105,9 @@ const isSidepanelOpen = ref<boolean>(false);
     @close="isSmallSidepanelOpen = false"
     header-title="Sidepanel Small"
   >
+  <div class="p-4">
     360px
+  </div>
   </spr-sidepanel>
 
   <spr-sidepanel 
@@ -104,7 +116,9 @@ const isSidepanelOpen = ref<boolean>(false);
     @close="isMediumSidepanelOpen = false"
     header-title="Sidepanel Medium"
   >
+  <div class="p-4">
     420px
+  </div>
   </spr-sidepanel>
 
   <spr-sidepanel 
@@ -113,7 +127,9 @@ const isSidepanelOpen = ref<boolean>(false);
     @close="isLargeSidepanelOpen = false"
     header-title="Sidepanel Large"
   >
+  <div class="p-4">
     480px
+  </div>
   </spr-sidepanel>
 </template>
 
@@ -135,8 +151,6 @@ const isLargeSidepanelOpen = ref(false)
 
 ## Attributes
 
-## Side Panel Props
-
 | Name         | Description                                                                | Type                          | Default               |
 |-------------|----------------------------------------------------------------------------|-------------------------------|----------------------|
 | `isOpen`     | Controls whether the side panel is open. Set to `true` to display the side panel or `false` to hide it. | `boolean`                     | `false`              |
@@ -146,6 +160,7 @@ const isLargeSidepanelOpen = ref(false)
 | `hideHeader`  | Controls the visibility of the side panel header. | `boolean`                     | `false`               |
 | `hasBackdrop`   | Determines whether a backdrop is displayed behind the side panel.     | `boolean`                     | `true`               |
 | `closeOutside`   | Controls whether clicking outside the side panel should close it.    | `boolean`                     | `false`               |
+| `escapeClose`   | Controls whether clicking ESC button should close the side panel.    | `boolean`                     | `true`               |
 
 
 

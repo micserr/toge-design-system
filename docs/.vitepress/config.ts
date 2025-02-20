@@ -25,7 +25,7 @@ export default defineConfig({
       { text: 'Guide', link: '/guide/basics/installation' },
       {
         text: 'Components',
-        link: '/documentation/components/button',
+        link: '/documentation/components/avatar',
       },
       {
         text: 'Playground',
@@ -119,6 +119,10 @@ export default defineConfig({
               link: '/documentation/components/sidenav',
             },
             {
+              text: 'Sidepanel',
+              link: '/documentation/components/sidepanel',
+            },
+            {
               text: 'Snackbar',
               link: '/documentation/components/snackbar',
             },
@@ -141,10 +145,6 @@ export default defineConfig({
             {
               text: 'Tooltip',
               link: '/documentation/components/tooltip',
-            },
-            {
-              text: 'Sidepanel',
-              link: '/documentation/components/sidepanel',
             },
           ],
         },

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.0 (2025-02-19)
+
+- Feat
+  - Add spr- Prefix on Class, Remove custom component prefix ([#3c784d17](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3c784d17198c20f048cfd9cd30485722c4ea51b0?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 1.2.25 (2025-02-19)
 
 - Fix

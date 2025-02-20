@@ -1,48 +1,20 @@
 <template>
-  <div 
+  <div
     v-bind="snackProps"
-    ref="snackRef" 
-    class="
-      snackbar 
-      background-color-inverted
-      text-color-inverted-strong
-      font-size-200
-      line-height-400
-      h-fit
-      rounded-border-radius-lg
-      px-size-spacing-2xs
-      py-size-spacing-3xs
-      border
-      border-solid
-      border-color-strong
-      box-border
-      flex
-      flex-row
-      items-center
-    "
+    ref="snackRef"
+    class="snackbar spr-background-color-inverted spr-text-color-inverted-strong spr-font-size-200 spr-line-height-400 spr-h-fit spr-rounded-border-radius-lg spr-px-size-spacing-2xs spr-py-size-spacing-3xs spr-border spr-border-solid spr-border-color-strong spr-box-border spr-flex spr-flex-row spr-items-center"
     @click="handleClick"
   >
-    <label 
-      v-if="showIcon"
-      :class="[
-        snackToneCssClass,
-        'mr-size-spacing-3xs',
-      ]"
-    >
-      <Icon :icon="snackIcon" :width="iconSize" :height="iconSize"/>
+    <label v-if="showIcon" :class="[snackToneCssClass, 'spr-mr-size-spacing-3xs']">
+      <Icon :icon="snackIcon" :width="iconSize" :height="iconSize" />
     </label>
     <label class="flex-auto">{{ text }}</label>
     <div></div>
-    <label 
-      v-if="showAction" 
-      :class="[ 
+    <label
+      v-if="showAction"
+      :class="[
         snackToneCssClass,
-        'ml-size-spacing-3xs',
-        'cursor-pointer',
-        'uppercase',
-        'font-medium',
-        'font-size-100',
-        'line-height-100'
+        'spr-ml-size-spacing-3xs selection:spr-cursor-pointer spr-uppercase spr-font-medium spr-font-size-100 spr-line-height-100',
       ]"
       @click="() => action()"
     >
@@ -52,16 +24,17 @@
 </template>
 
 <script lang="ts" setup>
-import { snackEmitTypes, snackPropTypes } from './snack';
-import { useSnack } from './use-snack';
 import { Icon } from '@iconify/vue';
 
-const iconSize = "24px";
+import { snackEmitTypes, snackPropTypes } from './snack';
+import { useSnack } from './use-snack';
+
+const iconSize = '24px';
 
 const props = defineProps(snackPropTypes);
 const emit = defineEmits(snackEmitTypes);
-const { snackRef, snackProps, snackToneCssClass, snackIcon, handleClick } = useSnack(props, emit);
 
+const { snackRef, snackProps, snackToneCssClass, snackIcon, handleClick } = useSnack(props, emit);
 </script>
 
 <style lang="scss" scoped>

@@ -2,7 +2,7 @@
 
 ## Basic Usage
 
-<div class="p-8 bg-white-500">
+<div class="spr-p-8 spr-bg-white-500">
   <Spr-empty-state  description="No results found" subDescription="Try a different search term" >
     <div>
       Image Here
@@ -15,11 +15,8 @@
 
 ```vue
 <template>
-  <div class="p-8 bg-white-500">
-  <Spr-empty-state  description="No results found" subDescription="Try a different search term" >
-    <div>
-      Image Here
-    </div>
+  <Spr-empty-state description="No results found" subDescription="Try a different search term">
+    <div>Image Here</div>
 
     <template #button>
       <spr-button tone="success">Retry</spr-button>
@@ -33,7 +30,7 @@
 List of images that can be used in the empty state component.
 ('bug', 'clock', 'dashboard', 'id', 'integration', 'list', 'saturation','employees', 'location')
 
-<div class="p-8 bg-white-500">
+<div class="spr-p-8 spr-bg-white-500">
   <Spr-empty-state
     description="No results found"
     subDescription="Try a different search term"
@@ -47,13 +44,11 @@ List of images that can be used in the empty state component.
 
 ```vue
 <template>
-  <div class="bg-white-500 p-8">
-    <Spr-empty-state description="No results found" subDescription="Try a different search term" image="bug">
-      <template #button>
-        <spr-button tone="success">Retry</spr-button>
-      </template>
-    </Spr-empty-state>
-  </div>
+  <Spr-empty-state description="No results found" subDescription="Try a different search term" image="bug">
+    <template #button>
+      <spr-button tone="success">Retry</spr-button>
+    </template>
+  </Spr-empty-state>
 </template>
 ```
 
@@ -61,7 +56,7 @@ List of images that can be used in the empty state component.
 
 Image size can be controlled by passing the `size` prop. The default size is `small`. (`small` and `large`)
 
-<div class="p-8 bg-white-500">
+<div class="spr-p-8 spr-bg-white-500">
   <Spr-empty-state
     description="No results found"
     subDescription="Try a different search term"
@@ -74,7 +69,7 @@ Image size can be controlled by passing the `size` prop. The default size is `sm
   </Spr-empty-state>
 </div>
 
-<div class="p-8 bg-white-500">
+<div class="spr-p-8 spr-bg-white-500">
   <Spr-empty-state
     description="No results found"
     subDescription="Try a different search term"
@@ -89,31 +84,22 @@ Image size can be controlled by passing the `size` prop. The default size is `sm
 
 ```vue
 <template>
-  <div class="bg-white-500 p-8">
-    <Spr-empty-state
-      description="No results found"
-      subDescription="Try a different search term"
-      image="bug"
-      size="small"
-    >
-      <template #button>
-        <spr-button tone="success">Retry</spr-button>
-      </template>
-    </Spr-empty-state>
-  </div>
+  <Spr-empty-state description="No results found" subDescription="Try a different search term" image="bug" size="small">
+    <template #button>
+      <spr-button tone="success">Retry</spr-button>
+    </template>
+  </Spr-empty-state>
 
-  <div class="bg-white-500 p-8">
-    <Spr-empty-state
-      description="No results found"
-      subDescription="Try a different search term"
-      image="location"
-      size="large"
-    >
-      <template #button>
-        <spr-button tone="success">Retry</spr-button>
-      </template>
-    </Spr-empty-state>
-  </div>
+  <Spr-empty-state
+    description="No results found"
+    subDescription="Try a different search term"
+    image="location"
+    size="large"
+  >
+    <template #button>
+      <spr-button tone="success">Retry</spr-button>
+    </template>
+  </Spr-empty-state>
 </template>
 ```
 

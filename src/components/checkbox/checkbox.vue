@@ -1,6 +1,6 @@
 <template>
   <label :class="wrapperClasses">
-    <div class="relative flex items-center">
+    <div class="spr-relative spr-flex spr-items-center">
       <input
         type="checkbox"
         :checked="props.modelValue"
@@ -12,7 +12,7 @@
         <Icon icon="ph:check-bold" />
       </span>
     </div>
-    <div v-if="props.label || props.description" class="grid gap-0.5">
+    <div v-if="props.label || props.description" class="spr-grid spr-gap-0.5">
       <span v-if="props.label" :class="labelClasses">
         {{ props.label }}
       </span>

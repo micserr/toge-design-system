@@ -100,7 +100,7 @@ const inputValue = ref('');
 
 ## Trailing Label
 
-<div class="flex flex-col gap-2">
+<div class="spr-flex spr-flex-col spr-gap-2">
   <spr-input v-model="inputValue.input6" label="Offset xs" placeholder="00" offset-size="xs" type="number">
     <template #trailing>
       minutes

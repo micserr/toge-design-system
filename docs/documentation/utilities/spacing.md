@@ -104,15 +104,15 @@ To use these spacing, just append the above size-spacing class to Tailwind utili
   </thead>
   <tbody>
     <tr>
-      <td>m-size-spacing-xs</td>
+      <td>spr-m-size-spacing-xs</td>
       <td>margin: 16px;</td>
     </tr>
     <tr>
-      <td>mb-size-spacing-md</td>
+      <td>spr-mb-size-spacing-md</td>
       <td>margin-bottom: 32px;</td>
     </tr>
     <tr>
-      <td>px-size-spacing-4xs</td>
+      <td>spr-px-size-spacing-4xs</td>
       <td>padding-left: 6px; padding-right: 6px;</td>
     </tr>
   </tbody>

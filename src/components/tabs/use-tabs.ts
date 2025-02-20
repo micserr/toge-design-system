@@ -1,15 +1,16 @@
 import { ref, computed, onMounted, SetupContext } from 'vue';
-import type { TabsPropTypes, TabsEmitTypes } from './tabs';
 
 import classNames from 'classnames';
+
+import type { TabsPropTypes, TabsEmitTypes } from './tabs';
 
 export const useTabs = (props: TabsPropTypes, emit: SetupContext<TabsEmitTypes>['emit']) => {
   const tabsClasses = computed(() => {
     return classNames({
-      'relative px-size-spacing-xs py-size-spacing-3xs body-sm text-color-strong group': true,
-      'transition-left duration-150 ease-in-out': true,
+      'spr-relative spr-px-size-spacing-xs spr-py-size-spacing-3xs spr-body-sm spr-text-color-strong spr-group': true,
+      'spr-transition-left spr-duration-150 spr-ease-in-out': true,
       capitalize: !props.underlined,
-      'uppercase border-x-0 border-t-0': props.underlined,
+      'spr-uppercase spr-border-x-0 spr-border-t-0': props.underlined,
     });
   });
 

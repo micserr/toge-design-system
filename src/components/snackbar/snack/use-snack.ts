@@ -1,12 +1,13 @@
 import { computed, ref, ComputedRef } from 'vue';
-// import { useElementHover} from '@vueuse/core';
+
 import classNames from 'classnames';
+
 import type { SetupContext } from 'vue';
 import type { SnackEmitTypes, SnackPropTypes } from './snack';
 
 export const useSnack = (props: SnackPropTypes, emit: SetupContext<SnackEmitTypes>['emit']) => {
   const snackRef = ref<HTMLButtonElement | null>(null);
-  // const isHovered = useElementHover(snackRef);
+
   const { text, actionText, tone, showAction, showIcon, duration } = props;
 
   const snackProps: ComputedRef<Record<string, unknown>> = computed(() => {
@@ -22,18 +23,18 @@ export const useSnack = (props: SnackPropTypes, emit: SetupContext<SnackEmitType
 
   const snackToneCssClass: ComputedRef<string> = computed(() => {
     return classNames({
-      'text-kangkong-500': tone === 'success',
-      'text-tomato-500': tone === 'caution',
-      'text-carrot-500': tone === 'danger',
-      'text-blueberry-500': tone === 'information',
+      'spr-text-kangkong-500': tone === 'success',
+      'spr-text-tomato-500': tone === 'caution',
+      'spr-text-carrot-500': tone === 'danger',
+      'spr-text-blueberry-500': tone === 'information',
     });
   });
 
   const snackIcon = computed(() => {
-    if (props.tone == "caution") return "ph:warning-fill";
-    else if (props.tone == "danger") return "ph:warning-circle-fill";
-    else if (props.tone == "success") return "ph:check-circle-fill";
-    return "ph:info-fill";
+    if (props.tone == 'caution') return 'ph:warning-fill';
+    else if (props.tone == 'danger') return 'ph:warning-circle-fill';
+    else if (props.tone == 'success') return 'ph:check-circle-fill';
+    return 'ph:info-fill';
   });
 
   const handleClick = (evt: MouseEvent) => {
@@ -45,6 +46,6 @@ export const useSnack = (props: SnackPropTypes, emit: SetupContext<SnackEmitType
     snackProps,
     snackToneCssClass,
     snackIcon,
-    handleClick
+    handleClick,
   };
 };

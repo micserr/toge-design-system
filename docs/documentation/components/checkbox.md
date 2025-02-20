@@ -6,7 +6,7 @@ Checkboxes allow the user to select one or more items from a set.
 
 Checkboxes can be regular or bordered. use the `bordered` attribute to make the checkbox bordered. You can also add a label to the checkbox by using the `label` attribute.
 
-<h5 class="mb-4">Regular Checkbox:</h5>
+<h5 class="spr-mb-4">Regular Checkbox:</h5>
 
 <SprCheckbox v-model="checkboxModels.checkbox1" label="Checkbox Label" />
 
@@ -22,7 +22,7 @@ const checkbox = ref(false);
 </script>
 ```
 
-<h5 class="mb-4">Bordered Checkbox:</h5>
+<h5 class="spr-mb-4">Bordered Checkbox:</h5>
 
 <SprCheckbox v-model="checkboxModels.checkbox2" label="Checkbox Label" bordered />
 
@@ -42,7 +42,7 @@ const checkbox = ref(false);
 
 You can add a description to the checkbox by using the `description` attribute.
 
-<h5 class="mb-4">Regular Checkbox:</h5>
+<h5 class="spr-mb-4">Regular Checkbox:</h5>
 
 <SprCheckbox 
   v-model="checkboxModels.checkbox3" 
@@ -66,7 +66,7 @@ const checkbox = ref(false);
 </script>
 ```
 
-<h5 class="mb-4">Bordered Checkbox:</h5>
+<h5 class="spr-mb-4">Bordered Checkbox:</h5>
 
 <SprCheckbox 
   v-model="checkboxModels.checkbox4" 
@@ -96,7 +96,7 @@ const checkbox = ref(false);
 
 Checkboxes can be set to checked by the use of `v-model` directive to bind the checkbox value.
 
-<h5 class="mb-4">Regular Checkbox:</h5>
+<h5 class="spr-mb-4">Regular Checkbox:</h5>
 
 <SprCheckbox v-model="checkboxModels.checkbox5" label="Checkbox Label" />
 
@@ -112,7 +112,7 @@ const checkbox = ref(true);
 </script>
 ```
 
-<h5 class="mb-4">Bordered Checkbox:</h5>
+<h5 class="spr-mb-4">Bordered Checkbox:</h5>
 
 <SprCheckbox v-model="checkboxModels.checkbox6" label="Checkbox Label" bordered />
 
@@ -132,7 +132,7 @@ const checkbox = ref(true);
 
 Add `disabled` attribute to make the checkbox disabled.
 
-<h5 class="mb-4">Regular Checkbox:</h5>
+<h5 class="spr-mb-4">Regular Checkbox:</h5>
 
 <SprCheckbox v-model="checkboxModels.checkbox7" label="Checkbox Label" disabled />
 
@@ -148,7 +148,7 @@ const checkbox = ref(true);
 </script>
 ```
 
-<h5 class="mb-4">Bordered Checkbox:</h5>
+<h5 class="spr-mb-4">Bordered Checkbox:</h5>
 
 <SprCheckbox v-model="checkboxModels.checkbox8" label="Checkbox Label" bordered  disabled />
 

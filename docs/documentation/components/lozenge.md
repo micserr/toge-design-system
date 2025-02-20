@@ -30,7 +30,7 @@ Lozenge represents entities using icons, labels, and images.
 
 A basic lozenge with a text is created with the label property.
 
-<div class="flex items-center gap-2">
+<div class="spr-flex spr-items-center spr-gap-2">
   <spr-lozenge label="Lozenge" />
 </div>
 
@@ -40,7 +40,7 @@ A basic lozenge with a text is created with the label property.
 
 ## Tone
 
-<div class="flex items-center gap-2 overflow-auto py-3">
+<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
   <spr-lozenge label="Plain"/>
   <spr-lozenge label="pending" tone="pending" />
   <spr-lozenge label="information" tone="information" />
@@ -62,7 +62,7 @@ A basic lozenge with a text is created with the label property.
 
 ## Type
 
-<div class="flex items-center gap-2 overflow-auto py-3">
+<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
   <spr-lozenge label="Hollow" tone="information" />
   <spr-lozenge label="Fill" tone="information" fill/>
 </div>
@@ -74,8 +74,8 @@ A basic lozenge with a text is created with the label property.
 
 ## Avatar
 
-<div class="flex flex-col  gap-2 bg-white-50 p-4 overflow-auto py-3">
-  <div class="flex items-center gap-2">
+<div class="spr-flex spr-flex-col spr-gap-2 spr-bg-white-50 spr-p-4 spr-overflow-auto spr-py-3">
+  <div class="spr-flex spr-items-center spr-gap-2">
     <spr-lozenge label="pending" tone="pending" url="https://tinyurl.com/2vzn782p"/>
     <spr-lozenge label="information" tone="information" url="https://tinyurl.com/2vzn782p"/>
     <spr-lozenge label="success" tone="success" url="https://tinyurl.com/2vzn782p"/>
@@ -85,7 +85,7 @@ A basic lozenge with a text is created with the label property.
     <spr-lozenge label="plain"  url="https://tinyurl.com/2vzn782p" />
   </div>
 
-  <div class="flex items-center gap-2">
+  <div class="spr-flex spr-items-center spr-gap-2">
     <spr-lozenge label="pending" tone="pending" fill url="https://tinyurl.com/2vzn782p"/>
     <spr-lozenge label="information" tone="information" fill url="https://tinyurl.com/2vzn782p"/>
     <spr-lozenge label="success" tone="success" fill url="https://tinyurl.com/2vzn782p"/>
@@ -114,11 +114,11 @@ A basic lozenge with a text is created with the label property.
 
 ## Slot Avatar
 
-<div class="flex flex-col  gap-2">
+<div class="spr-flex spr-flex-col spr-gap-2">
   <spr-lozenge label="Users" tone="information">
     <template #avatar>
       <img
-        class=" h-4 w-4 rounded-full object-cover"
+        class="spr-h-4 spr-w-4 spr-rounded-full spr-object-cover"
         src="https://tinyurl.com/2vzn782p"
         alt="avatar"
       />
@@ -149,7 +149,7 @@ import { Icon } from '@iconify/vue';
 
 ## Icon
 
-<div class="flex flex-col  gap-2">
+<div class="spr-flex spr-flex-col spr-gap-2">
   <spr-lozenge label="Users" tone="information">
     <template #icon>
       <Icon icon="ph:users-three" />

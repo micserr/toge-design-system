@@ -1,26 +1,29 @@
 <template>
   <div
     :class="[
-      'hidden-scrolls fixed bottom-0 left-0 top-0',
-      'background-color w-auto overflow-y-auto overflow-x-hidden',
-      'border-color-weak border-b-0 border-l-0 border-r border-t-0 border-solid',
-      'transition duration-150 ease-in-out',
+      'spr-hidden-scrolls spr-fixed spr-bottom-0 spr-left-0 spr-top-0',
+      'spr-background-color spr-w-auto spr-overflow-y-auto spr-overflow-x-hidden',
+      'spr-border-color-weak spr-border-b-0 spr-border-l-0 spr-border-r spr-border-t-0 spr-border-solid',
+      'spr-transition spr-duration-150 spr-ease-in-out',
     ]"
   >
     <div
       :class="{
-        'hidden-scrolls flex h-full flex-col justify-between overflow-auto': true,
-        'max-h-[calc(100vh-194px)]': props.notificationCount && props.requestCount,
-        'max-h-[calc(100vh-60px)]': !props.notificationCount && !props.requestCount,
-        'max-h-[calc(100vh-150px)]':
+        'spr-hidden-scrolls spr-flex spr-h-full spr-flex-col spr-justify-between spr-overflow-auto': true,
+        'spr-max-h-[calc(100vh-194px)]': props.notificationCount && props.requestCount,
+        'spr-max-h-[calc(100vh-60px)]': !props.notificationCount && !props.requestCount,
+        'spr-max-h-[calc(100vh-150px)]':
           (props.notificationCount || props.requestCount) && !(props.notificationCount && props.requestCount),
       }"
     >
       <!-- Top Section -->
-      <div class="grid justify-center gap-2 px-3 pb-4 pt-4">
+      <div class="spr-grid spr-justify-center spr-gap-2 spr-px-3 spr-pb-4 spr-pt-4">
         <!-- Logo -->
         <div
-          :class="['grid justify-center p-2', '[&>img]:mx-auto [&>img]:h-[24px] [&>img]:w-[24px] [&>img]:object-cover']"
+          :class="[
+            'spr-grid spr-justify-center spr-p-2',
+            '[&>img]:spr-mx-auto [&>img]:spr-h-[24px] [&>img]:spr-w-[24px] [&>img]:spr-object-cover',
+          ]"
         >
           <slot name="logo-image" />
         </div>
@@ -38,44 +41,44 @@
         >
           <div
             :class="{
-              'flex w-full cursor-pointer items-center text-center text-[28px] transition duration-150 ease-in-out': true,
-              'hover:brightness-75': true,
-              'active:text-color-success-pressed active:scale-90': true,
-              'text-color-inverted-disabled rotate-180': isQuckActionMenuVisible,
-              'text-color-brand-base': !isQuckActionMenuVisible,
+              'spr-flex spr-w-full spr-cursor-pointer spr-items-center spr-text-center spr-text-[28px] spr-transition spr-duration-150 spr-ease-in-out': true,
+              'hover:spr-brightness-75': true,
+              'active:spr-text-color-success-pressed active:spr-scale-90': true,
+              'spr-text-color-inverted-disabled spr-rotate-180': isQuckActionMenuVisible,
+              'spr-text-color-brand-base': !isQuckActionMenuVisible,
             }"
             @click="isQuckActionMenuVisible = !isQuckActionMenuVisible"
           >
-            <Icon icon="ph:plus-circle-fill" class="w-full" />
+            <Icon icon="ph:plus-circle-fill" class="spr-w-full" />
           </div>
 
           <template #popper>
             <div
               :class="[
-                'px-4 py-3',
-                'border-color-weak flex justify-between border-x-0 border-b border-t-0 border-solid',
+                'spr-px-4 spr-py-3',
+                'spr-border-color-weak spr-flex spr-justify-between spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid',
               ]"
             >
-              <h3 class="body-sm-regular-medium m-0">Quick Actions</h3>
+              <h3 class="spr-body-sm-regular-medium spr-m-0">Quick Actions</h3>
               <Icon
                 icon="ph:x"
                 :class="[
-                  'text-color-weak h-[20px] w-[20px] cursor-pointer',
-                  'transition duration-150 ease-in-out',
-                  'active:scale-90',
+                  'spr-text-color-weak spr-h-[20px] spr-w-[20px] spr-cursor-pointer',
+                  'spr-transition spr-duration-150 spr-ease-in-out',
+                  'active:spr-scale-90',
                 ]"
                 @click="isQuckActionMenuVisible = !isQuckActionMenuVisible"
               />
             </div>
 
-            <div class="max-h-[268px] overflow-auto">
+            <div class="spr-max-h-[268px] spr-overflow-auto">
               <template v-for="(quickAction, quickActionIndex) in props.quickActions" :key="quickActionIndex">
                 <h5
                   v-if="quickAction.menuHeading"
                   :class="[
                     {
-                      'label-xs-medium text-color-supporting m-0 p-2': true,
-                      'mt-3': quickActionIndex !== 0,
+                      'spr-label-xs-medium spr-text-color-supporting spr-m-0 spr-p-2': true,
+                      'spr-mt-3': quickActionIndex !== 0,
                     },
                   ]"
                 >
@@ -85,28 +88,32 @@
                   <div
                     v-if="!menuLinkItem.hidden"
                     :class="[
-                      'flex cursor-pointer gap-2 px-4 py-3 align-middle duration-150 ease-in-out',
-                      'hover:background-color-hover',
-                      'active:background-color-pressed',
+                      'spr-flex spr-cursor-pointer spr-gap-2 spr-px-4 spr-py-3 spr-align-middle spr-duration-150 spr-ease-in-out',
+                      'hover:spr-background-color-hover',
+                      'active:spr-background-color-pressed',
                     ]"
                     @click="handleRedirect(menuLinkItem, '', '', '')"
                   >
                     <div
                       :class="{
-                        'flex items-center rounded-border-radius-md p-2': true,
-                        'border border-solid border-kangkong-400 bg-kangkong-50 text-kangkong-800':
+                        'spr-flex spr-items-center spr-rounded-border-radius-md spr-p-2': true,
+                        'spr-border spr-border-solid spr-border-kangkong-400 spr-bg-kangkong-50 spr-text-kangkong-800':
                           menuLinkItem.iconBgColor === 'green',
-                        'border border-solid border-ubas-400 bg-ubas-50 text-ubas-800':
+                        'spr-border spr-border-solid spr-border-ubas-400 spr-bg-ubas-50 spr-text-ubas-800':
                           menuLinkItem.iconBgColor === 'purple',
                       }"
                     >
-                      <Icon v-if="menuLinkItem.icon" :icon="menuLinkItem.icon" class="h-[1em] w-[1em] text-[20px]" />
+                      <Icon
+                        v-if="menuLinkItem.icon"
+                        :icon="menuLinkItem.icon"
+                        class="spr-h-[1em] spr-w-[1em] spr-text-[20px]"
+                      />
                     </div>
-                    <div class="grid justify-between">
-                      <h5 class="body-sm-regular-medium text-color-strong m-0 truncate">
+                    <div class="spr-grid spr-justify-between">
+                      <h5 class="spr-body-sm-regular-medium spr-text-color-strong spr-m-0 spr-truncate">
                         {{ menuLinkItem.title }}
                       </h5>
-                      <p class="body-xs-regular text-color-base m-0 truncate">
+                      <p class="spr-body-xs-regular spr-text-color-base spr-m-0 spr-truncate">
                         {{ menuLinkItem.description }}
                       </p>
                     </div>
@@ -121,9 +128,9 @@
         <div
           v-if="props.hasSearch"
           :class="[
-            'flex cursor-pointer items-center justify-center rounded-border-radius-md p-2 transition duration-150 ease-in-out',
-            'hover:background-color-hover',
-            'active:background-color-single-active active:scale-90',
+            'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out',
+            'hover:spr-background-color-hover',
+            'active:spr-background-color-single-active active:spr-scale-90',
           ]"
           @click="emit('search', 'search-triggered')"
         >
@@ -144,20 +151,22 @@
               >
                 <div
                   :class="{
-                    'flex cursor-pointer items-center justify-center rounded-border-radius-md p-2 transition duration-150 ease-in-out': true,
-                    'background-color-single-active border-color-brand-base border-[1.5px] border-solid active:scale-90':
+                    'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out': true,
+                    'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
                       props.activeNav.parentNav === parentLink.title,
-                    'hover:background-color-hover': props.activeNav.parentNav != parentLink.title,
-                    'active:background-color-single-active active:scale-90': true,
+                    'hover:spr-background-color-hover': props.activeNav.parentNav != parentLink.title,
+                    'active:spr-background-color-single-active active:spr-scale-90': true,
                   }"
                 >
-                  <Icon v-if="parentLink.icon" :icon="parentLink.icon" class="h-[1.25em] w-[1.25em]" />
+                  <Icon v-if="parentLink.icon" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
                   <Icon v-else icon="ph:globe" />
                 </div>
 
                 <template #popper>
-                  <div class="border-color-weak border-x-0 border-b border-t-0 border-solid p-2">
-                    <h3 class="body-sm-regular-medium m-0">
+                  <div
+                    class="spr-border-color-weak spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-2"
+                  >
+                    <h3 class="spr-body-sm-regular-medium spr-m-0">
                       {{ parentLink.title }}
                     </h3>
                   </div>
@@ -166,8 +175,8 @@
                     <h5
                       v-if="menuLink.menuHeading"
                       :class="{
-                        'label-xs-medium text-color-supporting m-0 p-2': true,
-                        'mt-3': menuLinkIndex !== 0,
+                        'spr-label-xs-medium spr-text-color-supporting spr-m-0 spr-p-2': true,
+                        'spr-mt-3': menuLinkIndex !== 0,
                       }"
                     >
                       {{ menuLink.menuHeading }}
@@ -185,20 +194,20 @@
                         >
                           <div
                             :class="{
-                              'body-sm-regular relative m-0 flex cursor-pointer justify-between px-2 py-1.5 align-middle duration-150 ease-in-out': true,
-                              'background-color-single-active': props.activeNav.menu === menuLinkItem.title,
-                              'hover:background-color-hover': props.activeNav.menu !== menuLinkItem.title,
-                              'active:background-color-pressed': true,
+                              'spr-body-sm-regular spr-relative spr-m-0 spr-flex spr-cursor-pointer spr-justify-between spr-px-2 spr-py-1.5 spr-align-middle spr-duration-150 spr-ease-in-out': true,
+                              'spr-background-color-single-active': props.activeNav.menu === menuLinkItem.title,
+                              'hover:spr-background-color-hover': props.activeNav.menu !== menuLinkItem.title,
+                              'active:spr-background-color-pressed': true,
                             }"
                           >
                             <div
                               v-if="props.activeNav.menu === menuLinkItem.title"
-                              class="background-color-brand-base absolute left-0 top-0 h-full w-[2px]"
+                              class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                             ></div>
                             <span>{{ menuLinkItem.title }}</span>
                             <Icon
                               icon="ph:caret-right"
-                              class="h-[16px] w-[16px] transform font-normal transition-transform duration-300"
+                              class="spr-h-[16px] spr-w-[16px] spr-transform spr-font-normal spr-transition-transform spr-duration-300"
                             />
                           </div>
 
@@ -210,8 +219,8 @@
                               <h5
                                 v-if="submenuLink.subMenuHeading"
                                 :class="{
-                                  'label-xs-medium text-color-supporting m-0 p-2': true,
-                                  'mt-3': submenuLinkIndex !== 0,
+                                  'spr-label-xs-medium spr-text-color-supporting spr-m-0 spr-p-2': true,
+                                  'spr-mt-3': submenuLinkIndex !== 0,
                                 }"
                               >
                                 {{ submenuLink.subMenuHeading }}
@@ -224,11 +233,12 @@
                                   <div
                                     v-if="!submenuLinkItem.hidden"
                                     :class="{
-                                      'body-sm-regular relative m-0 flex cursor-pointer justify-between px-2 py-1.5 align-middle duration-150 ease-in-out': true,
-                                      'background-color-single-active':
+                                      'spr-body-sm-regular spr-relative spr-m-0 spr-flex spr-cursor-pointer spr-justify-between spr-px-2 spr-py-1.5 spr-align-middle spr-duration-150 spr-ease-in-out': true,
+                                      'spr-background-color-single-active':
                                         props.activeNav.submenu === submenuLinkItem.title,
-                                      'hover:background-color-hover': props.activeNav.submenu !== submenuLinkItem.title,
-                                      'active:background-color-pressed': true,
+                                      'hover:spr-background-color-hover':
+                                        props.activeNav.submenu !== submenuLinkItem.title,
+                                      'active:spr-background-color-pressed': true,
                                     }"
                                     @click="
                                       handleRedirect(
@@ -241,7 +251,7 @@
                                   >
                                     <div
                                       v-show="props.activeNav.submenu === submenuLinkItem.title"
-                                      class="background-color-brand-base absolute left-0 top-0 h-full w-[2px]"
+                                      class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                                     ></div>
                                     <span>{{ submenuLinkItem.title }}</span>
                                   </div>
@@ -257,10 +267,10 @@
                         <div
                           v-if="!menuLinkItem.hidden"
                           :class="{
-                            'body-sm-regular relative m-0 flex cursor-pointer justify-between px-2 py-1.5 align-middle duration-150 ease-in-out': true,
-                            'background-color-single-active': props.activeNav.menu === menuLinkItem.title,
-                            'hover:background-color-hover': props.activeNav.menu !== menuLinkItem.title,
-                            'active:background-color-pressed': true,
+                            'spr-body-sm-regular spr-relative spr-m-0 spr-flex spr-cursor-pointer spr-justify-between spr-px-2 spr-py-1.5 spr-align-middle spr-duration-150 spr-ease-in-out': true,
+                            'spr-background-color-single-active': props.activeNav.menu === menuLinkItem.title,
+                            'hover:spr-background-color-hover': props.activeNav.menu !== menuLinkItem.title,
+                            'active:spr-background-color-pressed': true,
                           }"
                           @click="handleRedirect(menuLinkItem, parentLink.title, menuLinkItem.title, '')"
                         >
@@ -283,19 +293,19 @@
                 :triggers="['hover']"
               >
                 <template #popper>
-                  <span class="label-xs-medium uppercase">{{ parentLink.title }}</span>
+                  <span class="spr-label-xs-medium spr-uppercase">{{ parentLink.title }}</span>
                 </template>
                 <div
                   :class="{
-                    'flex cursor-pointer items-center justify-center rounded-border-radius-md p-2 transition duration-150 ease-in-out': true,
-                    'background-color-single-active border-color-brand-base border-[1.5px] border-solid active:scale-90':
+                    'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out': true,
+                    'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
                       props.activeNav.parentNav === parentLink.title,
-                    'hover:background-color-hover': props.activeNav.parentNav != parentLink.title,
-                    'active:background-color-single-active active:scale-90': true,
+                    'hover:spr-background-color-hover': props.activeNav.parentNav != parentLink.title,
+                    'active:spr-background-color-single-active active:spr-scale-90': true,
                   }"
                   @click="handleRedirect(parentLink, parentLink.title, '', '')"
                 >
-                  <Icon v-if="parentLink.icon" class="h-[1.25em] w-[1.25em]" :icon="parentLink.icon" />
+                  <Icon v-if="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" :icon="parentLink.icon" />
                   <Icon v-else icon="ph:globe" />
                 </div>
               </Tooltip>
@@ -303,7 +313,7 @@
           </template>
           <div
             v-if="props.navLinks.top.length > 0 && navLinkIndex < props.navLinks.top.length - 1"
-            class="background-color-hover h-[2px] w-full"
+            class="spr-background-color-hover spr-h-[2px] spr-w-full"
           ></div>
         </template>
       </div>
@@ -311,7 +321,7 @@
       <!-- Bottom Section -->
       <div
         v-if="props.navLinks.bottom && props.navLinks.bottom.length > 0"
-        class="grid justify-center gap-2 px-3 pb-4 pt-0"
+        class="spr-grid spr-justify-center spr-gap-2 spr-px-3 spr-pb-4 spr-pt-0"
       >
         <!-- Grouped Nav Links -->
         <template v-for="(navLink, navLinkIndex) in props.navLinks.bottom" :key="navLinkIndex">
@@ -327,20 +337,22 @@
               >
                 <div
                   :class="{
-                    'flex cursor-pointer items-center justify-center rounded-border-radius-md p-2 transition duration-150 ease-in-out': true,
-                    'background-color-single-active border-color-brand-base border-[1.5px] border-solid active:scale-90':
+                    'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out': true,
+                    'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
                       props.activeNav.parentNav === parentLink.title,
-                    'hover:background-color-hover': props.activeNav.parentNav != parentLink.title,
-                    'active:background-color-single-active active:scale-90': true,
+                    'hover:spr-background-color-hover': props.activeNav.parentNav != parentLink.title,
+                    'active:spr-background-color-single-active active:spr-scale-90': true,
                   }"
                 >
-                  <Icon v-if="parentLink.icon" :icon="parentLink.icon" class="h-[1.25em] w-[1.25em]" />
+                  <Icon v-if="parentLink.icon" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
                   <Icon v-else icon="ph:globe" />
                 </div>
 
                 <template #popper>
-                  <div class="border-color-weak border-x-0 border-b border-t-0 border-solid p-2">
-                    <h3 class="body-sm-regular-medium m-0">
+                  <div
+                    class="spr-border-color-weak spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-2"
+                  >
+                    <h3 class="spr-body-sm-regular-medium spr-m-0">
                       {{ parentLink.title }}
                     </h3>
                   </div>
@@ -349,8 +361,8 @@
                     <h5
                       v-if="menuLink.menuHeading"
                       :class="{
-                        'label-xs-medium text-color-supporting m-0 p-2': true,
-                        'mt-3': menuLinkIndex !== 0,
+                        'spr-label-xs-medium spr-text-color-supporting spr-m-0 spr-p-2': true,
+                        'spr-mt-3': menuLinkIndex !== 0,
                       }"
                     >
                       {{ menuLink.menuHeading }}
@@ -368,20 +380,20 @@
                         >
                           <div
                             :class="{
-                              'body-sm-regular relative m-0 flex cursor-pointer justify-between px-2 py-1.5 align-middle duration-150 ease-in-out': true,
-                              'background-color-single-active': props.activeNav.menu === menuLinkItem.title,
-                              'hover:background-color-hover': props.activeNav.menu !== menuLinkItem.title,
-                              'active:background-color-pressed': true,
+                              'spr-body-sm-regular spr-relative spr-m-0 spr-flex spr-cursor-pointer spr-justify-between spr-px-2 spr-py-1.5 spr-align-middle spr-duration-150 spr-ease-in-out': true,
+                              'spr-background-color-single-active': props.activeNav.menu === menuLinkItem.title,
+                              'hover:spr-background-color-hover': props.activeNav.menu !== menuLinkItem.title,
+                              'active:spr-background-color-pressed': true,
                             }"
                           >
                             <div
                               v-if="props.activeNav.menu === menuLinkItem.title"
-                              class="background-color-brand-base absolute left-0 top-0 h-full w-[2px]"
+                              class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                             ></div>
                             <span>{{ menuLinkItem.title }}</span>
                             <Icon
                               icon="ph:caret-right"
-                              class="h-[16px] w-[16px] transform font-normal transition-transform duration-300"
+                              class="spr-h-[16px] spr-w-[16px] spr-transform spr-font-normal spr-transition-transform spr-duration-300"
                             />
                           </div>
 
@@ -393,8 +405,8 @@
                               <h5
                                 v-if="submenuLink.subMenuHeading"
                                 :class="{
-                                  'label-xs-medium text-color-supporting m-0 p-2': true,
-                                  'mt-3': submenuLinkIndex !== 0,
+                                  'spr-label-xs-medium spr-text-color-supporting spr-m-0 spr-p-2': true,
+                                  'spr-mt-3': submenuLinkIndex !== 0,
                                 }"
                               >
                                 {{ submenuLink.subMenuHeading }}
@@ -407,11 +419,12 @@
                                   <div
                                     v-if="!submenuLinkItem.hidden"
                                     :class="{
-                                      'body-sm-regular relative m-0 flex cursor-pointer justify-between px-2 py-1.5 align-middle duration-150 ease-in-out': true,
-                                      'background-color-single-active':
+                                      'spr-body-sm-regular spr-relative spr-m-0 spr-flex spr-cursor-pointer spr-justify-between spr-px-2 spr-py-1.5 spr-align-middle spr-duration-150 spr-ease-in-out': true,
+                                      'spr-background-color-single-active':
                                         props.activeNav.submenu === submenuLinkItem.title,
-                                      'hover:background-color-hover': props.activeNav.submenu !== submenuLinkItem.title,
-                                      'active:background-color-pressed': true,
+                                      'hover:spr-background-color-hover':
+                                        props.activeNav.submenu !== submenuLinkItem.title,
+                                      'active:spr-background-color-pressed': true,
                                     }"
                                     @click="
                                       handleRedirect(
@@ -424,7 +437,7 @@
                                   >
                                     <div
                                       v-show="props.activeNav.submenu === submenuLinkItem.title"
-                                      class="background-color-brand-base absolute left-0 top-0 h-full w-[2px]"
+                                      class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                                     ></div>
                                     <span>{{ submenuLinkItem.title }}</span>
                                   </div>
@@ -440,10 +453,10 @@
                         <div
                           v-if="!menuLinkItem.hidden"
                           :class="[
-                            'body-sm-regular m-0 flex cursor-pointer justify-between px-2 py-1.5 align-middle duration-300 ease-in-out',
-                            'hover:background-color-hover',
-                            'active:background-color-pressed',
-                            'last:rounded-b-xl',
+                            'spr-body-sm-regular spr-m-0 spr-flex spr-cursor-pointer spr-justify-between spr-px-2 spr-py-1.5 spr-align-middle spr-duration-300 spr-ease-in-out',
+                            'hover:spr-background-color-hover',
+                            'active:spr-background-color-pressed',
+                            'last:spr-rounded-b-xl',
                           ]"
                           @click="handleRedirect(menuLinkItem, parentLink.title, menuLinkItem.title, '')"
                         >
@@ -466,19 +479,19 @@
                 :triggers="['hover']"
               >
                 <template #popper>
-                  <span class="label-xs-medium uppercase">{{ parentLink.title }}</span>
+                  <span class="spr-label-xs-medium spr-uppercase">{{ parentLink.title }}</span>
                 </template>
                 <div
                   :class="{
-                    'flex cursor-pointer items-center justify-center rounded-border-radius-md p-2 transition duration-150 ease-in-out': true,
-                    'background-color-single-active border-color-brand-base border-[1.5px] border-solid active:scale-90':
+                    'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out': true,
+                    'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
                       props.activeNav.parentNav === parentLink.title,
-                    'hover:background-color-hover': props.activeNav.parentNav != parentLink.title,
-                    'active:background-color-single-active active:scale-90': true,
+                    'hover:spr-background-color-hover': props.activeNav.parentNav != parentLink.title,
+                    'active:spr-background-color-single-active active:spr-scale-90': true,
                   }"
                   @click="handleRedirect(parentLink, parentLink.title, '', '')"
                 >
-                  <Icon v-if="parentLink.icon" :icon="parentLink.icon" class="h-[1.25em] w-[1.25em]" />
+                  <Icon v-if="parentLink.icon" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
                   <Icon v-else icon="ph:globe" />
                 </div>
               </Tooltip>
@@ -486,26 +499,26 @@
           </template>
           <div
             v-if="props.navLinks.bottom.length > 0 && navLinkIndex < props.navLinks.bottom.length - 1"
-            class="background-color-hover h-[2px] w-full"
+            class="spr-background-color-hover spr-h-[2px] spr-w-full"
           ></div>
         </template>
       </div>
     </div>
 
-    <div v-if="props.notificationCount || props.requestCount" class="grid gap-2 py-6">
+    <div v-if="props.notificationCount || props.requestCount" class="spr-grid spr-gap-2 spr-py-6">
       <!-- Notification -->
       <div
         v-if="props.notificationCount"
         :class="[
-          'relative flex cursor-pointer items-center justify-center p-2',
-          'transition duration-150 ease-in-out',
-          'active:scale-90',
+          'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center p-2',
+          'spr-transition spr-duration-150 spr-ease-in-out',
+          'active:spr-scale-90',
         ]"
         @click="emit('notifications', 'notifications-triggered')"
       >
-        <Icon icon="ph:bell" class="h-[1.25em] w-[1.25em]" />
+        <Icon icon="ph:bell" class="spr-h-[1.25em] spr-w-[1.25em]" />
         <spr-badge
-          class="absolute -top-0.5 right-2.5"
+          class="spr-absolute -spr-top-0.5 spr-right-2.5"
           :text="String(props.notificationCount)"
           variant="danger"
           size="small"
@@ -516,15 +529,15 @@
       <div
         v-if="props.requestCount"
         :class="[
-          'relative flex cursor-pointer items-center justify-center p-2',
-          'transition duration-150 ease-in-out',
-          'active:scale-90',
+          'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-p-2',
+          'spr-transition spr-duration-150 spr-ease-in-out',
+          'active:spr-scale-90',
         ]"
         @click="emit('requests', 'requests-triggered')"
       >
-        <Icon icon="ph:check-square" class="h-[1.25em] w-[1.25em]" />
+        <Icon icon="ph:check-square" class="spr-h-[1.25em] spr-w-[1.25em]" />
         <spr-badge
-          class="absolute -top-0.5 right-2.5"
+          class="spr-absolute -spr-top-0.5 spr-right-2.5"
           :text="String(props.requestCount)"
           variant="danger"
           size="small"
@@ -536,8 +549,8 @@
     <div
       v-if="props.userMenu"
       :class="[
-        'border-color-weak absolute bottom-0 w-full p-3.5',
-        'border-b-0 border-l-0 border-r-0 border-t border-solid',
+        'spr-border-color-weak spr-absolute spr-bottom-0 spr-w-full spr-p-3.5',
+        'spr-border-b-0 spr-border-l-0 spr-border-r-0 spr-border-t spr-border-solid',
       ]"
     >
       <Menu
@@ -550,12 +563,12 @@
       >
         <div
           :class="[
-            'background-color flex h-[36px] w-[36px] cursor-pointer items-center justify-center rounded-full',
-            'border-color-weak border border-solid',
-            'transition duration-150 ease-in-out',
-            'hover:background-color-hover',
-            'active:background-color-pressed active:scale-90',
-            '[&>img]:h-[36px] [&>img]:w-[36px] [&>img]:rounded-full [&>img]:object-cover',
+            'spr-background-color spr-flex spr-h-[36px] spr-w-[36px] spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-full',
+            'spr-border-color-weak spr-border spr-border-solid',
+            'spr-transition spr-duration-150 spr-ease-in-out',
+            'hover:spr-background-color-hover',
+            'active:spr-background-color-pressed active:spr-scale-90',
+            '[&>img]:spr-h-[36px] [&>img]:spr-w-[36px] [&>img]:spr-rounded-full [&>img]:spr-object-cover',
           ]"
           @click="isUserMenuVisible = !isUserMenuVisible"
         >
@@ -569,14 +582,17 @@
 
         <template #popper>
           <div
-            :class="['px-4 py-3', 'border-color-weak flex justify-between border-x-0 border-b border-t-0 border-solid']"
+            :class="[
+              'spr-px-4 spr-py-3',
+              'spr-border-color-weak spr-flex spr-justify-between spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid',
+            ]"
           >
-            <div class="flex items-center gap-2">
+            <div class="spr-flex spr-items-center spr-gap-2">
               <div
                 :class="[
-                  'background-color flex h-[36px] w-[36px] items-center justify-center rounded-full',
-                  'border-color-weak border border-solid',
-                  '[&>img]:h-[36px] [&>img]:w-[36px] [&>img]:rounded-full [&>img]:object-cover',
+                  'spr-background-color spr-flex spr-h-[36px] spr-w-[36px] spr-items-center spr-justify-center spr-rounded-full',
+                  'spr-border-color-weak spr-border spr-border-solid',
+                  '[&>img]:spr-h-[36px] [&>img]:spr-w-[36px] [&>img]:spr-rounded-full [&>img]:spr-object-cover',
                 ]"
               >
                 <template v-if="props.userMenu.profileImage && !userProfileError">
@@ -586,30 +602,34 @@
                   <span>{{ getUserInitials(props.userMenu.name) }}</span>
                 </template>
               </div>
-              <div class="grid justify-between gap-1">
-                <h3 class="body-sm-regular-medium m-0 truncate">
+              <div class="spr-grid spr-justify-between spr-gap-1">
+                <h3 class="spr-body-sm-regular-medium spr-m-0 spr-truncate">
                   {{ props.userMenu.name }}
                 </h3>
-                <p class="body-xs-regular m-0 truncate">
+                <p class="spr-body-xs-regular spr-m-0 spr-truncate">
                   {{ props.userMenu.email }}
                 </p>
               </div>
             </div>
           </div>
 
-          <div class="max-h-[268px] overflow-auto">
+          <div class="spr-max-h-[268px] spr-overflow-auto">
             <template v-for="(userMenuItem, userMenuItemIndex) in props.userMenu.items" :key="userMenuItemIndex">
               <div
                 v-if="!userMenuItem.hidden"
                 :class="[
-                  'flex cursor-pointer gap-2 p-2 align-middle duration-150 ease-in-out',
-                  'hover:background-color-hover',
-                  'active:background-color-pressed',
+                  'spr-flex spr-cursor-pointer spr-gap-2 spr-p-2 spr-align-middle spr-duration-150 spr-ease-in-out',
+                  'hover:spr-background-color-hover',
+                  'active:spr-background-color-pressed',
                 ]"
                 @click="handleRedirect(userMenuItem, '', '', '')"
               >
-                <Icon v-if="userMenuItem.icon" :icon="userMenuItem.icon" class="h-[1em] w-[1em] text-[20px]" />
-                <h5 class="body-sm-regular text-color-strong m-0 truncate">
+                <Icon
+                  v-if="userMenuItem.icon"
+                  :icon="userMenuItem.icon"
+                  class="spr-h-[1em] spr-w-[1em] spr-text-[20px]"
+                />
+                <h5 class="spr-body-sm-regular spr-text-color-strong spr-m-0 spr-truncate">
                   {{ userMenuItem.title }}
                 </h5>
               </div>

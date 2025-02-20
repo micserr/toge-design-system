@@ -51,18 +51,18 @@
     <spr-snack class="mock-snack" text="Hello" tone="information" action-text="action" show-icon show-action />
   </div>
 
-  <h1 class="heading-xl">askhdjahskjdhasjkhdjkashkjdas</h1>
-  <h1 class="heading-lg">askhdjahskjdhasjkhdjkashkjdas</h1>
-  <h1 class="heading-md">askhdjahskjdhasjkhdjkashkjdas</h1>
-  <h1 class="heading-sm">askhdjahskjdhasjkhdjkashkjdas</h1>
-  <h1 class="heading-xs">askhdjahskjdhasjkhdjkashkjdas</h1>
+  <h1 class="spr-heading-xl">askhdjahskjdhasjkhdjkashkjdas</h1>
+  <h1 class="spr-heading-lg">askhdjahskjdhasjkhdjkashkjdas</h1>
+  <h1 class="spr-heading-md">askhdjahskjdhasjkhdjkashkjdas</h1>
+  <h1 class="spr-heading-sm">askhdjahskjdhasjkhdjkashkjdas</h1>
+  <h1 class="spr-heading-xs">askhdjahskjdhasjkhdjkashkjdas</h1>
 
   <h1 v-for="i in 100" :key="i">Sample kingkong {{ i }}</h1>
 
-  <div class="space-y-4 bg-white-50 p-size-spacing-sm">
+  <div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
     <spr-table action :headers="headers" :data-table="data">
       <div>
-        <div class="text-color-strong font-size-400 font-weight-medium">Table Name</div>
+        <div class="spr-text-color-strong spr-font-size-400 spr-font-weight-medium">Table Name</div>
         <div>table description</div>
       </div>
       <template #action="{ row }">

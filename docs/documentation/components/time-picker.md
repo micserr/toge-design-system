@@ -41,13 +41,14 @@ allows users to select a time from a dropdown list. It supports both 12-hour and
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+
 const selectedValue = ref('');
 </script>
 ```
 
 ## Format
 
-<div class="flex flex-col gap-4">
+<div class="spr-flex spr-flex-col spr-gap-4">
   <spr-timePicker 
       v-model="selectedValue"
       label="12 hour format"
@@ -62,7 +63,7 @@ const selectedValue = ref('');
 
 ```vue
 <template>
-  <div class="flex flex-col gap-4">
+  <div class="spr-flex spr-flex-col spr-gap-4">
     <spr-timePicker v-model="selectedValue" label="12 hour format" format="12" />
 
     <spr-timePicker v-model="selectedValue" label="24 hour format" format="24" />
@@ -71,6 +72,7 @@ const selectedValue = ref('');
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+
 const selectedValue = ref('');
 </script>
 ```
@@ -91,19 +93,14 @@ const selectedValue = ref('');
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+
 const selectedValue = ref('');
 </script>
 ```
 
 ## Error
 
-<spr-timePicker 
-    v-model="selectedValue"
-    label="Timepicker"
-    disableTyping
-    format="12"
-    error='true'
-  />
+<spr-timePicker v-model="selectedValue" label="Timepicker" disableTyping format="12" error='true' />
 
 ```vue
 <template>
@@ -112,6 +109,7 @@ const selectedValue = ref('');
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+
 const selectedValue = ref('');
 </script>
 ```
@@ -131,6 +129,7 @@ const selectedValue = ref('');
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+
 const selectedValue = ref('');
 </script>
 ```

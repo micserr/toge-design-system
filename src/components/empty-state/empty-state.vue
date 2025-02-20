@@ -3,13 +3,13 @@
     <slot :class="imageSizeClasses" />
 
     <div v-if="!$slots.default" :class="imageSizeClasses">
-      <img :src="getImageUrl" alt="empty-image" class="h-full w-full object-cover" />
+      <img :src="getImageUrl" alt="empty-image" class="spr-h-full spr-w-full spr-object-cover" />
     </div>
 
-    <section class="flex flex-col items-center justify-center gap-size-spacing-md">
-      <div class="text-color-strong body-md body-md-regular-medium flex flex-col">
-        {{ description }}
-        <div class="text-color-base body-sm-regular">
+    <section class="spr-flex spr-flex-col spr-items-center spr-justify-center spr-gap-size-spacing-md">
+      <div class="spr-text-color-strong spr-body-md spr-body-md-regular-medium spr-flex spr-flex-col">
+        <span>{{ description }}</span>
+        <div class="spr-text-color-base spr-body-sm-regular">
           {{ subDescription }}
         </div>
       </div>
@@ -18,6 +18,7 @@
     </section>
   </div>
 </template>
+
 <script setup lang="ts">
 import { emptyStatePropTypes } from './empty-state';
 import { useEmptyState } from './use-empty-state';

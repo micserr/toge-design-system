@@ -20,23 +20,23 @@ The following font families are used in our typography system:
   <tbody>
     <tr>
       <td>Rubik</td>
-      <td>font-main</td>
+      <td>spr-font-main</td>
       <td>
-        <span class="font-main">This is a sample text.</span>
+        <span class="spr-font-main">This is a sample text.</span>
       </td>
     </tr>
     <tr>
       <td>Roboto</td>
-      <td>font-inbound</td>
+      <td>spr-font-inbound</td>
       <td>
-        <span class="font-inbound">This is a sample text.</span>
+        <span class="spr-font-inbound">This is a sample text.</span>
       </td>
     </tr>
     <tr>
       <td>Roboto Mono</td>
-      <td>font-code</td>
+      <td>spr-font-code</td>
       <td>
-        <span class="font-code">This is a sample text.</span>
+        <span class="spr-font-code">This is a sample text.</span>
       </td>
     </tr>
   </tbody>
@@ -56,115 +56,115 @@ The following font families are used in our typography system:
 Font sizes define the typographic hierarchy, ensuring content is presented in a clear, readable, and visually appealing way.
 The following font sizes are defined for use throughout the application:
 
-<div class="grid gap-4">
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+<div class="spr-grid spr-gap-4">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>12px</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-size-100</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-size-100</span>
       </label>
-      <p class="!m-0 font-size-100">This is a sample text.</p>
+      <p class="!spr-m-0 spr-font-size-100">This is a sample text.</p>
     </div>
   </div>
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>14px</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-size-200</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-size-200</span>
       </label>
-      <p class="!m-0 font-size-200">This is a sample text.</p>
+      <p class="!spr-m-0 spr-font-size-200">This is a sample text.</p>
     </div>
   </div>
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>16px</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-size-300</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-size-300</span>
       </label>
-      <p class="!m-0 font-size-300">This is a sample text.</p>
+      <p class="!spr-m-0 spr-font-size-300">This is a sample text.</p>
     </div>
   </div>
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>20px</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-size-400</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-size-400</span>
       </label>
-      <p class="!m-0 font-size-400">This is a sample text.</p>
+      <p class="!spr-m-0 spr-font-size-400">This is a sample text.</p>
     </div>
   </div>
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>24px</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-size-500</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-size-500</span>
       </label>
-      <p class="!m-0 font-size-500">This is a sample text.</p>
+      <p class="!spr-m-0 spr-font-size-500">This is a sample text.</p>
     </div>
   </div>
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>28px</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-size-600</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-size-600</span>
       </label>
-      <p class="!m-0 font-size-600">This is a sample text.</p>
+      <p class="!spr-m-0 spr-font-size-600">This is a sample text.</p>
     </div>
   </div>
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>32px</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-size-700</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-size-700</span>
       </label>
-      <p class="!m-0 font-size-700">This is a sample text.</p>
+      <p class="!spr-m-0 spr-font-size-700">This is a sample text.</p>
     </div>
   </div>
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>40px</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-size-800</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-size-800</span>
       </label>
-      <p class="!mt-[6px] !mb-0 font-size-800">This is a sample text.</p>
+      <p class="!spr-mt-[6px] !spr-mb-0 spr-font-size-800">This is a sample text.</p>
     </div>
   </div>
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>48px</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-size-900</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-size-900</span>
       </label>
-      <p class="!mt-[8px] !mb-0 font-size-900">This is a sample text.</p>
+      <p class="!spr-mt-[8px] !spr-mb-0 spr-font-size-900">This is a sample text.</p>
     </div>
   </div>
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>56px</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-size-1000</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-size-1000</span>
       </label>
-      <p class="!mt-[12px] !mb-0 font-size-1000">This is a sample text.</p>
+      <p class="!spr-mt-[12px] !spr-mb-0 spr-font-size-1000">This is a sample text.</p>
     </div>
   </div>
 </div>
@@ -174,104 +174,104 @@ The following font sizes are defined for use throughout the application:
 Font weight controls the thickness of the typeface characters, helping create visual contrast and emphasis.
 Here’s how the various font weights are used:
 
-<div class="grid gap-4">
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+<div class="spr-grid spr-gap-4">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>100</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-thin</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-thin</span>
       </label>
-      <p class="!m-0 font-thin">This is a sample text.</p>
+      <p class="!spr-m-0 spr-font-thin">This is a sample text.</p>
     </div>
   </div>
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>200</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-extralight</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-extralight</span>
       </label>
-      <p class="!m-0 font-extralight">This is a sample text.</p>
+      <p class="!spr-m-0 spr-font-extralight">This is a sample text.</p>
     </div>
   </div>
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>300</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-light</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-light</span>
       </label>
-      <p class="!m-0 font-light">This is a sample text.</p>
+      <p class="!spr-m-0 spr-font-light">This is a sample text.</p>
     </div>
   </div>
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>400</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-normal</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-normal</span>
       </label>
-      <p class="!m-0 font-normal">This is a sample text.</p>
+      <p class="!spr-m-0 spr-font-normal">This is a sample text.</p>
     </div>
   </div>
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>500</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-medium</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-medium</span>
       </label>
-      <p class="!m-0 font-medium">This is a sample text.</p>
+      <p class="!spr-m-0 spr-font-medium">This is a sample text.</p>
     </div>
   </div>
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>600</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-semibold</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-semibold</span>
       </label>
-      <p class="!m-0 font-semibold">This is a sample text.</p>
+      <p class="!spr-m-0 spr-font-semibold">This is a sample text.</p>
     </div>
   </div>
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>700</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-bold</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-bold</span>
       </label>
-      <p class="!m-0 font-bold">This is a sample text.</p>
+      <p class="!spr-m-0 spr-font-bold">This is a sample text.</p>
     </div>
   </div>
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>800</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-extrabold</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-extrabold</span>
       </label>
-      <p class="!m-0 font-extrabold">This is a sample text.</p>
+      <p class="!spr-m-0 spr-font-extrabold">This is a sample text.</p>
     </div>
   </div>
-  <div class="flex gap-4">
-    <div class="flex items-center justify-center h-[52px] w-[80px] border border-solid border-color-information-base rounded-md p-2">
+  <div class="spr-flex spr-gap-4">
+    <div class="spr-flex spr-items-center spr-justify-center spr-h-[52px] spr-w-[80px] spr-border spr-border-solid spr-border-color-information-base spr-rounded-md spr-p-2">
       <span>900</span>
     </div>
     <div>
-      <label class="block m-0">
-        Class: <span class="font-bold">font-black</span>
+      <label class="spr-block spr-m-0">
+        Class: <span class="spr-font-bold">spr-font-black</span>
       </label>
-      <p class="!m-0 font-black">This is a sample text.</p>
+      <p class="!spr-m-0 spr-font-black">This is a sample text.</p>
     </div>
   </div>
 </div>
@@ -291,43 +291,43 @@ especially for larger bodies of text. We define the following line heights:
   <tbody>
     <tr>
       <td>12px</td>
-      <td>line-height-100</td>
+      <td>spr-line-height-100</td>
     </tr>
     <tr>
       <td>14px</td>
-      <td>line-height-200</td>
+      <td>spr-line-height-200</td>
     </tr>
     <tr>
       <td>16px</td>
-      <td>line-height-300</td>
+      <td>spr-line-height-300</td>
     </tr>
     <tr>
       <td>20px</td>
-      <td>line-height-400</td>
+      <td>spr-line-height-400</td>
     </tr>
     <tr>
       <td>24px</td>
-      <td>line-height-500</td>
+      <td>spr-line-height-500</td>
     </tr>
     <tr>
       <td>32px</td>
-      <td>line-height-600</td>
+      <td>spr-line-height-600</td>
     </tr>
     <tr>
       <td>36px</td>
-      <td>line-height-700</td>
+      <td>spr-line-height-700</td>
     </tr>
     <tr>
       <td>40px</td>
-      <td>line-height-800</td>
+      <td>spr-line-height-800</td>
     </tr>
     <tr>
       <td>48px</td>
-      <td>line-height-900</td>
+      <td>spr-line-height-900</td>
     </tr>
     <tr>
       <td>60px</td>
-      <td>line-height-1000</td>
+      <td>spr-line-height-1000</td>
     </tr>
   </tbody>
 </table>
@@ -347,31 +347,31 @@ the overall aesthetic of the text. The following letter spacing values are defin
   <tbody>
     <tr>
       <td>-1.3px</td>
-      <td>letter-spacing-densest</td>
+      <td>spr-letter-spacing-densest</td>
     </tr>
     <tr>
       <td>-1px</td>
-      <td>letter-spacing-denser</td>
+      <td>spr-letter-spacing-denser</td>
     </tr>
     <tr>
       <td>-0.7px</td>
-      <td>letter-spacing-dense</td>
+      <td>spr-letter-spacing-dense</td>
     </tr>
     <tr>
       <td>0px</td>
-      <td>letter-spacing-normal</td>
+      <td>spr-letter-spacing-normal</td>
     </tr>
     <tr>
       <td>0.7px</td>
-      <td>letter-spacing-wide</td>
+      <td>spr-letter-spacing-wide</td>
     </tr>
     <tr>
       <td>1px</td>
-      <td>letter-spacing-wider</td>
+      <td>spr-letter-spacing-wider</td>
     </tr>
     <tr>
       <td>1.3px</td>
-      <td>letter-spacing-widest</td>
+      <td>spr-letter-spacing-widest</td>
     </tr>
   </tbody>
 </table>
@@ -383,86 +383,86 @@ They help break down sections of content and guide the user through a page.
 In our design system, headings are visually distinct and scalable based on importance.
 They typically use larger font sizes, bolder weights, and generous line heights.
 
-<table class="w-full">
+<table class="spr-w-full">
   <tbody>
     <tr>
-      <td class="min-w-[18em]">
+      <td class="spr-min-w-[18em]">
         <small>Heading XL</small>
-        <h3 class="!m-0">heading-xl</h3>
+        <h3 class="!spr-m-0">spr-heading-xl</h3>
         <ul>
-          <li>font-size-900</li>
-          <li>line-height-1000</li>
-          <li>letter-spacing-densest</li>
-          <li>font-main</li>
-          <li>font-medium</li>
+          <li>spr-font-size-900</li>
+          <li>spr-line-height-1000</li>
+          <li>spr-letter-spacing-densest</li>
+          <li>spr-font-main</li>
+          <li>spr-font-medium</li>
         </ul>
       </td>
-      <td class="w-full text-center">
-        <span class="heading-xl">This is a sample text.</span>
+      <td class="spr-w-full spr-text-center">
+        <span class="spr-heading-xl">This is a sample text.</span>
       </td>
     </tr>
     <tr>
-      <td class="min-w-[18em]">
+      <td class="spr-min-w-[18em]">
         <small>Heading LG</small>
-        <h3 class="!m-0">heading-lg</h3>
+        <h3 class="!spr-m-0">spr-heading-lg</h3>
         <ul>
-          <li>font-size-800</li>
-          <li>line-height-900</li>
-          <li>letter-spacing-denser</li>
-          <li>font-main</li>
-          <li>font-medium</li>
+          <li>spr-font-size-800</li>
+          <li>spr-line-height-900</li>
+          <li>spr-letter-spacing-denser</li>
+          <li>spr-font-main</li>
+          <li>spr-font-medium</li>
         </ul>
       </td>
-      <td class="w-full text-center">
-        <span class="heading-lg">This is a sample text.</span>
+      <td class="spr-w-full spr-text-center">
+        <span class="spr-heading-lg">This is a sample text.</span>
       </td>
     </tr>
     <tr>
-      <td class="min-w-[18em]">
+      <td class="spr-min-w-[18em]">
         <small>Heading MD</small>
-        <h3 class="!m-0">heading-md</h3>
+        <h3 class="!spr-m-0">spr-heading-md</h3>
         <ul>
-          <li>font-size-700</li>
-          <li>line-height-800</li>
-          <li>letter-spacing-denser</li>
-          <li>font-main</li>
-          <li>font-medium</li>
+          <li>spr-font-size-700</li>
+          <li>spr-line-height-800</li>
+          <li>spr-letter-spacing-denser</li>
+          <li>spr-font-main</li>
+          <li>spr-font-medium</li>
         </ul>
       </td>
-      <td class="w-full text-center">
-        <span class="heading-md">This is a sample text.</span>
+      <td class="spr-w-full spr-text-center">
+        <span class="spr-heading-md">This is a sample text.</span>
       </td>
     </tr>
     <tr>
-      <td class="min-w-[18em]">
+      <td class="spr-min-w-[18em]">
         <small>Heading SM</small>
-        <h3 class="!m-0">heading-sm</h3>
+        <h3 class="!spr-m-0">spr-heading-sm</h3>
         <ul>
-          <li>font-size-600</li>
-          <li>line-height-700</li>
-          <li>letter-spacing-dense</li>
-          <li>font-main</li>
-          <li>font-medium</li>
+          <li>spr-font-size-600</li>
+          <li>spr-line-height-700</li>
+          <li>spr-letter-spacing-dense</li>
+          <li>spr-font-main</li>
+          <li>spr-font-medium</li>
         </ul>
       </td>
-      <td class="w-full text-center">
-        <span class="heading-sm">This is a sample text.</span>
+      <td class="spr-w-full spr-text-center">
+        <span class="spr-heading-sm">This is a sample text.</span>
       </td>
     </tr>
     <tr>
-      <td class="min-w-[18em]">
+      <td class="spr-min-w-[18em]">
         <small>Heading XS</small>
-        <h3 class="!m-0">heading-xs</h3>
+        <h3 class="!spr-m-0">spr-heading-xs</h3>
         <ul>
-          <li>font-size-500</li>
-          <li>line-height-600</li>
-          <li>letter-spacing-dense</li>
-          <li>font-main</li>
-          <li>font-medium</li>
+          <li>spr-font-size-500</li>
+          <li>spr-line-height-600</li>
+          <li>spr-letter-spacing-dense</li>
+          <li>spr-font-main</li>
+          <li>spr-font-medium</li>
         </ul>
       </td>
-      <td class="w-full text-center">
-        <span class="heading-xs">This is a sample text.</span>
+      <td class="spr-w-full spr-text-center">
+        <span class="spr-heading-xs">This is a sample text.</span>
       </td>
     </tr>
   </tbody>
@@ -474,38 +474,38 @@ Subheadings support the primary heading and break down content into digestible s
 These are typically used for content categories or grouped ideas within larger sections.
 The typography is adjusted to be smaller and less bold than main headings but still visually distinct.
 
-<table class="w-full">
+<table class="spr-w-full">
   <tbody>
     <tr>
-      <td class="min-w-[18em]">
+      <td class="spr-min-w-[18em]">
         <small>Subheading SM</small>
-        <h3 class="!m-0">subheading-sm</h3>
+        <h3 class="!spr-m-0">spr-subheading-sm</h3>
         <ul>
-          <li>font-size-400</li>
-          <li>line-height-500</li>
-          <li>letter-spacing-dense</li>
-          <li>font-main</li>
-          <li>font-medium</li>
+          <li>spr-font-size-400</li>
+          <li>spr-line-height-500</li>
+          <li>spr-letter-spacing-dense</li>
+          <li>spr-font-main</li>
+          <li>spr-font-medium</li>
         </ul>
       </td>
-      <td class="w-full text-center">
-        <span class="subheading-sm">This is a sample text.</span>
+      <td class="spr-w-full spr-text-center">
+        <span class="spr-subheading-sm">This is a sample text.</span>
       </td>
     </tr>
     <tr>
-      <td class="min-w-[18em]">
+      <td class="spr-min-w-[18em]">
         <small>Subheading XS</small>
-        <h3 class="!m-0">subheading-xs</h3>
+        <h3 class="!spr-m-0">spr-subheading-xs</h3>
         <ul>
-          <li>font-size-300</li>
-          <li>line-height-400</li>
-          <li>letter-spacing-normal</li>
-          <li>font-main</li>
-          <li>font-medium</li>
+          <li>spr-font-size-300</li>
+          <li>spr-line-height-400</li>
+          <li>spr-letter-spacing-normal</li>
+          <li>spr-font-main</li>
+          <li>spr-font-medium</li>
         </ul>
       </td>
-      <td class="w-full text-center">
-        <span class="subheading-xs">This is a sample text.</span>
+      <td class="spr-w-full spr-text-center">
+        <span class="spr-subheading-xs">This is a sample text.</span>
       </td>
     </tr>
   </tbody>
@@ -516,50 +516,50 @@ The typography is adjusted to be smaller and less bold than main headings but st
 Body text is the core content on most pages. It needs to be easy to read and legible across all screen sizes.
 Body text uses standard font size (16px) and is typically set to a regular or medium weight for clarity and readability.
 
-<div class="flex gap-4">
-  <table class="w-full">
+<div class="spr-flex spr-gap-4">
+  <table class="spr-w-full">
     <tbody>
       <tr>
-        <td class="w-[50vw]">
-          <div class="grid gap-4">
+        <td class="spr-w-[50vw]">
+          <div class="spr-grid spr-gap-4">
             <div>
               <small>Base Class</small>
-              <h3 class="!m-0 font-bold">body-lg</h3>
+              <h3 class="!spr-m-0 spr-font-bold">spr-body-lg</h3>
               <ul>
-                <li>font-size-400</li>
-                <li>line-height-600</li>
-                <li>letter-spacing-normal</li>
-                <li>font-main</li>
+                <li>spr-font-size-400</li>
+                <li>spr-line-height-600</li>
+                <li>spr-letter-spacing-normal</li>
+                <li>spr-font-main</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">body-lg-regular</p>
+              <p class="!spr-m-0 spr-font-bold">spr-body-lg-regular</p>
               <ul>
-                <li>body-lg</li>
-                <li>font-normal</li>
+                <li>spr-body-lg</li>
+                <li>spr-font-normal</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">body-lg-regular-underline</p>
+              <p class="!spr-m-0 spr-font-bold">spr-body-lg-regular-underline</p>
               <ul>
-                <li>body-lg</li>
-                <li>font-normal</li>
-                <li>decoration-solid</li>
+                <li>spr-body-lg</li>
+                <li>spr-font-normal</li>
+                <li>spr-decoration-solid</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">body-lg-regular-medium</p>
+              <p class="!spr-m-0 spr-font-bold">spr-body-lg-regular-medium</p>
               <ul>
-                <li>body-lg</li>
-                <li>font-medium</li>
+                <li>spr-body-lg</li>
+                <li>spr-font-medium</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">body-lg-medium-underline</p>
+              <p class="!spr-m-0 spr-font-bold">spr-body-lg-medium-underline</p>
               <ul>
-                <li>body-lg</li>
-                <li>font-medium</li>
-                <li>decoration-solid</li>
+                <li>spr-body-lg</li>
+                <li>spr-font-medium</li>
+                <li>spr-decoration-solid</li>
               </ul>
             </div>
           </div>
@@ -567,49 +567,49 @@ Body text uses standard font size (16px) and is typically set to a regular or me
       </tr>
     </tbody>
   </table>
-  <table class="w-full">
+  <table class="spr-w-full">
     <tbody>
       <tr>
-        <td class="w-[50vw]">
-          <div class="grid gap-4">
+        <td class="spr-w-[50vw]">
+          <div class="spr-grid spr-gap-4">
             <div>
               <small>Base Class</small>
-              <h3 class="!m-0 font-bold">body-md</h3>
+              <h3 class="!spr-m-0 spr-font-bold">spr-body-md</h3>
               <ul>
-                <li>font-size-300</li>
-                <li>line-height-500</li>
-                <li>letter-spacing-normal</li>
-                <li>font-main</li>
+                <li>spr-font-size-300</li>
+                <li>spr-line-height-500</li>
+                <li>spr-letter-spacing-normal</li>
+                <li>spr-font-main</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">body-md-regular</p>
+              <p class="!spr-m-0 spr-font-bold">spr-body-md-regular</p>
               <ul>
-                <li>body-md</li>
-                <li>font-normal</li>
+                <li>spr-body-md</li>
+                <li>spr-font-normal</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">body-md-regular-underline</p>
+              <p class="!spr-m-0 spr-font-bold">spr-body-md-regular-underline</p>
               <ul>
-                <li>body-md</li>
-                <li>font-normal</li>
-                <li>decoration-solid</li>
+                <li>spr-body-md</li>
+                <li>spr-font-normal</li>
+                <li>spr-decoration-solid</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">body-md-regular-medium</p>
+              <p class="!spr-m-0 spr-font-bold">spr-body-md-regular-medium</p>
               <ul>
-                <li>body-md</li>
-                <li>font-medium</li>
+                <li>spr-body-md</li>
+                <li>spr-font-medium</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">body-md-medium-underline</p>
+              <p class="!spr-m-0 spr-font-bold">spr-body-md-medium-underline</p>
               <ul>
-                <li>body-md</li>
-                <li>font-medium</li>
-                <li>decoration-solid</li>
+                <li>spr-body-md</li>
+                <li>spr-font-medium</li>
+                <li>spr-decoration-solid</li>
               </ul>
             </div>
           </div>
@@ -619,50 +619,50 @@ Body text uses standard font size (16px) and is typically set to a regular or me
   </table>
 </div>
 
-<div class="flex gap-4">
-  <table class="w-full">
+<div class="spr-flex spr-gap-4">
+  <table class="spr-w-full">
     <tbody>
       <tr>
-        <td class="w-[50vw]">
-          <div class="grid gap-4">
+        <td class="spr-w-[50vw]">
+          <div class="spr-grid spr-gap-4">
             <div>
               <small>Base Class</small>
-              <h3 class="!m-0 font-bold">body-sm</h3>
+              <h3 class="!spr-m-0 spr-font-bold">spr-body-sm</h3>
               <ul>
-                <li>font-size-200</li>
-                <li>line-height-400</li>
-                <li>letter-spacing-normal</li>
-                <li>font-main</li>
+                <li>spr-font-size-200</li>
+                <li>spr-line-height-400</li>
+                <li>spr-letter-spacing-normal</li>
+                <li>spr-font-main</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">body-sm-regular</p>
+              <p class="!spr-m-0 spr-font-bold">spr-body-sm-regular</p>
               <ul>
-                <li>body-sm</li>
-                <li>font-normal</li>
+                <li>spr-body-sm</li>
+                <li>spr-font-normal</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">body-sm-regular-underline</p>
+              <p class="!spr-m-0 spr-font-bold">spr-body-sm-regular-underline</p>
               <ul>
-                <li>body-sm</li>
-                <li>font-normal</li>
-                <li>decoration-solid</li>
+                <li>spr-body-sm</li>
+                <li>spr-font-normal</li>
+                <li>spr-decoration-solid</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">body-sm-regular-medium</p>
+              <p class="!spr-m-0 spr-font-bold">spr-body-sm-regular-medium</p>
               <ul>
-                <li>body-sm</li>
-                <li>font-medium</li>
+                <li>spr-body-sm</li>
+                <li>spr-font-medium</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">body-sm-medium-underline</p>
+              <p class="!spr-m-0 spr-font-bold">spr-body-sm-medium-underline</p>
               <ul>
-                <li>body-sm</li>
-                <li>font-medium</li>
-                <li>decoration-solid</li>
+                <li>spr-body-sm</li>
+                <li>spr-font-medium</li>
+                <li>spr-decoration-solid</li>
               </ul>
             </div>
           </div>
@@ -670,49 +670,49 @@ Body text uses standard font size (16px) and is typically set to a regular or me
       </tr>
     </tbody>
   </table>
-  <table class="w-full">
+  <table class="spr-w-full">
     <tbody>
       <tr>
-        <td class="w-[50vw]">
-          <div class="grid gap-4">
+        <td class="spr-w-[50vw]">
+          <div class="spr-grid spr-gap-4">
             <div>
               <small>Base Class</small>
-              <h3 class="!m-0 font-bold">body-xs</h3>
+              <h3 class="!spr-m-0 spr-font-bold">spr-body-xs</h3>
               <ul>
-                <li>font-size-100</li>
-                <li>line-height-300</li>
-                <li>letter-spacing-normal</li>
-                <li>font-main</li>
+                <li>spr-font-size-100</li>
+                <li>spr-line-height-300</li>
+                <li>spr-letter-spacing-normal</li>
+                <li>spr-font-main</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">body-xs-regular</p>
+              <p class="!spr-m-0 spr-font-bold">spr-body-xs-regular</p>
               <ul>
-                <li>body-xs</li>
-                <li>font-normal</li>
+                <li>spr-body-xs</li>
+                <li>spr-font-normal</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">body-xs-regular-underline</p>
+              <p class="!spr-m-0 spr-font-bold">spr-body-xs-regular-underline</p>
               <ul>
-                <li>body-xs</li>
-                <li>font-normal</li>
-                <li>decoration-solid</li>
+                <li>spr-body-xs</li>
+                <li>spr-font-normal</li>
+                <li>spr-decoration-solid</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">body-xs-regular-medium</p>
+              <p class="!spr-m-0 spr-font-bold">spr-body-xs-regular-medium</p>
               <ul>
-                <li>body-xs</li>
-                <li>font-medium</li>
+                <li>spr-body-xs</li>
+                <li>spr-font-medium</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">body-xs-medium-underline</p>
+              <p class="!spr-m-0 spr-font-bold">spr-body-xs-medium-underline</p>
               <ul>
-                <li>body-xs</li>
-                <li>font-medium</li>
-                <li>decoration-solid</li>
+                <li>spr-body-xs</li>
+                <li>spr-font-medium</li>
+                <li>spr-decoration-solid</li>
               </ul>
             </div>
           </div>
@@ -727,34 +727,34 @@ Body text uses standard font size (16px) and is typically set to a regular or me
 Labels are used for form inputs, navigation, and UI elements. These are typically smaller in size, often 12px–16px,
 and require a high contrast to stand out clearly. Labels also use consistent letter spacing for neatness.
 
-<div class="flex gap-4">
-  <table class="w-full">
+<div class="spr-flex spr-gap-4">
+  <table class="spr-w-full">
     <tbody>
       <tr>
-        <td class="w-[50vw]">
-          <div class="grid gap-4">
+        <td class="spr-w-[50vw]">
+          <div class="spr-grid spr-gap-4">
             <div>
               <small>Base Class</small>
-              <h3 class="!m-0 font-bold">label-sm</h3>
+              <h3 class="!spr-m-0 spr-font-bold">spr-label-sm</h3>
               <ul>
-                <li>font-size-200</li>
-                <li>line-height-200</li>
-                <li>letter-spacing-wide</li>
-                <li>font-main</li>
+                <li>spr-font-size-200</li>
+                <li>spr-line-height-200</li>
+                <li>spr-letter-spacing-wide</li>
+                <li>spr-font-main</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">label-sm-regular</p>
+              <p class="!spr-m-0 spr-font-bold">spr-label-sm-regular</p>
               <ul>
-                <li>label-sm</li>
-                <li>font-normal</li>
+                <li>spr-label-sm</li>
+                <li>spr-font-normal</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">label-sm-medium</p>
+              <p class="!spr-m-0 spr-font-bold">spr-label-sm-medium</p>
               <ul>
-                <li>label-sm</li>
-                <li>font-medium</li>
+                <li>spr-label-sm</li>
+                <li>spr-font-medium</li>
               </ul>
             </div>
           </div>
@@ -762,33 +762,33 @@ and require a high contrast to stand out clearly. Labels also use consistent let
       </tr>
     </tbody>
   </table>
-  <table class="w-full">
+  <table class="spr-w-full">
     <tbody>
       <tr>
-        <td class="w-[50vw]">
-          <div class="grid gap-4">
+        <td class="spr-w-[50vw]">
+          <div class="spr-grid spr-gap-4">
             <div>
               <small>Base Class</small>
-              <h3 class="!m-0 font-bold">label-xs</h3>
+              <h3 class="!spr-m-0 spr-font-bold">spr-label-xs</h3>
               <ul>
-                <li>font-size-100</li>
-                <li>line-height-100</li>
-                <li>letter-spacing-wide</li>
-                <li>font-main</li>
+                <li>spr-font-size-100</li>
+                <li>spr-line-height-100</li>
+                <li>spr-letter-spacing-wide</li>
+                <li>spr-font-main</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">label-xs-regular</p>
+              <p class="!spr-m-0 spr-font-bold">spr-label-xs-regular</p>
               <ul>
-                <li>label-xs</li>
-                <li>font-normal</li>
+                <li>spr-label-xs</li>
+                <li>spr-font-normal</li>
               </ul>
             </div>
             <div>
-              <p class="!m-0 font-bold">label-xs-medium</p>
+              <p class="!spr-m-0 spr-font-bold">spr-label-xs-medium</p>
               <ul>
-                <li>label-xs</li>
-                <li>font-medium</li>
+                <li>spr-label-xs</li>
+                <li>spr-font-medium</li>
               </ul>
             </div>
           </div>

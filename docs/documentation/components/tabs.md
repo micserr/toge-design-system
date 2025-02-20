@@ -4,7 +4,7 @@ Tabs are used to organize content into different sections. They are commonly use
 
 ## Basic Usage
 
-<h5 class="mb-4">Regular Tabs:</h5>
+<h5 class="spr-mb-4">Regular Tabs:</h5>
 
 <spr-tabs :list="tabsBasic" />
 
@@ -20,7 +20,7 @@ const tabsBasic = [{ label: 'tab' }, { label: 'tab' }, { label: 'tab' }];
 </script>
 ```
 
-<h5 class="mb-4">Underlined Tabs:</h5>
+<h5 class="spr-mb-4">Underlined Tabs:</h5>
 
 <spr-tabs :list="tabsUnderlined" :underlined=true />
 
@@ -42,7 +42,7 @@ const tabsUnderlined = [
 
 ## Disabled State
 
-<h5 class="mb-4">Regular Tabs:</h5>
+<h5 class="spr-mb-4">Regular Tabs:</h5>
 
 <spr-tabs :list="tabsBasicWithDisabled" />
 
@@ -62,7 +62,7 @@ const tabsBasicWithDisabled = ref([
 </script>
 ```
 
-<h5 class="mb-4">Underlined Tabs:</h5>
+<h5 class="spr-mb-4">Underlined Tabs:</h5>
 
 <spr-tabs :list="tabsUnderlinedDisabled" :underlined=true />
 
@@ -102,7 +102,7 @@ const tabsRandomLabel = ref([{ label: 'tab 1' }, { label: 'tab 2' }, { label: 't
 
 ## With Icon
 
-<h5 class="mb-4">Regular Tabs:</h5>
+<h5 class="spr-mb-4">Regular Tabs:</h5>
 
 <spr-tabs :list="tabsWithIcon" />
 
@@ -122,7 +122,7 @@ const tabsWithIcon = [
 </script>
 ```
 
-<h5 class="mb-4">Underlined Tabs:</h5>
+<h5 class="spr-mb-4">Underlined Tabs:</h5>
 
 <spr-tabs :list="tabsUnderlinedWithIcon" :underlined=true />
 
@@ -144,7 +144,7 @@ const tabsUnderlinedWithIcon = [
 
 ## Icon Only
 
-<h5 class="mb-4">Regular Tabs:</h5>
+<h5 class="spr-mb-4">Regular Tabs:</h5>
 
 <spr-tabs :list="tabsIconOnly" />
 
@@ -164,7 +164,7 @@ const tabsIconOnly = [
 </script>
 ```
 
-<h5 class="mb-4">Underlined Tabs:</h5>
+<h5 class="spr-mb-4">Underlined Tabs:</h5>
 
 <spr-tabs :list="tabsIconOnly" :underlined="true" />
 

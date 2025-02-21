@@ -7,10 +7,10 @@
       </div>
     </template>
     <div v-else :class="initialClassses">
-      {{ initial }}
+      {{ count ? `+${initial}` : initial.charAt(0) }}
     </div>
     <span v-if="notification" :class="avatarNotificationClassses">
-      <spr-badge :text="badgeText" variant="danger" :size="getAvatarSize.notif" />
+      <spr-badge :text="NotificationText" variant="danger" :size="getAvatarSize.notif" />
     </span>
     <span v-if="badge" :class="onlineNotificationClassses">
       <spr-badge text="" :variant="status" :size="getAvatarSize.badge" />

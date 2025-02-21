@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.3 (2025-02-21)
+
+- Feature
+  - Chips - work Continuation made by Michael Raquel
+  - Add count for Avatar ([#02350704](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0235070425f681fdd2197fe427b175addae81e71?refName=refs%2Fheads%2F2025%2Ffeat%2Fandrea%2Fcontinuation-chip-created-by-michael-raquel) by @adestajo)
+
 ## 1.4.2 (2025-02-21)
 
 - Feat

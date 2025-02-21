@@ -20,7 +20,8 @@
             !underlined && activeTab.index !== index,
 
           // Regular Tab - Disabled
-          'spr-background-color-disabled !spr-cursor-not-allowed': !underlined && tab.disabled,
+          'spr-background-color-disabled !spr-cursor-not-allowed !spr-text-color-on-fill-disabled':
+            !underlined && tab.disabled,
 
           // Underlined Tab - Active
           'spr-cursor-pointer': underlined && activeTab.index === index,
@@ -32,7 +33,7 @@
             underlined && activeTab.index !== index && !tab.disabled,
 
           // Underlined Tab - Disabled
-          'spr-border-color-disabled spr-text-color-on-fill-disabled spr-background-color-disabled !spr-cursor-not-allowed spr-border-b':
+          'spr-border-color-disabled spr-text-color-on-fill-disabled !spr-cursor-not-allowed spr-border-b':
             underlined && tab.disabled,
         },
       ]"

@@ -1,3 +1,22 @@
-.VPSidebarItem { 
+:root {
+  --vp-home-hero-name-color: #158039;
+
+  --vp-button-brand-bg: #158039;
+  --vp-button-brand-hover-bg: #166531;
+  --vp-button-brand-active-bg: #14532b;
+
+  --vp-code-color: #158039;
+  --vp-code-link-color: #158039;
+  --vp-code-link-hover-color: #166531;
+
+  --vp-code-tab-active-bar-color: #158039;
+}
+
+.main {
+  .text {
+    font-size: 24px;
+  }
+}
+.VPSidebarItem {
   padding-left: 8px;
 }

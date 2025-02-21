@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.4.2 (2025-02-21)
+## 1.4.0 (2025-02-21)
 
 - Feat
   - Add card component ([#3f56c1fe](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3f56c1fedc9a0fcc199f14ba6488ac46bc2b51cf?refName=refs%2Fheads%2F2025%2Ffeature%2Fjames%2Fcard) by @jmanalang)

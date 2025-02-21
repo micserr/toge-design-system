@@ -47,6 +47,7 @@ export default tseslint.config(
             'avatar',
             'badge',
             'button',
+            'card',
             'checkbox',
             'dropdown',
             'Icon',

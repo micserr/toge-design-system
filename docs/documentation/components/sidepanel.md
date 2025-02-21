@@ -2,7 +2,7 @@
 
 The Sidepanel component is a reusable UI element designed to display contextual or additional information alongside the main content of your application. It slides into view from the edge of the screen, providing a seamless and non-intrusive way to present content such as forms, lists, or detailed views.
 
-![Sidepanel Sample](../../public/sidepanel/sidepanel-sample.png)
+![Sidepanel Sample](../../public/sidepanel-sample.png)
 
 ## Basic Usage
 

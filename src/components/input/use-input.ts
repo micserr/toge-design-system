@@ -1,10 +1,10 @@
-import { computed, toRefs } from 'vue';
+import { computed, toRefs, watchEffect } from 'vue';
 import { useVModel } from '@vueuse/core';
 
 import classNames from 'classnames';
 
 import type { SetupContext } from 'vue';
-import type { InputPropTypes, InputEmitTypes } from './input';
+import { type InputPropTypes, type InputEmitTypes, TYPE_HAS_LEADING_ICONS, TYPE_HAS_TRAILING_ICONS } from './input';
 
 export const useInput = (
   props: InputPropTypes,
@@ -39,8 +39,8 @@ export const useInput = (
         'spr-background-color-disabled': disabled.value,
         'spr-cursor-not-allowed': disabled.value,
         'spr-text-color-on-fill-disabled': disabled.value,
-        'spr-pr-[5%]': slots.icon,
-        'spr-pl-size-spacing-lg': slots.prefix,
+        'spr-pr-[5%]': hasIconSlot.value,
+        'spr-pl-size-spacing-lg': hasPrefix.value,
         'spr-pr-[93%] sm:spr-pr-[85%]': offsetSize.value === 'xs' && slots.trailing,
         'spr-pr-[90%] sm:spr-pr-[80%]': offsetSize.value === 'sm' && slots.trailing,
         'spr-pr-[50%]': offsetSize.value === 'md' && slots.trailing,
@@ -84,9 +84,17 @@ export const useInput = (
 
   const onInput = (event: Event) => {
     const target = event.target as HTMLInputElement;
-
+    
     modelValue.value = target.value;
   };
+
+  const hasPrefix = computed(() => {
+    return slots.prefix || TYPE_HAS_LEADING_ICONS.includes(props.type as typeof TYPE_HAS_LEADING_ICONS[number]);
+  });
+
+  const hasIconSlot = computed(() => {
+    return slots.icon || TYPE_HAS_TRAILING_ICONS.includes(props.type as typeof TYPE_HAS_TRAILING_ICONS[number]);
+  });
 
   return {
     inputClasses,
@@ -96,5 +104,7 @@ export const useInput = (
     prefixSlotClasses,
     trailingSlotClasses,
     onInput,
+    hasPrefix,
+    hasIconSlot,
   };
 };

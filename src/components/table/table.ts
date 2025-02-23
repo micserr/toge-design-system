@@ -57,6 +57,11 @@ export const tablePropTypes = {
       size: 'large',
     }),
   },
+
+  loading: {
+    type: Boolean as PropType<boolean>,
+    default: false,
+  },
 };
 
 export type TablePropTypes = ExtractPropTypes<typeof tablePropTypes>;

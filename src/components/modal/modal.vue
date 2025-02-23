@@ -17,7 +17,7 @@
 
       <div v-if="!$slots.header">{{ title }}</div>
 
-      <span v-if="hasClose" class="spr-text-color-weak spr-subheading-xs" @click="closeModal">
+      <span v-if="hasClose" class="spr-text-color-weak spr-subheading-xs spr-cursor-pointer" @click="closeModal">
         <Icon icon="ph:x" />
       </span>
     </header>

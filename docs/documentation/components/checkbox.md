@@ -4,9 +4,7 @@ Checkboxes allow the user to select one or more items from a set.
 
 ## Basic Usage
 
-Checkboxes can be regular or bordered. use the `bordered` attribute to make the checkbox bordered. You can also add a label to the checkbox by using the `label` attribute.
-
-<h5 class="spr-mb-4">Regular Checkbox:</h5>
+You can also add a label to the checkbox by using the `label` attribute.
 
 <SprCheckbox v-model="checkboxModels.checkbox1" label="Checkbox Label" />
 
@@ -22,30 +20,12 @@ const checkbox = ref(false);
 </script>
 ```
 
-<h5 class="spr-mb-4">Bordered Checkbox:</h5>
-
-<SprCheckbox v-model="checkboxModels.checkbox2" label="Checkbox Label" bordered />
-
-```vue
-<template>
-  <SprCheckbox v-model="checkbox" label="Checkbox Label" bordered />
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-const checkbox = ref(false);
-</script>
-```
-
 ## Adding Description
 
 You can add a description to the checkbox by using the `description` attribute.
 
-<h5 class="spr-mb-4">Regular Checkbox:</h5>
-
 <SprCheckbox 
-  v-model="checkboxModels.checkbox3" 
+  v-model="checkboxModels.checkbox2" 
   label="Checkbox Label" 
   description="Lorem ipsum dolor sit amet, consectetur adipiscing elit." 
 />
@@ -66,39 +46,11 @@ const checkbox = ref(false);
 </script>
 ```
 
-<h5 class="spr-mb-4">Bordered Checkbox:</h5>
-
-<SprCheckbox 
-  v-model="checkboxModels.checkbox4" 
-  label="Checkbox Label" 
-  description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."  
-  bordered 
-/>
-
-```vue
-<template>
-  <SprCheckbox
-    v-model="checkbox"
-    label="Checkbox Label"
-    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    bordered
-  />
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-const checkbox = ref(false);
-</script>
-```
-
 ## Checked State
 
 Checkboxes can be set to checked by the use of `v-model` directive to bind the checkbox value.
 
-<h5 class="spr-mb-4">Regular Checkbox:</h5>
-
-<SprCheckbox v-model="checkboxModels.checkbox5" label="Checkbox Label" />
+<SprCheckbox v-model="checkboxModels.checkbox3" label="Checkbox Label" />
 
 ```vue
 <template>
@@ -112,49 +64,15 @@ const checkbox = ref(true);
 </script>
 ```
 
-<h5 class="spr-mb-4">Bordered Checkbox:</h5>
-
-<SprCheckbox v-model="checkboxModels.checkbox6" label="Checkbox Label" bordered />
-
-```vue
-<template>
-  <SprCheckbox v-model="checkbox" label="Checkbox Label" bordered />
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-const checkbox = ref(true);
-</script>
-```
-
 ## Disabled State
 
 Add `disabled` attribute to make the checkbox disabled.
 
-<h5 class="spr-mb-4">Regular Checkbox:</h5>
-
-<SprCheckbox v-model="checkboxModels.checkbox7" label="Checkbox Label" disabled />
+<SprCheckbox v-model="checkboxModels.checkbox4" label="Checkbox Label" disabled />
 
 ```vue
 <template>
   <SprCheckbox v-model="checkbox" label="Checkbox Label" disabled />
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-const checkbox = ref(true);
-</script>
-```
-
-<h5 class="spr-mb-4">Bordered Checkbox:</h5>
-
-<SprCheckbox v-model="checkboxModels.checkbox8" label="Checkbox Label" bordered  disabled />
-
-```vue
-<template>
-  <SprCheckbox v-model="checkbox" label="Checkbox Label" bordered disabled />
 </template>
 
 <script setup>
@@ -200,12 +118,6 @@ const checkbox = ref(true);
       <td>boolean</td>
       <td>false</td>
     </tr>
-    <tr>
-      <td>bordered</td>
-      <td>if `true`, the component design will be changed to bordered</td>
-      <td>boolean</td>
-      <td>false</td>
-    </tr>
   </tbody>
 </table>
 
@@ -217,11 +129,7 @@ import SprCheckbox from "@/components/checkbox/checkbox.vue";
 const checkboxModels = ref({
   checkbox1: false,
   checkbox2: false,
-  checkbox3: false,
+  checkbox3: true,
   checkbox4: false,
-  checkbox5: true,
-  checkbox6: true,
-  checkbox7: false,
-  checkbox8: false,
 });
 </script>

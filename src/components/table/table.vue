@@ -1,5 +1,7 @@
 <template>
-  <div class="spr-border-color-weak spr-w-full spr-rounded-border-radius-lg spr-border spr-border-solid">
+  <div
+    class="spr-border-color-weak spr-w-full spr-rounded-border-radius-lg spr-border spr-border-solid spr-overflow-hidden"
+  >
     <div v-if="!!$slots.default" :class="[{ 'spr-px-size-spacing-sm spr-py-size-spacing-xs': !!$slots.default }]">
       <slot />
     </div>
@@ -13,12 +15,12 @@
               :key="keyHeader"
               :class="[
                 'spr-sticky spr-top-0 spr-z-10',
-                'spr-background-color-surface spr-min-h-12 spr-py-size-spacing-3xs',
+                'spr-background-color-surface spr-min-h-12 spr-py-size-spacing-3xs spr-px-size-spacing-2xs',
                 'spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-text-start spr-font-medium spr-uppercase',
-                'spr-border-x-0 spr-border-y spr-border-solid',
+                'spr-border-x-0 spr-border-y spr-border-solid spr-border-color-weak',
                 {
                   'spr-cursor-pointer': header.sort,
-                  'first:spr-rounded-tl-border-radius-lg last:spr-rounded-tr-border-radius-lg': !$slots.default,
+                  'spr-border-t-0': !$slots.default,
                 },
               ]"
               @click="header.sort && sortData(header.field)"
@@ -48,7 +50,7 @@
             </th>
           </tr>
         </thead>
-        <tbody v-if="sortedData.length > 0">
+        <tbody v-if="sortedData.length > 0 && !loading">
           <tr
             v-for="(item, keyIndex) in sortedData"
             :key="keyIndex"
@@ -57,7 +59,7 @@
             <td
               v-for="(column, headerKey) in headers"
               :key="headerKey"
-              class="spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-px-6 spr-py-3"
+              class="spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-3"
             >
               <div v-if="sortedData[keyIndex][column.field]" class="spr-flex spr-flex-row spr-items-center spr-gap-2">
                 <spr-avatar
@@ -85,16 +87,22 @@
               v-if="action"
               class="spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid"
             >
-              <div class="spr-flex spr-items-center spr-space-x-1 spr-px-6 spr-py-3">
+              <div class="spr-flex spr-items-center">
                 <slot name="action" :row="item" />
               </div>
             </td>
           </tr>
         </tbody>
         <tbody v-else>
-          <tr>
+          <tr v-if="!loading">
             <td :colspan="getHeaderCount" class="spr-overflow-hidden">
               <SprEmptyState />
+            </td>
+          </tr>
+          <tr v-else>
+            <td :colspan="getHeaderCount" class="spr-overflow-hidden">
+              <div v-if="!$slots.loading" class="spr-flex spr-justify-center spr-items-center">Loading...</div>
+              <slot name="loading" class="" />
             </td>
           </tr>
         </tbody>

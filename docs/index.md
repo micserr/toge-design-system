@@ -1,10 +1,9 @@
 ---
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
-
 hero:
-  name: 'Toge'
-  text: 'Sprout Design System'
+  name: 'Sprout Design System'
+  text: '-'
   tagline: The Official Design System of Sprout Solutions Philippines!
   actions:
     - theme: brand

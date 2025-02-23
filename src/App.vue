@@ -667,7 +667,7 @@ const data = ref([
 
 <style lang="scss">
 body {
-  @apply m-0 bg-mushroom-100 font-main;
+  @apply spr-m-0 spr-bg-mushroom-100 spr-font-main;
   margin-left: 64px;
   padding: 64px;
 }

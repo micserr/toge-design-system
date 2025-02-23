@@ -4,10 +4,11 @@
       {{ props.label }}
     </label>
     <div class="spr-relative">
-      <div v-if="$slots.prefix || " :class="prefixSlotClasses">
-        <slot name="prefix" />
+      <div v-if="hasPrefix" :class="prefixSlotClasses">
+        <slot name="prefix">
           <Icon v-if="props.type === 'username'" icon="ph:user" />
-        </div>
+          <Icon v-if="props.type === 'email'" icon="ph:envelope" />
+        </slot>
       </div>
       <input
         :class="[inputClasses, { 'number-input': type === 'number' }]"
@@ -20,7 +21,7 @@
       <div v-if="$slots.trailing" :class="trailingSlotClasses">
         <slot name="trailing" />
       </div>
-      <div v-if="$slots.icon || TYPE_HAS_TRAILING_ICONS.includes(props.type)" :class="iconSlotClasses">
+      <div v-if="hasIconSlot" :class="iconSlotClasses">
         <slot name="icon" >
           <Icon v-if="props.type === 'search'" icon="ph:magnifying-glass" />
         </slot>
@@ -41,7 +42,7 @@ const emit = defineEmits(inputEmitTypes);
 const props = defineProps(inputPropTypes);
 const slots = useSlots();
 
-const { inputClasses, wrapperClasses, labelClasses, iconSlotClasses, prefixSlotClasses, trailingSlotClasses, onInput } =
+const { inputClasses, wrapperClasses, labelClasses, iconSlotClasses, prefixSlotClasses, trailingSlotClasses, onInput, hasPrefix, hasIconSlot } =
   useInput(props, slots, emit);
 </script>
 

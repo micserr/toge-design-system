@@ -6,7 +6,7 @@ const TRAILING_SIZES = ['xs', 'sm', 'md'] as const;
 
 export const INPUT_TYPES = ['default','search', 'username', 'email', 'password'] as const;
 
-export const TYPE_HAS_TRAILING_ICONS = ['search'] as const;
+export const TYPE_HAS_TRAILING_ICONS = ['search', 'password'] as const;
 
 export const TYPE_HAS_LEADING_ICONS = ['username', 'email'] as const;
 

@@ -8,6 +8,9 @@
         <slot name="prefix">
           <Icon v-if="props.type === 'username'" icon="ph:user" />
           <Icon v-if="props.type === 'email'" icon="ph:envelope" />
+          <div v-if="props.type === 'url'">
+            https://
+          </div>
         </slot>
       </div>
       <input
@@ -26,6 +29,7 @@
         <slot name="icon" >
           <Icon v-if="props.type === 'search'" icon="ph:magnifying-glass" />
           <Icon v-if="props.type === 'password'" :icon="evaluateEyeIcon()" @click="toggleShowPassword()"/>
+          <Icon v-if="props.type === 'url'" icon="ph:question-fill" />
         </slot>
       </div>
     </div>

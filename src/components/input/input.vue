@@ -17,6 +17,7 @@
         :readonly="props.readonly"
         :value="props.modelValue"
         @input="onInput"
+        :type="evaluateInputType()"
       />
       <div v-if="$slots.trailing" :class="trailingSlotClasses">
         <slot name="trailing" />
@@ -24,6 +25,7 @@
       <div v-if="hasIconSlot" :class="iconSlotClasses">
         <slot name="icon" >
           <Icon v-if="props.type === 'search'" icon="ph:magnifying-glass" />
+          <Icon v-if="props.type === 'password'" :icon="evaluateEyeIcon()" @click="toggleShowPassword()"/>
         </slot>
       </div>
     </div>
@@ -42,7 +44,19 @@ const emit = defineEmits(inputEmitTypes);
 const props = defineProps(inputPropTypes);
 const slots = useSlots();
 
-const { inputClasses, wrapperClasses, labelClasses, iconSlotClasses, prefixSlotClasses, trailingSlotClasses, onInput, hasPrefix, hasIconSlot } =
+const { 
+  inputClasses, 
+  wrapperClasses, 
+  labelClasses, 
+  iconSlotClasses, 
+  prefixSlotClasses, 
+  trailingSlotClasses, 
+  onInput, hasPrefix, 
+  hasIconSlot, 
+  toggleShowPassword, 
+  evaluateEyeIcon, 
+  evaluateInputType 
+} =
   useInput(props, slots, emit);
 </script>
 

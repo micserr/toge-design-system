@@ -1,4 +1,4 @@
-import { computed, toRefs, watchEffect } from 'vue';
+import { computed, toRefs, ref } from 'vue';
 import { useVModel } from '@vueuse/core';
 
 import classNames from 'classnames';
@@ -12,6 +12,7 @@ export const useInput = (
   emit: SetupContext<InputEmitTypes>['emit'],
 ) => {
   const { active, error, disabled, readonly, offsetSize } = toRefs(props);
+  const showPassword = ref(false);
   const modelValue = useVModel(props, 'modelValue', emit);
 
   const wrapperClasses = computed(() => {
@@ -57,6 +58,7 @@ export const useInput = (
       'spr-absolute spr-right-3 spr-top-1/2 spr-h-5 spr-w-5 -spr-translate-y-1/2 spr-transform spr-text-mushroom-300',
       {
         '!spr-text-tomato-600': error.value,
+        'spr-cursor-pointer' : props.type === 'password',
       },
     );
   });
@@ -96,6 +98,20 @@ export const useInput = (
     return slots.icon || TYPE_HAS_TRAILING_ICONS.includes(props.type as typeof TYPE_HAS_TRAILING_ICONS[number]);
   });
 
+  const toggleShowPassword = () => {
+    showPassword.value = !showPassword.value;
+  }
+
+  const evaluateEyeIcon = () => {
+    return showPassword.value ? 'ph:eye' : 'ph:eye-closed';
+  };
+
+  const evaluateInputType = () => {
+    if (props.type === 'password') {
+      return showPassword.value ? 'text' : 'password';
+    }
+    return 'text';
+  }
   return {
     inputClasses,
     wrapperClasses,
@@ -106,5 +122,8 @@ export const useInput = (
     onInput,
     hasPrefix,
     hasIconSlot,
+    toggleShowPassword,
+    evaluateEyeIcon,
+    evaluateInputType,
   };
 };

@@ -754,7 +754,7 @@
   }
 
   .spr-border-color-disabled {
-    @apply spr-border-white-400;
+    @apply spr-border-white-100;
   }
 
   .spr-border-color-on-fill-disabled {

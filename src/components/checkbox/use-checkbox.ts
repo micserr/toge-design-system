@@ -15,14 +15,8 @@ export const useCheckbox = (props: CheckboxPropTypes, emit: SetupContext<Checkbo
       'spr-flex spr-w-fit spr-select-none spr-items-center spr-gap-1.5 spr-transition spr-duration-150 spr-ease-in-out';
 
     const conditionalClasses = {
-      'spr-border-color-weak hover:spr-background-color-hover spr-rounded-lg spr-border spr-border-solid spr-px-3 spr-py-2':
-        props.bordered,
-      'active:spr-scale-95': props.bordered && !props.disabled,
       'spr-cursor-not-allowed': props.disabled,
       'spr-cursor-pointer': !props.disabled,
-      'spr-background-color-brand-weak hover:spr-background-color-brand-weak spr-border-color-success-base':
-        props.bordered && props.modelValue,
-      'spr-background-color-disabled': props.bordered && props.disabled,
     };
 
     return classNames(baseClasses, conditionalClasses);

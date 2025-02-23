@@ -165,6 +165,78 @@ const inputValueSearch = ref('');
 </script>
 ``` 
 
+## Username Input
+<div>
+  <spr-input v-model="inputValue.input9" label="Username" placeholder="Enter username" :active="true" type="username" />
+</div>
+
+```vue
+<template>
+  <spr-input v-model="inputValueSearch" label="Username" placeholder="Enter username" :active="true" type="username" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputValueSearch = ref('');
+</script>
+``` 
+
+
+## Email Input
+<div>
+  <spr-input v-model="inputValue.input9" label="Username" placeholder="Enter email" :active="true" type="email" />
+</div>
+
+```vue
+<template>
+  <spr-input v-model="inputValueSearch" label="Username" placeholder="Enter email" :active="true" type="email" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputValueSearch = ref('');
+</script>
+``` 
+
+
+## Password Input
+<div>
+  <spr-input v-model="inputValue.input9" label="Password" placeholder="Enter password" :active="true" type="password" />
+</div>
+
+```vue
+<template>
+  <spr-input v-model="inputValue.input9" label="Password" placeholder="Enter password" :active="true" type="password" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputValueSearch = ref('');
+</script>
+``` 
+
+
+## URL Input
+<div>
+  <spr-input v-model="inputValue.input9" label="URL" placeholder="Enter url" :active="true" type="url" />
+</div>
+
+```vue
+<template>
+  <spr-input v-model="inputValue.input9" label="URL" placeholder="Enter url" :active="true" type="url" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputValueSearch = ref('');
+</script>
+``` 
+
+
 <script lang="ts" setup>
 import { ref } from 'vue';
 

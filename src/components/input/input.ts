@@ -4,7 +4,7 @@ export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<
 
 const TRAILING_SIZES = ['xs', 'sm', 'md'] as const;
 
-export const INPUT_TYPES = ['default','search, username, email'] as const;
+export const INPUT_TYPES = ['default','search', 'username', 'email', 'password'] as const;
 
 export const TYPE_HAS_TRAILING_ICONS = ['search'] as const;
 

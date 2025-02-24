@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="visible"
-    :class="chipsClasses"
+    :class="chipsBaseClasses"
     :disabled="disabled"
     role="button"
     tabindex="0"
@@ -50,5 +50,5 @@ import { chipsEmitTypes } from './chips';
 const props = defineProps(chipsPropTypes);
 const emit = defineEmits(chipsEmitTypes);
 
-const { chipsClasses, handleClose, handleClick } = useChips(props, emit);
+const { chipsBaseClasses, handleClose, handleClick } = useChips(props, emit);
 </script>

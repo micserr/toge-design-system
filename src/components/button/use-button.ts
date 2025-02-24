@@ -1,4 +1,4 @@
-import { computed, ref, ComputedRef, toRefs } from 'vue';
+import { ref, toRefs, computed, ComputedRef } from 'vue';
 import { useElementHover, useMousePressed, useFocus } from '@vueuse/core';
 
 import classNames from 'classnames';
@@ -7,37 +7,20 @@ import type { SetupContext } from 'vue';
 import type { ButtonEmitTypes, ButtonPropTypes } from './button';
 
 export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitTypes>['emit']) => {
+  const { state, type, size, tone, variant, disabled, hasIcon } = toRefs(props);
+
   const buttonRef = ref<HTMLButtonElement | null>(null);
+
   const isHovered = useElementHover(buttonRef);
   const { pressed } = useMousePressed({ target: buttonRef });
   const { focused } = useFocus(buttonRef);
-  const { state, type, size, tone, variant, disabled, hasIcon } = toRefs(props);
 
-  const buttonProps: ComputedRef<Record<string, unknown>> = computed(() => {
-    return {
-      ...(disabled.value && { ariaDisabled: true }),
-      disabled: disabled.value,
-      autofocus: state.value === 'focus',
-      type: type.value,
-    };
-  });
-
-  const buttonDefaultCssClass: ComputedRef<string> = computed(() =>
-    classNames([
+  const buttonClassses: ComputedRef<string> = computed(() => {
+    const defaultClasses = classNames(
       'spr-background-color spr-flex spr-items-center spr-gap-1.5 spr-w-fit spr-min-w-[24px] spr-items-center spr-justify-center spr-rounded-md spr-outline-2 spr-outline-offset-4',
-    ]),
-  );
+    );
 
-  const buttonTransitionCssClass: ComputedRef<string> = computed(() =>
-    classNames([
-      'spr-transition spr-duration-150 spr-ease-in-out',
-      'hover:spr-shadow-button-hover',
-      'active:spr-scale-95',
-    ]),
-  );
-
-  const buttonSizeCssClass: ComputedRef<string> = computed(() =>
-    classNames({
+    const sizeClasses = classNames({
       'spr-min-w-6 spr-p-size-spacing-4xs spr-font-medium spr-font-size-100 spr-leading-100': size.value === 'small',
       'spr-min-w-7 spr-p-2 spr-font-medium spr-font-size-100 spr-leading-100': size.value === 'medium',
       '!spr-min-w-9 spr-px-2 spr-py-3 spr-font-medium spr-font-size-200 spr-leading-300 spr-max-h-9':
@@ -45,8 +28,45 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
       'spr-font-size-400': hasIcon.value && size.value === 'large',
       'spr-font-size-300': hasIcon.value && size.value === 'medium',
       'spr-font-size-200': hasIcon.value && size.value === 'small',
-    }),
-  );
+    });
+
+    const toneClasses = classNames(
+      buttonBackgroundCssClass.value,
+      buttonTextCssClass.value,
+      buttonBorderCssClass.value,
+    );
+
+    const transitionClasses = classNames([
+      'spr-transition spr-duration-150 spr-ease-in-out',
+      'hover:spr-shadow-button-hover',
+      'active:spr-scale-95',
+    ]);
+
+    if (disabled.value) {
+      if (variant.value === 'primary')
+        return classNames(
+          defaultClasses,
+          sizeClasses,
+          'spr-text-color-disabled spr-background-color-disabled !spr-border-0 !spr-shadow-none !spr-cursor-not-allowed',
+        );
+
+      if (variant.value === 'secondary')
+        return classNames(
+          defaultClasses,
+          sizeClasses,
+          'spr-text-color-disabled spr-border-solid !spr-border !spr-border-color-disabled !spr-shadow-none !spr-cursor-not-allowed',
+        );
+
+      if (variant.value === 'tertiary')
+        return classNames(
+          defaultClasses,
+          sizeClasses,
+          'spr-text-color-disabled !spr-border-0 !spr-shadow-none !spr-cursor-not-allowed',
+        );
+    }
+
+    return classNames(defaultClasses, sizeClasses, toneClasses, transitionClasses);
+  });
 
   const buttonTextCssClass: ComputedRef<string> = computed(() => {
     if (variant.value === 'secondary' || variant.value === 'tertiary') {
@@ -80,7 +100,7 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
     return getBackgroundBasedOnState();
   });
 
-  function getTertiaryBackground(): string {
+  const getTertiaryBackground = (): string => {
     if (pressed.value) {
       return 'spr-background-color-pressed !spr-shadow-button';
     }
@@ -88,9 +108,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
     return classNames('!border-none', {
       'spr-background-color-hover': isHovered.value,
     });
-  }
+  };
 
-  function getBackgroundBasedOnState(): string {
+  const getBackgroundBasedOnState = (): string => {
     if (pressed.value) {
       return getPressedBackground();
     }
@@ -100,9 +120,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
     }
 
     return getDefaultBackground();
-  }
+  };
 
-  function getPressedBackground(): string {
+  const getPressedBackground = (): string => {
     const backgrounds: Record<string, string> = {
       neutral: 'spr-background-color-pressed !spr-shadow-button',
       success: 'spr-background-color-brand-pressed !spr-shadow-button',
@@ -110,9 +130,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
     };
 
     return backgrounds[tone.value] || '';
-  }
+  };
 
-  function getHoveredBackground(): string {
+  const getHoveredBackground = (): string => {
     const backgrounds: Record<string, string> = {
       neutral: 'spr-background-color-hover',
       success: 'spr-background-color-success-pressed',
@@ -120,9 +140,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
     };
 
     return backgrounds[tone.value] || '';
-  }
+  };
 
-  function getDefaultBackground(): string {
+  const getDefaultBackground = (): string => {
     const backgrounds: Record<string, string> = {
       neutral: 'spr-background-color-base',
       success: 'spr-background-color-brand-base',
@@ -130,7 +150,7 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
     };
 
     return backgrounds[tone.value] || '';
-  }
+  };
   // #endregion - Background Css Class
 
   const buttonBorderCssClass: ComputedRef<string> = computed(() => {
@@ -149,40 +169,13 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
     });
   });
 
-  const buttonToneCssClass: ComputedRef<string> = computed(() => {
-    return classNames(buttonBackgroundCssClass.value, buttonTextCssClass.value, buttonBorderCssClass.value);
-  });
-
-  const buttonAllCssClass: ComputedRef<string> = computed(() => {
-    if (disabled.value) {
-      if (variant.value === 'primary')
-        return classNames(
-          buttonDefaultCssClass.value,
-          buttonSizeCssClass.value,
-          'spr-text-color-disabled spr-background-color-disabled !spr-border-0 !spr-shadow-none !spr-cursor-not-allowed',
-        );
-
-      if (variant.value === 'secondary')
-        return classNames(
-          buttonDefaultCssClass.value,
-          buttonSizeCssClass.value,
-          'spr-text-color-disabled spr-border-solid !spr-border !spr-border-color-disabled !spr-shadow-none !spr-cursor-not-allowed',
-        );
-
-      if (variant.value === 'tertiary')
-        return classNames(
-          buttonDefaultCssClass.value,
-          buttonSizeCssClass.value,
-          'spr-text-color-disabled !spr-border-0 !spr-shadow-none !spr-cursor-not-allowed',
-        );
-    }
-
-    return classNames(
-      buttonDefaultCssClass.value,
-      buttonSizeCssClass.value,
-      buttonToneCssClass.value,
-      buttonTransitionCssClass.value,
-    );
+  const buttonProps: ComputedRef<Record<string, unknown>> = computed(() => {
+    return {
+      ...(disabled.value && { ariaDisabled: true }),
+      disabled: disabled.value,
+      autofocus: state.value === 'focus',
+      type: type.value,
+    };
   });
 
   const handleClick = (evt: MouseEvent) => {
@@ -196,9 +189,9 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
   };
 
   return {
+    buttonClassses,
     buttonRef,
     buttonProps,
-    buttonClass: buttonAllCssClass,
     handleClick,
   };
 };

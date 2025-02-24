@@ -1,12 +1,20 @@
 # Changelog
-
-## 1.4.4 (2025-02-24)
--Feat
+## 1.4.5 (2025-02-24)
+-Feature
   - Username input field ([#23149e86](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23149e86854e78e8d7f4109d5f3551df8ff5b1fb?refName=refs/heads/2025/FEATURE/Xyrk/EMAIL_USERNAME_PASSWORD_URL_INPUT_FIELDS) by @jfabula)
   - Email input field ([#a1a0387a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a1a0387ac64d59ffc6669df4e54e4baaa387e6f7?refName=refs/heads/2025/FEATURE/Xyrk/EMAIL_USERNAME_PASSWORD_URL_INPUT_FIELDS) by @jfabula)
   - Password input field ([#5b1e01ab](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5b1e01ab8a74921d700f944db4e58a966cf6dab5?refName=refs/heads/2025/FEATURE/Xyrk/EMAIL_USERNAME_PASSWORD_URL_INPUT_FIELDS) by @jfabula)
   - URL input field ([#f08956d1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f08956d15959818d264dbe09e321e92dddd4ad7c?refName=refs/heads/2025/FEATURE/Xyrk/EMAIL_USERNAME_PASSWORD_URL_INPUT_FIELDS) by @jfabula)
 
+## 1.4.4 (2025-02-24)
+
+- Feature
+  - Code and Docs Cleanup
+  - Compiled Class Approach
+  - Use toRefs for Props
+  - Empty State PNG to SVG
+  - Input Search Simplified
+    ([#5648d141](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5648d1417abfaad9b63077bcb8bd53eefea78783?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
 
 ## 1.4.3 (2025-02-21)
 

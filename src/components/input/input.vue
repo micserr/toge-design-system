@@ -1,10 +1,10 @@
 <template>
-  <div :class="wrapperClasses">
-    <label v-if="props.label" :for="id" :class="labelClasses">
+  <div :class="inputClasses.baseClasses">
+    <label v-if="props.label" :for="id" :class="inputClasses.labelClasses">
       {{ props.label }}
     </label>
     <div class="spr-relative">
-      <div v-if="hasPrefix" :class="prefixSlotClasses">
+      <div v-if="hasPrefix" :class="inputClasses.prefixSlotClasses">
         <slot name="prefix">
           <Icon v-if="props.type === 'username'" icon="ph:user" />
           <Icon v-if="props.type === 'email'" icon="ph:envelope" />
@@ -14,7 +14,7 @@
         </slot>
       </div>
       <input
-        :class="[inputClasses, { 'number-input': type === 'number' }]"
+        :class="[inputClasses.inputTextClasses, { 'number-input': props.type === 'number' }]"
         :placeholder="props.placeholder"
         :disabled="props.disabled"
         :readonly="props.readonly"
@@ -22,10 +22,10 @@
         :type="evaluateInputType()"
         @input="onInput"
       />
-      <div v-if="$slots.trailing" :class="trailingSlotClasses">
+      <div v-if="$slots.trailing" :class="inputClasses.trailingSlotClasses">
         <slot name="trailing" />
       </div>
-      <div v-if="hasIconSlot" :class="iconSlotClasses">
+      <div v-if="hasIconSlot" :class="inputClasses.iconSlotClasses">
         <slot name="icon" >
           <Icon v-if="props.type === 'search'" icon="ph:magnifying-glass" />
           <Icon v-if="props.type === 'password'" :icon="evaluateEyeIcon()" @click="toggleShowPassword()"/>
@@ -39,9 +39,8 @@
 <script setup lang="ts">
 import { useSlots } from 'vue';
 
-import { inputPropTypes, inputEmitTypes} from './input';
+import { inputPropTypes, inputEmitTypes } from './input';
 import { useInput } from './use-input';
-import { Icon } from '@iconify/vue';
 
 const emit = defineEmits(inputEmitTypes);
 
@@ -50,18 +49,14 @@ const slots = useSlots();
 
 const { 
   inputClasses, 
-  wrapperClasses, 
-  labelClasses, 
-  iconSlotClasses, 
-  prefixSlotClasses, 
-  trailingSlotClasses, 
-  onInput, hasPrefix, 
+  onInput, 
+  hasPrefix, 
   hasIconSlot, 
   toggleShowPassword, 
   evaluateEyeIcon, 
   evaluateInputType 
-} =
-  useInput(props, slots, emit);
+ } = 
+   useInput(props, slots, emit);
 </script>
 
 <style scoped>

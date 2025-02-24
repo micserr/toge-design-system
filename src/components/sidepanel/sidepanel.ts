@@ -74,7 +74,16 @@ export const sidepanelPropTypes = {
   */
   closeOutside: {
     type: Boolean,
-    default: false,
+    default: true,
+  },
+  /**
+   * @description Controls whether clicking ESC button should close it.
+   * Set to `true` to enable closing on ESC button click, or `false` to disable it.
+   * Defaults to `true`.
+  */
+  escapeClose: {
+    type: Boolean,
+    default: true,
   }
 }
 

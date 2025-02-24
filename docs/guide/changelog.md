@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.7 (2025-02-24)
+
+- Feature
+  - Textarea ([#1c8100f4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1c8100f431890eb773e6faf2cc850bcbd388e896?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Ftextarea) by @adestajo)
+
 ## 1.4.6 (2025-02-24)
 
 - Fix

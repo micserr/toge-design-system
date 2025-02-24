@@ -148,14 +148,24 @@ const inputValueSM = ref('');
 const inputValueMD = ref('');
 </script>
 ```
+
 ## Search Input
+
 <div>
-  <spr-input v-model="inputValue.input9" label="Search" placeholder="Enter search value" :active="true" type="search" />
+   <spr-input v-model="inputValue.input9" label="Search" placeholder="Seach ..." type="search">
+    <template #icon>
+      <Icon icon="ph:magnifying-glass" />
+    </template>
+  </spr-input>
 </div>
 
 ```vue
 <template>
-  <spr-input v-model="inputValueSearch" label="Search" placeholder="Enter search value" :active="true" type="search" />
+  <spr-input v-model="inputValueSearch" label="Search" placeholder="Seach ..." type="search">
+    <template #icon>
+      <Icon icon="ph:magnifying-glass" />
+    </template>
+  </spr-input>
 </template>
 
 <script lang="ts" setup>
@@ -163,7 +173,7 @@ import { ref } from 'vue';
 
 const inputValueSearch = ref('');
 </script>
-``` 
+```
 
 <script lang="ts" setup>
 import { ref } from 'vue';

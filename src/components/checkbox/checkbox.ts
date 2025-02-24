@@ -19,10 +19,6 @@ export const checkboxPropTypes = {
     type: Boolean,
     default: false,
   },
-  bordered: {
-    type: Boolean,
-    default: false,
-  },
 };
 
 export const checkboxEmitTypes = {};

@@ -1,21 +1,27 @@
-import { computed, toRefs } from 'vue';
+import { toRefs, computed, ComputedRef } from 'vue';
 
 import classNames from 'classnames';
 
 import type { AvatarPropTypes } from './avatar';
 
+interface AvatarClassses {
+  baseClasses: string;
+  imageClasses: string;
+  nameInitalsClasses: string;
+  notificationClasses: string;
+  onlineNotificationClasses: string;
+}
+
 export const useAvatar = (props: AvatarPropTypes) => {
   const { size, color } = toRefs(props);
 
-  const avatarClassses = computed(() => {
-    return classNames('spr-relative spr-inline-block spr-rounded-full', {
+  const avatarClassses: ComputedRef<AvatarClassses> = computed(() => {
+    const baseClasses = classNames('spr-relative spr-inline-block spr-rounded-full', {
       'spr-background-color-surface': color.value === 'primary',
       'spr-background-color': color.value === 'secondary',
     });
-  });
 
-  const avatarImageClassses = computed(() => {
-    return classNames(
+    const imageClasses = classNames(
       'spr-rounded-full spr-object-cover spr-flex spr-items-center spr-justify-center spr-overflow-hidden',
       {
         'spr-h-20 spr-min-w-20 spr-text-[36px]': size.value === '2xl',
@@ -27,10 +33,8 @@ export const useAvatar = (props: AvatarPropTypes) => {
         'spr-h-4  spr-min-w-4 spr-text-[10px]': size.value === '2xs',
       },
     );
-  });
 
-  const initialClassses = computed(() => {
-    return classNames(
+    const nameInitalsClasses = classNames(
       'spr-rounded-full spr-border-color-weak spr-border spr-border-solid spr-items-center spr-flex spr-justify-center spr-heading-xs spr-text-color-strong',
       {
         'spr-h-20 spr-min-w-20': size.value === '2xl',
@@ -42,10 +46,8 @@ export const useAvatar = (props: AvatarPropTypes) => {
         'spr-h-4 spr-min-w-4 !spr-text-[10px]': size.value === '2xs',
       },
     );
-  });
 
-  const avatarNotificationClassses = computed(() => {
-    return classNames('spr-absolute spr-right-0 spr-top-0', {
+    const notificationClasses = classNames('spr-absolute spr-right-0 spr-top-0', {
       'spr-right-[-5px] spr-top-[-6.3px]': size.value === 'xl',
       'spr-right-[-7px] spr-top-[-8px]': size.value === 'lg',
       'spr-right-[-5px] spr-top-[-6px]': size.value === 'md',
@@ -53,16 +55,22 @@ export const useAvatar = (props: AvatarPropTypes) => {
       'spr-right-[-5px] spr-top-[-4px]': size.value === 'xs',
       'spr-right-[-4px] spr-top-[-4px]': size.value === '2xs',
     });
-  });
 
-  const onlineNotificationClassses = computed(() => {
-    return classNames('spr-absolute spr-bottom-0 spr-right-0', {
+    const onlineNotificationClasses = classNames('spr-absolute spr-bottom-0 spr-right-0', {
       'spr-bottom-0 spr-right-0': size.value === 'xl' || size.value === 'lg' || size.value === 'md',
       'spr-bottom-[1px] spr-right-[1px]': size.value === 'xl',
       'spr-bottom-[-3px] spr-right-[-4px]': size.value === 'sm',
       'spr-bottom-[-4px] spr-right-[-3px]': size.value === 'xs',
       'spr-bottom-[-2px] spr-right-[-4px]': size.value === '2xs',
     });
+
+    return {
+      baseClasses,
+      imageClasses,
+      nameInitalsClasses,
+      notificationClasses,
+      onlineNotificationClasses,
+    };
   });
 
   const getAvatarSize = computed(() => {
@@ -75,10 +83,6 @@ export const useAvatar = (props: AvatarPropTypes) => {
 
   return {
     avatarClassses,
-    avatarImageClassses,
     getAvatarSize,
-    avatarNotificationClassses,
-    onlineNotificationClassses,
-    initialClassses,
   };
 };

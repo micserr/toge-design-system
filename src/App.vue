@@ -666,9 +666,9 @@ const data = ref([
 </script>
 
 <style lang="scss">
-body {
-  @apply m-0 bg-mushroom-100 font-main;
-  margin-left: 64px;
-  padding: 64px;
-}
+// body {
+//   @apply m-0 bg-mushroom-100 font-main;
+//   margin-left: 64px;
+//   padding: 64px;
+// }
 </style>

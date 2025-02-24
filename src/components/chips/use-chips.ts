@@ -8,7 +8,7 @@ import type { SetupContext } from 'vue';
 import type { ChipsPropTypes } from './chips';
 
 export const useChips = (props: ChipsPropTypes, emit: SetupContext<ChipsEmitTypes>['emit']) => {
-  const { disabled, active, variant } = toRefs(props);
+  const { disabled, active, variant, iconWeight, icon } = toRefs(props);
 
   const chipsBaseClasses: ComputedRef<string> = computed(() => {
     if (variant.value === 'day') {
@@ -70,9 +70,14 @@ export const useChips = (props: ChipsPropTypes, emit: SetupContext<ChipsEmitType
     }
   };
 
+  const getIcon = computed(() => {
+    return iconWeight.value === 'regular' ? icon.value : `${icon.value}-${iconWeight.value}`;
+  });
+
   return {
     chipsBaseClasses,
     handleClose,
     handleClick,
+    getIcon,
   };
 };

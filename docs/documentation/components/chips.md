@@ -15,80 +15,144 @@ Interactive chip elements for various use cases like filtering, selection, and t
 ## With Icons
 
 <div class="spr-flex spr-items-center spr-gap-2">
-  <spr-chips :active="isIconActive1" label="Regular Icon" icon="ph:airplane-landing" />
-  <spr-chips :active="isIconActive2" label="Bold Icon" icon="ph:airplane-landing" icon-weight="bold" />
-  <spr-chips :active="isIconActive3" label="Fill Icon" icon="ph:airplane-landing" icon-weight="fill" />
+  <spr-chips :active="activeIcon.isIconActive1" label="Regular Icon" icon="ph:airplane-landing" @update="(e) => handleUpdate('isIconActive1', e)"/>
+  <spr-chips :active="activeIcon.isIconActive2" label="Bold Icon" icon="ph:airplane-landing" icon-weight="bold" @update="(e) => handleUpdate('isIconActive2', e)" />
+  <spr-chips :active="activeIcon.isIconActive3" label="Fill Icon" icon="ph:airplane-landing" icon-weight="fill" @update="(e) => handleUpdate('isIconActive3', e)" />
 </div>
 
 ```vue
 <template>
-  <spr-chips :active="isIconActive1" label="Regular Icon" icon="ph:airplane-landing" />
-  <spr-chips :active="isIconActive2" label="Bold Icon" icon="ph:airplane-landing" icon-weight="bold" />
-  <spr-chips :active="isIconActive3" label="Fill Icon" icon="ph:airplane-landing" icon-weight="fill" />
+  <spr-chips
+    :active="activeIcon.isIconActive1"
+    label="Regular Icon"
+    icon="ph:airplane-landing"
+    @update="(e) => handleUpdate('isIconActive1', e)"
+  />
+  <spr-chips
+    :active="activeIcon.isIconActive2"
+    label="Bold Icon"
+    icon="ph:airplane-landing"
+    icon-weight="bold"
+    @update="(e) => handleUpdate('isIconActive2', e)"
+  />
+  <spr-chips
+    :active="activeIcon.isIconActive3"
+    label="Fill Icon"
+    icon="ph:airplane-landing"
+    icon-weight="fill"
+    @update="(e) => handleUpdate('isIconActive3', e)"
+  />
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import { PhAirplane } from '@phosphor-icons/vue';
 
-const isIconActive1 = ref(false);
-const isIconActive2 = ref(false);
-const isIconActive3 = ref(false);
+const activeIcon = ref({
+  isIconActive1: false,
+  isIconActive2: false,
+  isIconActive3: false,
+});
+
+const handleUpdate = (key, value) => {
+  activeIcon.value[key] = value;
+
+  console.log(`Chip is now ${value ? 'active' : 'inactive'}`);
+};
 </script>
 ```
 
 ## With Badge
 
 <div class="spr-flex spr-items-center spr-gap-2">
-  <spr-chips :active="isBadgeActive1" label="Brand Badge" badge badge-text="1" badge-variant="brand" />
-  <spr-chips :active="isBadgeActive2" label="Danger Badge" badge badge-text="2" badge-variant="danger" />
-  <spr-chips :active="isBadgeActive3" label="Disabled Badge" badge badge-text="3" badge-variant="disabled" />
+  <spr-chips :active="activeIcon.isBadgeActive1" label="Brand Badge" badge badge-text="1" badge-variant="brand" @update="(e) => handleUpdate('isBadgeActive1', e)"/>
+  <spr-chips :active="activeIcon.isBadgeActive2" label="Danger Badge" badge badge-text="2" badge-variant="danger" @update="(e) => handleUpdate('isBadgeActive2', e)"/>
+  <spr-chips :active="activeIcon.isBadgeActive3" label="Disabled Badge" badge badge-text="3" badge-variant="disabled" @update="(e) => handleUpdate('isBadgeActive3', e)"/>
 </div>
 
 ```vue
 <template>
-  <spr-chips :active="isBadgeActive1" label="Brand Badge" badge badge-text="1" badge-variant="brand" />
-  <spr-chips :active="isBadgeActive2" label="Danger Badge" badge badge-text="2" badge-variant="danger" />
-  <spr-chips :active="isBadgeActive3" label="Disabled Badge" badge badge-text="3" badge-variant="disabled" />
+  <spr-chips
+    :active="activeIcon.isBadgeActive1"
+    label="Brand Badge"
+    badge
+    badge-text="1"
+    badge-variant="brand"
+    @update="(e) => handleUpdate('isBadgeActive1', e)"
+  />
+  <spr-chips
+    :active="activeIcon.isBadgeActive2"
+    label="Danger Badge"
+    badge
+    badge-text="2"
+    badge-variant="danger"
+    @update="(e) => handleUpdate('isBadgeActive2', e)"
+  />
+  <spr-chips
+    :active="activeIcon.isBadgeActive3"
+    label="Disabled Badge"
+    badge
+    badge-text="3"
+    badge-variant="disabled"
+    @update="(e) => handleUpdate('isBadgeActive3', e)"
+  />
 </template>
 
 <script setup>
 import { ref } from 'vue';
 
-const isBadgeActive1 = ref(true);
-const isBadgeActive2 = ref(true);
-const isBadgeActive3 = ref(true);
+const activeIcon = ref({
+  isBadgeActive1: true,
+  isBadgeActive2: true,
+  isBadgeActive3: true,
+});
+
+const handleUpdate = (key, value) => {
+  activeIcon.value[key] = value;
+
+  console.log(`Chip is now ${value ? 'active' : 'inactive'}`);
+};
 </script>
 ```
 
 ## Interactive States
 
 <div class="spr-flex spr-items-center spr-gap-2">
-  <spr-chips :active="isToggleActive5" label="Toggleable" @update="handleUpdate"/>
-  <spr-chips :active="isToggleActive6" label="Closable" closable @close="handleClose"  :visible="visible"/>
+  <spr-chips :active="activeIcon.isToggleActive5" label="Toggleable" @update="(e) => handleUpdate('isToggleActive5', e)"/>
+  <spr-chips :active="activeIcon.isToggleActive6" label="Closable" closable @close="handleClose"  :visible="visible" @update="(e) => handleUpdate('isToggleActive6', e)"/>
   <spr-chips disabled label="Disabled" />
 </div>
 
 ```vue
 <template>
-  <spr-chips :active="isToggleActive5" label="Toggleable" @update="handleUpdate" />
-  <spr-chips :active="isToggleActive6" label="Closable" closable @close="handleClose" :visible="visible" />
+  <spr-chips :active="isToggleActive5" label="Toggleable" @update="(e) => handleUpdate('isToggleActive5', e)" />
+  <spr-chips
+    :active="isToggleActive6"
+    label="Closable"
+    closable
+    @close="handleClose"
+    :visible="visible"
+    @update="(e) => handleUpdate('isToggleActive6', e)"
+  />
   <spr-chips disabled label="Disabled" />
 </template>
 
 <script setup>
 import { ref } from 'vue';
 
-const isToggleActive5 = ref(true);
-const isToggleActive6 = ref(true);
+const activeIcon = ref({
+  isToggleActive5: true,
+  isToggleActive6: true,
+});
 
 const handleClose = () => {
   console.log('Chip closed');
 };
 
-const handleUpdate = (value) => {
-  isToggleActive5.value = value;
-  console.log(`Chip is now ${isToggleActive5.value ? 'active' : 'inactive'}`);
+const handleUpdate = (key, value) => {
+  activeIcon.value[key] = value;
+
+  console.log(`Chip is now ${value ? 'active' : 'inactive'}`);
 };
 </script>
 ```
@@ -269,6 +333,20 @@ import { ref } from 'vue';
 import { Icon } from '@iconify/vue';
 import SprChips from '@/components/chips/chips.vue';
 
+const activeIcon = ref({
+  // Icon chips states
+isIconActive1:false,
+isIconActive2:false,
+isIconActive3:false,
+
+// Badge chips states
+isBadgeActive1:true,
+isBadgeActive2:true,
+isBadgeActive3:true,
+// Interactive states
+isToggleActive5:true,
+isToggleActive6:true,
+})
 // Icon chips states
 const isIconActive1 = ref(false);
 const isIconActive2 = ref(false);
@@ -312,8 +390,9 @@ const handleClose = () => {
   visible.value = false;
 };
 
-const handleUpdate = (value) => {
-  isToggleActive5.value = value
-  console.log(`Chip is now ${isToggleActive5.value ? 'active' : 'inactive'}`);
+const handleUpdate = (key,value) => {
+  activeIcon.value[key] = value
+
+  console.log(`Chip is now ${value ? 'active' : 'inactive'}`);
 };
 </script>

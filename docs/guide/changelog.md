@@ -2,6 +2,11 @@
 
 ## 1.4.5 (2025-02-24)
 
+- Fix
+  - DQA for sidenav and sidepanel ([#831236b7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/831236b7e45ee16da1758ee0737a38428fd2ef37?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fchip-custom-event) by @elumilay)
+
+## 1.4.5 (2025-02-24)
+
 - Feature
   - Chips - Custom Event and Icon Weight
   - Add count for Avatar ([#831236b7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/831236b7e45ee16da1758ee0737a38428fd2ef37?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fchip-custom-event) by @adestajo)

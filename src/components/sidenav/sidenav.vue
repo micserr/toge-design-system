@@ -131,10 +131,11 @@
             'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out',
             'hover:spr-background-color-hover',
             'active:spr-background-color-single-active active:spr-scale-90',
+            'spr-max-w-9 spr-max-h-9 spr-m-auto spr-box-border',
           ]"
           @click="emit('search', 'search-triggered')"
         >
-          <Icon icon="ph:magnifying-glass" />
+          <Icon icon="ph:magnifying-glass" class="spr-h-[1.25em] spr-w-[1.25em]"/>
         </div>
 
         <!-- Grouped Nav Links -->
@@ -151,14 +152,15 @@
               >
                 <div
                   :class="{
-                    'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out': true,
+                    'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out spr-max-w-9 spr-max-h-9 spr-m-auto spr-box-border': true,
                     'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
                       props.activeNav.parentNav === parentLink.title,
                     'hover:spr-background-color-hover': props.activeNav.parentNav != parentLink.title,
                     'active:spr-background-color-single-active active:spr-scale-90': true,
                   }"
                 >
-                  <Icon v-if="parentLink.icon" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
+                  <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
+                  <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
                   <Icon v-else icon="ph:globe" />
                 </div>
 
@@ -176,7 +178,7 @@
                       v-if="menuLink.menuHeading"
                       :class="{
                         'spr-label-xs-medium spr-text-color-supporting spr-m-0 spr-p-2': true,
-                        'spr-mt-3': menuLinkIndex !== 0,
+                        'spr-mt-2': menuLinkIndex !== 0,
                       }"
                     >
                       {{ menuLink.menuHeading }}
@@ -220,7 +222,7 @@
                                 v-if="submenuLink.subMenuHeading"
                                 :class="{
                                   'spr-label-xs-medium spr-text-color-supporting spr-m-0 spr-p-2': true,
-                                  'spr-mt-3': submenuLinkIndex !== 0,
+                                  'spr-mt-2': submenuLinkIndex !== 0,
                                 }"
                               >
                                 {{ submenuLink.subMenuHeading }}
@@ -297,7 +299,7 @@
                 </template>
                 <div
                   :class="{
-                    'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out': true,
+                    'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out spr-max-w-9 spr-max-h-9 spr-m-auto spr-box-border': true,
                     'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
                       props.activeNav.parentNav === parentLink.title,
                     'hover:spr-background-color-hover': props.activeNav.parentNav != parentLink.title,
@@ -305,7 +307,8 @@
                   }"
                   @click="handleRedirect(parentLink, parentLink.title, '', '')"
                 >
-                  <Icon v-if="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" :icon="parentLink.icon" />
+                  <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
+                  <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
                   <Icon v-else icon="ph:globe" />
                 </div>
               </Tooltip>
@@ -337,14 +340,15 @@
               >
                 <div
                   :class="{
-                    'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out': true,
+                    'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out spr-max-w-9 spr-max-h-9 spr-m-auto spr-box-border': true,
                     'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
                       props.activeNav.parentNav === parentLink.title,
                     'hover:spr-background-color-hover': props.activeNav.parentNav != parentLink.title,
                     'active:spr-background-color-single-active active:spr-scale-90': true,
                   }"
                 >
-                  <Icon v-if="parentLink.icon" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
+                  <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
+                  <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
                   <Icon v-else icon="ph:globe" />
                 </div>
 
@@ -483,7 +487,7 @@
                 </template>
                 <div
                   :class="{
-                    'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out': true,
+                    'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out spr-max-w-9 spr-max-h-9 spr-m-auto spr-box-border': true,
                     'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
                       props.activeNav.parentNav === parentLink.title,
                     'hover:spr-background-color-hover': props.activeNav.parentNav != parentLink.title,
@@ -491,7 +495,8 @@
                   }"
                   @click="handleRedirect(parentLink, parentLink.title, '', '')"
                 >
-                  <Icon v-if="parentLink.icon" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
+                  <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
+                  <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
                   <Icon v-else icon="ph:globe" />
                 </div>
               </Tooltip>
@@ -507,50 +512,71 @@
 
     <div v-if="props.notificationCount || props.requestCount" class="spr-grid spr-gap-2 spr-py-6">
       <!-- Notification -->
-      <div
-        v-if="props.notificationCount"
-        :class="[
-          'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center p-2',
-          'spr-transition spr-duration-150 spr-ease-in-out',
-          'active:spr-scale-90',
-        ]"
-        @click="emit('notifications', 'notifications-triggered')"
+      <Tooltip
+        aria-id="sidenav-tooltip-wrapper"
+        placement="right"
+        distance="18"
+        :triggers="['hover']"
       >
-        <Icon icon="ph:bell" class="spr-h-[1.25em] spr-w-[1.25em]" />
-        <spr-badge
-          class="spr-absolute -spr-top-0.5 spr-right-2.5"
-          :text="String(props.notificationCount)"
-          variant="danger"
-          size="small"
-        />
-      </div>
+        <template #popper>
+          <span class="spr-label-xs-medium spr-uppercase">NOTIFICATIONS</span>
+        </template>
+        <div
+          v-if="props.notificationCount"
+          :class="[
+            'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center p-2',
+            'spr-transition spr-duration-150 spr-ease-in-out',
+            'active:spr-scale-90',
+          ]"
+          @click="emit('notifications', 'notifications-triggered')"
+        >
+          <Icon icon="ph:bell" class="spr-h-[1.25em] spr-w-[1.25em]" />
+          <spr-badge
+            class="spr-absolute -spr-top-0.5 spr-right-2.5"
+            :text="String(props.notificationCount)"
+            variant="danger"
+            size="small"
+          />
+        </div>
+      </Tooltip>
 
       <!-- Requests -->
-      <div
-        v-if="props.requestCount"
-        :class="[
-          'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-p-2',
-          'spr-transition spr-duration-150 spr-ease-in-out',
-          'active:spr-scale-90',
-        ]"
-        @click="emit('requests', 'requests-triggered')"
+      <Tooltip
+        aria-id="sidenav-tooltip-wrapper"
+        placement="right"
+        distance="18"
+        :triggers="['hover']"
       >
-        <Icon icon="ph:check-square" class="spr-h-[1.25em] spr-w-[1.25em]" />
-        <spr-badge
-          class="spr-absolute -spr-top-0.5 spr-right-2.5"
-          :text="String(props.requestCount)"
-          variant="danger"
-          size="small"
-        />
-      </div>
+        <template #popper>
+          <span class="spr-label-xs-medium spr-uppercase">REQUESTS</span>
+        </template>
+        <div
+          v-if="props.requestCount"
+          :class="[
+            'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-p-2',
+            'spr-transition spr-duration-150 spr-ease-in-out',
+            'active:spr-scale-90',
+          ]"
+          @click="emit('requests', 'requests-triggered')"
+        >
+          <Icon icon="ph:check-square" class="spr-h-[1.25em] spr-w-[1.25em]" />
+          <spr-badge
+            class="spr-absolute -spr-top-0.5 spr-right-2.5"
+            :text="String(props.requestCount)"
+            variant="danger"
+            size="small"
+          />
+        </div>
+      </Tooltip>
     </div>
 
     <!-- Avatar -->
     <div
       v-if="props.userMenu"
       :class="[
-        'spr-border-color-weak spr-absolute spr-bottom-0 spr-w-full spr-p-3.5',
+        'spr-border-color-weak spr-absolute spr-bottom-0 spr-p-3.5',
         'spr-border-b-0 spr-border-l-0 spr-border-r-0 spr-border-t spr-border-solid',
+        'spr-flex spr-justify-center',
       ]"
     >
       <Menu
@@ -583,7 +609,7 @@
         <template #popper>
           <div
             :class="[
-              'spr-px-4 spr-py-3',
+              'spr-px-2 spr-py-2',
               'spr-border-color-weak spr-flex spr-justify-between spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid',
             ]"
           >
@@ -603,10 +629,10 @@
                 </template>
               </div>
               <div class="spr-grid spr-justify-between spr-gap-1">
-                <h3 class="spr-body-sm-regular-medium spr-m-0 spr-truncate">
+                <h3 class="spr-body-sm-regular spr-m-0 spr-truncate">
                   {{ props.userMenu.name }}
                 </h3>
-                <p class="spr-body-xs-regular spr-m-0 spr-truncate">
+                <p class="spr-body-xs-regular spr-m-0 spr-truncate spr-text-color-supporting">
                   {{ props.userMenu.email }}
                 </p>
               </div>
@@ -620,7 +646,8 @@
                 :class="[
                   'spr-flex spr-cursor-pointer spr-gap-2 spr-p-2 spr-align-middle spr-duration-150 spr-ease-in-out',
                   'hover:spr-background-color-hover',
-                  'active:spr-background-color-pressed',
+                  'active:spr-background-color-pressed spr-bg-red',
+                  'last-of-type:spr-border-t last-of-type:spr-border-solid last-of-type:spr-border-0 last-of-type:spr-border-color-weak'
                 ]"
                 @click="handleRedirect(userMenuItem, '', '', '')"
               >

@@ -13,7 +13,7 @@
         :disabled="props.disabled"
         :readonly="props.readonly"
         :value="props.modelValue"
-        type="text"
+        :type="type"
         @input="onInput"
       />
       <div v-if="$slots.trailing" :class="inputClasses.trailingSlotClasses">

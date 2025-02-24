@@ -19,8 +19,8 @@
         :disabled="props.disabled"
         :readonly="props.readonly"
         :value="props.modelValue"
-        @input="onInput"
         :type="evaluateInputType()"
+        @input="onInput"
       />
       <div v-if="$slots.trailing" :class="trailingSlotClasses">
         <slot name="trailing" />
@@ -39,7 +39,7 @@
 <script setup lang="ts">
 import { useSlots } from 'vue';
 
-import { inputPropTypes, inputEmitTypes, TYPE_HAS_TRAILING_ICONS, TYPE_HAS_LEADING_ICONS} from './input';
+import { inputPropTypes, inputEmitTypes} from './input';
 import { useInput } from './use-input';
 import { Icon } from '@iconify/vue';
 

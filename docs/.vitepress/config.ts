@@ -95,6 +95,10 @@ export default defineConfig({
               link: '/documentation/components/checkbox',
             },
             {
+              text: 'Chips',
+              link: '/documentation/components/chips',
+            },
+            {
               text: 'Dropdown',
               link: '/documentation/components/dropdown',
             },

@@ -25,6 +25,7 @@ export const dropdownPropTypes = {
   menu: {
     type: Array as PropType<{ text: string; value: string }[]>,
     required: true,
+    default: [],
   },
   preSelectedItems: {
     type: Array,
@@ -34,6 +35,7 @@ export const dropdownPropTypes = {
     type: String,
     validator: (value: (typeof DROPDOWN_TYPES)[number]) => DROPDOWN_TYPES.includes(value),
     required: true,
+    default: 'single-select',
   },
   placement: {
     type: String,

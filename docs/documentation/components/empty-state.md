@@ -3,52 +3,70 @@
 ## Basic Usage
 
 <div class="spr-p-8 spr-bg-white-500">
-  <Spr-empty-state  description="No results found" subDescription="Try a different search term" >
+  <spr-empty-state  description="No results found" subDescription="Try a different search term" >
     <div>
-      Image Here
+      Image Slot Here
     </div>
     <template #button>
       <spr-button tone="success">Retry</spr-button>
     </template>
-  </Spr-empty-state>
+  </spr-empty-state>
 </div>
 
 ```vue
 <template>
-  <Spr-empty-state description="No results found" subDescription="Try a different search term">
+  <spr-empty-state description="No results found" subDescription="Try a different search term">
     <div>Image Here</div>
 
     <template #button>
       <spr-button tone="success">Retry</spr-button>
     </template>
-  </Spr-empty-state>
+  </spr-empty-state>
 </template>
 ```
 
 ## Images
 
+You can also use the `image` prop to display an image in the defined empty state. The image prop accepts a string value that corresponds to the image's name.
+
 List of images that can be used in the empty state component.
-('bug', 'clock', 'dashboard', 'id', 'integration', 'list', 'saturation','employees', 'location')
+
+<div class="spr-flex spr-gap-6 spr-mb-6">
+  <ul class="!spr-m-0">
+    <li>bug</li>
+    <li>clock</li>
+    <li>dashboard</li>
+    <li>employees</li>
+    <li>government-id</li>
+  </ul>
+  <ul class="!spr-m-0">
+    <li>integration</li>
+    <li>list</li>
+    <li>social-media-handles</li>
+    <li>work-in-progress</li>
+    <li>work-location</li>
+  </ul>
+</div>
 
 <div class="spr-p-8 spr-bg-white-500">
-  <Spr-empty-state
+  <spr-empty-state
     description="No results found"
     subDescription="Try a different search term"
     image="bug"
   >
-  <template #button>
-    <spr-button tone="success">Retry</spr-button>
-  </template>
-  </Spr-empty-state>
+    <template #button>
+      <spr-button tone="success">Retry</spr-button>
+    </template>
+  </spr-empty-state>
 </div>
 
 ```vue
 <template>
-  <Spr-empty-state description="No results found" subDescription="Try a different search term" image="bug">
+  <spr-empty-state description="No results found" subDescription="Try a different search term" image="bug">
     <template #button>
       <spr-button tone="success">Retry</spr-button>
     </template>
-  </Spr-empty-state>
+  </spr-empty-state>
 </template>
 ```
 
@@ -57,7 +75,7 @@ List of images that can be used in the empty state component.
 Image size can be controlled by passing the `size` prop. The default size is `small`. (`small` and `large`)
 
 <div class="spr-p-8 spr-bg-white-500">
-  <Spr-empty-state
+  <spr-empty-state
     description="No results found"
     subDescription="Try a different search term"
     image="bug"
@@ -66,40 +84,40 @@ Image size can be controlled by passing the `size` prop. The default size is `sm
     <template #button>
       <spr-button tone="success">Retry</spr-button>
     </template>
-  </Spr-empty-state>
+  </spr-empty-state>
 </div>
 
 <div class="spr-p-8 spr-bg-white-500">
-  <Spr-empty-state
+  <spr-empty-state
     description="No results found"
     subDescription="Try a different search term"
-    image="location"
+    image="work-location"
     size="large"
   >
     <template #button>
       <spr-button tone="success">Retry</spr-button>
     </template>
-  </Spr-empty-state>
+  </spr-empty-state>
 </div>
 
 ```vue
 <template>
-  <Spr-empty-state description="No results found" subDescription="Try a different search term" image="bug" size="small">
+  <spr-empty-state description="No results found" subDescription="Try a different search term" image="bug" size="small">
     <template #button>
       <spr-button tone="success">Retry</spr-button>
     </template>
-  </Spr-empty-state>
+  </spr-empty-state>
 
-  <Spr-empty-state
+  <spr-empty-state
     description="No results found"
     subDescription="Try a different search term"
-    image="location"
+    image="work-location"
     size="large"
   >
     <template #button>
       <spr-button tone="success">Retry</spr-button>
     </template>
-  </Spr-empty-state>
+  </spr-empty-state>
 </template>
 ```
 

@@ -26,7 +26,7 @@ export const avatarPropTypes = {
     validator: (value: (typeof AVATAR_SIZE)[number]) => AVATAR_SIZE.includes(value),
     default: '2xl',
   },
-  badgeText: {
+  NotificationText: {
     type: String,
     default: '0',
   },
@@ -43,6 +43,10 @@ export const avatarPropTypes = {
     type: String,
     validator: (value: (typeof AVATAR_STATUS)[number]) => AVATAR_STATUS.includes(value),
     default: 'brand',
+  },
+  count: {
+    type: Boolean,
+    default: false,
   },
 };
 

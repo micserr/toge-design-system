@@ -1,11 +1,5 @@
 <template>
-  <dialog
-    ref="dialog"
-    :class="[
-      'spr-modal spr-border-color-weak spr-background-color spr-rounded-border-radius-xl spr-border spr-p-0 spr-drop-shadow-[0_2px_8px_-2px_rgba(38,43,43,0.20)]',
-      modalSizesClasses,
-    ]"
-  >
+  <dialog ref="dialog" :class="[modalClasses.baseClasses, modalClasses.sizeClasses]">
     <header
       v-if="hasHeader"
       :class="[
@@ -17,7 +11,7 @@
 
       <div v-if="!$slots.header">{{ title }}</div>
 
-      <span v-if="hasClose" class="spr-text-color-weak spr-subheading-xs" @click="closeModal">
+      <span v-if="hasClose" class="spr-text-color-weak spr-subheading-xs spr-cursor-pointer" @click="closeModal">
         <Icon icon="ph:x" />
       </span>
     </header>
@@ -47,7 +41,7 @@ import { useModal } from './use-modal';
 const props = defineProps(modalPropTypes);
 const emit = defineEmits(modalEmitTypes);
 
-const { dialog, closeModal, modalSizesClasses } = useModal(props, emit);
+const { modalClasses, dialog, closeModal } = useModal(props, emit);
 </script>
 
 <style scoped>

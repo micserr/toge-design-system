@@ -23,6 +23,19 @@
 
   <br />
 
+  <spr-input
+    v-model="inputValue"
+    label="Sample Input"
+    display-helper
+    @input="onInput"
+    error
+  >
+    <template #helperMessage>
+      <icon icon="ph:warning-circle-fill"/>
+      This is a helper text
+    </template>
+  </spr-input>
+
   <spr-snackbar ref="snackbar" />
 
   <spr-button @click="successSnackbar"> Show success</spr-button>
@@ -84,6 +97,10 @@ import SprSnack from './components/snackbar/snack/snack.vue';
 import SprSnackbar from './components/snackbar/snackbar.vue';
 import SprTable from '@/components/table/table.vue';
 import SprLozenge from '@/components/lozenge/lozenge.vue';
+import SprInput from '@/components/input/input.vue';
+import { Icon } from '@iconify/vue/dist/iconify.js';
+
+const inputValue = ref("");
 
 const snackbar = ref(null);
 const successSnackbar = () => {

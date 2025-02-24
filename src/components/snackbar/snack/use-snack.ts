@@ -24,8 +24,8 @@ export const useSnack = (props: SnackPropTypes, emit: SetupContext<SnackEmitType
   const snackToneCssClass: ComputedRef<string> = computed(() => {
     return classNames({
       'spr-text-kangkong-500': tone === 'success',
-      'spr-text-tomato-500': tone === 'caution',
-      'spr-text-carrot-500': tone === 'danger',
+      'spr-text-tomato-500': tone === 'danger',
+      'spr-text-carrot-500': tone === 'caution',
       'spr-text-blueberry-500': tone === 'information',
     });
   });

@@ -1,13 +1,16 @@
-import { computed, toRefs } from 'vue';
-import type { ChipsPropTypes } from './chips';
+import { toRefs, computed, ComputedRef } from 'vue';
+
 import classNames from 'classnames';
-import type { SetupContext } from 'vue';
+
 import { ChipsEmitTypes } from './chips';
+
+import type { SetupContext } from 'vue';
+import type { ChipsPropTypes } from './chips';
 
 export const useChips = (props: ChipsPropTypes, emit: SetupContext<ChipsEmitTypes>['emit']) => {
   const { disabled, active, variant } = toRefs(props);
 
-  const chipsClasses = computed(() => {
+  const chipsBaseClasses: ComputedRef<string> = computed(() => {
     if (variant.value === 'day') {
       return classNames(
         'spr-background-color spr-label-xs-medium spr-inline-flex spr-items-center spr-justify-center spr-rounded-full spr-transition-all spr-aspect-square spr-h-10 spr-w-10 spr-body-sm-regular spr-border spr-border-solid',
@@ -68,7 +71,7 @@ export const useChips = (props: ChipsPropTypes, emit: SetupContext<ChipsEmitType
   };
 
   return {
-    chipsClasses,
+    chipsBaseClasses,
     handleClose,
     handleClick,
   };

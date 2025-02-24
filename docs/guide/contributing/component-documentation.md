@@ -2,7 +2,7 @@
 
 ## VitePress Setup
 
-Our documentation uses [VitePress](https://vitepress.dev/). Make sure you have:
+Our documentation uses [VitePress](https://vitepress.dev/). Make sure you the prerequisites:
 
 - Node.js version 18 or higher
 - A text editor with Markdown support (VSCode recommended)
@@ -13,7 +13,7 @@ Our documentation uses [VitePress](https://vitepress.dev/). Make sure you have:
 ```
 docs/
 ├─ .vitepress/
-│  └─ config.ts          # VitePress configuration
+│  └─ config.ts         # VitePress configuration
 ├─ guide/
 │  ├─ basics/           # Basic guides
 │  └─ contributing/     # Contribution guides
@@ -51,10 +51,30 @@ Brief description of the component and its use cases.
 
 ### Attributes
 
-| Name     | Description           | Type                           | Default |
-| -------- | --------------------- | ------------------------------ | ------- |
-| size     | component size        | 'small' \| 'medium' \| 'large' | medium  |
-| disabled | disable the component | boolean                        | false   |
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Description</td>
+      <td>Type</td>
+      <td>Default</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>size</td>
+      <td>component size</td>
+      <td>'small' | 'medium' | 'large'</td>
+      <td>medium</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>disable the component</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+  </tbody>
+</table>
 
 <script setup lang="ts">
 import SprYourComponent from "@/components/your-component/your-component.vue"

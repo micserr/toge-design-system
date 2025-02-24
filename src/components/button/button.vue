@@ -1,5 +1,5 @@
 <template>
-  <button ref="buttonRef" :class="buttonClass" v-bind="buttonProps" @click="handleClick">
+  <button ref="buttonRef" :class="buttonClassses" v-bind="buttonProps" @click="handleClick">
     <slot />
   </button>
 </template>
@@ -11,5 +11,5 @@ import { useButton } from './use-button';
 const props = defineProps(buttonPropTypes);
 const emit = defineEmits(buttonEmitTypes);
 
-const { buttonRef, buttonProps, buttonClass, handleClick } = useButton(props, emit);
+const { buttonRef, buttonClassses, buttonProps, handleClick } = useButton(props, emit);
 </script>

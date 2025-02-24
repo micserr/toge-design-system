@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.4.4 (2025-02-24)
+
+- Feature
+  - Code and Docs Cleanup
+  - Compiled Class Approach
+  - Use toRefs for Props
+  - Empty State PNG to SVG
+  - Input Search Simplified
+    ([#5648d141](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5648d1417abfaad9b63077bcb8bd53eefea78783?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 1.4.3 (2025-02-21)
 
 - Feature

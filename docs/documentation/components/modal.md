@@ -144,26 +144,86 @@ const isModalSizes3Open = ref<boolean>(false);
 
 ## Slot
 
-| Name   | Description                          |
-| ------ | ------------------------------------ |
-| Header | Slot to customize the header content |
-| Footer | Slot to customize the footer content |
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Description</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Header</td>
+      <td>Slot to customize the header content</td>
+    </tr>
+    <tr>
+      <td>Footer</td>
+      <td>Slot to customize the footer content</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Attributes
 
-| Name      | Description                                | Type      | Default |
-| --------- | ------------------------------------------ | --------- | ------- |
-| open      | Controls the visibility of the modal       | `boolean` | false   |
-| title     | Title of the modal                         | `string`  | ''      |
-| hasHeader | Determines if the modal has a header       | `boolean` | true    |
-| hasFooter | Determines if the modal has a footer       | `boolean` | true    |
-| hasClose  | Determines if the modal has a close button | `boolean` | true    |
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Description</td>
+      <td>Type</td>
+      <td>Default</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>open</td>
+      <td>Controls the visibility of the modal</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td>Title of the modal</td>
+      <td>string</td>
+      <td>''</td>
+    </tr>
+    <tr>
+      <td>hasHeader</td>
+      <td>Determines if the modal has a header</td>
+      <td>boolean</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>hasFooter</td>
+      <td>Determines if the modal has a footer</td>
+      <td>boolean</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>hasClose</td>
+      <td>Determines if the modal has a close button</td>
+      <td>boolean</td>
+      <td>true</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Event
 
-| Name    | Description                               |
-| ------- | ----------------------------------------- |
-| onClose | Function to call when the modal is closed |
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Description</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>onClose</td>
+      <td>Function to call when the modal is closed</td>
+    </tr>
+  </tbody>
+</table>
 
 <script lang="ts" setup>
 import { ref } from 'vue';

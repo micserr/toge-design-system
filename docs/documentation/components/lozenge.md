@@ -173,10 +173,24 @@ import { Icon } from '@iconify/vue';
 
 ## Slot
 
-| Name   | Description                |
-| ------ | -------------------------- |
-| icon   | customize icon component   |
-| avatar | customize avatar component |
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Description</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>icon</td>
+      <td>customize icon component</td>
+    </tr>
+    <tr>
+      <td>avatar</td>
+      <td>customize avatar component</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Lozenge API
 

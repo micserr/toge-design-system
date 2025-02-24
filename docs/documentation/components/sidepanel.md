@@ -6,41 +6,43 @@ The Sidepanel component is a reusable UI element designed to display contextual 
 
 ## Basic Usage
 
-<div>
+<spr-button tone="success" @click="isSidepanelOpen = true">Open Sidepanel</spr-button>
+<spr-sidepanel 
+  :is-open="isSidepanelOpen"
+  @close="isSidepanelOpen = false"
+  header-title="Sidepanel Example"
+>
+  <div class="spr-p-4">
+    Sidepanel Content
+  </div>
+  <template #footer>
+    <div class="spr-px-4 spr-flex spr-justify-end spr-gap-2">
+      <spr-button>Cancel</spr-button>
+      <spr-button tone="success">Submit</spr-button>
+    </div>
+  </template>
+</spr-sidepanel>
+
+
+```vue
+<template>
   <spr-button tone="success" @click="isSidepanelOpen = true">Open Sidepanel</spr-button>
   <spr-sidepanel 
     :is-open="isSidepanelOpen"
     @close="isSidepanelOpen = false"
     header-title="Sidepanel Example"
   >
-    Sidepanel Content
+    <div class="p-4">
+      Sidepanel Content
+    </div>
     <template #footer>
-      <div class="spr-px-4 spr-flex spr-justify-end spr-gap-2">
+      <div class="px-4 flex justify-end gap-2">
         <spr-button>Cancel</spr-button>
         <spr-button tone="success">Submit</spr-button>
       </div>
     </template>
   </spr-sidepanel>
 </div>
-
-```vue
-<template>
-  <spr-button tone="success" @click="isSidepanelOpen = true">Open Sidepanel</spr-button>
-  <spr-sidepanel :is-open="isSidepanelOpen" @close="isSidepanelOpen = false" header-title="Sidepanel Example">
-    Sidepanel Content
-    <template #footer>
-      <div class="flex justify-end gap-2 px-4">
-        <spr-button>Cancel</spr-button>
-        <spr-button tone="success">Submit</spr-button>
-      </div>
-    </template>
-  </spr-sidepanel>
-</template>
-<script setup lang="ts">
-import { ref } from 'vue';
-
-const isSidepanelOpen = ref<boolean>(false);
-</script>
 ```
 
 ## Size
@@ -51,14 +53,56 @@ const isSidepanelOpen = ref<boolean>(false);
   <spr-button tone="success" @click="isLargeSidepanelOpen = true">Large</spr-button>
 </div>
 
-<div>
+<spr-sidepanel 
+  size="sm"
+  :is-open="isSmallSidepanelOpen"
+  @close="isSmallSidepanelOpen = false"
+  header-title="Sidepanel Small"
+>
+  <div class="spr-p-4">
+    360px
+  </div>
+</spr-sidepanel>
+
+<spr-sidepanel 
+  size="md"
+  :is-open="isMediumSidepanelOpen"
+  @close="isMediumSidepanelOpen = false"
+  header-title="Sidepanel Medium"
+>
+  <div class="spr-p-4">
+    420px
+  </div>
+</spr-sidepanel>
+
+<spr-sidepanel 
+  size="lg"
+  :is-open="isLargeSidepanelOpen"
+  @close="isLargeSidepanelOpen = false"
+  header-title="Sidepanel Large"
+>
+  <div class="spr-p-4">
+    480px
+  </div>
+</spr-sidepanel>
+
+```vue
+<template>
+  <div class="flex space-x-4">
+    <spr-button tone="success" @click="isSmallSidepanelOpen = true">Small</spr-button>
+    <spr-button tone="success" @click="isMediumSidepanelOpen = true">Medium</spr-button>
+    <spr-button tone="success" @click="isLargeSidepanelOpen = true">Large</spr-button>
+  </div>
+
   <spr-sidepanel 
     size="sm"
     :is-open="isSmallSidepanelOpen"
     @close="isSmallSidepanelOpen = false"
     header-title="Sidepanel Small"
   >
+  <div class="spr-p-4">
     360px
+  </div>
   </spr-sidepanel>
   <spr-sidepanel 
     size="md"
@@ -66,7 +110,9 @@ const isSidepanelOpen = ref<boolean>(false);
     @close="isMediumSidepanelOpen = false"
     header-title="Sidepanel Medium"
   >
+  <div class="spr-p-4">
     420px
+  </div>
   </spr-sidepanel>
   <spr-sidepanel 
     size="lg"
@@ -74,7 +120,9 @@ const isSidepanelOpen = ref<boolean>(false);
     @close="isLargeSidepanelOpen = false"
     header-title="Sidepanel Large"
   >
+  <div class="spr-p-4">
     480px
+  </div>
   </spr-sidepanel>
 </div>
 
@@ -143,8 +191,6 @@ const isLargeSidepanelOpen = ref(false);
 
 ## Attributes
 
-## Side Panel Props
-
 <table>
   <thead>
     <tr>
@@ -195,7 +241,7 @@ const isLargeSidepanelOpen = ref(false);
       <td>closeOutside</td>
       <td>Controls whether clicking outside the side panel should close it.</td>
       <td>boolean</td>
-      <td>false</td>
+      <td>true</td>
     </tr>
   </tbody>
 </table>

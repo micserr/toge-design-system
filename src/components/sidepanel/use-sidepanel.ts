@@ -34,18 +34,18 @@ export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<Sidep
     emit('close');
   };
 
-  const handleBackdropClick = () => {
-    if (props.closeOutside) {
-      emit('close');
-    }
-  };
-
   let ignoreClick = false;
 
   const handleClickOutside = (event: MouseEvent) => {
     if (ignoreClick) return;
     if (sidepanelRef.value && !sidepanelRef.value.contains(event.target as Node) && props.closeOutside) {
       emit('close');
+    }
+  };
+
+  const handleEscapeClose = (event: KeyboardEvent) => {
+    if (event.key === 'Escape' && props.isOpen && props.escapeClose) {
+      emit('close')
     }
   };
 
@@ -65,10 +65,12 @@ export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<Sidep
 
   onMounted(() => {
     document.addEventListener('click', handleClickOutside);
+    window.addEventListener('keydown', handleEscapeClose);
   });
 
   onUnmounted(() => {
     document.removeEventListener('click', handleClickOutside);
+    window.removeEventListener('keydown', handleEscapeClose);
   });
 
   return {
@@ -76,8 +78,6 @@ export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<Sidep
     sidepanelSizesClasses,
     sidepanelMidState,
     sidepanelStartEndState,
-    handleClose,
-    handleBackdropClick,
-    handleClickOutside,
-  };
-};
+    handleClose
+  }
+}

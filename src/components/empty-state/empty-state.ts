@@ -7,12 +7,13 @@ const STATE_IMAGE = [
   'bug',
   'clock',
   'dashboard',
-  'id',
+  'employees',
+  'government-id',
   'integration',
   'list',
-  'saturation',
-  'employees',
-  'location',
+  'social-media-handles',
+  'work-in-progress',
+  'work-location',
 ] as const;
 
 export const emptyStatePropTypes = {
@@ -33,8 +34,7 @@ export const emptyStatePropTypes = {
   },
   image: {
     type: String as PropType<(typeof STATE_IMAGE)[number]>,
-    validator: (value: (typeof STATE_IMAGE)[number]) => STATE_IMAGE.includes(value),
-    default: 'bug',
+    validator: (value: (typeof STATE_IMAGE)[number] | undefined) => value === undefined || STATE_IMAGE.includes(value),
   },
   hasButton: {
     type: Boolean,

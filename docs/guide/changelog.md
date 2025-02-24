@@ -1,6 +1,51 @@
 # Changelog
 
+## 1.4.5 (2025-02-24)
+
+- Feature
+  - Chips - Custom Event and Icon Weight
+  - Add count for Avatar ([#831236b7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/831236b7e45ee16da1758ee0737a38428fd2ef37?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fchip-custom-event) by @adestajo)
+
+## 1.4.4 (2025-02-24)
+
+- Feature
+  - Code and Docs Cleanup
+  - Compiled Class Approach
+  - Use toRefs for Props
+  - Empty State PNG to SVG
+  - Input Search Simplified
+    ([#5648d141](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5648d1417abfaad9b63077bcb8bd53eefea78783?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 1.4.3 (2025-02-21)
+
+- Feature
+  - Chips - work Continuation made by Michael Raquel
+  - Add count for Avatar ([#02350704](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0235070425f681fdd2197fe427b175addae81e71?refName=refs%2Fheads%2F2025%2Ffeat%2Fandrea%2Fcontinuation-chip-created-by-michael-raquel) by @adestajo)
+
+## 1.4.2 (2025-02-21)
+
+- Feat
+  - Fix Build Issues ([#1bec8905](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1bec89052c0c5244c8fca455b613e989e77f4681?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 1.4.1 (2025-02-21)
+
+- Feat
+  - Add Version Navigation, Checkbox Update ([#1bec8905](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1bec89052c0c5244c8fca455b613e989e77f4681?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 1.4.0 (2025-02-21)
+
+- Feat
+  - Add card component ([#3f56c1fe](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3f56c1fedc9a0fcc199f14ba6488ac46bc2b51cf?refName=refs%2Fheads%2F2025%2Ffeature%2Fjames%2Fcard) by @jmanalang)
+
+## 1.3.2 (2025-02-19)
+
+- Fix
+  - Table (header Border)
+  - added Loading state
+  - tab disbled color ([#a49e1136](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a49e11368244092bd821e1284059ea7d85ef23dc?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Ffix-table) by @adestajo)
+
 ## 1.3.1 (2025-02-19)
+
 - Feat
   - Add a search input for search type ([#](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ac4bf72bf82c7949b994f9b2da17eadaea580960?refName=refs/heads/2025/FEATURE/Xyrk/SEARCH_INPUT_FIELD) by @jfabula)
 

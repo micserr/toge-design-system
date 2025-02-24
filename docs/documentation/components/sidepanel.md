@@ -2,7 +2,7 @@
 
 The Sidepanel component is a reusable UI element designed to display contextual or additional information alongside the main content of your application. It slides into view from the edge of the screen, providing a seamless and non-intrusive way to present content such as forms, lists, or detailed views.
 
-![Sidepanel Sample](../../public/sidepanel/sidepanel-sample.png)
+![Sidepanel Sample](../../public/images/sidepanel-sample.png)
 
 ## Basic Usage
 
@@ -170,31 +170,98 @@ const isLargeSidepanelOpen = ref(false);
 
 ## Slot
 
-| Name   | Description                          |
-| ------ | ------------------------------------ |
-| header | Slot to customize the header content |
-| footer | Slot to customize the footer content |
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Description</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>header</td>
+      <td>Slot to customize the header content</td>
+    </tr>
+    <tr>
+      <td>footer</td>
+      <td>Slot to customize the footer content</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Attributes
 
-| Name         | Description                                                                | Type                          | Default               |
-|-------------|----------------------------------------------------------------------------|-------------------------------|----------------------|
-| `isOpen`     | Controls whether the side panel is open. Set to `true` to display the side panel or `false` to hide it. | `boolean`                     | `false`              |
-| `headerTitle` | The title displayed in the side panel's header.                          | `string`                      | `'Sidepanel Header'` |
-| `size`       | Specifies the size of the side panel.                                    | `'sm'` \| `'md'` \| `'lg'`    | `'sm'`               |
-| `height`       | Specifies the height of the side panel.                                    | `string` \| `number`  |  `'calc(100vh - 32px)'` |
-| `hideHeader`  | Controls the visibility of the side panel header. | `boolean`                     | `false`               |
-| `hasBackdrop`   | Determines whether a backdrop is displayed behind the side panel.     | `boolean`                     | `true`               |
-| `closeOutside`   | Controls whether clicking outside the side panel should close it.    | `boolean`                     | `true`               |
-| `escapeClose`   | Controls whether clicking ESC button should close the side panel.    | `boolean`                     | `true`               |
-
-
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Description</td>
+      <td>Type</td>
+      <td>Default</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>isOpen</td>
+      <td>Controls whether the side panel is open. Set to <code>true</code> to display the side panel or <code>false</code> to hide it.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>headerTitle</td>
+      <td>The title displayed in the side panel's header.</td>
+      <td>string</td>
+      <td>'Sidepanel Header'</td>
+    </tr>
+    <tr>
+      <td>size</td>
+      <td>Specifies the size of the side panel.</td>
+      <td>'sm' | 'md' | 'lg'</td>
+      <td>'sm'</td>
+    </tr>
+    <tr>
+      <td>height</td>
+      <td>Specifies the height of the side panel.</td>
+      <td>string | number</td>
+      <td>'calc(100vh - 32px)'</td>
+    </tr>
+    <tr>
+      <td>hideHeader</td>
+      <td>Controls the visibility of the side panel header.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>hasBackdrop</td>
+      <td>Determines whether a backdrop is displayed behind the side panel.</td>
+      <td>boolean</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>closeOutside</td>
+      <td>Controls whether clicking outside the side panel should close it.</td>
+      <td>boolean</td>
+      <td>true</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Event
 
-| Name    | Description                                   |
-| ------- | --------------------------------------------- |
-| onClose | Function to call when the sidepanel is closed |
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Description</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>onClose</td>
+      <td>Function to call when the sidepanel is closed</td>
+    </tr>
+  </tbody>
+</table>
 
 <script lang="ts" setup>
 import { ref } from 'vue';

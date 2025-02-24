@@ -246,36 +246,40 @@ When using the default position, use can use the slot to wrap the element to whi
 ### Badge Attributes
 
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Type</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td>Text</td>
-    <td>short piece of text or a number</td>
-    <td>string</td>
-    <td>0</td>
-  </tr>
-  <tr>
-    <td>Variant</td>
-    <td>color schemes to indicate various statuses</td>
-    <td>string</td>
-    <td>brand</td>
-  </tr>
-  <tr>
-    <td>Size</td>
-    <td>big, small, tiny</td>
-    <td>string</td>
-    <td>small</td>
-  </tr>
-  <tr>
-    <td>Position</td>
-    <td>positioned relative to the element they are attached to</td>
-    <td>string</td>
-    <td>default</td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Text</td>
+      <td>short piece of text or a number</td>
+      <td>string</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Variant</td>
+      <td>color schemes to indicate various statuses</td>
+      <td>string</td>
+      <td>brand</td>
+    </tr>
+    <tr>
+      <td>Size</td>
+      <td>big, small, tiny</td>
+      <td>string</td>
+      <td>small</td>
+    </tr>
+    <tr>
+      <td>Position</td>
+      <td>positioned relative to the element they are attached to</td>
+      <td>string</td>
+      <td>default</td>
+    </tr>
+  </tbody>
 </table>
 
 <script lang="ts" setup>

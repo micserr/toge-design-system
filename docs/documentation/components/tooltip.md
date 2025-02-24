@@ -113,25 +113,25 @@ If both `text` props and template `#popper-content` are used, the `text` prop wi
 You can enable or disable the maximum width of the tooltip by using the `has-max-width prop`. By default, the max-width is enabled. When the `has-max-width` prop is set to true, the tooltip will have a maximum width of `280px`.
 
 <div class="spr-grid spr-gap-3">
-    <spr-tooltip placement="top">
-      <template #popper-content>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia, 
-          ante sit amet condimentum varius, metus enim luctus magna, ut vehicula ipsum quam vel odio.
-        </p>
-      </template>
-      <spr-button tone="success">Has Max Width</spr-button>
-    </spr-tooltip>
-    <spr-tooltip placement="top" :has-max-width="false">
-      <template #popper-content>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia, 
-          ante sit amet condimentum varius, metus enim luctus magna, ut vehicula ipsum quam vel odio.
-        </p>
-      </template>
-      <spr-button tone="success">Has No Max Width</spr-button>
-    </spr-tooltip>
-  </div>
+  <spr-tooltip placement="top">
+    <template #popper-content>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia, 
+        ante sit amet condimentum varius, metus enim luctus magna, ut vehicula ipsum quam vel odio.
+      </p>
+    </template>
+    <spr-button tone="success">Has Max Width</spr-button>
+  </spr-tooltip>
+  <spr-tooltip placement="top" :has-max-width="false">
+    <template #popper-content>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia, 
+        ante sit amet condimentum varius, metus enim luctus magna, ut vehicula ipsum quam vel odio.
+      </p>
+    </template>
+    <spr-button tone="success">Has No Max Width</spr-button>
+  </spr-tooltip>
+</div>
 
 ```vue
 <spr-tooltip>

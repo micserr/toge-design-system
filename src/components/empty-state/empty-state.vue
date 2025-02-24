@@ -1,8 +1,8 @@
 <template>
-  <div id="empty-state" :class="emptyStateWrapperClasses">
-    <slot :class="imageSizeClasses" />
+  <div id="empty-state" :class="emptyStateClasses.baseClasses">
+    <slot :class="emptyStateClasses.imageSizeClasses" />
 
-    <div v-if="!$slots.default" :class="imageSizeClasses">
+    <div v-if="!$slots.default" :class="emptyStateClasses.imageSizeClasses">
       <img :src="getImageUrl" alt="empty-image" class="spr-h-full spr-w-full spr-object-cover" />
     </div>
 
@@ -27,5 +27,5 @@ defineEmits(['onClick']);
 
 const props = defineProps(emptyStatePropTypes);
 
-const { emptyStateWrapperClasses, imageSizeClasses, getImageUrl } = useEmptyState(props);
+const { emptyStateClasses, getImageUrl } = useEmptyState(props);
 </script>

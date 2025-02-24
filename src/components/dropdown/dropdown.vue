@@ -1,6 +1,6 @@
 <template>
   <Menu
-    v-model:shown="menuOpened"
+    v-model:shown="menuOpenedState"
     class="spr-w-fit"
     aria-id="dropdown-wrapper"
     distance="4"
@@ -8,7 +8,7 @@
     :triggers="[]"
     :popper-hide-triggers="[]"
   >
-    <div @click="menuOpened = !menuOpened">
+    <div @click="menuOpenedState = !menuOpenedState">
       <slot />
     </div>
 
@@ -54,7 +54,7 @@ import SprCheckbox from '../checkbox/checkbox.vue';
 const props = defineProps(dropdownPropTypes);
 const emit = defineEmits(dropdownEmitTypes);
 
-const { dropdownItemBaseClasses, menuOpened, handleSelectedItem, isItemSelected, checkboxModels } = useDropdown(
+const { dropdownItemBaseClasses, menuOpenedState, handleSelectedItem, isItemSelected, checkboxModels } = useDropdown(
   props,
   emit,
 );

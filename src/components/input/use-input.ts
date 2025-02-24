@@ -13,6 +13,7 @@ interface InputClasses {
   iconSlotClasses: string;
   prefixSlotClasses: string;
   trailingSlotClasses: string;
+  helperClasses: string;
 }
 
 export const useInput = (
@@ -74,7 +75,14 @@ export const useInput = (
       },
     );
 
-    return { baseClasses, labelClasses, inputTextClasses, iconSlotClasses, prefixSlotClasses, trailingSlotClasses };
+    const helperClasses = classNames(
+      {
+        'spr-text-color-danger-base': error.value,
+        'spr-text-color-supporting': !error.value,
+      }
+    );
+
+    return { baseClasses, labelClasses, inputTextClasses, iconSlotClasses, prefixSlotClasses, trailingSlotClasses, helperClasses };
   });
 
   const onInput = (event: Event) => {

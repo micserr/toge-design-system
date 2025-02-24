@@ -1,4 +1,4 @@
-import { ref, onMounted, watch, computed } from 'vue';
+import { ref, toRefs, onMounted, watch, computed, ComputedRef } from 'vue';
 
 import classNames from 'classnames';
 
@@ -11,7 +11,9 @@ interface SelectedItem {
 }
 
 export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<DropdownEmitTypes>['emit']) => {
-  const dropdownItemBaseClasses = computed(() => {
+  const { menu, preSelectedItems, dropdownType, menuOpened } = toRefs(props);
+
+  const dropdownItemBaseClasses: ComputedRef<string> = computed(() => {
     return classNames(
       'spr-flex spr-cursor-pointer spr-items-center spr-justify-between spr-gap-1.5 spr-rounded-lg spr-p-2',
       'spr-transition spr-duration-150 spr-ease-in-out',
@@ -20,20 +22,20 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
     );
   });
 
-  const menuOpened = ref(false);
+  const menuOpenedState = ref<boolean>(false);
 
-  watch(menuOpened, () => {
+  watch(menuOpenedState, () => {
     handlePopperState();
   });
 
-  const isSingleSelect = computed(() => props.dropdownType === 'single-select');
-  const isMultiSelect = computed(() => props.dropdownType === 'multi-select');
+  const isSingleSelect = computed(() => dropdownType.value === 'single-select');
+  const isMultiSelect = computed(() => dropdownType.value === 'multi-select');
 
   const selectedItems = ref<SelectedItem[]>([]);
 
   const handleSelectedItem = (item: SelectedItem) => {
     if (isSingleSelect.value) {
-      menuOpened.value = false;
+      menuOpenedState.value = false;
 
       selectedItems.value = [item];
 
@@ -66,8 +68,8 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
   const checkboxModels = ref<Record<string, boolean>>({});
 
   const setCheckboxModels = () => {
-    if (props.menu && props.menu.length > 0) {
-      props.menu.forEach((item) => {
+    if (menu.value && menu.value.length > 0) {
+      menu.value.forEach((item) => {
         checkboxModels.value = Object.assign({}, checkboxModels.value, {
           [item.text]: false,
         });
@@ -76,9 +78,9 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
   };
 
   const setPreSelectedItems = () => {
-    if (props.menu && props.menu.length > 0 && props.preSelectedItems && props.preSelectedItems.length > 0) {
-      (props.preSelectedItems as string[]).forEach((preSelectedItem: string) => {
-        const item = props.menu?.find((menuItem) => menuItem.text === preSelectedItem);
+    if (menu.value && menu.value.length > 0 && preSelectedItems.value && preSelectedItems.value.length > 0) {
+      (preSelectedItems.value as string[]).forEach((preSelectedItem: string) => {
+        const item = menu.value.find((menuItem) => menuItem.text === preSelectedItem);
 
         if (item) {
           if (isMultiSelect.value) {
@@ -102,11 +104,11 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
   };
 
   const handlePopperState = () => {
-    emit('get-popper-state', menuOpened.value);
+    emit('get-popper-state', menuOpenedState.value);
   };
 
   onMounted(() => {
-    menuOpened.value = props.menuOpened;
+    menuOpenedState.value = menuOpened.value;
 
     setCheckboxModels();
     setPreSelectedItems();
@@ -115,7 +117,7 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
 
   return {
     dropdownItemBaseClasses,
-    menuOpened,
+    menuOpenedState,
     handleSelectedItem,
     isItemSelected,
     checkboxModels,

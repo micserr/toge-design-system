@@ -33,11 +33,21 @@ MAJOR.MINOR.PATCH
 
 Example: `1.2.9`
 
-- **MAJOR**: Breaking changes
-- **MINOR**: New features (backward compatible)
-- **PATCH**: Bug fixes (backward compatible)
+- **MAJOR**:
+  - Breaking Changes
+- **MINOR**:
+  - New Features
+  - New Components
+  - Large Style Updates
+- **PATCH**:
+  - Bug Fixes
+  - Small Design Updates
 
 ### Updating Version
+
+::: info Important to note:
+Whenever a minor or major version is updated, the patch or minor version resets to `0`.
+:::
 
 1. Update `package.json`:
 
@@ -132,8 +142,8 @@ git commit -m "docs: add component creation and contribution guidelines"
 
 ```json
 {
-  "version": "1.0.0",  // [!code --]
-  "version": "1.0.1",  // [!code ++]
+  "version": "1.0.0", // [!code --]
+  "version": "1.0.1" // [!code ++]
 }
 ```
 

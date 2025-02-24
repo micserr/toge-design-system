@@ -228,6 +228,7 @@ Use the `header` slot to add a content to the header. It will be placed next to 
   </spr-card>
 </template>
 ```
+
 <br>
 
 If the `title` prop is omitted, the `header` slot can fully customize the header.
@@ -268,6 +269,7 @@ If the `title` prop is omitted, the `header` slot can fully customize the header
 ```
 
 ## Border Radius
+
  <spr-card title="Card Title" border-radius-size="sm">
     <template #content>
       <div>Card content</div>
@@ -284,7 +286,7 @@ If the `title` prop is omitted, the `header` slot can fully customize the header
 
 ```vue
 <template>
-   <spr-card title="Card Title" border-radius-size="sm">
+  <spr-card title="Card Title" border-radius-size="sm">
     <template #content>
       <div>Card content</div>
       <div>Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.</div>
@@ -304,22 +306,79 @@ If the `title` prop is omitted, the `header` slot can fully customize the header
 
 ### Props
 
-| Name               | Type      | Default | Description                                                                  |
-| ------------------ | --------- | ------- | ---------------------------------------------------------------------------- |
-| `title`            | `string`  | `''`    | Sets the card's title.                                                       |
-| `subtitle`         | `string`  | `''`    | Sets the card's subtitle. Requires `title` to be visible.                    |
-| `header-icon`       | `string`  | `''`    | Displays an icon in the header. Requires `title` to be visible.              |
-| `show-header`       | `boolean` | `true`  | Controls the visibility of the header.                                       |
-| `show-footer`       | `boolean` | `true`  | Controls the visibility of the footer.                                       |
-| `border-radius-size` | `string`  | `'xl'`  | Sets the border radius of the card including header and footer. Accepts one of: `xl`, `lg`, `md`, `sm`, `xs`, `2xs`. |
+<table>
+<thead>
+  <tr>
+    <td>Name</td>
+    <td>Type</td>
+    <td>Default</td>
+    <td>Description</td>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>title</td>
+    <td>string</td>
+    <td>-</td>
+    <td>Sets the card's title.</td>
+  </tr>
+  <tr>
+    <td>subtitle</td>
+    <td>string</td>
+    <td>-</td>
+    <td>Sets the card's subtitle. Requires title to be visible.</td>
+  </tr>
+  <tr>
+    <td>header-icon</td>
+    <td>string</td>
+    <td>-</td>
+    <td>Displays an icon in the header. Requires title to be visible.</td>
+  </tr>
+  <tr>
+    <td>show-header</td>
+    <td>boolean</td>
+    <td>true</td>
+    <td>Controls the visibility of the header.</td>
+  </tr>
+  <tr>
+    <td>show-footer</td>
+    <td>boolean</td>
+    <td>true</td>
+    <td>Controls the visibility of the footer.</td>
+  </tr>
+  <tr>
+    <td>border-radius-size</td>
+    <td>string</td>
+    <td>xl</td>
+    <td>Sets the border radius of the card including header and footer. Accepts one of: xl, lg, md, sm, xs, 2xs.</td>
+  </tr>
+</tbody>
+</table>
 
 ### Slots
 
-| Name      | Description                    |
-| --------- | ------------------------------ |
-| `header`  | Custom content for the header. |
-| `content` | The main content of the card.  |
-| `footer`  | Custom content for the footer. |
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Description</td>
+  </tr>
+<thead>
+</thead>
+<tbody>
+  <tr>
+    <td>header</td>
+    <td>Custom content for the header.</td>
+  </tr>
+  <tr>
+    <td>content</td>
+    <td>The main content of the card.</td>
+  </tr>
+  <tr>
+    <td>footer</td>
+    <td>Custom content for the footer.</td>
+  </tr>
+</tbody>
+</table>
 
 <script lang="ts" setup>
 import SprCard from '@/components/card/card.vue';

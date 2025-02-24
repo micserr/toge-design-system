@@ -11,7 +11,7 @@
     <template v-if="variant === 'tag'">
       <span v-if="icon || $slots.icon" class="chips-icon spr-inline-flex spr-items-center spr-leading-[0]">
         <slot name="icon">
-          <Icon :icon="icon" class="spr-font-size-300" />
+          <Icon :icon="getIcon" class="spr-font-size-300" />
         </slot>
       </span>
       <span class="spr-chips-label">
@@ -50,5 +50,5 @@ import { chipsEmitTypes } from './chips';
 const props = defineProps(chipsPropTypes);
 const emit = defineEmits(chipsEmitTypes);
 
-const { chipsBaseClasses, handleClose, handleClick } = useChips(props, emit);
+const { chipsBaseClasses, handleClose, handleClick, getIcon } = useChips(props, emit);
 </script>

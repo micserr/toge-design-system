@@ -28,7 +28,7 @@ const setPackageVersion = () => {
       }
 
       if (mainText) {
-        mainText.textContent = pkg.version;
+        mainText.textContent = `v${pkg.version}`;
       }
     }, 500);
   }

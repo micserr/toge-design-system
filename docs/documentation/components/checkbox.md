@@ -6,6 +6,8 @@ Checkboxes allow the user to select one or more items from a set.
 
 You can also add a label to the checkbox by using the `label` attribute.
 
+Value: <code>{{ checkboxModels.checkbox1 }}</code>
+
 <SprCheckbox v-model="checkboxModels.checkbox1" label="Checkbox Label" />
 
 ```vue

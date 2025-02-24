@@ -1,9 +1,16 @@
 <template>
   <div class="spr-flex spr-gap-2">
     <slot />
-    <div :class="[badgeElementWrapper]">
-      <section :class="[badgePositionClasses]">
-        <div :class="[badgeClasses, 'spr-flex spr-items-center spr-justify-center']">
+
+    <div :class="badgeClasses.baseClasses">
+      <section :class="badgeClasses.positionClasses">
+        <div
+          :class="[
+            'spr-flex spr-items-center spr-justify-center',
+            badgeClasses.variantClasses,
+            badgeClasses.sizeClasses,
+          ]"
+        >
           {{ props.size === 'tiny' ? '' : text }}
         </div>
       </section>
@@ -17,5 +24,5 @@ import { useBadge } from './use-badge';
 
 const props = defineProps(badgePropTypes);
 
-const { badgeClasses, badgePositionClasses, badgeElementWrapper } = useBadge(props);
+const { badgeClasses } = useBadge(props);
 </script>

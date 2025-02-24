@@ -1,11 +1,25 @@
-import { computed, toRefs } from 'vue';
+import { toRefs, computed, ComputedRef } from 'vue';
+
 import classNames from 'classnames';
+
 import type { BadgePropTypes } from './badge';
 
-export const useBadge = (props: BadgePropTypes) => {
-  const { position, size, variant } = toRefs(props);
+interface BadgeClasses {
+  baseClasses: string;
+  variantClasses: string;
+  sizeClasses: string;
+  positionClasses: string;
+}
 
-  const badgeClasses = computed(() => {
+export const useBadge = (props: BadgePropTypes) => {
+  const { variant, size, position } = toRefs(props);
+
+  const badgeClasses: ComputedRef<BadgeClasses> = computed(() => {
+    const baseClasses = classNames({
+      'spr-flex spr-items-center spr-gap-2': position.value === 'default',
+      'spr-relative': position.value === 'top' || position.value === 'bottom',
+    });
+
     const variantClasses = classNames({
       'spr-background-color-danger-base spr-text-color-inverted-strong': variant.value === 'danger',
       'spr-background-color-disabled spr-text-color-on-fill-disabled': variant.value === 'disabled',
@@ -21,11 +35,7 @@ export const useBadge = (props: BadgePropTypes) => {
       'spr-h-[10px] spr-min-w-[10px] spr-rounded-full': size.value === 'tiny',
     });
 
-    return classNames(variantClasses, sizeClasses);
-  });
-
-  const badgePositionClasses = computed(() => {
-    return classNames({
+    const positionClasses = classNames({
       'spr-absolute -spr-top-1 spr-right-1': position.value === 'top' && size.value === 'tiny',
       'spr-absolute -spr-bottom-1 spr-right-1': position.value === 'bottom' && size.value === 'tiny',
       'spr-absolute -spr-top-2 -spr-right-1': position.value === 'top' && size.value === 'small',
@@ -33,18 +43,16 @@ export const useBadge = (props: BadgePropTypes) => {
       'spr-absolute -spr-top-3 -spr-right-2': position.value === 'top' && size.value === 'big',
       'spr-absolute -spr-bottom-3 -spr-right-2': position.value === 'bottom' && size.value === 'big',
     });
-  });
 
-  const badgeElementWrapper = computed(() => {
-    return classNames({
-      'spr-flex spr-items-center spr-gap-2': position.value === 'default',
-      'spr-relative': position.value === 'top' || position.value === 'bottom',
-    });
+    return {
+      baseClasses,
+      variantClasses,
+      sizeClasses,
+      positionClasses,
+    };
   });
 
   return {
     badgeClasses,
-    badgePositionClasses,
-    badgeElementWrapper,
   };
 };

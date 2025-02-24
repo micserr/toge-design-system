@@ -1,11 +1,6 @@
 <template>
-  <div v-if="visible" :class="lozengeClasses">
-    <div
-      :class="[
-        'spr-label-xs-medium spr-inline-flex spr-items-center spr-gap-size-spacing-6xs spr-rounded-md spr-border spr-border-solid spr-p-size-spacing-5xs spr-text-xs spr-uppercase',
-        lozengeToneClasses,
-      ]"
-    >
+  <div v-if="visible" :class="lozengeClasses.baseClasses">
+    <div :class="lozengeClasses.toneClasses">
       <div v-if="$slots.icon" class="spr-flex spr-h-3 spr-w-3 spr-items-center spr-overflow-hidden">
         <slot name="icon" />
       </div>
@@ -29,5 +24,5 @@ import { useLozenge } from './use-lozenge';
 
 const props = defineProps(lozengePropTypes);
 
-const { lozengeClasses, lozengeToneClasses } = useLozenge(props);
+const { lozengeClasses } = useLozenge(props);
 </script>

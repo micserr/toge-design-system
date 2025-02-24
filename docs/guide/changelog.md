@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.4.5 (2025-02-24)
+## 1.4.6 (2025-02-24)
 
 - Fix
   - DQA for sidenav and sidepanel ([#e5d81457](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e5d81457a49c5755782bf0e176d1dbb0645e747e?refName=refs/heads/2025/FIX/ELI/SIDENAV) by @elumilay)

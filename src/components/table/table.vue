@@ -1,6 +1,6 @@
 <template>
   <div
-    class="spr-border-color-weak spr-w-full spr-rounded-border-radius-lg spr-border spr-border-solid spr-overflow-hidden"
+    class="spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid"
   >
     <div v-if="!!$slots.default" :class="[{ 'spr-px-size-spacing-sm spr-py-size-spacing-xs': !!$slots.default }]">
       <slot />
@@ -15,9 +15,9 @@
               :key="keyHeader"
               :class="[
                 'spr-sticky spr-top-0 spr-z-10',
-                'spr-background-color-surface spr-min-h-12 spr-py-size-spacing-3xs spr-px-size-spacing-2xs',
+                'spr-background-color-surface spr-min-h-12 spr-px-size-spacing-2xs spr-py-size-spacing-3xs',
                 'spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-text-start spr-font-medium spr-uppercase',
-                'spr-border-x-0 spr-border-y spr-border-solid spr-border-color-weak',
+                'spr-border-color-weak spr-border-x-0 spr-border-y spr-border-solid',
                 {
                   'spr-cursor-pointer': header.sort,
                   'spr-border-t-0': !$slots.default,
@@ -39,8 +39,8 @@
               :class="[
                 'spr-sticky spr-top-0 spr-z-10',
                 'spr-background-color-surface spr-min-h-12 spr-py-size-spacing-3xs',
-                'spr-text-color-strong spr-text-start spr-font-medium spr-uppercase spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal',
-                'spr-border-y spr-border-solid spr-border-color-weak spr-border-x-0',
+                'spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-text-start spr-font-medium spr-uppercase',
+                'spr-border-color-weak spr-border-x-0 spr-border-y spr-border-solid',
               ]"
             >
               <slot
@@ -101,7 +101,7 @@
           </tr>
           <tr v-else>
             <td :colspan="getHeaderCount" class="spr-overflow-hidden">
-              <div v-if="!$slots.loading" class="spr-flex spr-justify-center spr-items-center">Loading...</div>
+              <div v-if="!$slots.loading" class="spr-flex spr-items-center spr-justify-center">Loading...</div>
               <slot name="loading" class="" />
             </td>
           </tr>
@@ -111,7 +111,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { Icon } from '@iconify/vue';
 
 import SprAvatar from '@/components/avatar/avatar.vue';

@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { lozengePropTypes } from './lozenge';
 import { useLozenge } from './use-lozenge';
 

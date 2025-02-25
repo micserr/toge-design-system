@@ -344,7 +344,7 @@ Slot can be used to add custom content to the avatar. note: adjust your custom c
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { Icon } from '@iconify/vue';
 </script>
 ```
@@ -451,7 +451,7 @@ import { Icon } from '@iconify/vue';
   </tbody>
 </table>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import SprAvatar from "@/components/avatar/avatar.vue";
 
 import { Icon } from '@iconify/vue';

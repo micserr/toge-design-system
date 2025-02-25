@@ -1,9 +1,9 @@
-<script setup>
-import { ref } from 'vue'
+<script lang="ts" setup>
+import { ref } from 'vue';
 
-const msg = ref('Hello Worldsss!')
+const msg = ref('Hello Worldsss!');
 
-const submit = () => alert(msg.value)
+const submit = () => alert(msg.value);
 </script>
 
 <template>

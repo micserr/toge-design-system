@@ -40,7 +40,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { Icon } from '@iconify/vue';
 import { chipsPropTypes } from './chips';
 import { useChips } from './use-chips';

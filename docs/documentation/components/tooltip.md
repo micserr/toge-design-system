@@ -157,7 +157,7 @@ You can enable or disable the maximum width of the tooltip by using the `has-max
 </spr-tooltip>
 ```
 
-<script setup lang="ts">
+<script lang="ts" setup>
   import SprTooltip from "@/components/tooltip/tooltip.vue";
   import SprButton from "@/components/button/button.vue";
 </script>

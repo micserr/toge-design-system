@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import { computed, ref } from 'vue';
 import { Repl, useStore, useVueImportMap, mergeImportMap } from '@vue/repl';
 import Monaco from '@vue/repl/monaco-editor';

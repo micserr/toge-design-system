@@ -135,7 +135,7 @@ Here's how to use your newly created component:
   <spr-your-component size="medium" :disabled="false" @click="handleClick">Component Content</spr-your-component>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 const handleClick = (evt: MouseEvent) => {
   console.log('Component clicked!', evt);
 };

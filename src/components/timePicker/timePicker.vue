@@ -31,7 +31,7 @@
           v-for="option in filteredOptions"
           :key="option"
           :class="[
-            'spr-flex spr-justify-between spr-body-xs-regular spr-p-size-spacing-3xs spr-rounded-border-radius-md spr-cursor-pointer',
+            'spr-body-xs-regular spr-flex spr-cursor-pointer spr-justify-between spr-rounded-border-radius-md spr-p-size-spacing-3xs',
             'hover:spr-background-color-hover',
             {
               'spr-background-color-single-active spr-rounded-border-radius-md':
@@ -55,7 +55,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { Icon } from '@iconify/vue';
 
 import { timePickerPropTypes, timePickerEmitTypes } from './timePicker';

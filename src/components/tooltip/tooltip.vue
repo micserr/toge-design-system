@@ -5,7 +5,7 @@
     :placement="placement"
   >
     <template #popper>
-      <p v-if="text">{{ text }}</p>
+      <span v-if="text">{{ text }}</span>
 
       <slot name="popper-content" />
     </template>

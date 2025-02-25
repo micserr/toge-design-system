@@ -1,10 +1,11 @@
 # Changelog
-## 1.4.5 (2025-02-24)
+## 1.4.11 (2025-02-25)
 -Feature
-  - Username input field ([#23149e86](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23149e86854e78e8d7f4109d5f3551df8ff5b1fb?refName=refs/heads/2025/FEATURE/Xyrk/EMAIL_USERNAME_PASSWORD_URL_INPUT_FIELDS) by @jfabula)
-  - Email input field ([#a1a0387a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a1a0387ac64d59ffc6669df4e54e4baaa387e6f7?refName=refs/heads/2025/FEATURE/Xyrk/EMAIL_USERNAME_PASSWORD_URL_INPUT_FIELDS) by @jfabula)
-  - Password input field ([#5b1e01ab](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5b1e01ab8a74921d700f944db4e58a966cf6dab5?refName=refs/heads/2025/FEATURE/Xyrk/EMAIL_USERNAME_PASSWORD_URL_INPUT_FIELDS) by @jfabula)
-  - URL input field ([#f08956d1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f08956d15959818d264dbe09e321e92dddd4ad7c?refName=refs/heads/2025/FEATURE/Xyrk/EMAIL_USERNAME_PASSWORD_URL_INPUT_FIELDS) by @jfabula)
+  - Username input field ([#d001cb3a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d001cb3a51a0ae2c568d4b5e46c44d6dba7d883c?refName=refs/heads/2025/FEATURE/Xyrk/SEARCH_USERNAME_EMAIL_PASSWORD_URL_FIELD) by @jfabula)
+  - Email input field ([#66db9867](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/66db986714fd3315c66c1a20106ad7d018d58450?refName=refs/heads/2025/FEATURE/Xyrk/SEARCH_USERNAME_EMAIL_PASSWORD_URL_FIELD) by @jfabula)
+  - Password input field ([#fd1614ce](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/fd1614ce492a50b324c5d53ea25705e953d60382?refName=refs/heads/2025/FEATURE/Xyrk/SEARCH_USERNAME_EMAIL_PASSWORD_URL_FIELD) by @jfabula)
+  - URL input field ([#502d7800](hhttps://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/502d7800207a9d09e6e1136d86820250a804d4cb?refName=refs/heads/2025/FEATURE/Xyrk/SEARCH_USERNAME_EMAIL_PASSWORD_URL_FIELD) by @jfabula)
+  - Search refactored input field ([#a68a739d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a68a739db3d6fc1767a44939e76a93ecde97d2a5?refName=refs/heads/2025/FEATURE/Xyrk/SEARCH_USERNAME_EMAIL_PASSWORD_URL_FIELD) by @jfabula)
 
 ## 1.4.10 (2025-02-25)
 

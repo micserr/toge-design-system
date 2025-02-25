@@ -73,7 +73,7 @@ defining the navigation links has 2 sections, `top` and `bottom`. Each section c
   </spr-sidenav>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const navLinks = ref({
@@ -427,7 +427,7 @@ Here’s a example of how to implement the active navigation property:
   </spr-sidenav>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const activeNav = ref({
@@ -606,7 +606,7 @@ The `iconBgColor` property currently can only handle 2 values `green` or `purple
   </spr-sidenav>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const quickActions = ref([
@@ -873,7 +873,7 @@ Using the `@search` event, you can handle the search functionality.
   </spr-sidenav>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 const handleSearch = (search) => {
   console.log(search);
 };
@@ -904,7 +904,7 @@ Using the `@notifications` or `@requests` event, you can handle the notification
   </spr-sidenav>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 const handleNotifications = (notifications) => {
   console.log(notifications);
 };
@@ -932,7 +932,7 @@ The user menu allows you to add a user avatar at the bottom of the side navigati
   </spr-sidenav>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const userMenu = ref({
@@ -1175,7 +1175,7 @@ Here’s a full example of how to implement the Sidenav component with the above
   </spr-sidenav>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 import SprSidenav from '@/components/sidenav/sidenav.vue';

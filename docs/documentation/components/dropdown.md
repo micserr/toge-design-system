@@ -34,7 +34,7 @@ Here is a basic example of a dropdown. Since the dropdown is a wrapper component
   </spr-dropdown>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const inputText = ref('');
@@ -93,7 +93,7 @@ Every time you pass the pre-selected-items prop, the `@get-selected-item` emit f
   </spr-dropdown>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const inputText = ref('');
@@ -336,7 +336,7 @@ Dropdowns also support multi-select. You can enable this feature by passing the 
   </spr-dropdown>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const inputText = ref('');
@@ -396,7 +396,7 @@ const handleMultiSelectedItem = (item) => {
   </spr-dropdown>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const inputText = ref('');

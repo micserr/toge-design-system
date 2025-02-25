@@ -7,11 +7,13 @@ The Sidepanel component is a reusable UI element designed to display contextual 
 ## Basic Usage
 
 <spr-button tone="success" @click="isSidepanelOpen = true">Open Sidepanel</spr-button>
-<spr-sidepanel 
-  :is-open="isSidepanelOpen"
-  @close="isSidepanelOpen = false"
-  header-title="Sidepanel Example"
+<spr-sidepanel
+:is-open="isSidepanelOpen"
+@close="isSidepanelOpen = false"
+header-title="Sidepanel Example"
+
 >
+
   <div class="spr-p-4">
     Sidepanel Content
   </div>
@@ -23,11 +25,10 @@ The Sidepanel component is a reusable UI element designed to display contextual 
   </template>
 </spr-sidepanel>
 
-
 ```vue
 <template>
   <spr-button tone="success" @click="isSidepanelOpen = true">Open Sidepanel</spr-button>
-  <spr-sidepanel 
+  <spr-sidepanel
     :is-open="isSidepanelOpen"
     @close="isSidepanelOpen = false"
     header-title="Sidepanel Example"
@@ -53,40 +54,46 @@ The Sidepanel component is a reusable UI element designed to display contextual 
   <spr-button tone="success" @click="isLargeSidepanelOpen = true">Large</spr-button>
 </div>
 
-<spr-sidepanel 
-  size="sm"
-  :is-open="isSmallSidepanelOpen"
-  @close="isSmallSidepanelOpen = false"
-  header-title="Sidepanel Small"
+<spr-sidepanel
+size="sm"
+:is-open="isSmallSidepanelOpen"
+@close="isSmallSidepanelOpen = false"
+header-title="Sidepanel Small"
+
 >
+
   <div class="spr-p-4">
     360px
   </div>
 </spr-sidepanel>
 
-<spr-sidepanel 
-  size="md"
-  :is-open="isMediumSidepanelOpen"
-  @close="isMediumSidepanelOpen = false"
-  header-title="Sidepanel Medium"
+<spr-sidepanel
+size="md"
+:is-open="isMediumSidepanelOpen"
+@close="isMediumSidepanelOpen = false"
+header-title="Sidepanel Medium"
+
 >
+
   <div class="spr-p-4">
     420px
   </div>
 </spr-sidepanel>
 
-<spr-sidepanel 
-  size="lg"
-  :is-open="isLargeSidepanelOpen"
-  @close="isLargeSidepanelOpen = false"
-  header-title="Sidepanel Large"
+<spr-sidepanel
+size="lg"
+:is-open="isLargeSidepanelOpen"
+@close="isLargeSidepanelOpen = false"
+header-title="Sidepanel Large"
+
 >
+
   <div class="spr-p-4">
     480px
   </div>
 </spr-sidepanel>
 
-```vue
+````vue
 <template>
   <div class="flex space-x-4">
     <spr-button tone="success" @click="isSmallSidepanelOpen = true">Small</spr-button>
@@ -94,7 +101,7 @@ The Sidepanel component is a reusable UI element designed to display contextual 
     <spr-button tone="success" @click="isLargeSidepanelOpen = true">Large</spr-button>
   </div>
 
-  <spr-sidepanel 
+  <spr-sidepanel
     size="sm"
     :is-open="isSmallSidepanelOpen"
     @close="isSmallSidepanelOpen = false"
@@ -104,7 +111,7 @@ The Sidepanel component is a reusable UI element designed to display contextual 
     360px
   </div>
   </spr-sidepanel>
-  <spr-sidepanel 
+  <spr-sidepanel
     size="md"
     :is-open="isMediumSidepanelOpen"
     @close="isMediumSidepanelOpen = false"
@@ -114,7 +121,7 @@ The Sidepanel component is a reusable UI element designed to display contextual 
     420px
   </div>
   </spr-sidepanel>
-  <spr-sidepanel 
+  <spr-sidepanel
     size="lg"
     :is-open="isLargeSidepanelOpen"
     @close="isLargeSidepanelOpen = false"
@@ -159,14 +166,14 @@ The Sidepanel component is a reusable UI element designed to display contextual 
   </spr-sidepanel>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const isSmallSidepanelOpen = ref(false);
 const isMediumSidepanelOpen = ref(false);
 const isLargeSidepanelOpen = ref(false);
 </script>
-```
+````
 
 ## Slot
 

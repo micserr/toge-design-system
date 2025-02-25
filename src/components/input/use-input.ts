@@ -4,7 +4,7 @@ import { useVModel } from '@vueuse/core';
 import classNames from 'classnames';
 
 import type { SetupContext } from 'vue';
-import { type InputPropTypes, type InputEmitTypes } from './input';
+import type { InputPropTypes, InputEmitTypes } from './input';
 
 interface InputClasses {
   baseClasses: string;

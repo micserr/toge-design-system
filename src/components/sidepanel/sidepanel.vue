@@ -1,8 +1,7 @@
 <template>
   <div
     v-if="isOpen && hasBackdrop"
-    class="spr-w-screen spr-h-screen spr-bg-mushroom-700/60 spr-fixed spr-top-0 spr-left-0 spr-z-[30]"
-    @click="handleBackdropClick"
+    class="spr-w-screen spr-h-screen spr-bg-mushroom-700/60 spr-fixed spr-top-0 spr-left-0 spr-z-[4000]"
   ></div>
   <Transition
     name="sidepanel"
@@ -17,26 +16,41 @@
     <div
       v-if="isOpen"
       ref="sidepanelRef"
+      role="dialog"
+      aria-labelledby="sidepanel-title"
+      aria-describedby="sidepanel-content"
       :class="[
         sidepanelSizesClasses,
-        'spr-h-[calc(100vh-32px)] spr-bg-white-50 spr-pr-rounded-border-radius-xl spr-fixed spr-right-4 spr-z-[30] spr-min-h-[200px] spr-flex spr-flex-col spr-top-1/2 spr-translate-y-[-50%] spr-drop-shadow',
+        'spr-h-[calc(100vh-32px)] spr-bg-white-50 spr-rounded-border-radius-xl spr-fixed spr-right-4 spr-z-[4000] spr-min-h-[200px] spr-flex spr-flex-col spr-top-1/2 spr-translate-y-[-50%] spr-drop-shadow',
       ]"
       :style="{ height: typeof height === 'number' ? `${height}px` : height }"
     >
       <template v-if="!hideHeader">
-        <div
-          v-if="!$slots.header"
-          class="spr-tw-min-h-12 spr-subheading-xs spr-text-color-strong spr-flex spr-justify-between spr-border-0 spr-border-b spr-border-solid spr-border-mushroom-200 spr-p-4"
+        <div 
+          v-if="!$slots.header" 
+          class="spr-flex spr-justify-between spr-tw-min-h-12 spr-p-4 spr-border-0 spr-border-b spr-border-solid spr-border-mushroom-200 spr-text-color-strong"
         >
-          {{ headerTitle }}
-          <Icon class="spr-cursor-pointer" icon="ph:x" @click="handleClose" />
+          <div 
+            id="sidepanel-title" 
+            class="spr-subheading-xs"
+          >
+            {{ headerTitle }}
+          </div>
+          <Icon 
+            class="spr-cursor-pointer spr-w-5 spr-h-5 spr-text-color-weak"
+            icon="ph:x"
+            @click="handleClose"
+          />
         </div>
         <div v-else>
           <slot name="header"></slot>
         </div>
       </template>
-      <div :class="['spr-overflow-y-auto spr-p-4', { 'spr-mb-[52px]': $slots.footer }]">
-        <slot> Sidepanel Content </slot>
+      <div 
+        id="sidepanel-content" 
+        :class="['spr-overflow-y-auto', {'spr-mb-[52px]': $slots.footer}]"
+      >
+        <slot />
       </div>
       <div
         v-if="$slots.footer"
@@ -63,6 +77,5 @@ const {
   sidepanelMidState,
   sidepanelStartEndState,
   handleClose,
-  handleBackdropClick,
 } = useSidepanel(props, emit);
 </script>

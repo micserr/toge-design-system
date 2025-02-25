@@ -1,9 +1,8 @@
 import { ref } from 'vue';
 
-import classNames from 'classnames';
 export const useInputPassword = () => {
 
-  const iconClasses = classNames(
+  const iconClasses = (
     'spr-cursor-pointer'
   )
   const showPassword = ref(false);

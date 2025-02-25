@@ -4,7 +4,7 @@ export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<
 
 const TRAILING_SIZES = ['xs', 'sm', 'md'] as const;
 
-export const INPUT_TYPES = ['text', 'search', 'number'] as const;
+export const INPUT_TYPES = ['text', 'search', 'number', 'password'] as const;
 
 export const TYPE_HAS_TRAILING_ICONS = ['search'] as const;
 
@@ -51,6 +51,18 @@ export const inputPropTypes = {
     validator: (value: (typeof TRAILING_SIZES)[number]) => TRAILING_SIZES.includes(value),
     default: 'sm',
   },
+  helperText: {
+    type: String,
+    default: ''
+  },
+  helperIcon: {
+    type: String,
+    default: null
+  },
+  displayHelper: {
+    type: Boolean,
+    default: false,
+  }
 };
 
 export const inputEmitTypes = {

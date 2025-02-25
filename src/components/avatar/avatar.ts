@@ -5,6 +5,8 @@ export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<
 const AVATAR_SIZE = ['2xl', 'xl', 'lg', 'md', 'sm', 'xs', '2xs'] as const;
 const AVATAR_PRIMARY = ['primary', 'secondary'] as const;
 const AVATAR_STATUS = ['danger', 'disabled', 'information', 'brand'] as const;
+const AVATAR_VARIANT = ['image', 'initials', 'client', 'user', 'user-group', 'count'] as const;
+
 export const avatarPropTypes = {
   src: {
     type: String,
@@ -32,7 +34,7 @@ export const avatarPropTypes = {
   },
   initial: {
     type: String,
-    default: '',
+    default: 'Initial',
   },
   color: {
     type: String,
@@ -45,8 +47,13 @@ export const avatarPropTypes = {
     default: 'brand',
   },
   count: {
-    type: Boolean,
-    default: false,
+    type: Number,
+    default: 0,
+  },
+  variant: {
+    type: String,
+    validator: (value: (typeof AVATAR_VARIANT)[number]) => AVATAR_VARIANT.includes(value),
+    default: 'initial',
   },
 };
 

@@ -27,8 +27,8 @@
     v-model="inputValue"
     label="Sample Input"
     display-helper
-    @input="onInput"
     error
+    @input="onInput"
   >
     <template #helperMessage>
       <icon icon="ph:warning-circle-fill"/>

@@ -64,6 +64,7 @@ export default tseslint.config(
             'tabs',
             'tooltip',
             'chips',
+            'textarea',
           ],
         },
       ],

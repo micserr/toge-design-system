@@ -1,18 +1,16 @@
 <template>
   <div :class="avatarClassses.baseClasses">
-    <template v-if="!initial">
-      <img v-if="!$slots.default && src" :src="src" :alt="alt" :class="avatarClassses.imageClasses" />
-
-      <div
-        v-else
-        :class="[avatarClassses.imageClasses, 'avatar__slot spr-border-color-weak spr-border spr-border-solid']"
-      >
-        <slot />
+    <template v-if="['image', 'client', 'user', 'user-group'].includes(props.variant) || $slots.default">
+      <div :class="[avatarClassses.imageClasses, 'avatar__slot spr-border-color-weak spr-border spr-border-solid']">
+        <slot>
+          <img v-if="src" :src="src" :alt="alt" :class="avatarClassses.imageClasses" />
+          <Icon v-else :icon="getIconVariant" />
+        </slot>
       </div>
     </template>
 
     <div v-else :class="avatarClassses.nameInitalsClasses">
-      {{ count ? `+${initial}` : initial.charAt(0) }}
+      {{ ['count'].includes(props.variant) ? `+${count}` : initial.charAt(0) }}
     </div>
 
     <span v-if="notification" :class="avatarClassses.notificationClasses">
@@ -28,10 +26,11 @@
 <script setup lang="ts">
 import { avatarPropTypes } from './avatar';
 import { useAvatar } from './use-avatar';
+import { Icon } from '@iconify/vue';
 
 import SprBadge from '@/components/badge/badge.vue';
 
 const props = defineProps(avatarPropTypes);
 
-const { avatarClassses, getAvatarSize } = useAvatar(props);
+const { avatarClassses, getAvatarSize, getIconVariant } = useAvatar(props);
 </script>

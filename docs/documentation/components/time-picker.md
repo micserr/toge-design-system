@@ -29,14 +29,14 @@ allows users to select a time from a dropdown list. It supports both 12-hour and
 
 ## Basic Usage
 
-<spr-timePicker 
+<spr-time-picker 
     v-model="selectedValue"
     :label="`Timepicker value: ${selectedValue || ''}`"
   />
 
 ```vue
 <template>
-  <spr-timePicker v-model="selectedValue" :label="`Timepicker value: ${selectedValue || ''}`" />
+  <spr-time-picker v-model="selectedValue" :label="`Timepicker value: ${selectedValue || ''}`" />
 </template>
 
 <script lang="ts" setup>
@@ -49,12 +49,12 @@ const selectedValue = ref('');
 ## Format
 
 <div class="spr-flex spr-flex-col spr-gap-4">
-  <spr-timePicker 
+  <spr-time-picker 
       v-model="selectedValue"
       label="12 hour format"
       format="12"
     />
-  <spr-timePicker
+  <spr-time-picker
       v-model="selectedValue"
       label="24 hour format"
       format="24"
@@ -64,9 +64,9 @@ const selectedValue = ref('');
 ```vue
 <template>
   <div class="spr-flex spr-flex-col spr-gap-4">
-    <spr-timePicker v-model="selectedValue" label="12 hour format" format="12" />
+    <spr-time-picker v-model="selectedValue" label="12 hour format" format="12" />
 
-    <spr-timePicker v-model="selectedValue" label="24 hour format" format="24" />
+    <spr-time-picker v-model="selectedValue" label="24 hour format" format="24" />
   </div>
 </template>
 
@@ -79,7 +79,7 @@ const selectedValue = ref('');
 
 ## Disable Typing
 
-<spr-timePicker 
+<spr-time-picker 
     v-model="selectedValue"
     label="Timepicker"
     disableTyping
@@ -88,7 +88,7 @@ const selectedValue = ref('');
 
 ```vue
 <template>
-  <spr-timePicker v-model="selectedValue" label="Timepicker" disableTyping format="12" />
+  <spr-time-picker v-model="selectedValue" label="Timepicker" disableTyping format="12" />
 </template>
 
 <script lang="ts" setup>
@@ -100,11 +100,11 @@ const selectedValue = ref('');
 
 ## Error
 
-<spr-timePicker v-model="selectedValue" label="Timepicker" disableTyping format="12" error='true' />
+<spr-time-picker v-model="selectedValue" label="Timepicker" disableTyping format="12" error='true' />
 
 ```vue
 <template>
-  <spr-timePicker v-model="selectedValue" label="Timepicker" disableTyping format="12" error="true" />
+  <spr-time-picker v-model="selectedValue" label="Timepicker" disableTyping format="12" error="true" />
 </template>
 
 <script lang="ts" setup>
@@ -116,7 +116,7 @@ const selectedValue = ref('');
 
 ## Disabled
 
-<spr-timePicker 
+<spr-time-picker 
     v-model="selectedValue"
     label="Timepicker"
     disabled
@@ -124,7 +124,7 @@ const selectedValue = ref('');
 
 ```vue
 <template>
-  <spr-timePicker v-model="selectedValue" label="Timepicker" disabled />
+  <spr-time-picker v-model="selectedValue" label="Timepicker" disabled />
 </template>
 
 <script lang="ts" setup>
@@ -136,11 +136,11 @@ const selectedValue = ref('');
 
 ## Full width
 
-<spr-timePicker v-model="selectedValue" label="Timepicker" fullWidth />
+<spr-time-picker v-model="selectedValue" label="Timepicker" fullWidth />
 
 ```vue
 <template>
-  <spr-timePicker v-model="selectedValue" label="Timepicker" fullWidth />
+  <spr-time-picker v-model="selectedValue" label="Timepicker" fullWidth />
 </template>
 
 <script lang="ts" setup>
@@ -198,7 +198,7 @@ const selectedValue = ref('');
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-import SprTimePicker from "@/components/timePicker/timePicker.vue"
+import SprTimePicker from "@/components/time-picker/time-picker.vue"
 import SprSwitch from '@/components/switch/switch.vue';
 
 const switchValue7 = ref(true);

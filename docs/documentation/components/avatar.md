@@ -2,44 +2,46 @@
 
 ## Basic Usage
 
-<spr-avatar src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" :notification="true" :badge="true" size="2xl" />
+<spr-avatar  />
 
 ```vue
 <template>
-  <spr-avatar
-    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-    alt="User Avatar"
-    :notification="true"
-    :badge="true"
-    size="2xl"
-  />
+  <spr-avatar />
 </template>
 ```
 
 ## Notification
 
-<spr-avatar src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" :notification="true" />
+<spr-avatar  :notification="true" />
 
 ```vue
 <template>
-  <spr-avatar
-    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-    alt="User Avatar"
-    :notification="true"
-  />
+  <spr-avatar :notification="true" />
 </template>
 ```
 
 ## Badge
 
-<spr-avatar src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" :badge="true" />
+<spr-avatar  :badge="true" />
+
+```vue
+<template>
+  <spr-avatar :badge="true" />
+</template>
+```
+
+## Image
+
+<spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" :notification="true" :badge="true" size="2xl" />
 
 ```vue
 <template>
   <spr-avatar
+    variant="image"
     src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-    alt="User Avatar"
+    :notification="true"
     :badge="true"
+    size="2xl"
   />
 </template>
 ```
@@ -49,19 +51,19 @@
 avatar component has 7 different sizes. You can use the `size` prop to set the size of the avatar. The default size is `2xl`. The available sizes are `2xl`, `xl`, `lg`, `md`, `sm`, `xs`, `2xs`.
 
 <div class="spr-space-x-3">
-  <spr-avatar src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="2xl" />
+  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="2xl" />
 
-  <spr-avatar src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="xl" />
+  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="xl" />
 
-  <spr-avatar src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="lg"/>
+  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="lg"/>
 
-  <spr-avatar src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="md"/>
+  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="md"/>
 
-  <spr-avatar src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="sm" />
+  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="sm" />
 
-  <spr-avatar src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" :notification="true" :badge="true" size="xs"/>
+  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" :notification="true" :badge="true" size="xs"/>
 
-<spr-avatar src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" :notification="true" :badge="true"size="2xs" />
+<spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" :notification="true" :badge="true"size="2xs" />
 
 </div>
 
@@ -69,6 +71,7 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
 <template>
   <div>
     <spr-avatar
+      variant="image"
       src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
       :notification="true"
       :badge="true"
@@ -76,6 +79,7 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
     />
 
     <spr-avatar
+      variant="image"
       src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
       :notification="true"
       :badge="true"
@@ -83,6 +87,7 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
     />
 
     <spr-avatar
+      variant="image"
       src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
       :notification="true"
       :badge="true"
@@ -90,6 +95,7 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
     />
 
     <spr-avatar
+      variant="image"
       src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
       :notification="true"
       :badge="true"
@@ -97,6 +103,7 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
     />
 
     <spr-avatar
+      variant="image"
       src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
       :notification="true"
       :badge="true"
@@ -104,6 +111,7 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
     />
 
     <spr-avatar
+      variant="image"
       src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
       :notification="true"
       :badge="true"
@@ -111,6 +119,7 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
     />
 
     <spr-avatar
+      variant="image"
       src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
       :notification="true"
       :badge="true"
@@ -120,50 +129,112 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
 </template>
 ```
 
-## Initial
+## Variant
 
 <div class="spr-grid spr-gap-4">
   <div class="spr-space-x-3">
-    <spr-avatar initial="John" :notification="true" :badge="true" size="2xl" />
-    <spr-avatar initial="Mark" :notification="true" :badge="true" size="xl" />
-    <spr-avatar initial="Solomon" :notification="true" :badge="true" size="lg" />
-    <spr-avatar initial="Malachi" :notification="true" :badge="true" size="md" />
-    <spr-avatar initial="Abraham" :notification="true" :badge="true" size="sm" />
-    <spr-avatar initial="Zacarias" :notification="true" :badge="true" size="xs" />
-    <spr-avatar initial="Elijah" :notification="true" :badge="true" size="2xs" />
+    <spr-avatar variant="initial" initial="John"   size="2xl" />
+    <spr-avatar variant="initial" initial="Mark"  size="xl" />
+    <spr-avatar variant="initial" initial="Solomon" size="lg" />
+    <spr-avatar variant="initial" initial="Malachi" size="md" />
+    <spr-avatar variant="initial" initial="Abraham" size="sm" />
+    <spr-avatar variant="initial" initial="Zacarias" size="xs" />
+    <spr-avatar variant="initial" initial="Elijah" size="2xs" />
   </div>
 
   <div class="spr-space-x-3">
-    <spr-avatar color='secondary' initial="10" count  size="2xl" />
-    <spr-avatar color='secondary' initial="2" count  size="xl" />
-    <spr-avatar color='secondary' initial="3" count  size="lg" />
-    <spr-avatar color='secondary' initial="4" count  size="md" />
-    <spr-avatar color='secondary' initial="5" count  size="sm" />
-    <spr-avatar color='secondary' initial="6" count  size="xs" />
-    <spr-avatar color='secondary' initial="7" count  size="2xs" />
+    <spr-avatar variant="count" count="10" color="secondary" size="2xl" />
+    <spr-avatar variant="count" count="2"  color="secondary" size="xl" />
+    <spr-avatar variant="count" count="3"  color="secondary" size="lg" />
+    <spr-avatar variant="count" count="4"  color="secondary" size="md" />
+    <spr-avatar variant="count" count="5"  color="secondary" size="sm" />
+    <spr-avatar variant="count" count="6"  color="secondary" size="xs" />
+    <spr-avatar variant="count" count="7"  color="secondary" size="2xs" />
+  </div>
+
+  <div class="spr-space-x-3">
+    <spr-avatar variant="user-group" size="2xl" />
+    <spr-avatar variant="user-group" size="xl" />
+    <spr-avatar variant="user-group" size="lg" />
+    <spr-avatar variant="user-group" size="md" />
+    <spr-avatar variant="user-group" size="sm" />
+    <spr-avatar variant="user-group" size="xs" />
+    <spr-avatar variant="user-group" size="2xs" />
+  </div>
+
+  <div class="spr-space-x-3">
+    <spr-avatar variant="user"  size="2xl" />
+    <spr-avatar variant="user"  size="xl" />
+    <spr-avatar variant="user"  size="lg" />
+    <spr-avatar variant="user"  size="md" />
+    <spr-avatar variant="user"  size="sm" />
+    <spr-avatar variant="user"  size="xs" />
+    <spr-avatar variant="user"  size="2xs" />
+  </div>
+
+  <div class="spr-space-x-3">
+    <spr-avatar variant="client" size="2xl" />
+    <spr-avatar variant="client" size="xl" />
+    <spr-avatar variant="client" size="lg" />
+    <spr-avatar variant="client" size="md" />
+    <spr-avatar variant="client" size="sm" />
+    <spr-avatar variant="client" size="xs" />
+    <spr-avatar variant="client" size="2xs" />
   </div>
 </div>
 
 ```vue
 <template>
-  <div>
-    <spr-avatar initial="A" :notification="true" :badge="true" size="2xl" />
-    <spr-avatar initial="A" :notification="true" :badge="true" size="xl" />
-    <spr-avatar initial="A" :notification="true" :badge="true" size="lg" />
-    <spr-avatar initial="A" :notification="true" :badge="true" size="md" />
-    <spr-avatar initial="A" :notification="true" :badge="true" size="sm" />
-    <spr-avatar initial="A" :notification="true" :badge="true" size="xs" />
-    <spr-avatar initial="A" :notification="true" :badge="true" size="2xs" />
-  </div>
+  <div class="spr-grid spr-gap-4">
+    <div class="spr-space-x-3">
+      <spr-avatar variant="initial" initial="John" size="2xl" />
+      <spr-avatar variant="initial" initial="Mark" size="xl" />
+      <spr-avatar variant="initial" initial="Solomon" size="lg" />
+      <spr-avatar variant="initial" initial="Malachi" size="md" />
+      <spr-avatar variant="initial" initial="Abraham" size="sm" />
+      <spr-avatar variant="initial" initial="Zacarias" size="xs" />
+      <spr-avatar variant="initial" initial="Elijah" size="2xs" />
+    </div>
 
-  <div>
-    <spr-avatar color="secondary" initial="10" count size="2xl" />
-    <spr-avatar color="secondary" initial="2" count size="xl" />
-    <spr-avatar color="secondary" initial="3" count size="lg" />
-    <spr-avatar color="secondary" initial="4" count size="md" />
-    <spr-avatar color="secondary" initial="5" count size="sm" />
-    <spr-avatar color="secondary" initial="6" count size="xs" />
-    <spr-avatar color="secondary" initial="7" count size="2xs" />
+    <div class="spr-space-x-3">
+      <spr-avatar variant="count" count="10" color="secondary" size="2xl" />
+      <spr-avatar variant="count" count="2" color="secondary" size="xl" />
+      <spr-avatar variant="count" count="3" color="secondary" size="lg" />
+      <spr-avatar variant="count" count="4" color="secondary" size="md" />
+      <spr-avatar variant="count" count="5" color="secondary" size="sm" />
+      <spr-avatar variant="count" count="6" color="secondary" size="xs" />
+      <spr-avatar variant="count" count="7" color="secondary" size="2xs" />
+    </div>
+
+    <div class="spr-space-x-3">
+      <spr-avatar variant="user-group" size="2xl" />
+      <spr-avatar variant="user-group" size="xl" />
+      <spr-avatar variant="user-group" size="lg" />
+      <spr-avatar variant="user-group" size="md" />
+      <spr-avatar variant="user-group" size="sm" />
+      <spr-avatar variant="user-group" size="xs" />
+      <spr-avatar variant="user-group" size="2xs" />
+    </div>
+
+    <div class="spr-space-x-3">
+      <spr-avatar variant="user" size="2xl" />
+      <spr-avatar variant="user" size="xl" />
+      <spr-avatar variant="user" size="lg" />
+      <spr-avatar variant="user" size="md" />
+      <spr-avatar variant="user" size="sm" />
+      <spr-avatar variant="user" size="xs" />
+      <spr-avatar variant="user" size="2xs" />
+    </div>
+
+    <div class="spr-space-x-3">
+      <spr-avatar variant="client" size="2xl" />
+      <spr-avatar variant="client" size="xl" />
+      <spr-avatar variant="client" size="lg" />
+      <spr-avatar variant="client" size="md" />
+      <spr-avatar variant="client" size="sm" />
+      <spr-avatar variant="client" size="xs" />
+      <spr-avatar variant="client" size="2xs" />
+    </div>
   </div>
 </template>
 ```
@@ -281,18 +352,18 @@ import { Icon } from '@iconify/vue';
 ## Status
 
 <div class="spr-space-x-3">
-  <spr-avatar status="danger" initial="Matthew"  :badge="true" size="2xl" />
-  <spr-avatar status="disabled" initial="Mark"  :badge="true" size="2xl" />
-  <spr-avatar status="information" initial="John"  :badge="true" size="2xl" />
-  <spr-avatar status="brand" initial="Mary"  :badge="true" size="2xl" />
+  <spr-avatar variant="initial" status="danger" initial="Matthew"  :badge="true" size="2xl" />
+  <spr-avatar variant="initial" status="disabled" initial="Mark"  :badge="true" size="2xl" />
+  <spr-avatar variant="initial" status="information" initial="John"  :badge="true" size="2xl" />
+  <spr-avatar variant="initial" status="brand" initial="Mary"  :badge="true" size="2xl" />
 </div>
 
 ```vue
 <template>
-  <spr-avatar status="danger" initial="A" :badge="true" size="2xl" />
-  <spr-avatar status="disabled" initial="A" :badge="true" size="2xl" />
-  <spr-avatar status="information" initial="A" :badge="true" size="2xl" />
-  <spr-avatar status="brand" initial="A" :badge="true" size="2xl" />
+  <spr-avatar variant="initial" status="danger" initial="Matthew" :badge="true" size="2xl" />
+  <spr-avatar variant="initial" status="disabled" initial="Mark" :badge="true" size="2xl" />
+  <spr-avatar variant="initial" status="information" initial="John" :badge="true" size="2xl" />
+  <spr-avatar variant="initial" status="brand" initial="Mary" :badge="true" size="2xl" />
 </template>
 ```
 
@@ -303,72 +374,79 @@ import { Icon } from '@iconify/vue';
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Name</th> 
       <th>Description</th>
       <th>Type</th>
       <th>Default</th>
     </tr>
   </thead>
+
   <tbody>
-    <tr>
+    <tr> 
       <td>src</td>
-      <td>URL of the avatar image</td>
+      <td>URL pointing to the image used as the avatar. This can be a link to an online image resource.</td>
       <td>string</td>
       <td>''</td>
     </tr>
     <tr>
       <td>alt</td>
-      <td>Alternative text for the image</td>
+      <td>Alternative text to display when the avatar image cannot be loaded. It serves as a description of the image for accessibility purposes.</td>
       <td>string</td>
       <td>Avatar</td>
     </tr>
     <tr>
       <td>notification</td>
-      <td>Show notification indicator</td>
+      <td>Flag that determines if a notification indicator should be shown on the avatar. A true value will display the notification icon.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
       <td>badge</td>
-      <td>Show status badge</td>
+      <td>Indicates whether a status badge should be displayed on the avatar. Typically used to signify a user's online/offline status or activity.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
       <td>size</td>
-      <td>Size of the avatar</td>
+      <td>Defines the size of the avatar. Options range from extra small to extra large, offering flexibility for different UI layouts.</td>
       <td>'2xl', 'xl', 'lg', 'md', 'sm', 'xs', '2xs'</td>
       <td>2xl</td>
     </tr>
     <tr>
       <td>NotificationText</td>
-      <td>Text for the notification</td>
+      <td>The text that appears within the notification indicator. This can display a message or a count depending on the use case.</td>
       <td>string</td>
       <td>''</td>
     </tr>
     <tr>
       <td>initial</td>
-      <td>Initials to display</td>
+      <td>Initials that will be displayed when using the 'initials' variant of the avatar. This is a fallback option when no image is provided.</td>
       <td>string</td>
-      <td>''</td>
+      <td>'Initial'</td>
     </tr>
     <tr>
       <td>color</td>
-      <td>Background color of the avatar</td>
+      <td>Determines the background color of the avatar. It can either be set to a primary color or a secondary color to match the design theme.</td>
       <td>'primary' | 'secondary'</td>
       <td>'primary'</td>
     </tr>
     <tr>
       <td>status</td>
-      <td>Status indicator for the badge</td>
+      <td>Defines the type of status shown in the avatar's badge. It can indicate a variety of states such as 'danger', 'disabled', 'information', or 'brand'.</td>
       <td>'danger', 'disabled', 'information', 'brand'</td>
       <td>'brand'</td>
     </tr>
     <tr>
       <td>count</td>
-      <td>Enable count display</td>
-      <td>boolean</td>
-      <td>false</td>
+      <td>The numeric text displayed in certain avatar variants to indicate a quantity, such as unread messages or notifications.</td>
+      <td>Number</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Variant</td>
+      <td>Defines the type of avatar to be used. Options include 'image' for a traditional avatar with a picture, 'initials' for displaying text initials, 'client' and 'user' for more personalized avatars, 'user-group' for group representations, and 'count' for showing numbers.</td>
+      <td>'image', 'initials', 'client', 'user', 'user-group', 'count'</td>
+      <td>Initial</td>
     </tr>
   </tbody>
 </table>

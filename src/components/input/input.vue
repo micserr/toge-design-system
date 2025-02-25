@@ -4,14 +4,8 @@
       {{ props.label }}
     </label>
     <div class="spr-relative">
-      <div v-if="hasPrefix" :class="inputClasses.prefixSlotClasses">
-        <slot name="prefix">
-          <Icon v-if="props.type === 'username'" icon="ph:user" />
-          <Icon v-if="props.type === 'email'" icon="ph:envelope" />
-          <div v-if="props.type === 'url'">
-            https://
-          </div>
-        </slot>
+      <div v-if="$slots.prefix" :class="inputClasses.prefixSlotClasses">
+        <slot name="prefix"/>
       </div>
       <input
         :class="[inputClasses.inputTextClasses, { 'number-input': props.type === 'number' }]"
@@ -19,18 +13,14 @@
         :disabled="props.disabled"
         :readonly="props.readonly"
         :value="props.modelValue"
-        :type="evaluateInputType()"
+        :type="props.type"
         @input="onInput"
       />
       <div v-if="$slots.trailing" :class="inputClasses.trailingSlotClasses">
         <slot name="trailing" />
       </div>
-      <div v-if="hasIconSlot" :class="inputClasses.iconSlotClasses">
-        <slot name="icon" >
-          <Icon v-if="props.type === 'search'" icon="ph:magnifying-glass" />
-          <Icon v-if="props.type === 'password'" :icon="evaluateEyeIcon()" @click="toggleShowPassword()"/>
-          <Icon v-if="props.type === 'url'" icon="ph:question-fill" />
-        </slot>
+      <div v-if="$slots.icon" :class="inputClasses.iconSlotClasses">
+        <slot name="icon"/>
       </div>
     </div>
   </div>
@@ -49,12 +39,7 @@ const slots = useSlots();
 
 const { 
   inputClasses, 
-  onInput, 
-  hasPrefix, 
-  hasIconSlot, 
-  toggleShowPassword, 
-  evaluateEyeIcon, 
-  evaluateInputType 
+  onInput
  } = 
    useInput(props, slots, emit);
 </script>

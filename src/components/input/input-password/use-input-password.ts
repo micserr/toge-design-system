@@ -1,24 +1,11 @@
-import { 
-  // toRefs, computed, ComputedRef, 
-  ref } from 'vue';
-// import { useVModel } from '@vueuse/core';
+import { ref } from 'vue';
 
-// import classNames from 'classnames';
+import classNames from 'classnames';
+export const useInputPassword = () => {
 
-// import type { SetupContext } from 'vue';
-// import { type InputPropTypes, type InputEmitTypes } from '@/components/input/input';
-
-interface InputClasses {
-  baseClasses: string;
-  labelClasses: string;
-  inputTextClasses: string;
-  iconSlotClasses: string;
-  prefixSlotClasses: string;
-  trailingSlotClasses: string;
-}
-
-export const useInputPassword = (
-) => {
+  const iconClasses = classNames(
+    'spr-cursor-pointer'
+  )
   const showPassword = ref(false);
 
   const toggleShowPassword = () => {
@@ -33,6 +20,7 @@ export const useInputPassword = (
     return showPassword.value ? 'text' : 'password';
   }
   return {
+    iconClasses,
     toggleShowPassword,
     evaluateEyeIcon,
     evaluatePasswordInputType,

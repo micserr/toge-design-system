@@ -13,10 +13,6 @@ To implement the Sidenav component, use the following syntax:
   <template #logo-image>
     <img src="[logo_image_path]" alt="logo" />
   </template>
-
-  <template #logo-image>
-    <img src="[image_path]" alt="logo" />
-  </template>
 </spr-sidenav>
 ```
 
@@ -31,20 +27,6 @@ The `logo-image` slot allows you to insert a custom logo in the side navigation.
   <img src="[image_path]" alt="logo" />
 </template>
 ```
-
-### Custom Avaratar Image
-
-The `avatar-image` slot allows you to insert a custom avatar image, typically used for the user's profile picture. Use the following template to add an avatar:
-
-```vue
-<template #avatar-image>
-  <img src="[image_path]" alt="logo" />
-</template>
-```
-
-::: info Important to note:
-Replace `[image_path]` with the actual path to your image. This slot renders the image inside the navigation bar.
-:::
 
 ## Icon Component Integration
 
@@ -65,10 +47,6 @@ defining the navigation links has 2 sections, `top` and `bottom`. Each section c
   <spr-sidenav :nav-links="navLinks">
     <template #logo-image>
       <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
-    </template>
-
-    <template #avatar-image>
-      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>
@@ -420,10 +398,6 @@ Here’s a example of how to implement the active navigation property:
     <template #logo-image>
       <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
-
-    <template #avatar-image>
-      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
-    </template>
   </spr-sidenav>
 </template>
 
@@ -598,10 +572,6 @@ The `iconBgColor` property currently can only handle 2 values `green` or `purple
   <spr-sidenav :quick-actions="quickActions" :active-nav="activeNav" :nav-links="navLinks">
     <template #logo-image>
       <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
-    </template>
-
-    <template #avatar-image>
-      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>
@@ -866,10 +836,6 @@ Using the `@search` event, you can handle the search functionality.
     <template #logo-image>
       <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
-
-    <template #avatar-image>
-      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
-    </template>
   </spr-sidenav>
 </template>
 
@@ -897,10 +863,6 @@ Using the `@notifications` or `@requests` event, you can handle the notification
     <template #logo-image>
       <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
-
-    <template #avatar-image>
-      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
-    </template>
   </spr-sidenav>
 </template>
 
@@ -924,10 +886,6 @@ The user menu allows you to add a user avatar at the bottom of the side navigati
   <spr-sidenav :user-menu="userMenu">
     <template #logo-image>
       <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
-    </template>
-
-    <template #avatar-image>
-      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>
@@ -1127,9 +1085,6 @@ Here’s a full example of how to implement the Sidenav component with the above
     <template #logo-image>
       <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
-    <template #avatar-image>
-      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
-    </template>
   </spr-sidenav>
   <div class="spr-flex-1 spr-px-4 spr-py-4 spr-w-full spr-max-w-[calc(100%-60px)] spr-ml-[60px] spr-overflow-auto">
     <h1>Lorem Ipsum</h1>
@@ -1167,10 +1122,6 @@ Here’s a full example of how to implement the Sidenav component with the above
   >
     <template #logo-image>
       <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
-    </template>
-
-    <template #avatar-image>
-      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 </template>

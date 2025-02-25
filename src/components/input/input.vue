@@ -13,14 +13,14 @@
         :disabled="props.disabled"
         :readonly="props.readonly"
         :value="props.modelValue"
-        :type="type"
+        :type="props.type"
         @input="onInput"
       />
       <div v-if="$slots.trailing" :class="inputClasses.trailingSlotClasses">
         <slot name="trailing" />
       </div>
       <div v-if="$slots.icon" :class="inputClasses.iconSlotClasses">
-        <slot name="icon"></slot>
+        <slot name="icon" />
       </div>
       <label
         v-if="props.displayHelper"

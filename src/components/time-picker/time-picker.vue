@@ -58,8 +58,8 @@
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue';
 
-import { timePickerPropTypes, timePickerEmitTypes } from './timePicker';
-import { useTimePicker } from './use-timePicker';
+import { timePickerPropTypes, timePickerEmitTypes } from './time-picker';
+import { useTimePicker } from './use-time-picker';
 
 const props = defineProps(timePickerPropTypes);
 const emit = defineEmits(timePickerEmitTypes);

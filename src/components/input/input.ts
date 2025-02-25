@@ -4,9 +4,10 @@ export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<
 
 const TRAILING_SIZES = ['xs', 'sm', 'md'] as const;
 
-export const INPUT_TYPES = ['text', 'search', 'number', 'password'] as const;
-
-export const TYPE_HAS_TRAILING_ICONS = ['search'] as const;
+export const INPUT_TYPES = [
+  'button', 'checkbox', 'color', 'date', 'datetime-local', 'email', 'file', 'hidden', 'image', 'month', 
+  'number', 'password', 'radio', 'range', 'reset', 'search', 'submit', 'tel', 'text', 'time', 'url', 'week'
+] as const;
 
 export const inputPropTypes = {
   id: {

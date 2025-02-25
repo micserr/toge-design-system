@@ -23,6 +23,10 @@ export const textAreaPropTypes = {
     type: Boolean,
     default: false,
   },
+  readonly: {
+    type: Boolean,
+    default: false,
+  },
   error: {
     type: Boolean,
     default: false,

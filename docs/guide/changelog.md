@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.10 (2025-02-25)
+
+- Chore
+  - textarea readonly ([#93cee4fa](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/93cee4fa229eb85e892c3d45bc994be69334deb7?refName=refs/heads/2025/Chore/andrea/kebabcaseTimepicker) by @adestajo)
+  - timePicker to Kebab Casing ([#cf28f559](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cf28f559ab914d8ed29934c4aaa0986413933013?refName=refs/heads/2025/Chore/andrea/kebabcaseTimepicker) by @adestajo)
+
 ## 1.4.9 (2025-02-24)
 
 - Feature

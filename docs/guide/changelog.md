@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.9 (2025-02-24)
+
+- Feature
+  - Avatar Variant ([#257ebf9b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/257ebf9b29d68f8ce44f8c489375757470742abb?refName=refs%2Fheads%2F2025%2FFearure%2Favatar-variant) by @adestajo)
+
 ## 1.4.8 (2025-02-24)
 
 - Feature
@@ -13,6 +18,7 @@
   - Textarea ([#1c8100f4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1c8100f431890eb773e6faf2cc850bcbd388e896?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Ftextarea) by @adestajo)
 
 ## 1.4.6 (2025-02-24)
+
 - Fix
   - DQA for sidenav and sidepanel ([#e5d81457](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e5d81457a49c5755782bf0e176d1dbb0645e747e?refName=refs/heads/2025/FIX/ELI/SIDENAV) by @elumilay)
 

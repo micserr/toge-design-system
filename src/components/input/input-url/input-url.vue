@@ -1,9 +1,9 @@
 <template>
   <SprInput v-bind="$attrs" type="url">
     <template #prefix>
-      <div>
+      <span>
         https://
-      </div>
+      </span>
     </template>
     <template #icon>
       <Icon icon="ph:question-fill" />

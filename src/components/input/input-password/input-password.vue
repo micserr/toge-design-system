@@ -1,7 +1,7 @@
 <template>
   <SprInput v-bind="$attrs" :type="evaluatePasswordInputType()">
     <template #icon>
-      <Icon :icon="evaluateEyeIcon()" @click="toggleShowPassword()" :class="iconClasses"/>
+      <Icon :icon="evaluateEyeIcon()" :class="iconClasses" @click="toggleShowPassword()" />
     </template>
   </SprInput>
 </template>

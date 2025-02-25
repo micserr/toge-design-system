@@ -1,4 +1,4 @@
-import { toRefs, computed, ComputedRef, ref } from 'vue';
+import { toRefs, computed, ComputedRef } from 'vue';
 import { useVModel } from '@vueuse/core';
 
 import classNames from 'classnames';

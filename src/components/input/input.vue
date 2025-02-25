@@ -22,7 +22,8 @@
       <div v-if="$slots.icon" :class="inputClasses.iconSlotClasses">
         <slot name="icon"/>
       </div>
-      <label v-if="props.displayHelper" :class= "[
+      <label 
+        v-if="props.displayHelper" :class= "[
         inputClasses.helperClasses,
         'spr-font-normal spr-font-size-200 spr-font-line-height-400',
         'spr-flex spr-items-center spr-gap-size-spacing-5xs',

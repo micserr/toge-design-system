@@ -6,6 +6,40 @@
   - Password input field ([#5b1e01ab](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5b1e01ab8a74921d700f944db4e58a966cf6dab5?refName=refs/heads/2025/FEATURE/Xyrk/EMAIL_USERNAME_PASSWORD_URL_INPUT_FIELDS) by @jfabula)
   - URL input field ([#f08956d1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f08956d15959818d264dbe09e321e92dddd4ad7c?refName=refs/heads/2025/FEATURE/Xyrk/EMAIL_USERNAME_PASSWORD_URL_INPUT_FIELDS) by @jfabula)
 
+## 1.4.10 (2025-02-25)
+
+- Chore
+  - textarea readonly ([#93cee4fa](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/93cee4fa229eb85e892c3d45bc994be69334deb7?refName=refs/heads/2025/Chore/andrea/kebabcaseTimepicker) by @adestajo)
+  - timePicker to Kebab Casing ([#cf28f559](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cf28f559ab914d8ed29934c4aaa0986413933013?refName=refs/heads/2025/Chore/andrea/kebabcaseTimepicker) by @adestajo)
+
+## 1.4.9 (2025-02-24)
+
+- Feature
+  - Avatar Variant ([#257ebf9b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/257ebf9b29d68f8ce44f8c489375757470742abb?refName=refs%2Fheads%2F2025%2FFearure%2Favatar-variant) by @adestajo)
+
+## 1.4.8 (2025-02-24)
+
+- Feature
+  - Input helper message ([#0b19d997](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0b19d99758e20c3c05cd1d4b60e18a76d44bdd4c?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FINPUT_HELPER_MESSAGE) by @jbanares)
+- Fix
+  - Fixed snackbar tone for danger and caution ([#23512c95](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23512c957be34ab04e640091c2b9e3e98db6b1b8?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FINPUT_HELPER_MESSAGE) by @jbanares)
+
+## 1.4.7 (2025-02-24)
+
+- Feature
+  - Textarea ([#1c8100f4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1c8100f431890eb773e6faf2cc850bcbd388e896?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Ftextarea) by @adestajo)
+
+## 1.4.6 (2025-02-24)
+
+- Fix
+  - DQA for sidenav and sidepanel ([#e5d81457](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e5d81457a49c5755782bf0e176d1dbb0645e747e?refName=refs/heads/2025/FIX/ELI/SIDENAV) by @elumilay)
+
+## 1.4.5 (2025-02-24)
+
+- Feature
+  - Chips - Custom Event and Icon Weight
+  - Add count for Avatar ([#831236b7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/831236b7e45ee16da1758ee0737a38428fd2ef37?refName=refs%2Fheads%2F2025%2FFeature%2Fandrea%2Fchip-custom-event) by @adestajo)
+
 ## 1.4.4 (2025-02-24)
 
 - Feature

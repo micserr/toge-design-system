@@ -13,7 +13,7 @@ interface AvatarClassses {
 }
 
 export const useAvatar = (props: AvatarPropTypes) => {
-  const { size, color } = toRefs(props);
+  const { size, color, variant } = toRefs(props);
 
   const avatarClassses: ComputedRef<AvatarClassses> = computed(() => {
     const baseClasses = classNames('spr-relative spr-inline-block spr-rounded-full', {
@@ -81,8 +81,24 @@ export const useAvatar = (props: AvatarPropTypes) => {
     return { notif: 'tiny', badge: 'tiny' };
   });
 
+  const getIconVariant = computed(() => {
+    switch (variant.value) {
+      case 'user-group':
+        return 'ph:users-three';
+      case 'user':
+        return 'ph:user';
+      case 'client':
+        return 'ph:building';
+
+      default:
+        break;
+    }
+    return '';
+  });
+
   return {
     avatarClassses,
     getAvatarSize,
+    getIconVariant,
   };
 };

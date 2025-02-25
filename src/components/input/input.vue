@@ -22,13 +22,25 @@
       <div v-if="$slots.icon" :class="inputClasses.iconSlotClasses">
         <slot name="icon"/>
       </div>
+      <label v-if="props.displayHelper" :class= "[
+        inputClasses.helperClasses,
+        'spr-font-normal spr-font-size-200 spr-font-line-height-400',
+        'spr-flex spr-items-center spr-gap-size-spacing-5xs',
+        'spr-mt-size-spacing-4xs'
+      ]"
+      >
+        <slot name="helperMessage">
+          <icon v-if="props.helperIcon" :icon="props.helperIcon" width="20px" height="20px"/>
+          {{  props.helperText }}
+        </slot>
+      </label>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useSlots } from 'vue';
-
+import { Icon } from '@iconify/vue/dist/iconify.js';
 import { inputPropTypes, inputEmitTypes } from './input';
 import { useInput } from './use-input';
 
@@ -37,11 +49,7 @@ const emit = defineEmits(inputEmitTypes);
 const props = defineProps(inputPropTypes);
 const slots = useSlots();
 
-const { 
-  inputClasses, 
-  onInput
- } = 
-   useInput(props, slots, emit);
+const { inputClasses, onInput } = useInput(props, slots, emit);
 </script>
 
 <style scoped>

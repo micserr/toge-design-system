@@ -149,6 +149,63 @@ const inputValueMD = ref('');
 </script>
 ```
 
+## Helper Message
+A helper message is a text label below the input field that provides additional information about instructions, formatting hints, validation feedback, etc.
+
+To display the helper message, set the `display-helper` prop to `true` and add the `helper-text` prop with the helper message text. You can also insert an icon with the `helper-icon` prop. This uses the [Iconify](https://icon-sets.iconify.design/) icon library.
+
+<spr-input v-model="inputValue.input1" label="Text Input" placeholder="Enter your text" helper-text="This is a helper message" display-helper/>
+<spr-input v-model="inputValue.input1" label="Text Input" placeholder="Enter your text" helper-text="This is an error message" helper-icon="ph:warning-circle-fill" display-helper error/>
+
+```vue
+<template>
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your text" helper-text="This is a helper message" display-helper/>
+  <spr-input v-model="inputValue.input1" label="Text Input" placeholder="Enter your text" helper-text="This is an error message" display-helper error/>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputValue = ref('');
+</script>
+```
+
+
+Alternatively, you can use the `helperMessage` slot to display a custom helper message.
+
+<spr-input v-model="inputValue.input1" label="Text Input" placeholder="Enter your text" display-helper>
+  <template #helperMessage>
+    This is a helper message
+  </template>
+</spr-input>
+<spr-input v-model="inputValue.input1" label="Text Input" placeholder="Enter your text" display-helper error >
+  <template #helperMessage>
+    <icon icon="ph:warning-circle-fill" width="20px" height="20px" />
+    This is a helper message
+  </template>
+</spr-input>
+
+```vue
+<spr-input v-model="inputValue.input1" label="Text Input" placeholder="Enter your text" display-helper>
+  <template #helperMessage>
+    This is a helper message
+  </template>
+</spr-input>
+<spr-input v-model="inputValue.input1" label="Text Input" placeholder="Enter your text" display-helper error >
+  <template #helperMessage>
+    <icon icon="ph:warning-circle-fill" width="20px" height="20px" />
+    This is a helper message
+  </template>
+</spr-input>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputValue = ref('');
+</script>
+```
+
+
 ## Search Input
 
 <div>

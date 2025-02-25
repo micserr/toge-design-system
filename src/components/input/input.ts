@@ -52,6 +52,18 @@ export const inputPropTypes = {
     validator: (value: (typeof TRAILING_SIZES)[number]) => TRAILING_SIZES.includes(value),
     default: 'sm',
   },
+  helperText: {
+    type: String,
+    default: ''
+  },
+  helperIcon: {
+    type: String,
+    default: null
+  },
+  displayHelper: {
+    type: Boolean,
+    default: false,
+  }
 };
 
 export const inputEmitTypes = {

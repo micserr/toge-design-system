@@ -147,6 +147,10 @@ export default defineConfig({
               link: '/documentation/components/tabs',
             },
             {
+              text: 'Textarea',
+              link: '/documentation/components/textarea',
+            },
+            {
               text: 'Time Picker',
               link: '/documentation/components/time-picker',
             },

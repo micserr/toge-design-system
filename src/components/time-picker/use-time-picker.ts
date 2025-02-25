@@ -4,7 +4,7 @@ import { useVModel } from '@vueuse/core';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 
-import type { TimePickerPropTypes, TimePickerEmitTypes } from './timePicker';
+import type { TimePickerPropTypes, TimePickerEmitTypes } from './time-picker';
 import type { SetupContext } from 'vue';
 
 export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<TimePickerEmitTypes>['emit']) => {

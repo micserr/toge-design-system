@@ -21,7 +21,6 @@ export const useInput = (
   emit: SetupContext<InputEmitTypes>['emit'],
 ) => {
   const { active, error, disabled, readonly, offsetSize } = toRefs(props);
-  const showPassword = ref(false);
   const modelValue = useVModel(props, 'modelValue', emit);
 
   const inputClasses: ComputedRef<InputClasses> = computed(() => {

@@ -15,10 +15,6 @@
     <template #logo-image>
       <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
-
-    <template #avatar-image>
-      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
-    </template>
   </spr-sidenav>
 
   <br />

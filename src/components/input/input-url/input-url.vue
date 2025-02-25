@@ -1,5 +1,5 @@
 <template>
-  <SprInput v-bind="$attrs" :type="'url'">
+  <SprInput v-bind="$attrs" type="url">
     <template #prefix>
       <div>
         https://

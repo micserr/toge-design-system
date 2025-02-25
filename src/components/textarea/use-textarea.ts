@@ -1,4 +1,4 @@
-import { toRefs, computed, useAttrs } from 'vue';
+import { toRefs, computed } from 'vue';
 import { useVModel } from '@vueuse/core';
 
 import classNames from 'classnames';
@@ -7,16 +7,16 @@ import type { SetupContext } from 'vue';
 import type { TextAreaPropTypes, TextAreaEmitTypes } from './textarea';
 
 export const useTextArea = (props: TextAreaPropTypes, emit: SetupContext<TextAreaEmitTypes>['emit']) => {
-  const { error, disabled } = toRefs(props);
-  const attrs = useAttrs();
+  const { error, disabled, readonly } = toRefs(props);
 
-  const modelValue = useVModel(attrs, 'modelValue', emit);
+  const modelValue = useVModel(props, 'modelValue', emit);
 
   const textareaClasses = computed(() => {
     const wrapperClasses = classNames('spr-flex spr-flex-col spr-gap-size-spacing-4xs');
 
     const labelClasses = classNames('spr-body-sm-regular spr-text-color-strong spr-block', {
       'spr-text-color-on-fill-disabled': disabled.value,
+      'spr-text-color-base': readonly.value,
     });
 
     const textAreaClasses = classNames(
@@ -29,7 +29,8 @@ export const useTextArea = (props: TextAreaPropTypes, emit: SetupContext<TextAre
         'spr-border-tomato-600 focus:spr-border-tomato-600': error.value,
         'spr-background-color-disabled spr-border-white-100 focus:spr-border-white-100 spr-cursor-not-allowed spr-text-color-on-fill-disabled':
           disabled.value,
-        'spr-cursor-pointer': attrs.readonly,
+        'spr-background-color-disabled spr-border-white-100 focus:spr-border-white-100 spr-cursor-not-allowed   spr-text-color-base':
+          readonly.value,
       },
     );
 

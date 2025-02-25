@@ -8,6 +8,7 @@
       :disabled="disabled"
       :rows="rows"
       :placeholder="placeholder"
+      :readonly="readonly"
       @input="onInput"
     ></textarea>
     <div v-if="error" :class="textareaClasses.errorTextClasses">

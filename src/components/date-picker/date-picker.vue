@@ -1,17 +1,46 @@
 <template>
-  <div class="spr-flex spr-items-center spr-gap-6">
-    <div>
-      <input type="text" placeholder="MMM" maxlength="3" />
-      <span class="separator">/</span>
-      <input type="text" placeholder="DD" maxlength="2" />
-      <span class="separator">/</span>
-      <input type="text" placeholder="YYYY" maxlength="4" />
+  <Menu
+    v-model:shown="datePopperState"
+    class="spr-w-fit"
+    aria-id="dropdown-wrapper"
+    distance="4"
+    placement="bottom"
+    :triggers="[]"
+    :popper-hide-triggers="[]"
+  >
+    <div class="spr-flex spr-items-center spr-gap-6" @click="datePopperState = true">
+      <div>
+        <input type="text" placeholder="MMM" maxlength="3" />
+        <span class="separator">/</span>
+        <input type="text" placeholder="DD" maxlength="2" />
+        <span class="separator">/</span>
+        <input type="text" placeholder="YYYY" maxlength="4" />
+      </div>
+      <div>
+        <Icon icon="ph:calendar" />
+      </div>
     </div>
-    <div></div>
-  </div>
+
+    <template #popper>
+      <h1>asds</h1>
+    </template>
+  </Menu>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { Menu } from 'floating-vue';
+import { Icon } from '@iconify/vue';
+
+import 'floating-vue/dist/style.css';
+
+import { datePickerPropTypes, datePickerEmitTypes } from './date-picker';
+import { useDatePicker } from './use-date-picker';
+
+const props = defineProps(datePickerPropTypes);
+const emit = defineEmits(datePickerEmitTypes);
+
+const { datePopperState } = useDatePicker(props, emit);
+</script>
 
 <style lang="scss" scoped>
 .date-input {

@@ -44,7 +44,7 @@ export const useInput = (
           disabled.value,
         'spr-pr-[5%]': slots.icon,
         'spr-pl-size-spacing-lg': slots.prefix,
-		    '!spr-pl-size-spacing-4xl': props.type === 'url',
+		    '!spr-pl-size-spacing-3xl': props.type === 'url',
         'spr-pr-[93%] sm:spr-pr-[85%]': offsetSize.value === 'xs' && slots.trailing,
         'spr-pr-[90%] sm:spr-pr-[80%]': offsetSize.value === 'sm' && slots.trailing,
         'spr-pr-[50%]': offsetSize.value === 'md' && slots.trailing,

@@ -4,7 +4,7 @@ import { useVModel } from '@vueuse/core';
 import classNames from 'classnames';
 
 import type { SetupContext } from 'vue';
-import { type InputPropTypes, type InputEmitTypes, TYPE_HAS_LEADING_ICONS, TYPE_HAS_TRAILING_ICONS } from './input';
+import { type InputPropTypes, type InputEmitTypes } from './input';
 
 interface InputClasses {
   baseClasses: string;
@@ -42,9 +42,9 @@ export const useInput = (
         'spr-border-tomato-600 focus:spr-border-tomato-600': error.value,
         'spr-background-color-disabled spr-border-white-100 focus:spr-border-white-100 spr-cursor-not-allowed spr-text-color-on-fill-disabled':
           disabled.value,
-        'spr-pr-[5%]': hasIconSlot.value,
-        'spr-pl-size-spacing-lg': hasPrefix.value,
-		'!spr-pl-size-spacing-4xl': props.type === 'url',
+        'spr-pr-[5%]': slots.icon,
+        'spr-pl-size-spacing-lg': slots.prefix,
+		    '!spr-pl-size-spacing-4xl': props.type === 'url',
         'spr-pr-[93%] sm:spr-pr-[85%]': offsetSize.value === 'xs' && slots.trailing,
         'spr-pr-[90%] sm:spr-pr-[80%]': offsetSize.value === 'sm' && slots.trailing,
         'spr-pr-[50%]': offsetSize.value === 'md' && slots.trailing,
@@ -56,7 +56,6 @@ export const useInput = (
       'spr-absolute spr-right-3 spr-top-1/2 spr-h-5 spr-w-5 -spr-translate-y-1/2 spr-transform spr-text-mushroom-300',
       {
         '!spr-text-tomato-600': error.value,
-        'spr-cursor-pointer' : props.type === 'password',
       },
     );
 
@@ -87,35 +86,8 @@ export const useInput = (
     modelValue.value = target.value;
   };
 
-  const hasPrefix = computed(() => {
-    return slots.prefix || TYPE_HAS_LEADING_ICONS.includes(props.type as typeof TYPE_HAS_LEADING_ICONS[number]);
-  });
-
-  const hasIconSlot = computed(() => {
-    return slots.icon || TYPE_HAS_TRAILING_ICONS.includes(props.type as typeof TYPE_HAS_TRAILING_ICONS[number]);
-  });
-
-  const toggleShowPassword = () => {
-    showPassword.value = !showPassword.value;
-  }
-
-  const evaluateEyeIcon = () => {
-    return showPassword.value ? 'ph:eye' : 'ph:eye-closed';
-  };
-
-  const evaluateInputType = () => {
-    if (props.type === 'password') {
-      return showPassword.value ? 'text' : 'password';
-    }
-    return 'text';
-  }
   return {
     inputClasses,
     onInput,
-    hasPrefix,
-    hasIconSlot,
-    toggleShowPassword,
-    evaluateEyeIcon,
-    evaluateInputType,
   };
 };

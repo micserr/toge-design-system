@@ -209,12 +209,12 @@ const inputValue = ref('');
 ## Search Input
 
 <div>
-   <spr-input-search v-model="inputValue.input9" label="Search" placeholder="Search ..." type="search"/>
+   <spr-input-search v-model="inputValue.input9" label="Search" placeholder="Search ..."/>
 </div>
 
 ```vue
 <template>
-  <spr-input-search v-model="inputValueSearch" label="Search" placeholder="Search ..." type="search"/>
+  <spr-input-search v-model="inputValueSearch" label="Search" placeholder="Search ..."/>
 </template>
 
 <script lang="ts" setup>

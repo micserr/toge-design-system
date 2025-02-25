@@ -44,6 +44,7 @@ export const useInput = (
           disabled.value,
         'spr-pr-[5%]': slots.icon,
         'spr-pl-size-spacing-lg': slots.prefix,
+		    '!spr-pl-size-spacing-3xl': props.type === 'url',
         'spr-pr-[93%] sm:spr-pr-[85%]': offsetSize.value === 'xs' && slots.trailing,
         'spr-pr-[90%] sm:spr-pr-[80%]': offsetSize.value === 'sm' && slots.trailing,
         'spr-pr-[50%]': offsetSize.value === 'md' && slots.trailing,
@@ -62,6 +63,7 @@ export const useInput = (
       'spr-absolute spr-left-3 spr-top-1/2 spr-h-5 spr-w-5 -spr-translate-y-1/2 spr-transform spr-text-mushroom-300',
       {
         '!spr-text-tomato-600': error.value,
+        'spr-font-size-200 !spr-top-4 ': props.type === 'url',
       },
     );
 
@@ -87,7 +89,7 @@ export const useInput = (
 
   const onInput = (event: Event) => {
     const target = event.target as HTMLInputElement;
-
+    
     modelValue.value = target.value;
   };
 

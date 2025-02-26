@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.13 (2025-02-26)
+
+- Fix
+  - Change implementation of Notif and Request props ([#92f9409d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/92f9409d889d11ec596fe1ebb411383beab23b0e?refName=refs%2Fheads%2F2025%2FFIX%2FELI%2FSIDENAV) by @elumilay)
+
 ## 1.4.12 (2025-02-25)
 
 - Fix

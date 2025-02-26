@@ -10,7 +10,10 @@
     <div
       :class="{
         'spr-hidden-scrolls spr-flex spr-h-full spr-flex-col spr-justify-between spr-overflow-auto': true,
-        'spr-max-h-[calc(100vh-194px)]': props.notificationCount && props.requestCount || props.notificationCount === 0,
+        'spr-max-h-[calc(100vh-60px)]': props.notificationCount === null && props.requestCount === null,
+        'spr-max-h-[calc(100vh-194px)]': props.notificationCount && props.requestCount || props.notificationCount === 0 || props.requestCount === 0,
+        'spr-max-h-[calc(100vh-150px)]':
+          (props.notificationCount || props.requestCount) && !(props.notificationCount && props.requestCount),
       }"
     >
       <!-- Top Section -->
@@ -552,7 +555,7 @@
           <span class="spr-label-xs-medium spr-uppercase">REQUESTS</span>
         </template>
         <div
-          v-if="props.requestCount|| props.requestCount === 0"
+          v-if="props.requestCount || props.requestCount === 0"
           :class="[
             'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-p-2',
             'spr-transition spr-duration-150 spr-ease-in-out',

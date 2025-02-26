@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.16 (2025-02-26)
+
+- Fix
+  - Fixed Iconify imports ([#05bbaee9](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/05bbaee9b3b1608e2695341acd913702b8024bbd?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FFIX_ISSUE_WITH_ICONIFY_IMPORTS) by @jbanares)
+
 ## 1.4.15 (2025-02-26)
 
 - Fix

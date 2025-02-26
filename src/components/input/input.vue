@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import { useSlots } from 'vue';
-import { Icon } from '@iconify/vue/dist/iconify.js';
+import { Icon } from '@iconify/vue';
 import { inputPropTypes, inputEmitTypes } from './input';
 import { useInput } from './use-input';
 

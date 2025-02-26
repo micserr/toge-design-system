@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.14 (2025-02-26)
+
+- Fix
+  - hide table scrollbar and fix header ([#5073baa8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5073baa830888e89683dc8d53c9635cc59b14bc3?refName=refs/heads/2025/Fix/andrea/DQA-table) by @adestajo)
+
 ## 1.4.13 (2025-02-26)
 
 - Fix

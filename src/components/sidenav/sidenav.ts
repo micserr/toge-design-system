@@ -94,12 +94,12 @@ export const sidenavPropTypes = {
   notificationCount: {
     type: Number,
     validator: (value: number) => typeof value === 'number',
-    default: 0,
+    default: null,
   },
   requestCount: {
     type: Number,
     validator: (value: number) => typeof value === 'number',
-    default: 0,
+    default: null,
   },
   userMenu: {
     type: Object as PropType<UserMenu>,

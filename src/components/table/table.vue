@@ -1,12 +1,12 @@
 <template>
   <div
-    class="spr-border-color-weak spr-w-full spr-rounded-border-radius-lg spr-border spr-border-solid spr-overflow-hidden"
+    class="spr-table-wrapper spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid"
   >
     <div v-if="!!$slots.default" :class="[{ 'spr-px-size-spacing-sm spr-py-size-spacing-xs': !!$slots.default }]">
       <slot />
     </div>
 
-    <div class="spr-h-[400px] spr-overflow-auto">
+    <div class="spr-h-[400px]">
       <table aria-describedby="describe" class="spr-w-full spr-table-fixed" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
@@ -14,20 +14,22 @@
               v-for="(header, keyHeader) in headers"
               :key="keyHeader"
               :class="[
-                'spr-sticky spr-top-0 spr-z-10',
-                'spr-background-color-surface spr-min-h-12 spr-py-size-spacing-3xs spr-px-size-spacing-2xs',
+                'spr-background-color-surface spr-min-h-12 spr-px-size-spacing-2xs spr-py-size-spacing-3xs',
                 'spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-text-start spr-font-medium spr-uppercase',
-                'spr-border-x-0 spr-border-y spr-border-solid spr-border-color-weak',
+                'spr-border-color-weak spr-border-x-0 spr-border-y spr-border-solid',
                 {
                   'spr-cursor-pointer': header.sort,
                   'spr-border-t-0': !$slots.default,
                 },
               ]"
-              @click="header.sort && sortData(header.field)"
             >
               <div class="spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-5xs">
-                <span>{{ header.name }}</span>
-                <span v-if="header.sort" class="spr-flex spr-flex-row spr-items-center">
+                <span @click="header.sort && sortData(header.field)">{{ header.name }}</span>
+                <span
+                  v-if="header.sort"
+                  class="spr-flex spr-flex-row spr-items-center"
+                  @click="header.sort && sortData(header.field)"
+                >
                   <Icon icon="ph:caret-up-down-light" />
                 </span>
               </div>
@@ -37,10 +39,9 @@
             <th
               v-if="action"
               :class="[
-                'spr-sticky spr-top-0 spr-z-10',
                 'spr-background-color-surface spr-min-h-12 spr-py-size-spacing-3xs',
-                'spr-text-color-strong spr-text-start spr-font-medium spr-uppercase spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal',
-                'spr-border-y spr-border-solid spr-border-color-weak spr-border-x-0',
+                'spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-text-start spr-font-medium spr-uppercase',
+                'spr-border-color-weak spr-border-x-0 spr-border-y spr-border-solid',
               ]"
             >
               <slot
@@ -101,7 +102,7 @@
           </tr>
           <tr v-else>
             <td :colspan="getHeaderCount" class="spr-overflow-hidden">
-              <div v-if="!$slots.loading" class="spr-flex spr-justify-center spr-items-center">Loading...</div>
+              <div v-if="!$slots.loading" class="spr-flex spr-items-center spr-justify-center">Loading...</div>
               <slot name="loading" class="" />
             </td>
           </tr>

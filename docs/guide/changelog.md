@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.4.14 (2025-02-26)
+
+- Fix
+  - hide table scrollbar and fix header ([#5073baa8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5073baa830888e89683dc8d53c9635cc59b14bc3?refName=refs/heads/2025/Fix/andrea/DQA-table) by @adestajo)
+
+## 1.4.13 (2025-02-26)
+
+- Fix
+  - Change implementation of Notif and Request props ([#92f9409d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/92f9409d889d11ec596fe1ebb411383beab23b0e?refName=refs%2Fheads%2F2025%2FFIX%2FELI%2FSIDENAV) by @elumilay)
+
 ## 1.4.12 (2025-02-25)
 
 - Fix

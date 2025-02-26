@@ -1,5 +1,13 @@
 # Changelog
 
+
+## 1.5.0 (2025-02-26)
+
+-Feature 
+
+  - Status ([#7a1e32e7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1cad1d936be4982da9c521f518a55e7ee04c7a95) by @dale)
+  - Status Documentation ([ea8732da](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ea8732da1bfd9bb282989588f3bdefd396707229?refName=refs%2Fheads%2F2025%2Ffeature%2Fdale%2Fstatus) by @dale)
+
 ## 1.4.16 (2025-02-26)
 
 - Fix

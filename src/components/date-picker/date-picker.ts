@@ -31,6 +31,14 @@ export const datePickerPropTypes = {
     type: Boolean,
     default: false,
   },
+  minYear: {
+    type: Number,
+    default: 1900,
+  },
+  maxYear: {
+    type: Number,
+    default: new Date().getFullYear(),
+  },
 };
 
 export const datePickerEmitTypes = {};

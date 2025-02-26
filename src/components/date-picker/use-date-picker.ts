@@ -1,9 +1,8 @@
-import { ref, toRefs, onMounted, watch, computed, ComputedRef } from 'vue';
+import { ref, toRefs, computed, ComputedRef, SetupContext, onMounted, watch } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 
 import classNames from 'classnames';
 
-import type { SetupContext } from 'vue';
 import type { DatePickerPropTypes, DatePickerEmitTypes } from './date-picker';
 
 interface DatePickerClasses {
@@ -12,7 +11,7 @@ interface DatePickerClasses {
 }
 
 export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<DatePickerEmitTypes>['emit']) => {
-  const { active, disabled, readonly, error } = toRefs(props);
+  const { active, disabled, readonly, error, minYear, maxYear } = toRefs(props);
 
   const datePickerClasses: ComputedRef<DatePickerClasses> = computed(() => {
     const labelClasses = classNames('spr-body-sm-regular spr-text-color-strong spr-block', {
@@ -58,7 +57,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     'December',
   ]);
 
-  const daysList = ref<Array<string>>(['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']);
+  const daysList = ref<Array<string>>(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
 
   const monthInput = ref<string>('');
   const dayInput = ref<string>('');
@@ -77,6 +76,67 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     yearInput.value = yearInput.value.replace(/[^0-9]/g, '');
   };
 
+  const currentTab = ref<string>('tab-dates');
+
+  const yearTabPageData = ref({
+    yearsArray: Array.from({ length: maxYear.value - minYear.value + 1 }, (_, index) => minYear.value + index).filter(
+      (year) => year <= maxYear.value && year >= minYear.value,
+    ),
+    currentPage: 0,
+    itemsPerPage: 12,
+  });
+
+  const yearTabCurrentYearPage = computed(() => {
+    const start = yearTabPageData.value.currentPage * yearTabPageData.value.itemsPerPage;
+    const remainingItems = yearTabPageData.value.yearsArray.slice(start);
+
+    return remainingItems.length < yearTabPageData.value.itemsPerPage
+      ? remainingItems
+      : yearTabPageData.value.yearsArray.slice(start, start + yearTabPageData.value.itemsPerPage);
+  });
+
+  const yearTabGoToPreviousPage = () => {
+    if (yearTabPageData.value.currentPage > 0) {
+      yearTabPageData.value.currentPage--;
+    }
+  };
+
+  const yearTabGoToNextPage = () => {
+    if (
+      (yearTabPageData.value.currentPage + 1) * yearTabPageData.value.itemsPerPage <
+      yearTabPageData.value.yearsArray.length
+    ) {
+      yearTabPageData.value.currentPage++;
+    }
+  };
+
+  const yearTabIsPreviousButtonDisabled = computed(() => {
+    return yearTabPageData.value.currentPage === 0;
+  });
+
+  const yearTabIsNextButtonDisabled = computed(() => {
+    return (
+      (yearTabPageData.value.currentPage + 1) * yearTabPageData.value.itemsPerPage >=
+      yearTabPageData.value.yearsArray.length
+    );
+  });
+
+  onMounted(() => {
+    yearTabPageData.value.currentPage = Math.floor(
+      yearTabPageData.value.yearsArray.length / yearTabPageData.value.itemsPerPage,
+    );
+  });
+
+  // Watch for changes to maxYear or minYear and adjust yearsArray
+  watch([maxYear, minYear], () => {
+    yearTabPageData.value.yearsArray = Array.from(
+      { length: maxYear.value - minYear.value + 1 },
+      (_, index) => minYear.value + index,
+    ).filter((year) => year <= maxYear.value && year >= minYear.value);
+
+    yearTabPageData.value.currentPage = 0;
+  });
+
   return {
     datePickerClasses,
     datePickerBaseInput,
@@ -89,5 +149,13 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     handleMonthInput,
     handleDayInput,
     handleYearInput,
+    currentTab,
+    yearTabCurrentYearPage,
+    yearTabGoToPreviousPage,
+    yearTabGoToNextPage,
+    yearTabIsPreviousButtonDisabled,
+    yearTabIsNextButtonDisabled,
+    minYear,
+    maxYear,
   };
 };

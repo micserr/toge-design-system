@@ -31,6 +31,10 @@ export const datePickerPropTypes = {
     type: Boolean,
     default: false,
   },
+  year: {
+    type: Number as PropType<number | null>,
+    default: null,
+  },
   minYear: {
     type: Number,
     default: 1900,

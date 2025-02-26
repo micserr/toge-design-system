@@ -11,7 +11,7 @@ interface DatePickerClasses {
 }
 
 export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<DatePickerEmitTypes>['emit']) => {
-  const { active, disabled, readonly, error, minYear, maxYear } = toRefs(props);
+  const { active, disabled, readonly, error, year, minYear, maxYear } = toRefs(props);
 
   const datePickerClasses: ComputedRef<DatePickerClasses> = computed(() => {
     const labelClasses = classNames('spr-body-sm-regular spr-text-color-strong spr-block', {
@@ -34,34 +34,32 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     return { labelClasses, datePickerBaseInputClasses };
   });
 
-  const datePickerBaseInput = ref<HTMLInputElement | null>(null);
-
-  onClickOutside(datePickerBaseInput, () => {
-    datePopperState.value = false;
-  });
+  const datePickerRef = ref<HTMLInputElement | null>(null);
 
   const datePopperState = ref<boolean>(false);
 
-  const monthsList = ref<Array<string>>([
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+  const currentTab = ref<string>('tab-dates');
+
+  const monthsList = ref<Array<{ text: string; fullText: string }>>([
+    { text: 'Jan', fullText: 'January' },
+    { text: 'Feb', fullText: 'February' },
+    { text: 'Mar', fullText: 'March' },
+    { text: 'Apr', fullText: 'April' },
+    { text: 'May', fullText: 'May' },
+    { text: 'Jun', fullText: 'June' },
+    { text: 'Jul', fullText: 'July' },
+    { text: 'Aug', fullText: 'August' },
+    { text: 'Sep', fullText: 'September' },
+    { text: 'Oct', fullText: 'October' },
+    { text: 'Nov', fullText: 'November' },
+    { text: 'Dec', fullText: 'December' },
   ]);
 
   const daysList = ref<Array<string>>(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
 
   const monthInput = ref<string>('');
   const dayInput = ref<string>('');
-  const yearInput = ref<string>('');
+  const yearInput = ref<string | null>(year.value ? year.value.toString() : null);
 
   const handleMonthInput = () => {
     monthInput.value = monthInput.value.replace(/[^A-Za-z]/g, '');
@@ -73,17 +71,27 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   };
 
   const handleYearInput = () => {
-    yearInput.value = yearInput.value.replace(/[^0-9]/g, '');
+    if (yearInput.value) {
+      yearInput.value = yearInput.value.replace(/[^0-9]/g, '');
+    }
   };
 
-  const currentTab = ref<string>('tab-dates');
+  const handleSelectedMonth = (selectedMonth: { text: string; longText: string }) => {
+    currentTab.value = 'tab-dates';
+    monthInput.value = selectedMonth.text.toUpperCase();
+  };
+
+  const handleSelectedYear = (selectedYear: string) => {
+    currentTab.value = 'tab-dates';
+    yearInput.value = selectedYear;
+  };
 
   const yearTabPageData = ref({
+    currentPage: 0,
+    itemsPerPage: 12,
     yearsArray: Array.from({ length: maxYear.value - minYear.value + 1 }, (_, index) => minYear.value + index).filter(
       (year) => year <= maxYear.value && year >= minYear.value,
     ),
-    currentPage: 0,
-    itemsPerPage: 12,
   });
 
   const yearTabCurrentYearPage = computed(() => {
@@ -94,6 +102,12 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       ? remainingItems
       : yearTabPageData.value.yearsArray.slice(start, start + yearTabPageData.value.itemsPerPage);
   });
+
+  const yearsTabSetCurrentPageToLast = () => {
+    yearTabPageData.value.currentPage = Math.floor(
+      yearTabPageData.value.yearsArray.length / yearTabPageData.value.itemsPerPage,
+    );
+  };
 
   const yearTabGoToPreviousPage = () => {
     if (yearTabPageData.value.currentPage > 0) {
@@ -121,13 +135,32 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     );
   });
 
-  onMounted(() => {
-    yearTabPageData.value.currentPage = Math.floor(
-      yearTabPageData.value.yearsArray.length / yearTabPageData.value.itemsPerPage,
-    );
+  watch(datePopperState, (newValue) => {
+    if (newValue === false) {
+      setTimeout(() => {
+        currentTab.value = 'tab-dates';
+
+        yearsTabSetCurrentPageToLast();
+      }, 500);
+    }
   });
 
-  // Watch for changes to maxYear or minYear and adjust yearsArray
+  watch(yearInput, (newValue) => {
+    if (newValue) {
+      const yearNumber = parseInt(newValue, 10);
+
+      if (isNaN(yearNumber)) return;
+
+      const yearIndex = yearTabPageData.value.yearsArray.indexOf(yearNumber);
+
+      if (yearIndex !== -1) {
+        const page = Math.floor(yearIndex / yearTabPageData.value.itemsPerPage);
+
+        yearTabPageData.value.currentPage = page;
+      }
+    }
+  });
+
   watch([maxYear, minYear], () => {
     yearTabPageData.value.yearsArray = Array.from(
       { length: maxYear.value - minYear.value + 1 },
@@ -137,10 +170,19 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     yearTabPageData.value.currentPage = 0;
   });
 
+  onClickOutside(datePickerRef, () => {
+    datePopperState.value = false;
+  });
+
+  onMounted(() => {
+    yearsTabSetCurrentPageToLast();
+  });
+
   return {
     datePickerClasses,
-    datePickerBaseInput,
+    datePickerRef,
     datePopperState,
+    currentTab,
     monthsList,
     daysList,
     monthInput,
@@ -149,13 +191,12 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     handleMonthInput,
     handleDayInput,
     handleYearInput,
-    currentTab,
+    handleSelectedMonth,
+    handleSelectedYear,
     yearTabCurrentYearPage,
     yearTabGoToPreviousPage,
     yearTabGoToNextPage,
     yearTabIsPreviousButtonDisabled,
     yearTabIsNextButtonDisabled,
-    minYear,
-    maxYear,
   };
 };

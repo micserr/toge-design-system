@@ -74,63 +74,114 @@
           ]"
         >
           <div class="spr-flex spr-gap-1">
-            <spr-button class="spr-cursor-pointer" variant="secondary" size="small"> January </spr-button>
-            <spr-button class="spr-cursor-pointer" variant="secondary" size="small"> 2024 </spr-button>
+            <spr-button class="spr-cursor-pointer" variant="secondary" size="small" @click="currentTab = 'tab-months'">
+              January
+            </spr-button>
+            <spr-button class="spr-cursor-pointer" variant="secondary" size="small" @click="currentTab = 'tab-years'">
+              2024
+            </spr-button>
           </div>
-          <div class="spr-flex spr-gap-1">
-            <spr-button class="spr-cursor-pointer" variant="secondary" size="small">
+          <div v-if="currentTab !== 'tab-months'" class="spr-flex spr-gap-1">
+            <spr-button
+              class="spr-cursor-pointer"
+              variant="secondary"
+              size="small"
+              :disabled="yearTabIsPreviousButtonDisabled"
+              @click="yearTabGoToPreviousPage"
+            >
               <Icon icon="ph:caret-left" />
             </spr-button>
-            <spr-button class="spr-cursor-pointer" variant="secondary" size="small">
+            <spr-button
+              class="spr-cursor-pointer"
+              variant="secondary"
+              size="small"
+              :disabled="yearTabIsNextButtonDisabled"
+              @click="yearTabGoToNextPage"
+            >
               <Icon icon="ph:caret-right" />
             </spr-button>
           </div>
         </div>
         <div class="spr-px-4 spr-pb-4 spr-pt-2">
-          <div class="spr-grid spr-grid-cols-7 spr-gap-1 spr-border spr-border-black spr-text-center">
+          <div
+            v-if="currentTab === 'tab-dates'"
+            class="spr-grid spr-grid-cols-7 spr-gap-1 spr-border spr-border-black spr-text-center"
+          >
             <div
               v-for="(day, dayIndex) in daysList"
               :key="dayIndex"
-              class="spr-subheading-xs spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2"
+              class="spr-subheading-xs spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2"
             >
-              {{ day }}
+              {{ day.slice(0, 2) }}
             </div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2"></div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2"></div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2"></div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">1</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">2</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">3</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">4</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">5</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">6</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">7</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">8</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">9</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">10</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">11</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">12</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">13</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">14</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">15</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">16</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">17</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">18</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">19</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">20</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">21</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">22</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">23</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">24</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">25</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">26</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">27</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">28</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">29</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">30</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">31</div>
+            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2"></div>
+          </div>
 
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2"></div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2"></div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2"></div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">1</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">2</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">3</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">4</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">5</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">6</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">7</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">8</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">9</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">10</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">11</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">12</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">13</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">14</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">15</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">16</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">17</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">18</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">19</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">20</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">21</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">22</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">23</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">24</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">25</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">26</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">27</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">28</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">29</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">30</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">31</div>
-            <div class="spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2"></div>
+          <div v-if="currentTab === 'tab-months'" class="spr-grid spr-grid-cols-4 spr-gap-2">
+            <div
+              v-for="(month, monthIndex) in monthsList"
+              :key="monthIndex"
+              :class="[
+                'spr-subheading-xs spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-lg spr-p-4',
+                'spr-border-color-weak spr-border spr-border-solid',
+                'spr-transition spr-duration-150 spr-ease-in-out',
+                'hover:spr-background-color-hover',
+                'active:spr-background-color-pressed active:spr-scale-95',
+              ]"
+              @click="currentTab = 'tab-dates'"
+            >
+              {{ month.slice(0, 3) }}
+            </div>
+          </div>
+
+          <div v-if="currentTab === 'tab-years'" class="spr-grid spr-grid-cols-4 spr-gap-2">
+            <div
+              v-for="(year, index) in yearTabCurrentYearPage"
+              :key="index"
+              :class="[
+                'spr-subheading-xs spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-lg spr-p-4',
+                'spr-border-color-weak spr-border spr-border-solid',
+                'spr-transition spr-duration-150 spr-ease-in-out',
+                'hover:spr-background-color-hover',
+                'active:spr-background-color-pressed active:spr-scale-95',
+              ]"
+            >
+              {{ year }}
+            </div>
           </div>
         </div>
       </div>
@@ -164,5 +215,11 @@ const {
   handleMonthInput,
   handleDayInput,
   handleYearInput,
+  currentTab,
+  yearTabCurrentYearPage,
+  yearTabGoToPreviousPage,
+  yearTabGoToNextPage,
+  yearTabIsPreviousButtonDisabled,
+  yearTabIsNextButtonDisabled,
 } = useDatePicker(props, emit);
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <SprDatePicker v-model="datePickerModel" label="Date Picker" />
+  <SprDatePicker v-model="datePickerModel" label="Date Picker" :min-year="1900" :max-year="3000" />
 </template>
 
 <script lang="ts" setup>

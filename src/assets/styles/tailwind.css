@@ -161,6 +161,21 @@
   }
   /* #endregion - Avatar */
 
+  /* #region - Table */
+  .spr-table-wrapper {
+    tbody {
+      @apply spr-block spr-h-[400px] spr-w-full spr-overflow-y-auto;
+    }
+
+    tr {
+      @apply spr-table spr-w-full spr-table-fixed;
+    }
+    tbody::-webkit-scrollbar {
+      @apply spr-h-0 spr-w-0; /* Hides the scrollbar in WebKit browsers */
+    }
+  }
+  /* #endregion - Table */
+
   /* #region - Date Picker */
   #date-picker-wrapper {
     @apply spr-overflow-hidden;

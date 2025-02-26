@@ -135,6 +135,10 @@ export default defineConfig({
               link: '/documentation/components/snackbar',
             },
             {
+              text: 'Status',
+              link: '/documentation/components/status',
+            },
+            {
               text: 'Switch',
               link: '/documentation/components/switch',
             },

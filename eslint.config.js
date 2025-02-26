@@ -61,6 +61,7 @@ export default tseslint.config(
             'sidepanel',
             'snack',
             'snackbar',
+            'status',
             'switch',
             'table',
             'tabs',

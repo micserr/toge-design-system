@@ -5,8 +5,8 @@
     :active-nav="activeNav"
     :nav-links="navLinks"
     :user-menu="userMenu"
-    :notification-count="5"
-    :request-count="10"
+    :notification-count="0"
+    :request-count="0"
     @get-navlink-item="handleGetNavLinkItem"
     @search="handleSearch"
     @notifications="handleNotifications"
@@ -14,10 +14,6 @@
   >
     <template #logo-image>
       <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
-    </template>
-
-    <template #avatar-image>
-      <img src="@/assets/images/sample-profile-image.jpg" alt="avatar" />
     </template>
   </spr-sidenav>
 

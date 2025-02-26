@@ -94,7 +94,7 @@ import SprSnackbar from './components/snackbar/snackbar.vue';
 import SprTable from '@/components/table/table.vue';
 import SprLozenge from '@/components/lozenge/lozenge.vue';
 import SprInput from '@/components/input/input.vue';
-import { Icon } from '@iconify/vue/dist/iconify.js';
+import { Icon } from '@iconify/vue';
 
 const inputValue = ref("");
 

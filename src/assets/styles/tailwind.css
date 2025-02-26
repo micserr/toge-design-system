@@ -160,6 +160,26 @@
     @apply spr-h-full spr-w-full spr-object-cover;
   }
   /* #endregion - Avatar */
+
+  /* #region - Date Picker */
+  #date-picker-wrapper {
+    @apply spr-overflow-hidden;
+
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-border-color-weak spr-w-[388px] spr-min-w-[388px] spr-overflow-y-auto spr-rounded-xl spr-border spr-border-solid spr-font-main spr-shadow-none;
+
+        &::-webkit-scrollbar-track {
+          @apply spr-rounded-br-xl spr-rounded-tr-xl;
+        }
+      }
+
+      .v-popper__arrow-container {
+        @apply spr-hidden;
+      }
+    }
+  }
+  /* #endregion - Date Picker */
 }
 
 @layer utilities {

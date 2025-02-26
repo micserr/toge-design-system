@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.15 (2025-02-26)
+
+- Fix
+  - SidePanel Documentation ([#6a1d115f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6a1d115f4fd34a8070bdaf698e99aa9030649619?refName=refs/heads/2025/Fix/andrea/sidepanel-md) by @jarias)
+
 ## 1.4.14 (2025-02-26)
 
 - Fix

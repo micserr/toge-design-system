@@ -12,11 +12,7 @@
     <label v-if="props.label" :for="props.id" :class="datePickerClasses.labelClasses">
       {{ props.label }}
     </label>
-    <div
-      ref="datePickerBaseInput"
-      :class="datePickerClasses.datePickerBaseInputClasses"
-      @click="datePopperState = true"
-    >
+    <div ref="datePickerRef" :class="datePickerClasses.datePickerBaseInputClasses" @click="datePopperState = true">
       <div class="spr-flex spr-h-full spr-w-full spr-items-center spr-gap-1.5">
         <input
           v-model="monthInput"
@@ -66,7 +62,7 @@
     </div>
 
     <template #popper>
-      <div @click="datePopperState = true">
+      <div ref="datePickerRef">
         <div
           :class="[
             'spr-flex spr-justify-between spr-gap-2 spr-px-4 spr-py-3',
@@ -81,7 +77,26 @@
               2024
             </spr-button>
           </div>
-          <div v-if="currentTab !== 'tab-months'" class="spr-flex spr-gap-1">
+
+          <div v-if="currentTab === 'tab-dates'" class="spr-flex spr-gap-1">
+            <spr-button class="spr-cursor-pointer" variant="secondary" size="small">
+              <Icon icon="ph:caret-left" />
+            </spr-button>
+            <spr-button class="spr-cursor-pointer" variant="secondary" size="small">
+              <Icon icon="ph:caret-right" />
+            </spr-button>
+          </div>
+
+          <div v-if="currentTab === 'tab-months'" class="spr-flex spr-gap-1">
+            <spr-button class="spr-cursor-pointer" variant="secondary" size="small" disabled>
+              <Icon icon="ph:caret-left" />
+            </spr-button>
+            <spr-button class="spr-cursor-pointer" variant="secondary" size="small" disabled>
+              <Icon icon="ph:caret-right" />
+            </spr-button>
+          </div>
+
+          <div v-if="currentTab === 'tab-years'" class="spr-flex spr-gap-1">
             <spr-button
               class="spr-cursor-pointer"
               variant="secondary"
@@ -162,9 +177,9 @@
                 'hover:spr-background-color-hover',
                 'active:spr-background-color-pressed active:spr-scale-95',
               ]"
-              @click="currentTab = 'tab-dates'"
+              @click="handleSelectedMonth(month)"
             >
-              {{ month.slice(0, 3) }}
+              {{ month.text }}
             </div>
           </div>
 
@@ -174,11 +189,16 @@
               :key="index"
               :class="[
                 'spr-subheading-xs spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-lg spr-p-4',
-                'spr-border-color-weak spr-border spr-border-solid',
+                'spr-border spr-border-solid',
                 'spr-transition spr-duration-150 spr-ease-in-out',
-                'hover:spr-background-color-hover',
-                'active:spr-background-color-pressed active:spr-scale-95',
+                'active:spr-scale-95',
+                {
+                  'spr-border-color-weak hover:spr-background-color-hover active:spr-background-color-pressed':
+                    year !== Number(yearInput),
+                  'spr-border-color-brand-base spr-background-color-single-active': year === Number(yearInput),
+                },
               ]"
+              @click="handleSelectedYear(String(year))"
             >
               {{ year }}
             </div>
@@ -205,8 +225,9 @@ const emit = defineEmits(datePickerEmitTypes);
 
 const {
   datePickerClasses,
-  datePickerBaseInput,
+  datePickerRef,
   datePopperState,
+  currentTab,
   monthsList,
   daysList,
   monthInput,
@@ -215,7 +236,8 @@ const {
   handleMonthInput,
   handleDayInput,
   handleYearInput,
-  currentTab,
+  handleSelectedMonth,
+  handleSelectedYear,
   yearTabCurrentYearPage,
   yearTabGoToPreviousPage,
   yearTabGoToNextPage,

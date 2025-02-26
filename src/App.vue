@@ -1,5 +1,8 @@
 <template>
-  <SprDatePicker v-model="datePickerModel" label="Date Picker" :min-year="1900" :max-year="3000" />
+  <!-- 
+   :year="2025" 
+  -->
+  <SprDatePicker v-model="datePickerModel" label="Date Picker" :min-year="1900" :max-year="2050" />
 </template>
 
 <script lang="ts" setup>

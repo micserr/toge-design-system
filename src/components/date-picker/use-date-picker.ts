@@ -38,54 +38,152 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
   const datePopperState = ref<boolean>(false);
 
-  const currentTab = ref<string>('tab-dates');
+  const currentTab = ref<string>('tab-calendar');
 
-  const monthsList = ref<Array<{ text: string; fullText: string }>>([
-    { text: 'Jan', fullText: 'January' },
-    { text: 'Feb', fullText: 'February' },
-    { text: 'Mar', fullText: 'March' },
-    { text: 'Apr', fullText: 'April' },
-    { text: 'May', fullText: 'May' },
-    { text: 'Jun', fullText: 'June' },
-    { text: 'Jul', fullText: 'July' },
-    { text: 'Aug', fullText: 'August' },
-    { text: 'Sep', fullText: 'September' },
-    { text: 'Oct', fullText: 'October' },
-    { text: 'Nov', fullText: 'November' },
-    { text: 'Dec', fullText: 'December' },
+  const daysOfWeek = ref<Array<{ text: string; fullText: string }>>([
+    { text: 'Su', fullText: 'Sunday' },
+    { text: 'Mo', fullText: 'Monday' },
+    { text: 'Tu', fullText: 'Tuesday' },
+    { text: 'We', fullText: 'Wednesday' },
+    { text: 'Th', fullText: 'Thursday' },
+    { text: 'Fr', fullText: 'Friday' },
+    { text: 'Sa', fullText: 'Saturday' },
   ]);
 
-  const daysList = ref<Array<string>>(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
+  const monthsList = ref<Array<{ text: string; fullText: string; monthValue: number }>>([
+    { text: 'Jan', fullText: 'January', monthValue: 0 },
+    { text: 'Feb', fullText: 'February', monthValue: 1 },
+    { text: 'Mar', fullText: 'March', monthValue: 2 },
+    { text: 'Apr', fullText: 'April', monthValue: 3 },
+    { text: 'May', fullText: 'May', monthValue: 4 },
+    { text: 'Jun', fullText: 'June', monthValue: 5 },
+    { text: 'Jul', fullText: 'July', monthValue: 6 },
+    { text: 'Aug', fullText: 'August', monthValue: 7 },
+    { text: 'Sep', fullText: 'September', monthValue: 8 },
+    { text: 'Oct', fullText: 'October', monthValue: 9 },
+    { text: 'Nov', fullText: 'November', monthValue: 10 },
+    { text: 'Dec', fullText: 'December', monthValue: 11 },
+  ]);
 
+  const dateInput = ref<string>('');
   const monthInput = ref<string>('');
-  const dayInput = ref<string>('');
   const yearInput = ref<string | null>(year.value ? year.value.toString() : null);
 
-  const handleMonthInput = () => {
-    monthInput.value = monthInput.value.replace(/[^A-Za-z]/g, '');
-    monthInput.value = monthInput.value.toUpperCase();
+  // #region - Calendar Tab
+  const calendarTabPageData = ref({
+    selectedMonth: new Date().getMonth(),
+    selectedYear: new Date().getFullYear(),
+    calendarDays: [] as Array<{ date: Date; inactive: boolean }>,
+  });
+
+  const calendarTabIsMinMonth = computed(
+    () => calendarTabPageData.value.selectedYear === minYear.value && calendarTabPageData.value.selectedMonth === 0,
+  );
+  const calendarTabIsMaxMonth = computed(
+    () => calendarTabPageData.value.selectedYear === maxYear.value && calendarTabPageData.value.selectedMonth === 11,
+  );
+
+  const calendarTabUpdateCalendar = () => {
+    const firstDay = new Date(
+      calendarTabPageData.value.selectedYear,
+      calendarTabPageData.value.selectedMonth,
+      1,
+    ).getDay();
+    const lastDate = new Date(
+      calendarTabPageData.value.selectedYear,
+      calendarTabPageData.value.selectedMonth + 1,
+      0,
+    ).getDate();
+    const prevMonthDays = firstDay;
+    const totalDays = prevMonthDays + lastDate;
+    const nextMonthDays = totalDays % 7 === 0 ? 0 : 7 - (totalDays % 7);
+
+    const calendar = [];
+
+    // Previous month days
+    for (let index = prevMonthDays; index > 0; index--) {
+      const date = new Date(
+        calendarTabPageData.value.selectedYear,
+        calendarTabPageData.value.selectedMonth,
+        -index + 1,
+      );
+      calendar.push({ date, inactive: true });
+    }
+
+    // Current month days
+    for (let index = 1; index <= lastDate; index++) {
+      const date = new Date(calendarTabPageData.value.selectedYear, calendarTabPageData.value.selectedMonth, index);
+      calendar.push({ date, inactive: false });
+    }
+
+    // Next month days
+    for (let index = 1; index <= nextMonthDays; index++) {
+      const date = new Date(calendarTabPageData.value.selectedYear, calendarTabPageData.value.selectedMonth + 1, index);
+      calendar.push({ date, inactive: true });
+    }
+
+    calendarTabPageData.value.calendarDays = calendar;
   };
 
-  const handleDayInput = () => {
-    dayInput.value = dayInput.value.replace(/[^0-9]/g, '');
-  };
+  const calendarTabIsToday = (type: string, value: string | number) => {
+    const today = new Date();
 
-  const handleYearInput = () => {
-    if (yearInput.value) {
-      yearInput.value = yearInput.value.replace(/[^0-9]/g, '');
+    if (type === 'date') {
+      return new Date(value).toDateString() === today.toDateString();
+    }
+
+    if (type === 'month') {
+      return today.getMonth() === value;
+    }
+
+    if (type === 'year') {
+      return today.getFullYear() === value;
     }
   };
 
-  const handleSelectedMonth = (selectedMonth: { text: string; longText: string }) => {
-    currentTab.value = 'tab-dates';
-    monthInput.value = selectedMonth.text.toUpperCase();
+  const calendarTabGetMonthEquivalent = (monthValue: number) => {
+    const month = monthsList.value.find((m) => m.monthValue === monthValue);
+
+    return month ? month.fullText : '';
   };
 
-  const handleSelectedYear = (selectedYear: string) => {
-    currentTab.value = 'tab-dates';
-    yearInput.value = selectedYear;
+  const calendarTabPrevMonth = () => {
+    if (calendarTabIsMinMonth.value) return;
+
+    if (calendarTabPageData.value.selectedMonth === 0) {
+      calendarTabPageData.value.selectedMonth = 11;
+      calendarTabPageData.value.selectedYear--;
+    } else {
+      calendarTabPageData.value.selectedMonth--;
+    }
+
+    calendarTabUpdateCalendar();
   };
 
+  const calendarTabNextMonth = () => {
+    if (calendarTabIsMaxMonth.value) return;
+
+    if (calendarTabPageData.value.selectedMonth === 11) {
+      calendarTabPageData.value.selectedMonth = 0;
+      calendarTabPageData.value.selectedYear++;
+    } else {
+      calendarTabPageData.value.selectedMonth++;
+    }
+
+    calendarTabUpdateCalendar();
+  };
+
+  // #endregion - Calendar Tab
+
+  // #region - Month Tab
+  const monthTabHandleSelectedMonth = (selectedMonth: { text: string; fullText: string }) => {
+    currentTab.value = 'tab-calendar';
+
+    handleMonthInput(selectedMonth.text);
+  };
+  // #endregion - Month Tab
+
+  // #region - Year Tab
   const yearTabPageData = ref({
     currentPage: 0,
     itemsPerPage: 12,
@@ -103,10 +201,12 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       : yearTabPageData.value.yearsArray.slice(start, start + yearTabPageData.value.itemsPerPage);
   });
 
-  const yearsTabSetCurrentPageToLast = () => {
-    yearTabPageData.value.currentPage = Math.floor(
-      yearTabPageData.value.yearsArray.length / yearTabPageData.value.itemsPerPage,
-    );
+  const yearsTabSetCurrentPageYear = () => {
+    const currentYearIndex = yearTabPageData.value.yearsArray.indexOf(calendarTabPageData.value.selectedYear);
+
+    if (currentYearIndex !== -1) {
+      yearTabPageData.value.currentPage = Math.floor(currentYearIndex / yearTabPageData.value.itemsPerPage);
+    }
   };
 
   const yearTabGoToPreviousPage = () => {
@@ -135,12 +235,72 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     );
   });
 
+  const yearTabHandleSelectedYear = (selectedYear: string) => {
+    currentTab.value = 'tab-calendar';
+
+    handleYearInput(selectedYear);
+  };
+  // #endregion - Year Tab
+
+  const handleDateInput = (selectedDate: string, selectedMonth: number | null, selectedYear: number | null) => {
+    if (selectedDate) {
+      dateInput.value = selectedDate.replace(/[^0-9]/g, '');
+
+      if (selectedMonth !== null && selectedYear !== null) {
+        const monthIsValid = monthsList.value.find((_month) => _month.monthValue === selectedMonth);
+        const yearIsValid = yearTabPageData.value.yearsArray.find(
+          (_year) => _year.toString() === selectedYear.toString(),
+        );
+
+        if (monthIsValid && yearIsValid) {
+          monthInput.value = monthIsValid.text.toUpperCase();
+          yearInput.value = yearIsValid.toString();
+
+          calendarTabPageData.value.selectedMonth = selectedMonth;
+          calendarTabPageData.value.selectedYear = selectedYear;
+
+          calendarTabUpdateCalendar();
+        }
+      }
+    }
+  };
+
+  const handleMonthInput = (selectedMonth: string | null) => {
+    if (selectedMonth) {
+      monthInput.value = selectedMonth.replace(/[^A-Za-z]/g, '').toUpperCase();
+
+      const monthIsValid = monthsList.value.find(
+        (_month) => _month.text.toLowerCase() === monthInput.value.toLowerCase(),
+      );
+
+      if (monthIsValid) {
+        calendarTabPageData.value.selectedMonth = monthIsValid.monthValue;
+
+        calendarTabUpdateCalendar();
+      }
+    }
+  };
+
+  const handleYearInput = (selectedYear: string | null) => {
+    if (selectedYear) {
+      yearInput.value = selectedYear.replace(/[^0-9]/g, '');
+
+      const yearIsValid = yearTabPageData.value.yearsArray.find((_year) => _year.toString() === yearInput.value);
+
+      if (yearIsValid) {
+        calendarTabPageData.value.selectedYear = Number(yearInput.value);
+
+        calendarTabUpdateCalendar();
+      }
+    }
+  };
+
   watch(datePopperState, (newValue) => {
     if (newValue === false) {
       setTimeout(() => {
-        currentTab.value = 'tab-dates';
+        currentTab.value = 'tab-calendar';
 
-        yearsTabSetCurrentPageToLast();
+        yearsTabSetCurrentPageYear();
       }, 500);
     }
   });
@@ -175,7 +335,8 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   });
 
   onMounted(() => {
-    yearsTabSetCurrentPageToLast();
+    calendarTabUpdateCalendar();
+    yearsTabSetCurrentPageYear();
   });
 
   return {
@@ -183,20 +344,27 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     datePickerRef,
     datePopperState,
     currentTab,
+    daysOfWeek,
     monthsList,
-    daysList,
+    dateInput,
     monthInput,
-    dayInput,
     yearInput,
-    handleMonthInput,
-    handleDayInput,
-    handleYearInput,
-    handleSelectedMonth,
-    handleSelectedYear,
+    calendarTabPageData,
+    calendarTabIsMinMonth,
+    calendarTabIsMaxMonth,
+    calendarTabIsToday,
+    calendarTabGetMonthEquivalent,
+    calendarTabPrevMonth,
+    calendarTabNextMonth,
+    monthTabHandleSelectedMonth,
     yearTabCurrentYearPage,
     yearTabGoToPreviousPage,
     yearTabGoToNextPage,
     yearTabIsPreviousButtonDisabled,
     yearTabIsNextButtonDisabled,
+    yearTabHandleSelectedYear,
+    handleDateInput,
+    handleMonthInput,
+    handleYearInput,
   };
 };

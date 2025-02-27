@@ -172,9 +172,8 @@
                   'spr-text-color-brand-base': calendarTabIsToday('date', day.date.toISOString()),
                   'spr-border-color-weak spr-border spr-border-solid': !day.inactive,
                   'spr-text-color-disabled': day.inactive,
-                  // 'spr-border-color-brand-base spr-background-color-single-active': calendarTabIsToday(
-                  //   day.date.toISOString(),
-                  // ),
+                  'spr-border-color-brand-base spr-background-color-single-active':
+                    day.date.getDate().toString() === dateInput && !day.inactive,
                 },
               ]"
               @click="handleDateInput(day.date.getDate().toString(), day.date.getMonth(), day.date.getFullYear())"

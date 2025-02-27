@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.2 (2025-02-27)
+
+- Fix
+  - Avatar Count ([#c621772](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c621772f6d4a44596edae878f13bba535399d4b8?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FPOLY-41) by @adestajo)
+
 ## 1.5.1 (2025-02-27)
 
 - Fix

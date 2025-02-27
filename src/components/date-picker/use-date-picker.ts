@@ -20,14 +20,24 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     const datePickerBaseInputClasses = classNames(
       'spr-flex spr-w-full spr-items-center spr-gap-6 spr-rounded-lg spr-bg-white-50 spr-min-w-[336px] spr-py-1.5 spr-px-3',
-      'spr-border spr-border-solid',
       {
-        'spr-border-mushroom-200 focus:spr-border-kangkong-700': !error.value && !disabled.value && !active.value,
-        'spr-border-kangkong-700 spr-border-[1.5px] spr-border-solid': active.value,
-        'spr-border-tomato-600 focus:spr-border-tomato-600': error.value,
+        // Normal State
+        'spr-border spr-border-solid spr-border-mushroom-200 focus:spr-border-kangkong-700':
+          !error.value && !disabled.value && !active.value && !datePopperState.value,
+
+        // Active State
+        'spr-border spr-border-solid spr-border-kangkong-700 spr-border-[1.5px] spr-border-solid':
+          active.value || (datePopperState.value === true && !readonly.value),
+
+        // Error State
+        'spr-border spr-border-solid spr-border-tomato-600 focus:spr-border-tomato-600': error.value,
+
+        // Disabled State
         'spr-background-color-disabled spr-border-white-100 focus:spr-border-white-100 spr-cursor-not-allowed spr-text-color-on-fill-disabled':
           disabled.value,
-        'spr-cursor-pointer': readonly.value,
+
+        // Readonly State
+        'spr-cursor-default': readonly.value,
       },
     );
 

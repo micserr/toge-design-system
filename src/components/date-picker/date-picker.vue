@@ -8,6 +8,7 @@
     :triggers="[]"
     :popper-hide-triggers="[]"
     :auto-hide="false"
+    :disabled="props.disabled || props.readonly"
   >
     <label v-if="props.label" :for="props.id" :class="datePickerClasses.labelClasses">
       {{ props.label }}
@@ -24,6 +25,7 @@
           type="text"
           placeholder="MMM"
           maxlength="3"
+          :disabled="props.disabled"
           @input="handleMonthInput(monthInput)"
           @keyup="handleMonthInput(monthInput)"
         />
@@ -38,6 +40,7 @@
           type="text"
           placeholder="DD"
           maxlength="2"
+          :disabled="props.disabled"
           @input="handleDateInput(dateInput, null, null)"
           @keyup="handleDateInput(dateInput, null, null)"
         />
@@ -52,6 +55,7 @@
           type="text"
           placeholder="YYYY"
           maxlength="4"
+          :disabled="props.disabled"
           @input="handleYearInput(yearInput)"
           @keyup="handleYearInput(yearInput)"
         />
@@ -119,15 +123,6 @@
             </spr-button>
           </div>
 
-          <div v-if="currentTab === 'tab-months'" class="spr-flex spr-gap-1">
-            <spr-button class="spr-cursor-pointer" variant="secondary" size="small" disabled>
-              <Icon icon="ph:caret-left" />
-            </spr-button>
-            <spr-button class="spr-cursor-pointer" variant="secondary" size="small" disabled>
-              <Icon icon="ph:caret-right" />
-            </spr-button>
-          </div>
-
           <div v-if="currentTab === 'tab-years'" class="spr-flex spr-gap-1">
             <spr-button
               class="spr-cursor-pointer"
@@ -165,15 +160,27 @@
               :class="[
                 'spr-relative spr-box-border spr-flex spr-h-[40px] spr-cursor-pointer spr-items-center spr-justify-center spr-p-2',
                 'spr-transition spr-duration-150 spr-ease-in-out',
-                'hover:spr-background-color-hover',
                 'active:spr-background-color-pressed active:spr-scale-95',
                 {
-                  'spr-background-color-disabled': day.date.getDay() === 0 || day.date.getDay() === 6,
+                  // Saturday and Sunday
+                  'spr-background-color-disabled':
+                    day.date.getDate().toString() !== dateInput && (day.date.getDay() === 0 || day.date.getDay() === 6),
+
+                  // Today Indicator
                   'spr-text-color-brand-base': calendarTabIsToday('date', day.date.toISOString()),
+
+                  // Current Month Dates
                   'spr-border-color-weak spr-border spr-border-solid': !day.inactive,
+
+                  // Past/Future Month Dates (Inactive Dates)
                   'spr-text-color-disabled': day.inactive,
+
+                  // Selected Date
                   'spr-border-color-brand-base spr-background-color-single-active':
                     day.date.getDate().toString() === dateInput && !day.inactive,
+
+                  // Unselected Date
+                  'hover:spr-background-color-hover': day.date.getDate().toString() !== dateInput,
                 },
               ]"
               @click="handleDateInput(day.date.getDate().toString(), day.date.getMonth(), day.date.getFullYear())"

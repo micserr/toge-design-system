@@ -1,5 +1,5 @@
 <template>
-  <div :class="avatarClassses.baseClasses">
+  <div :class="avatarClasses.baseClasses">
     <template v-if="['image', 'client', 'user', 'user-group'].includes(props.variant) || $slots.default">
       <div :class="[avatarClassses.imageClasses, 'avatar__slot spr-border-color-weak spr-border spr-border-solid']">
         <slot>
@@ -10,7 +10,7 @@
     </template>
 
     <div v-else :class="avatarClassses.nameInitalsClasses">
-      {{ ['count'].includes(props.variant) ? `+${count}` : initial.charAt(0) }}
+      {{ props.variant === 'count' ? `+${count}` : getInitials }}
     </div>
 
     <span v-if="notification" :class="avatarClassses.notificationClasses">
@@ -32,5 +32,5 @@ import SprBadge from '@/components/badge/badge.vue';
 
 const props = defineProps(avatarPropTypes);
 
-const { avatarClassses, getAvatarSize, getIconVariant } = useAvatar(props);
+const { avatarClasses, getAvatarSize, getIconVariant, getInitials } = useAvatar(props);
 </script>

@@ -24,12 +24,12 @@
           type="text"
           placeholder="MMM"
           maxlength="3"
-          @input="handleMonthInput"
-          @keyup="handleMonthInput"
+          @input="handleMonthInput(monthInput)"
+          @keyup="handleMonthInput(monthInput)"
         />
         <span class="spr-text-color-strong spr-font-size-200 spr-text-color-weak">/</span>
         <input
-          v-model="dayInput"
+          v-model="dateInput"
           :class="[
             'spr-h-full spr-w-[20px] spr-min-w-[20px] spr-border-none spr-bg-transparent spr-outline-none',
             'spr-text-color-strong spr-font-size-200',
@@ -38,8 +38,8 @@
           type="text"
           placeholder="DD"
           maxlength="2"
-          @input="handleDayInput"
-          @keyup="handleDayInput"
+          @input="handleDateInput(dateInput, null, null)"
+          @keyup="handleDateInput(dateInput, null, null)"
         />
         <span class="spr-text-color-strong spr-font-size-200 spr-text-color-weak">/</span>
         <input
@@ -52,8 +52,8 @@
           type="text"
           placeholder="YYYY"
           maxlength="4"
-          @input="handleYearInput"
-          @keyup="handleYearInput"
+          @input="handleYearInput(yearInput)"
+          @keyup="handleYearInput(yearInput)"
         />
       </div>
       <div class="spr-flex spr-items-center spr-justify-center">
@@ -70,19 +70,51 @@
           ]"
         >
           <div class="spr-flex spr-gap-1">
-            <spr-button class="spr-cursor-pointer" variant="secondary" size="small" @click="currentTab = 'tab-months'">
-              January
+            <spr-button
+              :class="[
+                'spr-cursor-pointer',
+                {
+                  'spr-background-color-pressed !spr-shadow-button': currentTab === 'tab-months',
+                },
+              ]"
+              variant="secondary"
+              size="small"
+              @click="currentTab = 'tab-months'"
+            >
+              {{ calendarTabGetMonthEquivalent(calendarTabPageData.selectedMonth) }}
             </spr-button>
-            <spr-button class="spr-cursor-pointer" variant="secondary" size="small" @click="currentTab = 'tab-years'">
-              2024
+            <spr-button
+              :class="[
+                'spr-cursor-pointer',
+                {
+                  'spr-background-color-pressed !spr-shadow-button': currentTab === 'tab-years',
+                },
+              ]"
+              variant="secondary"
+              size="small"
+              @click="currentTab = 'tab-years'"
+            >
+              {{ calendarTabPageData.selectedYear }}
             </spr-button>
           </div>
 
-          <div v-if="currentTab === 'tab-dates'" class="spr-flex spr-gap-1">
-            <spr-button class="spr-cursor-pointer" variant="secondary" size="small">
+          <div v-if="currentTab === 'tab-calendar'" class="spr-flex spr-gap-1">
+            <spr-button
+              class="spr-cursor-pointer"
+              variant="secondary"
+              size="small"
+              :disabled="calendarTabIsMinMonth"
+              @click="calendarTabPrevMonth"
+            >
               <Icon icon="ph:caret-left" />
             </spr-button>
-            <spr-button class="spr-cursor-pointer" variant="secondary" size="small">
+            <spr-button
+              class="spr-cursor-pointer"
+              variant="secondary"
+              size="small"
+              :disabled="calendarTabIsMaxMonth"
+              @click="calendarTabNextMonth"
+            >
               <Icon icon="ph:caret-right" />
             </spr-button>
           </div>
@@ -118,52 +150,41 @@
           </div>
         </div>
         <div class="spr-px-4 spr-pb-4 spr-pt-2">
-          <div
-            v-if="currentTab === 'tab-dates'"
-            class="spr-grid spr-grid-cols-7 spr-gap-1 spr-border spr-border-black spr-text-center"
-          >
+          <div v-if="currentTab === 'tab-calendar'" class="spr-grid spr-grid-cols-7 spr-text-center spr-text-gray-700">
             <div
-              v-for="(day, dayIndex) in daysList"
-              :key="dayIndex"
-              class="spr-subheading-xs spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2"
+              v-for="(dayOfWeek, dayOfWeekIndex) in daysOfWeek"
+              :key="dayOfWeekIndex"
+              class="spr-py-1 spr-font-semibold"
             >
-              {{ day.slice(0, 2) }}
+              {{ dayOfWeek.text }}
             </div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2"></div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2"></div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2"></div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">1</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">2</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">3</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">4</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">5</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">6</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">7</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">8</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">9</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">10</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">11</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">12</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">13</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">14</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">15</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">16</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">17</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">18</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">19</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">20</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">21</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">22</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">23</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">24</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">25</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">26</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">27</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">28</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">29</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">30</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2">31</div>
-            <div class="spr-flex spr-h-10 spr-w-10 spr-items-center spr-justify-center spr-p-2"></div>
+
+            <div
+              v-for="(day, dayIndex) in calendarTabPageData.calendarDays"
+              :key="dayIndex"
+              :class="[
+                'spr-relative spr-box-border spr-flex spr-h-[40px] spr-cursor-pointer spr-items-center spr-justify-center spr-p-2',
+                'spr-transition spr-duration-150 spr-ease-in-out',
+                'hover:spr-background-color-hover',
+                'active:spr-background-color-pressed active:spr-scale-95',
+                {
+                  'spr-background-color-disabled': day.date.getDay() === 0 || day.date.getDay() === 6,
+                  'spr-text-color-brand-base': calendarTabIsToday('date', day.date.toISOString()),
+                  'spr-border-color-weak spr-border spr-border-solid': !day.inactive,
+                  'spr-text-color-disabled': day.inactive,
+                  // 'spr-border-color-brand-base spr-background-color-single-active': calendarTabIsToday(
+                  //   day.date.toISOString(),
+                  // ),
+                },
+              ]"
+              @click="handleDateInput(day.date.getDate().toString(), day.date.getMonth(), day.date.getFullYear())"
+            >
+              <span>{{ day.date.getDate() }}</span>
+              <div
+                v-if="calendarTabIsToday('date', day.date.toISOString())"
+                class="spr-background-color-brand-base spr-absolute spr-bottom-1 spr-m-auto spr-h-1 spr-w-1 spr-rounded-full"
+              ></div>
+            </div>
           </div>
 
           <div v-if="currentTab === 'tab-months'" class="spr-grid spr-grid-cols-4 spr-gap-2">
@@ -171,15 +192,26 @@
               v-for="(month, monthIndex) in monthsList"
               :key="monthIndex"
               :class="[
-                'spr-subheading-xs spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-lg spr-p-4',
-                'spr-border-color-weak spr-border spr-border-solid',
+                'spr-subheading-xs spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-lg spr-p-4',
+                'spr-border spr-border-solid',
                 'spr-transition spr-duration-150 spr-ease-in-out',
-                'hover:spr-background-color-hover',
-                'active:spr-background-color-pressed active:spr-scale-95',
+                'active:spr-scale-95',
+                {
+                  'spr-text-color-brand-base': calendarTabIsToday('month', month.monthValue),
+                  'spr-border-color-weak hover:spr-background-color-hover active:spr-background-color-pressed':
+                    month.text.toLowerCase() !== monthInput.toLowerCase(),
+                  'spr-border-color-brand-base spr-background-color-single-active':
+                    month.text.toLowerCase() === monthInput.toLowerCase(),
+                },
               ]"
-              @click="handleSelectedMonth(month)"
+              @click="monthTabHandleSelectedMonth(month)"
             >
-              {{ month.text }}
+              <span>{{ month.text }}</span>
+
+              <div
+                v-if="calendarTabIsToday('month', month.monthValue)"
+                class="spr-background-color-brand-base spr-absolute spr-bottom-2 spr-m-auto spr-h-1 spr-w-1 spr-rounded-full"
+              ></div>
             </div>
           </div>
 
@@ -188,19 +220,24 @@
               v-for="(year, index) in yearTabCurrentYearPage"
               :key="index"
               :class="[
-                'spr-subheading-xs spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-lg spr-p-4',
+                'spr-subheading-xs spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-lg spr-p-4',
                 'spr-border spr-border-solid',
                 'spr-transition spr-duration-150 spr-ease-in-out',
                 'active:spr-scale-95',
                 {
+                  'spr-text-color-brand-base': calendarTabIsToday('year', year),
                   'spr-border-color-weak hover:spr-background-color-hover active:spr-background-color-pressed':
                     year !== Number(yearInput),
                   'spr-border-color-brand-base spr-background-color-single-active': year === Number(yearInput),
                 },
               ]"
-              @click="handleSelectedYear(String(year))"
+              @click="yearTabHandleSelectedYear(String(year))"
             >
-              {{ year }}
+              <span>{{ year }}</span>
+              <div
+                v-if="calendarTabIsToday('year', year)"
+                class="spr-background-color-brand-base spr-absolute spr-bottom-2 spr-m-auto spr-h-1 spr-w-1 spr-rounded-full"
+              ></div>
             </div>
           </div>
         </div>
@@ -228,20 +265,27 @@ const {
   datePickerRef,
   datePopperState,
   currentTab,
+  daysOfWeek,
+  dateInput,
   monthsList,
-  daysList,
   monthInput,
-  dayInput,
   yearInput,
-  handleMonthInput,
-  handleDayInput,
-  handleYearInput,
-  handleSelectedMonth,
-  handleSelectedYear,
+  calendarTabPageData,
+  calendarTabIsMinMonth,
+  calendarTabIsMaxMonth,
+  calendarTabIsToday,
+  calendarTabGetMonthEquivalent,
+  calendarTabPrevMonth,
+  calendarTabNextMonth,
+  monthTabHandleSelectedMonth,
   yearTabCurrentYearPage,
   yearTabGoToPreviousPage,
   yearTabGoToNextPage,
   yearTabIsPreviousButtonDisabled,
   yearTabIsNextButtonDisabled,
+  handleDateInput,
+  handleMonthInput,
+  handleYearInput,
+  yearTabHandleSelectedYear,
 } = useDatePicker(props, emit);
 </script>

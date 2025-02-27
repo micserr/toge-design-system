@@ -4,7 +4,6 @@ import { Repl, useStore, useVueImportMap, mergeImportMap } from '@vue/repl';
 import Monaco from '@vue/repl/monaco-editor';
 import Welcome from '../template/welcome.vue?raw';
 import New from '../template/new.vue?raw';
-import { version as iconifyVersion } from '@iconify/vue/package.json';
 
 import { version as packageVersion } from '../../package.json';
 
@@ -13,7 +12,6 @@ const builtinImportMap = computed(() => {
   return mergeImportMap(importMap.value, {
     imports: {
       'design-system-next': `https://unpkg.com/design-system-next@${packageVersion}/dist/design-system-next.js`,
-      '@iconify/vue': `https://unpkg.com/@iconify/vue@${iconifyVersion}/dist/iconify.mjs`,
     },
   });
 });

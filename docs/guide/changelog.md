@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.3 (2025-02-27)
+
+- Fix
+  - Remove imported Icon in Playground ([#a659167](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a6591677f381ebb519670f4f493d195d61f2e33c?refName=refs/heads/2025/Fix/andrea/remove-playground-icon-imort) by @adestajo)
+
 ## 1.5.2 (2025-02-27)
 
 - Fix

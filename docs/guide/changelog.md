@@ -1,5 +1,13 @@
 # Changelog
 
+
+## 1.5.4 (2025-02-27)
+
+-Fix
+  - DQA and updated documentation for Staus  ([#7e8b0ad6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7e8b0ad6ea97836c3eda3d5c02737a449814757f?refName=refs%2Fheads%2F2025%2Ffix%2Fdale%2FDQA-status) by @dale)
+
+
+
 ## 1.5.3 (2025-02-27)
 
 - Fix

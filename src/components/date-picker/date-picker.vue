@@ -18,11 +18,7 @@
         <div class="spr-flex spr-h-full spr-w-full spr-items-center spr-gap-1.5">
           <input
             v-model="monthInput"
-            :class="[
-              'spr-h-full spr-w-[36px] spr-min-w-[36px] spr-border-none spr-bg-transparent spr-outline-none',
-              'spr-text-color-strong spr-font-size-200',
-              'placeholder:spr-text-color-weak',
-            ]"
+            :class="['spr-w-[36px] spr-min-w-[36px]', datePickerClasses.datePickerInputClasses]"
             type="text"
             placeholder="MMM"
             maxlength="3"
@@ -34,11 +30,7 @@
           <span class="spr-text-color-strong spr-font-size-200 spr-text-color-weak">/</span>
           <input
             v-model="dateInput"
-            :class="[
-              'spr-h-full spr-w-[20px] spr-min-w-[20px] spr-border-none spr-bg-transparent spr-outline-none',
-              'spr-text-color-strong spr-font-size-200',
-              'placeholder:spr-text-color-weak',
-            ]"
+            :class="['spr-w-[20px] spr-min-w-[20px]', datePickerClasses.datePickerInputClasses]"
             type="text"
             placeholder="DD"
             maxlength="2"
@@ -50,11 +42,7 @@
           <span class="spr-text-color-strong spr-font-size-200 spr-text-color-weak">/</span>
           <input
             v-model="yearInput"
-            :class="[
-              'spr-h-full spr-w-[42px] spr-min-w-[42px] spr-border-none spr-bg-transparent spr-outline-none',
-              'spr-text-color-strong spr-font-size-200',
-              'placeholder:spr-text-color-weak',
-            ]"
+            :class="['spr-w-[42px] spr-min-w-[42px]', datePickerClasses.datePickerInputClasses]"
             type="text"
             placeholder="YYYY"
             maxlength="4"
@@ -69,7 +57,7 @@
         </div>
       </div>
     </div>
-    <p v-if="props.displayHelper" :class="datePickerClasses.helperClasses">
+    <p v-if="props.displayHelper" :class="datePickerClasses.datePickerInputHelperClasses">
       <slot name="helperMessage">
         <Icon v-if="props.helperIcon" :icon="props.helperIcon" width="20px" height="20px" />
         <span>{{ props.helperText }}</span>
@@ -84,6 +72,7 @@
             'spr-border spr-border-solid spr-border-mushroom-200',
           ]"
         >
+          <!-- Tabs -->
           <div class="spr-flex spr-gap-1">
             <spr-button
               :class="[
@@ -113,6 +102,7 @@
             </spr-button>
           </div>
 
+          <!-- Next & Previous Buttons  -->
           <div v-if="currentTab === 'tab-calendar'" class="spr-flex spr-gap-1">
             <spr-button
               class="spr-cursor-pointer"
@@ -156,11 +146,12 @@
           </div>
         </div>
         <div class="spr-px-4 spr-pb-4 spr-pt-2">
-          <div v-if="currentTab === 'tab-calendar'" class="spr-grid spr-grid-cols-7 spr-text-center spr-text-gray-700">
+          <!-- Calendar Tab  -->
+          <div v-if="currentTab === 'tab-calendar'" class="spr-grid spr-grid-cols-7 spr-gap-2">
             <div
               v-for="(dayOfWeek, dayOfWeekIndex) in daysOfWeek"
               :key="dayOfWeekIndex"
-              class="spr-py-1 spr-font-semibold"
+              class="spr-py-1 spr-text-center spr-font-semibold"
             >
               {{ dayOfWeek.text }}
             </div>
@@ -220,6 +211,7 @@
             </div>
           </div>
 
+          <!-- Months Tab  -->
           <div v-if="currentTab === 'tab-months'" class="spr-grid spr-grid-cols-4 spr-gap-2">
             <div
               v-for="(month, monthIndex) in monthsList"
@@ -248,6 +240,7 @@
             </div>
           </div>
 
+          <!-- Years Tab  -->
           <div v-if="currentTab === 'tab-years'" class="spr-grid spr-grid-cols-4 spr-gap-2">
             <div
               v-for="(year, index) in yearTabCurrentYearPage"

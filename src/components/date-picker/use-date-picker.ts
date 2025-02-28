@@ -1,6 +1,7 @@
 import { ref, toRefs, computed, ComputedRef, SetupContext, onMounted, watch } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 
+import dayjs from 'dayjs';
 import classNames from 'classnames';
 
 import type { DatePickerPropTypes, DatePickerEmitTypes } from './date-picker';
@@ -8,6 +9,13 @@ import type { DatePickerPropTypes, DatePickerEmitTypes } from './date-picker';
 interface DatePickerClasses {
   labelClasses: string;
   datePickerBaseInputClasses: string;
+  helperClasses: string;
+}
+
+interface MonthsList {
+  text: string;
+  fullText: string;
+  monthValue: number;
 }
 
 export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<DatePickerEmitTypes>['emit']) => {
@@ -23,11 +31,11 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       {
         // Normal State
         'spr-border spr-border-solid spr-border-mushroom-200 focus:spr-border-kangkong-700':
-          !error.value && !disabled.value && !active.value && !datePopperState.value,
+          (!error.value && !disabled.value && !active.value && !datePopperState.value) || readonly.value,
 
         // Active State
         'spr-border spr-border-solid spr-border-kangkong-700 spr-border-[1.5px] spr-border-solid':
-          active.value || (datePopperState.value === true && !readonly.value),
+          (active.value || datePopperState.value === true) && !readonly.value,
 
         // Error State
         'spr-border spr-border-solid spr-border-tomato-600 focus:spr-border-tomato-600': error.value,
@@ -41,7 +49,17 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       },
     );
 
-    return { labelClasses, datePickerBaseInputClasses };
+    const helperClasses = classNames(
+      'spr-font-size-200 spr-font-line-height-400 spr-font-normal',
+      'spr-flex spr-items-center spr-gap-size-spacing-5xs',
+      'spr-mt-size-spacing-4xs',
+      {
+        'spr-text-color-danger-base': error.value,
+        'spr-text-color-supporting': !error.value,
+      },
+    );
+
+    return { labelClasses, datePickerBaseInputClasses, helperClasses };
   });
 
   const datePickerRef = ref<HTMLInputElement | null>(null);
@@ -50,30 +68,22 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
   const currentTab = ref<string>('tab-calendar');
 
-  const daysOfWeek = ref<Array<{ text: string; fullText: string }>>([
-    { text: 'Su', fullText: 'Sunday' },
-    { text: 'Mo', fullText: 'Monday' },
-    { text: 'Tu', fullText: 'Tuesday' },
-    { text: 'We', fullText: 'Wednesday' },
-    { text: 'Th', fullText: 'Thursday' },
-    { text: 'Fr', fullText: 'Friday' },
-    { text: 'Sa', fullText: 'Saturday' },
-  ]);
+  const currentDate = ref(dayjs());
 
-  const monthsList = ref<Array<{ text: string; fullText: string; monthValue: number }>>([
-    { text: 'Jan', fullText: 'January', monthValue: 0 },
-    { text: 'Feb', fullText: 'February', monthValue: 1 },
-    { text: 'Mar', fullText: 'March', monthValue: 2 },
-    { text: 'Apr', fullText: 'April', monthValue: 3 },
-    { text: 'May', fullText: 'May', monthValue: 4 },
-    { text: 'Jun', fullText: 'June', monthValue: 5 },
-    { text: 'Jul', fullText: 'July', monthValue: 6 },
-    { text: 'Aug', fullText: 'August', monthValue: 7 },
-    { text: 'Sep', fullText: 'September', monthValue: 8 },
-    { text: 'Oct', fullText: 'October', monthValue: 9 },
-    { text: 'Nov', fullText: 'November', monthValue: 10 },
-    { text: 'Dec', fullText: 'December', monthValue: 11 },
-  ]);
+  const daysOfWeek = ref(
+    Array.from({ length: 7 }, (_, i) => ({
+      text: dayjs().day(i).format('dd'),
+      fullText: dayjs().day(i).format('dddd'),
+    })),
+  );
+
+  const monthsList = ref(
+    Array.from({ length: 12 }, (_, i) => ({
+      text: dayjs().month(i).format('MMM'),
+      fullText: dayjs().month(i).format('MMMM'),
+      monthValue: i,
+    })),
+  );
 
   const dateInput = ref<string>('');
   const monthInput = ref<string>('');
@@ -81,8 +91,8 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
   // #region - Calendar Tab
   const calendarTabPageData = ref({
-    selectedMonth: new Date().getMonth(),
-    selectedYear: new Date().getFullYear(),
+    selectedMonth: dayjs().month(),
+    selectedYear: dayjs().year(),
     calendarDays: [] as Array<{ date: Date; inactive: boolean }>,
   });
 
@@ -133,28 +143,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     }
 
     calendarTabPageData.value.calendarDays = calendar;
-  };
-
-  const calendarTabIsToday = (type: string, value: string | number) => {
-    const today = new Date();
-
-    if (type === 'date') {
-      return new Date(value).toDateString() === today.toDateString();
-    }
-
-    if (type === 'month') {
-      return today.getMonth() === value;
-    }
-
-    if (type === 'year') {
-      return today.getFullYear() === value;
-    }
-  };
-
-  const calendarTabGetMonthEquivalent = (monthValue: number) => {
-    const month = monthsList.value.find((m) => m.monthValue === monthValue);
-
-    return month ? month.fullText : '';
   };
 
   const calendarTabPrevMonth = () => {
@@ -252,12 +240,20 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   };
   // #endregion - Year Tab
 
+  const getMonthObject = (field: string, value: string | number) => {
+    return monthsList.value.find(
+      (_month: MonthsList) =>
+        _month[field as keyof MonthsList].toString().toLowerCase() === value.toString().toLowerCase(),
+    );
+  };
+
   const handleDateInput = (selectedDate: string, selectedMonth: number | null, selectedYear: number | null) => {
     if (selectedDate) {
-      dateInput.value = selectedDate.replace(/[^0-9]/g, '');
+      // Remove leading zeros from the date input
+      dateInput.value = parseInt(selectedDate.replace(/[^0-9]/g, ''), 10).toString();
 
       if (selectedMonth !== null && selectedYear !== null) {
-        const monthIsValid = monthsList.value.find((_month) => _month.monthValue === selectedMonth);
+        const monthIsValid = monthsList.value.find((_month: MonthsList) => _month.monthValue === selectedMonth);
         const yearIsValid = yearTabPageData.value.yearsArray.find(
           (_year) => _year.toString() === selectedYear.toString(),
         );
@@ -280,7 +276,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       monthInput.value = selectedMonth.replace(/[^A-Za-z]/g, '').toUpperCase();
 
       const monthIsValid = monthsList.value.find(
-        (_month) => _month.text.toLowerCase() === monthInput.value.toLowerCase(),
+        (_month: MonthsList) => _month.text.toLowerCase() === monthInput.value.toLowerCase(),
       );
 
       if (monthIsValid) {
@@ -354,6 +350,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     datePickerRef,
     datePopperState,
     currentTab,
+    currentDate,
     daysOfWeek,
     monthsList,
     dateInput,
@@ -362,8 +359,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     calendarTabPageData,
     calendarTabIsMinMonth,
     calendarTabIsMaxMonth,
-    calendarTabIsToday,
-    calendarTabGetMonthEquivalent,
     calendarTabPrevMonth,
     calendarTabNextMonth,
     monthTabHandleSelectedMonth,
@@ -373,6 +368,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     yearTabIsPreviousButtonDisabled,
     yearTabIsNextButtonDisabled,
     yearTabHandleSelectedYear,
+    getMonthObject,
     handleDateInput,
     handleMonthInput,
     handleYearInput,

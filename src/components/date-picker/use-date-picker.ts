@@ -104,16 +104,15 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   );
 
   const calendarTabUpdateCalendar = () => {
-    const firstDay = new Date(
-      calendarTabPageData.value.selectedYear,
-      calendarTabPageData.value.selectedMonth,
-      1,
-    ).getDay();
-    const lastDate = new Date(
-      calendarTabPageData.value.selectedYear,
-      calendarTabPageData.value.selectedMonth + 1,
-      0,
-    ).getDate();
+    const firstDay = dayjs(
+      `${calendarTabPageData.value.selectedYear}-${calendarTabPageData.value.selectedMonth + 1}-01`,
+    ).day();
+    const lastDate = dayjs(
+      `${calendarTabPageData.value.selectedYear}-${calendarTabPageData.value.selectedMonth + 1}-01`,
+    )
+      .endOf('month')
+      .date();
+
     const prevMonthDays = firstDay;
     const totalDays = prevMonthDays + lastDate;
     const nextMonthDays = totalDays % 7 === 0 ? 0 : 7 - (totalDays % 7);
@@ -122,27 +121,35 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     // Previous month days
     for (let index = prevMonthDays; index > 0; index--) {
-      const date = new Date(
-        calendarTabPageData.value.selectedYear,
-        calendarTabPageData.value.selectedMonth,
-        -index + 1,
-      );
+      const date = dayjs()
+        .year(calendarTabPageData.value.selectedYear)
+        .month(calendarTabPageData.value.selectedMonth)
+        .date(-index + 1);
+
       calendar.push({ date, inactive: true });
     }
 
     // Current month days
     for (let index = 1; index <= lastDate; index++) {
-      const date = new Date(calendarTabPageData.value.selectedYear, calendarTabPageData.value.selectedMonth, index);
+      const date = dayjs()
+        .year(calendarTabPageData.value.selectedYear)
+        .month(calendarTabPageData.value.selectedMonth)
+        .date(index);
+
       calendar.push({ date, inactive: false });
     }
 
     // Next month days
     for (let index = 1; index <= nextMonthDays; index++) {
-      const date = new Date(calendarTabPageData.value.selectedYear, calendarTabPageData.value.selectedMonth + 1, index);
+      const date = dayjs()
+        .year(calendarTabPageData.value.selectedYear)
+        .month(calendarTabPageData.value.selectedMonth + 1)
+        .date(index);
+
       calendar.push({ date, inactive: true });
     }
 
-    calendarTabPageData.value.calendarDays = calendar;
+    calendarTabPageData.value.calendarDays = calendar.map((day) => ({ ...day, date: day.date.toDate() }));
   };
 
   const calendarTabPrevMonth = () => {

@@ -9,7 +9,8 @@ import type { DatePickerPropTypes, DatePickerEmitTypes } from './date-picker';
 interface DatePickerClasses {
   labelClasses: string;
   datePickerBaseInputClasses: string;
-  helperClasses: string;
+  datePickerInputClasses: string;
+  datePickerInputHelperClasses: string;
 }
 
 interface MonthsList {
@@ -49,7 +50,13 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       },
     );
 
-    const helperClasses = classNames(
+    const datePickerInputClasses = classNames(
+      'spr-h-full spr-border-none spr-bg-transparent spr-outline-none',
+      'spr-text-color-strong spr-font-size-200',
+      'placeholder:spr-text-color-weak',
+    );
+
+    const datePickerInputHelperClasses = classNames(
       'spr-font-size-200 spr-font-line-height-400 spr-font-normal',
       'spr-flex spr-items-center spr-gap-size-spacing-5xs',
       'spr-mt-size-spacing-4xs',
@@ -59,7 +66,12 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       },
     );
 
-    return { labelClasses, datePickerBaseInputClasses, helperClasses };
+    return {
+      labelClasses,
+      datePickerBaseInputClasses,
+      datePickerInputClasses,
+      datePickerInputHelperClasses,
+    };
   });
 
   const datePickerRef = ref<HTMLInputElement | null>(null);

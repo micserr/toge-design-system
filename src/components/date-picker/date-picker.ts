@@ -43,6 +43,18 @@ export const datePickerPropTypes = {
     type: Number,
     default: new Date().getFullYear(),
   },
+  displayHelper: {
+    type: Boolean,
+    default: false,
+  },
+  helperText: {
+    type: String,
+    default: '',
+  },
+  helperIcon: {
+    type: String,
+    default: null,
+  },
 };
 
 export const datePickerEmitTypes = {};

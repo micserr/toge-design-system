@@ -1,6 +1,10 @@
 # Changelog
 
 
+## 1.5.5 (2025-03-03)
+- Fix
+ - DQA for card ([f7c2f293])(https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f7c2f29303d05c8cb5642956f2adcf198241d66d?refName=refs%2Fheads%2F2025%2Ffix%2Fjames%2FDQA-card) by @jmanalang
+
 ## 1.5.4 (2025-02-27)
 
 -Fix

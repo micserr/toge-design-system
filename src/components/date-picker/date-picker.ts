@@ -2,6 +2,8 @@ import type { PropType, ExtractPropTypes } from 'vue';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
+export const REST_DAYS_TYPES = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa'] as const;
+
 export const datePickerPropTypes = {
   id: {
     type: String,
@@ -43,8 +45,11 @@ export const datePickerPropTypes = {
     }),
   },
   restDays: {
-    type: Array as PropType<Array<string>>,
-    default: () => [],
+    type: Array as PropType<Array<(typeof REST_DAYS_TYPES)[number]>>,
+    validator: (value: Array<(typeof REST_DAYS_TYPES)[number]>): boolean => {
+      return value.every((val) => REST_DAYS_TYPES.includes(val));
+    },
+    default: [],
   },
   disabledDates: {
     type: Object as PropType<{
@@ -70,13 +75,17 @@ export const datePickerPropTypes = {
     type: String,
     default: null,
   },
+  width: {
+    type: String,
+    default: '400px',
+  },
 };
 
 export const datePickerEmitTypes = {
   'update:modelValue': (value: string) => typeof value === 'string',
   getDateFormats: (value: object) => typeof value === 'object',
-  getMonthList: (value: Array<string>) => Array.isArray(value),
-  getYearList: (value: Array<string>) => Array.isArray(value),
+  getMonthList: (value: Array<object>) => Array.isArray(value),
+  getYearList: (value: Array<number>) => Array.isArray(value),
 };
 
 export type DatePickerPropTypes = ExtractPropTypes<typeof datePickerPropTypes>;

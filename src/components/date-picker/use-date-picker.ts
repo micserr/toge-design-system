@@ -1,5 +1,5 @@
 import { ref, toRefs, computed, ComputedRef, SetupContext, onMounted, watch, nextTick } from 'vue';
-import { onClickOutside } from '@vueuse/core';
+import { onClickOutside, set } from '@vueuse/core';
 
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
@@ -17,6 +17,9 @@ interface DatePickerClasses {
   datePickerBaseInputClasses: string;
   datePickerInputClasses: string;
   datePickerInputHelperClasses: string;
+  calendarTabItemsBaseClasses: string;
+  monthsTabItemsBaseClasses: string;
+  yearsTabItemsBaseClasses: string;
 }
 
 interface MonthsList {
@@ -35,7 +38,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     });
 
     const datePickerBaseInputClasses = classNames(
-      'spr-flex spr-w-full spr-items-center spr-gap-6 spr-rounded-lg spr-bg-white-50 spr-min-w-[336px] spr-py-1.5 spr-px-3',
+      'spr-flex spr-justify-between spr-items-center spr-gap-6 spr-rounded-lg spr-bg-white-50 spr-min-w-[180px] spr-py-1.5 spr-px-3',
       {
         // Normal State
         'spr-border spr-border-solid spr-border-mushroom-200 focus:spr-border-kangkong-700':
@@ -61,6 +64,9 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       'spr-h-full spr-border-none spr-bg-transparent spr-outline-none',
       'spr-text-color-strong spr-font-size-200',
       'placeholder:spr-text-color-weak',
+      {
+        'spr-cursor-not-allowed': disabled.value,
+      },
     );
 
     const datePickerInputHelperClasses = classNames(
@@ -73,11 +79,33 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       },
     );
 
+    const calendarTabItemsBaseClasses = classNames(
+      'spr-relative spr-box-border spr-flex spr-h-[40px] spr-items-center spr-justify-center spr-p-2',
+      'spr-transition spr-duration-150 spr-ease-in-out',
+    );
+
+    const monthsTabItemsBaseClasses = classNames(
+      'spr-subheading-xs spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-lg spr-p-4',
+      'spr-border spr-border-solid',
+      'spr-transition spr-duration-150 spr-ease-in-out',
+      'active:spr-scale-95',
+    );
+
+    const yearsTabItemsBaseClasses = classNames(
+      'spr-subheading-xs spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-lg spr-p-4',
+      'spr-border spr-border-solid',
+      'spr-transition spr-duration-150 spr-ease-in-out',
+      'active:spr-scale-95',
+    );
+
     return {
       labelClasses,
       datePickerBaseInputClasses,
       datePickerInputClasses,
       datePickerInputHelperClasses,
+      calendarTabItemsBaseClasses,
+      monthsTabItemsBaseClasses,
+      yearsTabItemsBaseClasses,
     };
   });
 
@@ -218,12 +246,10 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       return daysOfWeek.value.find((d) => d.text.toLowerCase() === restDay.toLowerCase())?.dayValue;
     });
 
-    // Check if the day is selected
     if (calendarTabIsSelectedDate(day)) {
       return false;
     }
 
-    // Check if the day is is a rest day
     if (restDaysValue.includes(day.date.getDay())) {
       return true;
     }
@@ -231,7 +257,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     return false;
   };
 
-  const calendarTabIsTodayIndicator = (day: { date: Date; inactive: boolean }) => {
+  const calendarTabIsTodayIndicator = (day: { date: Date }) => {
     if (day.date.toDateString() === currentDate.value.format('ddd MMM DD YYYY')) {
       return true;
     }
@@ -281,7 +307,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     return false;
   };
 
-  const calendarTabIsUnSelectedDate = (day: { date: Date; inactive: boolean }) => {
+  const calendarTabIsUnSelectedDate = (day: { date: Date }) => {
     const monthValue = getMonthObject('text', monthInput.value)?.monthValue;
 
     if (dateInput.value && !monthInput.value && !calendarTabIsDateIsDisabled(day)) {
@@ -303,7 +329,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     return false;
   };
 
-  const calendarTabIsDateIsDisabled = (day: { date: Date; inactive: boolean }) => {
+  const calendarTabIsDateIsDisabled = (day: { date: Date }) => {
     if (
       calendarTabIsDateDisabledFromTo(day) ||
       calendarTabIsDateDisabledPastDate(day) ||
@@ -319,7 +345,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     return false;
   };
 
-  const calendarTabIsDateDisabledFromTo = (day: { date: Date; inactive: boolean }) => {
+  const calendarTabIsDateDisabledFromTo = (day: { date: Date }) => {
     if (disabledDates?.value && disabledDates.value.from && disabledDates.value.to) {
       const disabledFrom = dayjs(disabledDates.value.from, 'MM-DD-YYYY').startOf('day');
       const disabledTo = dayjs(disabledDates.value.to, 'MM-DD-YYYY').endOf('day');
@@ -332,7 +358,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     return false;
   };
 
-  const calendarTabIsDateDisabledPastDate = (day: { date: Date; inactive: boolean }) => {
+  const calendarTabIsDateDisabledPastDate = (day: { date: Date }) => {
     if (disabledDates?.value && disabledDates?.value.pastDates) {
       const dayDate = dayjs(day.date);
 
@@ -342,7 +368,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     return false;
   };
 
-  const calendarTabIsDateDisabledFutureDate = (day: { date: Date; inactive: boolean }) => {
+  const calendarTabIsDateDisabledFutureDate = (day: { date: Date }) => {
     if (disabledDates?.value && disabledDates?.value.futureDates) {
       const dayDate = dayjs(day.date);
 
@@ -352,7 +378,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     return false;
   };
 
-  const calendarTabIsDateDisabledSelectedDates = (day: { date: Date; inactive: boolean }) => {
+  const calendarTabIsDateDisabledSelectedDates = (day: { date: Date }) => {
     if (disabledDates?.value && disabledDates?.value.selectedDates && disabledDates.value.selectedDates.length > 0) {
       const dayDate = dayjs(day.date);
 
@@ -368,7 +394,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     return false;
   };
 
-  const calendarTabIsDateDisabledWeekends = (day: { date: Date; inactive: boolean }) => {
+  const calendarTabIsDateDisabledWeekends = (day: { date: Date }) => {
     if (disabledDates?.value && disabledDates?.value.weekends) {
       const dayDate = dayjs(day.date);
 
@@ -378,7 +404,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     return false;
   };
 
-  const calendarTabIsDateDisabledWeekdays = (day: { date: Date; inactive: boolean }) => {
+  const calendarTabIsDateDisabledWeekdays = (day: { date: Date }) => {
     if (disabledDates?.value && disabledDates?.value.weekdays) {
       const dayDate = dayjs(day.date);
 
@@ -388,7 +414,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     return false;
   };
 
-  const calendarTabIsDateDisabledSelectedDays = (day: { date: Date; inactive: boolean }) => {
+  const calendarTabIsDateDisabledSelectedDays = (day: { date: Date }) => {
     if (disabledDates?.value && disabledDates?.value.selectedDays) {
       const dayDate = dayjs(day.date);
 
@@ -404,6 +430,14 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     }
 
     return false;
+  };
+
+  const calendarTabHandleDateInput = (day: { date: Date }) => {
+    handleDateInput(day.date.getDate().toString(), day.date.getMonth(), day.date.getFullYear(), null);
+
+    setTimeout(() => {
+      datePopperState.value = false;
+    }, 100);
   };
   // #endregion - Calendar Tab
 
@@ -773,6 +807,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     calendarTabIsSelectedDate,
     calendarTabIsUnSelectedDate,
     calendarTabIsDateIsDisabled,
+    calendarTabHandleDateInput,
     monthTabHandleSelectedMonth,
     yearTabCurrentYearPage,
     yearTabGoToPreviousPage,

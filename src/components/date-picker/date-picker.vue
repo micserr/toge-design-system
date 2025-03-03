@@ -17,6 +17,7 @@
       <div ref="datePickerRef" :class="datePickerClasses.datePickerBaseInputClasses" @click="datePopperState = true">
         <div class="spr-flex spr-h-full spr-w-full spr-items-center spr-gap-1.5">
           <input
+            ref="monthInputRef"
             v-model="monthInput"
             :class="['spr-w-[36px] spr-min-w-[36px]', datePickerClasses.datePickerInputClasses]"
             type="text"
@@ -24,11 +25,12 @@
             maxlength="3"
             :disabled="props.disabled"
             :readonly="props.readonly"
-            @input="handleMonthInput(monthInput)"
-            @keyup="handleMonthInput(monthInput)"
+            @input="handleMonthInput(monthInput, $event)"
+            @keyup="handleMonthInput(monthInput, $event)"
           />
           <span class="spr-text-color-strong spr-font-size-200 spr-text-color-weak">/</span>
           <input
+            ref="dateInputRef"
             v-model="dateInput"
             :class="['spr-w-[20px] spr-min-w-[20px]', datePickerClasses.datePickerInputClasses]"
             type="text"
@@ -36,11 +38,12 @@
             maxlength="2"
             :disabled="props.disabled"
             :readonly="props.readonly"
-            @input="handleDateInput(dateInput, null, null)"
-            @keyup="handleDateInput(dateInput, null, null)"
+            @input="handleDateInput(dateInput, null, null, $event)"
+            @keyup="handleDateInput(dateInput, null, null, $event)"
           />
           <span class="spr-text-color-strong spr-font-size-200 spr-text-color-weak">/</span>
           <input
+            ref="yearInputRef"
             v-model="yearInput"
             :class="['spr-w-[42px] spr-min-w-[42px]', datePickerClasses.datePickerInputClasses]"
             type="text"
@@ -48,8 +51,8 @@
             maxlength="4"
             :disabled="props.disabled"
             :readonly="props.readonly"
-            @input="handleYearInput(yearInput)"
-            @keyup="handleYearInput(yearInput)"
+            @input="handleYearInput(yearInput, $event)"
+            @keyup="handleYearInput(yearInput, $event)"
           />
         </div>
         <div class="spr-flex spr-items-center spr-justify-center">
@@ -156,59 +159,51 @@
               {{ dayOfWeek.text }}
             </div>
 
-            <div
-              v-for="(day, dayIndex) in calendarTabPageData.calendarDays"
-              :key="dayIndex"
-              :class="[
-                'spr-relative spr-box-border spr-flex spr-h-[40px] spr-cursor-pointer spr-items-center spr-justify-center spr-p-2',
-                'spr-border-color-weak spr-border spr-border-solid',
-                'spr-transition spr-duration-150 spr-ease-in-out',
-                'active:spr-background-color-pressed active:spr-scale-95',
-                {
-                  // Saturday and Sunday
-                  'spr-background-color-disabled':
-                    dateInput && monthInput
-                      ? day.date.getDay() === 0 || day.date.getDay() === 6
-                      : (day.date.getDay() === 0 || day.date.getDay() === 6) &&
-                        day.date.getDate().toString() !== dateInput,
-
-                  // Today Indicator
-                  'spr-text-color-brand-base': day.date.toDateString() === currentDate.format('ddd MMM DD YYYY'),
-
-                  // Current Month Dates
-                  'spr-text-color-strong': !day.inactive,
-
-                  // Past/Future Month Dates (Inactive Dates)
-                  'spr-text-color-disabled': day.inactive,
-
-                  // Selected Date
-                  'spr-border-color-brand-base spr-background-color-single-active':
-                    dateInput && monthInput && !yearInput
-                      ? // For selected date with month, date, and year has no value
-                        day.date.getDate().toString() === dateInput &&
-                        day.date.getMonth() === getMonthObject('text', monthInput)?.monthValue &&
-                        !day.inactive
-                      : // For selected date with month, date, and year
-                        dateInput && monthInput && yearInput
-                        ? day.date.getDate().toString() === dateInput &&
-                          day.date.getMonth() === getMonthObject('text', monthInput)?.monthValue &&
-                          day.date.getFullYear().toString() === yearInput &&
-                          !day.inactive
-                        : // For when only date is selected
-                          day.date.getDate().toString() === dateInput && !day.inactive,
-
-                  // Unselected Date
-                  'hover:spr-background-color-hover': day.date.getDate().toString() !== dateInput,
-                },
-              ]"
-              @click="handleDateInput(day.date.getDate().toString(), day.date.getMonth(), day.date.getFullYear())"
-            >
-              <span>{{ day.date.getDate() }}</span>
+            <template v-for="day in calendarTabPageData.calendarDays" :key="day.date">
               <div
-                v-if="day.date.toDateString() === currentDate.format('ddd MMM DD YYYY')"
-                class="spr-background-color-brand-base spr-absolute spr-bottom-1 spr-m-auto spr-h-1 spr-w-1 spr-rounded-full"
-              ></div>
-            </div>
+                v-if="minMaxYear.min <= day.date.getFullYear() && minMaxYear.max >= day.date.getFullYear()"
+                :class="[
+                  'spr-relative spr-box-border spr-flex spr-h-[40px] spr-items-center spr-justify-center spr-p-2',
+                  'spr-transition spr-duration-150 spr-ease-in-out',
+                  {
+                    // Rest Days
+                    'spr-background-color-disabled': calendarTabIsRestDay(day),
+
+                    // Today Indicator
+                    'spr-text-color-brand-base': calendarTabIsTodayIndicator(day),
+
+                    // Active Month Dates
+                    'spr-text-color-strong': calendarTabIsActiveMonthDates(day),
+
+                    // Inactive Month Dates (Past/Future)
+                    'spr-text-color-disabled': calendarTabIsInactiveMonthDates(day),
+
+                    // Selected Date
+                    'spr-border-color-brand-base spr-background-color-single-active active:spr-background-color-brand-pressed spr-cursor-pointer spr-border spr-border-solid active:spr-scale-95':
+                      calendarTabIsSelectedDate(day),
+
+                    // Unselected Date
+                    'hover:spr-background-color-hover spr-border-color-weak active:spr-background-color-pressed spr-cursor-pointer spr-border spr-border-solid active:spr-scale-95':
+                      calendarTabIsUnSelectedDate(day),
+
+                    // Disabled Dates
+                    'spr-cursor-not-allowed spr-opacity-30': calendarTabIsDateIsDisabled(day),
+                  },
+                ]"
+                @click="
+                  !calendarTabIsDateIsDisabled(day)
+                    ? handleDateInput(day.date.getDate().toString(), day.date.getMonth(), day.date.getFullYear(), null)
+                    : null
+                "
+              >
+                <span>{{ day.date.getDate() }}</span>
+                <div
+                  v-if="calendarTabIsTodayIndicator(day)"
+                  class="spr-background-color-brand-base spr-absolute spr-bottom-1 spr-m-auto spr-h-1 spr-w-1 spr-rounded-full"
+                ></div>
+              </div>
+              <div v-else></div>
+            </template>
           </div>
 
           <!-- Months Tab  -->
@@ -289,6 +284,9 @@ const emit = defineEmits(datePickerEmitTypes);
 const {
   datePickerClasses,
   datePickerRef,
+  monthInputRef,
+  dateInputRef,
+  yearInputRef,
   datePopperState,
   currentTab,
   currentDate,
@@ -300,6 +298,13 @@ const {
   calendarTabPageData,
   calendarTabIsMinMonth,
   calendarTabIsMaxMonth,
+  calendarTabIsRestDay,
+  calendarTabIsTodayIndicator,
+  calendarTabIsActiveMonthDates,
+  calendarTabIsInactiveMonthDates,
+  calendarTabIsSelectedDate,
+  calendarTabIsUnSelectedDate,
+  calendarTabIsDateIsDisabled,
   getMonthObject,
   calendarTabPrevMonth,
   calendarTabNextMonth,
@@ -309,8 +314,8 @@ const {
   yearTabGoToNextPage,
   yearTabIsPreviousButtonDisabled,
   yearTabIsNextButtonDisabled,
-  handleDateInput,
   handleMonthInput,
+  handleDateInput,
   handleYearInput,
   yearTabHandleSelectedYear,
 } = useDatePicker(props, emit);

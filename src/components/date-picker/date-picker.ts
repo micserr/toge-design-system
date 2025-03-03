@@ -31,17 +31,32 @@ export const datePickerPropTypes = {
     type: Boolean,
     default: false,
   },
-  year: {
-    type: Number as PropType<number | null>,
-    default: null,
+  currentYear: {
+    type: String,
+    default: new Date().getFullYear().toString(),
   },
-  minYear: {
-    type: Number,
-    default: 1900,
+  minMaxYear: {
+    type: Object as PropType<{ min: number; max: number }>,
+    default: () => ({
+      min: 1900,
+      max: new Date().getFullYear(),
+    }),
   },
-  maxYear: {
-    type: Number,
-    default: new Date().getFullYear(),
+  restDays: {
+    type: Array as PropType<Array<string>>,
+    default: () => [],
+  },
+  disabledDates: {
+    type: Object as PropType<{
+      to: string;
+      from: string;
+      pastDates: boolean;
+      futureDates: boolean;
+      selectedDates: Array<string>;
+      weekends: boolean;
+      weekdays: boolean;
+      selectedDays: Array<string>;
+    }>,
   },
   displayHelper: {
     type: Boolean,
@@ -57,7 +72,12 @@ export const datePickerPropTypes = {
   },
 };
 
-export const datePickerEmitTypes = {};
+export const datePickerEmitTypes = {
+  'update:modelValue': (value: string) => typeof value === 'string',
+  getDateFormats: (value: object) => typeof value === 'object',
+  getMonthList: (value: Array<string>) => Array.isArray(value),
+  getYearList: (value: Array<string>) => Array.isArray(value),
+};
 
 export type DatePickerPropTypes = ExtractPropTypes<typeof datePickerPropTypes>;
 export type DatePickerEmitTypes = typeof datePickerEmitTypes;

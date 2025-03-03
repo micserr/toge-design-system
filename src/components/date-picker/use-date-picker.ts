@@ -1,10 +1,16 @@
-import { ref, toRefs, computed, ComputedRef, SetupContext, onMounted, watch } from 'vue';
+import { ref, toRefs, computed, ComputedRef, SetupContext, onMounted, watch, nextTick } from 'vue';
 import { onClickOutside } from '@vueuse/core';
 
 import dayjs from 'dayjs';
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+
 import classNames from 'classnames';
 
 import type { DatePickerPropTypes, DatePickerEmitTypes } from './date-picker';
+
+dayjs.extend(isSameOrBefore);
+dayjs.extend(isSameOrAfter);
 
 interface DatePickerClasses {
   labelClasses: string;
@@ -20,7 +26,8 @@ interface MonthsList {
 }
 
 export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<DatePickerEmitTypes>['emit']) => {
-  const { active, disabled, readonly, error, year, minYear, maxYear } = toRefs(props);
+  const { modelValue, active, disabled, readonly, error, currentYear, minMaxYear, restDays, disabledDates } =
+    toRefs(props);
 
   const datePickerClasses: ComputedRef<DatePickerClasses> = computed(() => {
     const labelClasses = classNames('spr-body-sm-regular spr-text-color-strong spr-block', {
@@ -75,6 +82,9 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   });
 
   const datePickerRef = ref<HTMLInputElement | null>(null);
+  const monthInputRef = ref<HTMLInputElement | null>(null);
+  const dateInputRef = ref<HTMLInputElement | null>(null);
+  const yearInputRef = ref<HTMLInputElement | null>(null);
 
   const datePopperState = ref<boolean>(false);
 
@@ -86,6 +96,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     Array.from({ length: 7 }, (_, i) => ({
       text: dayjs().day(i).format('dd'),
       fullText: dayjs().day(i).format('dddd'),
+      dayValue: i,
     })),
   );
 
@@ -99,29 +110,39 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
   const dateInput = ref<string>('');
   const monthInput = ref<string>('');
-  const yearInput = ref<string | null>(year.value ? year.value.toString() : null);
+  const yearInput = ref<string>('');
 
   // #region - Calendar Tab
   const calendarTabPageData = ref({
     selectedMonth: dayjs().month(),
-    selectedYear: dayjs().year(),
+    selectedYear: Number(currentYear.value),
     calendarDays: [] as Array<{ date: Date; inactive: boolean }>,
   });
 
-  const calendarTabIsMinMonth = computed(
-    () => calendarTabPageData.value.selectedYear === minYear.value && calendarTabPageData.value.selectedMonth === 0,
+  const calendarTabIsMinMonth = computed(() =>
+    dayjs()
+      .year(calendarTabPageData.value.selectedYear)
+      .month(calendarTabPageData.value.selectedMonth)
+      .isSame(dayjs().year(minMaxYear.value.min).month(0), 'month'),
   );
-  const calendarTabIsMaxMonth = computed(
-    () => calendarTabPageData.value.selectedYear === maxYear.value && calendarTabPageData.value.selectedMonth === 11,
+
+  const calendarTabIsMaxMonth = computed(() =>
+    dayjs()
+      .year(calendarTabPageData.value.selectedYear)
+      .month(calendarTabPageData.value.selectedMonth)
+      .isSame(dayjs().year(minMaxYear.value.max).month(11), 'month'),
   );
 
   const calendarTabUpdateCalendar = () => {
-    const firstDay = dayjs(
-      `${calendarTabPageData.value.selectedYear}-${calendarTabPageData.value.selectedMonth + 1}-01`,
-    ).day();
-    const lastDate = dayjs(
-      `${calendarTabPageData.value.selectedYear}-${calendarTabPageData.value.selectedMonth + 1}-01`,
-    )
+    const firstDay = dayjs()
+      .year(calendarTabPageData.value.selectedYear)
+      .month(calendarTabPageData.value.selectedMonth)
+      .startOf('month')
+      .day();
+
+    const lastDate = dayjs()
+      .year(calendarTabPageData.value.selectedYear)
+      .month(calendarTabPageData.value.selectedMonth)
       .endOf('month')
       .date();
 
@@ -167,12 +188,13 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   const calendarTabPrevMonth = () => {
     if (calendarTabIsMinMonth.value) return;
 
-    if (calendarTabPageData.value.selectedMonth === 0) {
-      calendarTabPageData.value.selectedMonth = 11;
-      calendarTabPageData.value.selectedYear--;
-    } else {
-      calendarTabPageData.value.selectedMonth--;
-    }
+    const newDate = dayjs()
+      .year(calendarTabPageData.value.selectedYear)
+      .month(calendarTabPageData.value.selectedMonth)
+      .subtract(1, 'month');
+
+    calendarTabPageData.value.selectedMonth = newDate.month();
+    calendarTabPageData.value.selectedYear = newDate.year();
 
     calendarTabUpdateCalendar();
   };
@@ -180,23 +202,216 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   const calendarTabNextMonth = () => {
     if (calendarTabIsMaxMonth.value) return;
 
-    if (calendarTabPageData.value.selectedMonth === 11) {
-      calendarTabPageData.value.selectedMonth = 0;
-      calendarTabPageData.value.selectedYear++;
-    } else {
-      calendarTabPageData.value.selectedMonth++;
-    }
+    const newDate = dayjs()
+      .year(calendarTabPageData.value.selectedYear)
+      .month(calendarTabPageData.value.selectedMonth)
+      .add(1, 'month');
+
+    calendarTabPageData.value.selectedMonth = newDate.month();
+    calendarTabPageData.value.selectedYear = newDate.year();
 
     calendarTabUpdateCalendar();
   };
 
+  const calendarTabIsRestDay = (day: { date: Date; inactive: boolean }) => {
+    const restDaysValue = restDays.value.map((restDay) => {
+      return daysOfWeek.value.find((d) => d.text.toLowerCase() === restDay.toLowerCase())?.dayValue;
+    });
+
+    // Check if the day is selected
+    if (calendarTabIsSelectedDate(day)) {
+      return false;
+    }
+
+    // Check if the day is is a rest day
+    if (restDaysValue.includes(day.date.getDay())) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const calendarTabIsTodayIndicator = (day: { date: Date; inactive: boolean }) => {
+    if (day.date.toDateString() === currentDate.value.format('ddd MMM DD YYYY')) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const calendarTabIsActiveMonthDates = (day: { date: Date; inactive: boolean }) => {
+    if (!day.inactive && !calendarTabIsDateIsDisabled(day)) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const calendarTabIsInactiveMonthDates = (day: { date: Date; inactive: boolean }) => {
+    if (day.inactive && !calendarTabIsDateIsDisabled(day)) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const calendarTabIsSelectedDate = (day: { date: Date; inactive: boolean }) => {
+    const monthValue = getMonthObject('text', monthInput.value)?.monthValue;
+
+    // Check if only date is selected
+    if (dateInput.value && !monthInput.value && !yearInput.value && !calendarTabIsDateIsDisabled(day)) {
+      return day.date.getDate().toString() === dateInput.value && !day.inactive;
+    }
+
+    // Check if date and month are selected, but not year
+    if (dateInput.value && monthInput && !yearInput.value && !calendarTabIsDateIsDisabled(day)) {
+      return day.date.getDate().toString() === dateInput.value && day.date.getMonth() === monthValue && !day.inactive;
+    }
+
+    // Check if date, month, and year are selected
+    if (dateInput.value && monthInput.value && yearInput.value && !calendarTabIsDateIsDisabled(day)) {
+      return (
+        day.date.getDate().toString() === dateInput.value &&
+        day.date.getMonth() === monthValue &&
+        day.date.getFullYear().toString() === yearInput.value &&
+        !day.inactive
+      );
+    }
+
+    return false;
+  };
+
+  const calendarTabIsUnSelectedDate = (day: { date: Date; inactive: boolean }) => {
+    const monthValue = getMonthObject('text', monthInput.value)?.monthValue;
+
+    if (dateInput.value && !monthInput.value && !calendarTabIsDateIsDisabled(day)) {
+      return day.date.getDate().toString() !== dateInput.value;
+    }
+
+    if (dateInput.value && monthInput && !calendarTabIsDateIsDisabled(day)) {
+      return day.date.getDate().toString() !== dateInput.value || day.date.getMonth() !== monthValue;
+    }
+
+    if (!dateInput.value && monthInput.value && !calendarTabIsDateIsDisabled(day)) {
+      return true;
+    }
+
+    if (!dateInput.value && !monthInput.value && !calendarTabIsDateIsDisabled(day)) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const calendarTabIsDateIsDisabled = (day: { date: Date; inactive: boolean }) => {
+    if (
+      calendarTabIsDateDisabledFromTo(day) ||
+      calendarTabIsDateDisabledPastDate(day) ||
+      calendarTabIsDateDisabledFutureDate(day) ||
+      calendarTabIsDateDisabledSelectedDates(day) ||
+      calendarTabIsDateDisabledWeekends(day) ||
+      calendarTabIsDateDisabledWeekdays(day) ||
+      calendarTabIsDateDisabledSelectedDays(day)
+    ) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const calendarTabIsDateDisabledFromTo = (day: { date: Date; inactive: boolean }) => {
+    if (disabledDates?.value && disabledDates.value.from && disabledDates.value.to) {
+      const disabledFrom = dayjs(disabledDates.value.from, 'MM-DD-YYYY').startOf('day');
+      const disabledTo = dayjs(disabledDates.value.to, 'MM-DD-YYYY').endOf('day');
+
+      const dayDate = dayjs(day.date);
+
+      return dayDate.isSameOrAfter(disabledFrom, 'day') && dayDate.isSameOrBefore(disabledTo, 'day');
+    }
+
+    return false;
+  };
+
+  const calendarTabIsDateDisabledPastDate = (day: { date: Date; inactive: boolean }) => {
+    if (disabledDates?.value && disabledDates?.value.pastDates) {
+      const dayDate = dayjs(day.date);
+
+      return dayDate.isBefore(currentDate.value.startOf('day'));
+    }
+
+    return false;
+  };
+
+  const calendarTabIsDateDisabledFutureDate = (day: { date: Date; inactive: boolean }) => {
+    if (disabledDates?.value && disabledDates?.value.futureDates) {
+      const dayDate = dayjs(day.date);
+
+      return dayDate.isAfter(currentDate.value.endOf('day'));
+    }
+
+    return false;
+  };
+
+  const calendarTabIsDateDisabledSelectedDates = (day: { date: Date; inactive: boolean }) => {
+    if (disabledDates?.value && disabledDates?.value.selectedDates && disabledDates.value.selectedDates.length > 0) {
+      const dayDate = dayjs(day.date);
+
+      disabledDates.value.selectedDates.forEach((_date) => {
+        if (!dayjs(_date).isValid()) {
+          console.error(`Error: disabledDates Props - Selected Dates - Invalid date format: "${_date}"`);
+        }
+      });
+
+      return disabledDates.value.selectedDates.some((date) => dayDate.isSame(dayjs(date, 'MM-DD-YYYY'), 'day'));
+    }
+
+    return false;
+  };
+
+  const calendarTabIsDateDisabledWeekends = (day: { date: Date; inactive: boolean }) => {
+    if (disabledDates?.value && disabledDates?.value.weekends) {
+      const dayDate = dayjs(day.date);
+
+      return dayDate.day() === 0 || dayDate.day() === 6;
+    }
+
+    return false;
+  };
+
+  const calendarTabIsDateDisabledWeekdays = (day: { date: Date; inactive: boolean }) => {
+    if (disabledDates?.value && disabledDates?.value.weekdays) {
+      const dayDate = dayjs(day.date);
+
+      return dayDate.day() > 0 && dayDate.day() < 6;
+    }
+
+    return false;
+  };
+
+  const calendarTabIsDateDisabledSelectedDays = (day: { date: Date; inactive: boolean }) => {
+    if (disabledDates?.value && disabledDates?.value.selectedDays) {
+      const dayDate = dayjs(day.date);
+
+      return disabledDates.value.selectedDays.some((day) => {
+        const foundDay = daysOfWeek.value.find((d) => d.text.toLowerCase() === day.toLowerCase());
+
+        if (!foundDay) {
+          console.error(`Error: disabledDates Props - Selected Days - Invalid day: "${day}"`);
+        }
+
+        return foundDay ? dayDate.day() === daysOfWeek.value.indexOf(foundDay) : false;
+      });
+    }
+
+    return false;
+  };
   // #endregion - Calendar Tab
 
   // #region - Month Tab
   const monthTabHandleSelectedMonth = (selectedMonth: { text: string; fullText: string }) => {
     currentTab.value = 'tab-calendar';
 
-    handleMonthInput(selectedMonth.text);
+    handleMonthInput(selectedMonth.text, null);
   };
   // #endregion - Month Tab
 
@@ -204,9 +419,10 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   const yearTabPageData = ref({
     currentPage: 0,
     itemsPerPage: 12,
-    yearsArray: Array.from({ length: maxYear.value - minYear.value + 1 }, (_, index) => minYear.value + index).filter(
-      (year) => year <= maxYear.value && year >= minYear.value,
-    ),
+    yearsArray: Array.from(
+      { length: minMaxYear.value.max - minMaxYear.value.min + 1 },
+      (_, index) => minMaxYear.value.min + index,
+    ).filter((year) => year <= minMaxYear.value.max && year >= minMaxYear.value.min),
   });
 
   const yearTabCurrentYearPage = computed(() => {
@@ -255,9 +471,73 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   const yearTabHandleSelectedYear = (selectedYear: string) => {
     currentTab.value = 'tab-calendar';
 
-    handleYearInput(selectedYear);
+    handleYearInput(selectedYear, null);
   };
   // #endregion - Year Tab
+
+  // #region - Helper Methods
+  const setWarningPropsValue = (type: string) => {
+    switch (type) {
+      case 'MinMaxYear': {
+        const _currentYear = Number(currentYear.value) || new Date().getFullYear();
+        const { min, max } = minMaxYear.value;
+
+        if (min > _currentYear || max < _currentYear) {
+          console.error(
+            `Error: minMaxYear Props - The current year (${_currentYear}) is outside of the valid range. ` +
+              `min: ${min}, max: ${max}.`,
+          );
+        }
+
+        break;
+      }
+
+      case 'disabledDatesToFrom': {
+        if (disabledDates?.value?.from && disabledDates?.value?.to) {
+          const disabledFromDate = dayjs(disabledDates.value.from, 'MM-DD-YYYY');
+          const disabledToDate = dayjs(disabledDates.value.to, 'MM-DD-YYYY');
+
+          if (disabledFromDate.isAfter(disabledToDate)) {
+            console.error('Error: disabledDates props - The "from" date cannot be later than the "to" date.');
+          }
+
+          if (disabledToDate.isBefore(disabledFromDate)) {
+            console.error('Error: disabledDates props - The "to" date cannot be earlier than the "from" date.');
+          }
+        }
+
+        break;
+      }
+
+      default:
+        break;
+    }
+  };
+
+  const setModelValue = () => {
+    if (modelValue?.value) {
+      const _date = dayjs(modelValue.value);
+
+      if (!_date.isValid()) {
+        console.error(`Error: modelValue - Invalid date format "${modelValue.value}"`);
+
+        return;
+      }
+
+      const year = _date.year();
+
+      if (year < minMaxYear.value.min || year > minMaxYear.value.max) {
+        console.error(
+          `Error: modelValue - The selected date (${_date.format('MM-DD-YYYY')}) is outside of the valid range. min: ${minMaxYear.value.min}, max: ${minMaxYear.value.max}.`,
+        );
+        return;
+      }
+
+      handleMonthInput(_date.format('MMM').toUpperCase(), null);
+      handleDateInput(_date.format('DD'), _date.month(), year, null);
+      handleYearInput(_date.format('YYYY'), null);
+    }
+  };
 
   const getMonthObject = (field: string, value: string | number) => {
     return monthsList.value.find(
@@ -266,10 +546,38 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     );
   };
 
-  const handleDateInput = (selectedDate: string, selectedMonth: number | null, selectedYear: number | null) => {
+  const handleMonthInput = (selectedMonth: string | null, event: Event | null) => {
+    if (selectedMonth) {
+      monthInput.value = selectedMonth.replace(/[^A-Za-z]/g, '').toUpperCase();
+
+      const monthIsValid = monthsList.value.find(
+        (_month: MonthsList) => _month.text.toLowerCase() === monthInput.value.toLowerCase(),
+      );
+
+      if (monthIsValid) {
+        calendarTabPageData.value.selectedMonth = monthIsValid.monthValue;
+
+        calendarTabUpdateCalendar();
+        emitDateFormats();
+      }
+    }
+
+    handleModelValueUpdate();
+    handleBackSpaceInput('month', event);
+  };
+
+  const handleDateInput = (
+    selectedDate: string,
+    selectedMonth: number | null,
+    selectedYear: number | null,
+    event: Event | null,
+  ) => {
     if (selectedDate) {
-      // Remove leading zeros from the date input
-      dateInput.value = parseInt(selectedDate.replace(/[^0-9]/g, ''), 10).toString();
+      dateInput.value = selectedDate.replace(/[^0-9]/g, '');
+
+      if (dateInput.value.length === 2) {
+        dateInput.value = selectedDate.replace(/\b0(\d)\b/g, '$1');
+      }
 
       if (selectedMonth !== null && selectedYear !== null) {
         const monthIsValid = monthsList.value.find((_month: MonthsList) => _month.monthValue === selectedMonth);
@@ -285,28 +593,16 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
           calendarTabPageData.value.selectedYear = selectedYear;
 
           calendarTabUpdateCalendar();
+          emitDateFormats();
         }
       }
     }
+
+    handleModelValueUpdate();
+    handleBackSpaceInput('date', event);
   };
 
-  const handleMonthInput = (selectedMonth: string | null) => {
-    if (selectedMonth) {
-      monthInput.value = selectedMonth.replace(/[^A-Za-z]/g, '').toUpperCase();
-
-      const monthIsValid = monthsList.value.find(
-        (_month: MonthsList) => _month.text.toLowerCase() === monthInput.value.toLowerCase(),
-      );
-
-      if (monthIsValid) {
-        calendarTabPageData.value.selectedMonth = monthIsValid.monthValue;
-
-        calendarTabUpdateCalendar();
-      }
-    }
-  };
-
-  const handleYearInput = (selectedYear: string | null) => {
+  const handleYearInput = (selectedYear: string | null, event: Event | null) => {
     if (selectedYear) {
       yearInput.value = selectedYear.replace(/[^0-9]/g, '');
 
@@ -316,9 +612,90 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
         calendarTabPageData.value.selectedYear = Number(yearInput.value);
 
         calendarTabUpdateCalendar();
+        emitDateFormats();
+      }
+    }
+
+    handleModelValueUpdate();
+    handleBackSpaceInput('year', event);
+  };
+
+  const handleModelValueUpdate = () => {
+    emit('update:modelValue', `${monthInput.value}-${dateInput.value}-${yearInput.value}`);
+  };
+
+  const handleBackSpaceInput = (inputType: 'month' | 'date' | 'year', event: Event | null) => {
+    if (event && event instanceof KeyboardEvent && event.key === 'Backspace') {
+      if (inputType === 'date' && dateInput.value === '') {
+        nextTick(() => {
+          if (monthInputRef.value) monthInputRef.value.focus();
+        });
+      }
+
+      if (inputType === 'year' && yearInput.value === '') {
+        nextTick(() => {
+          if (dateInputRef.value) dateInputRef.value.focus();
+        });
       }
     }
   };
+
+  const emitDateFormats = () => {
+    if (monthInput.value && dateInput.value && yearInput.value) {
+      const monthIsValid = monthsList.value.find(
+        (_month: MonthsList) => _month.text.toLowerCase() === monthInput.value.toLowerCase(),
+      );
+      const yearIsValid = yearTabPageData.value.yearsArray.find((_year) => _year === Number(yearInput.value));
+
+      if (monthIsValid && yearIsValid) {
+        const _date = dayjs(`${monthInput.value}-${dateInput.value}-${yearInput.value}`, 'MM-DD-YYYY');
+
+        const formats = {
+          // Standard date formats
+          mmddyyyy: _date.format('MM-DD-YYYY'),
+          ddmmyyyy: _date.format('DD-MM-YYYY'),
+          yyyymmdd: _date.format('YYYY-MM-DD'),
+          yyyyMMdd: _date.format('YYYY-MM-DD'),
+
+          // Date with slashes and shortened styles
+          mmddyyyyWithSlashes: _date.format('MM/DD/YYYY'),
+          yyyyMMddWithSlashes: _date.format('YYYY/MM/DD'),
+
+          // Short date formats
+          shortDate: _date.format('MMM D, YYYY'),
+          shortDateWithPeriod: _date.format('MMM. D, YYYY'),
+          mmmdd: _date.format('MMM. DD'),
+
+          // Full date format
+          fullDate: _date.format('dddd, MMMM D, YYYY'),
+
+          // Month and year formats
+          monthYear: _date.format('MMMM YYYY'),
+
+          // Miscellaneous formats
+          mmddyy: _date.format('MMDDYY'),
+          mm: _date.format('MM'),
+          yyyy: _date.format('YYYY'),
+          dd: _date.format('DD'),
+
+          // ISO format
+          isoDate: _date.format('YYYY-MM-DDTHH:mm:ssZ'),
+        };
+
+        emit('getDateFormats', formats);
+      }
+    }
+  };
+
+  const emitMonthList = () => {
+    emit('getMonthList', monthsList.value);
+  };
+
+  const emitYearList = () => {
+    emit('getYearList', yearTabPageData.value.yearsArray);
+  };
+
+  // #endregion - Helper Methods
 
   watch(datePopperState, (newValue) => {
     if (newValue === false) {
@@ -346,11 +723,11 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     }
   });
 
-  watch([maxYear, minYear], () => {
+  watch(minMaxYear, () => {
     yearTabPageData.value.yearsArray = Array.from(
-      { length: maxYear.value - minYear.value + 1 },
-      (_, index) => minYear.value + index,
-    ).filter((year) => year <= maxYear.value && year >= minYear.value);
+      { length: minMaxYear.value.max - minMaxYear.value.min + 1 },
+      (_, index) => minMaxYear.value.min + index,
+    ).filter((year) => year <= minMaxYear.value.max && year >= minMaxYear.value.min);
 
     yearTabPageData.value.currentPage = 0;
   });
@@ -360,13 +737,22 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   });
 
   onMounted(() => {
+    setWarningPropsValue('MinMaxYear');
+    setWarningPropsValue('disabledDatesToFrom');
+
+    setModelValue();
     calendarTabUpdateCalendar();
     yearsTabSetCurrentPageYear();
+    emitMonthList();
+    emitYearList();
   });
 
   return {
     datePickerClasses,
     datePickerRef,
+    monthInputRef,
+    dateInputRef,
+    yearInputRef,
     datePopperState,
     currentTab,
     currentDate,
@@ -380,6 +766,13 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     calendarTabIsMaxMonth,
     calendarTabPrevMonth,
     calendarTabNextMonth,
+    calendarTabIsRestDay,
+    calendarTabIsTodayIndicator,
+    calendarTabIsActiveMonthDates,
+    calendarTabIsInactiveMonthDates,
+    calendarTabIsSelectedDate,
+    calendarTabIsUnSelectedDate,
+    calendarTabIsDateIsDisabled,
     monthTabHandleSelectedMonth,
     yearTabCurrentYearPage,
     yearTabGoToPreviousPage,
@@ -387,9 +780,10 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     yearTabIsPreviousButtonDisabled,
     yearTabIsNextButtonDisabled,
     yearTabHandleSelectedYear,
+    setModelValue,
     getMonthObject,
-    handleDateInput,
     handleMonthInput,
+    handleDateInput,
     handleYearInput,
   };
 };

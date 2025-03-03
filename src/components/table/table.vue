@@ -25,6 +25,10 @@
             >
               <div class="spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-5xs">
                 <span @click="header.sort && sortData(header.field)">{{ header.name }}</span>
+
+                <span v-if="header.badgeText">
+                  <spr-badge :text="header.badgeText" :variant="header.badgeVariant" size="small" />
+                </span>
                 <span
                   v-if="header.sort"
                   class="spr-flex spr-flex-row spr-items-center"
@@ -64,10 +68,12 @@
             >
               <div v-if="sortedData[keyIndex][column.field]" class="spr-flex spr-flex-row spr-items-center spr-gap-2">
                 <spr-avatar
-                  v-if="column.hasAvatar && sortedData[keyIndex][column.field].image"
+                  v-if="column.hasAvatar"
                   size="lg"
                   :src="sortedData[keyIndex][column.field].image"
                   alt="User Avatar"
+                  :variant="sortedData[keyIndex][column.field].image ? 'image' : 'initial'"
+                  :initial="sortedData[keyIndex][column.field].title"
                 />
                 <div>
                   <div
@@ -97,13 +103,16 @@
         <tbody v-else>
           <tr v-if="!loading">
             <td :colspan="getHeaderCount" class="spr-overflow-hidden">
-              <SprEmptyState />
+              <slot name="empty-state">
+                <SprEmptyState />
+              </slot>
             </td>
           </tr>
           <tr v-else>
             <td :colspan="getHeaderCount" class="spr-overflow-hidden">
-              <div v-if="!$slots.loading" class="spr-flex spr-items-center spr-justify-center">Loading...</div>
-              <slot name="loading" class="" />
+              <slot name="loading">
+                <div class="spr-flex spr-items-center spr-justify-center">Loading...</div>
+              </slot>
             </td>
           </tr>
         </tbody>
@@ -117,11 +126,14 @@ import { Icon } from '@iconify/vue';
 
 import SprAvatar from '@/components/avatar/avatar.vue';
 import SprEmptyState from '@/components/empty-state/empty-state.vue';
+import SprBadge from '@/components/badge/badge.vue';
 
 import { tablePropTypes } from './table';
 import { useTable } from './use-table';
+import { tableEmitTypes } from './table';
 
 const props = defineProps(tablePropTypes);
+const emit = defineEmits(tableEmitTypes);
 
-const { sortedData, sortData, getHeaderCount } = useTable(props);
+const { sortedData, sortData, getHeaderCount } = useTable(props, emit);
 </script>

@@ -1,20 +1,31 @@
 # Changelog
 
+## 1.5.7 (2025-03-03)
+
+- Feature
+
+  - Commit 97d44216: emit table sort ([#97d44216](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/97d44216912e82abe1d805dadba5b1f7244d4b37?refName=refs/heads/2025/Feature/andrea/added-badge-table) by @adestajo)
+
+- Fix
+  - Commit 609aea96: added default for empty state image ([#609aea96](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/609aea961fc07edee42a9d52fb53633f3f665bde?refName=refs/heads/2025/Feature/andrea/added-badge-table) by @adestajo)
+    - added badge border box ([#7e7ccf7f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7e7ccf7f0f2bf65dd88f7cbac550248ebfac5bf7?refName=refs/heads/2025/Feature/andrea/added-badge-table) by @adestajo)
+
 ## 1.5.6 (2025-03-03)
+
 - Fix
   - Movement of prefix and icon on helper message ([#bd809417](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/ff11dd36-9e5b-4dee-ab48-0999d0a61cfd/commit/bd809417bb06570620683002b3e6e51bb8a6c2ed/) @jfabula)
   - Added template slots for input components ([#e0cc862c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e0cc862cfc70ff97890c1315fb8700b59b75038b?refName=refs%2Fheads%2F2025%2FFIX%2FXyrk%2FINPUT_HELPER_SPACE_PREFIX_AND_ICON) @jfabula)
 
 ## 1.5.5 (2025-03-03)
+
 - Fix
- - DQA for card ([f7c2f293])(https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f7c2f29303d05c8cb5642956f2adcf198241d66d?refName=refs%2Fheads%2F2025%2Ffix%2Fjames%2FDQA-card) by @jmanalang
+- DQA for card ([f7c2f293])(https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f7c2f29303d05c8cb5642956f2adcf198241d66d?refName=refs%2Fheads%2F2025%2Ffix%2Fjames%2FDQA-card) by @jmanalang
 
 ## 1.5.4 (2025-02-27)
 
 -Fix
-  - DQA and updated documentation for Staus  ([#7e8b0ad6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7e8b0ad6ea97836c3eda3d5c02737a449814757f?refName=refs%2Fheads%2F2025%2Ffix%2Fdale%2FDQA-status) by @dale)
 
-
+- DQA and updated documentation for Staus ([#7e8b0ad6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7e8b0ad6ea97836c3eda3d5c02737a449814757f?refName=refs%2Fheads%2F2025%2Ffix%2Fdale%2FDQA-status) by @dale)
 
 ## 1.5.3 (2025-02-27)
 

@@ -33,11 +33,7 @@ export const useEmptyState = (props: EmptyStatePropTypes) => {
   });
 
   const getImageUrl = computed(() => {
-    if (image?.value) {
-      return new URL(`../../assets/images/empty-states/${image.value}.svg`, import.meta.url).href;
-    }
-
-    return '';
+    return image.value ? new URL(`../../assets/images/empty-states/${image.value}.svg`, import.meta.url).href : '';
   });
 
   return {

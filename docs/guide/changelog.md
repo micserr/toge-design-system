@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.6 (2025-03-03)
+- Fix
+  - Movement of prefix and icon on helper message ([#bd809417](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/ff11dd36-9e5b-4dee-ab48-0999d0a61cfd/commit/bd809417bb06570620683002b3e6e51bb8a6c2ed/) @jfabula)
+  - Added template slots for input components ([#e0cc862c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e0cc862cfc70ff97890c1315fb8700b59b75038b?refName=refs%2Fheads%2F2025%2FFIX%2FXyrk%2FINPUT_HELPER_SPACE_PREFIX_AND_ICON) @jfabula)
 
 ## 1.5.5 (2025-03-03)
 - Fix

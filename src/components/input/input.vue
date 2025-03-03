@@ -22,12 +22,13 @@
       <div v-if="$slots.icon" :class="inputClasses.iconSlotClasses">
         <slot name="icon"/>
       </div>
-      <label 
+    </div>
+
+    <label 
         v-if="props.displayHelper" :class= "[
         inputClasses.helperClasses,
         'spr-font-normal spr-font-size-200 spr-font-line-height-400',
         'spr-flex spr-items-center spr-gap-size-spacing-5xs',
-        'spr-mt-size-spacing-4xs'
       ]"
       >
         <slot name="helperMessage">
@@ -35,7 +36,6 @@
           {{  props.helperText }}
         </slot>
       </label>
-    </div>
   </div>
 </template>
 

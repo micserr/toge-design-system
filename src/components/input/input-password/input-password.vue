@@ -1,9 +1,13 @@
 <template>
-  <SprInput v-bind="$attrs" :type="evaluatePasswordInputType()">
+  <spr-input v-bind="$attrs" :type="evaluatePasswordInputType()">
+    <template v-for="(_, slotName) in $slots" #[slotName]>
+      <slot :name="slotName" />
+    </template>
+    
     <template #icon>
       <Icon :icon="evaluateEyeIcon()" :class="iconClasses" @click="toggleShowPassword()" />
     </template>
-  </SprInput>
+  </spr-input>
 </template>
 
 <script setup lang="ts">

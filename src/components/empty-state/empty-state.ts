@@ -41,6 +41,12 @@ export const emptyStatePropTypes = {
     type: Boolean,
     default: false,
   },
+
+  // Props used for documentation only
+  imageDocPath: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export type EmptyStatePropTypes = ExtractPropTypes<typeof emptyStatePropTypes>;

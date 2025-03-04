@@ -36,7 +36,7 @@ export const useEmptyState = (props: EmptyStatePropTypes) => {
     const isDevelopment = process.env.NODE_ENV === 'development';
 
     if (!isDevelopment && imageDocPath.value) {
-      return new URL(`/assets/empty-states/${image.value}.svg`, import.meta.url).href;
+      return `/assets/empty-states/${image.value}.svg`;
     }
 
     return image.value ? new URL(`../../assets/images/empty-states/${image.value}.svg`, import.meta.url).href : '';

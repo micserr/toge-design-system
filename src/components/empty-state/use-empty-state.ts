@@ -10,7 +10,7 @@ interface EmptyStateClasses {
 }
 
 export const useEmptyState = (props: EmptyStatePropTypes) => {
-  const { size, image } = toRefs(props);
+  const { size, image, imageDocPath } = toRefs(props);
 
   const emptyStateClasses: ComputedRef<EmptyStateClasses> = computed(() => {
     const baseClasses = classNames(
@@ -33,6 +33,12 @@ export const useEmptyState = (props: EmptyStatePropTypes) => {
   });
 
   const getImageUrl = computed(() => {
+    const isNotLocalEnv = import.meta.env.MODE !== 'development';
+
+    if (isNotLocalEnv && imageDocPath.value) {
+      return new URL(`/assets/empty-states/${image.value}.svg`, import.meta.url).href;
+    }
+
     return image.value ? new URL(`../../assets/images/empty-states/${image.value}.svg`, import.meta.url).href : '';
   });
 

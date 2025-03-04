@@ -3,7 +3,7 @@
 ## Basic Usage
 
 <div class="spr-p-8 spr-bg-white-500">
-  <spr-empty-state  description="No results found" subDescription="Try a different search term" >
+  <spr-empty-state description="No results found" subDescription="Try a different search term" >
     <div>
       Image Slot Here
     </div>
@@ -53,6 +53,7 @@ List of images that can be used in the empty state component.
     description="No results found"
     subDescription="Try a different search term"
     image="bug"
+    imageDocPath
   >
     <template #button>
       <spr-button tone="success">Retry</spr-button>
@@ -80,6 +81,7 @@ Image size can be controlled by passing the `size` prop. The default size is `sm
     subDescription="Try a different search term"
     image="bug"
     size="small"
+    imageDocPath
   >
     <template #button>
       <spr-button tone="success">Retry</spr-button>
@@ -93,6 +95,7 @@ Image size can be controlled by passing the `size` prop. The default size is `sm
     subDescription="Try a different search term"
     image="work-location"
     size="large"
+    imageDocPath
   >
     <template #button>
       <spr-button tone="success">Retry</spr-button>

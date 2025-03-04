@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.6.4 (2025-03-04)
+
+- Fix
+  - Update date picker documentation and component width default value ([#418b3e30](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/418b3e30cae42ecba6e9913dee6f6371e46a0482?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) @jarias)
+
 ## 1.6.3 (2025-03-04)
 
 - Fix

@@ -33,9 +33,9 @@ export const useEmptyState = (props: EmptyStatePropTypes) => {
   });
 
   const getImageUrl = computed(() => {
-    const isNotLocalEnv = import.meta.env.MODE !== 'development';
+    const isDevelopment = process.env.NODE_ENV === 'development';
 
-    if (isNotLocalEnv && imageDocPath.value) {
+    if (!isDevelopment && imageDocPath.value) {
       return new URL(`/assets/empty-states/${image.value}.svg`, import.meta.url).href;
     }
 

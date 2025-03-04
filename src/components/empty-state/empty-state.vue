@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { emptyStatePropTypes } from './empty-state';
 import { useEmptyState } from './use-empty-state';
 

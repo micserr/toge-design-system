@@ -40,7 +40,7 @@
   </Menu>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { Menu } from 'floating-vue';
 import { Icon } from '@iconify/vue';
 

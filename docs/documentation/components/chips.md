@@ -44,7 +44,7 @@ Interactive chip elements for various use cases like filtering, selection, and t
   />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 import { PhAirplane } from '@phosphor-icons/vue';
 
@@ -98,7 +98,7 @@ const handleUpdate = (key, value) => {
   />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const activeIcon = ref({
@@ -137,7 +137,7 @@ const handleUpdate = (key, value) => {
   <spr-chips disabled label="Disabled" />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const activeIcon = ref({
@@ -188,7 +188,7 @@ Special variant for weekday selection.
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -328,25 +328,26 @@ const handleDayClick = (day) => {
   </tbody>
 </table>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 import { Icon } from '@iconify/vue';
 import SprChips from '@/components/chips/chips.vue';
 
 const activeIcon = ref({
   // Icon chips states
-isIconActive1:false,
-isIconActive2:false,
-isIconActive3:false,
+  isIconActive1:false,
+  isIconActive2:false,
+  isIconActive3:false,
 
-// Badge chips states
-isBadgeActive1:true,
-isBadgeActive2:true,
-isBadgeActive3:true,
-// Interactive states
-isToggleActive5:true,
-isToggleActive6:true,
+  // Badge chips states
+  isBadgeActive1:true,
+  isBadgeActive2:true,
+  isBadgeActive3:true,
+  // Interactive states
+  isToggleActive5:true,
+  isToggleActive6:true,
 })
+
 // Icon chips states
 const isIconActive1 = ref(false);
 const isIconActive2 = ref(false);

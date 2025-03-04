@@ -13,7 +13,7 @@ Tabs are used to organize content into different sections. They are commonly use
   <spr-tabs :list="tabsBasic" />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import SprTabs from '@/components/tabs/tabs.vue';
 
 const tabsBasic = [{ label: 'tab' }, { label: 'tab' }, { label: 'tab' }];
@@ -29,7 +29,7 @@ const tabsBasic = [{ label: 'tab' }, { label: 'tab' }, { label: 'tab' }];
   <spr-tabs :list="tabsUnderlined" :underlined="true" />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import SprTabs from '@/components/tabs/tabs.vue';
 
 const tabsUnderlined = [
@@ -51,7 +51,7 @@ const tabsUnderlined = [
   <spr-tabs :list="tabsBasicWithDisabled" />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import SprTabs from '@/components/tabs/tabs.vue';
 
 const tabsBasicWithDisabled = ref([
@@ -71,7 +71,7 @@ const tabsBasicWithDisabled = ref([
   <spr-tabs :list="tabsUnderlinedDisabled" :underlined="true" />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import SprTabs from '@/components/tabs/tabs.vue';
 
 const tabsUnderlinedDisabled = [
@@ -93,7 +93,7 @@ By adding the `active-tab` attribute to the component, you can specify which tab
   <spr-tabs :list="tabsRandomLabel" active-tab="tab 2" />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import SprTabs from '@/components/tabs/tabs.vue';
 
 const tabsRandomLabel = ref([{ label: 'tab 1' }, { label: 'tab 2' }, { label: 'tab 3' }]);
@@ -111,7 +111,7 @@ const tabsRandomLabel = ref([{ label: 'tab 1' }, { label: 'tab 2' }, { label: 't
   <spr-tabs :list="tabsWithIcon" />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import SprTabs from '@/components/tabs/tabs.vue';
 
 const tabsWithIcon = [
@@ -131,7 +131,7 @@ const tabsWithIcon = [
   <spr-tabs :list="tabsUnderlinedWithIcon" :underlined="true" />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import SprTabs from '@/components/tabs/tabs.vue';
 
 const tabsUnderlinedWithIcon = [
@@ -153,7 +153,7 @@ const tabsUnderlinedWithIcon = [
   <spr-tabs :list="tabsIconOnly" />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import SprTabs from '@/components/tabs/tabs.vue';
 
 const tabsIconOnly = [
@@ -173,7 +173,7 @@ const tabsIconOnly = [
   <spr-tabs :list="tabsIconOnly" :underlined="true" />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import SprTabs from '@/components/tabs/tabs.vue';
 
 const tabsIconOnly = [

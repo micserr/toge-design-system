@@ -99,6 +99,10 @@ export default defineConfig({
               link: '/documentation/components/chips',
             },
             {
+              text: 'Date Picker',
+              link: '/documentation/components/date-picker',
+            },
+            {
               text: 'Dropdown',
               link: '/documentation/components/dropdown',
             },

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.6.0 (2025-03-03)
+
+- Fix
+  - Date Picker ([#7602974d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7602974d42d59055c2028e707e0032961e12f02d?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fdate-picker) @jarias)
+
 ## 1.5.7 (2025-03-03)
 
 - Feature

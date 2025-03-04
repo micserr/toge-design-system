@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { Icon } from '@iconify/vue';
 import { textAreaPropTypes, textAreaEmitTypes } from './textarea';
 import { useTextArea } from './use-textarea';

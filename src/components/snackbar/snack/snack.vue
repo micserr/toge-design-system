@@ -2,7 +2,7 @@
   <div
     v-bind="snackProps"
     ref="snackRef"
-    class="snackbar spr-background-color-inverted spr-text-color-inverted-strong spr-font-size-200 spr-line-height-400 spr-h-fit spr-rounded-border-radius-lg spr-px-size-spacing-2xs spr-py-size-spacing-3xs spr-border spr-border-solid spr-border-color-strong spr-box-border spr-flex spr-flex-row spr-items-center"
+    class="snackbar spr-background-color-inverted spr-text-color-inverted-strong spr-font-size-200 spr-line-height-400 spr-border-color-strong spr-box-border spr-flex spr-h-fit spr-flex-row spr-items-center spr-rounded-border-radius-lg spr-border spr-border-solid spr-px-size-spacing-2xs spr-py-size-spacing-3xs"
     @click="handleClick"
   >
     <label v-if="showIcon" :class="[snackToneCssClass, 'spr-mr-size-spacing-3xs']">
@@ -14,7 +14,7 @@
       v-if="showAction"
       :class="[
         snackToneCssClass,
-        'spr-ml-size-spacing-3xs selection:spr-cursor-pointer spr-uppercase spr-font-medium spr-font-size-100 spr-line-height-100',
+        'spr-font-size-100 spr-line-height-100 spr-ml-size-spacing-3xs spr-font-medium spr-uppercase selection:spr-cursor-pointer',
       ]"
       @click="() => action()"
     >

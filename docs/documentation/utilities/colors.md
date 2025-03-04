@@ -20,7 +20,7 @@ The Toge Design System v3.0 - Color Scheme includes the following primary colors
   </div>
 </div>
 
-<script setup>
+<script lang="ts" setup>
 import colorScheme from '@/assets/scripts/colors';
 
 </script>

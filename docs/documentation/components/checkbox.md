@@ -15,7 +15,7 @@ Value: <code>{{ checkboxModels.checkbox1 }}</code>
   <SprCheckbox v-model="checkbox" label="Checkbox Label" />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const checkbox = ref(false);
@@ -41,7 +41,7 @@ You can add a description to the checkbox by using the `description` attribute.
   />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const checkbox = ref(false);
@@ -59,7 +59,7 @@ Checkboxes can be set to checked by the use of `v-model` directive to bind the c
   <SprCheckbox v-model="checkbox" label="Checkbox Label" />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const checkbox = ref(true);
@@ -77,7 +77,7 @@ Add `disabled` attribute to make the checkbox disabled.
   <SprCheckbox v-model="checkbox" label="Checkbox Label" disabled />
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const checkbox = ref(true);

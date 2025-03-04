@@ -14,7 +14,10 @@
 
 .main {
   .text {
-    font-size: 24px;
+    max-width: 100%;
+    .version {
+      font-size: 24px;
+    }
   }
 }
 

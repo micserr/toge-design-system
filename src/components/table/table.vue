@@ -121,7 +121,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { Icon } from '@iconify/vue';
 
 import SprAvatar from '@/components/avatar/avatar.vue';

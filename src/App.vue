@@ -19,15 +19,9 @@
 
   <br />
 
-  <spr-input
-    v-model="inputValue"
-    label="Sample Input"
-    display-helper
-    error
-    @input="onInput"
-  >
+  <spr-input v-model="inputValue" label="Sample Input" display-helper error @input="onInput">
     <template #helperMessage>
-      <icon icon="ph:warning-circle-fill"/>
+      <icon icon="ph:warning-circle-fill" />
       This is a helper text
     </template>
   </spr-input>
@@ -96,7 +90,7 @@ import SprLozenge from '@/components/lozenge/lozenge.vue';
 import SprInput from '@/components/input/input.vue';
 import { Icon } from '@iconify/vue';
 
-const inputValue = ref("");
+const inputValue = ref('');
 
 const snackbar = ref(null);
 const successSnackbar = () => {

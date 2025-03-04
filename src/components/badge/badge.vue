@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { badgePropTypes } from './badge';
 import { useBadge } from './use-badge';
 

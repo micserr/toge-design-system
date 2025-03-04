@@ -17,7 +17,7 @@ Switch component to show a boolean state (similar to a checkbox).
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 import SprSwitch from '@/components/switch/switch.vue';
@@ -96,7 +96,7 @@ The switch component uses `@vueuse/core`'s `useVModel` for properties and emit v
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 import SprSwitch from '@/components/switch/switch.vue';

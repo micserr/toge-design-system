@@ -23,7 +23,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { avatarPropTypes } from './avatar';
 import { useAvatar } from './use-avatar';
 import { Icon } from '@iconify/vue';

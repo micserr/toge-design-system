@@ -32,7 +32,7 @@
   </dialog>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { Icon } from '@iconify/vue';
 
 import { modalPropTypes, modalEmitTypes } from './modal';

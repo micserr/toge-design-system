@@ -10,6 +10,7 @@ const setPackageVersion = () => {
     setInterval(() => {
       const navbarTitle = document.querySelector('.VPNav .title span');
       const mainText = document.querySelector('.main .text');
+      const version = document.querySelector('.main .version');
 
       if (navbarTitle) {
         const versionText = `
@@ -27,8 +28,10 @@ const setPackageVersion = () => {
         }
       }
 
-      if (mainText) {
-        mainText.textContent = `v${pkg.version}`;
+      if (mainText && !version) {
+        const textContent = `<p class="version">v${pkg.version}</p>`;
+
+        mainText.insertAdjacentHTML('beforeend', textContent);
       }
     }, 500);
   }

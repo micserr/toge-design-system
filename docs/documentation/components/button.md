@@ -130,7 +130,7 @@ Commonly used button.
   <spr-button hasIcon><Icon icon="ph:trash" /></spr-button>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { Icon } from '@iconify/vue';
 </script>
 ```

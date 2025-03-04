@@ -20,7 +20,7 @@ A Radio Button is a component that enables a user to select a single option from
   <spr-radio id="sample2" v-model="sampleradio" name="sampleradio" value="sample2">Default Radio</spr-radio>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const sampleradio = ref < string > 'sample1';
@@ -54,7 +54,7 @@ Add the `disabled` attribute to the `<spr-radio>` component to disable the radio
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue';
 
 const disabledradio = ref < string > 'disabledradio';

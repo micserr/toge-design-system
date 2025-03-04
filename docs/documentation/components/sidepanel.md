@@ -50,30 +50,30 @@ The Sidepanel component is a reusable UI element designed to display contextual 
     <spr-button tone="success" @click="isMediumSidepanelOpen = true">Medium</spr-button>
     <spr-button tone="success" @click="isLargeSidepanelOpen = true">Large</spr-button>
   </div>
-  <spr-sidepanel 
-    size="sm" 
-    :is-open="isSmallSidepanelOpen" 
-    @close="isSmallSidepanelOpen = false" 
+  <spr-sidepanel
+    size="sm"
+    :is-open="isSmallSidepanelOpen"
+    @close="isSmallSidepanelOpen = false"
     header-title="Sidepanel Small"
   >
-    <div class="spr-p-4"> 
-      360px 
+    <div class="spr-p-4">
+      360px
     </div>
   </spr-sidepanel>
-  <spr-sidepanel 
-    size="md" 
-    :is-open="isMediumSidepanelOpen" 
-    @close="isMediumSidepanelOpen = false" 
+  <spr-sidepanel
+    size="md"
+    :is-open="isMediumSidepanelOpen"
+    @close="isMediumSidepanelOpen = false"
     header-title="Sidepanel Medium"
   >
     <div class="spr-p-4">
       420px
     </div>
   </spr-sidepanel>
-  <spr-sidepanel 
-    size="lg" 
-    :is-open="isLargeSidepanelOpen" 
-    @close="isLargeSidepanelOpen = false" 
+  <spr-sidepanel
+    size="lg"
+    :is-open="isLargeSidepanelOpen"
+    @close="isLargeSidepanelOpen = false"
     header-title="Sidepanel Large"
   >
     <div class="spr-p-4">

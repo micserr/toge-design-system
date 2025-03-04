@@ -100,9 +100,20 @@ export const datePickerEmitTypes = {
       Object.keys(value).every((key) => typeof value[key] === 'string')
     );
   },
-
   getMonthList: (value: Array<object>) => Array.isArray(value),
   getYearList: (value: Array<number>) => Array.isArray(value),
+  getDateErrors: (value: Array<{ title: string; message: string }>) => {
+    return (
+      Array.isArray(value) &&
+      value.every(
+        (item) =>
+          item !== null &&
+          typeof item === 'object' &&
+          typeof item.title === 'string' &&
+          typeof item.message === 'string',
+      )
+    );
+  },
 };
 
 export type DatePickerPropTypes = ExtractPropTypes<typeof datePickerPropTypes>;

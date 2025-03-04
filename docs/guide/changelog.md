@@ -1,8 +1,13 @@
 # Changelog
 
+## 1.6.1 (2025-03-04)
+
+- Feature
+  - Date Picker - Enable number in month input, Added general validation ([#34412d4a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/34412d4a5f1f95e837d7ed4472877f12a52cfb92?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fdate-picker) @jarias)
+
 ## 1.6.0 (2025-03-03)
 
-- Fix
+- Feature
   - Date Picker ([#7602974d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7602974d42d59055c2028e707e0032961e12f02d?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fdate-picker) @jarias)
 
 ## 1.5.7 (2025-03-03)

@@ -28,21 +28,23 @@
               maxlength="3"
               :disabled="props.disabled"
               :readonly="props.readonly"
-              @input="handleMonthInput(monthInput, $event)"
-              @keyup="handleMonthInput(monthInput, $event)"
+              @input="handleMonthInput(monthInput, $event as KeyboardEvent)"
+              @keyup="handleMonthInput(monthInput, $event as KeyboardEvent)"
+              @keydown="handleMonthInput(monthInput, $event as KeyboardEvent)"
+              @blur="handleMonthInput(monthInput, $event as FocusEvent)"
             />
             <span class="spr-text-color-strong spr-font-size-200 spr-text-color-weak">/</span>
             <input
               ref="dateInputRef"
               v-model="dateInput"
-              :class="getDatePickerInputClasses('20px')"
+              :class="['spr-text-center', getDatePickerInputClasses('20px')]"
               type="text"
               placeholder="DD"
               maxlength="2"
               :disabled="props.disabled"
               :readonly="props.readonly"
-              @input="handleDateInput(dateInput, null, null, $event)"
-              @keyup="handleDateInput(dateInput, null, null, $event)"
+              @input="handleDateInput(dateInput, null, null, $event as KeyboardEvent)"
+              @keyup="handleDateInput(dateInput, null, null, $event as KeyboardEvent)"
             />
             <span class="spr-text-color-strong spr-font-size-200 spr-text-color-weak">/</span>
             <input
@@ -54,8 +56,8 @@
               maxlength="4"
               :disabled="props.disabled"
               :readonly="props.readonly"
-              @input="handleYearInput(yearInput, $event)"
-              @keyup="handleYearInput(yearInput, $event)"
+              @input="handleYearInput(yearInput, $event as KeyboardEvent)"
+              @keyup="handleYearInput(yearInput, $event as KeyboardEvent)"
             />
           </div>
           <div class="spr-flex spr-items-center spr-justify-center">
@@ -241,12 +243,22 @@
         </div>
       </template>
     </Menu>
-    <p v-if="props.displayHelper" :class="datePickerClasses.datePickerInputHelperClasses">
-      <slot name="helperMessage">
-        <Icon v-if="props.helperIcon" :icon="props.helperIcon" width="20px" height="20px" />
-        <span>{{ props.helperText }}</span>
-      </slot>
-    </p>
+    <template v-if="datePickerErrors.length > 0">
+      <p :class="datePickerClasses.datePickerInputHelperClasses">
+        <slot name="helperMessage">
+          <Icon icon="ph:warning-circle-fill" width="20px" height="20px" />
+          <span>{{ datePickerErrors[0].message }}</span>
+        </slot>
+      </p>
+    </template>
+    <template v-else>
+      <p v-if="props.displayHelper" :class="datePickerClasses.datePickerInputHelperClasses">
+        <slot name="helperMessage">
+          <Icon v-if="props.helperIcon" :icon="props.helperIcon" width="20px" height="20px" />
+          <span>{{ props.helperText }}</span>
+        </slot>
+      </p>
+    </template>
   </div>
 </template>
 
@@ -278,6 +290,7 @@ const {
   monthsList,
   monthInput,
   yearInput,
+  datePickerErrors,
   calendarTabPageData,
   calendarTabIsMinMonth,
   calendarTabIsMaxMonth,

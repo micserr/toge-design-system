@@ -33,7 +33,7 @@ const proxyValue = useVModel(props, 'modelValue', emit);
 const { radioRef, radioClasses, indicatorClasses, radioLabelClasses } = useRadioButton(props);
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 @keyframes shadowGrow {
   0% {
     box-shadow: inset 0px 0px 0px 25px #fff;

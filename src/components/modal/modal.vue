@@ -44,7 +44,7 @@ const emit = defineEmits(modalEmitTypes);
 const { modalClasses, dialog, closeModal } = useModal(props, emit);
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 /* Tailwind CSS does not directly support the ::backdrop pseudo-element, need to add this */
 .spr-modal::backdrop {
   @apply spr-bg-overlay;

@@ -133,13 +133,13 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
 
 <div class="spr-grid spr-gap-4">
   <div class="spr-space-x-3">
-    <spr-avatar variant="initial" initial="John"   size="2xl" />
-    <spr-avatar variant="initial" initial="Mark"  size="xl" />
-    <spr-avatar variant="initial" initial="Solomon" size="lg" />
-    <spr-avatar variant="initial" initial="Malachi" size="md" />
-    <spr-avatar variant="initial" initial="Abraham" size="sm" />
-    <spr-avatar variant="initial" initial="Zacarias" size="xs" />
-    <spr-avatar variant="initial" initial="Elijah" size="2xs" />
+    <spr-avatar  initial="Juan Dela Cruz" size="2xl" />
+    <spr-avatar  initial="John Jay Joe" size="xl" />
+    <spr-avatar  initial="Anthony" size="lg" />
+    <spr-avatar  initial="Juan Dela Cruz" size="md" />
+    <spr-avatar  initial="Juan Dela Cruz" size="sm" />
+    <spr-avatar  initial="Juan Dela Cruz" size="xs" />
+    <spr-avatar  initial="Juan Dela Cruz" size="2xs" />
   </div>
 
   <div class="spr-space-x-3">
@@ -187,13 +187,13 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
 <template>
   <div class="spr-grid spr-gap-4">
     <div class="spr-space-x-3">
-      <spr-avatar variant="initial" initial="John" size="2xl" />
-      <spr-avatar variant="initial" initial="Mark" size="xl" />
-      <spr-avatar variant="initial" initial="Solomon" size="lg" />
-      <spr-avatar variant="initial" initial="Malachi" size="md" />
-      <spr-avatar variant="initial" initial="Abraham" size="sm" />
-      <spr-avatar variant="initial" initial="Zacarias" size="xs" />
-      <spr-avatar variant="initial" initial="Elijah" size="2xs" />
+      <spr-avatar initial="Juan Dela Cruz" size="2xl" />
+      <spr-avatar initial="John Jay Joe" size="xl" />
+      <spr-avatar initial="Anthony" size="lg" />
+      <spr-avatar initial="Juan Dela Cruz" size="md" />
+      <spr-avatar initial="Juan Dela Cruz" size="sm" />
+      <spr-avatar initial="Juan Dela Cruz" size="xs" />
+      <spr-avatar initial="Juan Dela Cruz" size="2xs" />
     </div>
 
     <div class="spr-space-x-3">
@@ -420,9 +420,9 @@ import { Icon } from '@iconify/vue';
     </tr>
     <tr>
       <td>initial</td>
-      <td>Initials that will be displayed when using the 'initials' variant of the avatar. This is a fallback option when no image is provided.</td>
+      <td>Initials that will be displayed when using the 'initial' variant of the avatar. This is a fallback option when no image is provided.</td>
       <td>string</td>
-      <td>'Initial'</td>
+      <td>'Avatar'</td>
     </tr>
     <tr>
       <td>color</td>
@@ -444,9 +444,9 @@ import { Icon } from '@iconify/vue';
     </tr>
     <tr>
       <td>Variant</td>
-      <td>Defines the type of avatar to be used. Options include 'image' for a traditional avatar with a picture, 'initials' for displaying text initials, 'client' and 'user' for more personalized avatars, 'user-group' for group representations, and 'count' for showing numbers.</td>
-      <td>'image', 'initials', 'client', 'user', 'user-group', 'count'</td>
-      <td>Initial</td>
+      <td>Defines the type of avatar to be used. Options include 'image' for a traditional avatar with a picture, 'initial' for displaying text initials, 'client' and 'user' for more personalized avatars, 'user-group' for group representations, and 'count' for showing numbers.</td>
+      <td>'image', 'initial', 'client', 'user', 'user-group', 'count'</td>
+      <td>initial</td>
     </tr>
   </tbody>
 </table>

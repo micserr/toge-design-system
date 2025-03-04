@@ -3,9 +3,21 @@ import { computed, type ComputedRef } from 'vue';
 import type { StatusPropTypes } from './status';
 
 export const useStatus = (props: StatusPropTypes) => {
+  const statusSize: ComputedRef<string> = computed(() => {
+    const stateSizes: Record<string, string> = {
+      '2xs': 'spr-w-[14px] spr-h-[14px]',
+      xs: 'spr-w-4 spr-h-4',
+      sm: 'spr-w-5 spr-h-5',
+      base: 'spr-w-6 spr-h-6',
+      lg: 'spr-w-8 spr-h-8',
+      xl: 'spr-w-10 spr-h-10',
+      '2xl': 'spr-w-12 spr-h-12',
+    };
+
+    return stateSizes[props.size] || 'spr-w-6 spr-h-6';
+  });
 
   const statusClass: ComputedRef<string> = computed(() => {
-    const baseClasses = 'spr-w-6 spr-h-6 ';
     const stateClasses: Record<string, string> = {
       success: 'spr-text-kangkong-600',
       information: 'spr-text-blueberry-700',
@@ -13,7 +25,7 @@ export const useStatus = (props: StatusPropTypes) => {
       caution: 'spr-text-carrot-500',
       danger: 'spr-text-tomato-600',
     };
-    return baseClasses + (stateClasses[props.state] || 'spr-text-kangkong-600');
+    return stateClasses[props.state] || 'spr-text-kangkong-600';
   });
 
   const statusIcon: ComputedRef<string> = computed(() => {
@@ -41,6 +53,7 @@ export const useStatus = (props: StatusPropTypes) => {
   return {
     statusIcon,
     statusClass,
-    statusDescription
+    statusDescription,
+    statusSize,
   };
 };

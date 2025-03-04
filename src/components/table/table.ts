@@ -8,6 +8,8 @@ interface Header {
   sort: boolean;
   hasAvatar: boolean;
   hasSubtext: boolean;
+  badgeText: string;
+  badgeVariant: string;
 }
 
 interface TableData {
@@ -24,6 +26,8 @@ interface EmptyState {
   image: string;
   size: 'small' | 'large';
 }
+
+const TABLE_SORT = ['asc', 'desc'] as const;
 
 export const tablePropTypes = {
   /**
@@ -62,6 +66,14 @@ export const tablePropTypes = {
     type: Boolean as PropType<boolean>,
     default: false,
   },
+
+  sortOrder: {
+    type: String as PropType<(typeof TABLE_SORT)[number]>,
+    validator: (value: (typeof TABLE_SORT)[number]) => TABLE_SORT.includes(value),
+    default: 'asc',
+  },
 };
 
+export const tableEmitTypes = ['onSort'];
 export type TablePropTypes = ExtractPropTypes<typeof tablePropTypes>;
+export type TableEmitTypes = typeof tableEmitTypes;

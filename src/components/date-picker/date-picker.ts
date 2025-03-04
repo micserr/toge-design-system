@@ -38,30 +38,21 @@ export const datePickerPropTypes = {
     default: new Date().getFullYear().toString(),
   },
   minMaxYear: {
-    type: Object as PropType<{ min: number; max: number }>,
+    type: Object as PropType<MinMaxYearType>,
     default: () => ({
       min: 1900,
       max: new Date().getFullYear(),
     }),
   },
   restDays: {
-    type: Array as PropType<Array<(typeof REST_DAYS_TYPES)[number]>>,
-    validator: (value: Array<(typeof REST_DAYS_TYPES)[number]>): boolean => {
+    type: Array as PropType<RestDayType[]>,
+    validator: (value: RestDayType[]): boolean => {
       return value.every((val) => REST_DAYS_TYPES.includes(val));
     },
     default: [],
   },
   disabledDates: {
-    type: Object as PropType<{
-      to: string;
-      from: string;
-      pastDates: boolean;
-      futureDates: boolean;
-      selectedDates: Array<string>;
-      weekends: boolean;
-      weekdays: boolean;
-      selectedDays: Array<string>;
-    }>,
+    type: Object as PropType<DisabledDatesType>,
   },
   displayHelper: {
     type: Boolean,
@@ -81,11 +72,48 @@ export const datePickerPropTypes = {
   },
 };
 
+export type RestDayType = (typeof REST_DAYS_TYPES)[number];
+
+export type DisabledDatesType = {
+  to: string;
+  from: string;
+  pastDates: boolean | string;
+  futureDates: boolean | string;
+  selectedDates: Array<string>;
+  weekends: boolean;
+  weekdays: boolean;
+  selectedDays: Array<string>;
+};
+
+export type MinMaxYearType = {
+  min: number;
+  max: number;
+};
+
 export const datePickerEmitTypes = {
   'update:modelValue': (value: string) => typeof value === 'string',
-  getDateFormats: (value: object) => typeof value === 'object',
+  getDateFormats: (value: Record<string, string>) => {
+    return (
+      typeof value === 'object' &&
+      value !== null &&
+      !Array.isArray(value) &&
+      Object.keys(value).every((key) => typeof value[key] === 'string')
+    );
+  },
   getMonthList: (value: Array<object>) => Array.isArray(value),
   getYearList: (value: Array<number>) => Array.isArray(value),
+  getDateErrors: (value: Array<{ title: string; message: string }>) => {
+    return (
+      Array.isArray(value) &&
+      value.every(
+        (item) =>
+          item !== null &&
+          typeof item === 'object' &&
+          typeof item.title === 'string' &&
+          typeof item.message === 'string',
+      )
+    );
+  },
 };
 
 export type DatePickerPropTypes = ExtractPropTypes<typeof datePickerPropTypes>;

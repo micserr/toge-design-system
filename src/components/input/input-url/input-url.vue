@@ -1,5 +1,9 @@
 <template>
   <SprInput v-bind="$attrs" type="url">
+    <template v-for="(_, slotName) in $slots" #[slotName]>
+      <slot :name="slotName" />
+    </template>
+    
     <template #prefix>
       <span>
         https://

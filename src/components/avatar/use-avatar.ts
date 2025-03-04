@@ -4,18 +4,18 @@ import classNames from 'classnames';
 
 import type { AvatarPropTypes } from './avatar';
 
-interface AvatarClassses {
+interface AvatarClasses {
   baseClasses: string;
   imageClasses: string;
-  nameInitalsClasses: string;
+  nameInitialsClasses: string;
   notificationClasses: string;
   onlineNotificationClasses: string;
 }
 
 export const useAvatar = (props: AvatarPropTypes) => {
-  const { size, color, variant } = toRefs(props);
+  const { size, color, variant, initial } = toRefs(props);
 
-  const avatarClassses: ComputedRef<AvatarClassses> = computed(() => {
+  const avatarClasses: ComputedRef<AvatarClasses> = computed(() => {
     const baseClasses = classNames('spr-relative spr-inline-block spr-rounded-full', {
       'spr-background-color-surface': color.value === 'primary',
       'spr-background-color': color.value === 'secondary',
@@ -34,7 +34,7 @@ export const useAvatar = (props: AvatarPropTypes) => {
       },
     );
 
-    const nameInitalsClasses = classNames(
+    const nameInitialsClasses = classNames(
       'spr-rounded-full spr-border-color-weak spr-border spr-border-solid spr-items-center spr-flex spr-justify-center spr-heading-xs spr-text-color-strong',
       {
         'spr-h-20 spr-min-w-20': size.value === '2xl',
@@ -67,7 +67,7 @@ export const useAvatar = (props: AvatarPropTypes) => {
     return {
       baseClasses,
       imageClasses,
-      nameInitalsClasses,
+      nameInitialsClasses,
       notificationClasses,
       onlineNotificationClasses,
     };
@@ -89,16 +89,39 @@ export const useAvatar = (props: AvatarPropTypes) => {
         return 'ph:user';
       case 'client':
         return 'ph:building';
-
+      case 'admin':
+        return 'ph:shield-check';
+      case 'guest':
+        return 'ph:user-circle';
       default:
-        break;
+        return '';
     }
-    return '';
+  });
+
+  const getInitials = computed(() => {
+    const maxInitials = ['xs', '2xs'].includes(size.value) ? 1 : 2;
+
+    if (typeof initial.value !== 'string' || initial.value.trim().length === 0) {
+      return '';
+    }
+
+    const nameParts = initial.value.trim().split(/\s+/);
+
+    if (nameParts.length === 1) {
+      const firstInitial = nameParts[0].charAt(0).toUpperCase();
+      return firstInitial;
+    }
+
+    const firstInitial = nameParts[0].charAt(0).toUpperCase();
+    const lastInitial = nameParts[nameParts.length - 1].charAt(0).toUpperCase();
+
+    return (firstInitial + lastInitial).slice(0, maxInitials);
   });
 
   return {
-    avatarClassses,
+    avatarClasses,
     getAvatarSize,
     getIconVariant,
+    getInitials,
   };
 };

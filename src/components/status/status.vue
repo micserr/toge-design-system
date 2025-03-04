@@ -1,5 +1,5 @@
 <template>
-  <Icon :icon="statusIcon" :class="statusClass" :aria-label="statusDescription" />
+  <Icon :icon="statusIcon"  :class="[statusClass, statusSize]" :aria-label="statusDescription" />
 </template>
 
 <script lang="ts" setup>
@@ -9,5 +9,5 @@ import { useStatus } from './use-status';
 
 const props = defineProps(statusPropTypes);
 
-const { statusIcon, statusClass, statusDescription } = useStatus(props);
+const { statusIcon, statusClass, statusDescription, statusSize} = useStatus(props);
 </script>

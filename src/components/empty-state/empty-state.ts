@@ -34,6 +34,7 @@ export const emptyStatePropTypes = {
   },
   image: {
     type: String as PropType<(typeof STATE_IMAGE)[number]>,
+    default: 'list',
     validator: (value: (typeof STATE_IMAGE)[number] | undefined) => value === undefined || STATE_IMAGE.includes(value),
   },
   hasButton: {

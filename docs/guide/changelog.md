@@ -1,12 +1,63 @@
 # Changelog
 
+## 1.6.1 (2025-03-04)
+
+- Feature
+  - Date Picker - Enable number in month input, Added general validation ([#34412d4a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/34412d4a5f1f95e837d7ed4472877f12a52cfb92?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fdate-picker) @jarias)
+
+## 1.6.0 (2025-03-03)
+
+- Feature
+  - Date Picker ([#7602974d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7602974d42d59055c2028e707e0032961e12f02d?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fdate-picker) @jarias)
+
+## 1.5.7 (2025-03-03)
+
+- Feature
+
+  - Commit 97d44216: emit table sort ([#97d44216](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/97d44216912e82abe1d805dadba5b1f7244d4b37?refName=refs/heads/2025/Feature/andrea/added-badge-table) by @adestajo)
+
+- Fix
+  - Commit 609aea96: added default for empty state image ([#609aea96](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/609aea961fc07edee42a9d52fb53633f3f665bde?refName=refs/heads/2025/Feature/andrea/added-badge-table) by @adestajo)
+    - added badge border box ([#7e7ccf7f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7e7ccf7f0f2bf65dd88f7cbac550248ebfac5bf7?refName=refs/heads/2025/Feature/andrea/added-badge-table) by @adestajo)
+
+## 1.5.6 (2025-03-03)
+
+- Fix
+  - Movement of prefix and icon on helper message ([#bd809417](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/ff11dd36-9e5b-4dee-ab48-0999d0a61cfd/commit/bd809417bb06570620683002b3e6e51bb8a6c2ed/) @jfabula)
+  - Added template slots for input components ([#e0cc862c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e0cc862cfc70ff97890c1315fb8700b59b75038b?refName=refs%2Fheads%2F2025%2FFIX%2FXyrk%2FINPUT_HELPER_SPACE_PREFIX_AND_ICON) @jfabula)
+
+## 1.5.5 (2025-03-03)
+
+- Fix
+- DQA for card ([f7c2f293])(https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f7c2f29303d05c8cb5642956f2adcf198241d66d?refName=refs%2Fheads%2F2025%2Ffix%2Fjames%2FDQA-card) by @jmanalang
+
+## 1.5.4 (2025-02-27)
+
+-Fix
+
+- DQA and updated documentation for Staus ([#7e8b0ad6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7e8b0ad6ea97836c3eda3d5c02737a449814757f?refName=refs%2Fheads%2F2025%2Ffix%2Fdale%2FDQA-status) by @dale)
+
+## 1.5.3 (2025-02-27)
+
+- Fix
+  - Remove imported Icon in Playground ([#a659167](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a6591677f381ebb519670f4f493d195d61f2e33c?refName=refs/heads/2025/Fix/andrea/remove-playground-icon-imort) by @adestajo)
+
+## 1.5.2 (2025-02-27)
+
+- Fix
+  - Avatar Count ([#c621772](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c621772f6d4a44596edae878f13bba535399d4b8?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FPOLY-41) by @adestajo)
+
+## 1.5.1 (2025-02-27)
+
+- Fix
+  - Avatar Initial ([#c621772](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c621772f6d4a44596edae878f13bba535399d4b8?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FPOLY-41) by @adestajo)
 
 ## 1.5.0 (2025-02-26)
 
--Feature 
+-Feature
 
-  - Status ([#7a1e32e7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1cad1d936be4982da9c521f518a55e7ee04c7a95) by @dale)
-  - Status Documentation ([ea8732da](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ea8732da1bfd9bb282989588f3bdefd396707229?refName=refs%2Fheads%2F2025%2Ffeature%2Fdale%2Fstatus) by @dale)
+- Status ([#7a1e32e7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1cad1d936be4982da9c521f518a55e7ee04c7a95) by @dale)
+- Status Documentation ([ea8732da](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ea8732da1bfd9bb282989588f3bdefd396707229?refName=refs%2Fheads%2F2025%2Ffeature%2Fdale%2Fstatus) by @dale)
 
 ## 1.4.16 (2025-02-26)
 

@@ -1,11 +1,12 @@
 import { ref, computed, toRefs } from 'vue';
 
-import type { TablePropTypes } from './table';
+import type { TablePropTypes, TableEmitTypes } from './table';
+import type { SetupContext } from 'vue';
 
-export const useTable = (props: TablePropTypes) => {
-  const { dataTable, action, headers } = toRefs(props);
+export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitTypes>['emit']) => {
+  const { dataTable, action, headers, sortOrder } = toRefs(props);
   const sortField = ref('');
-  const sortOrder = ref('asc');
+  const tableSortOrder = ref('asc');
 
   const sortedData = computed(() => {
     if (!sortField.value) return dataTable.value;
@@ -14,8 +15,8 @@ export const useTable = (props: TablePropTypes) => {
       const fieldA = a[sortField.value].title.toLowerCase();
       const fieldB = b[sortField.value].title.toLowerCase();
 
-      if (fieldA < fieldB) return sortOrder.value === 'asc' ? -1 : 1;
-      if (fieldA > fieldB) return sortOrder.value === 'asc' ? 1 : -1;
+      if (fieldA < fieldB) return tableSortOrder.value === 'asc' ? -1 : 1;
+      if (fieldA > fieldB) return tableSortOrder.value === 'asc' ? 1 : -1;
       return 0;
     });
     return sorted;
@@ -23,11 +24,13 @@ export const useTable = (props: TablePropTypes) => {
 
   const sortData = (field) => {
     if (sortField.value === field) {
-      sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
+      tableSortOrder.value = sortOrder.value ? sortOrder.value : tableSortOrder.value === 'asc' ? 'desc' : 'asc';
     } else {
       sortField.value = field;
-      sortOrder.value = 'asc';
+      tableSortOrder.value = sortOrder.value ? sortOrder.value : 'asc';
     }
+
+    emit('onSort', { field: field, sortOrder: tableSortOrder.value });
   };
 
   const getHeaderCount = computed(() => (action.value ? headers.value.length + 1 : headers.value.length));

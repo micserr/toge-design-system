@@ -68,7 +68,7 @@ export const datePickerPropTypes = {
   },
   width: {
     type: String,
-    default: '400px',
+    default: '100%',
   },
 };
 

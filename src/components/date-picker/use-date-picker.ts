@@ -1,5 +1,5 @@
 import { ref, toRefs, computed, ComputedRef, SetupContext, onMounted, watch, nextTick } from 'vue';
-import { onClickOutside, set } from '@vueuse/core';
+import { onClickOutside, useDebounceFn } from '@vueuse/core';
 
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
@@ -42,14 +42,20 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       {
         // Normal State
         'spr-border spr-border-solid spr-border-mushroom-200 focus:spr-border-kangkong-700':
-          (!error.value && !disabled.value && !active.value && !datePopperState.value) || readonly.value,
+          (!error.value &&
+            datePickerErrors.value.length === 0 &&
+            !disabled.value &&
+            !active.value &&
+            !datePopperState.value) ||
+          readonly.value,
 
         // Active State
         'spr-border spr-border-solid spr-border-kangkong-700 spr-border-[1.5px] spr-border-solid':
           (active.value || datePopperState.value === true) && !readonly.value,
 
         // Error State
-        'spr-border spr-border-solid spr-border-tomato-600 focus:spr-border-tomato-600': error.value,
+        'spr-border spr-border-solid spr-border-tomato-600 focus:spr-border-tomato-600':
+          error.value || datePickerErrors.value.length > 0,
 
         // Disabled State
         'spr-background-color-disabled spr-border-white-100 focus:spr-border-white-100 spr-cursor-not-allowed spr-text-color-on-fill-disabled':
@@ -74,8 +80,8 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       'spr-flex spr-items-center spr-gap-size-spacing-5xs',
       'spr-mt-size-spacing-4xs',
       {
-        'spr-text-color-danger-base': error.value,
-        'spr-text-color-supporting': !error.value,
+        'spr-text-color-danger-base': error.value || datePickerErrors.value.length > 0,
+        'spr-text-color-supporting': !error.value && datePickerErrors.value.length === 0,
       },
     );
 
@@ -136,9 +142,11 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     })),
   );
 
-  const dateInput = ref<string>('');
   const monthInput = ref<string>('');
+  const dateInput = ref<string>('');
   const yearInput = ref<string>('');
+
+  const datePickerErrors = ref<{ title: string; message: string }[]>([]);
 
   // #region - Calendar Tab
   const calendarTabPageData = ref({
@@ -362,7 +370,13 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     if (disabledDates?.value && disabledDates?.value.pastDates) {
       const dayDate = dayjs(day.date);
 
-      return dayDate.isBefore(currentDate.value.startOf('day'));
+      if (typeof disabledDates.value.pastDates === 'boolean') {
+        return dayDate.isBefore(currentDate.value.startOf('day'));
+      } else {
+        const selectedDate = dayjs(disabledDates.value.pastDates);
+
+        return dayDate.isBefore(dayjs(selectedDate, 'MM-DD-YYYY').startOf('day'));
+      }
     }
 
     return false;
@@ -372,7 +386,13 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     if (disabledDates?.value && disabledDates?.value.futureDates) {
       const dayDate = dayjs(day.date);
 
-      return dayDate.isAfter(currentDate.value.endOf('day'));
+      if (typeof disabledDates.value.futureDates === 'boolean') {
+        return dayDate.isAfter(currentDate.value.endOf('day'));
+      } else {
+        const selectedDate = dayjs(disabledDates.value.futureDates);
+
+        return dayDate.isAfter(dayjs(selectedDate, 'MM-DD-YYYY').endOf('day'));
+      }
     }
 
     return false;
@@ -580,23 +600,60 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     );
   };
 
-  const handleMonthInput = (selectedMonth: string | null, event: Event | null) => {
-    if (selectedMonth) {
-      monthInput.value = selectedMonth.replace(/[^A-Za-z]/g, '').toUpperCase();
+  const getDatePickerInputClasses = (width: string) => [
+    datePickerClasses.value.datePickerInputClasses,
+    `spr-w-[${width}] spr-min-w-[${width}]`,
+  ];
 
-      const monthIsValid = monthsList.value.find(
-        (_month: MonthsList) => _month.text.toLowerCase() === monthInput.value.toLowerCase(),
-      );
+  const getTabClasses = (tab: string) => {
+    return classNames('spr-cursor-pointer', {
+      'spr-background-color-pressed !spr-shadow-button': currentTab.value === tab,
+    });
+  };
 
-      if (monthIsValid) {
-        calendarTabPageData.value.selectedMonth = monthIsValid.monthValue;
+  const isDatePickerPopperDisabled = computed(() => disabled.value || readonly.value);
 
-        calendarTabUpdateCalendar();
-        emitDateFormats();
+  const handleMonthInput = (selectedMonth: string | null, event: KeyboardEvent | FocusEvent | null) => {
+    if (!selectedMonth) return;
+
+    monthInput.value = selectedMonth.replace(/\s+/g, '').toUpperCase();
+
+    const updateMonthIfValid = (inputValue: string) => {
+      const isNumeric = !isNaN(Number(monthInput.value)) && !isNaN(parseFloat(monthInput.value));
+
+      if (isNumeric) {
+        const sanitizeMonth = inputValue.replace(/\b0(\d)\b/g, '$1');
+        const monthNumber = Number(sanitizeMonth);
+
+        const monthIsValid = monthsList.value.find((_month: MonthsList) => _month.monthValue + 1 === monthNumber);
+
+        if (monthIsValid) {
+          monthInput.value = monthIsValid.text.toUpperCase();
+        }
       }
+    };
+
+    if (event instanceof KeyboardEvent && (event.key === 'Enter' || event.key === 'Tab')) {
+      updateMonthIfValid(monthInput.value);
     }
 
-    handleModelValueUpdate();
+    if (event instanceof FocusEvent) {
+      updateMonthIfValid(monthInput.value);
+    }
+
+    const monthIsValid = monthsList.value.find(
+      (_month: MonthsList) => _month.text.toLowerCase() === monthInput.value.toLowerCase(),
+    );
+
+    if (monthIsValid) {
+      calendarTabPageData.value.selectedMonth = monthIsValid.monthValue;
+
+      calendarTabUpdateCalendar();
+      emitDateFormats();
+    }
+
+    handleValidateDate();
+    handleInputEmits();
     handleBackSpaceInput('month', event);
   };
 
@@ -632,7 +689,8 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       }
     }
 
-    handleModelValueUpdate();
+    handleValidateDate();
+    handleInputEmits();
     handleBackSpaceInput('date', event);
   };
 
@@ -650,12 +708,56 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       }
     }
 
-    handleModelValueUpdate();
+    handleValidateDate();
+    handleInputEmits();
     handleBackSpaceInput('year', event);
   };
 
-  const handleModelValueUpdate = () => {
+  const handleValidateDate = useDebounceFn(() => {
+    const selectedDate = `${monthInput.value}-${dateInput.value}-${yearInput.value}`;
+
+    datePickerErrors.value = [];
+
+    if (monthInput.value && dateInput.value && yearInput.value) {
+      // Check if the date is valid
+      const isDateValid = dayjs(selectedDate, 'MM-DD-YYYY').isValid();
+
+      // Check if the date is within the min/max year range
+      const isYearValid =
+        Number(yearInput.value) >= minMaxYear.value.min && Number(yearInput.value) <= minMaxYear.value.max;
+
+      if (isDateValid && isYearValid) {
+        datePickerErrors.value = datePickerErrors.value.filter((error) => error.title !== 'Invalid Date');
+      } else {
+        const errorExists = datePickerErrors.value.some((error) => error.title === 'Invalid Date');
+
+        if (!errorExists) {
+          let errorMessage;
+
+          if (!isYearValid) {
+            errorMessage = `Year must be between ${minMaxYear.value.min} and ${minMaxYear.value.max}.`;
+          } else {
+            errorMessage = 'Invalid Date Format. Please use MM/DD/YYYY';
+          }
+
+          datePickerErrors.value.push({
+            title: 'Invalid Date',
+            message: errorMessage,
+          });
+
+          datePopperState.value = false;
+
+          console.error(`Invalid Date: "${selectedDate}". ${errorMessage}`);
+        }
+      }
+
+      handleInputEmits();
+    }
+  }, 1000);
+
+  const handleInputEmits = () => {
     emit('update:modelValue', `${monthInput.value}-${dateInput.value}-${yearInput.value}`);
+    emit('getDateErrors', datePickerErrors.value);
   };
 
   const handleBackSpaceInput = (inputType: 'month' | 'date' | 'year', event: Event | null) => {
@@ -795,6 +897,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     dateInput,
     monthInput,
     yearInput,
+    datePickerErrors,
     calendarTabPageData,
     calendarTabIsMinMonth,
     calendarTabIsMaxMonth,
@@ -817,6 +920,9 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     yearTabHandleSelectedYear,
     setModelValue,
     getMonthObject,
+    getDatePickerInputClasses,
+    getTabClasses,
+    isDatePickerPopperDisabled,
     handleMonthInput,
     handleDateInput,
     handleYearInput,

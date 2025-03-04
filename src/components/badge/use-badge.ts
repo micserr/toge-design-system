@@ -28,9 +28,9 @@ export const useBadge = (props: BadgePropTypes) => {
     });
 
     const sizeClasses = classNames({
-      'spr-label-sm-medium !spr-leading-[0] !spr-tracking-normal spr-h-[20px] spr-min-w-[20px] spr-rounded-[32px] spr-py-size-spacing-3xs spr-px-size-spacing-5xs':
+      'spr-label-sm-medium !spr-leading-[0] !spr-tracking-normal spr-h-[20px] spr-min-w-[20px] spr-rounded-[32px] spr-py-size-spacing-3xs spr-px-size-spacing-5xs spr-box-border':
         size.value === 'big',
-      'spr-label-xs-medium !spr-leading-[0] !spr-tracking-normal spr-h-[16px] spr-min-w-[16px] spr-rounded-[32px] spr-py-size-spacing-6xs spr-px-size-spacing-5xs':
+      'spr-label-xs-medium !spr-leading-[0] !spr-tracking-normal spr-h-[16px] spr-min-w-[16px] spr-rounded-[32px] spr-py-size-spacing-6xs spr-px-size-spacing-5xs spr-box-border':
         size.value === 'small',
       'spr-h-[10px] spr-min-w-[10px] spr-rounded-full': size.value === 'tiny',
     });

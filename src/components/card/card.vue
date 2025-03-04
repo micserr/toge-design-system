@@ -8,8 +8,10 @@
           class="spr-me-size-spacing-3xs spr-h-6 spr-w-6 spr-text-kangkong-600"
         />
         <div class="spr-mr-size-spacing-3xs">
-          <div class="spr-font-size-300 spr-font-medium spr-leading-5 spr-text-mushroom-950">{{ props.title }}</div>
-          <div v-if="props.subtitle" class="spr-font-size-100 spr-leading-4 spr-text-mushroom-600">
+          <div class="spr-body-md-regular-medium spr-text-mushroom-950">
+            {{ props.title }}
+          </div>
+          <div v-if="props.subtitle" class="spr-body-xs-regular spr-text-mushroom-600">
             {{ props.subtitle }}
           </div>
         </div>
@@ -30,8 +32,7 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
+<script setup lang="ts">
 import { useSlots } from 'vue';
 import { Icon } from '@iconify/vue';
 import { cardPropTypes } from './card';

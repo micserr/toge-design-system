@@ -245,7 +245,7 @@ You can manually set the current year to be shown in the calendar. The default c
 
 ```vue
 <template>
-  <spr-date-picker v-model="datePickerModel.date11" label="Date Picker" current-year="2000" />
+  <spr-date-picker v-model="datePickerModel" label="Date Picker" current-year="2000" />
 </template>
 
 <script setup>
@@ -388,7 +388,7 @@ To disable past dates, pass the `disabled-dates` prop. that contains boolean of 
     :disabled-dates="{ pastDates: true }"
   />
   <spr-date-picker 
-    v-model="datePickerModel.date14"
+    v-model="datePickerModel.date15"
     label="Future Dates Disabled" 
     :disabled-dates="{ futureDates: true }"
   />
@@ -420,12 +420,12 @@ To disable past dates, pass the `disabled-dates` prop. that contains date string
 
 <div class="spr-gap-4 spr-grid">
   <spr-date-picker 
-    v-model="datePickerModel.date14"
+    v-model="datePickerModel.date16"
     label="Past Dates Disabled With Selected Date" 
     :disabled-dates="{ pastDates: '3-14-2025' }"
   />
   <spr-date-picker 
-    v-model="datePickerModel.date14"
+    v-model="datePickerModel.date17"
     label="Future Dates Disabled With Selected Date" 
     :disabled-dates="{ futureDates: '3-14-2025' }"
   />
@@ -457,7 +457,7 @@ To disable selected dates, pass the `disabled-dates` prop. that contains array o
 
 <div>
   <spr-date-picker 
-    v-model="datePickerModel.date16"
+    v-model="datePickerModel.date18"
     label="Date Picker" 
     :disabled-dates="{ selectedDates: ['3-14-2025' , '3-15-2025', '3-25-2025', '3-28-2025'] }"
   />
@@ -483,7 +483,7 @@ To disable weekends, pass the `disabled-dates` prop. that contains boolean of `w
 
 <div>
   <spr-date-picker 
-    v-model="datePickerModel.date17"
+    v-model="datePickerModel.date19"
     label="Date Picker" 
     :disabled-dates="{ weekends: true }"
   />
@@ -509,7 +509,7 @@ To disable weekdays, pass the `disabled-dates` prop. that contains boolean of `w
 
 <div>
   <spr-date-picker 
-    v-model="datePickerModel.date18"
+    v-model="datePickerModel.date20"
     label="Date Picker" 
     :disabled-dates="{ weekdays: true }"
   />
@@ -541,7 +541,7 @@ const selectedDays = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa'];
 
 <div>
   <spr-date-picker 
-    v-model="datePickerModel.date19"
+    v-model="datePickerModel.date21"
     label="Date Picker" 
     :disabled-dates="{ selectedDays: ['su', 'we', 'th', 'sa'] }"
   />
@@ -565,7 +565,7 @@ const disabledDates = ref({ selectedDays: ['su', 'we', 'th', 'sa'] });
 
 You can pre-select a date by just adding value in your `v-model`. The value should be in the format `MM-DD-YYYY`.
 
-<spr-date-picker v-model="datePickerModel.date20" label="Date Picker" />
+<spr-date-picker v-model="datePickerModel.date22" label="Date Picker" />
 
 ```vue
 <template>
@@ -588,7 +588,7 @@ To get the date formats, you can use the `@get-date-formats` emits. When the dat
   <pre>{{ JSON.stringify(dateFormats, null, 2) }}</pre>
 </div>
 
-<spr-date-picker v-model="datePickerModel.date21" label="Date Picker" @get-date-formats="getDateFormats"/>
+<spr-date-picker v-model="datePickerModel.date23" label="Date Picker" @get-date-formats="getDateFormats"/>
 
 ```vue
 <template>
@@ -610,7 +610,7 @@ const getDateFormats = (date) => {
 
 To get the month lists used, you can use the `@get-month-lists` emits.
 
-<spr-date-picker v-model="datePickerModel.date22" label="Date Picker" @get-month-list="getMonthList"/>
+<spr-date-picker v-model="datePickerModel.date24" label="Date Picker" @get-month-list="getMonthList"/>
 
 <div class="spr-mt-3 spr-p-4 spr-bg-blue-100">
   <h5>Output:</h5>
@@ -637,7 +637,7 @@ const getMonthList = (date) => {
 
 To get the year lists used, you can use the `@get-year-lists` emits.
 
-<spr-date-picker v-model="datePickerModel.date23" label="Date Picker" @get-year-list="getYearList"/>
+<spr-date-picker v-model="datePickerModel.date25" label="Date Picker" @get-year-list="getYearList"/>
 
 <div class="spr-mt-3 spr-p-4 spr-bg-blue-100">
   <h5>Output:</h5>
@@ -656,6 +656,40 @@ const datePickerModel = ref('');
 
 const getYearList = (date) => {
   console.log(date);
+};
+</script>
+```
+
+## Error Handling
+
+Since there is existing error handling for the date picker, you can use the `@get-date-errors` emit to get the list of component-level error validations.
+
+List of component-level error validations:
+
+<ul>
+  <li>Validate Date if it is valid MMM/DD/YYYY</li>
+  <li>Validate Date Year if it is under min and max year</li>
+</ul>
+
+<div class="spr-my-3 spr-p-4 spr-bg-blue-100">
+  <h5>Output:</h5>
+  <pre>{{ dateErrors }}</pre>
+</div>
+
+<spr-date-picker class="[&>p]:spr-m-0" v-model="datePickerModel.date26" label="Date Picker" @get-date-errors="getDateErrors"/>
+
+```vue
+<template>
+  <spr-date-picker v-model="datePickerModel" label="Date Picker" @get-date-errors="getDateErrors" />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const datePickerModel = ref('');
+
+const getDateErrors = (errors) => {
+  console.log(errors);
 };
 </script>
 ```
@@ -768,6 +802,12 @@ const getYearList = (date) => {
       <td>Function</td>
       <td>-</td>
     </tr>
+    <tr>
+      <td>@get-date-error</td>
+      <td>Emits the available date errors</td>
+      <td>Function</td>
+      <td>-</td>
+    </tr>
   </tbody>
 </table>
 
@@ -798,17 +838,23 @@ const datePickerModel = ref({
   date17: "",
   date18: "",
   date19: "",
-  date20: "09-11-1997",
+  date20: "",
   date21: "",
   date22: "",
   date23: "",
   date24: "",
   date25: "",
+  date26: "",
 }); 
 
+const dateErrors = ref([]);
 const dateFormats = ref({});
 const monthLists = ref([]);
 const yearLists = ref([]);
+
+const getDateErrors = (errors) => {
+  dateErrors.value = errors;
+};
 
 const getDateFormats = (date) => {
   dateFormats.value = date;

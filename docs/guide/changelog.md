@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.6.2 (2025-03-04)
+
+- Fix
+  - Documentation Empty State Image ([#60b670fc](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/60b670fc0a816041a6db23829280cf2af0adea5a?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) @jarias)
+
 ## 1.6.1 (2025-03-04)
 
 - Feature

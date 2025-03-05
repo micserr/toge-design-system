@@ -1,9 +1,23 @@
 <template>
   <div
     class="spr-table-wrapper spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid"
-  >
+  > 
     <div v-if="!!$slots.default" :class="[{ 'spr-px-size-spacing-sm spr-py-size-spacing-xs': !!$slots.default }]">
       <slot />
+    </div>
+
+    <div v-if="hasTableActions" class="spr-w-full spr-border spr-border-solid spr-border-color-weak" >
+      <spr-table-actions 
+        v-model:search-model="searchField"
+        :toggle-search="props.tableActions.search" 
+        :toggle-option="props.tableActions.option" 
+        :toggle-filter="props.tableActions.filter"
+        @update:search-model="updateSearchField"
+      >
+        <template #tableActionSection>
+          <slot name="tableActionSection" />
+        </template>
+      </spr-table-actions>
     </div>
 
     <div class="spr-h-[400px]">
@@ -127,13 +141,13 @@ import { Icon } from '@iconify/vue';
 import SprAvatar from '@/components/avatar/avatar.vue';
 import SprEmptyState from '@/components/empty-state/empty-state.vue';
 import SprBadge from '@/components/badge/badge.vue';
+import SprTableActions from '@/components/table/table-actions/table-actions.vue';
 
-import { tablePropTypes } from './table';
+import { tablePropTypes, tableEmitTypes } from './table';
 import { useTable } from './use-table';
-import { tableEmitTypes } from './table';
 
 const props = defineProps(tablePropTypes);
 const emit = defineEmits(tableEmitTypes);
 
-const { sortedData, sortData, getHeaderCount } = useTable(props, emit);
+const { sortedData, sortData, getHeaderCount, updateSearchField, hasTableActions, searchField } = useTable(props, emit);
 </script>

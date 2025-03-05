@@ -27,7 +27,14 @@ interface EmptyState {
   size: 'small' | 'large';
 }
 
+interface TableActions {
+  search: boolean;
+  filter: boolean;
+  option: boolean;
+}
+
 const TABLE_SORT = ['asc', 'desc'] as const;
+export type TABLE_SORT = typeof TABLE_SORT[number];
 
 export const tablePropTypes = {
   /**
@@ -61,12 +68,32 @@ export const tablePropTypes = {
       size: 'large',
     }),
   },
-
   loading: {
     type: Boolean as PropType<boolean>,
     default: false,
   },
 
+  /**
+   * @description Table Actions
+   */
+  tableActions: {
+    type: Object as PropType<TableActions>,
+    default: () => ({
+      search: false,
+      filter: false,
+      option: false,
+    }),
+  },
+
+  /**
+   * @description Search variable
+   *  
+    */
+  searchModel: {
+    type: String as PropType<string>,
+    default: '',
+  },
+  
   sortOrder: {
     type: String as PropType<(typeof TABLE_SORT)[number]>,
     validator: (value: (typeof TABLE_SORT)[number]) => TABLE_SORT.includes(value),
@@ -74,6 +101,10 @@ export const tablePropTypes = {
   },
 };
 
-export const tableEmitTypes = ['onSort'];
+export const tableEmitTypes = {
+  'update:searchModel': (value: string): value is string => typeof value === 'string',
+  'onSort': () => true,
+};
+
 export type TablePropTypes = ExtractPropTypes<typeof tablePropTypes>;
 export type TableEmitTypes = typeof tableEmitTypes;

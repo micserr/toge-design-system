@@ -98,6 +98,71 @@ const data = ref([
 </script>
 ```
 
+## Table Actions
+<spr-table action :headers="headers" :data-table="data" :table-actions="tableActions" v-model:searchModel="searchModel"></spr-table>
+
+```vue
+<template>
+  <spr-table action :headers="headers" :data-table="data" :table-actions="tableActions" v-model:searchModel="searchModel"/> 
+</template>
+
+<script setup lang="ts">
+import { ref, watch } from 'vue';
+
+const headers = ref([
+  // Fill this with your headers
+]);
+
+const data = ref([
+  // Fill this with your data
+]);
+
+const tableActions = ref({
+  // Toggle this to true if you need search field
+  search: true,
+  // Toggle this to t rue if you need filter field
+  filter: true,
+  // Toggle this to true if you need option field
+  option: true,
+});
+
+const searchModel = ref('');
+
+watch(searchModel, (newValue) => {
+  console.log(newValue);
+  // On change of the search variable trigger a fetch
+  // fetchApiHere();
+});
+
+</script>
+```
+### Table Action Slot
+
+<spr-table action :headers="headers" :data-table="data" :table-actions="tableActions" v-model:searchModel="searchModel">
+  <div>
+    <div class="spr-text-color-strong spr-font-size-400 spr-font-weight-medium">Table Name</div>
+    <div>table description</div>
+  </div>
+  <template #tableActionSection>
+    <spr-button>Button</spr-button>
+  </template>
+</spr-table>
+
+```vue
+<template>
+  <spr-table action :headers="headers" :data-table="data" :table-actions="tableActions" v-model:searchModel="searchModel">
+    <div>
+      <div class="spr-text-color-strong spr-font-size-400 spr-font-weight-medium">Table Name</div>
+      <div>table description</div>
+    </div>
+    <template #tableActionSection>
+      <spr-button>Button</spr-button>
+    </template>
+  </spr-table>
+</template>
+```
+
+
 ## Table API
 
 ### Table Attributes
@@ -152,6 +217,18 @@ const data = ref([
         subDescription: 'Try a different search term',
         image: 'location',
         size: 'large',
+      }
+      </td>
+    </tr>
+    <tr>
+      <td>tableActions</td>
+      <td>Customize table actions</td>
+      <td>Object</td>
+      <td>
+      {
+        search: boolean;
+        filter: boolean;
+        option: boolean;
       }
       </td>
     </tr>
@@ -275,4 +352,12 @@ const data = ref([
     },
   },
 ]);
+
+const tableActions = ref({
+  search: true,
+  filter: true,
+  option: true,
+});
+
+const searchModel = ref('');
 </script>

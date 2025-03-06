@@ -1,16 +1,16 @@
 <template>
   <div
     class="spr-table-wrapper spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid"
-  > 
+  >
     <div v-if="!!$slots.default" :class="[{ 'spr-px-size-spacing-sm spr-py-size-spacing-xs': !!$slots.default }]">
       <slot />
     </div>
 
-    <div v-if="hasTableActions" class="spr-w-full spr-border spr-border-solid spr-border-color-weak" >
-      <spr-table-actions 
+    <div v-if="hasTableActions" class="spr-border-color-weak spr-w-full spr-border spr-border-solid">
+      <spr-table-actions
         v-model:search-model="searchField"
-        :toggle-search="props.tableActions.search" 
-        :toggle-option="props.tableActions.option" 
+        :toggle-search="props.tableActions.search"
+        :toggle-option="props.tableActions.option"
         :toggle-filter="props.tableActions.filter"
         @update:search-model="updateSearchField"
       >
@@ -32,20 +32,33 @@
                 'spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-text-start spr-font-medium spr-uppercase',
                 'spr-border-color-weak spr-border-x-0 spr-border-y spr-border-solid',
                 {
-                  'spr-cursor-pointer': header.sort,
                   'spr-border-t-0': !$slots.default,
                 },
               ]"
             >
               <div class="spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-5xs">
-                <span @click="header.sort && sortData(header.field)">{{ header.name }}</span>
+                <span
+                  :class="[
+                    {
+                      'spr-cursor-pointer': header.sort,
+                    },
+                  ]"
+                  @click="header.sort && sortData(header.field)"
+                >
+                  {{ header.name }}
+                </span>
 
                 <span v-if="header.badgeText">
                   <spr-badge :text="header.badgeText" :variant="header.badgeVariant" size="small" />
                 </span>
                 <span
                   v-if="header.sort"
-                  class="spr-flex spr-flex-row spr-items-center"
+                  :class="[
+                    'spr-flex spr-flex-row spr-items-center',
+                    {
+                      'spr-cursor-pointer': header.sort,
+                    },
+                  ]"
                   @click="header.sort && sortData(header.field)"
                 >
                   <Icon icon="ph:caret-up-down-light" />

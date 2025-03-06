@@ -111,6 +111,10 @@ export default defineConfig({
               link: '/documentation/components/empty-state',
             },
             {
+              text: 'Filter',
+              link: '/documentation/components/filter',
+            },
+            {
               text: 'Input',
               link: '/documentation/components/input',
             },

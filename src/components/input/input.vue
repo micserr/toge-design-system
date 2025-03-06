@@ -3,6 +3,7 @@
     <label v-if="props.label" :for="id" :class="inputClasses.labelClasses">
       {{ props.label }}
     </label>
+
     <div class="spr-relative">
       <div v-if="$slots.prefix" :class="inputClasses.prefixSlotClasses">
         <slot name="prefix" />

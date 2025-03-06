@@ -3,9 +3,9 @@
     <div class="spr-relative spr-flex spr-items-center">
       <input
         type="checkbox"
-        :checked="props.modelValue"
         :class="checkboxClasses.inputCheckboxClasses"
         :disabled="props.disabled"
+        :checked="props.modelValue || props.checked"
         @change="handleCheckbox"
       />
       <span :class="checkboxClasses.inputCheckboxCheckIconClasses">

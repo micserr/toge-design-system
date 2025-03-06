@@ -2,8 +2,9 @@ import type { PropType, ExtractPropTypes } from 'vue';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
-const DROPDOWN_TYPES = ['single-select', 'multi-select'] as const;
-const PLACEMENTS = [
+const GROUPED_ITEMS_BY_TYPES = ['A-Z', 'Z-A'] as const;
+
+const PLACEMENTS_TYPES = [
   'auto',
   'auto-start',
   'auto-end',
@@ -22,35 +23,42 @@ const PLACEMENTS = [
 ] as const;
 
 export const dropdownPropTypes = {
-  menu: {
+  modelValue: {
+    type: Array as PropType<string[]>,
+    default: () => [],
+  },
+  menuList: {
     type: Array as PropType<{ text: string; value: string }[]>,
     required: true,
     default: [],
   },
-  preSelectedItems: {
-    type: Array,
-    default: [],
-  },
-  dropdownType: {
+  searchString: {
     type: String,
-    validator: (value: (typeof DROPDOWN_TYPES)[number]) => DROPDOWN_TYPES.includes(value),
-    required: true,
-    default: 'single-select',
+    default: '',
   },
-  placement: {
+  width: {
     type: String,
-    validator: (value: (typeof PLACEMENTS)[number]) => PLACEMENTS.includes(value),
-    default: 'bottom',
+    default: '100%',
   },
-  menuOpened: {
+  multiSelect: {
     type: Boolean,
     default: false,
+  },
+  placement: {
+    type: String as PropType<(typeof PLACEMENTS_TYPES)[number]>,
+    validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
+    default: 'bottom',
+  },
+  groupItemsBy: {
+    type: String as PropType<(typeof GROUPED_ITEMS_BY_TYPES)[number]>,
+    validator: (value: (typeof GROUPED_ITEMS_BY_TYPES)[number] | undefined) => {
+      return value === undefined || GROUPED_ITEMS_BY_TYPES.includes(value);
+    },
   },
 };
 
 export const dropdownEmitTypes = {
   'get-selected-item': Object,
-  'get-popper-state': Boolean,
 };
 
 export type DropdownPropTypes = ExtractPropTypes<typeof dropdownPropTypes>;

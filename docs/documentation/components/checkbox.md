@@ -48,9 +48,11 @@ const checkbox = ref(false);
 </script>
 ```
 
-## Checked State
+## Checked
 
-Checkboxes can be set to checked by the use of `v-model` directive to bind the checkbox value.
+Checkboxes can be set to checked by the use of `v-model` or `checked` props.
+
+<h5 class="spr-my-4">Using <code>v-model</code>:</h5>
 
 <SprCheckbox v-model="checkboxModels.checkbox3" label="Checkbox Label" />
 
@@ -66,7 +68,23 @@ const checkbox = ref(true);
 </script>
 ```
 
-## Disabled State
+<h5 class="spr-my-4">Using <code>checked</code> props:</h5>
+
+<SprCheckbox label="Checkbox Label" checked />
+
+```vue
+<template>
+  <SprCheckbox label="Checkbox Label" checked />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const checkbox = ref(true);
+</script>
+```
+
+## Disabled
 
 Add `disabled` attribute to make the checkbox disabled.
 

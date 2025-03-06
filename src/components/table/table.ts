@@ -36,6 +36,7 @@ interface TableActions {
 const TABLE_SORT = ['asc', 'desc'] as const;
 export type TABLE_SORT = typeof TABLE_SORT[number];
 
+
 export const tablePropTypes = {
   /**
    * @description Action Column,
@@ -99,6 +100,7 @@ export const tablePropTypes = {
     validator: (value: (typeof TABLE_SORT)[number]) => TABLE_SORT.includes(value),
     default: 'asc',
   },
+
 };
 
 export const tableEmitTypes = {

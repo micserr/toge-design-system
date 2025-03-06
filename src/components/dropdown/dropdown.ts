@@ -21,9 +21,14 @@ const PLACEMENTS = [
   'left-end',
 ] as const;
 
+export type DropdownMenuType = {
+  text: string;
+  value: string;
+};
+
 export const dropdownPropTypes = {
   menu: {
-    type: Array as PropType<{ text: string; value: string }[]>,
+    type: Array as PropType<DropdownMenuType[]>,
     required: true,
     default: [],
   },

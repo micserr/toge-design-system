@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.6 (2025-03-05)
+- Feat
+  - Table Footer Pagination ([#dc4b702d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dc4b702d8eb789580b6f8aab8ca5c098cfdea223?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_FOOTER) by @jfabula)
+  
 ## 1.6.5 (2025-03-04)
 - Feat
   - Added Table Actions section in table ([#7fd19bb8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7fd19bb8f5e6c83ae4d441353fbec375342e1ddc?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_ACTIONS) by @jfabula)

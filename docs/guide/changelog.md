@@ -1,8 +1,19 @@
 # Changelog
 
-## 1.7.0
+## 1.7.1 (2025-03-06)
+
+- Feat
+  - Commit df2e6398: feat: add Calendar Cell component with usage examples and documentation ([#df2e6398](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/df2e63987eeab4334916fbf8b9ccc3d42ec248d5?refName=refs/heads/2025/Feature/andrea/calendar-cell) by @adestajo)
+
+## 1.7.0 (2025-03-06)
+
 - Feat
   - Slider component and slider documentation([ef66f65](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ef66f65d92648b2d6c0d498cda4823491241103a?refName=refs%2Fheads%2F2025%2Ffeature%2Fdale%2Fslider) by @dale)
+
+## 1.6.7 (2025-03-06)
+
+- Feat
+  - Commit 5867fc71: Refactor filter component props and events; update time picker focus behavior and table imports ([#5867fc71](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5867fc710404012d6dfb0175c839b7a2d499485d?refName=refs/heads/2025/Feature/andrea/filter) by @adestajo)
 
 ## 1.6.6 (2025-03-05)
 

@@ -87,6 +87,10 @@ export default defineConfig({
               link: '/documentation/components/button',
             },
             {
+              text: 'Calendar Cell',
+              link: '/documentation/components/calendar-cell',
+            },
+            {
               text: 'Card',
               link: '/documentation/components/card',
             },

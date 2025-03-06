@@ -1,4 +1,4 @@
-import { computed, onBeforeMount, ref, toRefs, watch } from 'vue';
+import { computed, ref, toRefs, watch } from 'vue';
 import { FilterPropTypes, FilterPropsInterface, FilterEmitTypes } from './filter';
 import type { SetupContext } from 'vue';
 import { useVModel } from '@vueuse/core';
@@ -115,8 +115,8 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     return Object.values(mappedFilterOption.value).filter((item) => item.isSelected);
   });
 
-  watch(getSelectedOption, (value) => {
-    selectedValue.value = value;
+  watch(getSelectedOption, () => {
+    selectedValue.value = getSelectedOption.value;
   });
 
   watch(searchValue, (value) => {
@@ -129,6 +129,8 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
         mappedFilterOption.value[option.value].isSelected = true;
       });
     }
+
+    selectedValue.value = getSelectedOption.value;
   };
 
   const saveSelectedFilter = (field: string) => {
@@ -176,10 +178,9 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
       'hover:spr-background-color-hover',
     );
 
-    onBeforeMount(() => {
-      getMappedFilterMenuList();
-      // Call getMappedFilterMenuList upon component render
-    });
+    // Call getMappedFilterMenuList upon component render
+    getMappedFilterMenuList();
+
     return {
       MainClasses,
       MainOptionWrapperClasses,

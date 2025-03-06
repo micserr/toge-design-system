@@ -7,7 +7,7 @@
   <span >Selected: {{selectedOptions}}</span> 
   <span>searchValue: {{searchValue}}</span>
 </div>
-  <spr-filter v-model="selectedOptions1"  :options="options" label="Search"  v-model:search="searchValue" />
+  <spr-filter v-model="selectedOptions"  :options="options" label="Search"  v-model:search="searchValue" />
 </div>
 
 ```vue
@@ -39,11 +39,11 @@ const searchValue = ref('');
   <div
     class="spr-body-sm spr-flex spr-flex-col spr-gap-2 spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid"
   >
-    <span>Selected: {{ selectedOptions }}</span>
-    <span>searchValue: {{ searchValue }}</span>
+    <span>Selected: {{ selectedOptions1 }}</span>
+    <span>searchValue: {{ searchValue1 }}</span>
   </div>
   <spr-filter 
-    v-model="selectedOptions"
+    v-model="selectedOptions1"
     v-model:search="searchValue1" 
     :options="options" label="Search"
     :filterMenu="filterMenuList"

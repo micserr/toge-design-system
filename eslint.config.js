@@ -59,6 +59,7 @@ export default tseslint.config(
             'radio',
             'sidenav',
             'sidepanel',
+            'slider',
             'snack',
             'snackbar',
             'status',

@@ -91,7 +91,6 @@ import SprInput from '@/components/input/input.vue';
 import { Icon } from '@iconify/vue';
 
 const inputValue = ref('');
-
 const snackbar = ref(null);
 const successSnackbar = () => {
   snackbar.value.showSuccess({

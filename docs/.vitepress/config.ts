@@ -139,6 +139,10 @@ export default defineConfig({
               link: '/documentation/components/sidepanel',
             },
             {
+              text: 'Slider',
+              link: '/documentation/components/slider',
+            },
+            {
               text: 'Snackbar',
               link: '/documentation/components/snackbar',
             },

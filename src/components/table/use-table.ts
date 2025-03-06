@@ -41,13 +41,14 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
   }
 
   const hasTableActions = computed(() => props.tableActions.search || props.tableActions.filter || props.tableActions.option);
-  
+
+
   return {
     sortedData,
     getHeaderCount,
     sortData,
     updateSearchField,
     hasTableActions,
-    searchField,
+    searchField
   };
 };

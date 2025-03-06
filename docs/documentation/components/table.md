@@ -99,6 +99,7 @@ const data = ref([
 ```
 
 ## Table Actions
+The implementation for the search field here is to emit and trigger an API call to update the data-table
 <spr-table action :headers="headers" :data-table="data" :table-actions="tableActions" v-model:searchModel="searchModel"></spr-table>
 
 ```vue
@@ -136,6 +137,7 @@ watch(searchModel, (newValue) => {
 
 </script>
 ```
+
 ### Table Action Slot
 
 <spr-table action :headers="headers" :data-table="data" :table-actions="tableActions" v-model:searchModel="searchModel">
@@ -161,6 +163,97 @@ watch(searchModel, (newValue) => {
   </spr-table>
 </template>
 ```
+
+
+## Table Footer
+The implementation for the pagination here is to emit and trigger an API call to update the data-table
+  <spr-table 
+      action 
+      :headers="headers" 
+      :data-table="data" 
+      :table-footer="tableFooter"
+      v-model:selectedRowCount="selectedRowCount"
+      @paginationClickedLeft="handlePaginationClickedLeft"
+      @paginationClickedRight="handlePaginationClickedRight"
+    >
+      <template #footer> 
+        <spr-table-pagination 
+          v-model:selected-row-count="selectedRowCount"
+          :total-items="tablePagination.totalItems"
+          :current-page="tablePagination.currentPage"
+          :dropdown-selection="tablePagination.dropdownSelection"
+          @previous="handlePrevious"
+          @next="handleNext"
+          :version="'backend'"
+        />
+      </template>
+  </spr-table>
+
+```vue
+<template>
+  <spr-table 
+      action 
+      :headers="headers" 
+      :data-table="data" 
+      :table-footer="tableFooter"
+      v-model:selectedRowCount="selectedRowCount"
+      @paginationClickedLeft="handlePaginationClickedLeft"
+      @paginationClickedRight="handlePaginationClickedRight"
+    >
+      <template #footer> 
+        <spr-table-pagination 
+          v-model:selected-row-count="selectedRowCount"
+          :total-items="tablePagination.totalItems"
+          :current-page="tablePagination.currentPage"
+          :dropdown-selection="tablePagination.dropdownSelection"
+          @previous="handlePrevious"
+          @next="handleNext"
+          :version="'backend'"
+        />
+      </template>
+  </spr-table>
+</template>
+
+<script setup lang="ts">
+import { ref, watch } from 'vue';
+
+const headers = ref([
+  // Fill this with your headers
+]);
+
+const data = ref([
+  // Fill this with your data
+]);
+
+const tablePagination = {
+  totalItems: 100,
+  currentPage: 2,
+  dropdownSelection: [
+    {text: 10, value: 10},
+    {text: 20, value: 20},
+    {text: 30, value: 30},
+  ],
+};
+
+const selectedRowCount = ref(10);
+
+watch(selectedRowCount, (newValue) => {
+  console.log("Selected Row Count:", newValue);
+  // On change of the selectedRowCount variable trigger a fetch
+  // fetchApiHere();
+});
+
+const handlePrevious = () => {
+  console.log('clicked previous');
+};
+
+const handleNext = () => {
+  console.log('clicked next');
+};
+
+</script>
+```
+
 
 
 ## Table API
@@ -232,12 +325,25 @@ watch(searchModel, (newValue) => {
       }
       </td>
     </tr>
+    <tr>
+      <td>tableFooter</td>
+      <td>Customize table footer</td>
+      <td>Object</td>
+      <td>
+      {
+        totalItems: number;
+        currentPage: number;
+        dropdownSelection: { text: string; value: string }[];
+      }
+      </td>
+    </tr>
   </tbody>
 </table>
 
 <script setup lang="ts">
   import { ref } from 'vue'
   import SprTable from "@/components/table/table.vue";
+  import SprTablePagination from "@/components/table/table-pagination/table-pagination.vue";
   import SprButton from '@/components/button/button.vue';
   import SprLozenge from "@/components/lozenge/lozenge.vue"
   import { Icon } from '@iconify/vue';
@@ -360,4 +466,25 @@ const tableActions = ref({
 });
 
 const searchModel = ref('');
+
+
+const tablePagination = ref({
+  totalItems: 100,
+  currentPage: 2,
+  dropdownSelection: [
+    {text: 10, value: 10},
+    {text: 20, value: 20},
+    {text: 30, value: 30},
+  ],
+});
+
+const selectedRowCount = ref(20);
+
+const handlePrevious = () => {
+  console.log('clicked previous');
+};
+
+const handleNext = () => {
+  console.log('clicked next');
+};
 </script>

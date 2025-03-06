@@ -66,6 +66,7 @@ export default tseslint.config(
             'table',
             'tabs',
             'textarea',
+            'filter',
             'timePicker',
             'tooltip',
           ],

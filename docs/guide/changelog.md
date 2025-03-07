@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.8.2 (2025-03-07)
+
+-Fix
+-DQA for slider component ([#a555ece3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a555ece319a158817e3c48e3f7472e008471fcde?refName=refs%2Fheads%2F2025%2Ffix%2Fdale%2FDQA-slider) by @dale)
+
 ## 1.8.1 (2025-03-07)
 
 -Fix

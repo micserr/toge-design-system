@@ -28,7 +28,7 @@
       :class="[
         handleSliderThumbSize,
         'spr-absolute spr-top-1/2 spr--translate-x-1/2 spr--translate-y-1/2 spr-transform spr-rounded-full spr-text-kangkong-600 hover:spr-text-kangkong-700 active:spr-border-2 active:spr-border-solid active:spr-text-kangkong-800',
-        { 'spr-cursor-not-allowed': props.disabled },
+        { 'spr-pointer-events-none spr-cursor-not-allowed': props.disabled },
       ]"
       :style="handleThumbStyle"
       @pointerdown="startDrag"

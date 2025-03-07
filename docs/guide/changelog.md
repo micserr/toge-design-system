@@ -1,5 +1,12 @@
 # Changelog
 
+
+## 1.8.0 (2025-03-07)
+
+-Feat
+  - Progress Bar component and documentation ([#d1420e1f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d1420e1fc6721ac8a0b1df9cca6689f0b10d9e7c?refName=refs%2Fheads%2F2025%2Ffeature%2Fdale%2Fprogressbar) by @dale)
+
+
 ## 1.7.4 (2025-03-07)
 - Fix
   - Table overlap with footer ([#90ed36de](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/90ed36de8c7959e52dfa1ded52ecba22de5e5374?refName=refs/heads/2025/FIX/Xyrk/TABLE_FOOTER_OVERLAP) by @jfabula)

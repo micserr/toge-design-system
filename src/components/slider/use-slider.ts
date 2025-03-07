@@ -7,7 +7,7 @@ export const useSlider = (props: SliderPropTypes, emit: (event: 'update:modelVal
   const sliderValue = ref(props.modelValue);
 
   const handleSliderSize = computed(() => (props.size === 'sm' ? 'spr-h-1' : 'spr-h-2'));
-  const handleSliderThumbSize = computed(() => (props.size === 'sm' ? 'spr-text-base' : 'spr-text-xl'));
+  const handleSliderThumbSize = computed(() => (props.size === 'sm' ? 'spr-text-base' : 'spr-text-[20px]'));
 
   const thumbPosition = computed(() => {
     if (props.max === props.min) return '0%';

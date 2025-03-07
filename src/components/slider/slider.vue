@@ -35,7 +35,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useSlider } from './use-slider';
 import { sliderPropTypes } from './slider';
 import { Icon } from '@iconify/vue';

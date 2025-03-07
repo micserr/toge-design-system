@@ -131,6 +131,10 @@ export default defineConfig({
               link: '/documentation/components/modal',
             },
             {
+              text:'Progress Bar',
+              link: '/documentation/components/progress-bar',
+            },
+            {
               text: 'Radio',
               link: '/documentation/components/radio',
             },

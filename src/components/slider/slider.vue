@@ -3,8 +3,8 @@
     ref="sliderRef"
     :class="[
       handleSliderSize,
-      'spr-relative spr-w-full spr-cursor-pointer spr-rounded-lg spr-bg-white-100',
-      { 'spr-pointer-events-none spr-opacity-50': props.disabled },
+      'spr-relative spr-w-full spr-rounded-lg spr-bg-white-100',
+      props.disabled ? 'spr-cursor-not-allowed spr-opacity-50' : 'spr-cursor-pointer',
     ]"
     role="slider"
     :aria-valuenow="props.modelValue"
@@ -18,6 +18,7 @@
       :class="[
         handleSliderSize,
         'spr-absolute spr-left-0 spr-top-1/2 spr--translate-y-1/2 spr-rounded-lg spr-bg-kangkong-600',
+        { 'spr-cursor-not-allowed': props.disabled },
       ]"
       :style="handleSliderStyle"
     ></div>
@@ -26,8 +27,8 @@
       icon="ph:circle-fill"
       :class="[
         handleSliderThumbSize,
-        'spr-absolute spr-top-1/2 spr--translate-x-1/2 spr--translate-y-1/2 spr-transform spr-rounded-full spr-text-kangkong-600 hover:spr-text-kangkong-700 active:spr-text-kangkong-800 active:spr-border-2 active:spr-border-solid',
-        { 'spr-pointer-events-none': props.disabled },
+        'spr-absolute spr-top-1/2 spr--translate-x-1/2 spr--translate-y-1/2 spr-transform spr-rounded-full spr-text-kangkong-600 hover:spr-text-kangkong-700 active:spr-border-2 active:spr-border-solid active:spr-text-kangkong-800',
+        { 'spr-cursor-not-allowed': props.disabled },
       ]"
       :style="handleThumbStyle"
       @pointerdown="startDrag"

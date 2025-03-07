@@ -67,7 +67,7 @@ export const inputPropTypes = {
 };
 
 export const inputEmitTypes = {
-  'update:modelValue': (evt: KeyboardEvent): evt is KeyboardEvent => evt instanceof KeyboardEvent,
+  'update:modelValue': (value: string): value is string => typeof value === 'string',
 };
 
 export type InputEmitTypes = { 'update:modelValue': typeof inputEmitTypes };

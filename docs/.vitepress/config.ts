@@ -87,6 +87,10 @@ export default defineConfig({
               link: '/documentation/components/button',
             },
             {
+              text: 'Calendar Cell',
+              link: '/documentation/components/calendar-cell',
+            },
+            {
               text: 'Card',
               link: '/documentation/components/card',
             },
@@ -111,6 +115,10 @@ export default defineConfig({
               link: '/documentation/components/empty-state',
             },
             {
+              text: 'Filter',
+              link: '/documentation/components/filter',
+            },
+            {
               text: 'Input',
               link: '/documentation/components/input',
             },
@@ -127,6 +135,10 @@ export default defineConfig({
               link: '/documentation/components/modal',
             },
             {
+              text:'Progress Bar',
+              link: '/documentation/components/progress-bar',
+            },
+            {
               text: 'Radio',
               link: '/documentation/components/radio',
             },
@@ -137,6 +149,10 @@ export default defineConfig({
             {
               text: 'Sidepanel',
               link: '/documentation/components/sidepanel',
+            },
+            {
+              text: 'Slider',
+              link: '/documentation/components/slider',
             },
             {
               text: 'Snackbar',

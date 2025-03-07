@@ -1,9 +1,14 @@
 # Changelog
 
-## 1.7.2 (2025-03-07)
-  -Fix
-  -DQA for slider component ([#89aeea52](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/89aeea52dbaf416d3a669113c883cb8c1d4de920?refName=refs%2Fheads%2F2025%2Ffix%2Fdale%2FDQA-slider) by @dale)
+## 1.7.3 (2025-03-07)
 
+- Feat
+  - Commit 3f3cb7b6: improve filter component code readability and type safety :D ([#3f3cb7b6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3f3cb7b687c5b24d43adda9898364aa2dbb558b1?refName=refs/heads/2025/Fix/andrea/AI-optimized-filter) by @adestajo)
+
+## 1.7.2 (2025-03-07)
+
+-Fix
+-DQA for slider component ([#89aeea52](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/89aeea52dbaf416d3a669113c883cb8c1d4de920?refName=refs%2Fheads%2F2025%2Ffix%2Fdale%2FDQA-slider) by @dale)
 
 ## 1.7.1 (2025-03-06)
 

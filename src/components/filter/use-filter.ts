@@ -11,23 +11,22 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
   const searchText = useVModel(props, 'search', emit);
   const searchValue = ref<string>('');
   const filterMenuSearchvalue = ref<string>('');
-  const isAddFilterVisible = ref(false);
-  const isAdvanceFilterVisible = ref(false);
-  const mappedFilterOption = ref<{ [key: string]: FilterPropsInterface['optionDetails'] }>({});
-  const mappedMenuData = ref<{ [key: string]: FilterPropsInterface['optionDetails'] }>({});
-  const mappedFilterMenuList = ref<{ [key: string]: FilterPropsInterface['filterDetails'] }>({});
+  const isAddFilterVisible = ref<boolean>(false);
+  const isAdvanceFilterVisible = ref<boolean>(false);
+  const mappedFilterOption = ref<Record<string, FilterPropsInterface['optionDetails']>>({});
+  const mappedMenuData = ref<Record<string, FilterPropsInterface['optionDetails']>>({});
+  const mappedFilterMenuList = ref<Record<string, FilterPropsInterface['filterDetails']>>({});
   const filterMenuList = ref<FilterPropsInterface['filterDetails'][]>(
     filterMenu.value as FilterPropsInterface['filterDetails'][],
   );
   const selectedFilters = ref<FilterPropsInterface['optionDetails'][]>([]);
 
-  const getFiltereredOption = computed(() => {
+  const getFiltereredOption = computed<FilterPropsInterface['optionDetails'][]>(() => {
     getMappedValues();
-
     return options.value?.filter((option) => option.text.toLowerCase().includes(searchValue.value.toLowerCase())) || [];
   });
 
-  const getFiltereredMenuOption = computed(() => {
+  const getFiltereredMenuOption = computed<FilterPropsInterface['optionDetails'][]>(() => {
     return (
       filterData.value?.filter((option) =>
         option.text.toLowerCase().includes(filterMenuSearchvalue.value.toLowerCase()),
@@ -43,74 +42,53 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     isFilterOpen.value = !isFilterOpen.value;
   };
 
-  //map main option
   const getMappedValues = () => {
     if (!options.value?.length) return;
-
     mappedFilterOption.value = options.value.reduce(
-      (accumulator, { value, isSelected, text, subtext }) => {
-        if (!accumulator[value]?.isSelected) {
-          accumulator[value] = { isSelected, text, value, subtext };
+      (acc, { value, isSelected, text, subtext }) => {
+        if (!acc[value]?.isSelected) {
+          acc[value] = { isSelected, text, value, subtext };
         }
-        return accumulator;
+        return acc;
       },
-      mappedFilterOption.value as Record<string, FilterPropsInterface['optionDetails']>,
+      {} as Record<string, FilterPropsInterface['optionDetails']>,
     );
   };
 
-  //Map option from the filter
   const getMappedFilterData = (column: string) => {
     emit('getFilterData');
-
     if (loading.value || !filterData.value?.length) return;
-
     mappedMenuData.value = filterData.value.reduce(
-      (accumulator, { value, isSelected, text, subtext }) => {
+      (acc, { value, isSelected, text, subtext }) => {
         const isExisting = selectedFilters.value.some(
           (prevSelected) => prevSelected.value === value && prevSelected.column === column,
         );
-        accumulator[value] = {
-          isSelected: isExisting || isSelected,
-          text,
-          value,
-          column,
-          subtext,
-        };
-        return accumulator;
+        acc[value] = { isSelected: isExisting || isSelected, text, value, column, subtext };
+        return acc;
       },
       {} as Record<string, FilterPropsInterface['optionDetails']>,
     );
   };
 
   const getMappedFilterMenuList = () => {
-    if (!filterMenu.value || filterMenu.value.length === 0) return;
-
-    mappedFilterMenuList.value = (filterMenu.value as FilterPropsInterface['filterDetails'][]).reduce(
-      (accumulator, { isFilterVisible, columnName, field }) => {
-        accumulator[field] = {
-          isFilterVisible: isFilterVisible || false,
-          columnName,
-          field,
-          count: 0,
-          selected: {},
-        };
-        return accumulator;
+    if (!filterMenu.value?.length) return;
+    mappedFilterMenuList.value = filterMenu.value.reduce(
+      (acc, { isFilterVisible, columnName, field }) => {
+        acc[field] = { isFilterVisible: isFilterVisible || false, columnName, field, count: 0, selected: {} };
+        return acc;
       },
       {} as Record<string, FilterPropsInterface['filterDetails']>,
     );
   };
 
-  // get all selected values in filter Menu Option
   const getSelectedFilterMenuOption = computed(() => {
     return Object.values(mappedMenuData.value).filter((item) => item.isSelected);
   });
 
-  // get the count of selected Filter Menu List
   const getSelectedItemPerFilterMenu = (column: string) => {
-    return Object.values(selectedFilters.value).filter((item) => item.column === column).length;
+    return selectedFilters.value.filter((item) => item.column === column).length;
   };
 
-  // get all selected values in filter option list
   const getSelectedOption = computed(() => {
     return Object.values(mappedFilterOption.value).filter((item) => item.isSelected);
   });
@@ -124,12 +102,11 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
   });
 
   const selectAllOptions = () => {
-    if (options.value && options.value.length > 0) {
+    if (options.value?.length) {
       options.value.forEach((option) => {
         mappedFilterOption.value[option.value].isSelected = true;
       });
     }
-
     selectedValue.value = getSelectedOption.value;
   };
 
@@ -137,11 +114,9 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     const selectedValues = Object.values(mappedMenuData.value).filter(
       (selected) => selected.isSelected && selected.column === field,
     );
-
     selectedFilters.value = selectedFilters.value
       .filter((prevSelected) => prevSelected.column !== field)
       .concat(selectedValues);
-
     emit('selectedFilter', selectedFilters.value);
     mappedFilterMenuList.value[field].count = selectedValues.length;
     mappedFilterMenuList.value[field].isFilterVisible = false;
@@ -162,7 +137,6 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
       { 'spr-justify-between': filterMenu.value.length > 0 && filterable.value },
       { 'spr-justify-end': filterMenu.value.length === 0 || !filterable.value },
     );
-
     const PopperWrapperClasses = classNames(
       'spr-flex spr-flex-col spr-divide-x-0 spr-divide-y spr-divide-solid spr-divide-mushroom-200',
     );
@@ -170,7 +144,6 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     const PopperContentClasses = classNames(
       'spr-flex spr-w-[328px] spr-flex-wrap spr-gap-size-spacing-2xs spr-p-size-spacing-xs',
     );
-
     const LoadingStateClasses = classNames('spr-p-size-spacing-sm spr-flex spr-items-center spr-justify-center');
     const ActionButtonClasses = classNames('spr-flex spr-justify-end spr-gap-2 spr-p-size-spacing-2xs');
     const filterListClasses = classNames(
@@ -178,7 +151,6 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
       'hover:spr-background-color-hover',
     );
 
-    // Call getMappedFilterMenuList upon component render
     getMappedFilterMenuList();
 
     return {
@@ -208,7 +180,6 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     filterMenuSearchvalue,
     mappedFilterMenuList,
     filterClass,
-
     toggleDropdown,
     selectAllOptions,
     getMappedFilterData,

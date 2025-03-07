@@ -59,6 +59,7 @@ export const dropdownPropTypes = {
 
 export const dropdownEmitTypes = {
   'get-selected-item': Object,
+  'show-more-items': Boolean,
 };
 
 export type DropdownPropTypes = ExtractPropTypes<typeof dropdownPropTypes>;

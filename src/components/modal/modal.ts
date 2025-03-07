@@ -5,16 +5,19 @@ export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<
 const MODAL_SIZE = ['sm', 'md', 'lg', 'xl'] as const;
 
 export const modalPropTypes = {
-  open: {
+  modelValue: {
     type: Boolean,
     default: false,
   },
-
   title: {
     type: String,
     default: '',
   },
   hasHeader: {
+    type: Boolean,
+    default: true,
+  },
+  closeButtonX: {
     type: Boolean,
     default: true,
   },
@@ -27,14 +30,20 @@ export const modalPropTypes = {
     validator: (value: (typeof MODAL_SIZE)[number]) => MODAL_SIZE.includes(value),
     default: 'sm',
   },
-  hasClose: {
+  staticBackdrop: {
+    type: Boolean,
+    default: false,
+  },
+  contentPadding: {
     type: Boolean,
     default: true,
   },
 };
 
 export type ModalPropTypes = ExtractPropTypes<typeof modalPropTypes>;
+
 export const modalEmitTypes = {
-  onClose: () => true,
+  'update:modelValue': (value: boolean) => value,
 };
+
 export type ModalEmitTypes = typeof modalEmitTypes;

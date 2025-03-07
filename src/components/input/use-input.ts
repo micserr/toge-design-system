@@ -32,8 +32,8 @@ export const useInput = (
     });
 
     const inputTextClasses = classNames(
-      'spr-block spr-w-full spr-px-size-spacing-2xs spr-py-size-spacing-4xs spr-rounded-border-radius-md spr-outline-none spr-ring-0 spr-box-border',
-      'spr-text-color-strong spr-font-size-200',
+      'spr-block spr-w-full spr-px-size-spacing-2xs spr-py-size-spacing-4xs spr-rounded-border-radius-md spr-outline-none spr-ring-0',
+      'spr-text-color-strong spr-font-size-200 [font-weight:inherit]',
       'spr-border spr-border-solid',
       'placeholder:spr-text-mushroom-300',
       {

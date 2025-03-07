@@ -1,5 +1,63 @@
 # Changelog
 
+## 1.8.2 (2025-03-07)
+
+-Fix
+-DQA for slider component ([#a555ece3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a555ece319a158817e3c48e3f7472e008471fcde?refName=refs%2Fheads%2F2025%2Ffix%2Fdale%2FDQA-slider) by @dale)
+
+## 1.8.1 (2025-03-07)
+
+-Fix
+-DQA for slider component ([#504a9a90](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/504a9a9059b554c415235875cadaf506a2c69c25?refName=refs%2Fheads%2F2025%2Ffix%2Fdale%2FDQA-slider) by @dale)
+
+
+## 1.8.0 (2025-03-07)
+
+-Feat
+  - Progress Bar component and documentation ([#d1420e1f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d1420e1fc6721ac8a0b1df9cca6689f0b10d9e7c?refName=refs%2Fheads%2F2025%2Ffeature%2Fdale%2Fprogressbar) by @dale)
+
+
+## 1.7.4 (2025-03-07)
+- Fix
+  - Table overlap with footer ([#90ed36de](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/90ed36de8c7959e52dfa1ded52ecba22de5e5374?refName=refs/heads/2025/FIX/Xyrk/TABLE_FOOTER_OVERLAP) by @jfabula)
+  - Removed unnecessary attributes in table footer ([#4f821020](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4f821020cb2ceeae9119aacb89f1fedd1bdea2ac?refName=refs/heads/2025/FIX/Xyrk/TABLE_FOOTER_OVERLAP) by @jfabula)
+  - Font weight inherit on input ([#b4d1751a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b4d1751af2af1367cd51ec69919f125787f323b0?refName=refs/heads/2025/FIX/Xyrk/TABLE_FOOTER_OVERLAP) by @jfabula)
+
+## 1.7.3 (2025-03-07)
+
+- Feat
+  - Commit 3f3cb7b6: improve filter component code readability and type safety :D ([#3f3cb7b6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3f3cb7b687c5b24d43adda9898364aa2dbb558b1?refName=refs/heads/2025/Fix/andrea/AI-optimized-filter) by @adestajo)
+
+## 1.7.2 (2025-03-07)
+
+-Fix
+-DQA for slider component ([#89aeea52](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/89aeea52dbaf416d3a669113c883cb8c1d4de920?refName=refs%2Fheads%2F2025%2Ffix%2Fdale%2FDQA-slider) by @dale)
+
+## 1.7.1 (2025-03-06)
+
+- Feat
+  - Commit df2e6398: feat: add Calendar Cell component with usage examples and documentation ([#df2e6398](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/df2e63987eeab4334916fbf8b9ccc3d42ec248d5?refName=refs/heads/2025/Feature/andrea/calendar-cell) by @adestajo)
+
+## 1.7.0 (2025-03-06)
+
+- Feat
+  - Slider component and slider documentation([ef66f65](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ef66f65d92648b2d6c0d498cda4823491241103a?refName=refs%2Fheads%2F2025%2Ffeature%2Fdale%2Fslider) by @dale)
+
+## 1.6.7 (2025-03-06)
+
+- Feat
+  - Commit 5867fc71: Refactor filter component props and events; update time picker focus behavior and table imports ([#5867fc71](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5867fc710404012d6dfb0175c839b7a2d499485d?refName=refs/heads/2025/Feature/andrea/filter) by @adestajo)
+
+## 1.6.6 (2025-03-05)
+
+- Feat
+  - Table Footer Pagination ([#dc4b702d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dc4b702d8eb789580b6f8aab8ca5c098cfdea223?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_FOOTER) by @jfabula)
+
+## 1.6.5 (2025-03-04)
+
+- Feat
+  - Added Table Actions section in table ([#7fd19bb8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7fd19bb8f5e6c83ae4d441353fbec375342e1ddc?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_ACTIONS) by @jfabula)
+
 ## 1.6.4 (2025-03-04)
 
 - Fix

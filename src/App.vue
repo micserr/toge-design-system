@@ -1,32 +1,40 @@
 <template>
   <!-- 
    menu-opened 
-   multi-select
+   group-items-by="A-Z"
    -->
-  <spr-dropdown
-    v-model="preSelectedItems"
-    group-items-by="A-Z"
-    :menu-list="menuList"
-    placement="bottom"
-    width="400px"
-    @get-selected-item="handleSelectedItem"
-  >
-    <spr-input
-      v-model="inputText"
-      label="Dropdown Label"
-      placeholder="Select item..."
-      readonly
-      @keyup="handleDropdownSearch"
-      @input="handleDropdownSearch"
-    />
-  </spr-dropdown>
+  <button @click="isModalOpen = true">sadasd</button>
+
+  <spr-modal v-model="isModalOpen" :static-backdrop="false" title="wew" size="xl">
+    <spr-dropdown
+      v-model="preSelectedItems"
+      multi-select
+      :menu-list="menuList"
+      placement="bottom"
+      width="400px"
+      @get-selected-item="handleSelectedItem"
+      @show-more-items="handleShowMoreItems"
+    >
+      <spr-input
+        v-model="inputText"
+        label="Dropdown Label"
+        placeholder="Select item..."
+        readonly
+        @keyup="handleDropdownSearch"
+        @input="handleDropdownSearch"
+      />
+    </spr-dropdown>
+  </spr-modal>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 
+import SprModal from './components/modal/modal.vue';
 import SprDropdown from './components/dropdown/dropdown.vue';
 import SprInput from './components/input/input.vue';
+
+const isModalOpen = ref(false);
 
 const inputText = ref('');
 
@@ -76,5 +84,31 @@ const handleSelectedItem = (item) => {
 
 const handleDropdownSearch = () => {
   searchString.value = inputText.value;
+};
+
+const pagination = ref({
+  totalpages: 10,
+  currentPage: 1,
+});
+
+const handleShowMoreItems = () => {
+  if (pagination.value.currentPage === pagination.value.totalpages) return;
+
+  pagination.value.currentPage += 1;
+
+  menuList.value.push(
+    { text: 'Vanilla', value: 'vanilla' },
+    { text: 'Watermelon', value: 'watermelon' },
+    { text: 'Xigua', value: 'xigua' },
+    { text: 'Yunnan Hackberry', value: 'yunnan_hackberry' },
+    { text: 'Zucchini', value: 'zucchini' },
+    { text: 'Apricot', value: 'apricot' },
+    { text: 'Blueberry', value: 'blueberry' },
+    { text: 'Cantaloupe', value: 'cantaloupe' },
+    { text: 'Dragonfruit', value: 'dragonfruit' },
+    { text: 'Pineapple', value: 'pineapple' },
+  );
+
+  console.log('Show more items', pagination.value);
 };
 </script>

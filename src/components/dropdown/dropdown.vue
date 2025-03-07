@@ -8,13 +8,13 @@
     :popper-hide-triggers="[]"
     :auto-hide="false"
     container="#dropdown-slot"
+    strategy="fixed"
     :style="{
       width: props.width,
     }"
   >
     <div
       id="dropdown-slot"
-      ref="dropdownRef"
       class="spr-relative"
       :style="{
         width: props.width,
@@ -25,7 +25,7 @@
     </div>
 
     <template #popper>
-      <div ref="dropdownRef" class="spr-grid spr-gap-0.5">
+      <div ref="dropdownRef" class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-p-2">
         <template v-if="dropdownMenuList.length > 0">
           <SprList
             v-model="preSelectedItems"

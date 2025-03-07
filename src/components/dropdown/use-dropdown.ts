@@ -1,5 +1,5 @@
 import { ref, toRefs, onMounted, watch } from 'vue';
-import { onClickOutside } from '@vueuse/core';
+import { onClickOutside, useInfiniteScroll } from '@vueuse/core';
 
 import type { SetupContext } from 'vue';
 import type { DropdownPropTypes, DropdownEmitTypes } from './dropdown';
@@ -49,6 +49,14 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
   onClickOutside(dropdownRef, () => {
     dropdownPopperState.value = false;
   });
+
+  useInfiniteScroll(
+    dropdownRef,
+    () => {
+      emit('show-more-items', true);
+    },
+    { distance: 10 },
+  );
 
   onMounted(() => {
     preSelectedItems.value = modelValue.value;

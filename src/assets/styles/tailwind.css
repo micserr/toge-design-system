@@ -141,7 +141,7 @@
 
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply spr-border-color-weak spr-max-h-[300px] spr-w-full spr-overflow-y-auto spr-rounded-xl spr-border spr-border-solid spr-p-2 spr-font-main spr-shadow-none;
+        @apply spr-border-color-weak spr-w-full spr-rounded-xl spr-border spr-border-solid spr-font-main spr-shadow-none;
 
         &::-webkit-scrollbar-track {
           @apply spr-rounded-br-xl spr-rounded-tr-xl;

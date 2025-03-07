@@ -31,7 +31,9 @@
               <div :class="filterClass.PopperWrapperClasses">
                 <div :class="filterClass.PopperHeaderClasses">
                   Add Filter
-                  <span class="spr-cursor-pointer" @click="isAddFilterVisible = false"><Icon icon="ph:x" /></span>
+                  <span class="spr-cursor-pointer" @click="isAddFilterVisible = false">
+                    <Icon icon="ph:x" />
+                  </span>
                 </div>
                 <div :class="filterClass.PopperContentClasses">
                   <Menu
@@ -46,11 +48,11 @@
                     <spr-chips
                       :active="mappedFilterMenuList[menu.field].isFilterVisible"
                       :label="mappedFilterMenuList[menu.field].columnName"
-                      :badge="getSelectedItemPerFilterMenu(mappedFilterMenuList[menu.field].field) > 0"
-                      :badge-text="getSelectedItemPerFilterMenu(mappedFilterMenuList[menu.field].field).toString()"
+                      :badge="getSelectedItemPerFilterMenu(menu.field) > 0"
+                      :badge-text="getSelectedItemPerFilterMenu(menu.field).toString()"
                       badge-variant="danger"
                       icon="ph:funnel-simple"
-                      @click="getMappedFilterData(mappedFilterMenuList[menu.field].field)"
+                      @click="getMappedFilterData(menu.field)"
                     />
 
                     <template #popper>
@@ -60,8 +62,9 @@
                           <span
                             class="spr-cursor-pointer"
                             @click="mappedFilterMenuList[menu.field].isFilterVisible = false"
-                            ><Icon icon="ph:x"
-                          /></span>
+                          >
+                            <Icon icon="ph:x" />
+                          </span>
                         </div>
 
                         <div class="spr-p-size-spacing-2xs">
@@ -94,9 +97,7 @@
                             :key="option.value"
                             :class="[
                               filterClass.filterListClasses,
-                              {
-                                'spr-background-color-multiple-active': mappedMenuData[option.value].isSelected,
-                              },
+                              { 'spr-background-color-multiple-active': mappedMenuData[option.value].isSelected },
                             ]"
                           >
                             <spr-checkbox
@@ -155,9 +156,7 @@
           :key="option.value"
           :class="[
             filterClass.filterListClasses,
-            {
-              'spr-background-color-multiple-active': mappedFilterOption[option.value].isSelected,
-            },
+            { 'spr-background-color-multiple-active': mappedFilterOption[option.value].isSelected },
           ]"
         >
           <spr-checkbox

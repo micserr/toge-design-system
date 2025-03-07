@@ -5,13 +5,13 @@
    -->
   <button @click="isModalOpen = true">sadasd</button>
 
-  <spr-modal v-model="isModalOpen" :static-backdrop="false" title="wew" size="xl">
+  <spr-modal v-model="isModalOpen" :static-backdrop="false" title="wew">
     <spr-dropdown
       v-model="preSelectedItems"
       multi-select
       :menu-list="menuList"
       placement="bottom"
-      width="400px"
+      width="100%"
       @get-selected-item="handleSelectedItem"
       @show-more-items="handleShowMoreItems"
     >

@@ -1,27 +1,27 @@
 <template>
-  <div :class="tablePaginationBaseClass">
+  <div :class="paginationClasses.baseClass">
     <spr-dropdown 
       :menu="dropdownSelection" 
       dropdown-type="single-select"
       placement="bottom"
       @get-selected-item="handleSelectedItem"
     >
-      <spr-input :class="dropdownInputFieldClass" v-model="computeSelectedRowCount" :readonly="true">
+      <spr-input v-model="computeSelectedRowCount" :class="paginationClasses.dropdownInputFieldClass" :readonly="true">
         <template #icon>
-          <Icon icon="ph:caret-down" />
+          <Icon icon="ph:caret-down-bold" :class="paginationClasses.inputFieldIconClass"/>
         </template>
       </spr-input>
     </spr-dropdown>
 
-    <div :class="paginationRightSideClass">
-      <div :class="computeRowRangeClass">
+    <div :class="paginationClasses.rightSideClass">
+      <div :class="paginationClasses.computeRowRangeClass">
         {{ computeRowRange }}
       </div>
-      <div :class="navigationContainerClass">
-        <spr-button hasIcon :class="navigationButtonClasses" @click="previous" :disabled="disabledNext">
+      <div :class="paginationClasses.navigationContainerClass">
+        <spr-button has-icon :class="paginationClasses.navigationButtonClass" :disabled="disabledNext" @click="previous" >
           <Icon icon="ph:caret-left"/>
         </spr-button>
-        <spr-button hasIcon :class="navigationButtonClasses" @click="next" :disabled="disabledPrevious">
+        <spr-button has-icon :class="paginationClasses.navigationButtonClass" :disabled="disabledPrevious" @click="next" >
           <Icon icon="ph:caret-right"/>
         </spr-button>
       </div>
@@ -42,15 +42,10 @@ const emit = defineEmits(tablePaginationEmitTypes);
 const props = defineProps(tablePaginationPropTypes);
 
 const {
-  tablePaginationBaseClass,
-  dropdownInputFieldClass,
-  paginationRightSideClass,
-  computeRowRangeClass,
-  navigationContainerClass,
+  paginationClasses,
   handleSelectedItem,
   computeRowRange,
   computeSelectedRowCount,
-  navigationButtonClasses,
   next,
   previous,
   disabledNext,

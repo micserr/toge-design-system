@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.7.4 (2025-03-07)
+- Fix
+  - Table overlap with footer ([#90ed36de](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/90ed36de8c7959e52dfa1ded52ecba22de5e5374?refName=refs/heads/2025/FIX/Xyrk/TABLE_FOOTER_OVERLAP) by @jfabula)
+  - Removed unnecessary attributes in table footer ([#4f821020](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4f821020cb2ceeae9119aacb89f1fedd1bdea2ac?refName=refs/heads/2025/FIX/Xyrk/TABLE_FOOTER_OVERLAP) by @jfabula)
+  - Font weight inherit on input ([#b4d1751a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b4d1751af2af1367cd51ec69919f125787f323b0?refName=refs/heads/2025/FIX/Xyrk/TABLE_FOOTER_OVERLAP) by @jfabula)
+
 ## 1.7.3 (2025-03-07)
 
 - Feat

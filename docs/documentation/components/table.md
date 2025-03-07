@@ -171,10 +171,6 @@ The implementation for the pagination here is to emit and trigger an API call to
       action 
       :headers="headers" 
       :data-table="data" 
-      :table-footer="tableFooter"
-      v-model:selectedRowCount="selectedRowCount"
-      @paginationClickedLeft="handlePaginationClickedLeft"
-      @paginationClickedRight="handlePaginationClickedRight"
     >
       <template #footer> 
         <spr-table-pagination 
@@ -195,10 +191,6 @@ The implementation for the pagination here is to emit and trigger an API call to
       action 
       :headers="headers" 
       :data-table="data" 
-      :table-footer="tableFooter"
-      v-model:selectedRowCount="selectedRowCount"
-      @paginationClickedLeft="handlePaginationClickedLeft"
-      @paginationClickedRight="handlePaginationClickedRight"
     >
       <template #footer> 
         <spr-table-pagination 

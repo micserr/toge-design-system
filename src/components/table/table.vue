@@ -20,7 +20,7 @@
       </spr-table-actions>
     </div>
 
-    <div class="spr-h-[400px]">
+    <div class="spr-max-h-85vh">
       <table aria-describedby="describe" class="spr-w-full spr-table-fixed" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
@@ -145,7 +145,7 @@
         </tbody>
       </table>
     </div>
-    <div v-if="$slots.footer" class="spr-w-full spr-border spr-border-solid spr-border-color-weak spr-mt-10" >
+    <div v-if="$slots.footer" class="spr-w-full spr-border spr-border-solid spr-border-color-weak" >
       <slot name="footer"/>
     </div>
   </div>

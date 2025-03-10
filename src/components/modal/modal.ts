@@ -13,11 +13,11 @@ export const modalPropTypes = {
     type: String,
     default: '',
   },
-  hasHeader: {
+  closeButtonX: {
     type: Boolean,
     default: true,
   },
-  closeButtonX: {
+  contentPadding: {
     type: Boolean,
     default: true,
   },
@@ -28,15 +28,11 @@ export const modalPropTypes = {
   size: {
     type: String as PropType<(typeof MODAL_SIZE)[number]>,
     validator: (value: (typeof MODAL_SIZE)[number]) => MODAL_SIZE.includes(value),
-    default: 'sm',
+    default: 'md',
   },
   staticBackdrop: {
     type: Boolean,
     default: false,
-  },
-  contentPadding: {
-    type: Boolean,
-    default: true,
   },
 };
 

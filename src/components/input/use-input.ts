@@ -32,7 +32,7 @@ export const useInput = (
     });
 
     const inputTextClasses = classNames(
-      'spr-block spr-w-full spr-px-size-spacing-2xs spr-py-size-spacing-4xs spr-rounded-border-radius-md spr-outline-none spr-ring-0',
+      'spr-block spr-w-full spr-px-size-spacing-2xs spr-py-size-spacing-4xs spr-rounded-border-radius-md spr-outline-none spr-ring-0 spr-box-border',
       'spr-text-color-strong spr-font-size-200 [font-weight:inherit]',
       'spr-border spr-border-solid',
       'placeholder:spr-text-mushroom-300',
@@ -44,7 +44,7 @@ export const useInput = (
           disabled.value,
         'spr-pr-[5%]': slots.icon,
         'spr-pl-size-spacing-lg': slots.prefix,
-		    '!spr-pl-size-spacing-3xl': props.type === 'url',
+        '!spr-pl-size-spacing-3xl': props.type === 'url',
         'spr-pr-[93%] sm:spr-pr-[85%]': offsetSize.value === 'xs' && slots.trailing,
         'spr-pr-[90%] sm:spr-pr-[80%]': offsetSize.value === 'sm' && slots.trailing,
         'spr-pr-[50%]': offsetSize.value === 'md' && slots.trailing,
@@ -77,19 +77,25 @@ export const useInput = (
       },
     );
 
-    const helperClasses = classNames(
-      {
-        'spr-text-color-danger-base': error.value,
-        'spr-text-color-supporting': !error.value,
-      }
-    );
+    const helperClasses = classNames({
+      'spr-text-color-danger-base': error.value,
+      'spr-text-color-supporting': !error.value,
+    });
 
-    return { baseClasses, labelClasses, inputTextClasses, iconSlotClasses, prefixSlotClasses, trailingSlotClasses, helperClasses };
+    return {
+      baseClasses,
+      labelClasses,
+      inputTextClasses,
+      iconSlotClasses,
+      prefixSlotClasses,
+      trailingSlotClasses,
+      helperClasses,
+    };
   });
 
   const onInput = (event: Event) => {
     const target = event.target as HTMLInputElement;
-    
+
     modelValue.value = target.value;
   };
 

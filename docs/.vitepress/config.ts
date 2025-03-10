@@ -123,6 +123,10 @@ export default defineConfig({
               link: '/documentation/components/input',
             },
             {
+              text: 'List',
+              link: '/documentation/components/list',
+            },
+            {
               text: 'Lozenge',
               link: '/documentation/components/lozenge',
             },

@@ -1,6 +1,5 @@
-import { ref, toRefs, onMounted, watch, computed, ComputedRef } from 'vue';
-
-import classNames from 'classnames';
+import { ref, toRefs, onMounted, watch } from 'vue';
+import { onClickOutside, useInfiniteScroll } from '@vueuse/core';
 
 import type { SetupContext } from 'vue';
 import type { DropdownPropTypes, DropdownEmitTypes } from './dropdown';
@@ -11,115 +10,67 @@ interface SelectedItem {
 }
 
 export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<DropdownEmitTypes>['emit']) => {
-  const { menu, preSelectedItems, dropdownType, menuOpened } = toRefs(props);
+  const { modelValue, menuList, searchString, multiSelect } = toRefs(props);
 
-  const dropdownItemBaseClasses: ComputedRef<string> = computed(() => {
-    return classNames(
-      'spr-flex spr-cursor-pointer spr-items-center spr-justify-between spr-gap-1.5 spr-rounded-lg spr-p-2',
-      'spr-transition spr-duration-150 spr-ease-in-out',
-      'hover:spr-background-color-hover',
-      'active:spr-background-color-single-active active:spr-scale-95',
-    );
-  });
+  const dropdownPopperState = ref<boolean>(false);
 
-  const menuOpenedState = ref<boolean>(false);
+  const dropdownRef = ref<HTMLDivElement | null>(null);
 
-  watch(menuOpenedState, () => {
-    handlePopperState();
-  });
+  const preSelectedItems = ref<Array<string>>([]);
 
-  const isSingleSelect = computed(() => dropdownType.value === 'single-select');
-  const isMultiSelect = computed(() => dropdownType.value === 'multi-select');
-
-  const selectedItems = ref<SelectedItem[]>([]);
+  const initialMenuList = ref<{ text: string; value: string }[]>([]);
+  const dropdownMenuList = ref<{ text: string; value: string }[]>([]);
 
   const handleSelectedItem = (item: SelectedItem) => {
-    if (isSingleSelect.value) {
-      menuOpenedState.value = false;
-
-      selectedItems.value = [item];
-
-      emit('get-selected-item', selectedItems.value[0]);
+    if (!multiSelect.value) {
+      dropdownPopperState.value = false;
     }
 
-    if (isMultiSelect.value) {
-      const index = selectedItems.value.findIndex((selectedItem: SelectedItem) => selectedItem.value === item.value);
-
-      if (index === -1) {
-        checkboxModels.value[item.text] = true;
-        selectedItems.value.push(item);
-      } else {
-        checkboxModels.value[item.text] = false;
-        selectedItems.value.splice(index, 1);
-      }
-
-      emit('get-selected-item', selectedItems.value);
-    }
+    emit('get-selected-item', item);
   };
 
-  const isItemSelected = (item: SelectedItem) => {
-    if (Array.isArray(selectedItems.value)) {
-      return selectedItems.value.some((selectedItem) => selectedItem.text === item.text);
-    }
-
-    return (selectedItems.value[0] as SelectedItem).text === item.text;
+  const setDropdownMenuList = () => {
+    initialMenuList.value = menuList.value;
+    dropdownMenuList.value = initialMenuList.value;
   };
 
-  const checkboxModels = ref<Record<string, boolean>>({});
+  const handleSearch = () => {
+    if (menuList.value && menuList.value.length > 0) {
+      dropdownMenuList.value = initialMenuList.value.filter((item) => {
+        const searchTerm = searchString.value.toLowerCase();
 
-  const setCheckboxModels = () => {
-    if (menu.value && menu.value.length > 0) {
-      menu.value.forEach((item) => {
-        checkboxModels.value = Object.assign({}, checkboxModels.value, {
-          [item.text]: false,
-        });
+        return item.text.toLowerCase().includes(searchTerm) || item.value.toLowerCase().includes(searchTerm);
       });
     }
   };
 
-  const setPreSelectedItems = () => {
-    if (menu.value && menu.value.length > 0 && preSelectedItems.value && preSelectedItems.value.length > 0) {
-      (preSelectedItems.value as string[]).forEach((preSelectedItem: string) => {
-        const item = menu.value.find((menuItem) => menuItem.text === preSelectedItem);
+  watch(searchString, () => {
+    handleSearch();
+  });
 
-        if (item) {
-          if (isMultiSelect.value) {
-            checkboxModels.value[item.text] = true;
-          }
+  onClickOutside(dropdownRef, () => {
+    dropdownPopperState.value = false;
+  });
 
-          selectedItems.value.push(item);
-        }
-      });
-
-      if (isSingleSelect.value) {
-        if (selectedItems.value.length > 0) {
-          emit('get-selected-item', selectedItems.value[0]);
-        }
-      }
-
-      if (isMultiSelect.value) {
-        emit('get-selected-item', selectedItems.value);
-      }
-    }
-  };
-
-  const handlePopperState = () => {
-    emit('get-popper-state', menuOpenedState.value);
-  };
+  useInfiniteScroll(
+    dropdownRef,
+    () => {
+      emit('infinite-scroll-trigger', true);
+    },
+    { distance: 10 },
+  );
 
   onMounted(() => {
-    menuOpenedState.value = menuOpened.value;
+    preSelectedItems.value = modelValue.value;
 
-    setCheckboxModels();
-    setPreSelectedItems();
-    handlePopperState();
+    setDropdownMenuList();
   });
 
   return {
-    dropdownItemBaseClasses,
-    menuOpenedState,
+    dropdownPopperState,
+    dropdownRef,
+    preSelectedItems,
+    dropdownMenuList,
     handleSelectedItem,
-    isItemSelected,
-    checkboxModels,
   };
 };

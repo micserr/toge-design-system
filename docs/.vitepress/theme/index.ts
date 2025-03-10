@@ -8,8 +8,10 @@ import './custom.css';
 const setPackageVersion = () => {
   if (typeof window !== 'undefined') {
     setInterval(() => {
-      const navbarTitle = document.querySelector('.VPNav .title span');
-      const mainText = document.querySelector('.main .text');
+      const navbarTitle = document.querySelector(
+        '#app > div > header > div > div.wrapper > div > div.title > div > a > span',
+      );
+      const mainText = document.querySelector('#VPContent > div > div.VPHero.VPHomeHero > div > div > p.text');
       const version = document.querySelector('.main .version');
 
       if (navbarTitle) {

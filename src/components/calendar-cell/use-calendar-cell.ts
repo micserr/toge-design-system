@@ -66,7 +66,7 @@ export const useCalendarCell = (props: CalendarCellPropTypes) => {
 
   const getCalendarCellClassess = computed(() => {
     const calendarCellWrapper =
-      'spr-flex spr-items-center spr-gap-size-spacing-3xs spr-relative spr-w-[217px] spr-rounded-md spr-border-2 spr-p-3 spr-transition-all hover:spr-shadow-md';
+      'spr-flex spr-items-center spr-gap-size-spacing-3xs spr-relative spr-max-w-[217px] spr-rounded-md spr-border-2 spr-p-3 spr-transition-all hover:spr-shadow-md';
 
     const statusCellClasses = classNames({
       'spr-border-dashed': props.status === 'pending',

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.9.1 (2025-03-10)
+
+- Fix
+  - Added min max length attribute support for input fields ([#cb92027d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cb92027d75a3200d5170d511e36491ddf3731cba?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 1.9.0 (2025-03-10)
 
 - Feat

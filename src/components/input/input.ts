@@ -5,8 +5,28 @@ export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<
 const TRAILING_SIZES = ['xs', 'sm', 'md'] as const;
 
 export const INPUT_TYPES = [
-  'button', 'checkbox', 'color', 'date', 'datetime-local', 'email', 'file', 'hidden', 'image', 'month', 
-  'number', 'password', 'radio', 'range', 'reset', 'search', 'submit', 'tel', 'text', 'time', 'url', 'week'
+  'button',
+  'checkbox',
+  'color',
+  'date',
+  'datetime-local',
+  'email',
+  'file',
+  'hidden',
+  'image',
+  'month',
+  'number',
+  'password',
+  'radio',
+  'range',
+  'reset',
+  'search',
+  'submit',
+  'tel',
+  'text',
+  'time',
+  'url',
+  'week',
 ] as const;
 
 export const inputPropTypes = {
@@ -43,6 +63,14 @@ export const inputPropTypes = {
     type: Boolean,
     default: false,
   },
+  minLength: {
+    type: Number,
+    default: 0,
+  },
+  maxLength: {
+    type: Number,
+    default: 0,
+  },
   error: {
     type: Boolean,
     default: false,
@@ -54,16 +82,16 @@ export const inputPropTypes = {
   },
   helperText: {
     type: String,
-    default: ''
+    default: '',
   },
   helperIcon: {
     type: String,
-    default: null
+    default: null,
   },
   displayHelper: {
     type: Boolean,
     default: false,
-  }
+  },
 };
 
 export const inputEmitTypes = {

@@ -124,7 +124,6 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   };
   // #endregion - Helper Methods
 
-  // initialMenuList,
   watch(
     menuList,
     () => {

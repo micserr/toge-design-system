@@ -1,23 +1,31 @@
 # Changelog
 
+## 1.9.0 (2025-03-10)
+
+- Feat
+  - Refactored Dropdown by splitting list component
+  - Refactored Modal to handle popper issues and added animations
+  - Updated Datepicker issues encountered
+  - Added new component List with documentation ([#53a6a82f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/53a6a82fa82a0f859bbf3ddc5704c9b9f001df49?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fdropdown-refactor) by @jarias)
+
 ## 1.8.2 (2025-03-07)
 
--Fix
--DQA for slider component ([#a555ece3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a555ece319a158817e3c48e3f7472e008471fcde?refName=refs%2Fheads%2F2025%2Ffix%2Fdale%2FDQA-slider) by @dale)
+- Fix
+  - DQA for slider component ([#a555ece3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a555ece319a158817e3c48e3f7472e008471fcde?refName=refs%2Fheads%2F2025%2Ffix%2Fdale%2FDQA-slider) by @dale)
 
 ## 1.8.1 (2025-03-07)
 
--Fix
--DQA for slider component ([#504a9a90](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/504a9a9059b554c415235875cadaf506a2c69c25?refName=refs%2Fheads%2F2025%2Ffix%2Fdale%2FDQA-slider) by @dale)
-
+- Fix
+  - DQA for slider component ([#504a9a90](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/504a9a9059b554c415235875cadaf506a2c69c25?refName=refs%2Fheads%2F2025%2Ffix%2Fdale%2FDQA-slider) by @dale)
 
 ## 1.8.0 (2025-03-07)
 
--Feat
+- Feat
+
   - Progress Bar component and documentation ([#d1420e1f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d1420e1fc6721ac8a0b1df9cca6689f0b10d9e7c?refName=refs%2Fheads%2F2025%2Ffeature%2Fdale%2Fprogressbar) by @dale)
 
-
 ## 1.7.4 (2025-03-07)
+
 - Fix
   - Table overlap with footer ([#90ed36de](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/90ed36de8c7959e52dfa1ded52ecba22de5e5374?refName=refs/heads/2025/FIX/Xyrk/TABLE_FOOTER_OVERLAP) by @jfabula)
   - Removed unnecessary attributes in table footer ([#4f821020](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4f821020cb2ceeae9119aacb89f1fedd1bdea2ac?refName=refs/heads/2025/FIX/Xyrk/TABLE_FOOTER_OVERLAP) by @jfabula)

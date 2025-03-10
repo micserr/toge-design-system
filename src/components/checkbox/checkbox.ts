@@ -5,7 +5,7 @@ export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<
 export const checkboxPropTypes = {
   modelValue: {
     type: Boolean,
-    required: true,
+    default: false,
   },
   label: {
     type: String,
@@ -18,6 +18,10 @@ export const checkboxPropTypes = {
   disabled: {
     type: Boolean,
     default: false,
+  },
+  checked: {
+    type: Boolean,
+    default: true,
   },
 };
 

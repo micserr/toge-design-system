@@ -1,35 +1,29 @@
 <template>
-  <dialog ref="dialog" :class="[modalClasses.baseClasses, modalClasses.sizeClasses]">
-    <header
-      v-if="hasHeader"
-      :class="[
-        'spr-border-color-weak spr-background-color spr-flex spr-items-center spr-justify-between spr-gap-size-spacing-3xs spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-px-size-spacing-xs spr-py-size-spacing-2xs',
-        'spr-text-color-strong spr-subheading-xs',
-      ]"
-    >
-      <slot name="header" />
+  <transition name="backdrop-transition">
+    <div v-if="props.modelValue" :class="modalClasses.backdropClasses" @click="handleBackdropClick"></div>
+  </transition>
 
-      <div v-if="!$slots.header">{{ title }}</div>
+  <transition name="modal-transition">
+    <div v-if="props.modelValue" id="modal" :class="modalClasses.baseClasses">
+      <header v-if="$slots.header || title" :class="modalClasses.headerClasses">
+        <span v-if="!$slots.header && title">{{ title }}</span>
 
-      <span v-if="hasClose" class="spr-text-color-weak spr-subheading-xs spr-cursor-pointer" @click="closeModal">
-        <Icon icon="ph:x" />
-      </span>
-    </header>
+        <slot name="header"></slot>
 
-    <div class="spr-body-sm-regular">
-      <slot />
+        <span v-if="props.closeButtonX" :class="modalClasses.headerCloseButtonXClasses" @click="handleCloseModal">
+          <Icon icon="ph:x" />
+        </span>
+      </header>
+
+      <div :class="modalClasses.contentClasses">
+        <slot />
+      </div>
+
+      <footer v-if="$slots.footer" :class="modalClasses.footerClasses">
+        <slot name="footer" />
+      </footer>
     </div>
-
-    <footer
-      v-if="hasFooter"
-      :class="[
-        'spr-border-color-weak spr-background-color spr-flex spr-w-full spr-items-center spr-border-x-0 spr-border-b-0 spr-border-t spr-border-solid spr-px-size-spacing-xs spr-py-size-spacing-2xs',
-        'spr-text-color-strong spr-subheading-xs',
-      ]"
-    >
-      <slot name="footer" />
-    </footer>
-  </dialog>
+  </transition>
 </template>
 
 <script lang="ts" setup>
@@ -41,12 +35,58 @@ import { useModal } from './use-modal';
 const props = defineProps(modalPropTypes);
 const emit = defineEmits(modalEmitTypes);
 
-const { modalClasses, dialog, closeModal } = useModal(props, emit);
+const { modalClasses, handleCloseModal, handleBackdropClick } = useModal(props, emit);
 </script>
 
 <style scoped>
-/* Tailwind CSS does not directly support the ::backdrop pseudo-element, need to add this */
-.spr-modal::backdrop {
-  @apply spr-bg-overlay;
+.backdrop-transition-enter-active,
+.backdrop-transition-leave-active {
+  transition: opacity 150ms ease-in-out;
+}
+
+.backdrop-transition-enter-from,
+.backdrop-transition-leave-to {
+  opacity: 0;
+}
+
+.modal-transition-enter-active,
+.modal-transition-leave-active {
+  transition:
+    opacity 150ms ease-in-out,
+    transform 150ms ease-in-out;
+}
+
+.modal-transition-enter-from,
+.modal-transition-leave-to {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-50%) scale(0.9);
+}
+
+.modal-transition-enter-to,
+.modal-transition-leave-from {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-50%) scale(1);
+}
+
+.bounce-animation {
+  animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateX(-50%) translateY(-50%) scale(1);
+  }
+  30% {
+    transform: translateX(-50%) translateY(-50%) scale(1.02);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-50%) scale(0.98);
+  }
+  70% {
+    transform: translateX(-50%) translateY(-50%) scale(1.02);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%) scale(1);
+  }
 }
 </style>

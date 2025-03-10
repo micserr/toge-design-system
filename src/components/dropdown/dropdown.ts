@@ -22,12 +22,18 @@ const PLACEMENTS_TYPES = [
   'left-end',
 ] as const;
 
+const POPPER_STRATEGY_TYPES = ['fixed', 'absolute'] as const;
+
 export type DropdownMenuType = {
   text: string;
   value: string;
 };
 
 export const dropdownPropTypes = {
+  id: {
+    type: String,
+    required: true,
+  },
   modelValue: {
     type: Array as PropType<string[]>,
     default: () => [],
@@ -40,10 +46,6 @@ export const dropdownPropTypes = {
   searchString: {
     type: String,
     default: '',
-  },
-  width: {
-    type: String,
-    default: '100%',
   },
   multiSelect: {
     type: Boolean,
@@ -60,11 +62,24 @@ export const dropdownPropTypes = {
       return value === undefined || GROUPED_ITEMS_BY_TYPES.includes(value);
     },
   },
+  width: {
+    type: String,
+    default: '100%',
+  },
+  popperWidth: {
+    type: String,
+    default: '100%',
+  },
+  popperStrategy: {
+    type: String,
+    validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
+    default: 'absolute',
+  },
 };
 
 export const dropdownEmitTypes = {
   'get-selected-item': Object,
-  'show-more-items': Boolean,
+  'infinite-scroll-trigger': Boolean,
 };
 
 export type DropdownPropTypes = ExtractPropTypes<typeof dropdownPropTypes>;

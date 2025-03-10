@@ -9,11 +9,16 @@
       :popper-hide-triggers="[]"
       :auto-hide="false"
       :disabled="isDatePickerPopperDisabled"
+      :container="`#${props.id}`"
+      :strategy="
+        props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
+      "
+      :delay="0"
       :style="{
         width: props.width,
       }"
     >
-      <div class="spr-grid spr-gap-2">
+      <div :id="props.id" class="spr-grid spr-gap-2">
         <label v-if="props.label" :for="props.id" :class="datePickerClasses.labelClasses">
           {{ props.label }}
         </label>

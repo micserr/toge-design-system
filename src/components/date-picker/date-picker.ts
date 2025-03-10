@@ -4,10 +4,12 @@ export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<
 
 export const REST_DAYS_TYPES = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa'] as const;
 
+const POPPER_STRATEGY_TYPES = ['fixed', 'absolute'] as const;
+
 export const datePickerPropTypes = {
   id: {
     type: String,
-    default: '',
+    required: true,
   },
   modelValue: {
     type: String,
@@ -69,6 +71,11 @@ export const datePickerPropTypes = {
   width: {
     type: String,
     default: '100%',
+  },
+  popperStrategy: {
+    type: String,
+    validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
+    default: 'absolute',
   },
 };
 

@@ -1,19 +1,21 @@
 <template>
   <!-- 
-   menu-opened 
    group-items-by="A-Z"
    -->
   <button @click="isModalOpen = true">sadasd</button>
 
-  <spr-modal v-model="isModalOpen" :static-backdrop="false" title="wew">
+  <spr-modal v-model="isModalOpen" :static-backdrop="false" title="wew" size="lg">
     <spr-dropdown
+      id="sample-dropdown"
       v-model="preSelectedItems"
       multi-select
       :menu-list="menuList"
       placement="bottom"
-      width="100%"
+      width="calc(100% - 400px)"
+      popper-width="calc(100% - 420px)"
+      popper-strategy="fixed"
       @get-selected-item="handleSelectedItem"
-      @show-more-items="handleShowMoreItems"
+      @infinite-scroll-trigger="handleShowMoreItems"
     >
       <spr-input
         v-model="inputText"

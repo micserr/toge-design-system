@@ -7,22 +7,25 @@
     :triggers="[]"
     :popper-hide-triggers="[]"
     :auto-hide="false"
-    container="#dropdown-slot"
-    strategy="fixed"
+    :container="`#${props.id}`"
+    :strategy="
+      props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
+    "
+    :delay="0"
     :style="{
       width: props.width,
     }"
   >
-    <div
-      id="dropdown-slot"
-      class="spr-relative"
-      :style="{
-        width: props.width,
-      }"
-      @click="dropdownPopperState = true"
-    >
+    <div @click="dropdownPopperState = true">
       <slot />
     </div>
+
+    <div
+      :id="props.id"
+      :style="{
+        width: props.popperWidth,
+      }"
+    ></div>
 
     <template #popper>
       <div ref="dropdownRef" class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-p-2">
@@ -36,8 +39,8 @@
           />
         </template>
         <template v-else>
-          <div class="spr-flex spr-items-center spr-p-2">
-            <p class="spr-body-sm-regular spr-m-0">No results found</p>
+          <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
+            <span class="spr-body-sm-regular spr-m-0">No results found</span>
           </div>
         </template>
       </div>

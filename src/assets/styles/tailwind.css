@@ -137,7 +137,7 @@
 
   /* #region - Dropdown */
   #dropdown-wrapper {
-    @apply spr-w-full spr-overflow-hidden;
+    @apply spr-w-[inherit] spr-overflow-hidden;
 
     .v-popper__wrapper {
       .v-popper__inner {

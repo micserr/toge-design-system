@@ -10,7 +10,7 @@ interface SelectedItem {
 }
 
 export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<DropdownEmitTypes>['emit']) => {
-  const { modelValue, menuList, searchString } = toRefs(props);
+  const { modelValue, menuList, searchString, multiSelect } = toRefs(props);
 
   const dropdownPopperState = ref<boolean>(false);
 
@@ -22,7 +22,9 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
   const dropdownMenuList = ref<{ text: string; value: string }[]>([]);
 
   const handleSelectedItem = (item: SelectedItem) => {
-    dropdownPopperState.value = false;
+    if (!multiSelect.value) {
+      dropdownPopperState.value = false;
+    }
 
     emit('get-selected-item', item);
   };
@@ -53,7 +55,7 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
   useInfiniteScroll(
     dropdownRef,
     () => {
-      emit('show-more-items', true);
+      emit('infinite-scroll-trigger', true);
     },
     { distance: 10 },
   );

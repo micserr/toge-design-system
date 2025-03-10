@@ -15,6 +15,8 @@
         :readonly="props.readonly"
         :value="props.modelValue"
         :type="props.type"
+        :minlength="props.minLength"
+        :maxlength="props.maxLength"
         @input="onInput"
       />
       <div v-if="$slots.trailing" :class="inputClasses.trailingSlotClasses">

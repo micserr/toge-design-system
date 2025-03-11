@@ -13,6 +13,7 @@
       :strategy="
         props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
       "
+      :delay="0"
       :style="{
         width: props.width,
       }"

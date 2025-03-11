@@ -3,7 +3,7 @@
 ## Basic Usage
 
 <div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
-  <spr-table action :headers="headers" :data-table="data">
+  <spr-table action :headers="headers" :data-table="data" variant="white">
     <div>
       Customize your content here!
     </div>
@@ -99,12 +99,19 @@ const data = ref([
 ```
 
 ## Table Actions
+
 The implementation for the search field here is to emit and trigger an API call to update the data-table
 <spr-table action :headers="headers" :data-table="data" :table-actions="tableActions" v-model:searchModel="searchModel"></spr-table>
 
 ```vue
 <template>
-  <spr-table action :headers="headers" :data-table="data" :table-actions="tableActions" v-model:searchModel="searchModel"/> 
+  <spr-table
+    action
+    :headers="headers"
+    :data-table="data"
+    :table-actions="tableActions"
+    v-model:searchModel="searchModel"
+  />
 </template>
 
 <script setup lang="ts">
@@ -134,7 +141,6 @@ watch(searchModel, (newValue) => {
   // On change of the search variable trigger a fetch
   // fetchApiHere();
 });
-
 </script>
 ```
 
@@ -152,7 +158,13 @@ watch(searchModel, (newValue) => {
 
 ```vue
 <template>
-  <spr-table action :headers="headers" :data-table="data" :table-actions="tableActions" v-model:searchModel="searchModel">
+  <spr-table
+    action
+    :headers="headers"
+    :data-table="data"
+    :table-actions="tableActions"
+    v-model:searchModel="searchModel"
+  >
     <div>
       <div class="spr-text-color-strong spr-font-size-400 spr-font-weight-medium">Table Name</div>
       <div>table description</div>
@@ -164,45 +176,41 @@ watch(searchModel, (newValue) => {
 </template>
 ```
 
-
 ## Table Footer
+
 The implementation for the pagination here is to emit and trigger an API call to update the data-table
-  <spr-table 
+<spr-table 
       action 
       :headers="headers" 
       :data-table="data" 
     >
-      <template #footer> 
-        <spr-table-pagination 
-          v-model:selected-row-count="selectedRowCount"
-          :total-items="tablePagination.totalItems"
-          :current-page="tablePagination.currentPage"
-          :dropdown-selection="tablePagination.dropdownSelection"
-          @previous="handlePrevious"
-          @next="handleNext"
-          :version="'backend'"
-        />
-      </template>
-  </spr-table>
+<template #footer>
+<spr-table-pagination
+v-model:selected-row-count="selectedRowCount"
+:total-items="tablePagination.totalItems"
+:current-page="tablePagination.currentPage"
+:dropdown-selection="tablePagination.dropdownSelection"
+@previous="handlePrevious"
+@next="handleNext"
+:version="'backend'"
+/>
+</template>
+</spr-table>
 
 ```vue
 <template>
-  <spr-table 
-      action 
-      :headers="headers" 
-      :data-table="data" 
-    >
-      <template #footer> 
-        <spr-table-pagination 
-          v-model:selected-row-count="selectedRowCount"
-          :total-items="tablePagination.totalItems"
-          :current-page="tablePagination.currentPage"
-          :dropdown-selection="tablePagination.dropdownSelection"
-          @previous="handlePrevious"
-          @next="handleNext"
-          :version="'backend'"
-        />
-      </template>
+  <spr-table action :headers="headers" :data-table="data">
+    <template #footer>
+      <spr-table-pagination
+        v-model:selected-row-count="selectedRowCount"
+        :total-items="tablePagination.totalItems"
+        :current-page="tablePagination.currentPage"
+        :dropdown-selection="tablePagination.dropdownSelection"
+        @previous="handlePrevious"
+        @next="handleNext"
+        :version="'backend'"
+      />
+    </template>
   </spr-table>
 </template>
 
@@ -221,16 +229,16 @@ const tablePagination = {
   totalItems: 100,
   currentPage: 2,
   dropdownSelection: [
-    {text: 10, value: 10},
-    {text: 20, value: 20},
-    {text: 30, value: 30},
+    { text: 10, value: 10 },
+    { text: 20, value: 20 },
+    { text: 30, value: 30 },
   ],
 };
 
 const selectedRowCount = ref(10);
 
 watch(selectedRowCount, (newValue) => {
-  console.log("Selected Row Count:", newValue);
+  console.log('Selected Row Count:', newValue);
   // On change of the selectedRowCount variable trigger a fetch
   // fetchApiHere();
 });
@@ -242,11 +250,61 @@ const handlePrevious = () => {
 const handleNext = () => {
   console.log('clicked next');
 };
-
 </script>
 ```
 
+## Variant
 
+You can customize the header background of the table using the `variant` attribute. The available options are `white` and `surface`.
+
+<div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
+  <spr-table action :headers="headers" :data-table="data" variant="surface" @onSort="handleSort">
+    <div>
+      Customize your content here!
+    </div>
+  </spr-table>
+</div>
+
+```vue
+<template>
+  <spr-table action :headers="headers" :data-table="data">
+    <div>Customize your content here!</div>
+  </spr-table>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const headers = ref([
+  { field: 'name', name: 'Role Name', sort: true, hasAvatar: true, hasSubtext: true },
+  { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false },
+]);
+
+const data = ref([
+  {
+    name: {
+      title: 'Shift',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Success',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+]);
+
+const handleSort = (e) => {
+  console.log('sort', e);
+};
+</script>
+```
 
 ## Table API
 
@@ -328,6 +386,31 @@ const handleNext = () => {
         dropdownSelection: { text: string; value: string }[];
       }
       </td>
+    </tr>
+    <tr>
+      <td>variant</td>
+      <td>Change background color of header</td>
+      <td>surface, white</td>
+      <td>
+      surface
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Event
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>onSort</td>
+      <td>Emits when sorting is triggered</td>
     </tr>
   </tbody>
 </table>
@@ -479,4 +562,8 @@ const handlePrevious = () => {
 const handleNext = () => {
   console.log('clicked next');
 };
+
+const handleSort  = (e) => {
+  console.log('sort', e);
+}
 </script>

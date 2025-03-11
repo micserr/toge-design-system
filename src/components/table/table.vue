@@ -1,12 +1,10 @@
 <template>
-  <div
-    class="spr-table-wrapper spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid"
-  >
-    <div v-if="!!$slots.default" :class="[{ 'spr-px-size-spacing-sm spr-py-size-spacing-xs': !!$slots.default }]">
+  <div :class="getTableClasses.tableWrapperClasses">
+    <div v-if="!!$slots.default" :class="getTableClasses.defaultSlotClasses">
       <slot />
     </div>
 
-    <div v-if="hasTableActions" class="spr-border-color-weak spr-w-full spr-border spr-border-solid">
+    <div v-if="hasTableActions" :class="getTableClasses.tableHeaderActionsClasses">
       <spr-table-actions
         v-model:search-model="searchField"
         :toggle-search="props.tableActions.search"
@@ -28,23 +26,14 @@
               v-for="(header, keyHeader) in headers"
               :key="keyHeader"
               :class="[
-                'spr-background-color-surface spr-min-h-12 spr-px-size-spacing-2xs spr-py-size-spacing-3xs',
-                'spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-text-start spr-font-medium spr-uppercase',
-                'spr-border-color-weak spr-border-x-0 spr-border-y spr-border-solid',
                 {
                   'spr-border-t-0': !$slots.default,
                 },
+                getTableClasses.headerClasses,
               ]"
             >
-              <div class="spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-5xs">
-                <span
-                  :class="[
-                    {
-                      'spr-cursor-pointer': header.sort,
-                    },
-                  ]"
-                  @click="header.sort && sortData(header.field)"
-                >
+              <div :class="getTableClasses.headerNameClass">
+                <span :class="[{ 'spr-cursor-pointer': header.sort }]" @click="header.sort && sortData(header.field)">
                   {{ header.name }}
                 </span>
 
@@ -53,12 +42,7 @@
                 </span>
                 <span
                   v-if="header.sort"
-                  :class="[
-                    'spr-flex spr-flex-row spr-items-center',
-                    {
-                      'spr-cursor-pointer': header.sort,
-                    },
-                  ]"
+                  :class="['spr-flex spr-flex-row spr-items-center', { 'spr-cursor-pointer': header.sort }]"
                   @click="header.sort && sortData(header.field)"
                 >
                   <Icon icon="ph:caret-up-down-light" />
@@ -67,32 +51,14 @@
             </th>
 
             <!-- for action Button -->
-            <th
-              v-if="action"
-              :class="[
-                'spr-background-color-surface spr-min-h-12 spr-py-size-spacing-3xs',
-                'spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-text-start spr-font-medium spr-uppercase',
-                'spr-border-color-weak spr-border-x-0 spr-border-y spr-border-solid',
-              ]"
-            >
-              <slot
-                name="action-name"
-                class="spr-background-color-surface spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-uppercase"
-              />
+            <th v-if="action" :class="getTableClasses.headerClasses">
+              <slot name="action-name" :class="getTableClasses.tableCellSlotClasses" />
             </th>
           </tr>
         </thead>
         <tbody v-if="sortedData.length > 0 && !loading">
-          <tr
-            v-for="(item, keyIndex) in sortedData"
-            :key="keyIndex"
-            class="hover:spr-background-color-hover spr-min-h-[60px]"
-          >
-            <td
-              v-for="(column, headerKey) in headers"
-              :key="headerKey"
-              class="spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-3"
-            >
+          <tr v-for="(item, keyIndex) in sortedData" :key="keyIndex" :class="getTableClasses.tableRowClasses">
+            <td v-for="(column, headerKey) in headers" :key="headerKey" :class="getTableClasses.tableDataClasses">
               <div v-if="sortedData[keyIndex][column.field]" class="spr-flex spr-flex-row spr-items-center spr-gap-2">
                 <spr-avatar
                   v-if="column.hasAvatar"
@@ -117,10 +83,7 @@
                 </div>
               </div>
             </td>
-            <td
-              v-if="action"
-              class="spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid"
-            >
+            <td v-if="action" :class="getTableClasses.tableRowActionClasses">
               <div class="spr-flex spr-items-center">
                 <slot name="action" :row="item" />
               </div>
@@ -145,13 +108,14 @@
         </tbody>
       </table>
     </div>
-    <div v-if="$slots.footer" class="spr-w-full spr-border spr-border-solid spr-border-color-weak" >
-      <slot name="footer"/>
+    <div v-if="$slots.footer" :class="getTableClasses.tableFooterClasses">
+      <slot name="footer" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { useSlots } from 'vue';
 import { Icon } from '@iconify/vue';
 import SprAvatar from '@/components/avatar/avatar.vue';
 import SprEmptyState from '@/components/empty-state/empty-state.vue';
@@ -163,13 +127,8 @@ import { useTable } from './use-table';
 
 const props = defineProps(tablePropTypes);
 const emit = defineEmits(tableEmitTypes);
+const slots = useSlots();
 
-const { 
-  sortedData, 
-  sortData, 
-  getHeaderCount, 
-  updateSearchField, 
-  hasTableActions, 
-  searchField
-} = useTable(props, emit);
+const { sortedData, sortData, getHeaderCount, updateSearchField, hasTableActions, searchField, getTableClasses } =
+  useTable(props, emit, slots);
 </script>

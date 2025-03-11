@@ -1,9 +1,11 @@
-import { ref, computed, toRefs } from 'vue';
+import { ref, computed, toRefs, Slots } from 'vue';
 
 import type { TablePropTypes, TableEmitTypes, TABLE_SORT } from './table';
 import type { SetupContext } from 'vue';
 
-export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitTypes>['emit']) => {
+import classNames from 'classnames';
+
+export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitTypes>['emit'], slots: Slots) => {
   const { dataTable, action, headers, sortOrder } = toRefs(props);
   const sortField = ref('');
   const searchField = ref(props.searchModel);
@@ -38,17 +40,64 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
 
   const updateSearchField = (value: string) => {
     emit('update:searchModel', value);
-  }
+  };
 
-  const hasTableActions = computed(() => props.tableActions.search || props.tableActions.filter || props.tableActions.option);
+  const hasTableActions = computed(
+    () => props.tableActions.search || props.tableActions.filter || props.tableActions.option,
+  );
 
+  const getTableClasses = computed(() => {
+    const tableWrapperClasses =
+      'spr-table-wrapper spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid';
+    const headerBackground = classNames({
+      'spr-background-color': props.variant === 'white',
+      'spr-background-color-surface': props.variant === 'surface',
+    });
+    const headerClasses = classNames(
+      'spr-min-h-12 spr-px-size-spacing-2xs spr-py-size-spacing-3xs',
+      'spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-text-start spr-font-medium spr-uppercase',
+      'spr-border-color-weak spr-border-x-0 spr-border-y spr-border-solid',
+      headerBackground,
+    );
+
+    const headerNameClass = 'spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-5xs';
+
+    const defaultSlotClasses = classNames({
+      'spr-px-size-spacing-sm spr-py-size-spacing-xs': !!slots.default,
+    });
+
+    const tableHeaderActionsClasses = 'spr-border-color-weak spr-w-full spr-border spr-border-solid';
+    const tableCellSlotClasses =
+      'spr-background-color-surface spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-uppercase';
+    const tableRowClasses = 'hover:spr-background-color-hover spr-min-h-[60px]';
+    const tableDataClasses =
+      'spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-3';
+    const tableRowActionClasses =
+      'spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-3';
+    const tableFooterClasses = 'spr-w-full spr-border spr-border-solid spr-border-color-weak';
+    return {
+      headerClasses,
+      tableWrapperClasses,
+      defaultSlotClasses,
+      tableHeaderActionsClasses,
+      headerNameClass,
+      tableCellSlotClasses,
+
+      tableRowClasses,
+      tableDataClasses,
+      tableRowActionClasses,
+      tableFooterClasses,
+    };
+  });
 
   return {
-    sortedData,
-    getHeaderCount,
     sortData,
     updateSearchField,
+
+    sortedData,
+    getHeaderCount,
     hasTableActions,
-    searchField
+    searchField,
+    getTableClasses,
   };
 };

@@ -53,6 +53,7 @@ export default tseslint.config(
             'date-picker',
             'dropdown',
             'empty-state',
+            'floating-action',
             'input',
             'list',
             'lozenge',

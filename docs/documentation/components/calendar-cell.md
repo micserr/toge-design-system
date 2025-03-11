@@ -56,7 +56,6 @@ const shifts = [
     :title="shift.timeRange"
     :description="shift.branchName"
     :status="shift.status"
-    @click="handleClick"
   />
 </div>
 
@@ -69,7 +68,6 @@ const shifts = [
     :title="shift.timeRange"
     :description="shift.branchName"
     :status="shift.status"
-    @click="handleClick"
   />
 </template>
 
@@ -124,6 +122,48 @@ const offline = [
 </script>
 ```
 
+### Slot
+
+<div class="spr-grid spr-grid-cols-3 spr-gap-4">
+  <spr-calendar-cell>
+    Content here...
+  </spr-calendar-cell>
+  <spr-calendar-cell
+    status="pending"
+  >
+    Content here...
+  </spr-calendar-cell>
+    <spr-calendar-cell
+    status="error"
+  >
+    Content here...
+  </spr-calendar-cell>
+</div>
+
+```vue
+<spr-calendar-cell>
+    Content here...
+  </spr-calendar-cell>
+<spr-calendar-cell status="pending">
+    Content here...
+  </spr-calendar-cell>
+<spr-calendar-cell status="error">
+    Content here...
+  </spr-calendar-cell>
+```
+
+### fullwidth
+
+<div class="spr-grid spr-grid-row-3 spr-gap-4">
+  <spr-calendar-cell fullwidth/>
+  <spr-calendar-cell />
+</div>
+
+```vue
+<spr-calendar-cell fullwidth />
+<spr-calendar-cell />
+```
+
 ## Cell API
 
 ### Cell Attributes
@@ -168,6 +208,29 @@ const offline = [
       <td>The state associated with the status.</td>
       <td>String</td>
       <td>'success', 'information', 'pending', 'caution', 'danger'</td>
+    </tr>
+    <tr>
+      <td>fullwidth</td>
+      <td>change cell width</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+  </tbody>
+</table>
+
+### Event
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>onClick</td>
+      <td>emits when click</td>
     </tr>
   </tbody>
 </table>

@@ -33,9 +33,14 @@ interface TableActions {
   option: boolean;
 }
 
-const TABLE_SORT = ['asc', 'desc'] as const;
-export type TABLE_SORT = typeof TABLE_SORT[number];
+interface SortEvent {
+  field: string;
+  sortOrder: TABLE_SORT;
+}
 
+const TABLE_SORT = ['asc', 'desc'] as const;
+const TABLE_VARIANT = ['surface', 'white'] as const;
+export type TABLE_SORT = (typeof TABLE_SORT)[number];
 
 export const tablePropTypes = {
   /**
@@ -88,24 +93,30 @@ export const tablePropTypes = {
 
   /**
    * @description Search variable
-   *  
-    */
+   *
+   */
   searchModel: {
     type: String as PropType<string>,
     default: '',
   },
-  
+
   sortOrder: {
     type: String as PropType<(typeof TABLE_SORT)[number]>,
     validator: (value: (typeof TABLE_SORT)[number]) => TABLE_SORT.includes(value),
     default: 'asc',
   },
 
+  variant: {
+    type: String as PropType<(typeof TABLE_VARIANT)[number]>,
+    validator: (value: (typeof TABLE_VARIANT)[number]) => TABLE_VARIANT.includes(value),
+    default: 'surface',
+  },
 };
 
 export const tableEmitTypes = {
   'update:searchModel': (value: string): value is string => typeof value === 'string',
-  'onSort': () => true,
+  onSort: (value: SortEvent): value is SortEvent =>
+    typeof value.field === 'string' && TABLE_SORT.includes(value.sortOrder),
 };
 
 export type TablePropTypes = ExtractPropTypes<typeof tablePropTypes>;

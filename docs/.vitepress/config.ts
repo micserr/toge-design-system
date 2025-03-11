@@ -119,6 +119,10 @@ export default defineConfig({
               link: '/documentation/components/filter',
             },
             {
+              text: 'Floating Action',
+              link: '/documentation/components/floating-action',
+            },
+            {
               text: 'Input',
               link: '/documentation/components/input',
             },
@@ -135,7 +139,7 @@ export default defineConfig({
               link: '/documentation/components/modal',
             },
             {
-              text:'Progress Bar',
+              text: 'Progress Bar',
               link: '/documentation/components/progress-bar',
             },
             {

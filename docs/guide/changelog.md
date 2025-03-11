@@ -5,6 +5,11 @@
 - Fix
   - File Upload ([#ec602c1c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ec602c1c555e4ada5e4dfdc6004af9653a7b4a24?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FFILE_UPLOAD) by @jbanares)
 
+## 1.10.2 (2025-03-11)
+
+- Fix
+  - Input v-model issue binding ([#01492d98](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/01492d98d04ac11ff59c8f852210c1ec436b746a?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 1.10.1 (2025-03-11)
 
 - Fix

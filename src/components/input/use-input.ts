@@ -93,8 +93,10 @@ export const useInput = (
     };
   });
 
-  const onInput = () => {
-    emit('update:modelValue', modelValue.value);
+  const onInput = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+
+    modelValue.value = target.value;
   };
 
   return {

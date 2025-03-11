@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.9.2 (2025-03-11)
+
+- Fix
+  - Input field Height
+  - Input field handle model and value
+  - Droprown fix issues encountered ([#01492d98](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/01492d98d04ac11ff59c8f852210c1ec436b746a?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 1.9.1 (2025-03-10)
 
 - Fix

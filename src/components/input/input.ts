@@ -36,7 +36,11 @@ export const inputPropTypes = {
   },
   modelValue: {
     type: String,
-    required: true,
+    default: '',
+  },
+  value: {
+    type: String,
+    default: '',
   },
   label: {
     type: String,

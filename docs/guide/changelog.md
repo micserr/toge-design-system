@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.10.0 (2025-03-11)
+
+- Feat
+  - Added new component Floating Action with documentation ([#14c2d007](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/14c2d00772e993011c050569de67bf05b4e9f49b?refName=refs%2Fheads%2F2025%2Ffeature%2Fjames%2Ffloating-action) by @jmanalang)
+
 ## 1.9.3 (2025-03-11)
 
 - Fix

@@ -32,7 +32,7 @@ export const useInput = (
     });
 
     const inputTextClasses = classNames(
-      'spr-block spr-w-full spr-px-size-spacing-2xs spr-py-size-spacing-4xs spr-rounded-border-radius-md spr-outline-none spr-ring-0 spr-box-border',
+      'spr-block spr-h-9 spr-w-full spr-px-size-spacing-2xs spr-py-size-spacing-4xs spr-rounded-border-radius-md spr-outline-none spr-ring-0 spr-box-border',
       'spr-text-color-strong spr-font-size-200 [font-weight:inherit]',
       'spr-border spr-border-solid',
       'placeholder:spr-text-mushroom-300',
@@ -93,10 +93,8 @@ export const useInput = (
     };
   });
 
-  const onInput = (event: Event) => {
-    const target = event.target as HTMLInputElement;
-
-    modelValue.value = target.value;
+  const onInput = () => {
+    emit('update:modelValue', modelValue.value);
   };
 
   return {

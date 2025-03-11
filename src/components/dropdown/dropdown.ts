@@ -62,6 +62,10 @@ export const dropdownPropTypes = {
       return value === undefined || GROUPED_ITEMS_BY_TYPES.includes(value);
     },
   },
+  wrapperPosition: {
+    type: String,
+    default: 'relative',
+  },
   width: {
     type: String,
     default: '100%',

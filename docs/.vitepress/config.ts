@@ -115,6 +115,10 @@ export default defineConfig({
               link: '/documentation/components/empty-state',
             },
             {
+              text: 'File Upload',
+              link: '/documentation/components/file-upload',
+            },
+            {
               text: 'Filter',
               link: '/documentation/components/filter',
             },

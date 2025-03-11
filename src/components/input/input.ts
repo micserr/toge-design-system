@@ -69,11 +69,9 @@ export const inputPropTypes = {
   },
   minLength: {
     type: Number,
-    default: 0,
   },
   maxLength: {
     type: Number,
-    default: 0,
   },
   error: {
     type: Boolean,

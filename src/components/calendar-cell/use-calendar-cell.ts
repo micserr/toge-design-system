@@ -65,8 +65,13 @@ export const useCalendarCell = (props: CalendarCellPropTypes) => {
   });
 
   const getCalendarCellClassess = computed(() => {
-    const calendarCellWrapper =
-      'spr-flex spr-items-center spr-gap-size-spacing-3xs spr-relative spr-max-w-[217px] spr-rounded-md spr-border-2 spr-p-3 spr-transition-all hover:spr-shadow-md';
+    const calendarCellWrapper = classNames(
+      'spr-flex spr-items-center spr-gap-size-spacing-3xs spr-relative spr-rounded-md spr-border-2 spr-p-3 spr-transition-all hover:spr-shadow-md sm:spr-flex-col spr-overflow-hidden',
+      {
+        'spr-w-full': props.fullwidth,
+        'spr-max-w-[217px]': !props.fullwidth,
+      },
+    );
 
     const statusCellClasses = classNames({
       'spr-border-dashed': props.status === 'pending',

@@ -32,6 +32,15 @@ export const calendarCellPropTypes = {
     validator: (value: (typeof CALENDAR_STATE_STATES)[number]) => CALENDAR_STATE_STATES.includes(value),
     default: 'danger',
   },
+  fullwidth: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export type CalendarCellPropTypes = ExtractPropTypes<typeof calendarCellPropTypes>;
+export const calendarCellEmitTypes = {
+  onClick: (evt: MouseEvent): evt is MouseEvent => evt instanceof MouseEvent,
+};
+
+export type CalendarCellEmitTypes = typeof calendarCellEmitTypes;

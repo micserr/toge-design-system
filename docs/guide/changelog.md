@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.9.3 (2025-03-11)
+
+- Fix
+  - Commit ae8dc972: Enhance table component styling ([#ae8dc972](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ae8dc9722459cd4e568939a098aba680f1634bc3?refName=refs/heads/2025/Fix/andrea/enhancement-table-n-calendar-cell) by @adestajo)
+  - Commit 3813677a: feat: add fullwidth prop to calendar cell ([#3813677a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3813677a50b19aab86b2b9a2fd93bdb6368d593e?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fenhancement-table-n-calendar-cell) by @adestajo)
+
 ## 1.9.2 (2025-03-11)
 
 - Fix

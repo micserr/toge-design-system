@@ -15,7 +15,7 @@
           @change="onFileChangeHandler"
         />
         <icon icon="ph:cloud-arrow-up" width="28px" height="28px"/>
-        <spr-button size="small" tone="neutral" variant="secondary" @click="clickInitialInputFile" :disabled="props.disabled">Browse Files</spr-button>
+        <spr-button size="small" tone="neutral" variant="secondary" :disabled="props.disabled" @click="clickInitialInputFile">Browse Files</spr-button>
         <label class="spr-body-sm-regular"> 
           or drop your files to upload
         </label>
@@ -36,7 +36,7 @@
         :accept="props.fileTypes.join(',')"
         hidden 
         @change="replaceFile"/>
-      <div  v-for="(file, index) in modelValue" :id="index+''" class="spr-flex">
+      <div  v-for="(file, index) in modelValue" :key="index" class="spr-flex">
         <div class="spr-flex-auto spr-flex spr-gap-size-spacing-5xs spr-items-center">
           <icon icon="ph:check-circle-fill" width="16px" height="16px" class="spr-text-color-brand-base"/>
           <label class="spr-body-sm-regular">{{ file.name }}</label>

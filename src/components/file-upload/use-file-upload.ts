@@ -147,8 +147,6 @@ export const useFileUpload = (props: FileUploadPropTypes, emit: SetupContext<Fil
           return "MS PPT";
         case 'text/plain':
           return "TXT";
-        case 'text/plain':
-          return "TXT";
         case 'image/svg+xml':
           return "SVG";
         default:

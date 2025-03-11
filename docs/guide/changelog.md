@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.9.4 (2025-03-11)
+
+- Fix
+  - Input Text Min Max Issue ([#01492d98](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/01492d98d04ac11ff59c8f852210c1ec436b746a?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 1.9.3 (2025-03-11)
 
 - Fix

@@ -13,6 +13,7 @@
     "
     :delay="0"
     :style="{
+      position: props.wrapperPosition,
       width: props.width,
     }"
   >

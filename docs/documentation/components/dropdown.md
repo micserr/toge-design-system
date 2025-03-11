@@ -725,12 +725,17 @@ By default, the Popper strategy is set to `absolute`, which positions the popper
 
 Pass the prop `popper-strategy` to change the behavior position of the popper.
 
+::: info Important to note:
+Do not forget to pass prop `wrapperPosition` to overwrite `relative` position into `initial`.
+:::
+
 <spr-button tone="success" @click="modalModel = true">Open Modal</spr-button>
 
 <spr-modal v-model="modalModel" title="Dropdown with Modal">
    <spr-dropdown
     id="dropdown27"
     :menu-list="menuList"
+    wrapper-position="initial"
     popper-stategy="fixed"
     @get-selected-item="handleSelectedItem($event, 'single', 'inputText9')"
   >
@@ -751,7 +756,7 @@ Pass the prop `popper-strategy` to change the behavior position of the popper.
   <spr-button tone="success" @click="modalModel = true">Open Modal</spr-button>
 
   <spr-modal v-model="modalModel" title="Dropdown with Modal">
-    <spr-dropdown id="sample-dropdown" :menu-list="menuList" popper-stategy="fixed">
+    <spr-dropdown id="sample-dropdown" :menu-list="menuList" wrapper-position="initial" popper-stategy="fixed">
       <spr-input v-model="inputTextModel" label="Dropdown Label" placeholder="Select item..." readonly />
     </spr-dropdown>
     <p>

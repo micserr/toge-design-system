@@ -13,7 +13,7 @@
         :placeholder="props.placeholder"
         :disabled="props.disabled"
         :readonly="props.readonly"
-        :value="props.modelValue"
+        :value="props.modelValue ? props.modelValue : props.value"
         :type="props.type"
         :minlength="props.minLength"
         :maxlength="props.maxLength"

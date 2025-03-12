@@ -12,6 +12,7 @@ interface TablePaginationClasses {
   navigationContainerClass: string;
   inputFieldIconClass: string;
   navigationButtonClass: string;
+  dropdownClass: string,
 }
 
 export const useTablePagination = (props: TablePaginationPropTypes, emit: SetupContext<TablePaginationEmitTypes>['emit']) => {
@@ -22,9 +23,10 @@ export const useTablePagination = (props: TablePaginationPropTypes, emit: SetupC
     const dropdownInputFieldClass = 'spr-w-[100px] spr-font-bold spr-h-full spr-space-x-2' as const;
     const inputFieldIconClass = 'spr-mt-0.5 spr-pl-1 spr-text-mushroom-950' as const;
     const rightSideClass = 'spr-flex spr-justify-between spr-items-center spr-space-x-4' as const;
-    const computeRowRangeClass = 'spr-font-main spr-text-color-base' as const;
+    const computeRowRangeClass = 'spr-font-main spr-text-color-base spr-w-full' as const;
     const navigationContainerClass = 'spr-flex spr-space-x-2' as const;
     const navigationButtonClass = 'spr-rounded-border-radius-md' as const;
+    const dropdownClass = '!spr-w-max' as const
     return {
       baseClass,
       dropdownInputFieldClass,
@@ -32,7 +34,8 @@ export const useTablePagination = (props: TablePaginationPropTypes, emit: SetupC
       computeRowRangeClass,
       inputFieldIconClass,
       navigationContainerClass,
-      navigationButtonClass
+      navigationButtonClass,
+      dropdownClass
     };
   });
 
@@ -45,7 +48,7 @@ export const useTablePagination = (props: TablePaginationPropTypes, emit: SetupC
 
   const computeSelectedRowCount = computed(() => {
     return `${selectedRowCount.value} Rows`;
-  })
+  });
 
   const handleSelectedItem = (item: DropdownMenuType) => {
     emit('update:selectedRowCount', Number(item.value));
@@ -53,19 +56,22 @@ export const useTablePagination = (props: TablePaginationPropTypes, emit: SetupC
 
   const previous = () => {
     emit('previous');
-  }
+  };
 
   const next = () => {
     emit('next');
-  }
+  };
 
   const disabledNext = computed(() => {
     return props.currentPage === 1;
-  })
+  });
 
   const disabledPrevious = computed(() => {
     return props.totalItems <= props.currentPage * props.selectedRowCount;
-  })
+  });
+
+  // generate a unique id for dropdown so it won't interfere with other dropdowns in the page
+  const dropdownId = ref(`dropdown-${crypto.randomUUID()}`);
 
   return {
     paginationClasses,
@@ -76,6 +82,7 @@ export const useTablePagination = (props: TablePaginationPropTypes, emit: SetupC
     previous,
     disabledNext,
     disabledPrevious,
-    dropdownSelection
+    dropdownSelection,
+    dropdownId,
   };
 };

@@ -187,9 +187,9 @@ The implementation for the pagination here is to emit and trigger an API call to
 <template #footer>
 <spr-table-pagination
 v-model:selected-row-count="selectedRowCount"
-:total-items="tablePagination.totalItems"
-:current-page="tablePagination.currentPage"
-:dropdown-selection="tablePagination.dropdownSelection"
+:total-items="totalItems"
+:current-page="currentPage"
+:dropdown-selection="dropdownSelection"
 @previous="handlePrevious"
 @next="handleNext"
 :version="'backend'"
@@ -203,9 +203,9 @@ v-model:selected-row-count="selectedRowCount"
     <template #footer>
       <spr-table-pagination
         v-model:selected-row-count="selectedRowCount"
-        :total-items="tablePagination.totalItems"
-        :current-page="tablePagination.currentPage"
-        :dropdown-selection="tablePagination.dropdownSelection"
+        :total-items="totalItems"
+        :current-page="currentPage"
+        :dropdown-selection="dropdownSelection"
         @previous="handlePrevious"
         @next="handleNext"
         :version="'backend'"
@@ -225,15 +225,13 @@ const data = ref([
   // Fill this with your data
 ]);
 
-const tablePagination = {
-  totalItems: 100,
-  currentPage: 2,
-  dropdownSelection: [
-    { text: 10, value: 10 },
-    { text: 20, value: 20 },
-    { text: 30, value: 30 },
-  ],
-};
+const totalItems = ref(100)
+const currentPage = ref(2)
+const dropdownSelection = [
+  { text: 10, value: 10 },
+  { text: 20, value: 20 },
+  { text: 30, value: 30 },
+];
 
 const selectedRowCount = ref(10);
 
@@ -245,11 +243,28 @@ watch(selectedRowCount, (newValue) => {
 
 const handlePrevious = () => {
   console.log('clicked previous');
+  if (currentPage.value > 1) {
+    currentPage.value--;
+  }
+
+  fetchItems(currentPage.value)
 };
 
 const handleNext = () => {
   console.log('clicked next');
+
+  if (currentPage.value * selectedRowCount.value < totalItems.value) {
+    currentPage.value++;
+  }
+
+  fetchItems(currentPage.value)
 };
+
+const fetchItems = computed((page) => {
+  const response = apiCall(page);
+  
+  data.value = parse(response)
+})
 </script>
 ```
 
@@ -543,24 +558,27 @@ const tableActions = ref({
 const searchModel = ref('');
 
 
-const tablePagination = ref({
-  totalItems: 100,
-  currentPage: 2,
-  dropdownSelection: [
-    {text: 10, value: 10},
-    {text: 20, value: 20},
-    {text: 30, value: 30},
-  ],
-});
+const totalItems = ref(100);
+const currentPage = ref(2);
+const dropDownSelection = ref([
+  {text: 10, value: 10},
+  {text: 20, value: 20},
+  {text: 30, value: 30},
+]);
 
 const selectedRowCount = ref(20);
-
 const handlePrevious = () => {
   console.log('clicked previous');
+  if (currentPage.value > 1) {
+    currentPage.value--;
+  }
 };
 
 const handleNext = () => {
   console.log('clicked next');
+  if (currentPage.value * selectedRowCount.value < totalItems.value) {
+    currentPage.value++;
+  }
 };
 
 const handleSort  = (e) => {

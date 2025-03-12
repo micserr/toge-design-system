@@ -5,25 +5,50 @@ A Radio Button is a component that enables a user to select a single option from
 ## Basic Usage
 
 <div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
-  <spr-radio id="sample1" v-model="sampleradio" name="sampleradio" value="sample1">
-    Default Checked Radio
+  <spr-radio id="radio1" v-model="radioModel.radio1" name="radio_name1" value="value1">
+    Radio Label 1
   </spr-radio>
-
-  <spr-radio id="sample2" v-model="sampleradio" name="sampleradio" value="sample2">
-    Default Radio
+  <spr-radio id="radio2" v-model="radioModel.radio1" name="radio_name1" value="value2">
+    Radio Label 2
   </spr-radio>
 </div>
 
 ```vue
 <template>
-  <spr-radio id="sample1" v-model="sampleradio" name="sampleradio" value="sample1">Default Checked Radio</spr-radio>
-  <spr-radio id="sample2" v-model="sampleradio" name="sampleradio" value="sample2">Default Radio</spr-radio>
+  <div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
+    <spr-radio id="radio1" v-model="radioModel" name="radio_name" value="value1">Radio Label 1</spr-radio>
+    <spr-radio id="radio2" v-model="radioModel" name="radio_name" value="value2">Radio Label 2</spr-radio>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const sampleradio = ref < string > 'sample1';
+const radioModel = ref('');
+</script>
+```
+
+## Active
+
+<div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
+  <spr-radio id="radio3" v-model="radioModel.radio2" name="radio_name2" value="value1">
+    Radio Label 1
+  </spr-radio>
+  <spr-radio id="radio4" v-model="radioModel.radio2" name="radio_name2" value="value2">
+    Radio Label 2
+  </spr-radio>
+</div>
+
+```vue
+<template>
+  <spr-radio id="radio1" v-model="radioModel" name="radio_name" value="value1">Radio Label 1</spr-radio>
+  <spr-radio id="radio2" v-model="radioModel" name="radio_name" value="value2">Radio Label 2</spr-radio>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const radioModel = ref('value2');
 </script>
 ```
 
@@ -32,24 +57,20 @@ const sampleradio = ref < string > 'sample1';
 Add the `disabled` attribute to the `<spr-radio>` component to disable the radio button.
 
 <div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
-  <spr-radio id="disabledradio1" v-model="disabledradio" name="disabledradio" value="disabledradio1" disabled>
-    Disabled Checked Radio
+  <spr-radio id="radio5" v-model="radioModel.radio3" name="radio_name3" value="value1">
+    Radio Label 1
   </spr-radio>
-
-  <spr-radio id="disabledradio2" v-model="disabledradio" name="disabledradio" value="disabledradio2" disabled>
-    Disabled Radio
+  <spr-radio id="radio6" v-model="radioModel.radio3" name="radio_name3" value="value2" disabled>
+    Radio Label 2
   </spr-radio>
 </div>
 
 ```vue
 <template>
   <div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
-    <spr-radio id="disabledradio1" v-model="disabledradio" name="disabledradio" value="disabledradio1" disabled>
-      Disabled Checked Radio
-    </spr-radio>
-
-    <spr-radio id="disabledradio2" v-model="disabledradio" name="disabledradio" value="disabledradio2" disabled>
-      Disabled Radio
+    <spr-radio id="disabledradio1" v-model="radioModel" name="radio_name" value="value1">Radio Label 1</spr-radio>
+    <spr-radio id="disabledradio2" v-model="radioModel" name="radio_name" value="value2" disabled>
+      Radio Label 2
     </spr-radio>
   </div>
 </template>
@@ -57,7 +78,7 @@ Add the `disabled` attribute to the `<spr-radio>` component to disable the radio
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const disabledradio = ref < string > 'disabledradio';
+const radioModel = ref('');
 </script>
 ```
 
@@ -107,6 +128,16 @@ import { ref } from "vue";
 
 import SprRadio from "@/components/radio/radio.vue";
 
-const sampleradio = ref<string>("sample1");
-const disabledradio = ref<string>("disabledradio1");
+const radioModel = ref({
+  radio1: '',
+  radio2: 'value2',
+  radio3: '',
+  radio4: '',
+  radio5: '',
+  radio6: '',
+  radio7: '',
+  radio8: '',
+  radio9: '',
+  radio10: '',
+});
 </script>

@@ -7,15 +7,10 @@
     :name="props.name"
     :value="props.value"
     :disabled="props.disabled"
-    :class="radioClasses"
+    :class="radioClasses.baseClasses"
   />
-  <label
-    ref="radioRef"
-    :for="props.id"
-    :disabled="props.disabled"
-    :class="['spr-group spr-m-0 spr-inline-flex spr-w-auto spr-items-center spr-space-x-2 spr-p-0', radioLabelClasses]"
-  >
-    <span :class="indicatorClasses"></span>
+  <label ref="radioRef" :for="props.id" :disabled="props.disabled" :class="radioClasses.labelClasses">
+    <span :class="radioClasses.baseIndicatorClasses"></span>
     <slot />
   </label>
 </template>
@@ -30,7 +25,7 @@ const props = defineProps(radioPropTypes);
 const emit = defineEmits(radioEmitTypes);
 
 const proxyValue = useVModel(props, 'modelValue', emit);
-const { radioRef, radioClasses, indicatorClasses, radioLabelClasses } = useRadioButton(props);
+const { radioRef, radioClasses } = useRadioButton(props);
 </script>
 
 <style scoped>
@@ -44,6 +39,6 @@ const { radioRef, radioClasses, indicatorClasses, radioLabelClasses } = useRadio
 }
 
 .animate-shadow-grow {
-  animation: shadowGrow 300ms ease-in-out forwards;
+  animation: shadowGrow 150ms ease-in-out forwards;
 }
 </style>

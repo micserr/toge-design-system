@@ -53,9 +53,7 @@ export const useFileUpload = (props: FileUploadPropTypes, emit: SetupContext<Fil
 
   const fileUploadClasses: ComputedRef<FileUploadClasses> = computed(() => {
     const wrapperClasses = classNames(
-      'spr-rounded-border-radius-xl',
-      'spr-mt-size-spacing-3xs',
-      'spr-flex',
+      'spr-rounded-border-radius-xl spr-mt-size-spacing-3xs spr-flex',
       {
         'spr-min-w-[56px] spr-py-size-spacing-2xs spr-px-size-spacing-xs': props.type === 'default',
         'spr-min-h-[160px] spr-p-size-spacing-xs spr-flex-col spr-justify-center spr-items-center': props.type === 'center',

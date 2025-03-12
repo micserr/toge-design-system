@@ -1,4 +1,4 @@
-import { toRefs, computed, ComputedRef } from 'vue';
+import { toRefs, computed, ComputedRef, watch } from 'vue';
 import { useVModel } from '@vueuse/core';
 
 import classNames from 'classnames';
@@ -21,7 +21,7 @@ export const useInput = (
   slots: Record<string, unknown>,
   emit: SetupContext<InputEmitTypes>['emit'],
 ) => {
-  const { active, error, disabled, readonly, offsetSize } = toRefs(props);
+  const { preValue, active, error, disabled, readonly, offsetSize } = toRefs(props);
   const modelValue = useVModel(props, 'modelValue', emit);
 
   const inputClasses: ComputedRef<InputClasses> = computed(() => {
@@ -53,7 +53,7 @@ export const useInput = (
     );
 
     const iconSlotClasses = classNames(
-      'spr-absolute spr-right-3 spr-top-1/2 spr-h-5 spr-w-5 -spr-translate-y-1/2 spr-transform spr-text-mushroom-300',
+      'spr-absolute spr-right-3 spr-top-1/2 spr-h-full -spr-translate-y-1/2 spr-transform spr-text-mushroom-300 spr-flex spr-items-center',
       {
         '!spr-text-tomato-600': error.value,
       },
@@ -91,6 +91,10 @@ export const useInput = (
       trailingSlotClasses,
       helperClasses,
     };
+  });
+
+  watch(preValue, () => {
+    modelValue.value = preValue.value;
   });
 
   const onInput = (event: Event) => {

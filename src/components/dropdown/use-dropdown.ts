@@ -16,7 +16,7 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
 
   const dropdownRef = ref<HTMLDivElement | null>(null);
 
-  const preSelectedItems = ref<Array<string>>([]);
+  const preSelectedItems = ref<Array<string>>(modelValue.value);
 
   const initialMenuList = ref<{ text: string; value: string }[]>([]);
   const dropdownMenuList = ref<{ text: string; value: string }[]>([]);
@@ -44,6 +44,10 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
     }
   };
 
+  watch(modelValue, (newValue) => {
+    preSelectedItems.value = newValue;
+  });
+
   watch(searchString, () => {
     handleSearch();
   });
@@ -61,8 +65,6 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
   );
 
   onMounted(() => {
-    preSelectedItems.value = modelValue.value;
-
     setDropdownMenuList();
   });
 

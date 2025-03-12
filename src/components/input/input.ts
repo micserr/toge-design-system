@@ -38,7 +38,7 @@ export const inputPropTypes = {
     type: String,
     default: '',
   },
-  value: {
+  preValue: {
     type: String,
     default: '',
   },

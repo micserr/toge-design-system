@@ -9,7 +9,7 @@
           placeholder="Search"
           @update:model-value="updateSearchField"
         />
-        <spr-button v-if="props.toggleFilter" variant="secondary">
+        <spr-button v-if="props.toggleFilter" variant="secondary" has-icon>
           <Icon icon="ph:sliders-horizontal"/>
         </spr-button>
       </div>

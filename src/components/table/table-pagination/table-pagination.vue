@@ -1,10 +1,12 @@
 <template>
   <div :class="paginationClasses.baseClass">
     <spr-dropdown 
-      :menu="dropdownSelection" 
+      :id="dropdownId"
+      :menu-list="dropdownSelection" 
       dropdown-type="single-select"
       placement="bottom"
       @get-selected-item="handleSelectedItem"
+      :class="paginationClasses.dropdownClass"
     >
       <spr-input v-model="computeSelectedRowCount" :class="paginationClasses.dropdownInputFieldClass" :readonly="true">
         <template #icon>
@@ -51,6 +53,7 @@ const {
   disabledNext,
   disabledPrevious,
   dropdownSelection,
+  dropdownId
 } = useTablePagination(props, emit);
 
 

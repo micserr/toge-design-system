@@ -102,6 +102,7 @@
                           >
                             <spr-checkbox
                               v-model="mappedMenuData[option.value].isSelected"
+                              :checked="mappedMenuData[option.value].isSelected"
                               :label="mappedMenuData[option.value].text"
                               :description="mappedMenuData[option.value].subtext"
                             />
@@ -161,6 +162,7 @@
         >
           <spr-checkbox
             v-model="mappedFilterOption[option.value].isSelected"
+            :checked="mappedFilterOption[option.value].isSelected"
             :label="mappedFilterOption[option.value].text"
             :description="mappedFilterOption[option.value].subtext"
           />

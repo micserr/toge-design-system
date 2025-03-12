@@ -68,7 +68,7 @@ export const filterEmitTypes = {
   getFilterData: null,
   'update:modelValue': (value: FilterPropsInterface['options']): value is FilterPropsInterface['options'] =>
     Array.isArray(value),
-  'update:selected': (value: string) => typeof value === 'string',
+  'update:search': (value: string) => typeof value === 'string',
   selectedFilter: null,
 };
 export type FilterEmitTypes = typeof filterEmitTypes;

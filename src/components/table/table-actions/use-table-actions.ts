@@ -4,8 +4,8 @@ import type { TableActionEmitTypes } from '@/components/table/table-actions/tabl
 
 export const useTableActions = (emit:SetupContext<TableActionEmitTypes>['emit'] ) => {
   const tableActionsBaseClasses = "spr-h-max spr-p-size-spacing-2xs spr-flex spr-justify-between" as const
-  const inputSearchClasses = "spr-w-max" as const
-  const searchFilterClasses = "spr-w-max spr-flex spr-gap-size-spacing-2xs" as const
+  const inputSearchClasses = "spr-w-full" as const
+  const searchFilterClasses = "spr-size-[30%] spr-flex spr-gap-size-spacing-2xs" as const
 
   const updateSearchField = (value: string) => {
     emit('update:searchModel', value);

@@ -1,71 +1,88 @@
-import { computed, ref, ComputedRef } from 'vue';
+import { ref, toRefs, computed, ComputedRef } from 'vue';
 import { useElementHover } from '@vueuse/core';
 
 import classNames from 'classnames';
 
 import type { RadioPropTypes } from './radio';
 
+interface RadioClasses {
+  baseClasses: string;
+  baseIndicatorClasses: string;
+  labelClasses: string;
+}
+
 export const useRadioButton = (props: RadioPropTypes) => {
+  const { modelValue, disabled } = toRefs(props);
+
   const radioRef = ref<HTMLInputElement | null>(null);
   const isHovered = useElementHover(radioRef);
 
-  const radioClasses: ComputedRef<string> = computed(() => {
-    const baseClasses = 'spr-sr-only spr-peer spr-inline-block';
+  const radioClasses: ComputedRef<RadioClasses> = computed(() => {
+    const baseClasses = classNames('spr-sr-only spr-peer spr-inline-block', {
+      'spr-cursor-not-allowed': disabled.value,
+    });
 
-    if (props.disabled) {
-      return classNames(baseClasses, 'spr-cursor-not-allowed');
-    }
-
-    return baseClasses;
-  });
-
-  const indicatorClasses: ComputedRef<string> = computed(() => {
-    const baseClasses = [
+    const baseIndicatorClasses = classNames(
       'spr-inline-block spr-w-4 spr-h-4 spr-rounded-full spr-border-2 spr-border-solid spr-mr-2 spr-shrink-0',
       'spr-transition spr-duration-150 spr-ease-in-out',
-      'group-active:spr-scale-90',
-    ];
+      {
+        'group-active:spr-scale-90': !disabled.value,
+      },
 
-    if (props.disabled) {
-      return classNames(
-        baseClasses,
-        props.modelValue === props.value
-          ? 'spr-border-color-disabled spr-background-color-disabled spr-shadow-[inset_0px_0px_0px_2.5px_#fff] spr-cursor-not-allowed'
-          : 'spr-border-color-disabled spr-background-color spr-cursor-not-allowed',
-      );
-    }
+      // Hover State
+      {
+        // Hover state with matching value
+        'spr-background-color-brand-hover spr-border-2 spr-border-color-brand-hover spr-shadow-[inset_0px_0px_0px_2.5px_#fff]':
+          isHovered.value && String(modelValue?.value) === String(props.value) && !disabled.value,
 
-    if (isHovered.value) {
-      return classNames(
-        baseClasses,
-        props.modelValue === props.value
-          ? 'spr-background-color-brand-hover spr-border-2 spr-border-color-brand-hover spr-shadow-[inset_0px_0px_0px_2.5px_#fff] animate-shadow-grow'
-          : 'spr-background-color-base spr-border-2 spr-border-color-supporting spr-shadow-[inset_0px_0px_0px_2.5px_#fff]',
-      );
-    }
+        // Hover state but different value
+        'spr-background-color-base spr-border-2 spr-border-color-supporting spr-shadow-[inset_0px_0px_0px_2.5px_#fff]':
+          isHovered.value && String(modelValue?.value) !== String(props.value) && !disabled.value,
+      },
 
-    if (props.modelValue === props.value) {
-      return classNames(
-        baseClasses,
-        'spr-border-color-brand-base spr-background-color-brand-base spr-shadow-[inset_0px_0px_0px_2.5px_#fff] animate-shadow-grow',
-      );
-    }
+      // Active State
+      {
+        // Active state with matching value
+        'spr-border-color-brand-base spr-background-color-brand-base spr-shadow-[inset_0px_0px_0px_2.5px_#fff] animate-shadow-grow':
+          String(modelValue?.value) === String(props.value) && !disabled.value,
 
-    return classNames(baseClasses, 'spr-border-color-supporting spr-shadow-[inset_0px_0px_0px_2.5px_#fff]');
-  });
+        // Active state with different value
+        'spr-border-color-supporting spr-shadow-[inset_0px_0px_0px_2.5px#fff]':
+          String(modelValue?.value) !== String(props.value) && !disabled.value,
+      },
 
-  const radioLabelClasses: ComputedRef<string> = computed(() => {
-    if (props.disabled) {
-      return 'spr-text-color-disabled spr-cursor-not-allowed';
-    }
+      // Disabled State
+      {
+        'spr-cursor-not-allowed': disabled.value,
 
-    return 'spr-text-color-strong spr-cursor-pointer spr-inline-flex spr-items-center spr-p-0';
+        // Disabled state with matching value
+        'spr-border-color-disabled spr-background-color-disabled spr-shadow-[inset_0px_0px_0px_2.5px_#fff]':
+          disabled.value && String(modelValue?.value) === String(props.value),
+
+        // Disabled state but different value
+        'spr-border-color-disabled spr-background-color spr-cursor-not-allowed':
+          disabled.value && String(modelValue?.value) !== String(props.value),
+      },
+    );
+
+    const labelClasses = classNames(
+      'spr-group spr-m-0 spr-inline-flex spr-w-auto spr-items-center spr-space-x-2 spr-p-0 spr-font-main',
+      'spr-text-color-strong spr-inline-flex spr-items-center spr-p-0',
+      {
+        'spr-text-color-disabled spr-cursor-not-allowed': disabled.value,
+        'spr-cursor-pointer': !disabled.value,
+      },
+    );
+
+    return {
+      baseClasses,
+      baseIndicatorClasses,
+      labelClasses,
+    };
   });
 
   return {
     radioRef,
     radioClasses,
-    indicatorClasses,
-    radioLabelClasses,
   };
 };

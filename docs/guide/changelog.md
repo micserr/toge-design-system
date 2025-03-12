@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.11.2 (2025-03-12)
+
+- Fix
+  - Fix Pre Defined Values for input field with data reactiveness
+  - Dropdown preSelectedItems data reactiveness
+  - Input Icons not centered aligned and should able to use multi icon
+  - Add package script auto build on code change ([#92436bfa](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/92436bfa7e58b40eeee6c431e11227e0dd600114?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 1.11.1 (2025-03-12)
 
 - Fix

@@ -9,11 +9,12 @@
         <slot name="prefix" />
       </div>
       <input
+        v-bind="$attrs"
         :class="[inputClasses.inputTextClasses, { 'number-input': props.type === 'number' }]"
+        :value="props.modelValue ? props.modelValue : props.preValue"
         :placeholder="props.placeholder"
         :disabled="props.disabled"
         :readonly="props.readonly"
-        :value="props.modelValue ? props.modelValue : props.value"
         :type="props.type"
         :minlength="props.minLength"
         :maxlength="props.maxLength"

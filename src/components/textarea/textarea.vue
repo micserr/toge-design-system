@@ -2,7 +2,6 @@
   <div :class="textareaClasses.wrapperClasses">
     <label v-if="label" :for="id" :class="textareaClasses.labelClasses">{{ label }}</label>
     <textarea
-      v-model="modelValue"
       :class="textareaClasses.textAreaClasses"
       v-bind="$attrs"
       :disabled="disabled"

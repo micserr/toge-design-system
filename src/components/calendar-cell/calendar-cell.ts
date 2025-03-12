@@ -36,6 +36,10 @@ export const calendarCellPropTypes = {
     type: Boolean,
     default: false,
   },
+  viewOnly: {
+    type: Boolean,
+    default: true,
+  },
 };
 
 export type CalendarCellPropTypes = ExtractPropTypes<typeof calendarCellPropTypes>;

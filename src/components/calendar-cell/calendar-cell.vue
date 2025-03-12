@@ -1,5 +1,5 @@
 <template>
-  <div :class="getCalendarCellClassess.getMainClasses" @click="(e) => $emit('onClick', e)">
+  <div :class="getCalendarCellClassess.getMainClasses" @click="handleClick">
     <slot>
       <spr-status v-if="isError" :state="props.state" size="sm" />
       <Icon v-if="hasIconStatus" :icon="getCellIcon" />
@@ -27,8 +27,8 @@ import { calendarCellPropTypes, calendarCellEmitTypes } from './calendar-cell';
 import { useCalendarCell } from './use-calendar-cell';
 
 const props = defineProps(calendarCellPropTypes);
-defineEmits(calendarCellEmitTypes);
+const emit = defineEmits(calendarCellEmitTypes);
 
-const { getCalendarCellClassess, getShiftLabel, getCellIcon, hasIconStatus, isError, hasContent } =
-  useCalendarCell(props);
+const { getCalendarCellClassess, getShiftLabel, getCellIcon, hasIconStatus, isError, hasContent, handleClick } =
+  useCalendarCell(props, emit);
 </script>

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.11.3 (2025-03-12)
+
+- Fix
+  - Update Radio Component and Fixed Issues Encountered ([#1f7fd299](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1f7fd2997bcdf01316c0c1c2244bb8caa3da79f1?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 1.11.2 (2025-03-12)
 
 - Fix

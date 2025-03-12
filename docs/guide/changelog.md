@@ -2,8 +2,9 @@
 
 ## 1.11.0 (2025-03-11)
 
-- Fix
+- Feature
   - File Upload ([#ec602c1c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ec602c1c555e4ada5e4dfdc6004af9653a7b4a24?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FFILE_UPLOAD) by @jbanares)
+
 ## 1.10.3 (2025-03-12)
 - Fix
   - Table pagination dropdown field not opening([#ec771e01](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ec771e01671289eb25ed48c90832828f12f836ab?refName=refs/heads/2025/FIX/Xyrk/TABLE_PAGINATION_DOCS_AND_DROPDOWN) @jfabula)

@@ -18,9 +18,28 @@ const inputValue = ref('');
 </script>
 ```
 
+## Pre Defined Values
+
+To add value to the input without using `v-model` you can use `pre-value` prop to force add value to the input.
+If both `v-model` and `pre-value` has a value, the most priority will be the `v-model`.
+
+<spr-input v-model="inputValue.input2" label="Text Input" placeholder="Enter your username" pre-value="Sample Value" />
+
+```vue
+<template>
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" pre-value="Sample Value" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputValue = ref('');
+</script>
+```
+
 ## Active State
 
-<spr-input v-model="inputValue.input2" label="Text Input" placeholder="Enter your username" :active="true" />
+<spr-input v-model="inputValue.input3" label="Text Input" placeholder="Enter your username" :active="true" />
 
 ```vue
 <template>
@@ -36,7 +55,7 @@ const inputValue = ref('');
 
 ## Error State
 
-<spr-input v-model="inputValue.input3" label="Text Input" placeholder="Enter your username" :error="true">
+<spr-input v-model="inputValue.input4" label="Text Input" placeholder="Enter your username" :error="true">
   <template #icon>
     <Icon icon="ph:warning-circle-fill" />
   </template>
@@ -60,7 +79,7 @@ const inputValue = ref('');
 
 ## Disabled State
 
-<spr-input v-model="inputValue.input4" label="Text Input" placeholder="Enter your username" :disabled="true" />
+<spr-input v-model="inputValue.input5" label="Text Input" placeholder="Enter your username" :disabled="true" />
 
 ```vue
 <template>
@@ -78,7 +97,7 @@ const inputValue = ref('');
 
 You can either add min or max length by passing props `min-length` or `max-length` and add the corresponding number value.
 
-<spr-input v-model="inputValue.input5" label="Text Input" placeholder="Enter your username" :min-length="0" :max-length="50" />
+<spr-input v-model="inputValue.input6" label="Text Input" placeholder="Enter your username" :min-length="0" :max-length="50" />
 
 ```vue
 <template>
@@ -100,7 +119,7 @@ const inputValue = ref('');
 
 ## Prefix
 
-<spr-input v-model="inputValue.input6" label="Text Input" placeholder="Enter your username"  >
+<spr-input v-model="inputValue.input7" label="Text Input" placeholder="Enter your username"  >
   <template #prefix>
     <Icon icon="ph:warning-circle-fill" />
   </template>
@@ -131,13 +150,13 @@ const inputValue = ref('');
     </template>
   </spr-input>
 
-  <spr-input v-model="inputValue.input7" label="offset sm" placeholder="0000000" offset-size="sm" type="number">
+  <spr-input v-model="inputValue.input8" label="offset sm" placeholder="0000000" offset-size="sm" type="number">
     <template #trailing>
       minutes
     </template>
   </spr-input>
 
-  <spr-input v-model="inputValue.input8" label="offset md" placeholder="Enter your name" offset-size="md" >
+  <spr-input v-model="inputValue.input9" label="offset md" placeholder="Enter your name" offset-size="md" >
     <template #trailing>
       Name of the user
     </template>
@@ -179,7 +198,7 @@ A helper message is a text label below the input field that provides additional 
 
 To display the helper message, set the `display-helper` prop to `true` and add the `helper-text` prop with the helper message text. You can also insert an icon with the `helper-icon` prop. This uses the [Iconify](https://icon-sets.iconify.design/) icon library.
 
-<spr-input v-model="inputValue.input9" label="Text Input" placeholder="Enter your text" helper-text="This is a helper message" display-helper/>
+<spr-input v-model="inputValue.input10" label="Text Input" placeholder="Enter your text" helper-text="This is a helper message" display-helper/>
 <spr-input v-model="inputValue.input1" label="Text Input" placeholder="Enter your text" helper-text="This is an error message" helper-icon="ph:warning-circle-fill" display-helper error/>
 
 ```vue
@@ -210,7 +229,7 @@ const inputValue = ref('');
 
 Alternatively, you can use the `helperMessage` slot to display a custom helper message.
 
-<spr-input v-model="inputValue.input10" label="Text Input" placeholder="Enter your text" display-helper>
+<spr-input v-model="inputValue.input11" label="Text Input" placeholder="Enter your text" display-helper>
   <template #helperMessage>
     This is a helper message
   </template>
@@ -245,7 +264,7 @@ const inputValue = ref('');
 ## Search Input
 
 <div>
-   <spr-input-search v-model="inputValue.input11" label="Search" placeholder="Search ..."/>
+   <spr-input-search v-model="inputValue.input12" label="Search" placeholder="Search ..."/>
 </div>
 
 ```vue
@@ -263,7 +282,7 @@ const inputValueSearch = ref('');
 ## Username Input
 
 <div>
-  <spr-input-username v-model="inputValue.input12" label="Username" placeholder="Enter username" :active="true"/>
+  <spr-input-username v-model="inputValue.input13" label="Username" placeholder="Enter username" :active="true"/>
 </div>
 
 ```vue
@@ -281,7 +300,7 @@ const inputValueUsername = ref('');
 ## Email Input
 
 <div>
-  <spr-input-email v-model="inputValue.input13" label="Username" placeholder="Enter email" :active="true"/>
+  <spr-input-email v-model="inputValue.input14" label="Username" placeholder="Enter email" :active="true"/>
 </div>
 
 ```vue
@@ -299,7 +318,7 @@ const inputValueEmail = ref('');
 ## Password Input
 
 <div>
-  <spr-input-password v-model="inputValue.input14" label="Password" placeholder="Enter password" :active="true"/>
+  <spr-input-password v-model="inputValue.input15" label="Password" placeholder="Enter password" :active="true"/>
 </div>
 
 ```vue
@@ -317,7 +336,7 @@ const inputValuePassword = ref('');
 ## URL Input
 
 <div>
-  <spr-input-url v-model="inputValue.input15" label="URL" placeholder="Enter url" :active="true" />
+  <spr-input-url v-model="inputValue.input16" label="URL" placeholder="Enter url" :active="true" />
 </div>
 
 ```vue
@@ -360,5 +379,6 @@ const inputValue = ref({
   input13: '',
   input14: '',
   input15: '',
+  input16: '',
 });
 </script>

@@ -42,7 +42,7 @@ export const textAreaPropTypes = {
 };
 
 export const textAreaEmitTypes = {
-  'update:modelValue': (evt: KeyboardEvent): evt is KeyboardEvent => evt instanceof KeyboardEvent,
+  'update:modelValue': (value: string) => typeof value === 'string',
 };
 
 export type TextAreaEmitTypes = { 'update:modelValue': typeof textAreaEmitTypes };

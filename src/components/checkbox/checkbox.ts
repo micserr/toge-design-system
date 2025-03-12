@@ -25,7 +25,9 @@ export const checkboxPropTypes = {
   },
 };
 
-export const checkboxEmitTypes = {};
+export const checkboxEmitTypes = {
+  'update:modelValue': (value: boolean) => typeof value === 'boolean',
+};
 
 export type CheckboxPropTypes = ExtractPropTypes<typeof checkboxPropTypes>;
 export type CheckboxEmitTypes = typeof checkboxEmitTypes;

@@ -1003,6 +1003,12 @@ This is only applicable to selected components, such as form input fields. You c
       <td>false</td>
     </tr>
     <tr>
+      <td>disabled</td>
+      <td>If set, allows to disabled popper on click to the wrapper</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
       <td>@get-selected-item</td>
       <td>Event emitted when a selection is made. You will get the selected item (or items in case of multi-select).</td>
       <td>Function</td>

@@ -55,7 +55,7 @@ export const fileUploadPropTypes = {
   fileTypes: {
     type: Array as PropType<(typeof FILE_UPLOAD_VALID_TYPE)>,
     validator: (fileTypes: (typeof FILE_UPLOAD_VALID_TYPE)) => fileTypes.every(fileType => FILE_UPLOAD_VALID_TYPE.includes(fileType)),
-    default: FILE_UPLOAD_VALID_TYPE, // If null, accept all file types
+    default: () => [...FILE_UPLOAD_VALID_TYPE], // If null, accept all file types
   },
   showError: {
     type: Boolean,

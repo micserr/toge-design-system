@@ -1,16 +1,16 @@
 <template>
   <div :class="paginationClasses.baseClass">
-    <spr-dropdown 
+    <spr-dropdown
       :id="dropdownId"
-      :menu-list="dropdownSelection" 
+      :menu-list="dropdownSelection"
       dropdown-type="single-select"
       placement="bottom"
-      @get-selected-item="handleSelectedItem"
       :class="paginationClasses.dropdownClass"
+      @get-selected-item="handleSelectedItem"
     >
       <spr-input v-model="computeSelectedRowCount" :class="paginationClasses.dropdownInputFieldClass" :readonly="true">
         <template #icon>
-          <Icon icon="ph:caret-down-bold" :class="paginationClasses.inputFieldIconClass"/>
+          <Icon icon="ph:caret-down-bold" :class="paginationClasses.inputFieldIconClass" />
         </template>
       </spr-input>
     </spr-dropdown>
@@ -20,24 +20,36 @@
         {{ computeRowRange }}
       </div>
       <div :class="paginationClasses.navigationContainerClass">
-        <spr-button has-icon :class="paginationClasses.navigationButtonClass" :disabled="disabledNext" @click="previous" >
-          <Icon icon="ph:caret-left"/>
+        <spr-button
+          has-icon
+          :class="paginationClasses.navigationButtonClass"
+          :disabled="disabledNext"
+          @click="previous"
+        >
+          <Icon icon="ph:caret-left" />
         </spr-button>
-        <spr-button has-icon :class="paginationClasses.navigationButtonClass" :disabled="disabledPrevious" @click="next" >
-          <Icon icon="ph:caret-right"/>
+        <spr-button
+          has-icon
+          :class="paginationClasses.navigationButtonClass"
+          :disabled="disabledPrevious"
+          @click="next"
+        >
+          <Icon icon="ph:caret-right" />
         </spr-button>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang='ts'>
-import SprInput from '@/components/input/input.vue';
-import SprButton from '@/components/button/button.vue';
-import SprDropdown from "@/components/dropdown/dropdown.vue";
+<script setup lang="ts">
 import { Icon } from '@iconify/vue';
+
 import { tablePaginationEmitTypes, tablePaginationPropTypes } from './table-pagination';
 import { useTablePagination } from './use-table-pagination';
+
+import SprInput from '@/components/input/input.vue';
+import SprButton from '@/components/button/button.vue';
+import SprDropdown from '@/components/dropdown/dropdown.vue';
 
 const emit = defineEmits(tablePaginationEmitTypes);
 
@@ -53,8 +65,6 @@ const {
   disabledNext,
   disabledPrevious,
   dropdownSelection,
-  dropdownId
+  dropdownId,
 } = useTablePagination(props, emit);
-
-
 </script>

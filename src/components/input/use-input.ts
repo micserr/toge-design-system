@@ -21,7 +21,7 @@ export const useInput = (
   slots: Record<string, unknown>,
   emit: SetupContext<InputEmitTypes>['emit'],
 ) => {
-  const { preValue, active, error, disabled, readonly, offsetSize } = toRefs(props);
+  const { preValue, active, error, disabled, offsetSize } = toRefs(props);
   const modelValue = useVModel(props, 'modelValue', emit);
 
   const inputClasses: ComputedRef<InputClasses> = computed(() => {

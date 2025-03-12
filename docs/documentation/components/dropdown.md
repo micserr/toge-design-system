@@ -942,6 +942,8 @@ const handleInfiniteScrollTrigger = () => {
 
 This is only applicable to selected components, such as form input fields. You can learn more in the <a href='/documentation/components/input.html' target='_blank'>Input Form</a>.
 
+To disable the popper from showing when the wrapper is clicked, pass the disabled prop.
+
 ## Dropdown API
 
 <table>

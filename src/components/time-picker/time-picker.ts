@@ -12,8 +12,8 @@ export const timePickerPropTypes = {
     default: '',
   },
   error: {
-    type: String,
-    default: '',
+    type: Boolean,
+    default: false,
   },
   disabled: {
     type: Boolean,
@@ -46,6 +46,14 @@ export const timePickerPropTypes = {
   fullWidth: {
     type: Boolean,
     default: false,
+  },
+  id: {
+    type: String,
+    default: 'time-picker',
+  },
+  helperText: {
+    type: String,
+    default: '',
   },
 };
 export const timePickerEmitTypes = {

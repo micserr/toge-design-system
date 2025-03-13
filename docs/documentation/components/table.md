@@ -3,7 +3,7 @@
 ## Basic Usage
 
 <div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
-  <spr-table action :headers="headers" :data-table="data" variant="white">
+  <spr-table action :headers="headers" :data-table="data" variant="white" >
     <div>
       Customize your content here!
     </div>
@@ -225,8 +225,8 @@ const data = ref([
   // Fill this with your data
 ]);
 
-const totalItems = ref(100)
-const currentPage = ref(2)
+const totalItems = ref(100);
+const currentPage = ref(2);
 const dropdownSelection = [
   { text: 10, value: 10 },
   { text: 20, value: 20 },
@@ -247,7 +247,7 @@ const handlePrevious = () => {
     currentPage.value--;
   }
 
-  fetchItems(currentPage.value)
+  fetchItems(currentPage.value);
 };
 
 const handleNext = () => {
@@ -257,14 +257,14 @@ const handleNext = () => {
     currentPage.value++;
   }
 
-  fetchItems(currentPage.value)
+  fetchItems(currentPage.value);
 };
 
 const fetchItems = computed((page) => {
   const response = apiCall(page);
-  
-  data.value = parse(response)
-})
+
+  data.value = parse(response);
+});
 </script>
 ```
 
@@ -318,6 +318,137 @@ const data = ref([
 const handleSort = (e) => {
   console.log('sort', e);
 };
+</script>
+```
+
+## Sorting
+
+<div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
+  <spr-table action :headers="headers" :data-table="data" variant="white" @onSort="getSortOrder()" sortOrder>
+    <div>
+      Customize your content here!
+    </div>
+    <template #action="{ row }">
+      <spr-lozenge :label="row.status.title" :tone="row.status.title.toLowerCase()" />
+    </template>
+    <template #action-name>
+      Status
+    </template>
+  </spr-table>
+</div>
+
+```vue
+<template>
+  <spr-table action :headers="headers" :data-table="data" variant="white" @onSort="getSortOrder()" sortOrder>
+    <div>Customize your content here!</div>
+    <template #action="{ row }">
+      <spr-lozenge :label="row.status.title" :tone="row.status.title.toLowerCase()" />
+    </template>
+    <template #action-name> Status </template>
+  </spr-table>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const headers = ref([
+  { field: 'name', name: 'Role Name', sort: true, hasAvatar: true, hasSubtext: true },
+  { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false },
+]);
+
+const data = ref([
+  {
+    name: {
+      title: 'Shift',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Success',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+]);
+
+const sortOrder = ref('asc');
+const getSortOrder = () => {
+  sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc';
+  console.log(sortOrder.value);
+  return sortOrder.value;
+};
+</script>
+```
+
+## Badge
+
+Badges can have different color schemes to indicate various statuses, such as `disabled`, `brand`, `danger`, or `information`.
+
+<div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
+  <spr-table action :headers="headersWithBadge" :data-table="data">
+    <div>
+      Customize your content here!
+    </div>
+    <template #action="{ row }">
+      <spr-lozenge :label="row.status.title" :tone="row.status.title.toLowerCase()" />
+    </template>
+    <template #action-name>
+      Status
+    </template>
+  </spr-table>
+</div>
+
+```vue
+<template>
+  <spr-table action :headers="headersWithBadge" :data-table="data">
+    <div>Customize your content here!</div>
+    <template #action="{ row }">
+      <spr-lozenge :label="row.status.title" :tone="row.status.title.toLowerCase()" />
+    </template>
+    <template #action-name> Status </template>
+  </spr-table>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const headersWithBadge = ref([
+  {
+    field: 'name',
+    name: 'Role Name',
+    sort: true,
+    hasAvatar: true,
+    hasSubtext: true,
+    badgeText: '1',
+    badgeVariant: 'brand',
+  },
+  { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false },
+]);
+
+const data = ref([
+  {
+    name: {
+      title: 'Shift',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Success',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+]);
 </script>
 ```
 
@@ -431,7 +562,7 @@ const handleSort = (e) => {
 </table>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { ref, computed } from 'vue'
   import SprTable from "@/components/table/table.vue";
   import SprTablePagination from "@/components/table/table-pagination/table-pagination.vue";
   import SprButton from '@/components/button/button.vue';
@@ -442,6 +573,11 @@ const handleSort = (e) => {
   const headers = ref([
   { field: 'name', name: 'Role Name', sort: true, hasAvatar: true, hasSubtext: true },
   { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false },
+]);
+
+  const headersWithBadge = ref([
+  { field: 'name', name: 'Role Name', sort: true, hasAvatar: true, hasSubtext: true, badgeText:'1', badgeVariant:'brand' },
+  { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false, badgeText:'2', badgeVariant:'danger'  },
 ]);
 
 const data = ref([
@@ -584,4 +720,12 @@ const handleNext = () => {
 const handleSort  = (e) => {
   console.log('sort', e);
 }
+
+const sortOrder = ref('asc')
+const getSortOrder = () => {
+  sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc'
+  console.log(sortOrder.value)
+  return sortOrder.value
+}
+
 </script>

@@ -5,7 +5,7 @@ import { useVModel } from '@vueuse/core';
 import classNames from 'classnames';
 
 export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitTypes>['emit']) => {
-  const { options, filterMenu, filterData, loading, disabled, filterable } = toRefs(props);
+  const { options, filterMenu, filterData, loading, filterable, filling } = toRefs(props);
   const selectedValue = useVModel(props, 'modelValue', emit);
   const isFilterOpen = ref<boolean>(false);
   const searchText = useVModel(props, 'search', emit);
@@ -22,25 +22,20 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
   const selectedFilters = ref<FilterPropsInterface['optionDetails'][]>([]);
 
   const getFiltereredOption = computed<FilterPropsInterface['optionDetails'][]>(() => {
+    if (filling.value) return options.value;
     getMappedValues();
     return options.value?.filter((option) => option.text.toLowerCase().includes(searchValue.value.toLowerCase())) || [];
   });
 
   const getFiltereredMenuOption = computed<FilterPropsInterface['optionDetails'][]>(() => {
+    if (loading.value) return;
+
     return (
       filterData.value?.filter((option) =>
         option.text.toLowerCase().includes(filterMenuSearchvalue.value.toLowerCase()),
       ) || []
     );
   });
-
-  const toggleDropdown = (event: FocusEvent) => {
-    if (disabled.value) {
-      event.preventDefault();
-      return;
-    }
-    isFilterOpen.value = !isFilterOpen.value;
-  };
 
   const getMappedValues = () => {
     if (!options.value?.length) return;
@@ -128,9 +123,6 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
 
   const filterClass = computed(() => {
     const MainClasses = classNames('spr-relative spr-inline-block spr-w-full');
-    const MainOptionWrapperClasses = classNames(
-      'spr-background-color spr-border-color-weak spr-absolute spr-left-0 spr-right-0 spr-top-full spr-z-10 spr-mt-1 spr-rounded-border-radius-md spr-border spr-border-solid',
-    );
     const MenuOptionClasses = classNames(
       'spr-border-color-weak spr-border spr-border-x-0 spr-border-t-0 spr-border-solid spr-p-size-spacing-2xs',
       'spr-flex spr-items-center',
@@ -155,7 +147,6 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
 
     return {
       MainClasses,
-      MainOptionWrapperClasses,
       MenuOptionClasses,
       PopperWrapperClasses,
       PopperHeaderClasses,
@@ -180,7 +171,7 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     filterMenuSearchvalue,
     mappedFilterMenuList,
     filterClass,
-    toggleDropdown,
+
     selectAllOptions,
     getMappedFilterData,
     saveSelectedFilter,

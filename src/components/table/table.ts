@@ -103,7 +103,6 @@ export const tablePropTypes = {
   sortOrder: {
     type: String as PropType<(typeof TABLE_SORT)[number]>,
     validator: (value: (typeof TABLE_SORT)[number]) => TABLE_SORT.includes(value),
-    default: 'asc',
   },
 
   variant: {

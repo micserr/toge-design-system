@@ -53,3 +53,10 @@ vite.config.ts.*
 
 # unplugin
 *.d.ts
+
+# Cursor IDE files
+.cursor
+**/*.mdc
+.cursor-test
+.cursor-cache
+.cursor-data

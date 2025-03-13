@@ -1,3 +1,6 @@
+---
+outline: 'deep'
+---
 # Input
 
 UI element that allows users to enter and edit text or other data.
@@ -261,7 +264,9 @@ const inputValue = ref('');
 </script>
 ```
 
-## Search Input
+## Input Types
+
+### Search Input
 
 <div>
    <spr-input-search v-model="inputValue.input12" label="Search" placeholder="Search ..."/>
@@ -279,7 +284,7 @@ const inputValueSearch = ref('');
 </script>
 ```
 
-## Username Input
+### Username Input
 
 <div>
   <spr-input-username v-model="inputValue.input13" label="Username" placeholder="Enter username" :active="true"/>
@@ -297,7 +302,7 @@ const inputValueUsername = ref('');
 </script>
 ```
 
-## Email Input
+### Email Input
 
 <div>
   <spr-input-email v-model="inputValue.input14" label="Username" placeholder="Enter email" :active="true"/>
@@ -315,7 +320,7 @@ const inputValueEmail = ref('');
 </script>
 ```
 
-## Password Input
+### Password Input
 
 <div>
   <spr-input-password v-model="inputValue.input15" label="Password" placeholder="Enter password" :active="true"/>
@@ -333,7 +338,7 @@ const inputValuePassword = ref('');
 </script>
 ```
 
-## URL Input
+### URL Input
 
 <div>
   <spr-input-url v-model="inputValue.input16" label="URL" placeholder="Enter url" :active="true" />
@@ -351,17 +356,39 @@ const inputValueURL = ref('');
 </script>
 ```
 
+### Contact Number Input
+This component utilizes `libphonenumber-js` to parse and format the input on blur. Masking of contact number on change will be implemented in the future.
+
+<div>
+  <spr-input-contact-number v-model="inputValue.input17" label="Contact Number" placeholder="Enter contact number" class="spr-mb-size-spacing-3xs"/>
+  <label>Output: {{ inputValue.input17 }}</label>
+</div>
+
+```vue
+<template>
+  <div>
+  <spr-input-contact-number v-model="inputValueContactNumber" label="Contact Number" placeholder="Enter contact number" class="spr-mb-size-spacing-3xs"/>
+  <label>Output: {{ inputValueContactNumber }}</label>
+</div>
+
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-import { Icon } from '@iconify/vue';
+const inputValueContactNumber = ref('');
+</script>
+</template>
+```
 
+<script lang="ts" setup>
+import { ref } from 'vue';
+import { Icon } from '@iconify/vue';
 import SprInput from "@/components/input/input.vue"
 import SprInputSearch from "@/components/input/input-search/input-search.vue"
 import SprInputUsername from "@/components/input/input-username/input-username.vue"
 import SprInputEmail from "@/components/input/input-email/input-email.vue"
 import SprInputPassword from "@/components/input/input-password/input-password.vue"
 import SprInputUrl from "@/components/input/input-url/input-url.vue"
+import SprInputContactNumber from "@/components/input/input-contact-number/input-contact-number.vue"
 
 const inputValue = ref({
   input1: '',
@@ -380,5 +407,6 @@ const inputValue = ref({
   input14: '',
   input15: '',
   input16: '',
+  input17: '',
 });
 </script>

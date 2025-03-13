@@ -15,7 +15,7 @@ export const INPUT_TYPES = [
   'hidden',
   'image',
   'month',
-  'number',
+  'contact-number',
   'password',
   'radio',
   'range',

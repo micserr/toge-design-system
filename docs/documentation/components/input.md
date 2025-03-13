@@ -360,15 +360,15 @@ const inputValueURL = ref('');
 This component utilizes `libphonenumber-js` to parse and format the input on blur. Masking of contact number on change will be implemented in the future.
 
 <div>
-  <spr-input-contact-number v-model="inputValue.input16" label="Contact Number" placeholder="Enter contact number" class="spr-mb-size-spacing-3xs"/>
-  <label>Output: {{ inputValue.input16 }}</label>
+  <spr-input-contact-number v-model="inputValue.input17" label="Contact Number" placeholder="Enter contact number" class="spr-mb-size-spacing-3xs"/>
+  <label>Output: {{ inputValue.input17 }}</label>
 </div>
 
 ```vue
 <template>
   <div>
   <spr-input-contact-number v-model="inputValueContactNumber" label="Contact Number" placeholder="Enter contact number" class="spr-mb-size-spacing-3xs"/>
-  <label>Output: {{ inputValue.input16 }}</label>
+  <label>Output: {{ inputValueContactNumber }}</label>
 </div>
 
 <script lang="ts" setup>

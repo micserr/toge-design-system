@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.11.6 (2025-03-13)
+
+- Feat
+  - Added table row on click functionality ([#8c23d194](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8c23d19499a2ac0aa7ae3771de60aa6955ef7b5c?refName=refs%2Fheads%2F2025%2Ffeature%2Fjames%2Ftable-row-click) by @jmanalang)
+
 ## 1.11.5 (2025-03-13)
 
 - Fix

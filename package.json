@@ -1,7 +1,7 @@
 {
   "name": "design-system-next",
   "private": false,
-  "version": "1.11.8",
+  "version": "1.12.0",
   "main": "./dist/design-system-next.js",
   "module": "./dist/design-system-next.js",
   "repository": {
@@ -47,6 +47,7 @@
     "classnames": "^2.5.1",
     "dayjs": "^1.11.13",
     "floating-vue": "^5.2.2",
+    "libphonenumber-js": "^1.12.5",
     "pinia": "^2.3.1",
     "stylelint": "^16.12.0",
     "stylelint-config-recess-order": "^5.1.1",

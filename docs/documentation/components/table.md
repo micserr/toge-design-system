@@ -541,6 +541,14 @@ const data = ref([
       surface
       </td>
     </tr>
+    <tr>
+      <td>isRowClickable</td>
+      <td>Make table row clickable and emits onRowClick</td>
+      <td>boolean</td>
+      <td>
+        false
+      </td>
+    </tr>
   </tbody>
 </table>
 
@@ -557,6 +565,10 @@ const data = ref([
     <tr>
       <td>onSort</td>
       <td>Emits when sorting is triggered</td>
+    </tr>
+     <tr>
+      <td>onRowClick</td>
+      <td>Emits table data and row index when table row is clicked</td>
     </tr>
   </tbody>
 </table>

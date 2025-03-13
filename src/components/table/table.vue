@@ -57,7 +57,7 @@
           </tr>
         </thead>
         <tbody v-if="sortedData.length > 0 && !loading">
-          <tr v-for="(item, keyIndex) in sortedData" :key="keyIndex" :class="getTableClasses.tableRowClasses">
+          <tr v-for="(item, keyIndex) in sortedData" :key="keyIndex" :class="getTableClasses.tableRowClasses" @click="handleRowClick(item, keyIndex)">
             <td v-for="(column, headerKey) in headers" :key="headerKey" :class="getTableClasses.tableDataClasses">
               <div v-if="sortedData[keyIndex][column.field]" class="spr-flex spr-flex-row spr-items-center spr-gap-2">
                 <spr-avatar
@@ -129,6 +129,6 @@ const props = defineProps(tablePropTypes);
 const emit = defineEmits(tableEmitTypes);
 const slots = useSlots();
 
-const { sortedData, sortData, getHeaderCount, updateSearchField, hasTableActions, searchField, getTableClasses } =
+const { sortedData, sortData, getHeaderCount, updateSearchField, hasTableActions, searchField, getTableClasses, handleRowClick } =
   useTable(props, emit, slots);
 </script>

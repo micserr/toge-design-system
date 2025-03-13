@@ -999,7 +999,7 @@ const datePickerModel = ref({
   date1: "",
   date2: "",
   date3: "",
-  date4: "",
+  date4: "09-11-1997",
   date5: "10-12-2025",
   date6: "",
   date7: "",

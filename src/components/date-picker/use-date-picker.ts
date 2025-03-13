@@ -58,7 +58,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
           error.value || datePickerErrors.value.length > 0,
 
         // Disabled State
-        'spr-background-color-disabled spr-border-white-100 focus:spr-border-white-100 spr-cursor-not-allowed spr-text-color-on-fill-disabled':
+        'spr-background-color-disabled spr-border-white-100 focus:spr-border-white-100 spr-cursor-not-allowed !spr-text-white-400':
           disabled.value,
 
         // Readonly State
@@ -68,9 +68,11 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     const datePickerInputClasses = classNames(
       'spr-h-full spr-border-none spr-bg-transparent spr-outline-none',
-      'spr-text-color-strong spr-font-size-200',
+      'spr-font-size-200',
       'placeholder:spr-text-color-weak',
       {
+        'spr-text-color-strong': !disabled.value && !readonly.value,
+        'spr-text-color-on-fill-disabled': disabled.value || readonly.value,
         'spr-cursor-not-allowed': disabled.value,
       },
     );
@@ -600,10 +602,9 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     );
   };
 
-  const getDatePickerInputClasses = (width: string) => [
-    datePickerClasses.value.datePickerInputClasses,
-    `spr-w-[${width}] spr-min-w-[${width}]`,
-  ];
+  const getDatePickerInputClasses = (width: string) => {
+    return classNames(datePickerClasses.value.datePickerInputClasses, `spr-w-[${width}] spr-min-w-[${width}]`);
+  };
 
   const getTabClasses = (tab: string) => {
     return classNames('spr-cursor-pointer', {
@@ -716,8 +717,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   const handleValidateDate = useDebounceFn(() => {
     const selectedDate = `${monthInput.value}-${dateInput.value}-${yearInput.value}`;
 
-    datePickerErrors.value = [];
-
     if (monthInput.value && dateInput.value && yearInput.value) {
       // Check if the date is valid
       const isDateValid = dayjs(selectedDate, 'MM-DD-YYYY').isValid();
@@ -753,10 +752,11 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
       handleInputEmits();
     }
-  }, 1000);
+  }, 500);
 
   const handleInputEmits = () => {
-    emit('update:modelValue', `${monthInput.value}-${dateInput.value}-${yearInput.value}`);
+    emitDateFormats();
+
     emit('getDateErrors', datePickerErrors.value);
   };
 
@@ -773,6 +773,14 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
           if (dateInputRef.value) dateInputRef.value.focus();
         });
       }
+    }
+  };
+
+  const handleTabClick = (tab: string) => {
+    if (currentTab.value === tab) {
+      currentTab.value = 'tab-calendar';
+    } else {
+      currentTab.value = tab;
     }
   };
 
@@ -820,6 +828,10 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
         emit('getDateFormats', formats);
       }
+    } else {
+      emit('getDateFormats', {
+        default: `${monthInput.value}-${dateInput.value}-${yearInput.value}`,
+      });
     }
   };
 
@@ -830,8 +842,11 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   const emitYearList = () => {
     emit('getYearList', yearTabPageData.value.yearsArray);
   };
-
   // #endregion - Helper Methods
+
+  watch(modelValue, () => {
+    setModelValue();
+  });
 
   watch(datePopperState, (newValue) => {
     if (newValue === false) {
@@ -926,5 +941,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     handleMonthInput,
     handleDateInput,
     handleYearInput,
+    handleTabClick,
   };
 };

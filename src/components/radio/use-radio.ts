@@ -26,7 +26,7 @@ export const useRadioButton = (props: RadioPropTypes) => {
       'spr-inline-block spr-w-4 spr-h-4 spr-rounded-full spr-border-2 spr-border-solid spr-mr-2 spr-shrink-0',
       'spr-transition spr-duration-150 spr-ease-in-out',
       {
-        'group-active:spr-scale-90': !disabled.value,
+        'group-active:spr-scale-95': !disabled.value,
       },
 
       // Hover State

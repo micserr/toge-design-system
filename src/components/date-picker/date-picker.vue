@@ -27,7 +27,7 @@
             <input
               ref="monthInputRef"
               v-model="monthInput"
-              :class="getDatePickerInputClasses('36px')"
+              :class="['spr-w-[38px] spr-min-w-[38px]', datePickerClasses.datePickerInputClasses]"
               type="text"
               placeholder="MMM"
               maxlength="3"
@@ -42,7 +42,7 @@
             <input
               ref="dateInputRef"
               v-model="dateInput"
-              :class="['spr-text-center', getDatePickerInputClasses('20px')]"
+              :class="['spr-w-[24px] spr-min-w-[24px] spr-text-center', datePickerClasses.datePickerInputClasses]"
               type="text"
               placeholder="DD"
               maxlength="2"
@@ -55,7 +55,7 @@
             <input
               ref="yearInputRef"
               v-model="yearInput"
-              :class="getDatePickerInputClasses('42px')"
+              :class="['spr-w-[42px] spr-min-w-[42px]', datePickerClasses.datePickerInputClasses]"
               type="text"
               placeholder="YYYY"
               maxlength="4"
@@ -85,7 +85,7 @@
                 :class="getTabClasses('tab-months')"
                 variant="secondary"
                 size="small"
-                @click="currentTab = 'tab-months'"
+                @click="handleTabClick('tab-months')"
               >
                 {{ getMonthObject('monthValue', calendarTabPageData.selectedMonth)?.fullText }}
               </spr-button>
@@ -93,7 +93,7 @@
                 :class="getTabClasses('tab-years')"
                 variant="secondary"
                 size="small"
-                @click="currentTab = 'tab-years'"
+                @click="handleTabClick('tab-years')"
               >
                 {{ calendarTabPageData.selectedYear }}
               </spr-button>
@@ -308,7 +308,6 @@ const {
   calendarTabIsDateIsDisabled,
   calendarTabHandleDateInput,
   getMonthObject,
-  getDatePickerInputClasses,
   getTabClasses,
   isDatePickerPopperDisabled,
   calendarTabPrevMonth,
@@ -319,9 +318,10 @@ const {
   yearTabGoToNextPage,
   yearTabIsPreviousButtonDisabled,
   yearTabIsNextButtonDisabled,
+  yearTabHandleSelectedYear,
   handleMonthInput,
   handleDateInput,
   handleYearInput,
-  yearTabHandleSelectedYear,
+  handleTabClick,
 } = useDatePicker(props, emit);
 </script>

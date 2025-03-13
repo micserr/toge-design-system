@@ -215,6 +215,12 @@ const offline = [
       <td>Boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td>viewOnly</td>
+      <td>Disables the event click trigger</td>
+      <td>Boolean</td>
+      <td>true</td>
+    </tr>
   </tbody>
 </table>
 

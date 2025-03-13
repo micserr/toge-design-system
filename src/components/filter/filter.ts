@@ -46,7 +46,7 @@ export const filterPropTypes = {
     default: false,
   },
 
-  refreshing: {
+  filling: {
     type: Boolean,
     default: false,
   },
@@ -54,6 +54,10 @@ export const filterPropTypes = {
   search: {
     type: String,
     default: '',
+  },
+  width: {
+    type: String,
+    default: '100%',
   },
 };
 

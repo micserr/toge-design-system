@@ -27,10 +27,10 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
 
   const sortData = (field: string) => {
     if (sortField.value === field) {
-      tableSortOrder.value = sortOrder.value ? sortOrder.value : tableSortOrder.value === 'asc' ? 'desc' : 'asc';
+      tableSortOrder.value = sortOrder.value || tableSortOrder.value === 'asc' ? 'desc' : 'asc';
     } else {
       sortField.value = field;
-      tableSortOrder.value = sortOrder.value ? sortOrder.value : 'asc';
+      tableSortOrder.value = sortOrder.value || 'asc';
     }
 
     emit('onSort', { field: field, sortOrder: tableSortOrder.value });

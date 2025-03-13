@@ -7,7 +7,7 @@ A badge is a small, visual indicator used to convey information, status, or coun
 <ul>
   <li><strong>Text:</strong>  Badges typically contain a short piece of text or a number to convey information.
   </li>
-  <li><strong>Variant:</strong>  Badges can have different color schemes to indicate various statuses, such as success, danger, or information.
+  <li><strong>Variant:</strong>  Badges can have different color schemes to indicate various statuses, such as disabled, brand, danger, or information.
   </li>
   <li><strong>Size:</strong> Badges can come in different sizes to fit various design requirements. (e.g, "big", "small", tiny).
   </li>

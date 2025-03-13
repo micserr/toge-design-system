@@ -1,18 +1,20 @@
 <template>
-  <input
-    :id="props.id"
-    ref="radioRef"
-    v-model="proxyValue"
-    type="radio"
-    :name="props.name"
-    :value="props.value"
-    :disabled="props.disabled"
-    :class="radioClasses.baseClasses"
-  />
-  <label ref="radioRef" :for="props.id" :disabled="props.disabled" :class="radioClasses.labelClasses">
-    <span :class="radioClasses.baseIndicatorClasses"></span>
-    <slot />
-  </label>
+  <div class="spr-relative">
+    <input
+      :id="props.id"
+      ref="radioRef"
+      v-model="proxyValue"
+      type="radio"
+      :name="props.name"
+      :value="props.value"
+      :disabled="props.disabled"
+      :class="radioClasses.baseClasses"
+    />
+    <label ref="radioRef" :for="props.id" :disabled="props.disabled" :class="radioClasses.labelClasses">
+      <span :class="radioClasses.baseIndicatorClasses"></span>
+      <slot />
+    </label>
+  </div>
 </template>
 
 <script lang="ts" setup>

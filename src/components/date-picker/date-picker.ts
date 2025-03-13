@@ -13,6 +13,7 @@ export const datePickerPropTypes = {
   },
   modelValue: {
     type: String,
+    default: '',
     required: true,
   },
   label: {

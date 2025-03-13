@@ -45,6 +45,7 @@ export const useInput = (
         'spr-pr-[5%]': slots.icon,
         'spr-pl-size-spacing-lg': slots.prefix,
         '!spr-pl-size-spacing-3xl': props.type === 'url',
+        '!spr-pl-[57px]': props.type === 'contact-number',
         'spr-pr-[93%] sm:spr-pr-[85%]': offsetSize.value === 'xs' && slots.trailing,
         'spr-pr-[90%] sm:spr-pr-[80%]': offsetSize.value === 'sm' && slots.trailing,
         'spr-pr-[50%]': offsetSize.value === 'md' && slots.trailing,
@@ -63,6 +64,7 @@ export const useInput = (
       {
         '!spr-text-tomato-600': error.value,
         'spr-font-size-200 !spr-top-4 ': props.type === 'url',
+        'spr-top-4 spr-z-10': props.type === 'contact-number',
       },
     );
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.12.0 (2025-03-13)
+
+- Feat
+  - Input contact number ([#bf8098c7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/bf8098c753ebbd09fc86e73cacbcaac0a3517bd9?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FINPUT_CONTACT_NUMBER) by @jbanares)
+
 ## 1.11.8 (2025-03-13)
 
 - Fix

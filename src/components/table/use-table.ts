@@ -1,6 +1,6 @@
 import { ref, computed, toRefs, Slots } from 'vue';
 
-import type { TablePropTypes, TableEmitTypes, TABLE_SORT } from './table';
+import type { TablePropTypes, TableEmitTypes, TABLE_SORT, TableData } from './table';
 import type { SetupContext } from 'vue';
 
 import classNames from 'classnames';
@@ -46,6 +46,12 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     () => props.tableActions.search || props.tableActions.filter || props.tableActions.option,
   );
 
+  const handleRowClick = (rowData: TableData, rowKey: number) => {
+    if (props.isRowClickable) {
+      emit('onRowClick', rowData, rowKey)
+    }
+  }
+
   const getTableClasses = computed(() => {
     const tableWrapperClasses =
       'spr-table-wrapper spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid';
@@ -69,7 +75,9 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     const tableHeaderActionsClasses = 'spr-border-color-weak spr-w-full spr-border spr-border-solid';
     const tableCellSlotClasses =
       'spr-background-color-surface spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-uppercase';
-    const tableRowClasses = 'hover:spr-background-color-hover spr-min-h-[60px]';
+    const tableRowClasses = classNames('hover:spr-background-color-hover spr-min-h-[60px]', {
+      'spr-cursor-pointer': props.isRowClickable
+    });
     const tableDataClasses =
       'spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-3';
     const tableRowActionClasses =
@@ -93,7 +101,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
   return {
     sortData,
     updateSearchField,
-
+    handleRowClick,
     sortedData,
     getHeaderCount,
     hasTableActions,

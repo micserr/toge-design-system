@@ -110,12 +110,19 @@ export const tablePropTypes = {
     validator: (value: (typeof TABLE_VARIANT)[number]) => TABLE_VARIANT.includes(value),
     default: 'surface',
   },
+
+  isRowClickable: {
+    type: Boolean as PropType<boolean>,
+    default: false
+  }
 };
 
 export const tableEmitTypes = {
   'update:searchModel': (value: string): value is string => typeof value === 'string',
   onSort: (value: SortEvent): value is SortEvent =>
     typeof value.field === 'string' && TABLE_SORT.includes(value.sortOrder),
+  onRowClick: (rowData: TableData, rowKey: number): rowData is TableData =>
+    typeof rowData === 'object' && typeof rowKey === 'number'
 };
 
 export type TablePropTypes = ExtractPropTypes<typeof tablePropTypes>;

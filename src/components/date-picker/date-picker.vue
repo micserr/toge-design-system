@@ -249,20 +249,20 @@
       </template>
     </Menu>
     <template v-if="datePickerErrors.length > 0">
-      <p :class="datePickerClasses.datePickerInputHelperClasses">
+      <div v-if="props.displayHelper" :class="datePickerClasses.datePickerInputHelperClasses">
         <slot name="helperMessage">
           <Icon icon="ph:warning-circle-fill" width="20px" height="20px" />
           <span>{{ datePickerErrors[0].message }}</span>
         </slot>
-      </p>
+      </div>
     </template>
     <template v-else>
-      <p v-if="props.displayHelper" :class="datePickerClasses.datePickerInputHelperClasses">
+      <div v-if="props.displayHelper" :class="datePickerClasses.datePickerInputHelperClasses">
         <slot name="helperMessage">
           <Icon v-if="props.helperIcon" :icon="props.helperIcon" width="20px" height="20px" />
           <span>{{ props.helperText }}</span>
         </slot>
-      </p>
+      </div>
     </template>
   </div>
 </template>

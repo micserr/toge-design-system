@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.11.4 (2025-03-12)
+
+- Fix
+  - Handle Dropdown Disable Popper ([#1343a379](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1343a379ee97adac26466b19f42f0006f8beb68d?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 1.11.3 (2025-03-12)
 
 - Fix

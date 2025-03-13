@@ -1,7 +1,7 @@
 {
   "name": "design-system-next",
   "private": false,
-  "version": "1.11.3",
+  "version": "1.11.4",
   "main": "./dist/design-system-next.js",
   "module": "./dist/design-system-next.js",
   "repository": {
@@ -26,6 +26,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
+    "watch-build": "vue-tsc && vite build --watch",
     "types": "vue-tsc",
     "preview": "vite preview",
     "lint:script": "eslint \"**/*.{js,ts,vue}\"",

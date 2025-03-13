@@ -79,6 +79,10 @@ export const dropdownPropTypes = {
     validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
     default: 'absolute',
   },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const dropdownEmitTypes = {

@@ -7,6 +7,7 @@
     :triggers="[]"
     :popper-hide-triggers="[]"
     :auto-hide="false"
+    :disabled="isDropdownPopperDisabled"
     :container="`#${props.id}`"
     :strategy="
       props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
@@ -62,8 +63,12 @@ import SprList from '../list/list.vue';
 const props = defineProps(dropdownPropTypes);
 const emit = defineEmits(dropdownEmitTypes);
 
-const { dropdownPopperState, dropdownRef, preSelectedItems, dropdownMenuList, handleSelectedItem } = useDropdown(
-  props,
-  emit,
-);
+const {
+  dropdownPopperState,
+  dropdownRef,
+  preSelectedItems,
+  dropdownMenuList,
+  isDropdownPopperDisabled,
+  handleSelectedItem,
+} = useDropdown(props, emit);
 </script>

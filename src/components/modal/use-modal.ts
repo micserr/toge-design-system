@@ -52,7 +52,7 @@ export const useModal = (props: ModalPropTypes, emit: SetupContext<ModalEmitType
     );
 
     const contentClasses = classNames(
-      'spr-body-sm-regular spr-max-h-[calc(100vh-100px)] spr-overflow-y-auto spr-overflow-x-hidden',
+      'spr-body-sm-regular spr-max-h-[calc(100vh-200px)] spr-overflow-y-auto spr-overflow-x-hidden',
       {
         'spr-p-4 sm:spr-p-2': contentPadding.value,
       },

@@ -1,4 +1,4 @@
-import { ref, toRefs, onMounted, watch } from 'vue';
+import { ref, toRefs, computed, onMounted, watch } from 'vue';
 import { onClickOutside, useInfiniteScroll } from '@vueuse/core';
 
 import type { SetupContext } from 'vue';
@@ -10,7 +10,7 @@ interface SelectedItem {
 }
 
 export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<DropdownEmitTypes>['emit']) => {
-  const { modelValue, menuList, searchString, multiSelect } = toRefs(props);
+  const { modelValue, menuList, searchString, multiSelect, disabled } = toRefs(props);
 
   const dropdownPopperState = ref<boolean>(false);
 
@@ -21,17 +21,19 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
   const initialMenuList = ref<{ text: string; value: string }[]>([]);
   const dropdownMenuList = ref<{ text: string; value: string }[]>([]);
 
+  const isDropdownPopperDisabled = computed(() => disabled.value);
+
+  const setDropdownMenuList = () => {
+    initialMenuList.value = menuList.value;
+    dropdownMenuList.value = initialMenuList.value;
+  };
+
   const handleSelectedItem = (item: SelectedItem) => {
     if (!multiSelect.value) {
       dropdownPopperState.value = false;
     }
 
     emit('get-selected-item', item);
-  };
-
-  const setDropdownMenuList = () => {
-    initialMenuList.value = menuList.value;
-    dropdownMenuList.value = initialMenuList.value;
   };
 
   const handleSearch = () => {
@@ -73,6 +75,7 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
     dropdownRef,
     preSelectedItems,
     dropdownMenuList,
+    isDropdownPopperDisabled,
     handleSelectedItem,
   };
 };

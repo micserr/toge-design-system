@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.12.1 (2025-03-13)
+
+- Fix
+  - Datepicker Spacing Issues Encountered ([#64f62be1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/64f62be1bd0c6355bc45c1b3fab8468a58cbbbf0?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 1.12.0 (2025-03-13)
 
 - Feat

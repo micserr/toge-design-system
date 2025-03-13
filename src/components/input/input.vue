@@ -32,7 +32,7 @@
       v-if="props.displayHelper"
       :class="[
         inputClasses.helperClasses,
-        'spr-font-size-200 spr-font-line-height-400 spr-font-normal',
+        'spr-body-sm-regular',
         'spr-flex spr-items-center spr-gap-size-spacing-5xs',
       ]"
     >

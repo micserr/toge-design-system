@@ -196,7 +196,9 @@
   }
   /* #endregion - Date Picker */
 
-  /* #endregion - Filter */
+  /* #endregion - Filter, time-picker */
+  #time-picker-wrapper-full-width,
+  #time-picker-wrapper,
   #filter-option-wrapper,
   #filter-menu-wrapper {
     @apply spr-background-color spr-border-color-weak spr-z-20 spr-overflow-x-hidden spr-rounded-[12px] spr-border spr-border-solid;
@@ -215,7 +217,10 @@
       }
     }
   }
-
+  #time-picker-wrapper {
+    @apply spr-max-w-[240px];
+  }
+  #time-picker-wrapper-full-width,
   #filter-option-wrapper {
     @apply spr-w-full;
   }
@@ -224,7 +229,7 @@
     @apply spr-min-w-[328px] spr-drop-shadow-md;
   }
 
-  /* #endregion - Filter */
+  /* #endregion - Filter, time-picker */
 }
 
 @layer utilities {

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.11.7 (2025-03-13)
+
+- Fix
+  - Commit 3d728473: Enhance time-picker component: update prop types, add helperText and id, and improve styling ([#3d728473](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3d7284733833d62bb1c4f4e6b58ab2a89e7480ce?refName=refs/heads/2025/Fix/andrea/time-picket-use-floating-vue) by @adestajo)
+
 ## 1.11.6 (2025-03-13)
 
 - Feat

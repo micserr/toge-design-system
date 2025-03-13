@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.11.7 (2025-03-13)
+
+- Fix
+  - Commit 3d728473: Enhance time-picker component: update prop types, add helperText and id, and improve styling ([#3d728473](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3d7284733833d62bb1c4f4e6b58ab2a89e7480ce?refName=refs/heads/2025/Fix/andrea/time-picket-use-floating-vue) by @adestajo)
+
+## 1.11.6 (2025-03-13)
+
+- Feat
+  - Added table row on click functionality ([#8c23d194](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8c23d19499a2ac0aa7ae3771de60aa6955ef7b5c?refName=refs%2Fheads%2F2025%2Ffeature%2Fjames%2Ftable-row-click) by @jmanalang)
+
+## 1.11.5 (2025-03-13)
+
+- Fix
+  - Commit b588ec0f: refactor: Update filter component layout and styles for improved usability ([#b588ec0f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b588ec0faff2b714d4f48a6b6e2c6024d38f32a1?refName=refs/heads/2025/Fix/andrea/filter-refactor) by @adestajo)
+  - Commit 3ca9888c: update table sorting when there's no define sortOrder attr ([#3ca9888c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3ca9888ce95204aafc4ef20add8da88dff2f0f25?refName=refs/heads/2025/Fix/andrea/filter-refactor) by @adestajo)
+
 ## 1.11.4 (2025-03-12)
 
 - Fix

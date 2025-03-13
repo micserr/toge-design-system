@@ -1,27 +1,44 @@
 <template>
-  <div :class="filterClass.MainClasses">
-    <spr-input
-      v-model="searchValue"
-      type="text"
-      :placeholder="placeholder"
-      :label="label"
-      :disabled="disabled"
-      @click="toggleDropdown"
-    >
-      <template #icon>
-        <Icon icon="ph:magnifying-glass" />
-      </template>
-    </spr-input>
+  <Menu
+    v-model:shown="isFilterOpen"
+    aria-id="filter-option-wrapper"
+    distance="4"
+    placement="bottom"
+    :triggers="['click']"
+    :popper-hide-triggers="[]"
+    :container="`#${props.id}`"
+    :auto-hide="false"
+    :style="{
+      width: props.width,
+    }"
+  >
+    <span :id="props.id">
+      <spr-input
+        v-model="searchValue"
+        type="text"
+        :placeholder="placeholder"
+        :label="label"
+        :disabled="disabled"
+        :style="{
+          width: props.width,
+        }"
+      >
+        <template #icon>
+          <Icon icon="ph:magnifying-glass" />
+        </template>
+      </spr-input>
+    </span>
 
-    <div v-if="isFilterOpen" :class="filterClass.MainOptionWrapperClasses">
+    <template #popper>
       <div :class="filterClass.MenuOptionClasses">
         <div v-if="filterMenu.length > 0 && filterable" class="spr-flex spr-items-center spr-gap-2">
           <Menu
             v-model:shown="isAddFilterVisible"
-            aria-id="filter-option-wrapper"
+            aria-id="filter-menu-wrapper"
             distance="4"
             placement="right-start"
             :triggers="['click']"
+            :auto-hide="false"
           >
             <spr-button has-icon variant="secondary" size="small">
               <Icon icon="ph:faders-horizontal" />
@@ -43,7 +60,7 @@
                     aria-id="filter-menu-wrapper"
                     placement="right-start"
                     :triggers="['click']"
-                    show-group="filter-option-wrapper"
+                    :auto-hide="false"
                   >
                     <spr-chips
                       :active="mappedFilterMenuList[menu.field].isFilterVisible"
@@ -102,6 +119,7 @@
                           >
                             <spr-checkbox
                               v-model="mappedMenuData[option.value].isSelected"
+                              class="spr-w-full"
                               :checked="mappedMenuData[option.value].isSelected"
                               :label="mappedMenuData[option.value].text"
                               :description="mappedMenuData[option.value].subtext"
@@ -149,7 +167,7 @@
       </div>
 
       <div
-        v-if="getFiltereredOption.length > 0 && !refreshing"
+        v-if="getFiltereredOption.length > 0 && !filling"
         class="spr-max-h-[264px] spr-space-y-size-spacing-6xs spr-overflow-auto spr-p-size-spacing-3xs"
       >
         <div
@@ -162,6 +180,7 @@
         >
           <spr-checkbox
             v-model="mappedFilterOption[option.value].isSelected"
+            class="spr-w-full"
             :checked="mappedFilterOption[option.value].isSelected"
             :label="mappedFilterOption[option.value].text"
             :description="mappedFilterOption[option.value].subtext"
@@ -169,15 +188,15 @@
         </div>
       </div>
       <div v-else>
-        <slot v-if="refreshing" name="loading-state">
+        <slot v-if="filling" name="loading-state">
           <div :class="filterClass.LoadingStateClasses">Loading...</div>
         </slot>
         <slot v-else name="empty-state">
           <div :class="filterClass.LoadingStateClasses">Result not found!</div>
         </slot>
       </div>
-    </div>
-  </div>
+    </template>
+  </Menu>
 </template>
 
 <script setup lang="ts">
@@ -187,7 +206,7 @@ import SprInput from '@/components/input/input.vue';
 import SprButton from '@/components/button/button.vue';
 import SprChips from '@/components/chips/chips.vue';
 import SprCheckbox from '@/components/checkbox/checkbox.vue';
-
+import 'floating-vue/dist/style.css';
 import { useFilter } from './use-filter';
 import { filterPropTypes, filterEmitTypes } from './filter';
 
@@ -207,7 +226,6 @@ const {
   mappedFilterMenuList,
   filterClass,
 
-  toggleDropdown,
   selectAllOptions,
   getMappedFilterData,
   saveSelectedFilter,

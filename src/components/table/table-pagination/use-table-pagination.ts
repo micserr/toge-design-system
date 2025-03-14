@@ -2,7 +2,7 @@ import { computed, ref, toRefs } from 'vue';
 import type { ComputedRef, SetupContext } from 'vue';
 
 import type { TablePaginationPropTypes, TablePaginationEmitTypes } from '@/components/table/table-pagination/table-pagination';
-import type { DropdownMenuType } from '@/components/dropdown/dropdown';
+import type { MenuListType } from '@/components/list/list';
 
 interface TablePaginationClasses {
   baseClass: string;
@@ -50,7 +50,7 @@ export const useTablePagination = (props: TablePaginationPropTypes, emit: SetupC
     return `${selectedRowCount.value} Rows`;
   });
 
-  const handleSelectedItem = (item: DropdownMenuType) => {
+  const handleSelectedItem = (item: MenuListType) => {
     emit('update:selectedRowCount', Number(item.value));
   };
 

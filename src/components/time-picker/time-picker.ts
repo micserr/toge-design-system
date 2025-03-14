@@ -47,10 +47,6 @@ export const timePickerPropTypes = {
     type: Boolean,
     default: false,
   },
-  id: {
-    type: String,
-    default: 'time-picker',
-  },
   helperText: {
     type: String,
     default: '',

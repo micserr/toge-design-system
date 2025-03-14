@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Slider
 
 The Slider component allows users to select a value from a range by dragging a handle. It supports minimum and maximum values, step increments, size variations, and can be disabled when needed. Additionally, it includes hover and press states for enhanced interactivity and emits a slideend event when the user finishes interacting with the slider.
@@ -80,9 +84,7 @@ const sliderValueDisabled = ref(50);
 </script>
 ```
 
-## Slider API
-
-### Slider Attributes
+## API Reference
 
 <table>
   <thead>
@@ -136,10 +138,10 @@ const sliderValueDisabled = ref(50);
 <script lang="ts" setup>
 import {ref} from 'vue'
 import SprSlider from "@/components/slider/slider.vue";
+
 const sliderValue = ref(0)
 const sliderValueStep = ref(0)
 const sliderValueForLG = ref(0);
 const sliderValueForSM = ref(0);
 const sliderValueDisabled =ref(50);
-
 </script>

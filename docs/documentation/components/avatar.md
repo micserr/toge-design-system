@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # AVATAR
 
 ## Basic Usage
@@ -368,8 +372,6 @@ import { Icon } from '@iconify/vue';
 ```
 
 ## API Reference
-
-#### Attributes
 
 <table>
   <thead>

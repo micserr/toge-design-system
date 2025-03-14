@@ -18,7 +18,7 @@
         width: props.width,
       }"
     >
-      <div :id="props.id" class="spr-grid spr-gap-2">
+      <div :id="props.id" class="spr-grid spr-gap-size-spacing-4xs">
         <label v-if="props.label" :for="props.id" :class="datePickerClasses.labelClasses">
           {{ props.label }}
         </label>
@@ -66,7 +66,7 @@
             />
           </div>
           <div class="spr-flex spr-items-center spr-justify-center">
-            <Icon class="spr-h-5 spr-w-5 spr-text-mushroom-300" icon="ph:calendar-blank" />
+            <Icon class="spr-text-color-supporting spr-h-4 spr-w-4" icon="ph:calendar-blank" />
           </div>
         </div>
       </div>
@@ -76,7 +76,7 @@
           <div
             :class="[
               'spr-flex spr-justify-between spr-gap-2 spr-px-4 spr-py-3',
-              'spr-border spr-border-solid spr-border-mushroom-200',
+              'spr-border spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-border-mushroom-200',
             ]"
           >
             <!-- Tabs -->
@@ -144,7 +144,7 @@
           </div>
           <div class="spr-px-4 spr-pb-4 spr-pt-2">
             <!-- Calendar Tab  -->
-            <div v-if="currentTab === 'tab-calendar'" class="spr-grid spr-grid-cols-7 spr-gap-2">
+            <div v-if="currentTab === 'tab-calendar'" class="spr-grid spr-grid-cols-7">
               <div
                 v-for="(dayOfWeek, dayOfWeekIndex) in daysOfWeek"
                 :key="dayOfWeekIndex"
@@ -172,7 +172,7 @@
                       'spr-text-color-disabled': calendarTabIsInactiveMonthDates(day),
 
                       // Selected Date
-                      'spr-border-color-brand-base spr-background-color-single-active active:spr-background-color-brand-pressed spr-cursor-pointer spr-border spr-border-solid active:spr-scale-95':
+                      'spr-background-color-brand-base active:spr-background-color-brand-pressed spr-text-color-inverted-strong spr-cursor-pointer spr-text-white-50 active:spr-scale-95':
                         calendarTabIsSelectedDate(day),
 
                       // Unselected Date

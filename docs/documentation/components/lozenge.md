@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Lozenge
 
 Lozenge represents entities using icons, labels, and images.
@@ -192,7 +196,7 @@ import { Icon } from '@iconify/vue';
   </tbody>
 </table>
 
-## Lozenge API
+## API Reference
 
 <table>
   <thead>

@@ -78,7 +78,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     );
 
     const datePickerInputHelperClasses = classNames(
-      'spr-font-size-200 spr-font-line-height-400 spr-font-normal',
+      'spr-body-sm-regular',
       'spr-flex spr-items-center spr-gap-size-spacing-5xs',
       'spr-mt-size-spacing-4xs',
       {

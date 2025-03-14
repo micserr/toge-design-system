@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Textarea
 
 ## Basic Usage

@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Button
 
 Commonly used button.
@@ -135,9 +139,7 @@ import { Icon } from '@iconify/vue';
 </script>
 ```
 
-## Button API
-
-### Button Attributes
+## API Reference
 
 <table>
   <thead>

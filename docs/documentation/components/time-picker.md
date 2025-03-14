@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # TimePicker
 
 allows users to select a time from a dropdown list. It supports both 12-hour and 24-hour formats and can be configured to disable typing.
@@ -155,7 +159,7 @@ const selectedValue6 = ref('');
 </script>
 ```
 
-## Attributes
+## API Reference
 
 <table>
   <thead>

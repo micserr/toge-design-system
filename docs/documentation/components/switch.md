@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Switch
 
 Switch component to show a boolean state (similar to a checkbox).
@@ -109,30 +113,7 @@ const switch7UpdateHandler = (value) => {
 </script>
 ```
 
-## Switch API
-
-### Switch Attributes
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>disabled</td>
-      <td>disable the switch</td>
-      <td>boolean</td>
-      <td>false</td>
-    </tr>
-  </tbody>
-</table>
-
-### Switch Slots
+## Slots
 
 <table>
   <thead>
@@ -152,6 +133,27 @@ const switch7UpdateHandler = (value) => {
       <td>leftText</td>
       <td>left text label</td>
       <td>string</td>
+    </tr>
+  </tbody>
+</table>
+
+## API Reference
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>disabled</td>
+      <td>disable the switch</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
   </tbody>
 </table>

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.12.3 (2025-03-14)
+
+- Fix
+  - Documentation Fix
+  - Datepicker DQA ([#d0eae35f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d0eae35ffdb63a4268def0cc6791f619d9a3d9bf?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 1.12.2 (2025-03-14)
 
 - Fix

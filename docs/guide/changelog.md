@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.12.2 (2025-03-14)
+
+- Fix
+  - Commit 5221335b: feat: Implement unique ID generation for filter and time picker components ([#5221335b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5221335b50573c545f198f044457a02e9db0d1bb?refName=refs/heads/2025/Fix/andrea/floating-vue-unique-id) by @adestajo)
+
 ## 1.12.1 (2025-03-13)
 
 - Fix

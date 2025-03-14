@@ -12,6 +12,7 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
 
   const isOpen = ref<boolean>(false);
   const selectedValue = useVModel(props, 'modelValue', emit);
+  const uniqueId = ref<string>(`time-picker-${dayjs().valueOf()}-${Math.floor(Math.random() * 1000)}`);
 
   const optionClasses: ComputedRef<string> = computed(() => {
     return classNames('spr-max-h-[300px] spr-p-size-spacing-3xs spr-overflow-y-auto', {
@@ -71,7 +72,6 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
 
   const selectOption = (option: string) => {
     selectedValue.value = option;
-    isOpen.value = false;
   };
 
   const getPlaceHolder: ComputedRef<string> = computed(() => {
@@ -84,6 +84,8 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
     selectedValue,
     isOpen,
     getPlaceHolder,
+    uniqueId,
+
     filterInput,
     selectOption,
   };

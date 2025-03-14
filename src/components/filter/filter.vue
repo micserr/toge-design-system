@@ -6,32 +6,41 @@
     placement="bottom"
     :triggers="['click']"
     :popper-hide-triggers="[]"
-    :container="`#${props.id}`"
-    :auto-hide="false"
+    :container="`#${uniqueId}`"
     :style="{
       width: props.width,
+      position: 'relative',
     }"
   >
-    <span :id="props.id">
-      <spr-input
-        v-model="searchValue"
-        type="text"
-        :placeholder="placeholder"
-        :label="label"
-        :disabled="disabled"
-        :style="{
-          width: props.width,
-        }"
-      >
-        <template #icon>
-          <Icon icon="ph:magnifying-glass" />
-        </template>
-      </spr-input>
+    <span
+      :id="uniqueId"
+      :style="{
+        width: props.width,
+        position: 'relative',
+      }"
+    >
+      <slot>
+        <spr-input v-model="searchValue" type="text" :placeholder="placeholder" :label="label" :disabled="disabled">
+          <template #icon>
+            <Icon icon="ph:magnifying-glass" />
+          </template>
+        </spr-input>
+      </slot>
     </span>
 
     <template #popper>
       <div :class="filterClass.MenuOptionClasses">
         <div v-if="filterMenu.length > 0 && filterable" class="spr-flex spr-items-center spr-gap-2">
+          <div class="spr-space-x-size-spacing-3xs spr-space-y-size-spacing-3xs">
+            <template v-for="menu in filterMenu" :key="menu.field">
+              <spr-chips
+                v-if="mappedFilterMenuList[menu.field].count"
+                :label="mappedFilterMenuList[menu.field].columnName"
+                icon="ph:funnel-simple"
+              />
+            </template>
+          </div>
+
           <Menu
             v-model:shown="isAddFilterVisible"
             aria-id="filter-menu-wrapper"
@@ -151,16 +160,6 @@
               </div>
             </template>
           </Menu>
-
-          <div class="spr-space-x-size-spacing-3xs spr-space-y-size-spacing-3xs">
-            <template v-for="menu in filterMenu" :key="menu.field">
-              <spr-chips
-                v-if="mappedFilterMenuList[menu.field].count"
-                :label="mappedFilterMenuList[menu.field].columnName"
-                icon="ph:funnel-simple"
-              />
-            </template>
-          </div>
         </div>
 
         <spr-button variant="secondary" size="small" @click="selectAllOptions">Select All</spr-button>
@@ -225,6 +224,7 @@ const {
   filterMenuSearchvalue,
   mappedFilterMenuList,
   filterClass,
+  uniqueId,
 
   selectAllOptions,
   getMappedFilterData,

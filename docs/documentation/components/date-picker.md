@@ -115,7 +115,6 @@ To display the helper message, set the `display-helper` prop to true and add the
     class="[&>p]:spr-m-0" 
     v-model="datePickerModel.date6" 
     label="Date Picker" 
-    helper-icon="ph:warning-circle-fill"
     helper-text="This is a helper message" 
     display-helper 
   />
@@ -154,7 +153,6 @@ const datePickerModel = ref('');
     display-helper 
   >
     <template #helperMessage>
-      <Icon icon="ph:warning-circle-fill" width="20px" height="20px" />
       <span>This is a helper message</span>
     </template>
   </spr-date-picker>
@@ -164,7 +162,6 @@ const datePickerModel = ref('');
 <template>
   <spr-date-picker id="datepicker" class="[&>p]:spr-m-0" v-model="datePickerModel" label="Date Picker" display-helper>
     <template #helperMessage>
-      <Icon icon="ph:warning-circle-fill" width="20px" height="20px" />
       <span>This is a helper message</span>
     </template>
   </spr-date-picker>
@@ -930,7 +927,7 @@ const datePickerModel = ref('');
 </script>
 ```
 
-## Date Picker API
+## API Reference
 
 <table>
   <thead>

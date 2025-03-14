@@ -2,12 +2,12 @@
   <div class="spr-font-main">
     <template v-if="props.groupItemsBy">
       <div class="spr-grid spr-gap-2">
-        <div v-for="(items, labelIndex) in groupedMenuList" :key="labelIndex" class="spr-grid spr-gap-0.5">
-          <label v-if="labelIndex" class="spr-label-sm-regular spr-text-color-base spr-p-2">
-            {{ labelIndex }}
+        <div v-for="(list, listIndex) in groupedMenuList" :key="listIndex" class="spr-grid spr-gap-0.5">
+          <label v-if="list.groupLabel !== 'no-group'" class="spr-label-sm-regular spr-text-color-base spr-p-2">
+            {{ list.groupLabel }}
           </label>
           <div
-            v-for="(item, itemIndex) in items"
+            v-for="(item, itemIndex) in list.items"
             :key="itemIndex"
             :class="getListItemClasses(item)"
             @click="handleSelectedItem(item)"
@@ -27,7 +27,7 @@
     </template>
     <template v-else>
       <div
-        v-for="(item, index) in initialMenuList"
+        v-for="(item, index) in props.menuList"
         :key="index"
         :class="getListItemClasses(item)"
         @click="handleSelectedItem(item)"
@@ -57,7 +57,7 @@ import SprCheckbox from '../checkbox/checkbox.vue';
 const props = defineProps(listPropTypes);
 const emit = defineEmits(listEmitTypes);
 
-const { initialMenuList, groupedMenuList, isItemSelected, getListItemClasses, handleSelectedItem } = useList(
+const { groupedMenuList, isItemSelected, getListItemClasses, handleSelectedItem } = useList(
   props,
   emit,
 );

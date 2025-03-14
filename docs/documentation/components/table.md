@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Table
 
 ## Basic Usage
@@ -452,9 +456,7 @@ const data = ref([
 </script>
 ```
 
-## Table API
-
-### Table Attributes
+## API Reference
 
 <table>
   <tbody>
@@ -474,26 +476,28 @@ const data = ref([
       <td>dataTable</td>
       <td>For table values</td>
       <td>Object</td>
-      <td>TableData {
-        [key: string]: {
-          title: string;
-          subtext: string;
-          image: string;
-        };
-      }
+      <td>
+        TableData {
+          [key: string]: {
+            title: string;
+            subtext: string;
+            image: string;
+          };
+        }
       </td>
     </tr>
     <tr>
       <td>headers</td>
       <td>define your table headers</td>
       <td>Object</td>
-      <td>Header {
-        field: string;
-        name: string;
-        sort: boolean;
-        hasAvatar: boolean;
-        hasSubtext: boolean;
-      }
+      <td>
+        Header {
+          field: string;
+          name: string;
+          sort: boolean;
+          hasAvatar: boolean;
+          hasSubtext: boolean;
+        }
       </td>
     </tr>
     <tr>
@@ -501,12 +505,12 @@ const data = ref([
       <td>Customize table empty state</td>
       <td>Object</td>
       <td>
-      {
-        description: 'No results found',
-        subDescription: 'Try a different search term',
-        image: 'location',
-        size: 'large',
-      }
+        {
+          description: 'No results found',
+          subDescription: 'Try a different search term',
+          image: 'location',
+          size: 'large',
+        }
       </td>
     </tr>
     <tr>
@@ -514,11 +518,11 @@ const data = ref([
       <td>Customize table actions</td>
       <td>Object</td>
       <td>
-      {
-        search: boolean;
-        filter: boolean;
-        option: boolean;
-      }
+        {
+          search: boolean;
+          filter: boolean;
+          option: boolean;
+        }
       </td>
     </tr>
     <tr>
@@ -526,49 +530,36 @@ const data = ref([
       <td>Customize table footer</td>
       <td>Object</td>
       <td>
-      {
-        totalItems: number;
-        currentPage: number;
-        dropdownSelection: { text: string; value: string }[];
-      }
+        {
+          totalItems: number;
+          currentPage: number;
+          dropdownSelection: { text: string; value: string }[];
+        }
       </td>
     </tr>
     <tr>
       <td>variant</td>
       <td>Change background color of header</td>
       <td>surface, white</td>
-      <td>
-      surface
-      </td>
+      <td>surface</td>
     </tr>
     <tr>
       <td>isRowClickable</td>
       <td>Make table row clickable and emits onRowClick</td>
       <td>boolean</td>
-      <td>
-        false
-      </td>
+      <td>false</td>
     </tr>
-  </tbody>
-</table>
-
-### Event
-
-<table>
-  <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>onSort</td>
+      <td>@onSort</td>
       <td>Emits when sorting is triggered</td>
+      <td>function</td>
+      <td>-</td>
     </tr>
      <tr>
-      <td>onRowClick</td>
+      <td>@onRowClick</td>
       <td>Emits table data and row index when table row is clicked</td>
+      <td>function</td>
+      <td>-</td>
     </tr>
   </tbody>
 </table>

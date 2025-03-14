@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Badge
 
 A badge is a small, visual indicator used to convey information, status, or count in a concise and attention-grabbing manner. Badges are commonly used in user interfaces to highlight notifications, statuses, or counts associated with an element.
@@ -185,7 +189,7 @@ used to display the badge in different positions (top, bottom).
 </template>
 ```
 
-### Position - default using slot
+### Default position using slot
 
 When using the default position, use can use the slot to wrap the element to which you want to attach the badge.
 
@@ -217,7 +221,7 @@ When using the default position, use can use the slot to wrap the element to whi
 </template>
 ```
 
-### Position - default without using slot
+### Default position without using slot
 
 When using the default position, use can use the slot to wrap the element to which you want to attach the badge.
 
@@ -241,9 +245,7 @@ When using the default position, use can use the slot to wrap the element to whi
 </template>
 ```
 
-## Badge API
-
-### Badge Attributes
+## API Reference
 
 <table>
   <thead>

@@ -386,6 +386,8 @@ This component utilizes `libphonenumber-js` to parse and format the input on blu
 </template>
 ```
 
+## API Reference
+
 <table>
   <thead>
     <tr>

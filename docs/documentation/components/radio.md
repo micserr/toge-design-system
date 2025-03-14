@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Radio
 
 A Radio Button is a component that enables a user to select a single option from a set of choices.
@@ -82,9 +86,7 @@ const radioModel = ref('');
 </script>
 ```
 
-## Radio API
-
-### Radio Attributes
+## API Reference
 
 <table>
   <thead>

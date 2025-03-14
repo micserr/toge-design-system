@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Status
 
 The Status component provides a standardized way to display status indicators across the application. It ensures consistent color, iconography, and accessibility for different states such as Success, Information, Pending, Caution, and Danger.
@@ -76,10 +80,7 @@ status component has 7 different sizes. You can use the `size` prop to set the s
   <spr-status state="danger" size="2xs" />
 </div>
 
-
-## Status API
-
-### Status Attributes
+## API Reference
 
 <table>
   <thead>

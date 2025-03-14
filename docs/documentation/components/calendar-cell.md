@@ -1,10 +1,14 @@
+---
+outline: 'deep'
+---
+
 # Calendar Cell Component
 
 The `spr-calendar-cell` component is used to display a cell in a calendar view. It includes status, title, description, and shift label.
 
 ## Basic Usage
 
-### Shift
+## Shift
 
 <div class="spr-grid spr-grid-cols-3 spr-gap-4">
   <spr-calendar-cell
@@ -46,7 +50,7 @@ const shifts = [
 </script>
 ```
 
-### Status
+## Status
 
 <div class="spr-grid spr-grid-cols-3 spr-gap-4">
   <spr-calendar-cell
@@ -80,7 +84,7 @@ const status = [
 </script>
 ```
 
-### Offline
+## Offline
 
 <div class="spr-grid spr-grid-cols-3 spr-gap-4">
   <spr-calendar-cell
@@ -122,7 +126,7 @@ const offline = [
 </script>
 ```
 
-### Slot
+## Slot
 
 <div class="spr-grid spr-grid-cols-3 spr-gap-4">
   <spr-calendar-cell>
@@ -152,7 +156,7 @@ const offline = [
   </spr-calendar-cell>
 ```
 
-### fullwidth
+## fullwidth
 
 <div class="spr-grid spr-grid-row-3 spr-gap-4">
   <spr-calendar-cell fullwidth/>
@@ -164,9 +168,7 @@ const offline = [
 <spr-calendar-cell />
 ```
 
-## Cell API
-
-### Cell Attributes
+## API Reference
 
 <table>
   <thead>
@@ -221,22 +223,11 @@ const offline = [
       <td>Boolean</td>
       <td>true</td>
     </tr>
-  </tbody>
-</table>
-
-### Event
-
-<table>
-  <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>onClick</td>
+      <td>@onClick</td>
       <td>emits when click</td>
+      <td>function</td>
+      <td>-</td>
     </tr>
   </tbody>
 </table>

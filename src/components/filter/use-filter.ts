@@ -3,6 +3,7 @@ import { FilterPropTypes, FilterPropsInterface, FilterEmitTypes } from './filter
 import type { SetupContext } from 'vue';
 import { useVModel } from '@vueuse/core';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
 
 export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitTypes>['emit']) => {
   const { options, filterMenu, filterData, loading, filterable, filling } = toRefs(props);
@@ -16,6 +17,7 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
   const mappedFilterOption = ref<Record<string, FilterPropsInterface['optionDetails']>>({});
   const mappedMenuData = ref<Record<string, FilterPropsInterface['optionDetails']>>({});
   const mappedFilterMenuList = ref<Record<string, FilterPropsInterface['filterDetails']>>({});
+  const uniqueId = ref<string>(`filter-${dayjs().valueOf()}-${Math.floor(Math.random() * 1000)}`);
   const filterMenuList = ref<FilterPropsInterface['filterDetails'][]>(
     filterMenu.value as FilterPropsInterface['filterDetails'][],
   );
@@ -171,6 +173,7 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     filterMenuSearchvalue,
     mappedFilterMenuList,
     filterClass,
+    uniqueId,
 
     selectAllOptions,
     getMappedFilterData,

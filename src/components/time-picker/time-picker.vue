@@ -6,15 +6,16 @@
     placement="bottom-start"
     :triggers="['click']"
     :popper-hide-triggers="[]"
-    :container="`#${props.id}`"
+    :container="`#${uniqueId}`"
     :style="{
-      width: props.fullWidth ? '100%' : 'auto',
+      width: '100%',
     }"
+    instant-move
   >
     <div
-      :id="props.id"
+      :id="uniqueId"
       :style="{
-        width: props.fullWidth ? '100%' : 'auto',
+        width: '100%',
       }"
     >
       <spr-input
@@ -79,6 +80,6 @@ import { useTimePicker } from './use-time-picker';
 const props = defineProps(timePickerPropTypes);
 const emit = defineEmits(timePickerEmitTypes);
 
-const { optionClasses, isOpen, filteredOptions, selectedValue, getPlaceHolder, selectOption, filterInput } =
+const { optionClasses, isOpen, filteredOptions, selectedValue, getPlaceHolder, selectOption, filterInput, uniqueId } =
   useTimePicker(props, emit);
 </script>

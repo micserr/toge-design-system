@@ -178,11 +178,11 @@
 
   /* #region - Date Picker */
   #date-picker-wrapper {
-    @apply spr-overflow-hidden spr-transition-opacity spr-duration-150 spr-ease-in-out;
+    @apply spr-overflow-hidden spr-rounded-xl spr-shadow-drop spr-transition-opacity spr-duration-150 spr-ease-in-out;
 
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply spr-border-color-weak spr-m-auto spr-w-[400px] spr-min-w-[400px] spr-overflow-y-auto spr-rounded-xl spr-border spr-border-solid spr-font-main spr-shadow-none sm:spr-w-[calc(100%-20px)] sm:spr-min-w-full;
+        @apply spr-border-color-weak spr-m-auto spr-w-[336px] spr-min-w-[336px] spr-overflow-y-auto spr-rounded-xl spr-border spr-border-solid spr-font-main spr-shadow-none sm:spr-w-[calc(100%-20px)] sm:spr-min-w-full;
 
         &::-webkit-scrollbar-track {
           @apply spr-rounded-br-xl spr-rounded-tr-xl;

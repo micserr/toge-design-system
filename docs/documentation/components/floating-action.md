@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Floating Action
 
 The **Floating Action** component provides a fixed action bar at the bottom of the screen. It supports:
@@ -85,17 +89,49 @@ The Floating Action component supports full customization using the **default sl
 
 ## Props
 
-| Prop   | Type      | Default | Description                                           |
-| ------ | --------- | ------- | ----------------------------------------------------- |
-| `show` | `boolean` | `false` | Controls visibility of the floating action component. |
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>show</code></td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+      <td>Controls visibility of the floating action component.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Slots
 
-| Slot      | Description                                                                             |
-| --------- | --------------------------------------------------------------------------------------- |
-| `message` | Content on the left side of the floating action.                                        |
-| `actions` | Buttons or actions on the right side.                                                   |
-| _default_ | Allows full customization of the floating action content, replacing the default layout. |
+<table>
+  <thead>
+    <tr>
+      <th>Slot</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>message</code></td>
+      <td>Content on the left side of the floating action.</td>
+    </tr>
+    <tr>
+      <td><code>actions</code></td>
+      <td>Buttons or actions on the right side.</td>
+    </tr>
+    <tr>
+      <td><em>_default_</em></td>
+      <td>Allows full customization of the floating action content, replacing the default layout.</td>
+    </tr>
+  </tbody>
+</table>
 
 <script lang="ts" setup>
 import { ref } from 'vue';

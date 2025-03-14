@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Sidepanel
 
 The Sidepanel component is a reusable UI element designed to display contextual or additional information alongside the main content of your application. It slides into view from the edge of the screen, providing a seamless and non-intrusive way to present content such as forms, lists, or detailed views.
@@ -145,7 +149,7 @@ const isLargeSidepanelOpen = ref(false);
   </tbody>
 </table>
 
-## Attributes
+## API Reference
 
 <table>
   <thead>
@@ -199,22 +203,11 @@ const isLargeSidepanelOpen = ref(false);
       <td>boolean</td>
       <td>true</td>
     </tr>
-  </tbody>
-</table>
-
-## Event
-
-<table>
-  <thead>
-    <tr>
-      <td>Name</td>
-      <td>Description</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>onClose</td>
+     <tr>
+      <td>@onClose</td>
       <td>Function to call when the sidepanel is closed</td>
+      <td>function</td>
+      <td>-</td>
     </tr>
   </tbody>
 </table>

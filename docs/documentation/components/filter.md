@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Filter
 
 ## Basic Usage
@@ -97,11 +101,36 @@ const searchValue = ref('');
 </script>
 ```
 
+## Slots
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>loading-state</td>
+      <td>Slot for the loading state main option.</td>
+    </tr>
+    <tr>
+      <td>empty-state</td>
+      <td>Slot for the empty state main option.</td>
+    </tr>
+    <tr>
+      <td>loading</td>
+      <td>Slot for the loading state.</td>
+    </tr>
+    <tr>
+      <td>empty</td>
+      <td>Slot for the empty state.</td>
+    </tr>
+  </tbody>
+</table>
+
 ## API Reference
-
-### FilterSelect Component
-
-#### Properties
 
 <table>
   <thead>
@@ -185,68 +214,29 @@ const searchValue = ref('');
       <td>Boolean</td>
       <td>false</td>
     </tr>
-  </tbody>
-</table>
-
-#### Events
-
-<table>
-  <thead>
     <tr>
-      <th>Event Name</th>
-      <th>Description</th>
-      <th>Parameters</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>update:modelValue</td>
+      <td>@update:modelValue</td>
       <td>Emitted when the selected value(s) change</td>
-      <td>(value: Array | String)</td>
+      <td>function</td>
+      <td>-</td>
     </tr>
     <tr>
-      <td>getFilterData</td>
+      <td>@getFilterData</td>
       <td>Emitted to fetch filter data</td>
-      <td>Array</td>
+      <td>function</td>
+      <td>-</td>
     </tr>
     <tr>
-      <td>update:selected</td>
+      <td>@update:selected</td>
       <td>Emitted when a filter option is selected</td>
-      <td>Array</td>
+      <td>function</td>
+      <td>-</td>
     </tr>
     <tr>
-      <td>selectedFilter</td>
+      <td>@selectedFilter</td>
       <td>Emitted when a filter is applied.</td>
-      <td>Array</td>
-    </tr>
-  </tbody>
-</table>
-
-### Slots
-
-<table>
-  <thead>
-    <tr>
-      <th>Slot Name</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>loading-state</td>
-      <td>Slot for the loading state main option.</td>
-    </tr>
-    <tr>
-      <td>empty-state</td>
-      <td>Slot for the empty state main option.</td>
-    </tr>
-    <tr>
-      <td>loading</td>
-      <td>Slot for the loading state.</td>
-    </tr>
-    <tr>
-      <td>empty</td>
-      <td>Slot for the empty state.</td>
+      <td>function</td>
+      <td>-</td>
     </tr>
   </tbody>
 </table>

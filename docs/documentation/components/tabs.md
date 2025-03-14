@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Tabs
 
 Tabs are used to organize content into different sections. They are commonly used in web applications to manage multiple views.
@@ -184,7 +188,7 @@ const tabsIconOnly = [
 </script>
 ```
 
-## Attributes
+## API Reference
 
 <table>
   <thead>
@@ -208,22 +212,11 @@ const tabsIconOnly = [
       <td>Array</td>
       <td>[]</td>
     </tr>
-  </tbody>
-</table>
-
-## Event
-
-<table>
-  <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>tabIndex</td>
+      <td>@tabIndex</td>
       <td>emits the selected tab index</td>
+      <td>function</td>
+      <td>-</td>
     </tr>
   </tbody>
 </table>

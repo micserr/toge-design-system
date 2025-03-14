@@ -1,6 +1,7 @@
 ---
 outline: 'deep'
 ---
+
 # Input
 
 UI element that allows users to enter and edit text or other data.
@@ -357,6 +358,7 @@ const inputValueURL = ref('');
 ```
 
 ### Contact Number Input
+
 This component utilizes `libphonenumber-js` to parse and format the input on blur. Masking of contact number on change will be implemented in the future.
 
 <div>
@@ -367,21 +369,121 @@ This component utilizes `libphonenumber-js` to parse and format the input on blu
 ```vue
 <template>
   <div>
-  <spr-input-contact-number v-model="inputValueContactNumber" label="Contact Number" placeholder="Enter contact number" class="spr-mb-size-spacing-3xs"/>
-  <label>Output: {{ inputValueContactNumber }}</label>
-</div>
+    <spr-input-contact-number
+      v-model="inputValueContactNumber"
+      label="Contact Number"
+      placeholder="Enter contact number"
+      class="spr-mb-size-spacing-3xs"
+    />
+    <label>Output: {{ inputValueContactNumber }}</label>
+  </div>
 
-<script lang="ts" setup>
-import { ref } from 'vue';
+  <script lang="ts" setup>
+    import { ref } from 'vue';
 
-const inputValueContactNumber = ref('');
-</script>
+    const inputValueContactNumber = ref('');
+  </script>
 </template>
 ```
 
+## API Reference
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th> 
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>v-model</td>
+      <td>Two-way binding for the input value.</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>The label for the input field.</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>placeholder</td>
+      <td>Placeholder text for the input field.</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>pre-value</td>
+      <td>Predefined value for the input, used when v-model is not set.</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>active</td>
+      <td>Determines if the input is in an active state.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>Sets the input to an error state.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>Disables the input field.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>min-length</td>
+      <td>Minimum length of the input value.</td>
+      <td>number</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>max-length</td>
+      <td>Maximum length of the input value.</td>
+      <td>number</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>offset-size</td>
+      <td>Size of the offset for the input field, can be xs, sm, md, etc.</td>
+      <td>string</td>
+      <td>sm</td>
+    </tr>
+    <tr>
+      <td>display-helper</td>
+      <td>Whether to display the helper message.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>helper-text</td>
+      <td>Text for the helper message below the input field.</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>helper-icon</td>
+      <td>Icon to display alongside the helper message.</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
 <script lang="ts" setup>
 import { ref } from 'vue';
+
 import { Icon } from '@iconify/vue';
+
 import SprInput from "@/components/input/input.vue"
 import SprInputSearch from "@/components/input/input-search/input-search.vue"
 import SprInputUsername from "@/components/input/input-username/input-username.vue"

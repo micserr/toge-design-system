@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # List
 
 The List component allows users to select one or more items from a list, offering both single and multiple selection options for improved flexibility and user interaction.
@@ -358,7 +362,7 @@ const handleMultiSelect = (data) => {
 </script>
 ```
 
-## List API
+## API Reference
 
 <table>
   <thead>

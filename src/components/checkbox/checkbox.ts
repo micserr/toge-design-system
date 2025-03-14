@@ -21,7 +21,7 @@ export const checkboxPropTypes = {
   },
   checked: {
     type: Boolean,
-    default: true,
+    default: false,
   },
 };
 

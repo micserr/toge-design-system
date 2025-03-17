@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.13.0 (2025-03-17)
+
+- Feat
+  - Add collapsible component and documentation. Update card props and documentation ([#b5d669ad](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b5d669adb78ab6a41351130270bfa3621b5309b5?refName=refs%2Fheads%2F2025%2Ffeature%2Fjames%2Fcollapsible) by @jmanalang)
+
 ## 1.12.5 (2025-03-17)
 
 - Fix

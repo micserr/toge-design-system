@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.12.5 (2025-03-17)
+
+- Fix
+  - Issues encountered with Datepicker ([#d8d923f8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d8d923f848d3d05b225cd60594dd5cf745897e54?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 1.12.4 (2025-03-14)
 
 - Fix

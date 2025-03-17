@@ -50,6 +50,7 @@ export default tseslint.config(
             'card',
             'checkbox',
             'chips',
+            'collapsible',
             'date-picker',
             'dropdown',
             'empty-state',

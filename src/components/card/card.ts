@@ -30,6 +30,14 @@ export const cardPropTypes = {
     validator: (value: (typeof BORDER_RADIUS_SIZE)[number]) => BORDER_RADIUS_SIZE.includes(value),
     default: 'xl',
   },
+  hasCollapsible: {
+    type: Boolean,
+    default: false,
+  },
+  isCollapsibleOpen: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export type CardPropTypes = ExtractPropTypes<typeof cardPropTypes>;

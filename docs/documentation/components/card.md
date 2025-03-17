@@ -379,6 +379,18 @@ If the `title` prop is omitted, the `header` slot can fully customize the header
       <td>xl</td>
       <td>Sets the border radius of the card including header and footer. Accepts one of: xl, lg, md, sm, xs, 2xs.</td>
     </tr>
+    <tr>
+      <td>has-collapsible</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Apply when use with collapsible component</td>
+    </tr>
+     <tr>
+      <td>is-collapsible-open</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Apply when use with collapsible component to track if content is expanded or not and apply border style changes</td>
+    </tr>
   </tbody>
 </table>
 

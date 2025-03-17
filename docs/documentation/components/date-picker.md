@@ -1024,6 +1024,12 @@ const datePickerModel = ref('');
       <td>{}</td>
     </tr>
     <tr>
+      <td>@get-input-value</td>
+      <td>Emits the actual date that is being typed or select on the datepickker</td>
+      <td>Function</td>
+      <td>-</td>
+    </tr>
+    <tr>
       <td>@get-date-formats</td>
       <td>Emits the available date formats</td>
       <td>Function</td>

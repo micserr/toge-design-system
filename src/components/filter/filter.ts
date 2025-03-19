@@ -45,12 +45,10 @@ export const filterPropTypes = {
     type: Boolean,
     default: false,
   },
-
   filling: {
     type: Boolean,
     default: false,
   },
-
   search: {
     type: String,
     default: '',
@@ -58,6 +56,10 @@ export const filterPropTypes = {
   width: {
     type: String,
     default: '100%',
+  },
+  completed: {
+    type: Boolean,
+    default: true,
   },
 };
 
@@ -69,11 +71,13 @@ export interface FilterPropsInterface {
 }
 
 export const filterEmitTypes = {
-  getFilterData: null,
+  getFilterData: (value: string) => typeof value === 'string',
   'update:modelValue': (value: FilterPropsInterface['options']): value is FilterPropsInterface['options'] =>
     Array.isArray(value),
   'update:search': (value: string) => typeof value === 'string',
-  selectedFilter: null,
+  selectedFilter: (value: FilterPropsInterface['options']): value is FilterPropsInterface['options'] =>
+    Array.isArray(value),
+  'infinite-scroll-trigger': Boolean,
 };
 export type FilterEmitTypes = typeof filterEmitTypes;
 export type FilterPropTypes = ExtractPropTypes<typeof filterPropTypes>;

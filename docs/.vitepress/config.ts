@@ -103,6 +103,10 @@ export default defineConfig({
               link: '/documentation/components/chips',
             },
             {
+              text: 'Collapsible',
+              link: '/documentation/components/collapsible',
+            },
+            {
               text: 'Date Picker',
               link: '/documentation/components/date-picker',
             },

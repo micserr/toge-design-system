@@ -1,5 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue';
-
+import { LOZENGE_TONE } from '@/components/lozenge/lozenge';
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
 interface Header {
@@ -7,9 +7,12 @@ interface Header {
   name: string;
   sort: boolean;
   hasAvatar: boolean;
+  hasIcon: boolean;
   hasSubtext: boolean;
+  hasLozengeTitle: boolean;
   badgeText: string;
   badgeVariant: string;
+  avatarVariant: string;
 }
 
 interface TableData {
@@ -17,6 +20,11 @@ interface TableData {
     title: string;
     subtext?: string;
     image?: string;
+    icon?: string;
+    lozengeFill: boolean;
+    lozengeAvatarUrl: string;
+    lozengeTone?: (typeof LOZENGE_TONE)[number];
+    lozengeIcon?: string;
   };
 }
 
@@ -64,7 +72,6 @@ export const tablePropTypes = {
     type: Array as PropType<Header[]>,
     required: true,
   },
-
   emptyState: {
     type: Object as PropType<EmptyState>,
     default: () => ({
@@ -113,8 +120,16 @@ export const tablePropTypes = {
 
   isRowClickable: {
     type: Boolean as PropType<boolean>,
-    default: false
-  }
+    default: false,
+  },
+  fullHeight: {
+    type: Boolean as PropType<boolean>,
+    default: true,
+  },
+  removeHeaderOnEmpty: {
+    type: Boolean as PropType<boolean>,
+    default: false,
+  },
 };
 
 export const tableEmitTypes = {
@@ -122,7 +137,7 @@ export const tableEmitTypes = {
   onSort: (value: SortEvent): value is SortEvent =>
     typeof value.field === 'string' && TABLE_SORT.includes(value.sortOrder),
   onRowClick: (rowData: TableData, rowKey: number): rowData is TableData =>
-    typeof rowData === 'object' && typeof rowKey === 'number'
+    typeof rowData === 'object' && typeof rowKey === 'number',
 };
 
 export type TablePropTypes = ExtractPropTypes<typeof tablePropTypes>;

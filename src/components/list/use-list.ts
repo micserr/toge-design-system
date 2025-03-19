@@ -11,7 +11,7 @@ interface ListClasses {
 export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>['emit']) => {
   const selectedItems = useVModel(props, 'modelValue', emit);
 
-  const { menuList, groupItemsBy, multiSelect } = toRefs(props);
+  const { menuList, groupItemsBy, multiSelect, preSelectedItems } = toRefs(props);
 
   const listClasses: ComputedRef<ListClasses> = computed(() => {
     const listItemClasses = classNames(
@@ -84,11 +84,13 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   };
 
   const setPreSelectedItems = () => {
-    if (selectedItems.value && selectedItems.value.length > 0) {
-      selectedItems.value.forEach((preSelectedItem: MenuListType) => {
+    if (preSelectedItems.value && preSelectedItems.value.length > 0) {
+      preSelectedItems.value.forEach((preSelectedItem: String) => {
+        // If single select, only select the first item and skip the for loop
+        if (!multiSelect.value && selectedItems.value.length > 0)  return;
+        
         const item = menuList.value.find(
-          (menuItem) =>
-            String(menuItem.text) === String(preSelectedItem) || String(menuItem.value) === String(preSelectedItem),
+          (menuItem) => String(menuItem.value) === String(preSelectedItem),
         );
 
         if (item) {

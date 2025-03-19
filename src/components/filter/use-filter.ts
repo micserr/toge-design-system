@@ -1,9 +1,10 @@
-import { computed, ref, toRefs, watch } from 'vue';
+import { computed, ref, toRefs, watch, onMounted } from 'vue';
 import { FilterPropTypes, FilterPropsInterface, FilterEmitTypes } from './filter';
 import type { SetupContext } from 'vue';
 import { useVModel } from '@vueuse/core';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
+import { useInfiniteScroll } from '@vueuse/core';
 
 export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitTypes>['emit']) => {
   const { options, filterMenu, filterData, loading, filterable, filling } = toRefs(props);
@@ -22,6 +23,8 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     filterMenu.value as FilterPropsInterface['filterDetails'][],
   );
   const selectedFilters = ref<FilterPropsInterface['optionDetails'][]>([]);
+  const filterOptionRef = ref<HTMLDivElement | null>(null);
+  const filterMenuOptionList = ref<HTMLDivElement | null>(null);
 
   const getFiltereredOption = computed<FilterPropsInterface['optionDetails'][]>(() => {
     if (filling.value) return options.value;
@@ -52,19 +55,44 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     );
   };
 
+  const selectedColumn = ref('');
+
   const getMappedFilterData = (column: string) => {
-    emit('getFilterData');
-    if (loading.value || !filterData.value?.length) return;
+    emit('getFilterData', column);
+    selectedColumn.value = column;
+
+    if (loading.value || filterData.value.length === 0) return;
+
+    getMappedMenuOptionList();
+  };
+
+  const getMappedMenuOptionList = () => {
     mappedMenuData.value = filterData.value.reduce(
       (acc, { value, isSelected, text, subtext }) => {
         const isExisting = selectedFilters.value.some(
-          (prevSelected) => prevSelected.value === value && prevSelected.column === column,
+          (prevSelected) => prevSelected.value === value && prevSelected.column === selectedColumn.value,
         );
-        acc[value] = { isSelected: isExisting || isSelected, text, value, column, subtext };
+        console.log('isSelected', isSelected);
+        acc[value] = { isSelected: isExisting || isSelected, text, value, column: selectedColumn.value, subtext };
         return acc;
       },
       {} as Record<string, FilterPropsInterface['optionDetails']>,
     );
+  };
+
+  watch(loading, () => {
+    if (loading.value) return;
+    getMappedMenuOptionList();
+  });
+
+  watch(selectedColumn, (_value) => {
+    setFilterVisible(_value);
+  });
+
+  const setFilterVisible = (field: string) => {
+    Object.keys(mappedFilterMenuList.value).forEach((key) => {
+      mappedFilterMenuList.value[key].isFilterVisible = key === field;
+    });
   };
 
   const getMappedFilterMenuList = () => {
@@ -114,14 +142,31 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     selectedFilters.value = selectedFilters.value
       .filter((prevSelected) => prevSelected.column !== field)
       .concat(selectedValues);
+
     emit('selectedFilter', selectedFilters.value);
     mappedFilterMenuList.value[field].count = selectedValues.length;
     mappedFilterMenuList.value[field].isFilterVisible = false;
   };
 
   const handleRemoveFilterValues = (filter: string) => {
-    mappedMenuData.value[filter].isSelected = false;
+    if (mappedMenuData.value[filter]) {
+      mappedMenuData.value[filter].isSelected = false;
+    }
   };
+
+  const infiniteScrollHandler = () => {
+    emit('infinite-scroll-trigger', true);
+  };
+
+  const setupInfiniteScroll = () => {
+    if (props.completed) return;
+    useInfiniteScroll(filterOptionRef, infiniteScrollHandler, { distance: 10 });
+    useInfiniteScroll(filterMenuOptionList, infiniteScrollHandler, { distance: 10 });
+  };
+
+  onMounted(() => {
+    setupInfiniteScroll();
+  });
 
   const filterClass = computed(() => {
     const MainClasses = classNames('spr-relative spr-inline-block spr-w-full');
@@ -174,6 +219,8 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     mappedFilterMenuList,
     filterClass,
     uniqueId,
+    filterOptionRef,
+    filterMenuOptionList,
 
     selectAllOptions,
     getMappedFilterData,

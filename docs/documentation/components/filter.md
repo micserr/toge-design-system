@@ -209,8 +209,8 @@ const searchValue = ref('');
       <td>false</td>
     </tr>
     <tr>
-      <td>loading</td>
-      <td>Whether the filter menu is enabled.</td>
+      <td>filling</td>
+      <td>Loadimg state for main selection</td>
       <td>Boolean</td>
       <td>false</td>
     </tr>
@@ -236,6 +236,11 @@ const searchValue = ref('');
       <td>@selectedFilter</td>
       <td>Emitted when a filter is applied.</td>
       <td>function</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>@infinite-scroll-trigger</td>
+      <td>Emitted when infinite scroll is triggered.</td>     <td>function</td>
       <td>-</td>
     </tr>
   </tbody>
@@ -279,8 +284,6 @@ const options1 = [
     { count: 0, isFilterVisible: false, columnName: 'Employee Type', field: 'employeeType' },
     { count: 0, isFilterVisible: false, columnName: 'Department', field: 'department' },
     { count: 0, isFilterVisible: false, columnName: 'Location', field: 'location' },
-    { count: 0, isFilterVisible: false, columnName: 'Region', field: 'region' },
-    { count: 0, isFilterVisible: false, columnName: 'Job Level', field: 'jobLevel' },
   ]);
 
   const filterMenuOptions1 = [

@@ -1,5 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue';
-
+import { LOZENGE_TONE } from '@/components/lozenge/lozenge';
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
 interface Header {
@@ -7,7 +7,9 @@ interface Header {
   name: string;
   sort: boolean;
   hasAvatar: boolean;
+  hasIcon: boolean;
   hasSubtext: boolean;
+  hasLozengeTitle: boolean;
   badgeText: string;
   badgeVariant: string;
   avatarVariant: string;
@@ -18,6 +20,11 @@ interface TableData {
     title: string;
     subtext?: string;
     image?: string;
+    icon?: string;
+    lozengeFill: boolean;
+    lozengeAvatarUrl: string;
+    lozengeTone?: (typeof LOZENGE_TONE)[number];
+    lozengeIcon?: string;
   };
 }
 
@@ -65,7 +72,6 @@ export const tablePropTypes = {
     type: Array as PropType<Header[]>,
     required: true,
   },
-
   emptyState: {
     type: Object as PropType<EmptyState>,
     default: () => ({
@@ -119,6 +125,10 @@ export const tablePropTypes = {
   fullHeight: {
     type: Boolean as PropType<boolean>,
     default: true,
+  },
+  removeHeaderOnEmpty: {
+    type: Boolean as PropType<boolean>,
+    default: false,
   },
 };
 

@@ -2,7 +2,7 @@ import type { PropType, ExtractPropTypes } from 'vue';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
-const LOZENGE_TONE = ['plain', 'pending', 'information', 'success', 'danger', 'neutral', 'caution'] as const;
+export const LOZENGE_TONE = ['plain', 'pending', 'information', 'success', 'danger', 'neutral', 'caution'] as const;
 
 export const lozengePropTypes = {
   /**

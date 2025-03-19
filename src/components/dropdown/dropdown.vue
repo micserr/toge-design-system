@@ -37,7 +37,6 @@
             :menu-list="dropdownMenuList"
             :group-items-by="props.groupItemsBy"
             :multi-select="props.multiSelect"
-            @get-selected-item="handleSelectedItem"
           />
         </template>
         <template v-else>

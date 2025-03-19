@@ -36,6 +36,14 @@ export const listPropTypes = {
     type: Boolean,
     default: false,
   },
+  preSelectedItems: {
+    type: Array as PropType<String[]>,
+    default: () => [],
+  },
+  ladderized: {
+    type: Boolean,
+    default: false,
+  }
 };
 
 export const listEmitTypes = {

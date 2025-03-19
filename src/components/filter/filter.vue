@@ -115,7 +115,8 @@
                           />
                         </div>
                         <div
-                          v-if="!loading && getFiltereredMenuOption.length > 0"
+                          v-if="!props.loading && getFiltereredMenuOption.length > 0"
+                          ref="filterMenuOptionList"
                           class="spr-max-h-[264px] spr-space-y-size-spacing-6xs spr-overflow-auto spr-p-size-spacing-2xs"
                         >
                           <div
@@ -137,7 +138,7 @@
                         </div>
 
                         <div v-else :class="filterClass.LoadingStateClasses">
-                          <slot v-if="loading" name="loading"> loading... </slot>
+                          <slot v-if="props.loading" name="loading"> loading... </slot>
                           <slot v-else name="empty"> No Result Found! </slot>
                         </div>
 
@@ -167,6 +168,7 @@
 
       <div
         v-if="getFiltereredOption.length > 0 && !filling"
+        ref="filterOptionRef"
         class="spr-max-h-[264px] spr-space-y-size-spacing-6xs spr-overflow-auto spr-p-size-spacing-3xs"
       >
         <div
@@ -225,6 +227,8 @@ const {
   mappedFilterMenuList,
   filterClass,
   uniqueId,
+  filterOptionRef,
+  filterMenuOptionList,
 
   selectAllOptions,
   getMappedFilterData,

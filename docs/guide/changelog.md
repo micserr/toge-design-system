@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.13.2 (2025-03-19)
+
+- Feat
+  - Commit 146e3e3d: Enhance table and filter components with new properties and styles ([#146e3e3d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/146e3e3de08c50b66646181a512118ac6673c59b?refName=refs/heads/2025/Fix/andrea/fixes) by @adestajo)
+
+## 1.13.1 (2025-03-19)
+
+- Feat
+  - Added Table Lozenge Cells ([#b2ea23e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b2ea23e8af842870b5bc8b3e97918a825394f7fd?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_ROW_ICON_LOZENGE_AND_HEADER) by @jfabula)
+
+## 1.13.0 (2025-03-17)
+
+- Feat
+  - Add collapsible component and documentation. Update card props and documentation ([#b5d669ad](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b5d669adb78ab6a41351130270bfa3621b5309b5?refName=refs%2Fheads%2F2025%2Ffeature%2Fjames%2Fcollapsible) by @jmanalang)
+
 ## 1.12.5 (2025-03-17)
 
 - Fix

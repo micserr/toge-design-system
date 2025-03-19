@@ -272,6 +272,53 @@ const fetchItems = computed((page) => {
 </script>
 ```
 
+## Cells
+
+### Lozenge
+You can change the title of a cell to a lozenge
+<div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
+  <spr-table action :headers="headersLozenge" :data-table="dataLozenge" variant="surface" @onSort="handleSort">
+    <div>
+      Customize your content here!
+    </div>
+  </spr-table>
+</div>
+
+```vue
+<template>
+<spr-table action :headers="headersLozenge" :data-table="dataLozenge" variant="surface" @onSort="handleSort">
+  <div>
+    Customize your content here!
+  </div>
+</spr-table>
+</template>
+
+<script setup lang='ts'>
+import { ref } from 'vue';
+const headersLozenge = ref([
+  { field: 'name', name: 'Role Name', sort: true, hasAvatar: true, hasSubtext: true, hasLozengeTitle: true },
+  { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false, hasLozengeTitle: true },
+])
+
+const dataLozenge = [
+  {
+    name: {
+      title: 'Shift',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+      lozengeIcon: 'ph:user'
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      lozengeFill: true,
+      lozengeAvatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'
+    },
+  },
+]
+</script>
+```
+
 ## Variant
 
 You can customize the header background of the table using the `variant` attribute. The available options are `white` and `surface`.
@@ -482,6 +529,11 @@ const data = ref([
             title: string;
             subtext: string;
             image: string;
+            icon: string;
+            lozengeFill: boolean;
+            lozengeAvatarUrl: string;
+            lozengeTone: string;
+            lozengeIcon: string;
           };
         }
       </td>
@@ -496,7 +548,11 @@ const data = ref([
           name: string;
           sort: boolean;
           hasAvatar: boolean;
+          hasIcon: boolean;
           hasSubtext: boolean;
+          hasLozengeTitle: boolean;
+          badgeText: string;
+          badgeVariant: string;
         }
       </td>
     </tr>
@@ -560,6 +616,18 @@ const data = ref([
       <td>Emits table data and row index when table row is clicked</td>
       <td>function</td>
       <td>-</td>
+    </tr>
+    <tr>
+      <td>hasLozengeTitle</td>
+      <td>Allows the use of lozenge for title attribute of data</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>removeHeaderOnEmpty</td>
+      <td>Removes the headers when table is empty</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
   </tbody>
 </table>
@@ -731,4 +799,25 @@ const getSortOrder = () => {
   return sortOrder.value
 }
 
+const headersLozenge = ref([
+  { field: 'name', name: 'Role Name', sort: true, hasAvatar: true, hasSubtext: true, hasLozengeTitle: true },
+  { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false, hasLozengeTitle: true },
+])
+
+const dataLozenge = [
+  {
+    name: {
+      title: 'Shift',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+      lozengeIcon: 'ph:user'
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      lozengeFill: true,
+      lozengeAvatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'
+    },
+  },
+]
 </script>

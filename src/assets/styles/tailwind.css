@@ -162,9 +162,10 @@
   /* #endregion - Avatar */
 
   /* #region - Table */
-  .spr-table-wrapper {
+  .spr-table-wrapper,
+  .spr-table-wrapper-height {
     tbody {
-      @apply spr-block spr-max-h-svh spr-min-h-[400px] spr-w-full spr-overflow-y-auto;
+      @apply spr-block spr-w-full spr-overflow-y-auto;
     }
 
     tr {
@@ -172,6 +173,17 @@
     }
     tbody::-webkit-scrollbar {
       @apply spr-h-0 spr-w-0; /* Hides the scrollbar in WebKit browsers */
+    }
+  }
+
+  .spr-table-wrapper-height {
+    tbody {
+      @apply spr-max-h-[360px];
+    }
+  }
+  .spr-table-wrapper {
+    tbody {
+      @apply spr-max-h-svh spr-min-h-[400px];
     }
   }
   /* #endregion - Table */
@@ -201,7 +213,7 @@
   #time-picker-wrapper,
   #filter-option-wrapper,
   #filter-menu-wrapper {
-    @apply spr-background-color spr-border-color-weak spr-z-20 spr-overflow-x-hidden spr-rounded-[12px] spr-border spr-border-solid;
+    @apply spr-background-color spr-border-color-weak spr-z-50 spr-overflow-x-hidden spr-rounded-[12px] spr-border spr-border-solid;
 
     .v-popper__wrapper {
       .v-popper__inner {

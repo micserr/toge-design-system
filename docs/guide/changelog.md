@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.13.1 (2025-03-19)
+- Feat
+  - Added Table Lozenge Cells ([#b2ea23e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b2ea23e8af842870b5bc8b3e97918a825394f7fd?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_ROW_ICON_LOZENGE_AND_HEADER) by @jfabula)
+
 ## 1.13.0 (2025-03-17)
 
 - Feat

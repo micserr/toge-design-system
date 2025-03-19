@@ -6,7 +6,7 @@ import type { SetupContext } from 'vue';
 import classNames from 'classnames';
 
 export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitTypes>['emit'], slots: Slots) => {
-  const { dataTable, action, headers, sortOrder } = toRefs(props);
+  const { dataTable, action, headers, sortOrder, fullHeight } = toRefs(props);
   const sortField = ref('');
   const searchField = ref(props.searchModel);
   const tableSortOrder = ref<TABLE_SORT>('asc');
@@ -48,13 +48,18 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
 
   const handleRowClick = (rowData: TableData, rowKey: number) => {
     if (props.isRowClickable) {
-      emit('onRowClick', rowData, rowKey)
+      emit('onRowClick', rowData, rowKey);
     }
-  }
+  };
 
   const getTableClasses = computed(() => {
-    const tableWrapperClasses =
-      'spr-table-wrapper spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid';
+    const tableWrapperClasses = classNames(
+      'spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid',
+      {
+        'spr-table-wrapper': fullHeight.value,
+        'spr-table-wrapper-height': !fullHeight.value,
+      },
+    );
     const headerBackground = classNames({
       'spr-background-color': props.variant === 'white',
       'spr-background-color-surface': props.variant === 'surface',
@@ -63,6 +68,9 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       'spr-min-h-12 spr-px-size-spacing-2xs spr-py-size-spacing-3xs',
       'spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-text-start spr-font-medium spr-uppercase',
       'spr-border-color-weak spr-border-x-0 spr-border-y spr-border-solid',
+      {
+        'spr-border-t-0': !slots.default,
+      },
       headerBackground,
     );
 
@@ -76,13 +84,17 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     const tableCellSlotClasses =
       'spr-background-color-surface spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-uppercase';
     const tableRowClasses = classNames('hover:spr-background-color-hover spr-min-h-[60px]', {
-      'spr-cursor-pointer': props.isRowClickable
+      'spr-cursor-pointer': props.isRowClickable,
     });
     const tableDataClasses =
       'spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-3';
     const tableRowActionClasses =
       'spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-3';
     const tableFooterClasses = 'spr-w-full spr-border spr-border-solid spr-border-color-weak';
+    const getTableHeight = classNames({
+      'spr-max-h-85vh': fullHeight.value,
+      'spr-h-[400px]': !fullHeight.value,
+    });
     return {
       headerClasses,
       tableWrapperClasses,
@@ -95,6 +107,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       tableDataClasses,
       tableRowActionClasses,
       tableFooterClasses,
+      getTableHeight,
     };
   });
 

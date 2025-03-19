@@ -10,6 +10,7 @@ interface Header {
   hasSubtext: boolean;
   badgeText: string;
   badgeVariant: string;
+  avatarVariant: string;
 }
 
 interface TableData {
@@ -113,8 +114,12 @@ export const tablePropTypes = {
 
   isRowClickable: {
     type: Boolean as PropType<boolean>,
-    default: false
-  }
+    default: false,
+  },
+  fullHeight: {
+    type: Boolean as PropType<boolean>,
+    default: true,
+  },
 };
 
 export const tableEmitTypes = {
@@ -122,7 +127,7 @@ export const tableEmitTypes = {
   onSort: (value: SortEvent): value is SortEvent =>
     typeof value.field === 'string' && TABLE_SORT.includes(value.sortOrder),
   onRowClick: (rowData: TableData, rowKey: number): rowData is TableData =>
-    typeof rowData === 'object' && typeof rowKey === 'number'
+    typeof rowData === 'object' && typeof rowKey === 'number',
 };
 
 export type TablePropTypes = ExtractPropTypes<typeof tablePropTypes>;

@@ -1,4 +1,4 @@
-import { computed, ref, toRefs, watch, onMounted, onBeforeUnmount } from 'vue';
+import { computed, ref, toRefs, watch, onMounted } from 'vue';
 import { FilterPropTypes, FilterPropsInterface, FilterEmitTypes } from './filter';
 import type { SetupContext } from 'vue';
 import { useVModel } from '@vueuse/core';

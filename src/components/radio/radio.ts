@@ -28,4 +28,4 @@ export const radioEmitTypes = ['update:modelValue'];
 
 export type RadioPropTypes = ExtractPropTypes<typeof radioPropTypes>;
 
-export type SwitchEmitTypes = typeof radioEmitTypes;
+export type RadioEmitTypes = typeof radioEmitTypes;

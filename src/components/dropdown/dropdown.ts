@@ -2,6 +2,8 @@ import type { PropType, ExtractPropTypes } from 'vue';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
+const TEXT_DISPLAY_TYPES = ['A-Z', 'Z-A'] as const;
+
 const GROUPED_ITEMS_BY_TYPES = ['A-Z', 'Z-A'] as const;
 
 const PLACEMENTS_TYPES = [

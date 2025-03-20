@@ -105,33 +105,133 @@ Commonly used button.
 
 ## Icon
 
-<div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
-    <spr-button size="small" hasIcon ><Icon icon="ph:trash" /></spr-button>
-    <spr-button variant="secondary" hasIcon><Icon icon="ph:trash" /></spr-button>
-    <spr-button size="large" variant="tertiary" hasIcon><Icon icon="ph:trash" /></spr-button>
+### Icon With Text
+
+<div class="spr-mt-4">
+  <div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
+    <spr-button size="small" hasIcon >
+      <Icon icon="ph:trash" />
+      <span>Button</span>
+    </spr-button>
+    <spr-button variant="secondary" hasIcon>
+      <Icon icon="ph:trash" />
+      <span>Button</span>
+    </spr-button>
+    <spr-button size="large" variant="tertiary" hasIcon>
+      <Icon icon="ph:trash" />
+      <span>Button</span>
+    </spr-button>
+  </div>
+
+  <div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
+    <spr-button size="small" tone="success" hasIcon>
+      <Icon icon="ph:trash" />
+      <span>Button</span>
+    </spr-button>
+    <spr-button tone="success" variant="secondary" hasIcon>
+      <Icon icon="ph:trash" />
+      <span>Button</span>
+    </spr-button>
+    <spr-button size="large" tone="success"variant="tertiary" hasIcon>
+      <Icon icon="ph:trash" />
+      <span>Button</span>
+    </spr-button>
+  </div>
+
+  <div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
+    <spr-button size="small" tone="danger" hasIcon>
+      <Icon icon="ph:trash" />
+      <span>Button</span>
+    </spr-button>
+    <spr-button tone="danger" variant="secondary" hasIcon>
+      <Icon icon="ph:trash" />
+      <span>Button</span>
+    </spr-button>
+    <spr-button size="large" tone="danger" variant="tertiary" hasIcon>
+      <Icon icon="ph:trash" />
+      <span>Button</span>
+    </spr-button>
+  </div>
+
+  <div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
+    <spr-button size="small" tone="danger" hasIcon disabled>
+      <Icon icon="ph:trash" />
+      <span>Button</span>
+    </spr-button>
+    <spr-button tone="danger" variant="secondary" hasIcon disabled>
+      <Icon icon="ph:trash" />
+      <span>Button</span>
+    </spr-button>
+    <spr-button size="large" tone="danger" variant="tertiary" hasIcon disabled>
+      <Icon icon="ph:trash" />
+      <span>Button</span>
+    </spr-button>
+  </div>
 </div>
 
-<div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
-    <spr-button size="small" tone="success" hasIcon><Icon icon="ph:trash" /></spr-button>
-    <spr-button tone="success"  variant="secondary" hasIcon><Icon icon="ph:trash" /></spr-button>
-    <spr-button size="large" tone="success"variant="tertiary" hasIcon><Icon icon="ph:trash" /></spr-button>
-</div>
+### Icon Only
 
-<div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
-    <spr-button hasIcon size="small" tone="danger" ><Icon icon="ph:trash" /></spr-button>
-    <spr-button hasIcon tone="danger" variant="secondary" ><Icon icon="ph:trash" /></spr-button>
-    <spr-button hasIcon size="large" tone="danger" variant="tertiary" ><Icon icon="ph:trash" /></spr-button>
-</div>
+<div class="spr-mt-4">
+  <div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
+    <spr-button size="small" hasIcon>
+      <Icon icon="ph:trash" />
+    </spr-button>
+    <spr-button variant="secondary" hasIcon>
+      <Icon icon="ph:trash" />
+    </spr-button>
+    <spr-button size="large" variant="tertiary" hasIcon>
+      <Icon icon="ph:trash" />
+    </spr-button>
+  </div>
 
-<div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
-    <spr-button disabled hasIcon size="small" tone="danger"><Icon icon="ph:trash" /></spr-button>
-    <spr-button disabled hasIcon tone="danger" variant="secondary" ><Icon icon="ph:trash" /></spr-button>
-    <spr-button disabled hasIcon size="large" tone="danger" variant="tertiary" ><Icon icon="ph:trash" /></spr-button>
+  <div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
+    <spr-button size="small" tone="success" hasIcon>
+      <Icon icon="ph:trash" />
+    </spr-button>
+    <spr-button tone="success"  variant="secondary" hasIcon>
+      <Icon icon="ph:trash" />
+    </spr-button>
+    <spr-button size="large" tone="success"variant="tertiary" hasIcon>
+      <Icon icon="ph:trash" />
+    </spr-button>
+  </div>
+
+  <div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
+    <spr-button size="small" tone="danger" hasIcon>
+      <Icon icon="ph:trash" />
+    </spr-button>
+    <spr-button tone="danger" variant="secondary" hasIcon>
+      <Icon icon="ph:trash" />
+    </spr-button>
+    <spr-button size="large" tone="danger" variant="tertiary" hasIcon>
+      <Icon icon="ph:trash" />
+    </spr-button>
+  </div>
+
+  <div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
+    <spr-button size="small" tone="danger" hasIcon disabled>
+      <Icon icon="ph:trash" />
+    </spr-button>
+    <spr-button tone="danger" variant="secondary" hasIcon disabled>
+      <Icon icon="ph:trash" />
+    </spr-button>
+    <spr-button size="large" tone="danger" variant="tertiary" hasIcon disabled>
+      <Icon icon="ph:trash" />
+    </spr-button>
+  </div>
 </div>
 
 ```vue
 <template>
-  <spr-button hasIcon><Icon icon="ph:trash" /></spr-button>
+  <spr-button hasIcon>
+    <Icon icon="ph:trash" />
+    <span>Button</span>
+  </spr-button>
+
+  <spr-button iconOnly>
+    <Icon icon="ph:trash" />
+    <span>Button</span>
+  </spr-button>
 </template>
 
 <script lang="ts" setup>

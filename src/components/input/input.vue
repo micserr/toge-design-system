@@ -9,6 +9,7 @@
         <slot name="prefix" />
       </div>
       <input
+        ref="inputTextRef"
         v-bind="$attrs"
         :class="[inputClasses.inputTextClasses, { 'number-input': props.type === 'number' }]"
         :placeholder="props.placeholder"
@@ -20,7 +21,6 @@
         :value="modelValue"
         @input="onInput"
       />
-      <!-- :value="props.modelValue ? modelValue : props.preValue" -->
       <div v-if="$slots.trailing" :class="inputClasses.trailingSlotClasses">
         <slot name="trailing" />
       </div>
@@ -53,7 +53,7 @@ const emit = defineEmits(inputEmitTypes);
 const props = defineProps(inputPropTypes);
 const slots = useSlots();
 
-const { inputClasses, onInput } = useInput(props, emit, slots);
+const { inputClasses, inputTextRef, onInput } = useInput(props, emit, slots);
 </script>
 
 <style scoped>

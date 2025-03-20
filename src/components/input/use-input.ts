@@ -5,7 +5,6 @@ import classNames from 'classnames';
 
 import type { SetupContext } from 'vue';
 import type { InputPropTypes, InputEmitTypes } from './input';
-import { watch } from 'fs';
 
 interface InputClasses {
   baseClasses: string;

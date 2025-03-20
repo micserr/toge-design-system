@@ -1,6 +1,14 @@
 # Changelog
 
+## 1.13.4 (2025-03-20)
+
+- Fix
+  - Input Icon Implementation, Input pre-value implementation
+  - Radio Button Margin Fix Update
+  - Dropdown overflow X ([#80e3aab6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/80e3aab63efef23c95e6b40970135337900ab0e2?refName=refs/heads/2025/feature/arias/ds-updates) by @jarias)
+
 ## 1.13.3 (2025-03-20)
+
 - Fix
   - Table Header disappeared ([#dd9acf6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dd9acf632bcb077b1f8b78d2ca34de255c588de2?refName=refs/heads/2025/FIX/Xyrk/TABLE_HEADER) by @jfabula)
 

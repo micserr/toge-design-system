@@ -24,20 +24,17 @@ const inputValue = ref('');
 
 ## Pre Defined Values
 
-To add value to the input without using `v-model` you can use `pre-value` prop to force add value to the input.
-If both `v-model` and `pre-value` has a value, the most priority will be the `v-model`.
-
-<spr-input v-model="inputValue.input2" label="Text Input" placeholder="Enter your username" pre-value="Sample Value" />
+<spr-input v-model="inputValue.input2" label="Text Input" placeholder="Enter your username" />
 
 ```vue
 <template>
-  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" pre-value="Sample Value" />
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" />
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const inputValue = ref('');
+const inputValue = ref('Sample Text');
 </script>
 ```
 
@@ -102,6 +99,8 @@ const inputValue = ref('');
 You can either add min or max length by passing props `min-length` or `max-length` and add the corresponding number value.
 
 <spr-input v-model="inputValue.input6" label="Text Input" placeholder="Enter your username" :min-length="0" :max-length="50" />
+
+<p>Character Length: {{ inputValue.input6.length }}</p>
 
 ```vue
 <template>
@@ -288,12 +287,12 @@ const inputValueSearch = ref('');
 ### Username Input
 
 <div>
-  <spr-input-username v-model="inputValue.input13" label="Username" placeholder="Enter username" :active="true"/>
+  <spr-input-username v-model="inputValue.input13" label="Username" placeholder="Enter username" />
 </div>
 
 ```vue
 <template>
-  <spr-input-username v-model="inputValueUsername" label="Username" placeholder="Enter username" :active="true" />
+  <spr-input-username v-model="inputValueUsername" label="Username" placeholder="Enter username" />
 </template>
 
 <script lang="ts" setup>
@@ -306,12 +305,12 @@ const inputValueUsername = ref('');
 ### Email Input
 
 <div>
-  <spr-input-email v-model="inputValue.input14" label="Username" placeholder="Enter email" :active="true"/>
+  <spr-input-email v-model="inputValue.input14" label="Username" placeholder="Enter email" />
 </div>
 
 ```vue
 <template>
-  <spr-input-email v-model="inputValueEmail" label="Username" placeholder="Enter email" :active="true" />
+  <spr-input-email v-model="inputValueEmail" label="Username" placeholder="Enter email" />
 </template>
 
 <script lang="ts" setup>
@@ -324,12 +323,12 @@ const inputValueEmail = ref('');
 ### Password Input
 
 <div>
-  <spr-input-password v-model="inputValue.input15" label="Password" placeholder="Enter password" :active="true"/>
+  <spr-input-password v-model="inputValue.input15" label="Password" placeholder="Enter password" />
 </div>
 
 ```vue
 <template>
-  <spr-input-password v-model="inputValuePassword" label="Password" placeholder="Enter password" :active="true" />
+  <spr-input-password v-model="inputValuePassword" label="Password" placeholder="Enter password" />
 </template>
 
 <script lang="ts" setup>
@@ -342,12 +341,12 @@ const inputValuePassword = ref('');
 ### URL Input
 
 <div>
-  <spr-input-url v-model="inputValue.input16" label="URL" placeholder="Enter url" :active="true" />
+  <spr-input-url v-model="inputValue.input16" label="URL" placeholder="Enter url" />
 </div>
 
 ```vue
 <template>
-  <spr-input-url v-model="inputValueURL" label="URL" placeholder="Enter url" :active="true" />
+  <spr-input-url v-model="inputValueURL" label="URL" placeholder="Enter url" />
 </template>
 
 <script lang="ts" setup>
@@ -362,7 +361,7 @@ const inputValueURL = ref('');
 This component utilizes `libphonenumber-js` to parse and format the input on blur. Masking of contact number on change will be implemented in the future.
 
 <div>
-  <spr-input-contact-number v-model="inputValue.input17" label="Contact Number" placeholder="Enter contact number" class="spr-mb-size-spacing-3xs"/>
+  <spr-input-contact-number v-model="inputValue.input17" label="Contact Number" placeholder="Enter contact number" />
   <label>Output: {{ inputValue.input17 }}</label>
 </div>
 
@@ -373,7 +372,6 @@ This component utilizes `libphonenumber-js` to parse and format the input on blu
       v-model="inputValueContactNumber"
       label="Contact Number"
       placeholder="Enter contact number"
-      class="spr-mb-size-spacing-3xs"
     />
     <label>Output: {{ inputValueContactNumber }}</label>
   </div>
@@ -494,7 +492,7 @@ import SprInputContactNumber from "@/components/input/input-contact-number/input
 
 const inputValue = ref({
   input1: '',
-  input2: '',
+  input2: 'Sample Text',
   input3: '',
   input4: '',
   input5: '',

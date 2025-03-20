@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.13.5 (2025-03-20)
+
+- Feat
+  - Commit cdd49321: Add deselect functionality to filter component and update documentation ([#cdd49321](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dd9acf632bcb077b1f8b78d2ca34de255c588de2?refName=refs/heads/2025/FIX/Xyrk/TABLE_HEADER) by @adestajo)
+
 ## 1.13.4 (2025-03-20)
 
 - Fix

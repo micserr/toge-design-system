@@ -8,10 +8,10 @@ outline: 'deep'
 
 <div class="spr-space-y-3"> 
 <div class="spr-flex  spr-flex-col  spr-gap-2 spr-body-sm spr-border-b spr-border-solid spr-border-x-0 spr-border-t-0">
-  <span >Selected: {{selectedOptions}}</span> 
+  <span>Selected: {{selectedOptions}}</span>
   <span>searchValue: {{searchValue}}</span>
 </div>
-  <spr-filter v-model="selectedOptions"  :options="options" label="Search"  v-model:search="searchValue" id="search-filter"  />
+  <spr-filter v-model="selectedOptions"  :options="options" label="Search"  v-model:search="searchValue" id="search-filter"/>
 </div>
 
 ```vue
@@ -35,9 +35,7 @@ const searchValue = ref('');
 </script>
 ```
 
-## With Additional Filter
-
-### Filterable
+## Filterable
 
 <div class="spr-flex spr-flex-col spr-gap-6"> 
   <div
@@ -98,6 +96,74 @@ const filterMenuOptions = [
 
 const selectedOptions = ref([]);
 const searchValue = ref('');
+</script>
+```
+
+## Deselect
+
+This example demonstrates how to remove selected options from outside the component.
+
+<div class="spr-space-y-3"> 
+  <div class="spr-flex spr-gap-2">
+    <div v-for="selected in selectedOptions2">
+      <spr-button hasIcon size="small" tone="danger" variant="secondary" @click="removeSelected(selected.value)">
+      {{selected.value}}
+        <Icon icon="ph:trash" />
+      </spr-button>
+    </div> 
+  </div>
+  <spr-filter
+    v-model="selectedOptions2" 
+    v-model:search="searchValue2"
+    id="search-filter"
+    :deselected="deselected"
+    :options="options"
+    label="Search" 
+  />
+</div>
+
+```vue
+<template>
+  <div class="spr-space-y-3">
+    <div class="spr-flex spr-gap-2">
+      <div v-for="selected in selectedOptions2">
+        <spr-button hasIcon size="small" tone="danger" variant="secondary" @click="removeSelected(selected.value)">
+          {{ selected.value }}
+          <Icon icon="ph:trash" />
+        </spr-button>
+      </div>
+    </div>
+    <spr-filter
+      v-model="selectedOptions2"
+      v-model:search="searchValue2"
+      id="search-filter"
+      :deselected="deselected"
+      :options="options"
+      label="Search"
+    />
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { Icon } from '@iconify/vue';
+import SprButton from '@/components/button/button.vue';
+
+const options = [
+  { column: '', isSelected: false, text: 'sample 1', value: 'sample1' },
+  { column: '', isSelected: false, text: 'sample 2', value: 'sample2' },
+  { column: '', isSelected: false, text: 'sample 3', value: 'sample3' },
+  { column: '', isSelected: false, text: 'sample 4', value: 'sample4' },
+  { column: '', isSelected: false, text: 'sample 5', value: 'sample5' },
+];
+
+const selectedOptions2 = ref([]);
+const searchValue2 = ref('');
+const deselected = ref('');
+
+const removeSelected = (removeSelected) => {
+  deselected.value = removeSelected;
+};
 </script>
 ```
 
@@ -215,6 +281,12 @@ const searchValue = ref('');
       <td>false</td>
     </tr>
     <tr>
+      <td>deselected</td>
+      <td>Pass ID to deselect option outside of the component</td>
+      <td>String</td>
+      <td>''</td>
+    </tr>
+    <tr>
       <td>@update:modelValue</td>
       <td>Emitted when the selected value(s) change</td>
       <td>function</td>
@@ -240,7 +312,8 @@ const searchValue = ref('');
     </tr>
     <tr>
       <td>@infinite-scroll-trigger</td>
-      <td>Emitted when infinite scroll is triggered.</td>     <td>function</td>
+      <td>Emitted when infinite scroll is triggered.</td>
+      <td>function</td>
       <td>-</td>
     </tr>
   </tbody>
@@ -249,6 +322,8 @@ const searchValue = ref('');
 <script setup>
 import { ref } from 'vue';
 import SprFilter from '@/components/filter/filter.vue';
+import { Icon } from '@iconify/vue';
+import SprButton from "@/components/button/button.vue";
 
 const options = [
     { column: '', isSelected: false, text: 'sample 1', subtext: '', value: 'sample1' },
@@ -300,9 +375,17 @@ const selectedOptions = ref([]);
 const selectedOptions1 = ref([]);
 const searchValue = ref('')
 const searchValue1 = ref('')
+const selectedOptions2 = ref([]);
+const searchValue2 = ref('');
+
+const deselected = ref('')
 
 
 const handleSelected = (e) => {
   console.log('selected', e)
+}
+
+const removeSelected = (removeSelected) => {
+  deselected.value = removeSelected
 }
 </script>

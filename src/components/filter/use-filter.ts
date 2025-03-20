@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import { useInfiniteScroll } from '@vueuse/core';
 
 export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitTypes>['emit']) => {
-  const { options, filterMenu, filterData, loading, filterable, filling } = toRefs(props);
+  const { options, filterMenu, filterData, loading, filterable, filling, deselected } = toRefs(props);
   const selectedValue = useVModel(props, 'modelValue', emit);
   const isFilterOpen = ref<boolean>(false);
   const searchText = useVModel(props, 'search', emit);
@@ -72,7 +72,6 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
         const isExisting = selectedFilters.value.some(
           (prevSelected) => prevSelected.value === value && prevSelected.column === selectedColumn.value,
         );
-        console.log('isSelected', isSelected);
         acc[value] = { isSelected: isExisting || isSelected, text, value, column: selectedColumn.value, subtext };
         return acc;
       },
@@ -116,6 +115,10 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
 
   const getSelectedOption = computed(() => {
     return Object.values(mappedFilterOption.value).filter((item) => item.isSelected);
+  });
+
+  watch(deselected, (_value) => {
+    mappedFilterOption.value[_value].isSelected = false;
   });
 
   watch(getSelectedOption, () => {

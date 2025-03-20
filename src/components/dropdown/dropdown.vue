@@ -30,7 +30,10 @@
     ></div>
 
     <template #popper>
-      <div ref="dropdownRef" class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-p-2">
+      <div
+        ref="dropdownRef"
+        class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden spr-p-2"
+      >
         <template v-if="dropdownMenuList.length > 0">
           <SprList
             v-model="preSelectedItems"

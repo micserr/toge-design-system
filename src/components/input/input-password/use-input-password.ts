@@ -1,26 +1,18 @@
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 export const useInputPassword = () => {
-
-  const iconClasses = (
-    'spr-cursor-pointer'
-  )
   const showPassword = ref(false);
 
-  const toggleShowPassword = () => {
-    showPassword.value = !showPassword.value;
-  }
-
-  const evaluateEyeIcon = () => {
+  const evaluateEyeIcon = computed(() => {
     return showPassword.value ? 'ph:eye' : 'ph:eye-closed';
-  };
+  });
 
-  const evaluatePasswordInputType = () => {
+  const evaluatePasswordInputType = computed(() => {
     return showPassword.value ? 'text' : 'password';
-  }
+  });
+
   return {
-    iconClasses,
-    toggleShowPassword,
+    showPassword,
     evaluateEyeIcon,
     evaluatePasswordInputType,
   };

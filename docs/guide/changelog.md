@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.13.3 (2025-03-20)
+- Fix
+  - Table Header disappeared ([#dd9acf6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dd9acf632bcb077b1f8b78d2ca34de255c588de2?refName=refs/heads/2025/FIX/Xyrk/TABLE_HEADER) by @jfabula)
+
 ## 1.13.2 (2025-03-19)
 
 - Feat

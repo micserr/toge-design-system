@@ -61,6 +61,10 @@ export const filterPropTypes = {
     type: Boolean,
     default: true,
   },
+  deselected: {
+    type: String,
+    default: '',
+  },
 };
 
 export interface FilterPropsInterface {

@@ -48,7 +48,7 @@
       </template>
       <div 
         id="sidepanel-content" 
-        :class="['spr-overflow-y-auto', {'spr-mb-[52px]': $slots.footer}]"
+        :class="['spr-overflow-y-auto spr-h-full', {'spr-mb-[52px]': $slots.footer}]"
       >
         <slot />
       </div>

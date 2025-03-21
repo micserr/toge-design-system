@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.13.8 (2025-03-21)
+
+- Fix
+  - Remove prop warning for sidenav notification and request number
+  - Add full height for sidepanel content ([#dd811532](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dd811532c60b66ca6b748a3d1210075731512d44?refName=refs%2Fheads%2F2025%2FFIX%2FELI%2FSIDENAV) by @elumilay)
+
 ## 1.13.7 (2025-03-21)
 
 - Fix

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.13.7 (2025-03-21)
+
+- Fix
+  - Update Border Focus For Input ([#7e77e74e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7e77e74e09eadc5704240d5c5bcca3711dac530e?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 1.13.6 (2025-03-21)
 
 - Fix

@@ -50,7 +50,7 @@ export const useInput = (
         'focus: spr-border-tomato-600': focused.value && error.value,
         'focus: spr-border-white-100': focused.value && disabled.value,
 
-        // Dsiabled State
+        // Disabled State
         'spr-background-color-disabled spr-cursor-not-allowed spr-text-color-on-fill-disabled spr-border-mushroom-100':
           disabled.value,
       },
@@ -61,7 +61,7 @@ export const useInput = (
       'spr-text-color-strong spr-font-size-200 [font-weight:inherit]',
       'placeholder:spr-text-mushroom-300',
       {
-        // Dsiabled State
+        // Disabled State
         'spr-cursor-not-allowed': disabled.value,
 
         // Prefix, Suffix, Trailing

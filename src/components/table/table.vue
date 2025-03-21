@@ -21,7 +21,7 @@
     <div :class="getTableClasses.getTableHeight">
       <table aria-describedby="describe" class="spr-w-full spr-table-fixed" cellspacing="0" cellpadding="0">
         <thead>
-          <tr v-if="!props.removeHeaderOnEmpty && sortedData.length > 0">
+          <tr v-if="sortedData.length > 0 || !props.removeHeaderOnEmpty">
             <th v-for="(header, keyHeader) in headers" :key="keyHeader" :class="[getTableClasses.headerClasses]">
               <div :class="getTableClasses.headerNameClass">
                 <span :class="[{ 'spr-cursor-pointer': header.sort }]" @click="header.sort && sortData(header.field)">

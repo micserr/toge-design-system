@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.13.6 (2025-03-21)
+
+- Fix
+  - Changed logic for invisible headers ([#302069b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/302069b00430bfeefc4825c366885da527142c9c?refName=refs%2Fheads%2F2025%2FFIX%2FXyrk%2FTABLE_HEADER) by @jfabula)
+
 ## 1.13.5 (2025-03-20)
 
 - Feat

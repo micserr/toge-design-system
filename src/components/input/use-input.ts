@@ -1,5 +1,5 @@
-import { toRefs, computed, ComputedRef } from 'vue';
-import { useVModel } from '@vueuse/core';
+import { ref, toRefs, computed, ComputedRef } from 'vue';
+import { useVModel, useFocus } from '@vueuse/core';
 
 import classNames from 'classnames';
 
@@ -24,6 +24,10 @@ export const useInput = (
 ) => {
   const { active, error, disabled, offsetSize } = toRefs(props);
 
+  const inputTextRef = ref(null);
+
+  const { focused } = useFocus(inputTextRef);
+
   const modelValue = useVModel(props, 'modelValue', emit);
 
   const inputClasses: ComputedRef<InputClasses> = computed(() => {
@@ -34,12 +38,20 @@ export const useInput = (
     });
 
     const inputTextBaseClasses = classNames(
-      'spr-relative spr-flex spr-items-center spr-rounded-border-radius-md spr-border spr-border-solid',
+      'spr-relative spr-flex spr-items-center spr-rounded-border-radius-md spr-border-[1.5px] spr-border-solid',
       {
-        'spr-border-mushroom-200 focus:spr-border-kangkong-700': !error.value && !disabled.value && !active.value,
-        'spr-border-kangkong-700 spr-border-[1.5px] spr-border-solid': active.value,
-        'spr-border-tomato-600 focus:spr-border-tomato-600': error.value,
-        'spr-background-color-disabled spr-cursor-not-allowed spr-text-color-on-fill-disabled spr-border-white-100 focus:spr-border-white-100':
+        // Border State
+        'spr-border-mushroom-200': !focused.value && !error.value && !disabled.value && !active.value,
+        'spr-border-kangkong-700': !focused.value && active.value,
+        'spr-border-tomato-600': !focused.value && error.value,
+
+        // Border State Focused
+        'focus: spr-border-kangkong-700': focused.value && !error.value && !disabled.value && !active.value,
+        'focus: spr-border-tomato-600': focused.value && error.value,
+        'focus: spr-border-white-100': focused.value && disabled.value,
+
+        // Disabled State
+        'spr-background-color-disabled spr-cursor-not-allowed spr-text-color-on-fill-disabled spr-border-mushroom-100':
           disabled.value,
       },
     );
@@ -49,6 +61,7 @@ export const useInput = (
       'spr-text-color-strong spr-font-size-200 [font-weight:inherit]',
       'placeholder:spr-text-mushroom-300',
       {
+        // Disabled State
         'spr-cursor-not-allowed': disabled.value,
 
         // Prefix, Suffix, Trailing
@@ -109,6 +122,7 @@ export const useInput = (
   };
 
   return {
+    inputTextRef,
     inputClasses,
     onInput,
   };

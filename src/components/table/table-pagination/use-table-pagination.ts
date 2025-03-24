@@ -1,7 +1,10 @@
 import { computed, ref, toRefs } from 'vue';
 import type { ComputedRef, SetupContext } from 'vue';
 
-import type { TablePaginationPropTypes, TablePaginationEmitTypes } from '@/components/table/table-pagination/table-pagination';
+import type {
+  TablePaginationPropTypes,
+  TablePaginationEmitTypes,
+} from '@/components/table/table-pagination/table-pagination';
 import type { DropdownMenuType } from '@/components/dropdown/dropdown';
 
 interface TablePaginationClasses {
@@ -12,10 +15,13 @@ interface TablePaginationClasses {
   navigationContainerClass: string;
   inputFieldIconClass: string;
   navigationButtonClass: string;
-  dropdownClass: string,
+  dropdownClass: string;
 }
 
-export const useTablePagination = (props: TablePaginationPropTypes, emit: SetupContext<TablePaginationEmitTypes>['emit']) => {
+export const useTablePagination = (
+  props: TablePaginationPropTypes,
+  emit: SetupContext<TablePaginationEmitTypes>['emit'],
+) => {
   const { selectedRowCount, currentPage, totalItems } = toRefs(props);
 
   const paginationClasses: ComputedRef<TablePaginationClasses> = computed(() => {
@@ -26,7 +32,7 @@ export const useTablePagination = (props: TablePaginationPropTypes, emit: SetupC
     const computeRowRangeClass = 'spr-font-main spr-text-color-base spr-w-full' as const;
     const navigationContainerClass = 'spr-flex spr-space-x-2' as const;
     const navigationButtonClass = 'spr-rounded-border-radius-md' as const;
-    const dropdownClass = '!spr-w-max' as const
+    const dropdownClass = '!spr-w-max' as const;
     return {
       baseClass,
       dropdownInputFieldClass,
@@ -35,7 +41,7 @@ export const useTablePagination = (props: TablePaginationPropTypes, emit: SetupC
       inputFieldIconClass,
       navigationContainerClass,
       navigationButtonClass,
-      dropdownClass
+      dropdownClass,
     };
   });
 
@@ -70,8 +76,14 @@ export const useTablePagination = (props: TablePaginationPropTypes, emit: SetupC
     return props.totalItems <= props.currentPage * props.selectedRowCount;
   });
 
-  // generate a unique id for dropdown so it won't interfere with other dropdowns in the page
-  const dropdownId = ref(`dropdown-${crypto.randomUUID()}`);
+  const generateUniqueId = () => {
+    const timestamp = Date.now();
+    const randomNum = Math.floor(Math.random() * 1000000);
+
+    return `dropdown-${timestamp}-${randomNum}`;
+  };
+
+  const dropdownId = ref(`dropdown-${generateUniqueId()}`);
 
   return {
     paginationClasses,

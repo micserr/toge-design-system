@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.13.10 (2025-03-24)
+- Docs
+  - Checkbox indeterminate documentation ([#075d5fc](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/075d5fcc13dc901c1f1d4a2ceff6ee6d0ee3b0b3?refName=refs/heads/2025/FIX/Xyrk/CHECKBOX_DQA) by @jfabula)
+
+## 1.13.9 (2025-03-24)
+- Fix
+  - Checkbox DQA ([#9f1d8c0](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/9f1d8c07719bfe61ec7a923f2acb50f4ea9c4cb5?refName=refs/heads/2025/FIX/Xyrk/CHECKBOX_DQA) by @jfabula)
+
 ## 1.13.8 (2025-03-21)
 
 - Fix

@@ -23,6 +23,10 @@ export const checkboxPropTypes = {
     type: Boolean,
     default: false,
   },
+  indeterminate: {
+    type: Boolean,
+    default: false,
+  }
 };
 
 export const checkboxEmitTypes = {

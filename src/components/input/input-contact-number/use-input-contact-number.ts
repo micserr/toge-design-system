@@ -1,5 +1,7 @@
-import { onMounted, ref, SetupContext } from 'vue';
+import { ref, toRefs, computed, ComputedRef, onMounted, SetupContext } from 'vue';
 import { useVModel, useDebounceFn } from '@vueuse/core';
+
+import classNames from 'classnames';
 
 import parsePhoneNumber, { CountryCode } from 'libphonenumber-js';
 
@@ -9,10 +11,31 @@ import {
   type InputContactNumberPropTypes,
 } from './input-contact-number';
 
+interface InputContactNumberClasses {
+  countryCallingCodeClasses: string;
+}
+
 export const useInputContactNumber = (
   props: InputContactNumberPropTypes,
   emit: SetupContext<InputContactNumberEmitTypes>['emit'],
 ) => {
+  const { disabled } = toRefs(props);
+
+  const inputContactNumberClasses: ComputedRef<InputContactNumberClasses> = computed(() => {
+    const countryCallingCodeClasses = classNames(
+      'spr-font-weight-regular spr-font-size-200 spr-line-height-500 spr-letter-spacing-none spr-font-main',
+      'spr-flex spr-items-center spr-gap-size-spacing-5xs',
+      {
+        'spr-cursor-not-allowed': disabled.value,
+        'spr-cursor-pointer': !disabled.value,
+      },
+    );
+
+    return {
+      countryCallingCodeClasses,
+    };
+  });
+
   const formattedValue = useVModel(props, 'modelValue', emit);
 
   const selectedCountry = ref({
@@ -93,6 +116,7 @@ export const useInputContactNumber = (
   });
 
   return {
+    inputContactNumberClasses,
     formattedValue,
     selectedCountry,
     popperState,

@@ -12,7 +12,8 @@ export interface CountryOption {
 
 // List of countries with their CCA2 country code
 export const COUNTRY_OPTIONS: CountryOption[] = getCountries().map((countryCode) => {
-  const countryName = countries[countryCode] ? countries[countryCode].name : countryCode;
+  const country = countries[countryCode as keyof typeof countries];
+  const countryName = country ? country.name : countryCode;
   const countryCallingCode = getCountryCallingCode(countryCode);
 
   return {
@@ -30,6 +31,14 @@ export const inputContactNumberPropTypes = {
   placeholder: {
     type: String,
     default: 'Enter Phone Number',
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  disabledCountryCallingCode: {
+    type: Boolean,
+    default: false,
   },
 };
 

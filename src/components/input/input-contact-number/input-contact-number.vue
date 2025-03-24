@@ -1,10 +1,11 @@
 <template>
   <spr-input
     v-model="formattedValue"
-    v-bind="attrs"
+    v-bind="$attrs"
     type="contact-number"
     :placeholder="props.placeholder"
     :active="popperState"
+    :disabled="props.disabled"
     @input="handleContactNumberInput"
     @blur="formatContactNumber"
     @update:model-value="handleUpdateModelValue"
@@ -16,33 +17,22 @@
         class="[&>#dropdown-wrapper]:spr-my-1"
         :menu-list="COUNTRY_OPTIONS"
         placement="bottom-start"
-        width="45px"
+        :width="!props.disabledCountryCallingCode ? '45px' : '35px'"
         popper-width="330px"
-        :disabled="isDisabled"
+        :disabled="props.disabled || props.disabledCountryCallingCode"
         @get-selected-item="handleSelectedCountries"
         @get-popper-state="handlePopperState"
       >
-        <label
-          :class="[
-            'spr-font-weight-regular spr-font-size-200 spr-line-height-500 spr-letter-spacing-none spr-font-main',
-            'spr-flex spr-items-center spr-gap-size-spacing-5xs',
-            {
-              'spr-cursor-not-allowed': isDisabled,
-              'spr-cursor-pointer': !isDisabled,
-            },
-          ]"
-        >
+        <span :class="inputContactNumberClasses.countryCallingCodeClasses">
           +{{ selectedCountry.countryCallingCode[0] }}
-          <icon icon="ph:caret-down" width="16px" height="16px" />
-        </label>
+          <icon v-if="!props.disabledCountryCallingCode" icon="ph:caret-down" width="16px" height="16px" />
+        </span>
       </spr-dropdown>
     </template>
   </spr-input>
 </template>
 
 <script setup lang="ts">
-import { ref, useAttrs } from 'vue';
-
 import { Icon } from '@iconify/vue';
 
 import SprInput from '@/components/input/input.vue';
@@ -56,10 +46,8 @@ import { inputContactNumberPropTypes, inputContactNumberEmitTypes } from './inpu
 const props = defineProps(inputContactNumberPropTypes);
 const emit = defineEmits(inputContactNumberEmitTypes);
 
-const attrs = useAttrs();
-const isDisabled = ref((attrs.disabled as boolean) || attrs.disabled === '');
-
 const {
+  inputContactNumberClasses,
   formattedValue,
   selectedCountry,
   popperState,

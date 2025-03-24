@@ -3,19 +3,24 @@
     v-model="formattedValue"
     v-bind="attrs"
     type="contact-number"
-    @blur="handleOnBlur"
+    :placeholder="props.placeholder"
+    :active="popperState"
+    @input="handleContactNumberInput"
+    @blur="formatContactNumber"
     @update:model-value="handleUpdateModelValue"
   >
     <template #prefix>
       <spr-dropdown
         id="contact-number-country-dropdown"
-        v-model="selectedCountry"
+        v-model="selectedCountry.countryCallingCode"
+        class="[&>#dropdown-wrapper]:spr-my-1"
         :menu-list="COUNTRY_OPTIONS"
-        placement="bottom"
+        placement="bottom-start"
         width="45px"
-        popper-width="100px"
+        popper-width="330px"
         :disabled="isDisabled"
         @get-selected-item="handleSelectedCountries"
+        @get-popper-state="handlePopperState"
       >
         <label
           :class="[
@@ -27,7 +32,7 @@
             },
           ]"
         >
-          {{ selectedCountry[0] }}
+          +{{ selectedCountry.countryCallingCode[0] }}
           <icon icon="ph:caret-down" width="16px" height="16px" />
         </label>
       </spr-dropdown>
@@ -54,6 +59,14 @@ const emit = defineEmits(inputContactNumberEmitTypes);
 const attrs = useAttrs();
 const isDisabled = ref((attrs.disabled as boolean) || attrs.disabled === '');
 
-const { formattedValue, handleSelectedCountries, selectedCountry, handleOnBlur, handleUpdateModelValue } =
-  useInputContactNumber(props, emit);
+const {
+  formattedValue,
+  selectedCountry,
+  popperState,
+  handleContactNumberInput,
+  handleSelectedCountries,
+  formatContactNumber,
+  handleUpdateModelValue,
+  handlePopperState,
+} = useInputContactNumber(props, emit);
 </script>

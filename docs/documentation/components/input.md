@@ -361,37 +361,55 @@ const inputValueURL = ref('');
 This component utilizes `libphonenumber-js` to parse and format the input on blur. Masking of contact number on change will be implemented in the future.
 
 <div>
-  <spr-input-contact-number 
-    v-model="inputValue.input17" 
-    label="Contact Number" 
-    @get-selected-country-calling-code="handleSelectedCountryCallingCode"
-    @get-contact-number-errors="handleContactNumberErrors" 
-  />
-
+  <div class="spr-grid spr-gap-4">
+    <spr-input-contact-number 
+      v-model="inputValue.input17" 
+      label="Contact Number" 
+      @get-selected-country-calling-code="handleSelectedCountryCallingCode"
+      @get-contact-number-errors="handleContactNumberErrors" 
+    />
+    <spr-input-contact-number 
+      v-model="inputValue.input17" 
+      label="Disabled Calling Country Code" 
+      disabledCountryCallingCode
+    />
+  </div>
   <div class="spr-my-3 spr-p-4 spr-bg-blue-100">
     <p>Model Output: {{ inputValue.input17 }}</p>
     <p>Selected Country Code: {{ selectedCountryCode }}</p>
     <p>Error Handling: {{ contactNumberErrors }}</p>
+    <p>Parsed International Number: {{ parseInternationalNumber }}</p>
   </div>
 </div>
+
+::: info Importannt to note:
+Since the v-model output is not in an international format (e.g., +63XXXXXXXXXXX), you will need to create a separate function that parses the model output along with the selected country code.
+:::
 
 ```vue
 <template>
   <div>
-    <spr-input-contact-number
-      v-model="inputValueContactNumber"
-      label="Contact Number"
-      @get-selected-country-calling-code="handleSelectedCountryCallingCode"
-      @get-contact-number-errors="handleContactNumberErrors"
-    />
-
+    <div class="spr-grid spr-gap-4">
+      <spr-input-contact-number
+        v-model="inputValueContactNumber"
+        label="Contact Number"
+        @get-selected-country-calling-code="handleSelectedCountryCallingCode"
+        @get-contact-number-errors="handleContactNumberErrors"
+      />
+      <spr-input-contact-number
+        v-model="inputValueContactNumber"
+        label="Disabled Calling Country Code"
+        disabledCountryCallingCode
+      />
+    </div>
     <p>Model Output: {{ inputValueContactNumber }}</p>
     <p>Selected Country Code: {{ selectedCountryCode }}</p>
     <p>Error Handling: {{ contactNumberErrors }}</p>
+    <p>Parsed International Number: {{ parseInternationalNumber }}</p>
   </div>
 
   <script lang="ts" setup>
-    import { ref } from 'vue';
+    import { ref, computed } from 'vue';
 
     const inputValueContactNumber = ref('');
     const selectedCountryCode = ref('');
@@ -404,6 +422,20 @@ This component utilizes `libphonenumber-js` to parse and format the input on blu
     const handleContactNumberErrors = (errors: { title: string; message: string }[]) => {
       contactNumberErrors.value = errors;
     };
+
+    const handleContactNumberErrors = (errors: { title: string; message: string }[]) => {
+      contactNumberErrors.value = errors;
+    };
+
+    const parseInternationalNumber = computed(() => {
+      if (selectedCountryCode && inputValueContactNumber.value) {
+        const formattedNumber = `+${selectedCountryCode}${inputValueContactNumber.value.replace(/[^0-9]/g, '')}`;
+
+        return formattedNumber;
+      }
+
+      return '';
+    });
   </script>
 </template>
 ```
@@ -522,7 +554,7 @@ const dropdownInput = ref('');
 </table>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 import { Icon } from '@iconify/vue';
 
@@ -566,4 +598,15 @@ const handleSelectedCountryCallingCode = (value: string) => {
 const handleContactNumberErrors = (errors: { title: string; message: string }[]) => {
   contactNumberErrors.value = errors;
 };
+
+const parseInternationalNumber = computed(() => {
+  if (selectedCountryCode && inputValue.value.input17) {
+    const formattedNumber = `+${selectedCountryCode.value}${inputValue.value.input17.replace(/[^0-9]/g, '')}`;
+
+    return formattedNumber;
+  }
+  
+  return '';
+});
+
 </script>

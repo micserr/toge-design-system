@@ -1,7 +1,13 @@
-import { ref, SetupContext } from 'vue';
-import { CountryOption, type InputContactNumberEmitTypes, type InputContactNumberPropTypes } from './input-contact-number';
-import parsePhoneNumber, { CountryCode } from 'libphonenumber-js'
-import { useVModel } from '@vueuse/core'
+import { onMounted, ref, SetupContext } from 'vue';
+import { useVModel, useDebounceFn } from '@vueuse/core';
+
+import parsePhoneNumber, { CountryCode } from 'libphonenumber-js';
+
+import {
+  CountryOption,
+  type InputContactNumberEmitTypes,
+  type InputContactNumberPropTypes,
+} from './input-contact-number';
 
 export const useInputContactNumber = (
   props: InputContactNumberPropTypes,
@@ -9,37 +15,68 @@ export const useInputContactNumber = (
 ) => {
   const formattedValue = useVModel(props, 'modelValue', emit);
 
-  // const formattedValue = ref('');
-  const selectedCountry = ref<string[]>(['PH']); // Default to Philippines
+  const selectedCountry = ref({
+    countryCode: ['PH'],
+    countryCallingCode: ['63'],
+  });
 
-  const handleSelectedCountries = (item: CountryOption) => {
-    // Set the selected country
-    selectedCountry.value[0] = item.value;
+  const popperState = ref(false);
 
-    if (!formattedValue.value) return;
-    let newPhoneNumber = formattedValue.value;
+  const handleContactNumberInput = (event: InputEvent) => {
+    const input = event.target as HTMLInputElement;
+    const value = input.value;
 
-    // Remove the country code if the value has formatted value
-    if(formattedValue.value !== '') { 
-      newPhoneNumber = newPhoneNumber.substring(formattedValue.value.indexOf(" ")); 
+    if (!/^[+]?\d*[\d\s-]*$/.test(value)) {
+      input.value = value.replace(/[^0-9+\s-]/g, '');
     }
-  
-    // Parse the phone number
-    const phoneNumber = parsePhoneNumber(newPhoneNumber, { defaultCountry: selectedCountry.value[0] as CountryCode });
-    // Format the phone number
-    if (phoneNumber) {
-      formattedValue.value = phoneNumber.formatInternational();
+
+    emit('getContactNumberErrors', []);
+
+    if (value.length > 0) {
+      handleContactNumberInputFormat();
     }
   };
-  
-  const handleOnBlur = () => {
+
+  const handleContactNumberInputFormat = useDebounceFn(() => {
+    formatContactNumber();
+  }, 500);
+
+  const handleSelectedCountries = (item: CountryOption) => {
+    selectedCountry.value = {
+      countryCode: [item.countryCode],
+      countryCallingCode: [item.value],
+    };
+
+    emit('getContactNumberErrors', []);
+
+    formatContactNumber();
+
+    emit('getSelectedCountryCallingCode', selectedCountry.value.countryCallingCode[0]);
+  };
+
+  const formatContactNumber = () => {
     if (!formattedValue.value) return;
-  
-    const phoneNumber = parsePhoneNumber(formattedValue.value, { defaultCountry: selectedCountry.value[0] as CountryCode, extract: false});
-    if (phoneNumber) {
-        formattedValue.value = phoneNumber.formatInternational();
+
+    const normalizedNumber = formattedValue.value.replace(/\D/g, '');
+
+    const phoneNumber = parsePhoneNumber(normalizedNumber, {
+      defaultCountry: selectedCountry.value.countryCode[0] as CountryCode,
+      extract: false,
+    });
+
+    if (phoneNumber && phoneNumber.isValid()) {
+      let formattedNumber = phoneNumber.formatInternational();
+
+      formattedNumber = formattedNumber.replace(`+${selectedCountry.value.countryCallingCode[0]} `, '');
+
+      formattedValue.value = formattedNumber;
     } else {
-      formattedValue.value = '';
+      emit('getContactNumberErrors', [
+        {
+          title: 'Invalid Contact Number',
+          message: 'Must be a valid contact number',
+        },
+      ]);
     }
   };
 
@@ -47,11 +84,22 @@ export const useInputContactNumber = (
     emit('update:modelValue', value);
   };
 
+  const handlePopperState = (state: boolean) => {
+    popperState.value = state;
+  };
+
+  onMounted(() => {
+    emit('getSelectedCountryCallingCode', selectedCountry.value.countryCallingCode[0]);
+  });
+
   return {
     formattedValue,
-    handleSelectedCountries,
     selectedCountry,
-    handleOnBlur,
+    popperState,
+    handleContactNumberInput,
+    handleSelectedCountries,
+    formatContactNumber,
     handleUpdateModelValue,
+    handlePopperState,
   };
-}; 
+};

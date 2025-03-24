@@ -361,27 +361,103 @@ const inputValueURL = ref('');
 This component utilizes `libphonenumber-js` to parse and format the input on blur. Masking of contact number on change will be implemented in the future.
 
 <div>
-  <spr-input-contact-number v-model="inputValue.input17" label="Contact Number" placeholder="Enter contact number" />
-  <label>Output: {{ inputValue.input17 }}</label>
+  <div class="spr-grid spr-gap-4">
+    <spr-input-contact-number 
+      v-model="inputValue.input17" 
+      label="Contact Number" 
+      @get-selected-country-calling-code="handleSelectedCountryCallingCode"
+      @get-contact-number-errors="handleContactNumberErrors" 
+    />
+    <spr-input-contact-number 
+      v-model="inputValue.input17" 
+      label="Disabled Calling Country Code" 
+      disabledCountryCallingCode
+    />
+  </div>
+  <div class="spr-my-3 spr-p-4 spr-bg-blue-100">
+    <p>Model Output: {{ inputValue.input17 }}</p>
+    <p>Selected Country Code: {{ selectedCountryCode }}</p>
+    <p>Error Handling: {{ contactNumberErrors }}</p>
+    <p>Parsed International Number: {{ parseInternationalNumber }}</p>
+  </div>
 </div>
+
+::: info Importannt to note:
+Since the v-model output is not in an international format (e.g., +63XXXXXXXXXXX), you will need to create a separate function that parses the model output along with the selected country code.
+:::
 
 ```vue
 <template>
   <div>
-    <spr-input-contact-number
-      v-model="inputValueContactNumber"
-      label="Contact Number"
-      placeholder="Enter contact number"
-    />
-    <label>Output: {{ inputValueContactNumber }}</label>
+    <div class="spr-grid spr-gap-4">
+      <spr-input-contact-number
+        v-model="inputValueContactNumber"
+        label="Contact Number"
+        @get-selected-country-calling-code="handleSelectedCountryCallingCode"
+        @get-contact-number-errors="handleContactNumberErrors"
+      />
+      <spr-input-contact-number
+        v-model="inputValueContactNumber"
+        label="Disabled Calling Country Code"
+        disabledCountryCallingCode
+      />
+    </div>
+    <p>Model Output: {{ inputValueContactNumber }}</p>
+    <p>Selected Country Code: {{ selectedCountryCode }}</p>
+    <p>Error Handling: {{ contactNumberErrors }}</p>
+    <p>Parsed International Number: {{ parseInternationalNumber }}</p>
   </div>
 
   <script lang="ts" setup>
-    import { ref } from 'vue';
+    import { ref, computed } from 'vue';
 
     const inputValueContactNumber = ref('');
+    const selectedCountryCode = ref('');
+    const contactNumberErrors = ref([]);
+
+    const handleSelectedCountryCallingCode = (value: string) => {
+      selectedCountryCode.value = value;
+    };
+
+    const handleContactNumberErrors = (errors: { title: string; message: string }[]) => {
+      contactNumberErrors.value = errors;
+    };
+
+    const handleContactNumberErrors = (errors: { title: string; message: string }[]) => {
+      contactNumberErrors.value = errors;
+    };
+
+    const parseInternationalNumber = computed(() => {
+      if (selectedCountryCode && inputValueContactNumber.value) {
+        const formattedNumber = `+${selectedCountryCode}${inputValueContactNumber.value.replace(/[^0-9]/g, '')}`;
+
+        return formattedNumber;
+      }
+
+      return '';
+    });
   </script>
 </template>
+```
+
+### Dropdown Input
+
+This is the one used in the dropdown component. If you want to implement a dropdown, you can refer to the <a href="/documentation/components/dropdown.html" target="_blank">Dropdown Component</a>.
+
+<div>
+  <spr-input-dropdown v-model="inputValue.input18" label="Dropdown Input" placeholder="Select an item ..." readonly />
+</div>
+
+```vue
+<template>
+  <spr-input-dropdown v-model="dropdownInput" label="Dropdown Input" placeholder="Select an item ..." readonly />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const dropdownInput = ref('');
+</script>
 ```
 
 ## API Reference
@@ -478,7 +554,7 @@ This component utilizes `libphonenumber-js` to parse and format the input on blu
 </table>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 import { Icon } from '@iconify/vue';
 
@@ -489,6 +565,7 @@ import SprInputEmail from "@/components/input/input-email/input-email.vue"
 import SprInputPassword from "@/components/input/input-password/input-password.vue"
 import SprInputUrl from "@/components/input/input-url/input-url.vue"
 import SprInputContactNumber from "@/components/input/input-contact-number/input-contact-number.vue"
+import SprInputDropdown from "@/components/input/input-dropdown/input-dropdown.vue"
 
 const inputValue = ref({
   input1: '',
@@ -508,5 +585,28 @@ const inputValue = ref({
   input15: '',
   input16: '',
   input17: '',
+  input18: '',
 });
+
+const selectedCountryCode = ref('');
+const contactNumberErrors = ref<{ title: string; message: string }[]>([]);
+
+const handleSelectedCountryCallingCode = (value: string) => {
+  selectedCountryCode.value = value;
+};
+
+const handleContactNumberErrors = (errors: { title: string; message: string }[]) => {
+  contactNumberErrors.value = errors;
+};
+
+const parseInternationalNumber = computed(() => {
+  if (selectedCountryCode && inputValue.value.input17) {
+    const formattedNumber = `+${selectedCountryCode.value}${inputValue.value.input17.replace(/[^0-9]/g, '')}`;
+
+    return formattedNumber;
+  }
+  
+  return '';
+});
+
 </script>

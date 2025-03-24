@@ -41,9 +41,9 @@ export const useInput = (
       'spr-relative spr-flex spr-items-center spr-rounded-border-radius-md spr-border-[1.5px] spr-border-solid',
       {
         // Border State
-        'spr-border-mushroom-200': !focused.value && !error.value && !disabled.value && !active.value,
-        'spr-border-kangkong-700': !focused.value && active.value,
-        'spr-border-tomato-600': !focused.value && error.value,
+        'spr-border-color-weak': !focused.value && !error.value && !disabled.value && !active.value,
+        'spr-border-color-brand-base': !focused.value && active.value,
+        'spr-border-color-danger-base': !focused.value && error.value,
 
         // Border State Focused
         'focus: spr-border-kangkong-700': focused.value && !error.value && !disabled.value && !active.value,

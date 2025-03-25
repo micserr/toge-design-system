@@ -79,11 +79,16 @@ export const dropdownPropTypes = {
     type: Boolean,
     default: false,
   },
+  ladderized: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const dropdownEmitTypes = {
   'get-selected-item': Object,
   'infinite-scroll-trigger': Boolean,
+  'update:modelValue': (value: string[]) => value,
 };
 
 export type DropdownPropTypes = ExtractPropTypes<typeof dropdownPropTypes>;

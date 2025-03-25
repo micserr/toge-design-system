@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.14.1 (2025-03-25)
+- Fix
+  - Hover color and label size ([#a6e3d90](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a6e3d90daaee6dad95d8b67a448dd785bc3a338b?refName=refs/heads/2025/FIX/Xyrk/CHECKBOX_DQA) by @jfabula)
+
 ## 1.14.0 (2025-03-24)
 
 - Feat

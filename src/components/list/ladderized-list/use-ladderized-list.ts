@@ -29,17 +29,12 @@ export const useLadderizedList = (props: LadderizedListPropTypes, emit: SetupCon
     });
 
     // Update the activeList and activeLevel
-    if (!isSameLevel.value && item.sublevel ) {
+    if (!isSameLevel.value) {
       appendItemToOutput(item);
       updateLevel(item)
-    } else if (isSameLevel.value && !item.sublevel) {
-      replaceItemInOutput(item);
-    } else if (!isSameLevel.value && !item.sublevel){
-      appendItemToOutput(item);
-      updateLevel(item);
     } else {
       replaceItemInOutput(item);
-      updateLevel(item);
+      if (item.sublevel) updateLevel(item);
     }
 
     // Update output value

@@ -108,7 +108,6 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   const handleSelectedItem = (item: MenuListType) => {
     if (!multiSelect.value) {
       selectedItems.value = [item];
-      // emit('get-selected-item', selectedItems.value[0]);
     } else {
       const index = selectedItems.value.findIndex((selectedItem: MenuListType) => selectedItem.value === item.value);
 
@@ -117,6 +116,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
       } else {
         selectedItems.value.splice(index, 1);
       }
+      emit('update:modelValue', selectedItems.value);
     }
   };
   // #endregion - Helper Methods

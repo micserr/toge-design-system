@@ -2,17 +2,11 @@ import type { PropType, ExtractPropTypes } from 'vue';
 import { MenuListType } from '../list';
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
-export type LadderizedListOutputType = {
-  text: string;          // Text to display
-  value: string[];        // Array of value text
-};
-
-
 export const ladderizedListPropTypes = {
   modelValue: {
-    type: Object as PropType<LadderizedListOutputType>,
+    type: Array as PropType<string[]>,
     required: true,
-    default: () => ({text: "", value: []}),
+    default: [],
   },
   menuList: {
     type: Array as PropType<MenuListType[]>,
@@ -22,7 +16,7 @@ export const ladderizedListPropTypes = {
 };
 
 export const ladderizedListEmitTypes = {
-  'update:modelValue': (value: MenuListType[]) => value,
+  'update:modelValue': (value: string[]) => value,
 };
 
 export type LadderizedListPropTypes = ExtractPropTypes<typeof ladderizedListPropTypes>;

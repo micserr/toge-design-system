@@ -1,79 +1,160 @@
-import { ref, toRefs, computed, ComputedRef, onMounted } from 'vue';
-import classNames from 'classnames';
+import { computed, onBeforeMount, ref, toRefs } from 'vue';
 import type { SetupContext } from 'vue';
-import type { ListPropTypes, MenuListType } from '../list';
+import type { MenuListType } from '../list';
 import { LadderizedListPropTypes, LadderizedListEmitTypes } from './ladderized-list';
 import { useVModel } from '@vueuse/core'
 
-interface LadderizedListClasses {
-  backListClass: string;
-}
-
 export const useLadderizedList = (props: LadderizedListPropTypes, emit: SetupContext<LadderizedListEmitTypes>['emit']) => {
   const ladderizedListOutput = useVModel(props, 'modelValue', emit); // List of items for v-model
+  const { menuList } = toRefs(props);
   const transitionName = ref("slide-left");
+  const backLabel = ref("");
   
+  // Variables used for internal logic
   const selectedListItem = ref<MenuListType[]>([]); // List of items for recording the selected item
-
   const activeLevel = ref(0);
-  const activeList =  ref<MenuListType[]>(props.menuList);  // List of items to display in the active level
+  const activeList =  ref<MenuListType[]>(menuList.value);  // List of items to display in the active level
+  const prevList = ref<MenuListType[]>([]);
 
   const handleSelectedListItem = (item: MenuListType) => {
     transitionName.value = "slide-left";
-    // Update the selectedListItem array
-    // Update if existing item, else push new item
+    // Update UI for selectedListItem
+    updateSelectedListItem(item);
+
+    const isSameLevel = computed(() => {
+      if (prevList.value.some(listItem => listItem.value === item.value)) {
+        return true;
+      }
+      return false;
+    });
+
+    // Update the activeList and activeLevel
+    if (!isSameLevel.value && item.sublevel ) {
+      appendItemToOutput(item);
+      updateLevel(item)
+    } else if (isSameLevel.value && !item.sublevel) {
+      replaceItemInOutput(item);
+    } else if (!isSameLevel.value && !item.sublevel){
+      appendItemToOutput(item);
+      updateLevel(item);
+    } else {
+      replaceItemInOutput(item);
+      updateLevel(item);
+    }
+
+    // Update output value
+    emit("update:modelValue", ladderizedListOutput.value);
+  };
+
+  // Update UI display for selectedListItem
+  const updateSelectedListItem = (item: MenuListType) => {
     if(selectedListItem.value[activeLevel.value]) {
       selectedListItem.value[activeLevel.value] = item;
     } else {
       selectedListItem.value.push(item);
     }
+  }
 
-    // Update the activeList and activeLevel
-    if (item.sublevel) { 
-      activeList.value = item.sublevel;
-      activeLevel.value += 1;
-    }
+  // Update the activeList, prevList and activeLevel
+  const updateLevel = (item: MenuListType) => {
+    activeLevel.value += 1;
+    prevList.value = activeList.value;
+    activeList.value = item.sublevel ?? activeList.value;
+  }
 
-    if (!selectedListItem.value[0].sublevel) return;
+  // Append the new item to the output
+  const appendItemToOutput = (item: MenuListType) => {
+    // Prevent spamming the same item
+    if (ladderizedListOutput.value[ladderizedListOutput.value.length - 1] === item.value) return;
 
-    // Update the ladderizedListOutput text and value
-    // Update output text
-    if (ladderizedListOutput.value.text !== "") {
-      const textArray = ladderizedListOutput.value.text.split(", ");
+    // Update back label text
+    if (backLabel.value !== "") {
+      const textArray = backLabel.value.split(", ");
       textArray?.push(item.text);
-      ladderizedListOutput.value.text = textArray?.join(", ") ?? "";
+      backLabel.value = textArray?.join(", ") ?? "";
     } else {
-      ladderizedListOutput.value.text = item.text;
+      backLabel.value = item.text;
     }
-    // Update output value
-    ladderizedListOutput.value.value.push(item.value.toString());
 
-  };
+    // Update output value
+    ladderizedListOutput.value.push(item.value.toString());
+  }
+
+  // Replace the last item in the output with the new item
+  const replaceItemInOutput = (item: MenuListType) => {
+    // Update back label text
+    const textArray = backLabel.value.trim().split(",");
+    textArray?.pop();
+    textArray?.push(item.text);
+    backLabel.value = textArray?.join(", ") ?? "";
+
+    // Update output value
+    const valueArray = ladderizedListOutput.value;
+    valueArray?.pop();
+    valueArray?.push(item.value);
+    ladderizedListOutput.value = valueArray ?? [];
+  }
 
   const handleBackClick = () => {
     transitionName.value = "slide-right";
     activeLevel.value -= 1;
     if (activeLevel.value > 0) {
-      // Update output text
-      const textArray = ladderizedListOutput.value.text.trim().split(",");
+      // Update back label text
+      const textArray = backLabel.value.trim().split(",");
       textArray?.pop();
-      ladderizedListOutput.value.text = textArray?.join(", ") ?? "";
+      backLabel.value = textArray?.join(", ") ?? "";
       // Update output value
-      const valueArray = ladderizedListOutput.value.value;
+      const valueArray = ladderizedListOutput.value;
       valueArray?.pop();
-      ladderizedListOutput.value.value = valueArray ?? [];
+      ladderizedListOutput.value = valueArray ?? [];
 
       // Get previous activeList from menuList
       for (let i = 0; i < activeLevel.value; i++) {
-        activeList.value = props.menuList.find(item => item.value === ladderizedListOutput.value.value[i])?.sublevel ?? [];
+        activeList.value = props.menuList.find(item => item.value === ladderizedListOutput.value[i])?.sublevel ?? [];
       }
     } else {
-      // Rest values
+      // Reset values
       activeList.value = props.menuList;
-      ladderizedListOutput.value.text = "";
-      ladderizedListOutput.value.value = [];
+      ladderizedListOutput.value = [];
+      backLabel.value = "";
+      activeLevel.value = 0;
     }
   };
+
+  const initializeMenuList = () => {
+    console.log("initializeMenuList");
+    if (ladderizedListOutput.value && ladderizedListOutput.value.length > 0) {
+      // Reset values
+      let tempBackLabel: string[] = [];
+      prevList.value = [];
+
+      // On initialize, traverse through the activeList based from ladderizedListOutput
+      ladderizedListOutput.value.forEach((preSelectedItem: String) => {
+        const item = activeList.value.find(
+          (menuItem) => String(menuItem.value) === String(preSelectedItem),
+        );
+
+        if (item) {
+          updateSelectedListItem(item);
+          tempBackLabel.push(item.text);
+          prevList.value = activeList.value;
+          activeList.value = item.sublevel ?? prevList.value;
+          activeLevel.value += item.sublevel ? 1 : 0;
+        } else {
+          // If no item found, skip the for loop
+          return;
+        }
+      });
+
+      // Update back label text
+      backLabel.value = tempBackLabel.length > 0 ? tempBackLabel.join(", ") : "Back";
+    }
+  };
+
+  onBeforeMount(() => {
+    activeList.value = menuList.value;
+    initializeMenuList();
+  });
 
   return { 
     activeLevel, 
@@ -82,6 +163,6 @@ export const useLadderizedList = (props: LadderizedListPropTypes, emit: SetupCon
     handleBackClick, 
     selectedListItem, 
     transitionName,
-    ladderizedListOutput
+    backLabel,
   };
 };

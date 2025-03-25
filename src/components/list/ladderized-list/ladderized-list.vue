@@ -2,13 +2,13 @@
   <div class="ladderized-list">
     <transition :name="transitionName" mode="out-in">
       <div v-if="activeLevel % 2 === 0">
-        <spr-ladderized-list-back v-if="activeLevel > 0" :label="ladderizedListOutput.text ?? 'Back'" @back="handleBackClick" />
-        <spr-list :menu-list="activeList" :multi-select="false" v-model="selectedListItem" @update:model-value="(value) => handleSelectedListItem(value[0])" />
+        <spr-ladderized-list-back v-if="activeLevel > 0" :label="backLabel ?? 'Back'" @back="handleBackClick" />
+        <spr-list class="spr-p-size-spacing-3xs" :menu-list="activeList" :multi-select="false" v-model="selectedListItem" @update:model-value="(value) => handleSelectedListItem(value[0])" />
       </div>
       
       <div v-else>
-        <spr-ladderized-list-back v-if="activeLevel > 0" :label="ladderizedListOutput.text ?? 'Back'" @back="handleBackClick" />
-        <spr-list :menu-list="activeList" :multi-select="false" v-model="selectedListItem" @update:model-value="(value) => handleSelectedListItem(value[0])" />
+        <spr-ladderized-list-back v-if="activeLevel > 0" :label="backLabel ?? 'Back'" @back="handleBackClick" />
+        <spr-list class="spr-p-size-spacing-3xs" :menu-list="activeList" :multi-select="false" v-model="selectedListItem" @update:model-value="(value) => handleSelectedListItem(value[0])" />
       </div>
     </transition>
   </div>
@@ -23,7 +23,7 @@ import SprLadderizedListBack from './ladderized-list-back.vue';
 const props = defineProps(ladderizedListPropTypes);
 const emit = defineEmits(ladderizedListEmitTypes);
 
-const { activeLevel, selectedListItem, handleSelectedListItem, activeList, handleBackClick, transitionName, ladderizedListOutput } = useLadderizedList(props, emit);
+const { activeLevel, selectedListItem, handleSelectedListItem, activeList, handleBackClick, transitionName, backLabel } = useLadderizedList(props, emit);
 
 </script>
 

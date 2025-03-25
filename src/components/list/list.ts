@@ -6,7 +6,7 @@ const GROUPED_ITEMS_BY_TYPES = ['A-Z', 'Z-A', 'default'] as const;
 
 export type MenuListType = {
   text: string;
-  value: string | number;
+  value: string;
   sublevel?: MenuListType[];
   group?: string;
 };
@@ -19,7 +19,7 @@ export type GroupedMenuListType = {
 export const listPropTypes = {
   modelValue: {
     type: Array as PropType<MenuListType[]>,
-    default: () => [],
+    default: [],
   },
   menuList: {
     type: Array as PropType<MenuListType[]>,
@@ -37,8 +37,8 @@ export const listPropTypes = {
     default: false,
   },
   preSelectedItems: {
-    type: Array as PropType<String[]>,
-    default: () => [],
+    type: Array as PropType<string[]>,
+    default: [],
   },
   ladderized: {
     type: Boolean,

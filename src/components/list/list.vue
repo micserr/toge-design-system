@@ -3,9 +3,11 @@
     <template v-if="props.groupItemsBy">
       <div class="spr-grid spr-gap-2">
         <div v-for="(list, listIndex) in groupedMenuList" :key="listIndex" class="spr-grid spr-gap-0.5">
-          <label v-if="list.groupLabel !== 'no-group'" class="spr-label-sm-regular spr-text-color-base spr-p-2">
-            {{ list.groupLabel }}
-          </label>
+          <div class="spr-py-size-spacing-3xs spr-px-size-spacing-4xs spr-label-xs-medium spr-text-color-base spr-uppercase">
+            <span v-if="list.groupLabel !== 'no-group'">
+              {{ list.groupLabel }}
+            </span>
+          </div>
           <div
             v-for="(item, itemIndex) in list.items"
             :key="itemIndex"
@@ -13,8 +15,9 @@
             @click="handleSelectedItem(item)"
           >
             <spr-checkbox v-if="props.multiSelect" :checked="isItemSelected(item)" />
-            <div class="spr-flex spr-w-full spr-items-center">
-              <span class="spr-text-xs">{{ item.text }}</span>
+            <div class="spr-flex spr-flex-col spr-justify-start">
+              <span class="spr-text-xs spr-text-left">{{ item.text }}</span>
+              <span v-if="item.subtext" class="spr-body-xs-regular spr-text-color-base spr-text-left">{{ item.subtext }}</span>
             </div>
             <Icon
               v-if="isItemSelected(item) && !props.multiSelect"
@@ -33,13 +36,19 @@
         @click="handleSelectedItem(item)"
       >
         <spr-checkbox v-if="props.multiSelect" :checked="isItemSelected(item)" />
-        <div class="spr-flex spr-w-full spr-items-center">
-          <span class="spr-text-xs">{{ item.text }}</span>
+        <div class="spr-flex spr-flex-col spr-justify-start">
+          <span class="spr-text-xs spr-text-left">{{ item.text }}</span>
+          <span v-if="item.subtext" class="spr-body-xs-regular spr-text-color-base spr-text-left">{{ item.subtext }}</span>
         </div>
         <Icon
           v-if="isItemSelected(item) && !props.multiSelect"
           class="spr-text-color-brand-base spr-w-[1.39em]"
           icon="ph:check"
+        />
+        <Icon
+          v-else-if="item.sublevel && item.sublevel?.length > 0"
+          class="spr-text-color-weak spr-size-4"
+          icon="ph:caret-right"
         />
       </div>
     </template>

@@ -6,6 +6,7 @@ const GROUPED_ITEMS_BY_TYPES = ['A-Z', 'Z-A', 'default'] as const;
 
 export type MenuListType = {
   text: string;
+  subtext?: string;
   value: string;
   sublevel?: MenuListType[];
   group?: string;
@@ -43,7 +44,7 @@ export const listPropTypes = {
   ladderized: {
     type: Boolean,
     default: false,
-  }
+  },
 };
 
 export const listEmitTypes = {

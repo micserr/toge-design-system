@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.14.2 (2025-03-26)
+- Feat
+  - Added chip cells ([#c06d856d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c06d856d858bb6b7ab82b66f7d870eab7ed094ce?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_CHIPS_AND_MULTIPLE_TITLE) by @jfabula)
+  - Added multiple chips and lozenges cells ([#61bd0f1a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/61bd0f1a68daf3aeeadbe40dcc8ef584662380cf?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_CHIPS_AND_MULTIPLE_TITLE) by @jfabula)
+  - Added initial support for avatar in chips ([#bc31a2a1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/bc31a2a198ba18d9fc4fec4f8380cdd5b7d5a75a?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_CHIPS_AND_MULTIPLE_TITLE) by @jfabula)
+  
+
 ## 1.14.1 (2025-03-25)
 - Fix
   - Hover color and label size ([#a6e3d90](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a6e3d90daaee6dad95d8b67a448dd785bc3a338b?refName=refs/heads/2025/FIX/Xyrk/CHECKBOX_DQA) by @jfabula)

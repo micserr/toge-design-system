@@ -5,7 +5,7 @@ export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<
 const AVATAR_SIZE = ['2xl', 'xl', 'lg', 'md', 'sm', 'xs', '2xs'] as const;
 const AVATAR_PRIMARY = ['primary', 'secondary'] as const;
 const AVATAR_STATUS = ['danger', 'disabled', 'information', 'brand'] as const;
-const AVATAR_VARIANT = ['image', 'initial', 'client', 'user', 'user-group', 'count'] as const;
+export const AVATAR_VARIANT = ['image', 'initial', 'client', 'user', 'user-group', 'count'] as const;
 
 export const avatarPropTypes = {
   src: {

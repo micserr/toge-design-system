@@ -66,6 +66,42 @@ const handleUpdate = (key, value) => {
 </script>
 ```
 
+## With Avatar
+
+<div class="spr-flex spr-items-center spr-gap-2">
+  <spr-chips
+    label="Avatar"
+    :avatar-url="'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'"
+    :avatar-variant="'image'"
+  />
+  <spr-chips
+    label="Avatar"
+    :avatar-variant="'client'"
+  />
+  <spr-chips
+    label="Avatar"
+    :avatar-variant="'user'"
+  />
+</div>
+
+```vue
+<template>
+  <spr-chips
+    label="Avatar"
+    :avatar-url="'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'"
+    :avatar-variant="'image'"
+  />
+  <spr-chips
+    label="Avatar"
+    :avatar-variant="'client'"
+  />
+  <spr-chips
+    label="Avatar"
+    :avatar-variant="'user'"
+  />
+</template>
+```
+
 ## With Badge
 
 <div class="spr-flex spr-items-center spr-gap-2">

@@ -1,5 +1,5 @@
 import { ref, toRefs, computed, ComputedRef, onMounted, SetupContext } from 'vue';
-import { useVModel, useDebounceFn } from '@vueuse/core';
+import { useVModel } from '@vueuse/core';
 
 import classNames from 'classnames';
 
@@ -60,9 +60,9 @@ export const useInputContactNumber = (
     }
   };
 
-  const handleContactNumberInputFormat = useDebounceFn(() => {
+  const handleContactNumberInputFormat = () => {
     formatContactNumber();
-  }, 500);
+  };
 
   const handleSelectedCountries = (item: CountryOption) => {
     selectedCountry.value = {

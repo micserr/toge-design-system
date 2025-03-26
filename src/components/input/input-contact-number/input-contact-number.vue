@@ -6,7 +6,7 @@
     :placeholder="props.placeholder"
     :active="popperState"
     :disabled="props.disabled"
-    @input="handleContactNumberInput"
+    @keyup="handleContactNumberInput"
     @blur="formatContactNumber"
     @update:model-value="handleUpdateModelValue"
   >

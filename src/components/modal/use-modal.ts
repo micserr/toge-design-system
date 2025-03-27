@@ -19,11 +19,11 @@ export const useModal = (props: ModalPropTypes, emit: SetupContext<ModalEmitType
 
   const modalClasses: ComputedRef<ModalClasses> = computed(() => {
     const backdropClasses = classNames(
-      'spr-fixed spr-bottom-0 spr-left-0 spr-right-0 spr-top-0 spr-z-[9999999] spr-h-full spr-w-full spr-bg-[#4C5857] spr-opacity-60',
+      'spr-fixed spr-bottom-0 spr-left-0 spr-right-0 spr-top-0 spr-z-[1050] spr-h-full spr-w-full spr-bg-[#4C5857] spr-opacity-60',
     );
 
     const baseClasses = classNames(
-      'spr-fixed spr-z-[99999999] spr-left-1/2 spr-top-1/2 spr-transform -spr-translate-x-1/2 -spr-translate-y-1/2',
+      'spr-fixed spr-z-[1100] spr-left-1/2 spr-top-1/2 spr-transform -spr-translate-x-1/2 -spr-translate-y-1/2',
       'spr-background-color spr-rounded-xl',
       'spr-border spr-border-solid spr-border-color-weak',
       'sm:spr-w-[calc(100%-2rem)] sm:spr-max-w-[calc(100%-2rem)]',

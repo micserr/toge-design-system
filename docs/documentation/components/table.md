@@ -296,26 +296,177 @@ You can change the title of a cell to a lozenge
 <script setup lang="ts">
 import { ref } from 'vue';
 const headersLozenge = ref([
-  { field: 'name', name: 'Role Name', sort: true, hasAvatar: true, hasSubtext: true, hasLozengeTitle: true },
+  { field: 'name', name: 'Role Name', sort: true, hasAvatar: false, hasSubtext: true, hasLozengeTitle: true },
   { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false, hasLozengeTitle: true },
 ]);
+
+const lozengeTitle = {
+  title: 'Active',
+  tone: 'success',
+  avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+  fill: true,
+  lozengeIcon: 'ph:building'
+}
+
+const lozengeSecondTitle = {
+  title: 'Lozenge',
+  avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+}
 
 const dataLozenge = [
   {
     name: {
-      title: 'Shift',
+      title: lozengeTitle,
       subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
       image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
       lozengeIcon: 'ph:user',
     },
     lastUpdate: {
-      title: 'Nov 30, 2025',
+      title: lozengeSecondTitle,
       subtext: 'Lorem ipsum dolor ',
       lozengeFill: true,
       lozengeAvatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
   },
 ];
+</script>
+```
+
+### Chips
+You can change the title of a cell to a chip
+<div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
+  <spr-table action :headers="headersChips" :data-table="dataChips" variant="surface" @onSort="handleSort">
+    <div>
+      Customize your content here!
+    </div>
+  </spr-table>
+</div>
+
+```vue
+<template>
+<spr-table action :headers="headersChips" :data-table="dataChips" variant="surface" @onSort="handleSort">
+  <div>
+    Customize your content here!
+  </div>
+</spr-table>
+</template>
+
+<script setup lang='ts'>
+import { ref } from 'vue';
+const headersChips = ref([
+  { field: 'name', name: 'Role Name', sort: true, hasAvatar: false, hasSubtext: true, hasChipTitle: true },
+  { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false, hasChipTitle: true },
+])
+
+const chipsTitle = {
+  title: 'Active',
+  icon: 'ph:building',
+  iconWeight: 'regular',
+  avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+  avatarVariant: 'image',
+}
+
+const chipsSecondTitle = {
+  title: 'Second Title',
+  icon: 'ph:users-three',
+  iconWeight: 'regular',
+  badge: true,
+  badgeText: '2',
+  badgeVariant: 'brand',
+  avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+  avatarVariant: 'image',
+}
+
+const dataChips = [
+  {
+    name: {
+      title: chipsTitle,
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+      lozengeIcon: 'ph:user'
+    },
+    lastUpdate: {
+      title: chipsSecondTitle,
+      subtext: 'Lorem ipsum dolor ',
+      lozengeFill: true,
+      lozengeAvatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'
+    },
+  },
+]
+</script>
+```
+
+### Multiple Chips and Lozenges
+You can change the title to multiple chips and lozenges
+<div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
+  <spr-table action :headers="headersMultiple" :data-table="dataMultiple" variant="surface" @onSort="handleSort">
+    <div>
+      Customize your content here!
+    </div>
+  </spr-table>
+</div>
+
+```vue
+<template>
+<spr-table action :headers="headersMultiple" :data-table="dataMultiple" variant="surface" @onSort="handleSort">
+  <div>
+    Customize your content here!
+  </div>
+</spr-table>
+</template>
+
+<script setup lang='ts'>
+import { ref } from 'vue';
+
+const headersMultiple = ref([
+  { field: 'name', name: 'Role Name', sort: true, hasAvatar: false, hasSubtext: true, hasLozengeTitle: true },
+  { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false, hasChipTitle: true },
+])
+
+const lozengeCell =  {
+    title: 'Active',
+    tone: 'success',
+    avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    fill: true,
+    lozengeIcon: 'ph:building',
+};
+const chipCell = [
+  {
+    title: 'Active',
+    icon: 'ph:building',
+    iconWeight: 'regular',
+    badge: true,
+    badgeText: '2',
+    badgeVariant: 'brand',
+    avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    avatarVariant: 'image',
+  },
+  {
+    title: 'Active',
+    icon: 'ph:building',
+    iconWeight: 'regular',
+    badge: true,
+    badgeText: '2',
+    badgeVariant: 'brand',
+    avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    avatarVariant: 'image',
+  }
+]
+
+const dataMultiple = [
+  {
+    name: {
+      title: lozengeCell,
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: chipCell,
+      subtext: 'Lorem ipsum dolor ',
+      chipTitle: chipCell
+    },
+  },
+]
 </script>
 ```
 
@@ -526,7 +677,7 @@ const data = ref([
       <td>
         TableData {
           [key: string]: {
-            title: string;
+            title: string | LozengeTitle | ChipTitle | LozengeTitle[] | ChipTitle[];
             subtext: string;
             image: string;
             icon: string;
@@ -535,6 +686,36 @@ const data = ref([
             lozengeTone: string;
             lozengeIcon: string;
           };
+        }
+      </td>
+    </tr>
+    <tr>
+      <td>Lozenge Title</td>
+      <td>For use of Lozenges in titles</td>
+      <td>Object</td>
+      <td>
+        interface LozengeTitle {
+          title: string;
+          fill?: boolean;
+          avatarUrl?: string;
+          tone?: (typeof LOZENGE_TONE)[number];
+          icon?: string;
+        }
+      </td>
+    </tr>
+    <tr>
+      <td>Chip Title</td>
+      <td>For use of Lozenges in titles</td>
+      <td>Object</td>
+      <td>
+        interface ChipTitle {
+          title: string;
+          icon: string;
+          iconWeight: string;
+          badgeText: string;
+          badgeVariant: string;
+          avatarUrl: string;
+          avatarVariant: (typeof AVATAR_VARIANT)[number];
         }
       </td>
     </tr>
@@ -806,23 +987,137 @@ const getSortOrder = () => {
 }
 
 const headersLozenge = ref([
-  { field: 'name', name: 'Role Name', sort: true, hasAvatar: true, hasSubtext: true, hasLozengeTitle: true },
+  { field: 'name', name: 'Role Name', sort: true, hasAvatar: false, hasSubtext: true, hasLozengeTitle: true },
   { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false, hasLozengeTitle: true },
 ])
+
+const lozengeTitle = {
+  title: 'Active',
+  tone: 'success',
+  avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+  fill: true,
+  lozengeIcon: 'ph:building'
+}
+
+const lozengeSecondTitle = {
+  title: 'Lozenge',
+  avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+}
+
 
 const dataLozenge = [
   {
     name: {
-      title: 'Shift',
+      title: lozengeTitle,
       subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
       image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
       lozengeIcon: 'ph:user'
     },
     lastUpdate: {
-      title: 'Nov 30, 2025',
+      title: lozengeSecondTitle,
       subtext: 'Lorem ipsum dolor ',
       lozengeFill: true,
       lozengeAvatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'
+    },
+  },
+]
+
+const headersChips = ref([
+  { field: 'name', name: 'Role Name', sort: true, hasAvatar: false, hasSubtext: true, hasChipTitle: true },
+  { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false, hasChipTitle: true },
+])
+
+const chipsTitle = {
+  title: 'Active',
+  icon: 'ph:building',
+  iconWeight: 'regular',
+  avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+  avatarVariant: 'image',
+}
+
+const chipsSecondTitle = {
+  title: 'Second Title',
+  icon: 'ph:users-three',
+  iconWeight: 'regular',
+  badge: true,
+  badgeText: '2',
+  badgeVariant: 'brand',
+  avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+  avatarVariant: 'image',
+}
+
+const dataChips = [
+  {
+    name: {
+      title: chipsTitle,
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+      lozengeIcon: 'ph:user'
+    },
+    lastUpdate: {
+      title: chipsSecondTitle,
+      subtext: 'Lorem ipsum dolor ',
+      lozengeFill: true,
+      lozengeAvatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'
+    },
+  },
+]
+
+
+const headersMultiple = ref([
+  { field: 'name', name: 'Role Name', sort: true, hasAvatar: false, hasSubtext: true, hasLozengeTitle: true },
+  { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false, hasChipTitle: true },
+])
+
+const lozengeCell =  [
+  {
+      title: 'First',
+      tone: 'success',
+      avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+      fill: true,
+      lozengeIcon: 'ph:building',
+  },
+  {
+      title: 'Second',
+      tone: 'danger',
+      avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+      fill: false,
+      lozengeIcon: 'ph:users-three',
+  }
+];
+
+
+const chipCell = [
+  {
+    title: 'Active',
+    icon: 'ph:building',
+    iconWeight: 'regular',
+    badge: true,
+    badgeText: '2',
+    badgeVariant: 'brand',
+    avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    avatarVariant: 'image',
+  },
+  {
+    title: 'Inactive',
+    icon: 'ph:users-three',
+    iconWeight: 'regular',
+    avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    avatarVariant: 'image',
+  }
+]
+
+const dataMultiple = [
+  {
+    name: {
+      title: lozengeCell,
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: chipCell,
+      subtext: 'Lorem ipsum dolor ',
+      chipTitle: chipCell
     },
   },
 ]

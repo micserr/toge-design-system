@@ -3,7 +3,7 @@ import type { PropType, ExtractPropTypes } from 'vue';
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
 const CHIPS_SIZE = ['lg', 'md', 'sm'] as const;
-const ICON_WEIGHTS = ['regular', 'bold', 'thin', 'light', 'fill', 'duotone'] as const;
+export const ICON_WEIGHTS = ['regular', 'bold', 'thin', 'light', 'fill', 'duotone'] as const;
 const CHIPS_VARIANT = ['tag', 'day'] as const;
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] as const;
 
@@ -28,6 +28,18 @@ export const chipsPropTypes = {
   closable: {
     type: Boolean,
     default: false,
+  },
+  avatarUrl: {
+    type: String,
+    default: '',
+  },
+  avatarVariant: {
+    type: String,
+    default: '',
+  },
+  avatarInitials: {
+    type: String,
+    default: '',
   },
   icon: {
     type: String,

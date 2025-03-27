@@ -275,7 +275,9 @@ const fetchItems = computed((page) => {
 ## Cells
 
 ### Lozenge
+
 You can change the title of a cell to a lozenge
+
 <div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
   <spr-table action :headers="headersLozenge" :data-table="dataLozenge" variant="surface" @onSort="handleSort">
     <div>
@@ -286,19 +288,17 @@ You can change the title of a cell to a lozenge
 
 ```vue
 <template>
-<spr-table action :headers="headersLozenge" :data-table="dataLozenge" variant="surface" @onSort="handleSort">
-  <div>
-    Customize your content here!
-  </div>
-</spr-table>
+  <spr-table action :headers="headersLozenge" :data-table="dataLozenge" variant="surface" @onSort="handleSort">
+    <div>Customize your content here!</div>
+  </spr-table>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { ref } from 'vue';
 const headersLozenge = ref([
   { field: 'name', name: 'Role Name', sort: true, hasAvatar: false, hasSubtext: true, hasLozengeTitle: true },
   { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false, hasLozengeTitle: true },
-])
+]);
 
 const lozengeTitle = {
   title: 'Active',
@@ -319,16 +319,16 @@ const dataLozenge = [
       title: lozengeTitle,
       subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
       image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
-      lozengeIcon: 'ph:user'
+      lozengeIcon: 'ph:user',
     },
     lastUpdate: {
       title: lozengeSecondTitle,
       subtext: 'Lorem ipsum dolor ',
       lozengeFill: true,
-      lozengeAvatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'
+      lozengeAvatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
   },
-]
+];
 </script>
 ```
 
@@ -797,6 +797,12 @@ const data = ref([
       <td>Emits table data and row index when table row is clicked</td>
       <td>function</td>
       <td>-</td>
+    </tr>
+    <tr>
+      <td>@onHover</td>
+      <td>Emits triggered when hovered</td>
+      <td>function</td>
+      <td>{ active: true, data: item }</td>
     </tr>
     <tr>
       <td>hasLozengeTitle</td>

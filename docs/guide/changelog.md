@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.14.3 (2025-03-27)
+
+- Fix
+  - Commit 620a2021: feat: add fullwidth prop to button and update related components; enhance date-picker placement and filter infinite scroll handling ([#620a2021](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/620a202119aa765928717bd509efe6f2ed36715b?refName=refs/heads/2025/Fix/andrea/dqa-shift-center) by @adestajo)
+
 ## 1.14.3 (2025-03-26)
 
 - Fix

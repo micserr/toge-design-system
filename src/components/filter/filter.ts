@@ -81,7 +81,7 @@ export const filterEmitTypes = {
   'update:search': (value: string) => typeof value === 'string',
   selectedFilter: (value: FilterPropsInterface['options']): value is FilterPropsInterface['options'] =>
     Array.isArray(value),
-  'infinite-scroll-trigger': Boolean,
+  infiniteScrollTrigger: Boolean,
 };
 export type FilterEmitTypes = typeof filterEmitTypes;
 export type FilterPropTypes = ExtractPropTypes<typeof filterPropTypes>;

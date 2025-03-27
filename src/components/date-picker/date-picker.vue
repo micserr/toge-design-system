@@ -4,7 +4,7 @@
       v-model:shown="datePopperState"
       aria-id="date-picker-wrapper"
       distance="4"
-      placement="bottom"
+      :placement="props.placement"
       :triggers="[]"
       :popper-hide-triggers="[]"
       :auto-hide="false"

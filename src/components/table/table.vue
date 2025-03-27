@@ -53,6 +53,8 @@
             :key="keyIndex"
             :class="getTableClasses.tableRowClasses"
             @click="handleRowClick(item, keyIndex)"
+            @mouseover="$emit('onHover', { active: true, data: item })"
+            @mouseleave="$emit('onHover', { active: false, data: item })"
           >
             <td v-for="(column, headerKey) in headers" :key="headerKey" :class="getTableClasses.tableDataClasses">
               <div v-if="sortedData[keyIndex][column.field]" class="spr-flex spr-flex-row spr-items-center spr-gap-2">

@@ -239,6 +239,18 @@ import { Icon } from '@iconify/vue';
 </script>
 ```
 
+## Fullwidth
+
+<div class="spr-space-y-2">
+<spr-button fullwidth>Buttons</spr-button>
+<spr-button fullwidth variant="secondary">Buttons</spr-button>
+<spr-button fullwidth variant="tertiary">Buttons</spr-button>
+</div>
+
+```vue
+<spr-button fullwidth>Button</spr-button>
+```
+
 ## API Reference
 
 <table>

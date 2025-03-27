@@ -57,6 +57,10 @@ export const buttonPropTypes = {
     type: Boolean,
     default: false,
   },
+  fullwidth: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const buttonEmitTypes = {

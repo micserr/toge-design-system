@@ -38,17 +38,13 @@ export const inputPropTypes = {
     type: String,
     default: '',
   },
-  preValue: {
-    type: String,
-    default: '',
-  },
   label: {
     type: String,
     default: '',
   },
   type: {
     type: String,
-    validator: (value: (typeof INPUT_TYPES)[number]) => INPUT_TYPES.includes(value),
+    validator: (value: (typeof INPUT_TYPES)[number]) => !value || INPUT_TYPES.includes(value),
     default: 'text',
   },
   placeholder: {

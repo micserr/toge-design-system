@@ -9,10 +9,18 @@
     @keyup.enter="handleClick"
   >
     <template v-if="variant === 'tag'">
-      <span v-if="icon || $slots.icon" class="chips-icon spr-inline-flex spr-items-center spr-leading-[0]">
+      <span v-if="hasIcon" class="chips-icon spr-inline-flex spr-items-center spr-leading-[0]">
         <slot name="icon">
           <Icon :icon="getIcon" class="spr-font-size-300" />
         </slot>
+      </span>
+      <span v-if="hasAvatar" class="spr-flex spr-items-center spr-justify-center">
+        <spr-avatar
+          size="2xs"
+          :src="props.avatarUrl"
+          :variant="props.avatarVariant"
+          :initial="props.avatarInitials"
+        />
       </span>
       <span class="spr-chips-label">
         {{ label }}
@@ -41,14 +49,17 @@
 </template>
 
 <script lang="ts" setup>
+import { useSlots } from 'vue';
 import { Icon } from '@iconify/vue';
 import { chipsPropTypes } from './chips';
 import { useChips } from './use-chips';
 import SprBadge from '@/components/badge/badge.vue';
 import { chipsEmitTypes } from './chips';
+import SprAvatar from '@/components/avatar/avatar.vue';
 
 const props = defineProps(chipsPropTypes);
 const emit = defineEmits(chipsEmitTypes);
+const slots = useSlots();
 
-const { chipsBaseClasses, handleClose, handleClick, getIcon } = useChips(props, emit);
+const { chipsBaseClasses, handleClose, handleClick, getIcon, hasAvatar, hasIcon } = useChips(props, emit, slots);
 </script>

@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Checkbox
 
 Checkboxes allow the user to select one or more items from a set.
@@ -102,7 +106,29 @@ const checkbox = ref(true);
 </script>
 ```
 
-## Checkbox API
+## Indeterminate
+
+Add `indeterminate` attribute to make the icon of the checkbox a minus sign.
+
+<SprCheckbox v-model="checkboxModels.checkbox6" label="Checkbox Label" indeterminate />
+<SprCheckbox v-model="checkboxModels.checkbox7" label="Checkbox Label" indeterminate disabled />
+
+
+```vue
+<template>
+  <SprCheckbox v-model="checkbox" label="Checkbox Label" indeterminate />
+  <SprCheckbox v-model="checkbox2" label="Checkbox Label" indeterminate disabled/>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const checkbox = ref(true);
+const checkbox2 = ref(true);
+</script>
+```
+
+## API Reference
 
 <table>
   <thead>
@@ -138,6 +164,12 @@ const checkbox = ref(true);
       <td>boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td>indeterminate</td>
+      <td>if `true`, the component icon for checked state becomes `-`</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 
@@ -151,5 +183,8 @@ const checkboxModels = ref({
   checkbox2: false,
   checkbox3: true,
   checkbox4: false,
+  checkbox5: true,
+  checkbox6: true,
+  checkbox7: true
 });
 </script>

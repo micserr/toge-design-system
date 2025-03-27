@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Card
 
 A flexible container with optional header, content, and footer used to group related information.
@@ -73,7 +77,7 @@ Passing a `title` automatically displays the header. Use the `footer` slot to ad
 
 <br/>
 
-### Disable header and footer
+## Disable header and footer
 
 <br/>
 
@@ -302,82 +306,92 @@ If the `title` prop is omitted, the `header` slot can fully customize the header
 </template>
 ```
 
-## Card API
-
-### Props
+## Slots
 
 <table>
-<thead>
-  <tr>
-    <td>Name</td>
-    <td>Type</td>
-    <td>Default</td>
-    <td>Description</td>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>title</td>
-    <td>string</td>
-    <td>-</td>
-    <td>Sets the card's title.</td>
-  </tr>
-  <tr>
-    <td>subtitle</td>
-    <td>string</td>
-    <td>-</td>
-    <td>Sets the card's subtitle. Requires title to be visible.</td>
-  </tr>
-  <tr>
-    <td>header-icon</td>
-    <td>string</td>
-    <td>-</td>
-    <td>Displays an icon in the header. Requires title to be visible.</td>
-  </tr>
-  <tr>
-    <td>show-header</td>
-    <td>boolean</td>
-    <td>true</td>
-    <td>Controls the visibility of the header.</td>
-  </tr>
-  <tr>
-    <td>show-footer</td>
-    <td>boolean</td>
-    <td>true</td>
-    <td>Controls the visibility of the footer.</td>
-  </tr>
-  <tr>
-    <td>border-radius-size</td>
-    <td>string</td>
-    <td>xl</td>
-    <td>Sets the border radius of the card including header and footer. Accepts one of: xl, lg, md, sm, xs, 2xs.</td>
-  </tr>
-</tbody>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Description</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>header</td>
+      <td>Custom content for the header.</td>
+    </tr>
+    <tr>
+      <td>content</td>
+      <td>The main content of the card.</td>
+    </tr>
+    <tr>
+      <td>footer</td>
+      <td>Custom content for the footer.</td>
+    </tr>
+  </tbody>
 </table>
 
-### Slots
+## API Reference
 
 <table>
-  <tr>
-    <td>Name</td>
-    <td>Description</td>
-  </tr>
-<thead>
-</thead>
-<tbody>
-  <tr>
-    <td>header</td>
-    <td>Custom content for the header.</td>
-  </tr>
-  <tr>
-    <td>content</td>
-    <td>The main content of the card.</td>
-  </tr>
-  <tr>
-    <td>footer</td>
-    <td>Custom content for the footer.</td>
-  </tr>
-</tbody>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Type</td>
+      <td>Default</td>
+      <td>Description</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>title</td>
+      <td>string</td>
+      <td>-</td>
+      <td>Sets the card's title.</td>
+    </tr>
+    <tr>
+      <td>subtitle</td>
+      <td>string</td>
+      <td>-</td>
+      <td>Sets the card's subtitle. Requires title to be visible.</td>
+    </tr>
+    <tr>
+      <td>header-icon</td>
+      <td>string</td>
+      <td>-</td>
+      <td>Displays an icon in the header. Requires title to be visible.</td>
+    </tr>
+    <tr>
+      <td>show-header</td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>Controls the visibility of the header.</td>
+    </tr>
+    <tr>
+      <td>show-footer</td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>Controls the visibility of the footer.</td>
+    </tr>
+    <tr>
+      <td>border-radius-size</td>
+      <td>string</td>
+      <td>xl</td>
+      <td>Sets the border radius of the card including header and footer. Accepts one of: xl, lg, md, sm, xs, 2xs.</td>
+    </tr>
+    <tr>
+      <td>has-collapsible</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Apply when use with collapsible component</td>
+    </tr>
+     <tr>
+      <td>is-collapsible-open</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>Apply when use with collapsible component to track if content is expanded or not and apply border style changes</td>
+    </tr>
+  </tbody>
 </table>
 
 <script lang="ts" setup>

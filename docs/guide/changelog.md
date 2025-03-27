@@ -1,5 +1,111 @@
 # Changelog
 
+## 1.14.3 (2025-03-27)
+
+- Fix
+  - Commit 620a2021: feat: add fullwidth prop to button and update related components; enhance date-picker placement and filter infinite scroll handling ([#620a2021](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/620a202119aa765928717bd509efe6f2ed36715b?refName=refs/heads/2025/Fix/andrea/dqa-shift-center) by @adestajo)
+
+## 1.14.3 (2025-03-26)
+
+- Fix
+  - Update Contact Number Issues Encountered, Update Modal Z-index and Snackbar ([#08426ee1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/08426ee1ed5b601fc56e0d99cd6a6dd0a4adfed4?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 1.14.2 (2025-03-26)
+
+- Feat
+  - Added chip cells ([#c06d856d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c06d856d858bb6b7ab82b66f7d870eab7ed094ce?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_CHIPS_AND_MULTIPLE_TITLE) by @jfabula)
+  - Added multiple chips and lozenges cells ([#61bd0f1a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/61bd0f1a68daf3aeeadbe40dcc8ef584662380cf?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_CHIPS_AND_MULTIPLE_TITLE) by @jfabula)
+  - Added initial support for avatar in chips ([#bc31a2a1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/bc31a2a198ba18d9fc4fec4f8380cdd5b7d5a75a?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_CHIPS_AND_MULTIPLE_TITLE) by @jfabula)
+
+## 1.14.1 (2025-03-25)
+
+- Fix
+  - Hover color and label size ([#a6e3d90](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a6e3d90daaee6dad95d8b67a448dd785bc3a338b?refName=refs/heads/2025/FIX/Xyrk/CHECKBOX_DQA) by @jfabula)
+
+## 1.14.0 (2025-03-24)
+
+- Feat
+  - Update Phone Number Input, Added Input Dropdown, Tooltip Update ([#bb1dc265](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/bb1dc2659be52f5657d09c2750480a755ac31f49?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 1.13.10 (2025-03-24)
+
+- Docs
+  - Checkbox indeterminate documentation ([#075d5fc](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/075d5fcc13dc901c1f1d4a2ceff6ee6d0ee3b0b3?refName=refs/heads/2025/FIX/Xyrk/CHECKBOX_DQA) by @jfabula)
+
+## 1.13.9 (2025-03-24)
+
+- Fix
+  - Checkbox DQA ([#9f1d8c0](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/9f1d8c07719bfe61ec7a923f2acb50f4ea9c4cb5?refName=refs/heads/2025/FIX/Xyrk/CHECKBOX_DQA) by @jfabula)
+
+## 1.13.8 (2025-03-21)
+
+- Fix
+  - Remove prop warning for sidenav notification and request number
+  - Add full height for sidepanel content ([#dd811532](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dd811532c60b66ca6b748a3d1210075731512d44?refName=refs%2Fheads%2F2025%2FFIX%2FELI%2FSIDENAV) by @elumilay)
+
+## 1.13.7 (2025-03-21)
+
+- Fix
+  - Update Border Focus For Input ([#7e77e74e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7e77e74e09eadc5704240d5c5bcca3711dac530e?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 1.13.6 (2025-03-21)
+
+- Fix
+  - Changed logic for invisible headers ([#302069b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/302069b00430bfeefc4825c366885da527142c9c?refName=refs%2Fheads%2F2025%2FFIX%2FXyrk%2FTABLE_HEADER) by @jfabula)
+
+## 1.13.5 (2025-03-20)
+
+- Feat
+  - Commit cdd49321: Add deselect functionality to filter component and update documentation ([#cdd49321](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dd9acf632bcb077b1f8b78d2ca34de255c588de2?refName=refs/heads/2025/FIX/Xyrk/TABLE_HEADER) by @adestajo)
+
+## 1.13.4 (2025-03-20)
+
+- Fix
+  - Input Icon Implementation, Input pre-value implementation
+  - Radio Button Margin Fix Update
+  - Dropdown overflow X ([#80e3aab6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/80e3aab63efef23c95e6b40970135337900ab0e2?refName=refs/heads/2025/feature/arias/ds-updates) by @jarias)
+
+## 1.13.3 (2025-03-20)
+
+- Fix
+  - Table Header disappeared ([#dd9acf6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dd9acf632bcb077b1f8b78d2ca34de255c588de2?refName=refs/heads/2025/FIX/Xyrk/TABLE_HEADER) by @jfabula)
+
+## 1.13.2 (2025-03-19)
+
+- Feat
+  - Commit 146e3e3d: Enhance table and filter components with new properties and styles ([#146e3e3d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/146e3e3de08c50b66646181a512118ac6673c59b?refName=refs/heads/2025/Fix/andrea/fixes) by @adestajo)
+
+## 1.13.1 (2025-03-19)
+
+- Feat
+  - Added Table Lozenge Cells ([#b2ea23e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b2ea23e8af842870b5bc8b3e97918a825394f7fd?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_ROW_ICON_LOZENGE_AND_HEADER) by @jfabula)
+
+## 1.13.0 (2025-03-17)
+
+- Feat
+  - Add collapsible component and documentation. Update card props and documentation ([#b5d669ad](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b5d669adb78ab6a41351130270bfa3621b5309b5?refName=refs%2Fheads%2F2025%2Ffeature%2Fjames%2Fcollapsible) by @jmanalang)
+
+## 1.12.5 (2025-03-17)
+
+- Fix
+  - Issues encountered with Datepicker ([#d8d923f8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d8d923f848d3d05b225cd60594dd5cf745897e54?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 1.12.4 (2025-03-14)
+
+- Fix
+  - Fix Checkbox Issues ([#a5c0c17b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a5c0c17b782edf39cd907ac7fc5ab3040f25b2ec?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 1.12.3 (2025-03-14)
+
+- Fix
+  - Documentation Fix
+  - Datepicker DQA ([#d0eae35f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d0eae35ffdb63a4268def0cc6791f619d9a3d9bf?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 1.12.2 (2025-03-14)
+
+- Fix
+  - Commit 5221335b: feat: Implement unique ID generation for filter and time picker components ([#5221335b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5221335b50573c545f198f044457a02e9db0d1bb?refName=refs/heads/2025/Fix/andrea/floating-vue-unique-id) by @adestajo)
+
 ## 1.12.1 (2025-03-13)
 
 - Fix

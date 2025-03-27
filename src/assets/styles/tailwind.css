@@ -153,6 +153,18 @@
       }
     }
   }
+
+  #contact-number-country-dropdown {
+    #dropdown-wrapper[data-popper-placement='top-start'] {
+      margin-top: -4px;
+      margin-left: -8px;
+    }
+
+    #dropdown-wrapper[data-popper-placement='bottom-start'] {
+      margin-top: 4px;
+      margin-left: -8px;
+    }
+  }
   /* #endregion - Dropdown */
 
   /* #region - Avatar */
@@ -162,9 +174,10 @@
   /* #endregion - Avatar */
 
   /* #region - Table */
-  .spr-table-wrapper {
+  .spr-table-wrapper,
+  .spr-table-wrapper-height {
     tbody {
-      @apply spr-block spr-max-h-svh spr-min-h-[400px] spr-w-full spr-overflow-y-auto;
+      @apply spr-block spr-w-full spr-overflow-y-auto;
     }
 
     tr {
@@ -174,15 +187,26 @@
       @apply spr-h-0 spr-w-0; /* Hides the scrollbar in WebKit browsers */
     }
   }
+
+  .spr-table-wrapper-height {
+    tbody {
+      @apply spr-max-h-[360px];
+    }
+  }
+  .spr-table-wrapper {
+    tbody {
+      @apply spr-max-h-svh spr-min-h-[400px];
+    }
+  }
   /* #endregion - Table */
 
   /* #region - Date Picker */
   #date-picker-wrapper {
-    @apply spr-overflow-hidden spr-transition-opacity spr-duration-150 spr-ease-in-out;
+    @apply spr-overflow-hidden spr-rounded-xl spr-shadow-drop spr-transition-opacity spr-duration-150 spr-ease-in-out;
 
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply spr-border-color-weak spr-m-auto spr-w-[400px] spr-min-w-[400px] spr-overflow-y-auto spr-rounded-xl spr-border spr-border-solid spr-font-main spr-shadow-none sm:spr-w-[calc(100%-20px)] sm:spr-min-w-full;
+        @apply spr-border-color-weak spr-m-auto spr-w-[336px] spr-min-w-[336px] spr-overflow-y-auto spr-rounded-xl spr-border spr-border-solid spr-font-main spr-shadow-none sm:spr-w-[calc(100%-20px)] sm:spr-min-w-full;
 
         &::-webkit-scrollbar-track {
           @apply spr-rounded-br-xl spr-rounded-tr-xl;
@@ -196,12 +220,12 @@
   }
   /* #endregion - Date Picker */
 
-  /* #endregion - Filter, time-picker */
+  /* #region - Filter, time-picker */
   #time-picker-wrapper-full-width,
   #time-picker-wrapper,
   #filter-option-wrapper,
   #filter-menu-wrapper {
-    @apply spr-background-color spr-border-color-weak spr-z-20 spr-overflow-x-hidden spr-rounded-[12px] spr-border spr-border-solid;
+    @apply spr-background-color spr-border-color-weak spr-z-50 spr-overflow-x-hidden spr-rounded-[12px] spr-border spr-border-solid;
 
     .v-popper__wrapper {
       .v-popper__inner {
@@ -217,9 +241,11 @@
       }
     }
   }
+
   #time-picker-wrapper {
     @apply spr-max-w-[240px];
   }
+
   #time-picker-wrapper-full-width,
   #filter-option-wrapper {
     @apply spr-w-full;
@@ -228,7 +254,6 @@
   #filter-menu-wrapper {
     @apply spr-min-w-[328px] spr-drop-shadow-md;
   }
-
   /* #endregion - Filter, time-picker */
 }
 

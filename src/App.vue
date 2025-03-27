@@ -1,5 +1,3 @@
 <template>
-  <div id="app">
-    Insert your content here
-  </div>
+  <div>Test Component Here</div>
 </template>

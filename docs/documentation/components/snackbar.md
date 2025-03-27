@@ -1,8 +1,12 @@
-<spr-snackbar ref="snackbar" />
+---
+outline: 'deep'
+---
 
 # Snackbar
 
 A toast to display message and perform action.
+
+<spr-snackbar ref="snackbar" />
 
 ## Basic Usage
 
@@ -133,9 +137,7 @@ const showWithFunction = () => {
 </script>
 ```
 
-## Snackbar API
-
-### Snackbar Attributes
+## API Reference
 
 <table>
   <thead>
@@ -205,19 +207,20 @@ const showWithFunction = () => {
 </table>
 
 <script lang="ts" setup>
-import SprSnackbar from "@/components/snackbar/snackbar.vue";
-import SprButton from "@/components/button/button.vue";
-import { useSnackbar } from "@/components/snackbar/use-snackbar.ts";
 import { ref } from "vue";
 
+import { useSnackbar } from "@/components/snackbar/use-snackbar.ts";
+
+import SprSnackbar from "@/components/snackbar/snackbar.vue";
+import SprButton from "@/components/button/button.vue";
 
 const snackbar = ref(null);
+
 const showSnackbar1 = () => {
   snackbar.value.showSnackbar({
     text: "This is a sample message.",
   });
 }
-
 
 /* #region - Tone  */
 const showSuccess = () => {

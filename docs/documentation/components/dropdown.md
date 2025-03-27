@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Dropdown
 
 Dropdowns appears when the user interacts with a trigger element (such as a button or a link) and is usually used for navigation menus, form selections, actions, and filters.
@@ -1008,7 +1012,7 @@ This is only applicable to selected components, such as form input fields. You c
 
 To disable the popper from showing when the wrapper is clicked, pass the disabled prop.
 
-## Dropdown API
+## API Reference
 
 <table>
   <thead>

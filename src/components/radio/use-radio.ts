@@ -1,9 +1,10 @@
 import { ref, toRefs, computed, ComputedRef } from 'vue';
-import { useElementHover } from '@vueuse/core';
+import { useVModel, useElementHover } from '@vueuse/core';
 
 import classNames from 'classnames';
 
-import type { RadioPropTypes } from './radio';
+import type { SetupContext } from 'vue';
+import type { RadioPropTypes, RadioEmitTypes } from './radio';
 
 interface RadioClasses {
   baseClasses: string;
@@ -11,7 +12,11 @@ interface RadioClasses {
   labelClasses: string;
 }
 
-export const useRadioButton = (props: RadioPropTypes) => {
+export const useRadioButton = (
+  props: RadioPropTypes,
+  emit: SetupContext<RadioEmitTypes>['emit'],
+  slots: Record<string, unknown>,
+) => {
   const { modelValue, disabled } = toRefs(props);
 
   const radioRef = ref<HTMLInputElement | null>(null);
@@ -23,9 +28,9 @@ export const useRadioButton = (props: RadioPropTypes) => {
     });
 
     const baseIndicatorClasses = classNames(
-      'spr-inline-block spr-w-4 spr-h-4 spr-rounded-full spr-border-2 spr-border-solid spr-mr-2 spr-shrink-0',
-      'spr-transition spr-duration-150 spr-ease-in-out',
+      'spr-inline-block spr-w-4 spr-h-4 spr-rounded-full spr-border-2 spr-border-solid spr-shrink-0',
       {
+        'spr-mr-2': slots.default,
         'group-active:spr-scale-95': !disabled.value,
       },
 
@@ -81,8 +86,11 @@ export const useRadioButton = (props: RadioPropTypes) => {
     };
   });
 
+  const proxyValue = useVModel(props, 'modelValue', emit);
+
   return {
     radioRef,
     radioClasses,
+    proxyValue,
   };
 };

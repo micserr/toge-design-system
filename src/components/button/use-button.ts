@@ -7,7 +7,7 @@ import type { SetupContext } from 'vue';
 import type { ButtonEmitTypes, ButtonPropTypes } from './button';
 
 export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitTypes>['emit']) => {
-  const { state, type, size, tone, variant, disabled, hasIcon } = toRefs(props);
+  const { state, type, size, tone, variant, disabled, hasIcon, fullwidth } = toRefs(props);
 
   const buttonRef = ref<HTMLButtonElement | null>(null);
 
@@ -17,7 +17,10 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   const buttonClassses: ComputedRef<string> = computed(() => {
     const defaultClasses = classNames(
-      'spr-background-color spr-flex spr-items-center spr-gap-1.5 spr-w-fit spr-min-w-[24px] spr-items-center spr-justify-center spr-rounded-md spr-outline-2 spr-outline-offset-4',
+      'spr-background-color spr-flex spr-items-center spr-gap-1.5 spr-w-fit  spr-min-w-[24px] spr-items-center spr-justify-center spr-rounded-md spr-outline-2 spr-outline-offset-4',
+      {
+        'spr-w-full': fullwidth.value,
+      },
     );
 
     const sizeClasses = classNames('spr-font-medium', {

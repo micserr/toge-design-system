@@ -7,16 +7,13 @@ const CALENDAR_STATE_STATES = ['success', 'information', 'pending', 'caution', '
 export const calendarCellPropTypes = {
   type: {
     type: String,
-    required: true,
     default: 'standard',
   },
   title: {
     type: String,
-    required: true,
   },
   description: {
     type: String,
-    required: true,
   },
   status: {
     type: String,

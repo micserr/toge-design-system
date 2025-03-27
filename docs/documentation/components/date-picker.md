@@ -1024,6 +1024,12 @@ const datePickerModel = ref('');
       <td>{}</td>
     </tr>
     <tr>
+      <td>placement</td>
+      <td>Changes the placement of the dropdown popper (e.g., `bottom`, `top`, `left`, `right`)</td>
+      <td>string</td>
+      <td>`bottom`</td>
+    </tr>
+    <tr>
       <td>@get-input-value</td>
       <td>Emits the actual date that is being typed or select on the datepickker</td>
       <td>Function</td>

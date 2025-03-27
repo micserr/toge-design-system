@@ -7,7 +7,11 @@ import { ChipsEmitTypes } from './chips';
 import type { SetupContext } from 'vue';
 import type { ChipsPropTypes } from './chips';
 
-export const useChips = (props: ChipsPropTypes, emit: SetupContext<ChipsEmitTypes>['emit']) => {
+export const useChips = (
+  props: ChipsPropTypes, 
+  emit: SetupContext<ChipsEmitTypes>['emit'], 
+  slots: Record<string, unknown>,
+) => {
   const { disabled, active, variant, iconWeight, icon } = toRefs(props);
 
   const chipsBaseClasses: ComputedRef<string> = computed(() => {
@@ -74,10 +78,20 @@ export const useChips = (props: ChipsPropTypes, emit: SetupContext<ChipsEmitType
     return iconWeight.value === 'regular' ? icon.value : `${icon.value}-${iconWeight.value}`;
   });
 
+  const hasAvatar = computed(() => {
+    return props.avatarUrl || props.avatarVariant || props.avatarInitials;
+  });
+
+  const hasIcon = computed(() => {
+    return props.icon || slots.icon
+  });
+
   return {
     chipsBaseClasses,
     handleClose,
     handleClick,
     getIcon,
+    hasAvatar,
+    hasIcon,
   };
 };

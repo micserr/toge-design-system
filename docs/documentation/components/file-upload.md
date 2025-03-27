@@ -1,8 +1,13 @@
+---
+outline: 'deep'
+---
+
 # File Upload
 
 Input component to upload files.
 
 ## Basic Usage
+
 This file upload component can be triggered via the button upload or dragging and dropping the files to the drop zone.
 
 <div>
@@ -18,24 +23,27 @@ This file upload component can be triggered via the button upload or dragging an
 ```vue
 <template>
   <div>
-    <spr-file-upload 
+    <spr-file-upload
       v-model="files1"
-      :file-types="['image/jpeg','image/png',]"
+      :file-types="['image/jpeg', 'image/png']"
       :max-file-size="10"
       title="Attachments"
       multiple
     />
   </div>
-<template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-import SprFileUpload from '@/components/file-upload/file-upload.vue';
+  <template>
+    <script lang="ts" setup>
+      import { ref } from 'vue';
+      import SprFileUpload from '@/components/file-upload/file-upload.vue';
 
-const files1 = ref([]);
-</script>
+      const files1 = ref([]);
+    </script></template
+  >
+</template>
 ```
 
 ## Type
+
 There are two types for file upload: `default` and `center`.
 
 <div class="spr-flex spr-flex-col spr-gap-2">
@@ -60,18 +68,18 @@ There are two types for file upload: `default` and `center`.
 ```vue
 <template>
   <div class="spr-flex spr-flex-col spr-gap-2">
-    <spr-file-upload 
+    <spr-file-upload
       v-model="files2"
       type="default"
-      :file-types="['image/jpeg','image/png',]"
+      :file-types="['image/jpeg', 'image/png']"
       :max-file-size="10"
       title="Default File Upload"
       multiple
     />
-    <spr-file-upload 
+    <spr-file-upload
       v-model="files3"
       type="center"
-      :file-types="['image/jpeg','image/png',]"
+      :file-types="['image/jpeg', 'image/png']"
       :max-file-size="10"
       title="Center File Upload"
       multiple
@@ -81,6 +89,7 @@ There are two types for file upload: `default` and `center`.
 ```
 
 ## Disabled
+
 When the file upload component is disabled, it will prevent users from triggering the upload button and dragging & dropping files.
 
 <div class="spr-flex spr-flex-col spr-gap-2">
@@ -107,19 +116,19 @@ When the file upload component is disabled, it will prevent users from triggerin
 ```vue
 <template>
   <div class="spr-flex spr-flex-col spr-gap-2">
-    <spr-file-upload 
+    <spr-file-upload
       v-model="files4"
       type="default"
-      :file-types="['image/jpeg','image/png',]"
+      :file-types="['image/jpeg', 'image/png']"
       :max-file-size="10"
       title="Default File Upload"
       multiple
       disabled
     />
-    <spr-file-upload 
+    <spr-file-upload
       v-model="files5"
       type="center"
-      :file-types="['image/jpeg','image/png',]"
+      :file-types="['image/jpeg', 'image/png']"
       :max-file-size="10"
       title="Center File Upload"
       multiple
@@ -130,6 +139,7 @@ When the file upload component is disabled, it will prevent users from triggerin
 ```
 
 ## Error
+
 For client-side validation of the file upload, we can show the error message as follows:
 
 <div class="spr-flex spr-flex-col spr-gap-2">
@@ -158,20 +168,20 @@ For client-side validation of the file upload, we can show the error message as 
 ```vue
 <template>
   <div class="spr-flex spr-flex-col spr-gap-2">
-    <spr-file-upload 
+    <spr-file-upload
       v-model="files6"
       type="default"
-      :file-types="['image/jpeg','image/png',]"
+      :file-types="['image/jpeg', 'image/png']"
       :max-file-size="10"
       title="Default File Upload"
       multiple
       :show-error="true"
       :error-messages="['File type is not supported. It must be a JPG or PNG file.']"
     />
-    <spr-file-upload 
+    <spr-file-upload
       v-model="files7"
       type="center"
-      :file-types="['image/jpeg','image/png',]"
+      :file-types="['image/jpeg', 'image/png']"
       :max-file-size="10"
       title="Center File Upload"
       multiple
@@ -182,9 +192,7 @@ For client-side validation of the file upload, we can show the error message as 
 </template>
 ```
 
-## File Upload API
-
-### File Upload Attributes
+## API Reference
 
 <table>
   <thead>

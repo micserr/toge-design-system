@@ -1,25 +1,25 @@
 <template>
-  <spr-input v-bind="$attrs" :type="evaluatePasswordInputType()">
+  <spr-input v-bind="$attrs" :type="evaluatePasswordInputType">
     <template v-for="(_, slotName) in $slots" #[slotName]>
       <slot :name="slotName" />
     </template>
-    
+
     <template #icon>
-      <Icon :icon="evaluateEyeIcon()" :class="iconClasses" @click="toggleShowPassword()" />
+      <Icon
+        :icon="evaluateEyeIcon"
+        :class="['spr-cursor-pointer spr-transition spr-duration-150 spr-ease-in-out', 'hover:spr-text-color-base']"
+        @click="showPassword = !showPassword"
+      />
     </template>
   </spr-input>
 </template>
 
 <script setup lang="ts">
-import SprInput from '@/components/input/input.vue';
-import { useInputPassword } from './use-input-password';
-import { Icon } from "@iconify/vue";
+import { Icon } from '@iconify/vue';
 
-const {
-  iconClasses,
-  evaluateEyeIcon, 
-  toggleShowPassword,
-  evaluatePasswordInputType,
- } = 
-  useInputPassword();
+import SprInput from '@/components/input/input.vue';
+
+import { useInputPassword } from './use-input-password';
+
+const { showPassword, evaluateEyeIcon, evaluatePasswordInputType } = useInputPassword();
 </script>

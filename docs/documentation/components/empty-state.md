@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Empty State
 
 ## Basic Usage
@@ -120,6 +124,8 @@ Image size can be controlled by passing the `size` prop. The default size is `sm
   </spr-empty-state>
 </template>
 ```
+
+## API Reference
 
 <script lang="ts" setup>
 import SprEmptyState from "@/components/empty-state/empty-state.vue";

@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Chips
 
 Interactive chip elements for various use cases like filtering, selection, and tags.
@@ -60,6 +64,42 @@ const handleUpdate = (key, value) => {
   console.log(`Chip is now ${value ? 'active' : 'inactive'}`);
 };
 </script>
+```
+
+## With Avatar
+
+<div class="spr-flex spr-items-center spr-gap-2">
+  <spr-chips
+    label="Avatar"
+    :avatar-url="'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'"
+    :avatar-variant="'image'"
+  />
+  <spr-chips
+    label="Avatar"
+    :avatar-variant="'client'"
+  />
+  <spr-chips
+    label="Avatar"
+    :avatar-variant="'user'"
+  />
+</div>
+
+```vue
+<template>
+  <spr-chips
+    label="Avatar"
+    :avatar-url="'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'"
+    :avatar-variant="'image'"
+  />
+  <spr-chips
+    label="Avatar"
+    :avatar-variant="'client'"
+  />
+  <spr-chips
+    label="Avatar"
+    :avatar-variant="'user'"
+  />
+</template>
 ```
 
 ## With Badge
@@ -215,10 +255,6 @@ const handleDayClick = (day) => {
 
 ## API Reference
 
-### Chips Component
-
-#### Properties
-
 <table>
   <thead>
     <tr>
@@ -301,28 +337,16 @@ const handleDayClick = (day) => {
       <td>'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday'</td>
       <td>required</td>
     </tr>
-  </tbody>
-</table>
-
-#### Events
-
-<table>
-  <thead>
     <tr>
-      <th>Event Name</th>
-      <th>Description</th>
-      <th>Parameters</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>update</td>
+      <td>@update</td>
       <td>emitted when active state changes</td>
-      <td>(value: boolean)</td>
+      <td>function</td>
+      <td>-</td>
     </tr>
     <tr>
-      <td>close</td>
+      <td>@close</td>
       <td>emitted when close button is clicked</td>
+      <td>function</td>
       <td>-</td>
     </tr>
   </tbody>

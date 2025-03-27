@@ -7,7 +7,7 @@ import type { SetupContext } from 'vue';
 import type { ButtonEmitTypes, ButtonPropTypes } from './button';
 
 export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitTypes>['emit']) => {
-  const { state, type, size, tone, variant, disabled, hasIcon } = toRefs(props);
+  const { state, type, size, tone, variant, disabled, hasIcon, fullwidth } = toRefs(props);
 
   const buttonRef = ref<HTMLButtonElement | null>(null);
 
@@ -17,17 +17,25 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   const buttonClassses: ComputedRef<string> = computed(() => {
     const defaultClasses = classNames(
-      'spr-background-color spr-flex spr-items-center spr-gap-1.5 spr-w-fit spr-min-w-[24px] spr-items-center spr-justify-center spr-rounded-md spr-outline-2 spr-outline-offset-4',
+      'spr-background-color spr-flex spr-items-center spr-gap-1.5 spr-w-fit  spr-min-w-[24px] spr-items-center spr-justify-center spr-rounded-md spr-outline-2 spr-outline-offset-4',
+      {
+        'spr-w-full': fullwidth.value,
+      },
     );
 
-    const sizeClasses = classNames({
-      'spr-min-w-6 spr-p-size-spacing-4xs spr-font-medium spr-font-size-100 spr-leading-100': size.value === 'small',
-      'spr-min-w-7 spr-p-2 spr-font-medium spr-font-size-100 spr-leading-100': size.value === 'medium',
-      '!spr-min-w-9 spr-px-2 spr-py-3 spr-font-medium spr-font-size-200 spr-leading-300 spr-max-h-9':
-        size.value === 'large',
-      'spr-font-size-400': hasIcon.value && size.value === 'large',
-      'spr-font-size-300': hasIcon.value && size.value === 'medium',
-      'spr-font-size-200': hasIcon.value && size.value === 'small',
+    const sizeClasses = classNames('spr-font-medium', {
+      'spr-min-w-6 spr-p-1.5 spr-leading-100 spr-font-size-100': !hasIcon.value && size.value === 'small',
+      'spr-min-w-7 spr-p-2 spr-leading-100 spr-font-size-100': !hasIcon.value && size.value === 'medium',
+      'spr-max-h-9 spr-min-w-9 spr-px-2 spr-py-3 spr-leading-300 spr-font-size-200':
+        !hasIcon.value && size.value === 'large',
+
+      // Has Icon
+      'spr-min-w-6 spr-p-1.5 spr-leading-100 spr-font-size-100 [&>svg]:spr-font-size-200':
+        hasIcon.value && size.value === 'small',
+      'spr-min-w-7 spr-p-2 spr-leading-100 spr-font-size-100 [&>svg]:spr-font-size-300':
+        hasIcon.value && size.value === 'medium',
+      'spr-max-h-9 spr-min-w-9 spr-px-2 spr-py-3 spr-leading-300 spr-font-size-200 [&>svg]:spr-font-size-400':
+        hasIcon.value && size.value === 'large',
     });
 
     const toneClasses = classNames(

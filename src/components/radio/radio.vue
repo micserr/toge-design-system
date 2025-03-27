@@ -18,16 +18,16 @@
 </template>
 
 <script lang="ts" setup>
-import { useVModel } from '@vueuse/core';
+import { useSlots } from 'vue';
 
 import { radioPropTypes, radioEmitTypes } from './radio';
 import { useRadioButton } from './use-radio';
 
 const props = defineProps(radioPropTypes);
 const emit = defineEmits(radioEmitTypes);
+const slots = useSlots();
 
-const proxyValue = useVModel(props, 'modelValue', emit);
-const { radioRef, radioClasses } = useRadioButton(props);
+const { proxyValue, radioRef, radioClasses } = useRadioButton(props, emit, slots);
 </script>
 
 <style scoped>

@@ -9,7 +9,7 @@
         @change="handleCheckbox"
       />
       <span :class="checkboxClasses.inputCheckboxCheckIconClasses">
-        <Icon icon="ph:check-bold" />
+        <Icon :icon="resolveCheckboxIcon" />
       </span>
     </div>
     <div v-if="props.label || props.description" class="spr-grid spr-gap-0.5">
@@ -32,5 +32,5 @@ import { useCheckbox } from './use-checkbox';
 const props = defineProps(checkboxPropTypes);
 const emit = defineEmits(checkboxEmitTypes);
 
-const { checkboxClasses, handleCheckbox } = useCheckbox(props, emit);
+const { checkboxClasses, handleCheckbox, resolveCheckboxIcon } = useCheckbox(props, emit);
 </script>

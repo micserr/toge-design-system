@@ -1,6 +1,7 @@
 ---
 outline: 'deep'
 ---
+
 # Input
 
 UI element that allows users to enter and edit text or other data.
@@ -23,20 +24,17 @@ const inputValue = ref('');
 
 ## Pre Defined Values
 
-To add value to the input without using `v-model` you can use `pre-value` prop to force add value to the input.
-If both `v-model` and `pre-value` has a value, the most priority will be the `v-model`.
-
-<spr-input v-model="inputValue.input2" label="Text Input" placeholder="Enter your username" pre-value="Sample Value" />
+<spr-input v-model="inputValue.input2" label="Text Input" placeholder="Enter your username" />
 
 ```vue
 <template>
-  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" pre-value="Sample Value" />
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" />
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const inputValue = ref('');
+const inputValue = ref('Sample Text');
 </script>
 ```
 
@@ -101,6 +99,8 @@ const inputValue = ref('');
 You can either add min or max length by passing props `min-length` or `max-length` and add the corresponding number value.
 
 <spr-input v-model="inputValue.input6" label="Text Input" placeholder="Enter your username" :min-length="0" :max-length="50" />
+
+<p>Character Length: {{ inputValue.input6.length }}</p>
 
 ```vue
 <template>
@@ -287,12 +287,12 @@ const inputValueSearch = ref('');
 ### Username Input
 
 <div>
-  <spr-input-username v-model="inputValue.input13" label="Username" placeholder="Enter username" :active="true"/>
+  <spr-input-username v-model="inputValue.input13" label="Username" placeholder="Enter username" />
 </div>
 
 ```vue
 <template>
-  <spr-input-username v-model="inputValueUsername" label="Username" placeholder="Enter username" :active="true" />
+  <spr-input-username v-model="inputValueUsername" label="Username" placeholder="Enter username" />
 </template>
 
 <script lang="ts" setup>
@@ -305,12 +305,12 @@ const inputValueUsername = ref('');
 ### Email Input
 
 <div>
-  <spr-input-email v-model="inputValue.input14" label="Username" placeholder="Enter email" :active="true"/>
+  <spr-input-email v-model="inputValue.input14" label="Username" placeholder="Enter email" />
 </div>
 
 ```vue
 <template>
-  <spr-input-email v-model="inputValueEmail" label="Username" placeholder="Enter email" :active="true" />
+  <spr-input-email v-model="inputValueEmail" label="Username" placeholder="Enter email" />
 </template>
 
 <script lang="ts" setup>
@@ -323,12 +323,12 @@ const inputValueEmail = ref('');
 ### Password Input
 
 <div>
-  <spr-input-password v-model="inputValue.input15" label="Password" placeholder="Enter password" :active="true"/>
+  <spr-input-password v-model="inputValue.input15" label="Password" placeholder="Enter password" />
 </div>
 
 ```vue
 <template>
-  <spr-input-password v-model="inputValuePassword" label="Password" placeholder="Enter password" :active="true" />
+  <spr-input-password v-model="inputValuePassword" label="Password" placeholder="Enter password" />
 </template>
 
 <script lang="ts" setup>
@@ -341,12 +341,12 @@ const inputValuePassword = ref('');
 ### URL Input
 
 <div>
-  <spr-input-url v-model="inputValue.input16" label="URL" placeholder="Enter url" :active="true" />
+  <spr-input-url v-model="inputValue.input16" label="URL" placeholder="Enter url" />
 </div>
 
 ```vue
 <template>
-  <spr-input-url v-model="inputValueURL" label="URL" placeholder="Enter url" :active="true" />
+  <spr-input-url v-model="inputValueURL" label="URL" placeholder="Enter url" />
 </template>
 
 <script lang="ts" setup>
@@ -357,31 +357,212 @@ const inputValueURL = ref('');
 ```
 
 ### Contact Number Input
+
 This component utilizes `libphonenumber-js` to parse and format the input on blur. Masking of contact number on change will be implemented in the future.
 
 <div>
-  <spr-input-contact-number v-model="inputValue.input17" label="Contact Number" placeholder="Enter contact number" class="spr-mb-size-spacing-3xs"/>
-  <label>Output: {{ inputValue.input17 }}</label>
+  <div class="spr-grid spr-gap-4">
+    <spr-input-contact-number 
+      v-model="inputValue.input17" 
+      label="Contact Number" 
+      @get-selected-country-calling-code="handleSelectedCountryCallingCode"
+      @get-contact-number-errors="handleContactNumberErrors" 
+    />
+    <spr-input-contact-number 
+      v-model="inputValue.input17" 
+      label="Disabled Calling Country Code" 
+      @get-selected-country-calling-code="handleSelectedCountryCallingCode"
+      @get-contact-number-errors="handleContactNumberErrors" 
+      disabledCountryCallingCode
+    />
+  </div>
+  <div class="spr-my-3 spr-p-4 spr-bg-blue-100">
+    <p>Model Output: {{ inputValue.input17 }}</p>
+    <p>Selected Country Code: {{ selectedCountryCode }}</p>
+    <p>Error Handling: {{ contactNumberErrors }}</p>
+    <p>Parsed International Number: {{ parseInternationalNumber }}</p>
+  </div>
 </div>
+
+::: info Importannt to note:
+Since the v-model output is not in an international format (e.g., +63XXXXXXXXXXX), you will need to create a separate function that parses the model output along with the selected country code.
+:::
 
 ```vue
 <template>
   <div>
-  <spr-input-contact-number v-model="inputValueContactNumber" label="Contact Number" placeholder="Enter contact number" class="spr-mb-size-spacing-3xs"/>
-  <label>Output: {{ inputValueContactNumber }}</label>
-</div>
+    <div class="spr-grid spr-gap-4">
+      <spr-input-contact-number
+        v-model="inputValueContactNumber"
+        label="Contact Number"
+        @get-selected-country-calling-code="handleSelectedCountryCallingCode"
+        @get-contact-number-errors="handleContactNumberErrors"
+      />
+      <spr-input-contact-number
+        v-model="inputValueContactNumber"
+        label="Disabled Calling Country Code"
+        @get-selected-country-calling-code="handleSelectedCountryCallingCode"
+        @get-contact-number-errors="handleContactNumberErrors"
+        disabledCountryCallingCode
+      />
+    </div>
+    <p>Model Output: {{ inputValueContactNumber }}</p>
+    <p>Selected Country Code: {{ selectedCountryCode }}</p>
+    <p>Error Handling: {{ contactNumberErrors }}</p>
+    <p>Parsed International Number: {{ parseInternationalNumber }}</p>
+  </div>
 
-<script lang="ts" setup>
-import { ref } from 'vue';
+  <script lang="ts" setup>
+    import { ref, computed } from 'vue';
 
-const inputValueContactNumber = ref('');
-</script>
+    const inputValueContactNumber = ref('');
+    const selectedCountryCode = ref('');
+    const contactNumberErrors = ref([]);
+
+    const handleSelectedCountryCallingCode = (value: string) => {
+      selectedCountryCode.value = value;
+    };
+
+    const handleContactNumberErrors = (errors: { title: string; message: string }[]) => {
+      contactNumberErrors.value = errors;
+    };
+
+    const handleContactNumberErrors = (errors: { title: string; message: string }[]) => {
+      contactNumberErrors.value = errors;
+    };
+
+    const parseInternationalNumber = computed(() => {
+      if (selectedCountryCode && inputValueContactNumber.value) {
+        const formattedNumber = `+${selectedCountryCode}${inputValueContactNumber.value.replace(/[^0-9]/g, '')}`;
+
+        return formattedNumber;
+      }
+
+      return '';
+    });
+  </script>
 </template>
 ```
 
+### Dropdown Input
+
+This is the one used in the dropdown component. If you want to implement a dropdown, you can refer to the <a href="/documentation/components/dropdown.html" target="_blank">Dropdown Component</a>.
+
+<div>
+  <spr-input-dropdown v-model="inputValue.input18" label="Dropdown Input" placeholder="Select an item ..." readonly />
+</div>
+
+```vue
+<template>
+  <spr-input-dropdown v-model="dropdownInput" label="Dropdown Input" placeholder="Select an item ..." readonly />
+</template>
+
 <script lang="ts" setup>
 import { ref } from 'vue';
+
+const dropdownInput = ref('');
+</script>
+```
+
+## API Reference
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th> 
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>v-model</td>
+      <td>Two-way binding for the input value.</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>The label for the input field.</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>placeholder</td>
+      <td>Placeholder text for the input field.</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>pre-value</td>
+      <td>Predefined value for the input, used when v-model is not set.</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>active</td>
+      <td>Determines if the input is in an active state.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>Sets the input to an error state.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>Disables the input field.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>min-length</td>
+      <td>Minimum length of the input value.</td>
+      <td>number</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>max-length</td>
+      <td>Maximum length of the input value.</td>
+      <td>number</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>offset-size</td>
+      <td>Size of the offset for the input field, can be xs, sm, md, etc.</td>
+      <td>string</td>
+      <td>sm</td>
+    </tr>
+    <tr>
+      <td>display-helper</td>
+      <td>Whether to display the helper message.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>helper-text</td>
+      <td>Text for the helper message below the input field.</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>helper-icon</td>
+      <td>Icon to display alongside the helper message.</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>
+
+<script lang="ts" setup>
+import { ref, computed } from 'vue';
+import { useDebounceFn } from '@vueuse/core';
+
 import { Icon } from '@iconify/vue';
+
 import SprInput from "@/components/input/input.vue"
 import SprInputSearch from "@/components/input/input-search/input-search.vue"
 import SprInputUsername from "@/components/input/input-username/input-username.vue"
@@ -389,10 +570,11 @@ import SprInputEmail from "@/components/input/input-email/input-email.vue"
 import SprInputPassword from "@/components/input/input-password/input-password.vue"
 import SprInputUrl from "@/components/input/input-url/input-url.vue"
 import SprInputContactNumber from "@/components/input/input-contact-number/input-contact-number.vue"
+import SprInputDropdown from "@/components/input/input-dropdown/input-dropdown.vue"
 
 const inputValue = ref({
   input1: '',
-  input2: '',
+  input2: 'Sample Text',
   input3: '',
   input4: '',
   input5: '',
@@ -408,5 +590,28 @@ const inputValue = ref({
   input15: '',
   input16: '',
   input17: '',
+  input18: '',
 });
+
+const selectedCountryCode = ref('');
+const contactNumberErrors = ref<{ title: string; message: string }[]>([]);
+
+const handleSelectedCountryCallingCode = (value: string) => {
+  selectedCountryCode.value = value;
+};
+
+const handleContactNumberErrors = (errors: { title: string; message: string }[]) => {
+  contactNumberErrors.value = errors;
+};
+
+const parseInternationalNumber = computed(() => {
+  if (selectedCountryCode && inputValue.value.input17) {
+    const formattedNumber = `+${selectedCountryCode.value}${inputValue.value.input17.replace(/[^0-9]/g, '')}`;
+
+    return formattedNumber;
+  }
+  
+  return '';
+});
+
 </script>

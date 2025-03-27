@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # Progress Bar
 
 The Progress Bar component visually represents the progress of a task or process, allowing users to track completion at a glance. It supports different sizes and an optional label for enhanced clarity.
@@ -62,9 +66,7 @@ const progressValue = ref(25);
 </script>
 ```
 
-## Progress Bar API
-
-### Progress Bar Attributes
+## API Reference
 
 <table>
   <thead>

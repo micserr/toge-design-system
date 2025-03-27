@@ -1,3 +1,7 @@
+---
+outline: 'deep'
+---
+
 # List
 
 ## Basic Usage
@@ -607,7 +611,7 @@ const mockDropdownData = [
 ```
 
 
-## List API
+## API Reference
 
 <table>
   <thead>

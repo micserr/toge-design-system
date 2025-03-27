@@ -1,4 +1,7 @@
 import { App } from 'vue';
+
+import pkg from '../package.json';
+
 import '@/assets/styles/tailwind.css';
 
 // Prefix constant (no need for dynamic setPrefix)
@@ -17,7 +20,10 @@ const install = (app: App) => {
     }
   });
 
-  console.log('%c🚀⭐ Design System Next Installed ⭐🚀', 'color: green; font-weight: bold; font-size: 14px;');
+  console.log(
+    `%c🌱 Design System Next Installed v${pkg.version} 🌱`,
+    'color: green; font-weight: bold; font-size: 12px;',
+  );
 };
 
 export default { install };

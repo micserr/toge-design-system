@@ -1,6 +1,6 @@
 <template>
   <Menu
-    v-model:shown="dropdownPopperState"
+    :shown="dropdownPopperState"
     aria-id="dropdown-wrapper"
     distance="4"
     :placement="props.placement"
@@ -30,17 +30,23 @@
     ></div>
 
     <template #popper>
-      <div
-        ref="dropdownRef"
-        class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden spr-p-2"
-      >
+      <div ref="dropdownRef" :class="[!props.ladderized && 'spr-p-2', 'spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden']">
         <template v-if="dropdownMenuList.length > 0">
-          <SprList
-            v-model="preSelectedItems"
+          <spr-list
+            v-if="!props.ladderized"
+            v-model="selectedListItems"
             :menu-list="dropdownMenuList"
             :group-items-by="props.groupItemsBy"
             :multi-select="props.multiSelect"
-            @get-selected-item="handleSelectedItem"
+            :pre-selected-items="dropdownValue"
+            @update:model-value="handleSelectedItem"
+          />
+          <spr-ladderized-list
+            v-else
+            v-model="dropdownValue"
+            :ladderized="props.ladderized"
+            :menu-list="dropdownMenuList"
+            @update:model-value="handleSelectedLadderizedItem"
           />
         </template>
         <template v-else>
@@ -55,23 +61,22 @@
 
 <script lang="ts" setup>
 import { Menu } from 'floating-vue';
-
 import 'floating-vue/dist/style.css';
-
 import { dropdownPropTypes, dropdownEmitTypes } from './dropdown';
 import { useDropdown } from './use-dropdown';
-
 import SprList from '../list/list.vue';
-
+import SprLadderizedList from '../list/ladderized-list/ladderized-list.vue';
 const props = defineProps(dropdownPropTypes);
 const emit = defineEmits(dropdownEmitTypes);
 
 const {
   dropdownPopperState,
   dropdownRef,
-  preSelectedItems,
   dropdownMenuList,
   isDropdownPopperDisabled,
+  selectedListItems,
   handleSelectedItem,
+  handleSelectedLadderizedItem,
+  dropdownValue,
 } = useDropdown(props, emit);
 </script>

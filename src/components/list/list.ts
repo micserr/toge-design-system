@@ -2,15 +2,28 @@ import type { PropType, ExtractPropTypes } from 'vue';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
-const GROUPED_ITEMS_BY_TYPES = ['A-Z', 'Z-A'] as const;
+const GROUPED_ITEMS_BY_TYPES = ['A-Z', 'Z-A', 'default'] as const;
+
+export type MenuListType = {
+  text: string;
+  subtext?: string;
+  value: string;
+  sublevel?: MenuListType[];
+  group?: string;
+};
+
+export type GroupedMenuListType = {
+  groupLabel: string;
+  items: MenuListType[];
+}
 
 export const listPropTypes = {
   modelValue: {
-    type: Array as PropType<string[]>,
-    default: () => [],
+    type: Array as PropType<MenuListType[]>,
+    default: [],
   },
   menuList: {
-    type: Array as PropType<{ text: string; value: string }[]>,
+    type: Array as PropType<MenuListType[]>,
     required: true,
     default: [],
   },
@@ -24,10 +37,18 @@ export const listPropTypes = {
     type: Boolean,
     default: false,
   },
+  preSelectedItems: {
+    type: Array as PropType<string[]>,
+    default: [],
+  },
+  ladderized: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const listEmitTypes = {
-  'get-selected-item': Object,
+  'update:modelValue': (value: MenuListType[]) => value,
 };
 
 export type ListPropTypes = ExtractPropTypes<typeof listPropTypes>;

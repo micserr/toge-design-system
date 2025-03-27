@@ -15,7 +15,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
 
   const listClasses: ComputedRef<ListClasses> = computed(() => {
     const listItemClasses = classNames(
-      'spr-flex spr-cursor-pointer spr-items-center spr-justify-between spr-gap-1.5 spr-rounded-lg spr-p-2',
+      'spr-flex spr-cursor-pointer spr-items-center spr-gap-1.5 spr-rounded-lg spr-p-2',
       'spr-transition spr-duration-150 spr-ease-in-out',
       'hover:spr-background-color-hover',
       'active:spr-background-color-single-active active:spr-scale-[.98]',
@@ -85,7 +85,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
 
   const setPreSelectedItems = () => {
     if (preSelectedItems.value && preSelectedItems.value.length > 0) {
-      preSelectedItems.value.forEach((preSelectedItem: String) => {
+      preSelectedItems.value.forEach((preSelectedItem: string) => {
         // If single select, only select the first item and skip the for loop
         if (!multiSelect.value && selectedItems.value.length > 0)  return;
         

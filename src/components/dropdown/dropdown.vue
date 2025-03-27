@@ -43,8 +43,8 @@
           />
           <spr-ladderized-list
             v-else
-            :ladderized="props.ladderized"
             v-model="dropdownValue"
+            :ladderized="props.ladderized"
             :menu-list="dropdownMenuList"
             @update:model-value="handleSelectedLadderizedItem"
           />

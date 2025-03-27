@@ -21,22 +21,16 @@ export const useLadderizedList = (props: LadderizedListPropTypes, emit: SetupCon
     // Update UI for selectedListItem
     updateSelectedListItem(item);
 
-    const isSameLevel = computed(() => {
-      if (prevList.value.some(listItem => listItem.value === item.value)) {
-        return true;
-      }
-      return false;
-    });
+    const isSameLevel = computed(() => prevList.value.some(listItem => listItem.value === item.value));
 
     // Update the activeList and activeLevel
     if (!isSameLevel.value) {
       appendItemToOutput(item);
-      updateLevel(item)
     } else {
       replaceItemInOutput(item);
-      if (item.sublevel) updateLevel(item);
     }
-
+    
+    if (item.sublevel && item.sublevel.length > 0) updateLevel(item);
     // Update output value
     emit("update:modelValue", ladderizedListOutput.value);
   };
@@ -117,14 +111,13 @@ export const useLadderizedList = (props: LadderizedListPropTypes, emit: SetupCon
   };
 
   const initializeMenuList = () => {
-    console.log("initializeMenuList");
     if (ladderizedListOutput.value && ladderizedListOutput.value.length > 0) {
       // Reset values
-      let tempBackLabel: string[] = [];
+      const tempBackLabel: string[] = [];
       prevList.value = [];
 
       // On initialize, traverse through the activeList based from ladderizedListOutput
-      ladderizedListOutput.value.forEach((preSelectedItem: String) => {
+      ladderizedListOutput.value.forEach((preSelectedItem: string) => {
         const item = activeList.value.find(
           (menuItem) => String(menuItem.value) === String(preSelectedItem),
         );

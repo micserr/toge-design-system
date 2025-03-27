@@ -86,7 +86,6 @@ export const dropdownPropTypes = {
 };
 
 export const dropdownEmitTypes = {
-  'get-selected-item': Object,
   'infinite-scroll-trigger': Boolean,
   'update:modelValue': (value: string[]) => value,
 };

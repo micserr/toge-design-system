@@ -60,7 +60,7 @@ defineExpose({
     bottom: 1rem;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 100;
+    z-index: 9999;
 
     & > ul {
       list-style-type: none;

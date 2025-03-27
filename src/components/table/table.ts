@@ -136,6 +136,8 @@ export const tableEmitTypes = {
     typeof value.field === 'string' && TABLE_SORT.includes(value.sortOrder),
   onRowClick: (rowData: TableData, rowKey: number): rowData is TableData =>
     typeof rowData === 'object' && typeof rowKey === 'number',
+  onHover: (value: { active: boolean; data: TableData }): value is { active: boolean; data: TableData } =>
+    typeof value.active === 'boolean' && typeof value.data === 'object',
 };
 
 export type TablePropTypes = ExtractPropTypes<typeof tablePropTypes>;

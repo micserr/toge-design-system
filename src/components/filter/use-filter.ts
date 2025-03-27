@@ -4,7 +4,7 @@ import type { SetupContext } from 'vue';
 import { useVModel } from '@vueuse/core';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
-import { useInfiniteScroll } from '@vueuse/core';
+import { useInfiniteScroll, onClickOutside } from '@vueuse/core';
 
 export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitTypes>['emit']) => {
   const { options, filterMenu, filterData, loading, filterable, filling, deselected } = toRefs(props);
@@ -129,6 +129,10 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     searchText.value = value;
   });
 
+  onClickOutside(filterOptionRef, () => {
+    isFilterOpen.value = false;
+  });
+
   const selectAllOptions = () => {
     if (options.value?.length) {
       options.value.forEach((option) => {
@@ -158,7 +162,7 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
   };
 
   const infiniteScrollHandler = () => {
-    emit('infinite-scroll-trigger', true);
+    emit('infiniteScrollTrigger', true);
   };
 
   const setupInfiniteScroll = () => {

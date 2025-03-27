@@ -11,6 +11,7 @@
       width: props.width,
       position: 'relative',
     }"
+    :auto-hide="false"
   >
     <span
       :id="uniqueId"

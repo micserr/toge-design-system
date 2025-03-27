@@ -1,6 +1,34 @@
 # Changelog
 
+## 1.14.3 (2025-03-26)
+
+- Fix
+  - Update Contact Number Issues Encountered, Update Modal Z-index and Snackbar ([#08426ee1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/08426ee1ed5b601fc56e0d99cd6a6dd0a4adfed4?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 1.14.2 (2025-03-26)
+
+- Feat
+  - Added chip cells ([#c06d856d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c06d856d858bb6b7ab82b66f7d870eab7ed094ce?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_CHIPS_AND_MULTIPLE_TITLE) by @jfabula)
+  - Added multiple chips and lozenges cells ([#61bd0f1a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/61bd0f1a68daf3aeeadbe40dcc8ef584662380cf?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_CHIPS_AND_MULTIPLE_TITLE) by @jfabula)
+  - Added initial support for avatar in chips ([#bc31a2a1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/bc31a2a198ba18d9fc4fec4f8380cdd5b7d5a75a?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_CHIPS_AND_MULTIPLE_TITLE) by @jfabula)
+
+## 1.14.1 (2025-03-25)
+
+- Fix
+  - Hover color and label size ([#a6e3d90](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a6e3d90daaee6dad95d8b67a448dd785bc3a338b?refName=refs/heads/2025/FIX/Xyrk/CHECKBOX_DQA) by @jfabula)
+
+## 1.14.0 (2025-03-24)
+
+- Feat
+  - Update Phone Number Input, Added Input Dropdown, Tooltip Update ([#bb1dc265](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/bb1dc2659be52f5657d09c2750480a755ac31f49?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 1.13.10 (2025-03-24)
+
+- Docs
+  - Checkbox indeterminate documentation ([#075d5fc](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/075d5fcc13dc901c1f1d4a2ceff6ee6d0ee3b0b3?refName=refs/heads/2025/FIX/Xyrk/CHECKBOX_DQA) by @jfabula)
+
 ## 1.13.9 (2025-03-24)
+
 - Fix
   - Checkbox DQA ([#9f1d8c0](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/9f1d8c07719bfe61ec7a923f2acb50f4ea9c4cb5?refName=refs/heads/2025/FIX/Xyrk/CHECKBOX_DQA) by @jfabula)
 

@@ -153,6 +153,18 @@
       }
     }
   }
+
+  #contact-number-country-dropdown {
+    #dropdown-wrapper[data-popper-placement='top-start'] {
+      margin-top: -4px;
+      margin-left: -8px;
+    }
+
+    #dropdown-wrapper[data-popper-placement='bottom-start'] {
+      margin-top: 4px;
+      margin-left: -8px;
+    }
+  }
   /* #endregion - Dropdown */
 
   /* #region - Avatar */
@@ -208,7 +220,7 @@
   }
   /* #endregion - Date Picker */
 
-  /* #endregion - Filter, time-picker */
+  /* #region - Filter, time-picker */
   #time-picker-wrapper-full-width,
   #time-picker-wrapper,
   #filter-option-wrapper,
@@ -229,9 +241,11 @@
       }
     }
   }
+
   #time-picker-wrapper {
     @apply spr-max-w-[240px];
   }
+
   #time-picker-wrapper-full-width,
   #filter-option-wrapper {
     @apply spr-w-full;
@@ -240,7 +254,6 @@
   #filter-menu-wrapper {
     @apply spr-min-w-[328px] spr-drop-shadow-md;
   }
-
   /* #endregion - Filter, time-picker */
 }
 

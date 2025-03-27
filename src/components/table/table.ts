@@ -1,5 +1,6 @@
 import type { PropType, ExtractPropTypes } from 'vue';
-import { LOZENGE_TONE } from '@/components/lozenge/lozenge';
+import type { ChipTitle } from '@/components/table/table-chips-title/table-chips-title';
+import type { LozengeTitle } from '@/components/table/table-lozenge-title/table-lozenge-title';
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
 interface Header {
@@ -10,6 +11,7 @@ interface Header {
   hasIcon: boolean;
   hasSubtext: boolean;
   hasLozengeTitle: boolean;
+  hasChipTitle: boolean;
   badgeText: string;
   badgeVariant: string;
   avatarVariant: string;
@@ -17,14 +19,10 @@ interface Header {
 
 interface TableData {
   [key: string]: {
-    title: string;
+    title: string | LozengeTitle | ChipTitle | LozengeTitle[] | ChipTitle[];
     subtext?: string;
     image?: string;
     icon?: string;
-    lozengeFill: boolean;
-    lozengeAvatarUrl: string;
-    lozengeTone?: (typeof LOZENGE_TONE)[number];
-    lozengeIcon?: string;
   };
 }
 

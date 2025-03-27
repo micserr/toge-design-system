@@ -15,9 +15,11 @@
 </template>
 
 <script setup lang="ts">
-import SprInput from '@/components/input/input.vue';
-import { useInputPassword } from './use-input-password';
 import { Icon } from '@iconify/vue';
+
+import SprInput from '@/components/input/input.vue';
+
+import { useInputPassword } from './use-input-password';
 
 const { showPassword, evaluateEyeIcon, evaluatePasswordInputType } = useInputPassword();
 </script>

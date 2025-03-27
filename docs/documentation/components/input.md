@@ -371,6 +371,8 @@ This component utilizes `libphonenumber-js` to parse and format the input on blu
     <spr-input-contact-number 
       v-model="inputValue.input17" 
       label="Disabled Calling Country Code" 
+      @get-selected-country-calling-code="handleSelectedCountryCallingCode"
+      @get-contact-number-errors="handleContactNumberErrors" 
       disabledCountryCallingCode
     />
   </div>
@@ -399,6 +401,8 @@ Since the v-model output is not in an international format (e.g., +63XXXXXXXXXXX
       <spr-input-contact-number
         v-model="inputValueContactNumber"
         label="Disabled Calling Country Code"
+        @get-selected-country-calling-code="handleSelectedCountryCallingCode"
+        @get-contact-number-errors="handleContactNumberErrors"
         disabledCountryCallingCode
       />
     </div>
@@ -555,6 +559,7 @@ const dropdownInput = ref('');
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue';
+import { useDebounceFn } from '@vueuse/core';
 
 import { Icon } from '@iconify/vue';
 

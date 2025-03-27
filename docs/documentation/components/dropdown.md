@@ -9,8 +9,9 @@ Dropdowns are versatile UI components that can be integrated with various elemen
 <div>
   <spr-dropdown
     id="dropdown1"
+    v-model="dropdownModel.dropdown1"
     :menu-list="menuList"
-    @get-selected-item="handleSelectedItem($event, 'single', 'inputText1')"
+    @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText1')"
   >
     <spr-input
       v-model="inputTextModel.inputText1"
@@ -23,7 +24,7 @@ Dropdowns are versatile UI components that can be integrated with various elemen
 
 ```vue
 <template>
-  <spr-dropdown id="sample-dropdown" :menu-list="menuList" @get-selected-item="handleSelectedItem">
+  <spr-dropdown id="sample-dropdown" v-model="dropdownModel" :menu-list="menuList" @update:model-value="handleSelectedItem">
     <spr-input v-model="inputTextModel" label="Dropdown Label" readonly placeholder="Select item..." />
   </spr-dropdown>
 </template>
@@ -31,6 +32,7 @@ Dropdowns are versatile UI components that can be integrated with various elemen
 <script lang="ts" setup>
 import { ref } from 'vue';
 
+const dropdownModel = ref([]);
 const inputTextModel = ref('');
 
 const menuList = ref([
@@ -47,8 +49,8 @@ const menuList = ref([
   { text: '89 Quince', value: '50' },
 ]);
 
-const handleSelectedItem = (item) => {
-  inputTextModel.value = item.text;
+const handleSelectedItem = (selectedItem) => {
+  inputTextModel.value[inputModel] = menuList.value.find(item => item.value === selectedItem[0]).text;
 };
 </script>
 ```
@@ -60,9 +62,10 @@ This feature allows users to select multiple options from the dropdown list. It 
 <div>
   <spr-dropdown
     id="dropdown2"
+    v-model="dropdownModel.dropdown2"
     :menu-list="menuList"
     multi-select
-    @get-selected-item="handleSelectedItem($event, 'multi', 'inputText2')"
+    @update:model-value="(value) => handleSelectedItem(value, 'multi', 'inputText2')"
   >
     <spr-input
       v-model="inputTextModel.inputText2"
@@ -75,7 +78,7 @@ This feature allows users to select multiple options from the dropdown list. It 
 
 ```vue
 <template>
-  <spr-dropdown id="sample-dropdown" :menu-list="menuList" multi-select @get-selected-item="handleSelectedItem">
+  <spr-dropdown id="sample-dropdown" v-model="dropdownModel" :menu-list="menuList" multi-select @update:model-value="handleSelectedItem">
     <spr-input v-model="inputTextModel" label="Dropdown Label" readonly placeholder="Select item..." />
   </spr-dropdown>
 </template>
@@ -83,6 +86,7 @@ This feature allows users to select multiple options from the dropdown list. It 
 <script lang="ts" setup>
 import { ref } from 'vue';
 
+const dropdownModel = ref([]);
 const inputTextModel = ref('');
 
 const menuList = ref([
@@ -99,24 +103,24 @@ const menuList = ref([
   { text: '89 Quince', value: '50' },
 ]);
 
-const handleSelectedItem = (item) => {
-  const selectedTexts = selectedItem.map((item) => item.text).join(', ');
-
-  inputTextModel = selectedTexts;
+const handleSelectedItem = (selectedItem) => {
+  const selectedTexts = selectedItem.map(item => menuList.value.find(menuItem => menuItem.value === item).text).join(', ');
+  inputTextModel.value[inputModel] = selectedTexts;
 };
 </script>
 ```
 
 ## Grouped Items By
 
-You can group items by `A-Z` or `Z-A` order by passing the `group-items-by` prop and specifying the desired grouping type.
+You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-items-by` prop and specifying the desired grouping type. See [List: Grouped Items](./list#grouped-items) for more examples. 
 
 <div class="spr-grid spr-gap-4">
   <spr-dropdown
     id="dropdown3"
+    v-model="dropdownModel.dropdown3"
     :menu-list="menuList"
     group-items-by="A-Z"
-    @get-selected-item="handleSelectedItem($event, 'single', 'inputText3')"
+    @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText3')"
   >
     <spr-input
       v-model="inputTextModel.inputText3"
@@ -127,10 +131,11 @@ You can group items by `A-Z` or `Z-A` order by passing the `group-items-by` prop
   </spr-dropdown>
   <spr-dropdown
     id="dropdown4"
+    v-model="dropdownModel.dropdown4"
     :menu-list="menuList"
     multi-select
     group-items-by="A-Z"
-    @get-selected-item="handleSelectedItem($event, 'multi', 'inputText4')"
+    @update:model-value="(value) => handleSelectedItem(value, 'multi', 'inputText4')"
   >
     <spr-input
       v-model="inputTextModel.inputText4"
@@ -146,64 +151,42 @@ You can group items by `A-Z` or `Z-A` order by passing the `group-items-by` prop
   <div class="spr-grid spr-gap-4">
     <spr-dropdown
       id="sample-dropdown1"
+      v-model="dropdownModel.inputText3"
       :menu-list="menuList"
       group-items-by="A-Z"
-      @get-selected-item="handleSelectedItem"
+      @update:model-value="handleSingleSelectedItem"
     >
       <spr-input v-model="inputTextModel" label="Single Select Dropdown" readonly placeholder="Select item..." />
     </spr-dropdown>
 
     <spr-dropdown
       id="sample-dropdown2"
+      v-model="dropdownModel.inputText4"
       :menu-list="menuList"
       group-items-by="A-Z"
       multi-select
-      @get-selected-item="handleSelectedItem"
+      @update:model-value="handleSelectedItem"
     >
       <spr-input v-model="inputTextModel" label="Multi Select Dropdown" readonly placeholder="Select item..." />
     </spr-dropdown>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const inputTextModel = ref('');
-
-const menuList = ref([
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Cherry', value: 'cherry' },
-  { text: 'Date', value: 'date' },
-  { text: 'Elderberry', value: 'elderberry' },
-  { text: 'Fig', value: 'fig' },
-  { text: 'Grape', value: 'grape' },
-  { text: 'Nectarine', value: 'nectarine' },
-  { text: 'Orange', value: 'orange' },
-  { text: 'Papaya', value: 'papaya' },
-  { text: '89 Quince', value: '50' },
-]);
-
-const handleSelectedItem = (item) => {
-  console.log(item);
-};
-</script>
 ```
 
 ## Pre-Selected Items
 
-Pre-selected items are options that are automatically selected when the dropdown is first displayed. You can achieve this by adding the `text` or `value` as an array of strings to the `v-model`.
+Pre-selected items are options that are automatically selected when the dropdown is first displayed. You can achieve this by adding the `value` as an array of strings to the `v-model`.
 
 <div class="spr-grid spr-gap-4">
   <spr-dropdown
     id="dropdown5"
-    v-model="singlePreSelectedItems"
+    v-model="dropdownModel.dropdown5"
     :menu-list="menuList"
     group-items-by="A-Z"
-    @get-selected-item="handleSelectedItem($event, 'single', 'inputText4')"
+    @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText5')"
   >
     <spr-input
-      v-model="inputTextModel.inputText4"
+      v-model="inputTextModel.inputText5"
       label="Single Select Dropdown"
       readonly
       placeholder="Select item..."
@@ -211,14 +194,14 @@ Pre-selected items are options that are automatically selected when the dropdown
   </spr-dropdown>
   <spr-dropdown
     id="dropdown6"
-    v-model="multiPreSelectedItems"
+    v-model="dropdownModel.dropdown6"
     :menu-list="menuList"
     multi-select
     group-items-by="A-Z"
-    @get-selected-item="handleSelectedItem($event, 'multi', 'inputText5')"
+    @update:model-value="(value) => handleSelectedItem(value, 'multi', 'inputText6')"
   >
     <spr-input
-      v-model="inputTextModel.inputText5"
+      v-model="inputTextModel.inputText6"
       label="Multi Select Dropdown"
       readonly
       placeholder="Select item..."
@@ -230,54 +213,67 @@ Pre-selected items are options that are automatically selected when the dropdown
 <template>
   <div class="spr-grid spr-gap-4">
     <spr-dropdown
-      id="sample-dropdown1"
-      v-model="singlePreSelectedItems"
+    id="dropdown5"
+      v-model="dropdownModel.dropdown5"
       :menu-list="menuList"
       group-items-by="A-Z"
-      @get-selected-item="handleSelectedItem"
+      @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText5')"
     >
-      <spr-input v-model="inputTextModel" label="Single Select Dropdown" readonly placeholder="Select item..." />
+      <spr-input
+        v-model="inputTextModel.inputText5"
+        label="Single Select Dropdown"
+        readonly
+        placeholder="Select item..."
+      />
     </spr-dropdown>
-
     <spr-dropdown
-      id="sample-dropdown2"
-      v-model="multiPreSelectedItems"
+      id="dropdown6"
+      v-model="dropdownModel.dropdown6"
       :menu-list="menuList"
-      group-items-by="A-Z"
       multi-select
-      @get-selected-item="handleSelectedItem"
+      group-items-by="A-Z"
+      @update:model-value="(value) => handleSelectedItem(value, 'multi', 'inputText6')"
     >
-      <spr-input v-model="inputTextModel" label="Multi Select Dropdown" readonly placeholder="Select item..." />
+      <spr-input
+        v-model="inputTextModel.inputText6"
+        label="Multi Select Dropdown"
+        readonly
+        placeholder="Select item..."
+      />
     </spr-dropdown>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
-const inputTextModel = ref('');
+const dropdownModel = ref({
+  dropdown5: ['apple'],
+  dropdown6: ['date', 'fig', 'orange'],
+})
 
-const menuList = ref([
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Cherry', value: 'cherry' },
-  { text: 'Date', value: 'date' },
-  { text: 'Elderberry', value: 'elderberry' },
-  { text: 'Fig', value: 'fig' },
-  { text: 'Grape', value: 'grape' },
-  { text: 'Nectarine', value: 'nectarine' },
-  { text: 'Orange', value: 'orange' },
-  { text: 'Papaya', value: 'papaya' },
-  { text: '89 Quince', value: '50' },
-]);
+const inputTextModel = ref({
+  inputText5: "",
+  inputText6: "",
+});
 
-const singlePreSelectedItems = ['Banana'];
+// Load selected values to input texts
+onMounted(() => {
+  handleSelectedItem(dropdownModel.value.dropdown5, 'single', 'inputText5');
+  handleSelectedItem(dropdownModel.value.dropdown6, 'multi', 'inputText6');
+});
 
-const multiPreSelectedItems = ['Apple', 'cherry', 'fig', 'Orange'];
+const handleSelectedItem = (selectedItem, dropdownType, inputModel) => {
+  if (dropdownType === 'single') {
+    inputTextModel.value[inputModel] = menuList.value.find(item => item.value === selectedItem[0]).text;
+  }
 
-const handleSelectedItem = (item) => {
-  console.log(item);
-};
+  if (dropdownType === 'multi') {
+    const selectedTexts = selectedItem.map(item => menuList.value.find(menuItem => menuItem.value === item).text).join(', ');
+
+    inputTextModel.value[inputModel] = selectedTexts;
+  }
+}
 </script>
 ```
 
@@ -293,13 +289,14 @@ The default placement is `bottom`.
   <div class="spr-flex spr-gap-4">
     <spr-dropdown
       id="dropdown7"
+      v-model="dropdownModel.dropdown7"
       :menu-list="menuList"
       placement="auto"
       popper-width="200px"
-      @get-selected-item="handleSelectedItem($event, 'single', 'inputText6')"
+      @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText7')"
     >
       <spr-input
-        v-model="inputTextModel.inputText6"
+        v-model="inputTextModel.inputText7"
         label="Auto"
         readonly
         placeholder="Select item..."
@@ -307,13 +304,14 @@ The default placement is `bottom`.
     </spr-dropdown>
     <spr-dropdown
       id="dropdown8"
+      v-model="dropdownModel.dropdown8"
       :menu-list="menuList"
       placement="auto-start"
       popper-width="200px"
-      @get-selected-item="handleSelectedItem($event, 'single', 'inputText6')"
+      @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText8')"
     >
       <spr-input
-        v-model="inputTextModel.inputText6"
+        v-model="inputTextModel.inputText8"
         label="Auto Start"
         readonly
         placeholder="Select item..."
@@ -321,13 +319,14 @@ The default placement is `bottom`.
     </spr-dropdown>
     <spr-dropdown
       id="dropdown9"
+      v-model="dropdownModel.dropdown9"
       :menu-list="menuList"
       placement="auto-end"
       popper-width="200px"
-      @get-selected-item="handleSelectedItem($event, 'single', 'inputText6')"
+      @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText9')"
     >
       <spr-input
-        v-model="inputTextModel.inputText6"
+        v-model="inputTextModel.inputText9"
         label="Auto End"
         readonly
         placeholder="Select item..."
@@ -337,13 +336,14 @@ The default placement is `bottom`.
   <div class="spr-flex spr-gap-4">
     <spr-dropdown
       id="dropdown10"
+      v-model="dropdownModel.dropdown10"
       :menu-list="menuList"
       placement="top"
       popper-width="200px"
-      @get-selected-item="handleSelectedItem($event, 'single', 'inputText6')"
+      @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText10')"
     >
       <spr-input
-        v-model="inputTextModel.inputText6"
+        v-model="inputTextModel.inputText10"
         label="Top"
         readonly
         placeholder="Select item..."
@@ -351,13 +351,14 @@ The default placement is `bottom`.
     </spr-dropdown>
     <spr-dropdown
       id="dropdown11"
+      v-model="dropdownModel.dropdown11"
       :menu-list="menuList"
       placement="top-start"
       popper-width="200px"
-      @get-selected-item="handleSelectedItem($event, 'single', 'inputText6')"
+      @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText11')"
     >
       <spr-input
-        v-model="inputTextModel.inputText6"
+        v-model="inputTextModel.inputText11"
         label="Top Start"
         readonly
         placeholder="Select item..."
@@ -365,13 +366,14 @@ The default placement is `bottom`.
     </spr-dropdown>
     <spr-dropdown
       id="dropdown12"
+      v-model="dropdownModel.dropdown12"
       :menu-list="menuList"
       placement="top-end"
       popper-width="200px"
-      @get-selected-item="handleSelectedItem($event, 'single', 'inputText6')"
+      @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText12')"
     >
       <spr-input
-        v-model="inputTextModel.inputText6"
+        v-model="inputTextModel.inputText12"
         label="Top End"
         readonly
         placeholder="Select item..."
@@ -381,13 +383,14 @@ The default placement is `bottom`.
   <div class="spr-flex spr-gap-4">
     <spr-dropdown
       id="dropdown13"
+      v-model="dropdownModel.dropdown13"
       :menu-list="menuList"
       placement="right"
       popper-width="200px"
-      @get-selected-item="handleSelectedItem($event, 'single', 'inputText6')"
+      @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText13')"
     >
       <spr-input
-        v-model="inputTextModel.inputText6"
+        v-model="inputTextModel.inputText13"
         label="Right"
         readonly
         placeholder="Select item..."
@@ -395,13 +398,14 @@ The default placement is `bottom`.
     </spr-dropdown>
     <spr-dropdown
       id="dropdown14"
+      v-model="dropdownModel.dropdown14"
       :menu-list="menuList"
       placement="right-start"
       popper-width="200px"
-      @get-selected-item="handleSelectedItem($event, 'single', 'inputText6')"
+      @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText14')"
     >
       <spr-input
-        v-model="inputTextModel.inputText6"
+        v-model="inputTextModel.inputText14"
         label="Right Start"
         readonly
         placeholder="Select item..."
@@ -409,13 +413,14 @@ The default placement is `bottom`.
     </spr-dropdown>
     <spr-dropdown
       id="dropdown15"
+      v-model="dropdownModel.dropdown15"
       :menu-list="menuList"
       placement="right-end"
       popper-width="200px"
-      @get-selected-item="handleSelectedItem($event, 'single', 'inputText6')"
+      @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText15')"
     >
       <spr-input
-        v-model="inputTextModel.inputText6"
+        v-model="inputTextModel.inputText15"
         label="Right End"
         readonly
         placeholder="Select item..."
@@ -425,13 +430,14 @@ The default placement is `bottom`.
   <div class="spr-flex spr-gap-4">
     <spr-dropdown
       id="dropdown16"
+      v-model="dropdownModel.dropdown16"
       :menu-list="menuList"
       placement="bottom"
       popper-width="200px"
-      @get-selected-item="handleSelectedItem($event, 'single', 'inputText6')"
+      @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText16')"
     >
       <spr-input
-        v-model="inputTextModel.inputText6"
+        v-model="inputTextModel.inputText16"
         label="Bottom"
         readonly
         placeholder="Select item..."
@@ -439,13 +445,14 @@ The default placement is `bottom`.
     </spr-dropdown>
     <spr-dropdown
       id="dropdown17"
+      v-model="dropdownModel.dropdown17"
       :menu-list="menuList"
       placement="bottom-start"
       popper-width="200px"
-      @get-selected-item="handleSelectedItem($event, 'single', 'inputText6')"
+      @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText17')"
     >
       <spr-input
-        v-model="inputTextModel.inputText6"
+        v-model="inputTextModel.inputText17"
         label="Bottom Start"
         readonly
         placeholder="Select item..."
@@ -453,13 +460,14 @@ The default placement is `bottom`.
     </spr-dropdown>
     <spr-dropdown
       id="dropdown18"
+      v-model="dropdownModel.dropdown18"
       :menu-list="menuList"
       placement="bottom-end"
       popper-width="200px"
-      @get-selected-item="handleSelectedItem($event, 'single', 'inputText6')"
+      @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText18')"
     >
       <spr-input
-        v-model="inputTextModel.inputText6"
+        v-model="inputTextModel.inputText18"
         label="Bottom End"
         readonly
         placeholder="Select item..."
@@ -469,13 +477,14 @@ The default placement is `bottom`.
   <div class="spr-flex spr-gap-4">
     <spr-dropdown
       id="dropdown19"
+      v-model="dropdownModel.dropdown19"
       :menu-list="menuList"
       placement="left"
       popper-width="200px"
-      @get-selected-item="handleSelectedItem($event, 'single', 'inputText6')"
+      @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText19')"
     >
       <spr-input
-        v-model="inputTextModel.inputText6"
+        v-model="inputTextModel.inputText19"
         label="Left"
         readonly
         placeholder="Select item..."
@@ -483,13 +492,14 @@ The default placement is `bottom`.
     </spr-dropdown>
     <spr-dropdown
       id="dropdown20"
+      v-model="dropdownModel.dropdown20"
       :menu-list="menuList"
       placement="left-start"
       popper-width="200px"
-      @get-selected-item="handleSelectedItem($event, 'single', 'inputText6')"
+      @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText20')"
     >
       <spr-input
-        v-model="inputTextModel.inputText6"
+        v-model="inputTextModel.inputText20"
         label="Left Start"
         readonly
         placeholder="Select item..."
@@ -497,13 +507,14 @@ The default placement is `bottom`.
     </spr-dropdown>
     <spr-dropdown
       id="dropdown21"
+      v-model="dropdownModel.dropdown21"
       :menu-list="menuList"
       placement="left-end"
       popper-width="200px"
-      @get-selected-item="handleSelectedItem($event, 'single', 'inputText6')"
+      @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText21')"
     >
       <spr-input
-        v-model="inputTextModel.inputText6"
+        v-model="inputTextModel.inputText21"
         label="Left End"
         readonly
         placeholder="Select item..."
@@ -512,51 +523,20 @@ The default placement is `bottom`.
   </div>
 </div>
 
-```vue
-<template>
-  <spr-dropdown id="sample-dropdown" :menu-list="menuList" placement="top" @get-selected-item="handleSelectedItem">
-    <spr-input v-model="inputTextModel" label="Dropdown Label" readonly placeholder="Select item..." />
-  </spr-dropdown>
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const inputTextModel = ref('');
-
-const menuList = ref([
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Cherry', value: 'cherry' },
-  { text: 'Date', value: 'date' },
-  { text: 'Elderberry', value: 'elderberry' },
-  { text: 'Fig', value: 'fig' },
-  { text: 'Grape', value: 'grape' },
-  { text: 'Nectarine', value: 'nectarine' },
-  { text: 'Orange', value: 'orange' },
-  { text: 'Papaya', value: 'papaya' },
-  { text: '89 Quince', value: '50' },
-]);
-
-const handleSelectedItem = (item) => {
-  console.log(item);
-};
-</script>
-```
-
 ## Search
 
-The search feature allows users to quickly filter and find specific items within the dropdown list by typing in a search query. Pass down the string either `text` or `value` of of the item with the prop `search-string`.
+The search feature allows users to quickly filter and find specific items within the dropdown list by typing in a search query. Pass down the string `text` of the item with the prop `search-string`.
 
 <div>
   <spr-dropdown
     id="dropdown22"
+    v-model="dropdownModel.dropdown22"
     :menu-list="menuList"
-    :search-string="inputTextModel.inputText7"
-    @get-selected-item="handleSelectedItem($event, 'single', 'inputText7')"
+    :search-string="inputTextModel.inputText22"
+    @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText22')"
   >
     <spr-input
-      v-model="inputTextModel.inputText7"
+      v-model="inputTextModel.inputText22"
       label="Dropdown Label"
       placeholder="Select item..."
     />
@@ -567,9 +547,10 @@ The search feature allows users to quickly filter and find specific items within
 <template>
   <spr-dropdown
     id="sample-dropdown"
+    v-model="dropdownModel.sampleDropdown"
     :menu-list="menuList"
     :search-string="inputTextModel"
-    @get-selected-item="handleSelectedItem"
+    @update:model-value="handleSelectedItem"
   >
     <spr-input v-model="inputTextModel" label="Dropdown Label" placeholder="Select item..." />
   </spr-dropdown>
@@ -579,6 +560,7 @@ The search feature allows users to quickly filter and find specific items within
 import { ref } from 'vue';
 
 const inputTextModel = ref('');
+const dropdownModel = ref('');
 
 const menuList = ref([
   { text: 'Apple', value: 'apple' },
@@ -594,8 +576,8 @@ const menuList = ref([
   { text: '89 Quince', value: '50' },
 ]);
 
-const handleSelectedItem = (item) => {
-  inputTextModel.value = item.text;
+const handleSelectedItem = (selectedItem) => {
+  inputTextModel.value[inputModel] = menuList.value.find(item => item.value === selectedItem[0]).text;
 };
 </script>
 ```
@@ -611,10 +593,11 @@ You can modify the width of the dropdown component in two ways: by adjusting the
 <div>
   <spr-dropdown
     id="dropdown23"
+    v-model="dropdownModel.dropdown23"
     :menu-list="menuList"
     width="50%"
     popper-width="200px"
-    @get-selected-item="handleSelectedItem($event, 'single', 'inputText8')"
+    @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText8')"
   >
     <spr-input
       v-model="inputTextModel.inputText8"
@@ -657,8 +640,8 @@ const menuList = ref([
   { text: '89 Quince', value: '50' },
 ]);
 
-const handleSelectedItem = (item) => {
-  inputTextModel.value = item.text;
+const handleSelectedItem = (selectedItem) => {
+  inputTextModel.value[inputModel] = menuList.value.find(item => item.value === selectedItem[0]).text;
 };
 </script>
 ```
@@ -734,13 +717,14 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
 <spr-modal v-model="modalModel" title="Dropdown with Modal">
    <spr-dropdown
     id="dropdown27"
+    v-model="dropdownModel.dropdown27"
     :menu-list="menuList"
     wrapper-position="initial"
     popper-stategy="fixed"
-    @get-selected-item="handleSelectedItem($event, 'single', 'inputText9')"
+    @update:model-value="handleSelectedItem($event, 'single', 'inputText27')"
   >
     <spr-input
-      v-model="inputTextModel.inputText9"
+      v-model="inputTextModel.inputText27"
       label="Dropdown Label"
       placeholder="Select item..."
       readonly
@@ -756,7 +740,7 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
   <spr-button tone="success" @click="modalModel = true">Open Modal</spr-button>
 
   <spr-modal v-model="modalModel" title="Dropdown with Modal">
-    <spr-dropdown id="sample-dropdown" :menu-list="menuList" wrapper-position="initial" popper-stategy="fixed">
+    <spr-dropdown id="sample-dropdown" v-model="dropdownModel" :menu-list="menuList" wrapper-position="initial" popper-stategy="fixed" @update:model-value="handleSelectedItem">
       <spr-input v-model="inputTextModel" label="Dropdown Label" placeholder="Select item..." readonly />
     </spr-dropdown>
     <p>
@@ -770,6 +754,7 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
 <script lang="ts" setup>
 import { ref } from 'vue';
 
+const dropdownModel = ref([]);
 const inputTextModel = ref('');
 const modalModel = ref(false);
 
@@ -787,55 +772,11 @@ const menuList = ref([
   { text: '89 Quince', value: '50' },
 ]);
 
-const handleSelectedItem = (item) => {
-  console.log(item);
+const handleSelectedItem = (selectedItem) => {
+  inputTextModel.value[inputModel] = menuList.value.find(item => item.value === selectedItem[0]).text;
 };
 </script>
 ```
-
-## Get Selected Items
-
-This feature provides a method to retrieve the selected items from the dropdown programmatically. This can be helpful when you need to access the selected data for processing or submitting form values. Use `@get-selected-item` emit to get selected item.
-
-<div class="spr-grid spr-gap-4">
-  <div>
-    <spr-dropdown
-      id="dropdown28"
-      :menu-list="menuList"
-      @get-selected-item="handleSelectedItem($event, 'single', 'inputText10')"
-    >
-      <spr-input
-        v-model="inputTextModel.inputText10"
-        label="Single Select Dropdown"
-        readonly
-        placeholder="Select item..."
-      />
-    </spr-dropdown>
-    <div class="spr-my-3 spr-p-4 spr-bg-blue-100">
-      <h5>Single Select Output:</h5>
-      <pre>{{ JSON.stringify(singleSelectData, null, 2) }}</pre>
-    </div>
-  </div>
-  <div>
-    <spr-dropdown
-      id="dropdown29"
-      :menu-list="menuList"
-      multi-select
-      @get-selected-item="handleSelectedItem($event, 'multi', 'inputText11')"
-    >
-      <spr-input
-        v-model="inputTextModel.inputText11"
-        label="Multi Select Dropdown"
-        readonly
-        placeholder="Select item..."
-      />
-    </spr-dropdown>
-    <div class="spr-my-3 spr-p-4 spr-bg-blue-100">
-      <h5>Multi Select Output:</h5>
-      <pre>{{ JSON.stringify(multiSelectData, null, 2) }}</pre>
-    </div>
-  </div>
-</div>
 
 ## Infinite Scroll
 
@@ -843,13 +784,14 @@ Infinite scroll allows the dropdown list to load more items as the user scrolls,
 
 <div>
   <spr-dropdown
-    id="dropdown30"
+    id="dropdown28"
+    v-model="dropdownModel.dropdown28"
     :menu-list="paginatedMenuList"
-    @get-selected-item="handleSelectedItem($event, 'single', 'inputText12')"
+    @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText28')"
     @infinite-scroll-trigger="handleInfiniteScrollTrigger"
   >
     <spr-input
-      v-model="inputTextModel.inputText12"
+      v-model="inputTextModel.inputText28"
       label="Dropdown Label"
       readonly
       placeholder="Select item..."
@@ -938,6 +880,128 @@ const handleInfiniteScrollTrigger = () => {
 </script>
 ```
 
+## Ladderized Dropdown
+Ladderized dropdown utilizes the [Ladderized List](./list#ladderized-list) component to display the dropdown items in a hierarchical manner. The `v-model` prop is still an array of strings representing order of selected items per level.
+
+<div>
+  <spr-dropdown id="dropdown28" :menu-list="mockDropdownData" v-model="dropdownModel.dropdown28" :ladderized="true" @update:model-value="handleLadderizedDropdown">
+    <spr-input v-model="inputTextModel.inputText28" label="Ladderized Dropdown" placeholder="Select item..." />
+  </spr-dropdown>
+</div>
+
+```vue
+<template>
+  <div>
+    <spr-dropdown id="dropdown28" :menu-list="mockDropdownData" v-model="dropdownModel" :ladderized="true" @update:model-value="handleLadderizedDropdown">
+      <spr-input v-model="inputTextModel" label="Ladderized Dropdown" placeholder="Select item..." />
+    </spr-dropdown>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const dropdownModel = ref([]);
+const inputTextModel = ref('');
+
+const mockDropdownData = [
+  {
+    text: "Lion",
+    value: "lion",
+    subtext: "King of the jungle",
+    sublevel: [
+      {
+        text: "Cub",
+        value: "cub",
+        subtext: "Young lion",
+        sublevel: [
+          {
+            text: "Cub 1",
+            value: "cub1",
+            
+          },
+          {
+            text: "Cub 2",
+            value: "cub2",
+          },
+        ],
+      },
+      {
+        text: "Pride Member",
+        value: "pride-member",
+        subtext: "Member of a lion pride",
+      },
+    ],
+  },
+  {
+    text: "Elephant",
+    value: "elephant",
+    subtext: "Largest land animal",
+    sublevel: [
+      {
+        text: "Calf",
+        value: "calf",
+        subtext: "Young elephant",
+      },
+    ],
+  },
+  {
+    text: "Giraffe",
+    value: "giraffe",
+    subtext: "Tallest living terrestrial animal",
+    sublevel: [
+      {
+        text: "Calf",
+        value: "giraffe-calf",
+        subtext: "Young giraffe",
+      },
+      {
+        text: "Adult",
+        value: "giraffe-adult",
+        subtext: "Mature giraffe",
+      },
+    ],
+  },
+  {
+    text: "Zebra",
+    value: "zebra",
+    subtext: "Known for distinctive black and white stripes",
+    sublevel: [
+      {
+        text: "Foal",
+        value: "zebra-foal",
+        subtext: "Young zebra",
+      },
+      {
+        text: "Mare",
+        value: "zebra-mare",
+        subtext: "Adult female zebra",
+      },
+    ],
+  },
+];
+
+const handleLadderizedDropdown = (value) => {
+  let tempValue: string[] = [];
+  let tempMenuList: MenuListType[] = mockDropdownData;
+
+  value.forEach((item) => {
+    const activeItem = tempMenuList.find((listItem) => item === listItem.value);
+
+    if (activeItem) { 
+      tempValue.push(activeItem.text);
+      if (activeItem.sublevel) {
+        tempMenuList = activeItem.sublevel;
+      }
+    }
+  });
+
+  inputTextModel.value.inputText28 = tempValue.join(", ");
+};
+</script>
+```
+
+
 ## Disabled, Active & Readonly
 
 This is only applicable to selected components, such as form input fields. You can learn more in the <a href='/documentation/components/input.html' target='_blank'>Input Form</a>.
@@ -964,15 +1028,15 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
     </tr>
     <tr>
       <td>v-model</td>
-      <td>List of strings representing the `text` or `value` of pre-selected menu items</td>
+      <td>List of strings representing the `value`</td>
       <td>Array</td>
-      <td>-</td>
+      <td>[]</td>
     </tr>
     <tr>
       <td>menu-list</td>
       <td>List of options composed of `text` and `value` properties</td>
-      <td>Array</td>
-      <td>-</td>
+      <td>MenuListType[] (see <a href='/documentation/components/list.html' target='_blank'>List</a>)</td>
+      <td>[]</td>
     </tr>
     <tr>
       <td>width</td>
@@ -1011,10 +1075,16 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
       <td>false</td>
     </tr>
     <tr>
-      <td>@get-selected-item</td>
-      <td>Event emitted when a selection is made. You will get the selected item (or items in case of multi-select).</td>
-      <td>Function</td>
+      <td>search-string</td>
+      <td>Search string to filter the dropdown list</td>
+      <td>String</td>
       <td>-</td>
+    </tr>
+    <tr>
+      <td>ladderized</td>
+      <td>If set, allows to display dropdown items in a hierarchical manner.</td>
+      <td>Boolean</td>
+      <td>false</td>
     </tr>
     <tr>
       <td>@get-popper-state</td>
@@ -1032,7 +1102,7 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
 </table>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 import SprInput from "@/components/input/input.vue";
 import SprDropdown from "@/components/dropdown/dropdown.vue";
@@ -1088,6 +1158,112 @@ const paginatedMenuList = ref([
   { text: 'Jackfruit', value: 'jackfruit' },
 ]);
 
+const mockDropdownData: MenuListType[] = [
+  {
+    text: "Lion",
+    value: "lion",
+    subtext: "King of the jungle",
+    sublevel: [
+      {
+        text: "Cub",
+        value: "cub",
+        subtext: "Young lion",
+        sublevel: [
+          {
+            text: "Cub 1",
+            value: "cub1",
+            
+          },
+          {
+            text: "Cub 2",
+            value: "cub2",
+          },
+        ],
+      },
+      {
+        text: "Pride Member",
+        value: "pride-member",
+        subtext: "Member of a lion pride",
+      },
+    ],
+  },
+  {
+    text: "Elephant",
+    value: "elephant",
+    subtext: "Largest land animal",
+    sublevel: [
+      {
+        text: "Calf",
+        value: "calf",
+        subtext: "Young elephant",
+      },
+    ],
+  },
+  {
+    text: "Giraffe",
+    value: "giraffe",
+    subtext: "Tallest living terrestrial animal",
+    sublevel: [
+      {
+        text: "Calf",
+        value: "giraffe-calf",
+        subtext: "Young giraffe",
+      },
+      {
+        text: "Adult",
+        value: "giraffe-adult",
+        subtext: "Mature giraffe",
+      },
+    ],
+  },
+  {
+    text: "Zebra",
+    value: "zebra",
+    subtext: "Known for distinctive black and white stripes",
+    sublevel: [
+      {
+        text: "Foal",
+        value: "zebra-foal",
+        subtext: "Young zebra",
+      },
+      {
+        text: "Mare",
+        value: "zebra-mare",
+        subtext: "Adult female zebra",
+      },
+    ],
+  },
+];
+
+const dropdownModel = ref({
+  dropdown1: [],
+  dropdown2: [],
+  dropdown3: [],
+  dropdown4: [],
+  dropdown5: ['apple'],
+  dropdown6: ['date', 'fig', 'orange'],
+  dropdown7: [],
+  dropdown8: [],
+  dropdown9: [],
+  dropdown10: [],
+  dropdown11: [],
+  dropdown12: [],
+  dropdown13: [],
+  dropdown14: [],
+  dropdown15: [],
+  dropdown16: [],
+  dropdown17: [],
+  dropdown18: [],
+  dropdown19: [],
+  dropdown20: [],
+  dropdown21: [],
+  dropdown22: [],
+  dropdown23: [],
+  //Skip 24, 25, 26
+  dropdown27: [],
+  dropdown28: [],
+})
+
 const inputTextModel = ref({
   inputText1: "",
   inputText2: "",
@@ -1109,37 +1285,32 @@ const inputTextModel = ref({
   inputText18: "",
   inputText19: "",
   inputText20: "",
+  inputText21: "",
+  inputText22: "",
+  inputText23: "",
+  //Skip 24, 25, 26
+  inputText27: "",
+  inputText28: "",
+});
+
+onMounted(() => {
+  handleSelectedItem(dropdownModel.value.dropdown5, 'single', 'inputText5');
+  handleSelectedItem(dropdownModel.value.dropdown6, 'multi', 'inputText6');
 });
 
 const modalModel = ref(false);
 
-const singlePreSelectedItems = ref(['Banana']);
-
-const multiPreSelectedItems = ref(['Apple', 'date', 'fig', 'Orange']);
-
 const handleSelectedItem = (selectedItem, dropdownType, inputModel) => {
   if (dropdownType === 'single') {
-    inputTextModel.value[inputModel] = selectedItem.text;
-
-    if (inputModel === 'inputText10') {
-      singleSelectData.value = selectedItem;
-    }
+    inputTextModel.value[inputModel] = menuList.value.find(item => item.value === selectedItem[0]).text;
   }
 
   if (dropdownType === 'multi') {
-    const selectedTexts = selectedItem.map(item => item.text).join(', ');
+    const selectedTexts = selectedItem.map(item => menuList.value.find(menuItem => menuItem.value === item).text).join(', ');
 
     inputTextModel.value[inputModel] = selectedTexts;
-
-    if (inputModel === 'inputText11') {
-      multiSelectData.value = selectedItem;
-    }
   }
 }
-
-const singleSelectData = ref({});
-
-const multiSelectData = ref([]);
 
 const pagination = ref({
   totalpages: 10,
@@ -1167,4 +1338,22 @@ const handleInfiniteScrollTrigger = () => {
     });
   }
 }
+
+const handleLadderizedDropdown = (value) => {
+  let tempValue: string[] = [];
+  let tempMenuList: MenuListType[] = mockDropdownData;
+
+  value.forEach((item) => {
+    const activeItem = tempMenuList.find((listItem) => item === listItem.value);
+
+    if (activeItem) { 
+      tempValue.push(activeItem.text);
+      if (activeItem.sublevel) {
+        tempMenuList = activeItem.sublevel;
+      }
+    }
+  });
+
+  inputTextModel.value.inputText28 = tempValue.join(", ");
+};
 </script>

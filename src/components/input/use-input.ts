@@ -91,7 +91,6 @@ export const useInput = (
         'spr-text-mushroom-300': !error.value,
         'spr-text-tomato-600': error.value,
         'spr-font-size-200': props.type === 'url',
-        'spr-top-4 spr-z-10': props.type === 'contact-number',
       },
     );
 

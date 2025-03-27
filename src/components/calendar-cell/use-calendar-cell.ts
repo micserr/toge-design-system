@@ -1,11 +1,9 @@
 import { computed, SetupContext } from 'vue';
 import classNames from 'classnames';
-import { useSlots } from 'vue';
 
 import type { CalendarCellPropTypes, CalendarCellEmitTypes } from './calendar-cell';
 
 export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext<CalendarCellEmitTypes>['emit']) => {
-  const slots = useSlots();
   const offlineStatus = ['restday', 'vacation', 'holiday', 'exempt', 'sick', 'emergency'];
   const shiftLabels: Record<string, string> = {
     standard: 'Standard Day Shift',
@@ -68,14 +66,11 @@ export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext
 
   const getCalendarCellClassess = computed(() => {
     const calendarCellWrapper = classNames(
-      'spr-flex spr-items-center spr-gap-size-spacing-3xs spr-relative spr-rounded-md spr-border-2 spr-transition-all  sm:spr-flex-col spr-overflow-hidden',
+      'spr-flex spr-items-center  spr-p-size-spacing-3xs spr-gap-size-spacing-3xs spr-relative spr-rounded-lg spr-border-2 spr-transition-all  sm:spr-flex-col spr-overflow-hidden',
       {
         'spr-w-full': props.fullwidth,
         'spr-max-w-[217px]': !props.fullwidth,
-        'spr-p-2': slots.default,
-        'spr-p-3': !slots.default,
-        'spr-cursor-not-allowed': props.viewOnly,
-        'hover:spr-shadow-md spr-cursor-pointer': !props.viewOnly,
+        'hover:spr-drop-shadow-sm  spr-cursor-pointer': !props.viewOnly,
       },
     );
 

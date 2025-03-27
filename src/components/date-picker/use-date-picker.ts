@@ -466,6 +466,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     handleConvertMonthIfValid();
     calendarTabUpdateCalendar();
     emitDateFormats();
+    emitInputValue();
 
     datePickerErrors.value = [];
 

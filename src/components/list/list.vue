@@ -3,8 +3,8 @@
     <template v-if="props.groupItemsBy">
       <div class="spr-grid spr-gap-2">
         <div v-for="(list, listIndex) in groupedMenuList" :key="listIndex" class="spr-grid spr-gap-0.5">
-          <div class="spr-py-size-spacing-3xs spr-px-size-spacing-4xs spr-label-xs-medium spr-text-color-base spr-uppercase">
-            <span v-if="list.groupLabel !== 'no-group'">
+          <div v-if="list.groupLabel !== 'no-group'" class="spr-py-size-spacing-3xs spr-px-size-spacing-4xs spr-label-xs-medium spr-text-color-base spr-uppercase">
+            <span>
               {{ list.groupLabel }}
             </span>
           </div>
@@ -15,7 +15,7 @@
             @click="handleSelectedItem(item)"
           >
             <spr-checkbox v-if="props.multiSelect" :checked="isItemSelected(item)" />
-            <div class="spr-flex spr-flex-col spr-justify-start">
+            <div class="spr-flex-auto spr-flex spr-flex-col spr-justify-start">
               <span class="spr-text-xs spr-text-left">{{ item.text }}</span>
               <span v-if="item.subtext" class="spr-body-xs-regular spr-text-color-base spr-text-left">{{ item.subtext }}</span>
             </div>
@@ -23,6 +23,11 @@
               v-if="isItemSelected(item) && !props.multiSelect"
               class="spr-text-color-brand-base spr-w-[1.39em]"
               icon="ph:check"
+            />
+            <Icon
+              v-else-if="props.ladderized && item.sublevel && item.sublevel?.length > 0"
+              class="spr-text-color-weak spr-size-4"
+              icon="ph:caret-right"
             />
           </div>
         </div>
@@ -36,7 +41,7 @@
         @click="handleSelectedItem(item)"
       >
         <spr-checkbox v-if="props.multiSelect" :checked="isItemSelected(item)" />
-        <div class="spr-flex spr-flex-col spr-justify-start">
+        <div class="spr-flex-auto spr-flex spr-flex-col spr-justify-start">
           <span class="spr-text-xs spr-text-left">{{ item.text }}</span>
           <span v-if="item.subtext" class="spr-body-xs-regular spr-text-color-base spr-text-left">{{ item.subtext }}</span>
         </div>
@@ -46,7 +51,7 @@
           icon="ph:check"
         />
         <Icon
-          v-else-if="item.sublevel && item.sublevel?.length > 0"
+          v-else-if="props.ladderized && item.sublevel && item.sublevel?.length > 0"
           class="spr-text-color-weak spr-size-4"
           icon="ph:caret-right"
         />

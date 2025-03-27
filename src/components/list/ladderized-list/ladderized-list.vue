@@ -3,12 +3,12 @@
     <transition :name="transitionName" mode="out-in">
       <div v-if="activeLevel % 2 === 0">
         <spr-ladderized-list-back v-if="activeLevel > 0" :label="backLabel ?? 'Back'" @back="handleBackClick" />
-        <spr-list class="spr-p-size-spacing-3xs" :menu-list="activeList" :multi-select="false" v-model="selectedListItem" @update:model-value="(value) => handleSelectedListItem(value[0])" />
+        <spr-list v-model="selectedListItem" class="spr-p-size-spacing-3xs" :menu-list="activeList" :multi-select="false" :ladderized="true" @update:model-value="(value) => handleSelectedListItem(value[0])" />
       </div>
       
       <div v-else>
         <spr-ladderized-list-back v-if="activeLevel > 0" :label="backLabel ?? 'Back'" @back="handleBackClick" />
-        <spr-list class="spr-p-size-spacing-3xs" :menu-list="activeList" :multi-select="false" v-model="selectedListItem" @update:model-value="(value) => handleSelectedListItem(value[0])" />
+        <spr-list v-model="selectedListItem" class="spr-p-size-spacing-3xs" :menu-list="activeList" :multi-select="false" :ladderized="true" @update:model-value="(value) => handleSelectedListItem(value[0])" />
       </div>
     </transition>
   </div>

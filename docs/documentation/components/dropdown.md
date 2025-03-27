@@ -881,7 +881,7 @@ const handleInfiniteScrollTrigger = () => {
 ```
 
 ## Ladderized Dropdown
-Ladderized dropdown utilizes the [Ladderized List](./list#ladderized-list) component to display the dropdown items in a hierarchical manner. The `v-model` prop is still an array of strings representing order of selected items per level.
+Ladderized dropdown utilizes the [Ladderized List](./list#ladderized-list) component to display the dropdown items in a hierarchical manner. The `v-model` prop is an array of strings representing order of selected items per level.
 
 <div>
   <spr-dropdown id="dropdown28" :menu-list="mockDropdownData" v-model="dropdownModel.dropdown28" :ladderized="true" @update:model-value="handleLadderizedDropdown">

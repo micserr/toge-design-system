@@ -6,7 +6,7 @@ import type { DropdownPropTypes, DropdownEmitTypes } from './dropdown';
 import type { MenuListType } from '../list/list';
 
 export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<DropdownEmitTypes>['emit']) => {
-  const { menuList, searchString, disabled, multiSelect, ladderized } = toRefs(props);
+  const { menuList, searchString, disabled, multiSelect } = toRefs(props);
 
   // Dropdown component ref variables
   const dropdownValue = useVModel(props, 'modelValue', emit); // v-model value of  dropdown component

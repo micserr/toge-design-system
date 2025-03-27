@@ -1,11 +1,7 @@
 import { computed, ref, toRefs } from 'vue';
 import type { ComputedRef, SetupContext } from 'vue';
 
-import type {
-  TablePaginationPropTypes,
-  TablePaginationEmitTypes,
-} from '@/components/table/table-pagination/table-pagination';
-import type { DropdownMenuType } from '@/components/dropdown/dropdown';
+import type { TablePaginationPropTypes, TablePaginationEmitTypes } from '@/components/table/table-pagination/table-pagination';
 
 interface TablePaginationClasses {
   baseClass: string;
@@ -26,7 +22,7 @@ export const useTablePagination = (
 
   const paginationClasses: ComputedRef<TablePaginationClasses> = computed(() => {
     const baseClass = 'spr-p-size-spacing-xs spr-flex spr-justify-between spr-bg-white-50 spr-h-max' as const;
-    const dropdownInputFieldClass = 'spr-w-[100px] spr-font-bold spr-h-full spr-space-x-2' as const;
+    const dropdownInputFieldClass = 'spr-w-[120px] spr-font-bold spr-h-full spr-space-x-2' as const;
     const inputFieldIconClass = 'spr-mt-0.5 spr-pl-1 spr-text-mushroom-950' as const;
     const rightSideClass = 'spr-flex spr-justify-between spr-items-center spr-space-x-4' as const;
     const computeRowRangeClass = 'spr-font-main spr-text-color-base spr-w-full' as const;
@@ -56,8 +52,8 @@ export const useTablePagination = (
     return `${selectedRowCount.value} Rows`;
   });
 
-  const handleSelectedItem = (item: DropdownMenuType) => {
-    emit('update:selectedRowCount', Number(item.value));
+  const handleSelectedItem = (item: string[]) => {
+    emit('update:selectedRowCount', Number(item[0]));
   };
 
   const previous = () => {

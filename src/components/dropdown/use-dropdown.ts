@@ -1,54 +1,43 @@
 import { ref, toRefs, computed, onMounted, watch } from 'vue';
-import { onClickOutside, useInfiniteScroll } from '@vueuse/core';
+import { onClickOutside, useInfiniteScroll, useVModel } from '@vueuse/core';
 
 import type { SetupContext } from 'vue';
 import type { DropdownPropTypes, DropdownEmitTypes } from './dropdown';
-
-interface SelectedItem {
-  text: string;
-  value: string | number;
-}
+import type { MenuListType } from '../list/list';
 
 export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<DropdownEmitTypes>['emit']) => {
-  const { modelValue, menuList, searchString, multiSelect, disabled } = toRefs(props);
+  const { menuList, searchString, disabled, multiSelect } = toRefs(props);
 
-  const dropdownPopperState = ref<boolean>(false);
-
+  // Dropdown component ref variables
+  const dropdownValue = useVModel(props, 'modelValue', emit); // v-model value of  dropdown component
   const dropdownRef = ref<HTMLDivElement | null>(null);
-
-  const preSelectedItems = ref<Array<string>>(modelValue.value);
-
-  const initialMenuList = ref<{ text: string; value: string }[]>([]);
-  const dropdownMenuList = ref<{ text: string; value: string }[]>([]);
-
+  
+  // List component ref variables
+  const selectedListItems = ref<MenuListType[]>([]); // v-model value of the list component
+  const dropdownMenuList = ref<MenuListType[]>([]); // menu list for the list component
+  
+  // Popper state
+  const dropdownPopperState = ref<boolean>(false);
   const isDropdownPopperDisabled = computed(() => disabled.value);
 
-  const setDropdownMenuList = () => {
-    initialMenuList.value = menuList.value;
-    dropdownMenuList.value = initialMenuList.value;
-  };
-
-  const handleSelectedItem = (item: SelectedItem) => {
-    if (!multiSelect.value) {
-      dropdownPopperState.value = false;
-    }
-
-    emit('get-selected-item', item);
+  const initializeMenuList = () => {
+    dropdownMenuList.value = menuList.value;
   };
 
   const handleSearch = () => {
     if (menuList.value && menuList.value.length > 0) {
-      dropdownMenuList.value = initialMenuList.value.filter((item) => {
-        const searchTerm = searchString.value.toLowerCase();
-
-        return item.text.toLowerCase().includes(searchTerm) || item.value.toLowerCase().includes(searchTerm);
-      });
+      if (!multiSelect.value) {
+        dropdownMenuList.value = menuList.value.filter((item: MenuListType) => {
+          const searchTerm = searchString.value.toLowerCase();
+  
+          return item.text.toLowerCase().includes(searchTerm);
+        });
+      } else {
+        dropdownMenuList.value = menuList.value;
+        // TODO: Handle multi-select search
+      }
     }
   };
-
-  watch(modelValue, (newValue) => {
-    preSelectedItems.value = newValue;
-  });
 
   watch(searchString, () => {
     handleSearch();
@@ -66,16 +55,51 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
     { distance: 10 },
   );
 
+  // Handle selected item for simple list component
+  const handleSelectedItem = (selectedItems: MenuListType[]) => {
+    dropdownValue.value = selectedItems.map((item) => item.value.toString());
+
+    if (!multiSelect.value) dropdownPopperState.value = false;
+  };
+
+  // Handle selected item for ladderized list component
+  const handleSelectedLadderizedItem = (selectedItems: string[]) => {
+    emit("update:modelValue", selectedItems);
+
+    // If item is from last sublevel, close the dropdown
+    if (checkIfItemFromLastSublevel(selectedItems)) {
+      dropdownPopperState.value = false;
+    }
+  };
+
+  const checkIfItemFromLastSublevel = (selectedItems: string[]) => {
+    let selectedItemsObject = dropdownMenuList.value;
+
+    // Traverse to the last item in the selectedItems array
+    selectedItems.forEach((selectedItem) => {
+      selectedItemsObject = selectedItemsObject.find((item) => selectedItem === item.value)?.sublevel ?? [];
+    });
+
+    // If there is a sublevel, return false
+    if (selectedItemsObject.length > 0) {
+      return false;
+    }
+
+    return true;
+  }
+
   onMounted(() => {
-    setDropdownMenuList();
+    initializeMenuList();
   });
 
   return {
     dropdownPopperState,
     dropdownRef,
-    preSelectedItems,
     dropdownMenuList,
     isDropdownPopperDisabled,
+    selectedListItems,
     handleSelectedItem,
+    handleSelectedLadderizedItem, 
+    dropdownValue,
   };
 };

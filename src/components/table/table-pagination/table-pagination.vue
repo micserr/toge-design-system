@@ -6,7 +6,7 @@
       dropdown-type="single-select"
       placement="bottom"
       :class="paginationClasses.dropdownClass"
-      @get-selected-item="handleSelectedItem"
+      @update:model-value="handleSelectedItem"
     >
       <spr-input v-model="computeSelectedRowCount" :class="paginationClasses.dropdownInputFieldClass" :readonly="true">
         <template #icon>

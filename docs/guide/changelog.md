@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.15.0 (2025-03-27)
+- Feat
+  - Ladderized List and Dropdown ([#17aca737](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/17aca7371556b77c0d24924394c6488bf81458a9?refName=refs/heads/2025/FEATURE/Paulo/LADDERIZED_DROPDOWN) by @jbanares)
+  - Updated list component to have subtext property
+- Refactor
+  - Refactored List and Dropdown components and updated v-model logic 
+  - Updated table pagination component with updated dropdown
+
 ## 1.14.3 (2025-03-27)
 
 - Fix

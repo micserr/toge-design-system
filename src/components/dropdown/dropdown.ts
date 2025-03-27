@@ -1,4 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue';
+import type { MenuListType } from '../list/list';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
@@ -24,11 +25,6 @@ const PLACEMENTS_TYPES = [
 
 const POPPER_STRATEGY_TYPES = ['fixed', 'absolute'] as const;
 
-export type DropdownMenuType = {
-  text: string;
-  value: string;
-};
-
 export const dropdownPropTypes = {
   id: {
     type: String,
@@ -39,7 +35,7 @@ export const dropdownPropTypes = {
     default: () => [],
   },
   menuList: {
-    type: Array as PropType<{ text: string; value: string }[]>,
+    type: Array as PropType<MenuListType[]>,
     required: true,
     default: [],
   },
@@ -83,11 +79,15 @@ export const dropdownPropTypes = {
     type: Boolean,
     default: false,
   },
+  ladderized: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const dropdownEmitTypes = {
-  'get-selected-item': Object,
   'infinite-scroll-trigger': Boolean,
+  'update:modelValue': (value: string[]) => value,
 };
 
 export type DropdownPropTypes = ExtractPropTypes<typeof dropdownPropTypes>;

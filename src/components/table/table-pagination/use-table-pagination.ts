@@ -2,7 +2,6 @@ import { computed, ref, toRefs } from 'vue';
 import type { ComputedRef, SetupContext } from 'vue';
 
 import type { TablePaginationPropTypes, TablePaginationEmitTypes } from '@/components/table/table-pagination/table-pagination';
-import type { MenuListType } from '@/components/list/list';
 
 interface TablePaginationClasses {
   baseClass: string;

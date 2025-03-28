@@ -311,7 +311,13 @@ const removeSelected = (removeSelected) => {
       <td>-</td>
     </tr>
     <tr>
-      <td>@infinite-scroll-trigger</td>
+      <td>@infiniteScrollFilterTrigger</td>
+      <td>Emitted when infinite scroll is triggered.</td>
+      <td>function</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>infiniteScrollTrigger</td>
       <td>Emitted when infinite scroll is triggered.</td>
       <td>function</td>
       <td>-</td>

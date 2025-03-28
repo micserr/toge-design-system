@@ -5,7 +5,6 @@
     distance="4"
     placement="bottom"
     :triggers="['click']"
-    :popper-hide-triggers="[]"
     :container="`#${uniqueId}`"
     :style="{
       width: props.width,
@@ -48,6 +47,7 @@
             distance="4"
             placement="right-start"
             :triggers="['click']"
+            :popper-hide-triggers="['click']"
             :auto-hide="false"
           >
             <spr-button has-icon variant="secondary" size="small">
@@ -70,6 +70,7 @@
                     aria-id="filter-menu-wrapper"
                     placement="right-start"
                     :triggers="['click']"
+                    :popper-hide-triggers="['click']"
                     :auto-hide="false"
                   >
                     <spr-chips
@@ -117,6 +118,7 @@
                         </div>
                         <div
                           v-if="!props.loading && getFiltereredMenuOption.length > 0"
+                          :id="menu.field"
                           ref="filterMenuOptionList"
                           class="spr-max-h-[264px] spr-space-y-size-spacing-6xs spr-overflow-auto spr-p-size-spacing-2xs"
                         >

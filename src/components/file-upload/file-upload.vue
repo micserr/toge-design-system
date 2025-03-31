@@ -17,7 +17,7 @@
         <icon icon="ph:cloud-arrow-up" width="28px" height="28px"/>
         <spr-button size="small" tone="neutral" variant="secondary" :disabled="props.disabled" @click="clickInitialInputFile">Browse Files</spr-button>
         <label class="spr-body-sm-regular"> 
-          or drop your files to upload
+          {{ "or drop your " + (props.multiple ? "files" : "file") +" to upload" }}
         </label>
       </div>
       <div v-if="props.showError" class="spr-grid spr-content-center spr-text-center spr-body-xs-regular spr-text-color-danger-base">

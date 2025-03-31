@@ -82,6 +82,7 @@ export const filterEmitTypes = {
   selectedFilter: (value: FilterPropsInterface['options']): value is FilterPropsInterface['options'] =>
     Array.isArray(value),
   infiniteScrollTrigger: Boolean,
+  infiniteScrollFilterTrigger: Boolean,
 };
 export type FilterEmitTypes = typeof filterEmitTypes;
 export type FilterPropTypes = ExtractPropTypes<typeof filterPropTypes>;

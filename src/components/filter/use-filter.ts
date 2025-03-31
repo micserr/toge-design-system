@@ -1,4 +1,4 @@
-import { computed, ref, toRefs, watch, onMounted } from 'vue';
+import { computed, ref, toRefs, watch } from 'vue';
 import { FilterPropTypes, FilterPropsInterface, FilterEmitTypes } from './filter';
 import type { SetupContext } from 'vue';
 import { useVModel } from '@vueuse/core';
@@ -24,7 +24,7 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
   );
   const selectedFilters = ref<FilterPropsInterface['optionDetails'][]>([]);
   const filterOptionRef = ref<HTMLDivElement | null>(null);
-  const filterMenuOptionList = ref<HTMLDivElement | null>(null);
+  const filterMenuOptionList = ref<(HTMLDivElement | null)[]>([]);
 
   const getFiltereredOption = computed<FilterPropsInterface['optionDetails'][]>(() => {
     if (filling.value) return options.value;
@@ -161,19 +161,20 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     }
   };
 
+  const hasVisibleFilter = computed(() => {
+    return Object.values(mappedFilterMenuList.value).some((menu) => menu.isFilterVisible);
+  });
+
   const infiniteScrollHandler = () => {
+    if (hasVisibleFilter.value) {
+      emit('infiniteScrollFilterTrigger', true);
+      return;
+    }
     emit('infiniteScrollTrigger', true);
   };
 
-  const setupInfiniteScroll = () => {
-    if (props.completed) return;
-    useInfiniteScroll(filterOptionRef, infiniteScrollHandler, { distance: 10 });
-    useInfiniteScroll(filterMenuOptionList, infiniteScrollHandler, { distance: 10 });
-  };
-
-  onMounted(() => {
-    setupInfiniteScroll();
-  });
+  useInfiniteScroll(() => filterMenuOptionList.value[0], infiniteScrollHandler, { distance: 10 });
+  useInfiniteScroll(filterOptionRef, infiniteScrollHandler, { distance: 10 });
 
   const filterClass = computed(() => {
     const MainClasses = classNames('spr-relative spr-inline-block spr-w-full');

@@ -1,6 +1,10 @@
 # Changelog
 
-## ## 1.15.3 (2025-03-31)
+## 1.15.4 (2025-03-31)
+
+- Fix: Rerender List if from API Calls ([#e5356e24](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e5356e24c73e072096e81b6dd5a3c012601196f0?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 1.15.3 (2025-03-31)
 
 - Fix: DQA update for File Upload ([#3e1456ea](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3e1456eadba7c5da538df1fa0425997d64788300?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FDQA_FILE_UPLOAD) by @jbanares)
 

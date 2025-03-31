@@ -201,8 +201,24 @@ A helper message is a text label below the input field that provides additional 
 
 To display the helper message, set the `display-helper` prop to `true` and add the `helper-text` prop with the helper message text. You can also insert an icon with the `helper-icon` prop. This uses the [Iconify](https://icon-sets.iconify.design/) icon library.
 
-<spr-input v-model="inputValue.input10" label="Text Input" placeholder="Enter your text" helper-text="This is a helper message" display-helper/>
-<spr-input v-model="inputValue.input1" label="Text Input" placeholder="Enter your text" helper-text="This is an error message" helper-icon="ph:warning-circle-fill" display-helper error/>
+<div class="spr-grid spr-gap-6">
+  <spr-input 
+    v-model="inputValue.input10" 
+    label="Text Input" 
+    placeholder="Enter your text" 
+    helper-text="This is a helper message" 
+    display-helper 
+  />
+  <spr-input 
+    v-model="inputValue.input1" 
+    label="Text Input" 
+    placeholder="Enter your text" 
+    helper-text="This is an error message" 
+    helper-icon="ph:warning-circle-fill" 
+    display-helper 
+    error 
+  />
+</div>
 
 ```vue
 <template>
@@ -213,11 +229,13 @@ To display the helper message, set the `display-helper` prop to `true` and add t
     helper-text="This is a helper message"
     display-helper
   />
+
   <spr-input
-    v-model="inputValue.input1"
+    v-model="inputValue"
     label="Text Input"
     placeholder="Enter your text"
     helper-text="This is an error message"
+    helper-icon="ph:warning-circle-fill"
     display-helper
     error
   />
@@ -232,30 +250,44 @@ const inputValue = ref('');
 
 Alternatively, you can use the `helperMessage` slot to display a custom helper message.
 
-<spr-input v-model="inputValue.input11" label="Text Input" placeholder="Enter your text" display-helper>
-  <template #helperMessage>
-    This is a helper message
-  </template>
-</spr-input>
-<spr-input v-model="inputValue.input1" label="Text Input" placeholder="Enter your text" display-helper error >
-  <template #helperMessage>
-    <icon icon="ph:warning-circle-fill" width="20px" height="20px" />
-    This is a helper message
-  </template>
-</spr-input>
+<div class="spr-grid spr-gap-6">
+  <spr-input 
+    v-model="inputValue.input11" 
+    label="Text Input" 
+    placeholder="Enter your text" 
+    display-helper
+  >
+    <template #helperMessage>
+      This is a helper message
+    </template>
+  </spr-input>
+  <spr-input 
+    v-model="inputValue.input1" 
+    label="Text Input" 
+    placeholder="Enter your text" 
+    display-helper 
+    error 
+  >
+    <template #helperMessage>
+      <icon icon="ph:warning-circle-fill" width="20px" height="20px" />
+      <span>This is an error message</span>
+    </template>
+  </spr-input>
+</div>
 
 ```vue
-<spr-input v-model="inputValue.input1" label="Text Input" placeholder="Enter your text" display-helper>
-  <template #helperMessage>
-    This is a helper message
-  </template>
-</spr-input>
-<spr-input v-model="inputValue.input1" label="Text Input" placeholder="Enter your text" display-helper error>
-  <template #helperMessage>
-    <icon icon="ph:warning-circle-fill" width="20px" height="20px" />
-    This is a helper message
-  </template>
-</spr-input>
+<template>
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your text">
+    <template #helperMessage> This is a helper message </template>
+  </spr-input>
+
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your text" :error="true">
+    <template #helperMessage>
+      <icon icon="ph:warning-circle-fill" width="20px" height="20px" />
+      <span>This is an error message</span>
+    </template>
+  </spr-input>
+</template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';

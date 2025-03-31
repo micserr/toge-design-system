@@ -3,6 +3,10 @@ import type { PropType, ExtractPropTypes } from 'vue';
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
 export const textAreaPropTypes = {
+  id: {
+    type: String,
+    default: '',
+  },
   modelValue: {
     type: String,
     default: '',
@@ -15,9 +19,9 @@ export const textAreaPropTypes = {
     type: String,
     default: '',
   },
-  rows: {
-    type: Number,
-    default: 4,
+  active: {
+    type: Boolean,
+    default: false,
   },
   disabled: {
     type: Boolean,
@@ -31,9 +35,23 @@ export const textAreaPropTypes = {
     type: Boolean,
     default: false,
   },
-  id: {
+  minLength: {
+    type: Number,
+  },
+  maxLength: {
+    type: Number,
+  },
+  rows: {
+    type: Number,
+    default: 4,
+  },
+  displayHelper: {
+    type: Boolean,
+    default: false,
+  },
+  helperIcon: {
     type: String,
-    default: '',
+    default: null,
   },
   helperText: {
     type: String,

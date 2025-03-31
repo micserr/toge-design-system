@@ -13,12 +13,12 @@
         v-bind="$attrs"
         :class="[inputClasses.inputTextClasses, { 'number-input': props.type === 'number' }]"
         :placeholder="props.placeholder"
-        :disabled="props.disabled"
-        :readonly="props.readonly"
         :type="props.type"
         :minlength="props.minLength"
         :maxlength="props.maxLength"
         :value="modelValue"
+        :disabled="props.disabled"
+        :readonly="props.readonly"
         @input="onInput"
       />
       <div v-if="$slots.trailing" :class="inputClasses.trailingSlotClasses">
@@ -29,15 +29,12 @@
       </div>
     </div>
 
-    <label
-      v-if="props.displayHelper"
-      :class="[inputClasses.helperClasses, 'spr-body-sm-regular', 'spr-flex spr-items-center spr-gap-size-spacing-5xs']"
-    >
+    <div v-if="props.displayHelper" :class="inputClasses.helperClasses">
       <slot name="helperMessage">
-        <icon v-if="props.helperIcon" :icon="props.helperIcon" width="20px" height="20px" />
-        {{ props.helperText }}
+        <Icon v-if="props.helperIcon" :icon="props.helperIcon" width="20px" height="20px" />
+        <span>{{ props.helperText }}</span>
       </slot>
-    </label>
+    </div>
   </div>
 </template>
 

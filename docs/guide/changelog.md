@@ -1,6 +1,10 @@
 # Changelog
 
-## 1.15.1 (2025-03-31)
+## ## 1.15.3 (2025-03-31)
+
+- Fix: DQA update for File Upload ([#3e1456ea](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3e1456eadba7c5da538df1fa0425997d64788300?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FDQA_FILE_UPLOAD) by @jbanares)
+
+## 1.15.2 (2025-03-31)
 
 - Fix
   - Textarea Helper Message, Added Datepicker ISO Formats, Fix Input DQA, Fix Dropdown Muenulist ([#f129de9d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f129de9d2dd33741f0fe58efc1d5912c13e10e62?refName=refs/heads/2025/feature/arias/ds-updates&path=/docs/documentation/components) by @jarias)

@@ -34,17 +34,16 @@ export const useTextArea = (props: TextAreaPropTypes, emit: SetupContext<TextAre
       },
     );
 
-    const errorTextClasses = classNames(
-      'spr-text-color-danger-base spr-body-sm-regular spr-flex spr-items-center spr-gap-size-spacing-5xs',
-    );
+    const helperClasses = classNames('spr-body-sm-regular spr-flex spr-items-center spr-gap-size-spacing-5xs', {
+      'spr-text-color-danger-base': error.value,
+      'spr-text-color-supporting': !error.value,
+    });
 
-    return { wrapperClasses, labelClasses, textAreaClasses, errorTextClasses };
+    return { wrapperClasses, labelClasses, textAreaClasses, helperClasses };
   });
 
   const onInput = (event: Event) => {
-    const target = event.target as HTMLInputElement;
-
-    modelValue.value = target.value;
+    modelValue.value = (event.target as HTMLInputElement).value;
   };
 
   return {

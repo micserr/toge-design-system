@@ -63,32 +63,32 @@ export const inputPropTypes = {
     type: Boolean,
     default: false,
   },
+  error: {
+    type: Boolean,
+    default: false,
+  },
   minLength: {
     type: Number,
   },
   maxLength: {
     type: Number,
   },
-  error: {
-    type: Boolean,
-    default: false,
-  },
   offsetSize: {
     type: String as PropType<(typeof TRAILING_SIZES)[number]>,
     validator: (value: (typeof TRAILING_SIZES)[number]) => TRAILING_SIZES.includes(value),
     default: 'sm',
   },
-  helperText: {
-    type: String,
-    default: '',
+  displayHelper: {
+    type: Boolean,
+    default: false,
   },
   helperIcon: {
     type: String,
     default: null,
   },
-  displayHelper: {
-    type: Boolean,
-    default: false,
+  helperText: {
+    type: String,
+    default: '',
   },
 };
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.15.1 (2025-03-31)
+
+- Fix
+  - Textarea Helper Message, Added Datepicker ISO Formats, Fix Input DQA, Fix Dropdown Muenulist ([#f129de9d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f129de9d2dd33741f0fe58efc1d5912c13e10e62?refName=refs/heads/2025/feature/arias/ds-updates&path=/docs/documentation/components) by @jarias)
+
 ## 1.15.1 (2025-03-28)
 
 - Fix

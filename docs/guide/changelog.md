@@ -1,11 +1,17 @@
 # Changelog
 
+## 1.15.1 (2025-03-28)
+
+- Fix
+  - update avatar and filter components for improved layout and functionality ([#cb85cae8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cb85cae8ee3f38319c1d4bf8fa80d83fe9fd5487?refName=refs/heads/2025/Fix/andrea/lozenge-avatar-filter) by @adestajo)
+
 ## 1.15.0 (2025-03-27)
+
 - Feat
   - Ladderized List and Dropdown ([#17aca737](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/17aca7371556b77c0d24924394c6488bf81458a9?refName=refs/heads/2025/FEATURE/Paulo/LADDERIZED_DROPDOWN) by @jbanares)
   - Updated list component to have subtext property
 - Refactor
-  - Refactored List and Dropdown components and updated v-model logic 
+  - Refactored List and Dropdown components and updated v-model logic
   - Updated table pagination component with updated dropdown
 
 ## 1.14.3 (2025-03-27)

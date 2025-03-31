@@ -54,7 +54,7 @@ outline: 'deep'
 
 avatar component has 7 different sizes. You can use the `size` prop to set the size of the avatar. The default size is `2xl`. The available sizes are `2xl`, `xl`, `lg`, `md`, `sm`, `xs`, `2xs`.
 
-<div class="spr-space-x-3">
+<div class="spr-space-x-3 spr-flex">
   <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="2xl" />
 
   <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="xl" />
@@ -136,7 +136,7 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
 ## Variant
 
 <div class="spr-grid spr-gap-4">
-  <div class="spr-space-x-3">
+  <div class="spr-space-x-3 spr-flex">
     <spr-avatar  initial="Juan Dela Cruz" size="2xl" />
     <spr-avatar  initial="John Jay Joe" size="xl" />
     <spr-avatar  initial="Anthony" size="lg" />
@@ -146,7 +146,7 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
     <spr-avatar  initial="Juan Dela Cruz" size="2xs" />
   </div>
 
-  <div class="spr-space-x-3">
+  <div class="spr-space-x-3 spr-flex">
     <spr-avatar variant="count" count="10" color="secondary" size="2xl" />
     <spr-avatar variant="count" count="2"  color="secondary" size="xl" />
     <spr-avatar variant="count" count="3"  color="secondary" size="lg" />
@@ -156,7 +156,7 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
     <spr-avatar variant="count" count="7"  color="secondary" size="2xs" />
   </div>
 
-  <div class="spr-space-x-3">
+  <div class="spr-space-x-3 spr-flex">
     <spr-avatar variant="user-group" size="2xl" />
     <spr-avatar variant="user-group" size="xl" />
     <spr-avatar variant="user-group" size="lg" />
@@ -166,7 +166,7 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
     <spr-avatar variant="user-group" size="2xs" />
   </div>
 
-  <div class="spr-space-x-3">
+  <div class="spr-space-x-3 spr-flex">
     <spr-avatar variant="user"  size="2xl" />
     <spr-avatar variant="user"  size="xl" />
     <spr-avatar variant="user"  size="lg" />
@@ -176,7 +176,7 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
     <spr-avatar variant="user"  size="2xs" />
   </div>
 
-  <div class="spr-space-x-3">
+  <div class="spr-space-x-3 spr-flex">
     <spr-avatar variant="client" size="2xl" />
     <spr-avatar variant="client" size="xl" />
     <spr-avatar variant="client" size="lg" />
@@ -248,7 +248,7 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
 Slot can be used to add custom content to the avatar. note: adjust your custom content to fit the avatar size.
 
 <div class="spr-grid spr-gap-4">
-  <div class="spr-space-x-3">
+  <div class="spr-space-x-3 spr-flex">
     <spr-avatar  :notification="true" :badge="true" size="2xl" color="primary">
     <Icon icon="ph:trash" />
     </spr-avatar>
@@ -272,7 +272,7 @@ Slot can be used to add custom content to the avatar. note: adjust your custom c
     </spr-avatar>
   </div>
 
-  <div class="spr-space-x-3">
+  <div class="spr-space-x-3 spr-flex">
     <spr-avatar :notification="true" :badge="true" size="2xl">
       <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" />
     </spr-avatar>
@@ -355,7 +355,7 @@ import { Icon } from '@iconify/vue';
 
 ## Status
 
-<div class="spr-space-x-3">
+<div class="spr-space-x-3 spr-flex">
   <spr-avatar variant="initial" status="danger" initial="Matthew"  :badge="true" size="2xl" />
   <spr-avatar variant="initial" status="disabled" initial="Mark"  :badge="true" size="2xl" />
   <spr-avatar variant="initial" status="information" initial="John"  :badge="true" size="2xl" />

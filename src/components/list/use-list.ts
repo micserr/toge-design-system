@@ -1,8 +1,8 @@
-import { ref, toRefs, computed, ComputedRef, onMounted } from 'vue';
+import { ref, toRefs, computed, ComputedRef, watch, onMounted } from 'vue';
 import classNames from 'classnames';
 import type { SetupContext } from 'vue';
 import type { ListPropTypes, ListEmitTypes, MenuListType, GroupedMenuListType } from './list';
-import { useVModel } from '@vueuse/core'
+import { useVModel } from '@vueuse/core';
 
 interface ListClasses {
   listItemClasses: string;
@@ -38,7 +38,6 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
 
   const setMenuList = () => {
     if (menuList.value && menuList.value.length > 0) {
-
       if (groupItemsBy?.value) {
         if (groupItemsBy.value === 'default') groupMenuList();
         else sortMenuList();
@@ -54,8 +53,8 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
       if (!groupKey) {
         groupKey = 'no-group';
       }
-      if (groupedMenuList.value.some(g => g.groupLabel === groupKey)) {
-        groupedMenuList.value.find(g => g.groupLabel === groupKey)?.items.push(item);
+      if (groupedMenuList.value.some((g) => g.groupLabel === groupKey)) {
+        groupedMenuList.value.find((g) => g.groupLabel === groupKey)?.items.push(item);
       } else {
         groupedMenuList.value.push({ groupLabel: groupKey, items: [item] });
       }
@@ -75,23 +74,21 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
         const firstCharacter = item.text.charAt(0);
         const groupKey = /^\d/.test(firstCharacter) ? 'no-group' : firstCharacter.toUpperCase();
 
-      if (groupedMenuList.value.some(g => g.groupLabel === groupKey)) {
-        groupedMenuList.value.find(g => g.groupLabel === groupKey)?.items.push(item);
-      } else {
-        groupedMenuList.value.push({ groupLabel: groupKey, items: [item] });
-      }
-    });
+        if (groupedMenuList.value.some((g) => g.groupLabel === groupKey)) {
+          groupedMenuList.value.find((g) => g.groupLabel === groupKey)?.items.push(item);
+        } else {
+          groupedMenuList.value.push({ groupLabel: groupKey, items: [item] });
+        }
+      });
   };
 
   const setPreSelectedItems = () => {
     if (preSelectedItems.value && preSelectedItems.value.length > 0) {
       preSelectedItems.value.forEach((preSelectedItem: string) => {
         // If single select, only select the first item and skip the for loop
-        if (!multiSelect.value && selectedItems.value.length > 0)  return;
-        
-        const item = menuList.value.find(
-          (menuItem) => String(menuItem.value) === String(preSelectedItem),
-        );
+        if (!multiSelect.value && selectedItems.value.length > 0) return;
+
+        const item = menuList.value.find((menuItem) => String(menuItem.value) === String(preSelectedItem));
 
         if (item) {
           selectedItems.value.push(item);
@@ -120,6 +117,13 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     }
   };
   // #endregion - Helper Methods
+
+  watch(menuList, () => {
+    menuList.value = [];
+    groupedMenuList.value = [];
+
+    setMenuList();
+  });
 
   onMounted(() => {
     setMenuList();

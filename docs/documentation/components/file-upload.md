@@ -16,7 +16,6 @@ This file upload component can be triggered via the button upload or dragging an
     :file-types="['image/jpeg','image/png',]"
     :max-file-size="10"
     title="Attachments"
-    multiple
   />
 </div>
 

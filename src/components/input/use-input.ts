@@ -38,7 +38,7 @@ export const useInput = (
     });
 
     const inputTextBaseClasses = classNames(
-      'spr-relative spr-flex spr-items-center spr-rounded-border-radius-md spr-border-[1.5px] spr-border-solid',
+      'spr-relative spr-flex spr-items-center spr-p-[1.5px] spr-rounded-border-radius-md spr-border-[1.5px] spr-border-solid',
       {
         // Border State
         'spr-border-color-weak': !focused.value && !error.value && !disabled.value && !active.value,
@@ -51,18 +51,19 @@ export const useInput = (
         'focus: spr-border-white-100': focused.value && disabled.value,
 
         // Disabled State
-        'spr-background-color-disabled spr-cursor-not-allowed spr-text-color-on-fill-disabled spr-border-mushroom-100':
-          disabled.value,
+        'spr-background-color-disabled spr-cursor-not-allowed spr-border-mushroom-100': disabled.value,
       },
     );
 
     const inputTextClasses = classNames(
-      'spr-block spr-h-8 spr-py-size-spacing-4xs spr-outline-none spr-ring-0 spr-border-none spr-rounded-border-radius-md spr-font-size-200 spr-text-color-strong',
-      'spr-text-color-strong spr-font-size-200 [font-weight:inherit]',
+      'spr-block spr-h-8 spr-py-size-spacing-4xs spr-outline-none spr-ring-0 spr-border-none spr-rounded-border-radius-md spr-font-size-200',
+      'spr-font-size-200 [font-weight:inherit]',
       'placeholder:spr-text-mushroom-300',
       {
+        'spr-text-color-strong': !disabled.value,
+
         // Disabled State
-        'spr-cursor-not-allowed': disabled.value,
+        'spr-text-color-on-fill-disabled !spr-cursor-not-allowed': disabled.value,
 
         // Prefix, Suffix, Trailing
         'spr-px-3': !slots.prefix && !slots.icon && !slots.trailing,
@@ -91,7 +92,6 @@ export const useInput = (
         'spr-text-mushroom-300': !error.value,
         'spr-text-tomato-600': error.value,
         'spr-font-size-200': props.type === 'url',
-        'spr-top-4 spr-z-10': props.type === 'contact-number',
       },
     );
 
@@ -100,7 +100,7 @@ export const useInput = (
       'spr-text-tomato-600': error.value,
     });
 
-    const helperClasses = classNames({
+    const helperClasses = classNames('spr-body-sm-regular spr-flex spr-items-center spr-gap-size-spacing-5xs', {
       'spr-text-color-danger-base': error.value,
       'spr-text-color-supporting': !error.value,
     });

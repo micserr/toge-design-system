@@ -11,11 +11,11 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
   // Dropdown component ref variables
   const dropdownValue = useVModel(props, 'modelValue', emit); // v-model value of  dropdown component
   const dropdownRef = ref<HTMLDivElement | null>(null);
-  
+
   // List component ref variables
   const selectedListItems = ref<MenuListType[]>([]); // v-model value of the list component
   const dropdownMenuList = ref<MenuListType[]>([]); // menu list for the list component
-  
+
   // Popper state
   const dropdownPopperState = ref<boolean>(false);
   const isDropdownPopperDisabled = computed(() => disabled.value);
@@ -24,12 +24,16 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
     dropdownMenuList.value = menuList.value;
   };
 
+  watch(menuList, () => {
+    initializeMenuList();
+  });
+
   const handleSearch = () => {
     if (menuList.value && menuList.value.length > 0) {
       if (!multiSelect.value) {
         dropdownMenuList.value = menuList.value.filter((item: MenuListType) => {
           const searchTerm = searchString.value.toLowerCase();
-  
+
           return item.text.toLowerCase().includes(searchTerm);
         });
       } else {
@@ -64,7 +68,7 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
 
   // Handle selected item for ladderized list component
   const handleSelectedLadderizedItem = (selectedItems: string[]) => {
-    emit("update:modelValue", selectedItems);
+    emit('update:modelValue', selectedItems);
 
     // If item is from last sublevel, close the dropdown
     if (checkIfItemFromLastSublevel(selectedItems)) {
@@ -86,7 +90,7 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
     }
 
     return true;
-  }
+  };
 
   onMounted(() => {
     initializeMenuList();
@@ -99,7 +103,7 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
     isDropdownPopperDisabled,
     selectedListItems,
     handleSelectedItem,
-    handleSelectedLadderizedItem, 
+    handleSelectedLadderizedItem,
     dropdownValue,
   };
 };

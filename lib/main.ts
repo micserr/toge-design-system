@@ -1,4 +1,5 @@
 import { App } from 'vue';
+
 import '@/assets/styles/tailwind.css';
 
 // Prefix constant (no need for dynamic setPrefix)
@@ -17,7 +18,10 @@ const install = (app: App) => {
     }
   });
 
-  console.log('%c🚀⭐ Design System Next Installed ⭐🚀', 'color: green; font-weight: bold; font-size: 14px;');
+  console.info(
+    `%c🌱Design System Next Installed🌱`,
+    'font-weight: bold; font-size: 14px; color: green; padding: 16px 8px; border: 1px dashed green; border-radius: 4px; margin: 10px auto;',
+  );
 };
 
 export default { install };

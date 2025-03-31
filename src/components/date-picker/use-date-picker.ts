@@ -822,8 +822,11 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
           yyyy: _date.format('YYYY'),
           dd: _date.format('DD'),
 
-          // ISO format
-          isoDate: _date.format('YYYY-MM-DDTHH:mm:ssZ'),
+          // ISO format with timezone offset
+          isoDateWithTimeZone: _date.format('YYYY-MM-DDTHH:mm:ssZ'),
+
+          // ISO format without timezone offset
+          isoDateWithoutTimeZone: _date.format('YYYY-MM-DDTHH:mm:ss'),
         };
 
         emit('getDateFormats', formats);

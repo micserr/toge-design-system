@@ -43,13 +43,20 @@ export const tablePaginationPropTypes = {
       { text: 50, value: 50 },
       { text: 100, value: 100 },
     ],
-  }
+  },
+  /**
+   * @description Toggle Search field,
+   */
+  bordered: {
+    type: Boolean as PropType<boolean>,
+    default: true,
+  },
 };
 
 export const tablePaginationEmitTypes = {
   'update:selectedRowCount': (value: number): value is number => typeof value === 'number',
-  'previous' : () => true,
-  'next' : () => true,
+  previous: () => true,
+  next: () => true,
 };
 
 export type TablePaginationEmitTypes = typeof tablePaginationEmitTypes;

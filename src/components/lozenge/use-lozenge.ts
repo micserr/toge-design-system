@@ -14,7 +14,7 @@ export const useLozenge = (props: LozengePropTypes) => {
 
   const lozengeClasses: ComputedRef<LozengeClasses> = computed(() => {
     const baseClasses = classNames(
-      { 'spr-flex spr-flex-wrap spr-rounded-md !spr-border': !fill.value },
+      { 'spr-flex spr-flex-wrap spr-rounded-md': !fill.value },
       { 'spr-flex spr-flex-wrap': fill.value },
     );
 

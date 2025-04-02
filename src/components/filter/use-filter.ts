@@ -167,7 +167,7 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
 
   const infiniteScrollHandler = () => {
     if (hasVisibleFilter.value) {
-      emit('infiniteScrollFilterTrigger', true);
+      emit('infiniteScrollFilterTrigger', selectedColumn.value);
       return;
     }
     emit('infiniteScrollTrigger', true);

@@ -47,7 +47,7 @@
             </th>
           </tr>
         </thead>
-        <tbody v-if="sortedData.length > 0 && !loading">
+        <tbody v-if="sortedData.length > 0 && !loading" :class="getTableClasses.tableBodyClasses">
           <tr
             v-for="(item, keyIndex) in sortedData"
             :key="keyIndex"
@@ -73,9 +73,11 @@
                   <Icon :icon="sortedData[keyIndex][column.field].icon || ''" />
                 </div>
                 <div>
-                  
                   <!-- Array Title -->
-                  <div v-if="Array.isArray(sortedData[keyIndex][column.field].title)" class="spr-flex spr-gap-2 spr-flex-wrap">
+                  <div
+                    v-if="Array.isArray(sortedData[keyIndex][column.field].title)"
+                    class="spr-flex spr-flex-wrap spr-gap-2"
+                  >
                     <div v-for="(cell, index) in sortedData[keyIndex][column.field].title" :key="index">
                       <div v-if="column.hasLozengeTitle" class="spr-mt-1">
                         <spr-table-lozenge-title :cell="cell as LozengeTitle" />
@@ -85,7 +87,7 @@
                       </div>
                     </div>
                   </div>
-                  
+
                   <!-- Single Title Handling -->
                   <div v-else>
                     <div v-if="column.hasLozengeTitle" class="spr-mt-1">
@@ -102,12 +104,11 @@
                       {{ sortedData[keyIndex][column.field].title }}
                     </div>
                   </div>
-                  
+
                   <!-- Subtitle -->
                   <div v-if="column.hasSubtext" class="spr-text-color-base spr-text-xs spr-font-normal">
                     {{ sortedData[keyIndex][column.field].subtext }}
                   </div>
-
                 </div>
               </div>
             </td>
@@ -118,11 +119,11 @@
             </td>
           </tr>
         </tbody>
-        <tbody v-else>
-          <tr v-if="!loading">
-            <td :colspan="getHeaderCount" class="spr-overflow-hidden">
+        <tbody v-else :class="getTableClasses.emptyStateClasses">
+          <tr v-if="!loading" class="spr-h-full">
+            <td :colspan="getHeaderCount" class="spr-flex spr-h-full spr-items-center spr-justify-center">
               <slot name="empty-state">
-                <SprEmptyState />
+                <SprEmptyState :size="getEmptyStateSize" />
               </slot>
             </td>
           </tr>
@@ -135,9 +136,9 @@
           </tr>
         </tbody>
       </table>
-    </div>
-    <div v-if="$slots.footer" :class="getTableClasses.tableFooterClasses">
-      <slot name="footer" />
+      <div v-if="$slots.footer">
+        <slot name="footer" />
+      </div>
     </div>
   </div>
 </template>
@@ -163,12 +164,14 @@ const slots = useSlots();
 
 const {
   sortedData,
-  sortData,
   getHeaderCount,
-  updateSearchField,
   hasTableActions,
   searchField,
   getTableClasses,
+  getEmptyStateSize,
+
+  sortData,
+  updateSearchField,
   handleRowClick,
 } = useTable(props, emit, slots);
 </script>

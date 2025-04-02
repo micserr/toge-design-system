@@ -1,7 +1,10 @@
 import { computed, ref, toRefs } from 'vue';
 import type { ComputedRef, SetupContext } from 'vue';
-
-import type { TablePaginationPropTypes, TablePaginationEmitTypes } from '@/components/table/table-pagination/table-pagination';
+import classNames from 'classnames';
+import type {
+  TablePaginationPropTypes,
+  TablePaginationEmitTypes,
+} from '@/components/table/table-pagination/table-pagination';
 
 interface TablePaginationClasses {
   baseClass: string;
@@ -18,17 +21,23 @@ export const useTablePagination = (
   props: TablePaginationPropTypes,
   emit: SetupContext<TablePaginationEmitTypes>['emit'],
 ) => {
-  const { selectedRowCount, currentPage, totalItems } = toRefs(props);
+  const { selectedRowCount, currentPage, totalItems, bordered } = toRefs(props);
 
   const paginationClasses: ComputedRef<TablePaginationClasses> = computed(() => {
-    const baseClass = 'spr-p-size-spacing-xs spr-flex spr-justify-between spr-bg-white-50 spr-h-max' as const;
-    const dropdownInputFieldClass = 'spr-w-[120px] spr-font-bold spr-h-full spr-space-x-2' as const;
-    const inputFieldIconClass = 'spr-mt-0.5 spr-pl-1 spr-text-mushroom-950' as const;
-    const rightSideClass = 'spr-flex spr-justify-between spr-items-center spr-space-x-4' as const;
-    const computeRowRangeClass = 'spr-font-main spr-text-color-base spr-w-full' as const;
-    const navigationContainerClass = 'spr-flex spr-space-x-2' as const;
-    const navigationButtonClass = 'spr-rounded-border-radius-md' as const;
-    const dropdownClass = '!spr-w-max' as const;
+    const baseClass = classNames(
+      'spr-w-full  spr-p-size-spacing-xs spr-flex spr-justify-between spr-bg-white-50 spr-h-max',
+      {
+        'spr-border spr-border-solid spr-border-color-weak': bordered.value,
+        'spr-border-x-0 spr-border-t spr-border-b-0 spr-border-solid spr-border-color-weak': !bordered.value,
+      },
+    );
+    const dropdownInputFieldClass = classNames('spr-w-[120px] spr-font-bold spr-h-full spr-space-x-2');
+    const inputFieldIconClass = classNames('spr-mt-0.5 spr-pl-1 spr-text-mushroom-950');
+    const rightSideClass = classNames('spr-flex spr-justify-between spr-items-center spr-space-x-4');
+    const computeRowRangeClass = classNames('spr-font-main spr-text-color-base spr-w-full');
+    const navigationContainerClass = classNames('spr-flex spr-space-x-2');
+    const navigationButtonClass = classNames('spr-rounded-border-radius-md');
+    const dropdownClass = classNames('!spr-w-max');
     return {
       baseClass,
       dropdownInputFieldClass,

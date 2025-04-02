@@ -174,8 +174,7 @@
   /* #endregion - Avatar */
 
   /* #region - Table */
-  .spr-table-wrapper,
-  .spr-table-wrapper-height {
+  .spr-table-wrapper {
     tbody {
       @apply spr-block spr-w-full spr-overflow-y-auto;
     }
@@ -185,17 +184,6 @@
     }
     tbody::-webkit-scrollbar {
       @apply spr-h-0 spr-w-0; /* Hides the scrollbar in WebKit browsers */
-    }
-  }
-
-  .spr-table-wrapper-height {
-    tbody {
-      @apply spr-max-h-[360px];
-    }
-  }
-  .spr-table-wrapper {
-    tbody {
-      @apply spr-max-h-svh spr-min-h-[400px];
     }
   }
   /* #endregion - Table */

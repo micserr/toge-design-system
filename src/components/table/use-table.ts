@@ -9,10 +9,10 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
   const { dataTable, action, headers, sortOrder, fullHeight } = toRefs(props);
   const sortField = ref('');
   const searchField = ref(props.searchModel);
-  const tableSortOrder = ref<TABLE_SORT>('asc');
+  const tableSortOrder = ref<TABLE_SORT>(sortOrder.value || 'asc');
 
   const sortedData = computed(() => {
-    if (!sortField.value) return dataTable.value;
+    if (!sortField.value || sortOrder.value) return dataTable.value;
 
     const sorted = [...dataTable.value].sort((a, b) => {
       const fieldA = a[sortField.value].title.toLowerCase();
@@ -27,10 +27,10 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
 
   const sortData = (field: string) => {
     if (sortField.value === field) {
-      tableSortOrder.value = sortOrder.value || tableSortOrder.value === 'asc' ? 'desc' : 'asc';
+      tableSortOrder.value = tableSortOrder.value === 'asc' ? 'desc' : 'asc';
     } else {
       sortField.value = field;
-      tableSortOrder.value = sortOrder.value || 'asc';
+      tableSortOrder.value = 'asc';
     }
 
     emit('onSort', { field: field, sortOrder: tableSortOrder.value });
@@ -52,12 +52,23 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     }
   };
 
+  const getEmptyStateSize = computed(() => {
+    return fullHeight.value ? 'large' : 'small';
+  });
+
   const getTableClasses = computed(() => {
     const tableWrapperClasses = classNames(
-      'spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid',
+      'spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid spr-table-wrapper',
       {
-        'spr-table-wrapper': fullHeight.value,
-        'spr-table-wrapper-height': !fullHeight.value,
+        'spr-h-[100vh]': fullHeight.value, // Set wrapper height to full screen
+        'spr-h-[400px]': !fullHeight.value,
+      },
+    );
+    const tableFooterClasses = classNames(
+      'spr-border-color-weak spr-border-t spr-border-solid spr-px-size-spacing-sm spr-py-size-spacing-xs',
+      {
+        'spr-background-color-surface': props.variant === 'surface',
+        'spr-background-color': props.variant === 'white',
       },
     );
     const headerBackground = classNames({
@@ -90,11 +101,29 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       'spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-3';
     const tableRowActionClasses =
       'spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-3';
-    const tableFooterClasses = 'spr-w-full spr-border spr-border-solid spr-border-color-weak';
+
     const getTableHeight = classNames({
-      'spr-max-h-85vh': fullHeight.value,
-      'spr-h-[400px]': !fullHeight.value,
+      'spr-h-[100vh]': fullHeight.value, // Set table container height to full screen
+      'spr-h-[280px]': !fullHeight.value && slots.footer,
+      'spr-h-[360px]': !fullHeight.value && !slots.footer,
     });
+
+    const tableBodyClasses = classNames({
+      'spr-overflow-y-auto spr-h-[calc(85vh-150px)] md:spr-h-[calc(75vh-150px)] sm:spr-h-[calc(70vh-150px)]':
+        fullHeight.value && slots.footer, // Adjust tbody height for header/footer
+      'spr-overflow-y-auto spr-h-[75vh]': fullHeight.value && !slots.footer, // Adjust tbody height for header/footer
+      'spr-h-[250px]': !fullHeight.value && slots.footer,
+      'spr-h-[360px]': !fullHeight.value && !slots.footer,
+    });
+
+    const emptyStateClasses = classNames({
+      'spr-overflow-y-hidden spr-h-[calc(90vh-150px)] md:spr-h-[calc(80vh-150px)] sm:spr-h-[calc(70vh-150px)]':
+        fullHeight.value && slots.footer, // Adjust tbody height for header/footer
+      'spr-overflow-y-auto spr-h-[75vh]': fullHeight.value && !slots.footer, // Adjust tbody height for header/footer
+      'spr-h-[250px]': !fullHeight.value && slots.footer,
+      'spr-h-[360px]': !fullHeight.value && !slots.footer,
+    });
+
     return {
       headerClasses,
       tableWrapperClasses,
@@ -106,8 +135,10 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       tableRowClasses,
       tableDataClasses,
       tableRowActionClasses,
-      tableFooterClasses,
       getTableHeight,
+      tableBodyClasses,
+      tableFooterClasses,
+      emptyStateClasses,
     };
   });
 
@@ -120,5 +151,6 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     hasTableActions,
     searchField,
     getTableClasses,
+    getEmptyStateSize,
   };
 };

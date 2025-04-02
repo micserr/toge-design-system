@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.15.6 (2025-04-02)
+
+- Fix: Removed extra border in Lozenge ([#87d46d9f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/87d46d9f8789fd712e261627b823c06f6c4abcbc?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FFIX_EXTRA_BORDER_IN_LOZENGE) by @jbanares)
+
 ## 1.15.5 (2025-04-01)
 
 - Fix: table with Pagination layout / Sorting with Api ([#5bd18285](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5bd18285719a10d7665208a8619cbfbb071e5185?refName=refs/heads/2025/Fix/andrea/table-pagination) by @adestajo)

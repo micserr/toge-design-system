@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.15.7 (2025-04-03)
+
+- Fix: Update z-index for date picker ([#53b07c57](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/53b07c57a5fd03c692d187e1851bb8b1b5bdfe75?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 1.15.6 (2025-04-02)
 
 - Fix: Removed extra border in Lozenge ([#87d46d9f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/87d46d9f8789fd712e261627b823c06f6c4abcbc?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FFIX_EXTRA_BORDER_IN_LOZENGE) by @jbanares)

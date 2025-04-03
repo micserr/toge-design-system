@@ -190,7 +190,7 @@
 
   /* #region - Date Picker */
   #date-picker-wrapper {
-    @apply spr-overflow-hidden spr-rounded-xl spr-shadow-drop spr-transition-opacity spr-duration-150 spr-ease-in-out;
+    @apply spr-z-[1000] spr-overflow-hidden spr-rounded-xl spr-shadow-drop spr-transition-opacity spr-duration-150 spr-ease-in-out;
 
     .v-popper__wrapper {
       .v-popper__inner {

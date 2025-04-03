@@ -30,7 +30,13 @@
     ></div>
 
     <template #popper>
-      <div ref="dropdownRef" :class="[!props.ladderized && 'spr-p-2', 'spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden']">
+      <div
+        ref="dropdownRef"
+        :class="[
+          !props.ladderized && 'spr-p-2',
+          'spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden',
+        ]"
+      >
         <template v-if="dropdownMenuList.length > 0">
           <spr-list
             v-if="!props.ladderized"

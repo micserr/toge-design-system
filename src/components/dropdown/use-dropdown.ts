@@ -21,7 +21,7 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
   const isDropdownPopperDisabled = computed(() => disabled.value);
 
   const initializeMenuList = () => {
-    dropdownMenuList.value = menuList.value;
+    dropdownMenuList.value = [...menuList.value];
   };
 
   watch(menuList, () => {
@@ -37,7 +37,7 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
           return item.text.toLowerCase().includes(searchTerm);
         });
       } else {
-        dropdownMenuList.value = menuList.value;
+        dropdownMenuList.value = [...menuList.value];
         // TODO: Handle multi-select search
       }
     }

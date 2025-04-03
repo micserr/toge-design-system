@@ -518,7 +518,7 @@
       <Tooltip
         aria-id="sidenav-tooltip-wrapper"
         placement="right"
-        distance="18"
+        distance="4"
         :triggers="['hover']"
       >
         <template #popper>
@@ -527,16 +527,19 @@
         <div
           v-if="props.notificationCount || props.notificationCount === 0"
           :class="[
-            'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center p-2',
-            'spr-transition spr-duration-150 spr-ease-in-out',
-            'active:spr-scale-90',
+            'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-2 spr-rounded-border-radius-md',
+            'spr-transition spr-duration-150 spr-ease-in-out spr-w-9 spr-h-9 spr-m-auto',
+            'hover:spr-background-color-hover',
+            'active:spr-background-color-single-active active:spr-scale-90',
+            {'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90': props.isNotifActive},
           ]"
           @click="emit('notifications', 'notifications-triggered')"
         >
-          <Icon icon="ph:bell" class="spr-h-[1.25em] spr-w-[1.25em]" />
+          <Icon v-if="!props.isNotifActive" icon="ph:bell" class="spr-h-[1.25em] spr-w-[1.25em]" />
+          <Icon v-else icon="ph:bell-fill" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
           <spr-badge
             v-if="props.notificationCount !== 0"
-            class="spr-absolute -spr-top-0.5 spr-right-2.5"
+            class="spr-absolute -spr-top-0.5 spr-right-0.5"
             :text="String(props.notificationCount)"
             variant="danger"
             size="small"
@@ -548,7 +551,7 @@
       <Tooltip
         aria-id="sidenav-tooltip-wrapper"
         placement="right"
-        distance="18"
+        distance="4"
         :triggers="['hover']"
       >
         <template #popper>
@@ -557,16 +560,19 @@
         <div
           v-if="props.requestCount || props.requestCount === 0"
           :class="[
-            'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-p-2',
-            'spr-transition spr-duration-150 spr-ease-in-out',
-            'active:spr-scale-90',
+            'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-2 spr-rounded-border-radius-md',
+            'spr-transition spr-duration-150 spr-ease-in-out spr-w-9 spr-h-9 spr-m-auto',
+            'hover:spr-background-color-hover',
+            'active:spr-background-color-single-active active:spr-scale-90',
+            {'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90': props.isRequestActive},
           ]"
           @click="emit('requests', 'requests-triggered')"
         >
-          <Icon icon="ph:check-square" class="spr-h-[1.25em] spr-w-[1.25em]" />
+          <Icon v-if="!props.isRequestActive" icon="ph:file-text" class="spr-h-[1.25em] spr-w-[1.25em]" />
+          <Icon v-else icon="ph:file-text-fill" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
           <spr-badge
             v-if="props.requestCount !== 0"
-            class="spr-absolute -spr-top-0.5 spr-right-2.5"
+            class="spr-absolute -spr-top-0.5 spr-right-0.5"
             :text="String(props.requestCount)"
             variant="danger"
             size="small"

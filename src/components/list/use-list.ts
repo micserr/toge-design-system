@@ -24,6 +24,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     return { listItemClasses };
   });
 
+  const localizedMenuList = ref<MenuListType[]>([]);
   const groupedMenuList = ref<GroupedMenuListType[]>([
     {
       groupLabel: 'no-group',
@@ -37,10 +38,15 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   };
 
   const setMenuList = () => {
-    if (menuList.value && menuList.value.length > 0) {
+    localizedMenuList.value = [...props.menuList];
+
+    if (localizedMenuList.value && localizedMenuList.value.length > 0) {
       if (groupItemsBy?.value) {
-        if (groupItemsBy.value === 'default') groupMenuList();
-        else sortMenuList();
+        if (groupItemsBy.value === 'default') {
+          groupMenuList();
+        } else {
+          sortMenuList();
+        }
       }
     }
   };
@@ -48,11 +54,13 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   const groupMenuList = () => {
     if (!groupItemsBy?.value) return;
 
-    menuList.value.forEach((item) => {
+    localizedMenuList.value.forEach((item) => {
       let groupKey = item.group;
+
       if (!groupKey) {
         groupKey = 'no-group';
       }
+
       if (groupedMenuList.value.some((g) => g.groupLabel === groupKey)) {
         groupedMenuList.value.find((g) => g.groupLabel === groupKey)?.items.push(item);
       } else {
@@ -64,7 +72,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   const sortMenuList = () => {
     if (!groupItemsBy?.value) return;
 
-    menuList.value
+    localizedMenuList.value
       .sort((a, b) => {
         if (groupItemsBy.value === 'A-Z') return a.text.localeCompare(b.text);
         if (groupItemsBy.value === 'Z-A') return b.text.localeCompare(a.text);
@@ -88,7 +96,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
         // If single select, only select the first item and skip the for loop
         if (!multiSelect.value && selectedItems.value.length > 0) return;
 
-        const item = menuList.value.find((menuItem) => String(menuItem.value) === String(preSelectedItem));
+        const item = localizedMenuList.value.find((menuItem) => String(menuItem.value) === String(preSelectedItem));
 
         if (item) {
           selectedItems.value.push(item);
@@ -119,7 +127,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   // #endregion - Helper Methods
 
   watch(menuList, () => {
-    menuList.value = [];
+    localizedMenuList.value = [];
     groupedMenuList.value = [];
 
     setMenuList();
@@ -132,6 +140,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
 
   return {
     listClasses,
+    localizedMenuList,
     groupedMenuList,
     isItemSelected,
     getListItemClasses,

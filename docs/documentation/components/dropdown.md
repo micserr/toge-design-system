@@ -28,7 +28,12 @@ Dropdowns are versatile UI components that can be integrated with various elemen
 
 ```vue
 <template>
-  <spr-dropdown id="sample-dropdown" v-model="dropdownModel" :menu-list="menuList" @update:model-value="handleSelectedItem">
+  <spr-dropdown
+    id="sample-dropdown"
+    v-model="dropdownModel"
+    :menu-list="menuList"
+    @update:model-value="handleSelectedItem"
+  >
     <spr-input v-model="inputTextModel" label="Dropdown Label" readonly placeholder="Select item..." />
   </spr-dropdown>
 </template>
@@ -54,7 +59,7 @@ const menuList = ref([
 ]);
 
 const handleSelectedItem = (selectedItem) => {
-  inputTextModel.value[inputModel] = menuList.value.find(item => item.value === selectedItem[0]).text;
+  inputTextModel.value[inputModel] = menuList.value.find((item) => item.value === selectedItem[0]).text;
 };
 </script>
 ```
@@ -82,7 +87,13 @@ This feature allows users to select multiple options from the dropdown list. It 
 
 ```vue
 <template>
-  <spr-dropdown id="sample-dropdown" v-model="dropdownModel" :menu-list="menuList" multi-select @update:model-value="handleSelectedItem">
+  <spr-dropdown
+    id="sample-dropdown"
+    v-model="dropdownModel"
+    :menu-list="menuList"
+    multi-select
+    @update:model-value="handleSelectedItem"
+  >
     <spr-input v-model="inputTextModel" label="Dropdown Label" readonly placeholder="Select item..." />
   </spr-dropdown>
 </template>
@@ -108,7 +119,9 @@ const menuList = ref([
 ]);
 
 const handleSelectedItem = (selectedItem) => {
-  const selectedTexts = selectedItem.map(item => menuList.value.find(menuItem => menuItem.value === item).text).join(', ');
+  const selectedTexts = selectedItem
+    .map((item) => menuList.value.find((menuItem) => menuItem.value === item).text)
+    .join(', ');
   inputTextModel.value[inputModel] = selectedTexts;
 };
 </script>
@@ -116,7 +129,7 @@ const handleSelectedItem = (selectedItem) => {
 
 ## Grouped Items By
 
-You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-items-by` prop and specifying the desired grouping type. See [List: Grouped Items](./list#grouped-items) for more examples. 
+You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-items-by` prop and specifying the desired grouping type. See [List: Grouped Items](./list#grouped-items) for more examples.
 
 <div class="spr-grid spr-gap-4">
   <spr-dropdown
@@ -217,7 +230,7 @@ Pre-selected items are options that are automatically selected when the dropdown
 <template>
   <div class="spr-grid spr-gap-4">
     <spr-dropdown
-    id="dropdown5"
+      id="dropdown5"
       v-model="dropdownModel.dropdown5"
       :menu-list="menuList"
       group-items-by="A-Z"
@@ -254,11 +267,11 @@ import { ref, onMounted } from 'vue';
 const dropdownModel = ref({
   dropdown5: ['apple'],
   dropdown6: ['date', 'fig', 'orange'],
-})
+});
 
 const inputTextModel = ref({
-  inputText5: "",
-  inputText6: "",
+  inputText5: '',
+  inputText6: '',
 });
 
 // Load selected values to input texts
@@ -269,15 +282,17 @@ onMounted(() => {
 
 const handleSelectedItem = (selectedItem, dropdownType, inputModel) => {
   if (dropdownType === 'single') {
-    inputTextModel.value[inputModel] = menuList.value.find(item => item.value === selectedItem[0]).text;
+    inputTextModel.value[inputModel] = menuList.value.find((item) => item.value === selectedItem[0]).text;
   }
 
   if (dropdownType === 'multi') {
-    const selectedTexts = selectedItem.map(item => menuList.value.find(menuItem => menuItem.value === item).text).join(', ');
+    const selectedTexts = selectedItem
+      .map((item) => menuList.value.find((menuItem) => menuItem.value === item).text)
+      .join(', ');
 
     inputTextModel.value[inputModel] = selectedTexts;
   }
-}
+};
 </script>
 ```
 
@@ -581,7 +596,7 @@ const menuList = ref([
 ]);
 
 const handleSelectedItem = (selectedItem) => {
-  inputTextModel.value[inputModel] = menuList.value.find(item => item.value === selectedItem[0]).text;
+  inputTextModel.value[inputModel] = menuList.value.find((item) => item.value === selectedItem[0]).text;
 };
 </script>
 ```
@@ -645,7 +660,7 @@ const menuList = ref([
 ]);
 
 const handleSelectedItem = (selectedItem) => {
-  inputTextModel.value[inputModel] = menuList.value.find(item => item.value === selectedItem[0]).text;
+  inputTextModel.value[inputModel] = menuList.value.find((item) => item.value === selectedItem[0]).text;
 };
 </script>
 ```
@@ -744,7 +759,14 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
   <spr-button tone="success" @click="modalModel = true">Open Modal</spr-button>
 
   <spr-modal v-model="modalModel" title="Dropdown with Modal">
-    <spr-dropdown id="sample-dropdown" v-model="dropdownModel" :menu-list="menuList" wrapper-position="initial" popper-stategy="fixed" @update:model-value="handleSelectedItem">
+    <spr-dropdown
+      id="sample-dropdown"
+      v-model="dropdownModel"
+      :menu-list="menuList"
+      wrapper-position="initial"
+      popper-stategy="fixed"
+      @update:model-value="handleSelectedItem"
+    >
       <spr-input v-model="inputTextModel" label="Dropdown Label" placeholder="Select item..." readonly />
     </spr-dropdown>
     <p>
@@ -777,7 +799,7 @@ const menuList = ref([
 ]);
 
 const handleSelectedItem = (selectedItem) => {
-  inputTextModel.value[inputModel] = menuList.value.find(item => item.value === selectedItem[0]).text;
+  inputTextModel.value[inputModel] = menuList.value.find((item) => item.value === selectedItem[0]).text;
 };
 </script>
 ```
@@ -837,54 +859,52 @@ const menuList = ref([
   { text: '89 Quince', value: '50' },
 ]);
 
+const APIisLoading = ref(false);
+
 const pagination = ref({
   totalpages: 10,
   currentPage: 1,
 });
 
 const handleInfiniteScrollTrigger = () => {
-  if (pagination.value.currentPage === pagination.value.totalpages) return;
+  if (pagination.value.currentPage === pagination.value.totalpages || APIisLoading.value) return;
 
+  APIisLoading.value = true;
   pagination.value.currentPage += 1;
 
-  // For testing purposes only
-  const fastFoodItems = [
-    'Burger',
-    'Pizza',
-    'Fries',
-    'Hot Dog',
-    'Sandwich',
-    'Tacos',
-    'Chicken Wings',
-    'Chicken Nuggets',
-    'Wrap',
-    'Pasta',
-    'Onion Rings',
-    'Shakes',
-    'Fried Chicken',
-    'Salad',
-    'Milkshake',
-    'Mozzarella Sticks',
-    'Popcorn Chicken',
-    'Bagel',
-    'Quesadilla',
-    'Breakfast Burrito',
-  ];
+  getGhibliFilms();
+};
 
-  // For testing purposes only
-  for (let i = 0; i < 10; i++) {
-    const randomFood = fastFoodItems[Math.floor(Math.random() * fastFoodItems.length)];
+const getGhibliFilms = async () => {
+  try {
+    const response = await fetch('https://ghibliapi.vercel.app/films');
 
-    menuList.value.push({
-      text: randomFood,
-      value: randomFood.toLowerCase().replace(' ', '_'),
-    });
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const options = await response.json();
+
+    menuList.value = options.length
+      ? [
+          ...(menuList.value || []),
+          ...options.map((option: { id: string; original_title_romanised: string }) => ({
+            text: option.original_title_romanised,
+            value: option.id.replace(/\s+/g, ''),
+          })),
+        ]
+      : [];
+
+    APIisLoading.value = false;
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
   }
 };
 </script>
 ```
 
 ## Ladderized Dropdown
+
 Ladderized dropdown utilizes the [Ladderized List](./list#ladderized-list) component to display the dropdown items in a hierarchical manner. The `v-model` prop is an array of strings representing order of selected items per level.
 
 <div>
@@ -896,7 +916,13 @@ Ladderized dropdown utilizes the [Ladderized List](./list#ladderized-list) compo
 ```vue
 <template>
   <div>
-    <spr-dropdown id="dropdown28" :menu-list="mockDropdownData" v-model="dropdownModel" :ladderized="true" @update:model-value="handleLadderizedDropdown">
+    <spr-dropdown
+      id="dropdown28"
+      :menu-list="mockDropdownData"
+      v-model="dropdownModel"
+      :ladderized="true"
+      @update:model-value="handleLadderizedDropdown"
+    >
       <spr-input v-model="inputTextModel" label="Ladderized Dropdown" placeholder="Select item..." />
     </spr-dropdown>
   </div>
@@ -910,76 +936,75 @@ const inputTextModel = ref('');
 
 const mockDropdownData = [
   {
-    text: "Lion",
-    value: "lion",
-    subtext: "King of the jungle",
+    text: 'Lion',
+    value: 'lion',
+    subtext: 'King of the jungle',
     sublevel: [
       {
-        text: "Cub",
-        value: "cub",
-        subtext: "Young lion",
+        text: 'Cub',
+        value: 'cub',
+        subtext: 'Young lion',
         sublevel: [
           {
-            text: "Cub 1",
-            value: "cub1",
-            
+            text: 'Cub 1',
+            value: 'cub1',
           },
           {
-            text: "Cub 2",
-            value: "cub2",
+            text: 'Cub 2',
+            value: 'cub2',
           },
         ],
       },
       {
-        text: "Pride Member",
-        value: "pride-member",
-        subtext: "Member of a lion pride",
+        text: 'Pride Member',
+        value: 'pride-member',
+        subtext: 'Member of a lion pride',
       },
     ],
   },
   {
-    text: "Elephant",
-    value: "elephant",
-    subtext: "Largest land animal",
+    text: 'Elephant',
+    value: 'elephant',
+    subtext: 'Largest land animal',
     sublevel: [
       {
-        text: "Calf",
-        value: "calf",
-        subtext: "Young elephant",
+        text: 'Calf',
+        value: 'calf',
+        subtext: 'Young elephant',
       },
     ],
   },
   {
-    text: "Giraffe",
-    value: "giraffe",
-    subtext: "Tallest living terrestrial animal",
+    text: 'Giraffe',
+    value: 'giraffe',
+    subtext: 'Tallest living terrestrial animal',
     sublevel: [
       {
-        text: "Calf",
-        value: "giraffe-calf",
-        subtext: "Young giraffe",
+        text: 'Calf',
+        value: 'giraffe-calf',
+        subtext: 'Young giraffe',
       },
       {
-        text: "Adult",
-        value: "giraffe-adult",
-        subtext: "Mature giraffe",
+        text: 'Adult',
+        value: 'giraffe-adult',
+        subtext: 'Mature giraffe',
       },
     ],
   },
   {
-    text: "Zebra",
-    value: "zebra",
-    subtext: "Known for distinctive black and white stripes",
+    text: 'Zebra',
+    value: 'zebra',
+    subtext: 'Known for distinctive black and white stripes',
     sublevel: [
       {
-        text: "Foal",
-        value: "zebra-foal",
-        subtext: "Young zebra",
+        text: 'Foal',
+        value: 'zebra-foal',
+        subtext: 'Young zebra',
       },
       {
-        text: "Mare",
-        value: "zebra-mare",
-        subtext: "Adult female zebra",
+        text: 'Mare',
+        value: 'zebra-mare',
+        subtext: 'Adult female zebra',
       },
     ],
   },
@@ -992,7 +1017,7 @@ const handleLadderizedDropdown = (value) => {
   value.forEach((item) => {
     const activeItem = tempMenuList.find((listItem) => item === listItem.value);
 
-    if (activeItem) { 
+    if (activeItem) {
       tempValue.push(activeItem.text);
       if (activeItem.sublevel) {
         tempMenuList = activeItem.sublevel;
@@ -1000,11 +1025,10 @@ const handleLadderizedDropdown = (value) => {
     }
   });
 
-  inputTextModel.value.inputText28 = tempValue.join(", ");
+  inputTextModel.value.inputText28 = tempValue.join(', ');
 };
 </script>
 ```
-
 
 ## Disabled, Active & Readonly
 
@@ -1316,30 +1340,46 @@ const handleSelectedItem = (selectedItem, dropdownType, inputModel) => {
   }
 }
 
+const APIisLoading = ref(false);
+
 const pagination = ref({
   totalpages: 10,
   currentPage: 1,
 });
 
 const handleInfiniteScrollTrigger = () => {
-  if (pagination.value.currentPage === pagination.value.totalpages) return;
+  if (pagination.value.currentPage === pagination.value.totalpages || APIisLoading.value ) return;
 
+  APIisLoading.value = true
   pagination.value.currentPage += 1;
 
-  const fastFoodItems = [
-    'Burger', 'Pizza', 'Fries', 'Hot Dog', 'Sandwich', 'Tacos', 'Chicken Wings', 'Chicken Nuggets', 'Wrap', 'Pasta',
-    'Onion Rings', 'Shakes', 'Fried Chicken', 'Salad', 'Milkshake', 'Mozzarella Sticks', 'Popcorn Chicken', 'Bagel', 
-    'Quesadilla', 'Breakfast Burrito'
-  ];
+  getGhibliFilms();
+}
 
+const getGhibliFilms = async () => {
+  try {
+    const response = await fetch('https://ghibliapi.vercel.app/films');
+    
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    
+    const options = await response.json();
 
-  for (let i = 0; i < 10; i++) {
-    const randomFood = fastFoodItems[Math.floor(Math.random() * fastFoodItems.length)];
+    paginatedMenuList.value = options.length
+      ? [
+           ...(paginatedMenuList.value || []),
+          ...options.map((option: { id: string; original_title_romanised: string }) => ({
+            text: option.original_title_romanised,
+            value: option.id.replace(/\s+/g, ''),
+          })),
+        ]
+      : [];
 
-    paginatedMenuList.value.push({
-      text: randomFood,
-      value: randomFood.toLowerCase().replace(' ', '_')
-    });
+      APIisLoading.value = false
+    
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
   }
 }
 

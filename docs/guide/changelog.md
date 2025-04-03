@@ -1,6 +1,11 @@
 # Changelog
 
+## 1.15.9 (2025-04-03)
+
+- Fix: Warning Mesages on List due to Menu List is not localized ([#9b4bb542](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/9b4bb5424ae5c71e12c9c104e23276119ae9b383?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 1.15.8 (2025-04-03)
+
 - Feat
   - Add hover and active state to notif and request icon ([#5d89ec25](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5d89ec2550e2f56fd45cc34a3b6b44002c30bf0c?refName=refs%2Fheads%2F2025%2Ffeature%2Felii%2Fsidenav) by @elumilay)
   - Add isNotifActive and isRequestActive to sidenav props

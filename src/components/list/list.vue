@@ -3,7 +3,10 @@
     <template v-if="props.groupItemsBy">
       <div class="spr-grid spr-gap-2">
         <div v-for="(list, listIndex) in groupedMenuList" :key="listIndex" class="spr-grid spr-gap-0.5">
-          <div v-if="list.groupLabel !== 'no-group'" class="spr-py-size-spacing-3xs spr-px-size-spacing-4xs spr-label-xs-medium spr-text-color-base spr-uppercase">
+          <div
+            v-if="list.groupLabel !== 'no-group'"
+            class="spr-label-xs-medium spr-text-color-base spr-px-size-spacing-4xs spr-py-size-spacing-3xs spr-uppercase"
+          >
             <span>
               {{ list.groupLabel }}
             </span>
@@ -15,9 +18,11 @@
             @click="handleSelectedItem(item)"
           >
             <spr-checkbox v-if="props.multiSelect" :checked="isItemSelected(item)" />
-            <div class="spr-flex-auto spr-flex spr-flex-col spr-justify-start">
-              <span class="spr-text-xs spr-text-left">{{ item.text }}</span>
-              <span v-if="item.subtext" class="spr-body-xs-regular spr-text-color-base spr-text-left">{{ item.subtext }}</span>
+            <div class="spr-flex spr-flex-auto spr-flex-col spr-justify-start">
+              <span class="spr-text-left spr-text-xs">{{ item.text }}</span>
+              <span v-if="item.subtext" class="spr-body-xs-regular spr-text-color-base spr-text-left">{{
+                item.subtext
+              }}</span>
             </div>
             <Icon
               v-if="isItemSelected(item) && !props.multiSelect"
@@ -35,15 +40,17 @@
     </template>
     <template v-else>
       <div
-        v-for="(item, index) in props.menuList"
+        v-for="(item, index) in localizedMenuList"
         :key="index"
         :class="getListItemClasses(item)"
         @click="handleSelectedItem(item)"
       >
         <spr-checkbox v-if="props.multiSelect" :checked="isItemSelected(item)" />
-        <div class="spr-flex-auto spr-flex spr-flex-col spr-justify-start">
-          <span class="spr-text-xs spr-text-left">{{ item.text }}</span>
-          <span v-if="item.subtext" class="spr-body-xs-regular spr-text-color-base spr-text-left">{{ item.subtext }}</span>
+        <div class="spr-flex spr-flex-auto spr-flex-col spr-justify-start">
+          <span class="spr-text-left spr-text-xs">{{ item.text }}</span>
+          <span v-if="item.subtext" class="spr-body-xs-regular spr-text-color-base spr-text-left">{{
+            item.subtext
+          }}</span>
         </div>
         <Icon
           v-if="isItemSelected(item) && !props.multiSelect"
@@ -71,7 +78,7 @@ import SprCheckbox from '../checkbox/checkbox.vue';
 const props = defineProps(listPropTypes);
 const emit = defineEmits(listEmitTypes);
 
-const { groupedMenuList, isItemSelected, getListItemClasses, handleSelectedItem } = useList(
+const { localizedMenuList, groupedMenuList, isItemSelected, getListItemClasses, handleSelectedItem } = useList(
   props,
   emit,
 );

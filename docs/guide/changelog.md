@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.15.9 (2025-04-03)
+
+- Fix: Warning Mesages on List due to Menu List is not localized ([#9b4bb542](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/9b4bb5424ae5c71e12c9c104e23276119ae9b383?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 1.15.8 (2025-04-03)
 
 - Feat

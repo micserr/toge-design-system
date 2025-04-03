@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.15.8 (2025-04-03)
+- Feat
+  - Add hover and active state to notif and request icon ([#5d89ec25](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5d89ec2550e2f56fd45cc34a3b6b44002c30bf0c?refName=refs%2Fheads%2F2025%2Ffeature%2Felii%2Fsidenav) by @elumilay)
+  - Add isNotifActive and isRequestActive to sidenav props
+  - Update Request icon
+  - Adjust tooltip distance for request and notif icon upon hovering
+
 ## 1.15.7 (2025-04-03)
 
 - Fix: Update z-index for date picker ([#53b07c57](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/53b07c57a5fd03c692d187e1851bb8b1b5bdfe75?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)

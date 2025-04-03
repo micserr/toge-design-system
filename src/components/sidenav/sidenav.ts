@@ -106,6 +106,16 @@ export const sidenavPropTypes = {
     validator: (value: unknown) => typeof value === 'object',
     default: false,
   },
+  isNotifActive: {
+    type: Boolean,
+    validator: (value: unknown) => typeof value === 'boolean',
+    default: false,
+  },
+  isRequestActive: {
+    type: Boolean,
+    validator: (value: unknown) => typeof value === 'boolean',
+    default: false,
+  },
 };
 
 export const sidenavEmitTypes = {

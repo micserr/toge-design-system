@@ -131,6 +131,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     groupedMenuList.value = [];
 
     setMenuList();
+    setPreSelectedItems();
   });
 
   onMounted(() => {

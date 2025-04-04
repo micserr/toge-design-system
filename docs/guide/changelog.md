@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.15.11 (2025-04-04)
+
+- Fix: List Preselected Item for paginated Data ([#e82c3502](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e82c350270d7968b17c11abbdffe91eefe51dd84?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 1.15.10 (2025-04-04)
 
 - Fix: Modal X button size ([#a07ee801](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a07ee801b921df428a7a96ed216d700adee0f9a9?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)

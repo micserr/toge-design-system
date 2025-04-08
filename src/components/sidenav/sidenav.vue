@@ -529,9 +529,9 @@
           :class="[
             'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-2 spr-rounded-border-radius-md',
             'spr-transition spr-duration-150 spr-ease-in-out spr-w-9 spr-h-9 spr-m-auto',
-            'hover:spr-background-color-hover',
             'active:spr-background-color-single-active active:spr-scale-90',
             {'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90': props.isNotifActive},
+            {'hover:spr-background-color-hover': !props.isNotifActive},
           ]"
           @click="emit('notifications', 'notifications-triggered')"
         >
@@ -562,9 +562,9 @@
           :class="[
             'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-2 spr-rounded-border-radius-md',
             'spr-transition spr-duration-150 spr-ease-in-out spr-w-9 spr-h-9 spr-m-auto',
-            'hover:spr-background-color-hover',
             'active:spr-background-color-single-active active:spr-scale-90',
             {'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90': props.isRequestActive},
+            {'hover:spr-background-color-hover': !props.isRequestActive},
           ]"
           @click="emit('requests', 'requests-triggered')"
         >

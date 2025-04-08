@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.15.12 (2025-04-08)
+
+- Fix
+  - Remove hover styling for active request and notification icon ([#7065fe85](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7065fe859c1fbb54d87291f47ed928529c08b47d?refName=refs%2Fheads%2F2025%2Fbugfix%2Feli%2Fsidenav) by @elumilay)
+- Docs
+  - Add Manual URL Change Handling under Sidenav active navigation ([#ea5a9ee2](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ea5a9ee2743e6e7f00a8573fbe42536aaf13189b?refName=refs%2Fheads%2F2025%2Fbugfix%2Feli%2Fsidenav) by @elumilay)
+
 ## 1.15.11 (2025-04-04)
 
 - Fix: List Preselected Item for paginated Data ([#e82c3502](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e82c350270d7968b17c11abbdffe91eefe51dd84?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)

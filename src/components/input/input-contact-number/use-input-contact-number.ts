@@ -1,4 +1,4 @@
-import { ref, toRefs, computed, ComputedRef, onMounted, SetupContext } from 'vue';
+import { ref, toRefs, computed, ComputedRef, watch, onMounted, SetupContext } from 'vue';
 import { useVModel } from '@vueuse/core';
 
 import classNames from 'classnames';
@@ -15,7 +15,7 @@ export const useInputContactNumber = (
   props: InputContactNumberPropTypes,
   emit: SetupContext<InputContactNumberEmitTypes>['emit'],
 ) => {
-  const { disabled } = toRefs(props);
+  const { preSelectedCountryCode, disabledCountryCallingCode, disabled } = toRefs(props);
 
   const inputContactNumberClasses: ComputedRef<InputContactNumberClasses> = computed(() => {
     const countryCallingCodeClasses = classNames(
@@ -23,7 +23,8 @@ export const useInputContactNumber = (
       'spr-flex spr-items-center spr-gap-size-spacing-5xs',
       {
         'spr-cursor-not-allowed': disabled.value,
-        'spr-cursor-pointer': !disabled.value,
+        'spr-cursor-default': disabledCountryCallingCode.value && !disabled.value,
+        'spr-cursor-pointer': !disabledCountryCallingCode.value && !disabled.value,
       },
     );
 
@@ -41,6 +42,30 @@ export const useInputContactNumber = (
 
   const popperState = ref(false);
 
+  const setselectedCountry = (selectedCountryCode: string) => {
+    const countryCallingCode = getCountryCallingCode(selectedCountryCode as CountryCode);
+
+    const countryCode = getCountries().find((country) => {
+      return getCountryCallingCode(country) === String(countryCallingCode) && country === selectedCountryCode;
+    });
+
+    if (countryCode && countryCallingCode) {
+      selectedCountry.value = {
+        countryCode: [countryCode],
+        countryCallingCode: [countryCallingCode],
+      };
+
+      formatContactNumber();
+
+      emit('getSelectedCountryCallingCode', {
+        countryCode: countryCode,
+        countryCallingCode: countryCallingCode,
+      });
+    } else {
+      console.error(`No valid country found for the code: ${selectedCountryCode}`);
+    }
+  };
+
   const handleContactNumberInput = (event: InputEvent) => {
     const input = event.target as HTMLInputElement;
     const value = input.value;
@@ -56,14 +81,10 @@ export const useInputContactNumber = (
     }
   };
 
-  const handleSelectedCountryCallingCode = (countryCallingCode: string[]) => {
-    const countryCode = getCountries().filter(
-      (country) => getCountryCallingCode(country) === String(countryCallingCode[0]),
-    );
-
+  const handleSelectedCountryCode = (countryCode: string[]) => {
     selectedCountry.value = {
       countryCode: [countryCode[0]],
-      countryCallingCode: countryCallingCode,
+      countryCallingCode: [getCountryCallingCode(countryCode[0] as CountryCode)],
     };
 
     emit('getContactNumberErrors', []);
@@ -110,11 +131,21 @@ export const useInputContactNumber = (
     popperState.value = state;
   };
 
+  watch(preSelectedCountryCode, (newValue) => {
+    if (newValue) {
+      setselectedCountry(newValue);
+    }
+  });
+
   onMounted(() => {
     emit('getSelectedCountryCallingCode', {
       countryCode: selectedCountry.value.countryCode[0],
       countryCallingCode: selectedCountry.value.countryCallingCode[0],
     });
+
+    if (preSelectedCountryCode.value) {
+      setselectedCountry(preSelectedCountryCode.value);
+    }
   });
 
   return {
@@ -123,7 +154,7 @@ export const useInputContactNumber = (
     selectedCountry,
     popperState,
     handleContactNumberInput,
-    handleSelectedCountryCallingCode,
+    handleSelectedCountryCode,
     formatContactNumber,
     handleUpdateModelValue,
     handlePopperState,

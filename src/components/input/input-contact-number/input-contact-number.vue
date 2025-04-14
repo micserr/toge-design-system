@@ -13,14 +13,14 @@
     <template #prefix>
       <spr-dropdown
         id="contact-number-country-dropdown"
-        v-model="selectedCountry.countryCallingCode"
+        v-model="selectedCountry.countryCode"
         class="[&>#dropdown-wrapper]:spr-my-1"
         :menu-list="COUNTRY_OPTIONS"
         placement="bottom-start"
         :width="!props.disabledCountryCallingCode ? '45px' : '35px'"
         popper-width="330px"
         :disabled="props.disabled || props.disabledCountryCallingCode"
-        @update:model-value="handleSelectedCountryCallingCode"
+        @update:model-value="handleSelectedCountryCode"
         @get-popper-state="handlePopperState"
       >
         <span :class="inputContactNumberClasses.countryCallingCodeClasses">
@@ -52,7 +52,7 @@ const {
   selectedCountry,
   popperState,
   handleContactNumberInput,
-  handleSelectedCountryCallingCode,
+  handleSelectedCountryCode,
   formatContactNumber,
   handleUpdateModelValue,
   handlePopperState,

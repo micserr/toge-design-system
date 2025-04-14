@@ -411,6 +411,7 @@ This component utilizes `libphonenumber-js` to parse and format the input on blu
   <div class="spr-my-3 spr-p-4 spr-bg-blue-100">
     <p>Model Output: {{ inputValue.input17 }}</p>
     <p>Selected Country Code: {{ selectedCountryCode }}</p>
+    <p>Selected Country Calling Code: {{ selectedCountryCallingCode }}</p>
     <p>Error Handling: {{ contactNumberErrors }}</p>
     <p>Parsed International Number: {{ parseInternationalNumber }}</p>
   </div>
@@ -440,6 +441,7 @@ Since the v-model output is not in an international format (e.g., +63XXXXXXXXXXX
     </div>
     <p>Model Output: {{ inputValueContactNumber }}</p>
     <p>Selected Country Code: {{ selectedCountryCode }}</p>
+    <p>Selected Country Calling Code: {{ selectedCountryCallingCode }}</p>
     <p>Error Handling: {{ contactNumberErrors }}</p>
     <p>Parsed International Number: {{ parseInternationalNumber }}</p>
   </div>
@@ -449,10 +451,12 @@ Since the v-model output is not in an international format (e.g., +63XXXXXXXXXXX
 
     const inputValueContactNumber = ref('');
     const selectedCountryCode = ref('');
+    const selectedCountryCallingCode = ref('');
     const contactNumberErrors = ref([]);
 
     const handleSelectedCountryCallingCode = (value: string) => {
-      selectedCountryCode.value = value;
+      selectedCountryCode.value = value.countryCode;
+      selectedCountryCallingCode.value = value.countryCallingCode;
     };
 
     const handleContactNumberErrors = (errors: { title: string; message: string }[]) => {
@@ -464,8 +468,8 @@ Since the v-model output is not in an international format (e.g., +63XXXXXXXXXXX
     };
 
     const parseInternationalNumber = computed(() => {
-      if (selectedCountryCode && inputValueContactNumber.value) {
-        const formattedNumber = `+${selectedCountryCode}${inputValueContactNumber.value.replace(/[^0-9]/g, '')}`;
+      if (inputValueContactNumber.value) {
+        const formattedNumber = `+${selectedCountryCallingCode.value}${inputValueContactNumber.value.replace(/[^0-9]/g, '')}`;
 
         return formattedNumber;
       }
@@ -476,12 +480,32 @@ Since the v-model output is not in an international format (e.g., +63XXXXXXXXXXX
 </template>
 ```
 
+#### Set Pre Selected Country
+
+<div class="spr-mt-3">
+  <spr-input-contact-number
+    v-model="inputValue.input18"
+    label="Contact Number"
+    pre-selected-country-code="US"
+  />
+</div>
+
+```vue
+<div class="spr-mt-3">
+  <spr-input-contact-number
+    v-model="inputValue"
+    label="Contact Number"
+    pre-selected-country-code="US"
+  />
+</div>
+```
+
 ### Dropdown Input
 
 This is the one used in the dropdown component. If you want to implement a dropdown, you can refer to the <a href="/documentation/components/dropdown.html" target="_blank">Dropdown Component</a>.
 
 <div>
-  <spr-input-dropdown v-model="inputValue.input18" label="Dropdown Input" placeholder="Select an item ..." readonly />
+  <spr-input-dropdown v-model="inputValue.input19" label="Dropdown Input" placeholder="Select an item ..." readonly />
 </div>
 
 ```vue
@@ -623,13 +647,16 @@ const inputValue = ref({
   input16: '',
   input17: '',
   input18: '',
+  input19: '',
 });
 
 const selectedCountryCode = ref('');
+const selectedCountryCallingCode = ref('');
 const contactNumberErrors = ref<{ title: string; message: string }[]>([]);
 
 const handleSelectedCountryCallingCode = (value: string) => {
-  selectedCountryCode.value = value;
+  selectedCountryCode.value = value.countryCode;
+  selectedCountryCallingCode.value = value.countryCallingCode;
 };
 
 const handleContactNumberErrors = (errors: { title: string; message: string }[]) => {
@@ -637,8 +664,8 @@ const handleContactNumberErrors = (errors: { title: string; message: string }[])
 };
 
 const parseInternationalNumber = computed(() => {
-  if (selectedCountryCode && inputValue.value.input17) {
-    const formattedNumber = `+${selectedCountryCode.value}${inputValue.value.input17.replace(/[^0-9]/g, '')}`;
+  if (inputValue.value.input17) {
+    const formattedNumber = `+${selectedCountryCallingCode.value}${inputValue.value.input17.replace(/[^0-9]/g, '')}`;
 
     return formattedNumber;
   }

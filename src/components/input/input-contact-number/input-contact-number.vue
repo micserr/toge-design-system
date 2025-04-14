@@ -20,7 +20,7 @@
         :width="!props.disabledCountryCallingCode ? '45px' : '35px'"
         popper-width="330px"
         :disabled="props.disabled || props.disabledCountryCallingCode"
-        @get-selected-item="handleSelectedCountries"
+        @update:model-value="handleSelectedCountryCallingCode"
         @get-popper-state="handlePopperState"
       >
         <span :class="inputContactNumberClasses.countryCallingCodeClasses">
@@ -52,7 +52,7 @@ const {
   selectedCountry,
   popperState,
   handleContactNumberInput,
-  handleSelectedCountries,
+  handleSelectedCountryCallingCode,
   formatContactNumber,
   handleUpdateModelValue,
   handlePopperState,

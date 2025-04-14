@@ -562,6 +562,47 @@ const navLinks = ref({
 });
 </script>
 ```
+### Manual URL Change Handling
+
+When a user manually changes the URL, the `active-nav` property will not automatically update. This is because `active-nav` is typically assigned through clicks on navigation icons, and manually typing a URL does not trigger the same logic.
+
+To handle this, you can use the `Router Meta Field`. Add an `activeNav` object inside the route's `meta` field and watch for route changes. Then, assign the `activeNav` object from the route meta to the `active-nav` property of your sidenav.
+
+```vue
+const routes = [
+  {
+    path: 'workflows',
+    name: 'workflows',
+    meta:{
+      activeNav: {
+        parentNav: 'Flow',
+        menu: '',
+        submenu: '',
+      }
+    }
+  },
+]
+```
+```vue
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const activeNav = ref({
+  parentNav: '',
+  menu: '',
+  submenu: '',
+});
+
+router.beforeEach((to) => {
+  if (to.meta.activeNav) {
+    activeNav.value = to.meta.activeNav;
+  }
+});
+</script>
+
+```
 
 ## Quick Actions
 

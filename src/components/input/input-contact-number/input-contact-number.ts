@@ -16,8 +16,9 @@ export const COUNTRY_OPTIONS: CountryOption[] = getCountries().map((countryCode)
 
   return {
     text: `${countryName} (+${countryCallingCode})`,
-    value: countryCallingCode,
+    value: countryCode,
     countryCode: countryCode,
+    countryCallingCode: countryCallingCode,
   };
 });
 
@@ -29,6 +30,10 @@ export const inputContactNumberPropTypes = {
   placeholder: {
     type: String,
     default: 'Enter Phone Number',
+  },
+  preSelectedCountryCode: {
+    type: String,
+    default: 'PH',
   },
   disabled: {
     type: Boolean,
@@ -47,6 +52,7 @@ export const inputContactNumberEmitTypes = {
     countryCallingCode: string;
   }): value is { countryCode: string; countryCallingCode: string } =>
     typeof value.countryCode === 'string' && typeof value.countryCallingCode === 'string',
+  getParsedInternationalNumber: (value: string): value is string => typeof value === 'string',
   getContactNumberErrors: (value: Array<{ title: string; message: string }>) => {
     return (
       Array.isArray(value) &&

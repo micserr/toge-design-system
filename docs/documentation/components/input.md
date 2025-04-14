@@ -468,8 +468,8 @@ Since the v-model output is not in an international format (e.g., +63XXXXXXXXXXX
     };
 
     const parseInternationalNumber = computed(() => {
-      if (selectedCountryCallingCode && inputValueContactNumber.value) {
-        const formattedNumber = `+${selectedCountryCallingCode}${inputValueContactNumber.value.replace(/[^0-9]/g, '')}`;
+      if (inputValueContactNumber.value) {
+        const formattedNumber = `+${selectedCountryCallingCode.value}${inputValueContactNumber.value.replace(/[^0-9]/g, '')}`;
 
         return formattedNumber;
       }
@@ -480,12 +480,32 @@ Since the v-model output is not in an international format (e.g., +63XXXXXXXXXXX
 </template>
 ```
 
+#### Set Pre Selected Country
+
+<div class="spr-mt-3">
+  <spr-input-contact-number
+    v-model="inputValue.input18"
+    label="Contact Number"
+    pre-selected-country-code="US"
+  />
+</div>
+
+```vue
+<div class="spr-mt-3">
+  <spr-input-contact-number
+    v-model="inputValue"
+    label="Contact Number"
+    pre-selected-country-code="US"
+  />
+</div>
+```
+
 ### Dropdown Input
 
 This is the one used in the dropdown component. If you want to implement a dropdown, you can refer to the <a href="/documentation/components/dropdown.html" target="_blank">Dropdown Component</a>.
 
 <div>
-  <spr-input-dropdown v-model="inputValue.input18" label="Dropdown Input" placeholder="Select an item ..." readonly />
+  <spr-input-dropdown v-model="inputValue.input19" label="Dropdown Input" placeholder="Select an item ..." readonly />
 </div>
 
 ```vue
@@ -627,6 +647,7 @@ const inputValue = ref({
   input16: '',
   input17: '',
   input18: '',
+  input19: '',
 });
 
 const selectedCountryCode = ref('');
@@ -643,8 +664,8 @@ const handleContactNumberErrors = (errors: { title: string; message: string }[])
 };
 
 const parseInternationalNumber = computed(() => {
-  if (selectedCountryCode && inputValue.value.input17) {
-    const formattedNumber = `+${selectedCountryCode.value}${inputValue.value.input17.replace(/[^0-9]/g, '')}`;
+  if (inputValue.value.input17) {
+    const formattedNumber = `+${selectedCountryCallingCode.value}${inputValue.value.input17.replace(/[^0-9]/g, '')}`;
 
     return formattedNumber;
   }

@@ -95,20 +95,12 @@ export default defineConfig({
               link: '/documentation/components/card',
             },
             {
-              text: 'Checkbox',
-              link: '/documentation/components/checkbox',
-            },
-            {
               text: 'Chips',
               link: '/documentation/components/chips',
             },
             {
               text: 'Collapsible',
               link: '/documentation/components/collapsible',
-            },
-            {
-              text: 'Date Picker',
-              link: '/documentation/components/date-picker',
             },
             {
               text: 'Dropdown',
@@ -119,20 +111,12 @@ export default defineConfig({
               link: '/documentation/components/empty-state',
             },
             {
-              text: 'File Upload',
-              link: '/documentation/components/file-upload',
-            },
-            {
               text: 'Filter',
               link: '/documentation/components/filter',
             },
             {
               text: 'Floating Action',
               link: '/documentation/components/floating-action',
-            },
-            {
-              text: 'Input',
-              link: '/documentation/components/input',
             },
             {
               text: 'List',
@@ -151,20 +135,12 @@ export default defineConfig({
               link: '/documentation/components/progress-bar',
             },
             {
-              text: 'Radio',
-              link: '/documentation/components/radio',
-            },
-            {
               text: 'Sidenav',
               link: '/documentation/components/sidenav',
             },
             {
               text: 'Sidepanel',
               link: '/documentation/components/sidepanel',
-            },
-            {
-              text: 'Slider',
-              link: '/documentation/components/slider',
             },
             {
               text: 'Snackbar',
@@ -175,10 +151,6 @@ export default defineConfig({
               link: '/documentation/components/status',
             },
             {
-              text: 'Switch',
-              link: '/documentation/components/switch',
-            },
-            {
               text: 'Table',
               link: '/documentation/components/table',
             },
@@ -187,16 +159,56 @@ export default defineConfig({
               link: '/documentation/components/tabs',
             },
             {
+              text: 'Tooltip',
+              link: '/documentation/components/tooltip',
+            },
+          ],
+        },
+        {
+          text: 'Forms',
+          items: [
+            {
+              text: 'Checkbox',
+              link: '/documentation/components/checkbox',
+            },
+
+            {
+              text: 'Date Picker',
+              link: '/documentation/components/date-picker',
+            },
+
+            {
+              text: 'File Upload',
+              link: '/documentation/components/file-upload',
+            },
+
+            {
+              text: 'Input',
+              link: '/documentation/components/input',
+            },
+            {
+              text: 'Radio',
+              link: '/documentation/components/radio',
+            },
+
+            {
+              text: 'Slider',
+              link: '/documentation/components/slider',
+            },
+
+            {
+              text: 'Switch',
+              link: '/documentation/components/switch',
+            },
+
+            {
               text: 'Textarea',
               link: '/documentation/components/textarea',
             },
+
             {
               text: 'Time Picker',
               link: '/documentation/components/time-picker',
-            },
-            {
-              text: 'Tooltip',
-              link: '/documentation/components/tooltip',
             },
           ],
         },

@@ -3,13 +3,9 @@ import { useVModel } from '@vueuse/core';
 
 import classNames from 'classnames';
 
-import parsePhoneNumber, { CountryCode } from 'libphonenumber-js';
+import parsePhoneNumber, { getCountries, getCountryCallingCode, CountryCode } from 'libphonenumber-js';
 
-import {
-  CountryOption,
-  type InputContactNumberEmitTypes,
-  type InputContactNumberPropTypes,
-} from './input-contact-number';
+import { type InputContactNumberEmitTypes, type InputContactNumberPropTypes } from './input-contact-number';
 
 interface InputContactNumberClasses {
   countryCallingCodeClasses: string;
@@ -56,25 +52,28 @@ export const useInputContactNumber = (
     emit('getContactNumberErrors', []);
 
     if (value.length > 0) {
-      handleContactNumberInputFormat();
+      formatContactNumber();
     }
   };
 
-  const handleContactNumberInputFormat = () => {
-    formatContactNumber();
-  };
+  const handleSelectedCountryCallingCode = (countryCallingCode: string[]) => {
+    const countryCode = getCountries().filter(
+      (country) => getCountryCallingCode(country) === String(countryCallingCode[0]),
+    );
 
-  const handleSelectedCountries = (item: CountryOption) => {
     selectedCountry.value = {
-      countryCode: [item.countryCode],
-      countryCallingCode: [item.value],
+      countryCode: [countryCode[0]],
+      countryCallingCode: countryCallingCode,
     };
 
     emit('getContactNumberErrors', []);
 
     formatContactNumber();
 
-    emit('getSelectedCountryCallingCode', selectedCountry.value.countryCallingCode[0]);
+    emit('getSelectedCountryCallingCode', {
+      countryCode: selectedCountry.value.countryCode[0],
+      countryCallingCode: selectedCountry.value.countryCallingCode[0],
+    });
   };
 
   const formatContactNumber = () => {
@@ -112,7 +111,10 @@ export const useInputContactNumber = (
   };
 
   onMounted(() => {
-    emit('getSelectedCountryCallingCode', selectedCountry.value.countryCallingCode[0]);
+    emit('getSelectedCountryCallingCode', {
+      countryCode: selectedCountry.value.countryCode[0],
+      countryCallingCode: selectedCountry.value.countryCallingCode[0],
+    });
   });
 
   return {
@@ -121,7 +123,7 @@ export const useInputContactNumber = (
     selectedCountry,
     popperState,
     handleContactNumberInput,
-    handleSelectedCountries,
+    handleSelectedCountryCallingCode,
     formatContactNumber,
     handleUpdateModelValue,
     handlePopperState,

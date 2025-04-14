@@ -3,14 +3,12 @@ import type { ExtractPropTypes } from 'vue';
 import { getCountries, getCountryCallingCode } from 'libphonenumber-js';
 import { countries } from 'countries-list';
 
-// Text and value in CCA2 country code
 export interface CountryOption {
   text: string;
   value: string;
   countryCode: string;
 }
 
-// List of countries with their CCA2 country code
 export const COUNTRY_OPTIONS: CountryOption[] = getCountries().map((countryCode) => {
   const country = countries[countryCode as keyof typeof countries];
   const countryName = country ? country.name : countryCode;
@@ -44,7 +42,11 @@ export const inputContactNumberPropTypes = {
 
 export const inputContactNumberEmitTypes = {
   'update:modelValue': (value: string): value is string => typeof value === 'string',
-  getSelectedCountryCallingCode: (value: string): value is string => typeof value === 'string',
+  getSelectedCountryCallingCode: (value: {
+    countryCode: string;
+    countryCallingCode: string;
+  }): value is { countryCode: string; countryCallingCode: string } =>
+    typeof value.countryCode === 'string' && typeof value.countryCallingCode === 'string',
   getContactNumberErrors: (value: Array<{ title: string; message: string }>) => {
     return (
       Array.isArray(value) &&
@@ -59,5 +61,17 @@ export const inputContactNumberEmitTypes = {
   },
 };
 
-export type InputContactNumberEmitTypes = ExtractPropTypes<typeof inputContactNumberEmitTypes>;
+export interface InputContactNumberEmit {
+  (event: 'update:modelValue', value: string): void;
+  (
+    event: 'getSelectedCountryCallingCode',
+    value: {
+      countryCode: string[];
+      countryCallingCode: string[];
+    },
+  ): void;
+  (event: 'getContactNumberErrors', value: Array<{ title: string; message: string }>): void;
+}
+
 export type InputContactNumberPropTypes = ExtractPropTypes<typeof inputContactNumberPropTypes>;
+export type InputContactNumberEmitTypes = typeof inputContactNumberEmitTypes;

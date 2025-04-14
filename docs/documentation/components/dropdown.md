@@ -634,7 +634,7 @@ You can modify the width of the dropdown component in two ways: by adjusting the
     :menu-list="menuList"
     width="50%"
     popper-width="200px"
-    @get-selected-item="handleSelectedItem"
+    @update:model-value="handleSelectedItem"
   >
     <spr-input v-model="inputTextModel" label="Dropdown Label" placeholder="Select item..." readonly />
   </spr-dropdown>
@@ -660,7 +660,7 @@ const menuList = ref([
 ]);
 
 const handleSelectedItem = (selectedItem) => {
-  inputTextModel.value[inputModel] = menuList.value.find((item) => item.value === selectedItem[0]).text;
+  inputTextModel.value = menuList.value.find((item) => item.value === selectedItem[0]).text;
 };
 </script>
 ```

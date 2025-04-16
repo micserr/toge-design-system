@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.15.14 (2025-04-16)
+
+- Fix
+  - Enhance collapsible component to prevent overlap and support dynamic content ([#a9102236](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a91022369ec1bf518e5f222b98a5d330ecadf1ad?refName=refs%2Fheads%2F2025%2Fbugfix%2Fjames%2Fcollapsible) by @jmanalang)
+
 ## 1.15.13 (2025-04-14)
 
 - Fix

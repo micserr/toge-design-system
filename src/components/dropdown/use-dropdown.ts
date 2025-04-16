@@ -68,8 +68,6 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
 
   // Handle selected item for ladderized list component
   const handleSelectedLadderizedItem = (selectedItems: string[]) => {
-    emit('update:modelValue', selectedItems);
-
     // If item is from last sublevel, close the dropdown
     if (checkIfItemFromLastSublevel(selectedItems)) {
       dropdownPopperState.value = false;

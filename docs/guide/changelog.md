@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.15.14 (2025-04-16)
+
+- Fix
+  -Removed duplicate emit update on ladderized dropdown ([#a155df69](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a155df69f50b20cb680985625953af34219b2d9f?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FREMOVE_DUPLICATE_EMIT_UPDATE_ON_LADDERIZED_DROPDOWN) by @jbanares)
+
 ## 1.15.13 (2025-04-14)
 
 - Fix

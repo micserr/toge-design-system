@@ -15,8 +15,8 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     if (!sortField.value || sortOrder.value) return dataTable.value;
 
     const sorted = [...dataTable.value].sort((a, b) => {
-      const fieldA = a[sortField.value].title.toLowerCase();
-      const fieldB = b[sortField.value].title.toLowerCase();
+      const fieldA = extractLowerCasedTitle(a[sortField.value]);
+      const fieldB = extractLowerCasedTitle(b[sortField.value]);
 
       if (fieldA < fieldB) return tableSortOrder.value === 'asc' ? -1 : 1;
       if (fieldA > fieldB) return tableSortOrder.value === 'asc' ? 1 : -1;
@@ -56,16 +56,24 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     return fullHeight.value ? 'large' : 'small';
   });
 
+  // Value is currently either a string, an object with a title property, or an array of objects with a title property
+  const extractLowerCasedTitle = (value: string | { title: string } | Array<{ title: string }>) => {
+    if (typeof value === 'string') return value.toLowerCase();  
+    else if (typeof value === 'object' && !Array.isArray(value) && value !== null) return value.title.toLowerCase();
+    else if (Array.isArray(value) && value.length > 0) return value[0].title.toLowerCase();
+    return '';
+  }
+
   const getTableClasses = computed(() => {
     const tableWrapperClasses = classNames(
-      'spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid spr-table-wrapper',
+      'spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid spr-table-wrapper spr-relative',
       {
-        'spr-h-[100vh]': fullHeight.value, // Set wrapper height to full screen
-        'spr-h-[400px]': !fullHeight.value,
+        'spr-min-h-[100vh]': fullHeight.value, // Set wrapper height to full screen
+        'spr-min-h-[400px]': !fullHeight.value,
       },
     );
     const tableFooterClasses = classNames(
-      'spr-border-color-weak spr-border-t spr-border-solid spr-px-size-spacing-sm spr-py-size-spacing-xs',
+      'spr-absolute spr-w-full spr-bottom-0 spr-left-0',
       {
         'spr-background-color-surface': props.variant === 'surface',
         'spr-background-color': props.variant === 'white',
@@ -102,11 +110,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     const tableRowActionClasses =
       'spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-3';
 
-    const getTableHeight = classNames({
-      'spr-h-[100vh]': fullHeight.value, // Set table container height to full screen
-      'spr-h-[280px]': !fullHeight.value && slots.footer,
-      'spr-h-[360px]': !fullHeight.value && !slots.footer,
-    });
+    const tableBackgroundClasses = classNames('spr-h-full');
 
     const tableBodyClasses = classNames({
       'spr-overflow-y-auto spr-h-[calc(85vh-150px)] md:spr-h-[calc(75vh-150px)] sm:spr-h-[calc(70vh-150px)]':
@@ -135,7 +139,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       tableRowClasses,
       tableDataClasses,
       tableRowActionClasses,
-      getTableHeight,
+      tableBackgroundClasses,
       tableBodyClasses,
       tableFooterClasses,
       emptyStateClasses,

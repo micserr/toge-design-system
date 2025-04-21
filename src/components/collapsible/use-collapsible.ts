@@ -1,4 +1,4 @@
-import { computed, toRefs, nextTick, SetupContext } from 'vue';
+import { computed, toRefs, nextTick, type SetupContext } from 'vue';
 import type { CollapsibleProps, CollapsibleEmitTypes } from './collapsible';
 
 export const useCollapsible = (props: CollapsibleProps, emit: SetupContext<CollapsibleEmitTypes>['emit']) => {
@@ -9,7 +9,8 @@ export const useCollapsible = (props: CollapsibleProps, emit: SetupContext<Colla
   }));
 
   const contentStyle = computed(() => ({
-    transition: `max-height ${transitionDuration.value}ms ease-in-out, opacity ${transitionDuration.value}ms ease-in-out`,
+    overflow: 'hidden',
+    transition: `max-height ${transitionDuration.value}ms ease-in-out`,
   }));
 
   const toggleCollapsible = () => {
@@ -17,25 +18,29 @@ export const useCollapsible = (props: CollapsibleProps, emit: SetupContext<Colla
   };
 
   const onBeforeEnter = (el: Element) => {
-    const element = el as HTMLElement;
-    element.style.maxHeight = '0px';
-    element.style.opacity = '0';
+    (el as HTMLElement).style.maxHeight = '0px';
   };
 
   const onEnter = async (el: Element, done: () => void) => {
     await nextTick();
     const element = el as HTMLElement;
-    element.style.transition = `max-height ${transitionDuration.value}ms ease-in-out, opacity ${transitionDuration.value}ms ease-in-out`;
     element.style.maxHeight = `${element.scrollHeight}px`;
-    element.style.opacity = '1';
-    setTimeout(done, transitionDuration.value);
+    setTimeout(() => {
+      element.style.maxHeight = ''; // clear inline style after transition
+      done();
+    }, transitionDuration.value);
+  };
+
+  const onBeforeLeave = (el: Element) => {
+    const element = el as HTMLElement;
+    element.style.maxHeight = `${element.scrollHeight}px`;
   };
 
   const onLeave = (el: Element, done: () => void) => {
     const element = el as HTMLElement;
-    element.style.transition = `max-height ${transitionDuration.value}ms ease-in-out, opacity ${transitionDuration.value}ms ease-in-out`;
+    // Force reflow
+    void element.offsetHeight;
     element.style.maxHeight = '0px';
-    element.style.opacity = '0';
     setTimeout(done, transitionDuration.value);
   };
 
@@ -45,6 +50,7 @@ export const useCollapsible = (props: CollapsibleProps, emit: SetupContext<Colla
     toggleCollapsible,
     onBeforeEnter,
     onEnter,
+    onBeforeLeave,
     onLeave,
   };
 };

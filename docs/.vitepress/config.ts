@@ -171,17 +171,14 @@ export default defineConfig({
               text: 'Checkbox',
               link: '/documentation/components/checkbox',
             },
-
             {
               text: 'Date Picker',
               link: '/documentation/components/date-picker',
             },
-
             {
               text: 'File Upload',
               link: '/documentation/components/file-upload',
             },
-
             {
               text: 'Input',
               link: '/documentation/components/input',
@@ -190,22 +187,18 @@ export default defineConfig({
               text: 'Radio',
               link: '/documentation/components/radio',
             },
-
             {
               text: 'Slider',
               link: '/documentation/components/slider',
             },
-
             {
               text: 'Switch',
               link: '/documentation/components/switch',
             },
-
             {
               text: 'Textarea',
               link: '/documentation/components/textarea',
             },
-
             {
               text: 'Time Picker',
               link: '/documentation/components/time-picker',

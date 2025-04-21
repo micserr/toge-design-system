@@ -14,6 +14,7 @@
 
 <script lang="ts" setup>
 import SprLozenge from '@/components/lozenge/lozenge.vue';
+import { Icon } from '@iconify/vue';
 
 
 import { tableLozengesTitlePropTypes } from '@/components/table/table-lozenge-title/table-lozenge-title';

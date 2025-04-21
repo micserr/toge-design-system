@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.15.16 (2025-04-21)
+
+- Fix
+  - Table Footer position and Sorting on special titles ([#640c3298](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/640c32982580cfaba926612f5e6843acd43fe173?refName=refs%2Fheads%2F2025%2FFIX%2FXyrk%2FTABLE_FOOTER_AND_SORT_TITLES) by @jfabula)
+
+
 ## 1.15.15 (2025-04-16)
 
 - Fix

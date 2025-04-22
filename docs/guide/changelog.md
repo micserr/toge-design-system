@@ -1,10 +1,18 @@
 # Changelog
 
+## 1.15.17 (2025-04-21)
+
+- Fix
+
+  - Commit cc4d678a: added avatar ([#cc4d678a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cc4d678a66eaaf7420b141ae0b00fcc21b178b5d?refName=refs/heads/2025/Fix/andrea/shift-assignment-component) by @adestajo)
+
+- Feat
+  - Commit 6db0b9ae: feat: Enhance input and filter components with new event handling and properties ([#6db0b9ae](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6db0b9aed2b06c4f192cc077a0ad4d6c2d5f95d6?refName=refs/heads/2025/Fix/andrea/shift-assignment-component) by @adestajo)
+
 ## 1.15.16 (2025-04-21)
 
 - Fix
   - Table Footer position and Sorting on special titles ([#640c3298](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/640c32982580cfaba926612f5e6843acd43fe173?refName=refs%2Fheads%2F2025%2FFIX%2FXyrk%2FTABLE_FOOTER_AND_SORT_TITLES) by @jfabula)
-
 
 ## 1.15.15 (2025-04-16)
 

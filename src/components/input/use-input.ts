@@ -121,9 +121,17 @@ export const useInput = (
     modelValue.value = (event.target as HTMLInputElement).value;
   };
 
+  const disableClickEvent = (event: Event) => {
+    if (disabled.value) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  };
+
   return {
     inputTextRef,
     inputClasses,
     onInput,
+    disableClickEvent,
   };
 };

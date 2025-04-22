@@ -53,22 +53,37 @@ export const filterPropTypes = {
     type: String,
     default: '',
   },
+  searchFilter: {
+    type: String,
+    default: '',
+  },
   width: {
     type: String,
     default: '100%',
-  },
-  completed: {
-    type: Boolean,
-    default: true,
   },
   deselected: {
     type: String,
     default: '',
   },
+  hasSearchApi: {
+    type: Boolean,
+    default: false,
+  },
+  hasAvatar: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export interface FilterPropsInterface {
-  optionDetails: { isSelected: boolean; text: string; value: string; column?: string; subtext?: string };
+  optionDetails: {
+    isSelected: boolean;
+    text: string;
+    value: string;
+    column?: string;
+    subtext?: string;
+    avatar?: string;
+  };
   options: Array<FilterPropsInterface['optionDetails']>;
   filterDetails: { isFilterVisible?: boolean; columnName: string; field: string; count?: number; selected?: object };
   filterMenu: Array<FilterPropsInterface['filterDetails']>;
@@ -79,6 +94,7 @@ export const filterEmitTypes = {
   'update:modelValue': (value: FilterPropsInterface['options']): value is FilterPropsInterface['options'] =>
     Array.isArray(value),
   'update:search': (value: string) => typeof value === 'string',
+  'update:searchFilter': (value: string) => typeof value === 'string',
   selectedFilter: (value: FilterPropsInterface['options']): value is FilterPropsInterface['options'] =>
     Array.isArray(value),
   infiniteScrollTrigger: Boolean,

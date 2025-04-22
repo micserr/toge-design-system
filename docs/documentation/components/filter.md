@@ -2,7 +2,17 @@
 outline: 'deep'
 ---
 
-# Filter
+# Filter Component
+
+The `Filter` supports advanced filtering options, infinite scrolling, and dynamic data handling.
+
+## Features
+
+- Multi-select filtering with options.
+- Advanced filter menu with nested filters.
+- Infinite scrolling support.
+- Customizable UI with slots and props.
+- Avatar support for options.
 
 ## Basic Usage
 
@@ -11,12 +21,12 @@ outline: 'deep'
   <span>Selected: {{selectedOptions}}</span>
   <span>searchValue: {{searchValue}}</span>
 </div>
-  <spr-filter v-model="selectedOptions"  :options="options" label="Search"  v-model:search="searchValue" id="search-filter"/>
+  <spr-filter v-model="selectedOptions"  :options="options" label="Search"  v-model:search="searchValue" hasAvatar/>
 </div>
 
 ```vue
 <template>
-  <spr-filter v-model="selectedOptions" v-model:search="searchValue" :options="options" label="Search" />
+  <spr-filter v-model="selectedOptions" v-model:search="searchValue" :options="options" label="Search" hasAvatar />
 </template>
 
 <script setup>
@@ -167,7 +177,175 @@ const removeSelected = (removeSelected) => {
 </script>
 ```
 
-## Slots
+## API Reference
+
+### Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>modelValue</code></td>
+      <td><code>Array</code> or <code>String</code></td>
+      <td><code>[]</code></td>
+      <td>The selected filter values.</td>
+    </tr>
+    <tr>
+      <td><code>options</code></td>
+      <td><code>Array</code></td>
+      <td><code>[]</code></td>
+      <td>The list of filter options.</td>
+    </tr>
+    <tr>
+      <td><code>label</code></td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
+      <td>Label for the filter input.</td>
+    </tr>
+    <tr>
+      <td><code>placeholder</code></td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
+      <td>Placeholder text for the filter input.</td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td><code>Boolean</code></td>
+      <td><code>false</code></td>
+      <td>Disables the filter input.</td>
+    </tr>
+    <tr>
+      <td><code>filterable</code></td>
+      <td><code>Boolean</code></td>
+      <td><code>false</code></td>
+      <td>Enables the advanced filter menu.</td>
+    </tr>
+    <tr>
+      <td><code>id</code></td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
+      <td>Unique identifier for the filter.</td>
+    </tr>
+    <tr>
+      <td><code>filterMenu</code></td>
+      <td><code>Array</code></td>
+      <td><code>[]</code></td>
+      <td>List of advanced filter menu options.</td>
+    </tr>
+    <tr>
+      <td><code>filterData</code></td>
+      <td><code>Array</code></td>
+      <td><code>[]</code></td>
+      <td>Data for the advanced filter menu.</td>
+    </tr>
+    <tr>
+      <td><code>loading</code></td>
+      <td><code>Boolean</code></td>
+      <td><code>false</code></td>
+      <td>Indicates if the filter is in a loading state.</td>
+    </tr>
+    <tr>
+      <td><code>filling</code></td>
+      <td><code>Boolean</code></td>
+      <td><code>false</code></td>
+      <td>Indicates if the filter is in a filling state.</td>
+    </tr>
+    <tr>
+      <td><code>search</code></td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
+      <td>Search query for the main filter.</td>
+    </tr>
+    <tr>
+      <td><code>searchFilter</code></td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
+      <td>Search query for the advanced filter menu.</td>
+    </tr>
+    <tr>
+      <td><code>width</code></td>
+      <td><code>String</code></td>
+      <td><code>'100%'</code></td>
+      <td>Width of the filter component.</td>
+    </tr>
+    <tr>
+      <td><code>deselected</code></td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
+      <td>Value of the deselected filter option.</td>
+    </tr>
+    <tr>
+      <td><code>hasSearchApi</code></td>
+      <td><code>Boolean</code></td>
+      <td><code>false</code></td>
+      <td>Enables external search API integration.</td>
+    </tr>
+    <tr>
+      <td><code>hasAvatar</code></td>
+      <td><code>Boolean</code></td>
+      <td><code>false</code></td>
+      <td>Enables avatar display for filter options.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Payload Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>getFilterData</code></td>
+      <td><code>String</code></td>
+      <td>Triggered when fetching filter data for a specific column.</td>
+    </tr>
+    <tr>
+      <td><code>update:modelValue</code></td>
+      <td><code>Array</code></td>
+      <td>Updates the selected filter values.</td>
+    </tr>
+    <tr>
+      <td><code>update:search</code></td>
+      <td><code>String</code></td>
+      <td>Updates the search query for the main filter.</td>
+    </tr>
+    <tr>
+      <td><code>update:searchFilter</code></td>
+      <td><code>String</code></td>
+      <td>Updates the search query for the advanced filter menu.</td>
+    </tr>
+    <tr>
+      <td><code>selectedFilter</code></td>
+      <td><code>Array</code></td>
+      <td>Emits the selected filter options.</td>
+    </tr>
+    <tr>
+      <td><code>infiniteScrollTrigger</code></td>
+      <td><code>Boolean</code></td>
+      <td>Triggered when infinite scrolling is activated for the main filter.</td>
+    </tr>
+    <tr>
+      <td><code>infiniteScrollFilterTrigger</code></td>
+      <td><code>String</code></td>
+      <td>Triggered when infinite scrolling is activated for the advanced filter.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
 
 <table>
   <thead>
@@ -178,152 +356,37 @@ const removeSelected = (removeSelected) => {
   </thead>
   <tbody>
     <tr>
-      <td>loading-state</td>
-      <td>Slot for the loading state main option.</td>
+      <td><code>default</code></td>
+      <td>Slot for customizing the filter input.</td>
     </tr>
     <tr>
-      <td>empty-state</td>
-      <td>Slot for the empty state main option.</td>
+      <td><code>loading</code></td>
+      <td>Slot for displaying a loading state in the advanced filter menu.</td>
     </tr>
     <tr>
-      <td>loading</td>
-      <td>Slot for the loading state.</td>
+      <td><code>empty</code></td>
+      <td>Slot for displaying an empty state in the advanced filter menu.</td>
     </tr>
     <tr>
-      <td>empty</td>
-      <td>Slot for the empty state.</td>
+      <td><code>loading-state</code></td>
+      <td>Slot for displaying a loading state in the main filter.</td>
+    </tr>
+    <tr>
+      <td><code>empty-state</code></td>
+      <td>Slot for displaying an empty state in the main filter.</td>
     </tr>
   </tbody>
 </table>
 
-## API Reference
+## Advanced Features
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>modelValue</td>
-      <td>Selected value(s)</td>
-      <td>Array | String</td>
-      <td>[]</td>
-    </tr>
-    <tr>
-      <td>search</td>
-      <td> The search text.</td>
-      <td>String</td>
-      <td>''</td>
-    </tr>
-    <tr>
-      <td>options</td>
-      <td>List of options</td>
-      <td>Array</td>
-      <td>[]</td>
-    </tr>
-    <tr>
-      <td>label</td>
-      <td>Label for the select</td>
-      <td>String</td>
-      <td>''</td>
-    </tr>
-    <tr>
-      <td>placeholder</td>
-      <td>The placeholder text for the input field.</td>
-      <td>String</td>
-      <td>''</td>
-    </tr>
-    <tr>
-      <td>disabled</td>
-      <td>Disable the filter</td>
-      <td>Boolean</td>
-      <td>false</td>
-    </tr>
-    <tr>
-      <td>filterable</td>
-      <td>Whether the filter menu is enabled.</td>
-      <td>Boolean</td>
-      <td>false</td>
-    </tr>
-    <tr>
-      <td>id</td>
-      <td>ID for the select</td>
-      <td>String</td>
-      <td>''</td>
-    </tr>
-    <tr>
-      <td>filterMenu</td>
-      <td>The list of filter menu options.</td>
-      <td>Array</td>
-      <td>[]</td>
-    </tr>
-    <tr>
-      <td>filterData</td>
-      <td>The list of filter data options.</td>
-      <td>Array</td>
-      <td>[]</td>
-    </tr>
-    <tr>
-      <td>loading</td>
-      <td>Whether the filter menu is enabled.</td>
-      <td>Boolean</td>
-      <td>false</td>
-    </tr>
-    <tr>
-      <td>filling</td>
-      <td>Loadimg state for main selection</td>
-      <td>Boolean</td>
-      <td>false</td>
-    </tr>
-    <tr>
-      <td>deselected</td>
-      <td>Pass ID to deselect option outside of the component</td>
-      <td>String</td>
-      <td>''</td>
-    </tr>
-    <tr>
-      <td>@update:modelValue</td>
-      <td>Emitted when the selected value(s) change</td>
-      <td>function</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>@getFilterData</td>
-      <td>Emitted to fetch filter data</td>
-      <td>function</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>@update:selected</td>
-      <td>Emitted when a filter option is selected</td>
-      <td>function</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>@selectedFilter</td>
-      <td>Emitted when a filter is applied.</td>
-      <td>function</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>@infiniteScrollFilterTrigger</td>
-      <td>Emitted when infinite scroll is triggered.</td>
-      <td>function</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>infiniteScrollTrigger</td>
-      <td>Emitted when infinite scroll is triggered.</td>
-      <td>function</td>
-      <td>-</td>
-    </tr>
-  </tbody>
-</table>
+### Infinite Scrolling
+
+The component supports infinite scrolling for both the main filter and the advanced filter menu. Use the `infiniteScrollTrigger` and `infiniteScrollFilterTrigger` events to handle data fetching.
+
+### Avatar Support
+
+Enable the `hasAvatar` prop to display avatars for filter options. Provide an `avatar` property in the `options` array.
 
 <script setup>
 import { ref } from 'vue';

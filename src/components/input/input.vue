@@ -24,7 +24,7 @@
       <div v-if="$slots.trailing" :class="inputClasses.trailingSlotClasses">
         <slot name="trailing" />
       </div>
-      <div v-if="$slots.icon" :class="inputClasses.iconSlotClasses">
+      <div v-if="$slots.icon" :class="inputClasses.iconSlotClasses" @click="disableClickEvent">
         <slot name="icon" />
       </div>
     </div>
@@ -50,7 +50,7 @@ const emit = defineEmits(inputEmitTypes);
 const props = defineProps(inputPropTypes);
 const slots = useSlots();
 
-const { inputClasses, inputTextRef, onInput } = useInput(props, emit, slots);
+const { inputClasses, inputTextRef, onInput, disableClickEvent } = useInput(props, emit, slots);
 </script>
 
 <style scoped>

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.16.0 (2025-02-23)
+
+- Feat
+
+  - Added Search functionality to ladderized dropdown ([d4da9803](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d4da98037c23e8a1653b668d6df44ebf097db33d?refName=refs%2Fheads%2F2025%2FFEATURE%2FDUSTIN%2FLADDERIZED_DROPDOWN_SEARCH) by @despiritu)
+
 ## 1.15.17 (2025-04-21)
 
 - Fix

@@ -1030,6 +1030,140 @@ const handleLadderizedDropdown = (value) => {
 </script>
 ```
 
+## Ladderized Dropdown Search
+
+Ladderized dropdown search allows users to filter items in a hierarchical manner. This feature is particularly useful when dealing with large datasets, as it enables users to quickly locate specific items within nested structures. Can be used if the `ladderized` prop is set to `true` and `searchString` prop has a value.
+
+::: danger LIMITATION
+Ladderized dropdown search does not support multi-select and can only search through two hierarchical levels (root level and sublevel). 
+:::
+
+<div>
+  <spr-dropdown id="dropdown28" :menu-list="mockDropdownData" v-model="dropdownModel.dropdown28" :ladderized="true" :search-string="inputTextModel.inputText28" @update:model-value="handleLadderizedDropdown">
+    <spr-input v-model="inputTextModel.inputText28" label="Ladderized Dropdown" placeholder="Select item..." />
+  </spr-dropdown>
+</div>
+
+```vue {7-8}
+<template>
+  <div>
+    <spr-dropdown
+      id="dropdown28"
+      :menu-list="mockDropdownData"
+      v-model="dropdownModel"
+      :ladderized="true"
+      :search-string="inputTextModel" 
+      @update:model-value="handleLadderizedDropdown"
+    >
+      <spr-input v-model="inputTextModel" label="Ladderized Dropdown" placeholder="Select item..." />
+    </spr-dropdown>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const dropdownModel = ref([]);
+const inputTextModel = ref('');
+
+const mockDropdownData = [
+  {
+    text: 'Lion',
+    value: 'lion',
+    subtext: 'King of the jungle',
+    sublevel: [
+      {
+        text: 'Cub',
+        value: 'cub',
+        subtext: 'Young lion',
+        sublevel: [  // [!code error]cannot be searched
+          {// [!code error]
+            text: 'Cub 1',// [!code error]
+            value: 'cub1',// [!code error]
+          },// [!code error]
+          {// [!code error]
+            text: 'Cub 2',// [!code error]
+            value: 'cub2',// [!code error]
+          },// [!code error]
+        ], // [!code error]
+      },
+      {
+        text: 'Pride Member',
+        value: 'pride-member',
+        subtext: 'Member of a lion pride',
+      },
+    ],
+  },
+  {
+    text: 'Elephant',
+    value: 'elephant',
+    subtext: 'Largest land animal',
+    sublevel: [
+      {
+        text: 'Calf',
+        value: 'calf',
+        subtext: 'Young elephant',
+      },
+    ],
+  },
+  {
+    text: 'Giraffe',
+    value: 'giraffe',
+    subtext: 'Tallest living terrestrial animal',
+    sublevel: [
+      {
+        text: 'Calf',
+        value: 'giraffe-calf',
+        subtext: 'Young giraffe',
+      },
+      {
+        text: 'Adult',
+        value: 'giraffe-adult',
+        subtext: 'Mature giraffe',
+      },
+    ],
+  },
+  {
+    text: 'Zebra',
+    value: 'zebra',
+    subtext: 'Known for distinctive black and white stripes',
+    sublevel: [
+      {
+        text: 'Foal',
+        value: 'zebra-foal',
+        subtext: 'Young zebra',
+      },
+      {
+        text: 'Mare',
+        value: 'zebra-mare',
+        subtext: 'Adult female zebra',
+      },
+    ],
+  },
+];
+
+const handleLadderizedDropdown = (value) => {
+  let tempValue: string[] = [];
+  let tempMenuList: MenuListType[] = mockDropdownData;
+
+  value.forEach((item) => {
+    const activeItem = tempMenuList.find((listItem) => item === listItem.value);
+
+    if (activeItem) {
+      tempValue.push(activeItem.text);
+      if (activeItem.sublevel) {
+        tempMenuList = activeItem.sublevel;
+      }
+    }
+  });
+
+  inputTextModel.value = tempValue.join(', ');
+};
+</script>
+```
+
+
+
 ## Disabled, Active & Readonly
 
 This is only applicable to selected components, such as form input fields. You can learn more in the <a href='/documentation/components/input.html' target='_blank'>Input Form</a>.
@@ -1125,6 +1259,12 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
       <td>Event emitted when the dropdown is scrolled to the bottom. Useful for dynamic data loading</td>
       <td>Function</td>
       <td>-</td>
+    </tr>
+    <tr>
+      <td>remove-current-level-in-back-label</td>
+      <td>Defines whether the back label in the ladderized list will exclude the current level</td>
+      <td>Boolean</td>
+      <td>false</td>
     </tr>
   </tbody>
 </table>

@@ -8,6 +8,7 @@ export type MenuListType = {
   text: string;
   subtext?: string;
   value: string;
+  subvalue?: string;
   sublevel?: MenuListType[];
   group?: string;
 };

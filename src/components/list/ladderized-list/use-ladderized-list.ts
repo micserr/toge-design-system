@@ -6,7 +6,7 @@ import { useVModel } from '@vueuse/core'
 
 export const useLadderizedList = (props: LadderizedListPropTypes, emit: SetupContext<LadderizedListEmitTypes>['emit']) => {
   const ladderizedListOutput = useVModel(props, 'modelValue', emit); // List of items for v-model
-  const { menuList } = toRefs(props);
+  const { menuList, removeCurrentLevelInBackLabel } = toRefs(props);
   const transitionName = ref("slide-left");
   const backLabel = ref("");
   
@@ -133,6 +133,10 @@ export const useLadderizedList = (props: LadderizedListPropTypes, emit: SetupCon
           return;
         }
       });
+
+      if(removeCurrentLevelInBackLabel.value && tempBackLabel.length > 0) {
+        tempBackLabel.pop();
+      }
 
       // Update back label text
       backLabel.value = tempBackLabel.length > 0 ? tempBackLabel.join(", ") : "Back";

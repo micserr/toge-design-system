@@ -230,6 +230,15 @@ export default defineConfig({
             },
           ],
         },
+        {
+          text: 'Resources',
+          items: [
+            {
+              text: 'Product Logos',
+              link: '/documentation/components/logos',
+            },
+          ],
+        },
       ],
     },
 

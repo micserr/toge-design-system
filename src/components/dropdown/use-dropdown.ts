@@ -6,7 +6,7 @@ import type { DropdownPropTypes, DropdownEmitTypes } from './dropdown';
 import type { MenuListType } from '../list/list';
 
 export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<DropdownEmitTypes>['emit']) => {
-  const { menuList, searchString, disabled, multiSelect } = toRefs(props);
+  const { menuList, searchString, disabled, multiSelect, removeCurrentLevelInBackLabel, ladderized } = toRefs(props);
 
   // Dropdown component ref variables
   const dropdownValue = useVModel(props, 'modelValue', emit); // v-model value of  dropdown component
@@ -20,6 +20,8 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
   const dropdownPopperState = ref<boolean>(false);
   const isDropdownPopperDisabled = computed(() => disabled.value);
 
+  const isLadderizedSearch = computed(() => (ladderized.value && searchString.value !== '' && dropdownValue.value.length === 0))
+
   const initializeMenuList = () => {
     dropdownMenuList.value = [...menuList.value];
   };
@@ -29,18 +31,77 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
   });
 
   const handleSearch = () => {
-    if (menuList.value && menuList.value.length > 0) {
-      if (!multiSelect.value) {
-        dropdownMenuList.value = menuList.value.filter((item: MenuListType) => {
-          const searchTerm = searchString.value.toLowerCase();
-
-          return item.text.toLowerCase().includes(searchTerm);
-        });
-      } else {
-        dropdownMenuList.value = [...menuList.value];
-        // TODO: Handle multi-select search
-      }
+    if (menuList.value && menuList.value.length === 0) {
+      return;
     }
+
+    if (!multiSelect.value) {
+      singleSelectSearch();
+    } else {
+      dropdownMenuList.value = [...menuList.value];
+      // TODO: Handle multi-select search
+    }
+  };
+
+  const singleSelectSearch = () => {
+    if (props.ladderized) {
+      ladderizedSearch();
+    } else {
+      basicSearch();
+    }
+  };
+
+  const basicSearch = () => {
+    dropdownMenuList.value = getFilteredMenuList(menuList.value);
+  };
+
+  const ladderizedSearch = () => {
+    //revert to initial list if search string is empty or dropdownValue is not empty
+    if (searchString.value === '' || dropdownValue.value.length > 0) {
+      dropdownMenuList.value = [...menuList.value];
+      return;
+    }
+
+    const menuListSubLevels = getAllSublevelItems(menuList.value);
+
+    const filteredMenuList = getFilteredMenuList(menuList.value);
+    const filteredMenuListSubLevels = getFilteredMenuList(menuListSubLevels);
+
+    if (filteredMenuList.length > 0) {
+      //if there is a match at the top level of the menuList
+      dropdownMenuList.value = getAllSublevelItems(filteredMenuList);
+    } else if (filteredMenuListSubLevels.length > 0) {
+      //if there is a match at the 2nd level (sublevel of a menuList item) of the menuList
+      dropdownMenuList.value = filteredMenuListSubLevels;
+    } else {
+      dropdownMenuList.value = [];
+    }
+  };
+
+  // compile sublevel items from menuList to a single array
+  // and add text and value of the parent item to all sublevel items as subtext and subvalue
+  const getAllSublevelItems = (menuList: MenuListType[]) => {
+    return menuList.reduce((currentValue, currentItem) => {
+      if (currentItem.sublevel) {
+        const mappedSublevel = currentItem.sublevel.map((sublevelItem: MenuListType) => ({
+          ...sublevelItem, //text and value of a sublevel item
+          subtext: currentItem.text, // text of parent of a sublevel item
+          subvalue: currentItem.value, // value of parent of a sublevel item
+        }));
+
+        return [...currentValue, ...mappedSublevel];
+      }
+
+      return currentValue;
+    }, [] as MenuListType[]);
+  };
+
+  // filter list based on search string and menuList/sublevel texts
+  const getFilteredMenuList = (list: MenuListType[]) => {
+    return list.filter((item: MenuListType) => {
+      const searchTerm = searchString.value.toLowerCase().trim();
+      return item.text.toLowerCase().includes(searchTerm);
+    });
   };
 
   watch(searchString, () => {
@@ -61,9 +122,19 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
 
   // Handle selected item for simple list component
   const handleSelectedItem = (selectedItems: MenuListType[]) => {
-    dropdownValue.value = selectedItems.map((item) => item.value.toString());
+    if (!props.ladderized) {
+      dropdownValue.value = selectedItems.map((item) => item.value.toString());
+    }
 
-    if (!multiSelect.value) dropdownPopperState.value = false;
+    if (!multiSelect.value) {
+      if (props.ladderized && props.searchString !== '') {
+        // generate dropdown value if ladderized with search string
+        dropdownValue.value = [selectedItems[0].subvalue ?? '', selectedItems[0].value];
+      }
+      setTimeout(() => {
+        dropdownPopperState.value = false;
+      }, 10);
+    }
   };
 
   // Handle selected item for ladderized list component
@@ -103,5 +174,7 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
     handleSelectedItem,
     handleSelectedLadderizedItem,
     dropdownValue,
+    removeCurrentLevelInBackLabel,
+    isLadderizedSearch
   };
 };

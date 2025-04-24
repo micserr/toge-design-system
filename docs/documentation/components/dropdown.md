@@ -1269,6 +1269,13 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
   </tbody>
 </table>
 
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logos name="hr" theme="dark"  width="50px" />
+  <spr-logos name="sidekick" theme="dark" width="50px" />
+</div>
+
 <script lang="ts" setup>
 import { ref, onMounted } from "vue";
 
@@ -1278,6 +1285,7 @@ import SprButton from "@/components/button/button.vue";
 import SprChips from "@/components/chips/chips.vue";
 import SprLozenge from "@/components/lozenge/lozenge.vue"
 import SprModal from "@/components/modal/modal.vue"
+import SprLogos from "@/components/logos/logos.vue";
 
 const menuList = ref([
   { text: 'Apple', value: 'apple' },

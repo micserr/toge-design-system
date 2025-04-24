@@ -173,14 +173,136 @@ const textarea2 = ref('Hello world, Sprout Design System!!!');
 </script>
 ```
 
+## API Reference
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Available Values</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>Specifies the unique identifier for the textarea.</td>
+      <td><code>String</code></td>
+      <td>-</td>
+      <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td>modelValue</td>
+      <td>Specifies the value of the textarea.</td>
+      <td><code>String</code></td>
+      <td>-</td>
+      <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>Specifies the label for the textarea.</td>
+      <td><code>String</code></td>
+      <td>-</td>
+      <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td>placeholder</td>
+      <td>Specifies the placeholder text for the textarea.</td>
+      <td><code>String</code></td>
+      <td>-</td>
+      <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td>active</td>
+      <td>Indicates whether the textarea is active.</td>
+      <td><code>Boolean</code></td>
+      <td><code>true</code>, <code>false</code></td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>Disables the textarea.</td>
+      <td><code>Boolean</code></td>
+      <td><code>true</code>, <code>false</code></td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>readonly</td>
+      <td>Sets the textarea to read-only mode.</td>
+      <td><code>Boolean</code></td>
+      <td><code>true</code>, <code>false</code></td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>Indicates whether the textarea is in an error state.</td>
+      <td><code>Boolean</code></td>
+      <td><code>true</code>, <code>false</code></td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>minLength</td>
+      <td>Specifies the minimum length of the textarea value.</td>
+      <td><code>Number</code></td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>maxLength</td>
+      <td>Specifies the maximum length of the textarea value.</td>
+      <td><code>Number</code></td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>rows</td>
+      <td>Specifies the number of rows for the textarea.</td>
+      <td><code>Number</code></td>
+      <td>-</td>
+      <td><code>4</code></td>
+    </tr>
+    <tr>
+      <td>displayHelper</td>
+      <td>Enables the display of a helper message below the textarea.</td>
+      <td><code>Boolean</code></td>
+      <td><code>true</code>, <code>false</code></td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>helperIcon</td>
+      <td>Specifies the icon to display alongside the helper message.</td>
+      <td><code>String</code></td>
+      <td>-</td>
+      <td><code>null</code></td>
+    </tr>
+    <tr>
+      <td>helperText</td>
+      <td>Specifies the helper message text.</td>
+      <td><code>String</code></td>
+      <td>-</td>
+      <td><code>''</code></td>
+    </tr>
+  </tbody>
+</table>
+
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logos name="hr" theme="dark"  width="50px" />
+</div>
+
+
 <script setup lang="ts">
-  import { ref } from 'vue';
+import { ref } from 'vue';
 
-  import { Icon } from '@iconify/vue';
-  
-  import SprTextarea from '@/components/textarea/textarea.vue';
+import { Icon } from '@iconify/vue';
 
-  const textarea = ref('');
-  const textarea1 = ref('');
-  const textarea2 = ref('Hello world, Sprout Design System!!!');
+import SprTextarea from '@/components/textarea/textarea.vue';
+import SprLogos from "@/components/logos/logos.vue";
+
+const textarea = ref('');
+const textarea1 = ref('');
+const textarea2 = ref('Hello world, Sprout Design System!!!');
 </script>

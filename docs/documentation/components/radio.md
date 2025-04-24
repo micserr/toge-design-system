@@ -125,10 +125,17 @@ const radioModel = ref('');
   </tbody>
 </table>
 
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logos name="hr" theme="dark"  width="50px" />
+</div>
+
 <script lang="ts" setup>
 import { ref } from "vue";
 
 import SprRadio from "@/components/radio/radio.vue";
+import SprLogos from "@/components/logos/logos.vue";
 
 const radioModel = ref({
   radio1: '',

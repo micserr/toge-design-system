@@ -179,119 +179,117 @@ const removeSelected = (removeSelected) => {
 
 ## API Reference
 
-### Props
-
 <table>
   <thead>
     <tr>
       <th>Name</th>
+      <th>Description</th>
       <th>Type</th>
       <th>Default</th>
-      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code>modelValue</code></td>
+      <td>modelValue</td>
+      <td>The selected filter values.</td>
       <td><code>Array</code> or <code>String</code></td>
       <td><code>[]</code></td>
-      <td>The selected filter values.</td>
     </tr>
     <tr>
-      <td><code>options</code></td>
-      <td><code>Array</code></td>
-      <td><code>[]</code></td>
+      <td>options</td>
       <td>The list of filter options.</td>
+      <td><code>Array</code></td>
+      <td><code>[]</code></td>
     </tr>
     <tr>
-      <td><code>label</code></td>
-      <td><code>String</code></td>
-      <td><code>''</code></td>
+      <td>label</td>
       <td>Label for the filter input.</td>
-    </tr>
-    <tr>
-      <td><code>placeholder</code></td>
       <td><code>String</code></td>
       <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td>placeholder</td>
       <td>Placeholder text for the filter input.</td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
     </tr>
     <tr>
-      <td><code>disabled</code></td>
-      <td><code>Boolean</code></td>
-      <td><code>false</code></td>
+      <td>disabled</td>
       <td>Disables the filter input.</td>
-    </tr>
-    <tr>
-      <td><code>filterable</code></td>
       <td><code>Boolean</code></td>
       <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>filterable</td>
       <td>Enables the advanced filter menu.</td>
+      <td><code>Boolean</code></td>
+      <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>id</code></td>
-      <td><code>String</code></td>
-      <td><code>''</code></td>
+      <td>id</td>
       <td>Unique identifier for the filter.</td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
     </tr>
     <tr>
-      <td><code>filterMenu</code></td>
-      <td><code>Array</code></td>
-      <td><code>[]</code></td>
+      <td>filterMenu</td>
       <td>List of advanced filter menu options.</td>
-    </tr>
-    <tr>
-      <td><code>filterData</code></td>
       <td><code>Array</code></td>
       <td><code>[]</code></td>
+    </tr>
+    <tr>
+      <td>filterData</td>
       <td>Data for the advanced filter menu.</td>
+      <td><code>Array</code></td>
+      <td><code>[]</code></td>
     </tr>
     <tr>
-      <td><code>loading</code></td>
-      <td><code>Boolean</code></td>
-      <td><code>false</code></td>
+      <td>loading</td>
       <td>Indicates if the filter is in a loading state.</td>
-    </tr>
-    <tr>
-      <td><code>filling</code></td>
       <td><code>Boolean</code></td>
       <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>filling</td>
       <td>Indicates if the filter is in a filling state.</td>
+      <td><code>Boolean</code></td>
+      <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>search</code></td>
-      <td><code>String</code></td>
-      <td><code>''</code></td>
+      <td>search</td>
       <td>Search query for the main filter.</td>
-    </tr>
-    <tr>
-      <td><code>searchFilter</code></td>
       <td><code>String</code></td>
       <td><code>''</code></td>
-      <td>Search query for the advanced filter menu.</td>
     </tr>
     <tr>
-      <td><code>width</code></td>
+      <td>searchFilter</td>
+      <td>Search query for the advanced filter menu.</td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>Width of the filter component.</td>
       <td><code>String</code></td>
       <td><code>'100%'</code></td>
-      <td>Width of the filter component.</td>
     </tr>
     <tr>
-      <td><code>deselected</code></td>
+      <td>deselected</td>
+      <td>Value of the deselected filter option.</td>
       <td><code>String</code></td>
       <td><code>''</code></td>
-      <td>Value of the deselected filter option.</td>
     </tr>
     <tr>
-      <td><code>hasSearchApi</code></td>
-      <td><code>Boolean</code></td>
-      <td><code>false</code></td>
+      <td>hasSearchApi</td>
       <td>Enables external search API integration.</td>
-    </tr>
-    <tr>
-      <td><code>hasAvatar</code></td>
       <td><code>Boolean</code></td>
       <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>hasAvatar</td>
       <td>Enables avatar display for filter options.</td>
+      <td><code>Boolean</code></td>
+      <td><code>false</code></td>
     </tr>
   </tbody>
 </table>
@@ -388,11 +386,18 @@ The component supports infinite scrolling for both the main filter and the advan
 
 Enable the `hasAvatar` prop to display avatars for filter options. Provide an `avatar` property in the `options` array.
 
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logos name="hr" theme="dark"  width="50px" />
+</div>
+
 <script setup>
 import { ref } from 'vue';
 import SprFilter from '@/components/filter/filter.vue';
 import { Icon } from '@iconify/vue';
 import SprButton from "@/components/button/button.vue";
+import SprLogos from "@/components/logos/logos.vue";
 
 const options = [
     { column: '', isSelected: false, text: 'sample 1', subtext: '', value: 'sample1' },

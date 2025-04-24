@@ -289,8 +289,8 @@ When using the default position, use can use the slot to wrap the element to whi
 ## Product Uses
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
-  <spr-logos name="hr" theme="dark" title="Sprout HR" width="50px" />
-  <spr-logos name="sidekick" theme="dark" title="Sprout Sidekick" width="50px" />
+  <spr-logos name="hr" theme="dark" width="50px" />
+  <spr-logos name="sidekick" theme="dark" width="50px" />
 </div>
 
 <script lang="ts" setup>

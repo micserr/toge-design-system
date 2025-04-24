@@ -1,5 +1,5 @@
 <template>
-  <AdvancedImage v-bind="$attrs" :cldImg="logoSrc" :alt="logoAlt" :title="logoAlt" :width="width" />
+  <AdvancedImage v-bind="$attrs" :cldImg="logoSrc" :alt="logoTitle" :title="logoTitle" :width="width" />
 </template>
 
 <script lang="ts" setup>
@@ -9,7 +9,7 @@ import { AdvancedImage } from '@cloudinary/vue';
 
 const props = defineProps(logosPropTypes);
 
-const { logoSrc, logoAlt } = useLogos(props);
+const { logoSrc, logoTitle } = useLogos(props);
 </script>
 
 <style scoped>

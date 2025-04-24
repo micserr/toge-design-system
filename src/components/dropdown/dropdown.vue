@@ -33,13 +33,13 @@
       <div
         ref="dropdownRef"
         :class="[
-          !props.ladderized && 'spr-p-2',
+          (!props.ladderized || isLadderizedSearch) && 'spr-p-2',
           'spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden',
         ]"
       >
         <template v-if="dropdownMenuList.length > 0">
           <spr-list
-            v-if="!props.ladderized"
+            v-if="!props.ladderized || isLadderizedSearch"
             v-model="selectedListItems"
             :menu-list="dropdownMenuList"
             :group-items-by="props.groupItemsBy"
@@ -52,6 +52,7 @@
             v-model="dropdownValue"
             :ladderized="props.ladderized"
             :menu-list="dropdownMenuList"
+            :remove-current-level-in-back-label="removeCurrentLevelInBackLabel"
             @update:model-value="handleSelectedLadderizedItem"
           />
         </template>
@@ -84,5 +85,7 @@ const {
   handleSelectedItem,
   handleSelectedLadderizedItem,
   dropdownValue,
+  removeCurrentLevelInBackLabel,
+  isLadderizedSearch
 } = useDropdown(props, emit);
 </script>

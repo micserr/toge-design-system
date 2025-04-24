@@ -13,6 +13,10 @@ export const ladderizedListPropTypes = {
     required: true,
     default: [],
   },
+  removeCurrentLevelInBackLabel: {
+    type: Boolean,
+    default: false,
+  }
 };
 
 export const ladderizedListEmitTypes = {

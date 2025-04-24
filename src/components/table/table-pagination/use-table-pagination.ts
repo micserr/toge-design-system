@@ -25,7 +25,7 @@ export const useTablePagination = (
 
   const paginationClasses: ComputedRef<TablePaginationClasses> = computed(() => {
     const baseClass = classNames(
-      'spr-w-full  spr-p-size-spacing-xs spr-flex spr-justify-between spr-bg-white-50 spr-h-max',
+      'spr-p-size-spacing-xs spr-flex spr-justify-between spr-bg-white-50 spr-h-max',
       {
         'spr-border spr-border-solid spr-border-color-weak': bordered.value,
         'spr-border-x-0 spr-border-t spr-border-b-0 spr-border-solid spr-border-color-weak': !bordered.value,
@@ -34,7 +34,7 @@ export const useTablePagination = (
     const dropdownInputFieldClass = classNames('spr-w-[120px] spr-font-bold spr-h-full spr-space-x-2');
     const inputFieldIconClass = classNames('spr-mt-0.5 spr-pl-1 spr-text-mushroom-950');
     const rightSideClass = classNames('spr-flex spr-justify-between spr-items-center spr-space-x-4');
-    const computeRowRangeClass = classNames('spr-font-main spr-text-color-base spr-w-full');
+    const computeRowRangeClass = classNames('spr-font-main spr-text-color-base');
     const navigationContainerClass = classNames('spr-flex spr-space-x-2');
     const navigationButtonClass = classNames('spr-rounded-border-radius-md');
     const dropdownClass = classNames('!spr-w-max');

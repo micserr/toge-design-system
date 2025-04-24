@@ -18,7 +18,7 @@
       </spr-table-actions>
     </div>
 
-    <div :class="getTableClasses.getTableHeight">
+    <div :class="getTableClasses.tableBackgroundClasses">
       <table aria-describedby="describe" class="spr-w-full spr-table-fixed" cellspacing="0" cellpadding="0">
         <thead>
           <tr v-if="!(props.removeHeaderOnEmpty && sortedData.length <= 0)">
@@ -136,9 +136,9 @@
           </tr>
         </tbody>
       </table>
-      <div v-if="$slots.footer">
-        <slot name="footer" />
-      </div>
+    </div>
+    <div v-if="$slots.footer" :class="getTableClasses.tableFooterClasses">  
+      <slot name="footer" />
     </div>
   </div>
 </template>

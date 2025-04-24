@@ -17,7 +17,7 @@ interface Header {
   avatarVariant: string;
 }
 
-interface TableData {
+export interface TableData {
   [key: string]: {
     title: string | LozengeTitle | ChipTitle | LozengeTitle[] | ChipTitle[];
     subtext?: string;

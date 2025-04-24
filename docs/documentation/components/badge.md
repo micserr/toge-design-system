@@ -1,10 +1,12 @@
 ---
 outline: 'deep'
+title: Badge
+description: The Badge component is a small visual indicator that can be used to convey information, status, or notifications. It is often used in conjunction with other UI elements to provide context or highlight important information. Badges can be customized in terms of text, color, size, and position.
 ---
 
 # Badge
 
-A badge is a small, visual indicator used to convey information, status, or count in a concise and attention-grabbing manner. Badges are commonly used in user interfaces to highlight notifications, statuses, or counts associated with an element.
+The Badge component is a small visual indicator that can be used to convey information, status, or notifications. It is often used in conjunction with other UI elements to provide context or highlight important information. Badges can be customized in terms of text, color, size, and position.
 
 ## Key Features
 
@@ -284,9 +286,17 @@ When using the default position, use can use the slot to wrap the element to whi
   </tbody>
 </table>
 
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logos name="hr" theme="dark" title="Sprout HR" width="50px" />
+  <spr-logos name="sidekick" theme="dark" title="Sprout Sidekick" width="50px" />
+</div>
+
 <script lang="ts" setup>
 import { ref } from 'vue';
 
 import SprBadge from "@/components/badge/badge.vue"
 import SprLozenge from '@/components/lozenge/lozenge.vue';
+import SprLogos from "@/components/logos/logos.vue";
 </script>

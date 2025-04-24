@@ -301,9 +301,10 @@ import { Icon } from '@iconify/vue';
 ## Product Uses
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
-  <spr-logos name="hr" theme="dark" title="Sprout HR" width="50px" />
-  <spr-logos name="payroll" theme="dark" title="Sprout Payroll" width="50px" />
-  <spr-logos name="sidekick" theme="dark" title="Sprout Sidekick" width="50px" />
+  <spr-logos name="hr" theme="dark" width="50px" />
+  <spr-logos name="payroll" theme="dark" width="50px" />
+  <spr-logos name="ecosystem" theme="dark" width="50px" />
+  <spr-logos name="sidekick" theme="dark" width="50px" />
 </div>
 
 <script lang="ts" setup>

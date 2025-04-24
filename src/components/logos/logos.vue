@@ -1,5 +1,5 @@
 <template>
-  <AdvancedImage v-bind="$attrs" :cldImg="logoSrc" :alt="logoAlt" :title="logoAlt" />
+  <AdvancedImage v-bind="$attrs" :cldImg="logoSrc" :alt="logoAlt" :title="logoAlt" :width="width" />
 </template>
 
 <script lang="ts" setup>
@@ -14,9 +14,8 @@ const { logoSrc, logoAlt } = useLogos(props);
 
 <style scoped>
 img {
-  display: inline-block; /* Ensures the img behaves correctly */
-  line-height: 1; /* Prevents extra space below the image */
-  width: 150px;
+  display: inline-block; 
+  line-height: 1;
   vertical-align: middle;
 }
 </style>

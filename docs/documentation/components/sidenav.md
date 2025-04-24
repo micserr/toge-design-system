@@ -6,7 +6,7 @@ outline: 'deep'
 
 The side navigation provides a customizable navigation bar that includes a logo, navigation links, quick actions, and a search bar.
 
-![Sidenav Sample](../../public/images/sidenav-sample.png)
+![Sidenav Sample](../../images/sidenav-sample.png)
 
 ## Basic Implementation
 
@@ -1623,10 +1623,18 @@ const userMenu = ref({
 </script>
 ```
 
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logos name="ecosystem" theme="dark" width="50px" />
+</div>
+
+
 <script lang="ts" setup>
 import { ref } from 'vue';
 
 import SprSidenav from '@/components/sidenav/sidenav.vue';
+import SprLogos from "@/components/logos/logos.vue";
 
 const quickActions = ref([
   {

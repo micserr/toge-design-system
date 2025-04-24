@@ -204,10 +204,17 @@ const selectedValue6 = ref('');
   </tbody>
 </table>
 
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logos name="hr" theme="dark"  width="50px" />
+</div>
+
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-import SprTimePicker from "@/components/time-picker/time-picker.vue"
+import SprTimePicker from "@/components/time-picker/time-picker.vue";
+import SprLogos from "@/components/logos/logos.vue";
 
 const selectedValue = ref('');
 const selectedValue1 = ref('');

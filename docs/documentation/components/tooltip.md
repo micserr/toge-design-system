@@ -161,7 +161,52 @@ You can enable or disable the maximum width of the tooltip by using the `has-max
 </spr-tooltip>
 ```
 
+## API Reference
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Available Values</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>text</td>
+      <td>Tooltip Label</td>
+      <td><code>String</code></td>
+      <td>-</td>
+      <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td>placement</td>
+      <td>Tooltip Placement</td>
+      <td><code>String</code></td>
+      <td><code>'top'</code>, <code>'top-start'</code>, <code>'top-end'</code>, <code>'bottom'</code>, <code>'bottom-start'</code>, <code>'bottom-end'</code>, <code>'left'</code>, <code>'left-start'</code>, <code>'left-end'</code>, <code>'right'</code>, <code>'right-start'</code>, <code>'right-end'</code></td>
+      <td><code>'top'</code></td>
+    </tr>
+    <tr>
+      <td>hasMaxWidth</td>
+      <td>Enable or disable the maximum width of the tooltip. When enabled, the tooltip has a maximum width of 280px.</td>
+      <td><code>Boolean</code></td>
+      <td><code>true</code>, <code>false</code></td>
+      <td><code>true</code></td>
+    </tr>
+  </tbody>
+</table>
+
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logos name="hr" theme="dark"  width="50px" />
+  <spr-logos name="sidekick" theme="dark" width="50px" />
+</div>
+
 <script lang="ts" setup>
-  import SprTooltip from "@/components/tooltip/tooltip.vue";
-  import SprButton from "@/components/button/button.vue";
+import SprTooltip from "@/components/tooltip/tooltip.vue";
+import SprButton from "@/components/button/button.vue";
+import SprLogos from "@/components/logos/logos.vue";
 </script>

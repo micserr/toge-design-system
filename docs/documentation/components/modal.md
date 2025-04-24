@@ -470,6 +470,14 @@ const modalModel = ref<boolean>(false);
   </tbody>
 </table>
 
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logos name="hr" theme="dark"  width="50px" />
+  <spr-logos name="ecosystem" theme="dark" width="50px" />
+  <spr-logos name="sidekick" theme="dark" width="50px" />
+</div>
+
 <script lang="ts" setup>
 import { ref } from 'vue';
 

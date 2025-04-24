@@ -232,8 +232,15 @@ const offline = [
   </tbody>
 </table>
 
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logos name="hr" theme="dark"  width="50px" />
+</div>
+
 <script lang="ts" setup>
 import SprCalendarCell from '@/components/calendar-cell/calendar-cell.vue'
+import SprLogos from "@/components/logos/logos.vue";
 
 const shifts = [
   { type: 'standard', branchName: 'Main Branch', timeRange: '9:00 AM - 5:00 PM', hours: 8 },

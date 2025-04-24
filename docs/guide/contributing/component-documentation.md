@@ -1,8 +1,16 @@
-# Documentating a Component
+---
+outline: 'deep'
+title: Documenting a Component
+description: The file provides a comprehensive guide on documenting components for sprout design system. It includes creating new documentation pages, and structuring content with examples, API documentation, and best practices. It also emphasizes the importance of organization, clear examples, and detailed API documentation.
+---
+
+# Documenting a Component
+
+The file provides a comprehensive guide on documenting components for sprout design system. It includes creating new documentation pages, and structuring content with examples, API documentation, and best practices. It also emphasizes the importance of organization, clear examples, and detailed API documentation.
 
 ## VitePress Setup
 
-Our documentation uses [VitePress](https://vitepress.dev/). Make sure you the prerequisites:
+Our documentation uses [VitePress](https://vitepress.dev/). Ensure you meet the prerequisites:
 
 - Node.js version 18 or higher
 - A text editor with Markdown support (VSCode recommended)
@@ -10,7 +18,7 @@ Our documentation uses [VitePress](https://vitepress.dev/). Make sure you the pr
 
 ## File Structure
 
-```
+```plaintext
 docs/
 ├─ .vitepress/
 │  └─ config.ts         # VitePress configuration
@@ -34,65 +42,46 @@ A typical documentation page consists of:
 
 ## Basic Page Structure
 
-````markdown
-# Component Name
+```markdown
+# Your Component
 
-Brief description of the component and its use cases.
+Description of your component.
 
 ## Basic Usage
 
-<div class="flex items-center gap-2">
-  <spr-your-component>Basic Example</spr-your-component>
-</div>
+[Basic example with code]
 
-```jsx
-<spr-your-component>Basic Example</spr-your-component>
-```
+## Variants
+
+[Examples of different variants]
+
+## Props and Options
+
+[Examples demonstrating props]
+
+## Product Uses
+
+[Define product where the component is used]
 
 ## Component API
 
-### Attributes
-
-<table>
-  <thead>
-    <tr>
-      <td>Name</td>
-      <td>Description</td>
-      <td>Type</td>
-      <td>Default</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>size</td>
-      <td>component size</td>
-      <td>'small' | 'medium' | 'large'</td>
-      <td>medium</td>
-    </tr>
-    <tr>
-      <td>disabled</td>
-      <td>disable the component</td>
-      <td>boolean</td>
-      <td>false</td>
-    </tr>
-  </tbody>
-</table>
+[API documentation]
 
 <script setup lang="ts">
 import SprYourComponent from "@/components/your-component/your-component.vue"
 </script>
-````
+```
 
+For a complete example, refer to the [Button documentation](/documentation/components/button).
 ## Creating a New Page
 
 1. Create a new `.md` file in the appropriate directory:
 
-```
+```plaintext
 docs/
 ├── documentation/
 | ├── components/
 | └── your-component.md
-
 ```
 
 2. Add the page to VitePress configuration:
@@ -117,7 +106,7 @@ sidebar: {
 
 ## Page Sections
 
-Use Vitepress [Writing Methods](https://vitepress.dev/guide/markdown) for elegant and efficient markdown format
+Use VitePress [Markdown Syntax](https://vitepress.dev/guide/markdown) for elegant and efficient formatting.
 
 ### 1. Title and Description
 
@@ -132,15 +121,15 @@ Brief description of what the component does and when to use it.
 ````markdown
 ## Basic Usage
 
-```jsx
+```vue
 <div class="flex items-center gap-2">
   <spr-your-component>Example</spr-your-component>
 </div>
 
-
 <spr-your-component>Example</spr-your-component>
 ```
 ````
+
 
 ### 3. Variants and Props
 
@@ -153,7 +142,7 @@ Brief description of what the component does and when to use it.
   <spr-your-component size="large">Large</spr-your-component>
 </div>
 
-```jsx
+```vue
 <spr-your-component size="small">Small</spr-your-component>
 <spr-your-component>Medium</spr-your-component>
 <spr-your-component size="large">Large</spr-your-component>
@@ -167,25 +156,10 @@ Brief description of what the component does and when to use it.
 
 ### Attributes
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>size</td>
-      <td>component size</td>
-      <td>'small' | 'medium' | 'large'</td>
-      <td>medium</td>
-    </tr>
-  </tbody>
-</table>
-```
+| Name      | Description          | Type                     | Default |
+|-----------|----------------------|--------------------------|---------|
+| size      | Component size       | `'small' | 'medium' | 'large'` | medium  |
+````
 
 ### 5. Import Component
 
@@ -214,7 +188,9 @@ import SprLogos from "@/components/logos/logos.vue";
 </script>
 ```
 
-### Local Development
+
+
+## Local Development
 
 1. Install dependencies:
 
@@ -262,32 +238,3 @@ npm run docs:dev
    - Always import the component at the bottom of the file
    - Use the correct import path
 
-## Example Page Structure
-
-```markdown
-# Your Component
-
-Description of your component.
-
-## Basic Usage
-
-[Basic example with code]
-
-## Variants
-
-[Examples of different variants]
-
-## Props and Options
-
-[Examples demonstrating props]
-
-## Component API
-
-[API documentation]
-
-<script setup lang="ts">
-import SprYourComponent from "@/components/your-component/your-component.vue"
-</script>
-```
-
-For a complete example, refer to the [Button documentation](/documentation/components/button).

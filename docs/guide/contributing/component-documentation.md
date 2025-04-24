@@ -29,6 +29,8 @@ A typical documentation page consists of:
 2. Component examples with live demos
 3. Code snippets
 4. Component API documentation
+5. Import statement for the component
+6. Product uses
 
 ## Basic Page Structure
 
@@ -190,6 +192,25 @@ Brief description of what the component does and when to use it.
 ```markdown
 <script setup lang="ts">
 import SprYourComponent from "@/components/your-component/your-component.vue"
+</script>
+```
+
+### 6. Product Uses
+
+::: tip Purpose
+The "Product Uses" section highlights where and how the component is used across different products. This provides context for developers and designers to understand its application.
+:::
+
+```markdown
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logos name="hr" theme="dark" title="Sprout HR" width="50px" />
+  <spr-logos name="payroll" theme="dark" title="Sprout Payroll" width="50px" />
+</div>
+
+<script lang="ts" setup>
+import SprLogos from "@/components/logos/logos.vue";
 </script>
 ```
 

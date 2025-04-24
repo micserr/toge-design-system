@@ -1,3 +1,8 @@
+---
+title: Logos
+description: Displays various Sprout product logos with customizable options.
+---
+
 # Logos
 
 Displays various Sprout product logos. This component allows specifying the product name and the desired color theme.
@@ -16,7 +21,7 @@ Shows the default logo (`hr` name, `dark` theme).
 </template>
 
 <script setup lang="ts">
-import SprLogos from "@/components/logos/logos.vue";
+import SprLogos from '@/components/logos/logos.vue';
 </script>
 ```
 
@@ -40,7 +45,7 @@ You can change the logo theme using the `theme` prop.
 </template>
 
 <script setup lang="ts">
-import SprLogos from "@/components/logos/logos.vue";
+import SprLogos from '@/components/logos/logos.vue';
 </script>
 ```
 
@@ -94,7 +99,7 @@ Specify different product logos using the `name` prop.
 </template>
 
 <script setup lang="ts">
-import SprLogos from "@/components/logos/logos.vue";
+import SprLogos from '@/components/logos/logos.vue';
 </script>
 ```
 
@@ -126,6 +131,13 @@ import SprLogos from "@/components/logos/logos.vue";
       <td><code>String</code></td>
       <td><code>'white'</code>, <code>'dark'</code>, <code>'gray'</code>, <code>'green'</code></td>
       <td><code>'dark'</code></td>
+    </tr>
+    <tr>
+      <td>size</td>
+      <td>Specifies the size of the logo. Can be in <code>px</code>, <code>em</code>, or just a number. If a number is provided, it will be treated as pixels (px).</td>
+      <td><code>String</code>, <code>Number</code></td>
+      <td>-</td>
+      <td><code>50</code></td>
     </tr>
   </tbody>
 </table>

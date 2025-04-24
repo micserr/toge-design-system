@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress';
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'Sprout Design System',
   description: 'Toge - The Sprout Design System',
@@ -19,8 +18,6 @@ export default defineConfig({
     ['meta', { property: 'og:site_name', content: 'Toge' }],
   ],
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-
     nav: [
       { text: 'Guide', link: '/guide/basics/installation' },
       {

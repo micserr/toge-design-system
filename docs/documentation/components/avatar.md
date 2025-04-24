@@ -1,8 +1,12 @@
 ---
 outline: 'deep'
+title: Avatar
+description: The avatar component is a versatile and commonly used element in user interfaces, designed to represent users or entities visually. It can display images, initials, or icons, and can be customized in various ways, including size, tone, and variant, to suit different design needs. The avatar can also include notification indicators and badges for enhanced visual communication and can be disabled to prevent user interaction when necessary.
 ---
 
 # AVATAR
+
+The Avatar component is a versatile and commonly used element in user interfaces, designed to represent users or entities visually. It can display images, initials, or icons, and can be customized in various ways, including size, tone, and variant, to suit different design needs. The avatar can also include notification indicators and badges for enhanced visual communication and can be disabled to prevent user interaction when necessary.
 
 ## Basic Usage
 
@@ -453,8 +457,16 @@ import { Icon } from '@iconify/vue';
   </tbody>
 </table>
 
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logos name="hr" theme="dark" title="Sprout HR" width="50px" />
+  <spr-logos name="payroll" theme="dark" title="Sprout Payroll" width="50px" />
+</div>
+
 <script lang="ts" setup>
 import SprAvatar from "@/components/avatar/avatar.vue";
+import SprLogos from "@/components/logos/logos.vue";
 
 import { Icon } from '@iconify/vue';
 </script>

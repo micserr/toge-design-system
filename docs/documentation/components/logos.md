@@ -103,9 +103,7 @@ import SprLogos from '@/components/logos/logos.vue';
 </script>
 ```
 
-## Component API
-
-### Attributes (Props)
+## API Reference
 
 <table>
   <thead>

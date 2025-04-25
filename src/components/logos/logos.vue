@@ -1,5 +1,5 @@
 <template>
-  <AdvancedImage v-bind="$attrs" :cldImg="logoSrc" :alt="logoTitle" :title="logoTitle" :width="width" />
+  <AdvancedImage v-bind="$attrs" :cld-img="logoSrc" :alt="logoTitle" :title="logoTitle" :width="width" />
 </template>
 
 <script lang="ts" setup>

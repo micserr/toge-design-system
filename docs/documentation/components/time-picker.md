@@ -122,6 +122,27 @@ const selectedValue4 = ref('');
 </script>
 ```
 
+## Helper Text
+
+<spr-time-picker 
+    v-model="selectedValue5"
+    label="Timepicker"
+    id="time-disabled"
+    helperText="This is a helper text"
+  />
+
+```vue
+<template>
+  <spr-time-picker v-model="selectedValue5" label="Timepicker" id="time-disabled" helperText="This is a helper text" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedValue5 = ref('');
+</script>
+```
+
 ## Disabled
 
 <spr-time-picker 

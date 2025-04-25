@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.16.1 (2025-04-25)
+
+- Fix
+
+  - Commit ae69a7ba: table heaight ([#ae69a7ba](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ae69a7babfa3aa48d60e8df3d17dd79b6fdf5596?refName=refs/heads/2025/Fix/andrea/table-height) by @adestajo)
+
 ## 1.16.0 (2025-02-23)
 
 - Feat

@@ -58,27 +58,20 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
 
   // Value is currently either a string, an object with a title property, or an array of objects with a title property
   const extractLowerCasedTitle = (value: string | { title: string } | Array<{ title: string }>) => {
-    if (typeof value === 'string') return value.toLowerCase();  
+    if (typeof value === 'string') return value.toLowerCase();
     else if (typeof value === 'object' && !Array.isArray(value) && value !== null) return value.title.toLowerCase();
     else if (Array.isArray(value) && value.length > 0) return value[0].title.toLowerCase();
     return '';
-  }
+  };
 
   const getTableClasses = computed(() => {
     const tableWrapperClasses = classNames(
-      'spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid spr-table-wrapper spr-relative',
-      {
-        'spr-min-h-[100vh]': fullHeight.value, // Set wrapper height to full screen
-        'spr-min-h-[400px]': !fullHeight.value,
-      },
+      'spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid spr-table-wrapper spr-relative spr-h-max',
     );
-    const tableFooterClasses = classNames(
-      'spr-absolute spr-w-full spr-bottom-0 spr-left-0',
-      {
-        'spr-background-color-surface': props.variant === 'surface',
-        'spr-background-color': props.variant === 'white',
-      },
-    );
+    const tableFooterClasses = classNames('spr-absolute spr-w-full spr-bottom-0 spr-left-0', {
+      'spr-background-color-surface': props.variant === 'surface',
+      'spr-background-color': props.variant === 'white',
+    });
     const headerBackground = classNames({
       'spr-background-color': props.variant === 'white',
       'spr-background-color-surface': props.variant === 'surface',

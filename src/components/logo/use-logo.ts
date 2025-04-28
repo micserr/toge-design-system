@@ -21,7 +21,7 @@ export function useLogo(props: LogoPropTypes) {
     },
   });
 
-  const logoSrc = computed(() => cld.image(`sprout-${props.name}-${props.theme}`));
+  const logoSrc = computed(() => cld.image(`sprout-${props.name}-${props.theme}`).toURL());
 
   const logoTitle = computed(() => {
     if (props.name in NAME_MAP) {

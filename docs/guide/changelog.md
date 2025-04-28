@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.0 (2025-04-28)
+
+- Docs: Fix sidenav documentation image path to use public directory
+ ([#8ab7a8c3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8ab7a8c3e85ea58bc8db0e2746c40b8d405c5c60) by @JefMari)
+
 ## 2.0.0 (2025-04-25)
 
 - Breaking Changes

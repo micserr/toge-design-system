@@ -6,7 +6,7 @@ outline: 'deep'
 
 The side navigation provides a customizable navigation bar that includes a logo, navigation links, quick actions, and a search bar.
 
-![Sidenav Sample](../../images/sidenav-sample.png)
+![Sidenav Sample](../../public/images/sidenav-sample.png)
 
 ## Basic Implementation
 

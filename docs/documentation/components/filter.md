@@ -389,7 +389,7 @@ Enable the `hasAvatar` prop to display avatars for filter options. Provide an `a
 ## Product Uses
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
-  <spr-logos name="hr" theme="dark"  width="50px" />
+  <spr-logo name="hr" theme="dark"  width="50px" />
 </div>
 
 <script setup>
@@ -397,7 +397,7 @@ import { ref } from 'vue';
 import SprFilter from '@/components/filter/filter.vue';
 import { Icon } from '@iconify/vue';
 import SprButton from "@/components/button/button.vue";
-import SprLogos from "@/components/logos/logos.vue";
+import SprLogo from "@/components/logo/logo.vue";
 
 const options = [
     { column: '', isSelected: false, text: 'sample 1', subtext: '', value: 'sample1' },

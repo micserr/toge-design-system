@@ -1,27 +1,27 @@
 ---
-title: Logos
-description: Displays various Sprout product logos with customizable options.
+title: Logo
+description: Displays various Sprout product logo with customizable options.
 ---
 
-# Logos
+# Product Logo
 
-Displays various Sprout product logos. This component allows specifying the product name and the desired color theme.
+Displays various Sprout product logo. This component allows specifying the product name and the desired color theme.
 
 ## Basic Usage
 
 Shows the default logo (`hr` name, `dark` theme).
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-p-4 spr-rounded">
-  <spr-logos />
+  <spr-logo />
 </div>
 
 ```vue
 <template>
-  <spr-logos />
+  <spr-logo />
 </template>
 
 <script setup lang="ts">
-import SprLogos from '@/components/logos/logos.vue';
+import SprLogo from '@/components/logo/logo.vue';
 </script>
 ```
 
@@ -30,76 +30,76 @@ import SprLogos from '@/components/logos/logos.vue';
 You can change the logo theme using the `theme` prop.
 
 <div class="spr-flex spr-flex-wrap spr-items-center spr-gap-4 spr-p-4 spr-rounded">
-  <spr-logos theme="white" name="hr" />
-  <spr-logos theme="dark" name="hr" />
-  <spr-logos theme="gray" name="hr" />
-  <spr-logos theme="green" name="hr" />
+  <spr-logo theme="white" name="hr" />
+  <spr-logo theme="dark" name="hr" />
+  <spr-logo theme="gray" name="hr" />
+  <spr-logo theme="green" name="hr" />
 </div>
 
 ```vue
 <template>
-  <spr-logos theme="white" name="hr" />
-  <spr-logos theme="dark" name="hr" />
-  <spr-logos theme="gray" name="hr" />
-  <spr-logos theme="green" name="hr" />
+  <spr-logo theme="white" name="hr" />
+  <spr-logo theme="dark" name="hr" />
+  <spr-logo theme="gray" name="hr" />
+  <spr-logo theme="green" name="hr" />
 </template>
 
 <script setup lang="ts">
-import SprLogos from '@/components/logos/logos.vue';
+import SprLogo from '@/components/logo/logo.vue';
 </script>
 ```
 
 ## Names
 
-Specify different product logos using the `name` prop.
+Specify different product logo using the `name` prop.
 
 <div class="spr-flex spr-flex-wrap spr-items-center spr-gap-4 spr-p-4 spr-rounded">
-  <spr-logos name="benchmark" />
-  <spr-logos name="ecosystem" />
-  <spr-logos name="engage" />
-  <spr-logos name="finances" />
-  <spr-logos name="hr-mobile" />
-  <spr-logos name="hr" />
-  <spr-logos name="inbound" />
-  <spr-logos name="insight" />
-  <spr-logos name="instacash" />
-  <spr-logos name="instawage" />
-  <spr-logos name="payroll" />
-  <spr-logos name="performance-plus" />
-  <spr-logos name="procurement" />
-  <spr-logos name="professional-services" />
-  <spr-logos name="recruit" />
-  <spr-logos name="recruit-plus" />
-  <spr-logos name="sail" />
-  <spr-logos name="sidekick" />
-  <spr-logos name="wellness" />
+  <spr-logo name="benchmark" />
+  <spr-logo name="ecosystem" />
+  <spr-logo name="engage" />
+  <spr-logo name="finances" />
+  <spr-logo name="hr-mobile" />
+  <spr-logo name="hr" />
+  <spr-logo name="inbound" />
+  <spr-logo name="insight" />
+  <spr-logo name="instacash" />
+  <spr-logo name="instawage" />
+  <spr-logo name="payroll" />
+  <spr-logo name="performance-plus" />
+  <spr-logo name="procurement" />
+  <spr-logo name="professional-services" />
+  <spr-logo name="recruit" />
+  <spr-logo name="recruit-plus" />
+  <spr-logo name="sail" />
+  <spr-logo name="sidekick" />
+  <spr-logo name="wellness" />
 </div>
 
 ```vue
 <template>
-  <spr-logos name="benchmark" />
-  <spr-logos name="ecosystem" />
-  <spr-logos name="engage" />
-  <spr-logos name="finances" />
-  <spr-logos name="hr-mobile" />
-  <spr-logos name="hr" />
-  <spr-logos name="inbound" />
-  <spr-logos name="insight" />
-  <spr-logos name="instacash" />
-  <spr-logos name="instawage" />
-  <spr-logos name="payroll" />
-  <spr-logos name="performance-plus" />
-  <spr-logos name="procurement" />
-  <spr-logos name="professional-services" />
-  <spr-logos name="recruit" />
-  <spr-logos name="recruit-plus" />
-  <spr-logos name="sail" />
-  <spr-logos name="sidekick" />
-  <spr-logos name="wellness" />
+  <spr-logo name="benchmark" />
+  <spr-logo name="ecosystem" />
+  <spr-logo name="engage" />
+  <spr-logo name="finances" />
+  <spr-logo name="hr-mobile" />
+  <spr-logo name="hr" />
+  <spr-logo name="inbound" />
+  <spr-logo name="insight" />
+  <spr-logo name="instacash" />
+  <spr-logo name="instawage" />
+  <spr-logo name="payroll" />
+  <spr-logo name="performance-plus" />
+  <spr-logo name="procurement" />
+  <spr-logo name="professional-services" />
+  <spr-logo name="recruit" />
+  <spr-logo name="recruit-plus" />
+  <spr-logo name="sail" />
+  <spr-logo name="sidekick" />
+  <spr-logo name="wellness" />
 </template>
 
 <script setup lang="ts">
-import SprLogos from '@/components/logos/logos.vue';
+import SprLogo from '@/components/logo/logo.vue';
 </script>
 ```
 
@@ -141,5 +141,5 @@ import SprLogos from '@/components/logos/logos.vue';
 </table>
 
 <script setup lang="ts">
-import SprLogos from "@/components/logos/logos.vue";
+import SprLogo from "@/components/logo/logo.vue";
 </script>

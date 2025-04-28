@@ -73,7 +73,7 @@ export default tseslint.config(
             'filter',
             'timePicker',
             'tooltip',
-            'logos'
+            'logo'
           ],
         },
       ],

@@ -231,8 +231,8 @@ export default defineConfig({
           text: 'Resources',
           items: [
             {
-              text: 'Product Logos',
-              link: '/documentation/components/logos',
+              text: 'Product Logo',
+              link: '/documentation/components/logo',
             },
           ],
         },

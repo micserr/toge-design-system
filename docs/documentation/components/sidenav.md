@@ -1626,7 +1626,7 @@ const userMenu = ref({
 ## Product Uses
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
-  <spr-logos name="ecosystem" theme="dark" width="50px" />
+  <spr-logo name="ecosystem" theme="dark" width="50px" />
 </div>
 
 
@@ -1634,7 +1634,7 @@ const userMenu = ref({
 import { ref } from 'vue';
 
 import SprSidenav from '@/components/sidenav/sidenav.vue';
-import SprLogos from "@/components/logos/logos.vue";
+import SprLogo from "@/components/logo/logo.vue";
 
 const quickActions = ref([
   {

@@ -10,7 +10,7 @@
 
   - Improve Docs Landing Page, Added more informations on it
   - Added 'Product Logo' Component (Uses Cloudinary to Temporary Upload)
-  - Add "Product Uses" section with logos to multiple component documentation
+  - Add "Product Uses" section with logo to multiple component documentation
   - Update component documentation structure and improve clarity
 
 - Fix

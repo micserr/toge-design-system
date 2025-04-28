@@ -238,15 +238,15 @@ import { Icon } from '@iconify/vue';
 ## Product Uses
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
-  <spr-logos name="hr" theme="dark"  width="50px" />
-  <spr-logos name="payroll" theme="dark" width="50px" />
-  <spr-logos name="ecosystem" theme="dark" width="50px" />
-  <spr-logos name="sidekick" theme="dark" width="50px" />
+  <spr-logo name="hr" theme="dark"  width="50px" />
+  <spr-logo name="payroll" theme="dark" width="50px" />
+  <spr-logo name="ecosystem" theme="dark" width="50px" />
+  <spr-logo name="sidekick" theme="dark" width="50px" />
 </div>
 
 <script lang="ts" setup>  
 import { Icon } from '@iconify/vue';
 
 import SprLozenge from "@/components/lozenge/lozenge.vue"
-import SprLogos from "@/components/logos/logos.vue";
+import SprLogo from "@/components/logo/logo.vue";
 </script>

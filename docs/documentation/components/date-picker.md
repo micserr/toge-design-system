@@ -1065,7 +1065,7 @@ const datePickerModel = ref('');
 ## Product Uses
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
-  <spr-logos name="hr" theme="dark"  width="50px" />
+  <spr-logo name="hr" theme="dark"  width="50px" />
 </div>
 
 <script lang="ts" setup>
@@ -1076,7 +1076,7 @@ import { Icon } from "@iconify/vue";
 import SprDatePicker from "@/components/date-picker/date-picker.vue";
 import SprButton from "@/components/button/button.vue";
 import SprModal from "@/components/modal/modal.vue";
-import SprLogos from "@/components/logos/logos.vue";
+import SprLogo from "@/components/logo/logo.vue";
 
 const datePickerId = ref({
   date1: "date1",

@@ -23,7 +23,7 @@ const LOGO_NAMES = [
   'wellness',
 ] as const;
 
-export const logosPropTypes = {
+export const logoPropTypes = {
   name: {
     type: String as PropType<(typeof LOGO_NAMES)[number]>,
     validator: (value: (typeof LOGO_NAMES)[number]) => LOGO_NAMES.includes(value),
@@ -40,4 +40,4 @@ export const logosPropTypes = {
   },
 };
 
-export type LogosPropTypes = ExtractPropTypes<typeof logosPropTypes>;
+export type LogoPropTypes = ExtractPropTypes<typeof logoPropTypes>;

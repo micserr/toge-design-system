@@ -161,15 +161,15 @@ const switch7UpdateHandler = (value) => {
 ## Product Uses
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
-  <spr-logos name="hr" theme="dark"  width="50px" />
-  <spr-logos name="ecosystem" theme="dark" width="50px" />
+  <spr-logo name="hr" theme="dark"  width="50px" />
+  <spr-logo name="ecosystem" theme="dark" width="50px" />
 </div>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
 
 import SprSwitch from "@/components/switch/switch.vue";
-import SprLogos from "@/components/logos/logos.vue";
+import SprLogo from "@/components/logo/logo.vue";
 
 // Basic usage
 const switchValue1 = ref(false);

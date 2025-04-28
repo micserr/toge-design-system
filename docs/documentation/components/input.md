@@ -616,9 +616,9 @@ const dropdownInput = ref('');
 ## Product Uses
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
-  <spr-logos name="hr" theme="dark"  width="50px" />
-  <spr-logos name="ecosystem" theme="dark" width="50px" />
-  <spr-logos name="sidekick" theme="dark" width="50px" />
+  <spr-logo name="hr" theme="dark"  width="50px" />
+  <spr-logo name="ecosystem" theme="dark" width="50px" />
+  <spr-logo name="sidekick" theme="dark" width="50px" />
 </div>
 
 <script lang="ts" setup>
@@ -635,7 +635,7 @@ import SprInputPassword from "@/components/input/input-password/input-password.v
 import SprInputUrl from "@/components/input/input-url/input-url.vue"
 import SprInputContactNumber from "@/components/input/input-contact-number/input-contact-number.vue"
 import SprInputDropdown from "@/components/input/input-dropdown/input-dropdown.vue"
-import SprLogos from "@/components/logos/logos.vue"
+import SprLogo from "@/components/logo/logo.vue"
 
 const inputValue = ref({
   input1: '',

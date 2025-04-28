@@ -1,5 +1,5 @@
 import { computed } from 'vue';
-import type { LogosPropTypes } from './logos';
+import type { LogoPropTypes } from './logo';
 import { Cloudinary } from '@cloudinary/url-gen';
 
 const CLOUD_NAME = 'dfeykvudc';
@@ -14,7 +14,7 @@ const NAME_MAP: Record<string, string> = {
   'readywage': 'Sprout ReadyWage',
 };
 
-export function useLogos(props: LogosPropTypes) {
+export function useLogo(props: LogoPropTypes) {
   const cld = new Cloudinary({
     cloud: {
       cloudName: CLOUD_NAME,

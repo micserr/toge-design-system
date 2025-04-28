@@ -3,13 +3,13 @@
 </template>
 
 <script lang="ts" setup>
-import { useLogos } from './use-logos';
-import { logosPropTypes } from './logos';
+import { useLogo } from './use-logo';
+import { logoPropTypes } from './logo';
 import { AdvancedImage } from '@cloudinary/vue';
 
-const props = defineProps(logosPropTypes);
+const props = defineProps(logoPropTypes);
 
-const { logoSrc, logoTitle } = useLogos(props);
+const { logoSrc, logoTitle } = useLogo(props);
 </script>
 
 <style scoped>

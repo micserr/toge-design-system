@@ -170,12 +170,12 @@ The "Product Uses" section highlights where and how the component is used across
 ## Product Uses
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
-  <spr-logos name="hr" theme="dark" title="Sprout HR" width="50px" />
-  <spr-logos name="payroll" theme="dark" title="Sprout Payroll" width="50px" />
+  <spr-logo name="hr" theme="dark" title="Sprout HR" width="50px" />
+  <spr-logo name="payroll" theme="dark" title="Sprout Payroll" width="50px" />
 </div>
 
 <script lang="ts" setup>
-import SprLogos from "@/components/logos/logos.vue";
+import SprLogo from "@/components/logo/logo.vue";
 </script>
 ```
 

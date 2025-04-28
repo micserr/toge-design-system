@@ -201,12 +201,12 @@ You can enable or disable the maximum width of the tooltip by using the `has-max
 ## Product Uses
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
-  <spr-logos name="hr" theme="dark"  width="50px" />
-  <spr-logos name="sidekick" theme="dark" width="50px" />
+  <spr-logo name="hr" theme="dark"  width="50px" />
+  <spr-logo name="sidekick" theme="dark" width="50px" />
 </div>
 
 <script lang="ts" setup>
 import SprTooltip from "@/components/tooltip/tooltip.vue";
 import SprButton from "@/components/button/button.vue";
-import SprLogos from "@/components/logos/logos.vue";
+import SprLogo from "@/components/logo/logo.vue";
 </script>

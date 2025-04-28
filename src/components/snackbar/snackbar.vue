@@ -11,8 +11,13 @@
               :show-action="snack.showAction"
               :show-icon="snack.showIcon"
               :duration="snack.duration"
+              :action-icon-props="snack.actionIconProps"
               :action="snack.action || snack.defaultAction"
-            />
+            >
+              <template v-slot>
+                <slot name="snackbarActions"></slot>
+              </template>
+            </spr-snack>
           </li>
         </TransitionGroup>
       </div>

@@ -102,6 +102,7 @@ The action property is a clickable label on the snackbar where we can define a f
 <div class="spr-flex spr-items-center spr-gap-2">
   <spr-button @click="showWithCloseButton">Show snackbar with close action</spr-button>
   <spr-button @click="showWithFunction">Show snackbar with function</spr-button>
+  <spr-button @click="showWithActionIconOnly">Show snackbar with action icon only</spr-button>
 </div>
 
 ```vue
@@ -110,6 +111,7 @@ The action property is a clickable label on the snackbar where we can define a f
 
   <spr-button @click="showWithCloseButton">Show snackbar with close action</spr-button>
   <spr-button @click="showWithFunction">Show snackbar with function</spr-button>
+  <spr-button @click="showWithActionIconOnly">Show snackbar with action icon</spr-button>
 </template>
 
 <script lang="ts" setup>
@@ -132,6 +134,77 @@ const showWithFunction = () => {
     actionText: 'action',
     showAction: true,
     action: () => alert('Action was clicked.'),
+  });
+};
+
+const showWithActionIconOnly = () => {
+  snackbar.value.showSnackbar({
+    text: 'This snackbar calls a function',
+    tone: 'danger',
+    showIcon: true,
+    actionText: '',
+    showAction: true,
+    actionIconProps: {
+      icon: 'ph:trash-fill',
+      tone: 'danger',
+    },
+    action: () => alert('Snackbar With Action Icon.'),
+  });
+};
+</script>
+```
+
+## Snackbar Actions Slot
+
+This slot allows you to customize the action section of the snackbar. You can use any component or HTML element as the action.
+
+::: warning
+`showAction` property must be set to `true` in order to render the slot.
+:::
+
+  <spr-snackbar ref="slottedActionSnackbar">
+    <template #snackbarActions>
+      <div class="spr-flex spr-cursor-pointer spr-items-center">
+        <spr-button class="spr-mr-2" @click="handleSlottedAction">
+          Slotted Action
+        </spr-button>
+        Action Text
+      </div>
+    </template>
+  </spr-snackbar>
+<spr-button @click="showSlottedActionSnackbar">Show snackbar with slotted action</spr-button>
+
+```vue
+<template>
+  <spr-snackbar ref="slottedActionSnackbar">
+    <template #snackbarActions>
+      <div class="spr-flex spr-cursor-pointer spr-items-center">
+        <spr-button class="spr-mr-2" @click="handleSlottedAction">
+          Slotted Action
+        </spr-button>
+        Action Text
+      </div>
+    </template>
+  </spr-snackbar>
+  <spr-button @click="showSlottedSnackbarAction">Show snackbar with function</spr-button>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+const slottedActionSnackbar = ref(null);
+
+const handleSlottedAction = () => {
+  // Handle the slotted action click
+  alert('Slotted action clicked');
+};
+
+const showSlottedSnackbarAction = () => {
+  snackbar.value.showSnackbar({
+    text: 'This snackbar has a slotted action',
+    tone: 'success',
+    showIcon: true,
+    showAction: true,
+    actionText: '',
   });
 };
 </script>
@@ -204,6 +277,20 @@ const showWithFunction = () => {
       <td>4000</td>
     </tr>
   </tbody>
+  <tbody>
+    <tr>
+      <td>actionIconProps</td>
+      <td>
+      Action Icon properties.
+        <ul>
+          <li>icon: string - icon name</li>
+          <li>tone: 'neutral' | 'success' | 'danger'</li>
+        </ul>
+      </td>
+      <td>object</td>
+      <td></td>
+    </tr>
+  </tbody>
 </table>
 
 <script lang="ts" setup>
@@ -215,6 +302,7 @@ import SprSnackbar from "@/components/snackbar/snackbar.vue";
 import SprButton from "@/components/button/button.vue";
 
 const snackbar = ref(null);
+const slottedActionSnackbar = ref(null);
 
 const showSnackbar1 = () => {
   snackbar.value.showSnackbar({
@@ -269,5 +357,34 @@ const showWithFunction = () => {
     showAction: true,
     action: () => alert("Action was clicked."),
   });
+}
+
+const showWithActionIconOnly = () => {
+  snackbar.value.showSnackbar({
+    text: "This snackbar calls a function with action icon only",
+    tone: "danger",
+    showIcon: true,
+    actionText: "",
+    showAction: true,
+    actionIconProps: {
+      icon: "ph:trash-fill",
+      tone: "danger"
+    },
+    action: () => alert("Snackbar With Action Icon Only."),
+  });
+}
+
+const showSlottedActionSnackbar = () => {
+  slottedActionSnackbar.value.showSnackbar({
+    text: "This snackbar has a slotted action",
+    tone: 'success',
+    showIcon: true,
+    showAction: true,
+    actionText: ""
+  });
+}
+
+const handleSlottedAction = () => {
+  alert("Slotted action clicked");
 }
 </script>

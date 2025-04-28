@@ -27,7 +27,7 @@
           <spr-button
             v-if="actionIconProps"
             iconOnly
-            class="spr-mr-2 !spr-p-size-spacing-4xs hover:spr-cursor-pointer"
+            :class="['!spr-p-size-spacing-4xs hover:spr-cursor-pointer', {  'spr-mr-2': actionText !== ''}]"
             size="small"
             variant="secondary"
             :tone="actionIconProps.tone"

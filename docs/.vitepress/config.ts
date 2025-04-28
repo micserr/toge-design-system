@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitepress';
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'Sprout Design System',
   description: 'Toge - The Sprout Design System',
@@ -19,8 +18,6 @@ export default defineConfig({
     ['meta', { property: 'og:site_name', content: 'Toge' }],
   ],
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-
     nav: [
       { text: 'Guide', link: '/guide/basics/installation' },
       {
@@ -171,17 +168,14 @@ export default defineConfig({
               text: 'Checkbox',
               link: '/documentation/components/checkbox',
             },
-
             {
               text: 'Date Picker',
               link: '/documentation/components/date-picker',
             },
-
             {
               text: 'File Upload',
               link: '/documentation/components/file-upload',
             },
-
             {
               text: 'Input',
               link: '/documentation/components/input',
@@ -190,22 +184,18 @@ export default defineConfig({
               text: 'Radio',
               link: '/documentation/components/radio',
             },
-
             {
               text: 'Slider',
               link: '/documentation/components/slider',
             },
-
             {
               text: 'Switch',
               link: '/documentation/components/switch',
             },
-
             {
               text: 'Textarea',
               link: '/documentation/components/textarea',
             },
-
             {
               text: 'Time Picker',
               link: '/documentation/components/time-picker',
@@ -234,6 +224,15 @@ export default defineConfig({
             {
               text: 'Typography',
               link: '/documentation/utilities/typography',
+            },
+          ],
+        },
+        {
+          text: 'Resources',
+          items: [
+            {
+              text: 'Product Logo',
+              link: '/documentation/components/logo',
             },
           ],
         },

@@ -15,3 +15,16 @@ Once connected, you can install the package using npm:
 ```bash
 npm install design-system-next
 ```
+
+## Alternative: Public npm Registry
+
+If you don't have access to Azure Artifacts or prefer not to use it, a public version of the package is also available on the npm registry:
+
+```bash
+npm install design-system-next
+```
+
+You can view the public package details at [npmjs.com/package/design-system-next](https://www.npmjs.com/package/design-system-next).
+
+> [!NOTE]
+> The public npm registry version may differ slightly from the Azure Artifacts version in terms of features or update frequency. For production environments, we recommend using the Azure Artifacts version when possible.

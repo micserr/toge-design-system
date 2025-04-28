@@ -1,10 +1,12 @@
 ---
 outline: 'deep'
+title: Button
+description: The button component is a versatile and commonly used element in user interfaces, designed to trigger actions or events when clicked. It can be customized in various ways, including size, tone, and variant, to suit different design needs. The button can also include icons for enhanced visual communication and can be disabled to prevent user interaction when necessary.
 ---
 
 # Button
 
-Commonly used button.
+The Button component is a versatile and commonly used element in user interfaces, designed to trigger actions or events when clicked. It can be customized in various ways, including size, tone, and variant, to suit different design needs. The button can also include icons for enhanced visual communication and can be disabled to prevent user interaction when necessary.
 
 ## Basic Usage
 
@@ -296,7 +298,17 @@ import { Icon } from '@iconify/vue';
   </tbody>
 </table>
 
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logo name="hr" theme="dark" width="50px" />
+  <spr-logo name="payroll" theme="dark" width="50px" />
+  <spr-logo name="ecosystem" theme="dark" width="50px" />
+  <spr-logo name="sidekick" theme="dark" width="50px" />
+</div>
+
 <script lang="ts" setup>
 import SprButton from "@/components/button/button.vue";
+import SprLogo from "@/components/logo/logo.vue";
 import { Icon } from '@iconify/vue';
 </script>

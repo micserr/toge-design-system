@@ -1,10 +1,34 @@
 # Changelog
 
-## 1.16.2 (2025-04-28)
+## 2.1.0 (2025-04-28)
 
 - Feat
 
   - Added Action Icon and Slotted Action in Snackbar ([#3b6f8bc6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3b6f8bc684e1dbbe3c6bf820820b4070427ca8bd?refName=refs/heads/2025/FEATURE/DUSTIN/SNACKBAR_ENHANCEMENT) by @despiritu)
+
+## 2.0.0 (2025-04-28)
+
+- Docs: Fix sidenav documentation image path to use public directory
+ ([#8ab7a8c3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8ab7a8c3e85ea58bc8db0e2746c40b8d405c5c60) by @JefMari)
+
+## 2.0.0 (2025-04-25)
+
+- Breaking Changes
+
+  - Set new Major Version to 2.0.0
+
+- Feat
+
+  - Improve Docs Landing Page, Added more informations on it
+  - Added 'Product Logo' Component (Uses Cloudinary to Temporary Upload)
+  - Add "Product Uses" section with logo to multiple component documentation
+  - Update component documentation structure and improve clarity
+
+- Fix
+  - Docs: Add alternative installation method for design-system-next via public npm registry
+  - Docs: Support Icon Component in Playground
+
+[Pull Request Link](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/30981)
 
 ## 1.16.1 (2025-04-25)
 

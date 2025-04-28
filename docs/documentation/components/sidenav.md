@@ -1623,10 +1623,18 @@ const userMenu = ref({
 </script>
 ```
 
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logo name="ecosystem" theme="dark" width="50px" />
+</div>
+
+
 <script lang="ts" setup>
 import { ref } from 'vue';
 
 import SprSidenav from '@/components/sidenav/sidenav.vue';
+import SprLogo from "@/components/logo/logo.vue";
 
 const quickActions = ref([
   {

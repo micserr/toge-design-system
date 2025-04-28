@@ -1,5 +1,24 @@
 # Changelog
 
+## 2.0.0 (2025-04-25)
+
+- Breaking Changes
+
+  - Set new Major Version to 2.0.0
+
+- Feat
+
+  - Improve Docs Landing Page, Added more informations on it
+  - Added 'Product Logo' Component (Uses Cloudinary to Temporary Upload)
+  - Add "Product Uses" section with logo to multiple component documentation
+  - Update component documentation structure and improve clarity
+
+- Fix
+  - Docs: Add alternative installation method for design-system-next via public npm registry
+  - Docs: Support Icon Component in Playground
+
+[Pull Request Link](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/30981)
+
 ## 1.16.1 (2025-04-25)
 
 - Fix

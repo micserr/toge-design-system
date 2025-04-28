@@ -819,21 +819,29 @@ const data = ref([
   </tbody>
 </table>
 
-<script setup lang="ts">
-  import { ref, computed } from 'vue'
-  import SprTable from "@/components/table/table.vue";
-  import SprTablePagination from "@/components/table/table-pagination/table-pagination.vue";
-  import SprButton from '@/components/button/button.vue';
-  import SprLozenge from "@/components/lozenge/lozenge.vue"
-  import { Icon } from '@iconify/vue';
-  
+## Product Uses
 
-  const headers = ref([
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logo name="hr" theme="dark"  width="50px" />
+  <spr-logo name="ecosystem" theme="dark" width="50px" />
+  <spr-logo name="sidekick" theme="dark" width="50px" />
+</div>
+
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import SprTable from "@/components/table/table.vue";
+import SprTablePagination from "@/components/table/table-pagination/table-pagination.vue";
+import SprButton from '@/components/button/button.vue';
+import SprLozenge from "@/components/lozenge/lozenge.vue";
+import SprLogo from "@/components/logo/logo.vue";
+import { Icon } from '@iconify/vue';
+
+const headers = ref([
   { field: 'name', name: 'Role Name', sort: true, hasAvatar: true, hasSubtext: true },
   { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false },
 ]);
 
-  const headersWithBadge = ref([
+const headersWithBadge = ref([
   { field: 'name', name: 'Role Name', sort: true, hasAvatar: true, hasSubtext: true, badgeText:'1', badgeVariant:'brand' },
   { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false, badgeText:'2', badgeVariant:'danger'  },
 ]);

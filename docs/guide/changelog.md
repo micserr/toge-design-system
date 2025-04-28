@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.1 (2025-04-28)
+
+- Fix: Logo issue on Azure via Removing Cloudinary Vue dependency and update logo component to use standard img tag with URL generation ([#8a1817d6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8a1817d6de6258988c8fe2c8604f5836604098bf) by @JefMari)
+
 ## 2.1.0 (2025-04-28)
 
 - Feat

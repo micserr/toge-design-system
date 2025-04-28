@@ -158,6 +158,10 @@ const showWithActionIconOnly = () => {
 
 This slot allows you to customize the action section of the snackbar. You can use any component or HTML element as the action.
 
+::: warning
+`showAction` property must be set to `true` in order to render the slot.
+:::
+
   <spr-snackbar ref="slottedActionSnackbar">
     <template #snackbarActions>
       <div class="spr-flex spr-cursor-pointer spr-items-center">
@@ -271,6 +275,20 @@ const showSlottedSnackbarAction = () => {
       <td>Duration in ms to show the snack.</td>
       <td>number</td>
       <td>4000</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>actionIconProps</td>
+      <td>
+      Action Icon properties.
+        <ul>
+          <li>icon: string - icon name</li>
+          <li>tone: 'neutral' | 'success' | 'danger'</li>
+        </ul>
+      </td>
+      <td>object</td>
+      <td></td>
     </tr>
   </tbody>
 </table>

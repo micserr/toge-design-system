@@ -1,16 +1,22 @@
 # Changelog
 
+## 1.16.2 (2025-04-28)
+
+- Feat
+
+  - Added Action Icon and Slotted Action in Snackbar ([#3b6f8bc6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3b6f8bc684e1dbbe3c6bf820820b4070427ca8bd?refName=refs/heads/2025/FEATURE/DUSTIN/SNACKBAR_ENHANCEMENT) by @despiritu)
+
 ## 1.16.1 (2025-04-25)
 
 - Fix
 
   - Commit ae69a7ba: table heaight ([#ae69a7ba](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ae69a7babfa3aa48d60e8df3d17dd79b6fdf5596?refName=refs/heads/2025/Fix/andrea/table-height) by @adestajo)
 
-## 1.16.0 (2025-02-23)
+## 1.16.0 (2025-04-23)
 
 - Feat
 
-  - Added Search functionality to ladderized dropdown ([d4da9803](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d4da98037c23e8a1653b668d6df44ebf097db33d?refName=refs%2Fheads%2F2025%2FFEATURE%2FDUSTIN%2FLADDERIZED_DROPDOWN_SEARCH) by @despiritu)
+  - Added Search functionality to ladderized dropdown ([#d4da9803](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d4da98037c23e8a1653b668d6df44ebf097db33d?refName=refs%2Fheads%2F2025%2FFEATURE%2FDUSTIN%2FLADDERIZED_DROPDOWN_SEARCH) by @despiritu)
 
 ## 1.15.17 (2025-04-21)
 

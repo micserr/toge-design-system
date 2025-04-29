@@ -1,7 +1,7 @@
 {
   "name": "design-system-next",
   "private": false,
-  "version": "2.1.0",
+  "version": "2.1.1",
   "main": "./dist/design-system-next.js",
   "module": "./dist/design-system-next.js",
   "repository": {
@@ -42,7 +42,6 @@
   },
   "dependencies": {
     "@cloudinary/url-gen": "^1.21.0",
-    "@cloudinary/vue": "^1.13.1",
     "@eslint/js": "^9.17.0",
     "@iconify-icons/ph": "^1.2.5",
     "@iconify/vue": "^4.3.0",

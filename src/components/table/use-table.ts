@@ -1,6 +1,6 @@
 import { ref, computed, toRefs, Slots, watch } from 'vue';
 
-import type { TablePropTypes, TableEmitTypes, TABLE_SORT, TableData, TableDataProps } from './table';
+import type { TablePropTypes, TableEmitTypes, TABLE_SORT, TableData } from './table';
 import type { SetupContext } from 'vue';
 
 import classNames from 'classnames';

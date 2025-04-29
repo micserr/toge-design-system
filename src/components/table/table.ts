@@ -136,7 +136,6 @@ export const tablePropTypes = {
   },
   selectedKeyId: {
     type: String,
-    required: true,
     default: ''
   },
   returnCompleteSelectedProperties: {

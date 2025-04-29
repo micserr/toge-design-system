@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.0 (2025-04-29)
+
+- Feat
+
+  - Added Slotted Column and Multiselect in Table ([#27035c48](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/27035c4810809fb0ba71f11ae6b6f24aac1c15f2?refName=refs/heads/2025/FEATURE/DUSTIN/TABLE_COLUMN_SLOT) by @despiritu)
+
 ## 2.1.1 (2025-04-28)
 
 - Fix: Logo issue on Azure via Removing Cloudinary Vue dependency and update logo component to use standard img tag with URL generation ([#8a1817d6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8a1817d6de6258988c8fe2c8604f5836604098bf) by @JefMari)

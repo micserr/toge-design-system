@@ -1,7 +1,7 @@
 <template>
   <template v-if="props.text || slots['popper-content']">
     <Tooltip
-      class="spr-w-fit"
+      :class="[ props.fitContent ? 'spr-w-fit' : 'spr-w-full' ]"
       :aria-id="props.hasMaxWidth ? 'tooltip-full-width-wrapper' : 'tooltip-wrapper'"
       :placement="placement"
     >

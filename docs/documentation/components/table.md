@@ -180,6 +180,292 @@ watch(searchModel, (newValue) => {
 </template>
 ```
 
+## Multi Select
+Allows the selection of multiple or all rows in the table.
+
+::: warning
+<ul>
+  <li>If table is paginated, only the rows on the current page will be selected.</li>
+  <li><strong>selectedKeyId</strong> prop must be provided.</li>
+  <li><strong>title</strong> value of the table data object mapped with <strong>selectedKeyId</strong> in the table data must be unique.</li>
+</ul>  
+:::
+
+::: tip
+Set the prop <strong>returnCompleteSelectedProperties</strong> to <strong>false</strong> to return the selected data as an array of objects with the <strong>selectedKeyId</strong> value only.
+:::
+
+<code>
+  {{ selectedTableData }}
+</code>
+
+<div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
+  <spr-table 
+    action 
+    :headers="headers" 
+    :data-table="data" 
+    variant="white" 
+    :is-multi-select="true" 
+    :selected-key-id="'name'"
+    :return-complete-selected-properties="false"
+    @update:selectedData="handleSelectedData"
+  >
+    <template #action="{ row }">
+      <spr-lozenge :label="row.status.title" :tone="row.status.title.toLowerCase()" />
+    </template>
+    <template #action-name>
+      Status
+    </template>
+  </spr-table>
+</div>
+
+```vue
+<template>
+  <spr-table
+    action
+    :headers="headers"
+    :data-table="data"
+    variant="white"
+    :is-multi-select="true"
+    :selected-key-id="'name'"
+    :return-complete-selected-properties="false"
+    @update:selectedData="handleSelectedData"
+  >
+    <template #action="{ row }">
+      <spr-lozenge :label="row.status.title" :tone="row.status.title.toLowerCase()" />
+    </template>
+    <template #action-name> Status </template>
+  </spr-table>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const selectedTableData = ref([]);
+const headers = ref([
+  { field: 'name', name: 'Role Name', sort: true, hasAvatar: true, hasSubtext: true },
+  { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false },
+]);
+const data = ref([
+  {
+    name: {
+      title: 'Shift',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Success',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+    {
+    name: {
+      title: 'Shift 1',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 01, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Pending',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+      {
+    name: {
+      title: 'Shift 2',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 01, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Pending',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+      {
+    name: {
+      title: 'Shift 3',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 01, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Pending',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+      {
+    name: {
+      title: 'Shift 4',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 01, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Pending',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+      {
+    name: {
+      title: 'Shift 5',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 01, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Pending',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+]);
+
+const handleSelectedData = (data) => {
+  // do anything with the selected data
+  selectedTableData.value = [...data];
+}
+</script>
+
+```
+
+## Custom Column
+You can customize the column of the table by using the dynamically named slot column field (the field property in the headers object).
+
+<div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
+    <spr-table
+      action
+      :headers="headers"
+      :data-table="data2"
+    >
+      <template #name="{ row }">
+        <spr-tooltip :has-max-width="true" :text="String(row.title)">
+          <div ref="rowTitleRef" class="spr-truncate spr-text-sm" :style="`max-width: ${getCellMaxWidth}`">{{ row.title }}</div>
+        </spr-tooltip>
+        <span class="spr-text-color-base spr-text-xs spr-font-normal">{{ row.subtext }}</span>
+      </template>
+      <template #action>
+        <div class="spr-flex spr-flex-auto spr-justify-end spr-gap-2">
+          <spr-button variant="primary" tone="success" size="small"> Action 1 </spr-button>
+          <spr-button variant="primary" tone="danger" size="small"> Action 2 </spr-button>
+        </div>
+      </template>
+    </spr-table>
+</div>
+    
+```vue {7}
+<template>
+  <spr-table
+    action
+    :headers="headers"
+    :data-table="data"
+  >
+    <template #name="{ row }"> //slot name is the field property value in the headers object
+      <spr-tooltip :has-max-width="true" :text="String(row.title)">
+        <div 
+          ref="rowTitleRef" 
+          class="spr-truncate spr-text-sm" 
+          :style="`max-width: ${getCellMaxWidth}`"
+        >
+          {{ row.title }}
+        </div>
+      </spr-tooltip>
+      <span class="spr-text-color-base spr-text-xs spr-font-normal">{{ row.subtext }}</span>
+    </template>
+    <template #action>
+      <div class="spr-flex spr-flex-auto spr-justify-end spr-gap-2">
+        <spr-button variant="primary" tone="success" size="small"> Action 1 </spr-button>
+        <spr-button variant="primary" tone="danger" size="small"> Action 2 </spr-button>
+      </div>
+    </template>
+  </spr-table>
+</template>
+<script setup lang="ts">
+import { ref, computed } from 'vue';
+
+const rowTitleRef = ref<HTMLElement|null>(null);
+const cellWidth = ref(0)
+
+const getCellMaxWidth = computed(() => {
+  return cellWidth.value > 0 ? `${cellWidth.value}px` : '100%'
+})
+
+const headers = ref([
+  { field: 'name', name: 'Role Name', sort: true, hasAvatar: true, hasSubtext: true },
+  { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false },
+]);
+
+const data = ref([
+  {
+    name: {
+      title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis autem minus fugiat culpa ad magnam nisi ex facilis ducimus sit neque modi porro optio cupiditate iusto, blanditiis asperiores aperiam veritatis mollitia laboriosam? Consectetur, deserunt? Reprehenderit ipsa, debitis eaque accusamus ducimus quasi deserunt laborum asperiores ea, nemo, optio corporis rerum! Veniam ex voluptatibus eveniet consequuntur saepe doloribus sint laboriosam eligendi sequi esse vero, quam consectetur iste inventore aliquam soluta quibusdam at perferendis ratione, voluptatum accusantium amet dignissimos perspiciatis. Aspernatur, voluptate amet.',
+      subtext: 'Lorem ipsectetur adipiscing elit.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Success',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+    {
+    name: {
+      title: 'Shift 1',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 01, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Pending',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  }
+]);
+
+</script>
+```
+
+
 ## Table Footer
 
 The implementation for the pagination here is to emit and trigger an API call to update the data-table
@@ -816,6 +1102,30 @@ const data = ref([
       <td>boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td>isMultiSelect</td>
+      <td>Allows the use of checkbox to multiselect from the table</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>selectedKeyId</td>
+      <td>Specifies which key in the table data object will be used as an identifier and acts as a reference to a specific property within each row of the table's data.</td>
+      <td>string</td>
+      <td>''</td>
+    </tr>
+    <tr>
+      <td>@update:selectedData</td>
+      <td>Emits selected data on select</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>returnCompleteSelectedProperties</td>
+      <td>Determines the structure of the data emitted when rows are selected in the table. If set to true, will emit the entire table data object of the selected row. Else, will emit the value of the property specified by the <strong>selectedKeyId</strong> prop.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 
@@ -828,13 +1138,30 @@ const data = ref([
 </div>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import SprTable from "@/components/table/table.vue";
 import SprTablePagination from "@/components/table/table-pagination/table-pagination.vue";
 import SprButton from '@/components/button/button.vue';
 import SprLozenge from "@/components/lozenge/lozenge.vue";
 import SprLogo from "@/components/logo/logo.vue";
+import SprTooltip from "@/components/tooltip/tooltip.vue";
 import { Icon } from '@iconify/vue';
+
+const selectedTableData = ref([]);
+
+const rowTitleRef = ref<HTMLElement|null>(null);
+const cellWidth = ref(0)
+
+const getCellMaxWidth = computed(() => {
+  return cellWidth.value > 0 ? `${cellWidth.value}px` : '100%'
+})
+
+onMounted(() => {
+  if (rowTitleRef.value) {
+    cellWidth.value = rowTitleRef.value.offsetParent?.clientWidth ?? 0;
+    cellWidth.value = cellWidth.value - 24; // Adjust for td padding
+  }
+});
 
 const headers = ref([
   { field: 'name', name: 'Role Name', sort: true, hasAvatar: true, hasSubtext: true },
@@ -883,7 +1210,7 @@ const data = ref([
   },
       {
     name: {
-      title: 'Shift 1',
+      title: 'Shift 2',
       subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
       image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
@@ -900,7 +1227,7 @@ const data = ref([
   },
       {
     name: {
-      title: 'Shift 1',
+      title: 'Shift 3',
       subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
       image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
@@ -917,7 +1244,7 @@ const data = ref([
   },
       {
     name: {
-      title: 'Shift 1',
+      title: 'Shift 4',
       subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
       image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
@@ -934,7 +1261,7 @@ const data = ref([
   },
       {
     name: {
-      title: 'Shift 1',
+      title: 'Shift 5',
       subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
       image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
@@ -949,6 +1276,44 @@ const data = ref([
       image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
   },
+]);
+
+
+const data2 = ref([
+  {
+    name: {
+      title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis autem minus fugiat culpa ad magnam nisi ex facilis ducimus sit neque modi porro optio cupiditate iusto, blanditiis asperiores aperiam veritatis mollitia laboriosam? Consectetur, deserunt? Reprehenderit ipsa, debitis eaque accusamus ducimus quasi deserunt laborum asperiores ea, nemo, optio corporis rerum! Veniam ex voluptatibus eveniet consequuntur saepe doloribus sint laboriosam eligendi sequi esse vero, quam consectetur iste inventore aliquam soluta quibusdam at perferendis ratione, voluptatum accusantium amet dignissimos perspiciatis. Aspernatur, voluptate amet.',
+      subtext: 'Lorem ipsectetur adipiscing elit.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 30, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Success',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  },
+    {
+    name: {
+      title: 'Shift 1',
+      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    lastUpdate: {
+      title: 'Nov 01, 2025',
+      subtext: 'Lorem ipsum dolor ',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+    status: {
+      title: 'Pending',
+      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+    },
+  }
 ]);
 
 const tableActions = ref({
@@ -1129,4 +1494,8 @@ const dataMultiple = [
     },
   },
 ]
+
+const handleSelectedData = (data) => {
+  selectedTableData.value = [...data];
+}
 </script>

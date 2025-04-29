@@ -18,12 +18,14 @@ interface Header {
 }
 
 export interface TableData {
-  [key: string]: {
-    title: string | LozengeTitle | ChipTitle | LozengeTitle[] | ChipTitle[];
-    subtext?: string;
-    image?: string;
-    icon?: string;
-  };
+  [key: string]: TableDataProps;
+}
+
+export interface TableDataProps {
+  title: string | LozengeTitle | ChipTitle | LozengeTitle[] | ChipTitle[];
+  subtext?: string;
+  image?: string;
+  icon?: string;
 }
 
 interface EmptyState {
@@ -128,6 +130,19 @@ export const tablePropTypes = {
     type: Boolean as PropType<boolean>,
     default: false,
   },
+  isMultiSelect: {
+    type: Boolean,
+    default: false
+  },
+  selectedKeyId: {
+    type: String,
+    required: true,
+    default: ''
+  },
+  returnCompleteSelectedProperties: {
+    type: Boolean,
+    default: false
+  }
 };
 
 export const tableEmitTypes = {
@@ -138,6 +153,8 @@ export const tableEmitTypes = {
     typeof rowData === 'object' && typeof rowKey === 'number',
   onHover: (value: { active: boolean; data: TableData }): value is { active: boolean; data: TableData } =>
     typeof value.active === 'boolean' && typeof value.data === 'object',
+  'update:selectedData': (value: TableDataProps[] | TableData[]): value is TableDataProps[] | TableData[] =>
+    Array.isArray(value) && value.every(item => typeof item === 'object' && item !== null),
 };
 
 export type TablePropTypes = ExtractPropTypes<typeof tablePropTypes>;

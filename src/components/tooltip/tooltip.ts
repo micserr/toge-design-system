@@ -37,6 +37,10 @@ export const tooltipPropTypes = {
     type: Boolean,
     default: true,
   },
+  fitContent: {
+    type: Boolean,
+    default: true
+  }
 };
 
 export type TooltipPropTypes = ExtractPropTypes<typeof tooltipPropTypes>;

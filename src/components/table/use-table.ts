@@ -1,15 +1,23 @@
-import { ref, computed, toRefs, Slots } from 'vue';
+import { ref, computed, toRefs, Slots, watch } from 'vue';
 
-import type { TablePropTypes, TableEmitTypes, TABLE_SORT, TableData } from './table';
+import type { TablePropTypes, TableEmitTypes, TABLE_SORT, TableData, TableDataProps } from './table';
 import type { SetupContext } from 'vue';
 
 import classNames from 'classnames';
 
 export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitTypes>['emit'], slots: Slots) => {
-  const { dataTable, action, headers, sortOrder, fullHeight } = toRefs(props);
+  const { dataTable, action, headers, sortOrder, fullHeight, selectedKeyId, returnCompleteSelectedProperties } =
+    toRefs(props);
   const sortField = ref('');
   const searchField = ref(props.searchModel);
   const tableSortOrder = ref<TABLE_SORT>(sortOrder.value || 'asc');
+  const selectAll = ref(false);
+  const selectedData = ref<TableData[]>([]);
+
+  const isAllSelected = computed(() => {
+    if (selectedData.value.length === 0) return false;
+    return selectedData.value.length === sortedData.value.length;
+  });
 
   const sortedData = computed(() => {
     if (!sortField.value || sortOrder.value) return dataTable.value;
@@ -121,6 +129,12 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       'spr-h-[360px]': !fullHeight.value && !slots.footer,
     });
 
+    const multiselectRowClass = classNames(
+      'spr-border-color-weak spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid',
+    );
+
+    const multiselectClass = classNames('spr-px-size-spacing-2xs spr-py-size-spacing-3xs spr-w-[44px] ');
+
     return {
       headerClasses,
       tableWrapperClasses,
@@ -128,6 +142,8 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       tableHeaderActionsClasses,
       headerNameClass,
       tableCellSlotClasses,
+      multiselectRowClass,
+      multiselectClass,
 
       tableRowClasses,
       tableDataClasses,
@@ -139,15 +155,60 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     };
   });
 
+  const handleSelect = (item: TableData) => {
+    if (!selectedKeyId.value || !(selectedKeyId.value in item)) return;
+
+    const selectedIndex = selectedData.value.findIndex(
+      (data) => data[selectedKeyId.value].title === item[selectedKeyId.value].title,
+    );
+
+    if (selectedIndex !== -1) {
+      selectedData.value.splice(selectedIndex, 1);
+    } else {
+      selectedData.value.push(item);
+    }
+  };
+
+  const handleSelectAll = () => {
+    if (isAllSelected.value) {
+      selectedData.value = [];
+    } else {
+      selectedData.value = sortedData.value;
+    }
+  };
+
+  const isRowSelected = (item: TableData) => {
+    if (!selectedKeyId.value || !(selectedKeyId.value in item)) return false;
+    return selectedData.value.some((data) => data[selectedKeyId.value].title === item[selectedKeyId.value].title);
+  };
+
+  watch(
+    () => selectedData.value.length,
+    () => {
+      if (returnCompleteSelectedProperties.value) {
+        emit('update:selectedData', selectedData.value);
+      } else {
+        const mappedData = selectedData.value.map((item) => ({ ...item[selectedKeyId.value] }));
+        emit('update:selectedData', mappedData);
+      }
+    },
+  );
+
   return {
     sortData,
     updateSearchField,
     handleRowClick,
+    handleSelect,
+    handleSelectAll,
     sortedData,
     getHeaderCount,
     hasTableActions,
     searchField,
     getTableClasses,
     getEmptyStateSize,
+    selectAll,
+    selectedData,
+    isAllSelected,
+    isRowSelected,
   };
 };

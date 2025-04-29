@@ -1,9 +1,14 @@
 # Changelog
 
+## 2.3.1 (2025-04-29)
+
+- Fix
+  - Commit b5f80480: DQA ([#b5f80480](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b5f8048005e16d1316375d87c5251041fe5d050f?refName=refs/heads/2025/Fix/andrea/table-dropdown) by @adestajo)
+
 ## 2.3.0 (2025-04-29)
 
 - Feat
-  - Add dynamic Ids to nav links based on nav titles 
+  - Add dynamic Ids to nav links based on nav titles
 - Fix
   - Add string validator for request and notifications count
 - Docs
@@ -28,7 +33,7 @@
 ## 2.0.0 (2025-04-28)
 
 - Docs: Fix sidenav documentation image path to use public directory
- ([#8ab7a8c3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8ab7a8c3e85ea58bc8db0e2746c40b8d405c5c60) by @JefMari)
+  ([#8ab7a8c3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8ab7a8c3e85ea58bc8db0e2746c40b8d405c5c60) by @JefMari)
 
 ## 2.0.0 (2025-04-25)
 

@@ -4,13 +4,14 @@
     aria-id="filter-option-wrapper"
     distance="4"
     placement="bottom"
-    :triggers="['click']"
+    :triggers="[]"
+    :popper-hide-triggers="[]"
     :container="`#${uniqueId}`"
+    :auto-hide="false"
     :style="{
       width: props.width,
       position: 'relative',
     }"
-    :auto-hide="false"
   >
     <span
       :id="uniqueId"
@@ -18,6 +19,7 @@
         width: props.width,
         position: 'relative',
       }"
+      @click="isFilterOpen = true"
     >
       <slot>
         <spr-input v-model="searchValue" type="text" :placeholder="placeholder" :label="label" :disabled="disabled">
@@ -184,6 +186,7 @@
         >
           <div
             class="spr-flex spr-w-full spr-flex-row spr-items-center spr-justify-items-start spr-gap-size-spacing-3xs"
+            @click="getFiltereredOption[key].isSelected = !getFiltereredOption[key].isSelected"
           >
             <spr-checkbox
               v-model="getFiltereredOption[key].isSelected"

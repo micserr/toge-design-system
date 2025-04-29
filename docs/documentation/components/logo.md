@@ -11,7 +11,7 @@ Displays various Sprout product logo. This component allows specifying the produ
 
 Shows the default logo (`hr` name, `dark` theme).
 
-<div class="spr-flex spr-items-center spr-gap-4 spr-p-4 spr-rounded">
+<div class="spr-flex spr-items-center spr-gap-4 spr-py-4 spr-rounded">
   <spr-logo />
 </div>
 
@@ -29,7 +29,7 @@ import SprLogo from '@/components/logo/logo.vue';
 
 You can change the logo theme using the `theme` prop.
 
-<div class="spr-flex spr-flex-wrap spr-items-center spr-gap-4 spr-p-4 spr-rounded">
+<div class="spr-flex spr-flex-wrap spr-items-center spr-gap-4 spr-py-4 spr-rounded">
   <spr-logo theme="white" name="hr" />
   <spr-logo theme="dark" name="hr" />
   <spr-logo theme="gray" name="hr" />
@@ -53,7 +53,7 @@ import SprLogo from '@/components/logo/logo.vue';
 
 Specify different product logo using the `name` prop.
 
-<div class="spr-flex spr-flex-wrap spr-items-center spr-gap-4 spr-p-4 spr-rounded">
+<div class="spr-flex spr-flex-wrap spr-items-center spr-gap-4 spr-py-4 spr-rounded">
   <spr-logo name="benchmark" />
   <spr-logo name="ecosystem" />
   <spr-logo name="engage" />
@@ -62,8 +62,8 @@ Specify different product logo using the `name` prop.
   <spr-logo name="hr" />
   <spr-logo name="inbound" />
   <spr-logo name="insight" />
-  <spr-logo name="instacash" />
-  <spr-logo name="instawage" />
+  <spr-logo name="readycash" />
+  <spr-logo name="readywage" />
   <spr-logo name="payroll" />
   <spr-logo name="performance-plus" />
   <spr-logo name="procurement" />

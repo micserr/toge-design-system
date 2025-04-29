@@ -86,6 +86,6 @@ const {
   handleSelectedLadderizedItem,
   dropdownValue,
   removeCurrentLevelInBackLabel,
-  isLadderizedSearch
+  isLadderizedSearch,
 } = useDropdown(props, emit);
 </script>

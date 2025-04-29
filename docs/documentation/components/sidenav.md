@@ -996,7 +996,7 @@ Here’s a full example of how to implement the Sidenav component with the above
     :active-nav="activeNav"
     :nav-links="navLinks"
     :notification-count="5"
-    :request-count="10"
+    :request-count="`99+`"
     :user-menu="userMenu"
     @get-navlink-item="handleGetNavLinkItem"
     @search="handleSearch"

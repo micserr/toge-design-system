@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.3.0 (2025-04-29)
+
+- Feat
+  - Add dynamic Ids to nav links based on nav titles 
+- Fix
+  - Add string validator for request and notifications count
+- Docs
+  - Show '99+' to request count in sidenav documentation ([#cb728f1e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cb728f1e665f0035524f4ed48fddd66df91818bd?refName=refs%2Fheads%2F2025%2Fbugfix%2Feli%2Fsidenav) by @elumilay)
+
 ## 2.2.0 (2025-04-29)
 
 - Feat

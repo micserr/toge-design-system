@@ -93,12 +93,16 @@ export const sidenavPropTypes = {
   },
   notificationCount: {
     type: [String, Number],
-    validator: (value: number) => typeof value === 'number',
+    validator: (value: string | number) => {
+      return typeof value === 'number' || typeof value === 'string';
+    },
     default: '',
   },
   requestCount: {
     type: [String, Number],
-    validator: (value: number) => typeof value === 'number',
+    validator: (value: string | number) => {
+      return typeof value === 'number' || typeof value === 'string';
+    },
     default: '',
   },
   userMenu: {

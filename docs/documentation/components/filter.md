@@ -32,13 +32,13 @@ The `Filter` supports advanced filtering options, infinite scrolling, and dynami
 <script setup>
 import { ref } from 'vue';
 
-const options = [
+const options = ref([
   { column: '', isSelected: false, text: 'sample 1', value: 'sample1' },
   { column: '', isSelected: false, text: 'sample 2', value: 'sample2' },
   { column: '', isSelected: false, text: 'sample 3', value: 'sample3' },
   { column: '', isSelected: false, text: 'sample 4', value: 'sample4' },
   { column: '', isSelected: false, text: 'sample 5', value: 'sample5' },
-];
+]);
 
 const selectedOptions = ref([]);
 const searchValue = ref('');
@@ -81,13 +81,13 @@ const searchValue = ref('');
 </template>
 
 <script setup>
-const options = [
+const options = ref([
   { column: '', isSelected: false, text: 'sample 1', value: 'sample1' },
   { column: '', isSelected: false, text: 'sample 2', value: 'sample2' },
   { column: '', isSelected: false, text: 'sample 3', value: 'sample3' },
   { column: '', isSelected: false, text: 'sample 4', value: 'sample4' },
   { column: '', isSelected: false, text: 'sample 5', value: 'sample5' },
-];
+]);
 
 const filterMenuList = ref([
   { count: 0, isFilterVisible: false, columnName: 'Employee Type', field: 'employeeType' },
@@ -159,13 +159,13 @@ import { ref } from 'vue';
 import { Icon } from '@iconify/vue';
 import SprButton from '@/components/button/button.vue';
 
-const options = [
+const options = ref([
   { column: '', isSelected: false, text: 'sample 1', value: 'sample1' },
   { column: '', isSelected: false, text: 'sample 2', value: 'sample2' },
   { column: '', isSelected: false, text: 'sample 3', value: 'sample3' },
   { column: '', isSelected: false, text: 'sample 4', value: 'sample4' },
   { column: '', isSelected: false, text: 'sample 5', value: 'sample5' },
-];
+]);
 
 const selectedOptions2 = ref([]);
 const searchValue2 = ref('');
@@ -399,12 +399,12 @@ import { Icon } from '@iconify/vue';
 import SprButton from "@/components/button/button.vue";
 import SprLogo from "@/components/logo/logo.vue";
 
-const options = [
+const options = ref([
     { column: '', isSelected: false, text: 'sample 1', subtext: '', value: 'sample1' },
     { column: '', isSelected: false, text: 'sample 2', subtext: '', value: 'sample2' },
     { column: '', isSelected: false, text: 'sample 4', subtext: 'subtext', value: 'sample4' },
     { column: '', isSelected: false, text: 'sample 5', subtext: 'subtext', value: 'sample5' },
-];
+]);
 
   const filterMenuList = ref([
     { count: 0, isFilterVisible: false, columnName: 'Employee Type', field: 'employeeType' },
@@ -414,20 +414,20 @@ const options = [
     { count: 0, isFilterVisible: false, columnName: 'Job Level', field: 'jobLevel' },
   ]);
 
-  const filterMenuOptions = [
+  const filterMenuOptions = ref([
     { column: 'location', isSelected: false, text: 'sample 1', subtext: 'subtext', value: 'sample1' },
     { column: 'location', isSelected: false, text: 'sample 2', subtext: 'subtext', value: 'sample2' },
     { column: 'location', isSelected: false, text: 'sample 3', subtext: 'subtext', value: 'sample3' },
     { column: 'location', isSelected: false, text: 'sample 4', subtext: 'subtext', value: 'sample4' },
     { column: 'location', isSelected: false, text: 'sample 5', subtext: 'subtext', value: 'sample5' },
-];
+]);
 
-const options1 = [
+const options1 = ref([
     { column: '', isSelected: false, text: 'sample 1', subtext: '', value: 'sample1' },
     { column: '', isSelected: false, text: 'sample 2', subtext: '', value: 'sample2' },
     { column: '', isSelected: false, text: 'sample 4', subtext: 'subtext', value: 'sample4' },
     { column: '', isSelected: false, text: 'sample 5', subtext: 'subtext', value: 'sample5' },
-];
+]);
 
   const filterMenuList1 = ref([
     { count: 0, isFilterVisible: false, columnName: 'Employee Type', field: 'employeeType' },
@@ -435,13 +435,13 @@ const options1 = [
     { count: 0, isFilterVisible: false, columnName: 'Location', field: 'location' },
   ]);
 
-  const filterMenuOptions1 = [
+  const filterMenuOptions1 = ref([
     { column: 'location', isSelected: false, text: 'sample 1', subtext: 'subtext', value: 'sample1' },
     { column: 'location', isSelected: false, text: 'sample 2', subtext: 'subtext', value: 'sample2' },
     { column: 'location', isSelected: false, text: 'sample 3', subtext: 'subtext', value: 'sample3' },
     { column: 'location', isSelected: false, text: 'sample 4', subtext: 'subtext', value: 'sample4' },
     { column: 'location', isSelected: false, text: 'sample 5', subtext: 'subtext', value: 'sample5' },
-];
+]);
 
 
 

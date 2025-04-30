@@ -208,7 +208,7 @@ Set the prop <strong>returnCompleteSelectedProperties</strong> to <strong>false<
     :is-multi-select="true" 
     :selected-key-id="'name'"
     :return-complete-selected-properties="false"
-    @update:selectedData="handleSelectedData"
+    @update:selected-data="handleSelectedData"
   >
     <template #action="{ row }">
       <spr-lozenge :label="row.status.title" :tone="row.status.title.toLowerCase()" />

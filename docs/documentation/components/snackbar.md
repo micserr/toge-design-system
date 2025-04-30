@@ -199,7 +199,7 @@ const handleSlottedAction = () => {
 };
 
 const showSlottedSnackbarAction = () => {
-  snackbar.value.showSnackbar({
+  slottedActionSnackbar.value.showSnackbar({
     text: 'This snackbar has a slotted action',
     tone: 'success',
     showIcon: true,

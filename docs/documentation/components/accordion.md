@@ -113,7 +113,7 @@ The `alwaysOpen` prop allows you to set the accordion items to be always open. T
 
 
 ## Default State
-By default, the accordion items are hidden. You can change the default state of the accordion items on mount by setting the `isDefaultOpen` to `true`.
+By default, the accordion items are hidden. You can change the default state of the accordion items on load by setting the `isDefaultOpen` to `true`.
 
 ::: warning
   The `isDefaultOpen` prop will only work when the `alwaysOpen` prop is set to `true`.
@@ -214,7 +214,7 @@ By default, the accordion items are hidden. You can change the default state of 
     <tr>
       <td>isDefaultOpen</td>
       <td>
-        Defines if the accordion items are visible on mounnt. This prop will only work when the alwaysOpen prop is set to true.
+        Defines if the accordion items are visible on load. This prop will only work when the alwaysOpen prop is set to true.
       </td>
       <td>Boolean</td>
       <td>false</td>

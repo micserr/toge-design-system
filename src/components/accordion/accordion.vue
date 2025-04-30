@@ -23,7 +23,7 @@
             <spr-button
               v-if="props.accordionTrigger === 'button'"
               variant="secondary"
-              hasIcon
+              has-icon
               size="small"
               @click="toggleCollapse(index)"
             >

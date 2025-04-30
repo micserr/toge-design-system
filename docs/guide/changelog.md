@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.4.0 (2025-04-30)
+- Feat
+  - Stepper ([#2e662df4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2e662df4619cb67bf2ca8da0bbd631705dfce0dd?refName=refs/heads/2025/FEATURE/Xyrk/STEPPER) by @jfabula)
+
 ## 2.3.1 (2025-04-29)
 
 - Fix

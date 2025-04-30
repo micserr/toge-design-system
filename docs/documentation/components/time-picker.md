@@ -228,7 +228,6 @@ const selectedValue6 = ref('');
       <td>string</td>
       <td>''</td>
     </tr>
-    </tr>
   </tbody>
 </table>
 

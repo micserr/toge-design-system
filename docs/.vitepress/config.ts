@@ -22,7 +22,7 @@ export default defineConfig({
       { text: 'Guide', link: '/guide/basics/installation' },
       {
         text: 'Components',
-        link: '/documentation/components/avatar',
+        link: '/documentation/components/accordion',
       },
       {
         text: 'Playground',
@@ -71,6 +71,10 @@ export default defineConfig({
         {
           text: 'Components',
           items: [
+            {
+              text: 'Accordion',
+              link: '/documentation/components/accordion'
+            },
             {
               text: 'Avatar',
               link: '/documentation/components/avatar',

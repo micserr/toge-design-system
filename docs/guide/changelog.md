@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.5.0 (2025-04-30)
+- Feat
+  - Added Accordion component ([#4b96feb1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4b96feb1a82ab426665138e2cfcfb55a11b04341?refName=refs%2Fheads%2F2025%2FFEATURE%2FDUSTIN%2FACCORDION) by @despiritu)
+
 ## 2.4.0 (2025-04-30)
 - Feat
   - Stepper ([#2e662df4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2e662df4619cb67bf2ca8da0bbd631705dfce0dd?refName=refs/heads/2025/FEATURE/Xyrk/STEPPER) by @jfabula)
@@ -21,7 +25,6 @@
 ## 2.2.0 (2025-04-29)
 
 - Feat
-
   - Added Slotted Column and Multiselect in Table ([#27035c48](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/27035c4810809fb0ba71f11ae6b6f24aac1c15f2?refName=refs/heads/2025/FEATURE/DUSTIN/TABLE_COLUMN_SLOT) by @despiritu)
 
 ## 2.1.1 (2025-04-28)

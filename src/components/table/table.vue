@@ -63,7 +63,7 @@
           >
             <td v-if="props.isMultiSelect" :class="[getTableClasses.multiselectClass, getTableClasses.multiselectRowClass]">
               <div class="spr-flex spr-justify-center spr-items-center">
-                <spr-checkbox label="" :checked="isRowSelected(item)" @update:modelValue="handleSelect(item)"/>
+                <spr-checkbox label="" :checked="isRowSelected(item)" @update:model-value="handleSelect(item)"/>
               </div>
             </td>
             <td v-for="(column, headerKey) in headers" :key="headerKey" :class="getTableClasses.tableDataClasses">

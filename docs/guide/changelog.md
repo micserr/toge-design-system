@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.5.2 (2025-04-30)
+
+- Fix
+  - Shrinking Snackbar Icon ([#063e7e37](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/063e7e37577d54b3e23f0cc3dccb5246c094a565?refName=refs/heads/2025/fix/dustin/SHRINKING_SNACKBAR_ICON) by @despiritu)
+
 ## 2.5.1 (2025-04-30)
 
 - Feat

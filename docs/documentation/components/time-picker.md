@@ -222,6 +222,13 @@ const selectedValue6 = ref('');
       <td>boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td>placeholder</td>
+      <td>Set placeholder text for the input field</td>
+      <td>string</td>
+      <td>''</td>
+    </tr>
+    </tr>
   </tbody>
 </table>
 

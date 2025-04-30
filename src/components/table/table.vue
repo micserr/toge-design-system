@@ -17,14 +17,13 @@
         </template>
       </spr-table-actions>
     </div>
-
     <div :class="getTableClasses.tableBackgroundClasses">
       <table aria-describedby="describe" class="spr-w-full spr-table-fixed" cellspacing="0" cellpadding="0">
         <thead>
           <tr v-if="!(props.removeHeaderOnEmpty && sortedData.length <= 0)">
             <th v-if="props.isMultiSelect" :class="[getTableClasses.multiselectClass, getTableClasses.headerClasses]">
               <div class="spr-flex spr-justify-center spr-items-center">
-                <spr-checkbox label="" :checked="isAllSelected" @update:model-value="handleSelectAll"/>
+                <spr-checkbox label="" :checked="isAllSelected || isIndeterminate" :indeterminate="isIndeterminate" @update:model-value="handleSelectAll"/>
               </div>
             </th>
             <th v-for="(header, keyHeader) in headers" :key="keyHeader" :class="[getTableClasses.headerClasses]">
@@ -184,6 +183,7 @@ const {
   getTableClasses,
   getEmptyStateSize,
   isAllSelected,
+  isIndeterminate,
   
   isRowSelected,
   sortData,

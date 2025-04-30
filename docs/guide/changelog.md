@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.5.3 (2025-04-30)
+
+- Fix
+  - Commit 6b16844d: Update filter.md ([#6b16844d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6b16844de0b6d5b55deef12b5338b26195afaf8c?refName=refs/heads/2025/Fix/andrea/filter-docu) by @adestajo)
+
 ## 2.5.2 (2025-04-30)
 
 - Fix

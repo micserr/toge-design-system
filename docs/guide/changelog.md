@@ -1,6 +1,10 @@
 # Changelog
 
 ## 2.5.0 (2025-04-30)
+- Fix
+  - Shrinking Snackbar Icon ([#063e7e37](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/063e7e37577d54b3e23f0cc3dccb5246c094a565?refName=refs/heads/2025/fix/dustin/SHRINKING_SNACKBAR_ICON) by @despiritu)
+
+## 2.5.0 (2025-04-30)
 - Feat
   - Added Accordion component ([#4b96feb1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4b96feb1a82ab426665138e2cfcfb55a11b04341?refName=refs%2Fheads%2F2025%2FFEATURE%2FDUSTIN%2FACCORDION) by @despiritu)
 

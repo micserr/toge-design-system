@@ -80,17 +80,17 @@ export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext
       'spr-border-solid': !props.status || (props.status !== 'pending' && props.status !== 'error'),
     });
 
-    const titleClasses = classNames('spr-text-color-strong spr-body-xs-regular-medium', {
+    const titleClasses = classNames('spr-text-color-strong spr-body-sm-regular-medium', {
       'spr-text-color-danger-base': props.status === 'error',
     });
 
-    const descriptionClasses = classNames('spr-text-color-strong spr-body-xs-regular', {
+    const descriptionClasses = classNames('spr-text-color-strong spr-body-sm-regular', {
       'spr-text-color-danger-base': props.status === 'error',
     });
 
-    const getTypeLabelClassess = classNames('spr-text-color-strong spr-body-xs-regular', {
+    const getTypeLabelClassess = classNames('spr-text-color-strong spr-body-sm-regular', {
       'spr-text-color-danger-base': props.status === 'error',
-      'spr-text-color-strong spr-body-xs-regular-medium': offlineStatus.includes(props.type),
+      'spr-text-color-strong spr-body-sm-regular-medium': offlineStatus.includes(props.type),
     });
 
     const getMainClasses = classNames(calendarCellWrapper, getCellClasses.value, statusCellClasses);

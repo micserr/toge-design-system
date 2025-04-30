@@ -75,6 +75,8 @@ export const useTimePicker = (props: TimePickerPropTypes, emit: SetupContext<Tim
   };
 
   const getPlaceHolder: ComputedRef<string> = computed(() => {
+    if (props.placeholder) return props.placeholder;
+
     return format.value === '12' ? 'HH : MM AM/PM' : 'HH : MM';
   });
 

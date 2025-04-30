@@ -1,14 +1,22 @@
 # Changelog
 
-## 2.5.1 (2025-04-30)
+## 2.5.2 (2025-04-30)
+
 - Fix
   - Shrinking Snackbar Icon ([#063e7e37](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/063e7e37577d54b3e23f0cc3dccb5246c094a565?refName=refs/heads/2025/fix/dustin/SHRINKING_SNACKBAR_ICON) by @despiritu)
 
+## 2.5.1 (2025-04-30)
+
+- Feat
+  - Commit d7857580: feat: add placeholder prop to TimePicker component ([#d7857580](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d785758027a33950d832bbfe83bc10eef180329f?refName=refs/heads/2025/feat/andrea/added-placeholder) by @adestajo)
+
 ## 2.5.0 (2025-04-30)
+
 - Feat
   - Added Accordion component ([#4b96feb1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4b96feb1a82ab426665138e2cfcfb55a11b04341?refName=refs%2Fheads%2F2025%2FFEATURE%2FDUSTIN%2FACCORDION) by @despiritu)
 
 ## 2.4.0 (2025-04-30)
+
 - Feat
   - Stepper ([#2e662df4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2e662df4619cb67bf2ca8da0bbd631705dfce0dd?refName=refs/heads/2025/FEATURE/Xyrk/STEPPER) by @jfabula)
 

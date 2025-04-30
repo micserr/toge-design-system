@@ -67,6 +67,8 @@ export default tseslint.config(
             'snackbar',
             'status',
             'switch',
+            'step',
+            'stepper',
             'table',
             'tabs',
             'textarea',

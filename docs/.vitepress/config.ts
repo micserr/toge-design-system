@@ -152,6 +152,10 @@ export default defineConfig({
               link: '/documentation/components/status',
             },
             {
+              text: 'Stepper',
+              link: '/documentation/components/stepper',
+            },
+            {
               text: 'Table',
               link: '/documentation/components/table',
             },

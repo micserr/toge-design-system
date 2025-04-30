@@ -76,7 +76,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     const tableWrapperClasses = classNames(
       'spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid spr-table-wrapper spr-relative spr-h-max',
     );
-    const tableFooterClasses = classNames('spr-absolute spr-w-full spr-bottom-0 spr-left-0', {
+    const tableFooterClasses = classNames('spr-w-full spr-bottom-0 spr-left-0', {
       'spr-background-color-surface': props.variant === 'surface',
       'spr-background-color': props.variant === 'white',
     });

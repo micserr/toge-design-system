@@ -44,6 +44,7 @@ export default tseslint.config(
         'error',
         {
           ignores: [
+            'accordion',
             'avatar',
             'badge',
             'button',

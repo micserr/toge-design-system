@@ -14,9 +14,9 @@
               :action-icon-props="snack.actionIconProps"
               :action="snack.action || snack.defaultAction"
             >
-              <template v-slot>
+              <slot>
                 <slot name="snackbarActions"></slot>
-              </template>
+              </slot>
             </spr-snack>
           </li>
         </TransitionGroup>

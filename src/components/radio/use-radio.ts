@@ -10,6 +10,7 @@ interface RadioClasses {
   baseClasses: string;
   baseIndicatorClasses: string;
   labelClasses: string;
+  borderedClasses: string;
 }
 
 export const useRadioButton = (
@@ -17,7 +18,7 @@ export const useRadioButton = (
   emit: SetupContext<RadioEmitTypes>['emit'],
   slots: Record<string, unknown>,
 ) => {
-  const { modelValue, disabled } = toRefs(props);
+  const { modelValue, disabled, description, bordered } = toRefs(props);
 
   const radioRef = ref<HTMLInputElement | null>(null);
   const isHovered = useElementHover(radioRef);
@@ -79,10 +80,20 @@ export const useRadioButton = (
       },
     );
 
+    const borderedClasses = classNames(
+      'spr-border spr-rounded-md spr-p-size-spacing-2xs spr-border-solid spr-w-full spr-box-border',
+      {
+        'spr-border-kangkong-700 spr-bg-kangkong-100' : String(modelValue?.value) === String(props.value) && !disabled.value,
+        'spr-border-mushroom-200' : String(modelValue?.value) !== String(props.value) || disabled.value,
+
+      }
+    )
+
     return {
       baseClasses,
       baseIndicatorClasses,
       labelClasses,
+      borderedClasses
     };
   });
 
@@ -92,5 +103,7 @@ export const useRadioButton = (
     radioRef,
     radioClasses,
     proxyValue,
+    description,
+    bordered,
   };
 };

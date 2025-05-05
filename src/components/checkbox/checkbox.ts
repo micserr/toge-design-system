@@ -26,6 +26,10 @@ export const checkboxPropTypes = {
   indeterminate: {
     type: Boolean,
     default: false,
+  },
+  bordered: {
+    type: Boolean,
+    default: false,
   }
 };
 

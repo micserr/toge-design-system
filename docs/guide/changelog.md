@@ -1,6 +1,12 @@
 # Changelog
 
+## 2.7.3 (2025-05-05)
+
+- Fix
+  - Commit f2750ca3: table height if not in Full height ([#f2750ca3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f2750ca3a29fccaf0c103e6df1bd000ac6f259b0?refName=refs/heads/2025-/Fix/andrea/table-full-height) by @adestajo)
+
 ## 2.7.2 (2025-05-05)
+
 - Fix
   - Change column slots in table to use $slots instead of useSlots ([#b431b2d2](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b431b2d2bb8c985b287f9fbc9ed3568dd149b0a7?refName=refs/heads/2025/fix/dustin/DQA_FIXES) by @despiritu)
 

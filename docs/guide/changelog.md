@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.7.0 (2025-05-05)
+
+- Fix
+  - Add bordered variant for radio and checkbox
+  - Add description/subtext for radio ([#7a91cbe5](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7a91cbe5d4ee6750a210538fe27a47170fc6cd77?refName=refs%2Fheads%2F2025%2FFEATURE%2FDUSTIN%2Fbordered-radio-and-checkbox) by @despiritu)
+
 ## 2.6.0 (2025-05-05)
 
 - Feat

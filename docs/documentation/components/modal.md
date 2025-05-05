@@ -470,11 +470,20 @@ const modalModel = ref<boolean>(false);
   </tbody>
 </table>
 
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logo name="hr" theme="dark"  width="50px" />
+  <spr-logo name="ecosystem" theme="dark" width="50px" />
+  <spr-logo name="sidekick" theme="dark" width="50px" />
+</div>
+
 <script lang="ts" setup>
 import { ref } from 'vue';
 
 import SprModal from "@/components/modal/modal.vue"
 import SprButton from "@/components/button/button.vue"
+import SprLogo from "@/components/logo/logo.vue";
 
 const modalModel = ref({
   modal1: false,

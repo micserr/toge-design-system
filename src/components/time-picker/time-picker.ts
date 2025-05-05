@@ -51,6 +51,10 @@ export const timePickerPropTypes = {
     type: String,
     default: '',
   },
+  placeholder: {
+    type: String,
+    default: '',
+  },
 };
 export const timePickerEmitTypes = {
   'update:modelValue': (evt: MouseEvent): evt is MouseEvent => evt instanceof MouseEvent,

@@ -44,6 +44,7 @@ export default tseslint.config(
         'error',
         {
           ignores: [
+            'accordion',
             'avatar',
             'badge',
             'button',
@@ -67,12 +68,15 @@ export default tseslint.config(
             'snackbar',
             'status',
             'switch',
+            'step',
+            'stepper',
             'table',
             'tabs',
             'textarea',
             'filter',
             'timePicker',
             'tooltip',
+            'logo'
           ],
         },
       ],

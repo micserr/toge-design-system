@@ -22,6 +22,13 @@ export const radioPropTypes = {
     type: [String, Number, Boolean],
     required: true,
   },
+  description: {
+    type: String,
+  },
+  bordered: {
+    type: Boolean,
+    default: false,
+  }
 };
 
 export const radioEmitTypes = ['update:modelValue'];

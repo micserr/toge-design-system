@@ -3,7 +3,7 @@
     <slot :class="emptyStateClasses.imageSizeClasses" />
 
     <div v-if="!$slots.default" :class="emptyStateClasses.imageSizeClasses">
-      <img :src="getImageUrl" alt="empty-image" class="spr-h-full spr-w-full spr-object-cover" />
+      <img :src="getImageUrl" alt="empty" class="spr-h-full spr-w-full spr-object-cover" />
     </div>
 
     <section class="spr-flex spr-flex-col spr-items-center spr-justify-center spr-gap-size-spacing-md">

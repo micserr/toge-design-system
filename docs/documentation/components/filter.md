@@ -2,7 +2,17 @@
 outline: 'deep'
 ---
 
-# Filter
+# Filter Component
+
+The `Filter` supports advanced filtering options, infinite scrolling, and dynamic data handling.
+
+## Features
+
+- Multi-select filtering with options.
+- Advanced filter menu with nested filters.
+- Infinite scrolling support.
+- Customizable UI with slots and props.
+- Avatar support for options.
 
 ## Basic Usage
 
@@ -11,24 +21,24 @@ outline: 'deep'
   <span>Selected: {{selectedOptions}}</span>
   <span>searchValue: {{searchValue}}</span>
 </div>
-  <spr-filter v-model="selectedOptions"  :options="options" label="Search"  v-model:search="searchValue" id="search-filter"/>
+  <spr-filter v-model="selectedOptions"  :options="options" label="Search"  v-model:search="searchValue" hasAvatar/>
 </div>
 
 ```vue
 <template>
-  <spr-filter v-model="selectedOptions" v-model:search="searchValue" :options="options" label="Search" />
+  <spr-filter v-model="selectedOptions" v-model:search="searchValue" :options="options" label="Search" hasAvatar />
 </template>
 
 <script setup>
 import { ref } from 'vue';
 
-const options = [
+const options = ref([
   { column: '', isSelected: false, text: 'sample 1', value: 'sample1' },
   { column: '', isSelected: false, text: 'sample 2', value: 'sample2' },
   { column: '', isSelected: false, text: 'sample 3', value: 'sample3' },
   { column: '', isSelected: false, text: 'sample 4', value: 'sample4' },
   { column: '', isSelected: false, text: 'sample 5', value: 'sample5' },
-];
+]);
 
 const selectedOptions = ref([]);
 const searchValue = ref('');
@@ -71,13 +81,13 @@ const searchValue = ref('');
 </template>
 
 <script setup>
-const options = [
+const options = ref([
   { column: '', isSelected: false, text: 'sample 1', value: 'sample1' },
   { column: '', isSelected: false, text: 'sample 2', value: 'sample2' },
   { column: '', isSelected: false, text: 'sample 3', value: 'sample3' },
   { column: '', isSelected: false, text: 'sample 4', value: 'sample4' },
   { column: '', isSelected: false, text: 'sample 5', value: 'sample5' },
-];
+]);
 
 const filterMenuList = ref([
   { count: 0, isFilterVisible: false, columnName: 'Employee Type', field: 'employeeType' },
@@ -149,13 +159,13 @@ import { ref } from 'vue';
 import { Icon } from '@iconify/vue';
 import SprButton from '@/components/button/button.vue';
 
-const options = [
+const options = ref([
   { column: '', isSelected: false, text: 'sample 1', value: 'sample1' },
   { column: '', isSelected: false, text: 'sample 2', value: 'sample2' },
   { column: '', isSelected: false, text: 'sample 3', value: 'sample3' },
   { column: '', isSelected: false, text: 'sample 4', value: 'sample4' },
   { column: '', isSelected: false, text: 'sample 5', value: 'sample5' },
-];
+]);
 
 const selectedOptions2 = ref([]);
 const searchValue2 = ref('');
@@ -166,35 +176,6 @@ const removeSelected = (removeSelected) => {
 };
 </script>
 ```
-
-## Slots
-
-<table>
-  <thead>
-    <tr>
-      <th>Slot Name</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>loading-state</td>
-      <td>Slot for the loading state main option.</td>
-    </tr>
-    <tr>
-      <td>empty-state</td>
-      <td>Slot for the empty state main option.</td>
-    </tr>
-    <tr>
-      <td>loading</td>
-      <td>Slot for the loading state.</td>
-    </tr>
-    <tr>
-      <td>empty</td>
-      <td>Slot for the empty state.</td>
-    </tr>
-  </tbody>
-</table>
 
 ## API Reference
 
@@ -210,133 +191,220 @@ const removeSelected = (removeSelected) => {
   <tbody>
     <tr>
       <td>modelValue</td>
-      <td>Selected value(s)</td>
-      <td>Array | String</td>
-      <td>[]</td>
-    </tr>
-    <tr>
-      <td>search</td>
-      <td> The search text.</td>
-      <td>String</td>
-      <td>''</td>
+      <td>The selected filter values.</td>
+      <td><code>Array</code> or <code>String</code></td>
+      <td><code>[]</code></td>
     </tr>
     <tr>
       <td>options</td>
-      <td>List of options</td>
-      <td>Array</td>
-      <td>[]</td>
+      <td>The list of filter options.</td>
+      <td><code>Array</code></td>
+      <td><code>[]</code></td>
     </tr>
     <tr>
       <td>label</td>
-      <td>Label for the select</td>
-      <td>String</td>
-      <td>''</td>
+      <td>Label for the filter input.</td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
     </tr>
     <tr>
       <td>placeholder</td>
-      <td>The placeholder text for the input field.</td>
-      <td>String</td>
-      <td>''</td>
+      <td>Placeholder text for the filter input.</td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
     </tr>
     <tr>
       <td>disabled</td>
-      <td>Disable the filter</td>
-      <td>Boolean</td>
-      <td>false</td>
+      <td>Disables the filter input.</td>
+      <td><code>Boolean</code></td>
+      <td><code>false</code></td>
     </tr>
     <tr>
       <td>filterable</td>
-      <td>Whether the filter menu is enabled.</td>
-      <td>Boolean</td>
-      <td>false</td>
+      <td>Enables the advanced filter menu.</td>
+      <td><code>Boolean</code></td>
+      <td><code>false</code></td>
     </tr>
     <tr>
       <td>id</td>
-      <td>ID for the select</td>
-      <td>String</td>
-      <td>''</td>
+      <td>Unique identifier for the filter.</td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
     </tr>
     <tr>
       <td>filterMenu</td>
-      <td>The list of filter menu options.</td>
-      <td>Array</td>
-      <td>[]</td>
+      <td>List of advanced filter menu options.</td>
+      <td><code>Array</code></td>
+      <td><code>[]</code></td>
     </tr>
     <tr>
       <td>filterData</td>
-      <td>The list of filter data options.</td>
-      <td>Array</td>
-      <td>[]</td>
+      <td>Data for the advanced filter menu.</td>
+      <td><code>Array</code></td>
+      <td><code>[]</code></td>
     </tr>
     <tr>
       <td>loading</td>
-      <td>Whether the filter menu is enabled.</td>
-      <td>Boolean</td>
-      <td>false</td>
+      <td>Indicates if the filter is in a loading state.</td>
+      <td><code>Boolean</code></td>
+      <td><code>false</code></td>
     </tr>
     <tr>
       <td>filling</td>
-      <td>Loadimg state for main selection</td>
-      <td>Boolean</td>
-      <td>false</td>
+      <td>Indicates if the filter is in a filling state.</td>
+      <td><code>Boolean</code></td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>search</td>
+      <td>Search query for the main filter.</td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td>searchFilter</td>
+      <td>Search query for the advanced filter menu.</td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>Width of the filter component.</td>
+      <td><code>String</code></td>
+      <td><code>'100%'</code></td>
     </tr>
     <tr>
       <td>deselected</td>
-      <td>Pass ID to deselect option outside of the component</td>
-      <td>String</td>
-      <td>''</td>
+      <td>Value of the deselected filter option.</td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
     </tr>
     <tr>
-      <td>@update:modelValue</td>
-      <td>Emitted when the selected value(s) change</td>
-      <td>function</td>
-      <td>-</td>
+      <td>hasSearchApi</td>
+      <td>Enables external search API integration.</td>
+      <td><code>Boolean</code></td>
+      <td><code>false</code></td>
     </tr>
     <tr>
-      <td>@getFilterData</td>
-      <td>Emitted to fetch filter data</td>
-      <td>function</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>@update:selected</td>
-      <td>Emitted when a filter option is selected</td>
-      <td>function</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>@selectedFilter</td>
-      <td>Emitted when a filter is applied.</td>
-      <td>function</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>@infiniteScrollFilterTrigger</td>
-      <td>Emitted when infinite scroll is triggered.</td>
-      <td>function</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>infiniteScrollTrigger</td>
-      <td>Emitted when infinite scroll is triggered.</td>
-      <td>function</td>
-      <td>-</td>
+      <td>hasAvatar</td>
+      <td>Enables avatar display for filter options.</td>
+      <td><code>Boolean</code></td>
+      <td><code>false</code></td>
     </tr>
   </tbody>
 </table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Payload Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>getFilterData</code></td>
+      <td><code>String</code></td>
+      <td>Triggered when fetching filter data for a specific column.</td>
+    </tr>
+    <tr>
+      <td><code>update:modelValue</code></td>
+      <td><code>Array</code></td>
+      <td>Updates the selected filter values.</td>
+    </tr>
+    <tr>
+      <td><code>update:search</code></td>
+      <td><code>String</code></td>
+      <td>Updates the search query for the main filter.</td>
+    </tr>
+    <tr>
+      <td><code>update:searchFilter</code></td>
+      <td><code>String</code></td>
+      <td>Updates the search query for the advanced filter menu.</td>
+    </tr>
+    <tr>
+      <td><code>selectedFilter</code></td>
+      <td><code>Array</code></td>
+      <td>Emits the selected filter options.</td>
+    </tr>
+    <tr>
+      <td><code>infiniteScrollTrigger</code></td>
+      <td><code>Boolean</code></td>
+      <td>Triggered when infinite scrolling is activated for the main filter.</td>
+    </tr>
+    <tr>
+      <td><code>infiniteScrollFilterTrigger</code></td>
+      <td><code>String</code></td>
+      <td>Triggered when infinite scrolling is activated for the advanced filter.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th>Slot Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>default</code></td>
+      <td>Slot for customizing the filter input.</td>
+    </tr>
+    <tr>
+      <td><code>loading</code></td>
+      <td>Slot for displaying a loading state in the advanced filter menu.</td>
+    </tr>
+    <tr>
+      <td><code>empty</code></td>
+      <td>Slot for displaying an empty state in the advanced filter menu.</td>
+    </tr>
+    <tr>
+      <td><code>loading-state</code></td>
+      <td>Slot for displaying a loading state in the main filter.</td>
+    </tr>
+    <tr>
+      <td><code>empty-state</code></td>
+      <td>Slot for displaying an empty state in the main filter.</td>
+    </tr>
+  </tbody>
+</table>
+
+## Advanced Features
+
+### Infinite Scrolling
+
+The component supports infinite scrolling for both the main filter and the advanced filter menu. Use the `infiniteScrollTrigger` and `infiniteScrollFilterTrigger` events to handle data fetching.
+
+### Avatar Support
+
+Enable the `hasAvatar` prop to display avatars for filter options. Provide an `avatar` property in the `options` array.
+
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logo name="hr" theme="dark"  width="50px" />
+</div>
 
 <script setup>
 import { ref } from 'vue';
 import SprFilter from '@/components/filter/filter.vue';
 import { Icon } from '@iconify/vue';
 import SprButton from "@/components/button/button.vue";
+import SprLogo from "@/components/logo/logo.vue";
 
-const options = [
+const options = ref([
     { column: '', isSelected: false, text: 'sample 1', subtext: '', value: 'sample1' },
     { column: '', isSelected: false, text: 'sample 2', subtext: '', value: 'sample2' },
     { column: '', isSelected: false, text: 'sample 4', subtext: 'subtext', value: 'sample4' },
     { column: '', isSelected: false, text: 'sample 5', subtext: 'subtext', value: 'sample5' },
-];
+]);
 
   const filterMenuList = ref([
     { count: 0, isFilterVisible: false, columnName: 'Employee Type', field: 'employeeType' },
@@ -346,20 +414,20 @@ const options = [
     { count: 0, isFilterVisible: false, columnName: 'Job Level', field: 'jobLevel' },
   ]);
 
-  const filterMenuOptions = [
+  const filterMenuOptions = ref([
     { column: 'location', isSelected: false, text: 'sample 1', subtext: 'subtext', value: 'sample1' },
     { column: 'location', isSelected: false, text: 'sample 2', subtext: 'subtext', value: 'sample2' },
     { column: 'location', isSelected: false, text: 'sample 3', subtext: 'subtext', value: 'sample3' },
     { column: 'location', isSelected: false, text: 'sample 4', subtext: 'subtext', value: 'sample4' },
     { column: 'location', isSelected: false, text: 'sample 5', subtext: 'subtext', value: 'sample5' },
-];
+]);
 
-const options1 = [
+const options1 = ref([
     { column: '', isSelected: false, text: 'sample 1', subtext: '', value: 'sample1' },
     { column: '', isSelected: false, text: 'sample 2', subtext: '', value: 'sample2' },
     { column: '', isSelected: false, text: 'sample 4', subtext: 'subtext', value: 'sample4' },
     { column: '', isSelected: false, text: 'sample 5', subtext: 'subtext', value: 'sample5' },
-];
+]);
 
   const filterMenuList1 = ref([
     { count: 0, isFilterVisible: false, columnName: 'Employee Type', field: 'employeeType' },
@@ -367,13 +435,13 @@ const options1 = [
     { count: 0, isFilterVisible: false, columnName: 'Location', field: 'location' },
   ]);
 
-  const filterMenuOptions1 = [
+  const filterMenuOptions1 = ref([
     { column: 'location', isSelected: false, text: 'sample 1', subtext: 'subtext', value: 'sample1' },
     { column: 'location', isSelected: false, text: 'sample 2', subtext: 'subtext', value: 'sample2' },
     { column: 'location', isSelected: false, text: 'sample 3', subtext: 'subtext', value: 'sample3' },
     { column: 'location', isSelected: false, text: 'sample 4', subtext: 'subtext', value: 'sample4' },
     { column: 'location', isSelected: false, text: 'sample 5', subtext: 'subtext', value: 'sample5' },
-];
+]);
 
 
 

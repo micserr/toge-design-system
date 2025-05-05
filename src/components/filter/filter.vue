@@ -4,13 +4,14 @@
     aria-id="filter-option-wrapper"
     distance="4"
     placement="bottom"
-    :triggers="['click']"
+    :triggers="[]"
+    :popper-hide-triggers="[]"
     :container="`#${uniqueId}`"
+    :auto-hide="false"
     :style="{
       width: props.width,
       position: 'relative',
     }"
-    :auto-hide="false"
   >
     <span
       :id="uniqueId"
@@ -18,6 +19,7 @@
         width: props.width,
         position: 'relative',
       }"
+      @click="isFilterOpen = true"
     >
       <slot>
         <spr-input v-model="searchValue" type="text" :placeholder="placeholder" :label="label" :disabled="disabled">
@@ -47,7 +49,6 @@
             distance="4"
             placement="right-start"
             :triggers="['click']"
-            :popper-hide-triggers="['click']"
             :auto-hide="false"
           >
             <spr-button has-icon variant="secondary" size="small">
@@ -70,7 +71,6 @@
                     aria-id="filter-menu-wrapper"
                     placement="right-start"
                     :triggers="['click']"
-                    :popper-hide-triggers="['click']"
                     :auto-hide="false"
                   >
                     <spr-chips
@@ -117,25 +117,25 @@
                           />
                         </div>
                         <div
-                          v-if="!props.loading && getFiltereredMenuOption.length > 0"
+                          v-if="getFiltereredMenuOption.length > 0"
                           :id="menu.field"
                           ref="filterMenuOptionList"
                           class="spr-max-h-[264px] spr-space-y-size-spacing-6xs spr-overflow-auto spr-p-size-spacing-2xs"
                         >
                           <div
-                            v-for="option in getFiltereredMenuOption"
+                            v-for="(option, key) in getFiltereredMenuOption"
                             :key="option.value"
                             :class="[
                               filterClass.filterListClasses,
-                              { 'spr-background-color-multiple-active': mappedMenuData[option.value].isSelected },
+                              { 'spr-background-color-multiple-active': getFiltereredMenuOption[key].isSelected },
                             ]"
                           >
                             <spr-checkbox
-                              v-model="mappedMenuData[option.value].isSelected"
+                              v-model="getFiltereredMenuOption[key].isSelected"
                               class="spr-w-full"
-                              :checked="mappedMenuData[option.value].isSelected"
-                              :label="mappedMenuData[option.value].text"
-                              :description="mappedMenuData[option.value].subtext"
+                              :checked="getFiltereredMenuOption[key].isSelected"
+                              :label="getFiltereredMenuOption[key].text"
+                              :description="getFiltereredMenuOption[key].subtext"
                             />
                           </div>
                         </div>
@@ -175,20 +175,38 @@
         class="spr-max-h-[264px] spr-space-y-size-spacing-6xs spr-overflow-auto spr-p-size-spacing-3xs"
       >
         <div
-          v-for="option in getFiltereredOption"
+          v-for="(option, key) in getFiltereredOption"
           :key="option.value"
           :class="[
             filterClass.filterListClasses,
-            { 'spr-background-color-multiple-active': mappedFilterOption[option.value].isSelected },
+            {
+              'spr-background-color-multiple-active': getFiltereredOption[key].isSelected,
+            },
           ]"
         >
-          <spr-checkbox
-            v-model="mappedFilterOption[option.value].isSelected"
-            class="spr-w-full"
-            :checked="mappedFilterOption[option.value].isSelected"
-            :label="mappedFilterOption[option.value].text"
-            :description="mappedFilterOption[option.value].subtext"
-          />
+          <div
+            class="spr-flex spr-w-full spr-flex-row spr-items-center spr-justify-items-start spr-gap-size-spacing-3xs"
+            @click="getFiltereredOption[key].isSelected = !getFiltereredOption[key].isSelected"
+          >
+            <spr-checkbox
+              v-model="getFiltereredOption[key].isSelected"
+              :checked="getFiltereredOption[key].isSelected"
+            />
+
+            <spr-avatar
+              v-if="props.hasAvatar"
+              size="md"
+              alt="User Avatar"
+              :src="getFiltereredOption[key].avatar"
+              :variant="getFiltereredOption[key].avatar ? 'image' : 'initial'"
+              :initial="getFiltereredOption[key].text"
+            />
+
+            <div>
+              <div class="spr-body-sm-regular">{{ getFiltereredOption[key].text }}</div>
+              <div class="spr-body-xs-regular spr-text-color-supporting">{{ getFiltereredOption[key].subtext }}</div>
+            </div>
+          </div>
         </div>
       </div>
       <div v-else>
@@ -210,6 +228,7 @@ import SprInput from '@/components/input/input.vue';
 import SprButton from '@/components/button/button.vue';
 import SprChips from '@/components/chips/chips.vue';
 import SprCheckbox from '@/components/checkbox/checkbox.vue';
+import SprAvatar from '@/components/avatar/avatar.vue';
 import 'floating-vue/dist/style.css';
 import { useFilter } from './use-filter';
 import { filterPropTypes, filterEmitTypes } from './filter';
@@ -221,9 +240,7 @@ const {
   isFilterOpen,
   searchValue,
   isAddFilterVisible,
-  mappedFilterOption,
   getFiltereredOption,
-  mappedMenuData,
   getSelectedFilterMenuOption,
   getFiltereredMenuOption,
   filterMenuSearchvalue,

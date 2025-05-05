@@ -1,4 +1,4 @@
-import { ref, computed, toRefs, Slots } from 'vue';
+import { ref, computed, toRefs, Slots, watch } from 'vue';
 
 import type { TablePropTypes, TableEmitTypes, TABLE_SORT, TableData } from './table';
 import type { SetupContext } from 'vue';
@@ -6,10 +6,23 @@ import type { SetupContext } from 'vue';
 import classNames from 'classnames';
 
 export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitTypes>['emit'], slots: Slots) => {
-  const { dataTable, action, headers, sortOrder, fullHeight } = toRefs(props);
+  const { dataTable, action, headers, sortOrder, fullHeight, selectedKeyId, returnCompleteSelectedProperties } =
+    toRefs(props);
   const sortField = ref('');
   const searchField = ref(props.searchModel);
   const tableSortOrder = ref<TABLE_SORT>(sortOrder.value || 'asc');
+  const selectAll = ref(false);
+  const selectedData = ref<TableData[]>([]);
+
+  const isAllSelected = computed(() => {
+    if (selectedData.value.length === 0) return false;
+    return selectedData.value.length === sortedData.value.length;
+  });
+
+  const isIndeterminate = computed(() => {
+    if (selectedData.value.length === 0) return false;
+    return selectedData.value.length > 0 && selectedData.value.length < sortedData.value.length;
+  });
 
   const sortedData = computed(() => {
     if (!sortField.value || sortOrder.value) return dataTable.value;
@@ -58,27 +71,20 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
 
   // Value is currently either a string, an object with a title property, or an array of objects with a title property
   const extractLowerCasedTitle = (value: string | { title: string } | Array<{ title: string }>) => {
-    if (typeof value === 'string') return value.toLowerCase();  
+    if (typeof value === 'string') return value.toLowerCase();
     else if (typeof value === 'object' && !Array.isArray(value) && value !== null) return value.title.toLowerCase();
     else if (Array.isArray(value) && value.length > 0) return value[0].title.toLowerCase();
     return '';
-  }
+  };
 
   const getTableClasses = computed(() => {
     const tableWrapperClasses = classNames(
-      'spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid spr-table-wrapper spr-relative',
-      {
-        'spr-min-h-[100vh]': fullHeight.value, // Set wrapper height to full screen
-        'spr-min-h-[400px]': !fullHeight.value,
-      },
+      'spr-flex spr-flex-col spr-h-full spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid spr-table-wrapper spr-relative',
     );
-    const tableFooterClasses = classNames(
-      'spr-absolute spr-w-full spr-bottom-0 spr-left-0',
-      {
-        'spr-background-color-surface': props.variant === 'surface',
-        'spr-background-color': props.variant === 'white',
-      },
-    );
+    const tableFooterClasses = classNames('spr-w-full spr-bottom-0 spr-left-0', {
+      'spr-background-color-surface': props.variant === 'surface',
+      'spr-background-color': props.variant === 'white',
+    });
     const headerBackground = classNames({
       'spr-background-color': props.variant === 'white',
       'spr-background-color-surface': props.variant === 'surface',
@@ -112,10 +118,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
 
     const tableBackgroundClasses = classNames('spr-h-full');
 
-    const tableBodyClasses = classNames({
-      'spr-overflow-y-auto spr-h-[calc(85vh-150px)] md:spr-h-[calc(75vh-150px)] sm:spr-h-[calc(70vh-150px)]':
-        fullHeight.value && slots.footer, // Adjust tbody height for header/footer
-      'spr-overflow-y-auto spr-h-[75vh]': fullHeight.value && !slots.footer, // Adjust tbody height for header/footer
+    const tableBodyClasses = classNames('spr-overflow-y-auto spr-h-full', {
       'spr-h-[250px]': !fullHeight.value && slots.footer,
       'spr-h-[360px]': !fullHeight.value && !slots.footer,
     });
@@ -128,6 +131,12 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       'spr-h-[360px]': !fullHeight.value && !slots.footer,
     });
 
+    const multiselectRowClass = classNames(
+      'spr-border-color-weak spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid',
+    );
+
+    const multiselectClass = classNames('spr-px-size-spacing-2xs spr-py-size-spacing-3xs spr-w-[44px] ');
+
     return {
       headerClasses,
       tableWrapperClasses,
@@ -135,6 +144,8 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       tableHeaderActionsClasses,
       headerNameClass,
       tableCellSlotClasses,
+      multiselectRowClass,
+      multiselectClass,
 
       tableRowClasses,
       tableDataClasses,
@@ -146,15 +157,61 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     };
   });
 
+  const handleSelect = (item: TableData) => {
+    if (!selectedKeyId.value || !(selectedKeyId.value in item)) return;
+
+    const selectedIndex = selectedData.value.findIndex(
+      (data) => data[selectedKeyId.value].title === item[selectedKeyId.value].title,
+    );
+
+    if (selectedIndex !== -1) {
+      selectedData.value.splice(selectedIndex, 1);
+    } else {
+      selectedData.value.push(item);
+    }
+  };
+
+  const handleSelectAll = () => {
+    if (isAllSelected.value || isIndeterminate.value) {
+      selectedData.value = [];
+    } else {
+      selectedData.value = [...sortedData.value];
+    }
+  };
+
+  const isRowSelected = (item: TableData) => {
+    if (!selectedKeyId.value || !(selectedKeyId.value in item)) return false;
+    return selectedData.value.some((data) => data[selectedKeyId.value].title === item[selectedKeyId.value].title);
+  };
+
+  watch(
+    () => selectedData.value.length,
+    () => {
+      if (returnCompleteSelectedProperties.value) {
+        emit('update:selectedData', selectedData.value);
+      } else {
+        const mappedData = selectedData.value.map((item) => ({ ...item[selectedKeyId.value] }));
+        emit('update:selectedData', mappedData);
+      }
+    },
+  );
+
   return {
     sortData,
     updateSearchField,
     handleRowClick,
+    handleSelect,
+    handleSelectAll,
     sortedData,
     getHeaderCount,
     hasTableActions,
     searchField,
     getTableClasses,
     getEmptyStateSize,
+    selectAll,
+    selectedData,
+    isAllSelected,
+    isRowSelected,
+    isIndeterminate,
   };
 };

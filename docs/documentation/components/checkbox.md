@@ -170,6 +170,12 @@ const checkbox2 = ref(true);
       <td>boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td>bordered</td>
+      <td>Add border to the component</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 

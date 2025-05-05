@@ -1,10 +1,138 @@
 # Changelog
 
+## 2.7.2 (2025-05-05)
+- Fix
+  - Change column slots in table to use $slots instead of useSlots ([#b431b2d2](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b431b2d2bb8c985b287f9fbc9ed3568dd149b0a7?refName=refs/heads/2025/fix/dustin/DQA_FIXES) by @despiritu)
+
+## 2.7.1 (2025-05-05)
+
+- Fix
+  - Commit d08d4617: Refactor sidepanel and table components for improved structure and styling consistency ([#d08d4617](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d08d46172a544fb78edcbc23aab26ea615b95a9c?refName=refs/heads/2025/Fix/andrea/panel-table-layout) by @adestajo)
+
+## 2.7.0 (2025-05-05)
+
+- Fix
+  - Add bordered variant for radio and checkbox
+  - Add description/subtext for radio ([#7a91cbe5](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7a91cbe5d4ee6750a210538fe27a47170fc6cd77?refName=refs%2Fheads%2F2025%2FFEATURE%2FDUSTIN%2Fbordered-radio-and-checkbox) by @despiritu)
+
+## 2.6.0 (2025-05-05)
+
+- Feat
+
+  - Add custom icon feature for sidenav links
+  - Add id for user menu avatar and links inside ([#e8cc6ac3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e8cc6ac3fc62899509fb552f487e654082fcc200?refName=refs%2Fheads%2F2025%2Ffeature%2Felii%2Fsidenav) by @elumilay)
+
+- Docs
+  - Reposition the code template for the "Full Example" section ([#a4e3a2a3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a4e3a2a30f4616f869b69050465ef6c0b47ff3ea?refName=refs%2Fheads%2F2025%2Ffeature%2Felii%2Fsidenav) by @elumilay)
+
+## 2.5.4 (2025-05-05)
+
+- Fix
+  - Add indeterminate in the Select All checkbox of Mutliselect table ([#83e0c803](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/83e0c803a36c55af5a6349dd88633ee7896f6044?refName=refs/heads/2025/fix/dustin/DQA_FIXES) by @despiritu)
+
+## 2.5.3 (2025-04-30)
+
+- Fix
+  - Commit 6b16844d: Update filter.md ([#6b16844d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6b16844de0b6d5b55deef12b5338b26195afaf8c?refName=refs/heads/2025/Fix/andrea/filter-docu) by @adestajo)
+
+## 2.5.2 (2025-04-30)
+
+- Fix
+  - Shrinking Snackbar Icon ([#063e7e37](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/063e7e37577d54b3e23f0cc3dccb5246c094a565?refName=refs/heads/2025/fix/dustin/SHRINKING_SNACKBAR_ICON) by @despiritu)
+
+## 2.5.1 (2025-04-30)
+
+- Feat
+  - Commit d7857580: feat: add placeholder prop to TimePicker component ([#d7857580](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d785758027a33950d832bbfe83bc10eef180329f?refName=refs/heads/2025/feat/andrea/added-placeholder) by @adestajo)
+
+## 2.5.0 (2025-04-30)
+
+- Feat
+  - Added Accordion component ([#4b96feb1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4b96feb1a82ab426665138e2cfcfb55a11b04341?refName=refs%2Fheads%2F2025%2FFEATURE%2FDUSTIN%2FACCORDION) by @despiritu)
+
+## 2.4.0 (2025-04-30)
+
+- Feat
+  - Stepper ([#2e662df4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2e662df4619cb67bf2ca8da0bbd631705dfce0dd?refName=refs/heads/2025/FEATURE/Xyrk/STEPPER) by @jfabula)
+
+## 2.3.1 (2025-04-29)
+
+- Fix
+  - Commit b5f80480: DQA ([#b5f80480](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b5f8048005e16d1316375d87c5251041fe5d050f?refName=refs/heads/2025/Fix/andrea/table-dropdown) by @adestajo)
+
+## 2.3.0 (2025-04-29)
+
+- Feat
+  - Add dynamic Ids to nav links based on nav titles
+- Fix
+  - Add string validator for request and notifications count
+- Docs
+  - Show '99+' to request count in sidenav documentation ([#cb728f1e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cb728f1e665f0035524f4ed48fddd66df91818bd?refName=refs%2Fheads%2F2025%2Fbugfix%2Feli%2Fsidenav) by @elumilay)
+
+## 2.2.0 (2025-04-29)
+
+- Feat
+  - Added Slotted Column and Multiselect in Table ([#27035c48](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/27035c4810809fb0ba71f11ae6b6f24aac1c15f2?refName=refs/heads/2025/FEATURE/DUSTIN/TABLE_COLUMN_SLOT) by @despiritu)
+
+## 2.1.1 (2025-04-28)
+
+- Fix: Logo issue on Azure via Removing Cloudinary Vue dependency and update logo component to use standard img tag with URL generation ([#8a1817d6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8a1817d6de6258988c8fe2c8604f5836604098bf) by @JefMari)
+
+## 2.1.0 (2025-04-28)
+
+- Feat
+
+  - Added Action Icon and Slotted Action in Snackbar ([#3b6f8bc6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3b6f8bc684e1dbbe3c6bf820820b4070427ca8bd?refName=refs/heads/2025/FEATURE/DUSTIN/SNACKBAR_ENHANCEMENT) by @despiritu)
+
+## 2.0.0 (2025-04-28)
+
+- Docs: Fix sidenav documentation image path to use public directory
+  ([#8ab7a8c3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8ab7a8c3e85ea58bc8db0e2746c40b8d405c5c60) by @JefMari)
+
+## 2.0.0 (2025-04-25)
+
+- Breaking Changes
+
+  - Set new Major Version to 2.0.0
+
+- Feat
+
+  - Improve Docs Landing Page, Added more informations on it
+  - Added 'Product Logo' Component (Uses Cloudinary to Temporary Upload)
+  - Add "Product Uses" section with logo to multiple component documentation
+  - Update component documentation structure and improve clarity
+
+- Fix
+  - Docs: Add alternative installation method for design-system-next via public npm registry
+  - Docs: Support Icon Component in Playground
+
+[Pull Request Link](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/30981)
+
+## 1.16.1 (2025-04-25)
+
+- Fix
+
+  - Commit ae69a7ba: table heaight ([#ae69a7ba](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ae69a7babfa3aa48d60e8df3d17dd79b6fdf5596?refName=refs/heads/2025/Fix/andrea/table-height) by @adestajo)
+
+## 1.16.0 (2025-04-23)
+
+- Feat
+
+  - Added Search functionality to ladderized dropdown ([#d4da9803](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d4da98037c23e8a1653b668d6df44ebf097db33d?refName=refs%2Fheads%2F2025%2FFEATURE%2FDUSTIN%2FLADDERIZED_DROPDOWN_SEARCH) by @despiritu)
+
+## 1.15.17 (2025-04-21)
+
+- Fix
+
+  - Commit cc4d678a: added avatar ([#cc4d678a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cc4d678a66eaaf7420b141ae0b00fcc21b178b5d?refName=refs/heads/2025/Fix/andrea/shift-assignment-component) by @adestajo)
+
+- Feat
+  - Commit 6db0b9ae: feat: Enhance input and filter components with new event handling and properties ([#6db0b9ae](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6db0b9aed2b06c4f192cc077a0ad4d6c2d5f95d6?refName=refs/heads/2025/Fix/andrea/shift-assignment-component) by @adestajo)
+
 ## 1.15.16 (2025-04-21)
 
 - Fix
   - Table Footer position and Sorting on special titles ([#640c3298](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/640c32982580cfaba926612f5e6843acd43fe173?refName=refs%2Fheads%2F2025%2FFIX%2FXyrk%2FTABLE_FOOTER_AND_SORT_TITLES) by @jfabula)
-
 
 ## 1.15.15 (2025-04-16)
 

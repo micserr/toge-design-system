@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.6.0 (2025-05-05)
+
+- Feat
+  - Add custom icon feature for sidenav links
+  - Add id for user menu avatar and links inside ([#e8cc6ac3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e8cc6ac3fc62899509fb552f487e654082fcc200?refName=refs%2Fheads%2F2025%2Ffeature%2Felii%2Fsidenav) by @elumilay)
+
+- Docs
+  - Reposition the code template for the "Full Example" section ([#a4e3a2a3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a4e3a2a30f4616f869b69050465ef6c0b47ff3ea?refName=refs%2Fheads%2F2025%2Ffeature%2Felii%2Fsidenav) by @elumilay)
+
 ## 2.5.4 (2025-05-05)
 
 - Fix

@@ -6,13 +6,13 @@
     @click="handleClick"
   >
     <div class="spr-flex spr-flex-auto spr-items-center">
-      <Icon
-        v-if="showIcon"
-        :icon="snackIcon"
-        :width="iconSize"
-        :height="iconSize"
-        :class="[snackToneCssClass, 'spr-mr-size-spacing-3xs']"
-      />
+        <Icon
+          v-if="showIcon"
+          :icon="snackIcon"
+          :width="iconSize"
+          :height="iconSize"
+          :class="[snackToneCssClass, 'spr-mr-size-spacing-3xs spr-flex-shrink-0']"
+        />
       <label>{{ text }}</label>
     </div>
     <template v-if="showAction">
@@ -27,7 +27,7 @@
           <spr-button
             v-if="actionIconProps"
             icon-only
-            :class="['!spr-p-size-spacing-4xs hover:spr-cursor-pointer', {  'spr-mr-2': actionText !== ''}]"
+            :class="['!spr-p-size-spacing-4xs hover:spr-cursor-pointer', { 'spr-mr-2': actionText !== '' }]"
             size="small"
             variant="secondary"
             :tone="actionIconProps.tone"

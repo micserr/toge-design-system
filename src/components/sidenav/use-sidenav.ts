@@ -53,11 +53,27 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
     }
   };
 
+  const transformToCamelCaseId = (str: string) => {
+    return str
+      .toLowerCase()
+      .split(' ')
+      .map((word, index) => {
+        if (index === 0) return word;
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      })
+      .join('');
+  }
+
+  const generateId = (...titles: string[]): string => {
+    return titles.map(transformToCamelCaseId).join('_');
+  }
+
   return {
     isQuckActionMenuVisible,
     isUserMenuVisible,
     userProfileError,
     getUserInitials,
     handleRedirect,
+    generateId
   };
 };

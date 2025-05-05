@@ -83,6 +83,10 @@ export const dropdownPropTypes = {
     type: Boolean,
     default: false,
   },
+  removeCurrentLevelInBackLabel: {
+    type: Boolean,
+    default: false,
+  }
 };
 
 export const dropdownEmitTypes = {

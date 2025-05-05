@@ -21,7 +21,7 @@ Example: `2025/FEATURE/JEF/NEW_COMPONENT_DOCS`
   - `CHORE`: Maintenance tasks
   - `DOCS`: Documentation updates
 - **Author**: Your identifier/name
-- **Description**: Brief description in UPPERCASE with underscores
+- **Description**: Brief description in UPPERCASE with underscores. If there is a Jira ticket number, use it as the description (e.g., `POLY-3`).
 
 ## Version Updates
 
@@ -45,7 +45,7 @@ Example: `1.2.9`
 
 ### Updating Version
 
-::: info Important to note:
+::: danger Important to note:
 Whenever a minor or major version is updated, the patch or minor version resets to `0`.
 :::
 
@@ -93,6 +93,7 @@ Example: `docs: add component creation and contribution guidelines`
 - Be clear and concise
 - Start with a verb (add, update, fix, remove)
 - Use lowercase
+- If there is a Jira ticket number, include it in the description (e.g., `POLY-3`).
 
 ### Requirements
 

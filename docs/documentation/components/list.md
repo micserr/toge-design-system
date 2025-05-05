@@ -656,11 +656,18 @@ const mockDropdownData = [
   </tbody>
 </table>
 
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logo name="hr" theme="dark"  width="50px" />
+</div>
+
 <script lang="ts" setup> 
 import { ref } from 'vue';
 
 import SprList from "@/components/list/list.vue"
 import SprLadderizedList from "@/components/list/ladderized-list/ladderized-list.vue"
+import SprLogo from "@/components/logo/logo.vue";
 
 const preselectedItem = ref(['apple']);
 

@@ -38,7 +38,29 @@ Design System provides a property `icon` that allows you to use the Icon compone
 
 Currently the Design System uses the Iconify library to display icons. You can use the Iconify icon names to display icons in the side navigation. For more information on Iconify, see the <a href="https://iconify.design/docs/usage/svg/iconify" target="_blank">Iconify documentation.</a>
 
----
+### Custom Icon
+
+To use a custom icon for your navigation links, provide a CDN link to the image using the `icon` property. For the active state, upload a CDN link version of the icon with `-fill` appended before the file extension. The component will automatically switch between the default and active icons based on the navigation state:
+
+CDN Naming convention \
+Default: https://eco-cdn-prod.azureedge.net/payroll.svg \
+Active: https://eco-cdn-prod.azureedge.net/payroll-fill.svg
+```vue
+<script lang="ts" setup>
+const navLinks = ref({
+  top: [
+    {
+      parentLinks: [
+        {
+          title: 'Home',
+          icon: 'https://eco-cdn-prod.azureedge.net/payroll.svg',
+        }
+      ]
+    }
+  ]
+})
+</script>
+```
 
 ## Navigation Links
 
@@ -996,7 +1018,7 @@ Here’s a full example of how to implement the Sidenav component with the above
     :active-nav="activeNav"
     :nav-links="navLinks"
     :notification-count="5"
-    :request-count="10"
+    :request-count="`99+`"
     :user-menu="userMenu"
     @get-navlink-item="handleGetNavLinkItem"
     @search="handleSearch"
@@ -1025,131 +1047,6 @@ Here’s a full example of how to implement the Sidenav component with the above
     </p>
   </div>
 </div>
-
-## API Reference
-
-The following table outlines the available attributes for the Sidenav component:
-
-<table>
-  <thead>
-    <tr>
-      <td class="spr-min-w-[180px]">Name</td>
-      <td>Description</td>
-      <td>Type</td>
-      <td>Accepted Values</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <code>quick-actions</code>
-      </td>
-      <td>Shows quick action menu.</td>
-      <td>Array</td>
-      <td>
-        [
-          {
-            title: [string],
-            description: [string],
-            icon: [string],
-            iconBgColor: ['green' | 'purple'],
-            redirect: {
-              openInNewTab: [boolean],
-              isAbsoluteURL: [boolean],
-              link: [string],
-            },
-          },
-        ]
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code>has-search</code>
-      </td>
-      <td>Shows search button.</td>
-      <td>boolean</td>
-      <td>true | false</td>
-    </tr>
-    <tr>
-      <td>
-        <code>active-nav</code>
-      </td>
-      <td>Set the active state for navigation, including the parent navigation, menu, and submenu.</td>
-      <td>Object</td>
-      <td>
-        {
-          parentNav: [string],
-          menu: [string],
-          submenu: [string],
-        }
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <code>nav-links</code>
-      </td>
-      <td>Will generate navigation links including submenu links.</td>
-      <td>Array</td>
-      <td>See <a href="#navigation-links">Navigation Link</a></td>
-    </tr>
-    <tr>
-      <td>
-        <code>notification-count</code>
-      </td>
-      <td>Show notification counter badge</td>
-      <td>Number</td>
-      <td>Integer</td>
-    </tr>
-    <tr>
-      <td>
-        <code>request-count</code>
-      </td>
-      <td>Show request counter badge</td>
-      <td>Number</td>
-      <td>Integer</td>
-    </tr>
-    <tr>
-      <td>
-        <code>user-menu</code>
-      </td>
-      <td>Shows user avatar at the bottom of the sidenavigation along with a menu.</td>
-      <td>-</td>
-      <td>See <a href="#user-menu">User Menu</a></td>
-    </tr>
-    <tr>
-      <td>
-        <code>@get-navlink-item</code>
-      </td>
-      <td>Will return link that is indicated in nav-links. This will be the conection to handle your router push.</td>
-      <td>-</td>
-      <td>function</td>
-    </tr>
-    <tr>
-      <td>
-        <code>@search</code>
-      </td>
-      <td>Handle the search functionality.</td>
-      <td>-</td>
-      <td>function</td>
-    </tr>
-    <tr>
-      <td>
-        <code>@notifications</code>
-      </td>
-      <td>Handle the notifications functionality.</td>
-      <td>-</td>
-      <td>function</td>
-    </tr>
-    <tr>
-      <td>
-        <code>@requests</code>
-      </td>
-      <td>Handle the requests functionality.</td>
-      <td>-</td>
-      <td>function</td>
-    </tr>
-  </tbody>
-</table>
 
 ```vue
 <template>
@@ -1623,10 +1520,143 @@ const userMenu = ref({
 </script>
 ```
 
+## API Reference
+
+The following table outlines the available attributes for the Sidenav component:
+
+<table>
+  <thead>
+    <tr>
+      <td class="spr-min-w-[180px]">Name</td>
+      <td>Description</td>
+      <td>Type</td>
+      <td>Accepted Values</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>quick-actions</code>
+      </td>
+      <td>Shows quick action menu.</td>
+      <td>Array</td>
+      <td>
+        [
+          {
+            title: [string],
+            description: [string],
+            icon: [string],
+            iconBgColor: ['green' | 'purple'],
+            redirect: {
+              openInNewTab: [boolean],
+              isAbsoluteURL: [boolean],
+              link: [string],
+            },
+          },
+        ]
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>has-search</code>
+      </td>
+      <td>Shows search button.</td>
+      <td>boolean</td>
+      <td>true | false</td>
+    </tr>
+    <tr>
+      <td>
+        <code>active-nav</code>
+      </td>
+      <td>Set the active state for navigation, including the parent navigation, menu, and submenu.</td>
+      <td>Object</td>
+      <td>
+        {
+          parentNav: [string],
+          menu: [string],
+          submenu: [string],
+        }
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>nav-links</code>
+      </td>
+      <td>Will generate navigation links including submenu links.</td>
+      <td>Array</td>
+      <td>See <a href="#navigation-links">Navigation Link</a></td>
+    </tr>
+    <tr>
+      <td>
+        <code>notification-count</code>
+      </td>
+      <td>Show notification counter badge</td>
+      <td>Number</td>
+      <td>Integer</td>
+    </tr>
+    <tr>
+      <td>
+        <code>request-count</code>
+      </td>
+      <td>Show request counter badge</td>
+      <td>Number</td>
+      <td>Integer</td>
+    </tr>
+    <tr>
+      <td>
+        <code>user-menu</code>
+      </td>
+      <td>Shows user avatar at the bottom of the sidenavigation along with a menu.</td>
+      <td>-</td>
+      <td>See <a href="#user-menu">User Menu</a></td>
+    </tr>
+    <tr>
+      <td>
+        <code>@get-navlink-item</code>
+      </td>
+      <td>Will return link that is indicated in nav-links. This will be the conection to handle your router push.</td>
+      <td>-</td>
+      <td>function</td>
+    </tr>
+    <tr>
+      <td>
+        <code>@search</code>
+      </td>
+      <td>Handle the search functionality.</td>
+      <td>-</td>
+      <td>function</td>
+    </tr>
+    <tr>
+      <td>
+        <code>@notifications</code>
+      </td>
+      <td>Handle the notifications functionality.</td>
+      <td>-</td>
+      <td>function</td>
+    </tr>
+    <tr>
+      <td>
+        <code>@requests</code>
+      </td>
+      <td>Handle the requests functionality.</td>
+      <td>-</td>
+      <td>function</td>
+    </tr>
+  </tbody>
+</table>
+
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logo name="ecosystem" theme="dark" width="50px" />
+</div>
+
+
 <script lang="ts" setup>
 import { ref } from 'vue';
 
 import SprSidenav from '@/components/sidenav/sidenav.vue';
+import SprLogo from "@/components/logo/logo.vue";
 
 const quickActions = ref([
   {

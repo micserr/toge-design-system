@@ -8,7 +8,7 @@ import type { SnackEmitTypes, SnackPropTypes } from './snack';
 export const useSnack = (props: SnackPropTypes, emit: SetupContext<SnackEmitTypes>['emit']) => {
   const snackRef = ref<HTMLButtonElement | null>(null);
 
-  const { text, actionText, tone, showAction, showIcon, duration } = props;
+  const { text, actionText, tone, showAction, showIcon, duration, actionIconProps } = props;
 
   const snackProps: ComputedRef<Record<string, unknown>> = computed(() => {
     return {
@@ -18,6 +18,7 @@ export const useSnack = (props: SnackPropTypes, emit: SetupContext<SnackEmitType
       showAction: showAction,
       showIcon: showIcon,
       duration: duration,
+      actionIconProps: actionIconProps
     };
   });
 

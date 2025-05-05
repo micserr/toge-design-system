@@ -3,6 +3,10 @@ import type { PropType, ExtractPropTypes } from 'vue';
 // export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
 export const SNACKBAR_TONES = ['success', 'information', 'danger', 'caution'] as const;
+type ActionIconProps = {
+  icon: string;
+  tone: 'neutral' | 'success' | 'danger'
+}
 
 export const snackPropTypes = {
   /**
@@ -53,6 +57,9 @@ export const snackPropTypes = {
    */
   duration: {
     type: Number,
+  },
+  actionIconProps: {
+    type: Object as PropType<ActionIconProps>,
   },
 };
 

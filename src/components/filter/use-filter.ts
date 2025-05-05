@@ -7,15 +7,15 @@ import dayjs from 'dayjs';
 import { useInfiniteScroll, onClickOutside } from '@vueuse/core';
 
 export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitTypes>['emit']) => {
-  const { options, filterMenu, filterData, loading, filterable, filling, deselected } = toRefs(props);
+  const { options, filterMenu, filterData, loading, filterable, filling, deselected, hasSearchApi } = toRefs(props);
   const selectedValue = useVModel(props, 'modelValue', emit);
   const isFilterOpen = ref<boolean>(false);
   const searchText = useVModel(props, 'search', emit);
+  const searchFilterValue = useVModel(props, 'searchFilter', emit);
   const searchValue = ref<string>('');
   const filterMenuSearchvalue = ref<string>('');
   const isAddFilterVisible = ref<boolean>(false);
   const isAdvanceFilterVisible = ref<boolean>(false);
-  const mappedFilterOption = ref<Record<string, FilterPropsInterface['optionDetails']>>({});
   const mappedMenuData = ref<Record<string, FilterPropsInterface['optionDetails']>>({});
   const mappedFilterMenuList = ref<Record<string, FilterPropsInterface['filterDetails']>>({});
   const uniqueId = ref<string>(`filter-${dayjs().valueOf()}-${Math.floor(Math.random() * 1000)}`);
@@ -25,68 +25,56 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
   const selectedFilters = ref<FilterPropsInterface['optionDetails'][]>([]);
   const filterOptionRef = ref<HTMLDivElement | null>(null);
   const filterMenuOptionList = ref<(HTMLDivElement | null)[]>([]);
+  const selectedColumn = ref('');
 
+  // Main List
   const getFiltereredOption = computed<FilterPropsInterface['optionDetails'][]>(() => {
     if (filling.value) return options.value;
-    getMappedValues();
-    return options.value?.filter((option) => option.text.toLowerCase().includes(searchValue.value.toLowerCase())) || [];
+
+    const searchQuery = hasSearchApi.value ? '' : searchValue.value.toLowerCase();
+
+    const list = options.value?.filter((option, index) => {
+      const existing = selectedValue.value.find((selected) => selected.value === option.value && selected.isSelected);
+      if (existing) {
+        options.value[index].isSelected = true;
+      }
+      return option.text.toLowerCase().includes(searchQuery);
+    });
+
+    return list;
   });
 
+  //  Filter Menu Option List
   const getFiltereredMenuOption = computed<FilterPropsInterface['optionDetails'][]>(() => {
-    if (loading.value) return;
+    if (loading.value) return filterData.value;
 
-    return (
-      filterData.value?.filter((option) =>
-        option.text.toLowerCase().includes(filterMenuSearchvalue.value.toLowerCase()),
-      ) || []
-    );
+    const filter = filterData.value.filter((option, index) => {
+      const existing = selectedFilters.value.find(
+        (prevSelected) => prevSelected.value === option.value && prevSelected.isSelected,
+      );
+
+      if (existing) {
+        filterData.value[index].isSelected = true;
+      }
+
+      return option.text.toLowerCase().includes(filterMenuSearchvalue.value.toLowerCase());
+    });
+
+    return filter;
   });
 
-  const getMappedValues = () => {
-    if (!options.value?.length) return;
-    mappedFilterOption.value = options.value.reduce(
-      (acc, { value, isSelected, text, subtext }) => {
-        if (!acc[value]?.isSelected) {
-          acc[value] = { isSelected, text, value, subtext };
-        }
-        return acc;
-      },
-      {} as Record<string, FilterPropsInterface['optionDetails']>,
-    );
-  };
+  const hasVisibleFilter = computed(() => {
+    return Object.values(mappedFilterMenuList.value).some((menu) => menu.isFilterVisible);
+  });
 
-  const selectedColumn = ref('');
+  const getSelectedFilterMenuOption = computed(() => {
+    return getFiltereredMenuOption.value.filter((item) => item.isSelected);
+  });
 
   const getMappedFilterData = (column: string) => {
     emit('getFilterData', column);
     selectedColumn.value = column;
-
-    if (loading.value || filterData.value.length === 0) return;
-
-    getMappedMenuOptionList();
   };
-
-  const getMappedMenuOptionList = () => {
-    mappedMenuData.value = filterData.value.reduce(
-      (acc, { value, isSelected, text, subtext }) => {
-        const isExisting = selectedFilters.value.some(
-          (prevSelected) => prevSelected.value === value && prevSelected.column === selectedColumn.value,
-        );
-        acc[value] = { isSelected: isExisting || isSelected, text, value, column: selectedColumn.value, subtext };
-        return acc;
-      },
-      {} as Record<string, FilterPropsInterface['optionDetails']>,
-    );
-  };
-
-  watch(loading, () => {
-    if (loading.value) return;
-    getMappedMenuOptionList();
-  });
-
-  watch(selectedColumn, (_value) => {
-    setFilterVisible(_value);
-  });
 
   const setFilterVisible = (field: string) => {
     Object.keys(mappedFilterMenuList.value).forEach((key) => {
@@ -105,29 +93,9 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     );
   };
 
-  const getSelectedFilterMenuOption = computed(() => {
-    return Object.values(mappedMenuData.value).filter((item) => item.isSelected);
-  });
-
   const getSelectedItemPerFilterMenu = (column: string) => {
     return selectedFilters.value.filter((item) => item.column === column).length;
   };
-
-  const getSelectedOption = computed(() => {
-    return Object.values(mappedFilterOption.value).filter((item) => item.isSelected);
-  });
-
-  watch(deselected, (_value) => {
-    mappedFilterOption.value[_value].isSelected = false;
-  });
-
-  watch(getSelectedOption, () => {
-    selectedValue.value = getSelectedOption.value;
-  });
-
-  watch(searchValue, (value) => {
-    searchText.value = value;
-  });
 
   onClickOutside(filterOptionRef, () => {
     isFilterOpen.value = false;
@@ -135,15 +103,14 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
 
   const selectAllOptions = () => {
     if (options.value?.length) {
-      options.value.forEach((option) => {
-        mappedFilterOption.value[option.value].isSelected = true;
+      getFiltereredOption.value.forEach((_, key) => {
+        getFiltereredOption.value[key].isSelected = true;
       });
     }
-    selectedValue.value = getSelectedOption.value;
   };
 
   const saveSelectedFilter = (field: string) => {
-    const selectedValues = Object.values(mappedMenuData.value).filter(
+    const selectedValues = Object.values(getFiltereredMenuOption.value).filter(
       (selected) => selected.isSelected && selected.column === field,
     );
     selectedFilters.value = selectedFilters.value
@@ -156,14 +123,16 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
   };
 
   const handleRemoveFilterValues = (filter: string) => {
-    if (mappedMenuData.value[filter]) {
-      mappedMenuData.value[filter].isSelected = false;
-    }
-  };
+    getFiltereredMenuOption.value.map((option) => {
+      if (option.value === filter) {
+        option.isSelected = false;
+      }
+      return option;
+    });
 
-  const hasVisibleFilter = computed(() => {
-    return Object.values(mappedFilterMenuList.value).some((menu) => menu.isFilterVisible);
-  });
+    selectedFilters.value = selectedFilters.value.filter((item) => item.value !== filter);
+    emit('selectedFilter', selectedFilters.value);
+  };
 
   const infiniteScrollHandler = () => {
     if (hasVisibleFilter.value) {
@@ -172,6 +141,66 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     }
     emit('infiniteScrollTrigger', true);
   };
+
+  watch(loading, () => {
+    if (loading.value) return;
+    getMappedMenuOptionList();
+  });
+
+  watch(selectedColumn, (_value) => {
+    setFilterVisible(_value);
+  });
+
+  watch(deselected, (_value) => {
+    if (!_value) return; // Guard to prevent unnecessary execution
+    getFiltereredOption.value.forEach(({ value: id }, key) => {
+      if (id === _value) {
+        getFiltereredOption.value[key].isSelected = false;
+      }
+    });
+
+    selectedValue.value = (selectedValue.value as FilterPropsInterface['optionDetails'][]).filter(
+      ({ value: id }) => id !== _value,
+    );
+  });
+
+  watch(
+    () => getFiltereredOption.value,
+    (newOptions) => {
+      const selected = newOptions.filter((item) => item.isSelected);
+
+      const uniqueValues = Array.from(
+        new Map(
+          [...(selectedValue.value as FilterPropsInterface['optionDetails'][]), ...selected].map((item) => [
+            item.value,
+            item,
+          ]),
+        ).values(),
+      );
+
+      // Remove items from selectedValue if their isSelected is false in getFiltereredOption
+      const selectedOption = uniqueValues.filter((item) => {
+        const option = getFiltereredOption.value.find((opt) => opt.value === item.value);
+        if (option && !option.isSelected) return false;
+        return true;
+      });
+
+      if (JSON.stringify(selectedValue.value) === JSON.stringify(selectedOption)) return; // Prevent unnecessary updates
+
+      selectedValue.value = selectedOption;
+    },
+    { deep: true },
+  );
+
+  watch(searchValue, (value, oldValue) => {
+    if (value === oldValue) return; // Prevent unnecessary updates
+    searchText.value = value;
+  });
+
+  watch(filterMenuSearchvalue, (value, oldValue) => {
+    if (value === oldValue) return; // Prevent unnecessary updates
+    searchFilterValue.value = value;
+  });
 
   useInfiniteScroll(() => filterMenuOptionList.value[0], infiniteScrollHandler, { distance: 10 });
   useInfiniteScroll(filterOptionRef, infiniteScrollHandler, { distance: 10 });
@@ -219,7 +248,6 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     isAdvanceFilterVisible,
     filterMenuList,
     getFiltereredOption,
-    mappedFilterOption,
     mappedMenuData,
     getSelectedFilterMenuOption,
     getFiltereredMenuOption,

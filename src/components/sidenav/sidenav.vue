@@ -127,6 +127,7 @@
         <!-- Search -->
         <div
           v-if="props.hasSearch"
+          id="sidenav_search"
           :class="[
             'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out',
             'hover:spr-background-color-hover',
@@ -151,6 +152,7 @@
                 instant-move
               >
                 <div
+                  :id="`${generateId(parentLink.title)}`"
                   :class="{
                     'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out spr-max-w-9 spr-max-h-9 spr-m-auto spr-box-border': true,
                     'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
@@ -159,9 +161,23 @@
                     'active:spr-background-color-single-active active:spr-scale-90': true,
                   }"
                 >
-                  <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
-                  <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
-                  <Icon v-else icon="ph:globe" />
+                  <template v-if="parentLink.icon && parentLink.icon.includes('https://')">
+                    <img
+                      v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
+                      :src="parentLink.icon"
+                      :alt="`${parentLink.title} icon`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                    <img
+                      v-else-if="props.activeNav.parentNav === parentLink.title"
+                      :src="parentLink.icon.replace(/\.(svg|png|jpg)$/, '-fill.$1')"
+                      :alt="`${parentLink.title} icon`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                  </template>
+                  <template v-else>
+                    <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon v-else icon="ph:globe" />
+                  </template>
                 </div>
 
                 <template #popper>
@@ -195,6 +211,7 @@
                           instant-move
                         >
                           <div
+                            :id="`${generateId(parentLink.title, menuLinkItem.title)}`"
                             :class="{
                               'spr-body-sm-regular spr-relative spr-m-0 spr-flex spr-cursor-pointer spr-justify-between spr-px-2 spr-py-1.5 spr-align-middle spr-duration-150 spr-ease-in-out': true,
                               'spr-background-color-single-active': props.activeNav.menu === menuLinkItem.title,
@@ -234,6 +251,7 @@
                                 <Menu aria-id="sidenav-sub-submenu-wrapper" :triggers="['click', 'hover']" instant-move>
                                   <div
                                     v-if="!submenuLinkItem.hidden"
+                                    :id="`${generateId(parentLink.title, menuLinkItem.title, submenuLinkItem.title)}`"
                                     :class="{
                                       'spr-body-sm-regular spr-relative spr-m-0 spr-flex spr-cursor-pointer spr-justify-between spr-px-2 spr-py-1.5 spr-align-middle spr-duration-150 spr-ease-in-out': true,
                                       'spr-background-color-single-active':
@@ -268,6 +286,7 @@
                       <template v-else>
                         <div
                           v-if="!menuLinkItem.hidden"
+                          :id="`${generateId(parentLink.title, menuLinkItem.title)}`"
                           :class="{
                             'spr-body-sm-regular spr-relative spr-m-0 spr-flex spr-cursor-pointer spr-justify-between spr-px-2 spr-py-1.5 spr-align-middle spr-duration-150 spr-ease-in-out': true,
                             'spr-background-color-single-active': props.activeNav.menu === menuLinkItem.title,
@@ -276,6 +295,10 @@
                           }"
                           @click="handleRedirect(menuLinkItem, parentLink.title, menuLinkItem.title, '')"
                         >
+                          <div
+                            v-if="props.activeNav.menu === menuLinkItem.title"
+                            class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
+                          ></div>
                           <span>{{ menuLinkItem.title }}</span>
                         </div>
                       </template>
@@ -298,6 +321,7 @@
                   <span class="spr-label-xs-medium spr-uppercase">{{ parentLink.title }}</span>
                 </template>
                 <div
+                  :id="`${generateId(parentLink.title)}`"
                   :class="{
                     'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out spr-max-w-9 spr-max-h-9 spr-m-auto spr-box-border': true,
                     'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
@@ -307,9 +331,23 @@
                   }"
                   @click="handleRedirect(parentLink, parentLink.title, '', '')"
                 >
-                  <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
-                  <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
-                  <Icon v-else icon="ph:globe" />
+                  <template v-if="parentLink.icon && parentLink.icon.includes('https://')">
+                    <img
+                      v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
+                      :src="parentLink.icon"
+                      :alt="`${parentLink.title} icon`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                    <img
+                      v-else-if="props.activeNav.parentNav === parentLink.title"
+                      :src="parentLink.icon.replace(/\.(svg|png|jpg)$/, '-fill.$1')"
+                      :alt="`${parentLink.title} icon`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                  </template>
+                  <template v-else>
+                    <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon v-else icon="ph:globe" />
+                  </template>
                 </div>
               </Tooltip>
             </template>
@@ -339,6 +377,7 @@
                 instant-move
               >
                 <div
+                  :id="`${generateId(parentLink.title)}`"
                   :class="{
                     'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out spr-max-w-9 spr-max-h-9 spr-m-auto spr-box-border': true,
                     'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
@@ -347,9 +386,23 @@
                     'active:spr-background-color-single-active active:spr-scale-90': true,
                   }"
                 >
-                  <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
-                  <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
-                  <Icon v-else icon="ph:globe" />
+                  <template v-if="parentLink.icon && parentLink.icon.includes('https://')">
+                    <img
+                      v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
+                      :src="parentLink.icon"
+                      :alt="`${parentLink.title} icon`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                    <img
+                      v-else-if="props.activeNav.parentNav === parentLink.title"
+                      :src="parentLink.icon.replace(/\.(svg|png|jpg)$/, '-fill.$1')"
+                      :alt="`${parentLink.title} icon`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                  </template>
+                  <template v-else>
+                    <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon v-else icon="ph:globe" />
+                  </template>
                 </div>
 
                 <template #popper>
@@ -383,6 +436,7 @@
                           instant-move
                         >
                           <div
+                            :id="`${generateId(parentLink.title, menuLinkItem.title)}`"
                             :class="{
                               'spr-body-sm-regular spr-relative spr-m-0 spr-flex spr-cursor-pointer spr-justify-between spr-px-2 spr-py-1.5 spr-align-middle spr-duration-150 spr-ease-in-out': true,
                               'spr-background-color-single-active': props.activeNav.menu === menuLinkItem.title,
@@ -422,6 +476,7 @@
                                 <Menu aria-id="sidenav-sub-submenu-wrapper" :triggers="['click', 'hover']" instant-move>
                                   <div
                                     v-if="!submenuLinkItem.hidden"
+                                    :id="`${generateId(parentLink.title, menuLinkItem.title, submenuLinkItem.title)}`"
                                     :class="{
                                       'spr-body-sm-regular spr-relative spr-m-0 spr-flex spr-cursor-pointer spr-justify-between spr-px-2 spr-py-1.5 spr-align-middle spr-duration-150 spr-ease-in-out': true,
                                       'spr-background-color-single-active':
@@ -456,6 +511,7 @@
                       <template v-else>
                         <div
                           v-if="!menuLinkItem.hidden"
+                          :id="`${generateId(parentLink.title, menuLinkItem.title)}`"
                           :class="[
                             'spr-body-sm-regular spr-m-0 spr-flex spr-cursor-pointer spr-justify-between spr-px-2 spr-py-1.5 spr-align-middle spr-duration-300 spr-ease-in-out',
                             'hover:spr-background-color-hover',
@@ -486,6 +542,7 @@
                   <span class="spr-label-xs-medium spr-uppercase">{{ parentLink.title }}</span>
                 </template>
                 <div
+                  :id="`${generateId(parentLink.title)}`"
                   :class="{
                     'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out spr-max-w-9 spr-max-h-9 spr-m-auto spr-box-border': true,
                     'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
@@ -495,9 +552,23 @@
                   }"
                   @click="handleRedirect(parentLink, parentLink.title, '', '')"
                 >
-                  <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
-                  <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
-                  <Icon v-else icon="ph:globe" />
+                  <template v-if="parentLink.icon && parentLink.icon.includes('https://')">
+                    <img
+                      v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
+                      :src="parentLink.icon"
+                      :alt="`${parentLink.title} icon`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                    <img
+                      v-else-if="props.activeNav.parentNav === parentLink.title"
+                      :src="parentLink.icon.replace(/\.(svg|png|jpg)$/, '-fill.$1')"
+                      :alt="`${parentLink.title} icon`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                  </template>
+                  <template v-else>
+                    <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon v-else icon="ph:globe" />
+                  </template>
                 </div>
               </Tooltip>
             </template>
@@ -526,6 +597,7 @@
         </template>
         <div
           v-if="props.notificationCount || props.notificationCount === 0"
+          id="sidenav_notification"
           :class="[
             'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-2 spr-rounded-border-radius-md',
             'spr-transition spr-duration-150 spr-ease-in-out spr-w-9 spr-h-9 spr-m-auto',
@@ -559,6 +631,7 @@
         </template>
         <div
           v-if="props.requestCount || props.requestCount === 0"
+          id="sidenav_request"
           :class="[
             'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-2 spr-rounded-border-radius-md',
             'spr-transition spr-duration-150 spr-ease-in-out spr-w-9 spr-h-9 spr-m-auto',
@@ -599,6 +672,7 @@
         instant-move
       >
         <div
+          id="sidenav_user_menu"
           :class="[
             'spr-background-color spr-flex spr-h-[36px] spr-w-[36px] spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-full',
             'spr-border-color-weak spr-border spr-border-solid',
@@ -654,6 +728,7 @@
             <template v-for="(userMenuItem, userMenuItemIndex) in props.userMenu.items" :key="userMenuItemIndex">
               <div
                 v-if="!userMenuItem.hidden"
+                :id="`usermenu_${generateId(userMenuItem.title)}`"
                 :class="[
                   'spr-flex spr-cursor-pointer spr-gap-2 spr-p-2 spr-align-middle spr-duration-150 spr-ease-in-out',
                   'hover:spr-background-color-hover',
@@ -693,7 +768,7 @@ import SprBadge from '../badge/badge.vue';
 const props = defineProps(sidenavPropTypes);
 const emit = defineEmits(sidenavEmitTypes);
 
-const { isQuckActionMenuVisible, isUserMenuVisible, userProfileError, getUserInitials, handleRedirect } = useSidenav(
+const { isQuckActionMenuVisible, isUserMenuVisible, userProfileError, getUserInitials, handleRedirect, generateId } = useSidenav(
   props,
   emit,
 );

@@ -158,27 +158,35 @@ const switch7UpdateHandler = (value) => {
   </tbody>
 </table>
 
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logo name="hr" theme="dark"  width="50px" />
+  <spr-logo name="ecosystem" theme="dark" width="50px" />
+</div>
+
 <script lang="ts" setup>
-  import { ref } from 'vue';
+import { ref } from 'vue';
 
-  import SprSwitch from "@/components/switch/switch.vue";
+import SprSwitch from "@/components/switch/switch.vue";
+import SprLogo from "@/components/logo/logo.vue";
 
-  // Basic usage
-  const switchValue1 = ref(false);
+// Basic usage
+const switchValue1 = ref(false);
 
-  // Text label
-  const switchValue2 = ref(false);
-  const switchValue3 = ref(false);
-  const switchValue4 = ref(false);
+// Text label
+const switchValue2 = ref(false);
+const switchValue3 = ref(false);
+const switchValue4 = ref(false);
 
-  // Disabled
-  const switchValue5 = ref(false);
-  const switchValue6 = ref(true);
+// Disabled
+const switchValue5 = ref(false);
+const switchValue6 = ref(true);
 
-  // Emit
-  const switchValue7 = ref(true);
-  const switch7Label = ref("No event yet.");
-  const switch7UpdateHandler = (value) => {
-    switch7Label.value = "Value changed to " + value;
-  };
+// Emit
+const switchValue7 = ref(true);
+const switch7Label = ref("No event yet.");
+const switch7UpdateHandler = (value) => {
+  switch7Label.value = "Value changed to " + value;
+};
 </script>

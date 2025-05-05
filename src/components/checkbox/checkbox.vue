@@ -1,5 +1,5 @@
 <template>
-  <label :class="checkboxClasses.baseClasses">
+  <label :class="[checkboxClasses.baseClasses, { [checkboxClasses.borderedClasses]: props.bordered }]">
     <div class="spr-relative spr-flex spr-items-center">
       <input
         type="checkbox"

@@ -18,12 +18,17 @@
       </spr-table-actions>
     </div>
     <div :class="getTableClasses.tableBackgroundClasses">
-      <table aria-describedby="describe" class="spr-w-full spr-table-fixed" cellspacing="0" cellpadding="0">
+      <table aria-describedby="describe" class="spr-h-full spr-w-full spr-table-fixed" cellspacing="0" cellpadding="0">
         <thead>
           <tr v-if="!(props.removeHeaderOnEmpty && sortedData.length <= 0)">
             <th v-if="props.isMultiSelect" :class="[getTableClasses.multiselectClass, getTableClasses.headerClasses]">
-              <div class="spr-flex spr-justify-center spr-items-center">
-                <spr-checkbox label="" :checked="isAllSelected || isIndeterminate" :indeterminate="isIndeterminate" @update:model-value="handleSelectAll"/>
+              <div class="spr-flex spr-items-center spr-justify-center">
+                <spr-checkbox
+                  label=""
+                  :checked="isAllSelected || isIndeterminate"
+                  :indeterminate="isIndeterminate"
+                  @update:model-value="handleSelectAll"
+                />
               </div>
             </th>
             <th v-for="(header, keyHeader) in headers" :key="keyHeader" :class="[getTableClasses.headerClasses]">
@@ -60,9 +65,12 @@
             @mouseover="$emit('onHover', { active: true, data: item })"
             @mouseleave="$emit('onHover', { active: false, data: item })"
           >
-            <td v-if="props.isMultiSelect" :class="[getTableClasses.multiselectClass, getTableClasses.multiselectRowClass]">
-              <div class="spr-flex spr-justify-center spr-items-center">
-                <spr-checkbox label="" :checked="isRowSelected(item)" @update:model-value="handleSelect(item)"/>
+            <td
+              v-if="props.isMultiSelect"
+              :class="[getTableClasses.multiselectClass, getTableClasses.multiselectRowClass]"
+            >
+              <div class="spr-flex spr-items-center spr-justify-center">
+                <spr-checkbox label="" :checked="isRowSelected(item)" @update:model-value="handleSelect(item)" />
               </div>
             </td>
             <td v-for="(column, headerKey) in headers" :key="headerKey" :class="getTableClasses.tableDataClasses">
@@ -184,12 +192,12 @@ const {
   getEmptyStateSize,
   isAllSelected,
   isIndeterminate,
-  
+
   isRowSelected,
   sortData,
   updateSearchField,
   handleRowClick,
   handleSelect,
-  handleSelectAll
+  handleSelectAll,
 } = useTable(props, emit, slots);
 </script>

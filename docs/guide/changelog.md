@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.5.4 (2025-05-05)
+
+- Fix
+  - Add indeterminate in the Select All checkbox of Mutliselect table ([#83e0c803](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/83e0c803a36c55af5a6349dd88633ee7896f6044?refName=refs/heads/2025/fix/dustin/DQA_FIXES) by @despiritu)
+
 ## 2.5.3 (2025-04-30)
 
 - Fix

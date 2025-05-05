@@ -1,9 +1,13 @@
 # Changelog
 
+## 2.7.2 (2025-05-05)
+- Fix
+  - Change column slots in table to use $slots instead of useSlots ([#b431b2d2](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b431b2d2bb8c985b287f9fbc9ed3568dd149b0a7?refName=refs/heads/2025/fix/dustin/DQA_FIXES) by @despiritu)
+
 ## 2.7.1 (2025-05-05)
 
 - Fix
-  - Change column slots in table to use $slots instead of useSlots ([#b431b2d2](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b431b2d2bb8c985b287f9fbc9ed3568dd149b0a7?refName=refs/heads/2025/fix/dustin/DQA_FIXES) by @despiritu)
+  - Commit d08d4617: Refactor sidepanel and table components for improved structure and styling consistency ([#d08d4617](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d08d46172a544fb78edcbc23aab26ea615b95a9c?refName=refs/heads/2025/Fix/andrea/panel-table-layout) by @adestajo)
 
 ## 2.7.0 (2025-05-05)
 
@@ -14,6 +18,7 @@
 ## 2.6.0 (2025-05-05)
 
 - Feat
+
   - Add custom icon feature for sidenav links
   - Add id for user menu avatar and links inside ([#e8cc6ac3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e8cc6ac3fc62899509fb552f487e654082fcc200?refName=refs%2Fheads%2F2025%2Ffeature%2Felii%2Fsidenav) by @elumilay)
 

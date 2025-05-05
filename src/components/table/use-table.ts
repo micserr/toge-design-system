@@ -79,7 +79,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
 
   const getTableClasses = computed(() => {
     const tableWrapperClasses = classNames(
-      'spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid spr-table-wrapper spr-relative spr-h-max',
+      'spr-flex spr-flex-col spr-h-full spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid spr-table-wrapper spr-relative',
     );
     const tableFooterClasses = classNames('spr-w-full spr-bottom-0 spr-left-0', {
       'spr-background-color-surface': props.variant === 'surface',
@@ -118,10 +118,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
 
     const tableBackgroundClasses = classNames('spr-h-full');
 
-    const tableBodyClasses = classNames({
-      'spr-overflow-y-auto spr-h-[calc(85vh-150px)] md:spr-h-[calc(75vh-150px)] sm:spr-h-[calc(70vh-150px)]':
-        fullHeight.value && slots.footer, // Adjust tbody height for header/footer
-      'spr-overflow-y-auto spr-h-[75vh]': fullHeight.value && !slots.footer, // Adjust tbody height for header/footer
+    const tableBodyClasses = classNames('spr-overflow-y-auto spr-h-full', {
       'spr-h-[250px]': !fullHeight.value && slots.footer,
       'spr-h-[360px]': !fullHeight.value && !slots.footer,
     });

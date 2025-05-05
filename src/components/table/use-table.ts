@@ -19,6 +19,11 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     return selectedData.value.length === sortedData.value.length;
   });
 
+  const isIndeterminate = computed(() => {
+    if (selectedData.value.length === 0) return false;
+    return selectedData.value.length > 0 && selectedData.value.length < sortedData.value.length;
+  });
+
   const sortedData = computed(() => {
     if (!sortField.value || sortOrder.value) return dataTable.value;
 
@@ -170,10 +175,10 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
   };
 
   const handleSelectAll = () => {
-    if (isAllSelected.value) {
+    if (isAllSelected.value || isIndeterminate.value) {
       selectedData.value = [];
     } else {
-      selectedData.value = sortedData.value;
+      selectedData.value = [...sortedData.value];
     }
   };
 
@@ -210,5 +215,6 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     selectedData,
     isAllSelected,
     isRowSelected,
+    isIndeterminate,
   };
 };

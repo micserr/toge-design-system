@@ -161,9 +161,23 @@
                     'active:spr-background-color-single-active active:spr-scale-90': true,
                   }"
                 >
-                  <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
-                  <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
-                  <Icon v-else icon="ph:globe" />
+                  <template v-if="parentLink.icon && parentLink.icon.includes('https://')">
+                    <img
+                      v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
+                      :src="parentLink.icon"
+                      :alt="`${parentLink.title} icon`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                    <img
+                      v-else-if="props.activeNav.parentNav === parentLink.title"
+                      :src="parentLink.icon.replace(/\.(svg|png|jpg)$/, '-fill.$1')"
+                      :alt="`${parentLink.title} icon`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                  </template>
+                  <template v-else>
+                    <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon v-else icon="ph:globe" />
+                  </template>
                 </div>
 
                 <template #popper>
@@ -317,9 +331,23 @@
                   }"
                   @click="handleRedirect(parentLink, parentLink.title, '', '')"
                 >
-                  <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
-                  <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
-                  <Icon v-else icon="ph:globe" />
+                  <template v-if="parentLink.icon && parentLink.icon.includes('https://')">
+                    <img
+                      v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
+                      :src="parentLink.icon"
+                      :alt="`${parentLink.title} icon`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                    <img
+                      v-else-if="props.activeNav.parentNav === parentLink.title"
+                      :src="parentLink.icon.replace(/\.(svg|png|jpg)$/, '-fill.$1')"
+                      :alt="`${parentLink.title} icon`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                  </template>
+                  <template v-else>
+                    <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon v-else icon="ph:globe" />
+                  </template>
                 </div>
               </Tooltip>
             </template>
@@ -358,9 +386,23 @@
                     'active:spr-background-color-single-active active:spr-scale-90': true,
                   }"
                 >
-                  <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
-                  <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
-                  <Icon v-else icon="ph:globe" />
+                  <template v-if="parentLink.icon && parentLink.icon.includes('https://')">
+                    <img
+                      v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
+                      :src="parentLink.icon"
+                      :alt="`${parentLink.title} icon`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                    <img
+                      v-else-if="props.activeNav.parentNav === parentLink.title"
+                      :src="parentLink.icon.replace(/\.(svg|png|jpg)$/, '-fill.$1')"
+                      :alt="`${parentLink.title} icon`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                  </template>
+                  <template v-else>
+                    <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon v-else icon="ph:globe" />
+                  </template>
                 </div>
 
                 <template #popper>
@@ -510,9 +552,23 @@
                   }"
                   @click="handleRedirect(parentLink, parentLink.title, '', '')"
                 >
-                  <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
-                  <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
-                  <Icon v-else icon="ph:globe" />
+                  <template v-if="parentLink.icon && parentLink.icon.includes('https://')">
+                    <img
+                      v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
+                      :src="parentLink.icon"
+                      :alt="`${parentLink.title} icon`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                    <img
+                      v-else-if="props.activeNav.parentNav === parentLink.title"
+                      :src="parentLink.icon.replace(/\.(svg|png|jpg)$/, '-fill.$1')"
+                      :alt="`${parentLink.title} icon`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                  </template>
+                  <template v-else>
+                    <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon v-else icon="ph:globe" />
+                  </template>
                 </div>
               </Tooltip>
             </template>
@@ -616,6 +672,7 @@
         instant-move
       >
         <div
+          id="sidenav_user_menu"
           :class="[
             'spr-background-color spr-flex spr-h-[36px] spr-w-[36px] spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-full',
             'spr-border-color-weak spr-border spr-border-solid',
@@ -671,6 +728,7 @@
             <template v-for="(userMenuItem, userMenuItemIndex) in props.userMenu.items" :key="userMenuItemIndex">
               <div
                 v-if="!userMenuItem.hidden"
+                :id="`usermenu_${generateId(userMenuItem.title)}`"
                 :class="[
                   'spr-flex spr-cursor-pointer spr-gap-2 spr-p-2 spr-align-middle spr-duration-150 spr-ease-in-out',
                   'hover:spr-background-color-hover',

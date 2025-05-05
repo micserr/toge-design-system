@@ -1,5 +1,5 @@
 <template>
-  <div class="spr-relative">
+  <div :class="['spr-relative', { 'spr-w-full' : props.bordered }]">
     <input
       :id="props.id"
       ref="radioRef"
@@ -10,9 +10,21 @@
       :disabled="props.disabled"
       :class="radioClasses.baseClasses"
     />
-    <label ref="radioRef" :for="props.id" :disabled="props.disabled" :class="radioClasses.labelClasses">
+    <label
+      ref="radioRef"
+      :for="props.id"
+      :disabled="props.disabled"
+      :class="[radioClasses.labelClasses, { [radioClasses.borderedClasses]: props.bordered }]"
+    >
       <span :class="radioClasses.baseIndicatorClasses"></span>
-      <slot />
+      <div class="spr-flex spr-flex-col spr-gap-size-spacing-6xs">
+        <slot />
+        <span
+          v-if="props.description && props.description !== ''"
+          :class="['spr-text-xs spr-font-normal spr-leading-4 spr-text-mushroom-600', { 'spr-text-color-disabled' : props.disabled}]"
+          >{{ props.description }}</span
+        >
+      </div>
     </label>
   </div>
 </template>

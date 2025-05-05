@@ -11,6 +11,7 @@ interface CheckboxClasses {
   inputCheckboxCheckIconClasses: string;
   labelClasses: string;
   descriptionClasses: string;
+  borderedClasses: string;
 }
 
 export const useCheckbox = (props: CheckboxPropTypes, emit: SetupContext<CheckboxEmitTypes>['emit']) => {
@@ -53,12 +54,22 @@ export const useCheckbox = (props: CheckboxPropTypes, emit: SetupContext<Checkbo
       'spr-text-color-on-fill-disabled': disabled.value,
     });
 
+    const borderedClasses = classNames(
+      'spr-border spr-rounded-md spr-p-size-spacing-2xs spr-border-solid spr-w-full spr-box-border',
+      {
+        'spr-border-kangkong-700 spr-bg-kangkong-100' : (modelValue.value || checked.value) && !disabled.value,
+        'spr-border-mushroom-200' : (!modelValue.value || !checked.value) && !disabled.value,
+        'spr-border-0 spr-bg-white-100' : disabled.value
+      }
+    )
+
     return {
       baseClasses,
       inputCheckboxClasses,
       inputCheckboxCheckIconClasses,
       labelClasses,
       descriptionClasses,
+      borderedClasses
     };
   });
 

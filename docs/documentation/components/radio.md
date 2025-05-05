@@ -122,6 +122,12 @@ const radioModel = ref('');
       <td>any</td>
       <td>-</td>
     </tr>
+    <tr>
+      <td>bordered</td>
+      <td>Add border to the component</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 

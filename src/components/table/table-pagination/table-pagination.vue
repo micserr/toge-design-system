@@ -21,6 +21,7 @@
       </div>
       <div :class="paginationClasses.navigationContainerClass">
         <spr-button
+          id="previousButton"
           has-icon
           :class="paginationClasses.navigationButtonClass"
           :disabled="disabledNext"
@@ -29,6 +30,7 @@
           <Icon icon="ph:caret-left" />
         </spr-button>
         <spr-button
+          id="nextButton"
           has-icon
           :class="paginationClasses.navigationButtonClass"
           :disabled="disabledPrevious"

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.6 (2025-05-06)
+
+- Fix
+  - Add pressed state in Accordion ([#8ae58e47](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8ae58e478fa47bbe77e7fe6edbdd48d72194a3e2?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2FDQA_FIXES) by @despiritu)
+
 ## 2.7.5 (2025-05-06)
 
 - Fix

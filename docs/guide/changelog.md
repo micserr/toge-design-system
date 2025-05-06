@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.5 (2025-05-06)
+
+- Fix
+  - Fix max-height conditional for sidenav ([#afdcfa71](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/afdcfa71756077d8412c512daa2c7cf0117c835a?refName=refs%2Fheads%2F2025%2Fbugfix%2Feli%2Fsidenav) by @elumilay)
+
 ## 2.7.4 (2025-05-06)
 
 - Fix

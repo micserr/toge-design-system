@@ -1,6 +1,27 @@
 # Changelog
 
+## 2.7.5 (2025-05-06)
+
+- Fix
+  - Commit ae37a005: Added ID's for Filter Component ([#ae37a005](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ae37a0052034a69ed90c9290a0552c84430295b4?refName=refs/heads/2025/Fix/andrea/filter-ids) by @adestajo)
+
+## 2.7.5 (2025-05-06)
+
+- Fix
+  - Fix max-height conditional for sidenav ([#afdcfa71](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/afdcfa71756077d8412c512daa2c7cf0117c835a?refName=refs%2Fheads%2F2025%2Fbugfix%2Feli%2Fsidenav) by @elumilay)
+
+## 2.7.4 (2025-05-06)
+
+- Fix
+  - Commit 220c0358: Update table-pagination.vue ([#220c0358](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/220c03588d6877e9541d4dd503cee86951d974ce?refName=refs/heads/2025/Fix/andrea/added-id-table-pagination) by @adestajo)
+
+## 2.7.3 (2025-05-05)
+
+- Fix
+  - Commit f2750ca3: table height if not in Full height ([#f2750ca3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f2750ca3a29fccaf0c103e6df1bd000ac6f259b0?refName=refs/heads/2025-/Fix/andrea/table-full-height) by @adestajo)
+
 ## 2.7.2 (2025-05-05)
+
 - Fix
   - Change column slots in table to use $slots instead of useSlots ([#b431b2d2](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b431b2d2bb8c985b287f9fbc9ed3568dd149b0a7?refName=refs/heads/2025/fix/dustin/DQA_FIXES) by @despiritu)
 

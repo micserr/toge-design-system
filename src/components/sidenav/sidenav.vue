@@ -12,8 +12,7 @@
         'spr-hidden-scrolls spr-flex spr-h-full spr-flex-col spr-justify-between spr-overflow-auto': true,
         'spr-max-h-[calc(100vh-60px)]': props.notificationCount === null && props.requestCount === null,
         'spr-max-h-[calc(100vh-194px)]': props.notificationCount && props.requestCount || props.notificationCount === 0 || props.requestCount === 0,
-        'spr-max-h-[calc(100vh-150px)]':
-          (props.notificationCount || props.requestCount) && !(props.notificationCount && props.requestCount),
+        '!spr-max-h-[calc(100vh-150px)]': props.requestCount === ''  || props.notificationCount === '',
       }"
     >
       <!-- Top Section -->
@@ -582,7 +581,7 @@
     </div>
 
     <div 
-      v-if="props.notificationCount || props.requestCount || props.notificationCount === 0" 
+      v-if="props.notificationCount || props.requestCount || props.notificationCount === 0 || props.requestCount === 0" 
       class="spr-grid spr-gap-2 spr-py-6"
     >
       <!-- Notification -->

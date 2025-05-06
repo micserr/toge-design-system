@@ -3,6 +3,11 @@
 ## 2.7.5 (2025-05-06)
 
 - Fix
+  - Commit ae37a005: Added ID's for Filter Component ([#ae37a005](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ae37a0052034a69ed90c9290a0552c84430295b4?refName=refs/heads/2025/Fix/andrea/filter-ids) by @adestajo)
+
+## 2.7.5 (2025-05-06)
+
+- Fix
   - Fix max-height conditional for sidenav ([#afdcfa71](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/afdcfa71756077d8412c512daa2c7cf0117c835a?refName=refs%2Fheads%2F2025%2Fbugfix%2Feli%2Fsidenav) by @elumilay)
 
 ## 2.7.4 (2025-05-06)

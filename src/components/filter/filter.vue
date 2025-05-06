@@ -22,7 +22,14 @@
       @click="isFilterOpen = true"
     >
       <slot>
-        <spr-input v-model="searchValue" type="text" :placeholder="placeholder" :label="label" :disabled="disabled">
+        <spr-input
+          id="search"
+          v-model="searchValue"
+          type="text"
+          :placeholder="placeholder"
+          :label="label"
+          :disabled="disabled"
+        >
           <template #icon>
             <Icon icon="ph:magnifying-glass" />
           </template>
@@ -51,7 +58,7 @@
             :triggers="['click']"
             :auto-hide="false"
           >
-            <spr-button has-icon variant="secondary" size="small">
+            <spr-button id="add-filter-button" has-icon variant="secondary" size="small">
               <Icon icon="ph:faders-horizontal" />
             </spr-button>
 
@@ -96,7 +103,12 @@
                         </div>
 
                         <div class="spr-p-size-spacing-2xs">
-                          <spr-input v-model="filterMenuSearchvalue" type="text" placeholder="Select Employees">
+                          <spr-input
+                            id="search"
+                            v-model="filterMenuSearchvalue"
+                            type="text"
+                            placeholder="Select Employees"
+                          >
                             <template #icon>
                               <Icon icon="ph:magnifying-glass" />
                             </template>
@@ -131,6 +143,7 @@
                             ]"
                           >
                             <spr-checkbox
+                              id="filter-menu-option"
                               v-model="getFiltereredMenuOption[key].isSelected"
                               class="spr-w-full"
                               :checked="getFiltereredMenuOption[key].isSelected"
@@ -147,13 +160,19 @@
 
                         <div :class="filterClass.ActionButtonClasses">
                           <spr-button
+                            id="cancel-button"
                             variant="secondary"
                             size="small"
                             @click="mappedFilterMenuList[menu.field].isFilterVisible = false"
                           >
                             Cancel
                           </spr-button>
-                          <spr-button size="small" tone="success" @click="saveSelectedFilter(menu.field)">
+                          <spr-button
+                            id="save-button"
+                            size="small"
+                            tone="success"
+                            @click="saveSelectedFilter(menu.field)"
+                          >
                             Save
                           </spr-button>
                         </div>
@@ -166,7 +185,9 @@
           </Menu>
         </div>
 
-        <spr-button variant="secondary" size="small" @click="selectAllOptions">Select All</spr-button>
+        <spr-button id="select-all-button" variant="secondary" size="small" @click="selectAllOptions"
+          >Select All</spr-button
+        >
       </div>
 
       <div

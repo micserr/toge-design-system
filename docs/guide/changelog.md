@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.4 (2025-05-06)
+
+- Fix
+  - Commit 220c0358: Update table-pagination.vue ([#220c0358](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/220c03588d6877e9541d4dd503cee86951d974ce?refName=refs/heads/2025/Fix/andrea/added-id-table-pagination) by @adestajo)
+
 ## 2.7.3 (2025-05-05)
 
 - Fix

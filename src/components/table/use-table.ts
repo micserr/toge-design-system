@@ -118,7 +118,8 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
 
     const tableBackgroundClasses = classNames('spr-h-full');
 
-    const tableBodyClasses = classNames('spr-overflow-y-auto spr-h-full', {
+    const tableBodyClasses = classNames({
+      'spr-overflow-y-auto spr-h-full': fullHeight.value,
       'spr-h-[250px]': !fullHeight.value && slots.footer,
       'spr-h-[360px]': !fullHeight.value && !slots.footer,
     });

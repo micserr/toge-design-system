@@ -18,7 +18,7 @@ export const useRadioButton = (
   emit: SetupContext<RadioEmitTypes>['emit'],
   slots: Record<string, unknown>,
 ) => {
-  const { modelValue, disabled, description, bordered } = toRefs(props);
+  const { modelValue, disabled, description, bordered, fullWidth } = toRefs(props);
 
   const radioRef = ref<HTMLInputElement | null>(null);
   const isHovered = useElementHover(radioRef);
@@ -39,22 +39,34 @@ export const useRadioButton = (
       {
         // Hover state with matching value
         'spr-background-color-brand-hover spr-border-2 spr-border-color-brand-hover spr-shadow-[inset_0px_0px_0px_2.5px_#fff]':
-          isHovered.value && String(modelValue?.value) === String(props.value) && !disabled.value,
+          isHovered.value && String(modelValue?.value) === String(props.value) && !disabled.value && !bordered.value,
 
         // Hover state but different value
         'spr-background-color-base spr-border-2 spr-border-color-supporting spr-shadow-[inset_0px_0px_0px_2.5px_#fff]':
-          isHovered.value && String(modelValue?.value) !== String(props.value) && !disabled.value,
+          isHovered.value && String(modelValue?.value) !== String(props.value) && !disabled.value && !bordered.value,
+
+        // Bordered Hover state but different value
+        'spr-background-color-base spr-border-2 spr-border-color-supporting':
+          isHovered.value && String(modelValue?.value) !== String(props.value) && !disabled.value && bordered.value,
       },
 
       // Active State
       {
         // Active state with matching value
         'spr-border-color-brand-base spr-background-color-brand-base spr-shadow-[inset_0px_0px_0px_2.5px_#fff] animate-shadow-grow':
-          String(modelValue?.value) === String(props.value) && !disabled.value,
+          String(modelValue?.value) === String(props.value) && !disabled.value && !bordered.value,
 
         // Active state with different value
         'spr-border-color-supporting spr-shadow-[inset_0px_0px_0px_2.5px#fff]':
-          String(modelValue?.value) !== String(props.value) && !disabled.value,
+          String(modelValue?.value) !== String(props.value) && !disabled.value && !bordered.value,
+
+        //Bordered Active state with matching value
+        'spr-border-color-brand-base spr-background-color-brand-base animate-shadow-grow':
+          String(modelValue?.value) === String(props.value) && !disabled.value && bordered.value,
+
+        //Bordered Active state with different value
+        'spr-border-color-supporting':
+          String(modelValue?.value) !== String(props.value) && !disabled.value && bordered.value,
       },
 
       // Disabled State
@@ -63,11 +75,19 @@ export const useRadioButton = (
 
         // Disabled state with matching value
         'spr-border-color-disabled spr-background-color-disabled spr-shadow-[inset_0px_0px_0px_2.5px_#fff]':
-          disabled.value && String(modelValue?.value) === String(props.value),
+          disabled.value && String(modelValue?.value) === String(props.value) && !bordered.value,
 
         // Disabled state but different value
         'spr-border-color-disabled spr-background-color spr-cursor-not-allowed':
-          disabled.value && String(modelValue?.value) !== String(props.value),
+          disabled.value && String(modelValue?.value) !== String(props.value) && !bordered.value,
+
+        // Bordered Disabled state with matching value
+        'spr-bg-white-400 spr-shadow-[inset_0px_0px_0px_2.5px_#fff]':
+          disabled.value && String(modelValue?.value) === String(props.value) && bordered.value,
+
+        // Bordered Disabled state but different value
+        'spr-border-white-400 spr-background-color-disabled':
+          disabled.value && String(modelValue?.value) !== String(props.value) && bordered.value,
       },
     );
 
@@ -75,25 +95,35 @@ export const useRadioButton = (
       'spr-group spr-m-0 spr-inline-flex spr-w-auto spr-items-center spr-space-x-2 spr-p-0 spr-font-main',
       'spr-text-color-strong spr-inline-flex spr-items-center spr-p-0',
       {
-        'spr-text-color-disabled spr-cursor-not-allowed': disabled.value,
+        'spr-text-color-disabled': disabled.value && !bordered.value,
+        'spr-text-color-on-fill-disabled': disabled.value && bordered.value,
         'spr-cursor-pointer': !disabled.value,
+        'spr-cursor-not-allowed': disabled.value,
       },
     );
 
     const borderedClasses = classNames(
-      'spr-border spr-rounded-md spr-p-size-spacing-2xs spr-border-solid spr-w-full spr-box-border',
+      'spr-border spr-rounded-md spr-p-size-spacing-2xs spr-border-solid spr-box-border',
       {
-        'spr-border-kangkong-700 spr-bg-kangkong-100' : String(modelValue?.value) === String(props.value) && !disabled.value,
-        'spr-border-mushroom-200' : String(modelValue?.value) !== String(props.value) || disabled.value,
+        //enabled state
+        'spr-border-color-brand-base spr-background-color-brand-weak':
+          String(modelValue?.value) === String(props.value) && !disabled.value, // matching value
+        'spr-border-color-weak spr-bg-white-50 hover:spr-background-color-hover':
+          String(modelValue?.value) !== String(props.value) && !disabled.value, // different value
 
-      }
-    )
+        //disabled state
+        'spr-border-color-disabled spr-background-color-disabled': disabled.value,
+
+        'spr-w-full': fullWidth.value,
+        'spr-w-fit': !fullWidth.value,
+      },
+    );
 
     return {
       baseClasses,
       baseIndicatorClasses,
       labelClasses,
-      borderedClasses
+      borderedClasses,
     };
   });
 

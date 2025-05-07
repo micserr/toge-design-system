@@ -1,5 +1,5 @@
 <template>
-  <div :class="['spr-relative', { 'spr-w-full' : props.bordered }]">
+  <div :class="['spr-relative', { 'spr-w-full' : props.fullWidth }]">
     <input
       :id="props.id"
       ref="radioRef"

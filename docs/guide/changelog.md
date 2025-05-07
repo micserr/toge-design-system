@@ -1,16 +1,21 @@
 # Changelog
 
+## 2.7.9 (2025-05-07)
+
+- Fix
+  - fix: change row prop of column slot to return full row data and add rowIndex prop in Table ([#1915f154](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1915f154e8b24ec3b912c2ed5155ebfdc8e91356?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2FDQA_FIXES) by @despiritu)
+
 ## 2.7.8 (2025-05-07)
 
 - Fix
   - Adjust z-index of sidepanel ([#405fb992](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/405fb992aa64cbb5e0281fb94033d3f5ff035973?refName=refs%2Fheads%2F2025%2Fbugfix%2Feli%2Fsidepanel) by @elumilay)
 
-## 2.7.6 (2025-05-06)
+## 2.7.7 (2025-05-06)
 
 - Fix
   - Add pressed state in Accordion ([#8ae58e47](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8ae58e478fa47bbe77e7fe6edbdd48d72194a3e2?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2FDQA_FIXES) by @despiritu)
 
-## 2.7.5 (2025-05-06)
+## 2.7.6 (2025-05-06)
 
 - Fix
   - Commit ae37a005: Added ID's for Filter Component ([#ae37a005](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ae37a0052034a69ed90c9290a0552c84430295b4?refName=refs/heads/2025/Fix/andrea/filter-ids) by @adestajo)

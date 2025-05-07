@@ -74,7 +74,7 @@
               </div>
             </td>
             <td v-for="(column, headerKey) in headers" :key="headerKey" :class="getTableClasses.tableDataClasses">
-              <slot v-if="$slots[column.field]" :name="column.field" :row="item[column.field]" />
+              <slot v-if="$slots[column.field]" :name="column.field" :row="item" :row-index="keyIndex" />
               <template v-else>
                 <div v-if="sortedData[keyIndex][column.field]" class="spr-flex spr-flex-row spr-items-center spr-gap-2">
                   <spr-avatar

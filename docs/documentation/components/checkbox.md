@@ -176,6 +176,12 @@ const checkbox2 = ref(true);
       <td>Boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td>fullWidth</td>
+      <td>Defines if component is fit-content or full width</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 

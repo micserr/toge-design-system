@@ -30,6 +30,10 @@ export const checkboxPropTypes = {
   bordered: {
     type: Boolean,
     default: false,
+  },
+  fullWidth: {
+    type: Boolean,
+    default: false,
   }
 };
 

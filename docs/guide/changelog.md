@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.8 (2025-05-07)
+
+- Fix
+  - Adjust z-index of sidepanel ([#405fb992](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/405fb992aa64cbb5e0281fb94033d3f5ff035973?refName=refs%2Fheads%2F2025%2Fbugfix%2Feli%2Fsidepanel) by @elumilay)
+
 ## 2.7.6 (2025-05-06)
 
 - Fix

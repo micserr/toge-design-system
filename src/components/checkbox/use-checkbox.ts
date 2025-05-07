@@ -15,7 +15,7 @@ interface CheckboxClasses {
 }
 
 export const useCheckbox = (props: CheckboxPropTypes, emit: SetupContext<CheckboxEmitTypes>['emit']) => {
-  const { modelValue, disabled, checked } = toRefs(props);
+  const { modelValue, disabled, checked, bordered, fullWidth } = toRefs(props);
 
   const checkboxClasses: ComputedRef<CheckboxClasses> = computed(() => {
     const baseClasses = classNames(
@@ -30,19 +30,21 @@ export const useCheckbox = (props: CheckboxPropTypes, emit: SetupContext<Checkbo
       'spr-h-[20px] spr-w-[20px] spr-appearance-none spr-rounded-[2.5px] spr-border-color-supporting spr-border-[1.25px] spr-border-solid spr-m-1',
       'spr-transition spr-duration-150 spr-ease-in-out',
       {
-        'spr-background-color-brand-base spr-border-color-brand-base hover:spr-background-color-brand-hover hover:spr-border-color-brand-hover': modelValue.value || checked.value,
-        'hover:spr-background-color-hover': !modelValue.value && !checked.value,
-        'spr-border-color-on-fill-disabled spr-background-color-disabled spr-cursor-not-allowed': disabled.value || checked.value,
+        'spr-background-color-brand-base spr-border-color-brand-base': isChecked.value && !disabled.value,
+        'hover:spr-background-color-brand-hover hover:spr-border-color-brand-hover':
+          isChecked.value && !bordered.value && !disabled.value, //remove hover checkbox styling when bordered
+        'hover:spr-background-color-hover': !isChecked.value && !bordered.value, //remove hover checkbox styling when bordered
+        'spr-border-color-on-fill-disabled spr-background-color-disabled spr-cursor-not-allowed':
+          !isChecked.value && disabled.value,
+        'spr-bg-white-300 spr-border-none': isChecked.value && disabled.value,
         'spr-cursor-pointer': !disabled.value,
       },
     );
 
     const inputCheckboxCheckIconClasses = classNames(
-      'spr-h-[20px] spr-w-[20px] spr-flex spr-items-center spr-justify-center spr-pointer-events-none spr-absolute spr-left-1/2 spr-top-1/2 -spr-translate-x-1/2 -spr-translate-y-1/2 spr-transform spr-font-bold spr-opacity-0',
+      'spr-h-[20px] spr-w-[20px] spr-flex spr-items-center spr-justify-center spr-pointer-events-none spr-absolute spr-left-1/2 spr-top-1/2 -spr-translate-x-1/2 -spr-translate-y-1/2 spr-transform spr-font-bold spr-opacity-0 spr-text-color-inverted-strong',
       {
-        'spr-opacity-100': modelValue.value || checked.value,
-        'spr-text-color-inverted-strong': !disabled.value,
-        'spr-text-color-on-fill-disabled': disabled.value,
+        'spr-opacity-100': isChecked.value,
       },
     );
 
@@ -55,13 +57,16 @@ export const useCheckbox = (props: CheckboxPropTypes, emit: SetupContext<Checkbo
     });
 
     const borderedClasses = classNames(
-      'spr-border spr-rounded-md spr-p-size-spacing-2xs spr-border-solid spr-w-full spr-box-border',
+      'spr-border spr-rounded-md spr-p-size-spacing-2xs spr-border-solid spr-box-border',
       {
-        'spr-border-kangkong-700 spr-bg-kangkong-100' : (modelValue.value || checked.value) && !disabled.value,
-        'spr-border-mushroom-200' : (!modelValue.value || !checked.value) && !disabled.value,
-        'spr-border-0 spr-bg-white-100' : disabled.value
-      }
-    )
+        'spr-border-kangkong-700 spr-bg-kangkong-100': (modelValue.value || checked.value) && !disabled.value,
+        'spr-border-mushroom-200': (!modelValue.value || !checked.value) && !disabled.value,
+        'hover:spr-background-color-hover': (!modelValue.value && !checked.value) || disabled.value,
+        'spr-border-0 spr-bg-white-100': disabled.value,
+        'spr-w-fit': !fullWidth.value,
+        'spr-w-full': fullWidth.value,
+      },
+    );
 
     return {
       baseClasses,
@@ -69,7 +74,7 @@ export const useCheckbox = (props: CheckboxPropTypes, emit: SetupContext<Checkbo
       inputCheckboxCheckIconClasses,
       labelClasses,
       descriptionClasses,
-      borderedClasses
+      borderedClasses,
     };
   });
 
@@ -80,10 +85,12 @@ export const useCheckbox = (props: CheckboxPropTypes, emit: SetupContext<Checkbo
   };
 
   const resolveCheckboxIcon = computed(() => {
-    if (props.indeterminate) return "ph:minus-bold"
+    if (props.indeterminate) return 'ph:minus-bold';
 
-    return "ph:check-bold"
-  })
+    return 'ph:check-bold';
+  });
+
+  const isChecked = computed(() => modelValue.value || checked.value);
 
   return {
     checkboxClasses,

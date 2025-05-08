@@ -8,6 +8,7 @@
     :popper-hide-triggers="[]"
     :container="`#${uniqueId}`"
     :auto-hide="false"
+    :delay="0"
     :style="{
       width: props.width,
       position: 'relative',

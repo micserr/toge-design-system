@@ -25,6 +25,7 @@
         <div ref="datePickerRef" :class="datePickerClasses.datePickerBaseInputClasses" @click="datePopperState = true">
           <div class="spr-flex spr-h-full spr-items-center spr-gap-1.5">
             <input
+              :id="`${props.id}-month`"
               ref="monthInputRef"
               v-model="monthInput"
               :class="['spr-w-[38px] spr-min-w-[38px]', datePickerClasses.datePickerInputClasses]"
@@ -39,6 +40,7 @@
             />
             <span class="spr-text-color-strong spr-font-size-200 spr-text-color-weak">/</span>
             <input
+              :id="`${props.id}-date`"
               ref="dateInputRef"
               v-model="dateInput"
               :class="['spr-w-[24px] spr-min-w-[24px] spr-text-center', datePickerClasses.datePickerInputClasses]"
@@ -53,6 +55,7 @@
             />
             <span class="spr-text-color-strong spr-font-size-200 spr-text-color-weak">/</span>
             <input
+              :id="`${props.id}-year`"
               ref="yearInputRef"
               v-model="yearInput"
               :class="['spr-w-[42px] spr-min-w-[42px]', datePickerClasses.datePickerInputClasses]"

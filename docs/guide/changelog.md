@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.12 (2025-05-08)
+
+- Fix
+  - Commit 82af2436: ids, and delay in filter component ([#82af2436](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/82af243699f198aeef9debd940b0a528ab04f459?refName=refs/heads/2025/Fix/andrea/Ids-textarea) by @adestajo)
+
 ## 2.7.11 (2025-05-08)
 
 - Fix

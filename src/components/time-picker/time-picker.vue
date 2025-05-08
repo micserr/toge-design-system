@@ -19,6 +19,7 @@
       }"
     >
       <spr-input
+        :id="props.id"
         v-model="selectedValue"
         type="text"
         :placeholder="getPlaceHolder"

@@ -1,6 +1,6 @@
 import { ref, computed, toRefs, Slots, watch } from 'vue';
 
-import type { TablePropTypes, TableEmitTypes, TABLE_SORT, TableData } from './table';
+import type { TablePropTypes, TableEmitTypes, TABLE_SORT, TableData, TableDataProps } from './table';
 import type { SetupContext } from 'vue';
 
 import classNames from 'classnames';
@@ -158,12 +158,28 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     };
   });
 
+  //assert type TableDataProps 
+  const sortedDataItem = (rowIndex: number, headerField: string) => {
+    return sortedData.value[rowIndex][headerField] as TableDataProps;
+  }
+
+  const isTableDataObject = (data: TableDataProps) => {
+    return typeof data === 'object' && 'title' in data
+  }
+
   const handleSelect = (item: TableData) => {
     if (!selectedKeyId.value || !(selectedKeyId.value in item)) return;
 
-    const selectedIndex = selectedData.value.findIndex(
-      (data) => data[selectedKeyId.value].title === item[selectedKeyId.value].title,
-    );
+    const selectedIndex = selectedData.value.findIndex((data) => {
+      const typedData = data[selectedKeyId.value] as TableDataProps;
+      const typedItemData = item[selectedKeyId.value] as TableDataProps;
+
+      if (isTableDataObject(typedData) && isTableDataObject(typedItemData)) {
+        return typedData.title === typedItemData.title;
+      } else {
+        return data[selectedKeyId.value] === item[selectedKeyId.value];
+      }
+    });
 
     if (selectedIndex !== -1) {
       selectedData.value.splice(selectedIndex, 1);
@@ -182,7 +198,16 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
 
   const isRowSelected = (item: TableData) => {
     if (!selectedKeyId.value || !(selectedKeyId.value in item)) return false;
-    return selectedData.value.some((data) => data[selectedKeyId.value].title === item[selectedKeyId.value].title);
+
+    return selectedData.value.some((data) => {
+      const typedData = data[selectedKeyId.value] as TableDataProps;
+      const typedItemData = item[selectedKeyId.value] as TableDataProps;
+      if (isTableDataObject(typedData) && isTableDataObject(typedItemData)) {
+        return typedData.title === typedItemData.title;
+      } else {
+        return data[selectedKeyId.value] === item[selectedKeyId.value];
+      }
+    });
   };
 
   watch(
@@ -191,7 +216,14 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       if (returnCompleteSelectedProperties.value) {
         emit('update:selectedData', selectedData.value);
       } else {
-        const mappedData = selectedData.value.map((item) => ({ ...item[selectedKeyId.value] }));
+        const mappedData = selectedData.value.map((item) => {
+          const typedItem = item[selectedKeyId.value] as TableDataProps | string | number;
+          if (typeof typedItem === 'object') {
+            return { ...typedItem };
+          } else {
+            return typedItem;
+          }
+        });
         emit('update:selectedData', mappedData);
       }
     },
@@ -214,5 +246,6 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     isAllSelected,
     isRowSelected,
     isIndeterminate,
+    sortedDataItem
   };
 };

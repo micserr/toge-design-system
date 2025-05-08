@@ -1,6 +1,11 @@
 # Changelog
 
-## 2.7.10 (2025-05-07)
+## 2.7.11 (2025-05-08)
+
+- Fix
+  - Add string or number value to TableData and DQA fix for radio ([#3e76569d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3e76569dcf7cc008f58923a1eb8f81c0c8cc70c8?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2FDQA_FIXES) by @despiritu)
+
+## 2.7.10 (2025-05-08)
 
 - Fix
   - fix: DQA fixes for bordered checkbox ([#56fe18ef](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/56fe18ef4df2eb90b08e924a59417d7fb60e36a0?refName=refs/heads/2025/fix/dustin/DQA_FIXES) by @despiritu)

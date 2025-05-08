@@ -971,7 +971,7 @@ const data = ref([
             lozengeAvatarUrl: string;
             lozengeTone: string;
             lozengeIcon: string;
-          };
+          } | string | number;
         }
       </td>
     </tr>

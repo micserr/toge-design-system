@@ -92,7 +92,7 @@ export const useRadioButton = (
     );
 
     const labelClasses = classNames(
-      'spr-group spr-m-0 spr-inline-flex spr-w-auto spr-items-center spr-space-x-2 spr-p-0 spr-font-main',
+      'spr-group spr-m-0 spr-inline-flex spr-w-auto spr-items-center spr-p-0 spr-font-main',
       'spr-text-color-strong spr-inline-flex spr-items-center spr-p-0',
       {
         'spr-text-color-disabled': disabled.value && !bordered.value,

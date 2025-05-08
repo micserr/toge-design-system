@@ -18,7 +18,7 @@ interface Header {
 }
 
 export interface TableData {
-  [key: string]: TableDataProps;
+  [key: string]: TableDataProps | string | number;
 }
 
 export interface TableDataProps {
@@ -132,16 +132,16 @@ export const tablePropTypes = {
   },
   isMultiSelect: {
     type: Boolean,
-    default: false
+    default: false,
   },
   selectedKeyId: {
     type: String,
-    default: ''
+    default: '',
   },
   returnCompleteSelectedProperties: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 };
 
 export const tableEmitTypes = {
@@ -152,8 +152,11 @@ export const tableEmitTypes = {
     typeof rowData === 'object' && typeof rowKey === 'number',
   onHover: (value: { active: boolean; data: TableData }): value is { active: boolean; data: TableData } =>
     typeof value.active === 'boolean' && typeof value.data === 'object',
-  'update:selectedData': (value: TableDataProps[] | TableData[]): value is TableDataProps[] | TableData[] =>
-    Array.isArray(value) && value.every(item => typeof item === 'object' && item !== null),
+  'update:selectedData': (value: (string | number | TableDataProps)[] | TableData[]) =>
+    Array.isArray(value) &&
+    value.every(
+      (item) => (typeof item === 'object' || typeof item === 'string' || typeof item === 'number') && item !== null,
+    ),
 };
 
 export type TablePropTypes = ExtractPropTypes<typeof tablePropTypes>;

@@ -1,6 +1,6 @@
 <template>
   <div v-bind="switchProps" :class="['spr-flex spr-items-center spr-gap-2', switchTextClass]">
-    <label>
+    <label v-if="!isSlotEmpty">
       <slot name="leftText">
         <slot></slot>
       </slot>
@@ -30,7 +30,7 @@
         ]"
       ></span>
     </div>
-    <label>
+    <label v-if="!isSlotEmpty">
       <slot name="rightText"></slot>
     </label>
   </div>
@@ -38,6 +38,7 @@
 
 <script lang="ts" setup>
 import { useVModel } from '@vueuse/core';
+import { useSlots } from 'vue'
 
 import { switchEmitTypes, switchPropTypes } from './switch';
 import { useSwitch } from './use-switch';
@@ -47,7 +48,7 @@ const emit = defineEmits(switchEmitTypes);
 
 const proxyValue = useVModel(props, 'modelValue', emit);
 
-const { switchWrapperRef, switchRef, switchProps, switchMarkClass, switchTextClass, switchInputClass } =
+const { switchWrapperRef, switchRef, switchProps, switchMarkClass, switchTextClass, switchInputClass, isSlotEmpty } =
   useSwitch(props);
 </script>
 

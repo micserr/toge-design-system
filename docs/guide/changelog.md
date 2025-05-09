@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.13 (2025-05-09)
+
+- Fix
+  - Update mobile responsiveness sidepanel ([#7a54ea36](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7a54ea3601d4d6f97f38c7fa6638b5890f329c8c?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 2.7.12 (2025-05-08)
 
 - Fix

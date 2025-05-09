@@ -38,7 +38,6 @@
 
 <script lang="ts" setup>
 import { useVModel } from '@vueuse/core';
-import { useSlots } from 'vue'
 
 import { switchEmitTypes, switchPropTypes } from './switch';
 import { useSwitch } from './use-switch';

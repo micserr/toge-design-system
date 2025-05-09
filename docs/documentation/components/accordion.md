@@ -58,6 +58,58 @@ The accordion component allows users to expand and collapse sections of content.
 </script>
 ```
 
+## Accordion Trigger
+By default, the accordion trigger is a button. You can change the trigger element to the header by setting the `accordionTrigger` prop to `header`.
+
+<spr-accordion :accordion-items="accordionItems" accordion-trigger="header">
+  <template #item1>
+    Item1 content
+  </template>
+  <template #item2>
+    Item2 content
+  </template>
+  <template #item3>
+    Item3 content
+  </template>
+</spr-accordion>
+
+```vue
+<template>
+  <spr-accordion :accordion-items="accordionItems" accordion-trigger="header">
+    <template #item1>
+      Item1 content
+    </template>
+    <template #item2>
+      Item2 content
+    </template>
+    <template #item3>
+      Item3 content
+    </template>
+  </spr-accordion>
+</template>
+<script lang="ts" setup>  
+  import { ref } from 'vue'
+
+  const accordionItems = ref([
+    {
+      title: 'Accordion Item 1',
+      subtitle: 'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      collapseId: 'item1'
+    },
+    {
+      title: 'Accordion Item 2',
+      subtitle: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      collapseId: 'item2'
+    },
+    {
+      title: 'Accordion Item 3',
+      subtitle: 'lorem ipsum dolor sit amet.',
+      collapseId: 'item3'
+    }
+  ])
+</script>
+```
+
 ## Always Open
 The `alwaysOpen` prop allows you to set the accordion items to be always open. This means that when one item is opened, the others will remain open as well.
 

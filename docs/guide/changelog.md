@@ -1,5 +1,41 @@
 # Changelog
 
+## 2.7.12 (2025-05-08)
+
+- Fix
+  - Commit 82af2436: ids, and delay in filter component ([#82af2436](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/82af243699f198aeef9debd940b0a528ab04f459?refName=refs/heads/2025/Fix/andrea/Ids-textarea) by @adestajo)
+
+## 2.7.11 (2025-05-08)
+
+- Fix
+  - Add string or number value to TableData and DQA fix for radio ([#3e76569d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3e76569dcf7cc008f58923a1eb8f81c0c8cc70c8?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2FDQA_FIXES) by @despiritu)
+
+## 2.7.10 (2025-05-08)
+
+- Fix
+  - fix: DQA fixes for bordered checkbox ([#56fe18ef](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/56fe18ef4df2eb90b08e924a59417d7fb60e36a0?refName=refs/heads/2025/fix/dustin/DQA_FIXES) by @despiritu)
+  - fix: DQA fixes for bordered radio ([#6119df5e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6119df5ec7b0c6ab7feaeb7abf1cfb5a671336c7?refName=refs/heads/2025/fix/dustin/DQA_FIXES) by @despiritu)
+
+## 2.7.9 (2025-05-07)
+
+- Fix
+  - fix: change row prop of column slot to return full row data and add rowIndex prop in Table ([#1915f154](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1915f154e8b24ec3b912c2ed5155ebfdc8e91356?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2FDQA_FIXES) by @despiritu)
+
+## 2.7.8 (2025-05-07)
+
+- Fix
+  - Adjust z-index of sidepanel ([#405fb992](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/405fb992aa64cbb5e0281fb94033d3f5ff035973?refName=refs%2Fheads%2F2025%2Fbugfix%2Feli%2Fsidepanel) by @elumilay)
+
+## 2.7.7 (2025-05-06)
+
+- Fix
+  - Add pressed state in Accordion ([#8ae58e47](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8ae58e478fa47bbe77e7fe6edbdd48d72194a3e2?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2FDQA_FIXES) by @despiritu)
+
+## 2.7.6 (2025-05-06)
+
+- Fix
+  - Commit ae37a005: Added ID's for Filter Component ([#ae37a005](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ae37a0052034a69ed90c9290a0552c84430295b4?refName=refs/heads/2025/Fix/andrea/filter-ids) by @adestajo)
+
 ## 2.7.5 (2025-05-06)
 
 - Fix

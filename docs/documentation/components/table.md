@@ -369,10 +369,10 @@ You can customize the column of the table by using the dynamically named slot co
       :data-table="data2"
     >
       <template #name="{ row }">
-        <spr-tooltip :has-max-width="true" :text="String(row.title)">
-          <div ref="rowTitleRef" class="spr-truncate spr-text-sm" :style="`max-width: ${getCellMaxWidth}`">{{ row.title }}</div>
+        <spr-tooltip :has-max-width="true" :text="String(row.name.title)">
+          <div ref="rowTitleRef" class="spr-truncate spr-text-sm" :style="`max-width: ${getCellMaxWidth}`">{{ row.name.title }}</div>
         </spr-tooltip>
-        <span class="spr-text-color-base spr-text-xs spr-font-normal">{{ row.subtext }}</span>
+        <span class="spr-text-color-base spr-text-xs spr-font-normal">{{ row.name.subtext }}</span>
       </template>
       <template #action>
         <div class="spr-flex spr-flex-auto spr-justify-end spr-gap-2">
@@ -391,16 +391,16 @@ You can customize the column of the table by using the dynamically named slot co
     :data-table="data"
   >
     <template #name="{ row }"> //slot name is the field property value in the headers object
-      <spr-tooltip :has-max-width="true" :text="String(row.title)">
+      <spr-tooltip :has-max-width="true" :text="String(row.name.title)">
         <div 
           ref="rowTitleRef" 
           class="spr-truncate spr-text-sm" 
           :style="`max-width: ${getCellMaxWidth}`"
         >
-          {{ row.title }}
+          {{ row.name.title }}
         </div>
       </spr-tooltip>
-      <span class="spr-text-color-base spr-text-xs spr-font-normal">{{ row.subtext }}</span>
+      <span class="spr-text-color-base spr-text-xs spr-font-normal">{{ row.name.subtext }}</span>
     </template>
     <template #action>
       <div class="spr-flex spr-flex-auto spr-justify-end spr-gap-2">
@@ -971,7 +971,7 @@ const data = ref([
             lozengeAvatarUrl: string;
             lozengeTone: string;
             lozengeIcon: string;
-          };
+          } | string | number;
         }
       </td>
     </tr>

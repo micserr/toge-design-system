@@ -27,6 +27,7 @@ export const datePickerPropTypes = {
   id: {
     type: String,
     required: true,
+    default: 'date-picker',
   },
   modelValue: {
     type: String,

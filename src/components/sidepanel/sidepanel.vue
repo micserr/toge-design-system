@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="isOpen && hasBackdrop"
-    class="spr-fixed spr-left-0 spr-top-0 spr-z-[4000] spr-h-screen spr-w-screen spr-bg-mushroom-700/60"
+    class="spr-fixed spr-left-0 spr-top-0 spr-z-[1010] spr-h-screen spr-w-screen spr-bg-mushroom-700/60"
   ></div>
   <Transition
     name="sidepanel"
@@ -21,7 +21,7 @@
       aria-describedby="sidepanel-content"
       :class="[
         sidepanelSizesClasses,
-        'spr-fixed spr-right-4 spr-top-1/2 spr-z-[4000] spr-flex spr-h-full spr-min-h-[200px] spr-translate-y-[-50%] spr-flex-col spr-rounded-border-radius-xl spr-bg-white-50 spr-drop-shadow',
+        'spr-fixed spr-right-4 spr-top-1/2 spr-z-[1015] spr-flex spr-h-full spr-min-h-[200px] spr-translate-y-[-50%] spr-flex-col spr-rounded-border-radius-xl spr-bg-white-50 spr-drop-shadow',
       ]"
       :style="{ height: typeof height === 'number' ? `${height}px` : height }"
     >

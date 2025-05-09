@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.14 (2025-05-09)
+
+- Fix
+  - Update mobile responsiveness sidepanel ([#28c0d332](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/28c0d332c8c57ca2c3be19457ea19723603d5cca?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSWITCH_CHECK_LABEL) by @bsolis)
+
 ## 2.7.13 (2025-05-09)
 
 - Fix

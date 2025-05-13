@@ -1,9 +1,10 @@
 # Changelog
 
+
 ## 2.7.15 (2025-05-13)
 
 - Fix
-  - Fix switch issue clickable label  ([#30182d0f](30182d0f6039794e4532d452649463b048859b99https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/30182d0f6039794e4532d452649463b048859b99?refName=refs/heads/2025/FIX/BEN/SWITCH_CHECK_LABEL) by @bsolis)
+  - Fix switch issue clickable label  ([#30182d0f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/30182d0f6039794e4532d452649463b048859b99?refName=refs/heads/2025/FIX/BEN/SWITCH_CHECK_LABEL) by @bsolis)
   
 ## 2.7.14 (2025-05-09)
 

@@ -1,9 +1,14 @@
 # Changelog
 
+## 2.7.15 (2025-05-13)
+
+- Fix
+  - Fix switch issue clickable label  ([#30182d0f](30182d0f6039794e4532d452649463b048859b99https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/30182d0f6039794e4532d452649463b048859b99?refName=refs/heads/2025/FIX/BEN/SWITCH_CHECK_LABEL) by @bsolis)
+  
 ## 2.7.14 (2025-05-09)
 
 - Fix
-  - Update mobile responsiveness sidepanel ([#28c0d332](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/28c0d332c8c57ca2c3be19457ea19723603d5cca?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSWITCH_CHECK_LABEL) by @bsolis)
+  - Fix switch issue check slot empty label will not show ([#28c0d332](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/28c0d332c8c57ca2c3be19457ea19723603d5cca?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSWITCH_CHECK_LABEL) by @bsolis)
 
 ## 2.7.13 (2025-05-09)
 

@@ -15,7 +15,8 @@ export const useSwitch = (props: SwitchPropTypes) => {
   const slots = useSlots();
 
   // if the slot label is empty, we will not show the label
-  const isSlotEmpty = (!slots.default || slots.default().length === 0) && !slots.leftText && !slots.rightText;
+  const isLeftTextLabel = (!slots.default || slots.default().length === 0) && !slots.leftText;
+  const isRightTextLabel = !slots.rightText;
 
   const switchProps: ComputedRef<Record<string, unknown>> = computed(() => {
     return {
@@ -100,6 +101,7 @@ export const useSwitch = (props: SwitchPropTypes) => {
     switchMarkClass,
     switchTextClass,
     switchInputClass,
-    isSlotEmpty
+    isLeftTextLabel,
+    isRightTextLabel
   };
 };

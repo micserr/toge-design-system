@@ -73,7 +73,7 @@ export default defineConfig({
           items: [
             {
               text: 'Accordion',
-              link: '/documentation/components/accordion'
+              link: '/documentation/components/accordion',
             },
             {
               text: 'Avatar',
@@ -220,6 +220,10 @@ export default defineConfig({
             {
               text: 'Border Radius',
               link: '/documentation/utilities/border-radius',
+            },
+            {
+              text: 'Border Color',
+              link: '/documentation/utilities/border-colors',
             },
             {
               text: 'Colors',

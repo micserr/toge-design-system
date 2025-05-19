@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.17 (2025-05-19)
+
+- Feat
+  - Commit ab76862a: border colors ([#ab76862a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ab76862a56ec6af4e8e7b559e26ece21d7da6292?refName=refs/heads/2025/feat/andrea/docu-divide-colors) by @adestajo)
+
 ## 2.7.16 (2025-05-14)
 
 - Feat

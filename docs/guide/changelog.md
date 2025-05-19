@@ -1,11 +1,15 @@
 # Changelog
 
+## 2.7.16 (2025-05-14)
+
+- Feat
+  - Commit ae101b74: initial Calendar ([#ae101b74](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ae101b74fa251c0b0607140b81b05bf8a03ba345?refName=refs/heads/2025/feat/andrea/calendar) by @adestajo)
 
 ## 2.7.15 (2025-05-13)
 
 - Fix
-  - Fix switch issue clickable label  ([#30182d0f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/30182d0f6039794e4532d452649463b048859b99?refName=refs/heads/2025/FIX/BEN/SWITCH_CHECK_LABEL) by @bsolis)
-  
+  - Fix switch issue clickable label ([#30182d0f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/30182d0f6039794e4532d452649463b048859b99?refName=refs/heads/2025/FIX/BEN/SWITCH_CHECK_LABEL) by @bsolis)
+
 ## 2.7.14 (2025-05-09)
 
 - Fix

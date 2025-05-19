@@ -954,4 +954,122 @@
     @apply spr-shadow-drop-top-md;
   }
   /* #endregion - Box Shadows */
+
+  /* #region - Divide Colors */
+  .spr-divide-color-strong {
+    @apply spr-divide-mushroom-500;
+  }
+
+  .spr-divide-color-supporting {
+    @apply spr-divide-mushroom-400;
+  }
+
+  .spr-divide-color-base {
+    @apply spr-divide-mushroom-300;
+  }
+
+  .spr-divide-color-hover {
+    @apply spr-divide-mushroom-400;
+  }
+
+  .spr-divide-color-pressed {
+    @apply spr-divide-mushroom-500;
+  }
+
+  .spr-divide-color-weak {
+    @apply spr-divide-mushroom-200;
+  }
+
+  .spr-divide-color-disabled {
+    @apply spr-divide-white-100;
+  }
+
+  .spr-divide-color-on-fill-disabled {
+    @apply spr-divide-white-200;
+  }
+
+  .spr-divide-color-brand-base {
+    @apply spr-divide-kangkong-700;
+  }
+
+  .spr-divide-color-brand-hover {
+    @apply spr-divide-kangkong-800;
+  }
+
+  .spr-divide-color-brand-pressed {
+    @apply spr-divide-kangkong-900;
+  }
+
+  .spr-divide-color-success-base {
+    @apply spr-divide-kangkong-700;
+  }
+
+  .spr-divide-color-success-hover {
+    @apply spr-divide-kangkong-800;
+  }
+
+  .spr-divide-color-success-pressed {
+    @apply spr-divide-kangkong-900;
+  }
+
+  .spr-divide-color-information-base {
+    @apply spr-divide-blueberry-700;
+  }
+
+  .spr-divide-color-information-hover {
+    @apply spr-divide-blueberry-800;
+  }
+
+  .spr-divide-color-information-pressed {
+    @apply spr-divide-blueberry-900;
+  }
+
+  .spr-divide-color-danger-base {
+    @apply spr-divide-tomato-600;
+  }
+
+  .spr-divide-color-danger-hover {
+    @apply spr-divide-tomato-700;
+  }
+
+  .spr-divide-color-danger-pressed {
+    @apply spr-divide-tomato-800;
+  }
+
+  .spr-divide-color-pending-base {
+    @apply spr-divide-mango-700;
+  }
+
+  .spr-divide-color-pending-hover {
+    @apply spr-divide-mango-800;
+  }
+
+  .spr-divide-color-pending-pressed {
+    @apply spr-divide-mango-900;
+  }
+
+  .spr-divide-color-caution-base {
+    @apply spr-divide-carrot-700;
+  }
+
+  .spr-divide-color-caution-hover {
+    @apply spr-divide-carrot-800;
+  }
+
+  .spr-divide-color-caution-pressed {
+    @apply spr-divide-carrot-900;
+  }
+
+  .spr-divide-color-accent-base {
+    @apply spr-divide-wintermelon-700;
+  }
+
+  .spr-divide-color-accent-hover {
+    @apply spr-divide-wintermelon-800;
+  }
+
+  .spr-divide-color-accent-pressed {
+    @apply spr-divide-wintermelon-900;
+  }
+  /* #endregion - Divide Colors */
 }

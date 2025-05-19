@@ -53,7 +53,7 @@ export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext
   const isError = computed(() => props.status === 'error');
 
   const getShiftLabel = computed((): string => {
-    return shiftLabels[props.type] || props.type;
+    return shiftLabels[props.type] || props.subDescription;
   });
 
   const getCellIcon = computed((): string => {

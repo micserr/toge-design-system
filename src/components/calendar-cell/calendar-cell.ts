@@ -37,6 +37,10 @@ export const calendarCellPropTypes = {
     type: Boolean,
     default: true,
   },
+  subDescription: {
+    type: String,
+    default: '',
+  },
 };
 
 export type CalendarCellPropTypes = ExtractPropTypes<typeof calendarCellPropTypes>;

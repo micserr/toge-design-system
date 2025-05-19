@@ -186,6 +186,8 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     } else {
       selectedData.value.push(item);
     }
+
+    emitSelectedData()
   };
 
   const handleSelectAll = () => {
@@ -194,6 +196,8 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     } else {
       selectedData.value = [...sortedData.value];
     }
+
+    emitSelectedData()
   };
 
   const isRowSelected = (item: TableData) => {
@@ -210,9 +214,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     });
   };
 
-  watch(
-    () => selectedData.value.length,
-    () => {
+  const emitSelectedData = () => {
       if (returnCompleteSelectedProperties.value) {
         emit('update:selectedData', selectedData.value);
       } else {
@@ -226,8 +228,31 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
         });
         emit('update:selectedData', mappedData);
       }
-    },
-  );
+  }
+
+  watch(sortedData, (newVal) => {
+    if(newVal && props.isMultiSelect && selectedData.value.length > 0) {
+      // Remove items from selectedData that are not in the new sortedData
+      // This is to ensure that the selectedData is always in sync with the sortedData
+
+      newVal.forEach((item) => {
+        const selectedIndex = selectedData.value.findIndex((data) => {
+          const typedSelectedData = data[selectedKeyId.value] as TableDataProps;
+          const typedSortedData = item[selectedKeyId.value] as TableDataProps;
+
+          if (isTableDataObject(typedSelectedData) && isTableDataObject(typedSortedData)) {
+            return typedSelectedData.title === typedSortedData.title;
+          } else {
+            return data[selectedKeyId.value] === item[selectedKeyId.value];
+          }
+        });
+
+        if (selectedIndex === -1) {
+          selectedData.value.splice(selectedIndex, 1);
+        }
+      })
+    }
+  });
 
   return {
     sortData,
@@ -246,6 +271,6 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     isAllSelected,
     isRowSelected,
     isIndeterminate,
-    sortedDataItem
+    sortedDataItem,
   };
 };

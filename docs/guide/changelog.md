@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.18 (2025-05-19)
+
+- Fix
+  - sync selectedData and table data on change ([#363a88f8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/363a88f8e977faed07f77bf820e7ce88d772926a?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2FDQA_FIXES) by @despiritu)
+
 ## 2.7.17 (2025-05-19)
 
 - Feat

@@ -41,6 +41,10 @@ export const emptyStatePropTypes = {
     type: Boolean,
     default: false,
   },
+  emptyStateCustomClasses: {
+    type: String,
+    default: '',
+  }
 };
 
 export type EmptyStatePropTypes = ExtractPropTypes<typeof emptyStatePropTypes>;

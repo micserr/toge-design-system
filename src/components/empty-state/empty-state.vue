@@ -1,5 +1,5 @@
 <template>
-  <div id="empty-state" :class="emptyStateClasses.baseClasses">
+  <div id="empty-state" :class="containerClasses">
     <slot :class="emptyStateClasses.imageSizeClasses" />
 
     <div v-if="!$slots.default" :class="emptyStateClasses.imageSizeClasses">
@@ -27,5 +27,5 @@ defineEmits(['onClick']);
 
 const props = defineProps(emptyStatePropTypes);
 
-const { emptyStateClasses, getImageUrl } = useEmptyState(props);
+const { emptyStateClasses, getImageUrl, containerClasses } = useEmptyState(props);
 </script>

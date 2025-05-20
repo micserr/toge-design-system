@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.7.19 (2025-05-20)
+
+- Fix
+  - add word break if hasMaxWidth prop is true in tooltip component
+  - add custom classes in empty state base class and table empty state container ([#12725950](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/12725950d33da5b4d6df0dd668daae3184cad4bb?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2FDQA_FIXES) by @despiritu)
+
 ## 2.7.18 (2025-05-19)
 
 - Fix

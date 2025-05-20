@@ -81,6 +81,10 @@ export const tablePropTypes = {
       size: 'large',
     }),
   },
+  emptyStateCustomClasses: {
+    type: String,
+    default: ''
+  },
   loading: {
     type: Boolean as PropType<boolean>,
     default: false,

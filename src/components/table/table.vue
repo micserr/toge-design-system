@@ -139,7 +139,7 @@
             </td>
           </tr>
         </tbody>
-        <tbody v-else :class="getTableClasses.emptyStateClasses">
+        <tbody v-else :class="emptyStateClasses">
           <tr v-if="!loading" class="spr-h-full">
             <td :colspan="getHeaderCount" class="spr-flex spr-h-full spr-items-center spr-justify-center">
               <slot name="empty-state">
@@ -192,6 +192,7 @@ const {
   getEmptyStateSize,
   isAllSelected,
   isIndeterminate,
+  emptyStateClasses,
 
   isRowSelected,
   sortData,

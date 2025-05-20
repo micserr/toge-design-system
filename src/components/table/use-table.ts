@@ -124,7 +124,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       'spr-h-[360px]': !fullHeight.value && !slots.footer,
     });
 
-    const emptyStateClasses = classNames({
+    const emptyStateBaseClasses = classNames({
       'spr-overflow-y-hidden spr-h-[calc(90vh-150px)] md:spr-h-[calc(80vh-150px)] sm:spr-h-[calc(70vh-150px)]':
         fullHeight.value && slots.footer, // Adjust tbody height for header/footer
       'spr-overflow-y-auto spr-h-[75vh]': fullHeight.value && !slots.footer, // Adjust tbody height for header/footer
@@ -154,9 +154,11 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       tableBackgroundClasses,
       tableBodyClasses,
       tableFooterClasses,
-      emptyStateClasses,
+      emptyStateBaseClasses,
     };
   });
+
+  const emptyStateClasses = computed(() => `${getTableClasses.value.emptyStateBaseClasses} ${props.emptyStateCustomClasses}` )
 
   //assert type TableDataProps 
   const sortedDataItem = (rowIndex: number, headerField: string) => {
@@ -272,5 +274,6 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     isRowSelected,
     isIndeterminate,
     sortedDataItem,
+    emptyStateClasses
   };
 };

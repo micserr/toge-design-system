@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.21 (2025-05-21)
+
+- Feat
+  - Commit a07e6a19: feat: add icon prop to calendar cell component and update icon handling logic ([#a07e6a19](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a07e6a191de988f913f6c91a0d8170c434b7bdbe?refName=refs/heads/2025/feat/andrea/enhance-calendar-cell) by @adestajo)
+
 ## 2.7.20 (2025-05-21)
 
 - Feat

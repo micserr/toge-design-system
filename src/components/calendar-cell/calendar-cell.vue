@@ -1,9 +1,10 @@
 <template>
   <div :class="getCalendarCellClassess.getMainClasses" @click="handleClick">
+    <slot name="prefix">
+      <Icon v-if="hasIconStatus" :icon="getCellIcon" />
+    </slot>
     <slot>
       <spr-status v-if="isError" :state="props.state" size="sm" />
-      <Icon v-if="hasIconStatus" :icon="getCellIcon" />
-
       <div v-if="hasContent" class="spr-break-words">
         <div v-if="props.title" :class="getCalendarCellClassess.titleClasses">
           {{ props.title }}

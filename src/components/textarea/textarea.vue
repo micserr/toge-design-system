@@ -7,18 +7,26 @@
       :class="textareaClasses.textAreaClasses"
       :rows="rows"
       :placeholder="placeholder"
-      :value="modelValue"
       :minlength="props.minLength"
       :maxlength="props.maxLength"
       :readonly="readonly"
       :disabled="props.disabled"
       @input="onInput"
     ></textarea>
-    <div v-if="props.displayHelper" :class="textareaClasses.helperClasses">
-      <slot name="helperMessage">
-        <Icon v-if="props.helperIcon" :icon="props.helperIcon" width="20px" height="20px" />
-        <span>{{ props.helperText }}</span>
-      </slot>
+
+    <div :class="textareaClasses.slotWrapperClasses">
+      <div v-if="props.displayHelper" :class="textareaClasses.helperClasses">
+        <slot name="helperMessage">
+          <Icon v-if="props.helperIcon" :icon="props.helperIcon" width="20px" height="20px" />
+          <span>{{ props.helperText }}</span>
+        </slot>
+      </div>
+
+      <div v-if="props.hasCounter && props.maxLength" :class="textareaClasses.helperClasses">
+        <slot name="counter">
+          <span>{{ `${$attrs.modelValue.length}/${props.maxLength}` }}</span>
+        </slot>
+      </div>
     </div>
   </div>
 </template>

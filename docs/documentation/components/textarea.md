@@ -141,6 +141,34 @@ const textarea = ref('');
 </script>
 ```
 
+## Max Length
+
+<spr-textarea
+    v-model="textareaMaxLength"
+    label="Description"
+    placeholder="type here...."
+    :maxLength="255"
+    hasCounter
+  />
+
+```vue
+<template>
+  <spr-textarea
+    v-model="textareaMaxLength"
+    label="Description"
+    placeholder="type here...."
+    :maxLength="255"
+    hasCounter
+  />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const textareaMaxLength = ref('set Maximum Characters');
+</script>
+```
+
 ## Disabled
 
 <spr-textarea v-model="textarea" label="Description" placeholder="type here...."  disabled/>
@@ -284,6 +312,13 @@ const textarea2 = ref('Hello world, Sprout Design System!!!');
       <td>-</td>
       <td><code>''</code></td>
     </tr>
+    <tr>
+      <td>hasCounter</td>
+      <td>Specifies the counter for maximum character.</td>
+      <td><code>Number</code></td>
+      <td>-</td>
+      <td><code>''</code></td>
+    </tr>
   </tbody>
 </table>
 
@@ -292,7 +327,6 @@ const textarea2 = ref('Hello world, Sprout Design System!!!');
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
   <spr-logo name="hr" theme="dark"  width="50px" />
 </div>
-
 
 <script setup lang="ts">
 import { ref } from 'vue';
@@ -305,4 +339,5 @@ import SprLogo from "@/components/logo/logo.vue";
 const textarea = ref('');
 const textarea1 = ref('');
 const textarea2 = ref('Hello world, Sprout Design System!!!');
+const textareaMaxLength = ref('set Maximum Characters');
 </script>

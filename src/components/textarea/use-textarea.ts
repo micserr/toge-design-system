@@ -39,7 +39,12 @@ export const useTextArea = (props: TextAreaPropTypes, emit: SetupContext<TextAre
       'spr-text-color-supporting': !error.value,
     });
 
-    return { wrapperClasses, labelClasses, textAreaClasses, helperClasses };
+    const slotWrapperClasses = classNames('spr-flex spr-items-center', {
+      'spr-justify-between': props.displayHelper && props.hasCounter,
+      'spr-justify-end': !props.displayHelper && props.hasCounter,
+    });
+
+    return { wrapperClasses, labelClasses, textAreaClasses, helperClasses, slotWrapperClasses };
   });
 
   const onInput = (event: Event) => {

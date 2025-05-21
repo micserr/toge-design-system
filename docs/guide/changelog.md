@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.20 (2025-05-21)
+
+- Feat
+  - Pull Request 31623: [POLY-109] - counter for text area ([#31623](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/31623?_a=commits) by @adestajo)
+
 ## 2.7.19 (2025-05-20)
 
 - Fix

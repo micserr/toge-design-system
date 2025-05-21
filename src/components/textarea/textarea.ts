@@ -7,10 +7,6 @@ export const textAreaPropTypes = {
     type: String,
     default: '',
   },
-  modelValue: {
-    type: String,
-    default: '',
-  },
   label: {
     type: String,
     default: '',
@@ -56,6 +52,10 @@ export const textAreaPropTypes = {
   helperText: {
     type: String,
     default: '',
+  },
+  hasCounter: {
+    type: Boolean,
+    default: false,
   },
 };
 

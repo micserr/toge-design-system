@@ -25,7 +25,7 @@
 
       <div v-if="props.hasCounter && props.maxLength" :class="textareaClasses.helperClasses">
         <slot name="counter">
-          <span>{{ `${$attrs.modelValue.length}/${props.maxLength}` }}</span>
+          <span>{{ `${modelValue.length}/${props.maxLength}` }}</span>
         </slot>
       </div>
     </div>

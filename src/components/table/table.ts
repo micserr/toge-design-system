@@ -71,6 +71,7 @@ export const tablePropTypes = {
   headers: {
     type: Array as PropType<Header[]>,
     required: true,
+    default: () => [],
   },
   emptyState: {
     type: Object as PropType<EmptyState>,
@@ -82,6 +83,10 @@ export const tablePropTypes = {
     }),
   },
   emptyStateCustomClasses: {
+    type: String,
+    default: ''
+  },
+  tableActionSlotCustomClasses: {
     type: String,
     default: ''
   },

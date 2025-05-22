@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.23 (2025-05-22)
+
+- Fix
+  - use props modelValue for textarea counter ([#3e7f6612](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3e7f661223c5b7678815b5c8066d7d609d1e9fc8?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2FDQA_FIXES) by @despiritu)
+
 ## 2.7.22 (2025-05-22)
 
 - Fix

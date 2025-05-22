@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.7.22 (2025-05-22)
+
+- Fix
+  - Add custom classes for table action slot
+  - Add background color for selected items in multiselect table
+  - Add sort icons in table
+  - Revert modelValue in textarea ([#82802151](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/82802151ed971e73b616eda7a01734c856a1c1d6?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2FDQA_FIXES) by @despiritu)
+
 ## 2.7.21 (2025-05-21)
 
 - Feat

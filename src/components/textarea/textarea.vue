@@ -7,6 +7,7 @@
       :class="textareaClasses.textAreaClasses"
       :rows="rows"
       :placeholder="placeholder"
+      :value="modelValue"
       :minlength="props.minLength"
       :maxlength="props.maxLength"
       :readonly="readonly"

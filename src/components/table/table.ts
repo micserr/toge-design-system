@@ -71,6 +71,7 @@ export const tablePropTypes = {
   headers: {
     type: Array as PropType<Header[]>,
     required: true,
+    default: () => [],
   },
   emptyState: {
     type: Object as PropType<EmptyState>,
@@ -82,6 +83,10 @@ export const tablePropTypes = {
     }),
   },
   emptyStateCustomClasses: {
+    type: String,
+    default: ''
+  },
+  tableActionSlotCustomClasses: {
     type: String,
     default: ''
   },
@@ -114,6 +119,7 @@ export const tablePropTypes = {
   sortOrder: {
     type: String as PropType<(typeof TABLE_SORT)[number]>,
     validator: (value: (typeof TABLE_SORT)[number]) => TABLE_SORT.includes(value),
+    default: 'asc'
   },
 
   variant: {

@@ -7,6 +7,10 @@ export const textAreaPropTypes = {
     type: String,
     default: '',
   },
+    modelValue: {
+    type: String,
+    default: '',
+  },
   label: {
     type: String,
     default: '',

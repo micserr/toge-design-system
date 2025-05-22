@@ -78,7 +78,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
 
   // Value is currently either a string, an object with a title property, or an array of objects with a title property
   const extractLowerCasedTitle = (value: string | { title: string } | Array<{ title: string }>) => {
-    if (typeof value === 'string') return String(value).toLowerCase();
+    if (typeof value === 'string') return value.toLowerCase();
     else if (typeof value === 'object' && !Array.isArray(value) && value !== null) return value.title.toLowerCase();
     else if (Array.isArray(value) && value.length > 0) return value[0].title.toLowerCase();
     return '';

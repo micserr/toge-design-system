@@ -10,7 +10,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     toRefs(props);
   const sortField = ref('');
   const searchField = ref(props.searchModel);
-  const tableSortOrder = ref<TABLE_SORT>(sortOrder?.value || 'asc');
+  const tableSortOrder = ref<TABLE_SORT>(sortOrder.value);
   const selectAll = ref(false);
   const selectedData = ref<TableData[]>([]);
 

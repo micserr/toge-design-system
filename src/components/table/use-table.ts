@@ -10,7 +10,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     toRefs(props);
   const sortField = ref('');
   const searchField = ref(props.searchModel);
-  const tableSortOrder = ref<TABLE_SORT>(sortOrder.value || 'asc');
+  const tableSortOrder = ref<TABLE_SORT>(sortOrder?.value || 'asc');
   const selectAll = ref(false);
   const selectedData = ref<TableData[]>([]);
 
@@ -25,8 +25,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
   });
 
   const sortedData = computed(() => {
-    if (!sortField.value || sortOrder.value) return dataTable.value;
-
+    if (!sortField.value || sortOrder?.value) return dataTable.value;
     const sorted = [...dataTable.value].sort((a, b) => {
       const fieldA = extractLowerCasedTitle(a[sortField.value]);
       const fieldB = extractLowerCasedTitle(b[sortField.value]);
@@ -47,6 +46,14 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     }
 
     emit('onSort', { field: field, sortOrder: tableSortOrder.value });
+  };
+
+  const getSortIcon = (field: string) => {
+    if (sortField.value !== field) {
+      return 'ph:caret-up-down-light';
+    }
+
+    return tableSortOrder.value === 'asc' ? 'ph:arrow-up' : 'ph:arrow-down';
   };
 
   const getHeaderCount = computed(() => (action.value ? headers.value.length + 1 : headers.value.length));
@@ -71,7 +78,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
 
   // Value is currently either a string, an object with a title property, or an array of objects with a title property
   const extractLowerCasedTitle = (value: string | { title: string } | Array<{ title: string }>) => {
-    if (typeof value === 'string') return value.toLowerCase();
+    if (typeof value === 'string') return String(value).toLowerCase();
     else if (typeof value === 'object' && !Array.isArray(value) && value !== null) return value.title.toLowerCase();
     else if (Array.isArray(value) && value.length > 0) return value[0].title.toLowerCase();
     return '';
@@ -108,7 +115,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     const tableHeaderActionsClasses = 'spr-border-color-weak spr-w-full spr-border spr-border-solid';
     const tableCellSlotClasses =
       'spr-background-color-surface spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-uppercase';
-    const tableRowClasses = classNames('hover:spr-background-color-hover spr-min-h-[60px]', {
+    const tableRowClasses = classNames('spr-min-h-[60px]', {
       'spr-cursor-pointer': props.isRowClickable,
     });
     const tableDataClasses =
@@ -138,6 +145,9 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
 
     const multiselectClass = classNames('spr-px-size-spacing-2xs spr-py-size-spacing-3xs spr-w-[44px] ');
 
+    const emptyStateClasses = classNames(`${emptyStateBaseClasses} ${props.emptyStateCustomClasses}`);
+    const tableActionSlotClasses = classNames(`${defaultSlotClasses} ${props.tableActionSlotCustomClasses}`);
+
     return {
       headerClasses,
       tableWrapperClasses,
@@ -154,20 +164,19 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       tableBackgroundClasses,
       tableBodyClasses,
       tableFooterClasses,
-      emptyStateBaseClasses,
+      emptyStateClasses,
+      tableActionSlotClasses,
     };
   });
 
-  const emptyStateClasses = computed(() => `${getTableClasses.value.emptyStateBaseClasses} ${props.emptyStateCustomClasses}` )
-
-  //assert type TableDataProps 
+  //assert type TableDataProps
   const sortedDataItem = (rowIndex: number, headerField: string) => {
     return sortedData.value[rowIndex][headerField] as TableDataProps;
-  }
+  };
 
   const isTableDataObject = (data: TableDataProps) => {
-    return typeof data === 'object' && 'title' in data
-  }
+    return typeof data === 'object' && 'title' in data;
+  };
 
   const handleSelect = (item: TableData) => {
     if (!selectedKeyId.value || !(selectedKeyId.value in item)) return;
@@ -189,7 +198,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       selectedData.value.push(item);
     }
 
-    emitSelectedData()
+    emitSelectedData();
   };
 
   const handleSelectAll = () => {
@@ -199,7 +208,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       selectedData.value = [...sortedData.value];
     }
 
-    emitSelectedData()
+    emitSelectedData();
   };
 
   const isRowSelected = (item: TableData) => {
@@ -217,23 +226,23 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
   };
 
   const emitSelectedData = () => {
-      if (returnCompleteSelectedProperties.value) {
-        emit('update:selectedData', selectedData.value);
-      } else {
-        const mappedData = selectedData.value.map((item) => {
-          const typedItem = item[selectedKeyId.value] as TableDataProps | string | number;
-          if (typeof typedItem === 'object') {
-            return { ...typedItem };
-          } else {
-            return typedItem;
-          }
-        });
-        emit('update:selectedData', mappedData);
-      }
-  }
+    if (returnCompleteSelectedProperties.value) {
+      emit('update:selectedData', selectedData.value);
+    } else {
+      const mappedData = selectedData.value.map((item) => {
+        const typedItem = item[selectedKeyId.value] as TableDataProps | string | number;
+        if (typeof typedItem === 'object') {
+          return { ...typedItem };
+        } else {
+          return typedItem;
+        }
+      });
+      emit('update:selectedData', mappedData);
+    }
+  };
 
   watch(sortedData, (newVal) => {
-    if(newVal && props.isMultiSelect && selectedData.value.length > 0) {
+    if (newVal && props.isMultiSelect && selectedData.value.length > 0) {
       // Remove items from selectedData that are not in the new sortedData
       // This is to ensure that the selectedData is always in sync with the sortedData
 
@@ -252,7 +261,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
         if (selectedIndex === -1) {
           selectedData.value.splice(selectedIndex, 1);
         }
-      })
+      });
     }
   });
 
@@ -274,6 +283,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     isRowSelected,
     isIndeterminate,
     sortedDataItem,
-    emptyStateClasses
+    getSortIcon,
+    sortField,
   };
 };

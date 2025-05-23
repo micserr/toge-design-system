@@ -24,7 +24,7 @@
     >
       <slot>
         <spr-input
-          id="search"
+          :id="props.id"
           v-model="searchValue"
           type="text"
           :placeholder="placeholder"
@@ -105,10 +105,10 @@
 
                         <div class="spr-p-size-spacing-2xs">
                           <spr-input
-                            id="search"
+                            :id="`${props.id}-search`"
                             v-model="filterMenuSearchvalue"
                             type="text"
-                            placeholder="Select Employees"
+                            placeholder="Search"
                           >
                             <template #icon>
                               <Icon icon="ph:magnifying-glass" />

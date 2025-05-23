@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.24 (2025-05-23)
+
+- Fix
+  - Commit 1a89e328: fix: set default id values for filter and input components ([#1a89e328](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1a89e328bc9f050c2d32f438e307292508014a62?refName=refs/heads/2025/feat/andrea/filter-ids) by @adestajo)
+
 ## 2.7.23 (2025-05-22)
 
 - Fix

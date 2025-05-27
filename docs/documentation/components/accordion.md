@@ -279,6 +279,14 @@ By default, the accordion items are hidden. You can change the default state of 
       <td>'header' | 'button'</td>
       <td>'button'</td>
     </tr>
+    <tr>
+      <td>bordered</td>
+      <td>
+        Defines if the accordion has a border and border radius.
+      </td>
+      <td>Boolean</td>
+      <td>true</td>
+    </tr>
   </tbody>
 </table>
 

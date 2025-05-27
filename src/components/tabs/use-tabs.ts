@@ -7,10 +7,10 @@ import type { TabsPropTypes, TabsEmitTypes } from './tabs';
 export const useTabs = (props: TabsPropTypes, emit: SetupContext<TabsEmitTypes>['emit']) => {
   const tabsClasses = computed(() => {
     return classNames({
-      'spr-relative spr-px-size-spacing-xs spr-py-size-spacing-3xs spr-body-sm spr-text-color-strong spr-group': true,
+      'spr-relative spr-px-size-spacing-xs spr-body-sm spr-text-color-strong spr-group': true,
       'spr-transition-left spr-duration-150 spr-ease-in-out': true,
-      capitalize: !props.underlined,
-      'spr-uppercase spr-border-x-0 spr-border-t-0': props.underlined,
+      'capitalize spr-py-size-spacing-3xs': !props.underlined,
+      'spr-uppercase spr-border-x-0 spr-border-t-0 spr-py-size-spacing-xs': props.underlined,
     });
   });
 

@@ -11,7 +11,7 @@ interface CardClasses {
 }
 
 export const useCard = (props: CardPropTypes, slots: Slots) => {
-  const { title, headerIcon, borderRadiusSize, hasCollapsible, isCollapsibleOpen } = toRefs(props);
+  const { title, headerIcon, borderRadiusSize, hasCollapsible, isCollapsibleOpen, hasContentPadding } = toRefs(props);
 
   const cardClasses: ComputedRef<CardClasses> = computed(() => {
     const baseClasses = classNames(
@@ -40,7 +40,9 @@ export const useCard = (props: CardPropTypes, slots: Slots) => {
       'spr-rounded-t-border-radius-xl': borderRadiusSize.value === 'xl' || !borderRadiusSize.value,
     });
 
-    const contentPaddingSizeClasses = classNames('spr-py-size-spacing-2xs spr-px-size-spacing-xs');
+    const contentPaddingSizeClasses = classNames({
+      'spr-py-size-spacing-2xs spr-px-size-spacing-xs': hasContentPadding.value,
+    });
 
     const footerClasses = classNames(
       `spr-flex spr-items-center spr-border-0 spr-border-t spr-border-solid spr-border-mushroom-200 spr-py-size-spacing-2xs spr-px-size-spacing-xs`,

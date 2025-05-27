@@ -19,6 +19,7 @@ export const useAvatar = (props: AvatarPropTypes) => {
     const baseClasses = classNames('spr-relative spr-inline-block spr-rounded-full', {
       'spr-background-color-surface': color.value === 'primary',
       'spr-background-color': color.value === 'secondary',
+      'spr-background-color spr-border-color-success-base spr-border spr-border-solid': color.value === 'tertiary',
     });
 
     const imageClasses = classNames(

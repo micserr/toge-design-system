@@ -1,4 +1,4 @@
-import { computed, ref, ComputedRef, toRefs } from 'vue';
+import { computed, ref, ComputedRef, toRefs, useSlots } from 'vue';
 import { useElementHover, useMousePressed } from '@vueuse/core';
 
 import classNames from 'classnames';
@@ -12,6 +12,11 @@ export const useSwitch = (props: SwitchPropTypes) => {
   const isHovered = useElementHover(switchWrapperRef);
   const { pressed } = useMousePressed({ target: switchRef });
   const { disabled, state, modelValue } = toRefs(props);
+  const slots = useSlots();
+
+  // if the slot label is empty, we will not show the label
+  const isLeftTextLabel = (!slots.default || slots.default().length === 0) && !slots.leftText;
+  const isRightTextLabel = !slots.rightText;
 
   const switchProps: ComputedRef<Record<string, unknown>> = computed(() => {
     return {
@@ -96,5 +101,7 @@ export const useSwitch = (props: SwitchPropTypes) => {
     switchMarkClass,
     switchTextClass,
     switchInputClass,
+    isLeftTextLabel,
+    isRightTextLabel
   };
 };

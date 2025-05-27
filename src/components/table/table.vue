@@ -1,6 +1,6 @@
 <template>
   <div :class="getTableClasses.tableWrapperClasses">
-    <div v-if="!!$slots.default" :class="getTableClasses.defaultSlotClasses">
+    <div v-if="!!$slots.default" :class="getTableClasses.tableActionSlotClasses">
       <slot />
     </div>
 
@@ -42,10 +42,19 @@
                 </span>
                 <span
                   v-if="header.sort"
-                  :class="['spr-flex spr-flex-row spr-items-center', { 'spr-cursor-pointer': header.sort }]"
+                  :class="[
+                    'spr-flex spr-flex-row spr-items-center spr-p-size-spacing-6xs',
+                    'hover:spr-rounded-border-radius-xs hover:spr-bg-mushroom-300',
+                    { 'spr-cursor-pointer': header.sort },
+                  ]"
                   @click="header.sort && sortData(header.field)"
                 >
-                  <Icon icon="ph:caret-up-down-light" />
+                  <Icon
+                    :icon="getSortIcon(header.field)"
+                    height="16"
+                    width="16"
+                    :class="[{ 'spr-text-kangkong-700': sortField === header.field }]"
+                  />
                 </span>
               </div>
             </th>
@@ -60,7 +69,10 @@
           <tr
             v-for="(item, keyIndex) in sortedData"
             :key="keyIndex"
-            :class="getTableClasses.tableRowClasses"
+            :class="[
+              getTableClasses.tableRowClasses,
+              isRowSelected(item) ? 'spr-bg-kangkong-100' : 'hover:spr-background-color-hover',
+            ]"
             @click="handleRowClick(item, keyIndex)"
             @mouseover="$emit('onHover', { active: true, data: item })"
             @mouseleave="$emit('onHover', { active: false, data: item })"
@@ -192,6 +204,7 @@ const {
   getEmptyStateSize,
   isAllSelected,
   isIndeterminate,
+  sortField,
 
   isRowSelected,
   sortData,
@@ -199,6 +212,7 @@ const {
   handleRowClick,
   handleSelect,
   handleSelectAll,
-  sortedDataItem
+  sortedDataItem,
+  getSortIcon,
 } = useTable(props, emit, slots);
 </script>

@@ -48,6 +48,7 @@ export default tseslint.config(
             'avatar',
             'badge',
             'button',
+            'calendar',
             'card',
             'checkbox',
             'chips',
@@ -76,7 +77,7 @@ export default tseslint.config(
             'filter',
             'timePicker',
             'tooltip',
-            'logo'
+            'logo',
           ],
         },
       ],

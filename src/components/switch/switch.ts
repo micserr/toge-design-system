@@ -27,6 +27,13 @@ export const switchPropTypes = {
     required: true,
     default: false,
   },
+  /**
+   * @description Switch id
+   */
+  id: {
+    type: String,
+    default: '',
+  },
 };
 
 export const switchEmitTypes = ['update:modelValue'];

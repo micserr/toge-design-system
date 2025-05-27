@@ -253,26 +253,26 @@ Slot can be used to add custom content to the avatar. note: adjust your custom c
 
 <div class="spr-grid spr-gap-4">
   <div class="spr-space-x-3 spr-flex">
-    <spr-avatar  :notification="true" :badge="true" size="2xl" color="primary">
-    <Icon icon="ph:trash" />
+    <spr-avatar :notification="true" :badge="true" size="2xl" color="primary">
+      <Icon icon="ph:trash" />
     </spr-avatar>
-      <spr-avatar  :notification="true" :badge="true" size="xl" color="primary">
-    <Icon icon="ph:trash" />
+    <spr-avatar :notification="true" :badge="true" size="xl" color="primary">
+      <Icon icon="ph:trash" />
     </spr-avatar>
-      <spr-avatar  :notification="true" :badge="true" size="lg" color="primary">
-    <Icon icon="ph:trash" />
+    <spr-avatar :notification="true" :badge="true" size="lg" color="primary">
+      <Icon icon="ph:trash" />
     </spr-avatar>
-      <spr-avatar  :notification="true" :badge="true" size="md" color="primary">
-    <Icon icon="ph:trash" />
+    <spr-avatar :notification="true" :badge="true" size="md" color="primary">
+      <Icon icon="ph:trash" />
     </spr-avatar>
-      <spr-avatar  :notification="true" :badge="true" size="sm" color="primary">
-    <Icon icon="ph:trash" />
+    <spr-avatar :notification="true" :badge="true" size="sm" color="primary">
+      <Icon icon="ph:trash" />
     </spr-avatar>
-        <spr-avatar  :notification="true" :badge="true" size="xs" color="primary">
-    <Icon icon="ph:trash" />
+    <spr-avatar :notification="true" :badge="true" size="xs" color="primary">
+      <Icon icon="ph:trash" />
     </spr-avatar>
-        <spr-avatar  :notification="true" :badge="true" size="2xs" color="primary">
-    <Icon icon="ph:trash" />
+    <spr-avatar :notification="true" :badge="true" size="2xs" color="primary">
+      <Icon icon="ph:trash" />
     </spr-avatar>
   </div>
 
@@ -280,22 +280,22 @@ Slot can be used to add custom content to the avatar. note: adjust your custom c
     <spr-avatar :notification="true" :badge="true" size="2xl">
       <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" />
     </spr-avatar>
-      <spr-avatar :notification="true" :badge="true" size="xl">
+    <spr-avatar :notification="true" :badge="true" size="xl">
       <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" />
     </spr-avatar>
-      <spr-avatar :notification="true" :badge="true" size="lg">
+    <spr-avatar :notification="true" :badge="true" size="lg">
       <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" />
     </spr-avatar>
-      <spr-avatar :notification="true" :badge="true" size="md">
+    <spr-avatar :notification="true" :badge="true" size="md">
       <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" />
     </spr-avatar>
-      <spr-avatar :notification="true" :badge="true" size="sm">
+    <spr-avatar :notification="true" :badge="true" size="sm">
       <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" />
     </spr-avatar>
-      <spr-avatar :notification="true" :badge="true" size="xs">
+    <spr-avatar :notification="true" :badge="true" size="xs">
       <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" />
     </spr-avatar>
-      <spr-avatar :notification="true" :badge="true" size="2xs">
+    <spr-avatar :notification="true" :badge="true" size="2xs">
       <img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="User Avatar" />
     </spr-avatar>
   </div>

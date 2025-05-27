@@ -1,9 +1,14 @@
 # Changelog
 
-## 2.7.25 (2025-05-27)
+## 2.7.26 (2025-05-27)
 
 - Fix
   - changed padding y of underlined tab to 16px ([#98f4501b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/98f4501b8fc84a336e619900f279569f6f985e98?refName=refs/heads/2025/fix/dustin/DQA_FIXES) by @despiritu)
+
+## 2.7.25 (2025-05-27)
+
+- Fix
+  - Avatar Image Dimension ([#511b33cd](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/511b33cd514e451da0ac69e023ff681329752d01?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
 
 ## 2.7.24 (2025-05-23)
 

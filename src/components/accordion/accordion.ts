@@ -33,6 +33,10 @@ export const accordionPropTypes = {
     type: String,
     validator: (value: (typeof ACCORDION_TRIGGER)[number]) => ACCORDION_TRIGGER.includes(value),
     default: 'button'
+  },
+  bordered: {
+    type: Boolean,
+    default: true
   }
 }
 

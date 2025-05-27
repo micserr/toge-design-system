@@ -1,5 +1,8 @@
 <template>
-  <div id="accordion" class="spr-rounded-border-radius-xl spr-border spr-border-solid spr-border-mushroom-200">
+  <div
+    id="accordion"
+    :class="{ 'spr-rounded-border-radius-xl spr-border spr-border-solid spr-border-mushroom-200': props.bordered }"
+  >
     <template v-for="(item, index) in props.accordionItems" :key="item.collapseId">
       <div
         :id="`accordion_item_${item.collapseId}`"
@@ -13,7 +16,8 @@
               'hover:spr-cursor-pointer': props.accordionTrigger === 'header',
               'active:spr-background-color-pressed': clickedIndex === index && props.accordionTrigger === 'header',
               'spr-rounded-t-border-radius-xl': clickedIndex === 0,
-              'spr-rounded-b-border-radius-xl': clickedIndex === props.accordionItems.length - 1 && !collapsedState[index],
+              'spr-rounded-b-border-radius-xl':
+                clickedIndex === props.accordionItems.length - 1 && !collapsedState[index],
             },
           ]"
           @mousedown="setClickedIndex(index)"

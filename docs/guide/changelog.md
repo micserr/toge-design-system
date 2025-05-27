@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.27 (2025-05-28)
+
+- Fix
+  - add bordered props to accordion ([#0d3ef708](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0d3ef708dbd8c848f045c6fb6af6c68fa743c596?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2FDQA_FIXES) by @despiritu)
+
 ## 2.7.26 (2025-05-27)
 
 - Fix

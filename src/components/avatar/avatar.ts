@@ -15,10 +15,6 @@ export const avatarPropTypes = {
     type: String,
     default: 'Avatar',
   },
-  notification: {
-    type: Boolean,
-    default: false,
-  },
   badge: {
     type: Boolean,
     default: false,
@@ -28,7 +24,11 @@ export const avatarPropTypes = {
     validator: (value: (typeof AVATAR_SIZE)[number]) => AVATAR_SIZE.includes(value),
     default: '2xl',
   },
-  NotificationText: {
+  notification: {
+    type: Boolean,
+    default: false,
+  },
+  notificationText: {
     type: String,
     default: '0',
   },

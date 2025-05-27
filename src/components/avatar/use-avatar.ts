@@ -6,8 +6,8 @@ import type { AvatarPropTypes } from './avatar';
 
 interface AvatarClasses {
   baseClasses: string;
-  imageClasses: string;
-  nameInitialsClasses: string;
+  imageContainerClasses: string;
+  initialsContainerClasses: string;
   notificationClasses: string;
   onlineNotificationClasses: string;
 }
@@ -22,20 +22,32 @@ export const useAvatar = (props: AvatarPropTypes) => {
       'spr-background-color spr-border-color-success-base spr-border spr-border-solid': color.value === 'tertiary',
     });
 
-    const imageClasses = classNames(
+    const imageContainerClasses = classNames(
+      'avatar__slot spr-border-color-weak spr-border spr-border-solid',
       'spr-rounded-full spr-object-cover spr-flex spr-items-center spr-justify-center spr-overflow-hidden',
       {
         'spr-h-20 spr-min-w-20 spr-text-[36px]': size.value === '2xl',
         'spr-h-14 spr-min-w-14 spr-font-size-600': size.value === 'xl',
         'spr-h-10 spr-min-w-10 spr-font-size-400': size.value === 'lg',
-        'spr-h-9  spr-min-w-9 spr-font-size-300': size.value === 'md',
-        'spr-h-6  spr-min-w-6 spr-font-size-200': size.value === 'sm',
-        'spr-h-5  spr-min-w-5 spr-text-[10px]': size.value === 'xs',
-        'spr-h-4  spr-min-w-4 spr-text-[10px]': size.value === '2xs',
+        'spr-h-9 spr-min-w-9 spr-font-size-300': size.value === 'md',
+        'spr-h-6 spr-min-w-6 spr-font-size-200': size.value === 'sm',
+        'spr-h-5 spr-min-w-5 spr-text-[10px]': size.value === 'xs',
+        'spr-h-4 spr-min-w-4 spr-text-[10px]': size.value === '2xs',
+      },
+
+      // Image Size
+      {
+        '[&>img]:spr-h-20 [&>img]:spr-w-20 [&>img]:spr-min-h-20 [&>img]:spr-min-w-20': size.value === '2xl',
+        '[&>img]:spr-h-14 [&>img]:spr-w-14 [&>img]:spr-min-h-14 [&>img]:spr-min-w-14': size.value === 'xl',
+        '[&>img]:spr-h-10 [&>img]:spr-w-10 [&>img]:spr-min-h-10 [&>img]:spr-min-w-10': size.value === 'lg',
+        '[&>img]:spr-h-9 [&>img]:spr-w-9 [&>img]:spr-min-h-9 [&>img]:spr-min-w-9': size.value === 'md',
+        '[&>img]:spr-h-6 [&>img]:spr-w-6 [&>img]:spr-min-h-6 [&>img]:spr-min-w-6': size.value === 'sm',
+        '[&>img]:spr-h-5 [&>img]:spr-w-5 [&>img]:spr-min-h-5 [&>img]:spr-min-w-5': size.value === 'xs',
+        '[&>img]:spr-h-4 [&>img]:spr-w-4 [&>img]:spr-min-h-4 [&>img]:spr-min-w-4': size.value === '2xs',
       },
     );
 
-    const nameInitialsClasses = classNames(
+    const initialsContainerClasses = classNames(
       'spr-rounded-full spr-border-color-weak spr-border spr-border-solid spr-items-center spr-flex spr-justify-center spr-heading-xs spr-text-color-strong',
       {
         'spr-h-20 spr-min-w-20': size.value === '2xl',
@@ -67,8 +79,8 @@ export const useAvatar = (props: AvatarPropTypes) => {
 
     return {
       baseClasses,
-      imageClasses,
-      nameInitialsClasses,
+      imageContainerClasses,
+      initialsContainerClasses,
       notificationClasses,
       onlineNotificationClasses,
     };

@@ -38,6 +38,10 @@ export const cardPropTypes = {
     type: Boolean,
     default: false,
   },
+  hasContentPadding: {
+    type: Boolean,
+    default: true,
+  },
 };
 
 export type CardPropTypes = ExtractPropTypes<typeof cardPropTypes>;

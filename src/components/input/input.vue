@@ -9,8 +9,9 @@
         <slot name="prefix" />
       </div>
       <input
-        ref="inputTextRef"
         v-bind="$attrs"
+        :id="props.id"
+        ref="inputTextRef"
         :class="[inputClasses.inputTextClasses, { 'number-input': props.type === 'number' }]"
         :placeholder="props.placeholder"
         :type="props.type"

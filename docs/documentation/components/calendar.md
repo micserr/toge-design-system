@@ -1,0 +1,361 @@
+# Calendar Component
+
+The `Calendar` component is a reusable and customizable calendar designed for employee scheduling.
+
+## Usage
+
+### Basic Example
+
+  <div class="spr-text-base">
+    <div v-if="searchEmployee">
+    <span class="spr-font-medium">Search Employee:</span>
+     {{searchEmployee}}
+    </div>
+    <div v-if="selectedCell.employeeId">
+    <span class="spr-font-medium">Selected Cell: </span>
+    {{selectedCell}}
+    </div>
+    <div v-if="selectedCompany">
+    <span class="spr-font-medium">Selected Company:</span>
+     {{selectedCompany}}
+    </div>
+    <div v-if="selectedDepartment">
+    <span class="spr-font-medium">Selected Department:</span>
+     {{selectedDepartment}}
+    </div>
+    <div v-if="selectedBranch">
+    <span class="spr-font-medium">Selected Branch:</span>
+     {{selectedBranch}}
+    </div>
+  </div>
+
+  <div class="spr-m-12 spr-overflow-auto">
+    <div class="spr-w-[1200px]">
+    <SprCalendar
+      v-model:search="searchEmployee"
+      v-model:selected-cell="selectedCell"
+      v-model:selected-company="selectedCompany"
+      v-model:selected-department="selectedDepartment"
+      v-model:selected-branch="selectedBranch"
+      :employees="employees"
+      :initial-date="initialDate"
+      :company-options="companyOptions"
+      :department-options="departmentOptions"
+      :branch-options="branchOptions"
+    />
+  </div>
+  </div>
+
+```vue
+<template>
+  <SprCalendar
+    v-model:search="searchEmployee"
+    v-model:selected-cell="selectedCell"
+    v-model:selected-company="selectedCompany"
+    v-model:selected-department="selectedDepartment"
+    v-model:selected-branch="selectedBranch"
+    :employees="employees"
+    :initial-date="initialDate"
+    :company-options="companyOptions"
+    :department-options="departmentOptions"
+    :branch-options="branchOptions"
+  />
+</template>
+
+<script setup lang="ts">
+import SprCalendar from '@/components/calendar/calendar.vue';
+import { ref } from 'vue';
+
+const initialDate = new Date();
+const searchEmployee = ref();
+const selectedCompany = ref('');
+const selectedDepartment = ref('');
+const selectedBranch = ref('');
+const selectedCell = ref({
+  employeeId: '',
+  date: '',
+  schedule: null,
+});
+
+const employees = [
+  {
+    id: 1,
+    name: 'Theresa Webb',
+    position: 'Senior UX Researcher',
+    avatar: '',
+    highlight: true,
+    hoursWorked: 40,
+    hoursTarget: 48,
+    schedule: {
+      '2025-05-05': [{ type: 'restday' }],
+      '2025-05-06': [{ startTime: '09:00AM', endTime: '06:00PM', location: 'Office A', type: 'Standard Day Shift' }],
+      '2025-05-07': [{ startTime: '09:00AM', endTime: '06:00PM', location: 'Office A', type: 'Standard Day Shift' }],
+      '2025-05-13': [{ startTime: '09:00AM', endTime: '06:00PM', location: 'Office A', type: 'Standard Day Shift' }],
+      // ...other dates
+    },
+  },
+  {
+    id: 2,
+    name: 'Kathryn Murphy',
+    position: 'Interaction Designer',
+    avatar: '',
+    highlight: true,
+    hoursWorked: 35,
+    hoursTarget: 48,
+    schedule: {
+      '2025-05-05': [{ type: 'restday' }],
+      '2025-05-08': [{ startTime: '10:00AM', endTime: '07:00PM', location: 'Office B', type: 'Morning Shift' }],
+      '2025-05-10': [{ startTime: '10:00AM', endTime: '07:00PM', location: 'Office B', type: 'Morning Shift' }],
+      '2025-05-13': [
+        { startTime: '10:00AM', endTime: '06:00PM', location: 'Office a', type: 'Morning Shift' },
+        { startTime: '10:00AM', endTime: '07:00PM', location: 'Office B', type: 'Morning Shift' },
+        { startTime: '10:00AM', endTime: '08:00PM', location: 'Office c', type: 'Morning Shift' },
+        { startTime: '10:00AM', endTime: '09:00PM', location: 'Office d', type: 'Morning Shift' },
+      ],
+      // ...other dates
+    },
+  },
+  {
+    id: 3,
+    name: 'Kathryn Murphy',
+    position: 'Interaction Designer',
+    avatar: '',
+    highlight: true,
+    hoursWorked: 35,
+    hoursTarget: 48,
+    schedule: {
+      '2025-05-01': [{ type: 'restday' }],
+      '2025-05-02': [{ startTime: '10:00AM', endTime: '07:00PM', location: 'Office B', type: 'Morning Shift' }],
+      // ...other dates
+    },
+  },
+  {
+    id: 4,
+    name: 'Kathryn Murphy',
+    position: 'Interaction Designer',
+    avatar: '',
+    highlight: true,
+    hoursWorked: 35,
+    hoursTarget: 48,
+    schedule: {
+      '2025-05-12': [{ type: 'restday' }],
+      '2025-05-15': [{ startTime: '10:00AM', endTime: '07:00PM', location: 'Office B', type: 'Morning Shift' }],
+      // ...other dates
+    },
+  },
+];
+
+const companyOptions = [
+  { text: 'All Companies', value: 'all' },
+  { text: 'Company A', value: 'company-a' },
+  { text: 'Company B', value: 'company-b' },
+];
+
+const departmentOptions = [
+  { text: 'All Departments', value: 'all' },
+  { text: 'Design', value: 'design' },
+  { text: 'Development', value: 'development' },
+];
+
+const branchOptions = [
+  { text: 'All Branches', value: 'all' },
+  { text: 'Branch A', value: 'branch-a' },
+  { text: 'Branch B', value: 'branch-b' },
+];
+</script>
+```
+
+## Slots
+
+### `filter`
+
+- **Description:** Slot for customizing the filter section.
+- **Example:**
+  ```vue
+  <template #filter>
+    <div>Custom Filter Content</div>
+  </template>
+  ```
+
+---
+
+## API Reference
+
+### Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>employees</code> (required)</td>
+      <td><code>Array&lt;Employee[]&gt;</code></td>
+      <td>N/A</td>
+      <td>List of employees to display in the calendar.</td>
+    </tr>
+    <tr>
+      <td><code>initialDate</code></td>
+      <td><code>Date</code></td>
+      <td><code>new Date()</code></td>
+      <td>The initial date to display in the calendar.</td>
+    </tr>
+    <tr>
+      <td><code>companyOptions</code></td>
+      <td><code>Array&lt;FilterOption[]&gt;</code></td>
+      <td><code>[ { text: 'All Companies', value: 'all' } ]</code></td>
+      <td>Options for the company filter dropdown.</td>
+    </tr>
+    <tr>
+      <td><code>departmentOptions</code></td>
+      <td><code>Array&lt;FilterOption[]&gt;</code></td>
+      <td><code>[ { text: 'All Departments', value: 'all' } ]</code></td>
+      <td>Options for the department filter dropdown.</td>
+    </tr>
+    <tr>
+      <td><code>branchOptions</code></td>
+      <td><code>Array&lt;FilterOption[]&gt;</code></td>
+      <td><code>[ { text: 'All Branches', value: 'all' } ]</code></td>
+      <td>Options for the branch filter dropdown.</td>
+    </tr>
+    <tr>
+      <td><code>search</code></td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
+      <td>The search term for filtering employees.</td>
+    </tr>
+    <tr>
+      <td><code>selectedCell</code></td>
+      <td><code>Object&lt;SelectedShift&gt;</code></td>
+      <td><code>{ employeeId: '', date: '', shift: null }</code></td>
+      <td>The currently selected cell in the calendar.</td>
+    </tr>
+    <tr>
+      <td><code>selectedCompany</code></td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
+      <td>The currently selected company filter.</td>
+    </tr>
+    <tr>
+      <td><code>selectedDepartment</code></td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
+      <td>The currently selected department filter.</td>
+    </tr>
+    <tr>
+      <td><code>selectedBranch</code></td>
+      <td><code>String</code></td>
+      <td><code>''</code></td>
+      <td>The currently selected branch filter.</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+<script setup lang="ts">
+import SprCalendar from '@/components/calendar/calendar.vue';
+import { ref } from 'vue';
+
+const initialDate = new Date();
+const searchEmployee = ref();
+const selectedCompany = ref('');
+const selectedDepartment = ref('');
+const selectedBranch = ref('');
+const selectedCell = ref({
+  employeeId: '',
+  date: '',
+  schedule: null,
+});
+
+const employees = [
+  {
+    id: 1,
+    name: 'Theresa Webb',
+    position: 'Senior UX Researcher',
+    avatar: '',
+    highlight: true,
+    hoursWorked: 40,
+    hoursTarget: 48,
+    schedule: {
+      '2025-05-05': [{ type: 'restday' }],
+      '2025-05-06': [{ startTime: '09:00AM', endTime: '06:00PM', location: 'Office A', type: 'Standard Day Shift' }],
+      '2025-05-07': [{ startTime: '09:00AM', endTime: '06:00PM', location: 'Office A', type: 'Standard Day Shift' }],
+      '2025-05-13': [{ startTime: '09:00AM', endTime: '06:00PM', location: 'Office A', type: 'Standard Day Shift' }],
+      // ...other dates
+    },
+  },
+  {
+    id: 2,
+    name: 'Kathryn Murphy',
+    position: 'Interaction Designer',
+    avatar: '',
+    highlight: true,
+    hoursWorked: 35,
+    hoursTarget: 48,
+    schedule: {
+      '2025-05-05': [{ type: 'restday' }],
+      '2025-05-08': [{ startTime: '10:00AM', endTime: '07:00PM', location: 'Office B', type: 'Morning Shift' }],
+      '2025-05-10': [{ startTime: '10:00AM', endTime: '07:00PM', location: 'Office B', type: 'Morning Shift' }],
+      '2025-05-13': [
+        { startTime: '10:00AM', endTime: '06:00PM', location: 'Office a', type: 'Morning Shift' },
+        { startTime: '10:00AM', endTime: '07:00PM', location: 'Office B', type: 'Morning Shift' },
+        { startTime: '10:00AM', endTime: '08:00PM', location: 'Office c', type: 'Morning Shift' },
+        { startTime: '10:00AM', endTime: '09:00PM', location: 'Office d', type: 'Morning Shift' },
+      ],
+      // ...other dates
+    },
+  },
+  {
+    id: 3,
+    name: 'Kathryn Murphy',
+    position: 'Interaction Designer',
+    avatar: '',
+    highlight: true,
+    hoursWorked: 35,
+    hoursTarget: 48,
+    schedule: {
+      '2025-05-01': [{ type: 'restday' }],
+      '2025-05-02': [{ startTime: '10:00AM', endTime: '07:00PM', location: 'Office B', type: 'Morning Shift' }],
+      // ...other dates
+    },
+  },
+  {
+    id: 4,
+    name: 'Kathryn Murphy',
+    position: 'Interaction Designer',
+    avatar: '',
+    highlight: true,
+    hoursWorked: 35,
+    hoursTarget: 48,
+    schedule: {
+      '2025-05-12': [{ type: 'restday' }],
+      '2025-05-15': [{ startTime: '10:00AM', endTime: '07:00PM', location: 'Office B', type: 'Morning Shift' }],
+      // ...other dates
+    },
+  },
+];
+
+const companyOptions = [
+  { text: 'All Companies', value: 'all' },
+  { text: 'Company A', value: 'company-a' },
+  { text: 'Company B', value: 'company-b' },
+];
+
+const departmentOptions = [
+  { text: 'All Departments', value: 'all' },
+  { text: 'Design', value: 'design' },
+  { text: 'Development', value: 'development' },
+];
+
+const branchOptions = [
+  { text: 'All Branches', value: 'all' },
+  { text: 'Branch A', value: 'branch-a' },
+  { text: 'Branch B', value: 'branch-b' },
+];
+</script>

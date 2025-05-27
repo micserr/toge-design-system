@@ -8,10 +8,12 @@ import { useInfiniteScroll, onClickOutside } from '@vueuse/core';
 
 export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitTypes>['emit']) => {
   const { options, filterMenu, filterData, loading, filterable, filling, deselected, hasSearchApi } = toRefs(props);
+
   const selectedValue = useVModel(props, 'modelValue', emit);
-  const isFilterOpen = ref<boolean>(false);
   const searchText = useVModel(props, 'search', emit);
   const searchFilterValue = useVModel(props, 'searchFilter', emit);
+
+  const isFilterOpen = ref<boolean>(false);
   const searchValue = ref<string>('');
   const filterMenuSearchvalue = ref<string>('');
   const isAddFilterVisible = ref<boolean>(false);

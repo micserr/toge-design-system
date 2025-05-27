@@ -57,6 +57,10 @@ export const textAreaPropTypes = {
     type: String,
     default: '',
   },
+  hasCounter: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const textAreaEmitTypes = {

@@ -9,7 +9,7 @@ Switch component to show a boolean state (similar to a checkbox).
 ## Basic Usage
 
 <div>
-  <spr-switch v-model="switchValue1">Switch</spr-switch>
+  <spr-switch v-model="switchValue1" id="switch">Switch</spr-switch>
   <p>switchValue1 : {{ switchValue1 }}</p>
 </div>
 

@@ -1,5 +1,64 @@
 # Changelog
 
+## 2.7.24 (2025-05-23)
+
+- Fix
+  - Commit 1a89e328: fix: set default id values for filter and input components ([#1a89e328](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1a89e328bc9f050c2d32f438e307292508014a62?refName=refs/heads/2025/feat/andrea/filter-ids) by @adestajo)
+
+## 2.7.23 (2025-05-22)
+
+- Fix
+  - use props modelValue for textarea counter ([#3e7f6612](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3e7f661223c5b7678815b5c8066d7d609d1e9fc8?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2FDQA_FIXES) by @despiritu)
+
+## 2.7.22 (2025-05-22)
+
+- Fix
+  - Add custom classes for table action slot
+  - Add background color for selected items in multiselect table
+  - Add sort icons in table
+  - Revert modelValue in textarea ([#82802151](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/82802151ed971e73b616eda7a01734c856a1c1d6?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2FDQA_FIXES) by @despiritu)
+
+## 2.7.21 (2025-05-21)
+
+- Feat
+  - Commit a07e6a19: feat: add icon prop to calendar cell component and update icon handling logic ([#a07e6a19](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a07e6a191de988f913f6c91a0d8170c434b7bdbe?refName=refs/heads/2025/feat/andrea/enhance-calendar-cell) by @adestajo)
+
+## 2.7.20 (2025-05-21)
+
+- Feat
+  - Pull Request 31623: [POLY-109] - counter for text area ([#31623](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/31623?_a=commits) by @adestajo)
+
+## 2.7.19 (2025-05-20)
+
+- Fix
+  - add word break if hasMaxWidth prop is true in tooltip component
+  - add custom classes in empty state base class and table empty state container ([#12725950](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/12725950d33da5b4d6df0dd668daae3184cad4bb?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2FDQA_FIXES) by @despiritu)
+
+## 2.7.18 (2025-05-19)
+
+- Fix
+  - sync selectedData and table data on change ([#363a88f8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/363a88f8e977faed07f77bf820e7ce88d772926a?refName=refs%2Fheads%2F2025%2Ffix%2Fdustin%2FDQA_FIXES) by @despiritu)
+
+## 2.7.17 (2025-05-19)
+
+- Feat
+  - Commit ab76862a: border colors ([#ab76862a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ab76862a56ec6af4e8e7b559e26ece21d7da6292?refName=refs/heads/2025/feat/andrea/docu-divide-colors) by @adestajo)
+
+## 2.7.16 (2025-05-14)
+
+- Feat
+  - Commit ae101b74: initial Calendar ([#ae101b74](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ae101b74fa251c0b0607140b81b05bf8a03ba345?refName=refs/heads/2025/feat/andrea/calendar) by @adestajo)
+
+## 2.7.15 (2025-05-13)
+
+- Fix
+  - Fix switch issue clickable label ([#30182d0f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/30182d0f6039794e4532d452649463b048859b99?refName=refs/heads/2025/FIX/BEN/SWITCH_CHECK_LABEL) by @bsolis)
+
+## 2.7.14 (2025-05-09)
+
+- Fix
+  - Fix switch issue check slot empty label will not show ([#28c0d332](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/28c0d332c8c57ca2c3be19457ea19723603d5cca?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSWITCH_CHECK_LABEL) by @bsolis)
+
 ## 2.7.13 (2025-05-09)
 
 - Fix

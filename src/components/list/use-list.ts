@@ -117,13 +117,17 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
       const index = selectedItems.value.findIndex((selectedItem: MenuListType) => selectedItem.value === item.value);
 
       if (index === -1) {
-        selectedItems.value.push(item);
+        selectedItems.value = [...selectedItems.value, item];
       } else {
-        selectedItems.value.splice(index, 1);
+        const updatedItems = [...selectedItems.value];
+
+        updatedItems.splice(index, 1);
+
+        selectedItems.value = updatedItems;
       }
-      emit('update:modelValue', selectedItems.value);
     }
   };
+
   // #endregion - Helper Methods
 
   watch(menuList, () => {

@@ -99,12 +99,13 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
       .map((preSelectedItem: string) =>
         localizedMenuList.value.find((menuItem) => String(menuItem.value) === String(preSelectedItem)),
       )
-      .filter(Boolean) as MenuListType[]; // filter out undefined values
+      .filter(Boolean) as MenuListType[];
 
     if (multiSelect.value) {
       selectedItems.value = selected;
     } else {
       const firstItem = selected[0];
+
       if (
         firstItem &&
         !selectedItems.value.some((selectedItem) => String(selectedItem.value) === String(firstItem.value))

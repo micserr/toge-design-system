@@ -1,8 +1,10 @@
 import { ref, toRefs, computed, ComputedRef, watch, onMounted } from 'vue';
+import { useVModel } from '@vueuse/core';
+
 import classNames from 'classnames';
+
 import type { SetupContext } from 'vue';
 import type { ListPropTypes, ListEmitTypes, MenuListType, GroupedMenuListType } from './list';
-import { useVModel } from '@vueuse/core';
 
 interface ListClasses {
   listItemClasses: string;
@@ -91,20 +93,25 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   };
 
   const setPreSelectedItems = () => {
-    if (preSelectedItems.value && preSelectedItems.value.length > 0) {
-      preSelectedItems.value.forEach((preSelectedItem: string) => {
-        const alreadySelected = selectedItems.value.some(
-          (selectedItem) => String(selectedItem.value) === String(preSelectedItem),
-        );
+    if (!preSelectedItems.value?.length) return;
 
-        if (alreadySelected) return;
+    const selected = preSelectedItems.value
+      .map((preSelectedItem: string) =>
+        localizedMenuList.value.find((menuItem) => String(menuItem.value) === String(preSelectedItem)),
+      )
+      .filter(Boolean) as MenuListType[];
 
-        const item = localizedMenuList.value.find((menuItem) => String(menuItem.value) === String(preSelectedItem));
+    if (multiSelect.value) {
+      selectedItems.value = selected;
+    } else {
+      const firstItem = selected[0];
 
-        if (item) {
-          selectedItems.value = [...selectedItems.value, item];
-        }
-      });
+      if (
+        firstItem &&
+        !selectedItems.value.some((selectedItem) => String(selectedItem.value) === String(firstItem.value))
+      ) {
+        selectedItems.value = [firstItem];
+      }
     }
   };
 
@@ -114,9 +121,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   });
 
   const handleSelectedItem = (item: MenuListType) => {
-    if (!multiSelect.value) {
-      selectedItems.value = [item];
-    } else {
+    if (multiSelect.value) {
       const index = selectedItems.value.findIndex((selectedItem: MenuListType) => selectedItem.value === item.value);
 
       if (index === -1) {
@@ -127,6 +132,8 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
         updatedItems.splice(index, 1);
         selectedItems.value = updatedItems;
       }
+    } else {
+      selectedItems.value = [item];
     }
   };
   // #endregion - Helper Methods

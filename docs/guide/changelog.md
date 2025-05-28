@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.30 (2025-05-28)
+
+- Fix
+  - Dropdown Pre-Selected Item Logic, Code Cleanup, Update Ladderized Dropdown Transition ([#71792427](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/717924274e405e2fb84facb0d242f9c32b6eb18f?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 2.7.29 (2025-05-28)
 
 - Fix

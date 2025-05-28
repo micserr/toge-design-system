@@ -93,13 +93,16 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   const setPreSelectedItems = () => {
     if (preSelectedItems.value && preSelectedItems.value.length > 0) {
       preSelectedItems.value.forEach((preSelectedItem: string) => {
-        // If single select, only select the first item and skip the for loop
-        if (!multiSelect.value && selectedItems.value.length > 0) return;
+        const alreadySelected = selectedItems.value.some(
+          (selectedItem) => String(selectedItem.value) === String(preSelectedItem),
+        );
+
+        if (alreadySelected) return;
 
         const item = localizedMenuList.value.find((menuItem) => String(menuItem.value) === String(preSelectedItem));
 
         if (item) {
-          selectedItems.value.push(item);
+          selectedItems.value = [...selectedItems.value, item];
         }
       });
     }
@@ -122,12 +125,10 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
         const updatedItems = [...selectedItems.value];
 
         updatedItems.splice(index, 1);
-
         selectedItems.value = updatedItems;
       }
     }
   };
-
   // #endregion - Helper Methods
 
   watch(menuList, () => {

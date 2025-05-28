@@ -20,7 +20,9 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
   const dropdownPopperState = ref<boolean>(false);
   const isDropdownPopperDisabled = computed(() => disabled.value);
 
-  const isLadderizedSearch = computed(() => (ladderized.value && searchString.value !== '' && dropdownValue.value.length === 0))
+  const isLadderizedSearch = computed(
+    () => ladderized.value && searchString.value !== '' && dropdownValue.value.length === 0,
+  );
 
   const initializeMenuList = () => {
     dropdownMenuList.value = [...menuList.value];
@@ -131,6 +133,7 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
         // generate dropdown value if ladderized with search string
         dropdownValue.value = [selectedItems[0].subvalue ?? '', selectedItems[0].value];
       }
+
       setTimeout(() => {
         dropdownPopperState.value = false;
       }, 10);
@@ -175,6 +178,6 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
     handleSelectedLadderizedItem,
     dropdownValue,
     removeCurrentLevelInBackLabel,
-    isLadderizedSearch
+    isLadderizedSearch,
   };
 };

@@ -1,5 +1,4 @@
 <template>
-  {{ dropdownValue }}
   <Menu
     :shown="dropdownPopperState"
     aria-id="dropdown-wrapper"

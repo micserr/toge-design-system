@@ -230,29 +230,29 @@ Pre-selected items are options that are automatically selected when the dropdown
 <template>
   <div class="spr-grid spr-gap-4">
     <spr-dropdown
-      id="dropdown5"
-      v-model="dropdownModel.dropdown5"
+      id="dropdownSample1"
+      v-model="dropdownModel.dropdownModel1"
       :menu-list="menuList"
       group-items-by="A-Z"
       @update:model-value="(value) => handleSelectedItem(value, 'single', 'inputText5')"
     >
       <spr-input
-        v-model="inputTextModel.inputText5"
+        v-model="inputTextModel.inputTextModel1"
         label="Single Select Dropdown"
         readonly
         placeholder="Select item..."
       />
     </spr-dropdown>
     <spr-dropdown
-      id="dropdown6"
-      v-model="dropdownModel.dropdown6"
+      id="dropdownSample26"
+      v-model="dropdownModel.dropdownModel2"
       :menu-list="menuList"
       multi-select
       group-items-by="A-Z"
       @update:model-value="(value) => handleSelectedItem(value, 'multi', 'inputText6')"
     >
       <spr-input
-        v-model="inputTextModel.inputText6"
+        v-model="inputTextModel.inputTextModel2"
         label="Multi Select Dropdown"
         readonly
         placeholder="Select item..."
@@ -265,19 +265,19 @@ Pre-selected items are options that are automatically selected when the dropdown
 import { ref, onMounted } from 'vue';
 
 const dropdownModel = ref({
-  dropdown5: ['apple'],
-  dropdown6: ['date', 'fig', 'orange'],
+  dropdownModel1: ['apple'],
+  dropdownModel2: ['date', 'fig', 'orange'],
 });
 
 const inputTextModel = ref({
-  inputText5: '',
-  inputText6: '',
+  inputTextModel1: '',
+  inputTextModel2: '',
 });
 
 // Load selected values to input texts
 onMounted(() => {
-  handleSelectedItem(dropdownModel.value.dropdown5, 'single', 'inputText5');
-  handleSelectedItem(dropdownModel.value.dropdown6, 'multi', 'inputText6');
+  handleSelectedItem(dropdownModel.value.dropdownModel1, 'single', 'inputTextModel1');
+  handleSelectedItem(dropdownModel.value.dropdownModel2, 'multi', 'inputTextModel2');
 });
 
 const handleSelectedItem = (selectedItem, dropdownType, inputModel) => {
@@ -1035,7 +1035,7 @@ const handleLadderizedDropdown = (value) => {
 Ladderized dropdown search allows users to filter items in a hierarchical manner. This feature is particularly useful when dealing with large datasets, as it enables users to quickly locate specific items within nested structures. Can be used if the `ladderized` prop is set to `true` and `searchString` prop has a value.
 
 ::: danger LIMITATION
-Ladderized dropdown search does not support multi-select and can only search through two hierarchical levels (root level and sublevel). 
+Ladderized dropdown search does not support multi-select and can only search through two hierarchical levels (root level and sublevel).
 :::
 
 <div>
@@ -1052,7 +1052,7 @@ Ladderized dropdown search does not support multi-select and can only search thr
       :menu-list="mockDropdownData"
       v-model="dropdownModel"
       :ladderized="true"
-      :search-string="inputTextModel" 
+      :search-string="inputTextModel"
       @update:model-value="handleLadderizedDropdown"
     >
       <spr-input v-model="inputTextModel" label="Ladderized Dropdown" placeholder="Select item..." />
@@ -1076,15 +1076,18 @@ const mockDropdownData = [
         text: 'Cub',
         value: 'cub',
         subtext: 'Young lion',
-        sublevel: [  // [!code error]cannot be searched
-          {// [!code error]
-            text: 'Cub 1',// [!code error]
-            value: 'cub1',// [!code error]
-          },// [!code error]
-          {// [!code error]
-            text: 'Cub 2',// [!code error]
-            value: 'cub2',// [!code error]
-          },// [!code error]
+        sublevel: [
+          // [!code error]cannot be searched
+          {
+            // [!code error]
+            text: 'Cub 1', // [!code error]
+            value: 'cub1', // [!code error]
+          }, // [!code error]
+          {
+            // [!code error]
+            text: 'Cub 2', // [!code error]
+            value: 'cub2', // [!code error]
+          }, // [!code error]
         ], // [!code error]
       },
       {
@@ -1161,8 +1164,6 @@ const handleLadderizedDropdown = (value) => {
 };
 </script>
 ```
-
-
 
 ## Disabled, Active & Readonly
 

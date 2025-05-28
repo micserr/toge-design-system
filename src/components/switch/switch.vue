@@ -13,10 +13,10 @@
       }"
     >
       <input
+        :id="defaultId"
         ref="switchRef"
         v-model="proxyValue"
         type="checkbox"
-        :id="defaultId"
         name="checkbox"
         :class="[
           'input spr-absolute spr-left-0 spr-top-0 spr-z-10 spr-m-0 spr-h-6 spr-w-12 spr-opacity-0',
@@ -46,12 +46,22 @@ import { useSwitch } from './use-switch';
 const props = defineProps(switchPropTypes);
 const emit = defineEmits(switchEmitTypes);
 
-const defaultId = props.id ? props.id + '_' + Math.random().toString(36).substring(2, 8) : 'switch_input_' + Math.random().toString(36).substring(2, 8);
+const defaultId = props.id
+  ? props.id + '_' + Math.random().toString(36).substring(2, 8)
+  : 'switch_input_' + Math.random().toString(36).substring(2, 8);
 
 const proxyValue = useVModel(props, 'modelValue', emit);
 
-const { switchWrapperRef, switchRef, switchProps, switchMarkClass, switchTextClass, switchInputClass, isLeftTextLabel, isRightTextLabel } =
-  useSwitch(props);
+const {
+  switchWrapperRef,
+  switchRef,
+  switchProps,
+  switchMarkClass,
+  switchTextClass,
+  switchInputClass,
+  isLeftTextLabel,
+  isRightTextLabel,
+} = useSwitch(props);
 </script>
 
 <style lang="scss" scoped>

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.28 (2025-05-28)
+
+- Fix
+  - Dropdown Multi Select Reactive Selection ([#f5b7ac95](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f5b7ac9505397b95f20da656e3d91c69fe4ea2f3?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 2.7.27 (2025-05-28)
 
 - Fix

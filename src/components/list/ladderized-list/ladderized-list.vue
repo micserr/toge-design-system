@@ -3,12 +3,26 @@
     <transition :name="transitionName" mode="out-in">
       <div v-if="activeLevel % 2 === 0">
         <spr-ladderized-list-back v-if="activeLevel > 0" :label="backLabel ?? 'Back'" @back="handleBackClick" />
-        <spr-list v-model="selectedListItem" class="spr-p-size-spacing-3xs" :menu-list="activeList" :multi-select="false" :ladderized="true" @update:model-value="(value) => handleSelectedListItem(value[0])" />
+        <spr-list
+          v-model="selectedListItem"
+          class="spr-p-size-spacing-3xs"
+          :menu-list="activeList"
+          :multi-select="false"
+          :ladderized="true"
+          @update:model-value="(value) => handleSelectedListItem(value[0])"
+        />
       </div>
-      
+
       <div v-else>
         <spr-ladderized-list-back v-if="activeLevel > 0" :label="backLabel ?? 'Back'" @back="handleBackClick" />
-        <spr-list v-model="selectedListItem" class="spr-p-size-spacing-3xs" :menu-list="activeList" :multi-select="false" :ladderized="true" @update:model-value="(value) => handleSelectedListItem(value[0])" />
+        <spr-list
+          v-model="selectedListItem"
+          class="spr-p-size-spacing-3xs"
+          :menu-list="activeList"
+          :multi-select="false"
+          :ladderized="true"
+          @update:model-value="(value) => handleSelectedListItem(value[0])"
+        />
       </div>
     </transition>
   </div>
@@ -16,6 +30,7 @@
 
 <script setup lang="ts">
 import SprList from '@/components/list/list.vue';
+
 import { ladderizedListPropTypes, ladderizedListEmitTypes } from './ladderized-list';
 import { useLadderizedList } from './use-ladderized-list';
 import SprLadderizedListBack from './ladderized-list-back.vue';
@@ -23,8 +38,15 @@ import SprLadderizedListBack from './ladderized-list-back.vue';
 const props = defineProps(ladderizedListPropTypes);
 const emit = defineEmits(ladderizedListEmitTypes);
 
-const { activeLevel, selectedListItem, handleSelectedListItem, activeList, handleBackClick, transitionName, backLabel } = useLadderizedList(props, emit);
-
+const {
+  activeLevel,
+  selectedListItem,
+  handleSelectedListItem,
+  activeList,
+  handleBackClick,
+  transitionName,
+  backLabel,
+} = useLadderizedList(props, emit);
 </script>
 
 <style scoped>
@@ -32,7 +54,7 @@ const { activeLevel, selectedListItem, handleSelectedListItem, activeList, handl
 .slide-left-leave-active,
 .slide-right-enter-active,
 .slide-right-leave-active {
-  transition: all 0.25s ease-out;
+  transition: all 150ms ease-out;
 }
 
 .slide-left-enter-from,

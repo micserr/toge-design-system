@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.29 (2025-05-28)
+
+- Fix
+  - Prevent duplicate pre-selected items in multi select mode ([#b2d7432d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b2d7432d12f18f2fd5c7b6822837e2123ea49304?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 2.7.28 (2025-05-28)
 
 - Fix

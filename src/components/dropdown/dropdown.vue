@@ -1,4 +1,5 @@
 <template>
+  {{ dropdownValue }}
   <Menu
     :shown="dropdownPopperState"
     aria-id="dropdown-wrapper"
@@ -68,11 +69,16 @@
 
 <script lang="ts" setup>
 import { Menu } from 'floating-vue';
+
 import 'floating-vue/dist/style.css';
-import { dropdownPropTypes, dropdownEmitTypes } from './dropdown';
-import { useDropdown } from './use-dropdown';
+
 import SprList from '../list/list.vue';
 import SprLadderizedList from '../list/ladderized-list/ladderized-list.vue';
+
+import { dropdownPropTypes, dropdownEmitTypes } from './dropdown';
+
+import { useDropdown } from './use-dropdown';
+
 const props = defineProps(dropdownPropTypes);
 const emit = defineEmits(dropdownEmitTypes);
 

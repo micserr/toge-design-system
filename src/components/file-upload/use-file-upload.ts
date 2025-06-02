@@ -55,7 +55,7 @@ export const useFileUpload = (props: FileUploadPropTypes, emit: SetupContext<Fil
     const wrapperClasses = classNames(
       'spr-rounded-border-radius-xl spr-mt-size-spacing-3xs spr-flex',
       {
-        'spr-min-w-[56px] spr-py-size-spacing-2xs spr-px-size-spacing-xs': props.type === 'default',
+        'spr-min-w-[56px] spr-py-size-spacing-2xs spr-px-size-spacing-xs': props.type !== 'center',
         'spr-min-h-[160px] spr-p-size-spacing-xs spr-flex-col spr-justify-center spr-items-center': props.type === 'center',
         'spr-border spr-border-solid spr-border-color-brand-base spr-background-color-single-active': isOverDropZone.value && !props.disabled,
         'file-upload_wrapper': !isOverDropZone.value && !props.showError,
@@ -70,7 +70,7 @@ export const useFileUpload = (props: FileUploadPropTypes, emit: SetupContext<Fil
     const inputClasses = classNames(
       'spr-flex spr-items-center spr-gap-size-spacing-3xs',
       {
-        'spr-flex-auto ': props.type === 'default',
+        'spr-flex-auto ': props.type !== 'center',
         'spr-mb-size-spacing-xs': props.type === 'center',
         'spr-text-color-strong': !props.disabled,
         'spr-text-color-disabled': props.disabled,
@@ -80,7 +80,7 @@ export const useFileUpload = (props: FileUploadPropTypes, emit: SetupContext<Fil
     const sublabelClasses = classNames(
       'spr-grid spr-content-center spr-body-xs-regular',
       {
-        'spr-w-fit ': props.type === 'default',
+        'spr-w-fit ': props.type !== 'center',
         'spr-text-color-base': !props.disabled,
         'spr-text-color-disabled': props.disabled,
       }
@@ -93,6 +93,8 @@ export const useFileUpload = (props: FileUploadPropTypes, emit: SetupContext<Fil
       'spr-flex spr-flex-col spr-gap-size-spacing-xs',
       {
         'spr-min-h-[160px] spr-justify-center': props.type === 'center',
+        'spr-text-color-strong': !props.disabled,
+        'spr-text-color-disabled': props.disabled,
       }
     );
 
@@ -133,6 +135,7 @@ export const useFileUpload = (props: FileUploadPropTypes, emit: SetupContext<Fil
 
   // Sublabel for supported file types
   const supportedFileTypeLabel = computed(() => {
+    if (props.supportedFileTypeLabel)
     if (!props.fileTypes) return "";
   
     const parsedFileTypes = props.fileTypes.map((fileType) => {

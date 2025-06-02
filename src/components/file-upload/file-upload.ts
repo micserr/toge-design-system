@@ -8,6 +8,7 @@ const FILE_UPLOAD_DOCUMENT_TYPE = [
   'application/pdf',
   'application/msword',
   'application/vnd.ms-excel',
+  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
   'application/vnd.ms-powerpoint',
   'text/plain',
   'text/csv'
@@ -64,6 +65,18 @@ export const fileUploadPropTypes = {
   errorMessages: {
     type: Array as PropType<string[]>,
     default: [],
+  },
+  hideFilePreviewIcon: {
+    type: Boolean,
+    default: false,
+  },
+  hideDropzoneLabel: {
+    type: Boolean,
+    default: false,
+  },
+  supportedFileTypeLabel: {
+    type: String,
+    default: null,
   }
 };
 

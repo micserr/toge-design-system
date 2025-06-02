@@ -16,7 +16,7 @@
         />
         <icon icon="ph:cloud-arrow-up" width="28px" height="28px"/>
         <spr-button size="small" tone="neutral" variant="secondary" :disabled="props.disabled" @click="clickInitialInputFile">Browse Files</spr-button>
-        <label class="spr-body-sm-regular"> 
+        <label v-if="!props.hideDropzoneLabel" class="spr-body-sm-regular"> 
           {{ "or drop your " + (props.multiple ? "files" : "file") +" to upload" }}
         </label>
       </div>
@@ -36,14 +36,20 @@
         :accept="props.fileTypes.join(',')"
         hidden 
         @change="replaceFile"/>
-      <div  v-for="(file, index) in modelValue" :key="index" class="spr-flex">
-        <div class="spr-flex-auto spr-flex spr-gap-size-spacing-5xs spr-items-center">
-          <icon icon="ph:check-circle-fill" width="16px" height="16px" class="spr-text-color-brand-base"/>
-          <label class="spr-body-sm-regular">{{ file.name }}</label>
+      <div v-for="(file, index) in modelValue" :key="index" class="spr-flex spr-flex-col spr-gap-size-spacing-4xs">
+        <div class="spr-flex">
+          <div class="spr-flex-auto spr-flex spr-gap-size-spacing-5xs spr-items-center">
+            <icon v-if="!props.hideFilePreviewIcon" icon="ph:check-circle-fill" width="16px" height="16px" class="spr-text-color-brand-base"/>
+            <label class="spr-body-sm-regular spr-text-clip">{{ file.name }}</label>
+          </div>
+          <div class="spr-flex-none spr-flex spr-gap-size-spacing-5xs spr-items-start">
+            <spr-button size="small" tone="neutral" variant="secondary" :disabled="props.disabled" @click="clickListInputFile(index)">Replace</spr-button>
+            <spr-button size="small" tone="danger" variant="secondary" :disabled="props.disabled" @click="deleteFile(index)"><icon icon="ph:trash"/></spr-button>
+          </div>
         </div>
-        <div class="spr-w-fit spr-flex spr-gap-size-spacing-5xs">
-          <spr-button size="small" tone="neutral" variant="secondary" @click="clickListInputFile(index)">Replace</spr-button>
-          <spr-button size="small" tone="danger" variant="secondary" @click="deleteFile(index)"><icon icon="ph:trash"/></spr-button>
+        <div v-if="props.showError && props.errorMessages[index]" class="spr-flex spr-gap-size-spacing-5xs spr-body-sm-regular spr-text-color-danger-base">
+          <Icon icon="ph:warning-circle-fill" width="20px" height="20px" />
+          <span class="spr-self-start">{{ props.errorMessages[index] }}</span>
         </div>
       </div>
     </div>

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.31 (2025-06-02)
+
+- Enhancement
+  - File upload enhancements: show/hide preview icon in file list, show/hide dropzone label, custom label for supported file types ([#a4ba414c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a4ba414ca0e2b1147a02a9ca34cae7eb084746d6?refName=refs%2Fheads%2F2025%2FEnhancement%2FPaulo%2FFileUploadEnhancements) by @jbanares)
+
 ## 2.7.30 (2025-05-28)
 
 - Fix

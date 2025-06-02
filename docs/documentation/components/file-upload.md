@@ -30,20 +30,17 @@ This file upload component can be triggered via the button upload or dragging an
       multiple
     />
   </div>
-  <template>
-    <script lang="ts" setup>
-      import { ref } from 'vue';
-      import SprFileUpload from '@/components/file-upload/file-upload.vue';
+  <script lang="ts" setup>
+    import { ref } from 'vue';
 
-      const files1 = ref([]);
-    </script></template
-  >
+    const files1 = ref([]);
+  </script>
 </template>
 ```
 
 ## Type
 
-There are two types for file upload: `default` and `center`.
+There are three types for file upload: `default`, and `center`.
 
 <div class="spr-flex spr-flex-col spr-gap-2">
   <spr-file-upload 
@@ -256,6 +253,24 @@ For client-side validation of the file upload, we can show the error message as 
       <td>Array of error messages to display.</td>
       <td>String[]</td>
       <td>[]</td>
+    </tr>
+    <tr>
+      <td>hideFilePreviewIcon</td>
+      <td>Flag to hide the icon when viewing the list of files.</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>hideDropzoneLabel</td>
+      <td>Flag to hide the label of drop zone label.</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>supportedFileTypeLabel</td>
+      <td>Custom string label for supported file types. "Supports: [custom text]"</td>
+      <td>String</td>
+      <td>null</td>
     </tr>
   </tbody>
 </table>

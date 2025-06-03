@@ -135,7 +135,7 @@ export const useFileUpload = (props: FileUploadPropTypes, emit: SetupContext<Fil
 
   // Sublabel for supported file types
   const supportedFileTypeLabel = computed(() => {
-    if (props.supportedFileTypeLabel)
+    if (props.supportedFileTypeLabel) return props.supportedFileTypeLabel
     if (!props.fileTypes) return "";
   
     const parsedFileTypes = props.fileTypes.map((fileType) => {

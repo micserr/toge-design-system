@@ -1,7 +1,11 @@
 # Changelog
 
-## 2.7.31 (2025-06-02)
+## 2.7.32 (2025-06-02)
 
+- Fix
+  - Incorrect file upload custom label for file types ([#bcf39cdb](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/bcf39cdb3537a9e70c0e3bd25da71300536a2424?refName=refs%2Fheads%2F2025%2FEnhancement%2FPaulo%2FFileUploadEnhancements) by @jbanares)
+
+## 2.7.31 (2025-06-02)
 - Enhancement
   - File upload enhancements: show/hide preview icon in file list, show/hide dropzone label, custom label for supported file types ([#a4ba414c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a4ba414ca0e2b1147a02a9ca34cae7eb084746d6?refName=refs%2Fheads%2F2025%2FEnhancement%2FPaulo%2FFileUploadEnhancements) by @jbanares)
 

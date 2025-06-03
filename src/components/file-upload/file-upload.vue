@@ -37,18 +37,18 @@
         hidden 
         @change="replaceFile"/>
       <div v-for="(file, index) in modelValue" :key="index" class="spr-flex spr-flex-col spr-gap-size-spacing-4xs">
-        <div class="spr-flex">
-          <div class="spr-flex-auto spr-flex spr-gap-size-spacing-5xs spr-items-center">
-            <icon v-if="!props.hideFilePreviewIcon" icon="ph:check-circle-fill" width="16px" height="16px" class="spr-text-color-brand-base"/>
-            <label class="spr-body-sm-regular spr-text-clip">{{ file.name }}</label>
+        <div class="spr-flex spr-justify-between">
+          <div class="spr-flex-auto spr-flex spr-break-all spr-overflow-hidden spr-whitespace-break-spaces spr-items-center">
+            <icon v-if="!props.hideFilePreviewIcon" icon="ph:check-circle-fill" width="16px" height="16px" class="spr-text-color-brand-base spr-flex-none"/>
+            <label class="spr-body-sm-regular">{{ file.name }}</label>
           </div>
-          <div class="spr-flex-none spr-flex spr-gap-size-spacing-5xs spr-items-start">
+          <div class="spr-flex spr-gap-size-spacing-5xs spr-items-start">
             <spr-button size="small" tone="neutral" variant="secondary" :disabled="props.disabled" @click="clickListInputFile(index)">Replace</spr-button>
             <spr-button size="small" tone="danger" variant="secondary" :disabled="props.disabled" @click="deleteFile(index)"><icon icon="ph:trash"/></spr-button>
           </div>
         </div>
         <div v-if="props.showError && props.errorMessages[index]" class="spr-flex spr-gap-size-spacing-5xs spr-body-sm-regular spr-text-color-danger-base">
-          <Icon icon="ph:warning-circle-fill" width="20px" height="20px" />
+          <Icon class="spr-flex-none" icon="ph:warning-circle-fill" width="20px" height="20px" />
           <span class="spr-self-start">{{ props.errorMessages[index] }}</span>
         </div>
       </div>

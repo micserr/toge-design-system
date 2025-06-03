@@ -30,12 +30,12 @@ This file upload component can be triggered via the button upload or dragging an
       multiple
     />
   </div>
-  <script lang="ts" setup>
-    import { ref } from 'vue';
-
-    const files1 = ref([]);
-  </script>
 </template>
+<script lang="ts" setup>
+  import { ref } from 'vue';
+
+  const files1 = ref([]);
+</script>
 ```
 
 ## Type
@@ -240,7 +240,7 @@ For client-side validation of the file upload, we can show the error message as 
       <td>fileTypes</td>
       <td>Array of file types allowed for file uploading.</td>
       <td>String[]</td>
-      <td>['application/pdf','application/msword','application/vnd.ms-excel','application/vnd.ms-powerpoint','text/plain','text/csv','image/apng','image/avif','image/gif','image/jpeg','image/png','image/svg+xml','image/webp']</td>
+      <td>['application/pdf','application/msword','application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',application/vnd.ms-powerpoint','text/plain','text/csv','image/apng','image/avif','image/gif','image/jpeg','image/png','image/svg+xml','image/webp']</td>
     </tr>
     <tr>
       <td>showError</td>

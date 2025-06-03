@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.7.33 (2025-06-03)
+
+- Feat
+  - Add disabled item in list component ([#d190789d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d190789d598f3b57bc098f5cac9f273d945e7b23?refName=refs/heads/2025/fix/dustin/DQA_FIXES) by @despiritu)
+
+
 ## 2.7.32 (2025-06-02)
 
 - Fix

@@ -45,10 +45,10 @@
         :class="getListItemClasses(item)"
         @click="handleSelectedItem(item)"
       >
-        <spr-checkbox v-if="props.multiSelect" :checked="isItemSelected(item)" />
-        <div class="spr-flex spr-flex-auto spr-flex-col spr-justify-start">
+        <spr-checkbox v-if="props.multiSelect" :disabled="item.disabled" :checked="isItemSelected(item)" />
+        <div :class="['spr-flex spr-flex-auto spr-flex-col spr-justify-start', { 'spr-text-color-disabled': item.disabled }]">
           <span class="spr-text-left spr-text-xs">{{ item.text }}</span>
-          <span v-if="item.subtext" class="spr-body-xs-regular spr-text-color-base spr-text-left">{{
+          <span v-if="item.subtext" :class="['spr-body-xs-regular spr-text-color-base spr-text-left', { 'spr-text-color-disabled': item.disabled }]">{{
             item.subtext
           }}</span>
         </div>

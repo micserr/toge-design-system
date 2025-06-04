@@ -1,9 +1,14 @@
 # Changelog
 
-## 2.7.33 (2025-06-02)
+## 2.7.34 (2025-06-02)
 
 - Fix
   - Updated responsiveness of file name in preview ([#868eface](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/868efaced23c8b854d679cdbcc7149faea2ac35a?refName=refs%2Fheads%2F2025%2FEnhancement%2FPaulo%2FFileUploadEnhancements) by @jbanares)
+
+## 2.7.33 (2025-06-03)
+
+- Feat
+  - Add disabled item in list component ([#d190789d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d190789d598f3b57bc098f5cac9f273d945e7b23?refName=refs/heads/2025/fix/dustin/DQA_FIXES) by @despiritu)
 
 ## 2.7.32 (2025-06-02)
 

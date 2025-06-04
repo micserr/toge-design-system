@@ -127,6 +127,7 @@ export const useFileUpload = (props: FileUploadPropTypes, emit: SetupContext<Fil
   };
 
   const replaceFile = (event: Event,) => {
+    if ((event.target as HTMLInputElement).files?.length <= 0) return;
     if (tempFileIndex.value === null) return;
 
     fileArray.value[tempFileIndex.value] = (event.target as HTMLInputElement).files![0];

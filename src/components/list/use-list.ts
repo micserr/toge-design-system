@@ -116,11 +116,14 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   };
 
   const getListItemClasses = (item: MenuListType) => ({
-    [listClasses.value.listItemClasses]: true,
-    'spr-background-color-single-active': isItemSelected(item),
+    [listClasses.value.listItemClasses]: !item.disabled,
+    'spr-background-color-single-active': isItemSelected(item) && !item.disabled,
+    'hover:spr-cursor-not-allowed spr-flex spr-cursor-pointer spr-items-center spr-gap-1.5 spr-rounded-lg spr-p-2': item.disabled,
   });
 
   const handleSelectedItem = (item: MenuListType) => {
+    if(item.disabled) return;
+
     if (multiSelect.value) {
       const index = selectedItems.value.findIndex((selectedItem: MenuListType) => selectedItem.value === item.value);
 

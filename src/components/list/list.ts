@@ -11,6 +11,7 @@ export type MenuListType = {
   subvalue?: string;
   sublevel?: MenuListType[];
   group?: string;
+  disabled?: boolean;
 };
 
 export type GroupedMenuListType = {

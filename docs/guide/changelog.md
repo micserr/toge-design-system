@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.7.34 (2025-06-02)
+## 2.7.34 (2025-06-04)
 
 - Fix
   - Updated responsiveness of file name in preview ([#868eface](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/868efaced23c8b854d679cdbcc7149faea2ac35a?refName=refs%2Fheads%2F2025%2FEnhancement%2FPaulo%2FFileUploadEnhancements) by @jbanares)

@@ -40,7 +40,7 @@
         <div class="spr-flex spr-justify-between">
           <div class="spr-flex-auto spr-flex spr-break-all spr-overflow-hidden spr-whitespace-break-spaces spr-items-center">
             <icon v-if="!props.hideFilePreviewIcon" icon="ph:check-circle-fill" width="16px" height="16px" class="spr-text-color-brand-base spr-flex-none"/>
-            <label class="spr-body-sm-regular">{{ file.name }}</label>
+            <label class="spr-body-sm-regular">{{ file ? file.name : "" }}</label>
           </div>
           <div class="spr-flex spr-gap-size-spacing-5xs spr-items-start">
             <spr-button size="small" tone="neutral" variant="secondary" :disabled="props.disabled" @click="clickListInputFile(index)">Replace</spr-button>

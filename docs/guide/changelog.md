@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.35 (2025-06-04)
+
+- Fix
+  - Fixed issue when replacing file with a new file then cancelling it in file explorer. It causes an undefined error. ([#7e3a50c0](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7e3a50c0a01dc91c91ddba899add878bb7c50331?refName=refs%2Fheads%2F2025%2FEnhancement%2FPaulo%2FFileUploadEnhancements) by @jbanares)
+
 ## 2.7.34 (2025-06-04)
 
 - Fix

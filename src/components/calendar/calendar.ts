@@ -37,7 +37,7 @@ export interface SelectedShift {
 export const calendarPropTypes = {
   employees: {
     type: Array as PropType<Employee[]>,
-    required: true,
+    default: () => [],
   },
   initialDate: {
     type: Date,
@@ -81,6 +81,22 @@ export const calendarPropTypes = {
   selectedBranch: {
     type: String,
     default: '',
+  },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+  emptyStateTitle: {
+    type: String,
+    default: 'No List Found',
+  },
+  emptyStateDescription: {
+    type: String,
+    default: '',
+  },
+  emptyStateButtonText: {
+    type: String,
+    default: 'Add Employee',
   },
 };
 

@@ -118,10 +118,12 @@ export const useCalendar = (props: CalendarPropTypes, emit: SetupContext<Calenda
       'spr-table spr-w-full spr-table-fixed spr-border-collapse spr-border-spacing-0 spr-overflow-hidden spr-rounded-border',
     );
     const tableHeaderEmployeeName = classNames(
-      'spr-body-xs-regular-medium spr-border-x spr-border-y spr-p-size-spacing-xs spr-text-left first:spr-border-l-0',
+      'spr-body-xs-regular-medium spr-border-x spr-border-y spr-p-size-spacing-xs spr-text-left first:spr-border-l-0 spr-overflow-hidden',
     );
     const tableHeader = classNames('spr-border-x-0 spr-border-y spr-border-l spr-p-size-spacing-sm spr-text-center');
-    const headerContent = classNames('spr-flex spr-w-full spr-items-center  spr-gap-size-spacing-3xs');
+    const headerContent = classNames(
+      'spr-flex  spr-flex-row spr-w-full spr-items-center spr-gap-size-spacing-3xs lg:spr-flex-col spr-overflow-hidden',
+    );
     const headerDate = classNames(
       'spr-font-size-400 spr-line-height-500 spr-letter-spacing-dense spr-flex spr-h-size-spacing-md spr-w-size-spacing-md spr-items-center spr-justify-center spr-rounded-full spr-font-main spr-font-normal',
     );

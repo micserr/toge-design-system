@@ -102,7 +102,7 @@
                 </th>
               </tr>
             </thead>
-            <tbody class="spr-h-[100vh] spr-overflow-y-auto">
+            <tbody v-if="employees.length > 0" class="spr-overflow-y-auto">
               <tr v-for="employee in employees" :key="employee.id">
                 <td
                   :class="[
@@ -110,7 +110,7 @@
                     'spr-content-start spr-border-y spr-border-b-0 spr-border-l-0 spr-border-r spr-p-size-spacing-xs',
                   ]"
                 >
-                  <div class="spr-flex spr-flex-col spr-gap-size-spacing-3xs">
+                  <div class="spr-flex spr-flex-col spr-gap-size-spacing-3xs spr-overflow-hidden">
                     <spr-avatar
                       :src="employee.avatar"
                       :initial="employee.name"
@@ -196,10 +196,32 @@
                         onShiftClick({ employeeId: employee.id, date: formatDate(date, dateFormat), shift: null })
                       "
                     >
-                      <Icon icon="ph:plus" />
+                      <template #prefix>
+                        <Icon icon="ph:plus" />
+                      </template>
                       <div class="spr-label-xs-medium">Add New Shift</div>
                     </spr-calendar-cell>
                   </section>
+                </td>
+              </tr>
+            </tbody>
+            <tbody v-else>
+              <tr v-if="!loading" class="spr-h-full">
+                <td :colspan="weekDates.length + 1" class="spr-flex spr-h-full spr-items-center spr-justify-center">
+                  <slot name="empty-state">
+                    <SprEmptyState size="large" :description="emptyStateTitle" :sub-description="emptyStateDescription">
+                      <template v-if="emptyStateButtonText" #button>
+                        <spr-button tone="success"><Icon icon="ph:plus" />{{ emptyStateButtonText }}</spr-button>
+                      </template>
+                    </SprEmptyState>
+                  </slot>
+                </td>
+              </tr>
+              <tr v-else>
+                <td :colspan="weekDates.length + 1" class="spr-overflow-hidden">
+                  <slot name="loading">
+                    <div class="spr-flex spr-items-center spr-justify-center">Loading...</div>
+                  </slot>
                 </td>
               </tr>
             </tbody>
@@ -219,6 +241,7 @@ import SprCard from '@/components/card/card.vue';
 import SprDropdown from '@/components/dropdown/dropdown.vue';
 import SprLozenge from '@/components/lozenge/lozenge.vue';
 import SprCalendarCell from '@/components/calendar-cell/calendar-cell.vue';
+import SprEmptyState from '@/components/empty-state/empty-state.vue';
 import { calendarPropTypes, calendarEmitTypes } from './calendar';
 
 const props = defineProps(calendarPropTypes);

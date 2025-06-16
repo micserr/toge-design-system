@@ -177,6 +177,16 @@ const branchOptions = [
   </template>
   ```
 
+### `loading`
+
+- **Description:** Slot for customizing the filter section.
+- **Example:**
+  ```vue
+  <template #loading>
+    <div>loading</div>
+  </template>
+  ```
+
 ---
 
 ## API Reference
@@ -252,6 +262,30 @@ const branchOptions = [
       <td><code>String</code></td>
       <td><code>''</code></td>
       <td>The currently selected branch filter.</td>
+    </tr>
+    <tr>
+      <td><code>emptyStateTitle</code></td>
+      <td><code>''</code></td>
+      <td><code>-</code></td>
+      <td>The title text displayed when the calendar has no events or data to show.</td>
+    </tr>
+    <tr>
+      <td><code>emptyStateButtonText</code></td>
+      <td><code>string</code></td>
+      <td><code>-</code></td>
+      <td>The text displayed on the action button in the empty state, prompting the user to take an action (e.g., "Add Event").</td>
+    </tr>
+    <tr>
+      <td><code>emptyStateDescription</code></td>
+      <td><code>string</code></td>
+      <td>-</td>
+      <td>The text displayed description for empty state</td>
+    </tr>
+    <tr>
+      <td><code>Loading</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>Displays a loading state for the calendar, typically shown as a spinner or skeleton while data is being fetched.</td>
     </tr>
   </tbody>
 </table>

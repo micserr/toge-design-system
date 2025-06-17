@@ -36,7 +36,66 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
 
   // #region - Helper Methods
   const isItemSelected = (item: MenuListType) => {
-    return selectedItems.value.some((selectedItem) => selectedItem.text === item.text);
+    // First check standard selection via the selectedItems array
+    const directSelected = selectedItems.value.some((selectedItem) => {
+      // Compare both text and value properties to handle different value types
+      if (selectedItem.text === item.text) return true;
+      
+      // Ensure comparison works for both string and number values
+      const selectedItemValue = selectedItem.value;
+      const itemValue = item.value;
+      
+      // For primitives, use string comparison to handle number-string comparison properly
+      if (typeof selectedItemValue !== 'object' && typeof itemValue !== 'object') {
+        return String(selectedItemValue) === String(itemValue);
+      }
+      
+      // For objects, use JSON.stringify for comparison (will match for equality)
+      if (typeof selectedItemValue === 'object' && selectedItemValue !== null &&
+          typeof itemValue === 'object' && itemValue !== null) {
+        return JSON.stringify(selectedItemValue) === JSON.stringify(itemValue);
+      }
+      
+      return false;
+    });
+    
+    if (directSelected) return true;
+    
+    // Additional check for objects stored in _originalObject property
+    if ('_originalObject' in item && item._originalObject && preSelectedItems.value?.length) {
+      return preSelectedItems.value.some(preSelectedValue => {
+        // Direct reference comparison (most accurate)
+        if (preSelectedValue === item._originalObject) {
+          return true;
+        }
+        
+        // If both are objects, compare their serialized forms
+        if (typeof preSelectedValue === 'object' && preSelectedValue !== null) {
+          const originalObj = item._originalObject as Record<string, unknown>;
+          
+          if (typeof originalObj === 'object') {
+            // First try comparing by ID for more reliable object comparison
+            if ('id' in preSelectedValue && 'id' in originalObj) {
+              return preSelectedValue.id === originalObj.id;
+            }
+            
+            // Fallback to full object comparison
+            const valString = JSON.stringify(preSelectedValue);
+            const itemString = JSON.stringify(originalObj);
+            return valString === itemString;
+          }
+          
+          // If object has an id field, check if it matches with the item value
+          if ('id' in preSelectedValue) {
+            return String(item.value).includes(String(preSelectedValue.id));
+          }
+        }
+        
+        return false;
+      });
+    }
+    
+    return false;
   };
 
   const setMenuList = () => {
@@ -96,9 +155,57 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     if (!preSelectedItems.value?.length) return;
 
     const selected = preSelectedItems.value
-      .map((preSelectedItem: string) =>
-        localizedMenuList.value.find((menuItem) => String(menuItem.value) === String(preSelectedItem)),
-      )
+      .map((preSelectedItem: string | number | Record<string, unknown>) => {
+        // For objects, check for matching _originalObject properties
+        if (typeof preSelectedItem === 'object' && preSelectedItem !== null) {
+          // Try to find an item with a matching _originalObject
+          const objectMatch = localizedMenuList.value.find(menuItem => {
+            if (!menuItem._originalObject) return false;
+            
+            // Compare serialized versions for deep equality
+            return JSON.stringify(menuItem._originalObject) === JSON.stringify(preSelectedItem);
+          });
+          
+          if (objectMatch) return objectMatch;
+          
+          // If no direct object match, try matching on ID if both have it
+          if ('id' in preSelectedItem) {
+            const idMatch = localizedMenuList.value.find(menuItem => {
+              if (menuItem._originalObject && 'id' in menuItem._originalObject) {
+                return menuItem._originalObject.id === preSelectedItem.id;
+              }
+              // Also check if the value field contains a stringified version that includes the id
+              return String(menuItem.value).includes(String(preSelectedItem.id));
+            });
+            
+            if (idMatch) return idMatch;
+          }
+        }
+        
+        // First try direct value comparison (for exact matches)
+        const directMatch = localizedMenuList.value.find(
+          (menuItem) => menuItem.value === preSelectedItem
+        );
+        if (directMatch) return directMatch;
+        
+        // Special handling for number values in the preSelectedItems array
+        if (typeof preSelectedItem === 'number') {
+          // Find items that match the number value either directly or as a string
+          const numericMatch = localizedMenuList.value.find(
+            (menuItem) => 
+              // Match if menuItem.value is the same number
+              (typeof menuItem.value === 'number' && menuItem.value === preSelectedItem) ||
+              // Match if menuItem.value is a string representation of the number
+              (typeof menuItem.value === 'string' && menuItem.value === String(preSelectedItem))
+          );
+          if (numericMatch) return numericMatch;
+        }
+        
+        // Then try string comparison for cases where types differ (string vs number)
+        return localizedMenuList.value.find(
+          (menuItem) => String(menuItem.value) === String(preSelectedItem)
+        );
+      })
       .filter(Boolean) as MenuListType[];
 
     if (multiSelect.value) {
@@ -108,7 +215,11 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
 
       if (
         firstItem &&
-        !selectedItems.value.some((selectedItem) => String(selectedItem.value) === String(firstItem.value))
+        !selectedItems.value.some((selectedItem) => {
+          // Use the same comparison logic as in isItemSelected
+          if (selectedItem.text === firstItem.text) return true;
+          return String(selectedItem.value) === String(firstItem.value);
+        })
       ) {
         selectedItems.value = [firstItem];
       }
@@ -125,17 +236,57 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     if(item.disabled) return;
 
     if (multiSelect.value) {
-      const index = selectedItems.value.findIndex((selectedItem: MenuListType) => selectedItem.value === item.value);
+      // For multi-select, check if item is already selected
+      const index = selectedItems.value.findIndex((selectedItem: MenuListType) => {
+        // Compare text values first for simple match
+        if (selectedItem.text === item.text) return true;
+        
+        // Compare primitive values with string conversion for compatibility
+        if (typeof selectedItem.value !== 'object' && typeof item.value !== 'object') {
+          return String(selectedItem.value) === String(item.value);
+        }
+        
+        // For objects, compare their JSON string representations
+        if (typeof selectedItem.value === 'object' && selectedItem.value !== null &&
+            typeof item.value === 'object' && item.value !== null) {
+          return JSON.stringify(selectedItem.value) === JSON.stringify(item.value);
+        }
+        
+        // Compare _originalObject if available (most reliable for complex objects)
+        if ('_originalObject' in selectedItem && selectedItem._originalObject && 
+            '_originalObject' in item && item._originalObject) {
+          
+          // Direct reference equality check (fastest)
+          if (selectedItem._originalObject === item._originalObject) {
+            return true;
+          }
+          
+          // ID-based comparison (reliable for objects with IDs)
+          const selectedObj = selectedItem._originalObject as Record<string, unknown>;
+          const itemObj = item._originalObject as Record<string, unknown>;
+          
+          if ('id' in selectedObj && 'id' in itemObj) {
+            return selectedObj.id === itemObj.id;
+          }
+          
+          // Full JSON comparison (most comprehensive but slower)
+          return JSON.stringify(selectedItem._originalObject) === JSON.stringify(item._originalObject);
+        }
+        
+        return false;
+      });
 
       if (index === -1) {
+        // Add item if not already selected
         selectedItems.value = [...selectedItems.value, item];
       } else {
+        // Remove item if already selected
         const updatedItems = [...selectedItems.value];
-
         updatedItems.splice(index, 1);
         selectedItems.value = updatedItems;
       }
     } else {
+      // For single-select, simply replace the selection
       selectedItems.value = [item];
     }
   };

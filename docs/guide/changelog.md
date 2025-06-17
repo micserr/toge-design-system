@@ -1,4 +1,14 @@
 # Changelog
+## 2.7.36 (2025-06-16)
+
+- Enhancement
+  - Dropdown component improvements for object values:
+    - Fixed single object selection to properly close dropdown after selection
+    - Fixed checkbox behavior in multi-selection mode with object values
+    - Enhanced object comparison for better selection state tracking
+    - Improved documentation for supported value types in dropdown component
+    - Added comprehensive examples for object value handling
+    ([#4a5784fe](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4a5784fe93a55f1e53246f8f359f7e33dcd277c1?refName=refs%2Fheads%2F2025%2FFEATURE%2FBEN%2FDROPDOWN) by @bsolis)
 
 ## 2.7.36 (2025-06-16)
 

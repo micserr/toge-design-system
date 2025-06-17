@@ -127,6 +127,71 @@ const handleSelectedItem = (selectedItem) => {
 </script>
 ```
 
+## Multiple Number Values
+
+The dropdown component fully supports arrays of number values in multi-select mode, preserving the numeric type throughout the selection process.
+
+<div>
+  <dropdown-number-multi-select />
+</div>
+
+```vue
+<template>
+  <spr-dropdown
+    id="number-multi-dropdown"
+    v-model="selectedNumbers"
+    :menu-list="numberOptions"
+    multi-select
+    @update:model-value="handleSelectedItems"
+  >
+    <spr-input
+      v-model="displayText"
+      label="Select Numbers"
+      readonly
+      placeholder="Select numbers..."
+    />
+  </spr-dropdown>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+// Define number options with numeric values
+const numberOptions = [
+  { text: 'One', value: 1 },
+  { text: 'Two', value: 2 },
+  { text: 'Three', value: 3 },
+  { text: 'Four', value: 4 },
+  { text: 'Five', value: 5 }
+];
+
+// Initialize with preselected values
+const selectedNumbers = ref([1, 3]); // Selected "One" and "Three"
+const displayText = ref('One, Three');
+
+// Handle selected items
+const handleSelectedItems = (items) => {
+  // Numbers are preserved in the items array
+  const selectedTexts = items.map(value => {
+    const option = numberOptions.find(opt => opt.value === value);
+    return option ? option.text : '';
+  }).filter(Boolean).join(', ');
+  
+  // Update display text
+  displayText.value = selectedTexts;
+};
+</script>
+```
+
+### Key Points About Number Value Support
+
+1. **Value Type Preservation**: Number values remain as numbers in the v-model
+2. **Type-Safe Comparison**: Both direct number comparison and string representation comparison are supported
+3. **Pre-Selected Values**: You can pre-select number values using an array of numbers
+4. **Mixed Types**: While supported, we recommend using consistent types (all strings or all numbers) for better maintainability
+
+For more details and advanced examples, see [Dropdown Number Multi-Select Example](/documentation/examples/dropdown-number-multi-select).
+
 ## Grouped Items By
 
 You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-items-by` prop and specifying the desired grouping type. See [List: Grouped Items](./list#grouped-items) for more examples.
@@ -885,9 +950,9 @@ const getGhibliFilms = async () => {
 
     const options = await response.json();
 
-    menuList.value = options.length
+    paginatedMenuList.value = options.length
       ? [
-          ...(menuList.value || []),
+          ...(paginatedMenuList.value || []),
           ...options.map((option: { id: string; original_title_romanised: string }) => ({
             text: option.original_title_romanised,
             value: option.id.replace(/\s+/g, ''),
@@ -1171,6 +1236,304 @@ This is only applicable to selected components, such as form input fields. You c
 
 To disable the popper from showing when the wrapper is clicked, pass the disabled prop.
 
+## Supported Value Types
+
+The dropdown component supports various types of values for both single and multi-selection. The `v-model` binding can accept different data formats depending on your needs.
+
+### Single Primitive Values
+
+For single selection of primitive types like strings or numbers:
+
+<div>
+  <spr-dropdown
+    id="dropdown-number"
+    v-model="stringValue"
+    :menu-list="stringMenuList"
+    @update:model-value="handleStringSelection"
+  >
+    <spr-input v-model="stringDisplay" label="String Selection" readonly placeholder="Select a fruit..." />
+  </spr-dropdown>
+</div>
+
+Value: {{ stringValue }}
+
+<div>
+  <spr-dropdown
+    id="number-dropdown"
+    v-model="numberValue"
+    :menu-list="numberMenuList"
+    @update:model-value="handleNumberSelection"
+  >
+    <spr-input v-model="numberDisplay" label="Number Selection" readonly placeholder="Select a number..." />
+  </spr-dropdown>
+</div>
+
+Value: {{ numberValue }}
+
+```vue
+<template>
+  <spr-dropdown
+    id="string-dropdown"
+    v-model="stringValue"
+    :menu-list="stringMenuList"
+    @update:model-value="handleStringSelection"
+  >
+    <spr-input v-model="stringDisplay" label="String Selection" readonly placeholder="Select a fruit..." />
+  </spr-dropdown>
+
+  <spr-dropdown
+    id="number-dropdown"
+    v-model="numberValue"
+    :menu-list="numberMenuList"
+    @update:model-value="handleNumberSelection"
+  >
+    <spr-input v-model="numberDisplay" label="Number Selection" readonly placeholder="Select a number..." />
+  </spr-dropdown>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+// For string values
+const stringValue = ref('apple');  // Single string value
+const stringDisplay = ref('Apple');
+
+// For number values
+const numberValue = ref(42);  // Single number value
+const numberDisplay = ref('42');
+
+const stringMenuList = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' }
+]);
+
+const numberMenuList = ref([
+  { text: '42', value: 42 },
+  { text: '100', value: 100 },
+  { text: '200', value: 200 }
+]);
+
+const handleStringSelection = () => {
+  const selected = stringMenuList.value.find(item => item.value === stringValue.value);
+  stringDisplay.value = selected ? selected.text : '';
+};
+
+const handleNumberSelection = () => {
+  const selected = numberMenuList.value.find(item => item.value === numberValue.value);
+  numberDisplay.value = selected ? selected.text : '';
+};
+</script>
+```
+
+### Single Object Values
+
+For single selection of full objects:
+
+<div>
+  <spr-dropdown
+    id="object-dropdown"
+    v-model="selectedUser"
+    :menu-list="userList"
+    text-field="name"
+    value-field="id"
+    @update:model-value="handleUserSelection"
+  >
+    <spr-input v-model="userDisplay" label="User Selection" readonly placeholder="Select a user..." />
+  </spr-dropdown>
+</div>
+
+Value: {{ selectedUser }}
+
+```vue
+<template>
+  <spr-dropdown
+    id="object-dropdown"
+    v-model="selectedUser"
+    :menu-list="userList"
+    text-field="name"      <!-- Specify which field to display as text -->
+    value-field="id"       <!-- Specify which field to use as value -->
+    @update:model-value="handleUserSelection"
+  >
+    <spr-input v-model="userDisplay" label="User Selection" readonly placeholder="Select a user..." />
+  </spr-dropdown>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+// Object selection using full object reference
+const selectedUser = ref({ id: 1, name: 'John', role: 'Developer' });
+const userDisplay = ref('John');
+
+const userList = ref([
+  { id: 1, name: 'John', role: 'Developer' },
+  { id: 2, name: 'Jane', role: 'Designer' },
+  { id: 3, name: 'Bob', role: 'Manager' }
+]);
+
+const handleUserSelection = () => {
+  // When using full objects, the display value should be updated
+  userDisplay.value = selectedUser.value.name;
+};
+</script>
+```
+
+### Multiple Primitive Values
+
+For multi-selection of primitive types like strings or numbers:
+
+<div>
+  <spr-dropdown
+    id="multi-string-dropdown"
+    v-model="selectedFruits"
+    :menu-list="fruitList"
+    multi-select
+    @update:model-value="handleFruitsSelection"
+  >
+    <spr-input v-model="fruitsDisplay" label="Fruits Selection" readonly placeholder="Select fruits..." />
+  </spr-dropdown>
+
+  Value: {{ selectedFruits }} (Fruits)
+</div>
+<div>
+  <spr-dropdown
+    id="multi-number-dropdown"
+    v-model="selectedNumbers"
+    :menu-list="numbersList"
+    multi-select
+    @update:model-value="handleNumbersSelection"
+  >
+    <spr-input v-model="numbersDisplay" label="Numbers Selection" readonly placeholder="Select numbers..." />
+  </spr-dropdown>
+
+  Value: {{ selectedNumbers }} (Numbers)
+</div>
+
+```vue
+<template>
+  <spr-dropdown
+    id="multi-string-dropdown"
+    v-model="selectedFruits"
+    :menu-list="fruitList"
+    multi-select
+    @update:model-value="handleFruitsSelection"
+  >
+    <spr-input v-model="fruitsDisplay" label="Fruits Selection" readonly placeholder="Select fruits..." />
+  </spr-dropdown>
+
+  <spr-dropdown
+    id="multi-number-dropdown"
+    v-model="selectedNumbers"
+    :menu-list="numbersList"
+    multi-select
+    @update:model-value="handleNumbersSelection"
+  >
+    <spr-input v-model="numbersDisplay" label="Numbers Selection" readonly placeholder="Select numbers..." />
+  </spr-dropdown>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+// Multiple string values
+const selectedFruits = ref(['apple', 'banana']);  // Array of strings
+const fruitsDisplay = ref('Apple, Banana');
+
+// Multiple number values
+const selectedNumbers = ref([1, 2, 3]);  // Array of numbers
+const numbersDisplay = ref('1, 2, 3');
+
+const fruitList = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+]);
+
+const numbersList = ref([
+  { text: '1', value: 1 },
+  { text: '2', value: 2 },
+  { text: '3', value: 3 },
+  { text: '4', value: 4 },
+]);
+
+const handleFruitsSelection = () => {
+  const selectedTexts = selectedFruits.value.map(value => {
+    const item = fruitList.value.find(fruit => fruit.value === value);
+    return item ? item.text : '';
+  });
+  fruitsDisplay.value = selectedTexts.filter(Boolean).join(', ');
+};
+
+const handleNumbersSelection = () => {
+  const selectedTexts = selectedNumbers.value.map(value => {
+    const item = numbersList.value.find(num => num.value === value);
+    return item ? item.text : '';
+  });
+  numbersDisplay.value = selectedTexts.filter(Boolean).join(', ');
+};
+</script>
+```
+
+### Multiple Object Values
+
+For multi-selection of full objects:
+
+<div>
+  <spr-dropdown
+    id="multi-object-dropdown"
+    v-model="selectedUsers"
+    :menu-list="usersList"
+    text-field="name"
+    value-field="id"
+    multi-select
+    @update:model-value="handleUsersSelection"
+  >
+    <spr-input v-model="usersDisplay" label="Team Members" readonly placeholder="Select team members..." />
+  </spr-dropdown>
+</div>
+
+```vue
+<template>
+  <spr-dropdown
+    id="multi-object-dropdown"
+    v-model="selectedUsers"
+    :menu-list="usersList"
+    text-field="name"
+    value-field="id"
+    multi-select
+    @update:model-value="handleUsersSelection"
+  >
+    <spr-input v-model="usersDisplay" label="Team Members" readonly placeholder="Select team members..." />
+  </spr-dropdown>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+// Multiple object values
+const selectedUsers = ref([
+  { id: 1, name: 'John', role: 'Developer' },
+  { id: 2, name: 'Jane', role: 'Designer' }
+]);
+const usersDisplay = ref('John, Jane');
+
+const usersList = ref([
+  { id: 1, name: 'John', role: 'Developer' },
+  { id: 2, name: 'Jane', role: 'Designer' },
+  { id: 3, name: 'Bob', role: 'Manager' },
+  { id: 4, name: 'Alice', role: 'Product Owner' }
+]);
+
+const handleUsersSelection = () => {
+  // When using full objects, extract the display names
+  const names = selectedUsers.value.map(user => user.name);
+  usersDisplay.value = names.join(', ');
+};
+</script>
+```
+
 ## API Reference
 
 <table>
@@ -1191,8 +1554,16 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
     </tr>
     <tr>
       <td>v-model</td>
-      <td>List of strings representing the `value`</td>
-      <td>Array</td>
+      <td>Value binding for the dropdown. Accepts:<br>
+        <ul>
+          <li><b>Single primitive values:</b> String ('apple'), Number (42)</li>
+          <li><b>Single object values:</b> Full objects ({ id: 1, name: 'John' })</li>
+          <li><b>Multiple primitive values:</b> Array of strings (['apple', 'banana']), Array of numbers ([1, 2, 3])</li>
+          <li><b>Multiple object values:</b> Array of objects ([{ id: 1, name: 'John' }, { id: 2, name: 'Jane' }])</li>
+        </ul>
+        The returned value type will match the input type (preserving strings, numbers, and objects).
+      </td>
+      <td>String | Number | Object | Array</td>
       <td>[]</td>
     </tr>
     <tr>
@@ -1287,6 +1658,10 @@ import SprChips from "@/components/chips/chips.vue";
 import SprLozenge from "@/components/lozenge/lozenge.vue"
 import SprModal from "@/components/modal/modal.vue"
 import SprLogo from "@/components/logo/logo.vue";
+import DropdownNumberMultiSelect from "@/examples/dropdown-number-multi-select.vue";
+
+// Import MenuListType for typing
+import type { MenuListType } from '@/components/list/list';
 
 const menuList = ref([
   { text: 'Apple', value: 'apple' },
@@ -1470,6 +1845,36 @@ const inputTextModel = ref({
   inputText28: "",
 });
 
+// For string values
+const stringValue = ref('apple');  // Single string value
+const stringDisplay = ref('Apple');
+
+// For number values
+const numberValue = ref(42);  // Single number value
+const numberDisplay = ref('42');
+
+const stringMenuList = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' }
+]);
+
+const numberMenuList = ref([
+  { text: '42', value: 42 },
+  { text: '100', value: 100 },
+  { text: '200', value: 200 }
+]);
+
+const handleStringSelection = () => {
+  const selected = stringMenuList.value.find(item => item.value === stringValue.value);
+  stringDisplay.value = selected ? selected.text : '';
+};
+
+const handleNumberSelection = () => {
+  const selected = numberMenuList.value.find(item => item.value === numberValue.value);
+  numberDisplay.value = selected ? selected.text : '';
+};
+
 onMounted(() => {
   handleSelectedItem(dropdownModel.value.dropdown5, 'single', 'inputText5');
   handleSelectedItem(dropdownModel.value.dropdown6, 'multi', 'inputText6');
@@ -1479,11 +1884,18 @@ const modalModel = ref(false);
 
 const handleSelectedItem = (selectedItem, dropdownType, inputModel) => {
   if (dropdownType === 'single') {
-    inputTextModel.value[inputModel] = menuList.value.find(item => item.value === selectedItem[0]).text;
+    // Properly handle single value selections regardless of format
+    const value = Array.isArray(selectedItem) ? selectedItem[0] : selectedItem;
+    const selected = menuList.value.find(item => item.value === value);
+    inputTextModel.value[inputModel] = selected ? selected.text : '';
   }
 
   if (dropdownType === 'multi') {
-    const selectedTexts = selectedItem.map(item => menuList.value.find(menuItem => menuItem.value === item).text).join(', ');
+    // Handle multi-select properly ensuring we look up each value
+    const selectedTexts = selectedItem.map(item => {
+      const menuItem = menuList.value.find(menuItem => menuItem.value === item);
+      return menuItem ? menuItem.text : '';
+    }).filter(Boolean).join(', ');
 
     inputTextModel.value[inputModel] = selectedTexts;
   }
@@ -1491,17 +1903,25 @@ const handleSelectedItem = (selectedItem, dropdownType, inputModel) => {
 
 const APIisLoading = ref(false);
 
+// Define pagination object for infinite scroll example
 const pagination = ref({
   totalpages: 10,
   currentPage: 1,
 });
 
+/**
+ * Handler for infinite scroll trigger
+ * This is called when the user scrolls to the bottom of the dropdown list
+ */
 const handleInfiniteScrollTrigger = () => {
-  if (pagination.value.currentPage === pagination.value.totalpages || APIisLoading.value ) return;
+  // Don't load more if we're already at the last page or loading
+  if (pagination.value.currentPage === pagination.value.totalpages || APIisLoading.value) return;
 
-  APIisLoading.value = true
+  // Set loading state and increment page
+  APIisLoading.value = true;
   pagination.value.currentPage += 1;
 
+  // Fetch more data
   getGhibliFilms();
 }
 
@@ -1517,7 +1937,7 @@ const getGhibliFilms = async () => {
 
     paginatedMenuList.value = options.length
       ? [
-           ...(paginatedMenuList.value || []),
+          ...(paginatedMenuList.value || []),
           ...options.map((option: { id: string; original_title_romanised: string }) => ({
             text: option.original_title_romanised,
             value: option.id.replace(/\s+/g, ''),
@@ -1525,7 +1945,7 @@ const getGhibliFilms = async () => {
         ]
       : [];
 
-      APIisLoading.value = false
+    APIisLoading.value = false;
     
   } catch (error) {
     console.error('There was a problem with the fetch operation:', error);
@@ -1536,17 +1956,96 @@ const handleLadderizedDropdown = (value) => {
   let tempValue: string[] = [];
   let tempMenuList: MenuListType[] = mockDropdownData;
 
+  // For ladderized dropdown, we iterate through the value path array
   value.forEach((item) => {
     const activeItem = tempMenuList.find((listItem) => item === listItem.value);
 
     if (activeItem) { 
       tempValue.push(activeItem.text);
+      // Move to the sublevel for the next iteration if it exists
       if (activeItem.sublevel) {
         tempMenuList = activeItem.sublevel;
       }
     }
   });
 
-  inputTextModel.value.inputText28 = tempValue.join(", ");
+  // Update the input display text with the path representation
+  inputTextModel.value.inputText28 = tempValue.join(" > ");
+};
+
+// Object selection using full object reference
+const selectedUser = ref({ id: 1, name: 'John', role: 'Developer' });
+const userDisplay = ref('John');
+
+const userList = ref([
+  { id: 1, name: 'John', role: 'Developer' },
+  { id: 2, name: 'Jane', role: 'Designer' },
+  { id: 3, name: 'Bob', role: 'Manager' }
+]);
+
+
+// Multiple string values
+const selectedFruits = ref(['apple', 'banana']);  // Array of strings
+const fruitsDisplay = ref('Apple, Banana');
+
+// Multiple number values
+const selectedNumbers = ref([1, 2, 3]);  // Array of numbers
+const numbersDisplay = ref('1, 2, 3');
+
+const fruitList = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+]);
+
+const numbersList = ref([
+  { text: '1', value: 1 },
+  { text: '2', value: 2 },
+  { text: '3', value: 3 },
+  { text: '4', value: 4 },
+]);
+
+const handleFruitsSelection = () => {
+  const selectedTexts = selectedFruits.value.map(value => {
+    const item = fruitList.value.find(fruit => fruit.value === value);
+    return item ? item.text : '';
+  });
+  fruitsDisplay.value = selectedTexts.filter(Boolean).join(', ');
+};
+
+const handleNumbersSelection = () => {
+  const selectedTexts = selectedNumbers.value.map(value => {
+    const item = numbersList.value.find(num => num.value === value);
+    return item ? item.text : '';
+  });
+  numbersDisplay.value = selectedTexts.filter(Boolean).join(', ');
+};
+
+const handleUserSelection = () => {
+  // When using full objects, the display value should be updated
+  userDisplay.value = selectedUser.value.name;
+};
+
+// Multiple object values
+const selectedUsers = ref([
+  { id: 1, name: 'John', role: 'Developer' },
+  { id: 2, name: 'Jane', role: 'Designer' }
+]);
+const usersDisplay = ref('John, Jane');
+
+const usersList = ref([
+  { id: 1, name: 'John', role: 'Developer' },
+  { id: 2, name: 'Jane', role: 'Designer' },
+  { id: 3, name: 'Bob', role: 'Manager' },
+  { id: 4, name: 'Alice', role: 'Product Owner' }
+]);
+
+const handleUsersSelection = () => {
+  console.log('Selected Users:', selectedUsers.value);
+  // When using full objects, extract the display names
+  const names = selectedUsers.value.map(user => user.name);
+  usersDisplay.value = names.join(', ');
 };
 </script>
+

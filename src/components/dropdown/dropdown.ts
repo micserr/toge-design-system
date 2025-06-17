@@ -31,13 +31,23 @@ export const dropdownPropTypes = {
     required: true,
   },
   modelValue: {
-    type: Array as PropType<string[]>,
+    type: [String, Number, Object, Array] as PropType<string | number | Record<string, unknown> | (string | number | Record<string, unknown>)[]>,
     default: () => [],
   },
   menuList: {
-    type: Array as PropType<MenuListType[]>,
+    type: Array as PropType<MenuListType[] | string[] | Record<string, unknown>[]>,
     required: true,
     default: [],
+  },
+  textField: {
+    type: String,
+    default: 'text',
+    description: 'Field name to use for display text when using dynamic object arrays',
+  },
+  valueField: {
+    type: String,
+    default: 'value',
+    description: 'Field name to use for value when using dynamic object arrays',
   },
   searchString: {
     type: String,
@@ -91,7 +101,8 @@ export const dropdownPropTypes = {
 
 export const dropdownEmitTypes = {
   'infinite-scroll-trigger': Boolean,
-  'update:modelValue': (value: string[]) => value,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  'update:modelValue': (_value: unknown) => true, // Accept any type of value
 };
 
 export type DropdownPropTypes = ExtractPropTypes<typeof dropdownPropTypes>;

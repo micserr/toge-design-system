@@ -7,11 +7,12 @@ const GROUPED_ITEMS_BY_TYPES = ['A-Z', 'Z-A', 'default'] as const;
 export type MenuListType = {
   text: string;
   subtext?: string;
-  value: string;
+  value: string | number;  // Allow both string and number values
   subvalue?: string;
   sublevel?: MenuListType[];
   group?: string;
   disabled?: boolean;
+  _originalObject?: Record<string, unknown>;  // Store original object reference when mapping complex objects
 };
 
 export type GroupedMenuListType = {
@@ -40,8 +41,8 @@ export const listPropTypes = {
     default: false,
   },
   preSelectedItems: {
-    type: Array as PropType<string[]>,
-    default: [],
+    type: Array as PropType<(string | number | Record<string, unknown>)[]>,
+    default: () => [],
   },
   ladderized: {
     type: Boolean,

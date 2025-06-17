@@ -144,11 +144,6 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     emit('infiniteScrollTrigger', true);
   };
 
-  watch(loading, () => {
-    if (loading.value) return;
-    getMappedMenuOptionList();
-  });
-
   watch(selectedColumn, (_value) => {
     setFilterVisible(_value);
   });
@@ -222,7 +217,9 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     const PopperContentClasses = classNames(
       'spr-flex spr-w-[328px] spr-flex-wrap spr-gap-size-spacing-2xs spr-p-size-spacing-xs',
     );
-    const LoadingStateClasses = classNames('spr-p-size-spacing-sm spr-flex spr-items-center spr-justify-center');
+    const LoadingStateClasses = classNames(
+      'spr-h-[264px] spr-p-size-spacing-sm spr-flex spr-items-center spr-justify-center',
+    );
     const ActionButtonClasses = classNames('spr-flex spr-justify-end spr-gap-2 spr-p-size-spacing-2xs');
     const filterListClasses = classNames(
       'spr-body-xs-regular spr-flex spr-cursor-pointer spr-justify-between spr-rounded-border-radius-md spr-p-size-spacing-4xs',

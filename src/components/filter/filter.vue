@@ -77,7 +77,7 @@
                     :key="menu.field"
                     v-model:shown="mappedFilterMenuList[menu.field].isFilterVisible"
                     aria-id="filter-menu-wrapper"
-                    placement="right-start"
+                    placement="right"
                     :triggers="['click']"
                     :auto-hide="false"
                   >
@@ -118,7 +118,7 @@
 
                         <div
                           v-if="getSelectedFilterMenuOption.length > 0"
-                          class="spr-space-x-2 spr-space-y-2 spr-p-size-spacing-2xs"
+                          class="spr-h-[70px] spr-space-x-2 spr-space-y-2 spr-overflow-auto spr-p-size-spacing-2xs"
                         >
                           <spr-chips
                             v-for="(FilterMenuOption, i) in getSelectedFilterMenuOption"
@@ -133,7 +133,7 @@
                           v-if="getFiltereredMenuOption.length > 0"
                           :id="menu.field"
                           ref="filterMenuOptionList"
-                          class="spr-max-h-[264px] spr-space-y-size-spacing-6xs spr-overflow-auto spr-p-size-spacing-2xs"
+                          class="spr-h-[264px] spr-space-y-size-spacing-6xs spr-overflow-auto spr-p-size-spacing-2xs"
                         >
                           <div
                             v-for="(option, key) in getFiltereredMenuOption"

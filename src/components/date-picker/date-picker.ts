@@ -101,6 +101,11 @@ export const datePickerPropTypes = {
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
     default: 'bottom',
   },
+  format: {
+    type: String,
+    default: 'MM-DD-YYYY',
+    description: 'Format for the selected date. For example: MM/DD/YYYY, YYYY-MM-DD, etc.',
+  },
 };
 
 export type RestDayType = (typeof REST_DAYS_TYPES)[number];

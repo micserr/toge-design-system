@@ -20,6 +20,9 @@ import { ref } from 'vue';
 
 const datePickerModel = ref('');
 </script>
+
+<!-- Note: As of v2.7.31, today's date will be displayed in white text when selected instead of the brand color -->
+</script>
 ```
 
 ## Adding Label
@@ -56,6 +59,70 @@ You can manually set the width of the date picker by passing the `width` prop.
 ```vue
 <template>
   <spr-date-picker id="datepicker" v-model="datePickerModel" label="Date Picker" width="400px" display-helper />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const datePickerModel = ref('');
+</script>
+```
+
+## Date Format
+
+You can specify the format of the date by passing the `format` prop. The default format is `MM-DD-YYYY`. The component will return dates in the specified format.
+
+<div>
+  <spr-date-picker 
+    :id="datePickerId.date28" 
+    class="[&>p]:spr-m-0" 
+    v-model="datePickerModel.date28" 
+    label="Date with YYYY-MM-DD format" 
+    format="YYYY-MM-DD" 
+    display-helper
+  />
+</div>
+
+Value: <code>{{ datePickerModel.date28 }}</code>
+```vue
+<template>
+  <spr-date-picker 
+    id="datepicker" 
+    v-model="datePickerModel" 
+    label="Date with YYYY-MM-DD format" 
+    format="YYYY-MM-DD" 
+    display-helper 
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const datePickerModel = ref('');
+</script>
+```
+
+<div class="spr-mt-3">
+  <spr-date-picker 
+    :id="datePickerId.date29" 
+    class="[&>p]:spr-m-0" 
+    v-model="datePickerModel.date29" 
+    label="Date with MM/DD/YYYY format" 
+    format="MM/DD/YYYY" 
+    display-helper
+  />
+</div>
+Value: <code>{{ datePickerModel.date29 }}</code>
+
+```vue
+<template>
+  <spr-date-picker 
+    id="datepicker" 
+    v-model="datePickerModel" 
+    label="Date with MM/DD/YYYY format" 
+    format="MM/DD/YYYY" 
+    display-helper 
+  />
 </template>
 
 <script lang="ts" setup>
@@ -962,6 +1029,12 @@ const datePickerModel = ref('');
       <td>Sets the width of the input</td>
       <td>String</td>
       <td>400px</td>
+    </tr>
+    <tr>
+      <td>format</td>
+      <td>Format for the selected date (e.g., 'MM-DD-YYYY', 'YYYY-MM-DD', 'MM/DD/YYYY')</td>
+      <td>String</td>
+      <td>MM-DD-YYYY</td>
     </tr>
     <tr>
       <td>disabled</td>

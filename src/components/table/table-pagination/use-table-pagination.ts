@@ -59,7 +59,7 @@ export const useTablePagination = (
   });
 
   const handleSelectedItem = (item: string[]) => {
-    emit('update:selectedRowCount', Number(item[0]));
+    emit('update:selectedRowCount', Number(item));
   };
 
   const previous = () => {

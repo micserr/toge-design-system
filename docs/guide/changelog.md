@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.7.40 (2025-06-19)
+
+- Fix
+  - Fix NaN issue on Table Pagination when using `selectedRowCount` prop with a number value.
+  
+  ([#dccc8046](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dccc80460cb2bc7e6c70d7422d8ca197ffc3a429?refName=refs%2Fheads%2F2025%2FFIX%2FTABLE-PAGINATION-DROPDOWN) by @bsolis)
+
 ## 2.7.39 (2025-06-19)
 
 - Feat

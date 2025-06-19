@@ -29,7 +29,7 @@ interface MonthsList {
 }
 
 export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<DatePickerEmitTypes>['emit']) => {
-  const { active, disabled, readonly, error, currentYear, minMaxYear, restDays, disabledDates } = toRefs(props);
+  const { active, disabled, readonly, error, currentYear, minMaxYear, restDays, disabledDates, format } = toRefs(props);
 
   const modelValue = useVModel(props, 'modelValue', emit);
 
@@ -450,7 +450,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   };
 
   const calendarTabHandleDateInput = (day: { date: Date }) => {
-    const selectedDate = dayjs(day.date, 'MM-DD-YYYY');
+    const selectedDate = dayjs(day.date);
 
     const formattedMonth = selectedDate.format('MM');
     const formattedDate = selectedDate.format('DD');
@@ -459,6 +459,9 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     monthInput.value = formattedMonth;
     dateInput.value = formattedDate;
     yearInput.value = formattedYear;
+
+    // Update the model value with the formatted date using the specified format
+    modelValue.value = selectedDate.format(format.value);
 
     calendarTabPageData.value.selectedMonth = day.date.getMonth();
     calendarTabPageData.value.selectedYear = day.date.getFullYear();
@@ -610,28 +613,52 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
   const setModelValue = () => {
     if (modelValue.value) {
-      const formattedDate = dayjs(modelValue.value, 'MM-DD-YYYY');
+      // First try to parse with the specified format, then try default format as fallback
+      let formattedDate = dayjs(modelValue.value, format.value);
+      
+      // If the date is not valid with the specified format, try with the default format
+      if (!formattedDate.isValid()) {
+        formattedDate = dayjs(modelValue.value, 'MM-DD-YYYY');
+      }
 
-      const month = formattedDate.format('MM');
-      const date = formattedDate.format('DD');
-      const year = formattedDate.format('YYYY');
+      // If still not valid, try other common formats
+      if (!formattedDate.isValid()) {
+        const commonFormats = ['YYYY-MM-DD', 'MM/DD/YYYY', 'DD/MM/YYYY', 'YYYY/MM/DD'];
+        for (const fmt of commonFormats) {
+          const tempDate = dayjs(modelValue.value, fmt);
+          if (tempDate.isValid()) {
+            formattedDate = tempDate;
+            break;
+          }
+        }
+      }
 
-      handleValidateDate();
+      if (formattedDate.isValid()) {
+        const month = formattedDate.format('MM');
+        const date = formattedDate.format('DD');
+        const year = formattedDate.format('YYYY');
 
-      monthInput.value = month;
-      dateInput.value = date;
-      yearInput.value = year;
+        handleValidateDate();
 
-      modelValue.value = `${month}-${date}-${year}`;
+        monthInput.value = month;
+        dateInput.value = date;
+        yearInput.value = year;
 
-      calendarTabPageData.value.selectedMonth = formattedDate.get('month');
-      calendarTabPageData.value.selectedYear = formattedDate.get('year');
+        // Apply the specified format for the model value
+        modelValue.value = formattedDate.format(format.value);
 
-      handleConvertMonthIfValid();
-      calendarTabUpdateCalendar();
-      emitDateFormats();
+        calendarTabPageData.value.selectedMonth = formattedDate.get('month');
+        calendarTabPageData.value.selectedYear = formattedDate.get('year');
 
-      emit('getInputValue', `${month}-${date}-${year}`);
+        handleConvertMonthIfValid();
+        calendarTabUpdateCalendar();
+        emitDateFormats();
+
+        // Use the specified format for the input value
+        emit('getInputValue', formattedDate.format(format.value));
+      } else {
+        console.error(`Error: Could not parse date "${modelValue.value}" with format "${format.value}"`);
+      }
     }
   };
 
@@ -742,7 +769,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
           if (!isYearValid) {
             errorMessage = `Year must be between ${minMaxYear.value.min} and ${minMaxYear.value.max}.`;
           } else {
-            errorMessage = 'Invalid Date Format. Please use MM/DD/YYYY';
+            errorMessage = `Invalid Date Format. Please use ${format.value}`;
           }
 
           datePickerErrors.value.push({
@@ -850,7 +877,16 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       }
     }
 
-    emit('getInputValue', `${emittedMonth}-${dateInput.value}-${yearInput.value}`);
+    // Format the date according to the format prop
+    const dateObj = dayjs(`${emittedMonth}-${dateInput.value}-${yearInput.value}`, 'MM-DD-YYYY');
+    
+    // Use the specified format for the input value
+    emit('getInputValue', dateObj.format(format.value));
+    
+    // Update the model value with the formatted date
+    if (dateObj.isValid()) {
+      modelValue.value = dateObj.format(format.value);
+    }
   };
 
   const emitMonthList = () => {

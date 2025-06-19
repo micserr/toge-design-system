@@ -166,17 +166,17 @@
                       // Rest Days
                       'spr-background-color-disabled': calendarTabIsRestDay(day),
 
-                      // Today Indicator
-                      'spr-text-color-brand-base': calendarTabIsTodayIndicator(day),
+                      // Today Indicator - only apply brand color if not selected
+                      'spr-text-color-brand-base': calendarTabIsTodayIndicator(day) && !calendarTabIsSelectedDate(day),
 
-                      // Active Month Dates
-                      'spr-text-color-strong': calendarTabIsActiveMonthDates(day),
+                      // Active Month Dates - only apply if not selected and not today
+                      'spr-text-color-strong': calendarTabIsActiveMonthDates(day) && !calendarTabIsSelectedDate(day) && !calendarTabIsTodayIndicator(day),
 
                       // Inactive Month Dates (Past/Future)
                       'spr-text-color-disabled': calendarTabIsInactiveMonthDates(day),
 
                       // Selected Date
-                      'spr-background-color-brand-base active:spr-background-color-brand-pressed spr-text-color-inverted-strong spr-cursor-pointer spr-text-white-50 active:spr-scale-95':
+                      'spr-background-color-brand-base active:spr-background-color-brand-pressed spr-text-color-inverted-strong spr-cursor-pointer spr-text-white-50 !spr-text-white-50 active:spr-scale-95':
                         calendarTabIsSelectedDate(day),
 
                       // Unselected Date

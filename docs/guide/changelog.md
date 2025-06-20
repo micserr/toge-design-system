@@ -1,6 +1,13 @@
 # Changelog
 
 
+## 2.7.41 (2025-06-20)
+
+- Fix
+  - Fix issue date picker input year.
+  
+  ([#c9adfa40](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c9adfa4080634eaa80e70a2d75ac4496b609b7e2?refName=refs%2Fheads%2F2025%2FFEATURE%2FBEN%2FDATEPICKER-new) by @bsolis)
+
 ## 2.7.40 (2025-06-19)
 
 - Fix

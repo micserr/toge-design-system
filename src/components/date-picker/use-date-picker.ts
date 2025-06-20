@@ -883,10 +883,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     // Use the specified format for the input value
     emit('getInputValue', dateObj.format(format.value));
     
-    // Update the model value with the formatted date
-    if (dateObj.isValid()) {
-      modelValue.value = dateObj.format(format.value);
-    }
   };
 
   const emitMonthList = () => {

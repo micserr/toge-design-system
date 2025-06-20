@@ -20,18 +20,17 @@ import { ref } from 'vue';
 
 const datePickerModel = ref('');
 </script>
-
-<!-- Note: As of v2.7.31, today's date will be displayed in white text when selected instead of the brand color -->
-</script>
 ```
 
 ## Adding Label
 
-<spr-date-picker :id="datePickerId.date2" class="[&>p]:spr-m-0" v-model="datePickerModel.date2" label="Date Picker" display-helper />
+<spr-date-picker :id="datePickerId.date2" class="[&>p]:spr-m-0" v-model="datePickerModel.date2" label="Date Picker" display-helper format="YYYY-MM-DD" />
+
+Value: {{ datePickerModel.date2 }}
 
 ```vue
 <template>
-  <spr-date-picker id="datepicker" v-model="datePickerModel" label="Date Picker" display-helper />
+  <spr-date-picker id="datepicker" v-model="datePickerModel" label="Date Picker" display-helper format="MM-DD-YYYY"/>
 </template>
 
 <script lang="ts" setup>
@@ -72,17 +71,8 @@ const datePickerModel = ref('');
 
 You can specify the format of the date by passing the `format` prop. The default format is `MM-DD-YYYY`. The component will return dates in the specified format.
 
-<div>
-  <spr-date-picker 
-    :id="datePickerId.date28" 
-    class="[&>p]:spr-m-0" 
-    v-model="datePickerModel.date28" 
-    label="Date with YYYY-MM-DD format" 
-    format="YYYY-MM-DD" 
-    display-helper
-  />
-</div>
 
+<spr-date-picker :id="datePickerId.date28" class="[&>p]:spr-m-0" v-model="datePickerModel.date28" label="Date Picker" display-helper format="YYYY-MM-DD" />
 Value: <code>{{ datePickerModel.date28 }}</code>
 ```vue
 <template>
@@ -1179,6 +1169,7 @@ const datePickerId = ref({
   date25: "date25",
   date26: "date26",
   date27: "date27",
+  date28: "date28",
 }); 
 
 const datePickerModel = ref({
@@ -1209,6 +1200,7 @@ const datePickerModel = ref({
   date25: "",
   date26: "",
   date27: "",
+  date28: "",
 }); 
 
 const dateErrors = ref([]);

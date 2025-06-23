@@ -656,7 +656,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
         // Use the specified format for the input value
         if (!monthInput.value && !dateInput.value && !yearInput.value) {
-          emit('getInputValue', 'Empty Date');
+          emit('getInputValue', null);
         } else {
           emit('getInputValue', formattedDate.format(format.value));
         }
@@ -886,7 +886,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     // Use the specified format for the input value
     if (!monthInput.value && !dateInput.value && !yearInput.value) {
-      emit('getInputValue', 'Empty Date');
+      emit('getInputValue', null);
     } else {
       emit('getInputValue', dateObj.format(format.value));
     }

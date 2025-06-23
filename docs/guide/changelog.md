@@ -1,26 +1,36 @@
 # Changelog
 
+## 2.7.42 (2025-06-21)
+
+- Fix
+
+  - Add Packge Version Installation, Code Cleanup
+
+  ([#8b2377d7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8b2377d7002bcb5d4b749fcfbed62dcaed270627?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
 
 ## 2.7.41 (2025-06-20)
 
 - Fix
+
   - Fix issue date picker input year.
-  
+
   ([#c9adfa40](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c9adfa4080634eaa80e70a2d75ac4496b609b7e2?refName=refs%2Fheads%2F2025%2FFEATURE%2FBEN%2FDATEPICKER-new) by @bsolis)
 
 ## 2.7.40 (2025-06-19)
 
 - Fix
+
   - Fix NaN issue on Table Pagination when using `selectedRowCount` prop with a number value.
-  
+
   ([#dccc8046](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dccc80460cb2bc7e6c70d7422d8ca197ffc3a429?refName=refs%2Fheads%2F2025%2FFIX%2FTABLE-PAGINATION-DROPDOWN) by @bsolis)
 
 ## 2.7.39 (2025-06-19)
 
 - Feat
+
   - DatePicker: Added `format` prop to allow customization of date format in the date picker (e.g., 'MM-DD-YYYY', 'YYYY-MM-DD', 'MM/DD/YYYY')
   - DatePicker: Fixed text color for today's date when selected to be white instead of brand color
-  
+
   ([#588f2034](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/588f2034f7df6212a93c89a6891d0101bd53f0cf?refName=refs/heads/2025/FEATURE/BEN/DATEPICKER) by @bsolis)
 
 ## 2.7.38 (2025-06-17)
@@ -32,7 +42,7 @@
     - Enhanced object comparison for better selection state tracking
     - Improved documentation for supported value types in dropdown component
     - Added comprehensive examples for object value handling
-    ([#4a5784fe](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4a5784fe93a55f1e53246f8f359f7e33dcd277c1?refName=refs%2Fheads%2F2025%2FFEATURE%2FBEN%2FDROPDOWN) by @bsolis)
+      ([#4a5784fe](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4a5784fe93a55f1e53246f8f359f7e33dcd277c1?refName=refs%2Fheads%2F2025%2FFEATURE%2FBEN%2FDROPDOWN) by @bsolis)
 
 ## 2.7.37 (2025-06-17)
 
@@ -43,7 +53,6 @@
 
 - Feat
   - Commit ddf1ee3b: added calendar empty state ([#ddf1ee3b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ddf1ee3b44d05dd382c1272961e2d51744bac4f1?refName=refs/heads/2025/feat/andrea/empty-state-calendar) by @adestajo)
-
 
 ## 2.7.35 (2025-06-04)
 
@@ -152,7 +161,7 @@
 ## 2.7.15 (2025-05-13)
 
 - Fix
-  - Fix switch issue clickable label  ([#30182d0f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/30182d0f6039794e4532d452649463b048859b99?refName=refs/heads/2025/FIX/BEN/SWITCH_CHECK_LABEL) by @bsolis)
+  - Fix switch issue clickable label ([#30182d0f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/30182d0f6039794e4532d452649463b048859b99?refName=refs/heads/2025/FIX/BEN/SWITCH_CHECK_LABEL) by @bsolis)
 
 ## 2.7.14 (2025-05-09)
 

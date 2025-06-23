@@ -615,7 +615,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     if (modelValue.value) {
       // First try to parse with the specified format, then try default format as fallback
       let formattedDate = dayjs(modelValue.value, format.value);
-      
+
       // If the date is not valid with the specified format, try with the default format
       if (!formattedDate.isValid()) {
         formattedDate = dayjs(modelValue.value, 'MM-DD-YYYY');
@@ -655,7 +655,11 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
         emitDateFormats();
 
         // Use the specified format for the input value
-        emit('getInputValue', formattedDate.format(format.value));
+        if (!monthInput.value && !dateInput.value && !yearInput.value) {
+          emit('getInputValue', 'Empty Date');
+        } else {
+          emit('getInputValue', formattedDate.format(format.value));
+        }
       } else {
         console.error(`Error: Could not parse date "${modelValue.value}" with format "${format.value}"`);
       }
@@ -879,10 +883,13 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     // Format the date according to the format prop
     const dateObj = dayjs(`${emittedMonth}-${dateInput.value}-${yearInput.value}`, 'MM-DD-YYYY');
-    
+
     // Use the specified format for the input value
-    emit('getInputValue', dateObj.format(format.value));
-    
+    if (!monthInput.value && !dateInput.value && !yearInput.value) {
+      emit('getInputValue', 'Empty Date');
+    } else {
+      emit('getInputValue', dateObj.format(format.value));
+    }
   };
 
   const emitMonthList = () => {

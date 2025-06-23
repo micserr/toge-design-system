@@ -1,6 +1,7 @@
 import { App } from 'vue';
 
 import '@/assets/styles/tailwind.css';
+import pkg from '../package.json';
 
 // Prefix constant (no need for dynamic setPrefix)
 const PREFIX = 'spr-';
@@ -19,7 +20,7 @@ const install = (app: App) => {
   });
 
   console.info(
-    `%c🌱Design System Next Installed🌱`,
+    `%c🌱 Design System Next Installed v${pkg.version} 🌱`,
     'font-weight: bold; font-size: 14px; color: green; padding: 16px 8px; border: 1px dashed green; border-radius: 4px; margin: 10px auto;',
   );
 };

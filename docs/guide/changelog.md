@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.7.43 (2025-06-21)
+
+- Fix
+
+  - Improve date input handling and formatting logic
+    ([#381b2356](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/381b235622631fbabb7dfa9fe12eedf12462aa33?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 2.7.42 (2025-06-21)
 
 - Fix

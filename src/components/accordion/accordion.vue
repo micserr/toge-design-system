@@ -53,13 +53,15 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue';
+import { Icon } from '@iconify/vue';
+
 import { accordionPropTypes } from './accordion';
 import { useAccordion } from './use-accordion';
+
 import SprCollapsible from '@/components/collapsible/collapsible.vue';
-import { Icon } from '@iconify/vue';
 import SprButton from '@/components/button/button.vue';
 
 const props = defineProps(accordionPropTypes);
+
 const { collapsedState, toggleCollapse, setClickedIndex, clearIndex, clickedIndex } = useAccordion(props);
 </script>

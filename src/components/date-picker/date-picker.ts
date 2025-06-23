@@ -128,7 +128,7 @@ export type MinMaxYearType = {
 
 export const datePickerEmitTypes = {
   'update:modelValue': (value: string) => typeof value === 'string',
-  getInputValue: (value: string) => typeof value === 'string',
+  getInputValue: (value: string | null) => value === null || typeof value === 'string',
   getDateFormats: (value: Record<string, string>) => {
     return (
       typeof value === 'object' &&

@@ -21,11 +21,12 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
 import { Icon } from '@iconify/vue';
-import SprStatus from '@/components/status/status.vue';
+
 import { calendarCellPropTypes, calendarCellEmitTypes } from './calendar-cell';
 import { useCalendarCell } from './use-calendar-cell';
+
+import SprStatus from '@/components/status/status.vue';
 
 const props = defineProps(calendarCellPropTypes);
 const emit = defineEmits(calendarCellEmitTypes);

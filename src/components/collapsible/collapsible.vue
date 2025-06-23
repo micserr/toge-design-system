@@ -16,7 +16,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue';
 import { collapsiblePropTypes, collapsibleEmitTypes } from './collapsible';
 import { useCollapsible } from './use-collapsible';
 

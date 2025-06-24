@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.7.44 (2025-06-24)
+
+- Enhancement
+
+  - Input component improvements:
+    - Added support for both string and number values in the model value
+    - Added character count feature that displays in the bottom right of the input field
+    - Added `showCharCount` prop to enable/disable the character count display
+    - Enhanced styling for character count to change color when limit is reached
+    - Updated documentation with examples of both features
+    ([#945f3001](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/945f30012913f02f72a3fd1ab6e5fa8a81f2bb57?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FINPUT) by @bsolis)
+
 ## 2.7.43 (2025-06-21)
 
 - Fix

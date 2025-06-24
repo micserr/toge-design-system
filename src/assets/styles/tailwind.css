@@ -97,7 +97,7 @@
   #tooltip-full-width-wrapper {
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply spr-background-color-inverted spr-text-color-inverted-strong spr-body-xs-regular spr-rounded-border-radius-md spr-px-2 spr-py-1.5 spr-font-main spr-opacity-100 spr-break-all;
+        @apply spr-background-color-inverted spr-text-color-inverted-strong spr-body-xs-regular spr-break-all spr-rounded-border-radius-md spr-px-2 spr-py-1.5 spr-font-main spr-opacity-100;
       }
 
       .v-popper__arrow-outer {
@@ -166,6 +166,26 @@
     }
   }
   /* #endregion - Dropdown */
+
+  /* #region - Select */
+  #select-wrapper {
+    @apply spr-z-[1000] spr-w-[inherit] spr-overflow-hidden;
+
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-border-color-weak spr-w-full spr-rounded-xl spr-border spr-border-solid spr-font-main spr-shadow-none;
+
+        &::-webkit-scrollbar-track {
+          @apply spr-rounded-br-xl spr-rounded-tr-xl;
+        }
+      }
+
+      .v-popper__arrow-container {
+        @apply spr-hidden;
+      }
+    }
+  }
+  /* #endregion - Select */
 
   /* #region - Avatar */
   .avatar__slot img {

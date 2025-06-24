@@ -94,22 +94,49 @@ const inputValue = ref('');
 </script>
 ```
 
-## Min Max Length
+## Min Max Length & Character Count
 
-You can either add min or max length by passing props `min-length` or `max-length` and add the corresponding number value.
+You can set minimum or maximum length limits by passing props `min-length` or `max-length` with the corresponding number value. Additionally, you can enable a character counter display in the bottom right of the input field with the `show-char-count` prop.
 
-<spr-input v-model="inputValue.input6" label="Text Input" placeholder="Enter your username" :min-length="0" :max-length="50" />
+<spr-input v-model="inputValue.input6" label="Text Input" placeholder="Enter your username" :min-length="0" :max-length="50" show-char-count />
 
 <p>Character Length: {{ inputValue.input6.length }}</p>
 
+<div class="spr-grid spr-gap-6">
+  <spr-input
+    v-model="inputValue.input20" 
+    type="number"
+    label="Numeric Input" 
+    placeholder="Enter a number" 
+    :max-length="3"
+    helper-text="Max 3 digits allowed" 
+    display-helper
+    show-char-count
+  />
+</div>
+
 ```vue
 <template>
+  <!-- Text input with character count -->
   <spr-input
     v-model="inputValue"
     label="Text Input"
     placeholder="Enter your username"
     :min-length="0"
     :max-length="50"
+    show-char-count
+  />
+  
+  <!-- Numeric input with character count and helper -->
+  <spr-input
+    v-model="numericValue"
+    type="number"
+    label="Numeric Input" 
+    placeholder="Enter a number" 
+    :max-length="3"
+    helper-text="Max 3 digits allowed" 
+    display-helper
+    show-char-count
   />
 </template>
 
@@ -117,6 +144,7 @@ You can either add min or max length by passing props `min-length` or `max-lengt
 import { ref } from 'vue';
 
 const inputValue = ref('');
+const numericValue = ref(0);
 </script>
 ```
 
@@ -195,6 +223,36 @@ const inputValueMD = ref('');
 </script>
 ```
 
+## Character Count Display
+
+You can display a character counter in the bottom right of the input field by setting the `show-char-count` prop to `true`. When used with `max-length`, the character count will display in the format "current/max" and will change color to indicate when the maximum length is reached.
+
+<spr-input 
+  v-model="inputValue.input21" 
+  label="Text with Character Count" 
+  placeholder="Type to see the counter" 
+  :max-length="20" 
+  show-char-count 
+/>
+
+```vue
+<template>
+  <spr-input 
+    v-model="inputValue" 
+    label="Text with Character Count" 
+    placeholder="Type to see the counter" 
+    :max-length="20" 
+    show-char-count 
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputValue = ref('');
+</script>
+```
+
 ## Helper Message
 
 A helper message is a text label below the input field that provides additional information about instructions, formatting hints, validation feedback, etc.
@@ -216,7 +274,7 @@ To display the helper message, set the `display-helper` prop to `true` and add t
     helper-text="This is an error message" 
     helper-icon="ph:warning-circle-fill" 
     display-helper 
-    error 
+    error
   />
 </div>
 
@@ -535,7 +593,7 @@ const dropdownInput = ref('');
     <tr>
       <td>v-model</td>
       <td>Two-way binding for the input value.</td>
-      <td>string</td>
+      <td>string | number</td>
       <td>-</td>
     </tr>
     <tr>
@@ -553,7 +611,7 @@ const dropdownInput = ref('');
     <tr>
       <td>pre-value</td>
       <td>Predefined value for the input, used when v-model is not set.</td>
-      <td>string</td>
+      <td>string | number</td>
       <td>-</td>
     </tr>
     <tr>
@@ -576,13 +634,13 @@ const dropdownInput = ref('');
     </tr>
     <tr>
       <td>min-length</td>
-      <td>Minimum length of the input value.</td>
+      <td>Minimum length of the input value. Applied as an HTML attribute.</td>
       <td>number</td>
       <td>-</td>
     </tr>
     <tr>
       <td>max-length</td>
-      <td>Maximum length of the input value.</td>
+      <td>Maximum length of the input value. When used with show-char-count, displays the limit in the character counter.</td>
       <td>number</td>
       <td>-</td>
     </tr>
@@ -609,6 +667,12 @@ const dropdownInput = ref('');
       <td>Icon to display alongside the helper message.</td>
       <td>string</td>
       <td>-</td>
+    </tr>
+    <tr>
+      <td>show-char-count</td>
+      <td>Shows character count in the bottom right of the input field. When used with max-length, displays in the format "current/max" and changes color when limit is reached.</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
   </tbody>
 </table>
@@ -657,6 +721,8 @@ const inputValue = ref({
   input17: '',
   input18: '',
   input19: '',
+  input20: 0,
+  input21: '',
 });
 
 const selectedCountryCode = ref('');

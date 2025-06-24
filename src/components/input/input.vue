@@ -30,11 +30,16 @@
       </div>
     </div>
 
-    <div v-if="props.displayHelper" :class="inputClasses.helperClasses">
-      <slot name="helperMessage">
-        <Icon v-if="props.helperIcon" :icon="props.helperIcon" width="20px" height="20px" />
-        <span>{{ props.helperText }}</span>
-      </slot>
+    <div v-if="props.displayHelper || props.showCharCount" :class="inputClasses.helperContainerClasses">
+      <div v-if="props.displayHelper" :class="inputClasses.helperClasses">
+        <slot name="helperMessage">
+          <Icon v-if="props.helperIcon" :icon="props.helperIcon" width="20px" height="20px" />
+          <span>{{ props.helperText }}</span>
+        </slot>
+      </div>
+      <div v-if="props.showCharCount" :class="inputClasses.charCountClasses">
+        {{ currentLength }}{{ props.maxLength ? '/' + props.maxLength : '' }}
+      </div>
     </div>
   </div>
 </template>
@@ -51,7 +56,7 @@ const emit = defineEmits(inputEmitTypes);
 const props = defineProps(inputPropTypes);
 const slots = useSlots();
 
-const { inputClasses, inputTextRef, onInput, disableClickEvent } = useInput(props, emit, slots);
+const { inputClasses, inputTextRef, onInput, disableClickEvent, currentLength } = useInput(props, emit, slots);
 </script>
 
 <style scoped>

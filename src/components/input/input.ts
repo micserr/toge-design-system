@@ -35,12 +35,16 @@ export const inputPropTypes = {
     default: 'spr-input',
   },
   modelValue: {
-    type: String,
+    type: [String, Number],
     default: '',
   },
   label: {
     type: String,
     default: '',
+  },
+  showCharCount: {
+    type: Boolean,
+    default: false,
   },
   type: {
     type: String,
@@ -93,7 +97,7 @@ export const inputPropTypes = {
 };
 
 export const inputEmitTypes = {
-  'update:modelValue': (value: string): value is string => typeof value === 'string',
+  'update:modelValue': (value: string | number): boolean => typeof value === 'string' || typeof value === 'number',
 };
 
 export type InputEmitTypes = { 'update:modelValue': typeof inputEmitTypes };

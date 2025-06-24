@@ -10,6 +10,8 @@ The date picker allows users to select a date from a calendar.
 
 <spr-date-picker :id="datePickerId.date1" class="[&>p]:spr-m-0" v-model="datePickerModel.date1" display-helper />
 
+`Property Value:` <span class="spr-text-xs">{{datePickerModel.date1}}</span>
+
 ```vue
 <template>
   <spr-date-picker id="datepicker" v-model="datePickerModel" display-helper />
@@ -27,6 +29,8 @@ const datePickerModel = ref('');
 <spr-date-picker :id="datePickerId.date2" class="[&>p]:spr-m-0" v-model="datePickerModel.date2" label="Date Picker" display-helper format="YYYY-MM-DD" />
 
 Value: {{ datePickerModel.date2 }}
+
+`Property Value:` <span class="spr-text-xs">{{datePickerModel.date2}}</span>
 
 ```vue
 <template>
@@ -54,6 +58,8 @@ You can manually set the width of the date picker by passing the `width` prop.
     display-helper
   />
 </div>
+
+`Property Value:` <span class="spr-text-xs">{{datePickerModel.date3}}</span>
 
 ```vue
 <template>
@@ -175,6 +181,9 @@ To display the helper message, set the `display-helper` prop to true and add the
     helper-text="This is a helper message" 
     display-helper 
   />
+
+`Property Value:` <span class="spr-text-xs">{{datePickerModel.date6}}</span>
+
 </div>
 
 ```vue
@@ -1174,7 +1183,7 @@ const datePickerId = ref({
 
 const datePickerModel = ref({
   date1: "",
-  date2: "",
+  date2: "09-11-1997",
   date3: "",
   date4: "09-11-1997",
   date5: "10-12-2025",

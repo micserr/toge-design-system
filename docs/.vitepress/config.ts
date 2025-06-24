@@ -197,6 +197,10 @@ export default defineConfig({
               link: '/documentation/components/radio',
             },
             {
+              text: 'Select',
+              link: '/documentation/components/select',
+            },
+            {
               text: 'Slider',
               link: '/documentation/components/slider',
             },

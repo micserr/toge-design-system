@@ -2,7 +2,7 @@
 outline: 'deep'
 ---
 
-# Select
+# Single Select
 
 Selects are interactive components that allow users to choose from a list of options.
 

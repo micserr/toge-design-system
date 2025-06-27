@@ -2,12 +2,6 @@
 outline: 'deep'
 ---
 
-<div class="spr-bg-red-300 spr-text-warning-800 spr-border spr-border-warning-200 spr-p-4 spr-mb-6 spr-rounded spr-font-medium spr-flex spr-items-center spr-gap-2">
-  <span>
-   <strong>Notice:</strong> For field usage, please use the <a href="/documentation/components/select/select-single.html" class="spr-text-warning-700 spr-underline spr-font-semibold">Select component</a> instead of Dropdown. This documentation is no longer being updated.
-  </span>
-</div>
-
 # Dropdown
 
 Dropdowns appears when the user interacts with a trigger element (such as a button or a link) and is usually used for navigation menus, form selections, actions, and filters.
@@ -1533,7 +1527,6 @@ const usersList = ref([
 ]);
 
 const handleUsersSelection = () => {
-  console.log('Selected Users:', selectedUsers.value);
   // When using full objects, extract the display names
   const names = selectedUsers.value.map((user) => user.name);
   usersDisplay.value = names.join(', ');

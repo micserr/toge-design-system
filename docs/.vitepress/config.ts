@@ -198,7 +198,20 @@ export default defineConfig({
             },
             {
               text: 'Select',
-              link: '/documentation/components/select',
+              items: [
+                {
+                  text: 'Single Select',
+                  link: '/documentation/components/select/select-single',
+                },
+                {
+                  text: 'Multi Select',
+                  link: '/documentation/components/select/select-multiple',
+                },
+                {
+                  text: 'Ladderized Select',
+                  link: '/documentation/components/select/select-ladderized',
+                },
+              ],
             },
             {
               text: 'Slider',

@@ -1,78 +1,107 @@
 <template>
-  <Menu
-    :shown="selectPopperState"
-    aria-id="select-wrapper"
-    distance="4"
-    :placement="props.placement"
-    :triggers="[]"
-    :popper-hide-triggers="[]"
-    :auto-hide="false"
-    :disabled="isSelectPopperDisabled"
-    :container="`#${props.id}`"
-    :strategy="
-      props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
-    "
-    :delay="0"
-    :style="{
-      position: props.wrapperPosition,
-      width: props.width,
-    }"
-  >
-    <div @click="selectPopperState = true">
-      <slot />
-    </div>
+  <div :class="selectClasses.baseClasses">
+    <label v-if="props.label" :for="id" :class="selectClasses.labelClasses">
+      {{ props.label }}
+    </label>
 
-    <div
-      :id="props.id"
+    <Menu
+      :shown="selectPopperState"
+      aria-id="select-wrapper"
+      distance="4"
+      :placement="props.placement"
+      :triggers="[]"
+      :popper-hide-triggers="[]"
+      :auto-hide="false"
+      :disabled="isSelectPopperDisabled"
+      :container="`#${props.id}`"
+      :strategy="
+        props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
+      "
+      :delay="0"
       :style="{
-        width: props.popperWidth,
+        position: props.wrapperPosition,
+        width: props.width,
       }"
-    ></div>
-
-    <template #popper>
-      <div
-        ref="selectRef"
-        :class="[
-          (!props.ladderized || isLadderizedSearch) && 'spr-p-2',
-          'spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden',
-        ]"
-      >
-        <template v-if="selectMenuList.length > 0">
-          <spr-list
-            v-if="!props.ladderized || isLadderizedSearch"
-            v-model="selectedListItems"
-            :menu-list="selectMenuList"
-            :group-items-by="props.groupItemsBy"
-            :multi-select="props.multiSelect"
-            :pre-selected-items="selectValue"
-            @update:model-value="handleSelectedItem"
-          />
-          <spr-ladderized-list
-            v-else
-            v-model="selectValue"
-            :ladderized="props.ladderized"
-            :menu-list="selectMenuList"
-            :remove-current-level-in-back-label="removeCurrentLevelInBackLabel"
-            @update:model-value="handleSelectedLadderizedItem"
-          />
-        </template>
-        <template v-else>
-          <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
-            <span class="spr-body-sm-regular spr-m-0">No results found</span>
-          </div>
-        </template>
+    >
+      <div @click="handleMenuToggle">
+        <spr-input
+          v-model="inputText"
+          :class="{
+            'spr-cursor-pointer': !props.searchable,
+          }"
+          :placeholder="props.placeholder"
+          :readonly="!props.searchable"
+          :disabled="props.disabled"
+          autocomplete="off"
+          @keyup="handleSearch"
+        >
+          <template #icon>
+            <div class="spr-flex spr-items-center spr-gap-1">
+              <Icon v-if="props.clearable" class="spr-cursor-pointer" icon="ph:x" @click.stop="handleClear" />
+              <Icon icon="ph:caret-down" />
+            </div>
+          </template>
+        </spr-input>
       </div>
-    </template>
-  </Menu>
+
+      <div
+        :id="props.id"
+        :style="{
+          width: props.popperWidth,
+        }"
+      ></div>
+
+      <template #popper>
+        <div
+          ref="selectRef"
+          class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden spr-p-2"
+        >
+          <template v-if="isSearching">
+            <template v-if="filteredSelectMenuList.length > 0">
+              <spr-list
+                v-model="selectedListItems"
+                :menu-list="filteredSelectMenuList"
+                :group-items-by="props.groupItemsBy"
+                :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
+                @update:model-value="handleSelectedItem"
+              />
+            </template>
+            <template v-else>
+              <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
+                <span class="spr-body-sm-regular spr-m-0">No results found</span>
+              </div>
+            </template>
+          </template>
+          <template v-else>
+            <template v-if="selectMenuList.length > 0">
+              <spr-list
+                v-model="selectedListItems"
+                :menu-list="selectMenuList"
+                :group-items-by="props.groupItemsBy"
+                :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
+                @update:model-value="handleSelectedItem"
+              />
+            </template>
+            <template v-else>
+              <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
+                <span class="spr-body-sm-regular spr-m-0">No results found</span>
+              </div>
+            </template>
+          </template>
+        </div>
+      </template>
+    </Menu>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import { Menu } from 'floating-vue';
+import { Icon } from '@iconify/vue';
 
 import 'floating-vue/dist/style.css';
 
+import SprInput from '../input/input.vue';
 import SprList from '../list/list.vue';
-import SprLadderizedList from '../list/ladderized-list/ladderized-list.vue';
 
 import { selectPropTypes, selectEmitTypes } from './select';
 
@@ -82,15 +111,19 @@ const props = defineProps(selectPropTypes);
 const emit = defineEmits(selectEmitTypes);
 
 const {
+  selectClasses,
   selectPopperState,
   selectRef,
   selectMenuList,
+  filteredSelectMenuList,
   isSelectPopperDisabled,
   selectedListItems,
   handleSelectedItem,
-  handleSelectedLadderizedItem,
-  selectValue,
-  removeCurrentLevelInBackLabel,
-  isLadderizedSearch,
+  handleSearch,
+  selectModel,
+  inputText,
+  handleClear,
+  handleMenuToggle,
+  isSearching,
 } = useSelect(props, emit);
 </script>

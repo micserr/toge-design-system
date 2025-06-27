@@ -1,5 +1,6 @@
 import type { PropType, ExtractPropTypes } from 'vue';
 import type { MenuListType } from '../list/list';
+import { clear } from 'console';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
@@ -41,6 +42,12 @@ export const selectPropTypes = {
     required: true,
     default: [],
   },
+  groupItemsBy: {
+    type: String as PropType<(typeof GROUPED_ITEMS_BY_TYPES)[number]>,
+    validator: (value: (typeof GROUPED_ITEMS_BY_TYPES)[number] | undefined) => {
+      return value === undefined || GROUPED_ITEMS_BY_TYPES.includes(value);
+    },
+  },
   textField: {
     type: String,
     default: 'text',
@@ -51,60 +58,57 @@ export const selectPropTypes = {
     default: 'value',
     description: 'Field name to use for value when using dynamic object arrays',
   },
-  searchString: {
+  placeholder: {
+    type: String,
+  },
+  label: {
     type: String,
     default: '',
-  },
-  multiSelect: {
-    type: Boolean,
-    default: false,
   },
   placement: {
     type: String as PropType<(typeof PLACEMENTS_TYPES)[number]>,
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
     default: 'bottom',
   },
-  groupItemsBy: {
-    type: String as PropType<(typeof GROUPED_ITEMS_BY_TYPES)[number]>,
-    validator: (value: (typeof GROUPED_ITEMS_BY_TYPES)[number] | undefined) => {
-      return value === undefined || GROUPED_ITEMS_BY_TYPES.includes(value);
-    },
-  },
-  wrapperPosition: {
-    type: String,
-    default: 'relative',
-  },
-  width: {
-    type: String,
-    default: '100%',
-  },
-  popperWidth: {
-    type: String,
-    default: '100%',
-  },
   popperStrategy: {
     type: String,
     validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
     default: 'absolute',
   },
+  popperWidth: {
+    type: String,
+    default: '100%',
+  },
+  width: {
+    type: String,
+    default: '100%',
+  },
+  wrapperPosition: {
+    type: String,
+    default: 'relative',
+  },
+  displayText: {
+    type: String,
+    default: '',
+  },
   disabled: {
     type: Boolean,
     default: false,
   },
-  ladderized: {
+  clearable: {
     type: Boolean,
     default: false,
   },
-  removeCurrentLevelInBackLabel: {
+  searchable: {
     type: Boolean,
     default: false,
   },
 };
 
 export const selectEmitTypes = {
-  'infinite-scroll-trigger': Boolean,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  'update:modelValue': (_value: unknown) => true, // Accept any type of value
+  'update:modelValue': (value: any) => true,
+  'infinite-scroll-trigger': (triggered: boolean) => true,
+  'search-string': (search: string | number) => true,
 };
 
 export type SelectPropTypes = ExtractPropTypes<typeof selectPropTypes>;

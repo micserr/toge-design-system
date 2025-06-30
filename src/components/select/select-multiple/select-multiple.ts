@@ -125,9 +125,6 @@ export const multiSelectEmitTypes = {
   'update:modelValue': (_value: unknown) => true,
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  'infinite-scroll-trigger': (_triggered: boolean) => true,
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'search-string': (_search: string | number) => true,
 };
 

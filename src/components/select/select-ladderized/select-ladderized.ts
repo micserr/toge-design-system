@@ -100,6 +100,7 @@ export const selectLadderizedPropTypes = {
 };
 
 export const selectLadderizedEmitTypes = {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'update:modelValue': (_value: unknown) => true,
 };
 

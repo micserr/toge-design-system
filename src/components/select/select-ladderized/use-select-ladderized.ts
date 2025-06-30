@@ -1,9 +1,14 @@
 import { ref, computed, watch } from 'vue';
 import { useDebounceFn, onClickOutside } from '@vueuse/core';
-import type { SelectLadderizedPropTypes, SelectLadderizedEmitTypes } from './select-ladderized';
+
+import type { SelectLadderizedPropTypes } from './select-ladderized';
+
 import type { MenuListType } from '@/components/list/list';
 
-export function useSelectLadderized(props: SelectLadderizedPropTypes, emit: (event: string, ...args: any[]) => void) {
+export const useSelectLadderized = (
+  props: SelectLadderizedPropTypes,
+  emit: (event: string, ...args: unknown[]) => void,
+) => {
   const ladderizedClasses = computed(() => ({
     baseClasses: 'spr-flex spr-flex-col spr-gap-size-spacing-4xs',
     labelClasses: 'spr-body-sm-regular spr-text-color-strong spr-block',
@@ -157,4 +162,4 @@ export function useSelectLadderized(props: SelectLadderizedPropTypes, emit: (eve
     handleClear,
     handleMenuToggle,
   };
-}
+};

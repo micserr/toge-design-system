@@ -13,6 +13,18 @@ export const ladderizedListPropTypes = {
     required: true,
     default: [],
   },
+  menuLevel: {
+    type: Number,
+    default: 0,
+  },
+  searchableMenu: {
+    type: Boolean,
+    default: false,
+  },
+  searchableMenuPlaceholder: {
+    type: String,
+    default: 'Search...',
+  },
   removeCurrentLevelInBackLabel: {
     type: Boolean,
     default: false,

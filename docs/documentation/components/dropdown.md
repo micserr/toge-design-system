@@ -2,6 +2,12 @@
 outline: 'deep'
 ---
 
+<div class="spr-bg-red-300 spr-text-warning-800 spr-border spr-border-warning-200 spr-p-4 spr-mb-6 spr-rounded spr-font-medium spr-flex spr-items-center spr-gap-2">
+  <span>
+   <strong>Notice:</strong> The Dropdown component is now intended for navigation menus or other UI interactions, not for form field selection. If you are using Dropdown for forms, please use the <a href="/documentation/components/select/select-single.html" class="spr-text-warning-700 spr-underline spr-font-semibold">Select component</a> instead. This documentation will be updated soon for navigation menus or other UI interactions usage.
+  </span>
+</div>
+
 # Dropdown
 
 Dropdowns appears when the user interacts with a trigger element (such as a button or a link) and is usually used for navigation menus, form selections, actions, and filters.
@@ -144,12 +150,7 @@ The dropdown component fully supports arrays of number values in multi-select mo
     multi-select
     @update:model-value="handleSelectedItems"
   >
-    <spr-input
-      v-model="displayText"
-      label="Select Numbers"
-      readonly
-      placeholder="Select numbers..."
-    />
+    <spr-input v-model="displayText" label="Select Numbers" readonly placeholder="Select numbers..." />
   </spr-dropdown>
 </template>
 
@@ -162,7 +163,7 @@ const numberOptions = [
   { text: 'Two', value: 2 },
   { text: 'Three', value: 3 },
   { text: 'Four', value: 4 },
-  { text: 'Five', value: 5 }
+  { text: 'Five', value: 5 },
 ];
 
 // Initialize with preselected values
@@ -172,11 +173,14 @@ const displayText = ref('One, Three');
 // Handle selected items
 const handleSelectedItems = (items) => {
   // Numbers are preserved in the items array
-  const selectedTexts = items.map(value => {
-    const option = numberOptions.find(opt => opt.value === value);
-    return option ? option.text : '';
-  }).filter(Boolean).join(', ');
-  
+  const selectedTexts = items
+    .map((value) => {
+      const option = numberOptions.find((opt) => opt.value === value);
+      return option ? option.text : '';
+    })
+    .filter(Boolean)
+    .join(', ');
+
   // Update display text
   displayText.value = selectedTexts;
 };
@@ -1295,32 +1299,32 @@ Value: {{ numberValue }}
 import { ref } from 'vue';
 
 // For string values
-const stringValue = ref('apple');  // Single string value
+const stringValue = ref('apple'); // Single string value
 const stringDisplay = ref('Apple');
 
 // For number values
-const numberValue = ref(42);  // Single number value
+const numberValue = ref(42); // Single number value
 const numberDisplay = ref('42');
 
 const stringMenuList = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
-  { text: 'Cherry', value: 'cherry' }
+  { text: 'Cherry', value: 'cherry' },
 ]);
 
 const numberMenuList = ref([
   { text: '42', value: 42 },
   { text: '100', value: 100 },
-  { text: '200', value: 200 }
+  { text: '200', value: 200 },
 ]);
 
 const handleStringSelection = () => {
-  const selected = stringMenuList.value.find(item => item.value === stringValue.value);
+  const selected = stringMenuList.value.find((item) => item.value === stringValue.value);
   stringDisplay.value = selected ? selected.text : '';
 };
 
 const handleNumberSelection = () => {
-  const selected = numberMenuList.value.find(item => item.value === numberValue.value);
+  const selected = numberMenuList.value.find((item) => item.value === numberValue.value);
   numberDisplay.value = selected ? selected.text : '';
 };
 </script>
@@ -1394,7 +1398,8 @@ For multi-selection of primitive types like strings or numbers:
     <spr-input v-model="fruitsDisplay" label="Fruits Selection" readonly placeholder="Select fruits..." />
   </spr-dropdown>
 
-  Value: {{ selectedFruits }} (Fruits)
+Value: {{ selectedFruits }} (Fruits)
+
 </div>
 <div>
   <spr-dropdown
@@ -1407,7 +1412,8 @@ For multi-selection of primitive types like strings or numbers:
     <spr-input v-model="numbersDisplay" label="Numbers Selection" readonly placeholder="Select numbers..." />
   </spr-dropdown>
 
-  Value: {{ selectedNumbers }} (Numbers)
+Value: {{ selectedNumbers }} (Numbers)
+
 </div>
 
 ```vue
@@ -1437,11 +1443,11 @@ For multi-selection of primitive types like strings or numbers:
 import { ref } from 'vue';
 
 // Multiple string values
-const selectedFruits = ref(['apple', 'banana']);  // Array of strings
+const selectedFruits = ref(['apple', 'banana']); // Array of strings
 const fruitsDisplay = ref('Apple, Banana');
 
 // Multiple number values
-const selectedNumbers = ref([1, 2, 3]);  // Array of numbers
+const selectedNumbers = ref([1, 2, 3]); // Array of numbers
 const numbersDisplay = ref('1, 2, 3');
 
 const fruitList = ref([
@@ -1459,16 +1465,16 @@ const numbersList = ref([
 ]);
 
 const handleFruitsSelection = () => {
-  const selectedTexts = selectedFruits.value.map(value => {
-    const item = fruitList.value.find(fruit => fruit.value === value);
+  const selectedTexts = selectedFruits.value.map((value) => {
+    const item = fruitList.value.find((fruit) => fruit.value === value);
     return item ? item.text : '';
   });
   fruitsDisplay.value = selectedTexts.filter(Boolean).join(', ');
 };
 
 const handleNumbersSelection = () => {
-  const selectedTexts = selectedNumbers.value.map(value => {
-    const item = numbersList.value.find(num => num.value === value);
+  const selectedTexts = selectedNumbers.value.map((value) => {
+    const item = numbersList.value.find((num) => num.value === value);
     return item ? item.text : '';
   });
   numbersDisplay.value = selectedTexts.filter(Boolean).join(', ');
@@ -1515,7 +1521,7 @@ import { ref } from 'vue';
 // Multiple object values
 const selectedUsers = ref([
   { id: 1, name: 'John', role: 'Developer' },
-  { id: 2, name: 'Jane', role: 'Designer' }
+  { id: 2, name: 'Jane', role: 'Designer' },
 ]);
 const usersDisplay = ref('John, Jane');
 
@@ -1523,12 +1529,13 @@ const usersList = ref([
   { id: 1, name: 'John', role: 'Developer' },
   { id: 2, name: 'Jane', role: 'Designer' },
   { id: 3, name: 'Bob', role: 'Manager' },
-  { id: 4, name: 'Alice', role: 'Product Owner' }
+  { id: 4, name: 'Alice', role: 'Product Owner' },
 ]);
 
 const handleUsersSelection = () => {
+  console.log('Selected Users:', selectedUsers.value);
   // When using full objects, extract the display names
-  const names = selectedUsers.value.map(user => user.name);
+  const names = selectedUsers.value.map((user) => user.name);
   usersDisplay.value = names.join(', ');
 };
 </script>
@@ -2048,4 +2055,3 @@ const handleUsersSelection = () => {
   usersDisplay.value = names.join(', ');
 };
 </script>
-

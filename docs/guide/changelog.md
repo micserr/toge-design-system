@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.8.0 (2025-06-30)
+
+- Feat
+
+  - Created Component Single Select, Multi Select and Ladderized Select ([#32806](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/32806) by @jarias)
+
 ## 2.7.45 (2025-06-24)
 
 - Fix

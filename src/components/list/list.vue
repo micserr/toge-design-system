@@ -1,5 +1,16 @@
 <template>
   <div class="spr-font-main">
+    <div v-if="props.searchableMenu" class="spr-mb-3 spr-grid spr-gap-3">
+      <spr-input
+        v-model="searchText"
+        :placeholder="props.searchableMenuPlaceholder"
+        autocomplete="off"
+        @keyup="handleSearch"
+      />
+
+      <div v-if="isParentMenu" class="spr-background-color-surface spr-h-[1px]"></div>
+    </div>
+
     <template v-if="props.groupItemsBy">
       <div class="spr-grid spr-gap-2">
         <div v-for="(list, listIndex) in groupedMenuList" :key="listIndex" class="spr-grid spr-gap-0.5">
@@ -46,11 +57,21 @@
         @click="handleSelectedItem(item)"
       >
         <spr-checkbox v-if="props.multiSelect" :disabled="item.disabled" :checked="isItemSelected(item)" />
-        <div :class="['spr-flex spr-flex-auto spr-flex-col spr-justify-start', { 'spr-text-color-disabled': item.disabled }]">
+        <div
+          :class="[
+            'spr-flex spr-flex-auto spr-flex-col spr-justify-start',
+            { 'spr-text-color-disabled': item.disabled },
+          ]"
+        >
           <span class="spr-text-left spr-text-xs">{{ item.text }}</span>
-          <span v-if="item.subtext" :class="['spr-body-xs-regular spr-text-color-base spr-text-left', { 'spr-text-color-disabled': item.disabled }]">{{
-            item.subtext
-          }}</span>
+          <span
+            v-if="item.subtext"
+            :class="[
+              'spr-body-xs-regular spr-text-color-base spr-text-left',
+              { 'spr-text-color-disabled': item.disabled },
+            ]"
+            >{{ item.subtext }}</span
+          >
         </div>
         <Icon
           v-if="isItemSelected(item) && !props.multiSelect"
@@ -73,13 +94,20 @@ import { Icon } from '@iconify/vue';
 import { listPropTypes, listEmitTypes } from './list';
 import { useList } from './use-list';
 
-import SprCheckbox from '../checkbox/checkbox.vue';
+import SprCheckbox from '@/components/checkbox/checkbox.vue';
+import SprInput from '@/components/input/input.vue';
 
 const props = defineProps(listPropTypes);
 const emit = defineEmits(listEmitTypes);
 
-const { localizedMenuList, groupedMenuList, isItemSelected, getListItemClasses, handleSelectedItem } = useList(
-  props,
-  emit,
-);
+const {
+  searchText,
+  localizedMenuList,
+  groupedMenuList,
+  isParentMenu,
+  isItemSelected,
+  getListItemClasses,
+  handleSearch,
+  handleSelectedItem,
+} = useList(props, emit);
 </script>

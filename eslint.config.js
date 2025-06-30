@@ -62,6 +62,7 @@ export default tseslint.config(
             'lozenge',
             'modal',
             'radio',
+            'select',
             'sidenav',
             'sidepanel',
             'slider',

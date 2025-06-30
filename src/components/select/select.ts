@@ -121,9 +121,14 @@ export const selectPropTypes = {
 };
 
 export const selectEmitTypes = {
-  'update:modelValue': (value: any) => true,
-  'infinite-scroll-trigger': (triggered: boolean) => true,
-  'search-string': (search: string | number) => true,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  'update:modelValue': (_value: unknown) => true,
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  'infinite-scroll-trigger': (_triggered: boolean) => true,
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  'search-string': (_search: string | number) => true,
 };
 
 export type SelectPropTypes = ExtractPropTypes<typeof selectPropTypes>;

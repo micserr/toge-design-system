@@ -197,6 +197,23 @@ export default defineConfig({
               link: '/documentation/components/radio',
             },
             {
+              text: 'Select',
+              items: [
+                {
+                  text: 'Single Select',
+                  link: '/documentation/components/select/select-single',
+                },
+                {
+                  text: 'Multi Select',
+                  link: '/documentation/components/select/select-multiple',
+                },
+                {
+                  text: 'Ladderized Select',
+                  link: '/documentation/components/select/select-ladderized',
+                },
+              ],
+            },
+            {
               text: 'Slider',
               link: '/documentation/components/slider',
             },

@@ -1,4 +1,4 @@
-import { computed, onBeforeMount, ref, toRefs } from 'vue';
+import { computed, onBeforeMount, ref, toRefs, watch } from 'vue';
 import { useVModel } from '@vueuse/core';
 
 import { LadderizedListPropTypes, LadderizedListEmitTypes } from './ladderized-list';
@@ -145,6 +145,16 @@ export const useLadderizedList = (
       backLabel.value = tempBackLabel.length > 0 ? tempBackLabel.join(', ') : 'Back';
     }
   };
+
+  // Watch for modelValue changes and reset selectedListItem if cleared
+  watch(
+    () => props.modelValue,
+    (newVal) => {
+      if (!newVal || (Array.isArray(newVal) && newVal.length === 0)) {
+        selectedListItem.value = [];
+      }
+    },
+  );
 
   onBeforeMount(() => {
     activeList.value = menuList.value;

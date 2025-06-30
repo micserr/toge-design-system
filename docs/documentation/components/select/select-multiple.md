@@ -548,100 +548,6 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
 </template>
 ```
 
-## Infinite Scroll
-
-Infinite scroll allows the select list to load more items as the user scrolls. This feature is particularly useful for back-end API integration. Instead of loading the entire list at once, new items are dynamically added as needed, improving performance and usability. Pass `@infinite-scroll-trigger` emit to get the trigger of menu when it reaches bottom.
-
-When working with infinite scroll and API-driven selects, you can use the `display-text` prop to show a display value in the input on initial load (for example, when you only have the selected value and not the full option object yet). This is especially helpful for large datasets where you don't want to fetch all options at once.
-
-<div>
-  <spr-select-multiple
-    id="sample-selectInfiniteScroll"
-    v-model="selectModel.selectInfiniteScroll"
-    label="Multi-Select Label"
-    placeholder="Select an option"
-    :display-text="displayText"
-    :menu-list="menuListAPI"
-    @infinite-scroll-trigger="handleInfiniteScrollTrigger"
-  />
-  <div class="spr-my-3 spr-p-4 spr-bg-blue-100">
-    <h5>Paginated Menu List - Should load 10 Items per page:</h5>
-    <p>Pagination:</p>
-    <pre>{{ JSON.stringify(pagination, null, 2) }}</pre>
-    <p>Data:</p>
-    {{ menuListAPI }}
-  </div>
-</div>
-
-```vue
-<template>
-  <spr-select-multiple
-    id="sample-select"
-    v-model="selectModel"
-    label="Multi-Select Label"
-    placeholder="Select an option"
-    :menu-list="menuListAPI"
-    :display-text="displayText"
-    @infinite-scroll-trigger="handleInfiniteScrollTrigger"
-  />
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const selectModel = ref(51); // Initial value for the select
-const displayText = ref('Border Terrier'); // Display text for the selected option
-
-const menuListAPI = ref<MenuListType[]>([]);
-
-const APIisLoading = ref(false);
-
-const pagination = ref({
-  totalpages: 10,
-  currentPage: 1,
-});
-
-const setOptionsViaAPI = () => {
-  getNextOptionsViaAPI();
-};
-
-const handleInfiniteScrollTrigger = () => {
-  if (pagination.value.currentPage === pagination.value.totalpages || APIisLoading.value) return;
-
-  APIisLoading.value = true;
-  pagination.value.currentPage += 1;
-
-  getNextOptionsViaAPI();
-};
-
-const getNextOptionsViaAPI = async () => {
-  try {
-    const response = await fetch(`https://api.thedogapi.com/v1/breeds?page=${pagination.value.currentPage}&limit=10`);
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    const options = await response.json();
-
-    menuListAPI.value = options.length
-      ? [
-          ...(menuListAPI.value || []),
-          ...options.map((option) => ({
-            text: option.name,
-            value: option.id,
-          })),
-        ]
-      : [];
-
-    APIisLoading.value = false;
-  } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-  }
-};
-</script>
-```
-
 ## Active & Disabled
 
 This is only applicable to selected components, such as form input fields. You can learn more in the <a href='/documentation/components/input.html' target='_blank'>Input Form</a>.
@@ -899,11 +805,6 @@ const userList = ref([
       <td>Emitted when the selection changes</td>
     </tr>
     <tr>
-      <td>infinite-scroll-trigger</td>
-      <td>boolean</td>
-      <td>Emitted when the user scrolls to the bottom</td>
-    </tr>
-    <tr>
       <td>search-string</td>
       <td>string/number</td>
       <td>Emitted when the user types in the search input</td>
@@ -943,17 +844,17 @@ import SprLogo from "@/components/logo/logo.vue";
 import type { MenuListType } from '@/components/list/list';
 
 const selectModel = ref({
-  selectBasic: '',
-  selectGroupedItemsBy: '',
-  selectSearch: '',
+  selectBasic: [],
+  selectGroupedItemsBy: [],
+  selectSearch: [],
   selectPreSelectedItems: ['100', 200, 'cherry'],
   selectPreSelectedItemsWithSearch: 'apple',
-  selectPlacements: '',
-  selectSearchDisabledLocalSearch: '',
-  selectClearable: '',
-  selectWidth: '',
-  selectStrategy: '',
-  selectInfiniteScroll: 51,
+  selectPlacements: [],
+  selectSearchDisabledLocalSearch: [],
+  selectClearable: [],
+  selectWidth: [],
+  selectStrategy: [],
+  selectInfiniteScroll: [],
 });
 
 const menuList = ref([
@@ -1030,56 +931,7 @@ const handleNumberSelection = () => {
 };
 
 // #region - Infinite Scroll
-const displayText = ref('Border Terrier'); // Display text for the selected option
-
-const menuListAPI = ref<MenuListType[]>([]);
-
-const APIisLoading = ref(false);
-
-const pagination = ref({
-  totalpages: 10,
-  currentPage: 1,
-});
-
-const setOptionsViaAPI = () => {
-  getNextOptionsViaAPI();
-}
-
-const handleInfiniteScrollTrigger = () => {
-  if (pagination.value.currentPage === pagination.value.totalpages || APIisLoading.value) return;
-
-  APIisLoading.value = true;
-  pagination.value.currentPage += 1;
-
-  getNextOptionsViaAPI();
-}
-
-const getNextOptionsViaAPI = async () => {
-  try {
-    const response = await fetch(`https://api.thedogapi.com/v1/breeds?page=${pagination.value.currentPage}&limit=10`);
-    
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    
-    const options = await response.json();
-
-    menuListAPI.value = options.length
-      ? [
-          ...(menuListAPI.value || []),
-          ...options.map(option => ({
-            text: option.name,
-            value: option.id,
-          })),
-        ]
-      : [];
-
-    APIisLoading.value = false;
-    
-  } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-  }
-}
+// Infinite scroll feature removed. All related code and variables have been deleted.
 // #endregion - Infinite Scroll
 
 const selectedUser = ref({ id: 1, name: 'John', role: 'Developer' });
@@ -1104,7 +956,6 @@ const usersList = ref([
 ]);
 
 onMounted(() => {
-  // Infinite Scroll - Initial API call to populate the paginated menu list
-  getNextOptionsViaAPI();
+  // Infinite Scroll - Initial API call removed.
 });
 </script>

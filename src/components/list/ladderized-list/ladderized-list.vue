@@ -9,6 +9,7 @@
           :menu-list="activeList"
           :multi-select="false"
           :ladderized="true"
+          :searchable-menu="props.searchableMenu"
           @update:model-value="(value) => handleSelectedListItem(value[0])"
         />
       </div>
@@ -21,6 +22,7 @@
           :menu-list="activeList"
           :multi-select="false"
           :ladderized="true"
+          :searchable-menu="props.searchableMenu"
           @update:model-value="(value) => handleSelectedListItem(value[0])"
         />
       </div>

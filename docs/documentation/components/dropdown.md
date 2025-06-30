@@ -4,7 +4,7 @@ outline: 'deep'
 
 <div class="spr-bg-red-300 spr-text-warning-800 spr-border spr-border-warning-200 spr-p-4 spr-mb-6 spr-rounded spr-font-medium spr-flex spr-items-center spr-gap-2">
   <span>
-   <strong>Notice:</strong> For field usage, please use the <a href="/documentation/components/select/select-single.html" class="spr-text-warning-700 spr-underline spr-font-semibold">Select component</a> instead of Dropdown. This documentation is no longer being updated.
+   <strong>Notice:</strong> The Dropdown component is now intended for navigation menus or other UI interactions, not for form field selection. If you are using Dropdown for forms, please use the <a href="/documentation/components/select/select-single.html" class="spr-text-warning-700 spr-underline spr-font-semibold">Select component</a> instead. This documentation will be updated soon for navigation menus or other UI interactions usage.
   </span>
 </div>
 

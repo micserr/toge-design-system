@@ -880,16 +880,13 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
           monthIsValid.monthValue < 10 ? `0${monthIsValid.monthValue + 1}` : `${monthIsValid.monthValue + 1}`;
       }
     }
-
     // Format the date according to the format prop
     const dateObj = dayjs(`${emittedMonth}-${dateInput.value}-${yearInput.value}`, 'MM-DD-YYYY');
 
     // Use the specified format for the input value
-    if (!monthInput.value && !dateInput.value && !yearInput.value) {
-      emit('getInputValue', null);
-    } else {
-      emit('getInputValue', dateObj.format(format.value));
-    }
+    if (!emittedMonth && !dateInput.value && !yearInput.value) return;
+
+    emit('getInputValue', (modelValue.value = dateObj.format(format.value)));
   };
 
   const emitMonthList = () => {
@@ -900,10 +897,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     emit('getYearList', yearTabPageData.value.yearsArray);
   };
   // #endregion - Helper Methods
-
-  watch(modelValue, () => {
-    setModelValue();
-  });
 
   watch(datePopperState, (newValue) => {
     if (newValue === false) {

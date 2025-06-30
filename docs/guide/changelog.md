@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.7.45 (2025-06-24)
+
+- Fix
+
+  - Commit 27dcaafd: refactor: simplify input value emission logic in date picker
+    ([#27dcaafd](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/27dcaafdd422740dd895e2feed9f02508baffb9e?refName=refs/heads/2025/Fix/andrea/date-picker-model-value) by @adestajo)
+
 ## 2.7.44 (2025-06-24)
 
 - Enhancement
@@ -10,7 +17,7 @@
     - Added `showCharCount` prop to enable/disable the character count display
     - Enhanced styling for character count to change color when limit is reached
     - Updated documentation with examples of both features
-    ([#945f3001](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/945f30012913f02f72a3fd1ab6e5fa8a81f2bb57?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FINPUT) by @bsolis)
+      ([#945f3001](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/945f30012913f02f72a3fd1ab6e5fa8a81f2bb57?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FINPUT) by @bsolis)
 
 ## 2.7.43 (2025-06-21)
 

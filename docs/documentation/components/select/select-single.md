@@ -419,7 +419,7 @@ The default placement is `bottom`.
 
 ## Clearable
 
-The clearable feature allows users to easily remove the selected value from the select input. This is particularly useful for forms where users may want to reset their selection without having to open the dropdown.
+The clearable feature allows users to easily remove the selected value from the select input. This is particularly useful for forms where users may want to reset their selection without having to open the select.
 
 <div class="spr-mb-4">
   <spr-select
@@ -468,26 +468,6 @@ You can modify the width of the select component in two ways: by adjusting the w
     popper-width="200px"
   />
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const selectModel = ref('');
-
-const menuList = ref([
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Cherry', value: 'cherry' },
-  { text: 'Date', value: 'date' },
-  { text: 'Elderberry', value: 'elderberry' },
-  { text: 'Fig', value: 'fig' },
-  { text: 'Grape', value: 'grape' },
-  { text: 'Nectarine', value: 'nectarine' },
-  { text: 'Orange', value: 'orange' },
-  { text: 'Papaya', value: 'papaya' },
-  { text: '89 Quince', value: '50' },
-]);
-</script>
 ```
 
 ## Popper Strategy
@@ -506,7 +486,7 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
 
 <spr-modal v-model="modalModel" title="Select with Modal">
    <spr-select
-    id="sample-selectStrategy"
+    id="sample-selectStrategy-modal"
     v-model="selectModel.selectStrategy"
     label="Select Label"
     placeholder="Select an option"
@@ -961,8 +941,6 @@ const selectModel = ref({
   selectInfiniteScroll: 51,
 });
 
-const modalModel = ref(false);
-
 const menuList = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
@@ -996,6 +974,8 @@ const menuList = ref([
   { text: 'Dragonfruit', value: 'dragonfruit' },
   { text: 'Pineapple', value: 'pineapple' },
 ]);
+
+const modalModel = ref(false);
 
 const handleSearchString = (searchString: string) => {
   console.log('Search String:', searchString);

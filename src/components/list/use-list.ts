@@ -13,7 +13,7 @@ interface ListClasses {
 export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>['emit']) => {
   const selectedItems = useVModel(props, 'modelValue', emit);
 
-  const { menuList, groupItemsBy, multiSelect, preSelectedItems } = toRefs(props);
+  const { menuList, menuLevel, groupItemsBy, multiSelect, preSelectedItems } = toRefs(props);
 
   const listClasses: ComputedRef<ListClasses> = computed(() => {
     const listItemClasses = classNames(
@@ -37,6 +37,8 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   ]);
 
   // #region - Helper Methods
+  const isParentMenu = computed(() => menuLevel.value === 0);
+
   const isItemSelected = (item: MenuListType) => {
     // First check standard selection via the selectedItems array
     const directSelected = selectedItems.value.some((selectedItem) => {
@@ -374,6 +376,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     listClasses,
     localizedMenuList,
     groupedMenuList,
+    isParentMenu,
     isItemSelected,
     getListItemClasses,
     handleSearch,

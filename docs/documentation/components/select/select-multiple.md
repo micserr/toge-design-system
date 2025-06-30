@@ -4,7 +4,7 @@ outline: 'deep'
 
 # Multi Select
 
-The Multi Select component allows users to select multiple options from a dropdown list. It is useful for scenarios where users need to choose more than one item from a predefined set of options.
+The Multi Select component allows users to select multiple options from a select list. It is useful for scenarios where users need to choose more than one item from a predefined set of options.
 
 ## Basic Usage
 
@@ -445,7 +445,7 @@ The default placement is `bottom`.
 
 ## Clearable
 
-The clearable feature allows users to easily remove the selected value from the select input. This is particularly useful for forms where users may want to reset their selection without having to open the dropdown.
+The clearable feature allows users to easily remove the selected value from the select input. This is particularly useful for forms where users may want to reset their selection without having to open the select.
 
 <div class="spr-mb-4">
   <spr-select-multiple
@@ -494,26 +494,6 @@ You can modify the width of the select component in two ways: by adjusting the w
     popper-width="200px"
   />
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const selectModel = ref('');
-
-const menuList = ref([
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Cherry', value: 'cherry' },
-  { text: 'Date', value: 'date' },
-  { text: 'Elderberry', value: 'elderberry' },
-  { text: 'Fig', value: 'fig' },
-  { text: 'Grape', value: 'grape' },
-  { text: 'Nectarine', value: 'nectarine' },
-  { text: 'Orange', value: 'orange' },
-  { text: 'Papaya', value: 'papaya' },
-  { text: '89 Quince', value: '50' },
-]);
-</script>
 ```
 
 ## Popper Strategy
@@ -532,13 +512,13 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
 
 <spr-modal v-model="modalModel" title="Select with Modal">
    <spr-select-multiple
-    id="sample-selectStrategy"
+    id="sample-selectStrategy-modal"
     v-model="selectModel.selectStrategy"
     label="Multi-Select Label"
     placeholder="Select an option"
     :menu-list="menuList"
     wrapper-position="initial"
-    popper-stategy="fixed"
+    popper-strategy="fixed"
   />
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -557,7 +537,7 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
       placeholder="Select an option"
       :menu-list="menuList"
       wrapper-position="initial"
-      popper-stategy="fixed"
+      popper-strategy="fixed"
     />
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
@@ -939,7 +919,7 @@ const userList = ref([
 - Use `clearable` to allow users to clear all selections.
 - Use `searchable` to enable the search input. Use `disabled-local-search` to disable local filtering (for remote search).
 - Use `helper-text` and `helper-icon` to display additional information below the input.
-- Use `placement` and `popper-strategy` to control the dropdown position and behavior.
+- Use `placement` and `popper-strategy` to control the select position and behavior.
 
 ## Product Uses
 
@@ -975,8 +955,6 @@ const selectModel = ref({
   selectStrategy: '',
   selectInfiniteScroll: 51,
 });
-
-const modalModel = ref(false);
 
 const menuList = ref([
   { text: 'Apple', value: 'apple' },
@@ -1014,6 +992,8 @@ const menuList = ref([
   { text: 'Dragonfruit', value: 'dragonfruit' },
   { text: 'Pineapple', value: 'pineapple' },
 ]);
+
+const modalModel = ref(false);
 
 const handleSearchString = (searchString: string) => {
   console.log('Search String:', searchString);

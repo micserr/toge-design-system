@@ -26,33 +26,6 @@ export function useSelectLadderized(props: SelectLadderizedPropTypes, emit: (eve
   const isSearching = ref(false);
   const wasCleared = ref(false);
 
-  // Filtered menu list for search
-  const filteredLadderizedSelectMenuList = computed(() => {
-    if (!props.searchable || !inputText.value.trim()) return ladderizedSelectMenuList.value;
-
-    const search = inputText.value.trim().toLowerCase();
-
-    const filterItems = (items: MenuListType[]): MenuListType[] => {
-      return items
-        .map((item: MenuListType) => {
-          let match = item.text && item.text.toLowerCase().includes(search);
-
-          const sublevel = item.sublevel ? filterItems(item.sublevel) : undefined;
-
-          if (sublevel && sublevel.length > 0) match = true;
-
-          if (match) {
-            return { ...item, sublevel };
-          }
-
-          return null;
-        })
-        .filter(Boolean) as MenuListType[];
-    };
-
-    return filterItems(ladderizedSelectMenuList.value);
-  });
-
   const isLeafNode = (item: MenuListType): boolean => {
     return !item.sublevel || item.sublevel.length === 0;
   };
@@ -145,19 +118,23 @@ export function useSelectLadderized(props: SelectLadderizedPropTypes, emit: (eve
       if (wasCleared.value) {
         inputText.value = '';
         wasCleared.value = false;
-
         return;
       }
 
       if (Array.isArray(newVal) && newVal.length > 0) {
-        // For multi-select, join all selected paths
-        const paths = newVal.map((val) => {
-          const path = findPathToValue(ladderizedSelectMenuList.value, val);
+        // Treat the array as a single path for ladderized select
+        let currentLevel = ladderizedSelectMenuList.value;
 
-          return path ? path.join(' > ') : '';
-        });
+        const pathTexts: string[] = [];
 
-        inputText.value = paths.filter(Boolean).join(', ');
+        for (const value of newVal) {
+          const found = currentLevel.find((item) => item.value === value);
+          if (!found) break;
+          pathTexts.push(found.text);
+          currentLevel = found.sublevel || [];
+        }
+
+        inputText.value = pathTexts.join(' > ');
       }
     },
     { immediate: true },
@@ -172,7 +149,6 @@ export function useSelectLadderized(props: SelectLadderizedPropTypes, emit: (eve
     ladderizedSelectPopperState,
     ladderizedSelectRef,
     ladderizedSelectMenuList,
-    filteredLadderizedSelectMenuList,
     isLadderizedSelectPopperDisabled,
     ladderizedSelectModel,
     inputText,

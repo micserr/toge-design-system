@@ -7,9 +7,11 @@
           v-model="selectedListItem"
           class="spr-p-size-spacing-3xs"
           :menu-list="activeList"
+          :menu-level="props.menuLevel"
           :multi-select="false"
           :ladderized="true"
           :searchable-menu="props.searchableMenu"
+          :searchable-menu-placeholder="props.searchableMenuPlaceholder"
           @update:model-value="(value) => handleSelectedListItem(value[0])"
         />
       </div>
@@ -20,9 +22,11 @@
           v-model="selectedListItem"
           class="spr-p-size-spacing-3xs"
           :menu-list="activeList"
+          :menu-level="props.menuLevel"
           :multi-select="false"
           :ladderized="true"
           :searchable-menu="props.searchableMenu"
+          :searchable-menu-placeholder="props.searchableMenuPlaceholder"
           @update:model-value="(value) => handleSelectedListItem(value[0])"
         />
       </div>

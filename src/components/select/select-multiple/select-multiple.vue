@@ -40,7 +40,12 @@
         >
           <template #icon>
             <div class="spr-flex spr-items-center spr-gap-1">
-              <Icon v-if="props.clearable" class="spr-cursor-pointer" icon="ph:x" @click.stop="handleClear" />
+              <Icon
+                v-if="props.clearable && inputText"
+                class="spr-cursor-pointer"
+                icon="ph:x"
+                @click.stop="handleClear"
+              />
               <Icon icon="ph:caret-down" />
             </div>
           </template>

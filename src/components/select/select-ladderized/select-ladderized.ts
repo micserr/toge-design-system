@@ -59,9 +59,13 @@ export const selectLadderizedPropTypes = {
     type: Boolean,
     default: false,
   },
-  searchable: {
+  searchableMenu: {
     type: Boolean,
     default: false,
+  },
+  searchableMenuPlaceholder: {
+    type: String,
+    default: 'Search...',
   },
   placement: {
     type: String as PropType<(typeof PLACEMENTS_TYPES)[number]>,

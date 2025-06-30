@@ -1,13 +1,14 @@
 <template>
   <div class="spr-font-main">
-    <div class="spr-mb-2 spr-mt-1">
+    <div v-if="props.searchableMenu" class="spr-mb-3 spr-grid spr-gap-3">
       <spr-input
-        v-if="props.searchableMenu"
         v-model="searchText"
-        placeholder="Search..."
+        :placeholder="props.searchableMenuPlaceholder"
         autocomplete="off"
         @keyup="handleSearch"
       />
+
+      <div v-if="isParentMenu" class="spr-background-color-surface spr-h-[1px]"></div>
     </div>
 
     <template v-if="props.groupItemsBy">
@@ -103,6 +104,7 @@ const {
   searchText,
   localizedMenuList,
   groupedMenuList,
+  isParentMenu,
   isItemSelected,
   getListItemClasses,
   handleSearch,

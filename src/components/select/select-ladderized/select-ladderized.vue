@@ -26,19 +26,24 @@
       <div @click="handleMenuToggle">
         <spr-input
           v-model="inputText"
-          :class="{ 'spr-cursor-pointer': !props.searchable }"
+          class="spr-cursor-pointer"
           :placeholder="props.placeholder"
-          :readonly="!props.searchable"
-          :disabled="props.disabled"
           autocomplete="off"
           :helper-text="props.helperText"
           :helper-icon="props.helperIcon"
           :display-helper="props.displayHelper"
+          readonly
+          :disabled="props.disabled"
           @keyup="handleSearch"
         >
           <template #icon>
             <div class="spr-flex spr-items-center spr-gap-1">
-              <Icon v-if="props.clearable" class="spr-cursor-pointer" icon="ph:x" @click.stop="handleClear" />
+              <Icon
+                v-if="props.clearable && inputText"
+                class="spr-cursor-pointer"
+                icon="ph:x"
+                @click.stop="handleClear"
+              />
               <Icon icon="ph:caret-down" />
             </div>
           </template>
@@ -52,13 +57,15 @@
           ref="ladderizedSelectRef"
           class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden"
         >
-          <template v-if="filteredLadderizedSelectMenuList.length > 0">
+          <template v-if="ladderizedSelectMenuList.length > 0">
             <spr-ladderized-list
               v-model="ladderizedSelectModel"
               :ladderized="true"
-              :menu-list="filteredLadderizedSelectMenuList"
+              :menu-list="ladderizedSelectMenuList"
+              :menu-level="ladderizedSelectModel.length"
               :remove-current-level-in-back-label="props.removeCurrentLevelInBackLabel"
-              searchable-menu
+              :searchable-menu="props.searchableMenu"
+              :searchable-menu-placeholder="props.searchableMenuPlaceholder"
               @update:model-value="handleSelectedLadderizedItem"
             />
           </template>
@@ -76,9 +83,12 @@
 <script lang="ts" setup>
 import { Menu } from 'floating-vue';
 import { Icon } from '@iconify/vue';
+
 import 'floating-vue/dist/style.css';
+
 import SprInput from '@/components/input/input.vue';
 import SprLadderizedList from '@/components/list/ladderized-list/ladderized-list.vue';
+
 import { selectLadderizedPropTypes, selectLadderizedEmitTypes } from './select-ladderized';
 import { useSelectLadderized } from './use-select-ladderized';
 
@@ -89,7 +99,7 @@ const {
   ladderizedClasses,
   ladderizedSelectPopperState,
   ladderizedSelectRef,
-  filteredLadderizedSelectMenuList,
+  ladderizedSelectMenuList,
   isLadderizedSelectPopperDisabled,
   ladderizedSelectModel,
   inputText,

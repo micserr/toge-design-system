@@ -324,6 +324,8 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     emit('update:modelValue', '');
 
     inputText.value = '';
+
+    multiSelectPopperState.value = false;
   };
 
   watch(multiSelectModel, () => {

@@ -40,15 +40,23 @@ export const listPropTypes = {
     type: Boolean,
     default: false,
   },
+  menuLevel: {
+    type: Number,
+    default: 0,
+  },
+  searchableMenu: {
+    type: Boolean,
+    default: false,
+  },
+  searchableMenuPlaceholder: {
+    type: String,
+    default: 'Search...',
+  },
   preSelectedItems: {
     type: Array as PropType<(string | number | Record<string, unknown>)[]>,
     default: () => [],
   },
   ladderized: {
-    type: Boolean,
-    default: false,
-  },
-  searchableMenu: {
     type: Boolean,
     default: false,
   },

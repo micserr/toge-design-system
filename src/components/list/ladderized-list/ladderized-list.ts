@@ -17,6 +17,10 @@ export const ladderizedListPropTypes = {
     type: Boolean,
     default: false,
   },
+  searchableMenu: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const ladderizedListEmitTypes = {

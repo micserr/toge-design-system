@@ -33,6 +33,9 @@
           :readonly="!props.searchable"
           :disabled="props.disabled"
           autocomplete="off"
+          :helper-text="props.helperText"
+          :helper-icon="props.helperIcon"
+          :display-helper="props.displayHelper"
           @keyup="handleSearch"
         >
           <template #icon>
@@ -42,6 +45,19 @@
             </div>
           </template>
         </spr-input>
+
+        <select
+          v-if="selectMenuList && selectMenuList.length"
+          :value="Array.isArray(selectModel) ? selectModel[0] : selectModel"
+          data-testid="qa-hidden-select"
+          tabindex="-1"
+          aria-hidden="true"
+          hidden
+        >
+          <option v-for="item in selectMenuList" :key="item.value" :value="item.value">
+            {{ item.text }}
+          </option>
+        </select>
       </div>
 
       <div
@@ -57,19 +73,37 @@
           class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden spr-p-2"
         >
           <template v-if="isSearching">
-            <template v-if="filteredSelectMenuList.length > 0">
-              <spr-list
-                v-model="selectedListItems"
-                :menu-list="filteredSelectMenuList"
-                :group-items-by="props.groupItemsBy"
-                :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
-                @update:model-value="handleSelectedItem"
-              />
+            <template v-if="!props.disabledLocalSearch">
+              <template v-if="filteredSelectMenuList.length > 0">
+                <spr-list
+                  v-model="selectedListItems"
+                  :menu-list="filteredSelectMenuList"
+                  :group-items-by="props.groupItemsBy"
+                  :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
+                  @update:model-value="handleSelectedItem"
+                />
+              </template>
+              <template v-else>
+                <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
+                  <span class="spr-body-sm-regular spr-m-0">No results found</span>
+                </div>
+              </template>
             </template>
             <template v-else>
-              <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
-                <span class="spr-body-sm-regular spr-m-0">No results found</span>
-              </div>
+              <template v-if="selectMenuList.length > 0">
+                <spr-list
+                  v-model="selectedListItems"
+                  :menu-list="selectMenuList"
+                  :group-items-by="props.groupItemsBy"
+                  :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
+                  @update:model-value="handleSelectedItem"
+                />
+              </template>
+              <template v-else>
+                <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
+                  <span class="spr-body-sm-regular spr-m-0">No results found</span>
+                </div>
+              </template>
             </template>
           </template>
           <template v-else>
@@ -114,16 +148,16 @@ const {
   selectClasses,
   selectPopperState,
   selectRef,
+  selectModel,
   selectMenuList,
   filteredSelectMenuList,
-  isSelectPopperDisabled,
   selectedListItems,
+  inputText,
+  isSelectPopperDisabled,
+  isSearching,
   handleSelectedItem,
   handleSearch,
-  selectModel,
-  inputText,
   handleClear,
   handleMenuToggle,
-  isSearching,
 } = useSelect(props, emit);
 </script>

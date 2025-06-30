@@ -1,6 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue';
 import type { MenuListType } from '../list/list';
-import { clear } from 'console';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
@@ -91,6 +90,18 @@ export const selectPropTypes = {
     type: String,
     default: '',
   },
+  displayHelper: {
+    type: Boolean,
+    default: false,
+  },
+  helperIcon: {
+    type: String,
+    default: null,
+  },
+  helperText: {
+    type: String,
+    default: '',
+  },
   disabled: {
     type: Boolean,
     default: false,
@@ -100,6 +111,10 @@ export const selectPropTypes = {
     default: false,
   },
   searchable: {
+    type: Boolean,
+    default: false,
+  },
+  disabledLocalSearch: {
     type: Boolean,
     default: false,
   },

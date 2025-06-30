@@ -75,10 +75,130 @@ You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-ite
       placeholder="Select an option"
       :menu-list="menuList"
       group-items-by="A-Z"
-      @update:model-value="handleSingleSelectedItem"
     />
   </div>
 </template>
+```
+
+## Search
+
+The search feature allows users to quickly filter and find specific items within the select list by typing in a search query.
+
+- Use the `searchable` prop to allow typing in the input. If `searchable` is not set or is false, the input will be readonly and users cannot type.
+- Use the `@searchString` event to get the display text as the user types. This is especially useful for API-driven selects, where you want to fetch or filter options dynamically based on the user's input.
+
+<div class="spr-mb-4">
+  <spr-select
+    id="sample-selectSearch"
+    v-model="selectModel.selectSearch"
+    label="Select Label"
+    placeholder="Select an option"
+    :menu-list="menuList"
+    @searchString="handleSearchString"
+    searchable
+  />
+</div>
+
+<code class="spr-font-medium">
+  V-Model Value: {{ selectModel.selectSearch ? selectModel.selectSearch : `""` }}
+</code>
+
+```vue
+<template>
+  <spr-select
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :menu-list="menuList"
+    @searchString="handleSearchString"
+    searchable
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectModel = ref('');
+
+const menuList = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+  { text: 'Fig', value: 'fig' },
+  { text: 'Grape', value: 'grape' },
+  { text: 'Nectarine', value: 'nectarine' },
+  { text: 'Orange', value: 'orange' },
+  { text: 'Papaya', value: 'papaya' },
+  { text: '89 Quince', value: '50' },
+]);
+
+const handleSearchString = (searchString: string) => {
+  // Use this event to fetch or filter options from an API
+  console.log('Search String:', searchString);
+};
+</script>
+```
+
+You can disable local search by passing the `disabled-local-search` prop. This is useful when you want to handle search via API only, and not filter the options locally.
+
+<div class="spr-mb-4">
+  <spr-select
+    id="sample-selectSearchDisabledLocalSearch"
+    v-model="selectModel.selectSearchDisabledLocalSearch"
+    label="Select Label"
+    placeholder="Select an option"
+    :menu-list="menuList"
+    @searchString="handleSearchString"
+    searchable
+    disabled-local-search
+  />
+</div>
+
+<code class="spr-font-medium">
+  V-Model Value: {{ selectModel.selectSearchDisabledLocalSearch ? selectModel.selectSearchDisabledLocalSearch : `""` }}
+</code>
+
+```vue
+<template>
+  <spr-select
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :menu-list="menuList"
+    @searchString="handleSearchString"
+    searchable
+    disabled-local-search
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectModel = ref('');
+
+const menuList = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+  { text: 'Fig', value: 'fig' },
+  { text: 'Grape', value: 'grape' },
+  { text: 'Nectarine', value: 'nectarine' },
+  { text: 'Orange', value: 'orange' },
+  { text: 'Papaya', value: 'papaya' },
+  { text: '89 Quince', value: '50' },
+]);
+
+const handleSearchString = (searchString: string) => {
+  // Use this event to fetch or filter options from an API
+  console.log('Search String:', searchString);
+};
+</script>
 ```
 
 ## Pre-Selected Items
@@ -127,6 +247,19 @@ import { ref, onMounted } from 'vue';
 const selectModel = ref(['apple']);
 </script>
 ```
+
+You can also pre-select items with search functionality. This allows users to see the pre-selected items while still being able to search through the options.
+
+<div class="spr-mt-4">
+  <spr-select
+    id="sample-selectPreSelectedItemsSearch"
+    v-model="selectModel.selectPreSelectedItemsWithSearch"
+    label="Select Label"
+    placeholder="Select an option"
+    :menu-list="menuList"
+    searchable
+  />
+</div>
 
 ## Placements
 
@@ -284,68 +417,6 @@ The default placement is `bottom`.
   </div>
 </div>
 
-## Search
-
-The search feature allows users to quickly filter and find specific items within the select list by typing in a search query.
-
-- Use the `searchable` prop to allow typing in the input. If `searchable` is not set or is false, the input will be readonly and users cannot type.
-- Use the `@searchString` event to get the display text as the user types. This is especially useful for API-driven selects, where you want to fetch or filter options dynamically based on the user's input.
-
-<div class="spr-mb-4">
-  <spr-select
-    id="sample-selectSearch"
-    v-model="selectModel.selectSearch"
-    label="Select Label"
-    placeholder="Select an option"
-    :menu-list="menuList"
-    @searchString="handleSearchString"
-    searchable
-  />
-</div>
-
-<code class="spr-font-medium">
-  V-Model Value: {{ selectModel.selectSearch ? selectModel.selectSearch : `""` }}
-</code>
-
-```vue
-<template>
-  <spr-select
-    id="sample-select"
-    v-model="selectModel"
-    label="Select Label"
-    placeholder="Select an option"
-    :menu-list="menuList"
-    @searchString="handleSearchString"
-    searchable
-  />
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const selectModel = ref('');
-
-const menuList = ref([
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Cherry', value: 'cherry' },
-  { text: 'Date', value: 'date' },
-  { text: 'Elderberry', value: 'elderberry' },
-  { text: 'Fig', value: 'fig' },
-  { text: 'Grape', value: 'grape' },
-  { text: 'Nectarine', value: 'nectarine' },
-  { text: 'Orange', value: 'orange' },
-  { text: 'Papaya', value: 'papaya' },
-  { text: '89 Quince', value: '50' },
-]);
-
-const handleSearchString = (searchString: string) => {
-  // Use this event to fetch or filter options from an API
-  console.log('Search String:', searchString);
-};
-</script>
-```
-
 ## Clearable
 
 The clearable feature allows users to easily remove the selected value from the select input. This is particularly useful for forms where users may want to reset their selection without having to open the dropdown.
@@ -441,7 +512,7 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
     placeholder="Select an option"
     :menu-list="menuList"
     wrapper-position="initial"
-    popper-stategy="fixed"
+    popper-strategy="fixed"
   />
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -460,7 +531,7 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
       placeholder="Select an option"
       :menu-list="menuList"
       wrapper-position="initial"
-      popper-stategy="fixed"
+      popper-strategy="fixed"
     />
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
@@ -586,7 +657,6 @@ For single selection of primitive types like strings or numbers:
     label="Select Label"
     placeholder="Select an option"
     :menu-list="stringMenuList"
-    @update:model-value="handleStringSelection"
   />
 </div>
 
@@ -599,7 +669,6 @@ Value: {{ stringValue }}
     label="Select Label"
     placeholder="Select an option"
     :menu-list="numberMenuList"
-    @update:model-value="handleNumberSelection"
   />
 </div>
 
@@ -772,6 +841,24 @@ const userList = ref([
       <td>'bottom'</td>
     </tr>
     <tr>
+      <td>searchable</td>
+      <td>
+        Searchable is to allow typing in the input. If searchable is not set or is false, 
+        the input will be readonly and users cannot type.
+      </td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>disabled-local-search</td>
+      <td>
+        Disables local search when the searchable prop is set to true. 
+        This is useful when you want to handle search via API only.
+      </td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
       <td>popper-strategy</td>
       <td>Defines how the select's popper is positioned: 'absolute' or 'fixed'</td>
       <td>String</td>
@@ -802,22 +889,39 @@ const userList = ref([
       <td>false</td>
     </tr>
     <tr>
+      <td>clearable</td>
+      <td>Allows the user to clear the selected value with a clear button</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Description</th>
+      <th>Payload</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
       <td>@update:model-value</td>
       <td>Event emitted when the model value changes</td>
-      <td>Function</td>
-      <td>-</td>
+      <td>Any</td>
     </tr>
     <tr>
       <td>@infinite-scroll-trigger</td>
       <td>Event emitted when the select is scrolled to the bottom (for dynamic data loading)</td>
-      <td>Function</td>
-      <td>-</td>
+      <td>None</td>
     </tr>
     <tr>
       <td>@searchString</td>
       <td>Event emitted when typed in the input</td>
-      <td>Function</td>
-      <td>-</td>
+      <td>String (search text)</td>
     </tr>
   </tbody>
 </table>
@@ -846,9 +950,11 @@ import type { MenuListType } from '@/components/list/list';
 const selectModel = ref({
   selectBasic: '',
   selectGroupedItemsBy: '',
-  selectPreSelectedItems:  'apple',
-  selectPlacements: '',
   selectSearch: '',
+  selectPreSelectedItems:  'apple',
+  selectPreSelectedItemsWithSearch: 'apple',
+  selectPlacements: '',
+  selectSearchDisabledLocalSearch: '',
   selectClearable: '',
   selectWidth: '',
   selectStrategy: '',

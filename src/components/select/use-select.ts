@@ -13,7 +13,7 @@ interface SelectClasses {
 }
 
 export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitTypes>['emit']) => {
-  const { displayText, menuList, disabled, textField, valueField } = toRefs(props);
+  const { displayText, menuList, disabled, textField, valueField, disabledLocalSearch } = toRefs(props);
 
   const selectClasses: ComputedRef<SelectClasses> = computed(() => {
     const baseClasses = classNames('spr-flex spr-flex-col spr-gap-size-spacing-4xs');
@@ -28,16 +28,21 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     };
   });
 
+  // Popper Variables
   const selectRef = ref<HTMLDivElement | null>(null);
   const selectPopperState = ref<boolean>(false);
   const isSelectPopperDisabled = computed(() => disabled.value);
 
+  // Select Variables
   const selectModel = useVModel(props, 'modelValue', emit);
-  const inputText = ref<string | number>('');
-  const isSearching = ref<boolean>(false);
   const selectedListItems = ref<MenuListType[]>();
   const selectMenuList = ref<MenuListType[]>([]);
   const hasUserSelected = ref(false);
+
+  // Input Text Variables
+  const inputText = ref<string | number>('');
+  const inputTextBackup = ref<string | number>('');
+  const isSearching = ref<boolean>(false);
 
   const handleMenuToggle = () => {
     selectPopperState.value = true;
@@ -98,6 +103,7 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
         text: item.toString(),
         value: item, // Keep the value as a number instead of converting to string
       }));
+
       return;
     }
 
@@ -130,7 +136,11 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
   };
 
   const filteredSelectMenuList = computed(() => {
-    const query = inputText.value.toLowerCase().trim();
+    if (disabledLocalSearch.value) {
+      return selectMenuList.value;
+    }
+
+    const query = inputText.value.toString().toLowerCase().trim();
 
     if (!query) return selectMenuList.value;
 
@@ -141,6 +151,7 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     processMenuList();
   });
 
+  // Search handler: always emit search-string, but only filter locally if local search is enabled
   const handleSearch = () => {
     isSearching.value = true;
 
@@ -153,6 +164,13 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
 
   onClickOutside(selectRef, () => {
     selectPopperState.value = false;
+
+    // If user was searching, restore inputText from backup
+    if (isSearching.value) {
+      inputText.value = inputTextBackup.value;
+    }
+
+    isSearching.value = false;
   });
 
   useInfiniteScroll(
@@ -192,6 +210,9 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
       inputText.value = itemText;
     }
 
+    // Clone inputText to backup after selection
+    inputTextBackup.value = inputText.value;
+
     // Always close select for single selection
     setTimeout(() => {
       selectPopperState.value = false;
@@ -206,6 +227,22 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
 
     if (!values || !values.length) {
       selectedListItems.value = [];
+
+      // Only set displayText if user hasn't typed anything
+      if (
+        displayText.value &&
+        !hasUserSelected.value &&
+        !isSearching.value &&
+        (!inputText.value || inputText.value === '')
+      ) {
+        inputText.value = displayText.value;
+
+        // Clone displayText to backup if present
+        inputTextBackup.value = displayText.value;
+      } else if (!hasUserSelected.value && (!inputText.value || inputText.value === '')) {
+        inputText.value = '';
+        inputTextBackup.value = '';
+      }
 
       return;
     }
@@ -243,15 +280,12 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
           if (v.isObject && typeof v.original === 'object') {
             const originalObj = item._originalObject as Record<string, unknown>;
 
-            // First try direct equality comparison
             if (v.original === originalObj) return true;
 
-            // Try JSON string comparison
             const itemJson = JSON.stringify(originalObj);
 
             if (v.string === itemJson) return true;
 
-            // Try ID-based comparison if both have ID fields
             if (v.id !== undefined && 'id' in originalObj) {
               return v.id === originalObj.id;
             }
@@ -268,11 +302,18 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
       }
     });
 
-    inputText.value = selectedListItems.value.map((item) => item.text).join(', ');
+    // Only update inputText if not searching
+    if (!isSearching.value) {
+      inputText.value = selectedListItems.value.map((item) => item.text).join(', ');
 
-    // Only use displayText.value if user hasn't selected anything yet
-    if (displayText.value && !hasUserSelected.value) {
-      inputText.value = displayText.value;
+      // Only use displayText.value if user hasn't selected anything yet
+      if (displayText.value && !hasUserSelected.value && (!inputText.value || inputText.value === '')) {
+        inputText.value = displayText.value;
+        inputTextBackup.value = displayText.value;
+      } else {
+        // Always update backup to match inputText if not searching
+        inputTextBackup.value = inputText.value;
+      }
     }
   };
 
@@ -298,6 +339,7 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
       updateSelectedItemsFromValue();
     } else if (displayText.value) {
       inputText.value = displayText.value;
+      inputTextBackup.value = displayText.value;
     }
   });
 
@@ -306,15 +348,15 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     selectPopperState,
     handleMenuToggle,
     selectRef,
-    inputText,
+    selectModel: compatPreSelectedItems, // Use compatible format for lists
     selectMenuList,
     filteredSelectMenuList,
-    isSelectPopperDisabled,
     selectedListItems,
+    inputText,
+    isSelectPopperDisabled,
+    isSearching,
     handleSelectedItem,
     handleSearch,
     handleClear,
-    isSearching,
-    selectModel: compatPreSelectedItems, // Use compatible format for lists
   };
 };

@@ -168,7 +168,9 @@
   /* #endregion - Dropdown */
 
   /* #region - Select */
-  #select-wrapper {
+  #select-wrapper,
+  #multi-select-wrapper,
+  #ladderized-select-wrapper {
     @apply spr-z-[1000] spr-w-[inherit] spr-overflow-hidden;
 
     .v-popper__wrapper {

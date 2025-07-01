@@ -24,8 +24,6 @@
       }"
     >
       <div @click="handleMenuToggle">
-        <!-- Display selected items for debugging or UI -->
-        <!-- {{ multiSelectedListItems }} -->
         <spr-input
           v-model="inputText"
           :class="{

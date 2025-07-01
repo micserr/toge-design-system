@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.8.0 (2025-07-01)
+
+- Feat
+
+  - Fiix Multi-Select and Ladderized Issues Encountered ([#2007b944](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2007b9445a49445edf25f9d00c286b07ff27342c?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 2.8.0 (2025-06-30)
 
 - Feat

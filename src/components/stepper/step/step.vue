@@ -2,7 +2,8 @@
   <div :class="stepClasses.baseClass">
     <!-- STEP NUMBER -->
     <div :class="stepClasses.badgeClass">
-      <span :class="stepClasses.numberClass">
+      <icon v-if="props.status === 'completed' && props.type === 'solid'" icon="ph:check-bold" width="14px" height="14px" class="spr-text-color-inverted-strong"/>
+      <span v-else :class="stepClasses.numberClass">
         {{ props.number }}
       </span>
     </div>
@@ -23,6 +24,7 @@
 <script setup lang="ts">
 import { stepEmitTypes, stepPropTypes } from '@/components/stepper/step/step';
 import { useStep } from '@/components/stepper/step/use-step';
+import { Icon } from '@iconify/vue'; 
 
 const props = defineProps(stepPropTypes);
 const emit = defineEmits(stepEmitTypes);

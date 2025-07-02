@@ -52,6 +52,55 @@ const steps = ref([
 
 ```
 
+## Type
+Stepper type is classified as `compact` (default) and `solid`. The stepper below is an example of a `solid` type.
+
+<div style="width:200px;">
+  <spr-stepper
+    :steps="steps"
+    type="solid"
+  />
+</div>
+
+```vue
+<template>
+  <div style="width:200px;">
+    <spr-stepper
+      :steps="steps"
+      type="solid"
+    />
+  </div>
+</template>
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const steps = ref([
+  {
+    number: 1,
+    label: 'Step 1',
+    status: 'completed',
+    description: 'Description'
+  },
+  {
+    number: 2,
+    label: 'Step 2',
+    status: 'active',
+  },
+  {
+    number: 3,
+    label: 'Step 3',
+    status: 'pending',
+  },
+  {
+    number: 4,
+    label: 'Step 4',
+    status: 'pending'
+  },
+]);
+</script>
+
+```
+
 
 ## Horizontal Stepper
 
@@ -284,6 +333,14 @@ const updateSteps = () => {
           description?: string;
         }
       </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td>Stepper type if display as compact or in solid active background.</td>
+      <td>'compact', 'solid'</td>
+      <td>string</td>
+      <td>'compact'</td>
     </tr>
   </tbody>
 </table>
@@ -292,6 +349,7 @@ const updateSteps = () => {
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
   <spr-logo name="sidekick" theme="dark" width="50px" />
+  <spr-logo name="payroll" theme="dark" width="50px" />
 </div>
 
 <script setup lang="ts">

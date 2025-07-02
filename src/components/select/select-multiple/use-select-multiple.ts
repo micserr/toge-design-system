@@ -1,5 +1,5 @@
 import { ref, toRefs, computed, ComputedRef, onMounted, watch } from 'vue';
-import { onClickOutside, useVModel, useDebounceFn } from '@vueuse/core';
+import { onClickOutside, useVModel } from '@vueuse/core';
 
 import classNames from 'classnames';
 
@@ -13,7 +13,7 @@ interface MultiSelectClasses {
 }
 
 export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<MultiSelectEmitTypes>['emit']) => {
-  const { displayText, menuList, disabled, textField, valueField, disabledLocalSearch } = toRefs(props);
+  const { displayText, options, disabled, textField, valueField } = toRefs(props);
 
   const multiSelectClasses: ComputedRef<MultiSelectClasses> = computed(() => {
     const baseClasses = classNames('spr-flex spr-flex-col spr-gap-size-spacing-4xs');
@@ -34,20 +34,11 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
 
   const multiSelectModel = useVModel(props, 'modelValue', emit);
   const multiSelectedListItems = ref<MenuListType[]>([]);
-  const multiSelectMenuList = ref<MenuListType[]>([]);
+  const multiSelectOptions = ref<MenuListType[]>([]);
   const hasUserSelected = ref(false);
 
   const inputText = ref<string | number>('');
   const inputTextBackup = ref<string | number>('');
-  const isSearching = ref<boolean>(false);
-
-  /**
-   * Opens the multi-select dropdown menu and resets the searching state.
-   */
-  const handleMenuToggle = () => {
-    multiSelectPopperState.value = true;
-    isSearching.value = false;
-  };
 
   /**
    * Returns the normalized value of the model as an array for internal use.
@@ -65,19 +56,19 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
   });
 
   /**
-   * Processes the menuList prop and normalizes it into MenuListType[] for the dropdown.
+   * Processes the options prop and normalizes it into MenuListType[] for the multi-select.
    */
-  const processMenuList = () => {
-    if (!menuList.value || !Array.isArray(menuList.value) || menuList.value.length === 0) {
-      multiSelectMenuList.value = [];
+  const processOptions = () => {
+    if (!options.value || !Array.isArray(options.value) || options.value.length === 0) {
+      multiSelectOptions.value = [];
 
       return;
     }
 
-    const firstItem = menuList.value[0];
+    const firstItem = options.value[0];
 
     if (typeof firstItem === 'string') {
-      multiSelectMenuList.value = (menuList.value as string[]).map((item) => ({
+      multiSelectOptions.value = (options.value as string[]).map((item) => ({
         text: item,
         value: item,
       }));
@@ -86,7 +77,7 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     }
 
     if (typeof firstItem === 'number') {
-      multiSelectMenuList.value = (menuList.value as Array<number | string | Record<string, unknown>>)
+      multiSelectOptions.value = (options.value as Array<number | string | Record<string, unknown>>)
         .filter((item): item is number => typeof item === 'number')
         .map((item) => ({
           text: item.toString(),
@@ -98,12 +89,12 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
 
     if (typeof firstItem === 'object' && firstItem !== null) {
       if ('text' in firstItem && 'value' in firstItem) {
-        multiSelectMenuList.value = menuList.value as MenuListType[];
+        multiSelectOptions.value = options.value as MenuListType[];
 
         return;
       }
 
-      multiSelectMenuList.value = (menuList.value as Record<string, unknown>[]).map((item) => {
+      multiSelectOptions.value = (options.value as Record<string, unknown>[]).map((item) => {
         const displayText = item[textField.value] !== undefined ? String(item[textField.value]) : 'Unnamed';
 
         let itemValue = valueField.value && item[valueField.value] !== undefined ? item[valueField.value] : item;
@@ -120,53 +111,18 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
       return;
     }
 
-    multiSelectMenuList.value = menuList.value as MenuListType[];
+    multiSelectOptions.value = options.value as MenuListType[];
   };
 
   /**
-   * Returns the filtered menu list based on the search input, or the full list if local search is disabled.
+   * Opens the multi-select options.
    */
-  const filteredMultiSelectMenuList = computed(() => {
-    if (disabledLocalSearch.value) {
-      return multiSelectMenuList.value;
-    }
-
-    const query = inputText.value.toString().toLowerCase().trim();
-
-    if (!query) return multiSelectMenuList.value;
-
-    return multiSelectMenuList.value.filter((item) => item.text?.toString().toLowerCase().includes(query));
-  });
-
-  /**
-   * Handles the search input and emits the search-string event (debounced).
-   */
-  const handleSearch = () => {
-    isSearching.value = true;
-
-    debouncedEmitSearch();
+  const handleOptionsToggle = () => {
+    multiSelectPopperState.value = true;
   };
 
   /**
-   * Debounced function to emit the search-string event for remote search.
-   */
-  const debouncedEmitSearch = useDebounceFn(() => {
-    emit('search-string', inputText.value);
-  }, 300);
-
-  /**
-   * Handles closing the dropdown when clicking outside, restoring input text if searching.
-   */
-  onClickOutside(multiSelectRef, () => {
-    multiSelectPopperState.value = false;
-    if (isSearching.value) {
-      inputText.value = inputTextBackup.value;
-    }
-    isSearching.value = false;
-  });
-
-  /**
-   * Handles selection changes from the dropdown and updates the model value.
+   * Handles selection changes from the multi-select and updates the model value.
    * Converts stringified objects back to objects if needed.
    */
   const handleMultiSelectedItem = (multiSelectedItems: MenuListType[]) => {
@@ -178,21 +134,27 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
           return item.value;
         }
       }
+
       return item.value;
     });
 
     hasUserSelected.value = true;
     multiSelectModel.value = selectedValues;
     multiSelectPopperState.value = true;
-    inputTextBackup.value = inputText.value;
+    inputTextBackup.value =
+      multiSelectedItems.length > 3
+        ? `${multiSelectedItems.length} items selected`
+        : multiSelectedItems.map((item) => item.text).join(', ');
+
+    updateMultiSelectedItemsFromValue();
   };
 
   /**
-   * Updates the selected items in the dropdown based on the current model value.
+   * Updates the selected items in the multi-select based on the current model value.
    * Handles stringified objects and updates the input text accordingly.
    */
   const updateMultiSelectedItemsFromValue = () => {
-    if (!multiSelectMenuList.value.length) return;
+    if (!multiSelectOptions.value.length) return;
 
     const values = normalizedValue.value;
 
@@ -204,7 +166,7 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
       return;
     }
 
-    multiSelectedListItems.value = multiSelectMenuList.value.filter((item) => {
+    multiSelectedListItems.value = multiSelectOptions.value.filter((item) => {
       return values.some((val) => {
         let itemVal = item.value;
         let valToCompare = val;
@@ -233,30 +195,28 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
       });
     });
 
-    if (!isSearching.value) {
-      if (multiSelectedListItems.value.length > 3) {
-        inputText.value = `${multiSelectedListItems.value.length} items selected`;
-      } else {
-        inputText.value = multiSelectedListItems.value.map((item) => item.text).join(', ');
-      }
+    if (multiSelectedListItems.value.length > 3) {
+      inputText.value = `${multiSelectedListItems.value.length} items selected`;
+    } else {
+      inputText.value = multiSelectedListItems.value.map((item) => item.text).join(', ');
+    }
 
-      if (displayText.value && !hasUserSelected.value && (!inputText.value || inputText.value === '')) {
-        inputText.value = displayText.value;
-        inputTextBackup.value = displayText.value;
-      } else if (hasUserSelected.value) {
-        inputTextBackup.value = inputText.value;
-      }
+    // Always update backup to match inputText after update
+    inputTextBackup.value = inputText.value;
+
+    if (displayText.value && !hasUserSelected.value && (!inputText.value || inputText.value === '')) {
+      inputText.value = displayText.value;
+      inputTextBackup.value = displayText.value;
     }
   };
 
   /**
-   * Clears the selection and input text, and closes the dropdown.
+   * Clears the selection and input text, and closes the multi-select.
    */
   const handleClear = () => {
     emit('update:modelValue', []);
 
     inputText.value = '';
-
     multiSelectPopperState.value = false;
   };
 
@@ -264,12 +224,21 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     updateMultiSelectedItemsFromValue();
   });
 
-  watch(multiSelectMenuList, () => {
+  watch(multiSelectOptions, () => {
+    updateMultiSelectedItemsFromValue();
+  });
+
+  /**
+   * Handles closing the multi-select when clicking outside.
+   */
+  onClickOutside(multiSelectRef, () => {
+    multiSelectPopperState.value = false;
+
     updateMultiSelectedItemsFromValue();
   });
 
   onMounted(() => {
-    processMenuList();
+    processOptions();
 
     if (normalizedValue.value.length > 0) {
       updateMultiSelectedItemsFromValue();
@@ -284,15 +253,12 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     multiSelectPopperState,
     multiSelectRef,
     multiSelectModel,
-    multiSelectMenuList,
-    filteredMultiSelectMenuList,
+    multiSelectOptions,
     multiSelectedListItems,
     inputText,
     isMultiSelectPopperDisabled,
-    isSearching,
     handleMultiSelectedItem,
-    handleSearch,
     handleClear,
-    handleMenuToggle,
+    handleOptionsToggle,
   };
 };

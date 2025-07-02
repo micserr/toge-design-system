@@ -23,20 +23,19 @@
         width: props.width,
       }"
     >
-      <div @click="handleMenuToggle">
+      <div @click="handleOptionsToggle">
         <spr-input
           v-model="inputText"
           :class="{
-            'spr-cursor-pointer': !props.searchable,
+            'spr-cursor-pointer': true,
           }"
           :placeholder="props.placeholder"
-          :readonly="!props.searchable"
+          :readonly="true"
           :disabled="props.disabled"
           autocomplete="off"
           :helper-text="props.helperText"
           :helper-icon="props.helperIcon"
           :display-helper="props.displayHelper"
-          @keyup="handleSearch"
         >
           <template #icon>
             <div class="spr-flex spr-items-center spr-gap-1">
@@ -59,76 +58,25 @@
         }"
       ></div>
 
-      <select
-        :id="`${props.id}-multiple-select`"
-        tabindex="-1"
-        aria-hidden="true"
-        data-qa="multi-select-hidden"
-        multiple
-        hidden
-      >
-        <option v-for="item in multiSelectedListItems" :key="item.value" :value="item.value" selected>
-          {{ item.text }}
-        </option>
-      </select>
-
       <template #popper>
         <div
           ref="multiSelectRef"
           class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden spr-p-2"
         >
-          <template v-if="isSearching">
-            <template v-if="!props.disabledLocalSearch">
-              <template v-if="filteredMultiSelectMenuList.length > 0">
-                <spr-list
-                  v-model="multiSelectedListItems"
-                  :menu-list="filteredMultiSelectMenuList"
-                  :group-items-by="props.groupItemsBy"
-                  :pre-selected-items="Array.isArray(multiSelectModel) ? multiSelectModel.flat() : [multiSelectModel]"
-                  multi-select
-                  @update:model-value="handleMultiSelectedItem"
-                />
-              </template>
-              <template v-else>
-                <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
-                  <span class="spr-body-sm-regular spr-m-0">No results found</span>
-                </div>
-              </template>
-            </template>
-            <template v-else>
-              <template v-if="multiSelectMenuList.length > 0">
-                <spr-list
-                  v-model="multiSelectedListItems"
-                  :menu-list="multiSelectMenuList"
-                  :group-items-by="props.groupItemsBy"
-                  :pre-selected-items="Array.isArray(multiSelectModel) ? multiSelectModel.flat() : [multiSelectModel]"
-                  multi-select
-                  @update:model-value="handleMultiSelectedItem"
-                />
-              </template>
-              <template v-else>
-                <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
-                  <span class="spr-body-sm-regular spr-m-0">No results found</span>
-                </div>
-              </template>
-            </template>
+          <template v-if="multiSelectOptions.length > 0">
+            <spr-list
+              v-model="multiSelectedListItems"
+              :menu-list="multiSelectOptions"
+              :group-items-by="props.groupItemsBy"
+              :pre-selected-items="Array.isArray(multiSelectModel) ? multiSelectModel.flat() : [multiSelectModel]"
+              multi-select
+              @update:model-value="handleMultiSelectedItem"
+            />
           </template>
           <template v-else>
-            <template v-if="multiSelectMenuList.length > 0">
-              <spr-list
-                v-model="multiSelectedListItems"
-                :menu-list="multiSelectMenuList"
-                :group-items-by="props.groupItemsBy"
-                :pre-selected-items="Array.isArray(multiSelectModel) ? multiSelectModel.flat() : [multiSelectModel]"
-                multi-select
-                @update:model-value="handleMultiSelectedItem"
-              />
-            </template>
-            <template v-else>
-              <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
-                <span class="spr-body-sm-regular spr-m-0">No results found</span>
-              </div>
-            </template>
+            <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
+              <span class="spr-body-sm-regular spr-m-0">No results found</span>
+            </div>
           </template>
         </div>
       </template>
@@ -157,15 +105,12 @@ const {
   multiSelectPopperState,
   multiSelectRef,
   multiSelectModel,
-  multiSelectMenuList,
-  filteredMultiSelectMenuList,
+  multiSelectOptions,
   multiSelectedListItems,
   inputText,
   isMultiSelectPopperDisabled,
-  isSearching,
   handleMultiSelectedItem,
-  handleSearch,
   handleClear,
-  handleMenuToggle,
+  handleOptionsToggle,
 } = useMultiSelect(props, emit);
 </script>

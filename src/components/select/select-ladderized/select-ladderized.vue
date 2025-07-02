@@ -23,7 +23,7 @@
         width: props.width,
       }"
     >
-      <div @click="handleMenuToggle">
+      <div @click="handleOptionsToggle">
         <spr-input
           v-model="inputText"
           class="spr-cursor-pointer"
@@ -57,15 +57,15 @@
           ref="ladderizedSelectRef"
           class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden"
         >
-          <template v-if="ladderizedSelectMenuList.length > 0">
+          <template v-if="ladderizedSelectOptions.length > 0">
             <spr-ladderized-list
               v-model="ladderizedSelectModel"
               :ladderized="true"
-              :menu-list="ladderizedSelectMenuList"
+              :menu-list="ladderizedSelectOptions"
               :menu-level="ladderizedSelectModel.length"
               :remove-current-level-in-back-label="props.removeCurrentLevelInBackLabel"
-              :searchable-menu="props.searchableMenu"
-              :searchable-menu-placeholder="props.searchableMenuPlaceholder"
+              :searchable-menu="props.searchableOptions"
+              :searchable-menu-placeholder="props.searchableOptionsPlaceholder"
               @update:model-value="handleSelectedLadderizedItem"
             />
           </template>
@@ -99,13 +99,13 @@ const {
   ladderizedClasses,
   ladderizedSelectPopperState,
   ladderizedSelectRef,
-  ladderizedSelectMenuList,
+  ladderizedSelectOptions,
   isLadderizedSelectPopperDisabled,
   ladderizedSelectModel,
   inputText,
   handleSelectedLadderizedItem,
   handleSearch,
   handleClear,
-  handleMenuToggle,
+  handleOptionsToggle,
 } = useSelectLadderized(props, emit);
 </script>

@@ -6,6 +6,7 @@
     @click="handleClick"
   >
     <div class="spr-flex spr-flex-auto spr-items-center">
+      <slot name="icon">
         <Icon
           v-if="showIcon"
           :icon="snackIcon"
@@ -13,7 +14,11 @@
           :height="iconSize"
           :class="[snackToneCssClass, 'spr-mr-size-spacing-3xs spr-flex-shrink-0']"
         />
-      <label>{{ text }}</label>
+      </slot>
+      
+      <slot name="label">
+        <label>{{ text }}</label>
+      </slot>
     </div>
     <template v-if="showAction">
       <slot>

@@ -291,6 +291,20 @@ const showSlottedSnackbarAction = () => {
       <td></td>
     </tr>
   </tbody>
+  <tbody>
+    <tr>
+      <td>Snack Slots</td>
+      <td>spr-snack / Snack has three slots
+        <ul>
+          <li>default (for the snackbarActions above)</li>
+          <li>icon - Slot for the icon</li>
+          <li>label - Slot for the text label</li>
+        </ul>
+      </td>
+      <td>html / template</td>
+      <td></td>
+    </tr>
+  </tbody>
 </table>
 
 <script lang="ts" setup>

@@ -8,14 +8,18 @@ Selects are interactive components that allow users to choose from a list of opt
 
 ## Basic Usage
 
-<div>
+<div class="spr-grid spr-gap-4">
   <spr-select
     id="sample-selectBasic"
     v-model="selectModel.selectBasic"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
+    :options="options"
   />
+  
+  <code class="spr-font-medium">
+    V-Model: {{ selectModel.selectBasic ? selectModel.selectBasic : `""` }}
+  </code>
 </div>
 
 ```vue
@@ -25,7 +29,7 @@ Selects are interactive components that allow users to choose from a list of opt
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
+    :options="options"
   />
 </template>
 
@@ -34,7 +38,7 @@ import { ref } from 'vue';
 
 const selectModel = ref('');
 
-const menuList = ref([
+const options = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
   { text: 'Cherry', value: 'cherry' },
@@ -60,7 +64,7 @@ You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-ite
     v-model="selectModel.selectGroupedItemsBy"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
+    :options="options"
     group-items-by="A-Z"
   />
 </div>
@@ -73,7 +77,7 @@ You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-ite
       v-model="selectModel"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       group-items-by="A-Z"
     />
   </div>
@@ -84,24 +88,22 @@ You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-ite
 
 The search feature allows users to quickly filter and find specific items within the select list by typing in a search query.
 
-- Use the `searchable` prop to allow typing in the input. If `searchable` is not set or is false, the input will be readonly and users cannot type.
-- Use the `@searchString` event to get the display text as the user types. This is especially useful for API-driven selects, where you want to fetch or filter options dynamically based on the user's input.
+- Use the `searchable-options` prop to enable the search input within the select component.
 
-<div class="spr-mb-4">
+<div class="spr-grid spr-gap-4">
   <spr-select
     id="sample-selectSearch"
     v-model="selectModel.selectSearch"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
-    @searchString="handleSearchString"
+    :options="options"
     searchable
   />
-</div>
 
-<code class="spr-font-medium">
-  V-Model Value: {{ selectModel.selectSearch ? selectModel.selectSearch : `""` }}
-</code>
+  <code class="spr-font-medium">
+    V-Model: {{ selectModel.selectSearch ? selectModel.selectSearch : `""` }}
+  </code>
+</div>
 
 ```vue
 <template>
@@ -110,8 +112,7 @@ The search feature allows users to quickly filter and find specific items within
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
-    @searchString="handleSearchString"
+    :options="options"
     searchable
   />
 </template>
@@ -121,7 +122,7 @@ import { ref } from 'vue';
 
 const selectModel = ref('');
 
-const menuList = ref([
+const options = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
   { text: 'Cherry', value: 'cherry' },
@@ -134,32 +135,26 @@ const menuList = ref([
   { text: 'Papaya', value: 'papaya' },
   { text: '89 Quince', value: '50' },
 ]);
-
-const handleSearchString = (searchString: string) => {
-  // Use this event to fetch or filter options from an API
-  console.log('Search String:', searchString);
-};
 </script>
 ```
 
 You can disable local search by passing the `disabled-local-search` prop. This is useful when you want to handle search via API only, and not filter the options locally.
 
-<div class="spr-mb-4">
+<div class="spr-grid spr-gap-4">
   <spr-select
     id="sample-selectSearchDisabledLocalSearch"
     v-model="selectModel.selectSearchDisabledLocalSearch"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
-    @searchString="handleSearchString"
+    :options="options"
     searchable
     disabled-local-search
   />
+  
+  <code class="spr-font-medium">
+    V-Model: {{ selectModel.selectSearchDisabledLocalSearch ? selectModel.selectSearchDisabledLocalSearch : `""` }}
+  </code>
 </div>
-
-<code class="spr-font-medium">
-  V-Model Value: {{ selectModel.selectSearchDisabledLocalSearch ? selectModel.selectSearchDisabledLocalSearch : `""` }}
-</code>
 
 ```vue
 <template>
@@ -168,8 +163,7 @@ You can disable local search by passing the `disabled-local-search` prop. This i
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
-    @searchString="handleSearchString"
+    :options="options"
     searchable
     disabled-local-search
   />
@@ -180,7 +174,7 @@ import { ref } from 'vue';
 
 const selectModel = ref('');
 
-const menuList = ref([
+const options = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
   { text: 'Cherry', value: 'cherry' },
@@ -193,11 +187,6 @@ const menuList = ref([
   { text: 'Papaya', value: 'papaya' },
   { text: '89 Quince', value: '50' },
 ]);
-
-const handleSearchString = (searchString: string) => {
-  // Use this event to fetch or filter options from an API
-  console.log('Search String:', searchString);
-};
 </script>
 ```
 
@@ -210,22 +199,22 @@ Pre-selected items are options that are automatically selected when the select i
 - **Array of strings or numbers**: For single selection by array (e.g., `['apple']` or `[42]`).
 - **Object**: For single selection by object reference (e.g., `{ text: 'Apple', value: 'apple' }`). See more in the [Supported Value Types](#single-object-values).
 
-<div class="spr-mb-4">
+<div class="spr-grid spr-gap-4">
   <spr-select
     id="sample-selectPreSelectedItems"
     v-model="selectModel.selectPreSelectedItems"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
+    :options="options"
     group-items-by="A-Z"
     text-field="text"
     value-field="value"
   />
+  
+  <code class="spr-font-medium">
+    V-Model: {{ selectModel.selectPreSelectedItems ? selectModel.selectPreSelectedItems : `""` }}
+  </code>
 </div>
-
-<code class="spr-font-medium">
-  V-Model Value: {{ selectModel.selectPreSelectedItems ? selectModel.selectPreSelectedItems : `""` }}
-</code>
 
 ```vue
 <template>
@@ -235,7 +224,7 @@ Pre-selected items are options that are automatically selected when the select i
       v-model="selectModel"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       group-items-by="A-Z"
     />
   </div>
@@ -256,7 +245,7 @@ You can also pre-select items with search functionality. This allows users to se
     v-model="selectModel.selectPreSelectedItemsWithSearch"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
+    :options="options"
     searchable
   />
 </div>
@@ -276,7 +265,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="auto"
       popper-width="200px"
     />
@@ -285,7 +274,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="auto-start"
       popper-width="200px"
     />
@@ -294,7 +283,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="auto-end"
       popper-width="200px"
     />
@@ -305,7 +294,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="top"
       popper-width="200px"
     />
@@ -314,7 +303,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="top-start"
       popper-width="200px"
     />
@@ -323,7 +312,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="top-end"
       popper-width="200px"
     />
@@ -334,7 +323,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="right"
       popper-width="200px"
     />
@@ -343,7 +332,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="right-start"
       popper-width="200px"
     />
@@ -352,7 +341,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="right-end"
       popper-width="200px"
     />
@@ -363,7 +352,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="bottom"
       popper-width="200px"
     />
@@ -372,7 +361,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="bottom-start"
       popper-width="200px"
     />
@@ -381,7 +370,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="bottom-end"
       popper-width="200px"
     />
@@ -392,7 +381,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="left"
       popper-width="200px"
     />
@@ -401,7 +390,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="left-start"
       popper-width="200px"
     />
@@ -410,7 +399,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="left-end"
       popper-width="200px"
     />
@@ -421,20 +410,20 @@ The default placement is `bottom`.
 
 The clearable feature allows users to easily remove the selected value from the select input. This is particularly useful for forms where users may want to reset their selection without having to open the select.
 
-<div class="spr-mb-4">
+<div class="spr-grid spr-gap-4">
   <spr-select
     id="sample-selectClearable"
     v-model="selectModel.selectClearable"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
+    :options="options"
     clearable
   />
-</div>
 
-<code class="spr-font-medium">
-  V-Model Value: {{ selectModel.selectClearable ? selectModel.selectClearable : `""` }}
-</code>
+  <code class="spr-font-medium">
+    V-Model: {{ selectModel.selectClearable ? selectModel.selectClearable : `""` }}
+  </code>
+</div>
 
 ## Width and Popper Width
 
@@ -450,7 +439,7 @@ You can modify the width of the select component in two ways: by adjusting the w
     v-model="selectModel.selectWidth"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
+    :options="options"
     width="50%"
     popper-width="200px"
   />
@@ -463,7 +452,7 @@ You can modify the width of the select component in two ways: by adjusting the w
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
+    :options="options"
     width="50%"
     popper-width="200px"
   />
@@ -490,7 +479,7 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
     v-model="selectModel.selectStrategy"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
+    :options="options"
     wrapper-position="initial"
     popper-strategy="fixed"
   />
@@ -509,7 +498,7 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
       v-model="selectModel"
       label="Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       wrapper-position="initial"
       popper-strategy="fixed"
     />
@@ -524,7 +513,7 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
 
 ## Infinite Scroll
 
-Infinite scroll allows the select list to load more items as the user scrolls. This feature is particularly useful for back-end API integration. Instead of loading the entire list at once, new items are dynamically added as needed, improving performance and usability. Pass `@infinite-scroll-trigger` emit to get the trigger of menu when it reaches bottom.
+Infinite scroll allows the select list to load more items as the user scrolls. This feature is particularly useful for back-end API integration. Instead of loading the entire list at once, new items are dynamically added as needed, improving performance and usability. Pass `@infinite-scroll-trigger` emit to get the trigger of options when it reaches bottom.
 
 When working with infinite scroll and API-driven selects, you can use the `display-text` prop to show a display value in the input on initial load (for example, when you only have the selected value and not the full option object yet). This is especially helpful for large datasets where you don't want to fetch all options at once.
 
@@ -535,15 +524,15 @@ When working with infinite scroll and API-driven selects, you can use the `displ
     label="Select Label"
     placeholder="Select an option"
     :display-text="displayText"
-    :menu-list="menuListAPI"
+    :options="optionsAPI"
     @infinite-scroll-trigger="handleInfiniteScrollTrigger"
   />
   <div class="spr-my-3 spr-p-4 spr-bg-blue-100">
-    <h5>Paginated Menu List - Should load 10 Items per page:</h5>
+    <h5>Paginated Options - Should load 10 Items per page:</h5>
     <p>Pagination:</p>
     <pre>{{ JSON.stringify(pagination, null, 2) }}</pre>
     <p>Data:</p>
-    {{ menuListAPI }}
+    {{ optionsAPI }}
   </div>
 </div>
 
@@ -554,7 +543,7 @@ When working with infinite scroll and API-driven selects, you can use the `displ
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="menuListAPI"
+    :options="optionsAPI"
     :display-text="displayText"
     @infinite-scroll-trigger="handleInfiniteScrollTrigger"
   />
@@ -566,7 +555,7 @@ import { ref } from 'vue';
 const selectModel = ref(51); // Initial value for the select
 const displayText = ref('Border Terrier'); // Display text for the selected option
 
-const menuListAPI = ref<MenuListType[]>([]);
+const optionsAPI = ref<optionsType[]>([]);
 
 const APIisLoading = ref(false);
 
@@ -598,9 +587,9 @@ const getNextOptionsViaAPI = async () => {
 
     const options = await response.json();
 
-    menuListAPI.value = options.length
+    optionsAPI.value = options.length
       ? [
-          ...(menuListAPI.value || []),
+          ...(optionsAPI.value || []),
           ...options.map((option) => ({
             text: option.name,
             value: option.id,
@@ -636,7 +625,7 @@ For single selection of primitive types like strings or numbers:
     v-model="stringValue"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="stringMenuList"
+    :options="stringoptions"
   />
 </div>
 
@@ -648,7 +637,7 @@ Value: {{ stringValue }}
     v-model="numberValue"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="numberMenuList"
+    :options="numberoptions"
   />
 </div>
 
@@ -661,7 +650,7 @@ Value: {{ numberValue }}
     v-model="stringValue"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="stringMenuList"
+    :options="stringoptions"
   />
 
   <spr-select
@@ -669,7 +658,7 @@ Value: {{ numberValue }}
     v-model="numberValue"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="numberMenuList"
+    :options="numberoptions"
   />
 </template>
 
@@ -682,13 +671,13 @@ const stringValue = ref('apple'); // Single string value
 // For number values
 const numberValue = ref(42); // Single number value
 
-const stringMenuList = ref([
+const stringoptions = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
   { text: 'Cherry', value: 'cherry' },
 ]);
 
-const numberMenuList = ref([
+const numberoptions = ref([
   { text: '42', value: 42 },
   { text: '100', value: 100 },
   { text: '200', value: 200 },
@@ -706,7 +695,7 @@ For single selection of full objects:
     v-model="selectedUser"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="userList"
+    :options="userList"
     text-field="name"
     value-field="id"
   />
@@ -721,7 +710,7 @@ Value: {{ selectedUser }}
     v-model="selectedUser"
     label="Select Label"
     placeholder="Select an option"
-    :menu-list="userList"
+    :options="userList"
     text-field="name"      // Specify which field to display as text
     value-field="id"       // Specify which field to use as value
   />
@@ -773,9 +762,9 @@ const userList = ref([
       <td>[]</td>
     </tr>
     <tr>
-      <td>menu-list</td>
+      <td>options</td>
       <td>List of options composed of <code>text</code> and <code>value</code> properties, or array of strings/objects</td>
-      <td>MenuListType[] | string[] | object[]</td>
+      <td>optionsType[] | string[] | object[]</td>
       <td>[]</td>
     </tr>
     <tr>
@@ -898,11 +887,6 @@ const userList = ref([
       <td>Event emitted when the select is scrolled to the bottom (for dynamic data loading)</td>
       <td>None</td>
     </tr>
-    <tr>
-      <td>@searchString</td>
-      <td>Event emitted when typed in the input</td>
-      <td>String (search text)</td>
-    </tr>
   </tbody>
 </table>
 
@@ -924,8 +908,8 @@ import SprLozenge from "@/components/lozenge/lozenge.vue"
 import SprModal from "@/components/modal/modal.vue"
 import SprLogo from "@/components/logo/logo.vue";
 
-// Import MenuListType for typing
-import type { MenuListType } from '@/components/list/list';
+// Import optionsType for typing
+import type { optionsType } from '@/components/list/list';
 
 const selectModel = ref({
   selectBasic: '',
@@ -941,7 +925,7 @@ const selectModel = ref({
   selectInfiniteScroll: 51,
 });
 
-const menuList = ref([
+const options = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
   { text: 'Cherry', value: 'cherry' },
@@ -977,10 +961,6 @@ const menuList = ref([
 
 const modalModel = ref(false);
 
-const handleSearchString = (searchString: string) => {
-  console.log('Search String:', searchString);
-};
-
 // For string values
 const stringValue = ref('apple');  // Single string value
 const stringDisplay = ref('Apple');
@@ -989,25 +969,25 @@ const stringDisplay = ref('Apple');
 const numberValue = ref(42);  // Single number value
 const numberDisplay = ref('42');
 
-const stringMenuList = ref([
+const stringoptions = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
   { text: 'Cherry', value: 'cherry' }
 ]);
 
-const numberMenuList = ref([
+const numberoptions = ref([
   { text: '42', value: 42 },
   { text: '100', value: 100 },
   { text: '200', value: 200 }
 ]);
 
 const handleStringSelection = () => {
-  const selected = stringMenuList.value.find(item => item.value === stringValue.value);
+  const selected = stringoptions.value.find(item => item.value === stringValue.value);
   stringDisplay.value = selected ? selected.text : '';
 };
 
 const handleNumberSelection = () => {
-  const selected = numberMenuList.value.find(item => item.value === numberValue.value);
+  const selected = numberoptions.value.find(item => item.value === numberValue.value);
   numberDisplay.value = selected ? selected.text : '';
 };
 
@@ -1016,7 +996,7 @@ const handleNumberSelection = () => {
 // #region - Infinite Scroll
 const displayText = ref('Border Terrier'); // Display text for the selected option
 
-const menuListAPI = ref<MenuListType[]>([]);
+const optionsAPI = ref<optionsType[]>([]);
 
 const APIisLoading = ref(false);
 
@@ -1048,9 +1028,9 @@ const getNextOptionsViaAPI = async () => {
     
     const options = await response.json();
 
-    menuListAPI.value = options.length
+    optionsAPI.value = options.length
       ? [
-          ...(menuListAPI.value || []),
+          ...(optionsAPI.value || []),
           ...options.map(option => ({
             text: option.name,
             value: option.id,
@@ -1088,7 +1068,7 @@ const usersList = ref([
 ]);
 
 onMounted(() => {
-  // Infinite Scroll - Initial API call to populate the paginated menu list
+  // Infinite Scroll - Initial API call to populate the paginated options
   getNextOptionsViaAPI();
 });
 </script>

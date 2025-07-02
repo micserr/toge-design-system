@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.8.3 (2025-07-02)
+
+- Fix
+
+  - Code and Documentation Cleanup ([#52ff936a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/52ff936a5b70229601e1733aaaa36f1ed18bef5a?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 2.8.2 (2025-07-01)
+
+- Feat
+
+  - Added slot for snack ([#35063ba8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/35063ba8fec4218fc44eda7951d8d94f479dbfb9?refName=refs/heads/2025/FEATURE/Xyrk/SNACK_SLOTS) by @jfabula)
+
 ## 2.8.1 (2025-07-01)
 
 - Feat

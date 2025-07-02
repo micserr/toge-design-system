@@ -13,7 +13,7 @@ interface SelectClasses {
 }
 
 export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitTypes>['emit']) => {
-  const { displayText, menuList, disabled, textField, valueField, disabledLocalSearch } = toRefs(props);
+  const { displayText, options, disabled, textField, valueField, disabledLocalSearch } = toRefs(props);
 
   const selectClasses: ComputedRef<SelectClasses> = computed(() => {
     const baseClasses = classNames('spr-flex spr-flex-col spr-gap-size-spacing-4xs');
@@ -36,7 +36,7 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
   // Select Variables
   const selectModel = useVModel(props, 'modelValue', emit);
   const selectedListItems = ref<MenuListType[]>();
-  const selectMenuList = ref<MenuListType[]>([]);
+  const selectOptions = ref<MenuListType[]>([]);
   const hasUserSelected = ref(false);
 
   // Input Text Variables
@@ -44,7 +44,7 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
   const inputTextBackup = ref<string | number>('');
   const isSearching = ref<boolean>(false);
 
-  const handleMenuToggle = () => {
+  const handleOptionsToggle = () => {
     selectPopperState.value = true;
 
     isSearching.value = false;
@@ -77,19 +77,19 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     return [selectModel.value];
   });
 
-  const processMenuList = () => {
+  const processOptions = () => {
     // Handle empty array or non-array values
-    if (!menuList.value || !Array.isArray(menuList.value) || menuList.value.length === 0) {
-      selectMenuList.value = [];
+    if (!options.value || !Array.isArray(options.value) || options.value.length === 0) {
+      selectOptions.value = [];
 
       return;
     }
 
-    const firstItem = menuList.value[0];
+    const firstItem = options.value[0];
 
     // Handle array of strings
     if (typeof firstItem === 'string') {
-      selectMenuList.value = (menuList.value as string[]).map((item) => ({
+      selectOptions.value = (options.value as string[]).map((item) => ({
         text: item,
         value: item,
       }));
@@ -99,7 +99,7 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
 
     // Handle array of numbers
     if (typeof firstItem === 'number') {
-      selectMenuList.value = (menuList.value as number[]).map((item) => ({
+      selectOptions.value = (options.value as number[]).map((item) => ({
         text: item.toString(),
         value: item, // Keep the value as a number instead of converting to string
       }));
@@ -111,13 +111,13 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     if (typeof firstItem === 'object' && firstItem !== null) {
       // Check if it's already in MenuListType format
       if ('text' in firstItem && 'value' in firstItem) {
-        selectMenuList.value = menuList.value as MenuListType[];
+        selectOptions.value = options.value as MenuListType[];
 
         return;
       }
 
       // Transform to MenuListType format using textField and valueField
-      selectMenuList.value = (menuList.value as Record<string, unknown>[]).map((item) => {
+      selectOptions.value = (options.value as Record<string, unknown>[]).map((item) => {
         const displayText = item[textField.value] || 'Unnamed';
         // Use the specified value field if available, otherwise use the entire object
         const itemValue = valueField.value && item[valueField.value] !== undefined ? item[valueField.value] : item;
@@ -132,23 +132,23 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
       return;
     }
 
-    selectMenuList.value = menuList.value as MenuListType[];
+    selectOptions.value = options.value as MenuListType[];
   };
 
-  const filteredSelectMenuList = computed(() => {
+  const filteredSelectOptions = computed(() => {
     if (disabledLocalSearch.value) {
-      return selectMenuList.value;
+      return selectOptions.value;
     }
 
     const query = inputText.value.toString().toLowerCase().trim();
 
-    if (!query) return selectMenuList.value;
+    if (!query) return selectOptions.value;
 
-    return selectMenuList.value.filter((item) => item.text?.toString().toLowerCase().includes(query));
+    return selectOptions.value.filter((item) => item.text?.toString().toLowerCase().includes(query));
   });
 
-  watch(menuList, () => {
-    processMenuList();
+  watch(options, () => {
+    processOptions();
   });
 
   // Search handler: always emit search-string, but only filter locally if local search is enabled
@@ -221,7 +221,7 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
 
   // Update selected items when model value changes externally
   const updateSelectedItemsFromValue = () => {
-    if (!selectMenuList.value.length) return;
+    if (!selectOptions.value.length) return;
 
     const values = normalizedValue.value;
 
@@ -272,7 +272,7 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     // Extract just string values for comparison
     const valueStrings = valueData.map((v) => v.string);
 
-    selectedListItems.value = selectMenuList.value.filter((item) => {
+    selectedListItems.value = selectOptions.value.filter((item) => {
       // Handle objects with _originalObject property
       if ('_originalObject' in item && item._originalObject) {
         return valueData.some((v) => {
@@ -290,6 +290,7 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
               return v.id === originalObj.id;
             }
           }
+
           return false;
         });
       }
@@ -327,12 +328,12 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     updateSelectedItemsFromValue();
   });
 
-  watch(selectMenuList, () => {
+  watch(selectOptions, () => {
     updateSelectedItemsFromValue();
   });
 
   onMounted(() => {
-    processMenuList();
+    processOptions();
 
     // Set initial selected items based on model value
     if (normalizedValue.value.length > 0) {
@@ -346,11 +347,11 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
   return {
     selectClasses,
     selectPopperState,
-    handleMenuToggle,
+    handleOptionsToggle,
     selectRef,
     selectModel: compatPreSelectedItems, // Use compatible format for lists
-    selectMenuList,
-    filteredSelectMenuList,
+    selectOptions,
+    filteredSelectOptions,
     selectedListItems,
     inputText,
     isSelectPopperDisabled,

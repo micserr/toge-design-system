@@ -13,13 +13,13 @@ Ladderized select is for selecting options organized in hierarchical groups. It 
   <spr-select-ladderized
     id="ladderized-select-basic"
     v-model="laderrizedSelectModel.basicLadderizedSelect"
-    :menu-list="menuList"
+    :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
   />
 
   <code class="spr-font-medium">
-    V-Model Value: {{ laderrizedSelectModel.basicLadderizedSelect  }}
+    V-Model: {{ laderrizedSelectModel.basicLadderizedSelect  }}
   </code>
 </div>
 
@@ -28,7 +28,7 @@ Ladderized select is for selecting options organized in hierarchical groups. It 
   <spr-select-ladderized
     id="ladderized-select"
     v-model="laderrizedSelectModel"
-    :menu-list="menuList"
+    :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
   />
@@ -39,7 +39,7 @@ import { ref } from 'vue';
 
 const laderrizedSelectModel = ref([]);
 
-const menuList = ref([
+const options = ref([
   {
     text: 'Tiger',
     value: 'tiger',
@@ -116,9 +116,9 @@ const menuList = ref([
 </script>
 ```
 
-The menu list can contain nested sublevels, allowing for complex hierarchies. Each item's `sublevel` property can itself contain further sublevels, supporting infinite nesting. Each item can have a `text`, `value`, and optional `subtext` for additional information.
+The options can contain nested sublevels, allowing for complex hierarchies. Each item's `sublevel` property can itself contain further sublevels, supporting infinite nesting. Each item can have a `text`, `value`, and optional `subtext` for additional information.
 
-Here is an basic json structure of the menu list:
+Here is an basic json structure of the options:
 
 ```json
 [
@@ -155,43 +155,43 @@ To preselect an item in the ladderized select, the model value array should repr
 ['lion', 'cub', 'cub1'];
 ```
 
-1. The first value is the parent menu (`lion`).
-2. The second value is the submenu of `lion` (`cub`).
-3. The third value is the submenu of `cub` (`cub1`).
+1. The first value is the parent options (`lion`).
+2. The second value is the sub-options of `lion` (`cub`).
+3. The third value is the sub-options of `cub` (`cub1`).
 
 <div class="spr-grid spr-gap-4">
   <spr-select-ladderized
     id="ladderized-select-preselected"
     v-model="laderrizedSelectModel.preSelectedLadderizedSelect"
-    :menu-list="menuList"
+    :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
   />
 
   <code class="spr-font-medium">
-    V-Model Value: {{ laderrizedSelectModel.preSelectedLadderizedSelect  }}
+    V-Model: {{ laderrizedSelectModel.preSelectedLadderizedSelect  }}
   </code>
 </div>
 
-## Searchable Menu
+## Searchable Options
 
-To enable searching through the options, set the `searchable-menu` prop to `true`. This allows users to filter options by typing in the input field.
+To enable searching through the options, set the `searchable-options` prop to `true`. This allows users to filter options by typing in the input field.
 
-You can also pass a `searchable-menu-placeholder` prop to customize the placeholder text for the search input.
+You can also pass a `searchable-options-placeholder` prop to customize the placeholder text for the search input.
 
 <div class="spr-grid spr-gap-4">
   <spr-select-ladderized
     id="ladderized-select-searchable"
-    v-model="laderrizedSelectModel.searchableMenuLadderized"
-    :menu-list="menuList"
+    v-model="laderrizedSelectModel.searchableOptionsLadderizedSelect"
+    :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
-    searchable-menu
-    searchable-menu-placeholder="Search an item in the menu..."
+    searchable-options
+    searchable-options-placeholder="Search an item..."
   />
 
   <code class="spr-font-medium">
-    V-Model Value: {{ laderrizedSelectModel.searchableMenuLadderized  }}
+    V-Model: {{ laderrizedSelectModel.searchableOptionsLadderizedSelect  }}
   </code>
 </div>
 
@@ -200,10 +200,10 @@ You can also pass a `searchable-menu-placeholder` prop to customize the placehol
   <spr-select-ladderized
     id="ladderized-select"
     v-model="laderrizedSelectModel"
-    :menu-list="menuList"
+    :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
-    searchable-menu
+    searchable-options
   />
 </template>
 ```
@@ -223,7 +223,7 @@ The default placement is `bottom`.
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
       label="Ladderized Select"
       placeholder="Select an item"
-      :menu-list="menuList"
+      :options="options"
       placement="auto"
       popper-width="200px"
     />
@@ -232,7 +232,7 @@ The default placement is `bottom`.
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
       label="Ladderized Select"
       placeholder="Select an item"
-      :menu-list="menuList"
+      :options="options"
       placement="auto-start"
       popper-width="200px"
     />
@@ -241,7 +241,7 @@ The default placement is `bottom`.
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
       label="Ladderized Select"
       placeholder="Select an item"
-      :menu-list="menuList"
+      :options="options"
       placement="auto-end"
       popper-width="200px"
     />
@@ -252,7 +252,7 @@ The default placement is `bottom`.
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
       label="Ladderized Select"
       placeholder="Select an item"
-      :menu-list="menuList"
+      :options="options"
       placement="top"
       popper-width="200px"
     />
@@ -261,7 +261,7 @@ The default placement is `bottom`.
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
       label="Ladderized Select"
       placeholder="Select an item"
-      :menu-list="menuList"
+      :options="options"
       placement="top-start"
       popper-width="200px"
     />
@@ -270,7 +270,7 @@ The default placement is `bottom`.
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
       label="Ladderized Select"
       placeholder="Select an item"
-      :menu-list="menuList"
+      :options="options"
       placement="top-end"
       popper-width="200px"
     />
@@ -281,7 +281,7 @@ The default placement is `bottom`.
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
       label="Ladderized Select"
       placeholder="Select an item"
-      :menu-list="menuList"
+      :options="options"
       placement="right"
       popper-width="200px"
     />
@@ -290,7 +290,7 @@ The default placement is `bottom`.
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
       label="Ladderized Select"
       placeholder="Select an item"
-      :menu-list="menuList"
+      :options="options"
       placement="right-start"
       popper-width="200px"
     />
@@ -299,7 +299,7 @@ The default placement is `bottom`.
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
       label="Ladderized Select"
       placeholder="Select an item"
-      :menu-list="menuList"
+      :options="options"
       placement="right-end"
       popper-width="200px"
     />
@@ -310,7 +310,7 @@ The default placement is `bottom`.
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
       label="Ladderized Select"
       placeholder="Select an item"
-      :menu-list="menuList"
+      :options="options"
       placement="bottom"
       popper-width="200px"
     />
@@ -319,7 +319,7 @@ The default placement is `bottom`.
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
       label="Ladderized Select"
       placeholder="Select an item"
-      :menu-list="menuList"
+      :options="options"
       placement="bottom-start"
       popper-width="200px"
     />
@@ -328,7 +328,7 @@ The default placement is `bottom`.
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
       label="Ladderized Select"
       placeholder="Select an item"
-      :menu-list="menuList"
+      :options="options"
       placement="bottom-end"
       popper-width="200px"
     />
@@ -339,7 +339,7 @@ The default placement is `bottom`.
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
       label="Ladderized Select"
       placeholder="Select an item"
-      :menu-list="menuList"
+      :options="options"
       placement="left"
       popper-width="200px"
     />
@@ -348,7 +348,7 @@ The default placement is `bottom`.
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
       label="Ladderized Select"
       placeholder="Select an item"
-      :menu-list="menuList"
+      :options="options"
       placement="left-start"
       popper-width="200px"
     />
@@ -357,7 +357,7 @@ The default placement is `bottom`.
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
       label="Ladderized Select"
       placeholder="Select an item"
-      :menu-list="menuList"
+      :options="options"
       placement="left-end"
       popper-width="200px"
     />
@@ -372,14 +372,14 @@ To allow users to clear the selected value, set the `clearable` prop to `true`. 
   <spr-select-ladderized
     id="ladderized-select-clearable"
     v-model="laderrizedSelectModel.clearableLadderizedSelect"
-    :menu-list="menuList"
+    :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
     clearable
   />
 
   <code class="spr-font-medium">
-    V-Model Value: {{ laderrizedSelectModel.clearableLadderizedSelect  }}
+    V-Model: {{ laderrizedSelectModel.clearableLadderizedSelect  }}
   </code>
 </div>
 
@@ -388,7 +388,7 @@ To allow users to clear the selected value, set the `clearable` prop to `true`. 
   <spr-select-ladderized
     id="ladderized-select"
     v-model="laderrizedSelectModel"
-    :menu-list="menuList"
+    :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
     clearable
@@ -408,7 +408,7 @@ You can modify the width of the select component in two ways: by adjusting the w
   <spr-select-ladderized
     id="ladderized-select-width"
     v-model="laderrizedSelectModel.widthLadderizedSelect"
-    :menu-list="menuList"
+    :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
     width="50%"
@@ -421,7 +421,7 @@ You can modify the width of the select component in two ways: by adjusting the w
   <spr-select-ladderized
     id="ladderized-select"
     v-model="laderrizedSelectModel"
-    :menu-list="menuList"
+    :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
     width="50%"
@@ -450,7 +450,7 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
     v-model="laderrizedSelectModel.strategyLadderizedSelect"
     label="Ladderized Select"
     placeholder="Select an item"
-    :menu-list="menuList"
+    :options="options"
     wrapper-position="initial"
     popper-strategy="fixed"
   />
@@ -469,7 +469,7 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
       v-model="laderrizedSelectModel"
       label="Ladderized Select"
       placeholder="Select an item"
-      :menu-list="menuList"
+      :options="options"
       wrapper-position="initial"
       popper-strategy="fixed"
     />
@@ -515,7 +515,7 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
       <td><code>[]</code></td>
     </tr>
     <tr>
-      <td><code>menu-list</code></td>
+      <td><code>options</code></td>
       <td>List of options (with optional sublevel for hierarchy)</td>
       <td>Array</td>
       <td><code>[]</code></td>
@@ -599,34 +599,16 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>searchable-menu</code></td>
+      <td><code>searchable-options</code></td>
       <td>Enable search input for filtering options</td>
       <td>Boolean</td>
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>searchable-menu-placeholder</code></td>
-      <td>Placeholder of the searh menu</td>
+      <td><code>searchable-options-placeholder</code></td>
+      <td>Placeholder of the searh options</td>
       <td>String</td>
       <td><code>'Search...'</code></td>
-    </tr>
-    <tr>
-      <td><code>display-text</code></td>
-      <td>Display value in the input (useful for API-driven selects)</td>
-      <td>String</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td><code>text-field</code></td>
-      <td>Field name for display text in menu list</td>
-      <td>String</td>
-      <td><code>'text'</code></td>
-    </tr>
-    <tr>
-      <td><code>value-field</code></td>
-      <td>Field name for value in menu list</td>
-      <td>String</td>
-      <td><code>'value'</code></td>
     </tr>
   </tbody>
 </table>
@@ -660,7 +642,7 @@ import SprModal from "@/components/modal/modal.vue"
 
 const laderrizedSelectModel = ref({
   basicLadderizedSelect: [],
-  searchableMenuLadderized: [],
+  searchableOptionsLadderizedSelect: [],
   preSelectedLadderizedSelect: [ "lion", "cub", "cub1" ],
   placementsLadderizedSelect: [],
   clearableLadderizedSelect: [],
@@ -668,7 +650,7 @@ const laderrizedSelectModel = ref({
   strategyLadderizedSelect: [],
 });
 
-const menuList = ref([
+const options = ref([
   {
     text: 'Tiger',
     value: 'tiger',

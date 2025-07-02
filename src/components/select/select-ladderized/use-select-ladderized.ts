@@ -1,5 +1,5 @@
-import { ref, computed, watch } from 'vue';
-import { useDebounceFn, onClickOutside } from '@vueuse/core';
+import { ref, toRefs, computed, watch } from 'vue';
+import { useVModel, useDebounceFn, onClickOutside } from '@vueuse/core';
 
 import type { SelectLadderizedPropTypes } from './select-ladderized';
 
@@ -9,6 +9,8 @@ export const useSelectLadderized = (
   props: SelectLadderizedPropTypes,
   emit: (event: string, ...args: unknown[]) => void,
 ) => {
+  const { options, disabled } = toRefs(props);
+
   const ladderizedClasses = computed(() => ({
     baseClasses: 'spr-flex spr-flex-col spr-gap-size-spacing-4xs',
     labelClasses: 'spr-body-sm-regular spr-text-color-strong spr-block',
@@ -17,14 +19,11 @@ export const useSelectLadderized = (
   // Popper Variables
   const ladderizedSelectPopperState = ref(false);
   const ladderizedSelectRef = ref(null);
-  const isLadderizedSelectPopperDisabled = computed(() => props.disabled);
+  const isLadderizedSelectPopperDisabled = computed(() => disabled.value);
 
   // Ladderized Select Model
-  const ladderizedSelectModel = computed({
-    get: () => props.modelValue,
-    set: (val) => emit('update:modelValue', val),
-  });
-  const ladderizedSelectMenuList = computed(() => props.menuList);
+  const ladderizedSelectModel = useVModel(props, 'modelValue', emit);
+  const ladderizedSelectOptions = computed(() => options.value);
 
   // Input Variables
   const inputText = ref<string>('');
@@ -76,11 +75,11 @@ export const useSelectLadderized = (
         return undefined;
       };
 
-      itemToCheck = findItemByValue(ladderizedSelectMenuList.value, selectedItems[selectedItems.length - 1]);
+      itemToCheck = findItemByValue(ladderizedSelectOptions.value, selectedItems[selectedItems.length - 1]);
     }
 
     if (itemToCheck) {
-      const path = findPathToValue(ladderizedSelectMenuList.value, itemToCheck.value);
+      const path = findPathToValue(ladderizedSelectOptions.value, itemToCheck.value);
 
       inputText.value = path ? path.join(' > ') : itemToCheck.text || '';
 
@@ -110,7 +109,7 @@ export const useSelectLadderized = (
     emit('update:modelValue', []);
   };
 
-  const handleMenuToggle = () => {
+  const handleOptionsToggle = () => {
     ladderizedSelectPopperState.value = true;
 
     isSearching.value = false;
@@ -128,7 +127,7 @@ export const useSelectLadderized = (
 
       if (Array.isArray(newVal) && newVal.length > 0) {
         // Treat the array as a single path for ladderized select
-        let currentLevel = ladderizedSelectMenuList.value;
+        let currentLevel = ladderizedSelectOptions.value;
 
         const pathTexts: string[] = [];
 
@@ -153,13 +152,13 @@ export const useSelectLadderized = (
     ladderizedClasses,
     ladderizedSelectPopperState,
     ladderizedSelectRef,
-    ladderizedSelectMenuList,
+    ladderizedSelectOptions,
     isLadderizedSelectPopperDisabled,
     ladderizedSelectModel,
     inputText,
     handleSelectedLadderizedItem,
     handleSearch,
     handleClear,
-    handleMenuToggle,
+    handleOptionsToggle,
   };
 };

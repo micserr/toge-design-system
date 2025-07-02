@@ -30,7 +30,7 @@ export const selectLadderizedPropTypes = {
     type: Array as PropType<string[]>,
     default: () => [],
   },
-  menuList: {
+  options: {
     type: Array as PropType<MenuListType[]>,
     required: true,
     default: () => [],
@@ -59,11 +59,11 @@ export const selectLadderizedPropTypes = {
     type: Boolean,
     default: false,
   },
-  searchableMenu: {
+  searchableOptions: {
     type: Boolean,
     default: false,
   },
-  searchableMenuPlaceholder: {
+  searchableOptionsPlaceholder: {
     type: String,
     default: 'Search...',
   },

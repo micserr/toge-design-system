@@ -34,9 +34,9 @@ export const selectPropTypes = {
     type: [String, Number, Object, Array] as PropType<
       string | number | Record<string, unknown> | (string | number | Record<string, unknown>)[]
     >,
-    default: () => [],
+    default: '',
   },
-  menuList: {
+  options: {
     type: Array as PropType<MenuListType[] | string[] | Record<string, unknown>[]>,
     required: true,
     default: [],

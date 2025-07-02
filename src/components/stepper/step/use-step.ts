@@ -16,19 +16,29 @@ interface StepClasses {
 export const useStep = (props: StepPropTypes, emit: SetupContext<StepEmitTypes>['emit']) => {
 
   const stepClasses: ComputedRef<StepClasses> = computed(() => {
-    const baseClass = classNames('spr-flex spr-gap-2 spr-items-center');
-    
-    // Usage of prop.status ensures reactivity instead of destructuring props
-    const badgeClass = classNames(
-      'spr-flex spr-items-center spr-justify-center spr-rounded-border-radius-full spr-h-6 spr-w-6 spr-border spr-border-solid spr-border-2',
+    const baseClass = classNames(
+      'spr-flex spr-gap-2 spr-items-top', 
       {
-        'spr-bg-kangkong-700 spr-border-kangkong-700': props.status === 'active',
-        'spr-border-mushroom-300': props.status === 'pending',
-        'spr-border-kangkong-700': props.status === 'completed',
+        'spr-p-size-spacing-3xs spr-rounded-border-radius-lg': props.type === 'solid',
+        'spr-background-color-brand-weak': props.status === 'active' && props.type === 'solid',
+        'spr-opacity-60': props.status === 'completed' && props.type === 'solid'
       }
     );
     
-    const numberClass = classNames('spr-text-sm spr-font-medium', 
+    // Usage of prop.status ensures reactivity instead of destructuring props
+    const badgeClass = classNames(
+      'spr-flex spr-items-center spr-justify-center spr-rounded-border-radius-full spr-h-6 spr-w-6 spr-border spr-border-solid',
+      {
+        'spr-border-2': props.type !== 'solid',
+        'spr-border-1': props.type === 'solid',
+        'spr-background-color-brand-base spr-border-color-brand-base': props.status === 'active',
+        'spr-border-mushroom-300': props.status === 'pending',
+        'spr-border-kangkong-700': props.status === 'completed',
+        'spr-background-color-brand-base': props.status === 'completed' && props.type === 'solid'
+      }
+    );
+    
+    const numberClass = classNames('spr-body-md-regular-medium', 
       {
         'spr-text-white-50': props.status === 'active',
         'spr-text-mushroom-600': props.status === 'pending',
@@ -36,18 +46,20 @@ export const useStep = (props: StepPropTypes, emit: SetupContext<StepEmitTypes>[
       }
     );
 
-    const textContainerClass = classNames('spr-flex spr-flex-col spr-relative');
+    const textContainerClass = classNames('spr-flex spr-flex-col spr-mt-[2px]');
 
-    const labelClass = classNames('spr-text-sm spr-whitespace-nowrap', 
+    const labelClass = classNames('spr-body-md-regular spr-whitespace-nowrap', 
       {
-      'spr-text-kangkong-700 spr-font-semibold': props.status === 'active',
-      'spr-text-mushroom-600': props.status === 'pending',
-      'spr-text-mushroom-950': props.status === 'completed',
+        'spr-text-kangkong-700 !spr-body-md-regular-medium': props.status === 'active' && props.type === 'compact',
+        'spr-text-mushroom-600': props.status === 'pending',
+        'spr-text-mushroom-950': props.status === 'completed',
       }
     );
 
     // Absolute since the sample in the figma is a hanging text for description
-    const descriptionClass = classNames('spr-text-xs spr-text-mushroom-400 spr-absolute spr-mt-size-spacing-sm spr-whitespace-nowrap');
+    const descriptionClass = classNames(
+      'spr-body-sm-regular spr-text-color-supporting spr-whitespace-nowrap',
+    );
 
     return {
       baseClass,

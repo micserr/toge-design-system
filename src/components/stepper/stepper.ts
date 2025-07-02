@@ -3,6 +3,7 @@ import type { ExtractPropTypes, PropType } from 'vue';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 const STEPPER_VARIANTS = ['horizontal', 'vertical'] as const;
+export const STEPPER_TYPE = ['compact', 'solid'];
 export const STEPPER_STATES = ['pending', 'active', 'completed'] as const;
 
 export const stepperPropTypes = {
@@ -32,6 +33,14 @@ export const stepperPropTypes = {
   hasLines: {
     type: Boolean,
     default: false,
+  },
+  /**
+   * @description Display type of stepper if displayed as compact (no solid bg color) or solid
+   */
+  type: {
+    type: String as PropType<(typeof STEPPER_TYPE)[number]>,
+    validator: (value: (typeof STEPPER_TYPE)[number]) => STEPPER_TYPE.includes(value),
+    default: 'compact',
   }
 };
 

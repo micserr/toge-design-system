@@ -8,14 +8,18 @@ The Multi Select component allows users to select multiple options from a select
 
 ## Basic Usage
 
-<div>
+<div class="spr-grid spr-gap-4">
   <spr-select-multiple
     id="sample-selectBasic"
     v-model="selectModel.selectBasic"
     label="Multi-Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
+    :options="options"
   />
+
+  <code class="spr-font-medium">
+    V-Model: {{ selectModel.selectBasic }}
+  </code>
 </div>
 
 ```vue
@@ -25,7 +29,7 @@ The Multi Select component allows users to select multiple options from a select
     v-model="selectModel"
     label="Multi-Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
+    :options="options"
   />
 </template>
 
@@ -34,7 +38,7 @@ import { ref } from 'vue';
 
 const selectModel = ref('');
 
-const menuList = ref([
+const options = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
   { text: 'Cherry', value: 'cherry' },
@@ -60,7 +64,7 @@ You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-ite
     v-model="selectModel.selectGroupedItemsBy"
     label="Multi-Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
+    :options="options"
     group-items-by="A-Z"
   />
 </div>
@@ -73,154 +77,33 @@ You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-ite
       v-model="selectModel"
       label="Multi-Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       group-items-by="A-Z"
     />
   </div>
 </template>
 ```
 
-## Search
-
-The search feature allows users to quickly filter and find specific items within the select list by typing in a search query.
-
-- Use the `searchable` prop to allow typing in the input. If `searchable` is not set or is false, the input will be readonly and users cannot type.
-- Use the `@searchString` event to get the display text as the user types. This is especially useful for API-driven selects, where you want to fetch or filter options dynamically based on the user's input.
-
-<div class="spr-mb-4">
-  <spr-select-multiple
-    id="sample-selectSearch"
-    v-model="selectModel.selectSearch"
-    label="Multi-Select Label"
-    placeholder="Select an option"
-    :menu-list="menuList"
-    @searchString="handleSearchString"
-    searchable
-  />
-</div>
-
-<code class="spr-font-medium">
-  V-Model Value: {{ selectModel.selectSearch ? selectModel.selectSearch : `""` }}
-</code>
-
-```vue
-<template>
-  <spr-select-multiple
-    id="sample-select"
-    v-model="selectModel"
-    label="Multi-Select Label"
-    placeholder="Select an option"
-    :menu-list="menuList"
-    @searchString="handleSearchString"
-    searchable
-  />
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const selectModel = ref('');
-
-const menuList = ref([
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Cherry', value: 'cherry' },
-  { text: 'Date', value: 'date' },
-  { text: 'Elderberry', value: 'elderberry' },
-  { text: 'Fig', value: 'fig' },
-  { text: 'Grape', value: 'grape' },
-  { text: 'Nectarine', value: 'nectarine' },
-  { text: 'Orange', value: 'orange' },
-  { text: 'Papaya', value: 'papaya' },
-  { text: '89 Quince', value: '50' },
-]);
-
-const handleSearchString = (searchString: string) => {
-  // Use this event to fetch or filter options from an API
-  console.log('Search String:', searchString);
-};
-</script>
-```
-
-You can disable local search by passing the `disabled-local-search` prop. This is useful when you want to handle search via API only, and not filter the options locally.
-
-<div class="spr-mb-4">
-  <spr-select-multiple
-    id="sample-selectSearchDisabledLocalSearch"
-    v-model="selectModel.selectSearchDisabledLocalSearch"
-    label="Multi-Select Label"
-    placeholder="Select an option"
-    :menu-list="menuList"
-    @searchString="handleSearchString"
-    searchable
-    disabled-local-search
-  />
-</div>
-
-<code class="spr-font-medium">
-  V-Model Value: {{ selectModel.selectSearchDisabledLocalSearch ? selectModel.selectSearchDisabledLocalSearch : `""` }}
-</code>
-
-```vue
-<template>
-  <spr-select-multiple
-    id="sample-select"
-    v-model="selectModel"
-    label="Multi-Select Label"
-    placeholder="Select an option"
-    :menu-list="menuList"
-    @searchString="handleSearchString"
-    searchable
-    disabled-local-search
-  />
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const selectModel = ref('');
-
-const menuList = ref([
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Cherry', value: 'cherry' },
-  { text: 'Date', value: 'date' },
-  { text: 'Elderberry', value: 'elderberry' },
-  { text: 'Fig', value: 'fig' },
-  { text: 'Grape', value: 'grape' },
-  { text: 'Nectarine', value: 'nectarine' },
-  { text: 'Orange', value: 'orange' },
-  { text: 'Papaya', value: 'papaya' },
-  { text: '89 Quince', value: '50' },
-]);
-
-const handleSearchString = (searchString: string) => {
-  // Use this event to fetch or filter options from an API
-  console.log('Search String:', searchString);
-};
-</script>
-```
-
 ## Pre-Selected Items
 
-Pre-selected items are options that are automatically selected when the select is first displayed. For multi-select, the `v-model` should be an array of values (strings, numbers, or objects) that match the `value` field of your menu list.
+Pre-selected items are options that are automatically selected when the select is first displayed. For multi-select, the `v-model` should be an array of values (strings, numbers, or objects) that match the `value` field of your options.
 
-<div class="spr-mb-4">
+<div class="spr-grid spr-gap-4">
   <spr-select-multiple
     id="sample-selectPreSelectedItems"
     v-model="selectModel.selectPreSelectedItems"
     label="Select Fruits"
     placeholder="Select one or more fruits"
-    :menu-list="menuList"
+    :options="options"
     group-items-by="A-Z"
     text-field="text"
     value-field="value"
   />
+  
+  <code class="spr-font-medium">
+    V-Model: {{ selectModel.selectPreSelectedItems ? selectModel.selectPreSelectedItems : `[]` }}
+  </code>
 </div>
-
-<code class="spr-font-medium">
-  V-Model Value: {{ selectModel.selectPreSelectedItems ? selectModel.selectPreSelectedItems : `[]` }}
-</code>
 
 ```vue
 <template>
@@ -229,7 +112,7 @@ Pre-selected items are options that are automatically selected when the select i
     v-model="selectModel"
     label="Select Fruits"
     placeholder="Select one or more fruits"
-    :menu-list="menuList"
+    :options="options"
     group-items-by="A-Z"
   />
 </template>
@@ -240,7 +123,7 @@ import { ref } from 'vue';
 // Pre-select multiple items by passing an array of values
 const selectModel = ref(['100', 200, 'cherry']);
 
-const menuList = ref([
+const options = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
   { text: 'Cherry', value: 'cherry' },
@@ -279,12 +162,12 @@ const menuList = ref([
 </script>
 ```
 
-You can also pre-select items using an array of objects if your menu list uses objects as values. The component will match by value or by object reference as needed.
+You can also pre-select items using an array of objects if your options uses objects as values. The component will match by value or by object reference as needed.
 
 > **Note:**
 >
 > - If you want to start with no selection, use an empty array: `ref([])`.
-> - If you want to pre-select all items, use the full array of values from your menu list.
+> - If you want to pre-select all items, use the full array of values from your options.
 > - The component will now always treat the model as an array for multi-select, so toggling and pre-selection will work as expected.
 
 ## Placements
@@ -302,7 +185,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Multi-Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="auto"
       popper-width="200px"
     />
@@ -311,7 +194,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Multi-Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="auto-start"
       popper-width="200px"
     />
@@ -320,7 +203,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Multi-Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="auto-end"
       popper-width="200px"
     />
@@ -331,7 +214,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Multi-Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="top"
       popper-width="200px"
     />
@@ -340,7 +223,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Multi-Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="top-start"
       popper-width="200px"
     />
@@ -349,7 +232,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Multi-Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="top-end"
       popper-width="200px"
     />
@@ -360,7 +243,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Multi-Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="right"
       popper-width="200px"
     />
@@ -369,7 +252,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Multi-Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="right-start"
       popper-width="200px"
     />
@@ -378,7 +261,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Multi-Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="right-end"
       popper-width="200px"
     />
@@ -389,7 +272,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Multi-Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="bottom"
       popper-width="200px"
     />
@@ -398,7 +281,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Multi-Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="bottom-start"
       popper-width="200px"
     />
@@ -407,7 +290,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Multi-Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="bottom-end"
       popper-width="200px"
     />
@@ -418,7 +301,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Multi-Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="left"
       popper-width="200px"
     />
@@ -427,7 +310,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Multi-Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="left-start"
       popper-width="200px"
     />
@@ -436,7 +319,7 @@ The default placement is `bottom`.
       v-model="selectModel.selectPlacements"
       label="Multi-Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       placement="left-end"
       popper-width="200px"
     />
@@ -447,20 +330,20 @@ The default placement is `bottom`.
 
 The clearable feature allows users to easily remove the selected value from the select input. This is particularly useful for forms where users may want to reset their selection without having to open the select.
 
-<div class="spr-mb-4">
+<div class="spr-grid spr-gap-4">
   <spr-select-multiple
     id="sample-selectClearable"
     v-model="selectModel.selectClearable"
     label="Multi-Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
+    :options="options"
     clearable
   />
-</div>
 
-<code class="spr-font-medium">
-  V-Model Value: {{ selectModel.selectClearable ? selectModel.selectClearable : `""` }}
-</code>
+  <code class="spr-font-medium">
+    V-Model: {{ selectModel.selectClearable ? selectModel.selectClearable : `""` }}
+  </code>
+</div>
 
 ## Width and Popper Width
 
@@ -476,7 +359,7 @@ You can modify the width of the select component in two ways: by adjusting the w
     v-model="selectModel.selectWidth"
     label="Multi-Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
+    :options="options"
     width="50%"
     popper-width="200px"
   />
@@ -489,7 +372,7 @@ You can modify the width of the select component in two ways: by adjusting the w
     v-model="selectModel"
     label="Multi-Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
+    :options="options"
     width="50%"
     popper-width="200px"
   />
@@ -516,7 +399,7 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
     v-model="selectModel.selectStrategy"
     label="Multi-Select Label"
     placeholder="Select an option"
-    :menu-list="menuList"
+    :options="options"
     wrapper-position="initial"
     popper-strategy="fixed"
   />
@@ -535,7 +418,7 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
       v-model="selectModel"
       label="Multi-Select Label"
       placeholder="Select an option"
-      :menu-list="menuList"
+      :options="options"
       wrapper-position="initial"
       popper-strategy="fixed"
     />
@@ -567,7 +450,7 @@ The `spr-select-multiple` component supports multiple value types for selection.
     v-model="stringValues"
     label="Select Fruits"
     placeholder="Select fruits"
-    :menu-list="stringMenuList"
+    :options="stringOptions"
   />
 </template>
 
@@ -576,7 +459,7 @@ import { ref } from 'vue';
 
 const stringValues = ref(['apple', 'banana']); // Always use an array for multi-select
 
-const stringMenuList = ref([
+const stringOptions = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
   { text: 'Cherry', value: 'cherry' },
@@ -593,7 +476,7 @@ const stringMenuList = ref([
     v-model="numberValues"
     label="Select Numbers"
     placeholder="Select numbers"
-    :menu-list="numberMenuList"
+    :options="numberOptions"
   />
 </template>
 
@@ -602,7 +485,7 @@ import { ref } from 'vue';
 
 const numberValues = ref([42, 100]); // Always use an array for multi-select
 
-const numberMenuList = ref([
+const numberOptions = ref([
   { text: '42', value: 42 },
   { text: '100', value: 100 },
   { text: '200', value: 200 },
@@ -619,7 +502,7 @@ const numberMenuList = ref([
     v-model="selectedUsers"
     label="Select Users"
     placeholder="Select users"
-    :menu-list="userList"
+    :options="userList"
     text-field="name"
     value-field="id"
   />
@@ -644,7 +527,7 @@ const userList = ref([
 > **Note:**
 >
 > - If you want to start with no selection, use an empty array: `ref([])`.
-> - If you want to pre-select all items, use the full array of values from your menu list.
+> - If you want to pre-select all items, use the full array of values from your options.
 > - The component will always treat the model as an array for multi-select, so toggling and pre-selection will work as expected.
 
 ## API Reference
@@ -672,7 +555,7 @@ const userList = ref([
       <td>[]</td>
     </tr>
     <tr>
-      <td>menu-list</td>
+      <td>options</td>
       <td>List of options. Can be an array of strings, numbers, or objects with <code>text</code> and <code>value</code> fields.</td>
       <td>Array</td>
       <td>[]</td>
@@ -773,18 +656,6 @@ const userList = ref([
       <td>Boolean</td>
       <td>false</td>
     </tr>
-    <tr>
-      <td>searchable</td>
-      <td>Enable search input for filtering options.</td>
-      <td>Boolean</td>
-      <td>false</td>
-    </tr>
-    <tr>
-      <td>disabled-local-search</td>
-      <td>Disable local filtering of options (useful for remote search).</td>
-      <td>Boolean</td>
-      <td>false</td>
-    </tr>
   </tbody>
 </table>
 
@@ -804,11 +675,6 @@ const userList = ref([
       <td>array</td>
       <td>Emitted when the selection changes</td>
     </tr>
-    <tr>
-      <td>search-string</td>
-      <td>string/number</td>
-      <td>Emitted when the user types in the search input</td>
-    </tr>
   </tbody>
 </table>
 
@@ -818,7 +684,6 @@ const userList = ref([
 - Supports string, number, and object values. The component normalizes single values to an array internally.
 - For object values, use `text-field` and `value-field` to specify which fields to use.
 - Use `clearable` to allow users to clear all selections.
-- Use `searchable` to enable the search input. Use `disabled-local-search` to disable local filtering (for remote search).
 - Use `helper-text` and `helper-icon` to display additional information below the input.
 - Use `placement` and `popper-strategy` to control the select position and behavior.
 
@@ -846,18 +711,15 @@ import type { MenuListType } from '@/components/list/list';
 const selectModel = ref({
   selectBasic: [],
   selectGroupedItemsBy: [],
-  selectSearch: [],
   selectPreSelectedItems: ['100', 200, 'cherry'],
-  selectPreSelectedItemsWithSearch: 'apple',
   selectPlacements: [],
-  selectSearchDisabledLocalSearch: [],
   selectClearable: [],
   selectWidth: [],
   selectStrategy: [],
   selectInfiniteScroll: [],
 });
 
-const menuList = ref([
+const options = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
   { text: 'Cherry', value: 'cherry' },
@@ -896,10 +758,6 @@ const menuList = ref([
 
 const modalModel = ref(false);
 
-const handleSearchString = (searchString: string) => {
-  console.log('Search String:', searchString);
-};
-
 // For string values
 const stringValue = ref('apple');  // multiple string value
 const stringDisplay = ref('Apple');
@@ -908,25 +766,25 @@ const stringDisplay = ref('Apple');
 const numberValue = ref(42);  // multiple number value
 const numberDisplay = ref('42');
 
-const stringMenuList = ref([
+const stringOptions = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
   { text: 'Cherry', value: 'cherry' }
 ]);
 
-const numberMenuList = ref([
+const numberOptions = ref([
   { text: '42', value: 42 },
   { text: '100', value: 100 },
   { text: '200', value: 200 }
 ]);
 
 const handleStringSelection = () => {
-  const selected = stringMenuList.value.find(item => item.value === stringValue.value);
+  const selected = stringOptions.value.find(item => item.value === stringValue.value);
   stringDisplay.value = selected ? selected.text : '';
 };
 
 const handleNumberSelection = () => {
-  const selected = numberMenuList.value.find(item => item.value === numberValue.value);
+  const selected = numberOptions.value.find(item => item.value === numberValue.value);
   numberDisplay.value = selected ? selected.text : '';
 };
 

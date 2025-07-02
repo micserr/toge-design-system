@@ -1,4 +1,5 @@
 import type { ExtractPropTypes, PropType } from 'vue';
+import { STEPPER_TYPE } from '../stepper';
 
 export const STEP_STATES = ['pending', 'active', 'completed'] as const;
 
@@ -29,6 +30,13 @@ export const stepPropTypes = {
     validator: (value: (typeof STEP_STATES)[number]) => STEP_STATES.includes(value),
     default: 'pending',
   },
+  /**
+     * @description Display type of stepper if displayed as compact (no solid bg color) or solid
+     */
+  type: {
+    type: String as PropType<(typeof STEPPER_TYPE)[number]>,
+    validator: (value: (typeof STEPPER_TYPE)[number]) => STEPPER_TYPE.includes(value),
+  }
 };
 
 export const stepEmitTypes = {

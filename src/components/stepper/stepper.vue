@@ -7,6 +7,7 @@
         :label="step.label"
         :status="step.status"
         :description="step.description"
+        :type="props.type"
       />
 
       <!-- LINES -->

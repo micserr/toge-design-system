@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.8.4 (2025-07-02)
+
+- Feat
+
+  - Stepper Type (compact and solid) ([#92a4e51d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/92a4e51d179fd85d6a7af57cbdd7207348afc619?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FStepperTypes) by @jbanares)
+
 ## 2.8.3 (2025-07-02)
 
 - Fix

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.9.0 (2025-07-02)
+
+- Feat
+
+  -Banner Component ([#35fbb736](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/35fbb736932c610ba7ae5c31fc5cad77b4bcd335?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FBanner) by @jbanares)
+
 ## 2.8.4 (2025-07-02)
 
 - Feat

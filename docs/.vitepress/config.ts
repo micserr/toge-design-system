@@ -84,6 +84,10 @@ export default defineConfig({
               link: '/documentation/components/badge',
             },
             {
+              text: 'Banner',
+              link: '/documentation/components/banner',
+            },
+            {
               text: 'Button',
               link: '/documentation/components/button',
             },

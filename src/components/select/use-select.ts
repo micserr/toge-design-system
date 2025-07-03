@@ -147,9 +147,13 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     return selectOptions.value.filter((item) => item.text?.toString().toLowerCase().includes(query));
   });
 
-  watch(options, () => {
-    processOptions();
-  });
+  watch(
+    options,
+    () => {
+      processOptions();
+    },
+    { deep: true },
+  );
 
   // Search handler: always emit search-string, but only filter locally if local search is enabled
   const handleSearch = () => {

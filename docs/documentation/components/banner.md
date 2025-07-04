@@ -131,7 +131,7 @@ You can customize the content of the banner using the default slot.
 ```vue
 <template>
   <spr-banner v-model:show="showBannerCustom" type="success" show-close-button>
-    <div>
+    <div class="spr-flex spr-flex-col spr-gap-2">
       <strong>Custom Success!</strong> <span>This is a custom banner message.</span>
     </div>
   </spr-banner>

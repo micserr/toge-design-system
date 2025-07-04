@@ -52,7 +52,7 @@ export const useBanner = (props: BannerPropTypes, showModel: Ref<boolean>) => {
     );
 
     const close = classNames(
-      'spr-flex-none spr-cursor-pointer',
+      'spr-flex-none spr-cursor-pointer spr-mt-[2px]',
       {
         'spr-text-color-brand-base': props.type === 'success',
         'spr-text-color-danger-base': props.type === 'error',

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.9.2 (2025-07-04)
+
+- Fix
+
+  -DQA fixes for Banner ([#1917dda](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1917dda1cd96e9782799c5a2582250f8898afacf?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FDQA_Banner) by @jbanares)
+
 ## 2.9.1 (2025-07-03)
 
 - Feat

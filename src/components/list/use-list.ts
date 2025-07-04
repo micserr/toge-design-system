@@ -358,13 +358,17 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   };
   // #endregion - Helper Methods
 
-  watch(menuList, () => {
-    localizedMenuList.value = [];
-    groupedMenuList.value = [];
+  watch(
+    menuList,
+    () => {
+      localizedMenuList.value = [];
+      groupedMenuList.value = [];
 
-    setMenuList();
-    setPreSelectedItems();
-  });
+      setMenuList();
+      setPreSelectedItems();
+    },
+    { deep: true },
+  );
 
   onMounted(() => {
     setMenuList();

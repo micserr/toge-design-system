@@ -110,7 +110,6 @@ export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext
 
       return;
     }
-
     emit('onClick', evt);
   };
 

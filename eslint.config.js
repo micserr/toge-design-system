@@ -47,6 +47,7 @@ export default tseslint.config(
             'accordion',
             'avatar',
             'badge',
+            'banner',
             'button',
             'calendar',
             'card',

@@ -1,12 +1,16 @@
 import { computed, SetupContext, toRefs, ref, watch } from 'vue';
 import dayjs from 'dayjs';
+import isBetween from 'dayjs/plugin/isBetween';
 import classNames from 'classnames';
+import { useInfiniteScroll } from '@vueuse/core';
 import { useVModel } from '@vueuse/core';
+
+dayjs.extend(isBetween);
 
 import type { CalendarPropTypes, CalendarEmitTypes, SelectedShift } from './calendar';
 
 export const useCalendar = (props: CalendarPropTypes, emit: SetupContext<CalendarEmitTypes>['emit']) => {
-  const { initialDate, companyOptions, departmentOptions, branchOptions } = toRefs(props);
+  const { initialDate, hideAddButton } = toRefs(props);
 
   const state = {
     dateFormat: ref('YYYY-MM-DD'),
@@ -21,13 +25,20 @@ export const useCalendar = (props: CalendarPropTypes, emit: SetupContext<Calenda
     isHover: ref<boolean>(false),
     hoveredCell: ref<number>(),
     employeeId: ref<number>(),
+    sort: ref<string>(''),
+    tableBodyRef: ref<HTMLElement | null>(null),
   };
 
   const searchEmployee = useVModel(props, 'search', emit);
   const selectedCell = useVModel(props, 'selectedCell', emit);
-  const selectedCompany = useVModel(props, 'selectedCompany', emit);
-  const selectedDepartment = useVModel(props, 'selectedDepartment', emit);
-  const selectedBranch = useVModel(props, 'selectedBranch', emit);
+
+  const getSortIcon = computed(() => {
+    if (!state.sort.value) {
+      return 'ph:caret-up-down-light';
+    }
+
+    return state.sort.value === 'asc' ? 'ph:arrow-up' : 'ph:arrow-down';
+  });
 
   const startDate = computed(() => state.currentDate.value.startOf('week'));
 
@@ -63,64 +74,81 @@ export const useCalendar = (props: CalendarPropTypes, emit: SetupContext<Calenda
     state.currentDate.value = state.currentDate.value.add(1, 'week');
   };
 
-  const goToToday = () => {
-    state.currentDate.value = dayjs();
+  const getFirstAndLastDayOfWeek = () => {
+    if (!state.currentDate.value) return;
+
+    const firstDayOfWeek = state.currentDate.value.startOf('week');
+    const lastDayOfWeek = state.currentDate.value.endOf('week');
+
+    emit('update:firstLastDayOfWeek', {
+      firstDay: firstDayOfWeek.format(state.dateFormat.value),
+      lastDay: lastDayOfWeek.format(state.dateFormat.value),
+    });
   };
 
-  const onShiftClick = (selected: SelectedShift) => {
+  const goToToday = () => {
+    const today = dayjs();
+    const currentWeekStart = state.currentDate.value.startOf('week');
+    const currentWeekEnd = state.currentDate.value.endOf('week');
+
+    // Only update if today is not within the current week
+    if (!today.isBetween(currentWeekStart, currentWeekEnd, 'day', '[]')) {
+      state.currentDate.value = today;
+    }
+  };
+
+  const onCellClick = (selected: SelectedShift) => {
     selectedCell.value = selected;
+    emit('onCellClick', selected);
   };
 
   const handleHover = (isHover: boolean, index: number, employeeId: number) => {
     state.isHover.value = isHover;
-    state.hoveredCell.value = isHover ? index : null;
+    state.hoveredCell.value = isHover ? index : undefined;
     state.employeeId.value = employeeId;
   };
 
   const showAddShift = (index: number, employeeId: number) => {
-    return state.hoveredCell.value === index && state.isHover.value && state.employeeId.value === employeeId;
+    return (
+      state.hoveredCell.value === index &&
+      state.isHover.value &&
+      state.employeeId.value === employeeId &&
+      !hideAddButton.value
+    );
   };
 
-  const handleFilter = (filter: string, selected: string) => {
-    if (filter === 'company') {
-      const foundCompany = companyOptions.value.find((item) => item.value === selected);
-      state.selectedCompany.value = foundCompany?.text ?? '';
-      selectedCompany.value = selected;
-    }
-
-    if (filter === 'department') {
-      const foundCompany = departmentOptions.value.find((item) => item.value === selected);
-      state.selectedDepartment.value = foundCompany?.text ?? '';
-      selectedDepartment.value = selected;
-    }
-
-    if (filter === 'branch') {
-      const foundCompany = branchOptions.value.find((item) => item.value === selected);
-      state.selectedBranch.value = foundCompany?.text ?? '';
-      selectedBranch.value = selected;
-    }
+  const handleSorting = () => {
+    state.sort.value = state.sort.value === 'desc' ? 'asc' : 'desc';
+    emit('update:sort', state.sort.value);
   };
 
-  watch(state.searchTerm, (value, oldValue) => {
-    if (value === oldValue) return; // Prevent unnecessary updates
-    searchEmployee.value = value;
-  });
+  useInfiniteScroll(
+    state.tableBodyRef,
+    () => {
+      emit('loadMore');
+    },
+    {
+      distance: 50,
+      direction: 'bottom',
+    },
+  );
 
   const getCalendarClasses = computed(() => {
     const borderClasses = classNames(' spr-border spr-border-color-weak spr-border-solid');
     const headerWrapper = classNames(
-      'spr-bg-color-weak spr-flex spr-w-full spr-items-center spr-justify-between spr-border-x-0 spr-border-b spr-border-t-0 spr-p-size-spacing-sm',
+      'spr-bg-color-weak spr-flex spr-w-full spr-items-center spr-justify-between spr-p-size-spacing-sm',
     );
 
     const contentWrapper = classNames('spr-divide-color-weak spr-divide-x-0 spr-divide-y spr-divide-solid');
-    const calendarFilter = classNames('spr-grid spr-grid-cols-4 spr-gap-size-spacing-2xs spr-p-size-spacing-xs');
     const calendarTable = classNames(
-      'spr-table spr-w-full spr-table-fixed spr-border-collapse spr-border-spacing-0 spr-overflow-hidden spr-rounded-border',
+      ' spr-overflow-y-auto spr-h-full spr-table spr-w-full spr-table-fixed spr-border-collapse spr-border-spacing-0 spr-rounded-border',
     );
     const tableHeaderEmployeeName = classNames(
-      'spr-body-xs-regular-medium spr-border-x spr-border-y spr-p-size-spacing-xs spr-text-left first:spr-border-l-0 spr-overflow-hidden',
+      'spr-sticky spr-left-0 spr-z-20 spr-background-color spr-body-xs-regular-medium spr-p-size-spacing-xs spr-text-left spr-overflow-hidden spr-h-full',
     );
-    const tableHeader = classNames('spr-border-x-0 spr-border-y spr-border-l spr-p-size-spacing-sm spr-text-center');
+    const tableHeader = classNames(
+      'spr-background-color spr-border-x-0 spr-border-y-0 spr-border-l  spr-p-size-spacing-sm spr-text-center',
+    );
     const headerContent = classNames(
       'spr-flex  spr-flex-row spr-w-full spr-items-center spr-gap-size-spacing-3xs lg:spr-flex-col spr-overflow-hidden',
     );
@@ -128,11 +156,16 @@ export const useCalendar = (props: CalendarPropTypes, emit: SetupContext<Calenda
       'spr-font-size-400 spr-line-height-500 spr-letter-spacing-dense spr-flex spr-h-size-spacing-md spr-w-size-spacing-md spr-items-center spr-justify-center spr-rounded-full spr-font-main spr-font-normal',
     );
 
+    getFirstAndLastDayOfWeek();
+
+    watch(state.searchTerm, (value, oldValue) => {
+      if (value === oldValue) return; // Prevent unnecessary updates
+      searchEmployee.value = value;
+    });
     return {
       borderClasses,
       headerWrapper,
       contentWrapper,
-      calendarFilter,
       calendarTable,
       tableHeaderEmployeeName,
       tableHeader,
@@ -145,16 +178,17 @@ export const useCalendar = (props: CalendarPropTypes, emit: SetupContext<Calenda
     weekDates,
     weekRangeDisplay,
     getCalendarClasses,
+    getSortIcon,
 
     formatDate,
     isToday,
     prevWeek,
     nextWeek,
     goToToday,
-    onShiftClick,
+    onCellClick,
     handleHover,
     showAddShift,
-    handleFilter,
+    handleSorting,
 
     ...state,
   };

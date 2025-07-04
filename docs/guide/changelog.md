@@ -1,5 +1,25 @@
 # Changelog
 
+## 2.9.1 (2025-07-03)
+
+- Feat
+
+  - Commit f0f0d2f2: feat(calendar): add hideAddButton prop and improve calendar header layout
+
+  - Commit 4dad73dc: feat(calendar): enhance calendar component with infinite scroll and improved header layout ([#4dad73dc](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4dad73dc36608e754670f57ca21fb2edc7be4b82?refName=refs/heads/2025/Fix/andrea/calendar-update-dropdown-filter) by @adestajo)
+
+## 2.9.0 (2025-07-02)
+
+- Feat
+
+  -Banner Component ([#35fbb736](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/35fbb736932c610ba7ae5c31fc5cad77b4bcd335?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FBanner) by @jbanares)
+
+## 2.8.4 (2025-07-02)
+
+- Feat
+
+  - Stepper Type (compact and solid) ([#92a4e51d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/92a4e51d179fd85d6a7af57cbdd7207348afc619?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FStepperTypes) by @jbanares)
+
 ## 2.8.3 (2025-07-02)
 
 - Fix

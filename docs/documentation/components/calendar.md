@@ -46,7 +46,7 @@ The `Calendar` component is a reusable and customizable calendar designed for em
   </div>
   </div>
 
-```vue
+````vue
 <template>
   <SprCalendar
     v-model:search="searchEmployee"
@@ -163,19 +163,12 @@ const branchOptions = [
   { text: 'Branch B', value: 'branch-b' },
 ];
 </script>
-```
 
-## Slots
-
-### `filter`
-
-- **Description:** Slot for customizing the filter section.
-- **Example:**
-  ```vue
-  <template #filter>
-    <div>Custom Filter Content</div>
-  </template>
-  ```
+## Slots ### `filter` - **Description:** Slot for customizing the filter section. - **Example:** ```vue
+<template #filter>
+  <div>Custom Filter Content</div>
+</template>
+````
 
 ### `loading`
 
@@ -188,6 +181,31 @@ const branchOptions = [
   ```
 
 ---
+
+### Infinite Scroll
+
+The calendar supports infinite scrolling for loading more employee data:
+
+- Automatically triggers when scrolling near the bottom (50px threshold)
+- Emits `loadMore` event when more data should be loaded
+- Maintains smooth scrolling experience with proper spacing
+
+Example of handling infinite scroll:
+
+```vue
+<template>
+  <SprCalendar @load-more="handleLoadMore" :employees="employees" :loading="isLoading" />
+</template>
+
+<script setup>
+const handleLoadMore = async () => {
+  isLoading.value = true;
+  // Load more employees here
+  await loadMoreEmployees();
+  isLoading.value = false;
+};
+</script>
+```
 
 ## API Reference
 
@@ -216,24 +234,6 @@ const branchOptions = [
       <td>The initial date to display in the calendar.</td>
     </tr>
     <tr>
-      <td><code>companyOptions</code></td>
-      <td><code>Array&lt;FilterOption[]&gt;</code></td>
-      <td><code>[ { text: 'All Companies', value: 'all' } ]</code></td>
-      <td>Options for the company filter dropdown.</td>
-    </tr>
-    <tr>
-      <td><code>departmentOptions</code></td>
-      <td><code>Array&lt;FilterOption[]&gt;</code></td>
-      <td><code>[ { text: 'All Departments', value: 'all' } ]</code></td>
-      <td>Options for the department filter dropdown.</td>
-    </tr>
-    <tr>
-      <td><code>branchOptions</code></td>
-      <td><code>Array&lt;FilterOption[]&gt;</code></td>
-      <td><code>[ { text: 'All Branches', value: 'all' } ]</code></td>
-      <td>Options for the branch filter dropdown.</td>
-    </tr>
-    <tr>
       <td><code>search</code></td>
       <td><code>String</code></td>
       <td><code>''</code></td>
@@ -244,24 +244,6 @@ const branchOptions = [
       <td><code>Object&lt;SelectedShift&gt;</code></td>
       <td><code>{ employeeId: '', date: '', shift: null }</code></td>
       <td>The currently selected cell in the calendar.</td>
-    </tr>
-    <tr>
-      <td><code>selectedCompany</code></td>
-      <td><code>String</code></td>
-      <td><code>''</code></td>
-      <td>The currently selected company filter.</td>
-    </tr>
-    <tr>
-      <td><code>selectedDepartment</code></td>
-      <td><code>String</code></td>
-      <td><code>''</code></td>
-      <td>The currently selected department filter.</td>
-    </tr>
-    <tr>
-      <td><code>selectedBranch</code></td>
-      <td><code>String</code></td>
-      <td><code>''</code></td>
-      <td>The currently selected branch filter.</td>
     </tr>
     <tr>
       <td><code>emptyStateTitle</code></td>
@@ -286,6 +268,61 @@ const branchOptions = [
       <td><code>boolean</code></td>
       <td>-</td>
       <td>Displays a loading state for the calendar, typically shown as a spinner or skeleton while data is being fetched.</td>
+    </tr>
+    <tr>
+      <td><code>hideAddButton</code></td>
+      <td><code>boolean</code></td>
+      <td>-</td>
+      <td>Hide the add button</td>
+    </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Parameters</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>loadMore</code></td>
+      <td>-</td>
+      <td>Emitted when the user scrolls near the bottom of the calendar, indicating that more employee data should be loaded.</td>
+    </tr>
+    <tr>
+      <td><code>onCellClick</code></td>
+      <td><code>SelectedShift</code></td>
+      <td>Emitted when a calendar cell is clicked.</td>
+    </tr>
+    <tr>
+      <td><code>update:firstLastDayOfWeek</code></td>
+      <td><code>{ firstDay: string, lastDay: string }</code></td>
+      <td>Emitted when the visible week range changes.</td>
+    </tr>
+    <tr>
+      <td><code>update:sort</code></td>
+      <td><code>string</code></td>
+      <td>Emitted when the sort order changes.</td>
+    </tr>
+    <tr>
+      <td><code>update:search</code></td>
+      <td><code>string</code></td>
+      <td>Emitted when the search term changes.</td>
+    </tr>
+    <tr>
+      <td><code>update:selectedCell</code></td>
+      <td><code>SelectedShift</code></td>
+      <td>Emitted when a cell is selected.</td>
+    </tr>
+    <tr>
+      <td><code>onClickEmptyButton</code></td>
+      <td>-</td>
+      <td>Emitted when the empty state button is clicked.</td>
     </tr>
   </tbody>
 </table>

@@ -22,12 +22,6 @@ interface Employee {
   hoursTarget?: number;
   schedule: EmployeeSchedule[];
 }
-
-interface FilterOption {
-  text: string;
-  value: string;
-}
-
 export interface SelectedShift {
   employeeId: string;
   date: string;
@@ -43,18 +37,6 @@ export const calendarPropTypes = {
     type: Date,
     default: () => new Date(),
   },
-  companyOptions: {
-    type: Array as PropType<FilterOption[]>,
-    default: () => [{ text: 'All Companies', value: 'all' }],
-  },
-  departmentOptions: {
-    type: Array as PropType<FilterOption[]>,
-    default: () => [{ text: 'All Departments', value: 'all' }],
-  },
-  branchOptions: {
-    type: Array as PropType<FilterOption[]>,
-    default: () => [{ text: 'All Branches', value: 'all' }],
-  },
 
   search: {
     type: String,
@@ -68,19 +50,6 @@ export const calendarPropTypes = {
       date: '',
       shift: null,
     }),
-  },
-
-  selectedCompany: {
-    type: String,
-    default: '',
-  },
-  selectedDepartment: {
-    type: String,
-    default: '',
-  },
-  selectedBranch: {
-    type: String,
-    default: '',
   },
   loading: {
     type: Boolean,
@@ -97,6 +66,10 @@ export const calendarPropTypes = {
   emptyStateButtonText: {
     type: String,
     default: 'Add Employee',
+  },
+  hideAddButton: {
+    type: Boolean,
+    default: false,
   },
 };
 

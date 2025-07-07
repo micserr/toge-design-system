@@ -29,6 +29,7 @@ export const multiSelectPropTypes = {
   id: {
     type: String,
     required: true,
+    default: 'multi-select',
   },
   modelValue: {
     type: Array as PropType<(string | number | Record<string, unknown>)[]>,

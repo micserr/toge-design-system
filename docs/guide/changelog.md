@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.9.5 (2025-07-07)
+
+- Fix
+
+  -Commit d488a938: feat: add default IDs to select components and improve accessibility ([#d488a938](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d488a938a2dbe8bd724b3eaf0706d4792d5e18f9?refName=refs/heads/2025/Fix/andrea/added-ids-select-calendar) by @adestajo)
+
 ## 2.9.4 (2025-07-07)
 
 - Fix

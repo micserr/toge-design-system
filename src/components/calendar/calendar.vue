@@ -5,24 +5,28 @@
         <div :class="[getCalendarClasses.headerWrapper]">
           <div class="spr-flex spr-items-center spr-justify-center spr-gap-size-spacing-3xs">
             <div class="spr-flex">
-              <spr-button variant="tertiary" has-icon @click="prevWeek">
+              <spr-button id="calendar-prev-week" variant="tertiary" has-icon @click="prevWeek">
                 <Icon icon="ph:caret-left-fill" class="spr-text-color-success-base" />
               </spr-button>
-              <spr-button variant="tertiary" has-icon @click="nextWeek">
+              <spr-button id="calendar-next-week" variant="tertiary" has-icon @click="nextWeek">
                 <Icon icon="ph:caret-right-fill" class="spr-text-color-success-base" />
               </spr-button>
             </div>
             <div class="spr-heading-xs">{{ weekRangeDisplay }}</div>
           </div>
 
-          <spr-button variant="secondary" size="large" @click="goToToday"> Today </spr-button>
+          <spr-button id="calendar-today" variant="secondary" size="large" @click="goToToday"> Today </spr-button>
         </div>
         <!-- Filters -->
         <slot name="filter" />
 
         <div ref="tableBodyRef" class="spr-table-wrapper spr-h-[calc(100vh-12rem)] spr-w-full spr-overflow-auto">
           <div class="spr-pb-size-spacing-lg">
-            <table aria-describedby="calendar" :class="[getCalendarClasses.calendarTable, 'spr-relative']">
+            <table
+              id="table-calendar"
+              aria-describedby="calendar"
+              :class="[getCalendarClasses.calendarTable, 'spr-relative']"
+            >
               <!-- Calendar Header -->
               <thead class="spr-bg-white spr-sticky spr-top-0 spr-z-20">
                 <tr>
@@ -30,6 +34,7 @@
                     <div :class="getCalendarClasses.headerContent">
                       <div>Employee Name</div>
                       <div
+                        id="calendar-sort-button"
                         :class="['spr-flex spr-cursor-pointer spr-flex-row spr-items-center spr-p-size-spacing-6xs']"
                         @click="handleSorting"
                       >
@@ -128,8 +133,8 @@
                           <spr-calendar-cell type="restday" fullwidth />
                         </div>
                         <div
-                          class="spr-flex spr-flex-col spr-items-center spr-justify-start"
                           v-else
+                          class="spr-flex spr-flex-col spr-items-center spr-justify-start"
                           @click="
                             onCellClick({
                               employeeId: employee.id,

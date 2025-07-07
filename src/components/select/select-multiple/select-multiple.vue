@@ -27,6 +27,7 @@
         <div @click="handleOptionsToggle">
           <spr-input
             v-model="inputText"
+            :id="props.id"
             :class="{
               'spr-cursor-pointer': true,
             }"

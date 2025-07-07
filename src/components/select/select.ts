@@ -29,6 +29,7 @@ export const selectPropTypes = {
   id: {
     type: String,
     required: true,
+    default: 'select',
   },
   modelValue: {
     type: [String, Number, Object, Array] as PropType<

@@ -23,46 +23,59 @@
         width: props.width,
       }"
     >
-      <div @click="handleOptionsToggle">
-        <spr-input
-          v-model="inputText"
-          :class="{
-            'spr-cursor-pointer': true,
+      <div ref="multiSelectRef">
+        <div @click="handleOptionsToggle">
+          <spr-input
+            v-model="inputText"
+            :class="{
+              'spr-cursor-pointer': true,
+            }"
+            :placeholder="props.placeholder"
+            autocomplete="off"
+            :helper-text="props.helperText"
+            :helper-icon="props.helperIcon"
+            :display-helper="props.displayHelper"
+            :active="props.active"
+            :readonly="true"
+            :disabled="props.disabled"
+            :error="props.error"
+          >
+            <template #icon>
+              <div class="spr-flex spr-items-center spr-gap-1">
+                <Icon
+                  v-if="props.clearable && inputText"
+                  class="spr-cursor-pointer"
+                  icon="ph:x"
+                  @click.stop="handleClear"
+                />
+                <Icon icon="ph:caret-down" />
+              </div>
+            </template>
+
+            <template #helperMessage>
+              <slot name="helperMessage" />
+            </template>
+          </spr-input>
+
+          <!-- Hidden Select for QA automation -->
+          <select v-if="multiSelectOptions && multiSelectOptions.length" v-model="multiSelectModel" multiple hidden>
+            <option v-for="option in multiSelectOptions" :key="option.value" :value="option.value">
+              {{ option.text }}
+            </option>
+          </select>
+        </div>
+
+        <!-- This div used to poppulate popper menu -->
+        <div
+          :id="props.id"
+          :style="{
+            width: props.popperWidth,
           }"
-          :placeholder="props.placeholder"
-          :readonly="true"
-          :disabled="props.disabled"
-          autocomplete="off"
-          :helper-text="props.helperText"
-          :helper-icon="props.helperIcon"
-          :display-helper="props.displayHelper"
-        >
-          <template #icon>
-            <div class="spr-flex spr-items-center spr-gap-1">
-              <Icon
-                v-if="props.clearable && inputText"
-                class="spr-cursor-pointer"
-                icon="ph:x"
-                @click.stop="handleClear"
-              />
-              <Icon icon="ph:caret-down" />
-            </div>
-          </template>
-        </spr-input>
+        ></div>
       </div>
 
-      <div
-        :id="props.id"
-        :style="{
-          width: props.popperWidth,
-        }"
-      ></div>
-
       <template #popper>
-        <div
-          ref="multiSelectRef"
-          class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden spr-p-2"
-        >
+        <div class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden spr-p-2">
           <template v-if="multiSelectOptions.length > 0">
             <spr-list
               v-model="multiSelectedListItems"

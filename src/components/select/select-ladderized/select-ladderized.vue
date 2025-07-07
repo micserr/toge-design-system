@@ -25,7 +25,7 @@
     >
       <div @click="handleOptionsToggle">
         <spr-input
-          :id="props.id"
+          :id="`input-${props.id}`"
           v-model="inputText"
           class="spr-cursor-pointer"
           :placeholder="props.placeholder"

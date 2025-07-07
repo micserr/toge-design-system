@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.9.6 (2025-07-07)
+
+- Fix
+
+  -Commit 16cc3dff: fix: prepend input IDs with 'input-' for consistency across select components ([#16cc3dff](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/16cc3dffaacfac4a20545a713ab2488cf3eb64fb?refName=refs/heads/2025/Fix/andrea/change-default-id-name) by @adestajo)
+
 ## 2.9.5 (2025-07-07)
 
 - Fix

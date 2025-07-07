@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.9.3 (2025-07-07)
+
+- Fix
+
+  -Commit c831f9cd: fix: update calendar display logic and enhance sorting functionality ([#c831f9cd](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c831f9cde3ed540a8f78fbf90ca79c444b25b92b?refName=refs/heads/2025/Fix/andrea/calendar-fix) by @adestajo)
+
 ## 2.9.2 (2025-07-04)
 
 - Fix

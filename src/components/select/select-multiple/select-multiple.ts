@@ -31,9 +31,7 @@ export const multiSelectPropTypes = {
     required: true,
   },
   modelValue: {
-    type: [String, Number, Object, Array] as PropType<
-      string | number | Record<string, unknown> | (string | number | Record<string, unknown>)[]
-    >,
+    type: Array as PropType<(string | number | Record<string, unknown>)[]>,
     default: () => [],
   },
   options: {
@@ -102,7 +100,15 @@ export const multiSelectPropTypes = {
     type: String,
     default: '',
   },
+  active: {
+    type: Boolean,
+    default: false,
+  },
   disabled: {
+    type: Boolean,
+    default: false,
+  },
+  error: {
     type: Boolean,
     default: false,
   },

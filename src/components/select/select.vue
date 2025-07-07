@@ -23,58 +23,68 @@
         width: props.width,
       }"
     >
-      <div @click="handleOptionsToggle">
-        <spr-input
-          v-model="inputText"
-          :class="{
-            'spr-cursor-pointer': !props.searchable,
+      <div ref="selectRef">
+        <div @click="handleOptionsToggle">
+          <spr-input
+            v-model="inputText"
+            :class="{
+              'spr-cursor-pointer': !props.searchable,
+            }"
+            :placeholder="props.placeholder"
+            autocomplete="off"
+            :helper-text="props.helperText"
+            :helper-icon="props.helperIcon"
+            :display-helper="props.displayHelper"
+            :active="props.active"
+            :readonly="!props.searchable"
+            :disabled="props.disabled"
+            :error="props.error"
+            @keyup="handleSearch"
+          >
+            <template #icon>
+              <div class="spr-flex spr-cursor-pointer spr-items-center">
+                <Icon
+                  v-if="props.clearable && inputText"
+                  class="spr-cursor-pointer"
+                  icon="ph:x"
+                  @click.stop="handleClear"
+                />
+                <Icon icon="ph:caret-down" />
+              </div>
+            </template>
+
+            <template #helperMessage>
+              <slot name="helperMessage" />
+            </template>
+          </spr-input>
+
+          <!-- Hidden Select for QA automation -->
+          <select
+            v-if="selectOptions && selectOptions.length"
+            :value="Array.isArray(selectModel) ? selectModel[0] : selectModel"
+            data-testid="qa-hidden-select"
+            tabindex="-1"
+            aria-hidden="true"
+            hidden
+          >
+            <option v-for="item in selectOptions" :key="item.value" :value="item.value">
+              {{ item.text }}
+            </option>
+          </select>
+        </div>
+
+        <!-- This div used to poppulate popper menu -->
+        <div
+          :id="props.id"
+          :style="{
+            width: props.popperWidth,
           }"
-          :placeholder="props.placeholder"
-          :readonly="!props.searchable"
-          :disabled="props.disabled"
-          autocomplete="off"
-          :helper-text="props.helperText"
-          :helper-icon="props.helperIcon"
-          :display-helper="props.displayHelper"
-          @keyup="handleSearch"
-        >
-          <template #icon>
-            <div class="spr-flex spr-items-center spr-gap-1">
-              <Icon
-                v-if="props.clearable && inputText"
-                class="spr-cursor-pointer"
-                icon="ph:x"
-                @click.stop="handleClear"
-              />
-              <Icon icon="ph:caret-down" />
-            </div>
-          </template>
-        </spr-input>
-
-        <select
-          v-if="selectOptions && selectOptions.length"
-          :value="Array.isArray(selectModel) ? selectModel[0] : selectModel"
-          data-testid="qa-hidden-select"
-          tabindex="-1"
-          aria-hidden="true"
-          hidden
-        >
-          <option v-for="item in selectOptions" :key="item.value" :value="item.value">
-            {{ item.text }}
-          </option>
-        </select>
+        ></div>
       </div>
-
-      <div
-        :id="props.id"
-        :style="{
-          width: props.popperWidth,
-        }"
-      ></div>
 
       <template #popper>
         <div
-          ref="selectRef"
+          ref="selectPopperRef"
           class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden spr-p-2"
         >
           <template v-if="isSearching">
@@ -153,6 +163,7 @@ const {
   selectClasses,
   selectPopperState,
   selectRef,
+  selectPopperRef,
   selectModel,
   selectOptions,
   filteredSelectOptions,

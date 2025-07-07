@@ -102,7 +102,15 @@ export const selectPropTypes = {
     type: String,
     default: '',
   },
+  active: {
+    type: Boolean,
+    default: false,
+  },
   disabled: {
+    type: Boolean,
+    default: false,
+  },
+  error: {
     type: Boolean,
     default: false,
   },

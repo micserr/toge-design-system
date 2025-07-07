@@ -26,7 +26,7 @@ The Multi Select component allows users to select multiple options from a select
 <template>
   <spr-select-multiple
     id="sample-select"
-    v-model="selectModel"
+    v-model="selectBasic"
     label="Multi-Select Label"
     placeholder="Select an option"
     :options="options"
@@ -36,8 +36,7 @@ The Multi Select component allows users to select multiple options from a select
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const selectModel = ref('');
-
+const selectBasic = ref([]); // Use an array for multi-select
 const options = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
@@ -74,7 +73,7 @@ You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-ite
   <div class="spr-grid spr-gap-4">
     <spr-select-multiple
       id="sample-select"
-      v-model="selectModel"
+      v-model="selectGroupedItemsBy"
       label="Multi-Select Label"
       placeholder="Select an option"
       :options="options"
@@ -82,6 +81,25 @@ You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-ite
     />
   </div>
 </template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectGroupedItemsBy = ref([]); // Use an array for multi-select
+const options = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+  { text: 'Fig', value: 'fig' },
+  { text: 'Grape', value: 'grape' },
+  { text: 'Nectarine', value: 'nectarine' },
+  { text: 'Orange', value: 'orange' },
+  { text: 'Papaya', value: 'papaya' },
+  { text: '89 Quince', value: '50' },
+]);
+</script>
 ```
 
 ## Pre-Selected Items
@@ -109,7 +127,7 @@ Pre-selected items are options that are automatically selected when the select i
 <template>
   <spr-select-multiple
     id="sample-select"
-    v-model="selectModel"
+    v-model="selectPreSelectedItems"
     label="Select Fruits"
     placeholder="Select one or more fruits"
     :options="options"
@@ -121,8 +139,7 @@ Pre-selected items are options that are automatically selected when the select i
 import { ref } from 'vue';
 
 // Pre-select multiple items by passing an array of values
-const selectModel = ref(['100', 200, 'cherry']);
-
+const selectPreSelectedItems = ref(['100', 200, 'cherry']);
 const options = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
@@ -431,11 +448,191 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
 </template>
 ```
 
-## Active & Disabled
+## Active, Disabled, Error States
 
-This is only applicable to selected components, such as form input fields. You can learn more in the <a href='/documentation/components/input.html' target='_blank'>Input Form</a>.
+For guidance on implementing error, active, and disabled states in the select component, you can refer to the documentation for the input text component, as the approach is similar. See the [Input Form](/documentation/components/input.html) for detailed instructions.
 
-To disable the popper from showing when the wrapper is clicked, pass the disabled prop.
+### Active State
+
+<div>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel.selectActiveState"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    active
+  />
+</div>
+
+```vue
+<spr-select-multiple
+  id="sample-select"
+  v-model="selectModel"
+  label="Select Label"
+  placeholder="Select an option"
+  :options="options"
+  active
+/>
+```
+
+### Disabled State
+
+<div>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel.selectDisabledState"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    disabled
+  />
+</div>
+
+```vue
+<spr-select-multiple
+  id="sample-select"
+  v-model="selectModel"
+  label="Select Label"
+  placeholder="Select an option"
+  :options="options"
+  disabled
+/>
+```
+
+### Error State
+
+<div>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel.selectErrorState"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    error
+  />
+</div>
+
+```vue
+<spr-select-multiple
+  id="sample-select"
+  v-model="selectModel"
+  label="Select Label"
+  placeholder="Select an option"
+  :options="options"
+  error
+/>
+```
+
+## Helper Message
+
+A helper message is a text label below the input field that provides additional information about instructions, formatting hints, validation feedback, etc.
+
+To display the helper message, set the `display-helper` prop to `true` and add the `helper-text` prop with the helper message text. You can also insert an icon with the `helper-icon` prop. This uses the [Iconify](https://icon-sets.iconify.design/) icon library.
+
+<div class="spr-grid spr-gap-8">
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel.selectErrorState"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    helper-text="This is a helper message"
+    display-helper
+  />
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel.selectErrorState"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    helper-text="This is an error message"
+    helper-icon="ph:warning-circle-fill"
+    display-helper
+    error
+  />
+</div>
+
+```vue
+<spr-select-multiple
+  id="sample-select"
+  v-model="selectModel"
+  label="Select Label"
+  placeholder="Select an option"
+  :options="options"
+  helper-text="This is a helper message"
+  display-helper
+/>
+
+<spr-select-multiple
+  id="sample-select"
+  v-model="selectModel"
+  label="Select Label"
+  placeholder="Select an option"
+  :options="options"
+  helper-text="This is an error message"
+  helper-icon="ph:warning-circle-fill"
+  display-helper
+  error
+/>
+```
+
+Alternatively, you can use the `helperMessage` slot to display a custom helper message.
+
+<div class="spr-grid spr-gap-8">
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel.selectErrorState"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    display-helper
+  >
+    <template #helperMessage>This is a helper message</template>
+  </spr-select-multiple>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel.selectErrorState"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    display-helper
+    error
+  >
+    <template #helperMessage>
+      <icon icon="ph:warning-circle-fill" width="20px" height="20px" />
+      <span>This is an error message</span>
+    </template>
+  </spr-select-multiple>
+</div>
+
+```vue
+<spr-select-multiple
+  id="sample-select"
+  v-model="selectModel"
+  label="Select Label"
+  placeholder="Select an option"
+  :options="options"
+  display-helper
+>
+  <template #helperMessage>This is a helper message</template>
+</spr-select-multiple>
+
+<spr-select-multiple
+  id="sample-select"
+  v-model="selectModel"
+  label="Select Label"
+  placeholder="Select an option"
+  :options="options"
+  display-helper
+  error
+>
+  <template #helperMessage>
+    <icon icon="ph:warning-circle-fill" width="20px" height="20px" />
+    <span>This is an error message</span>
+  </template>
+</spr-select-multiple>
+```
 
 ## Supported Value Types
 
@@ -697,6 +894,8 @@ const userList = ref([
 <script lang="ts" setup>
 import { ref, onMounted } from "vue";
 
+import { Icon } from '@iconify/vue';
+
 import SprSelectMultiple from "@/components/select/select-multiple/select-multiple.vue";
 import SprInput from "@/components/input/input.vue";
 import SprButton from "@/components/button/button.vue";
@@ -711,12 +910,14 @@ import type { MenuListType } from '@/components/list/list';
 const selectModel = ref({
   selectBasic: [],
   selectGroupedItemsBy: [],
-  selectPreSelectedItems: ['100', 200, 'cherry'],
+  selectPreSelectedItems: ['100', '200', 'cherry'],
   selectPlacements: [],
   selectClearable: [],
   selectWidth: [],
   selectStrategy: [],
-  selectInfiniteScroll: [],
+  selectActiveState: [],
+  selectDisabledState: [],
+  selectErrorState: [],
 });
 
 const options = ref([
@@ -788,10 +989,6 @@ const handleNumberSelection = () => {
   numberDisplay.value = selected ? selected.text : '';
 };
 
-// #region - Infinite Scroll
-// Infinite scroll feature removed. All related code and variables have been deleted.
-// #endregion - Infinite Scroll
-
 const selectedUser = ref({ id: 1, name: 'John', role: 'Developer' });
 
 const userList = ref([
@@ -812,8 +1009,4 @@ const usersList = ref([
   { id: 3, name: 'Bob', role: 'Manager' },
   { id: 4, name: 'Alice', role: 'Product Owner' }
 ]);
-
-onMounted(() => {
-  // Infinite Scroll - Initial API call removed.
-});
 </script>

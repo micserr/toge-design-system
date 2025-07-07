@@ -118,7 +118,7 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
    * Opens the multi-select options.
    */
   const handleOptionsToggle = () => {
-    multiSelectPopperState.value = true;
+    multiSelectPopperState.value = !multiSelectPopperState.value;
   };
 
   /**
@@ -140,7 +140,6 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
 
     hasUserSelected.value = true;
     multiSelectModel.value = selectedValues;
-    multiSelectPopperState.value = true;
     inputTextBackup.value =
       multiSelectedItems.length > 3
         ? `${multiSelectedItems.length} items selected`
@@ -224,9 +223,23 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     updateMultiSelectedItemsFromValue();
   });
 
-  watch(multiSelectOptions, () => {
-    updateMultiSelectedItemsFromValue();
-  });
+  watch(
+    multiSelectOptions,
+    () => {
+      updateMultiSelectedItemsFromValue();
+    },
+    { deep: true },
+  );
+
+  // Add watcher for options prop to re-process options when changed
+  watch(
+    options,
+    () => {
+      processOptions();
+      updateMultiSelectedItemsFromValue();
+    },
+    { deep: true },
+  );
 
   /**
    * Handles closing the multi-select when clicking outside.

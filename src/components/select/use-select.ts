@@ -34,6 +34,7 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
   const isSelectPopperDisabled = computed(() => disabled.value);
 
   // Select Variables
+  const selectPopperRef = ref<HTMLDivElement | null>(null);
   const selectModel = useVModel(props, 'modelValue', emit);
   const selectedListItems = ref<MenuListType[]>();
   const selectOptions = ref<MenuListType[]>([]);
@@ -43,12 +44,6 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
   const inputText = ref<string | number>('');
   const inputTextBackup = ref<string | number>('');
   const isSearching = ref<boolean>(false);
-
-  const handleOptionsToggle = () => {
-    selectPopperState.value = true;
-
-    isSearching.value = false;
-  };
 
   // Normalized value for internal use - always an array
   const normalizedValue = computed(() => {
@@ -147,14 +142,6 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     return selectOptions.value.filter((item) => item.text?.toString().toLowerCase().includes(query));
   });
 
-  watch(
-    options,
-    () => {
-      processOptions();
-    },
-    { deep: true },
-  );
-
   // Search handler: always emit search-string, but only filter locally if local search is enabled
   const handleSearch = () => {
     isSearching.value = true;
@@ -166,24 +153,12 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     emit('search-string', inputText.value);
   }, 300);
 
-  onClickOutside(selectRef, () => {
-    selectPopperState.value = false;
-
-    // If user was searching, restore inputText from backup
-    if (isSearching.value) {
-      inputText.value = inputTextBackup.value;
-    }
+  // Toggle options popper state
+  const handleOptionsToggle = () => {
+    selectPopperState.value = !selectPopperState.value;
 
     isSearching.value = false;
-  });
-
-  useInfiniteScroll(
-    selectRef,
-    () => {
-      emit('infinite-scroll-trigger', true);
-    },
-    { distance: 10 },
-  );
+  };
 
   // Handle selected item for simple list component
   const handleSelectedItem = (selectedItems: MenuListType[]) => {
@@ -336,6 +311,33 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     updateSelectedItemsFromValue();
   });
 
+  watch(
+    options,
+    () => {
+      processOptions();
+    },
+    { deep: true },
+  );
+
+  onClickOutside(selectRef, () => {
+    selectPopperState.value = false;
+
+    // If user was searching, restore inputText from backup
+    if (isSearching.value) {
+      inputText.value = inputTextBackup.value;
+    }
+
+    isSearching.value = false;
+  });
+
+  useInfiniteScroll(
+    selectPopperRef,
+    () => {
+      emit('infinite-scroll-trigger', true);
+    },
+    { distance: 10 },
+  );
+
   onMounted(() => {
     processOptions();
 
@@ -351,8 +353,8 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
   return {
     selectClasses,
     selectPopperState,
-    handleOptionsToggle,
     selectRef,
+    selectPopperRef,
     selectModel: compatPreSelectedItems, // Use compatible format for lists
     selectOptions,
     filteredSelectOptions,
@@ -360,6 +362,7 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     inputText,
     isSelectPopperDisabled,
     isSearching,
+    handleOptionsToggle,
     handleSelectedItem,
     handleSearch,
     handleClear,

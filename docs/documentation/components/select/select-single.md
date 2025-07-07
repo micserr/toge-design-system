@@ -140,6 +140,9 @@ const options = ref([
 
 You can disable local search by passing the `disabled-local-search` prop. This is useful when you want to handle search via API only, and not filter the options locally.
 
+Use `@searchString` emit to get the search string when the user types in the search input. This allows you to handle the search logic externally, such as fetching options from an API based on the search query.
+
+````vue
 <div class="spr-grid spr-gap-4">
   <spr-select
     id="sample-selectSearchDisabledLocalSearch"
@@ -188,7 +191,7 @@ const options = ref([
   { text: '89 Quince', value: '50' },
 ]);
 </script>
-```
+````
 
 ## Pre-Selected Items
 
@@ -605,11 +608,191 @@ const getNextOptionsViaAPI = async () => {
 </script>
 ```
 
-## Active & Disabled
+## Active, Disabled, Error States
 
-This is only applicable to selected components, such as form input fields. You can learn more in the <a href='/documentation/components/input.html' target='_blank'>Input Form</a>.
+For guidance on implementing error, active, and disabled states in the select component, you can refer to the documentation for the input text component, as the approach is similar. See the [Input Form](/documentation/components/input.html) for detailed instructions.
 
-To disable the popper from showing when the wrapper is clicked, pass the disabled prop.
+### Active State
+
+<div>
+  <spr-select
+    id="sample-select"
+    v-model="selectModel.selectActiveState"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    active
+  />
+</div>
+
+```vue
+<spr-select
+  id="sample-select"
+  v-model="selectModel"
+  label="Select Label"
+  placeholder="Select an option"
+  :options="options"
+  active
+/>
+```
+
+### Disabled State
+
+<div>
+  <spr-select
+    id="sample-select"
+    v-model="selectModel.selectDisabledState"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    disabled
+  />
+</div>
+
+```vue
+<spr-select
+  id="sample-select"
+  v-model="selectModel"
+  label="Select Label"
+  placeholder="Select an option"
+  :options="options"
+  disabled
+/>
+```
+
+### Error State
+
+<div>
+  <spr-select
+    id="sample-select"
+    v-model="selectModel.selectErrorState"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    error
+  />
+</div>
+
+```vue
+<spr-select
+  id="sample-select"
+  v-model="selectModel"
+  label="Select Label"
+  placeholder="Select an option"
+  :options="options"
+  error
+/>
+```
+
+## Helper Message
+
+A helper message is a text label below the input field that provides additional information about instructions, formatting hints, validation feedback, etc.
+
+To display the helper message, set the `display-helper` prop to `true` and add the `helper-text` prop with the helper message text. You can also insert an icon with the `helper-icon` prop. This uses the [Iconify](https://icon-sets.iconify.design/) icon library.
+
+<div class="spr-grid spr-gap-8">
+  <spr-select
+    id="sample-select"
+    v-model="selectModel.selectErrorState"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    helper-text="This is a helper message"
+    display-helper
+  />
+  <spr-select
+    id="sample-select"
+    v-model="selectModel.selectErrorState"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    helper-text="This is an error message"
+    helper-icon="ph:warning-circle-fill"
+    display-helper
+    error
+  />
+</div>
+
+```vue
+<spr-select
+  id="sample-select"
+  v-model="selectModel"
+  label="Select Label"
+  placeholder="Select an option"
+  :options="options"
+  helper-text="This is a helper message"
+  display-helper
+/>
+
+<spr-select
+  id="sample-select"
+  v-model="selectModel"
+  label="Select Label"
+  placeholder="Select an option"
+  :options="options"
+  helper-text="This is an error message"
+  helper-icon="ph:warning-circle-fill"
+  display-helper
+  error
+/>
+```
+
+Alternatively, you can use the `helperMessage` slot to display a custom helper message.
+
+<div class="spr-grid spr-gap-8">
+  <spr-select
+    id="sample-select"
+    v-model="selectModel.selectErrorState"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    display-helper
+  >
+    <template #helperMessage>This is a helper message</template>
+  </spr-select>
+  <spr-select
+    id="sample-select"
+    v-model="selectModel.selectErrorState"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    display-helper
+    error
+  >
+    <template #helperMessage>
+      <icon icon="ph:warning-circle-fill" width="20px" height="20px" />
+      <span>This is an error message</span>
+    </template>
+  </spr-select>
+</div>
+
+```vue
+<spr-select
+  id="sample-select"
+  v-model="selectModel"
+  label="Select Label"
+  placeholder="Select an option"
+  :options="options"
+  display-helper
+>
+  <template #helperMessage>This is a helper message</template>
+</spr-select>
+
+<spr-select
+  id="sample-select"
+  v-model="selectModel"
+  label="Select Label"
+  placeholder="Select an option"
+  :options="options"
+  display-helper
+  error
+>
+  <template #helperMessage>
+    <icon icon="ph:warning-circle-fill" width="20px" height="20px" />
+    <span>This is an error message</span>
+  </template>
+</spr-select>
+```
 
 ## Supported Value Types
 
@@ -887,6 +1070,11 @@ const userList = ref([
       <td>Event emitted when the select is scrolled to the bottom (for dynamic data loading)</td>
       <td>None</td>
     </tr>
+    <tr>
+      <td>@searchString</td>
+      <td>Event emitted when you type in the search input</td>
+      <td>None</td>
+    </tr>
   </tbody>
 </table>
 
@@ -899,6 +1087,8 @@ const userList = ref([
 
 <script lang="ts" setup>
 import { ref, onMounted } from "vue";
+
+import { Icon } from '@iconify/vue';
 
 import SprInput from "@/components/input/input.vue";
 import SprSelect from "@/components/select/select.vue";
@@ -923,6 +1113,9 @@ const selectModel = ref({
   selectWidth: '',
   selectStrategy: '',
   selectInfiniteScroll: 51,
+  selectActiveState: '',
+  selectDisabledState: '',
+  selectErrorState: '',
 });
 
 const options = ref([
@@ -990,8 +1183,6 @@ const handleNumberSelection = () => {
   const selected = numberoptions.value.find(item => item.value === numberValue.value);
   numberDisplay.value = selected ? selected.text : '';
 };
-
-
 
 // #region - Infinite Scroll
 const displayText = ref('Border Terrier'); // Display text for the selected option

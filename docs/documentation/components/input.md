@@ -40,11 +40,11 @@ const inputValue = ref('Sample Text');
 
 ## Active State
 
-<spr-input v-model="inputValue.input3" label="Text Input" placeholder="Enter your username" :active="true" />
+<spr-input v-model="inputValue.input3" label="Text Input" placeholder="Enter your username" active />
 
 ```vue
 <template>
-  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" />
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" active />
 </template>
 
 <script lang="ts" setup>
@@ -126,15 +126,15 @@ You can set minimum or maximum length limits by passing props `min-length` or `m
     :max-length="50"
     show-char-count
   />
-  
+
   <!-- Numeric input with character count and helper -->
   <spr-input
     v-model="numericValue"
     type="number"
-    label="Numeric Input" 
-    placeholder="Enter a number" 
+    label="Numeric Input"
+    placeholder="Enter a number"
     :max-length="3"
-    helper-text="Max 3 digits allowed" 
+    helper-text="Max 3 digits allowed"
     display-helper
     show-char-count
   />
@@ -237,12 +237,12 @@ You can display a character counter in the bottom right of the input field by se
 
 ```vue
 <template>
-  <spr-input 
-    v-model="inputValue" 
-    label="Text with Character Count" 
-    placeholder="Type to see the counter" 
-    :max-length="20" 
-    show-char-count 
+  <spr-input
+    v-model="inputValue"
+    label="Text with Character Count"
+    placeholder="Type to see the counter"
+    :max-length="20"
+    show-char-count
   />
 </template>
 

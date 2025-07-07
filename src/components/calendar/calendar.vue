@@ -81,7 +81,7 @@
                         {{ employee.position }}
                       </div>
                     </div>
-                    <div class="spr-mt-size-spacing-xs">
+                    <div v-if="employee.hoursWorked && employee.hoursTarget" class="spr-mt-size-spacing-xs">
                       <spr-lozenge
                         :label="`${employee.hoursWorked || 0}/${employee.hoursTarget || 48} HRS`"
                         tone="neutral"
@@ -112,9 +112,11 @@
                       <div
                         v-for="(schedule, scheduleIndex) in employee.schedule[formatDate(date, dateFormat)]"
                         :key="scheduleIndex"
+                        class="spr-w-full"
                       >
                         <div
                           v-if="schedule.type === 'restday'"
+                          class="spr-flex spr-flex-col spr-items-center spr-justify-start"
                           @click="
                             onCellClick({
                               employeeId: employee.id,
@@ -123,9 +125,10 @@
                             })
                           "
                         >
-                          <spr-calendar-cell type="restday" />
+                          <spr-calendar-cell type="restday" fullwidth />
                         </div>
                         <div
+                          class="spr-flex spr-flex-col spr-items-center spr-justify-start"
                           v-else
                           @click="
                             onCellClick({
@@ -140,6 +143,7 @@
                             :title="`${schedule.startTime} - ${schedule.endTime}`"
                             :description="schedule.location"
                             :sub-description="schedule.type"
+                            fullwidth
                           />
                         </div>
                       </div>
@@ -150,6 +154,7 @@
                         status="pending"
                         type="exempt"
                         :view-only="false"
+                        fullwidth
                         @on-click="
                           onCellClick({ employeeId: employee.id, date: formatDate(date, dateFormat), shift: null })
                         "

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.9.4 (2025-07-07)
+
+- Fix
+
+  - Single and Multi Select Issues Encountered ([#3d283235](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3d28323540d3654a7fdf897aea31606f7fcbd0cd?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 2.9.3 (2025-07-07)
 
 - Fix

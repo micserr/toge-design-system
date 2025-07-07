@@ -118,7 +118,9 @@ export const useCalendar = (props: CalendarPropTypes, emit: SetupContext<Calenda
   };
 
   const handleSorting = () => {
-    state.sort.value = state.sort.value === 'desc' ? 'asc' : 'desc';
+    if (state.sort.value === 'asc') state.sort.value = '';
+    else state.sort.value = state.sort.value === 'desc' ? 'asc' : 'desc';
+
     emit('update:sort', state.sort.value);
   };
 

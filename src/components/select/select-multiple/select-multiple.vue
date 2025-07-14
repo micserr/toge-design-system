@@ -26,6 +26,7 @@
       <div ref="multiSelectRef">
         <div @click="handleOptionsToggle">
           <spr-input
+            :id="`input-${props.id}`"
             v-model="inputText"
             :class="{
               'spr-cursor-pointer': true,

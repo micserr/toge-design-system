@@ -25,6 +25,7 @@ export const selectLadderizedPropTypes = {
   id: {
     type: String,
     required: true,
+    default: 'select-ladderized',
   },
   modelValue: {
     type: Array as PropType<string[]>,

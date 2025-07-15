@@ -212,10 +212,13 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     updateMultiSelectedItemsFromValue();
   };
 
+  /**
+   * Removes an item from the multi-select model by its value.
+   * Handles stringified objects and emits the updated model value.
+   */
   const handleChippedRemoveItem = (itemValue: string) => {
     let currentValues = Array.isArray(multiSelectModel.value) ? [...multiSelectModel.value] : [multiSelectModel.value];
 
-    // Remove the item by value (handle stringified objects)
     currentValues = currentValues.filter((val) => {
       let valToCompare = val;
 

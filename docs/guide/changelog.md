@@ -1,16 +1,22 @@
 # Changelog
 
+## 2.9.7 (2025-07-15)
+
+- Fix
+
+  - Added chipped for multi-select ([#137753a8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/137753a8def70de4ea8dd83e9db25519872c8e65?refName=refs/heads/2025/feature/arias/ds-updates) by @jarias)
+
 ## 2.9.6 (2025-07-07)
 
 - Fix
 
-  -Commit 16cc3dff: fix: prepend input IDs with 'input-' for consistency across select components ([#16cc3dff](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/16cc3dffaacfac4a20545a713ab2488cf3eb64fb?refName=refs/heads/2025/Fix/andrea/change-default-id-name) by @adestajo)
+  - Commit 16cc3dff: fix: prepend input IDs with 'input-' for consistency across select components ([#16cc3dff](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/16cc3dffaacfac4a20545a713ab2488cf3eb64fb?refName=refs/heads/2025/Fix/andrea/change-default-id-name) by @adestajo)
 
 ## 2.9.5 (2025-07-07)
 
 - Fix
 
-  -Commit d488a938: feat: add default IDs to select components and improve accessibility ([#d488a938](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d488a938a2dbe8bd724b3eaf0706d4792d5e18f9?refName=refs/heads/2025/Fix/andrea/added-ids-select-calendar) by @adestajo)
+  - Commit d488a938: feat: add default IDs to select components and improve accessibility ([#d488a938](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d488a938a2dbe8bd724b3eaf0706d4792d5e18f9?refName=refs/heads/2025/Fix/andrea/added-ids-select-calendar) by @adestajo)
 
 ## 2.9.4 (2025-07-07)
 

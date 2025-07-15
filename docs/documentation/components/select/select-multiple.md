@@ -53,6 +53,36 @@ const options = ref([
 </script>
 ```
 
+## Chipped
+
+<div class="spr-grid spr-gap-4">
+  <spr-select-multiple
+    id="sample-selectChipped"
+    v-model="selectModel.selectChipped"
+    label="Multi-Select Label"
+    placeholder="Select an option"
+    :options="options"
+    chipped
+  />
+
+  <code class="spr-font-medium">
+    V-Model: {{ selectModel.selectChipped }}
+  </code>
+</div>
+
+```vue
+<template>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectChipped"
+    label="Multi-Select Label"
+    placeholder="Select an option"
+    :options="options"
+    chipped
+  />
+</template>
+```
+
 ## Grouped Items By
 
 You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-items-by` prop and specifying the desired grouping type.
@@ -853,6 +883,12 @@ const userList = ref([
       <td>Boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td>chipped</td>
+      <td>Make the inut field selected items into chips.</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 
@@ -909,6 +945,7 @@ import type { MenuListType } from '@/components/list/list';
 
 const selectModel = ref({
   selectBasic: [],
+  selectChipped: [],
   selectGroupedItemsBy: [],
   selectPreSelectedItems: ['100', '200', 'cherry'],
   selectPlacements: [],

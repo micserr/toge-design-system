@@ -117,6 +117,10 @@ export const multiSelectPropTypes = {
     type: Boolean,
     default: false,
   },
+  chipped: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const multiSelectEmitTypes = {

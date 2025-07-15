@@ -1,5 +1,5 @@
 import { ref, toRefs, computed, ComputedRef, onMounted, watch } from 'vue';
-import { onClickOutside, useVModel } from '@vueuse/core';
+import { onClickOutside, useVModel, useFocus } from '@vueuse/core';
 
 import classNames from 'classnames';
 
@@ -10,10 +10,15 @@ import type { MenuListType } from '../../list/list';
 interface MultiSelectClasses {
   baseClasses: string;
   labelClasses: string;
+  chippedInputTextBaseClasses: string;
+  chippedInputTextClasses: string;
+  chippedIconClasses: string;
+  chippedHelperContainerClasses: string;
+  chippedHelperClasses: string;
 }
 
 export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<MultiSelectEmitTypes>['emit']) => {
-  const { displayText, options, disabled, textField, valueField } = toRefs(props);
+  const { displayText, options, textField, valueField, active, disabled, error } = toRefs(props);
 
   const multiSelectClasses: ComputedRef<MultiSelectClasses> = computed(() => {
     const baseClasses = classNames('spr-flex spr-flex-col spr-gap-size-spacing-4xs');
@@ -22,9 +27,66 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
       'spr-text-color-on-fill-disabled': disabled.value,
     });
 
+    const chippedInputTextBaseClasses = classNames(
+      'spr-relative spr-flex spr-items-center spr-min-h-9 spr-rounded-border-radius-md spr-border-[1.5px] spr-border-solid',
+      {
+        'spr-cursor-pointer': !disabled.value,
+
+        // Border State
+        'spr-border-color-weak': !focused.value && !error.value && !disabled.value && !active.value,
+        'spr-border-color-brand-base': !focused.value && active.value,
+        'spr-border-color-danger-base': !focused.value && error.value,
+
+        // Border State Focused
+        'focus: spr-border-kangkong-700': focused.value && !error.value && !disabled.value && !active.value,
+        'focus: spr-border-tomato-600': focused.value && error.value,
+        'focus: spr-border-white-100': focused.value && disabled.value,
+
+        // Disabled State
+        'spr-background-color-disabled spr-cursor-not-allowed spr-border-mushroom-100': disabled.value,
+      },
+    );
+
+    const chippedInputTextClasses = classNames(
+      'spr-flex spr-gap-1 spr-justify-between spr-w-full spr-outline-none spr-ring-0 spr-border-none spr-rounded-border-radius-md spr-font-size-200',
+      'spr-font-size-200 [font-weight:inherit]',
+      'placeholder:spr-text-mushroom-300',
+      {
+        'spr-text-color-strong': !disabled.value,
+
+        // Disabled State
+        'spr-text-color-on-fill-disabled !spr-cursor-not-allowed': disabled.value,
+      },
+    );
+
+    const chippedIconClasses = classNames(
+      'spr-flex spr-items-center spr-justify-center spr-h-inherit spr-px-2 [&>svg]:spr-min-h-4 [&>svg]:spr-min-w-4',
+      {
+        'spr-text-mushroom-300': !error.value,
+        'spr-text-tomato-600': error.value,
+      },
+    );
+
+    const chippedHelperContainerClasses = classNames(
+      'spr-flex spr-flex-row spr-items-start spr-justify-between spr-w-full',
+    );
+
+    const chippedHelperClasses = classNames(
+      'spr-body-sm-regular spr-flex spr-items-center spr-gap-size-spacing-5xs spr-flex-1',
+      {
+        'spr-text-color-danger-base': error.value,
+        'spr-text-color-supporting': !error.value,
+      },
+    );
+
     return {
       baseClasses,
       labelClasses,
+      chippedInputTextBaseClasses,
+      chippedInputTextClasses,
+      chippedIconClasses,
+      chippedHelperContainerClasses,
+      chippedHelperClasses,
     };
   });
 
@@ -39,7 +101,9 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
 
   const inputText = ref<string | number>('');
   const inputTextBackup = ref<string | number>('');
+  const chippedInputTextRef = ref(null);
 
+  const { focused } = useFocus(chippedInputTextRef);
   /**
    * Returns the normalized value of the model as an array for internal use.
    */
@@ -146,6 +210,42 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
         : multiSelectedItems.map((item) => item.text).join(', ');
 
     updateMultiSelectedItemsFromValue();
+  };
+
+  /**
+   * Removes an item from the multi-select model by its value.
+   * Handles stringified objects and emits the updated model value.
+   */
+  const handleChippedRemoveItem = (itemValue: string) => {
+    let currentValues = Array.isArray(multiSelectModel.value) ? [...multiSelectModel.value] : [multiSelectModel.value];
+
+    currentValues = currentValues.filter((val) => {
+      let valToCompare = val;
+
+      if (typeof valToCompare === 'string' && valToCompare.startsWith('{') && valToCompare.endsWith('}')) {
+        try {
+          valToCompare = JSON.parse(valToCompare);
+        } catch {
+          // ignore
+        }
+      }
+
+      if (typeof itemValue === 'string' && itemValue.startsWith('{') && itemValue.endsWith('}')) {
+        try {
+          itemValue = JSON.parse(itemValue);
+        } catch {
+          // ignore
+        }
+      }
+
+      if (typeof valToCompare === 'object' && typeof itemValue === 'object') {
+        return JSON.stringify(valToCompare) !== JSON.stringify(itemValue);
+      }
+
+      return valToCompare != itemValue;
+    });
+
+    emit('update:modelValue', currentValues);
   };
 
   /**
@@ -271,6 +371,7 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     inputText,
     isMultiSelectPopperDisabled,
     handleMultiSelectedItem,
+    handleChippedRemoveItem,
     handleClear,
     handleOptionsToggle,
   };

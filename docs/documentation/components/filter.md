@@ -177,6 +177,70 @@ const removeSelected = (removeSelected) => {
 </script>
 ```
 
+## Error State
+
+<div class="spr-space-y-3">
+  <spr-filter
+      v-model="selectedOptions2" 
+      v-model:search="searchValue2"
+      id="search-filter-display-text"
+      :deselected="deselected"
+      :options="options"
+      helper-text="This is helper text!!"
+    />
+
+<spr-filter
+      v-model="selectedOptions2" 
+      v-model:search="searchValue2"
+      id="search-filter-error"
+      :deselected="deselected"
+      :options="options"
+      error
+    />
+
+</div>
+
+```vue
+<template>
+  <div class="spr-space-y-3">
+    <spr-filter
+      v-model="selectedOptions2"
+      v-model:search="searchValue2"
+      id="search-filter-display-text"
+      :deselected="deselected"
+      :options="options"
+      helper-text="This is helper text!!"
+    />
+
+    <spr-filter
+      v-model="selectedOptions2"
+      v-model:search="searchValue2"
+      id="search-filter-error"
+      :deselected="deselected"
+      :options="options"
+      error
+    />
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { Icon } from '@iconify/vue';
+import SprButton from '@/components/button/button.vue';
+
+const options = ref([
+  { column: '', isSelected: false, text: 'sample 1', value: 'sample1' },
+  { column: '', isSelected: false, text: 'sample 2', value: 'sample2' },
+  { column: '', isSelected: false, text: 'sample 3', value: 'sample3' },
+  { column: '', isSelected: false, text: 'sample 4', value: 'sample4' },
+  { column: '', isSelected: false, text: 'sample 5', value: 'sample5' },
+]);
+
+const selectedOptions2 = ref([]);
+const searchValue2 = ref('');
+</script>
+```
+
 ## API Reference
 
 <table>
@@ -290,6 +354,16 @@ const removeSelected = (removeSelected) => {
       <td>Enables avatar display for filter options.</td>
       <td><code>Boolean</code></td>
       <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>helperText</td>
+      <td>Helper text displayed below the filter component</td>     <td><code>String</code></td>
+      <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td>error</td>
+      <td>Enables error state styling for the filter</td>     <td><code>Boolean</code></td>
+      <td><code>''</code></td>
     </tr>
   </tbody>
 </table>

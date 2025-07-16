@@ -1,7 +1,7 @@
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import type { SetupContext } from 'vue';
 
-import type { SidenavPropTypes, SidenavEmitTypes } from './sidenav';
+import type { SidenavPropTypes, SidenavEmitTypes, ParentLinkItem, NavLinks, NavItem } from './sidenav';
 
 interface ObjectItem {
   redirect: {
@@ -17,6 +17,7 @@ interface ObjectItem {
 }
 
 export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEmitTypes>['emit']) => {
+  const navLinks = ref<NavLinks>(props.navLinks);
   const isQuckActionMenuVisible = ref(false);
 
   const isUserMenuVisible = ref(false);
@@ -67,13 +68,106 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
   const generateId = (...titles: string[]): string => {
     return titles.map(transformToCamelCaseId).join('_');
   }
+  const confirmIfOwnDomain = (url: string) => {
+    const domain = window.location.href; 
+    const urlHostname = new URL(url).hostname;
+    const isOwnDomain = domain === urlHostname || window.location.hostname === 'localhost'
+    return isOwnDomain;
+  }
+
+  const getPathFromUrl = (url: string): string => {
+    const parsedUrl = new URL(url);
+    return parsedUrl ? parsedUrl.pathname : ''; 
+    
+  }
+
+  const navLinkCondition = (link: NavItem) => {
+    if (confirmIfOwnDomain(link.url as string)) {
+        return getPathFromUrl(link.url as string);
+    } else {
+        return link.url;
+    }
+  }
+
+  const groupByGroupId = (items: NavItem[]) => {
+    const groups: Record<string, NavItem[]> = {};
+    items.forEach(item => {
+        if (!groups[item.groupId]) {
+            groups[item.groupId] = [];
+        }
+        groups[item.groupId].push(item);
+    });
+    return Object.values(groups).map(group => ({ parentLinks: group.map(mapItemToNav) }));
+  }
+
+  const mapItemToNav = (item: NavItem): ParentLinkItem => {
+    return {
+        title: item.label,
+        icon: item.icon || "",
+        redirect: item.url
+            ? {
+                openInNewTab: item.isNewTab || false,
+                isAbsoluteURL: !confirmIfOwnDomain(item.url),
+                link: navLinkCondition(item) || "",
+            }
+            : undefined,
+        menuLinks: item.children && item.children.length > 0
+            ? [{
+                menuHeading: '',
+                items: item.children.map(child => mapItemToNav(child))
+            }]
+            : [],
+        submenuLinks: item.children && item.children.length > 0 && !item.children.some(c => c.children)
+            ? [{
+                subMenuHeading: '',
+                items: item.children.map(child => mapItemToNav(child)),
+            }]
+            : [],
+    }
+  }
+
+  // Helper function to extract valid NavItems from an array of objects
+  const extractValidNavItems = <T extends Record<string, unknown>>(items: T[]): NavItem[] => {
+    return items.filter((item): item is NavItem & T => (
+      item !== null && 
+      'groupId' in item &&
+      'label' in item &&
+      typeof item.groupId === 'string' && 
+      typeof item.label === 'string'
+    )) as NavItem[];
+  };
+
+  const transformedNavItems = async (apiData: NavLinks) => {
+    // Output type matches navLinks ref type
+    const transformedData: NavLinks = { top: [], bottom: [] };
+    
+    if (apiData.top && Array.isArray(apiData.top)) {
+      const validTopItems = extractValidNavItems(apiData.top);
+      transformedData.top = groupByGroupId(validTopItems);
+    }
+    
+    if (apiData.bottom && Array.isArray(apiData.bottom)) {
+      const validBottomItems = extractValidNavItems(apiData.bottom);
+      transformedData.bottom = groupByGroupId(validBottomItems);
+    }
+
+    return transformedData;
+  }
+
+  onMounted(async () => {
+    if (props.isNavApi) {
+      navLinks.value = await transformedNavItems(props.navLinks);
+    }
+  })
 
   return {
+    navLinks,
     isQuckActionMenuVisible,
     isUserMenuVisible,
     userProfileError,
     getUserInitials,
     handleRedirect,
-    generateId
+    generateId,
+    transformedNavItems,
   };
 };

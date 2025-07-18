@@ -73,6 +73,14 @@ export const filterPropTypes = {
     type: Boolean,
     default: false,
   },
+  error: {
+    type: Boolean,
+    default: false,
+  },
+  helperText: {
+    type: String,
+    default: '',
+  },
 };
 
 export interface FilterPropsInterface {

@@ -6,16 +6,17 @@
     placement="bottom"
     :triggers="[]"
     :popper-hide-triggers="[]"
-    :container="`#${uniqueId}`"
+    :container="`#${generateStableId}`"
     :auto-hide="false"
     :delay="0"
+    :popper-class="'filter-menu-popper'"
     :style="{
       width: props.width,
       position: 'relative',
     }"
   >
-    <span
-      :id="uniqueId"
+    <div
+      :id="generateStableId"
       :style="{
         width: props.width,
         position: 'relative',
@@ -30,13 +31,16 @@
           :placeholder="placeholder"
           :label="label"
           :disabled="disabled"
+          :helper-text="props.helperText"
+          :display-helper="!!props.helperText"
+          :error="props.error"
         >
           <template #icon>
             <Icon icon="ph:magnifying-glass" />
           </template>
         </spr-input>
       </slot>
-    </span>
+    </div>
 
     <template #popper>
       <div :class="filterClass.MenuOptionClasses">
@@ -58,6 +62,8 @@
             placement="right-start"
             :triggers="['click']"
             :auto-hide="false"
+            :delay="0"
+            popover-base="filter-menu-base"
           >
             <spr-button id="add-filter-button" has-icon variant="secondary" size="small">
               <Icon icon="ph:faders-horizontal" />
@@ -80,6 +86,8 @@
                     placement="right"
                     :triggers="['click']"
                     :auto-hide="false"
+                    :delay="0"
+                    popover-base="filter-menu-field"
                   >
                     <spr-chips
                       :active="mappedFilterMenuList[menu.field].isFilterVisible"
@@ -268,7 +276,7 @@ const {
   filterMenuSearchvalue,
   mappedFilterMenuList,
   filterClass,
-  uniqueId,
+  generateStableId,
   filterOptionRef,
   filterMenuOptionList,
 

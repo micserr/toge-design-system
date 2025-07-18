@@ -20,7 +20,6 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
   const isAdvanceFilterVisible = ref<boolean>(false);
   const mappedMenuData = ref<Record<string, FilterPropsInterface['optionDetails']>>({});
   const mappedFilterMenuList = ref<Record<string, FilterPropsInterface['filterDetails']>>({});
-  const uniqueId = ref<string>(`filter-${dayjs().valueOf()}-${Math.floor(Math.random() * 1000)}`);
   const filterMenuList = ref<FilterPropsInterface['filterDetails'][]>(
     filterMenu.value as FilterPropsInterface['filterDetails'][],
   );
@@ -71,6 +70,13 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
 
   const getSelectedFilterMenuOption = computed(() => {
     return getFiltereredMenuOption.value.filter((item) => item.isSelected);
+  });
+
+  const generateStableId = computed(() => {
+    if (props.id) {
+      return `filter-popover-${props.id}`;
+    }
+    return `filter-popover-${dayjs().valueOf().toString().slice(-8)}`;
   });
 
   const getMappedFilterData = (column: string) => {
@@ -253,7 +259,7 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     filterMenuSearchvalue,
     mappedFilterMenuList,
     filterClass,
-    uniqueId,
+    generateStableId,
     filterOptionRef,
     filterMenuOptionList,
 

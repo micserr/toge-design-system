@@ -139,7 +139,7 @@
         </div>
 
         <!-- Grouped Nav Links -->
-        <template v-for="(navLink, navLinkIndex) in props.navLinks.top" :key="navLinkIndex">
+        <template v-for="(navLink, navLinkIndex) in navLinks.top" :key="navLinkIndex">
           <template v-for="(parentLink, parentLinkIndex) in navLink.parentLinks" :key="parentLinkIndex">
             <!-- Parent link with menu links -->
             <template v-if="parentLink.menuLinks && parentLink.menuLinks.length > 0">
@@ -352,7 +352,7 @@
             </template>
           </template>
           <div
-            v-if="props.navLinks.top.length > 0 && navLinkIndex < props.navLinks.top.length - 1"
+            v-if="navLinks.top.length > 0 && navLinkIndex < navLinks.top.length - 1"
             class="spr-background-color-hover spr-h-[2px] spr-w-full"
           ></div>
         </template>
@@ -360,11 +360,11 @@
 
       <!-- Bottom Section -->
       <div
-        v-if="props.navLinks.bottom && props.navLinks.bottom.length > 0"
+        v-if="navLinks.bottom && navLinks.bottom.length > 0"
         class="spr-grid spr-justify-center spr-gap-2 spr-px-3 spr-pb-4 spr-pt-0"
       >
         <!-- Grouped Nav Links -->
-        <template v-for="(navLink, navLinkIndex) in props.navLinks.bottom" :key="navLinkIndex">
+        <template v-for="(navLink, navLinkIndex) in navLinks.bottom" :key="navLinkIndex">
           <template v-for="(parentLink, parentLinkIndex) in navLink.parentLinks" :key="parentLinkIndex">
             <!-- Parent link with menu links -->
             <template v-if="parentLink.menuLinks && parentLink.menuLinks.length > 0">
@@ -573,7 +573,7 @@
             </template>
           </template>
           <div
-            v-if="props.navLinks.bottom.length > 0 && navLinkIndex < props.navLinks.bottom.length - 1"
+            v-if="navLinks.bottom.length > 0 && navLinkIndex < navLinks.bottom.length - 1"
             class="spr-background-color-hover spr-h-[2px] spr-w-full"
           ></div>
         </template>
@@ -767,7 +767,7 @@ import SprBadge from '../badge/badge.vue';
 const props = defineProps(sidenavPropTypes);
 const emit = defineEmits(sidenavEmitTypes);
 
-const { isQuckActionMenuVisible, isUserMenuVisible, userProfileError, getUserInitials, handleRedirect, generateId } = useSidenav(
+const { navLinks, isQuckActionMenuVisible, isUserMenuVisible, userProfileError, getUserInitials, handleRedirect, generateId } = useSidenav(
   props,
   emit,
 );

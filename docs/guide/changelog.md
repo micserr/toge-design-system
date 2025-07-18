@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.9.9 (2025-07-16)
+
+- Chore
+  - Commit 62b52034: Refactor sidenav types and enhance useSidenav functionality with new nav item handling and transformation logic ([#62b52034](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/62b52034256112c307f1c8217abe0014e8f7ab2d?refName=refs%2Fheads%2F2025%2FCHORE%2FJP%2FPOLY-120) by @jcruz)
+
+## 2.9.8 (2025-07-16)
+
+- Feat
+  - Add error state and helper text support to Filter component ([#6824a0d1](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6824a0d1ef9204731bcbec7cf7069633bc3dd1a4?refName=refs/heads/2025/feat/andrea/filter-error-state) by @adestajo)
+
 ## 2.9.7 (2025-07-15)
 
 - Fix

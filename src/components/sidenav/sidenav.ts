@@ -5,6 +5,7 @@ type QuickAction = {
   items: QuickActionItem[];
 };
 
+
 type QuickActionItem = {
   title: string;
   description: string;
@@ -14,23 +15,29 @@ type QuickActionItem = {
   hidden: boolean;
 };
 
-type NavLinks = {
+export type NavLinks = {
   top: { parentLinks: ParentLinkItem[] }[];
   bottom: { parentLinks: ParentLinkItem[] }[];
 };
 
-type ParentLinkItem = {
+export type NavAPILinks = {
+  top: { parentLinks: NavItem[] }[];
+  bottom: { parentLinks: NavItem[] }[];
+};
+
+export type ParentLinkItem = {
   title: string;
   icon: string;
-  link: string;
-  redirect: Redirect;
+  link?: string;
+  redirect?: Redirect;
   menuLinks: MenuLink[];
-  hidden: boolean;
+  submenuLinks?: SubmenuLink[];
+  hidden?: boolean;
 };
 
 type MenuLink = {
   menuHeading: string;
-  items: MenuLinkItem[];
+  items: MenuLinkItem[] | ParentLinkItem[];
 };
 
 type MenuLinkItem = {
@@ -42,7 +49,7 @@ type MenuLinkItem = {
 
 type SubmenuLink = {
   subMenuHeading: string;
-  items: SubmenuLinkItem[];
+  items: SubmenuLinkItem[] | ParentLinkItem[];
 };
 
 type SubmenuLinkItem = {
@@ -70,6 +77,34 @@ type UserMenuItem = {
   hidden: boolean;
   redirect: Redirect;
 };
+export interface NavItem {
+  groupId: string;
+  label: string;
+  icon?: string | null;
+  url?: string | null;
+  isNewTab?: boolean;
+  children?: NavItem[] | null;
+  groupName?: string | null;
+  hidden?: boolean;
+}
+
+export interface MappedNavItem {
+  title: string;
+  icon?: string;
+  redirect?: {
+      openInNewTab: boolean;
+      isAbsoluteURL: boolean;
+      link: string;
+  };
+  menuLinks?: {
+      menuHeading: string;
+      items: MappedNavItem[];
+  }[];
+  submenuLinks?: {
+      subMenuHeading: string;
+      items: MappedNavItem[];
+  }[];
+}
 
 export const sidenavPropTypes = {
   quickActions: {
@@ -120,6 +155,11 @@ export const sidenavPropTypes = {
     validator: (value: unknown) => typeof value === 'boolean',
     default: false,
   },
+  isNavApi: {
+    type: Boolean,
+    validator: (value: unknown) => typeof value === 'boolean',
+    default: false,
+  }
 };
 
 export const sidenavEmitTypes = {

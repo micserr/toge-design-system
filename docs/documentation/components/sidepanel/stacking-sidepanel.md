@@ -1,6 +1,6 @@
 # Stacking Sidepanel
 
-The `StackingSidepanel` component allows you to display multiple side panels that can stack on top of each other. This is useful for workflows that require nested or sequential panels.
+The `StackingSidepanel` component allows you to display multiple side panels that can stack next to each other. This is useful for workflows that require nested or sequential panels.
 
 > [!IMPORTANT]
 > The `StackingSidepanel` component is designed to work with right-positioned side panels only. Ensure that all side panels within the stacking side panel are positioned to the right.

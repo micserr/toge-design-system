@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.9.10 (2025-07-29)
+
+- Fix
+
+  - Commit b73c4c87: fix(calendar): adjust loading icon size and improve empty state handling in calendar component
+
+- Feat
+  - Commit 66ae4826: feat(calendar): add infinite loading and loading text support in calendar component
+  - Commit dd5e078c: feat(calendar): add type binding for schedule color in calendar component
+  - Commit 91961bf1: filttered based on APi
+  - Commit f172ea17: feat(loading): add loading state support for avatar, calendar cell, and lozenge components
+  - Commit 9bdc98f7: skeletal loader
+    ([#f172ea17](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/33574?_a=commits) by @adestajo)
+
 ## 2.9.9 (2025-07-16)
 
 - Chore

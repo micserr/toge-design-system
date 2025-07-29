@@ -141,15 +141,17 @@ export const useCalendar = (props: CalendarPropTypes, emit: SetupContext<Calenda
       'spr-bg-color-weak spr-flex spr-w-full spr-items-center spr-justify-between spr-p-size-spacing-sm',
     );
 
-    const contentWrapper = classNames('spr-divide-color-weak spr-divide-x-0 spr-divide-y spr-divide-solid');
+    const contentWrapper = classNames(
+      ' spr-flex spr-flex-col spr-h-full spr-divide-color-weak spr-divide-x-0 spr-divide-y spr-divide-solid',
+    );
     const calendarTable = classNames(
-      ' spr-overflow-y-auto spr-h-full spr-table spr-w-full spr-table-fixed spr-border-collapse spr-border-spacing-0 spr-rounded-border',
+      'spr-h-full spr-table spr-w-full spr-table-fixed spr-border-collapse spr-border-spacing-0 spr-rounded-border',
     );
     const tableHeaderEmployeeName = classNames(
-      'spr-sticky spr-left-0 spr-z-20 spr-background-color spr-body-xs-regular-medium spr-p-size-spacing-xs spr-text-left spr-overflow-hidden spr-h-full',
+      'spr-sticky spr-left-0 spr-z-20 spr-background-color spr-body-xs-regular-medium spr-p-size-spacing-xs spr-text-left spr-overflow-hidden spr-h-full spr-border-x-0 spr-border-t-0 ',
     );
     const tableHeader = classNames(
-      'spr-background-color spr-border-x-0 spr-border-y-0 spr-border-l  spr-p-size-spacing-sm spr-text-center',
+      'spr-background-color spr-border-x-0 spr-border-t-0 spr-border-l  spr-p-size-spacing-sm spr-text-center',
     );
     const headerContent = classNames(
       'spr-flex  spr-flex-row spr-w-full spr-items-center spr-gap-size-spacing-3xs lg:spr-flex-col spr-overflow-hidden',

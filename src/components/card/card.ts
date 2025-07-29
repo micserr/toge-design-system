@@ -42,6 +42,11 @@ export const cardPropTypes = {
     type: Boolean,
     default: true,
   },
+
+  flexbox: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export type CardPropTypes = ExtractPropTypes<typeof cardPropTypes>;

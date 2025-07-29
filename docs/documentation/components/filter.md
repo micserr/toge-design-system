@@ -365,6 +365,11 @@ const searchValue2 = ref('');
       <td>Enables error state styling for the filter</td>     <td><code>Boolean</code></td>
       <td><code>''</code></td>
     </tr>
+    <tr>
+      <td><code>hasAdvancedFilterApi</code></td>
+      <td><code>boolean</code></td>
+      <td>Enables external search API integration for the advanced filter.</td>
+    </tr>
   </tbody>
 </table>
 

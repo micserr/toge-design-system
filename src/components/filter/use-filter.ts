@@ -7,7 +7,17 @@ import dayjs from 'dayjs';
 import { useInfiniteScroll, onClickOutside } from '@vueuse/core';
 
 export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitTypes>['emit']) => {
-  const { options, filterMenu, filterData, loading, filterable, filling, deselected, hasSearchApi } = toRefs(props);
+  const {
+    options,
+    filterMenu,
+    filterData,
+    loading,
+    filterable,
+    filling,
+    deselected,
+    hasSearchApi,
+    hasAdvancedFilterApi,
+  } = toRefs(props);
 
   const selectedValue = useVModel(props, 'modelValue', emit);
   const searchText = useVModel(props, 'search', emit);
@@ -26,7 +36,7 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
   const selectedFilters = ref<FilterPropsInterface['optionDetails'][]>([]);
   const filterOptionRef = ref<HTMLDivElement | null>(null);
   const filterMenuOptionList = ref<(HTMLDivElement | null)[]>([]);
-  const selectedColumn = ref('');
+  const selectedColumn = ref<string>('');
 
   // Main List
   const getFiltereredOption = computed<FilterPropsInterface['optionDetails'][]>(() => {
@@ -46,19 +56,24 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
   });
 
   //  Filter Menu Option List
-  const getFiltereredMenuOption = computed<FilterPropsInterface['optionDetails'][]>(() => {
+  const getFilteredMenuOption = computed<FilterPropsInterface['optionDetails'][]>(() => {
     if (loading.value) return filterData.value;
+
+    const searchQuery = hasAdvancedFilterApi.value ? '' : filterMenuSearchvalue.value.toLowerCase();
 
     const filter = filterData.value.filter((option, index) => {
       const existing = selectedFilters.value.find(
-        (prevSelected) => prevSelected.value === option.value && prevSelected.isSelected,
+        (prevSelected) =>
+          prevSelected.value === option.value &&
+          prevSelected.isSelected &&
+          prevSelected.column === selectedColumn.value,
       );
 
       if (existing) {
         filterData.value[index].isSelected = true;
       }
 
-      return option.text.toLowerCase().includes(filterMenuSearchvalue.value.toLowerCase());
+      return option.text.toLowerCase().includes(searchQuery.toLowerCase());
     });
 
     return filter;
@@ -69,7 +84,7 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
   });
 
   const getSelectedFilterMenuOption = computed(() => {
-    return getFiltereredMenuOption.value.filter((item) => item.isSelected);
+    return selectedFilters.value.filter((item) => item.isSelected && item.column === selectedColumn.value);
   });
 
   const generateStableId = computed(() => {
@@ -80,8 +95,13 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
   });
 
   const getMappedFilterData = (column: string) => {
-    emit('getFilterData', column);
-    selectedColumn.value = column;
+    mappedFilterMenuList.value[column].isFilterVisible = true;
+
+    if (selectedColumn.value !== column) {
+      filterMenuSearchvalue.value = '';
+      selectedColumn.value = column;
+      emit('getFilterData', column);
+    }
   };
 
   const setFilterVisible = (field: string) => {
@@ -118,20 +138,23 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
   };
 
   const saveSelectedFilter = (field: string) => {
-    const selectedValues = Object.values(getFiltereredMenuOption.value).filter(
-      (selected) => selected.isSelected && selected.column === field,
-    );
-    selectedFilters.value = selectedFilters.value
-      .filter((prevSelected) => prevSelected.column !== field)
-      .concat(selectedValues);
+    const selectedValues = getFilteredMenuOption.value.filter((option) => option.isSelected && option.column === field);
 
-    emit('selectedFilter', selectedFilters.value);
+    const newValues = selectedValues.filter(
+      (newVal) =>
+        !selectedFilters.value.some((existing) => existing.value === newVal.value && existing.column === newVal.column),
+    );
+
+    selectedFilters.value = [...selectedFilters.value, ...newValues];
+
     mappedFilterMenuList.value[field].count = selectedValues.length;
     mappedFilterMenuList.value[field].isFilterVisible = false;
+    filterMenuSearchvalue.value = '';
+    emit('selectedFilter', selectedFilters.value);
   };
 
   const handleRemoveFilterValues = (filter: string) => {
-    getFiltereredMenuOption.value.map((option) => {
+    getFilteredMenuOption.value.map((option) => {
       if (option.value === filter) {
         option.isSelected = false;
       }
@@ -139,6 +162,7 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     });
 
     selectedFilters.value = selectedFilters.value.filter((item) => item.value !== filter);
+    mappedFilterMenuList.value[selectedColumn.value].count = selectedFilters.value.length;
     emit('selectedFilter', selectedFilters.value);
   };
 
@@ -201,7 +225,7 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
   });
 
   watch(filterMenuSearchvalue, (value, oldValue) => {
-    if (value === oldValue) return; // Prevent unnecessary updates
+    if (value === oldValue || !hasAdvancedFilterApi.value) return; // Prevent unnecessary updates
     searchFilterValue.value = value;
   });
 
@@ -255,7 +279,7 @@ export const useFilter = (props: FilterPropTypes, emit: SetupContext<FilterEmitT
     getFiltereredOption,
     mappedMenuData,
     getSelectedFilterMenuOption,
-    getFiltereredMenuOption,
+    getFilteredMenuOption,
     filterMenuSearchvalue,
     mappedFilterMenuList,
     filterClass,

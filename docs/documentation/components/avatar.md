@@ -375,6 +375,32 @@ import { Icon } from '@iconify/vue';
 </template>
 ```
 
+## Loading
+
+<div class="spr-space-x-3 spr-flex">
+  <spr-avatar loading size="2xl" />
+  <spr-avatar loading size="xl" />
+  <spr-avatar loading size="lg"/>
+  <spr-avatar loading size="md"/>
+  <spr-avatar loading size="sm" />
+  <spr-avatar loading size="xs" />
+  <spr-avatar loading size="2xs" />
+</div>
+
+```vue
+<template>
+  <div>
+    <spr-avatar loading size="2xl" />
+    <spr-avatar loading size="xl" />
+    <spr-avatar loading size="lg" />
+    <spr-avatar loading size="md" />
+    <spr-avatar loading size="sm" />
+    <spr-avatar loading size="xs" />
+    <spr-avatar loading size="2xs" />
+  </div>
+</template>
+```
+
 ## API Reference
 
 <table>
@@ -453,6 +479,12 @@ import { Icon } from '@iconify/vue';
       <td>Defines the type of avatar to be used. Options include 'image' for a traditional avatar with a picture, 'initial' for displaying text initials, 'client' and 'user' for more personalized avatars, 'user-group' for group representations, and 'count' for showing numbers.</td>
       <td>'image', 'initial', 'client', 'user', 'user-group', 'count'</td>
       <td>initial</td>
+    </tr>
+    <tr>
+      <td>loading</td>
+      <td>Shows a loading  within the avatar, indicating that content is being loaded.</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
   </tbody>
 </table>

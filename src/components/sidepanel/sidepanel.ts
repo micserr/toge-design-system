@@ -84,6 +84,10 @@ export const sidepanelPropTypes = {
   escapeClose: {
     type: Boolean,
     default: true,
+  },
+  isStacking: {
+    type: Boolean,
+    default: false,
   }
 }
 

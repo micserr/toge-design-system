@@ -22,12 +22,6 @@ import { useStackingSidepanel } from './use-stacking-sidepanel';
 import { stackingSidePanelProps, stackingSidePanelEmits } from './stacking-sidepanel';
 
 const stackingSidepanelBase = useTemplateRef('stacking-sidepanel-base');
-
-// const activePanels = defineModel('modelValue', {
-//   type: Array<string>,
-//   default: () => [],
-// });
-
 const props = defineProps(stackingSidePanelProps);
 const emits = defineEmits(stackingSidePanelEmits);
 

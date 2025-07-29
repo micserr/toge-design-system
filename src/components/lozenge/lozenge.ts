@@ -48,6 +48,10 @@ export const lozengePropTypes = {
     type: Boolean,
     default: true,
   },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export type LozengePropTypes = ExtractPropTypes<typeof lozengePropTypes>;

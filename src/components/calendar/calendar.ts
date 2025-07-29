@@ -71,6 +71,15 @@ export const calendarPropTypes = {
     type: Boolean,
     default: false,
   },
+
+  infiniteLoading: {
+    type: Boolean,
+    default: false,
+  },
+  loadingTextCompleted: {
+    type: String,
+    default: '',
+  },
 };
 
 export const calendarEmitTypes = {};

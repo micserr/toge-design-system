@@ -1,5 +1,5 @@
 <template>
-  <SprCard :has-content-padding="false" class="spr-flex spr-h-full spr-flex-col spr-overflow-hidden">
+  <SprCard flexbox :has-content-padding="false" class="spr-flex spr-h-full spr-flex-col spr-overflow-hidden">
     <template #content>
       <div :class="getCalendarClasses.contentWrapper">
         <div :class="[getCalendarClasses.headerWrapper]">
@@ -20,17 +20,19 @@
         <!-- Filters -->
         <slot name="filter" />
 
-        <div ref="tableBodyRef" class="spr-table-wrapper spr-h-[calc(100vh-12rem)] spr-w-full spr-overflow-auto">
-          <div class="spr-pb-size-spacing-lg">
-            <table
-              id="table-calendar"
-              aria-describedby="calendar"
-              :class="[getCalendarClasses.calendarTable, 'spr-relative']"
-            >
+        <div class="spr-table-wrapper spr-relative spr-flex spr-h-full spr-flex-col spr-overflow-hidden">
+          <div class="spr-h-full">
+            <table id="table-calendar" aria-describedby="calendar" :class="getCalendarClasses.calendarTable">
               <!-- Calendar Header -->
-              <thead class="spr-bg-white spr-sticky spr-top-0 spr-z-20">
+              <thead>
                 <tr>
-                  <th :class="[getCalendarClasses.tableHeaderEmployeeName, 'spr-sticky spr-left-0']">
+                  <th
+                    :class="[
+                      getCalendarClasses.tableHeaderEmployeeName,
+                      'spr-sticky spr-left-0',
+                      getCalendarClasses.borderClasses,
+                    ]"
+                  >
                     <div :class="getCalendarClasses.headerContent">
                       <div>Employee Name</div>
                       <div
@@ -65,12 +67,12 @@
                   </th>
                 </tr>
               </thead>
-              <tbody v-if="employees.length > 0 && !loading" class="spr-overflow-y-auto">
+              <tbody v-if="employees.length > 0 && !loading" ref="tableBodyRef" class="spr-h-full spr-overflow-y-auto">
                 <tr v-for="employee in employees" :key="employee.id">
                   <td
                     :class="[
                       getCalendarClasses.borderClasses,
-                      'spr-bg-white spr-sticky spr-left-0 spr-z-10 spr-content-start spr-border-y spr-border-b-0 spr-border-l-0 spr-border-r spr-p-size-spacing-xs',
+                      'spr-bg-white spr-sticky spr-left-0 spr-z-10 spr-content-start spr-border-y spr-border-l-0 spr-border-r spr-border-t-0 spr-p-size-spacing-xs',
                     ]"
                   >
                     <div class="spr-flex spr-flex-col spr-gap-size-spacing-3xs spr-overflow-hidden">
@@ -81,7 +83,9 @@
                         :variant="employee.avatar ? 'image' : 'initial'"
                         color="tertiary"
                       />
-                      <div class="spr-label-xs-regular">{{ employee.name }}</div>
+                      <div class="spr-label-xs-regular">
+                        {{ employee.name }}
+                      </div>
                       <div class="spr-text-color-supporting spr-label-xs-regular spr-uppercase">
                         {{ employee.position }}
                       </div>
@@ -102,7 +106,7 @@
                     :key="index"
                     :class="[
                       getCalendarClasses.borderClasses,
-                      'spr-min-w-[180px] spr-content-start spr-space-y-size-spacing-3xs spr-border-x spr-border-b-0 spr-border-t spr-p-size-spacing-sm last:spr-mb-size-spacing-lg last:spr-border-r-0',
+                      'spr-min-w-[180px] spr-content-start spr-space-y-size-spacing-3xs spr-border-x spr-border-b spr-border-t-0 spr-p-size-spacing-sm last:spr-mb-size-spacing-lg last:spr-border-r-0',
                     ]"
                     @mouseover="handleHover(true, index, employee.id)"
                     @mouseleave="handleHover(false, index, employee.id)"
@@ -148,6 +152,7 @@
                             :title="`${schedule.startTime} - ${schedule.endTime}`"
                             :description="schedule.location"
                             :sub-description="schedule.type"
+                            :type="schedule.color"
                             fullwidth
                           />
                         </div>
@@ -172,8 +177,57 @@
                     </section>
                   </td>
                 </tr>
+                <tr v-if="props.infiniteLoading || props.loadingTextCompleted">
+                  <td
+                    :colspan="weekDates.length + 1"
+                    class="spr-flex spr-h-full spr-items-center spr-justify-center spr-p-size-spacing-xs"
+                  >
+                    <div v-if="props.infiniteLoading">
+                      <Icon icon="svg-spinners:ring-resize" class="spr-text-color-success-base spr-font-size-400" />
+                    </div>
+
+                    <div v-else>
+                      {{ props.loadingTextCompleted }}
+                    </div>
+                  </td>
+                </tr>
               </tbody>
-              <tbody v-else>
+              <tbody v-if="employees.length === 0 && loading">
+                <tr v-for="employeeKey in 10" :key="employeeKey">
+                  <td
+                    :class="[
+                      getCalendarClasses.borderClasses,
+                      'spr-bg-white spr-sticky spr-left-0 spr-z-10 spr-content-start spr-border-y spr-border-l-0 spr-border-r spr-border-t-0 spr-p-size-spacing-xs',
+                    ]"
+                  >
+                    <div class="spr-flex spr-flex-col spr-gap-size-spacing-3xs spr-overflow-hidden">
+                      <spr-avatar size="md" variant="initial" color="tertiary" loading />
+                      <div :class="[{ 'spr-skeletal-loader spr-h-6 spr-rounded-md': true }]" />
+                      <div :class="[{ 'spr-skeletal-loader spr-h-6 spr-rounded-md': true }]" />
+                    </div>
+                    <div class="spr-mt-size-spacing-xs">
+                      <spr-lozenge loading />
+                    </div>
+                  </td>
+                  <td
+                    v-for="weekDays in 7"
+                    :key="weekDays"
+                    :class="[
+                      getCalendarClasses.borderClasses,
+                      'spr-min-w-[180px] spr-content-start spr-space-y-size-spacing-3xs spr-border-x spr-border-b spr-border-t-0 spr-p-size-spacing-sm last:spr-mb-size-spacing-lg last:spr-border-r-0',
+                    ]"
+                  >
+                    <section class="spr-flex spr-flex-col spr-justify-start spr-gap-size-spacing-3xs">
+                      <div v-for="weekDaysValue in 1" :key="weekDaysValue" class="spr-w-full">
+                        <div class="spr-flex spr-flex-col spr-items-center spr-justify-start">
+                          <spr-calendar-cell type="restday" fullwidth loading />
+                        </div>
+                      </div>
+                    </section>
+                  </td>
+                </tr>
+              </tbody>
+              <tbody v-else class="spr-h-full">
                 <tr v-if="!loading" class="spr-h-full">
                   <td :colspan="weekDates.length + 1" class="spr-flex spr-h-full spr-items-center spr-justify-center">
                     <slot name="empty-state">
@@ -190,15 +244,6 @@
                           >
                         </template>
                       </SprEmptyState>
-                    </slot>
-                  </td>
-                </tr>
-                <tr v-else>
-                  <td :colspan="weekDates.length + 1" class="spr-h-[360px] spr-overflow-hidden">
-                    <slot name="loading">
-                      <div class="spr-flex spr-items-center spr-justify-center">
-                        <Icon size="48" icon="svg-spinners:ring-resize" class="spr-text-color-success-base" />
-                      </div>
                     </slot>
                   </td>
                 </tr>

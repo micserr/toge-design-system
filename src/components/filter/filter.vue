@@ -23,6 +23,7 @@
       }"
       @click="isFilterOpen = true"
     >
+      <!-- Main Search Input -->
       <slot>
         <spr-input
           :id="props.id"
@@ -85,8 +86,8 @@
                     aria-id="filter-menu-wrapper"
                     placement="right"
                     :triggers="['click']"
-                    :auto-hide="false"
                     :delay="0"
+                    :auto-hide="false"
                     popover-base="filter-menu-field"
                   >
                     <spr-chips
@@ -112,6 +113,7 @@
                         </div>
 
                         <div class="spr-p-size-spacing-2xs">
+                          <!-- search for the filter Option -->
                           <spr-input
                             :id="`${props.id}-search`"
                             v-model="filterMenuSearchvalue"
@@ -138,26 +140,26 @@
                           />
                         </div>
                         <div
-                          v-if="getFiltereredMenuOption.length > 0"
+                          v-if="getFilteredMenuOption.length > 0"
                           :id="menu.field"
                           ref="filterMenuOptionList"
                           class="spr-h-[264px] spr-space-y-size-spacing-6xs spr-overflow-auto spr-p-size-spacing-2xs"
                         >
                           <div
-                            v-for="(option, key) in getFiltereredMenuOption"
+                            v-for="(option, key) in getFilteredMenuOption"
                             :key="option.value"
                             :class="[
                               filterClass.filterListClasses,
-                              { 'spr-background-color-multiple-active': getFiltereredMenuOption[key].isSelected },
+                              { 'spr-background-color-multiple-active': getFilteredMenuOption[key].isSelected },
                             ]"
                           >
                             <spr-checkbox
                               id="filter-menu-option"
-                              v-model="getFiltereredMenuOption[key].isSelected"
+                              v-model="getFilteredMenuOption[key].isSelected"
                               class="spr-w-full"
-                              :checked="getFiltereredMenuOption[key].isSelected"
-                              :label="getFiltereredMenuOption[key].text"
-                              :description="getFiltereredMenuOption[key].subtext"
+                              :checked="getFilteredMenuOption[key].isSelected"
+                              :label="getFilteredMenuOption[key].text"
+                              :description="getFilteredMenuOption[key].subtext"
                             />
                           </div>
                         </div>
@@ -272,7 +274,7 @@ const {
   isAddFilterVisible,
   getFiltereredOption,
   getSelectedFilterMenuOption,
-  getFiltereredMenuOption,
+  getFilteredMenuOption,
   filterMenuSearchvalue,
   mappedFilterMenuList,
   filterClass,

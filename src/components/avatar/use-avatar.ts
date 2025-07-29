@@ -13,13 +13,14 @@ interface AvatarClasses {
 }
 
 export const useAvatar = (props: AvatarPropTypes) => {
-  const { size, color, variant, initial } = toRefs(props);
+  const { size, color, variant, initial, loading } = toRefs(props);
 
   const avatarClasses: ComputedRef<AvatarClasses> = computed(() => {
     const baseClasses = classNames('spr-relative spr-inline-block spr-rounded-full', {
       'spr-background-color-surface': color.value === 'primary',
       'spr-background-color': color.value === 'secondary',
       'spr-background-color spr-border-color-success-base spr-border spr-border-solid': color.value === 'tertiary',
+      'spr-skeletal-loader spr-h-full spr-w-full': loading.value,
     });
 
     const imageContainerClasses = classNames(

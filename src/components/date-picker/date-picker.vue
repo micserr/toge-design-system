@@ -320,5 +320,10 @@ const {
   handleYearInput,
   handleTabClick,
   handleBackspace,
+  clearDate,
 } = useDatePicker(props, emit);
+
+defineExpose({
+  clear: () => clearDate(),
+});
 </script>

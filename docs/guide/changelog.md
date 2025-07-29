@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.9.11 (2025-07-29)
+
+- Feat
+  - Commit 62e0dde9: feat(date-picker): add clearDate method to reset date inputs ([#62e0dde9](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/62e0dde92264484316eced5b2979cd7f873c8210?refName=refs%2Fheads%2F2025%2Ffeat%2Fandrea%2Fref-to-clear-date-picker) by @adestajo)
+
 ## 2.9.10 (2025-07-29)
 
 - Fix

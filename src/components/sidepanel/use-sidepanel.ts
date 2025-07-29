@@ -19,12 +19,13 @@ interface SidepanelClasses {
 }
 
 export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<SidepanelEmitTypes>['emit']) => {
-  const { size, position } = toRefs(props);
+  const { size, position, isStacking } = toRefs(props);
 
   const sidepanelClasses: ComputedRef<SidepanelClasses> = computed(() => {
     const sidepanelBaseClasses = classNames(
-      'spr-fixed spr-right-4 spr-top-1/2 spr-z-[1015] spr-flex spr-h-full spr-min-h-[200px] spr-translate-y-[-50%] spr-flex-col spr-rounded-border-radius-xl spr-bg-white-50 spr-drop-shadow',
+      'spr-right-4 spr-top-1/2 spr-z-[1015] spr-flex spr-h-full spr-min-h-[200px] spr-translate-y-[-50%] spr-flex-col spr-rounded-border-radius-xl spr-bg-white-50 spr-drop-shadow',
       {
+        'spr-fixed': !isStacking.value,
         'spr-w-[360px] sm:spr-w-[calc(100%-35px)]': size.value === 'sm',
         'spr-w-[420px] sm:spr-w-[calc(100%-35px)]': size.value === 'md',
         'spr-w-[480px] sm:spr-w-[calc(100%-35px)]': size.value === 'lg',
@@ -46,15 +47,15 @@ export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<Sidep
     );
 
     const sidepanelTransitionActiveClasses = classNames(
-      'spr-transition-transform spr-duration-[150ms] spr-ease-[ease-in-out]',
+      { 'spr-transition-transform spr-duration-[150ms] spr-ease-[ease-in-out]': !isStacking.value },
     );
 
     const sidepanelTransitionHiddenClasses = classNames({
-      'spr-translate-x-full -spr-translate-y-2/4': position.value === 'right',
+      'spr-translate-x-full -spr-translate-y-2/4': !isStacking.value && position.value === 'right',
     });
 
     const sidepanelTransitionVisibleClasses = classNames({
-      'spr-translate-x-0 -spr-translate-y-2/4': position.value === 'right',
+      'spr-translate-x-0 -spr-translate-y-2/4': !isStacking.value && position.value === 'right',
     });
     const backdropBaseClasses = classNames(
       'spr-fixed spr-left-0 spr-top-0 spr-z-[1010] spr-h-full spr-w-full spr-bg-mushroom-700/60',
@@ -83,7 +84,7 @@ export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<Sidep
   let ignoreClick = false;
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (ignoreClick) return;
+    if (ignoreClick || isStacking.value) return;
     if (sidepanelRef.value && !sidepanelRef.value.contains(event.target as Node) && props.closeOutside) {
       emit('close');
     }

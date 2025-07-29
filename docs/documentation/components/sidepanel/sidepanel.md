@@ -203,6 +203,12 @@ const isLargeSidepanelOpen = ref(false);
       <td>boolean</td>
       <td>true</td>
     </tr>
+    <tr>
+      <td>isStacking</td>
+      <td>Enables stacking behavior for `StackingSidepanel`</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
      <tr>
       <td>@onClose</td>
       <td>Function to call when the sidepanel is closed</td>

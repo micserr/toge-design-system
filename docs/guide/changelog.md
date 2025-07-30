@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.10.0 (2025-07-29)
+
+- Feat
+  - Stacking Sidepanel ([#eb6b8bdd](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/eb6b8bdd8b46dc21c36d37e27a29a39de14ba057?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FStackingSidePanel) by @jbanares)
+
 ## 2.9.11 (2025-07-29)
 
 - Feat

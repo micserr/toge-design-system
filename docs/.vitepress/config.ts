@@ -149,7 +149,16 @@ export default defineConfig({
             },
             {
               text: 'Sidepanel',
-              link: '/documentation/components/sidepanel',
+              items: [
+                {
+                  text: 'Sidepanel',
+                  link: '/documentation/components/sidepanel/sidepanel',
+                },
+                {
+                  text: 'Stacking Sidepanel',
+                  link: '/documentation/components/sidepanel/stacking-sidepanel',
+                },
+              ],
             },
             {
               text: 'Snackbar',

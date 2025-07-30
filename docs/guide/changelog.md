@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.10.1 (2025-07-30)
+
+- Fix
+  - Updated image url in sidepanel ([#bf025fa2](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/bf025fa22d6dea4738b372a5b1f5da6e9b762426?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FStackingSidePanel) by @jbanares)
+
 ## 2.10.0 (2025-07-29)
 
 - Feat

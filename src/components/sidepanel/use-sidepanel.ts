@@ -47,10 +47,10 @@ export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<Sidep
     );
 
     const sidepanelTransitionActiveClasses = classNames(
-      { 'spr-transition-transform spr-duration-[150ms] spr-ease-[ease-in-out]': !isStacking.value },
+      { 'spr-transition-all spr-duration-[150ms] spr-ease-[ease-in-out]': !isStacking.value },
     );
 
-    const sidepanelTransitionHiddenClasses = classNames({
+    const sidepanelTransitionHiddenClasses = classNames('spr-opacity-0', {
       'spr-translate-x-full -spr-translate-y-2/4': !isStacking.value && position.value === 'right',
     });
 

@@ -79,11 +79,11 @@ export const useStackingSidepanel = (
     );
 
     const sidepanelStackTransitionEnterActiveClasses = classNames(
-      'spr-transition-all spr-ease-[ease-in-out] spr-duration-[300ms]',
+      'spr-transition-all spr-ease-[ease-in-out] spr-duration-[150ms]',
     );
 
     const sidepanelStackTransitionLeaveActiveClasses = classNames(
-      'spr-transition-all spr-ease-[ease-in-out] spr-duration-[300ms]',
+      'spr-transition-all spr-ease-[ease-in-out] spr-duration-[150ms]',
     );
 
     const sidepanelStackMoveClasses = classNames('spr-transition-all spr-ease-[ease-in-out] spr-duration-[300ms]');

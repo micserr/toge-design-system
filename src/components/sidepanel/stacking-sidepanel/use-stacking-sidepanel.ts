@@ -53,15 +53,15 @@ export const useStackingSidepanel = (props: StackingSidePanelPropTypes, emits:Se
     const sidepanelStackBackdropClasses = 'spr-fixed spr-left-0 spr-top-0 spr-z-[1010] spr-h-full spr-w-full spr-bg-mushroom-700/60';
 
     const sidepanelStackBaseClasses = classNames(
-      'spr-fixed spr-right-4 spr-top-1/2 spr-z-[1015] spr-flex spr-flex-row-reverse spr-gap-size-spacing-xs spr-transition-all spr-ease-[ease-in-out]',
+      'spr-fixed spr-right-4 spr-top-1/2 spr-z-[1015] spr-flex spr-flex-row-reverse spr-gap-size-spacing-xs spr-transition-all spr-ease-[ease-in-out] spr-duration-[300ms]',
     );
 
-    const sidepanelStackTransitionActiveClasses = classNames(
-      'spr-transition-all spr-ease-[ease-in-out]',
-      {
-        'spr-duration-[150ms]': activePanels.value.length <= 1,
-        'spr-duration-[300ms]': activePanels.value.length > 1,
-      }
+    const sidepanelStackTransitionEnterActiveClasses = classNames(
+      'spr-transition-all spr-ease-[ease-in-out] spr-duration-[300ms]'
+    );
+
+    const sidepanelStackTransitionLeaveActiveClasses = classNames(
+      'spr-transition-all spr-ease-[ease-in-out] spr-duration-[150ms]'
     );
     
 
@@ -69,7 +69,6 @@ export const useStackingSidepanel = (props: StackingSidePanelPropTypes, emits:Se
       'spr-opacity-0',
       {
         'spr-translate-x-1/2': activePanels.value.length <= 1,
-        '-spr-translate-x-1/2': activePanels.value.length > 1,
       }
     );
 
@@ -84,7 +83,8 @@ export const useStackingSidepanel = (props: StackingSidePanelPropTypes, emits:Se
     return {
       sidepanelStackBackdropClasses,
       sidepanelStackBaseClasses,
-      sidepanelStackTransitionActiveClasses,
+      sidepanelStackTransitionEnterActiveClasses,
+      sidepanelStackTransitionLeaveActiveClasses,
       sidepanelStackEnterFromClasses,
       sidepanelStackLeaveToClasses,
     }

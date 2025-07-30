@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.10.2 (2025-07-30)
+
+- Fix
+  - DQA fixes for stacking sidepanel ([#dae62cec](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dae62cecca78c56b0cca5f40168a9584500ee346?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FStackingSidePanel) by @jbanares)
+
 ## 2.10.1 (2025-07-30)
 
 - Fix

@@ -1,5 +1,11 @@
 # Changelog
 
+
+## 2.10.3 (2025-07-30)
+
+-Feat 
+  - Added a feature that generates UMD file to be used in legacy applications ([#22aa5f41](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/22aa5f418dfd579450268852e3666dbcb3ec46ac?refName=refs%2Fheads%2F2025%2Ffeature%2Fdale%2Fumd-file-creation) by @dale)
+
 ## 2.10.2 (2025-07-30)
 
 - Fix

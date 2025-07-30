@@ -1,9 +1,14 @@
 <template>
   <div v-if="activePanels.length > 0" :class="stackingSidepanelClasses.sidepanelStackBackdropClasses"></div>
-  <div ref="stacking-sidepanel-base" :class="[stackingSidepanelClasses.sidepanelStackBaseClasses]" :style="stackingSidepanelBaseTransform">
-    <transition-group 
+  <div
+    ref="stacking-sidepanel-base"
+    :class="[stackingSidepanelClasses.sidepanelStackBaseClasses]"
+    :style="stackingSidepanelBaseTransform"
+  >
+    <transition-group
       :enter-active-class="stackingSidepanelClasses.sidepanelStackTransitionEnterActiveClasses"
       :leave-active-class="stackingSidepanelClasses.sidepanelStackTransitionLeaveActiveClasses"
+      :move-class="stackingSidepanelClasses.sidepanelStackMoveClasses"
       :enter-from-class="stackingSidepanelClasses.sidepanelStackEnterFromClasses"
       :leave-to-class="stackingSidepanelClasses.sidepanelStackLeaveToClasses"
       appear
@@ -24,13 +29,8 @@ const stackingSidepanelBase = useTemplateRef('stacking-sidepanel-base');
 const props = defineProps(stackingSidePanelProps);
 const emits = defineEmits(stackingSidePanelEmits);
 
-const {
-  showPanel,
-  hidePanel,
-  stackingSidepanelClasses,
-  stackingSidepanelBaseTransform,
-  activePanels,
-} = useStackingSidepanel(props, emits, stackingSidepanelBase);
+const { showPanel, hidePanel, stackingSidepanelClasses, stackingSidepanelBaseTransform, activePanels } =
+  useStackingSidepanel(props, emits, stackingSidepanelBase);
 
 defineExpose({
   showPanel,

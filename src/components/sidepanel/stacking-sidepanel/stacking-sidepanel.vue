@@ -2,11 +2,10 @@
   <div v-if="activePanels.length > 0" :class="stackingSidepanelClasses.sidepanelStackBackdropClasses"></div>
   <div ref="stacking-sidepanel-base" :class="[stackingSidepanelClasses.sidepanelStackBaseClasses]" :style="stackingSidepanelBaseTransform">
     <transition-group 
-      :enter-active-class="stackingSidepanelClasses.sidepanelStackTransitionActiveClasses"
-      :leave-active-class="stackingSidepanelClasses.sidepanelStackTransitionActiveClasses"
+      :enter-active-class="stackingSidepanelClasses.sidepanelStackTransitionEnterActiveClasses"
+      :leave-active-class="stackingSidepanelClasses.sidepanelStackTransitionLeaveActiveClasses"
       :enter-from-class="stackingSidepanelClasses.sidepanelStackEnterFromClasses"
       :leave-to-class="stackingSidepanelClasses.sidepanelStackLeaveToClasses"
-      :move-class="stackingSidepanelClasses.sidepanelStackTransitionActiveClasses"
       appear
     >
       <div v-for="name in activePanels" :key="name">

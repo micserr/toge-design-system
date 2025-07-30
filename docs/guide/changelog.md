@@ -1,10 +1,16 @@
 # Changelog
 
-## 2.10.3 (2025-07-30)
+## 2.10.4 (2025-07-30)
 
 - Fix
   - fix: Updated stacking sidepanel and sidepanel transition ([#083c79cf](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/083c79cfe6e06359bab6588009387527b918d2af?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FStackingSidePanel) by @jbanares)
   - fix: Improve stacking sidepanel transition timing ans synchronization ([#0c51d805](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0c51d805181e037e065e9ad1bf1bd4ab0a1612d7?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FStackingSidePanel) by @mraquel)
+
+
+## 2.10.3 (2025-07-30)
+
+-Feat 
+  - Added a feature that generates UMD file to be used in legacy applications ([#22aa5f41](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/22aa5f418dfd579450268852e3666dbcb3ec46ac?refName=refs%2Fheads%2F2025%2Ffeature%2Fdale%2Fumd-file-creation) by @dale)
 
 ## 2.10.2 (2025-07-30)
 

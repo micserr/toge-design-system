@@ -45,6 +45,7 @@
             :group-items-by="props.groupItemsBy"
             :multi-select="props.multiSelect"
             :pre-selected-items="dropdownValue"
+            :no-check="props.noCheckInList"
             @update:model-value="handleSelectedItem"
           />
           <spr-ladderized-list

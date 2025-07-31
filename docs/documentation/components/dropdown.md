@@ -1628,6 +1628,18 @@ const handleUsersSelection = () => {
       <td>false</td>
     </tr>
     <tr>
+      <td>remove-current-level-in-back-label</td>
+      <td>Defines whether the back label in the ladderized list will exclude the current level</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>noCheckInList</td>
+      <td>Disables the display of check for singe list dropdown menu.</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
       <td>@get-popper-state</td>
       <td>Event emitted when the popper state is changed (e.g., opened or closed)</td>
       <td>Function</td>
@@ -1639,12 +1651,6 @@ const handleUsersSelection = () => {
       <td>Function</td>
       <td>-</td>
     </tr>
-    <tr>
-      <td>remove-current-level-in-back-label</td>
-      <td>Defines whether the back label in the ladderized list will exclude the current level</td>
-      <td>Boolean</td>
-      <td>false</td>
-    </tr>
   </tbody>
 </table>
 
@@ -1652,6 +1658,7 @@ const handleUsersSelection = () => {
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
   <spr-logo name="hr" theme="dark"  width="50px" />
+  <spr-logo name="payroll" theme="dark"  width="50px" />
   <spr-logo name="sidekick" theme="dark" width="50px" />
 </div>
 

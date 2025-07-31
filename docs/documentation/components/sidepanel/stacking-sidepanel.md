@@ -52,7 +52,7 @@ The `StackingSidepanel` component allows you to display multiple side panels tha
   </template>
 </spr-stacking-sidepanel>
 
-```vue{6,7,52}
+```vue{6,7,53}
 <template>
   <spr-button @click="stackingSidepanel?.showPanel('sidepanel-1')">Show Panel 1</spr-button>
   <span class="spr-body-md">Active Panels: {{ activePanelText }}</span>

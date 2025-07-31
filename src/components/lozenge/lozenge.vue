@@ -1,6 +1,6 @@
 <template>
-  <div class="spr-h-fit spr-w-fit">
-    <div v-if="visible" :class="lozengeClasses.baseClasses">
+  <div :class="lozengeClasses.wrapperClasses">
+    <div v-if="visible && !loading" :class="lozengeClasses.baseClasses">
       <div :class="lozengeClasses.toneClasses">
         <div v-if="$slots.icon" class="spr-flex spr-h-3 spr-w-3 spr-items-center spr-overflow-hidden">
           <slot name="icon" />
@@ -17,6 +17,7 @@
         <div>{{ label }}</div>
       </div>
     </div>
+    <div v-if="visible && loading" :class="lozengeClasses.baseClasses" />
   </div>
 </template>
 

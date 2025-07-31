@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isOpen && hasBackdrop" :class="sidepanelClasses.backdropBaseClasses"></div>
+  <div v-if="!props.isStacking && isOpen && hasBackdrop" :class="sidepanelClasses.backdropBaseClasses"></div>
 
   <Transition
     :enter-active-class="sidepanelClasses.sidepanelTransitionActiveClasses"
@@ -8,10 +8,10 @@
     :enter-to-class="sidepanelClasses.sidepanelTransitionVisibleClasses"
     :leave-from-class="sidepanelClasses.sidepanelTransitionVisibleClasses"
     :leave-to-class="sidepanelClasses.sidepanelTransitionHiddenClasses"
-    appear
+    :appear="!props.isStacking"
   >
     <div
-      v-if="isOpen"
+      v-if="props.isOpen || props.isStacking"
       ref="sidepanelRef"
       role="dialog"
       aria-labelledby="sidepanel-title"

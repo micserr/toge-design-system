@@ -55,6 +55,10 @@ export const avatarPropTypes = {
     validator: (value: (typeof AVATAR_VARIANT)[number]) => AVATAR_VARIANT.includes(value),
     default: 'initial',
   },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export type AvatarPropTypes = ExtractPropTypes<typeof avatarPropTypes>;

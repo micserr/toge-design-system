@@ -898,6 +898,12 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   };
   // #endregion - Helper Methods
 
+  const clearDate = () => {
+    monthInput.value = '';
+    dateInput.value = '';
+    yearInput.value = '';
+  };
+
   watch(datePopperState, (newValue) => {
     if (newValue === false) {
       setTimeout(() => {
@@ -992,5 +998,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     handleYearInput,
     handleTabClick,
     handleBackspace,
+    clearDate,
   };
 };

@@ -5,18 +5,24 @@ import classNames from 'classnames';
 import type { LozengePropTypes } from './lozenge';
 
 interface LozengeClasses {
+  wrapperClasses: string;
   baseClasses: string;
   toneClasses: string;
 }
 
 export const useLozenge = (props: LozengePropTypes) => {
-  const { tone, fill } = toRefs(props);
+  const { tone, fill, loading } = toRefs(props);
 
   const lozengeClasses: ComputedRef<LozengeClasses> = computed(() => {
-    const baseClasses = classNames(
-      { 'spr-flex spr-flex-wrap spr-rounded-md': !fill.value },
-      { 'spr-flex spr-flex-wrap': fill.value },
-    );
+    const wrapperClasses = classNames({
+      'spr-h-fit spr-w-fit': !loading.value,
+      'spr-flex spr-w-full': loading.value,
+    });
+    const baseClasses = classNames({
+      'spr-flex spr-flex-wrap spr-rounded-md': !fill.value,
+      'spr-flex spr-flex-wrap': fill.value,
+      'spr-skeletal-loader spr-flex spr-h-6 spr-w-full spr-rounded-md': loading.value,
+    });
 
     const toneClasses = classNames(
       'spr-label-xs-medium spr-inline-flex spr-items-center spr-gap-size-spacing-6xs spr-rounded-md spr-border spr-border-solid spr-p-size-spacing-5xs spr-text-xs spr-uppercase',
@@ -48,6 +54,7 @@ export const useLozenge = (props: LozengePropTypes) => {
     );
 
     return {
+      wrapperClasses,
       baseClasses,
       toneClasses,
     };

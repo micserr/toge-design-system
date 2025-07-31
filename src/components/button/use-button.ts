@@ -17,7 +17,7 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
 
   const buttonClassses: ComputedRef<string> = computed(() => {
     const defaultClasses = classNames(
-      'spr-background-color spr-flex spr-items-center spr-gap-1.5 spr-w-fit  spr-min-w-[24px] spr-items-center spr-justify-center spr-rounded-md spr-outline-2 spr-outline-offset-4',
+      'spr-background-color spr-flex spr-items-center spr-gap-1.5 spr-w-fit spr-min-w-[24px] spr-items-center spr-justify-center spr-rounded-md spr-outline-2 spr-outline-offset-4',
       {
         'spr-w-full': fullwidth.value,
       },
@@ -55,21 +55,21 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
         return classNames(
           defaultClasses,
           sizeClasses,
-          'spr-text-color-disabled spr-background-color-disabled !spr-border-0 !spr-shadow-none !spr-cursor-not-allowed',
+          'spr-text-color-disabled spr-background-color-disabled !spr-shadow-none !spr-cursor-not-allowed spr-border-none',
         );
 
       if (variant.value === 'secondary')
         return classNames(
           defaultClasses,
           sizeClasses,
-          'spr-text-color-disabled spr-border-solid !spr-border !spr-border-color-disabled !spr-shadow-none !spr-cursor-not-allowed',
+          'spr-text-color-disabled !spr-shadow-none !spr-cursor-not-allowed spr-border spr-border-solid spr-border-color-disabled',
         );
 
       if (variant.value === 'tertiary')
         return classNames(
           defaultClasses,
           sizeClasses,
-          'spr-text-color-disabled !spr-border-0 !spr-shadow-none !spr-cursor-not-allowed',
+          'spr-text-color-disabled !spr-shadow-none !spr-cursor-not-allowed spr-border-none',
         );
     }
 
@@ -162,19 +162,16 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
   // #endregion - Background Css Class
 
   const buttonBorderCssClass: ComputedRef<string> = computed(() => {
-    if (variant.value === 'primary' || variant.value === 'tertiary') {
-      if (focused.value) {
-        return 'spr-border-solid !spr-border !spr-border-white-50';
+    return classNames(
+      'spr-border spr-border-solid',
+      {
+        'spr-border-transparent': variant.value === 'primary' || variant.value === 'tertiary',
+        'spr-border-white-50': focused.value && variant.value === 'primary' || variant.value === 'tertiary',
+        'spr-border-color-base': variant.value === 'secondary' && tone.value === 'neutral',
+        'spr-border-color-brand-base': variant.value === 'secondary' && tone.value === 'success',
+        'spr-border-color-danger-base': variant.value === 'secondary' && tone.value === 'danger',
       }
-
-      return 'spr-border-solid !spr-border !spr-border-transparent';
-    }
-
-    return classNames({
-      'spr-border-solid !spr-border !spr-border-color-base': tone.value === 'neutral',
-      'spr-border-solid !spr-border !spr-border-color-brand-base': tone.value === 'success',
-      'spr-border-solid !spr-border !spr-border-color-danger-base': tone.value === 'danger',
-    });
+    );
   });
 
   const buttonProps: ComputedRef<Record<string, unknown>> = computed(() => {

@@ -47,6 +47,10 @@ export const buttonDropdownProps = {
     type: String,
     default: 'fit-content',
   },
+  dropdownId: {
+    type: String,
+    required: true,
+  }
 };
 
 export const buttonDropdownEmits = ['click', 'update:modelValue'];

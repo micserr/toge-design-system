@@ -13,7 +13,7 @@ interface ListClasses {
 export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>['emit']) => {
   const selectedItems = useVModel(props, 'modelValue', emit);
 
-  const { menuList, menuLevel, groupItemsBy, multiSelect, preSelectedItems } = toRefs(props);
+  const { menuList, menuLevel, groupItemsBy, multiSelect, preSelectedItems, noCheck } = toRefs(props);
 
   const listClasses: ComputedRef<ListClasses> = computed(() => {
     const listItemClasses = classNames(
@@ -232,7 +232,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
 
   const getListItemClasses = (item: MenuListType) => ({
     [listClasses.value.listItemClasses]: !item.disabled,
-    'spr-background-color-single-active': isItemSelected(item) && !item.disabled,
+    'spr-background-color-single-active': isItemSelected(item) && !item.disabled && !noCheck.value,
     'hover:spr-cursor-not-allowed spr-flex spr-cursor-pointer spr-items-center spr-gap-1.5 spr-rounded-lg spr-p-2':
       item.disabled,
   });
@@ -354,6 +354,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     } else {
       // For single-select, simply replace the selection
       selectedItems.value = [item];
+      if (item.onClickFn) item.onClickFn();
     }
   };
   // #endregion - Helper Methods

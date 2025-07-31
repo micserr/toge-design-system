@@ -5,7 +5,7 @@ export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<
 
 const GROUPED_ITEMS_BY_TYPES = ['A-Z', 'Z-A'] as const;
 
-const PLACEMENTS_TYPES = [
+export const PLACEMENTS_TYPES = [
   'auto',
   'auto-start',
   'auto-end',
@@ -94,6 +94,10 @@ export const dropdownPropTypes = {
     default: false,
   },
   removeCurrentLevelInBackLabel: {
+    type: Boolean,
+    default: false,
+  },
+  noCheckInList: {
     type: Boolean,
     default: false,
   }

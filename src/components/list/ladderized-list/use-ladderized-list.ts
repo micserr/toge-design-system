@@ -20,27 +20,35 @@ export const useLadderizedList = (
   const activeLevel = ref(0);
   const activeList = ref<MenuListType[]>(menuList.value); // List of items to display in the active level
   const searchText = ref('');
+
   // Recursive filter function for ladderized options
-  function filterOptionsRecursive(items: MenuListType[], search: string): MenuListType[] {
+  const filterOptionsRecursive = (items: MenuListType[], search: string): MenuListType[] => {
     if (!search) return items;
+
     const lowerSearch = search.toLowerCase();
+
     return items
       .map((item) => {
         let match =
           item.text.toLowerCase().includes(lowerSearch) ||
           (item.subtext && item.subtext.toLowerCase().includes(lowerSearch));
+
         const filteredSublevel = item.sublevel ? filterOptionsRecursive(item.sublevel, search) : undefined;
+
         if (filteredSublevel && filteredSublevel.length > 0) match = true;
+
         if (match) {
           return {
             ...item,
             sublevel: filteredSublevel,
           };
         }
+
         return null;
       })
       .filter(Boolean) as MenuListType[];
-  }
+  };
+
   // Watch for searchText changes and update activeList
   watch(searchText, (val) => {
     if (val) {
@@ -49,6 +57,7 @@ export const useLadderizedList = (
       activeList.value = menuList.value;
     }
   });
+
   const prevList = ref<MenuListType[]>([]);
 
   const handleSelectedListItem = (item: MenuListType) => {

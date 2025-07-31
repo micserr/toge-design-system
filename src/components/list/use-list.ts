@@ -246,14 +246,23 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
       return;
     }
 
-    // Filter items by text or subtext
-    const filtered = props.menuList.filter((item) => {
-      const textMatch = item.text.toLowerCase().includes(search);
-      const subtextMatch = item.subtext ? item.subtext.toLowerCase().includes(search) : false;
+    // Recursive search for all matching items at any depth
+    function recursiveSearch(items) {
+      let results = [];
+      for (const item of items) {
+        const textMatch = item.text.toLowerCase().includes(search);
+        const subtextMatch = item.subtext ? item.subtext.toLowerCase().includes(search) : false;
+        if (textMatch || subtextMatch) {
+          results.push(item);
+        }
+        if (item.sublevel && item.sublevel.length > 0) {
+          results = results.concat(recursiveSearch(item.sublevel));
+        }
+      }
+      return results;
+    }
 
-      return textMatch || subtextMatch;
-    });
-
+    const filtered = recursiveSearch(props.menuList);
     localizedMenuList.value = filtered;
 
     // If grouping is enabled, regroup the filtered list
@@ -262,7 +271,6 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
       if (groupItemsBy.value === 'default') {
         filtered.forEach((item) => {
           const groupKey = item.group || 'no-group';
-
           if (groupedMenuList.value.some((g) => g.groupLabel === groupKey)) {
             groupedMenuList.value.find((g) => g.groupLabel === groupKey)?.items.push(item);
           } else {
@@ -274,13 +282,11 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
           .sort((a, b) => {
             if (groupItemsBy.value === 'A-Z') return a.text.localeCompare(b.text);
             if (groupItemsBy.value === 'Z-A') return b.text.localeCompare(a.text);
-
             return 0;
           })
           .forEach((item) => {
             const firstCharacter = item.text.charAt(0);
             const groupKey = /^\d/.test(firstCharacter) ? 'no-group' : firstCharacter.toUpperCase();
-
             if (groupedMenuList.value.some((g) => g.groupLabel === groupKey)) {
               groupedMenuList.value.find((g) => g.groupLabel === groupKey)?.items.push(item);
             } else {

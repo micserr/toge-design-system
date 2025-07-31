@@ -204,6 +204,10 @@
     tr {
       @apply spr-table spr-w-full spr-table-fixed;
     }
+
+    thead {
+      @apply spr-pr-size-spacing-6xs;
+    }
     tbody::-webkit-scrollbar {
       @apply spr-h-0 spr-w-0; /* Hides the scrollbar in WebKit browsers */
     }
@@ -1094,4 +1098,10 @@
     @apply spr-divide-wintermelon-900;
   }
   /* #endregion - Divide Colors */
+
+  /* #region - skeletal animation */
+  .spr-skeletal-loader {
+    @apply spr-animate-pulse spr-border-neutral-200 spr-bg-[linear-gradient(270deg,var(--Light-Mushroom-50,#EFF1F1)_0%,var(--Light-Mushroom-200,#D9DEDE)_100%)];
+  }
+  /* #endregion - skeletal animation */
 }

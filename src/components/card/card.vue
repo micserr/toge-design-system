@@ -21,7 +21,7 @@
       </template>
     </div>
 
-    <div v-if="$slots.content" :class="cardClasses.contentPaddingSizeClasses">
+    <div v-if="$slots.content" :class="[cardClasses.contentPaddingSizeClasses, cardClasses.hasFlexBox]">
       <slot name="content" />
     </div>
 

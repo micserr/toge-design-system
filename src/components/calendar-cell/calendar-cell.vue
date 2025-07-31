@@ -1,5 +1,5 @@
 <template>
-  <div :class="getCalendarCellClassess.getMainClasses" @click="handleClick">
+  <div v-if="!props.loading" :class="getCalendarCellClassess.getMainClasses" @click="handleClick">
     <slot name="prefix">
       <Icon v-if="hasIconStatus" :icon="getCellIcon" />
     </slot>
@@ -18,6 +18,8 @@
       </div>
     </slot>
   </div>
+
+  <div v-else :class="getCalendarCellClassess.getMainClasses" />
 </template>
 
 <script setup lang="ts">

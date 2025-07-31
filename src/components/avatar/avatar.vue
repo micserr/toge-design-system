@@ -1,6 +1,6 @@
 <template>
   <div class="spr-h-fit spr-w-fit">
-    <div :class="avatarClasses.baseClasses">
+    <div v-if="!props.loading" :class="avatarClasses.baseClasses">
       <template v-if="['image', 'client', 'user', 'user-group'].includes(props.variant) || $slots.default">
         <div :class="avatarClasses.imageContainerClasses">
           <slot>
@@ -22,6 +22,10 @@
       <span v-if="props.badge" :class="avatarClasses.onlineNotificationClasses">
         <spr-badge :variant="status" :size="getAvatarSize.badge" />
       </span>
+    </div>
+
+    <div v-else :class="avatarClasses.baseClasses">
+      <div :class="avatarClasses.initialsContainerClasses" />
     </div>
   </div>
 </template>

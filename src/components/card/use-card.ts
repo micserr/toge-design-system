@@ -8,10 +8,12 @@ interface CardClasses {
   headerClasses: string;
   contentPaddingSizeClasses: string;
   footerClasses: string;
+  hasFlexBox: string;
 }
 
 export const useCard = (props: CardPropTypes, slots: Slots) => {
-  const { title, headerIcon, borderRadiusSize, hasCollapsible, isCollapsibleOpen, hasContentPadding } = toRefs(props);
+  const { title, headerIcon, borderRadiusSize, hasCollapsible, isCollapsibleOpen, hasContentPadding, flexbox } =
+    toRefs(props);
 
   const cardClasses: ComputedRef<CardClasses> = computed(() => {
     const baseClasses = classNames(
@@ -56,11 +58,16 @@ export const useCard = (props: CardPropTypes, slots: Slots) => {
       },
     );
 
+    const hasFlexBox = classNames({
+      'spr-flex spr-flex-col spr-h-full': flexbox.value,
+    });
+
     return {
       baseClasses,
       headerClasses,
       contentPaddingSizeClasses,
       footerClasses,
+      hasFlexBox,
     };
   });
 

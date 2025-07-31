@@ -81,6 +81,10 @@ export const filterPropTypes = {
     type: String,
     default: '',
   },
+  hasAdvancedFilterApi: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export interface FilterPropsInterface {

@@ -1,5 +1,70 @@
 # Changelog
 
+
+## 2.11.2 (2025-07-31)
+
+-Fix
+  - Fix for error Failed to resolve entry for package design-system-next ([#23bff266](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23bff266b392882e601c5ed2238be830e377b325?refName=refs/heads/2025/fix/dale/umd-file-creation&path=/package.json) @dale)
+
+## 2.11.1 (2025-07-31)
+
+- Fix
+  - Sidenav: Fixed mapping issue for subheading in navigation structure and improved path checking logic
+  ([#a00e647](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a00e647966fc0b37a4259e0421c5213eae3d28d1?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSIDENAV_SUBHEADING) by @bsolis)
+
+## 2.11.0 (2025-07-31)
+
+- Feat
+  - Button Dropdown. Also, updated button and dropdown to fit button dropdown component ([#09110294](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/09110294f61618c4b56637bdd2b783b36db5d55b?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FButtonDropdown) by @jbanares)
+- fix
+  - Updated list to fit button dropdown component ([#dcc49a0e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dcc49a0e7c1a83938aac171a5342b0acdb3bd5d4?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FButtonDropdown) by @jbanares)
+
+## 2.10.4 (2025-07-30)
+
+- Fix
+  - fix: Updated stacking sidepanel and sidepanel transition ([#083c79cf](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/083c79cfe6e06359bab6588009387527b918d2af?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FStackingSidePanel) by @jbanares)
+  - fix: Improve stacking sidepanel transition timing ans synchronization ([#0c51d805](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0c51d805181e037e065e9ad1bf1bd4ab0a1612d7?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FStackingSidePanel) by @mraquel)
+
+
+## 2.10.3 (2025-07-30)
+
+-Feat 
+  - Added a feature that generates UMD file to be used in legacy applications ([#22aa5f41](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/22aa5f418dfd579450268852e3666dbcb3ec46ac?refName=refs%2Fheads%2F2025%2Ffeature%2Fdale%2Fumd-file-creation) by @dale)
+
+## 2.10.2 (2025-07-30)
+
+- Fix
+  - DQA fixes for stacking sidepanel ([#dae62cec](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dae62cecca78c56b0cca5f40168a9584500ee346?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FStackingSidePanel) by @jbanares)
+
+## 2.10.1 (2025-07-30)
+
+- Fix
+  - Updated image url in sidepanel ([#bf025fa2](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/bf025fa22d6dea4738b372a5b1f5da6e9b762426?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FStackingSidePanel) by @jbanares)
+
+## 2.10.0 (2025-07-29)
+
+- Feat
+  - Stacking Sidepanel ([#eb6b8bdd](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/eb6b8bdd8b46dc21c36d37e27a29a39de14ba057?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FStackingSidePanel) by @jbanares)
+
+## 2.9.11 (2025-07-29)
+
+- Feat
+  - Commit 62e0dde9: feat(date-picker): add clearDate method to reset date inputs ([#62e0dde9](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/62e0dde92264484316eced5b2979cd7f873c8210?refName=refs%2Fheads%2F2025%2Ffeat%2Fandrea%2Fref-to-clear-date-picker) by @adestajo)
+
+## 2.9.10 (2025-07-29)
+
+- Fix
+
+  - Commit b73c4c87: fix(calendar): adjust loading icon size and improve empty state handling in calendar component
+
+- Feat
+  - Commit 66ae4826: feat(calendar): add infinite loading and loading text support in calendar component
+  - Commit dd5e078c: feat(calendar): add type binding for schedule color in calendar component
+  - Commit 91961bf1: filttered based on APi
+  - Commit f172ea17: feat(loading): add loading state support for avatar, calendar cell, and lozenge components
+  - Commit 9bdc98f7: skeletal loader
+    ([#f172ea17](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/33574?_a=commits) by @adestajo)
+
 ## 2.9.9 (2025-07-16)
 
 - Chore

@@ -168,6 +168,16 @@ const offline = [
 <spr-calendar-cell />
 ```
 
+## Loading
+
+<div class="spr-grid spr-grid-row-3 spr-gap-4">
+  <spr-calendar-cell fullwidth loading />
+</div>
+
+```vue
+<spr-calendar-cell fullwidth loading />
+```
+
 ## API Reference
 
 <table>
@@ -228,6 +238,12 @@ const offline = [
       <td>emits when click</td>
       <td>function</td>
       <td>-</td>
+    </tr>
+    <tr>
+      <td>loading</td>
+      <td>Shows a loading indicator, indicating that content is being loaded.</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
   </tbody>
 </table>

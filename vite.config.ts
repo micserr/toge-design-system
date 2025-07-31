@@ -31,9 +31,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'lib/main.ts'),
-      name: 'Design System Next',
-      fileName: 'design-system-next',
-      formats: ['es'],
+      name: 'DesignSystemNext',
+      fileName: (format) => `design-system-next.${format}.js`,
+      formats: ['es', 'umd'],
     },
     rollupOptions: {
       external: ['vue'], // Add other external libraries if needed

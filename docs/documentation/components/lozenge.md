@@ -175,6 +175,18 @@ import { Icon } from '@iconify/vue';
 </script>
 ```
 
+## Loading
+
+<div class="spr-flex spr-flex-col spr-gap-2">
+  <spr-lozenge loading />
+</div>
+
+```vue
+<template>
+  <spr-lozenge loading />
+</template>
+```
+
 ## Slot
 
 <table>
@@ -231,6 +243,12 @@ import { Icon } from '@iconify/vue';
       <td>avatar image url</td>
       <td>string</td>
       <td></td>
+    </tr>
+    <tr>
+      <td>loading</td>
+      <td>Shows a loading  within the lozenge, indicating that content is being loaded.</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
   </tbody>
 </table>

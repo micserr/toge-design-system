@@ -34,7 +34,7 @@ Value: {{ datePickerModel.date2 }}
 
 ```vue
 <template>
-  <spr-date-picker id="datepicker" v-model="datePickerModel" label="Date Picker" display-helper format="MM-DD-YYYY"/>
+  <spr-date-picker id="datepicker" v-model="datePickerModel" label="Date Picker" display-helper format="MM-DD-YYYY" />
 </template>
 
 <script lang="ts" setup>
@@ -77,7 +77,6 @@ const datePickerModel = ref('');
 
 You can specify the format of the date by passing the `format` prop. The default format is `MM-DD-YYYY`. The component will return dates in the specified format.
 
-
 <spr-date-picker :id="datePickerId.date28" class="[&>p]:spr-m-0" v-model="datePickerModel.date28" label="Date Picker" display-helper format="YYYY-MM-DD" />
 Value: <code>{{ datePickerModel.date28 }}</code>
 ```vue
@@ -96,15 +95,16 @@ import { ref } from 'vue';
 
 const datePickerModel = ref('');
 </script>
-```
+
+````
 
 <div class="spr-mt-3">
-  <spr-date-picker 
-    :id="datePickerId.date29" 
-    class="[&>p]:spr-m-0" 
-    v-model="datePickerModel.date29" 
-    label="Date with MM/DD/YYYY format" 
-    format="MM/DD/YYYY" 
+  <spr-date-picker
+    :id="datePickerId.date29"
+    class="[&>p]:spr-m-0"
+    v-model="datePickerModel.date29"
+    label="Date with MM/DD/YYYY format"
+    format="MM/DD/YYYY"
     display-helper
   />
 </div>
@@ -112,12 +112,12 @@ Value: <code>{{ datePickerModel.date29 }}</code>
 
 ```vue
 <template>
-  <spr-date-picker 
-    id="datepicker" 
-    v-model="datePickerModel" 
-    label="Date with MM/DD/YYYY format" 
-    format="MM/DD/YYYY" 
-    display-helper 
+  <spr-date-picker
+    id="datepicker"
+    v-model="datePickerModel"
+    label="Date with MM/DD/YYYY format"
+    format="MM/DD/YYYY"
+    display-helper
   />
 </template>
 
@@ -126,7 +126,7 @@ import { ref } from 'vue';
 
 const datePickerModel = ref('');
 </script>
-```
+````
 
 ## Disabled
 
@@ -993,6 +993,38 @@ const datePickerModel = ref('');
 </script>
 ```
 
+## Action
+
+<div class="spr-space-y-2">
+  <spr-button tone="success" @click="clearDate()">Clear Date</spr-button>
+  <spr-date-picker 
+    ref="datePickerRef"
+    :id="datePickerId.date29" 
+    v-model="datePickerModel.date29" 
+    label="Date Picker"
+  />
+</div>
+
+```vue
+<template>
+  <div class="spr-space-y-2">
+    <spr-button tone="success" @click="clearDate()">Clear Date</spr-button>
+    <spr-date-picker ref="datePickerRef" id="datepicker" v-model="datePickerModel" label="Date Picker" />
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const datePickerModel = ref('');
+const datePickerRef = ref(null);
+
+const clearDate = () => {
+  datePickerRef.value.clear();
+};
+</script>
+```
+
 ## API Reference
 
 <table>
@@ -1179,6 +1211,7 @@ const datePickerId = ref({
   date26: "date26",
   date27: "date27",
   date28: "date28",
+  date29: "date29",
 }); 
 
 const datePickerModel = ref({
@@ -1210,12 +1243,18 @@ const datePickerModel = ref({
   date26: "",
   date27: "",
   date28: "",
+  date29: "",
 }); 
 
 const dateErrors = ref([]);
 const dateFormats = ref({});
 const monthLists = ref([]);
 const yearLists = ref([]);
+const datePickerRef = ref(null);
+
+const clearDate = () => {
+  datePickerRef.value.clear();
+}
 
 const getDateErrors = (errors) => {
   dateErrors.value = errors;

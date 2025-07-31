@@ -6,7 +6,7 @@ outline: 'deep'
 
 The Sidepanel component is a reusable UI element designed to display contextual or additional information alongside the main content of your application. It slides into view from the edge of the screen, providing a seamless and non-intrusive way to present content such as forms, lists, or detailed views.
 
-![Sidepanel Sample](../../public/images/sidepanel-sample.png)
+![Sidepanel Sample](./../../../public/images/sidepanel-sample.png)
 
 ## Basic Usage
 
@@ -202,6 +202,12 @@ const isLargeSidepanelOpen = ref(false);
       <td>Controls whether clicking outside the side panel should close it.</td>
       <td>boolean</td>
       <td>true</td>
+    </tr>
+    <tr>
+      <td>isStacking</td>
+      <td>Enables stacking behavior for `StackingSidepanel`</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
      <tr>
       <td>@onClose</td>

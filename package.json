@@ -1,9 +1,9 @@
 {
   "name": "design-system-next",
   "private": false,
-  "version": "2.11.1",
-  "main": "./dist/design-system-next.js",
-  "module": "./dist/design-system-next.js",
+  "version": "2.11.2",
+  "main": "./dist/design-system-next.umd.js",
+  "module": "./dist/design-system-next.es.js",
   "repository": {
     "type": "git",
     "url": "https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next"
@@ -18,8 +18,8 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/design-system-next.js",
-      "require": "./dist/design-system-next.js"
+      "import": "./dist/design-system-next.es.js",
+      "require": "./dist/design-system-next.umd.js"
     },
     "./style.css": "./dist/main.css"
   },

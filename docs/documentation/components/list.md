@@ -74,6 +74,12 @@ type MenuListType = {
   subtext?: string;
   group?: string; // Property to group items
   sublevel?: MenuListType[]; // Property used for ladderized list
+  disabled?: boolean;
+  _originalObject?: Record<string, unknown>; // Store original object reference when mapping complex objects
+  icon?: string, // String value for Iconify
+  iconColor?: string,
+  textColor?: string,
+  onClickFn?: () => void,
 };
 ```
 :::
@@ -653,6 +659,12 @@ const mockDropdownData = [
       <td>string[]</td>
       <td>[]</td>
     </tr>
+    <tr>
+      <td>noCheck</td>
+      <td>Disables the display of check in single select.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 
@@ -660,6 +672,7 @@ const mockDropdownData = [
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
   <spr-logo name="hr" theme="dark"  width="50px" />
+  <spr-logo name="payroll" theme="dark"  width="50px" />
 </div>
 
 <script lang="ts" setup> 

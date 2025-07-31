@@ -4,11 +4,11 @@
       <slot />
     </spr-button>
     <spr-dropdown 
-      id="button-dropdown-menu" 
+      :id="props.dropdownId" 
       v-model="selectedMenu" 
       :menu-list="menuList" 
       :width="props.width" 
-      :popper-width="props.popperWidth" 
+      :popper-width="props.popperWidth"
       no-check-in-list
     >
       <spr-button v-bind="props" :fullwidth="false" :has-icon="true" :class="buttonDropdownClasses.dropdownButtonClasses">

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.11.0 (2025-07-31)
+
+- Feat
+  - Button Dropdown. Also, updated button and dropdown to fit button dropdown component ([#09110294](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/09110294f61618c4b56637bdd2b783b36db5d55b?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FButtonDropdown) by @jbanares)
+- fix
+  - Updated list to fit button dropdown component ([#dcc49a0e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dcc49a0e7c1a83938aac171a5342b0acdb3bd5d4?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FButtonDropdown) by @jbanares)
+
 
 ## 2.10.3 (2025-07-30)
 

@@ -1,5 +1,11 @@
 # Changelog
 
+
+## 2.11.2 (2025-07-31)
+
+-Fix
+  - Fix for error Failed to resolve entry for package design-system-next ([#23bff266](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23bff266b392882e601c5ed2238be830e377b325?refName=refs/heads/2025/fix/dale/umd-file-creation&path=/package.json) @dale)
+
 ## 2.11.1 (2025-07-31)
 
 - Fix

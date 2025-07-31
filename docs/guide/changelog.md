@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.11.1 (2025-07-31)
+
+- Fix
+  - Sidenav: Fixed mapping issue for subheading in navigation structure and improved path checking logic
+  ([#a00e647](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a00e647966fc0b37a4259e0421c5213eae3d28d1?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSIDENAV_SUBHEADING) by @bsolis)
+
 ## 2.11.0 (2025-07-31)
 
 - Feat

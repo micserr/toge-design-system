@@ -1,7 +1,7 @@
 import { ref, onMounted } from 'vue';
 import type { SetupContext } from 'vue';
 
-import type { SidenavPropTypes, SidenavEmitTypes, ParentLinkItem, NavLinks, NavItem, MenuLinkItem } from './sidenav';
+import type { SidenavPropTypes, SidenavEmitTypes, ParentLinkItem, NavLinks, NavItem } from './sidenav';
 
 interface ObjectItem {
   redirect: {
@@ -69,15 +69,16 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
     return titles.map(transformToCamelCaseId).join('_');
   }
   const confirmIfOwnDomain = (url: string) => {
+    const domain = window.location.href; 
     const urlHostname = new URL(url).hostname;
-    const currentHostname = window.location.hostname;
-    const isOwnDomain = urlHostname === currentHostname || currentHostname === 'localhost'
+    const isOwnDomain = domain === urlHostname || window.location.hostname === 'localhost'
     return isOwnDomain;
   }
 
   const getPathFromUrl = (url: string): string => {
     const parsedUrl = new URL(url);
-    return parsedUrl.pathname;
+    return parsedUrl ? parsedUrl.pathname : ''; 
+    
   }
 
   const navLinkCondition = (link: NavItem) => {
@@ -99,72 +100,31 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
     return Object.values(groups).map(group => ({ parentLinks: group.map(mapItemToNav) }));
   }
 
-  // const mapItemToNav = (item: NavItem): ParentLinkItem => {
-  //   return {
-  //       title: item.label,
-  //       icon: item.icon || "",
-  //       redirect: item.url
-  //           ? {
-  //               openInNewTab: item.isNewTab || false,
-  //               isAbsoluteURL: !confirmIfOwnDomain(item.url),
-  //               link: navLinkCondition(item) || "",
-  //           }
-  //           : undefined,
-  //       menuLinks: item.children && item.children.length > 0
-  //           ? [{
-  //               menuHeading: '',
-  //               items: item.children.map(child => mapItemToNav(child))
-  //           }]
-  //           : [],
-  //       submenuLinks: item.children && item.children.length > 0 && !item.children.some(c => c.children)
-  //           ? [{
-  //               subMenuHeading: '',
-  //               items: item.children.map(child => mapItemToNav(child)),
-  //           }]
-  //           : [],
-  //   }
-  // }
-
-    const mapItemToNav = (item: NavItem): ParentLinkItem | MenuLinkItem => {
-        const groupChildrenByProperty = (
-            children: NavItem[] | undefined,
-            property: keyof NavItem
-        ): { [key: string]: NavItem[] } => {
-            if (!children || children.length === 0) return {};
-            return children.reduce((acc: Record<string, NavItem[]>, child) => {
-                const key = String(child[property] || '');
-                acc[key] = acc[key] || [];
-                acc[key].push(child);
-                return acc;
-            }, {});
-        };
-
-        const mapGroupedChildren = (
-            groupedChildren: { [key: string]: NavItem[] },
-            headingKey: 'menuHeading' | 'subMenuHeading'
-        ) => {
-            return Object.entries(groupedChildren).map(([groupName, groupItems]) => ({
-                [headingKey]: groupName,
-                items: groupItems.map(mapItemToNav),
-            }));
-        };
-
-        const groupedChildren = groupChildrenByProperty(item.children ?? undefined, 'groupName');
-
-        return {
-            title: item.label,
-            icon: item.icon || undefined,
-            redirect: item.url
-                ? {
-                    openInNewTab: item.isNewTab || false,
-                    isAbsoluteURL: !confirmIfOwnDomain(item.url as string),
-                    link: navLinkCondition(item),
-                }
-                : undefined,
-            menuLinks: mapGroupedChildren(groupedChildren, 'menuHeading') as { menuHeading: string; items: ParentLinkItem[]; }[],
-            submenuLinks: mapGroupedChildren(groupedChildren, 'subMenuHeading') as { subMenuHeading: string; items: ParentLinkItem[]; }[],
-        };
-    };
+  const mapItemToNav = (item: NavItem): ParentLinkItem => {
+    return {
+        title: item.label,
+        icon: item.icon || "",
+        redirect: item.url
+            ? {
+                openInNewTab: item.isNewTab || false,
+                isAbsoluteURL: !confirmIfOwnDomain(item.url),
+                link: navLinkCondition(item) || "",
+            }
+            : undefined,
+        menuLinks: item.children && item.children.length > 0
+            ? [{
+                menuHeading: '',
+                items: item.children.map(child => mapItemToNav(child))
+            }]
+            : [],
+        submenuLinks: item.children && item.children.length > 0 && !item.children.some(c => c.children)
+            ? [{
+                subMenuHeading: '',
+                items: item.children.map(child => mapItemToNav(child)),
+            }]
+            : [],
+    }
+  }
 
   // Helper function to extract valid NavItems from an array of objects
   const extractValidNavItems = <T extends Record<string, unknown>>(items: T[]): NavItem[] => {

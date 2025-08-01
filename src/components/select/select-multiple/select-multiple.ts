@@ -35,6 +35,10 @@ export const multiSelectPropTypes = {
     type: Array as PropType<(string | number | Record<string, unknown>)[]>,
     default: () => [],
   },
+  searchValue: {
+    type: String,
+    default: '',
+  },
   options: {
     type: Array as PropType<MenuListType[] | string[] | Record<string, unknown>[]>,
     required: true,
@@ -121,11 +125,25 @@ export const multiSelectPropTypes = {
     type: Boolean,
     default: false,
   },
+  searchable: {
+    type: Boolean,
+    default: false,
+  },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+  disabledLocalSearch: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const multiSelectEmitTypes = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'update:modelValue': (_value: unknown) => true,
+  'update:search': (value: string) => typeof value === 'string',
+  'infinite-scroll-trigger': Boolean,
 };
 
 export type MultiSelectPropTypes = ExtractPropTypes<typeof multiSelectPropTypes>;

@@ -1,16 +1,26 @@
 # Changelog
 
+## 2.11.3 (2025-07-31)
+
+-Feat
+
+- search Field Supported
+  - local
+  - API Based Search
+    -Infinite Scroll
+- Commit 12bd0978: feat: Add infinite scroll and search functionality to Multi Select component ([#12bd0978](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/12bd09784691f7178641a10292b3c792360a6bae?refName=refs/heads/2025/feat/andrea/added-search-multi-select) @adestajo)
 
 ## 2.11.2 (2025-07-31)
 
 -Fix
-  - Fix for error Failed to resolve entry for package design-system-next ([#23bff266](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23bff266b392882e601c5ed2238be830e377b325?refName=refs/heads/2025/fix/dale/umd-file-creation&path=/package.json) @dale)
+
+- Fix for error Failed to resolve entry for package design-system-next ([#23bff266](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23bff266b392882e601c5ed2238be830e377b325?refName=refs/heads/2025/fix/dale/umd-file-creation&path=/package.json) @dale)
 
 ## 2.11.1 (2025-07-31)
 
 - Fix
   - Sidenav: Fixed mapping issue for subheading in navigation structure and improved path checking logic
-  ([#a00e647](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a00e647966fc0b37a4259e0421c5213eae3d28d1?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSIDENAV_SUBHEADING) by @bsolis)
+    ([#a00e647](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a00e647966fc0b37a4259e0421c5213eae3d28d1?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSIDENAV_SUBHEADING) by @bsolis)
 
 ## 2.11.0 (2025-07-31)
 
@@ -25,11 +35,11 @@
   - fix: Updated stacking sidepanel and sidepanel transition ([#083c79cf](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/083c79cfe6e06359bab6588009387527b918d2af?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FStackingSidePanel) by @jbanares)
   - fix: Improve stacking sidepanel transition timing ans synchronization ([#0c51d805](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0c51d805181e037e065e9ad1bf1bd4ab0a1612d7?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FStackingSidePanel) by @mraquel)
 
-
 ## 2.10.3 (2025-07-30)
 
--Feat 
-  - Added a feature that generates UMD file to be used in legacy applications ([#22aa5f41](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/22aa5f418dfd579450268852e3666dbcb3ec46ac?refName=refs%2Fheads%2F2025%2Ffeature%2Fdale%2Fumd-file-creation) by @dale)
+-Feat
+
+- Added a feature that generates UMD file to be used in legacy applications ([#22aa5f41](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/22aa5f418dfd579450268852e3666dbcb3ec46ac?refName=refs%2Fheads%2F2025%2Ffeature%2Fdale%2Fumd-file-creation) by @dale)
 
 ## 2.10.2 (2025-07-30)
 

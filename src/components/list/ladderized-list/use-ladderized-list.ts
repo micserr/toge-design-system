@@ -60,24 +60,52 @@ export const useLadderizedList = (
 
   const prevList = ref<MenuListType[]>([]);
 
+  // Helper to find full path to a value in a nested options tree, returns array of option objects
+  function findOptionPath(options, targetValue, path = []) {
+    for (const item of options) {
+      const newPath = [...path, item];
+      if (String(item.value) === String(targetValue)) {
+        return newPath;
+      }
+      if (item.sublevel) {
+        const found = findOptionPath(item.sublevel, targetValue, newPath);
+        if (found) return found;
+      }
+    }
+    return null;
+  }
+
   const handleSelectedListItem = (item: MenuListType) => {
     transitionName.value = 'slide-left';
-    // Update UI for selectedListItem
+
+    // If searching, reconstruct full path as array of option objects
+    if (searchText.value) {
+      const path = findOptionPath(menuList.value, String(item.value));
+      if (path) {
+        selectedListItem.value = path;
+        emit(
+          'update:modelValue',
+          path.map((opt) => opt.value),
+        );
+        return;
+      }
+    }
+
     updateSelectedListItem(item);
 
-    const isSameLevel = computed(() => prevList.value.some((listItem) => listItem.value === item.value));
+    const isSameLevel = prevList.value.some((listItem) => listItem.value === item.value);
 
-    // Update the activeList and activeLevel
-    if (!isSameLevel.value) {
+    if (!isSameLevel) {
       appendItemToOutput(item);
     } else {
       replaceItemInOutput(item);
     }
 
     if (item.sublevel && item.sublevel.length > 0) updateLevel(item);
-    // Update output value
     emit('update:modelValue', ladderizedListOutput.value);
   };
+  // Helper to find full path to a value in a nested options tree
+  // ...existing code...
 
   // Update UI display for selectedListItem
   const updateSelectedListItem = (item: MenuListType) => {
@@ -98,7 +126,7 @@ export const useLadderizedList = (
   // Append the new item to the output
   const appendItemToOutput = (item: MenuListType) => {
     // Prevent spamming the same item
-    if (ladderizedListOutput.value[ladderizedListOutput.value.length - 1] === item.value) return;
+    if (ladderizedListOutput.value[ladderizedListOutput.value.length - 1] === String(item.value)) return;
 
     // Update back label text
     if (backLabel.value !== '') {
@@ -110,9 +138,39 @@ export const useLadderizedList = (
     }
 
     // Update output value
-    ladderizedListOutput.value.push(item.value.toString());
+    ladderizedListOutput.value.push(String(item.value));
   };
 
+  // Recursively find the path from root to leaf value
+  function findPath(options: MenuListType[], targetValue: string, path: string[] = []): string[] | null {
+    for (const option of options) {
+      const newPath = [...path, String(option.value)];
+      if (String(option.value) === String(targetValue)) {
+        return newPath;
+      }
+      if (option.sublevel) {
+        const subPath = findPath(option.sublevel, targetValue, newPath);
+        if (subPath) return subPath;
+      }
+    }
+    return null;
+  }
+
+  // Get backLabel from path
+  function getBackLabelFromPath(options: MenuListType[], path: string[]): string {
+    const labels: string[] = [];
+    let currentOptions = options;
+    for (const value of path) {
+      const found = currentOptions.find((opt) => opt.value === value);
+      if (found) {
+        labels.push(found.text);
+        currentOptions = found.sublevel || [];
+      } else {
+        break;
+      }
+    }
+    return labels.join(', ');
+  }
   // Replace the last item in the output with the new item
   const replaceItemInOutput = (item: MenuListType) => {
     // Update back label text
@@ -124,7 +182,7 @@ export const useLadderizedList = (
     // Update output value
     const valueArray = ladderizedListOutput.value;
     valueArray?.pop();
-    valueArray?.push(item.value);
+    valueArray?.push(String(item.value));
     ladderizedListOutput.value = valueArray ?? [];
   };
 

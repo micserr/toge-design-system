@@ -1,7 +1,7 @@
-import type { ExtractPropTypes, PropType } from "vue";
-import { buttonPropTypes } from "../button";
-import type { MenuListType } from "@/components/list/list";
-import { PLACEMENTS_TYPES } from "@/components/dropdown/dropdown";
+import type { ExtractPropTypes, PropType } from 'vue';
+import { buttonPropTypes } from '../button';
+import type { MenuListType } from '@/components/list/list';
+import { PLACEMENTS_TYPES } from '@/components/dropdown/dropdown';
 
 const BUTTON_DROPDOWN_VARIANTS = ['primary', 'secondary'] as const;
 const BUTTON_DROPDOWN_TONES = ['neutral', 'success'] as const;
@@ -13,21 +13,19 @@ export const buttonDropdownProps = {
     default: [],
   },
   ...buttonPropTypes, // Inherit button properties
-  /**
-   * @description Button tone
-   */
   tone: {
     type: String as PropType<(typeof BUTTON_DROPDOWN_TONES)[number]>,
     validator: (value: (typeof BUTTON_DROPDOWN_TONES)[number]) => BUTTON_DROPDOWN_TONES.includes(value),
     default: 'neutral',
   },
-  /**
-   * @description Button Dropdown Variant
-   */
   variant: {
     type: String as PropType<(typeof BUTTON_DROPDOWN_VARIANTS)[number]>,
     validator: (value: (typeof BUTTON_DROPDOWN_VARIANTS)[number]) => BUTTON_DROPDOWN_VARIANTS.includes(value),
     default: 'primary',
+  },
+  dropdownId: {
+    type: String,
+    required: true,
   },
   menuList: {
     type: Array as PropType<MenuListType[] | string[] | Record<string, unknown>[]>,
@@ -47,10 +45,10 @@ export const buttonDropdownProps = {
     type: String,
     default: 'fit-content',
   },
-  dropdownId: {
+  popperInnerWidth: {
     type: String,
-    required: true,
-  }
+    default: 'unset',
+  },
 };
 
 export const buttonDropdownEmits = ['click', 'update:modelValue'];

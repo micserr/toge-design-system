@@ -37,11 +37,29 @@ The Button Dropdown component combines two buttons with a dropdown menu, allowin
 import { ref } from 'vue';
 const selected = ref([]);
 const menuList = ref([
-  { text: 'Add', value: 'add', icon:  'ph:check', iconColor: 'spr-text-color-supporting', onClickFn: () => {alert("Add was clicked.")}},
-  { text: 'Delete', value: 'delete', icon: 'ph:trash', textColor: 'spr-text-color-danger-base', onClickFn: () => {alert("Delete was clicked.")} },
+  {
+    text: 'Add',
+    value: 'add',
+    icon: 'ph:check',
+    iconColor: 'spr-text-color-supporting',
+    onClickFn: () => {
+      alert('Add was clicked.');
+    },
+  },
+  {
+    text: 'Delete',
+    value: 'delete',
+    icon: 'ph:trash',
+    textColor: 'spr-text-color-danger-base',
+    onClickFn: () => {
+      alert('Delete was clicked.');
+    },
+  },
 ]);
 
-const mainButtonClicked = () => { alert("Main button was clicked.") }
+const mainButtonClicked = () => {
+  alert('Main button was clicked.');
+};
 </script>
 ```
 
@@ -67,20 +85,10 @@ const mainButtonClicked = () => { alert("Main button was clicked.") }
 </div>
 
 ```vue
-<spr-button-dropdown
-  dropdown-id="example2"
-  v-model="selectedNeutral"
-  :menu-list="menuList"
-  tone="neutral"
->
+<spr-button-dropdown dropdown-id="example2" v-model="selectedNeutral" :menu-list="menuList" tone="neutral">
   Neutral
 </spr-button-dropdown>
-<spr-button-dropdown
-  dropdown-id="example3"
-  v-model="selectedSuccess"
-  :menu-list="menuList"
-  tone="success"
->
+<spr-button-dropdown dropdown-id="example3" v-model="selectedSuccess" :menu-list="menuList" tone="success">
   Success
 </spr-button-dropdown>
 ```
@@ -114,27 +122,13 @@ const mainButtonClicked = () => { alert("Main button was clicked.") }
 </div>
 
 ```vue
-<spr-button-dropdown
-  v-model="selectedSmall"
-  dropdown-id="example4"
-  :menu-list="menuList"
-  size="small"
->
+<spr-button-dropdown v-model="selectedSmall" dropdown-id="example4" :menu-list="menuList" size="small">
   Small
 </spr-button-dropdown>
-<spr-button-dropdown
-  v-model="selectedMedium"
-  dropdown-id="example5"
-  :menu-list="menuList"
->
+<spr-button-dropdown v-model="selectedMedium" dropdown-id="example5" :menu-list="menuList">
   Medium
 </spr-button-dropdown>
-<spr-button-dropdown
-  v-model="selectedLarge"
-  dropdown-id="example6"
-  :menu-list="menuList"
-  size="large"
->
+<spr-button-dropdown v-model="selectedLarge" dropdown-id="example6" :menu-list="menuList" size="large">
   Large
 </spr-button-dropdown>
 ```
@@ -161,20 +155,10 @@ const mainButtonClicked = () => { alert("Main button was clicked.") }
 </div>
 
 ```vue
-<spr-button-dropdown
-  v-model="selectedPrimary"
-  dropdown-id="example7"
-  :menu-list="menuList"
-  variant="primary"
->
+<spr-button-dropdown v-model="selectedPrimary" dropdown-id="example7" :menu-list="menuList" variant="primary">
   Primary
 </spr-button-dropdown>
-<spr-button-dropdown
-  v-model="selectedSecondary"
-  dropdown-id="example8"
-  :menu-list="menuList"
-  variant="secondary"
->
+<spr-button-dropdown v-model="selectedSecondary" dropdown-id="example8" :menu-list="menuList" variant="secondary">
   Secondary
 </spr-button-dropdown>
 ```
@@ -202,12 +186,7 @@ const mainButtonClicked = () => { alert("Main button was clicked.") }
 </div>
 
 ```vue
-<spr-button-dropdown
-  v-model="selectedDisabled"
-  dropdown-id="example9"
-  :menu-list="menuList"
-  disabled
->
+<spr-button-dropdown v-model="selectedDisabled" dropdown-id="example9" :menu-list="menuList" disabled>
   Disabled
 </spr-button-dropdown>
 <spr-button-dropdown
@@ -222,7 +201,9 @@ const mainButtonClicked = () => { alert("Main button was clicked.") }
 ```
 
 ## API Reference
+
 ### Props
+
 <table>
   <thead>
     <tr>
@@ -234,7 +215,7 @@ const mainButtonClicked = () => { alert("Main button was clicked.") }
   </thead>
   <tbody>
     <tr>
-      <td>modelValue</td>
+      <td>v-model</td>
       <td>Selected menu value(s)</td>
       <td>MenuListType[] | string[] (check list component)</td>
       <td>[]</td>
@@ -276,10 +257,16 @@ const mainButtonClicked = () => { alert("Main button was clicked.") }
       <td>fit-content</td>
     </tr>
     <tr>
-      <td>popperWidth</td>
+      <td>popper-width</td>
       <td>Width of the dropdown menu popper</td>
       <td>string</td>
       <td>fit-content</td>
+    </tr>
+    <tr>
+      <td>popper-inner-width</td>
+      <td>Width of the dropdown menu inner content</td>
+      <td>string</td>
+      <td>unset</td>
     </tr>
     <tr>
       <td>placement</td>
@@ -307,6 +294,7 @@ const mainButtonClicked = () => { alert("Main button was clicked.") }
 </table>
 
 ### Emits
+
 <table>
   <thead>
     <tr>
@@ -330,6 +318,7 @@ const mainButtonClicked = () => { alert("Main button was clicked.") }
 </table>
 
 ### Slot
+
 The default slot of `button-dropdown` is similar to the `button` component. Icons can be included in the main button.
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">

@@ -678,6 +678,8 @@ You can modify the width of the dropdown component in two ways: by adjusting the
 
 `Popper Width` - Width of only popper element
 
+`Popper Inner Width` - Width of the inner popper element, which is the width of the dropdown menu list.
+
 <div>
   <spr-dropdown
     id="dropdown23"
@@ -1590,6 +1592,12 @@ const handleUsersSelection = () => {
       <td>Defines the width of the dropdown's popper</td>
       <td>String</td>
       <td>`100%`</td>
+    </tr>
+    <tr>
+      <td>popper-inner-width</td>
+      <td>Width of the dropdown menu inner content</td>
+      <td>String</td>
+      <td>unset</td>
     </tr>
     <tr>
       <td>popper-strategy</td>

@@ -31,7 +31,9 @@ export const dropdownPropTypes = {
     required: true,
   },
   modelValue: {
-    type: [String, Number, Object, Array] as PropType<string | number | Record<string, unknown> | (string | number | Record<string, unknown>)[]>,
+    type: [String, Number, Object, Array] as PropType<
+      string | number | Record<string, unknown> | (string | number | Record<string, unknown>)[]
+    >,
     default: () => [],
   },
   menuList: {
@@ -80,6 +82,10 @@ export const dropdownPropTypes = {
     type: String,
     default: '100%',
   },
+  popperInnerWidth: {
+    type: String,
+    default: 'unset',
+  },
   popperStrategy: {
     type: String,
     validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
@@ -100,7 +106,7 @@ export const dropdownPropTypes = {
   noCheckInList: {
     type: Boolean,
     default: false,
-  }
+  },
 };
 
 export const dropdownEmitTypes = {

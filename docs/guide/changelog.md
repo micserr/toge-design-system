@@ -2,6 +2,9 @@
 
 ## 2.11.3 (2025-07-31)
 
+- Documentation
+  - Commit 2f22358c: feat: add Skeletal Loader utility and update documentation([#2f22358c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2f22358cca982ec687639ad77a05003739c5f4f0?refName=refs/heads/2025/DOCS/ANDREA/UPDATE_DOCS_MULTI_SELECT) @adestajo)
+
 -Feat
 
 - search Field Supported

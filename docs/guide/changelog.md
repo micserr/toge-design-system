@@ -1,23 +1,54 @@
 # Changelog
 
+## 2.11.8 (2025-08-04)
+
+- Fix
+  - Sidenav: Fixed subheading hover state styling issue
+  ([#df442df7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/df442df7400623886158aeba9a7ffe561323c597?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSIDENAV_SUBHEADING) by @bsolis)
+
+## 2.11.7 (2025-04-08)
+
+- Feat
+
+  - Commit c85ae134: feat: add custom color support to calendar cell component ([#c85ae134](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c85ae134ff86a0e743bd4f8592310c37b081fd47?refName=refs/heads/2025/Fix/andrea/CELL) @adestajo)
+
+## 2.11.6 (2025-04-08)
+
+- Fix
+
+  - Documentation Build Issues ([#4e6a8ece](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4e6a8eced691a7e2945ce34ba49dce03da789a55?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-fix-button-dropdown) @jarias)
+
+## 2.11.5 (2025-04-08)
+
+- Feat
+
+  - Update button dropdown and added dropdown inner popper width ([#34e217ad](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/34e217ad62ef051f494adce93d9113063175357e?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-fix-button-dropdown) @jarias)
+
+## 2.11.4 (2025-04-08)
+
+- Documentation
+
+  - Update changelog for Skeletal Loader utility addition([#214292f2](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/214292f2147df3473b3a7715e3863ef5cb4a265b?refName=refs%2Fheads%2F2025%2FDOCS%2FANDREA%2FUPDATE_DOCS_MULTI_SELECT) @adestajo)
+
 ## 2.11.3 (2025-07-31)
 
 - Documentation
+
   - Commit 2f22358c: feat: add Skeletal Loader utility and update documentation([#2f22358c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2f22358cca982ec687639ad77a05003739c5f4f0?refName=refs/heads/2025/DOCS/ANDREA/UPDATE_DOCS_MULTI_SELECT) @adestajo)
 
--Feat
+- Feat
 
-- search Field Supported
-  - local
-  - API Based Search
-    -Infinite Scroll
-- Commit 12bd0978: feat: Add infinite scroll and search functionality to Multi Select component ([#12bd0978](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/12bd09784691f7178641a10292b3c792360a6bae?refName=refs/heads/2025/feat/andrea/added-search-multi-select) @adestajo)
+  - search Field Supported
+    - local
+    - API Based Search
+      -Infinite Scroll
+  - Commit 12bd0978: feat: Add infinite scroll and search functionality to Multi Select component ([#12bd0978](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/12bd09784691f7178641a10292b3c792360a6bae?refName=refs/heads/2025/feat/andrea/added-search-multi-select) @adestajo)
 
 ## 2.11.2 (2025-07-31)
 
--Fix
+- Fix
 
-- Fix for error Failed to resolve entry for package design-system-next ([#23bff266](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23bff266b392882e601c5ed2238be830e377b325?refName=refs/heads/2025/fix/dale/umd-file-creation&path=/package.json) @dale)
+  - Error Failed to resolve entry for package design-system-next ([#23bff266](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23bff266b392882e601c5ed2238be830e377b325?refName=refs/heads/2025/fix/dale/umd-file-creation&path=/package.json) @dale)
 
 ## 2.11.1 (2025-07-31)
 

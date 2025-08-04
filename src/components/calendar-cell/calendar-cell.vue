@@ -1,5 +1,10 @@
 <template>
-  <div v-if="!props.loading" :class="getCalendarCellClassess.getMainClasses" @click="handleClick">
+  <div
+    v-if="!props.loading"
+    :class="getCalendarCellClassess.getMainClasses"
+    :style="props.customColor ? getCustomColorStyles : {}"
+    @click="handleClick"
+  >
     <slot name="prefix">
       <Icon v-if="hasIconStatus" :icon="getCellIcon" />
     </slot>
@@ -19,7 +24,7 @@
     </slot>
   </div>
 
-  <div v-else :class="getCalendarCellClassess.getMainClasses" />
+  <div v-else :class="getCalendarCellClassess.getMainClasses" :style="props.customColor ? getCustomColorStyles : {}" />
 </template>
 
 <script setup lang="ts">
@@ -33,6 +38,14 @@ import SprStatus from '@/components/status/status.vue';
 const props = defineProps(calendarCellPropTypes);
 const emit = defineEmits(calendarCellEmitTypes);
 
-const { getCalendarCellClassess, getShiftLabel, getCellIcon, hasIconStatus, isError, hasContent, handleClick } =
-  useCalendarCell(props, emit);
+const {
+  getCalendarCellClassess,
+  getShiftLabel,
+  getCellIcon,
+  hasIconStatus,
+  isError,
+  hasContent,
+  handleClick,
+  getCustomColorStyles,
+} = useCalendarCell(props, emit);
 </script>

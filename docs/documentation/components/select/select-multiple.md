@@ -1112,7 +1112,7 @@ const userList = ref([
 
 <script lang="ts" setup>
 import { ref, onMounted, watch } from "vue";
-import { debounce } from 'lodash';
+import { useDebounceFn } from '@vueuse/core';
 
 import { Icon } from '@iconify/vue';
 
@@ -1286,7 +1286,7 @@ const getNextOptionsViaAPI = async () => {
   }
 };
 
-const debouncedSetOptions = debounce(() => {
+const debouncedSetOptions = useDebounceFn(() => {
   APIisLoading.value = true;
   pagination.value.currentPage = 1;
   optionsAPI.value = [];

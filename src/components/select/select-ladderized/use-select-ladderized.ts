@@ -58,6 +58,7 @@ export const useSelectLadderized = (
 
     // If the selectedItems is a single value (leaf from search), reconstruct the full path
     let fullPath: string[] | null = null;
+
     if (selectedItems.length === 1) {
       // Find the full path from root to leaf
       fullPath = findPathToValue(ladderizedSelectOptions.value, selectedItems[0]);
@@ -65,8 +66,10 @@ export const useSelectLadderized = (
         // Traverse the tree by path, always matching the next text in the sublevel
         let currentLevel = ladderizedSelectOptions.value;
         const valuePath: (string | number)[] = [];
+
         for (const text of fullPath) {
           const found = currentLevel.find((item) => item.text === text);
+
           if (found) {
             valuePath.push(found.value);
             currentLevel = found.sublevel || [];
@@ -74,8 +77,10 @@ export const useSelectLadderized = (
             break;
           }
         }
-        ladderizedSelectModel.value = valuePath;
+
+        ladderizedSelectModel.value = valuePath.map(String);
         inputText.value = fullPath.join(' > ');
+
         // Find the actual item object for the last value in the path
         let leafItem: MenuListType | undefined = undefined;
         let leafLevel = ladderizedSelectOptions.value;

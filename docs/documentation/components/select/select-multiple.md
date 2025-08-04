@@ -1,5 +1,6 @@
 ---
-outline: 'deep'
+title: Ladderized Select
+outline: deep
 ---
 
 # Multi Select
@@ -24,33 +25,28 @@ The Multi Select component allows users to select multiple options from a select
 
 ```vue
 <template>
-  <spr-select-multiple
-    id="sample-select"
-    v-model="selectBasic"
-    label="Multi-Select Label"
-    placeholder="Select an option"
-    :options="options"
+  id="sample-select" v-model="selectBasic" label="Multi-Select Label" placeholder="Select an option" :options="options"
   />
+
+  <script lang="ts" setup>
+    import { ref } from 'vue';
+
+    const selectBasic = ref([]); // Use an array for multi-select
+    const options = ref([
+      { text: 'Apple', value: 'apple' },
+      { text: 'Banana', value: 'banana' },
+      { text: 'Cherry', value: 'cherry' },
+      { text: 'Date', value: 'date' },
+      { text: 'Elderberry', value: 'elderberry' },
+      { text: 'Fig', value: 'fig' },
+      { text: 'Grape', value: 'grape' },
+      { text: 'Nectarine', value: 'nectarine' },
+      { text: 'Orange', value: 'orange' },
+      { text: 'Papaya', value: 'papaya' },
+      { text: '89 Quince', value: '50' },
+    ]);
+  </script>
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const selectBasic = ref([]); // Use an array for multi-select
-const options = ref([
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Cherry', value: 'cherry' },
-  { text: 'Date', value: 'date' },
-  { text: 'Elderberry', value: 'elderberry' },
-  { text: 'Fig', value: 'fig' },
-  { text: 'Grape', value: 'grape' },
-  { text: 'Nectarine', value: 'nectarine' },
-  { text: 'Orange', value: 'orange' },
-  { text: 'Papaya', value: 'papaya' },
-  { text: '89 Quince', value: '50' },
-]);
-</script>
 ```
 
 ## Chipped
@@ -78,7 +74,6 @@ const options = ref([
     label="Multi-Select Label"
     placeholder="Select an option"
     :options="options"
-    chipped
   />
 </template>
 ```
@@ -216,6 +211,170 @@ You can also pre-select items using an array of objects if your options uses obj
 > - If you want to start with no selection, use an empty array: `ref([])`.
 > - If you want to pre-select all items, use the full array of values from your options.
 > - The component will now always treat the model as an array for multi-select, so toggling and pre-selection will work as expected.
+
+## Search
+
+The search feature allows users to quickly filter and find specific items within the select list by typing in a search query.
+
+- Use the `searchable-options` prop to enable the search input within the select component.
+
+<div class="spr-grid spr-gap-4">
+  <spr-select-multiple
+    id="sample-selectSearch"
+    v-model="selectModel.selectSearch"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    searchable
+  />
+
+  <code class="spr-font-medium">
+    V-Model: {{ selectModel.selectSearch ? selectModel.selectSearch : `[]` }}
+  </code>
+</div>
+
+```vue
+<template>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    searchable
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectModel = ref('');
+
+const options = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+  { text: 'Fig', value: 'fig' },
+  { text: 'Grape', value: 'grape' },
+  { text: 'Nectarine', value: 'nectarine' },
+  { text: 'Orange', value: 'orange' },
+  { text: 'Papaya', value: 'papaya' },
+  { text: '89 Quince', value: '50' },
+]);
+</script>
+```
+
+You can disable local search by passing the `disabled-local-search` prop. This is useful when you want to handle search via API only, and not filter the options locally.
+
+Use `@searchString` emit to get the search string when the user types in the search input. This allows you to handle the search logic externally, such as fetching options from an API based on the search query.
+
+````vue
+<div class="spr-grid spr-gap-4">
+  <spr-select-multiple
+    id="sample-selectSearchDisabledLocalSearch"
+    v-model="selectModel.selectSearchDisabledLocalSearch"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    searchable
+    disabled-local-search
+  />
+  
+  <code class="spr-font-medium">
+    V-Model: {{ selectModel.selectSearchDisabledLocalSearch ? selectModel.selectSearchDisabledLocalSearch : `[]` }}
+  </code>
+</div>
+
+```vue
+<template>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    searchable
+    disabled-local-search
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectModel = ref('');
+
+const options = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+  { text: 'Fig', value: 'fig' },
+  { text: 'Grape', value: 'grape' },
+  { text: 'Nectarine', value: 'nectarine' },
+  { text: 'Orange', value: 'orange' },
+  { text: 'Papaya', value: 'papaya' },
+  { text: '89 Quince', value: '50' },
+]);
+</script>
+````
+
+You can disable local search by passing the `disabled-local-search` prop. This is useful when you want to handle search via API only, and not filter the options locally.
+
+Use `@searchString` emit to get the search string when the user types in the search input. This allows you to handle the search logic externally, such as fetching options from an API based on the search query.
+
+````vue
+<div class="spr-grid spr-gap-4">
+  <spr-select-multple
+    id="sample-selectSearchDisabledLocalSearch"
+    v-model="selectModel.selectSearchDisabledLocalSearch"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    searchable
+    disabled-local-search
+  />
+  
+  <code class="spr-font-medium">
+    V-Model: {{ selectModel.selectSearchDisabledLocalSearch ? selectModel.selectSearchDisabledLocalSearch : `""` }}
+  </code>
+</div>
+
+```vue
+<template>
+  <spr-select-multple
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    searchable
+    disabled-local-search
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectModel = ref('');
+
+const options = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+  { text: 'Fig', value: 'fig' },
+  { text: 'Grape', value: 'grape' },
+  { text: 'Nectarine', value: 'nectarine' },
+  { text: 'Orange', value: 'orange' },
+  { text: 'Papaya', value: 'papaya' },
+  { text: '89 Quince', value: '50' },
+]);
+</script>
+````
 
 ## Placements
 
@@ -751,118 +910,6 @@ const userList = ref([
 </script>
 ```
 
-## Infinite Scroll
-
-<div>
-  <spr-select-multiple
-    id="object-select"
-    v-model="multipleSelected"
-    v-model:searchValue="search"
-    label="Select Users"
-    placeholder="Select users"
-    :options="optionsAPI"
-    searchable
-    clearable
-    disabled-local-search
-    :loading="APIisLoading"
-    @infinite-scroll-trigger="handleInfiniteScrollTrigger"
-  />
-  <div class="spr-my-3 spr-p-4 spr-bg-blue-100">
-    <h5>Paginated Options - Should load 10 Items per page:</h5>
-    <p>Pagination:</p>
-    <pre>{{ JSON.stringify(pagination, null, 2) }}</pre>
-    <p>Data:</p>
-    {{ optionsAPI }}
-  </div>
-</div>
-
-```vue
-<template>
-  <spr-select-multiple
-    id="object-select"
-    v-model="multipleSelected"
-    v-model:searchValue="search"
-    label="Select Users"
-    placeholder="Select users"
-    :options="optionsAPI"
-    searchable
-    disabled-local-search
-    :loading="APIisLoading"
-    @infinite-scroll-trigger="handleInfiniteScrollTrigger"
-  />
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const multipleSelected = ref([]);
-const optionsAPI = ref<optionsType[]>([]);
-const search = ref('');
-
-const APIisLoading = ref(false);
-
-const pagination = ref({
-  totalpages: 10,
-  currentPage: 1,
-});
-
-const setOptionsViaAPI = () => {
-  getNextOptionsViaAPI();
-};
-
-const handleInfiniteScrollTrigger = () => {
-  if (pagination.value.currentPage === pagination.value.totalpages || APIisLoading.value) return;
-
-  APIisLoading.value = true;
-  pagination.value.currentPage += 1;
-
-  getNextOptionsViaAPI();
-};
-
-const getNextOptionsViaAPI = async () => {
-  try {
-    const url = search.value
-      ? `https://api.thedogapi.com/v1/breeds/search?q=${search.value}&page=${pagination.value.currentPage}&limit=10`
-      : `https://api.thedogapi.com/v1/breeds?page=${pagination.value.currentPage}&limit=10`;
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    const options = await response.json();
-
-    optionsAPI.value = options.length
-      ? [
-          ...(optionsAPI.value || []),
-          ...options.map((option) => ({
-            text: option.name,
-            value: option.id,
-          })),
-        ]
-      : [];
-
-    APIisLoading.value = false;
-  } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-  }
-};
-
-// Create a debounced version of the API call function
-const debouncedSetOptions = debounce(() => {
-  APIisLoading.value = true;
-  pagination.value.currentPage = 1;
-  optionsAPI.value = [];
-  setOptionsViaAPI();
-}, 300); // 300ms debounce time - adjust as needed
-
-watch(search, () => {
-  debouncedSetOptions();
-});
-};
-</script>
-```
-
 > **Note:**
 >
 > - If you want to start with no selection, use an empty array: `ref([])`.
@@ -1085,6 +1132,8 @@ const selectModel = ref({
   selectChipped: [],
   selectGroupedItemsBy: [],
   selectPreSelectedItems: ['100', '200', 'cherry'],
+  selectSearch: [],
+  selectSearchDisabledLocalSearch: [],
   selectPlacements: [],
   selectClearable: [],
   selectWidth: [],

@@ -19,10 +19,13 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
 
   const listClasses: ComputedRef<ListClasses> = computed(() => {
     const listItemClasses = classNames(
-      'spr-flex spr-justify-between spr-cursor-pointer spr-items-center spr-gap-1.5 spr-rounded-lg spr-p-2',
+      'spr-flex spr-cursor-pointer spr-items-center spr-gap-1.5 spr-rounded-lg spr-p-2',
       'spr-transition spr-duration-150 spr-ease-in-out',
       'hover:spr-background-color-hover',
       'active:spr-background-color-single-active active:spr-scale-[.98]',
+      {
+        'spr-justify-between': !multiSelect.value,
+      },
     );
 
     return { listItemClasses };

@@ -13,10 +13,10 @@ export type MenuListType = {
   group?: string;
   disabled?: boolean;
   _originalObject?: Record<string, unknown>; // Store original object reference when mapping complex objects
-  icon?: string, // String value for Iconify
-  iconColor?: string,
-  textColor?: string,
-  onClickFn?: () => void,
+  icon?: string; // String value for Iconify
+  iconColor?: string;
+  textColor?: string;
+  onClickFn?: () => void;
 };
 
 export type GroupedMenuListType = {
@@ -28,6 +28,10 @@ export const listPropTypes = {
   modelValue: {
     type: Array as PropType<MenuListType[]>,
     default: [],
+  },
+  searchValue: {
+    type: String,
+    default: '',
   },
   menuList: {
     type: Array as PropType<MenuListType[]>,
@@ -64,14 +68,23 @@ export const listPropTypes = {
     type: Boolean,
     default: false,
   },
+  disabledLocalSearch: {
+    type: Boolean,
+    default: false,
+  },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
   noCheck: {
     type: Boolean,
     default: false,
-  }
+  },
 };
 
 export const listEmitTypes = {
   'update:modelValue': (value: MenuListType[]) => value,
+  'update:search': (value: string) => typeof value === 'string',
 };
 
 export type ListPropTypes = ExtractPropTypes<typeof listPropTypes>;

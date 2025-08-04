@@ -1,12 +1,7 @@
 <template>
   <div class="spr-font-main">
     <div v-if="props.searchableMenu" class="spr-mb-3 spr-grid spr-gap-3">
-      <spr-input
-        v-model="searchText"
-        :placeholder="props.searchableMenuPlaceholder"
-        autocomplete="off"
-        @keyup="handleSearch"
-      />
+      <spr-input-search v-model="searchText" :placeholder="props.searchableMenuPlaceholder" autocomplete="off" />
 
       <div v-if="isParentMenu" class="spr-background-color-surface spr-h-[1px]"></div>
     </div>
@@ -62,7 +57,7 @@
         </div>
       </div>
     </template>
-    <template v-else>
+    <template v-if="localizedMenuList.length > 0">
       <div
         v-if="localizedMenuList.length === 0"
         class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center"
@@ -114,6 +109,13 @@
         </div>
       </div>
     </template>
+
+    <template v-else>
+      <div v-if="props.loading" class="spr-skeletal-loader spr-h-8 spr-w-full spr-rounded-md" />
+      <div v-else class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
+        <span class="spr-body-sm-regular spr-m-0">No results found</span>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -124,7 +126,7 @@ import { listPropTypes, listEmitTypes } from './list';
 import { useList } from './use-list';
 
 import SprCheckbox from '@/components/checkbox/checkbox.vue';
-import SprInput from '@/components/input/input.vue';
+import SprInputSearch from '@/components/input/input-search/input-search.vue';
 
 const props = defineProps(listPropTypes);
 const emit = defineEmits(listEmitTypes);
@@ -136,7 +138,6 @@ const {
   isParentMenu,
   isItemSelected,
   getListItemClasses,
-  handleSearch,
   handleSelectedItem,
 } = useList(props, emit);
 </script>

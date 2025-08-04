@@ -1,5 +1,5 @@
 import { ref, toRefs, computed, ComputedRef, onMounted, watch } from 'vue';
-import { onClickOutside, useVModel, useFocus } from '@vueuse/core';
+import { onClickOutside, useVModel, useFocus, useInfiniteScroll } from '@vueuse/core';
 
 import classNames from 'classnames';
 
@@ -18,7 +18,7 @@ interface MultiSelectClasses {
 }
 
 export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<MultiSelectEmitTypes>['emit']) => {
-  const { displayText, options, textField, valueField, active, disabled, error } = toRefs(props);
+  const { displayText, options, textField, valueField, active, disabled, error, disabledLocalSearch } = toRefs(props);
 
   const multiSelectClasses: ComputedRef<MultiSelectClasses> = computed(() => {
     const baseClasses = classNames('spr-flex spr-flex-col spr-gap-size-spacing-4xs');
@@ -102,6 +102,10 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
   const inputText = ref<string | number>('');
   const inputTextBackup = ref<string | number>('');
   const chippedInputTextRef = ref(null);
+
+  const search = useVModel(props, 'searchValue', emit);
+  const searchInput = ref<string>('');
+  const multipleSelectPopperRef = ref<HTMLDivElement | null>(null);
 
   const { focused } = useFocus(chippedInputTextRef);
   /**
@@ -255,44 +259,44 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
   const updateMultiSelectedItemsFromValue = () => {
     if (!multiSelectOptions.value.length) return;
 
-    const values = normalizedValue.value;
+    if (!disabledLocalSearch.value) {
+      const values = normalizedValue.value;
+      if (!values || !values.length) {
+        multiSelectedListItems.value = [];
+        inputText.value = '';
+        inputTextBackup.value = '';
 
-    if (!values || !values.length) {
-      multiSelectedListItems.value = [];
-      inputText.value = '';
-      inputTextBackup.value = '';
+        return;
+      }
+      multiSelectedListItems.value = multiSelectOptions.value.filter((item) => {
+        return values.some((val) => {
+          let itemVal = item.value;
+          let valToCompare = val;
 
-      return;
-    }
-
-    multiSelectedListItems.value = multiSelectOptions.value.filter((item) => {
-      return values.some((val) => {
-        let itemVal = item.value;
-        let valToCompare = val;
-
-        if (typeof itemVal === 'string' && itemVal.startsWith('{') && itemVal.endsWith('}')) {
-          try {
-            itemVal = JSON.parse(itemVal);
-          } catch {
-            // ignore
+          if (typeof itemVal === 'string' && itemVal.startsWith('{') && itemVal.endsWith('}')) {
+            try {
+              itemVal = JSON.parse(itemVal);
+            } catch {
+              // ignore
+            }
           }
-        }
 
-        if (typeof valToCompare === 'string' && valToCompare.startsWith('{') && valToCompare.endsWith('}')) {
-          try {
-            valToCompare = JSON.parse(valToCompare);
-          } catch {
-            // ignore
+          if (typeof valToCompare === 'string' && valToCompare.startsWith('{') && valToCompare.endsWith('}')) {
+            try {
+              valToCompare = JSON.parse(valToCompare);
+            } catch {
+              // ignore
+            }
           }
-        }
 
-        if (typeof itemVal === 'object' && typeof valToCompare === 'object') {
-          return JSON.stringify(itemVal) === JSON.stringify(valToCompare);
-        }
+          if (typeof itemVal === 'object' && typeof valToCompare === 'object') {
+            return JSON.stringify(itemVal) === JSON.stringify(valToCompare);
+          }
 
-        return itemVal == valToCompare;
+          return itemVal == valToCompare;
+        });
       });
-    });
+    }
 
     if (multiSelectedListItems.value.length > 3) {
       inputText.value = `${multiSelectedListItems.value.length} items selected`;
@@ -315,6 +319,7 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
   const handleClear = () => {
     emit('update:modelValue', []);
 
+    multiSelectedListItems.value = [];
     inputText.value = '';
     multiSelectPopperState.value = false;
   };
@@ -341,6 +346,10 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     { deep: true },
   );
 
+  watch(searchInput, () => {
+    search.value = searchInput.value;
+  });
+
   /**
    * Handles closing the multi-select when clicking outside.
    */
@@ -349,6 +358,14 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
 
     updateMultiSelectedItemsFromValue();
   });
+
+  useInfiniteScroll(
+    multipleSelectPopperRef,
+    () => {
+      emit('infinite-scroll-trigger', true);
+    },
+    { distance: 10 },
+  );
 
   onMounted(() => {
     processOptions();
@@ -370,6 +387,8 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     multiSelectedListItems,
     inputText,
     isMultiSelectPopperDisabled,
+    searchInput,
+    multipleSelectPopperRef,
     handleMultiSelectedItem,
     handleChippedRemoveItem,
     handleClear,

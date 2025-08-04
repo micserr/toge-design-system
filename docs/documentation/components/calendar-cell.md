@@ -178,6 +178,20 @@ const offline = [
 <spr-calendar-cell fullwidth loading />
 ```
 
+## Custom Color
+
+when using custom colors, the color should be in hex format (e.g., `#b134eb`) and the color type will be ignored and when using color name the default color for that type will be used.
+
+<div class="spr-grid spr-grid-row-3 spr-gap-4">
+  <spr-calendar-cell custom-color="#b134eb"  type="late-morning"/>
+  <spr-calendar-cell custom-color="blue" type="late-morning"/>
+</div>
+
+```vue
+<spr-calendar-cell custom-color="#b134eb" type="late-morning" />
+<spr-calendar-cell custom-color="blue" type="late-morning" />
+```
+
 ## API Reference
 
 <table>
@@ -244,6 +258,12 @@ const offline = [
       <td>Shows a loading indicator, indicating that content is being loaded.</td>
       <td>boolean</td>
       <td>false</td>
+    </tr>
+    <tr>
+      <td>custom-color</td>
+      <td>Shows a custom color for the cell.</td>
+      <td>string</td>
+      <td>''</td>
     </tr>
   </tbody>
 </table>

@@ -11,9 +11,11 @@ export const calendarCellPropTypes = {
   },
   title: {
     type: String,
+    default: '',
   },
   description: {
     type: String,
+    default: '',
   },
   status: {
     type: String,
@@ -48,6 +50,10 @@ export const calendarCellPropTypes = {
   loading: {
     type: Boolean,
     default: false,
+  },
+  customColor: {
+    type: String,
+    default: '',
   },
 };
 

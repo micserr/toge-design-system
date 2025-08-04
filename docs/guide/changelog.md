@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.11.7 (2025-04-08)
+
+- Feat
+
+  - Commit c85ae134: feat: add custom color support to calendar cell component ([#c85ae134](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c85ae134ff86a0e743bd4f8592310c37b081fd47?refName=refs/heads/2025/Fix/andrea/CELL) @adestajo)
+
 ## 2.11.6 (2025-04-08)
 
 - Fix

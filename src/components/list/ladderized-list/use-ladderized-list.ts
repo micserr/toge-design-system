@@ -1,4 +1,4 @@
-import { computed, onBeforeMount, ref, toRefs, watch } from 'vue';
+import { onBeforeMount, ref, toRefs, watch } from 'vue';
 import { useVModel } from '@vueuse/core';
 
 import { LadderizedListPropTypes, LadderizedListEmitTypes } from './ladderized-list';
@@ -61,19 +61,27 @@ export const useLadderizedList = (
   const prevList = ref<MenuListType[]>([]);
 
   // Helper to find full path to a value in a nested options tree, returns array of option objects
-  function findOptionPath(options, targetValue, path = []) {
+  const findOptionPath = (
+    options: MenuListType[],
+    targetValue: string,
+    path: MenuListType[] = [],
+  ): MenuListType[] | null => {
     for (const item of options) {
       const newPath = [...path, item];
+
       if (String(item.value) === String(targetValue)) {
         return newPath;
       }
+
       if (item.sublevel) {
         const found = findOptionPath(item.sublevel, targetValue, newPath);
+
         if (found) return found;
       }
     }
+
     return null;
-  }
+  };
 
   const handleSelectedListItem = (item: MenuListType) => {
     transitionName.value = 'slide-left';
@@ -81,11 +89,13 @@ export const useLadderizedList = (
     // If searching, reconstruct full path as array of option objects
     if (searchText.value) {
       const path = findOptionPath(menuList.value, String(item.value));
+
       if (path) {
         selectedListItem.value = path;
+
         emit(
           'update:modelValue',
-          path.map((opt) => opt.value),
+          path.map((opt) => String(opt.value)),
         );
         return;
       }
@@ -104,8 +114,6 @@ export const useLadderizedList = (
     if (item.sublevel && item.sublevel.length > 0) updateLevel(item);
     emit('update:modelValue', ladderizedListOutput.value);
   };
-  // Helper to find full path to a value in a nested options tree
-  // ...existing code...
 
   // Update UI display for selectedListItem
   const updateSelectedListItem = (item: MenuListType) => {
@@ -141,36 +149,6 @@ export const useLadderizedList = (
     ladderizedListOutput.value.push(String(item.value));
   };
 
-  // Recursively find the path from root to leaf value
-  function findPath(options: MenuListType[], targetValue: string, path: string[] = []): string[] | null {
-    for (const option of options) {
-      const newPath = [...path, String(option.value)];
-      if (String(option.value) === String(targetValue)) {
-        return newPath;
-      }
-      if (option.sublevel) {
-        const subPath = findPath(option.sublevel, targetValue, newPath);
-        if (subPath) return subPath;
-      }
-    }
-    return null;
-  }
-
-  // Get backLabel from path
-  function getBackLabelFromPath(options: MenuListType[], path: string[]): string {
-    const labels: string[] = [];
-    let currentOptions = options;
-    for (const value of path) {
-      const found = currentOptions.find((opt) => opt.value === value);
-      if (found) {
-        labels.push(found.text);
-        currentOptions = found.sublevel || [];
-      } else {
-        break;
-      }
-    }
-    return labels.join(', ');
-  }
   // Replace the last item in the output with the new item
   const replaceItemInOutput = (item: MenuListType) => {
     // Update back label text
@@ -189,13 +167,17 @@ export const useLadderizedList = (
   const handleBackClick = () => {
     transitionName.value = 'slide-right';
     activeLevel.value -= 1;
+
     if (activeLevel.value > 0) {
       // Update back label text
       const textArray = backLabel.value.trim().split(',');
+
       textArray?.pop();
       backLabel.value = textArray?.join(', ') ?? '';
+
       // Update output value
       const valueArray = ladderizedListOutput.value;
+
       valueArray?.pop();
       ladderizedListOutput.value = valueArray ?? [];
 
@@ -216,6 +198,7 @@ export const useLadderizedList = (
     if (ladderizedListOutput.value && ladderizedListOutput.value.length > 0) {
       // Reset values
       const tempBackLabel: string[] = [];
+
       prevList.value = [];
 
       // On initialize, traverse through the activeList based from ladderizedListOutput
@@ -224,7 +207,9 @@ export const useLadderizedList = (
 
         if (item) {
           updateSelectedListItem(item);
+
           tempBackLabel.push(item.text);
+
           prevList.value = activeList.value;
           activeList.value = item.sublevel ?? prevList.value;
           activeLevel.value += item.sublevel ? 1 : 0;

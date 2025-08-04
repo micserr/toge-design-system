@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.11.6 (2025-04-08)
+
+- Fix
+
+  - Documentation Build Issues ([#4e6a8ece](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4e6a8eced691a7e2945ce34ba49dce03da789a55?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-fix-button-dropdown) @jarias)
+
 ## 2.11.5 (2025-04-08)
 
 - Feat

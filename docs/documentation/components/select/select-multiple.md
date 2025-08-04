@@ -794,6 +794,7 @@ const userList = ref([
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+import { useDebounceFn } from '@vueuse/core';
 
 const multipleSelected = ref([]);
 const optionsAPI = ref<optionsType[]>([]);
@@ -849,7 +850,7 @@ const getNextOptionsViaAPI = async () => {
 };
 
 // Create a debounced version of the API call function
-const debouncedSetOptions = debounce(() => {
+const debouncedSetOptions = useDebounceFn(() => {
   APIisLoading.value = true;
   pagination.value.currentPage = 1;
   optionsAPI.value = [];
@@ -1065,7 +1066,7 @@ watch(search, () => {
 
 <script lang="ts" setup>
 import { ref, onMounted, watch } from "vue";
-import { debounce } from 'lodash';
+import { useDebounceFn } from '@vueuse/core';
 
 import { Icon } from '@iconify/vue';
 
@@ -1237,7 +1238,7 @@ const getNextOptionsViaAPI = async () => {
   }
 };
 
-const debouncedSetOptions = debounce(() => {
+const debouncedSetOptions = useDebounceFn(() => {
   APIisLoading.value = true;
   pagination.value.currentPage = 1;
   optionsAPI.value = [];

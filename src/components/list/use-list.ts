@@ -247,30 +247,37 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     }
 
     // Recursive search for all matching items at any depth
-    function recursiveSearch(items) {
-      let results = [];
+    const recursiveSearch = (items: MenuListType[]): MenuListType[] => {
+      let results: MenuListType[] = [];
+
       for (const item of items) {
         const textMatch = item.text.toLowerCase().includes(search);
         const subtextMatch = item.subtext ? item.subtext.toLowerCase().includes(search) : false;
+
         if (textMatch || subtextMatch) {
           results.push(item);
         }
+
         if (item.sublevel && item.sublevel.length > 0) {
           results = results.concat(recursiveSearch(item.sublevel));
         }
       }
+
       return results;
-    }
+    };
 
     const filtered = recursiveSearch(props.menuList);
+
     localizedMenuList.value = filtered;
 
     // If grouping is enabled, regroup the filtered list
     if (groupItemsBy?.value) {
       groupedMenuList.value = [{ groupLabel: 'no-group', items: [] }];
+
       if (groupItemsBy.value === 'default') {
         filtered.forEach((item) => {
           const groupKey = item.group || 'no-group';
+
           if (groupedMenuList.value.some((g) => g.groupLabel === groupKey)) {
             groupedMenuList.value.find((g) => g.groupLabel === groupKey)?.items.push(item);
           } else {
@@ -287,6 +294,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
           .forEach((item) => {
             const firstCharacter = item.text.charAt(0);
             const groupKey = /^\d/.test(firstCharacter) ? 'no-group' : firstCharacter.toUpperCase();
+
             if (groupedMenuList.value.some((g) => g.groupLabel === groupKey)) {
               groupedMenuList.value.find((g) => g.groupLabel === groupKey)?.items.push(item);
             } else {

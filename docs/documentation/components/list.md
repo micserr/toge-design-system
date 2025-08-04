@@ -5,6 +5,7 @@ outline: 'deep'
 # List
 
 ## Basic Usage
+
 The list component uses the `v-model` directive to bind the selected items to a variable. The `menu-list` prop is used to pass the list of items to display in the menu. Each item in the list should contain `text` and `value` properties.
 
 <div 
@@ -22,10 +23,10 @@ The list component uses the `v-model` directive to bind the selected items to a 
 
 ```vue
 <template>
-  <div 
+  <div
     :class="[
-      'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
-      'spr-border spr-border-solid spr-border-color-weak'
+      'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
+      'spr-border-color-weak spr-border spr-border-solid',
     ]"
   >
     <spr-list v-model="singleSelectOutput" :menu-list="menuList" />
@@ -67,6 +68,7 @@ const menuList = ref([
 
 ::: tip NOTE
 The `menu-list` is an array of `MenuListType` as defined below:
+
 ```ts
 type MenuListType = {
   text: string;
@@ -76,12 +78,13 @@ type MenuListType = {
   sublevel?: MenuListType[]; // Property used for ladderized list
   disabled?: boolean;
   _originalObject?: Record<string, unknown>; // Store original object reference when mapping complex objects
-  icon?: string, // String value for Iconify
-  iconColor?: string,
-  textColor?: string,
-  onClickFn?: () => void,
+  icon?: string; // String value for Iconify
+  iconColor?: string;
+  textColor?: string;
+  onClickFn?: () => void;
 };
 ```
+
 :::
 
 ## Pre-Selected Items
@@ -192,10 +195,10 @@ You can group items by passing the `group-items-by` prop. The value of this prop
   <div class="spr-grid spr-gap-4">
     <div>
       <h5 class="spr-mb-2">Grouped by default</h5>
-      <div 
+      <div
         :class="[
-          'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
-          'spr-border spr-border-solid spr-border-color-weak'
+          'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
+          'spr-border-color-weak spr-border spr-border-solid',
         ]"
       >
         <spr-list v-model="singleSelectOutput.example3" :menu-list="groupedMenuList" group-items-by="default" />
@@ -203,10 +206,10 @@ You can group items by passing the `group-items-by` prop. The value of this prop
     </div>
     <div>
       <h5 class="spr-mb-2">Grouped by A-Z</h5>
-      <div 
+      <div
         :class="[
-          'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
-          'spr-border spr-border-solid spr-border-color-weak'
+          'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
+          'spr-border-color-weak spr-border spr-border-solid',
         ]"
       >
         <spr-list v-model="singleSelectOutput.example4" :menu-list="groupedMenuList" group-items-by="A-Z" />
@@ -214,10 +217,10 @@ You can group items by passing the `group-items-by` prop. The value of this prop
     </div>
     <div>
       <h5 class="spr-mb-2">Grouped by Z-A:</h5>
-      <div 
+      <div
         :class="[
-          'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
-          'spr-border spr-border-solid spr-border-color-weak'
+          'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
+          'spr-border-color-weak spr-border spr-border-solid',
         ]"
       >
         <spr-list v-model="singleSelectOutput.example5" :menu-list="groupedMenuList" group-items-by="Z-A" />
@@ -292,19 +295,19 @@ You can enable multiple selection of items by passing the `multi-select` prop, w
 ```vue
 <template>
   <div class="spr-grid spr-gap-4">
-    <div 
+    <div
       :class="[
-        'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
-        'spr-border spr-border-solid spr-border-color-weak'
+        'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
+        'spr-border-color-weak spr-border spr-border-solid',
       ]"
     >
       <spr-list v-model="singleSelectOutput.example6" :menu-list="menuList" multi-select />
     </div>
 
-    <div 
+    <div
       :class="[
-        'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
-        'spr-border spr-border-solid spr-border-color-weak'
+        'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
+        'spr-border-color-weak spr-border spr-border-solid',
       ]"
     >
       <spr-list v-model="singleSelectOutput.example7" :menu-list="menuList" group-items-by="A-Z" multi-select />
@@ -383,28 +386,34 @@ You can retrieve the data of the selected item using the `@update:model-value` e
 ```vue
 <template>
   <div class="spr-grid spr-gap-4">
-    <div 
+    <div
       :class="[
-        'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
-        'spr-border spr-border-solid spr-border-color-weak'
+        'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
+        'spr-border-color-weak spr-border spr-border-solid',
       ]"
     >
       <spr-list v-model="singleSelectOutput.example8" :menu-list="menuList" @update:model-value="handleSingleSelect" />
     </div>
-    <div class="spr-my-3 spr-p-4 spr-bg-blue-100">
+    <div class="spr-my-3 spr-bg-blue-100 spr-p-4">
       <h5>Output:</h5>
       <span>{{ singleSelectText }}</span>
     </div>
 
-    <div 
+    <div
       :class="[
-        'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
-        'spr-border spr-border-solid spr-border-color-weak'
+        'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
+        'spr-border-color-weak spr-border spr-border-solid',
       ]"
     >
-      <spr-list v-model="singleSelectOutput.example9" :menu-list="menuList" group-items-by="A-Z" multi-select @update:model-value="handleMultiSelect" />
+      <spr-list
+        v-model="singleSelectOutput.example9"
+        :menu-list="menuList"
+        group-items-by="A-Z"
+        multi-select
+        @update:model-value="handleMultiSelect"
+      />
     </div>
-    <div class="spr-my-3 spr-p-4 spr-bg-blue-100">
+    <div class="spr-my-3 spr-bg-blue-100 spr-p-4">
       <h5>Output:</h5>
       <span>{{ multipleSelectText }}</span>
     </div>
@@ -445,15 +454,15 @@ const singleSelectOutput = ref({
   example9: [],
 });
 
-const singleSelectText = ref("No selected item")
+const singleSelectText = ref('No selected item');
 const handleSingleSelect = (data) => {
   singleSelectText.value = data[0].text;
-}
+};
 
-const multipleSelectText = ref("No selected items");
+const multipleSelectText = ref('No selected items');
 const handleMultiSelect = (data) => {
-  multipleSelectText.value = data.map((item) => item.text).join(", ");
-}
+  multipleSelectText.value = data.map((item) => item.text).join(', ');
+};
 </script>
 ```
 
@@ -475,10 +484,10 @@ You can add subtext to the list items by including the `subtext` property in the
 ```vue
 <template>
   <div class="spr-grid spr-gap-4">
-    <div 
+    <div
       :class="[
-        'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
-        'spr-border spr-border-solid spr-border-color-weak'
+        'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
+        'spr-border-color-weak spr-border spr-border-solid',
       ]"
     >
       <spr-list v-model="singleSelectOutput" :menu-list="mockDropdownData" />
@@ -492,31 +501,31 @@ import { ref } from 'vue';
 const singleSelectOutput = ref([]);
 const mockDropdownData = [
   {
-    text: "Lion",
-    value: "lion",
-    subtext: "King of the jungle",
+    text: 'Lion',
+    value: 'lion',
+    subtext: 'King of the jungle',
   },
   {
-    text: "Elephant",
-    value: "elephant",
-    subtext: "Largest land animal",
+    text: 'Elephant',
+    value: 'elephant',
+    subtext: 'Largest land animal',
   },
   {
-    text: "Giraffe",
-    value: "giraffe",
-    subtext: "Tallest living terrestrial animal",
+    text: 'Giraffe',
+    value: 'giraffe',
+    subtext: 'Tallest living terrestrial animal',
   },
   {
-    text: "Zebra",
-    value: "zebra",
-    subtext: "Known for distinctive black and white stripes",
+    text: 'Zebra',
+    value: 'zebra',
+    subtext: 'Known for distinctive black and white stripes',
   },
 ];
 </script>
 ```
 
-
 ## Ladderized List
+
 Ladderized list is a variation of the list component that allows you to display items in a hierarchical structure. You can pass the `sublevel` property in the object from the `menu-list` array to create a ladderized list.
 
 <div class="spr-grid spr-gap-4">
@@ -528,7 +537,7 @@ Ladderized list is a variation of the list component that allows you to display 
 ```vue
 <template>
   <div class="spr-grid spr-gap-4">
-    <div class="spr-rounded-md spr-max-h-[300px] spr-border spr-border-solid spr-border-color-weak spr-overflow-hidden">
+    <div class="spr-border-color-weak spr-max-h-[300px] spr-overflow-hidden spr-rounded-md spr-border spr-border-solid">
       <spr-ladderized-list v-model="singleSelectOutput" :menu-list="mockDropdownData" />
     </div>
   </div>
@@ -539,83 +548,81 @@ import { ref } from 'vue';
 const singleSelectOutput = ref([]);
 const mockDropdownData = [
   {
-    text: "Lion",
-    value: "lion",
-    subtext: "King of the jungle",
+    text: 'Lion',
+    value: 'lion',
+    subtext: 'King of the jungle',
     sublevel: [
       {
-        text: "Cub",
-        value: "cub",
-        subtext: "Young lion",
+        text: 'Cub',
+        value: 'cub',
+        subtext: 'Young lion',
         sublevel: [
           {
-            text: "Cub 1",
-            value: "cub1",
-            
+            text: 'Cub 1',
+            value: 'cub1',
           },
           {
-            text: "Cub 2",
-            value: "cub2",
+            text: 'Cub 2',
+            value: 'cub2',
           },
         ],
       },
       {
-        text: "Pride Member",
-        value: "pride-member",
-        subtext: "Member of a lion pride",
+        text: 'Pride Member',
+        value: 'pride-member',
+        subtext: 'Member of a lion pride',
       },
     ],
   },
   {
-    text: "Elephant",
-    value: "elephant",
-    subtext: "Largest land animal",
+    text: 'Elephant',
+    value: 'elephant',
+    subtext: 'Largest land animal',
     sublevel: [
       {
-        text: "Calf",
-        value: "calf",
-        subtext: "Young elephant",
+        text: 'Calf',
+        value: 'calf',
+        subtext: 'Young elephant',
       },
     ],
   },
   {
-    text: "Giraffe",
-    value: "giraffe",
-    subtext: "Tallest living terrestrial animal",
+    text: 'Giraffe',
+    value: 'giraffe',
+    subtext: 'Tallest living terrestrial animal',
     sublevel: [
       {
-        text: "Calf",
-        value: "giraffe-calf",
-        subtext: "Young giraffe",
+        text: 'Calf',
+        value: 'giraffe-calf',
+        subtext: 'Young giraffe',
       },
       {
-        text: "Adult",
-        value: "giraffe-adult",
-        subtext: "Mature giraffe",
+        text: 'Adult',
+        value: 'giraffe-adult',
+        subtext: 'Mature giraffe',
       },
     ],
   },
   {
-    text: "Zebra",
-    value: "zebra",
-    subtext: "Known for distinctive black and white stripes",
+    text: 'Zebra',
+    value: 'zebra',
+    subtext: 'Known for distinctive black and white stripes',
     sublevel: [
       {
-        text: "Foal",
-        value: "zebra-foal",
-        subtext: "Young zebra",
+        text: 'Foal',
+        value: 'zebra-foal',
+        subtext: 'Young zebra',
       },
       {
-        text: "Mare",
-        value: "zebra-mare",
-        subtext: "Adult female zebra",
+        text: 'Mare',
+        value: 'zebra-mare',
+        subtext: 'Adult female zebra',
       },
     ],
   },
 ];
 </script>
 ```
-
 
 ## API Reference
 
@@ -658,6 +665,18 @@ const mockDropdownData = [
       <td>Pre-selects items in the list. Pass an array of strings that correspond to the `value` of the item.</td>
       <td>string[]</td>
       <td>[]</td>
+    </tr>
+    <tr>
+      <td>disabledLocalSearch</td>
+      <td>Disables the local search functionality.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>loading</td>
+      <td>Displays a loading indicator in the select component.</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
     <tr>
       <td>noCheck</td>

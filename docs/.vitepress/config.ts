@@ -274,6 +274,10 @@ export default defineConfig({
               text: 'Typography',
               link: '/documentation/utilities/typography',
             },
+            {
+              text: 'Skeletal Loader',
+              link: '/documentation/utilities/skeletal-loader',
+            },
           ],
         },
         {

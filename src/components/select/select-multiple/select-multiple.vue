@@ -119,22 +119,23 @@
       </div>
 
       <template #popper>
-        <div class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden spr-p-2">
-          <template v-if="multiSelectOptions.length > 0">
-            <spr-list
-              v-model="multiSelectedListItems"
-              :menu-list="multiSelectOptions"
-              :group-items-by="props.groupItemsBy"
-              :pre-selected-items="Array.isArray(multiSelectModel) ? multiSelectModel.flat() : [multiSelectModel]"
-              multi-select
-              @update:model-value="handleMultiSelectedItem"
-            />
-          </template>
-          <template v-else>
-            <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
-              <span class="spr-body-sm-regular spr-m-0">No results found</span>
-            </div>
-          </template>
+        <div
+          ref="multipleSelectPopperRef"
+          class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden spr-p-2"
+        >
+          <spr-list
+            v-model="multiSelectedListItems"
+            v-model:search-value="searchInput"
+            :searchable-menu="props.searchable"
+            searchable-menu-placeholder="Search"
+            :menu-list="multiSelectOptions"
+            :group-items-by="props.groupItemsBy"
+            :pre-selected-items="Array.isArray(multiSelectModel) ? multiSelectModel.flat() : [multiSelectModel]"
+            :loading="props.loading"
+            multi-select
+            :disabled-local-search="props.disabledLocalSearch"
+            @update:model-value="handleMultiSelectedItem"
+          />
         </div>
       </template>
     </Menu>
@@ -167,6 +168,8 @@ const {
   multiSelectedListItems,
   inputText,
   isMultiSelectPopperDisabled,
+  searchInput,
+  multipleSelectPopperRef,
   handleMultiSelectedItem,
   handleChippedRemoveItem,
   handleClear,

@@ -12,8 +12,10 @@ interface ListClasses {
 
 export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>['emit']) => {
   const selectedItems = useVModel(props, 'modelValue', emit);
+  const searchString = useVModel(props, 'searchValue', emit);
 
-  const { menuList, menuLevel, groupItemsBy, multiSelect, preSelectedItems, noCheck } = toRefs(props);
+  const { menuList, menuLevel, groupItemsBy, multiSelect, preSelectedItems, disabledLocalSearch, noCheck } =
+    toRefs(props);
 
   const listClasses: ComputedRef<ListClasses> = computed(() => {
     const listItemClasses = classNames(
@@ -29,6 +31,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   const searchText = ref<string>('');
 
   const localizedMenuList = ref<MenuListType[]>([]);
+  const apiSelectedList = ref<MenuListType[]>([]);
   const groupedMenuList = ref<GroupedMenuListType[]>([
     {
       groupLabel: 'no-group',
@@ -101,6 +104,15 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
 
         return false;
       });
+    }
+
+    const previousSelected = apiSelectedList.value.some((selectedItem) => {
+      return selectedItem.value === item.value;
+    });
+
+    if (previousSelected) {
+      handleSelectedItem(item);
+      return true;
     }
 
     return false;
@@ -358,12 +370,14 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
 
       if (index === -1) {
         // Add item if not already selected
-        selectedItems.value = [...selectedItems.value, item];
+        selectedItems.value = disabledLocalSearch.value
+          ? trackNewlySelectedItems(item, false)
+          : [...selectedItems.value, item];
       } else {
         // Remove item if already selected
         const updatedItems = [...selectedItems.value];
         updatedItems.splice(index, 1);
-        selectedItems.value = updatedItems;
+        selectedItems.value = disabledLocalSearch.value ? trackNewlySelectedItems(item, true) : updatedItems;
       }
     } else {
       // For single-select, simply replace the selection
@@ -373,6 +387,25 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   };
   // #endregion - Helper Methods
 
+  const trackNewlySelectedItems = (selectedItem: MenuListType, isDeselected: boolean) => {
+    const exists = apiSelectedList.value.some((existing) => {
+      return existing.value === selectedItem.value;
+    });
+
+    if (!exists) {
+      apiSelectedList.value.push(selectedItem);
+    } else {
+      const index = apiSelectedList.value.findIndex((existing) => {
+        return existing.value === selectedItem.value;
+      });
+
+      if (index !== -1 && isDeselected) {
+        apiSelectedList.value.splice(index, 1);
+      }
+    }
+    return apiSelectedList.value;
+  };
+
   watch(
     menuList,
     () => {
@@ -381,6 +414,30 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
 
       setMenuList();
       setPreSelectedItems();
+    },
+    { deep: true },
+  );
+
+  watch(searchText, () => {
+    if (disabledLocalSearch.value) {
+      searchString.value = searchText.value;
+      return;
+    }
+    handleSearch();
+  });
+
+  watch(
+    apiSelectedList,
+    () => {
+      apiSelectedList.value.forEach((prevSelected) => {
+        const selected = selectedItems.value.some((item) => {
+          return item.value === prevSelected.value;
+        });
+
+        if (!selected) {
+          selectedItems.value.push(prevSelected);
+        }
+      });
     },
     { deep: true },
   );
@@ -395,10 +452,12 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     listClasses,
     localizedMenuList,
     groupedMenuList,
+    apiSelectedList,
     isParentMenu,
     isItemSelected,
     getListItemClasses,
     handleSearch,
     handleSelectedItem,
+    trackNewlySelectedItems,
   };
 };

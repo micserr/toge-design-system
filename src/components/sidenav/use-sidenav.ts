@@ -70,7 +70,7 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
   }
   
   const confirmIfOwnDomain = (url: string) => {
-    const domain = window.location.href; 
+    const domain = window.location.hostname; 
     const urlHostname = new URL(url).hostname;
     const isOwnDomain = domain === urlHostname || window.location.hostname === 'localhost'
     return isOwnDomain;

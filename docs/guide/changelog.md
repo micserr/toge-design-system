@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.11.12 (2025-08-05)
+
+- Fix
+  - Commit d002a1bc: feat: enhance list selection logic to support preserved items with disabled local search
+    ([#d002a1bc](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d002a1bc209b084b808a6fd1b7b4487026364d9b?refName=refs/heads/2025/Fix/andrea/FIX_MULTI_SELECT) by @adestajo)
+
 ## 2.11.11 (2025-08-05)
 
 - Fix

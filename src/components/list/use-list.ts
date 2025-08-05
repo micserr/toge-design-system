@@ -72,6 +72,55 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
 
     if (directSelected) return true;
 
+    // When disabledLocalSearch is true, we need to check preserved items
+    if (disabledLocalSearch.value && preSelectedItems.value?.length) {
+      // Check if this item matches any of the pre-selected items
+      return preSelectedItems.value.some((preSelectedValue) => {
+        // Direct comparison for primitives
+        if (typeof preSelectedValue !== 'object' || preSelectedValue === null) {
+          return String(item.value) === String(preSelectedValue);
+        }
+
+        // For objects with an _originalObject property
+        if ('_originalObject' in item && item._originalObject) {
+          // Direct reference comparison (most accurate)
+          if (preSelectedValue === item._originalObject) {
+            return true;
+          }
+
+          // ID-based comparison if available
+          if (
+            'id' in preSelectedValue &&
+            item._originalObject &&
+            typeof item._originalObject === 'object' &&
+            'id' in (item._originalObject as Record<string, unknown>)
+          ) {
+            return preSelectedValue.id === (item._originalObject as Record<string, unknown>).id;
+          }
+
+          // Full JSON comparison
+          return JSON.stringify(preSelectedValue) === JSON.stringify(item._originalObject);
+        }
+
+        // Check if item.value contains or matches the preSelectedValue.id
+        if ('id' in preSelectedValue) {
+          return String(item.value).includes(String(preSelectedValue.id));
+        }
+
+        // Last resort: stringify both and compare
+        try {
+          if (typeof item.value === 'string' && item.value.startsWith('{')) {
+            const parsedValue = JSON.parse(item.value);
+            return JSON.stringify(parsedValue) === JSON.stringify(preSelectedValue);
+          }
+        } catch {
+          // Ignore parse errors, continue with other checks
+        }
+
+        return false;
+      });
+    }
+
     // Additional check for objects stored in _originalObject property
     if ('_originalObject' in item && item._originalObject && preSelectedItems.value?.length) {
       return preSelectedItems.value.some((preSelectedValue) => {
@@ -174,55 +223,55 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   const setPreSelectedItems = () => {
     if (!preSelectedItems.value?.length) return;
 
-    const selected = preSelectedItems.value
-      .map((preSelectedItem: string | number | Record<string, unknown>) => {
-        // For objects, check for matching _originalObject properties
-        if (typeof preSelectedItem === 'object' && preSelectedItem !== null) {
-          // Try to find an item with a matching _originalObject
-          const objectMatch = localizedMenuList.value.find((menuItem) => {
-            if (!menuItem._originalObject) return false;
+    let selected: MenuListType[] = [];
 
-            // Compare serialized versions for deep equality
-            return JSON.stringify(menuItem._originalObject) === JSON.stringify(preSelectedItem);
-          });
+    // If disabledLocalSearch is true, we need to preserve preSelectedItems even if they're not in the options
+    if (disabledLocalSearch.value) {
+      // First, try to find matches in the current options
+      const matchedItems = preSelectedItems.value
+        .map((preSelectedItem: string | number | Record<string, unknown>) => {
+          // Try to find a match in localizedMenuList
+          const match = findMatchingItem(preSelectedItem, localizedMenuList.value);
+          if (match) return match;
 
-          if (objectMatch) return objectMatch;
+          // If no match is found and we need to preserve the item, create a placeholder item
+          if (typeof preSelectedItem === 'object' && preSelectedItem !== null) {
+            // For objects, try to create a display-friendly representation
+            let displayText = 'Selected Item';
+            if ('name' in preSelectedItem) displayText = String(preSelectedItem.name);
+            else if ('title' in preSelectedItem) displayText = String(preSelectedItem.title);
+            else if ('label' in preSelectedItem) displayText = String(preSelectedItem.label);
+            else if ('text' in preSelectedItem) displayText = String(preSelectedItem.text);
+            else if ('id' in preSelectedItem) displayText = `Item ${preSelectedItem.id}`;
 
-          // If no direct object match, try matching on ID if both have it
-          if ('id' in preSelectedItem) {
-            const idMatch = localizedMenuList.value.find((menuItem) => {
-              if (menuItem._originalObject && 'id' in menuItem._originalObject) {
-                return menuItem._originalObject.id === preSelectedItem.id;
-              }
-              // Also check if the value field contains a stringified version that includes the id
-              return String(menuItem.value).includes(String(preSelectedItem.id));
-            });
+            return {
+              text: displayText,
+              value: 'id' in preSelectedItem ? preSelectedItem.id : JSON.stringify(preSelectedItem),
+              _originalObject: preSelectedItem,
+              _preserved: true, // Mark this as preserved so we know it wasn't in the original list
+            };
+          } else {
+            const displayText =
+              selectedItems.value.find((item) => item.value === preSelectedItem)?.text || String(preSelectedItem);
 
-            if (idMatch) return idMatch;
+            return {
+              text: displayText,
+              value: preSelectedItem,
+              _preserved: true,
+            };
           }
-        }
+        })
+        .filter(Boolean) as MenuListType[];
 
-        // First try direct value comparison (for exact matches)
-        const directMatch = localizedMenuList.value.find((menuItem) => menuItem.value === preSelectedItem);
-        if (directMatch) return directMatch;
-
-        // Special handling for number values in the preSelectedItems array
-        if (typeof preSelectedItem === 'number') {
-          // Find items that match the number value either directly or as a string
-          const numericMatch = localizedMenuList.value.find(
-            (menuItem) =>
-              // Match if menuItem.value is the same number
-              (typeof menuItem.value === 'number' && menuItem.value === preSelectedItem) ||
-              // Match if menuItem.value is a string representation of the number
-              (typeof menuItem.value === 'string' && menuItem.value === String(preSelectedItem)),
-          );
-          if (numericMatch) return numericMatch;
-        }
-
-        // Then try string comparison for cases where types differ (string vs number)
-        return localizedMenuList.value.find((menuItem) => String(menuItem.value) === String(preSelectedItem));
-      })
-      .filter(Boolean) as MenuListType[];
+      selected = matchedItems;
+    } else {
+      // Standard behavior - only select items that exist in the current options
+      selected = preSelectedItems.value
+        .map((preSelectedItem: string | number | Record<string, unknown>) => {
+          return findMatchingItem(preSelectedItem, localizedMenuList.value);
+        })
+        .filter(Boolean) as MenuListType[];
+    }
 
     if (multiSelect.value) {
       selectedItems.value = selected;
@@ -240,6 +289,55 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
         selectedItems.value = [firstItem];
       }
     }
+  };
+
+  // Helper function to find a matching item in a list based on various comparison strategies
+  const findMatchingItem = (item: string | number | Record<string, unknown>, list: MenuListType[]) => {
+    // For objects, check for matching _originalObject properties
+    if (typeof item === 'object' && item !== null) {
+      // Try to find an item with a matching _originalObject
+      const objectMatch = list.find((menuItem) => {
+        if (!menuItem._originalObject) return false;
+
+        // Compare serialized versions for deep equality
+        return JSON.stringify(menuItem._originalObject) === JSON.stringify(item);
+      });
+
+      if (objectMatch) return objectMatch;
+
+      // If no direct object match, try matching on ID if both have it
+      if ('id' in item) {
+        const idMatch = list.find((menuItem) => {
+          if (menuItem._originalObject && 'id' in menuItem._originalObject) {
+            return menuItem._originalObject.id === item.id;
+          }
+          // Also check if the value field contains a stringified version that includes the id
+          return String(menuItem.value).includes(String(item.id));
+        });
+
+        if (idMatch) return idMatch;
+      }
+    }
+
+    // First try direct value comparison (for exact matches)
+    const directMatch = list.find((menuItem) => menuItem.value === item);
+    if (directMatch) return directMatch;
+
+    // Special handling for number values
+    if (typeof item === 'number') {
+      // Find items that match the number value either directly or as a string
+      const numericMatch = list.find(
+        (menuItem) =>
+          // Match if menuItem.value is the same number
+          (typeof menuItem.value === 'number' && menuItem.value === item) ||
+          // Match if menuItem.value is a string representation of the number
+          (typeof menuItem.value === 'string' && menuItem.value === String(item)),
+      );
+      if (numericMatch) return numericMatch;
+    }
+
+    // Then try string comparison for cases where types differ (string vs number)
+    return list.find((menuItem) => String(menuItem.value) === String(item));
   };
 
   const getListItemClasses = (item: MenuListType) => ({
@@ -356,14 +454,20 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
 
       if (index === -1) {
         // Add item if not already selected
-        selectedItems.value = disabledLocalSearch.value
-          ? trackNewlySelectedItems(item, false)
-          : [...selectedItems.value, item];
+        selectedItems.value = [...selectedItems.value, item];
+        const apiSelectedList = trackNewlySelectedItems(item, false);
+
+        if (apiSelectedList.length > 0) {
+          selectedItems.value = [...selectedItems.value, ...checkDuplicateValues(selectedItems.value, apiSelectedList)];
+        }
       } else {
         // Remove item if already selected
         const updatedItems = [...selectedItems.value];
         updatedItems.splice(index, 1);
-        selectedItems.value = disabledLocalSearch.value ? trackNewlySelectedItems(item, true) : updatedItems;
+        selectedItems.value = updatedItems;
+
+        // Track the deselection but DON'T add items back to selectedItems when deselecting
+        trackNewlySelectedItems(item, true);
       }
     } else {
       // For single-select, simply replace the selection
@@ -373,22 +477,35 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   };
   // #endregion - Helper Methods
 
+  const checkDuplicateValues = (selected: MenuListType[], apiSelected: MenuListType[]) => {
+    return apiSelected.filter(
+      (apiItem) =>
+        !selected.some(
+          (selectedItem) => String(selectedItem.value) === String(apiItem.value) || selectedItem.text === apiItem.text,
+        ),
+    );
+  };
+
   const trackNewlySelectedItems = (selectedItem: MenuListType, isDeselected: boolean) => {
-    const exists = apiSelectedList.value.some((existing) => {
-      return existing.value === selectedItem.value;
+    // Use a more robust comparison to find items
+    const existingIndex = apiSelectedList.value.findIndex((existing) => {
+      // Compare by value (with string conversion for consistency)
+      if (String(existing.value) === String(selectedItem.value)) return true;
+
+      // Compare by text as a fallback
+      if (existing.text === selectedItem.text) return true;
+
+      return false;
     });
 
-    if (!exists) {
+    if (existingIndex === -1 && !isDeselected) {
+      // Add item only if it doesn't exist and we're selecting (not deselecting)
       apiSelectedList.value.push(selectedItem);
-    } else {
-      const index = apiSelectedList.value.findIndex((existing) => {
-        return existing.value === selectedItem.value;
-      });
-
-      if (index !== -1 && isDeselected) {
-        apiSelectedList.value.splice(index, 1);
-      }
+    } else if (existingIndex !== -1 && isDeselected) {
+      // Remove item if it exists and we're deselecting
+      apiSelectedList.value.splice(existingIndex, 1);
     }
+
     return apiSelectedList.value;
   };
 
@@ -399,7 +516,13 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
       groupedMenuList.value = [];
 
       setMenuList();
-      setPreSelectedItems();
+
+      // If disabledLocalSearch is true, we need to preserve the selected items
+      // even when the options change, so only call setPreSelectedItems on initial load
+      // or when disabledLocalSearch is false
+      if (!disabledLocalSearch.value || selectedItems.value.length === 0) {
+        setPreSelectedItems();
+      }
     },
     { deep: true },
   );
@@ -415,20 +538,19 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   watch(
     apiSelectedList,
     () => {
-      apiSelectedList.value.forEach((prevSelected) => {
-        const selected = selectedItems.value.some((item) => {
-          return item.value === prevSelected.value;
-        });
+      // We only need to handle additions to apiSelectedList
+      // Use checkDuplicateValues to ensure no duplicates when adding from apiSelectedList
+      const newUniqueItems = checkDuplicateValues(selectedItems.value, apiSelectedList.value);
 
-        if (!selected) {
-          selectedItems.value.push(prevSelected);
-        }
-      });
+      if (newUniqueItems.length > 0) {
+        selectedItems.value = [...selectedItems.value, ...newUniqueItems];
+      }
     },
     { deep: true },
   );
 
   onMounted(() => {
+    searchString.value = searchText.value;
     setMenuList();
     setPreSelectedItems();
   });

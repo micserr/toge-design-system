@@ -1,10 +1,16 @@
 # Changelog
 
+## 2.11.11 (2025-08-05)
+
+- Fix
+  - Commit 17d6496f:Revert to Cell Defautl Color
+    ([#17d6496f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/17d6496fb766391f64a2bd7f0b5bf9649e8a969d?refName=refs/heads/2025/Fix/andrea/CELL_DEF_COLOR) by @adestajo)
+
 ## 2.11.10 (2025-08-05)
 
 - Fix
   - Sidenav: Additional improvements to navigation mapping and path handling
-  ([#19308d5f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/19308d5f49aad12fb64ea48d3a0c11510c8264e9?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSIDENAV_SUBHEADING) by @bsolis)
+    ([#19308d5f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/19308d5f49aad12fb64ea48d3a0c11510c8264e9?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSIDENAV_SUBHEADING) by @bsolis)
 
 ## 2.11.9 (2025-08-05)
 

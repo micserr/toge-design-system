@@ -1,10 +1,16 @@
 # Changelog
 
+## 2.11.9 (2025-08-05)
+
+- Fix
+  - Datepicker Reactive Issue
+    ([#33754](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/33754?path=/src/components/date-picker) by @jarias)
+
 ## 2.11.8 (2025-08-04)
 
 - Fix
   - Sidenav: Fixed subheading hover state styling issue
-  ([#df442df7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/df442df7400623886158aeba9a7ffe561323c597?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSIDENAV_SUBHEADING) by @bsolis)
+    ([#df442df7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/df442df7400623886158aeba9a7ffe561323c597?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSIDENAV_SUBHEADING) by @bsolis)
 
 ## 2.11.7 (2025-04-08)
 

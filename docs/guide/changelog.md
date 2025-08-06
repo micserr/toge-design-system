@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.11.13 (2025-08-06)
+- Feat
+  - New component: Date Range Picker ([#9004617e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/9004617eb97ae890adf051fa1cf13f7f32663006?refName=refs/heads/2025/FEATURE/Xyrk/DATE_RANGE_CALENDAR)) by @jfabula
+
 ## 2.11.12 (2025-08-05)
 
 - Fix

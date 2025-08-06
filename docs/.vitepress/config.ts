@@ -199,6 +199,12 @@ export default defineConfig({
             {
               text: 'Date Picker',
               link: '/documentation/components/date-picker',
+              items: [
+                {
+                  text: 'Date Range Picker',
+                  link: '/documentation/components/date-range-picker',
+                },
+              ],
             },
             {
               text: 'File Upload',

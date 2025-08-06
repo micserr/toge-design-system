@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.11.14 (2025-08-06)
+- Fix
+  - Fix underline active indicator and update active tab value when activeTab prop changes
+    ([#79b447b8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/79b447b861d1aaf1257250f168fc81d26e4661f7?refName=refs%2Fheads%2F2025%2Ffix%2Fjames%2Ftab-underlined-active-state) by @jmanalang)
+
 ## 2.11.13 (2025-08-06)
 - Feat
   - New component: Date Range Picker ([#9004617e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/9004617eb97ae890adf051fa1cf13f7f32663006?refName=refs/heads/2025/FEATURE/Xyrk/DATE_RANGE_CALENDAR)) by @jfabula

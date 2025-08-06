@@ -234,6 +234,26 @@
   }
   /* #endregion - Date Picker */
 
+  /* #region - Date Range Picker */
+  #date-range-picker-wrapper {
+    @apply spr-z-[1000] spr-overflow-hidden spr-rounded-xl spr-shadow-drop spr-transition-opacity spr-duration-150 spr-ease-in-out;
+
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-border-color-weak spr-m-auto spr-w-[336px] spr-min-w-[336px] spr-overflow-y-auto spr-rounded-xl spr-border spr-border-solid spr-font-main spr-shadow-none sm:spr-w-[calc(100%-20px)] sm:spr-min-w-full;
+
+        &::-webkit-scrollbar-track {
+          @apply spr-rounded-br-xl spr-rounded-tr-xl;
+        }
+      }
+
+      .v-popper__arrow-container {
+        @apply spr-hidden;
+      }
+    }
+  }
+  /* #endregion - Date Range Picker */
+
   /* #region - Filter, time-picker */
   #time-picker-wrapper-full-width,
   #time-picker-wrapper,

@@ -23,9 +23,6 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
       'spr-transition spr-duration-150 spr-ease-in-out',
       'hover:spr-background-color-hover',
       'active:spr-background-color-single-active active:spr-scale-[.98]',
-      {
-        'spr-justify-between': !multiSelect.value,
-      },
     );
 
     return { listItemClasses };

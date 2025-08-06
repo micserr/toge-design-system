@@ -1,10 +1,43 @@
 # Changelog
 
+## 2.11.14 (2025-08-06)
+- Fix
+  - Fix underline active indicator and update active tab value when activeTab prop changes
+    ([#79b447b8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/79b447b861d1aaf1257250f168fc81d26e4661f7?refName=refs%2Fheads%2F2025%2Ffix%2Fjames%2Ftab-underlined-active-state) by @jmanalang)
+
+## 2.11.13 (2025-08-06)
+- Feat
+  - New component: Date Range Picker ([#9004617e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/9004617eb97ae890adf051fa1cf13f7f32663006?refName=refs/heads/2025/FEATURE/Xyrk/DATE_RANGE_CALENDAR)) by @jfabula
+
+## 2.11.12 (2025-08-05)
+
+- Fix
+  - Commit d002a1bc: feat: enhance list selection logic to support preserved items with disabled local search
+    ([#d002a1bc](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d002a1bc209b084b808a6fd1b7b4487026364d9b?refName=refs/heads/2025/Fix/andrea/FIX_MULTI_SELECT) by @adestajo)
+
+## 2.11.11 (2025-08-05)
+
+- Fix
+  - Commit 17d6496f:Revert to Cell Defautl Color
+    ([#17d6496f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/17d6496fb766391f64a2bd7f0b5bf9649e8a969d?refName=refs/heads/2025/Fix/andrea/CELL_DEF_COLOR) by @adestajo)
+
+## 2.11.10 (2025-08-05)
+
+- Fix
+  - Sidenav: Additional improvements to navigation mapping and path handling
+    ([#19308d5f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/19308d5f49aad12fb64ea48d3a0c11510c8264e9?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSIDENAV_SUBHEADING) by @bsolis)
+
+## 2.11.9 (2025-08-05)
+
+- Fix
+  - Datepicker Reactive Issue
+    ([#33754](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/33754?path=/src/components/date-picker) by @jarias)
+
 ## 2.11.8 (2025-08-04)
 
 - Fix
   - Sidenav: Fixed subheading hover state styling issue
-  ([#df442df7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/df442df7400623886158aeba9a7ffe561323c597?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSIDENAV_SUBHEADING) by @bsolis)
+    ([#df442df7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/df442df7400623886158aeba9a7ffe561323c597?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSIDENAV_SUBHEADING) by @bsolis)
 
 ## 2.11.7 (2025-04-08)
 

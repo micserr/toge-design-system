@@ -684,6 +684,8 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   };
 
   const handleMonthInput = () => {
+    datePopperState.value = false;
+
     monthInput.value = monthInput.value.replace(/[^A-Za-z0-9\s]/g, '').toLocaleUpperCase();
 
     datePickerErrors.value = [];
@@ -694,10 +696,19 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     handleValidateDate();
 
-    emitInputValue();
+    // Do not set yearInput when typing monthInput
+    if (!monthInput.value && !dateInput.value && !yearInput.value) {
+      emit('getInputValue', null);
+    }
+
+    if (monthInput.value && dateInput.value && yearInput.value) {
+      emitInputValue();
+    }
   };
 
   const handleDateInput = () => {
+    datePopperState.value = false;
+
     dateInput.value = dateInput.value.replace(/[^0-9]/g, '');
 
     datePickerErrors.value = [];
@@ -706,19 +717,39 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     handleValidateDate();
 
-    emitInputValue();
+    // Do not set yearInput when typing dateInput
+    if (!monthInput.value && !dateInput.value && !yearInput.value) {
+      emit('getInputValue', null);
+    }
+
+    if (monthInput.value && dateInput.value && yearInput.value) {
+      emitInputValue();
+    }
   };
 
   const handleYearInput = () => {
+    datePopperState.value = false;
+
     yearInput.value = yearInput.value.replace(/[^0-9]/g, '');
 
     datePickerErrors.value = [];
 
     emit('getDateErrors', datePickerErrors.value);
 
-    handleValidateDate();
+    // Only validate year, do not set monthInput or dateInput
+    // Only emit year-related changes
+    // Only validate if yearInput is 4 digits (full year)
+    if (yearInput.value.length === 4) {
+      handleValidateDate();
 
-    emitInputValue();
+      if (!monthInput.value && !dateInput.value && !yearInput.value) {
+        emit('getInputValue', null);
+      }
+
+      if (monthInput.value && dateInput.value && yearInput.value) {
+        emitInputValue();
+      }
+    }
   };
 
   const handleConvertMonthIfValid = () => {
@@ -884,8 +915,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     const dateObj = dayjs(`${emittedMonth}-${dateInput.value}-${yearInput.value}`, 'MM-DD-YYYY');
 
     // Use the specified format for the input value
-    if (!emittedMonth && !dateInput.value && !yearInput.value) return;
-
     emit('getInputValue', (modelValue.value = dateObj.format(format.value)));
   };
 
@@ -952,6 +981,10 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     yearsTabSetCurrentPageYear();
     emitMonthList();
     emitYearList();
+  });
+
+  watch(modelValue, () => {
+    setModelValue();
   });
 
   return {

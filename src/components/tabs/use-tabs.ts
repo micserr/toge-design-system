@@ -1,4 +1,4 @@
-import { ref, computed, onMounted, SetupContext } from 'vue';
+import { ref, computed, onMounted, SetupContext, watch } from 'vue';
 
 import classNames from 'classnames';
 
@@ -36,7 +36,12 @@ export const useTabs = (props: TabsPropTypes, emit: SetupContext<TabsEmitTypes>[
       activeTab.value.index = 0;
     }
 
-    activeTab.value.width = tabElements.value[activeTab.value.index].clientWidth;
+    const currentTab = tabElements.value[activeTab.value.index];
+
+    if (currentTab) {
+      activeTab.value.width = currentTab.clientWidth;
+      activeTab.value.undelineLeftOffset = currentTab.offsetLeft;
+    }
 
     emit('tabIndex', activeTab.value.index);
   };
@@ -67,6 +72,15 @@ export const useTabs = (props: TabsPropTypes, emit: SetupContext<TabsEmitTypes>[
 
     emit('tabIndex', index);
   };
+
+  watch(
+    () => props.activeTab,
+    (newValue, oldValue) => {
+      if (newValue !== oldValue) {
+        setActiveTab();
+      }
+    },
+  );
 
   onMounted(() => {
     setActiveTab();

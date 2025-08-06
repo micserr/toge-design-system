@@ -63,7 +63,7 @@ export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext
   });
 
   const getCellClasses = computed((): string => {
-    return typeClasses[type.value] || 'spr-border-kangkong-700 spr-bg-kangkong-50';
+    return typeClasses[type.value] || 'spr-border-color-supporting spr-background-color-surface';
   });
 
   const getCustomColorStyles = computed(() => {

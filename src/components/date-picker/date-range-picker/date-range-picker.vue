@@ -9,6 +9,7 @@
        :popper-hide-triggers="[]"
        :auto-hide="false"
        :disabled="isDateRangePickerPopperDisabled"
+       :container="`#${props.id}`"
        :reference="activeInputRef"
        :strategy="
          props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'

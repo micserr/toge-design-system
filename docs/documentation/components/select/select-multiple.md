@@ -910,6 +910,119 @@ const userList = ref([
 </script>
 ```
 
+## Infinite Scroll
+
+<div>
+  <spr-select-multiple
+    id="object-select"
+    v-model="multipleSelected"
+    v-model:searchValue="search"
+    label="Select Users"
+    placeholder="Select users"
+    :options="optionsAPI"
+    searchable
+    clearable
+    disabled-local-search
+    :loading="APIisLoading"
+    @infinite-scroll-trigger="handleInfiniteScrollTrigger"
+  />
+  <div class="spr-my-3 spr-p-4 spr-bg-blue-100">
+    <h5>Paginated Options - Should load 10 Items per page:</h5>
+    <p>Pagination:</p>
+    <pre>{{ JSON.stringify(pagination, null, 2) }}</pre>
+    <p>Data:</p>
+    {{ optionsAPI }}
+  </div>
+</div>
+
+```vue
+<template>
+  <spr-select-multiple
+    id="object-select"
+    v-model="multipleSelected"
+    v-model:searchValue="search"
+    label="Select Users"
+    placeholder="Select users"
+    :options="optionsAPI"
+    searchable
+    disabled-local-search
+    :loading="APIisLoading"
+    @infinite-scroll-trigger="handleInfiniteScrollTrigger"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+import { useDebounceFn } from '@vueuse/core';
+
+const multipleSelected = ref([]);
+const optionsAPI = ref<optionsType[]>([]);
+const search = ref('');
+
+const APIisLoading = ref(false);
+
+const pagination = ref({
+  totalpages: 10,
+  currentPage: 1,
+});
+
+const setOptionsViaAPI = () => {
+  getNextOptionsViaAPI();
+};
+
+const handleInfiniteScrollTrigger = () => {
+  if (pagination.value.currentPage === pagination.value.totalpages || APIisLoading.value) return;
+
+  APIisLoading.value = true;
+  pagination.value.currentPage += 1;
+
+  getNextOptionsViaAPI();
+};
+
+const getNextOptionsViaAPI = async () => {
+  try {
+    const url = search.value
+      ? `https://api.thedogapi.com/v1/breeds/search?q=${search.value}&page=${pagination.value.currentPage}&limit=10`
+      : `https://api.thedogapi.com/v1/breeds?page=${pagination.value.currentPage}&limit=10`;
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const options = await response.json();
+
+    optionsAPI.value = options.length
+      ? [
+          ...(optionsAPI.value || []),
+          ...options.map((option) => ({
+            text: option.name,
+            value: option.id,
+          })),
+        ]
+      : [];
+
+    APIisLoading.value = false;
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+  }
+};
+
+// Create a debounced version of the API call function
+const debouncedSetOptions = useDebounceFn(() => {
+  APIisLoading.value = true;
+  pagination.value.currentPage = 1;
+  optionsAPI.value = [];
+  setOptionsViaAPI();
+}, 300); // 300ms debounce time - adjust as needed
+
+watch(search, () => {
+  debouncedSetOptions();
+});
+};
+</script>
+```
+
 > **Note:**
 >
 > - If you want to start with no selection, use an empty array: `ref([])`.

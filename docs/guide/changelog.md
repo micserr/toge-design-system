@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.11.16 (2025-08-07)
+- Fix
+  - Date Range Picker always shows behind due to container ([#45c12797](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/45c127973b122370793573e121ce405887b9b7b1?refName=refs/heads/2025/FIX/Xyrk/DATE_RANGE_PICKER_CONTAINER) by @jfabula)
+
 ## 2.11.15 (2025-08-07)
 
 - Fix

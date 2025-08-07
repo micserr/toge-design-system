@@ -84,7 +84,7 @@ export const listPropTypes = {
 
 export const listEmitTypes = {
   'update:modelValue': (value: MenuListType[]) => value,
-  'update:search': (value: string) => typeof value === 'string',
+  'update:searchValue': (value: string) => typeof value === 'string',
 };
 
 export type ListPropTypes = ExtractPropTypes<typeof listPropTypes>;

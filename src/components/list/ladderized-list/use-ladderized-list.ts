@@ -1,4 +1,4 @@
-import { computed, onBeforeMount, ref, toRefs, watch } from 'vue';
+import { onBeforeMount, ref, toRefs, watch } from 'vue';
 import { useVModel } from '@vueuse/core';
 
 import { LadderizedListPropTypes, LadderizedListEmitTypes } from './ladderized-list';
@@ -19,24 +19,99 @@ export const useLadderizedList = (
   const selectedListItem = ref<MenuListType[]>([]); // List of items for recording the selected item
   const activeLevel = ref(0);
   const activeList = ref<MenuListType[]>(menuList.value); // List of items to display in the active level
+  const searchText = ref('');
+
+  // Recursive filter function for ladderized options
+  const filterOptionsRecursive = (items: MenuListType[], search: string): MenuListType[] => {
+    if (!search) return items;
+
+    const lowerSearch = search.toLowerCase();
+
+    return items
+      .map((item) => {
+        let match =
+          item.text.toLowerCase().includes(lowerSearch) ||
+          (item.subtext && item.subtext.toLowerCase().includes(lowerSearch));
+
+        const filteredSublevel = item.sublevel ? filterOptionsRecursive(item.sublevel, search) : undefined;
+
+        if (filteredSublevel && filteredSublevel.length > 0) match = true;
+
+        if (match) {
+          return {
+            ...item,
+            sublevel: filteredSublevel,
+          };
+        }
+
+        return null;
+      })
+      .filter(Boolean) as MenuListType[];
+  };
+
+  // Watch for searchText changes and update activeList
+  watch(searchText, (val) => {
+    if (val) {
+      activeList.value = filterOptionsRecursive(menuList.value, val);
+    } else {
+      activeList.value = menuList.value;
+    }
+  });
+
   const prevList = ref<MenuListType[]>([]);
+
+  // Helper to find full path to a value in a nested options tree, returns array of option objects
+  const findOptionPath = (
+    options: MenuListType[],
+    targetValue: string,
+    path: MenuListType[] = [],
+  ): MenuListType[] | null => {
+    for (const item of options) {
+      const newPath = [...path, item];
+
+      if (String(item.value) === String(targetValue)) {
+        return newPath;
+      }
+
+      if (item.sublevel) {
+        const found = findOptionPath(item.sublevel, targetValue, newPath);
+
+        if (found) return found;
+      }
+    }
+
+    return null;
+  };
 
   const handleSelectedListItem = (item: MenuListType) => {
     transitionName.value = 'slide-left';
-    // Update UI for selectedListItem
+
+    // If searching, reconstruct full path as array of option objects
+    if (searchText.value) {
+      const path = findOptionPath(menuList.value, String(item.value));
+
+      if (path) {
+        selectedListItem.value = path;
+
+        emit(
+          'update:modelValue',
+          path.map((opt) => String(opt.value)),
+        );
+        return;
+      }
+    }
+
     updateSelectedListItem(item);
 
-    const isSameLevel = computed(() => prevList.value.some((listItem) => listItem.value === item.value));
+    const isSameLevel = prevList.value.some((listItem) => listItem.value === item.value);
 
-    // Update the activeList and activeLevel
-    if (!isSameLevel.value) {
+    if (!isSameLevel) {
       appendItemToOutput(item);
     } else {
       replaceItemInOutput(item);
     }
 
     if (item.sublevel && item.sublevel.length > 0) updateLevel(item);
-    // Update output value
     emit('update:modelValue', ladderizedListOutput.value);
   };
 
@@ -59,7 +134,7 @@ export const useLadderizedList = (
   // Append the new item to the output
   const appendItemToOutput = (item: MenuListType) => {
     // Prevent spamming the same item
-    if (ladderizedListOutput.value[ladderizedListOutput.value.length - 1] === item.value) return;
+    if (ladderizedListOutput.value[ladderizedListOutput.value.length - 1] === String(item.value)) return;
 
     // Update back label text
     if (backLabel.value !== '') {
@@ -71,7 +146,7 @@ export const useLadderizedList = (
     }
 
     // Update output value
-    ladderizedListOutput.value.push(item.value.toString());
+    ladderizedListOutput.value.push(String(item.value));
   };
 
   // Replace the last item in the output with the new item
@@ -85,20 +160,24 @@ export const useLadderizedList = (
     // Update output value
     const valueArray = ladderizedListOutput.value;
     valueArray?.pop();
-    valueArray?.push(item.value);
+    valueArray?.push(String(item.value));
     ladderizedListOutput.value = valueArray ?? [];
   };
 
   const handleBackClick = () => {
     transitionName.value = 'slide-right';
     activeLevel.value -= 1;
+
     if (activeLevel.value > 0) {
       // Update back label text
       const textArray = backLabel.value.trim().split(',');
+
       textArray?.pop();
       backLabel.value = textArray?.join(', ') ?? '';
+
       // Update output value
       const valueArray = ladderizedListOutput.value;
+
       valueArray?.pop();
       ladderizedListOutput.value = valueArray ?? [];
 
@@ -119,6 +198,7 @@ export const useLadderizedList = (
     if (ladderizedListOutput.value && ladderizedListOutput.value.length > 0) {
       // Reset values
       const tempBackLabel: string[] = [];
+
       prevList.value = [];
 
       // On initialize, traverse through the activeList based from ladderizedListOutput
@@ -127,7 +207,9 @@ export const useLadderizedList = (
 
         if (item) {
           updateSelectedListItem(item);
+
           tempBackLabel.push(item.text);
+
           prevList.value = activeList.value;
           activeList.value = item.sublevel ?? prevList.value;
           activeLevel.value += item.sublevel ? 1 : 0;
@@ -169,5 +251,6 @@ export const useLadderizedList = (
     selectedListItem,
     transitionName,
     backLabel,
+    searchText,
   };
 };

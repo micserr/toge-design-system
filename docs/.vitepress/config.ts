@@ -90,6 +90,12 @@ export default defineConfig({
             {
               text: 'Button',
               link: '/documentation/components/button',
+              items: [
+                {
+                  text: 'Button Dropdown',
+                  link: '/documentation/components/button-dropdown',
+                },
+              ],
             },
             {
               text: 'Calendar',
@@ -149,11 +155,8 @@ export default defineConfig({
             },
             {
               text: 'Sidepanel',
+              link: '/documentation/components/sidepanel/sidepanel',
               items: [
-                {
-                  text: 'Sidepanel',
-                  link: '/documentation/components/sidepanel/sidepanel',
-                },
                 {
                   text: 'Stacking Sidepanel',
                   link: '/documentation/components/sidepanel/stacking-sidepanel',
@@ -196,6 +199,12 @@ export default defineConfig({
             {
               text: 'Date Picker',
               link: '/documentation/components/date-picker',
+              items: [
+                {
+                  text: 'Date Range Picker',
+                  link: '/documentation/components/date-range-picker',
+                },
+              ],
             },
             {
               text: 'File Upload',
@@ -270,6 +279,10 @@ export default defineConfig({
             {
               text: 'Typography',
               link: '/documentation/utilities/typography',
+            },
+            {
+              text: 'Skeletal Loader',
+              link: '/documentation/utilities/skeletal-loader',
             },
           ],
         },

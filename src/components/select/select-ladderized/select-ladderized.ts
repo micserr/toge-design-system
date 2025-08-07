@@ -105,5 +105,7 @@ export const selectLadderizedEmitTypes = {
   'update:modelValue': (_value: unknown) => true,
 };
 
+export type SelectLadderizedEmitFn = (event: string, ...args: unknown[]) => void;
+
 export type SelectLadderizedPropTypes = ExtractPropTypes<typeof selectLadderizedPropTypes>;
 export type SelectLadderizedEmitTypes = typeof selectLadderizedEmitTypes;

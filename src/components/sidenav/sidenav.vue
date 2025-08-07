@@ -234,15 +234,17 @@
                               v-for="(submenuLink, submenuLinkIndex) in menuLinkItem.submenuLinks"
                               :key="submenuLinkIndex"
                             >
-                              <h5
-                                v-if="submenuLink.subMenuHeading"
-                                :class="{
-                                  'spr-label-xs-medium spr-text-color-supporting spr-m-0 spr-p-2': true,
-                                  'spr-mt-2': submenuLinkIndex !== 0,
-                                }"
-                              >
-                                {{ submenuLink.subMenuHeading }}
-                              </h5>
+                              <Menu aria-id="sidenav-sub-submenu-subheading-wrapper" :triggers="['click', 'hover']" instant-move>
+                                <h5
+                                  v-if="submenuLink.subMenuHeading"
+                                  :class="{
+                                    'spr-label-xs-medium spr-text-color-supporting spr-m-0 spr-p-2': true,
+                                    'spr-mt-2': submenuLinkIndex !== 0,
+                                  }"
+                                >
+                                  {{ submenuLink.subMenuHeading }}
+                                </h5>
+                              </Menu>
                               <template
                                 v-for="(submenuLinkItem, submenuLinkItemIndex) in submenuLink.items"
                                 :key="submenuLinkItemIndex"
@@ -459,15 +461,17 @@
                               v-for="(submenuLink, submenuLinkIndex) in menuLinkItem.submenuLinks"
                               :key="submenuLinkIndex"
                             >
-                              <h5
-                                v-if="submenuLink.subMenuHeading"
-                                :class="{
-                                  'spr-label-xs-medium spr-text-color-supporting spr-m-0 spr-p-2': true,
-                                  'spr-mt-3': submenuLinkIndex !== 0,
-                                }"
-                              >
-                                {{ submenuLink.subMenuHeading }}
-                              </h5>
+                              <Menu aria-id="sidenav-sub-submenu-subheading-wrapper" :triggers="['click', 'hover']" instant-move>
+                                <h5
+                                  v-if="submenuLink.subMenuHeading"
+                                  :class="{
+                                    'spr-label-xs-medium spr-text-color-supporting spr-m-0 spr-p-2': true,
+                                    'spr-mt-3': submenuLinkIndex !== 0,
+                                  }"
+                                >
+                                  {{ submenuLink.subMenuHeading }}
+                                </h5>
+                              </Menu>
                               <template
                                 v-for="(submenuLinkItem, submenuLinkItemIndex) in submenuLink.items"
                                 :key="submenuLinkItemIndex"

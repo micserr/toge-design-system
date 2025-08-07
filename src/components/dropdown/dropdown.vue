@@ -36,6 +36,9 @@
           (!props.ladderized || isLadderizedSearch) && 'spr-p-2',
           'spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden',
         ]"
+        :style="{
+          width: props.popperInnerWidth,
+        }"
       >
         <template v-if="dropdownMenuList.length > 0">
           <spr-list
@@ -45,6 +48,7 @@
             :group-items-by="props.groupItemsBy"
             :multi-select="props.multiSelect"
             :pre-selected-items="dropdownValue"
+            :no-check="props.noCheckInList"
             @update:model-value="handleSelectedItem"
           />
           <spr-ladderized-list

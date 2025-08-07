@@ -112,6 +112,73 @@ const options = ref([
       },
     ],
   },
+  {
+    text: 'Ant',
+    value: 'ant',
+    subtext: 'Highly organized social insect',
+    sublevel: [
+      {
+        text: 'Colony',
+        value: 'ant-colony',
+        subtext: 'Entire ant community',
+        sublevel: [
+          {
+            text: 'Queen Chamber',
+            value: 'queen-chamber',
+            subtext: 'Where the queen resides',
+            sublevel: [
+              {
+                text: 'Queen Ant',
+                value: 'queen-ant',
+                subtext: 'Reproductive female',
+                sublevel: [
+                  {
+                    text: 'Egg Layer',
+                    value: 'egg-layer',
+                    subtext: 'Primary role of the queen',
+                    sublevel: [
+                      {
+                        text: 'New Eggs',
+                        value: 'new-eggs',
+                        subtext: 'Recently laid eggs',
+                      },
+                      {
+                        text: 'Developing Larvae',
+                        value: 'developing-larvae',
+                        subtext: 'Eggs growing into ants',
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: 'Worker Section',
+            value: 'worker-section',
+            subtext: 'Worker ants operate here',
+            sublevel: [
+              {
+                text: 'Foragers',
+                value: 'foragers',
+                subtext: 'Collect food',
+              },
+              {
+                text: 'Nurses',
+                value: 'nurses',
+                subtext: 'Care for larvae',
+              },
+            ],
+          },
+          {
+            text: 'Soldier Post',
+            value: 'soldier-post',
+            subtext: 'Guards of the colony',
+          },
+        ],
+      },
+    ],
+  },
 ]);
 </script>
 ```
@@ -173,7 +240,7 @@ To preselect an item in the ladderized select, the model value array should repr
   </code>
 </div>
 
-## Searchable Options
+## Search
 
 To enable searching through the options, set the `searchable-options` prop to `true`. This allows users to filter options by typing in the input field.
 
@@ -720,6 +787,73 @@ const options = ref([
         text: 'Mare',
         value: 'zebra-mare',
         subtext: 'Adult female zebra',
+      },
+    ],
+  },
+  {
+    text: 'Ant',
+    value: 'ant',
+    subtext: 'Highly organized social insect',
+    sublevel: [
+      {
+        text: 'Colony',
+        value: 'ant-colony',
+        subtext: 'Entire ant community',
+        sublevel: [
+          {
+            text: 'Queen Chamber',
+            value: 'queen-chamber',
+            subtext: 'Where the queen resides',
+            sublevel: [
+              {
+                text: 'Queen Ant',
+                value: 'queen-ant',
+                subtext: 'Reproductive female',
+                sublevel: [
+                  {
+                    text: 'Egg Layer',
+                    value: 'egg-layer',
+                    subtext: 'Primary role of the queen',
+                    sublevel: [
+                      {
+                        text: 'New Eggs',
+                        value: 'new-eggs',
+                        subtext: 'Recently laid eggs',
+                      },
+                      {
+                        text: 'Developing Larvae',
+                        value: 'developing-larvae',
+                        subtext: 'Eggs growing into ants',
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            text: 'Worker Section',
+            value: 'worker-section',
+            subtext: 'Worker ants operate here',
+            sublevel: [
+              {
+                text: 'Foragers',
+                value: 'foragers',
+                subtext: 'Collect food',
+              },
+              {
+                text: 'Nurses',
+                value: 'nurses',
+                subtext: 'Care for larvae',
+              },
+            ],
+          },
+          {
+            text: 'Soldier Post',
+            value: 'soldier-post',
+            subtext: 'Guards of the colony',
+          },
+        ],
       },
     ],
   },

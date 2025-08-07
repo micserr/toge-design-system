@@ -1,9 +1,11 @@
-import { computed, SetupContext } from 'vue';
+import { computed, SetupContext, toRefs } from 'vue';
 import classNames from 'classnames';
 
 import type { CalendarCellPropTypes, CalendarCellEmitTypes } from './calendar-cell';
 
 export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext<CalendarCellEmitTypes>['emit']) => {
+  const { title, description, type, status, subDescription, icon, fullwidth, viewOnly, loading, customColor } =
+    toRefs(props);
   const offlineStatus = ['restday', 'vacation', 'holiday', 'exempt', 'sick', 'emergency'];
   const shiftLabels: Record<string, string> = {
     standard: 'Standard Day Shift',
@@ -48,50 +50,61 @@ export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext
     'fixed-flexible': 'spr-border-[#C771A6] spr-bg-[#FFF2FA]',
   };
 
-  const hasContent = computed(() => props.title || props.description || getShiftLabel.value);
-  const hasIconStatus = computed(() => offlineStatus.includes(props.type) && props.status != 'error');
-  const isError = computed(() => props.status === 'error');
+  const hasContent = computed(() => title.value || description.value || getShiftLabel.value);
+  const hasIconStatus = computed(() => offlineStatus.includes(type.value) && status.value != 'error');
+  const isError = computed(() => status.value === 'error');
 
   const getShiftLabel = computed((): string => {
-    return props.subDescription || shiftLabels[props.type];
+    return subDescription.value || shiftLabels[type.value];
   });
 
   const getCellIcon = computed((): string => {
-    return props.icon || iconMap[props.type];
+    return icon.value || iconMap[type.value];
   });
 
   const getCellClasses = computed((): string => {
-    return typeClasses[props.type] || 'spr-border-color-supporting spr-background-color-surface';
+    return typeClasses[type.value] || 'spr-border-color-supporting spr-background-color-surface';
+  });
+
+  const getCustomColorStyles = computed(() => {
+    if (!customColor.value || !customColor.value.startsWith('#')) return {};
+
+    const opacity = '20'; // 20 in hex = 12.5% opacity
+
+    return {
+      borderColor: customColor.value,
+      backgroundColor: customColor.value.startsWith('#') ? `${customColor.value}${opacity}` : customColor.value,
+    };
   });
 
   const getCalendarCellClassess = computed(() => {
     const calendarCellWrapper = classNames(
       'spr-flex spr-items-center spr-p-size-spacing-3xs spr-gap-size-spacing-3xs spr-relative spr-rounded-lg spr-border-2 spr-transition-all sm:spr-flex-col spr-overflow-hidden',
       {
-        'spr-w-full': props.fullwidth,
-        'spr-max-w-[217px]': !props.fullwidth,
-        'hover:spr-drop-shadow-sm spr-cursor-pointer': !props.viewOnly,
-        'spr-h-[80px] spr-skeletal-loader': props.loading,
+        'spr-w-full': fullwidth.value,
+        'spr-max-w-[217px]': !fullwidth.value,
+        'hover:spr-drop-shadow-sm spr-cursor-pointer': !viewOnly.value,
+        'spr-h-[80px] spr-skeletal-loader': loading.value,
       },
     );
 
     const statusCellClasses = classNames({
-      'spr-border-dashed': props.status === 'pending',
-      'spr-border-solid spr-border-color-danger-base': props.status === 'error',
-      'spr-border-solid': !props.status || (props.status !== 'pending' && props.status !== 'error'),
+      'spr-border-dashed': status.value === 'pending',
+      'spr-border-solid spr-border-color-danger-base': status.value === 'error',
+      'spr-border-solid': !status.value || (status.value !== 'pending' && status.value !== 'error'),
     });
 
     const titleClasses = classNames('spr-text-color-strong spr-body-sm-regular-medium', {
-      'spr-text-color-danger-base': props.status === 'error',
+      'spr-text-color-danger-base': status.value === 'error',
     });
 
     const descriptionClasses = classNames('spr-text-color-strong spr-body-sm-regular', {
-      'spr-text-color-danger-base': props.status === 'error',
+      'spr-text-color-danger-base': status.value === 'error',
     });
 
     const getTypeLabelClassess = classNames('spr-text-color-strong spr-body-sm-regular', {
-      'spr-text-color-danger-base': props.status === 'error',
-      'spr-text-color-strong spr-body-sm-regular-medium': offlineStatus.includes(props.type),
+      'spr-text-color-danger-base': status.value === 'error',
+      'spr-text-color-strong spr-body-sm-regular-medium': offlineStatus.includes(type.value),
     });
 
     const getMainClasses = classNames(calendarCellWrapper, getCellClasses.value, statusCellClasses);
@@ -106,7 +119,7 @@ export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext
   });
 
   const handleClick = (evt: MouseEvent) => {
-    if (props.viewOnly) {
+    if (viewOnly.value) {
       evt.stopPropagation();
 
       return;
@@ -123,5 +136,6 @@ export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext
     isError,
     hasContent,
     handleClick,
+    getCustomColorStyles,
   };
 };

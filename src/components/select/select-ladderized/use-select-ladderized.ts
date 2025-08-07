@@ -55,23 +55,70 @@ export const useSelectLadderized = (
 
   const handleSelectedLadderizedItem = (selectedItems: string[], selectedItem?: MenuListType) => {
     wasCleared.value = false;
+
+    // If the selectedItems is a single value (leaf from search), reconstruct the full path
+    let fullPath: string[] | null = null;
+
+    if (selectedItems.length === 1) {
+      // Find the full path from root to leaf
+      fullPath = findPathToValue(ladderizedSelectOptions.value, selectedItems[0]);
+
+      if (fullPath) {
+        // Traverse the tree by path, always matching the next text in the sublevel
+        let currentLevel = ladderizedSelectOptions.value;
+        const valuePath: (string | number)[] = [];
+
+        for (const text of fullPath) {
+          const found = currentLevel.find((item) => item.text === text);
+
+          if (found) {
+            valuePath.push(found.value);
+            currentLevel = found.sublevel || [];
+          } else {
+            break;
+          }
+        }
+
+        ladderizedSelectModel.value = valuePath.map(String);
+        inputText.value = fullPath.join(' > ');
+
+        // Find the actual item object for the last value in the path
+        let leafItem: MenuListType | undefined = undefined;
+        let leafLevel = ladderizedSelectOptions.value;
+
+        for (const text of fullPath) {
+          const found = leafLevel.find((item) => item.text === text);
+
+          if (found) {
+            leafItem = found;
+            leafLevel = found.sublevel || [];
+          } else {
+            break;
+          }
+        }
+
+        if (leafItem && isLeafNode(leafItem)) {
+          ladderizedSelectPopperState.value = false;
+        }
+
+        return;
+      }
+    }
+
     ladderizedSelectModel.value = selectedItems;
 
     let itemToCheck = selectedItem;
 
-    // Fallback: if selectedItem is not provided, try to find it from the value
     if (!itemToCheck && selectedItems.length > 0) {
       const findItemByValue = (items: MenuListType[], value: string | number): MenuListType | undefined => {
         for (const item of items) {
           if (item.value === value) return item;
-
           if (item.sublevel) {
             const found = findItemByValue(item.sublevel, value);
 
             if (found) return found;
           }
         }
-
         return undefined;
       };
 
@@ -122,6 +169,7 @@ export const useSelectLadderized = (
       if (wasCleared.value) {
         inputText.value = '';
         wasCleared.value = false;
+
         return;
       }
 
@@ -133,7 +181,9 @@ export const useSelectLadderized = (
 
         for (const value of newVal) {
           const found = currentLevel.find((item) => item.value === value);
+
           if (!found) break;
+
           pathTexts.push(found.text);
           currentLevel = found.sublevel || [];
         }

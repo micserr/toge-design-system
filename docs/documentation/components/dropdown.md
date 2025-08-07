@@ -678,6 +678,8 @@ You can modify the width of the dropdown component in two ways: by adjusting the
 
 `Popper Width` - Width of only popper element
 
+`Popper Inner Width` - Width of the inner popper element, which is the width of the dropdown menu list.
+
 <div>
   <spr-dropdown
     id="dropdown23"
@@ -1592,6 +1594,12 @@ const handleUsersSelection = () => {
       <td>`100%`</td>
     </tr>
     <tr>
+      <td>popper-inner-width</td>
+      <td>Width of the dropdown menu inner content</td>
+      <td>String</td>
+      <td>unset</td>
+    </tr>
+    <tr>
       <td>popper-strategy</td>
       <td>Defines how the dropdown's popper is positioned relative to the reference element. Can be `absolute` or `fixed`</td>
       <td>string</td>
@@ -1628,6 +1636,18 @@ const handleUsersSelection = () => {
       <td>false</td>
     </tr>
     <tr>
+      <td>remove-current-level-in-back-label</td>
+      <td>Defines whether the back label in the ladderized list will exclude the current level</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>noCheckInList</td>
+      <td>Disables the display of check for singe list dropdown menu.</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
       <td>@get-popper-state</td>
       <td>Event emitted when the popper state is changed (e.g., opened or closed)</td>
       <td>Function</td>
@@ -1639,12 +1659,6 @@ const handleUsersSelection = () => {
       <td>Function</td>
       <td>-</td>
     </tr>
-    <tr>
-      <td>remove-current-level-in-back-label</td>
-      <td>Defines whether the back label in the ladderized list will exclude the current level</td>
-      <td>Boolean</td>
-      <td>false</td>
-    </tr>
   </tbody>
 </table>
 
@@ -1652,6 +1666,7 @@ const handleUsersSelection = () => {
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
   <spr-logo name="hr" theme="dark"  width="50px" />
+  <spr-logo name="payroll" theme="dark"  width="50px" />
   <spr-logo name="sidekick" theme="dark" width="50px" />
 </div>
 

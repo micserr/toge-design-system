@@ -5,7 +5,7 @@ export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<
 
 const GROUPED_ITEMS_BY_TYPES = ['A-Z', 'Z-A'] as const;
 
-const PLACEMENTS_TYPES = [
+export const PLACEMENTS_TYPES = [
   'auto',
   'auto-start',
   'auto-end',
@@ -31,7 +31,9 @@ export const dropdownPropTypes = {
     required: true,
   },
   modelValue: {
-    type: [String, Number, Object, Array] as PropType<string | number | Record<string, unknown> | (string | number | Record<string, unknown>)[]>,
+    type: [String, Number, Object, Array] as PropType<
+      string | number | Record<string, unknown> | (string | number | Record<string, unknown>)[]
+    >,
     default: () => [],
   },
   menuList: {
@@ -80,6 +82,10 @@ export const dropdownPropTypes = {
     type: String,
     default: '100%',
   },
+  popperInnerWidth: {
+    type: String,
+    default: 'unset',
+  },
   popperStrategy: {
     type: String,
     validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
@@ -96,7 +102,11 @@ export const dropdownPropTypes = {
   removeCurrentLevelInBackLabel: {
     type: Boolean,
     default: false,
-  }
+  },
+  noCheckInList: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const dropdownEmitTypes = {

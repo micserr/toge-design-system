@@ -90,7 +90,7 @@ import 'floating-vue/dist/style.css';
 import SprInput from '@/components/input/input.vue';
 import SprLadderizedList from '@/components/list/ladderized-list/ladderized-list.vue';
 
-import { selectLadderizedPropTypes, selectLadderizedEmitTypes } from './select-ladderized';
+import { selectLadderizedPropTypes, selectLadderizedEmitTypes, SelectLadderizedEmitFn } from './select-ladderized';
 import { useSelectLadderized } from './use-select-ladderized';
 
 const props = defineProps(selectLadderizedPropTypes);
@@ -108,5 +108,5 @@ const {
   handleSearch,
   handleClear,
   handleOptionsToggle,
-} = useSelectLadderized(props, emit);
+} = useSelectLadderized(props, emit as SelectLadderizedEmitFn);
 </script>

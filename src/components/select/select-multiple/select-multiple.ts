@@ -142,7 +142,7 @@ export const multiSelectPropTypes = {
 export const multiSelectEmitTypes = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'update:modelValue': (_value: unknown) => true,
-  'update:search': (value: string) => typeof value === 'string',
+  'update:searchValue': (value: string) => typeof value === 'string',
   'infinite-scroll-trigger': Boolean,
 };
 

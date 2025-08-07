@@ -6,86 +6,98 @@
       <div v-if="isParentMenu" class="spr-background-color-surface spr-h-[1px]"></div>
     </div>
 
-    <template v-if="props.groupItemsBy && groupedMenuList.length > 0">
-      <div class="spr-grid spr-gap-2">
-        <div v-for="(list, listIndex) in groupedMenuList" :key="listIndex" class="spr-grid spr-gap-0.5">
-          <div
-            v-if="list.groupLabel !== 'no-group'"
-            class="spr-label-xs-medium spr-text-color-base spr-px-size-spacing-4xs spr-py-size-spacing-3xs spr-uppercase"
-          >
-            <span>
-              {{ list.groupLabel }}
-            </span>
-          </div>
-          <div
-            v-for="(item, itemIndex) in list.items"
-            :key="itemIndex"
-            :class="getListItemClasses(item)"
-            @click="handleSelectedItem(item)"
-          >
-            <spr-checkbox v-if="props.multiSelect" :checked="isItemSelected(item)" />
-            <div class="spr-flex spr-flex-auto spr-flex-col spr-justify-start">
-              <span class="spr-text-left spr-text-xs">{{ item.text }}</span>
-              <span v-if="item.subtext" class="spr-body-xs-regular spr-text-color-base spr-text-left">{{
-                item.subtext
-              }}</span>
+    <template v-if="props.groupItemsBy">
+      <template v-if="groupedMenuList && groupedMenuList.length > 0">
+        <div class="spr-grid spr-gap-2">
+          <div v-for="(list, listIndex) in groupedMenuList" :key="listIndex" class="spr-grid spr-gap-0.5">
+            <div
+              v-if="list.groupLabel !== 'no-group'"
+              class="spr-label-xs-medium spr-text-color-base spr-px-size-spacing-4xs spr-py-size-spacing-3xs spr-uppercase"
+            >
+              <span>
+                {{ list.groupLabel }}
+              </span>
             </div>
-            <Icon
-              v-if="isItemSelected(item) && !props.multiSelect"
-              class="spr-text-color-brand-base spr-w-[1.39em]"
-              icon="ph:check"
-            />
-            <Icon
-              v-else-if="props.ladderized && item.sublevel && item.sublevel?.length > 0"
-              class="spr-text-color-weak spr-size-4"
-              icon="ph:caret-right"
-            />
+            <div
+              v-for="(item, itemIndex) in list.items"
+              :key="itemIndex"
+              :class="getListItemClasses(item)"
+              @click="handleSelectedItem(item)"
+            >
+              <spr-checkbox v-if="props.multiSelect" :checked="isItemSelected(item)" />
+              <div class="spr-flex spr-flex-auto spr-flex-col spr-justify-start">
+                <span class="spr-text-left spr-text-xs">
+                  {{ item.text }}
+                </span>
+                <span v-if="item.subtext" class="spr-body-xs-regular spr-text-color-base spr-text-left">
+                  {{ item.subtext }}
+                </span>
+              </div>
+              <Icon
+                v-if="isItemSelected(item) && !props.multiSelect"
+                class="spr-text-color-brand-base spr-w-[1.39em]"
+                icon="ph:check"
+              />
+              <Icon
+                v-else-if="props.ladderized && item.sublevel && item.sublevel?.length > 0"
+                class="spr-text-color-weak spr-size-4"
+                icon="ph:caret-right"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </template>
-    <template v-if="localizedMenuList.length > 0">
-      <div
-        v-for="(item, index) in localizedMenuList"
-        :key="index"
-        :class="getListItemClasses(item)"
-        @click="handleSelectedItem(item)"
-      >
-        <spr-checkbox v-if="props.multiSelect" :disabled="item.disabled" :checked="isItemSelected(item)" />
-        <div
-          :class="[
-            'spr-flex spr-flex-auto spr-flex-col spr-justify-start',
-            { 'spr-text-color-disabled': item.disabled },
-          ]"
-        >
-          <span class="spr-text-left spr-text-xs">{{ item.text }}</span>
-          <span
-            v-if="item.subtext"
-            :class="[
-              'spr-body-xs-regular spr-text-color-base spr-text-left',
-              { 'spr-text-color-disabled': item.disabled },
-            ]"
-            >{{ item.subtext }}</span
-          >
+      </template>
+      <template v-else>
+        <div v-if="props.loading" class="spr-skeletal-loader spr-h-8 spr-w-full spr-rounded-md" />
+        <div v-else class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
+          <span class="spr-body-sm-regular spr-m-0">No results found</span>
         </div>
-        <Icon
-          v-if="isItemSelected(item) && !props.multiSelect"
-          class="spr-text-color-brand-base spr-w-[1.39em]"
-          icon="ph:check"
-        />
-        <Icon
-          v-else-if="props.ladderized && item.sublevel && item.sublevel?.length > 0"
-          class="spr-text-color-weak spr-size-4"
-          icon="ph:caret-right"
-        />
-      </div>
+      </template>
     </template>
 
     <template v-else>
-      <div v-if="props.loading" class="spr-skeletal-loader spr-h-8 spr-w-full spr-rounded-md" />
-      <div v-else class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
-        <span class="spr-body-sm-regular spr-m-0">No results found</span>
-      </div>
+      <template v-if="localizedMenuList && localizedMenuList.length > 0">
+        <div
+          v-for="(item, index) in localizedMenuList"
+          :key="index"
+          :class="getListItemClasses(item)"
+          @click="handleSelectedItem(item)"
+        >
+          <spr-checkbox v-if="props.multiSelect" :disabled="item.disabled" :checked="isItemSelected(item)" />
+          <div
+            :class="[
+              'spr-flex spr-flex-auto spr-flex-col spr-justify-start',
+              { 'spr-text-color-disabled': item.disabled },
+            ]"
+          >
+            <span class="spr-text-left spr-text-xs">{{ item.text }}</span>
+            <span
+              v-if="item.subtext"
+              :class="[
+                'spr-body-xs-regular spr-text-color-base spr-text-left',
+                { 'spr-text-color-disabled': item.disabled },
+              ]"
+              >{{ item.subtext }}</span
+            >
+          </div>
+          <Icon
+            v-if="isItemSelected(item) && !props.multiSelect"
+            class="spr-text-color-brand-base spr-w-[1.39em]"
+            icon="ph:check"
+          />
+          <Icon
+            v-else-if="props.ladderized && item.sublevel && item.sublevel?.length > 0"
+            class="spr-text-color-weak spr-size-4"
+            icon="ph:caret-right"
+          />
+        </div>
+      </template>
+      <template v-else>
+        <div v-if="props.loading" class="spr-skeletal-loader spr-h-8 spr-w-full spr-rounded-md" />
+        <div v-else class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
+          <span class="spr-body-sm-regular spr-m-0">No results found</span>
+        </div>
+      </template>
     </template>
   </div>
 </template>

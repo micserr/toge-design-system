@@ -1,16 +1,130 @@
 # Changelog
 
+## 2.11.17 (2025-08-07)
+
+- Fix
+  - Commit c2468d48: feat: add noCheck prop to list component and enhance item rendering ([#c2468d48](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c2468d48dc6e0c0702934e49a8ee5c0004c67e26?refName=refs/heads/2025/Fix/andrea/NOCHECK_LIST) by @adestajo)
+
+## 2.11.16 (2025-08-07)
+
+- Fix
+  - Date Range Picker always shows behind due to container ([#45c12797](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/45c127973b122370793573e121ce405887b9b7b1?refName=refs/heads/2025/FIX/Xyrk/DATE_RANGE_PICKER_CONTAINER) by @jfabula)
+
+## 2.11.15 (2025-08-07)
+
+- Fix
+  - Update Ladderized Select Search Function - Global Search, Update Multi Select Documentation
+    ([#33684](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/33684) by @jarias)
+
+## 2.11.14 (2025-08-06)
+
+- Fix
+  - Fix underline active indicator and update active tab value when activeTab prop changes
+    ([#79b447b8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/79b447b861d1aaf1257250f168fc81d26e4661f7?refName=refs%2Fheads%2F2025%2Ffix%2Fjames%2Ftab-underlined-active-state) by @jmanalang)
+
+## 2.11.13 (2025-08-06)
+
+- Feat
+  - New component: Date Range Picker ([#9004617e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/9004617eb97ae890adf051fa1cf13f7f32663006?refName=refs/heads/2025/FEATURE/Xyrk/DATE_RANGE_CALENDAR)) by @jfabula
+
+## 2.11.12 (2025-08-05)
+
+- Fix
+  - Commit d002a1bc: feat: enhance list selection logic to support preserved items with disabled local search
+    ([#d002a1bc](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d002a1bc209b084b808a6fd1b7b4487026364d9b?refName=refs/heads/2025/Fix/andrea/FIX_MULTI_SELECT) by @adestajo)
+
+## 2.11.11 (2025-08-05)
+
+- Fix
+  - Commit 17d6496f:Revert to Cell Defautl Color
+    ([#17d6496f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/17d6496fb766391f64a2bd7f0b5bf9649e8a969d?refName=refs/heads/2025/Fix/andrea/CELL_DEF_COLOR) by @adestajo)
+
+## 2.11.10 (2025-08-05)
+
+- Fix
+  - Sidenav: Additional improvements to navigation mapping and path handling
+    ([#19308d5f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/19308d5f49aad12fb64ea48d3a0c11510c8264e9?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSIDENAV_SUBHEADING) by @bsolis)
+
+## 2.11.9 (2025-08-05)
+
+- Fix
+  - Datepicker Reactive Issue
+    ([#33754](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/33754?path=/src/components/date-picker) by @jarias)
+
+## 2.11.8 (2025-08-04)
+
+- Fix
+  - Sidenav: Fixed subheading hover state styling issue
+    ([#df442df7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/df442df7400623886158aeba9a7ffe561323c597?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSIDENAV_SUBHEADING) by @bsolis)
+
+## 2.11.7 (2025-04-08)
+
+- Feat
+
+  - Commit c85ae134: feat: add custom color support to calendar cell component ([#c85ae134](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c85ae134ff86a0e743bd4f8592310c37b081fd47?refName=refs/heads/2025/Fix/andrea/CELL) @adestajo)
+
+## 2.11.6 (2025-04-08)
+
+- Fix
+
+  - Documentation Build Issues ([#4e6a8ece](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4e6a8eced691a7e2945ce34ba49dce03da789a55?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-fix-button-dropdown) @jarias)
+
+## 2.11.5 (2025-04-08)
+
+- Feat
+
+  - Update button dropdown and added dropdown inner popper width ([#34e217ad](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/34e217ad62ef051f494adce93d9113063175357e?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-fix-button-dropdown) @jarias)
+
+## 2.11.4 (2025-04-08)
+
+- Documentation
+
+  - Update changelog for Skeletal Loader utility addition([#214292f2](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/214292f2147df3473b3a7715e3863ef5cb4a265b?refName=refs%2Fheads%2F2025%2FDOCS%2FANDREA%2FUPDATE_DOCS_MULTI_SELECT) @adestajo)
+
+## 2.11.3 (2025-07-31)
+
+- Documentation
+
+  - Commit 2f22358c: feat: add Skeletal Loader utility and update documentation([#2f22358c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2f22358cca982ec687639ad77a05003739c5f4f0?refName=refs/heads/2025/DOCS/ANDREA/UPDATE_DOCS_MULTI_SELECT) @adestajo)
+
+- Feat
+
+  - search Field Supported
+    - local
+    - API Based Search
+      -Infinite Scroll
+  - Commit 12bd0978: feat: Add infinite scroll and search functionality to Multi Select component ([#12bd0978](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/12bd09784691f7178641a10292b3c792360a6bae?refName=refs/heads/2025/feat/andrea/added-search-multi-select) @adestajo)
+
+## 2.11.2 (2025-07-31)
+
+- Fix
+
+  - Error Failed to resolve entry for package design-system-next ([#23bff266](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23bff266b392882e601c5ed2238be830e377b325?refName=refs/heads/2025/fix/dale/umd-file-creation&path=/package.json) @dale)
+
+## 2.11.1 (2025-07-31)
+
+- Fix
+  - Sidenav: Fixed mapping issue for subheading in navigation structure and improved path checking logic
+    ([#a00e647](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a00e647966fc0b37a4259e0421c5213eae3d28d1?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FSIDENAV_SUBHEADING) by @bsolis)
+
+## 2.11.0 (2025-07-31)
+
+- Feat
+  - Button Dropdown. Also, updated button and dropdown to fit button dropdown component ([#09110294](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/09110294f61618c4b56637bdd2b783b36db5d55b?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FButtonDropdown) by @jbanares)
+- fix
+  - Updated list to fit button dropdown component ([#dcc49a0e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dcc49a0e7c1a83938aac171a5342b0acdb3bd5d4?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FButtonDropdown) by @jbanares)
+
 ## 2.10.4 (2025-07-30)
 
 - Fix
   - fix: Updated stacking sidepanel and sidepanel transition ([#083c79cf](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/083c79cfe6e06359bab6588009387527b918d2af?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FStackingSidePanel) by @jbanares)
   - fix: Improve stacking sidepanel transition timing ans synchronization ([#0c51d805](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0c51d805181e037e065e9ad1bf1bd4ab0a1612d7?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FStackingSidePanel) by @mraquel)
 
-
 ## 2.10.3 (2025-07-30)
 
--Feat 
-  - Added a feature that generates UMD file to be used in legacy applications ([#22aa5f41](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/22aa5f418dfd579450268852e3666dbcb3ec46ac?refName=refs%2Fheads%2F2025%2Ffeature%2Fdale%2Fumd-file-creation) by @dale)
+-Feat
+
+- Added a feature that generates UMD file to be used in legacy applications ([#22aa5f41](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/22aa5f418dfd579450268852e3666dbcb3ec46ac?refName=refs%2Fheads%2F2025%2Ffeature%2Fdale%2Fumd-file-creation) by @dale)
 
 ## 2.10.2 (2025-07-30)
 

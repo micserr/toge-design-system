@@ -68,7 +68,9 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
   const generateId = (...titles: string[]): string => {
     return titles.map(transformToCamelCaseId).join('_');
   }
+  
   const confirmIfOwnDomain = (url: string) => {
+    const domain = window.location.hostname; 
     const urlHostname = new URL(url).hostname;
     const currentHostname = window.location.hostname;
     const isOwnDomain = urlHostname === currentHostname || currentHostname === 'localhost'
@@ -99,31 +101,6 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
     return Object.values(groups).map(group => ({ parentLinks: group.map(mapItemToNav) }));
   }
 
-  // const mapItemToNav = (item: NavItem): ParentLinkItem => {
-  //   return {
-  //       title: item.label,
-  //       icon: item.icon || "",
-  //       redirect: item.url
-  //           ? {
-  //               openInNewTab: item.isNewTab || false,
-  //               isAbsoluteURL: !confirmIfOwnDomain(item.url),
-  //               link: navLinkCondition(item) || "",
-  //           }
-  //           : undefined,
-  //       menuLinks: item.children && item.children.length > 0
-  //           ? [{
-  //               menuHeading: '',
-  //               items: item.children.map(child => mapItemToNav(child))
-  //           }]
-  //           : [],
-  //       submenuLinks: item.children && item.children.length > 0 && !item.children.some(c => c.children)
-  //           ? [{
-  //               subMenuHeading: '',
-  //               items: item.children.map(child => mapItemToNav(child)),
-  //           }]
-  //           : [],
-  //   }
-  // }
 
     const mapItemToNav = (item: NavItem): ParentLinkItem | MenuLinkItem => {
         const groupChildrenByProperty = (

@@ -25,16 +25,21 @@
               @click="handleSelectedItem(item)"
             >
               <spr-checkbox v-if="props.multiSelect" :checked="isItemSelected(item)" />
-              <div class="spr-flex spr-flex-auto spr-flex-col spr-justify-start">
-                <span class="spr-text-left spr-text-xs">
-                  {{ item.text }}
-                </span>
-                <span v-if="item.subtext" class="spr-body-xs-regular spr-text-color-base spr-text-left">
-                  {{ item.subtext }}
-                </span>
+              <div :class="[item.textColor, 'spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-3xs']">
+                <span v-if="item.icon" :class="[item.iconColor, 'spr-mt-[2px]']"
+                  ><icon :icon="item.icon" width="20px" height="20px"
+                /></span>
+                <div class="spr-flex spr-flex-auto spr-flex-col spr-justify-start">
+                  <span class="spr-text-left spr-text-xs">
+                    {{ item.text }}
+                  </span>
+                  <span v-if="item.subtext" class="spr-body-xs-regular spr-text-color-base spr-text-left">
+                    {{ item.subtext }}
+                  </span>
+                </div>
               </div>
               <Icon
-                v-if="isItemSelected(item) && !props.multiSelect"
+                v-if="isItemSelected(item) && !props.multiSelect && !props.noCheck"
                 class="spr-text-color-brand-base spr-w-[1.39em]"
                 icon="ph:check"
               />
@@ -64,24 +69,29 @@
           @click="handleSelectedItem(item)"
         >
           <spr-checkbox v-if="props.multiSelect" :disabled="item.disabled" :checked="isItemSelected(item)" />
-          <div
-            :class="[
-              'spr-flex spr-flex-auto spr-flex-col spr-justify-start',
-              { 'spr-text-color-disabled': item.disabled },
-            ]"
-          >
-            <span class="spr-text-left spr-text-xs">{{ item.text }}</span>
-            <span
-              v-if="item.subtext"
+          <div :class="[item.textColor, 'spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-3xs']">
+            <span v-if="item.icon" :class="[item.iconColor, 'spr-mt-[2px]']"
+              ><icon :icon="item.icon" width="20px" height="20px"
+            /></span>
+            <div
               :class="[
-                'spr-body-xs-regular spr-text-color-base spr-text-left',
+                'spr-flex spr-flex-auto spr-flex-col spr-justify-start',
                 { 'spr-text-color-disabled': item.disabled },
               ]"
-              >{{ item.subtext }}</span
             >
+              <span class="spr-text-left spr-text-xs">{{ item.text }}</span>
+              <span
+                v-if="item.subtext"
+                :class="[
+                  'spr-body-xs-regular spr-text-color-base spr-text-left',
+                  { 'spr-text-color-disabled': item.disabled },
+                ]"
+                >{{ item.subtext }}</span
+              >
+            </div>
           </div>
           <Icon
-            v-if="isItemSelected(item) && !props.multiSelect"
+            v-if="isItemSelected(item) && !props.multiSelect && !props.noCheck"
             class="spr-text-color-brand-base spr-w-[1.39em]"
             icon="ph:check"
           />

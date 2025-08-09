@@ -624,6 +624,34 @@ const mockDropdownData = [
 </script>
 ```
 
+## No Check
+
+<div 
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="singleSelectOutput.example1" :menu-list="menuList" noCheck/>
+</div>
+<div class="spr-my-3 spr-p-4 spr-bg-blue-100">
+  <h5>Output:</h5>
+  <span>{{ singleSelectOutput.example1 }}</span>
+</div>
+
+```vue
+<template>
+  <div
+    :class="[
+      'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
+      'spr-border-color-weak spr-border spr-border-solid',
+    ]"
+  >
+    <spr-list v-model="singleSelectOutput" :menu-list="menuList" noCheck />
+  </div>
+</template>
+```
+
 ## API Reference
 
 <table>

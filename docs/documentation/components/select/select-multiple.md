@@ -389,7 +389,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Auto"
       placeholder="Select an option"
       :options="options"
       placement="auto"
@@ -398,7 +398,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Auto Start"
       placeholder="Select an option"
       :options="options"
       placement="auto-start"
@@ -407,7 +407,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Auto End"
       placeholder="Select an option"
       :options="options"
       placement="auto-end"
@@ -418,7 +418,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Top"
       placeholder="Select an option"
       :options="options"
       placement="top"
@@ -427,7 +427,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Top Start"
       placeholder="Select an option"
       :options="options"
       placement="top-start"
@@ -436,7 +436,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Top End"
       placeholder="Select an option"
       :options="options"
       placement="top-end"
@@ -447,7 +447,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Right"
       placeholder="Select an option"
       :options="options"
       placement="right"
@@ -456,7 +456,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Right Start"
       placeholder="Select an option"
       :options="options"
       placement="right-start"
@@ -465,7 +465,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Right End"
       placeholder="Select an option"
       :options="options"
       placement="right-end"
@@ -476,7 +476,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Bottom"
       placeholder="Select an option"
       :options="options"
       placement="bottom"
@@ -485,7 +485,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Bottom Start"
       placeholder="Select an option"
       :options="options"
       placement="bottom-start"
@@ -494,7 +494,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Bottom End"
       placeholder="Select an option"
       :options="options"
       placement="bottom-end"
@@ -505,7 +505,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Left"
       placeholder="Select an option"
       :options="options"
       placement="left"
@@ -514,7 +514,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Left Start"
       placeholder="Select an option"
       :options="options"
       placement="left-start"
@@ -523,7 +523,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Left End"
       placeholder="Select an option"
       :options="options"
       placement="left-end"

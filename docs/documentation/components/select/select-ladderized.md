@@ -288,7 +288,7 @@ The default placement is `bottom`.
     <spr-select-ladderized
       id="ladderized-select-placement-auto"
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
-      label="Ladderized Select"
+      label="Auto"
       placeholder="Select an item"
       :options="options"
       placement="auto"
@@ -297,7 +297,7 @@ The default placement is `bottom`.
     <spr-select-ladderized
       id="ladderized-select-placement-auto-start"
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
-      label="Ladderized Select"
+      label="Auto Start"
       placeholder="Select an item"
       :options="options"
       placement="auto-start"
@@ -306,7 +306,7 @@ The default placement is `bottom`.
     <spr-select-ladderized
       id="ladderized-select-placement-auto-end"
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
-      label="Ladderized Select"
+      label="Auto End"
       placeholder="Select an item"
       :options="options"
       placement="auto-end"
@@ -317,7 +317,7 @@ The default placement is `bottom`.
     <spr-select-ladderized
       id="ladderized-select-placement-top"
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
-      label="Ladderized Select"
+      label="Top"
       placeholder="Select an item"
       :options="options"
       placement="top"
@@ -326,7 +326,7 @@ The default placement is `bottom`.
     <spr-select-ladderized
       id="ladderized-select-placement-top-start"
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
-      label="Ladderized Select"
+      label="Top Start"
       placeholder="Select an item"
       :options="options"
       placement="top-start"
@@ -335,7 +335,7 @@ The default placement is `bottom`.
     <spr-select-ladderized
       id="ladderized-select-placement-top-end"
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
-      label="Ladderized Select"
+      label="Top End"
       placeholder="Select an item"
       :options="options"
       placement="top-end"
@@ -346,7 +346,7 @@ The default placement is `bottom`.
     <spr-select-ladderized
       id="ladderized-select-placement-right"
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
-      label="Ladderized Select"
+      label="Right"
       placeholder="Select an item"
       :options="options"
       placement="right"
@@ -355,7 +355,7 @@ The default placement is `bottom`.
     <spr-select-ladderized
       id="ladderized-select-placement-right-start"
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
-      label="Ladderized Select"
+      label="Right Start"
       placeholder="Select an item"
       :options="options"
       placement="right-start"
@@ -364,7 +364,7 @@ The default placement is `bottom`.
     <spr-select-ladderized
       id="ladderized-select-placement-right-end"
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
-      label="Ladderized Select"
+      label="Right End"
       placeholder="Select an item"
       :options="options"
       placement="right-end"
@@ -375,7 +375,7 @@ The default placement is `bottom`.
     <spr-select-ladderized
       id="ladderized-select-placement-bottom"
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
-      label="Ladderized Select"
+      label="Bottom"
       placeholder="Select an item"
       :options="options"
       placement="bottom"
@@ -384,7 +384,7 @@ The default placement is `bottom`.
     <spr-select-ladderized
       id="ladderized-select-placement-bottom-start"
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
-      label="Ladderized Select"
+      label="Bottom Start"
       placeholder="Select an item"
       :options="options"
       placement="bottom-start"
@@ -393,7 +393,7 @@ The default placement is `bottom`.
     <spr-select-ladderized
       id="ladderized-select-placement-bottom-end"
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
-      label="Ladderized Select"
+      label="Bottom End"
       placeholder="Select an item"
       :options="options"
       placement="bottom-end"
@@ -404,7 +404,7 @@ The default placement is `bottom`.
     <spr-select-ladderized
       id="ladderized-select-placement-left"
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
-      label="Ladderized Select"
+      label="Left"
       placeholder="Select an item"
       :options="options"
       placement="left"
@@ -413,7 +413,7 @@ The default placement is `bottom`.
     <spr-select-ladderized
       id="ladderized-select-placement-left-start"
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
-      label="Ladderized Select"
+      label="Left Start"
       placeholder="Select an item"
       :options="options"
       placement="left-start"
@@ -422,7 +422,7 @@ The default placement is `bottom`.
     <spr-select-ladderized
       id="ladderized-select-placement-left-end"
       v-model="laderrizedSelectModel.placementsLadderizedSelect"
-      label="Ladderized Select"
+      label="Left End"
       placeholder="Select an item"
       :options="options"
       placement="left-end"

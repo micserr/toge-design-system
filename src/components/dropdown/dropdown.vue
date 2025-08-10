@@ -49,12 +49,14 @@
             :multi-select="props.multiSelect"
             :pre-selected-items="dropdownValue"
             :no-check="props.noCheckInList"
+            :dropdown="props.dropdown"
             @update:model-value="handleSelectedItem"
           />
           <spr-ladderized-list
             v-else
             v-model="dropdownValue"
             :ladderized="props.ladderized"
+            :dropdown="props.dropdown"
             :menu-list="dropdownMenuList"
             :remove-current-level-in-back-label="removeCurrentLevelInBackLabel"
             @update:model-value="handleSelectedLadderizedItem"

@@ -16,9 +16,9 @@
         '!spr-max-h-[calc(100vh-150px)]': props.requestCount === '' || props.notificationCount === '',
       }"
     >
-      <!-- Top Section -->
+      <!-- #region - Top Section -->
       <div class="spr-grid spr-justify-center spr-gap-2 spr-px-3 spr-pb-4 spr-pt-4">
-        <!-- Logo -->
+        <!-- #region - Logo -->
         <div
           :class="[
             'spr-grid spr-justify-center spr-p-2',
@@ -27,8 +27,9 @@
         >
           <slot name="logo-image" />
         </div>
+        <!-- #endregion - Logo -->
 
-        <!-- Quick Actions -->
+        <!-- #region - Quick Actions -->
         <Menu
           v-if="props.quickActions && props.quickActions.length > 0"
           v-model:shown="isQuckActionMenuVisible"
@@ -123,8 +124,9 @@
             </div>
           </template>
         </Menu>
+        <!-- #endregion - Quick Actions -->
 
-        <!-- Search -->
+        <!-- #region - Search -->
         <div
           v-if="props.hasSearch"
           id="sidenav_search"
@@ -138,8 +140,9 @@
         >
           <Icon icon="ph:magnifying-glass" class="spr-h-[1.25em] spr-w-[1.25em]" />
         </div>
+        <!-- #endregion - Search -->
 
-        <!-- Grouped Nav Links -->
+        <!-- #region - Grouped Nav Links -->
         <template v-for="(navLink, navLinkIndex) in navLinks.top" :key="navLinkIndex">
           <template v-for="(parentLink, parentLinkIndex) in navLink.parentLinks" :key="parentLinkIndex">
             <!-- #region - Prent Links with Menus -->
@@ -338,7 +341,7 @@
             </template>
             <!-- #endregion - Prent Links with Menus -->
 
-            <!-- #region Parent link only -->
+            <!-- #region - Parent link only -->
             <template v-else>
               <Tooltip
                 v-if="!parentLink.hidden"
@@ -347,46 +350,6 @@
                 distance="18"
                 :triggers="['hover']"
               >
-                <div
-                  :id="`${generateId(parentLink.title)}`"
-                  :class="{
-                    'spr-m-auto spr-box-border spr-flex spr-max-h-9 spr-max-w-9 spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out': true,
-                    'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
-                      props.activeNav.parentNav === parentLink.title,
-                    'hover:spr-background-color-hover': props.activeNav.parentNav != parentLink.title,
-                    'active:spr-background-color-single-active active:spr-scale-90': true,
-                  }"
-                  @click="handleRedirect(parentLink, parentLink.title, '', '')"
-                >
-                  <template v-if="parentLink.icon && parentLink.icon.includes('https://')">
-                    <img
-                      v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
-                      :src="parentLink.icon"
-                      :alt="`${parentLink.title} icon`"
-                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]"
-                    />
-                    <img
-                      v-else-if="props.activeNav.parentNav === parentLink.title"
-                      :src="parentLink.icon.replace(/\.(svg|png|jpg)$/, '-fill.$1')"
-                      :alt="`${parentLink.title} icon`"
-                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]"
-                    />
-                  </template>
-                  <template v-else>
-                    <Icon
-                      v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
-                      :icon="parentLink.icon"
-                      class="spr-h-[1.25em] spr-w-[1.25em]"
-                    />
-                    <Icon
-                      v-else-if="props.activeNav.parentNav === parentLink.title"
-                      :icon="`${parentLink.icon}-fill`"
-                      class="spr-h-[1.25em] spr-w-[1.25em] spr-text-kangkong-700"
-                    />
-                    <Icon v-else icon="ph:globe" />
-                  </template>
-                </div>
-
                 <!-- #region - Prent Links Tooltip -->
                 <template #popper>
                   <span class="spr-label-xs-medium spr-uppercase">{{ parentLink.title }}</span>
@@ -436,7 +399,7 @@
                 </div>
               </Tooltip>
             </template>
-            <!-- #endregion Parent link only  -->
+            <!-- #endregion - Parent link only  -->
           </template>
 
           <!-- Divider -->
@@ -445,14 +408,16 @@
             class="spr-background-color-hover spr-h-[2px] spr-w-full"
           ></div>
         </template>
+        <!-- #endregion - Grouped Nav Links -->
       </div>
+      <!-- #endregion - Top Section -->
 
-      <!-- Bottom Section -->
+      <!-- #region - Bottom Section -->
       <div
         v-if="navLinks.bottom && navLinks.bottom.length > 0"
         class="spr-grid spr-justify-center spr-gap-2 spr-px-3 spr-pb-4 spr-pt-0"
       >
-        <!-- Grouped Nav Links -->
+        <!-- #region - Grouped Nav Links -->
         <template v-for="(navLink, navLinkIndex) in navLinks.bottom" :key="navLinkIndex">
           <template v-for="(parentLink, parentLinkIndex) in navLink.parentLinks" :key="parentLinkIndex">
             <!-- #region - Prent Links with Menus -->
@@ -712,14 +677,16 @@
             class="spr-background-color-hover spr-h-[2px] spr-w-full"
           ></div>
         </template>
+        <!-- #endregion - Grouped Nav Links -->
       </div>
+      <!-- #endregion - Bottom Section -->
     </div>
 
     <div
       v-if="props.notificationCount || props.requestCount || props.notificationCount === 0 || props.requestCount === 0"
       class="spr-grid spr-gap-2 spr-py-6"
     >
-      <!-- Notification -->
+      <!-- #region - Notification -->
       <Tooltip aria-id="sidenav-tooltip-wrapper" placement="right" distance="4" :triggers="['hover']">
         <template #popper>
           <span class="spr-label-xs-medium spr-uppercase">NOTIFICATIONS</span>
@@ -750,8 +717,9 @@
           />
         </div>
       </Tooltip>
+      <!-- #endregion - Notification -->
 
-      <!-- Requests -->
+      <!-- #region - Requests -->
       <Tooltip aria-id="sidenav-tooltip-wrapper" placement="right" distance="4" :triggers="['hover']">
         <template #popper>
           <span class="spr-label-xs-medium spr-uppercase">REQUESTS</span>
@@ -782,9 +750,10 @@
           />
         </div>
       </Tooltip>
+      <!-- #endregion - Requests -->
     </div>
 
-    <!-- Avatar -->
+    <!-- #region - Avatar -->
     <div
       v-if="props.userMenu"
       :class="[
@@ -881,6 +850,7 @@
         </template>
       </Menu>
     </div>
+    <!-- #endregion - Avatar -->
   </div>
 </template>
 

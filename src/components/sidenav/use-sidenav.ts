@@ -1,6 +1,6 @@
-import { ref, onMounted } from 'vue';
-import type { SetupContext } from 'vue';
+import { ref, toRefs, onMounted } from 'vue';
 
+import type { SetupContext } from 'vue';
 import type { SidenavPropTypes, SidenavEmitTypes, ParentLinkItem, NavLinks, NavItem, MenuLinkItem } from './sidenav';
 
 interface ObjectItem {
@@ -17,9 +17,9 @@ interface ObjectItem {
 }
 
 export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEmitTypes>['emit']) => {
-  const navLinks = ref<NavLinks>(props.navLinks);
-  const isQuckActionMenuVisible = ref(false);
+  const { navLinks } = toRefs(props);
 
+  const isQuckActionMenuVisible = ref(false);
   const isUserMenuVisible = ref(false);
 
   const userProfileError = ref(false);

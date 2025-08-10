@@ -26,9 +26,9 @@
             >
               <spr-checkbox v-if="props.multiSelect" :checked="isItemSelected(item)" />
               <div :class="[item.textColor, 'spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-3xs']">
-                <span v-if="item.icon" :class="[item.iconColor, 'spr-mt-[2px]']"
-                  ><icon :icon="item.icon" width="20px" height="20px"
-                /></span>
+                <span v-if="item.icon" :class="[item.iconColor, 'spr-mt-[2px]']">
+                  <icon :icon="item.icon" width="20px" height="20px" />
+                </span>
                 <div class="spr-flex spr-flex-auto spr-flex-col spr-justify-start">
                   <span class="spr-text-left spr-text-xs">
                     {{ item.text }}
@@ -38,16 +38,20 @@
                   </span>
                 </div>
               </div>
-              <Icon
-                v-if="isItemSelected(item) && !props.multiSelect && !props.noCheck"
-                class="spr-text-color-brand-base spr-w-[1.39em]"
-                icon="ph:check"
-              />
-              <Icon
-                v-else-if="props.ladderized && item.sublevel && item.sublevel?.length > 0"
-                class="spr-text-color-weak spr-size-4"
-                icon="ph:caret-right"
-              />
+              <template v-if="!props.multiSelect && !props.dropdown">
+                <Icon
+                  v-if="isItemSelected(item) && !props.noCheck"
+                  class="spr-text-color-brand-base spr-w-[1.39em]"
+                  icon="ph:check"
+                />
+              </template>
+              <template v-if="props.ladderized">
+                <Icon
+                  v-if="item.sublevel && item.sublevel?.length > 0"
+                  class="spr-text-color-weak spr-size-4"
+                  icon="ph:caret-right"
+                />
+              </template>
             </div>
           </div>
         </div>
@@ -86,20 +90,25 @@
                   'spr-body-xs-regular spr-text-color-base spr-text-left',
                   { 'spr-text-color-disabled': item.disabled },
                 ]"
-                >{{ item.subtext }}</span
               >
+                {{ item.subtext }}
+              </span>
             </div>
           </div>
-          <Icon
-            v-if="isItemSelected(item) && !props.multiSelect && !props.noCheck"
-            class="spr-text-color-brand-base spr-w-[1.39em]"
-            icon="ph:check"
-          />
-          <Icon
-            v-else-if="props.ladderized && item.sublevel && item.sublevel?.length > 0"
-            class="spr-text-color-weak spr-size-4"
-            icon="ph:caret-right"
-          />
+          <template v-if="!props.multiSelect && !props.dropdown">
+            <Icon
+              v-if="isItemSelected(item) && !props.noCheck"
+              class="spr-text-color-brand-base spr-w-[1.39em]"
+              icon="ph:check"
+            />
+          </template>
+          <template v-if="props.ladderized">
+            <Icon
+              v-if="item.sublevel && item.sublevel?.length > 0"
+              class="spr-text-color-weak spr-size-4"
+              icon="ph:caret-right"
+            />
+          </template>
         </div>
       </template>
       <template v-else>

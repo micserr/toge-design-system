@@ -4,7 +4,7 @@ import type { SetupContext } from 'vue';
 import type { SidenavPropTypes, SidenavEmitTypes, ParentLinkItem, NavLinks, NavItem, MenuLinkItem } from './sidenav';
 
 interface ObjectItem {
-  redirect: {
+  redirect?: {
     openInNewTab: boolean;
     isAbsoluteURL: boolean;
     link: string;
@@ -63,119 +63,128 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
         return word.charAt(0).toUpperCase() + word.slice(1);
       })
       .join('');
-  }
+  };
 
   const generateId = (...titles: string[]): string => {
     return titles.map(transformToCamelCaseId).join('_');
-  }
-  
+  };
+
   const confirmIfOwnDomain = (url: string) => {
-    const domain = window.location.hostname; 
+    const domain = window.location.hostname;
     const urlHostname = new URL(url).hostname;
-    const isOwnDomain = domain === urlHostname || window.location.hostname === 'localhost'
+    const isOwnDomain = domain === urlHostname || window.location.hostname === 'localhost';
+
     return isOwnDomain;
-  }
+  };
 
   const getPathFromUrl = (url: string): string => {
     const parsedUrl = new URL(url);
-    return parsedUrl ? parsedUrl.pathname : ''; 
-    
-  }
+
+    return parsedUrl ? parsedUrl.pathname : '';
+  };
 
   const navLinkCondition = (link: NavItem) => {
     if (confirmIfOwnDomain(link.url as string)) {
-        return getPathFromUrl(link.url as string);
+      return getPathFromUrl(link.url as string);
     } else {
-        return link.url;
+      return link.url;
     }
-  }
+  };
 
   const groupByGroupId = (items: NavItem[]) => {
     const groups: Record<string, NavItem[]> = {};
-    items.forEach(item => {
-        if (!groups[item.groupId]) {
-            groups[item.groupId] = [];
-        }
-        groups[item.groupId].push(item);
+
+    items.forEach((item) => {
+      if (!groups[item.groupId]) {
+        groups[item.groupId] = [];
+      }
+      groups[item.groupId].push(item);
     });
-    return Object.values(groups).map(group => ({ parentLinks: group.map(mapItemToNav) }));
-  }
 
+    return Object.values(groups).map((group) => ({ parentLinks: group.map(mapItemToNav) }));
+  };
 
-    const mapItemToNav = (item: NavItem): ParentLinkItem | MenuLinkItem => {
-        const groupChildrenByProperty = (
-            children: NavItem[] | undefined,
-            property: keyof NavItem
-        ): { [key: string]: NavItem[] } => {
-            if (!children || children.length === 0) return {};
-            return children.reduce((acc: Record<string, NavItem[]>, child) => {
-                const key = String(child[property] || '');
-                acc[key] = acc[key] || [];
-                acc[key].push(child);
-                return acc;
-            }, {});
-        };
-
-        const mapGroupedChildren = (
-            groupedChildren: { [key: string]: NavItem[] },
-            headingKey: 'menuHeading' | 'subMenuHeading'
-        ) => {
-            return Object.entries(groupedChildren).map(([groupName, groupItems]) => ({
-                [headingKey]: groupName,
-                items: groupItems.map(mapItemToNav),
-            }));
-        };
-
-        const groupedChildren = groupChildrenByProperty(item.children ?? undefined, 'groupName');
-
-        return {
-            title: item.label,
-            icon: item.icon || undefined,
-            redirect: item.url
-                ? {
-                    openInNewTab: item.isNewTab || false,
-                    isAbsoluteURL: !confirmIfOwnDomain(item.url as string),
-                    link: navLinkCondition(item),
-                }
-                : undefined,
-            menuLinks: mapGroupedChildren(groupedChildren, 'menuHeading') as { menuHeading: string; items: ParentLinkItem[]; }[],
-            submenuLinks: mapGroupedChildren(groupedChildren, 'subMenuHeading') as { subMenuHeading: string; items: ParentLinkItem[]; }[],
-        };
+  const mapItemToNav = (item: NavItem): ParentLinkItem | MenuLinkItem => {
+    const groupChildrenByProperty = (
+      children: NavItem[] | undefined,
+      property: keyof NavItem,
+    ): { [key: string]: NavItem[] } => {
+      if (!children || children.length === 0) return {};
+      return children.reduce((acc: Record<string, NavItem[]>, child) => {
+        const key = String(child[property] || '');
+        acc[key] = acc[key] || [];
+        acc[key].push(child);
+        return acc;
+      }, {});
     };
+
+    const mapGroupedChildren = (
+      groupedChildren: { [key: string]: NavItem[] },
+      headingKey: 'menuHeading' | 'subMenuHeading',
+    ) => {
+      return Object.entries(groupedChildren).map(([groupName, groupItems]) => ({
+        [headingKey]: groupName,
+        items: groupItems.map(mapItemToNav),
+      }));
+    };
+
+    const groupedChildren = groupChildrenByProperty(item.children ?? undefined, 'groupName');
+
+    return {
+      title: item.label,
+      icon: item.icon || undefined,
+      redirect: item.url
+        ? {
+            openInNewTab: item.isNewTab || false,
+            isAbsoluteURL: !confirmIfOwnDomain(item.url as string),
+            link: navLinkCondition(item),
+          }
+        : undefined,
+      menuLinks: mapGroupedChildren(groupedChildren, 'menuHeading') as {
+        menuHeading: string;
+        items: ParentLinkItem[];
+      }[],
+      submenuLinks: mapGroupedChildren(groupedChildren, 'subMenuHeading') as {
+        subMenuHeading: string;
+        items: ParentLinkItem[];
+      }[],
+    };
+  };
 
   // Helper function to extract valid NavItems from an array of objects
   const extractValidNavItems = <T extends Record<string, unknown>>(items: T[]): NavItem[] => {
-    return items.filter((item): item is NavItem & T => (
-      item !== null && 
-      'groupId' in item &&
-      'label' in item &&
-      typeof item.groupId === 'string' && 
-      typeof item.label === 'string'
-    )) as NavItem[];
+    return items.filter(
+      (item): item is NavItem & T =>
+        item !== null &&
+        'groupId' in item &&
+        'label' in item &&
+        typeof item.groupId === 'string' &&
+        typeof item.label === 'string',
+    ) as NavItem[];
   };
 
   const transformedNavItems = async (apiData: NavLinks) => {
     // Output type matches navLinks ref type
     const transformedData: NavLinks = { top: [], bottom: [] };
-    
+
     if (apiData.top && Array.isArray(apiData.top)) {
       const validTopItems = extractValidNavItems(apiData.top);
       transformedData.top = groupByGroupId(validTopItems);
     }
-    
+
     if (apiData.bottom && Array.isArray(apiData.bottom)) {
       const validBottomItems = extractValidNavItems(apiData.bottom);
       transformedData.bottom = groupByGroupId(validBottomItems);
     }
 
     return transformedData;
-  }
+  };
 
   onMounted(async () => {
     if (props.isNavApi) {
       navLinks.value = await transformedNavItems(props.navLinks);
     }
-  })
+  });
 
   return {
     navLinks,

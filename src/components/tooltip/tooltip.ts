@@ -18,16 +18,10 @@ const PLACEMENTS = [
 ] as const;
 
 export const tooltipPropTypes = {
-  /**
-   * @description Tooltip Label
-   */
   text: {
     type: String,
     default: '',
   },
-  /**
-   * @description Tooltip Placement
-   */
   placement: {
     type: String,
     validator: (value: (typeof PLACEMENTS)[number]) => PLACEMENTS.includes(value),
@@ -39,8 +33,8 @@ export const tooltipPropTypes = {
   },
   fitContent: {
     type: Boolean,
-    default: true
-  }
+    default: true,
+  },
 };
 
 export type TooltipPropTypes = ExtractPropTypes<typeof tooltipPropTypes>;

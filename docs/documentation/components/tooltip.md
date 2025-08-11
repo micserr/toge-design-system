@@ -8,9 +8,20 @@ The tooltip component is a simple component that displays a tooltip when hovered
 
 ## Basic Usage
 
-<spr-tooltip text="This is my tooltip text">
-  <spr-button tone="success">Hover me to view tooltip</spr-button>
-</spr-tooltip>
+<div class="spr-grid spr-gap-3">
+  <spr-tooltip text="This is my tooltip text">
+    <spr-button tone="success">Hover me to view tooltip</spr-button>
+  </spr-tooltip>
+  <spr-tooltip text="This is my tooltip text">
+    <spr-chips class="spr-w-full" label="Chips" />
+  </spr-tooltip>
+  <spr-tooltip text="This is my tooltip text">
+    <spr-lozenge class="spr-w-full" label="Lozange" />
+  </spr-tooltip>
+  <spr-tooltip text="This is my tooltip text">
+    <spr-input v-model="inputValueBasic" placeholder="Enter your text" class="spr-w-full" />
+  </spr-tooltip>
+</div>
 
 ```vue
 <spr-tooltip text="This is my tooltip text">
@@ -22,9 +33,11 @@ The tooltip component is a simple component that displays a tooltip when hovered
 
 By adding the `text` prop to the tooltip component, you can customize the text that is displayed in the tooltip.
 
-<spr-tooltip text="This is my custom tooltip text">
-  <spr-button tone="success">Hover me to view tooltip</spr-button>
-</spr-tooltip>
+<div class="spr-grid spr-gap-3">
+  <spr-tooltip text="This is my custom tooltip text">
+    <spr-button tone="success">Hover me to view tooltip</spr-button>
+  </spr-tooltip>
+</div>
 
 ```vue
 <spr-tooltip text="This is my custom tooltip text">
@@ -57,7 +70,7 @@ If both `text` props and template `#popper-content` are used, the `text` prop wi
 </spr-tooltip>
 ```
 
-## Position
+## Plaacement
 
 <div class="spr-flex spr-flex-col spr-gap-3">
   <div class="spr-flex spr-gap-3">
@@ -112,7 +125,33 @@ If both `text` props and template `#popper-content` are used, the `text` prop wi
 </spr-tooltip>
 ```
 
-## Max Width
+## Distance
+
+You can set the distance of the tooltip from the target element by using the `distance` prop. The default distance is `8px`. You can set it to any value you want.
+
+<div class="spr-flex spr-gap-3">
+  <spr-tooltip text="My tooltip" :distance="16">
+    <spr-button tone="success">Distance 16px</spr-button>
+  </spr-tooltip>
+  <spr-tooltip text="My tooltip" :distance="32">
+    <spr-button tone="success">Distance 32px</spr-button>
+  </spr-tooltip>
+  <spr-tooltip text="My tooltip" :distance="64">
+    <spr-button tone="success">Distance 64px</spr-button>
+  </spr-tooltip>
+</div>
+
+```vue
+<spr-tooltip text="My tooltip" :distance="16">
+    <!-- Your component here -->
+</spr-tooltip>
+```
+
+## Width
+
+You can set the width of the tooltip by using the `fit-content` prop. By default, the tooltip will only take the width of its content. When the `fit-content` prop is set to false, the tooltip will take the full width of its parent container.
+
+### Using Max-width
 
 You can enable or disable the maximum width of the tooltip by using the `has-max-width prop`. By default, the max-width is enabled. When the `has-max-width` prop is set to true, the tooltip will have a maximum width of `280px`.
 
@@ -161,6 +200,33 @@ You can enable or disable the maximum width of the tooltip by using the `has-max
 </spr-tooltip>
 ```
 
+## Dynamic Changing Tooltip Text
+
+You can dynamically change the tooltip text by using the `text` prop. The tooltip will automatically update when the `text` prop changes.
+
+<spr-tooltip :text="tootltipText" :fit-content="false">
+  <spr-input v-model="inputValueDynamic" placeholder="Enter your text" class="spr-w-full" />
+</spr-tooltip>
+
+```vue
+<template>
+  <spr-tooltip :text="tootltipText" :fit-content="false">
+    <spr-input v-model="inputValueDynamic" placeholder="Enter your text" class="spr-w-full" />
+  </spr-tooltip>
+</template>
+
+<script lang="ts" setup>
+import { ref, watch } from 'vue';
+
+const inputValueDynamic = ref('');
+const tootltipText = ref('This is my tooltip text');
+
+watch(inputValueDynamic, (newValue) => {
+  tootltipText.value = newValue ? newValue : '-';
+});
+</script>
+```
+
 ## API Reference
 
 <table>
@@ -185,12 +251,25 @@ You can enable or disable the maximum width of the tooltip by using the `has-max
       <td>placement</td>
       <td>Tooltip Placement</td>
       <td><code>String</code></td>
-      <td><code>'top'</code>, <code>'top-start'</code>, <code>'top-end'</code>, <code>'bottom'</code>, <code>'bottom-start'</code>, <code>'bottom-end'</code>, <code>'left'</code>, <code>'left-start'</code>, <code>'left-end'</code>, <code>'right'</code>, <code>'right-start'</code>, <code>'right-end'</code></td>
+      <td>
+        <code>'top'</code>, <code>'top-start'</code>, <code>'top-end'</code>, <code>'bottom'</code>, <code>'bottom-start'</code>, <code>'bottom-end'</code>, <code>'left'</code>, <code>'left-start'</code>, <code>'left-end'</code>, <code>'right'</code>, <code>'right-start'</code>, <code>'right-end'</code>
+      </td>
       <td><code>'top'</code></td>
     </tr>
     <tr>
-      <td>hasMaxWidth</td>
-      <td>Enable or disable the maximum width of the tooltip. When enabled, the tooltip has a maximum width of 280px.</td>
+      <td>fit-content</td>
+      <td>
+        Enable or disable the fit content of the tooltip. When enabled, the tooltip will only take the width of its content.
+      </td>
+      <td><code>Boolean</code></td>
+      <td><code>true</code>, <code>false</code></td>
+      <td><code>true</code></td>
+    </tr>
+    <tr>
+      <td>has-max-width</td>
+      <td>
+        Enable or disable the maximum width of the tooltip. When enabled, the tooltip has a maximum width of 280px.
+      </td>
       <td><code>Boolean</code></td>
       <td><code>true</code>, <code>false</code></td>
       <td><code>true</code></td>
@@ -206,7 +285,21 @@ You can enable or disable the maximum width of the tooltip by using the `has-max
 </div>
 
 <script lang="ts" setup>
+import { ref, watch } from "vue";
+
 import SprTooltip from "@/components/tooltip/tooltip.vue";
 import SprButton from "@/components/button/button.vue";
+import SprChips from "@/components/chips/chips.vue";
+import SprLozenge from "@/components/lozenge/lozenge.vue"
+import SprInput from "@/components/input/input.vue";
 import SprLogo from "@/components/logo/logo.vue";
+
+const inputValueBasic = ref("");
+const inputValueDynamic = ref("");
+
+const tootltipText = ref("This is my tooltip text");
+
+watch(inputValueDynamic, (newValue) => {
+  tootltipText.value = newValue ? newValue : '-';
+});
 </script>

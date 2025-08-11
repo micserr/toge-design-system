@@ -1,9 +1,12 @@
 <template>
   <template v-if="props.text || slots['popper-content']">
     <Tooltip
-      :class="[ props.fitContent ? 'spr-w-fit' : 'spr-w-full' ]"
+      :class="[props.fitContent ? 'spr-w-fit' : 'spr-w-full']"
       :aria-id="props.hasMaxWidth ? 'tooltip-full-width-wrapper' : 'tooltip-wrapper'"
       :placement="placement"
+      :show-triggers="['hover']"
+      :hide-triggers="['hover']"
+      :distance="props.distance"
     >
       <template #popper>
         <span v-if="props.text">{{ props.text }}</span>

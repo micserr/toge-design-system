@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.11.19 (2025-08-11)
+
+- Fix
+  - Added no padding footer for sidepanel
+    ([#439b5486](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/439b54860579c5da8266d046ece6467706b8e055?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FAddedNoPaddingFooterForSidepanel) by @jbanares)
+
 ## 2.11.18 (2025-08-11)
 
 - Fix

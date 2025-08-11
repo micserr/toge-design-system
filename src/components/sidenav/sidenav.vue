@@ -145,7 +145,7 @@
         <!-- #region - Grouped Nav Links -->
         <template v-for="(navLink, navLinkIndex) in navLinks.top" :key="navLinkIndex">
           <template v-for="(parentLink, parentLinkIndex) in navLink.parentLinks" :key="parentLinkIndex">
-            <!-- #region - Prent Links with Menus -->
+            <!-- #region - Parent Links with Menus -->
             <template v-if="parentLink.menuLinks && parentLink.menuLinks.length > 0">
               <Menu
                 aria-id="sidenav-menu-wrapper"
@@ -154,7 +154,7 @@
                 :triggers="['click', 'hover']"
                 instant-move
               >
-                <!-- #region - Prent Links -->
+                <!-- #region - Parent Links -->
                 <div
                   :id="`${generateId(parentLink.title)}`"
                   :class="{
@@ -193,7 +193,7 @@
                     <Icon v-else icon="ph:globe" />
                   </template>
                 </div>
-                <!-- #endregion - Prent Links -->
+                <!-- #endregion - Parent Links -->
 
                 <!-- #region - Menu Links Popper -->
                 <template #popper>
@@ -339,24 +339,17 @@
                 <!-- #endregion - Menu Links -->
               </Menu>
             </template>
-            <!-- #endregion - Prent Links with Menus -->
+            <!-- #endregion - Parent Links with Menus -->
 
             <!-- #region - Parent link only -->
             <template v-else>
-              <Tooltip
+              <spr-tooltip
                 v-if="!parentLink.hidden"
-                aria-id="sidenav-tooltip-wrapper"
+                :text="parentLink.title"
                 placement="right"
-                distance="18"
-                :triggers="['hover']"
+                :distance="18"
+                :fit-content="false"
               >
-                <!-- #region - Prent Links Tooltip -->
-                <template #popper>
-                  <span class="spr-label-xs-medium spr-uppercase">{{ parentLink.title }}</span>
-                </template>
-                <!-- #endregion - Prent Links Tooltip -->
-
-                <!-- #region - Prent Links -->
                 <div
                   :id="`${generateId(parentLink.title)}`"
                   :class="{
@@ -395,9 +388,9 @@
                     />
                     <Icon v-else icon="ph:globe" />
                   </template>
-                  <!-- #endregion - Prent Links -->
                 </div>
-              </Tooltip>
+                <!-- #endregion - Parent Links -->
+              </spr-tooltip>
             </template>
             <!-- #endregion - Parent link only  -->
           </template>
@@ -420,7 +413,7 @@
         <!-- #region - Grouped Nav Links -->
         <template v-for="(navLink, navLinkIndex) in navLinks.bottom" :key="navLinkIndex">
           <template v-for="(parentLink, parentLinkIndex) in navLink.parentLinks" :key="parentLinkIndex">
-            <!-- #region - Prent Links with Menus -->
+            <!-- #region - Parent Links with Menus -->
             <template v-if="parentLink.menuLinks && parentLink.menuLinks.length > 0">
               <Menu
                 aria-id="sidenav-menu-wrapper"
@@ -429,7 +422,7 @@
                 :triggers="['click', 'hover']"
                 instant-move
               >
-                <!-- #region - Prent Links -->
+                <!-- #region - Parent Links -->
                 <div
                   :id="`${generateId(parentLink.title)}`"
                   :class="{
@@ -468,7 +461,7 @@
                     <Icon v-else icon="ph:globe" />
                   </template>
                 </div>
-                <!-- #endregion - Prent Links -->
+                <!-- #endregion - Parent Links -->
 
                 <!-- #region - Menu Links Popper -->
                 <template #popper>
@@ -610,24 +603,18 @@
                 <!-- #endregion - Menu Links Popper -->
               </Menu>
             </template>
-            <!-- #endregion - Prent Links with Menus -->
+            <!-- #endregion - Parent Links with Menus -->
 
             <!-- #region - Parent link only -->
             <template v-else>
-              <Tooltip
+              <spr-tooltip
                 v-if="!parentLink.hidden"
-                aria-id="sidenav-tooltip-wrapper"
+                :text="parentLink.title"
                 placement="right"
-                distance="18"
-                :triggers="['hover']"
+                :distance="18"
+                :fit-content="false"
               >
-                <!-- #region - Prent Links Tooltip -->
-                <template #popper>
-                  <span class="spr-label-xs-medium spr-uppercase">{{ parentLink.title }}</span>
-                </template>
-                <!-- #endregion - Prent Links Tooltip -->
-
-                <!-- #region - Prent Links -->
+                <!-- #region - Parent Links -->
                 <div
                   :id="`${generateId(parentLink.title)}`"
                   :class="{
@@ -667,8 +654,8 @@
                     <Icon v-else icon="ph:globe" />
                   </template>
                 </div>
-                <!-- #endregion - Prent Links -->
-              </Tooltip>
+                <!-- #endregion - Parent Links -->
+              </spr-tooltip>
             </template>
             <!-- #endregion - Parent link only -->
           </template>
@@ -687,10 +674,7 @@
       class="spr-grid spr-gap-2 spr-py-6"
     >
       <!-- #region - Notification -->
-      <Tooltip aria-id="sidenav-tooltip-wrapper" placement="right" distance="4" :triggers="['hover']">
-        <template #popper>
-          <span class="spr-label-xs-medium spr-uppercase">NOTIFICATIONS</span>
-        </template>
+      <spr-tooltip text="NOTIFICATIONS" placement="right" :distance="4" :fit-content="false">
         <div
           v-if="props.notificationCount || props.notificationCount === 0"
           id="sidenav_notification"
@@ -716,14 +700,11 @@
             size="small"
           />
         </div>
-      </Tooltip>
+      </spr-tooltip>
       <!-- #endregion - Notification -->
 
       <!-- #region - Requests -->
-      <Tooltip aria-id="sidenav-tooltip-wrapper" placement="right" distance="4" :triggers="['hover']">
-        <template #popper>
-          <span class="spr-label-xs-medium spr-uppercase">REQUESTS</span>
-        </template>
+      <spr-tooltip text="REQUESTS" placement="right" :distance="4" :fit-content="false">
         <div
           v-if="props.requestCount || props.requestCount === 0"
           id="sidenav_request"
@@ -749,7 +730,7 @@
             size="small"
           />
         </div>
-      </Tooltip>
+      </spr-tooltip>
       <!-- #endregion - Requests -->
     </div>
 
@@ -765,7 +746,7 @@
       <Menu
         v-model:shown="isUserMenuVisible"
         aria-id="user-menu-wrapper"
-        distance="1"
+        distance="18"
         placement="right"
         :triggers="['click', 'hover']"
         instant-move
@@ -863,6 +844,7 @@ import 'floating-vue/dist/style.css';
 import { sidenavPropTypes, sidenavEmitTypes } from './sidenav';
 import { useSidenav } from './use-sidenav';
 
+import SprTooltip from '../tooltip/tooltip.vue';
 import SprBadge from '../badge/badge.vue';
 
 const props = defineProps(sidenavPropTypes);

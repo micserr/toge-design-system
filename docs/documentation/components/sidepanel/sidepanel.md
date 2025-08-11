@@ -128,6 +128,54 @@ const isLargeSidepanelOpen = ref(false);
 </script>
 ```
 
+## No Padding Header and Footer
+
+<div>
+  <div class="spr-flex spr-space-x-4">
+    <spr-button tone="success" @click="isNoPaddingModal = true">No Padding Footer</spr-button>
+  </div>
+  <spr-sidepanel
+    size="sm"
+    :is-open="isNoPaddingModal"
+    header-title="Header"
+    footer-no-padding
+    @close="isNoPaddingModal = false"
+  >
+    <div class="spr-p-4">
+      Content
+    </div>
+    <template #footer>
+      Footer
+    </template>
+  </spr-sidepanel>
+</div>
+
+```vue
+<template>
+  <div class="spr-flex spr-space-x-4">
+    <spr-button tone="success" @click="isNoPaddingModal = true">Small</spr-button>
+  </div>
+  <spr-sidepanel
+    size="sm"
+    :is-open="isNoPaddingModal"
+    header-title="Header"
+    footer-no-padding
+    @close="isNoPaddingModal = false"
+  >
+    <div class="spr-p-4">
+      Content
+    </div>
+    <template #footer>Footer</template>
+  </spr-sidepanel>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const isNoPaddingModal = ref(false);
+</script>
+```
+
 ## Slot
 
 <table>
@@ -238,6 +286,7 @@ const isSmallSidepanelOpen = ref(false)
 const isMediumSidepanelOpen = ref(false)
 const isLargeSidepanelOpen = ref(false)
 const isCustomHeaderTitleOpen = ref(false)
+const isNoPaddingModal = ref(false)
 
 import SprSidenav from '@/components/sidenav/sidenav.vue';
 

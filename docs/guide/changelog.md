@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.11.18 (2025-08-11)
+
+- Fix
+  - Adjust tooltip hiding state, handle focus state.
+  - Update Dropdown Documentation
+  - Added Regions Sidenav, Sidenav Cleanup
+    ([#33933](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/33933) by @jarias)
+
 ## 2.11.17 (2025-08-07)
 
 - Fix

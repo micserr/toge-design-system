@@ -18,7 +18,7 @@
     </Tooltip>
   </template>
   <template v-else>
-    <slot ref="componentRef" />
+    <slot />
   </template>
 </template>
 

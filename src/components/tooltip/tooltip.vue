@@ -4,9 +4,19 @@
       :class="[props.fitContent ? 'spr-w-fit' : 'spr-w-full']"
       :aria-id="props.hasMaxWidth ? 'tooltip-full-width-wrapper' : 'tooltip-wrapper'"
       :placement="placement"
-      :show-triggers="['hover']"
-      :hide-triggers="['hover']"
+      :show-triggers="
+        Array.isArray(props.showTriggers)
+          ? props.showTriggers.flat().map((trigger) => trigger as TriggerEvent)
+          : [props.showTriggers as TriggerEvent]
+      "
+      :hide-triggers="
+        Array.isArray(props.hideTriggers)
+          ? props.hideTriggers.flat().map((trigger) => trigger as TriggerEvent)
+          : [props.hideTriggers as TriggerEvent]
+      "
       :distance="props.distance"
+      handle-resize
+      :auto-hide="props.autoHide"
     >
       <template #popper>
         <span v-if="props.text">{{ props.text }}</span>
@@ -25,7 +35,7 @@
 <script lang="ts" setup>
 import { useSlots } from 'vue';
 
-import { Tooltip } from 'floating-vue';
+import { Tooltip, type TriggerEvent } from 'floating-vue';
 
 import 'floating-vue/dist/style.css';
 

@@ -39,6 +39,18 @@ export const tooltipPropTypes = {
     type: Boolean,
     default: true,
   },
+  showTriggers: {
+    type: [String, Array] as PropType<string | string[]>,
+    default: 'hover',
+  },
+  hideTriggers: {
+    type: [String, Array] as PropType<string | string[]>,
+    default: 'hover',
+  },
+  autoHide: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export type TooltipPropTypes = ExtractPropTypes<typeof tooltipPropTypes>;

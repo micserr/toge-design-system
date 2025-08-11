@@ -19,7 +19,7 @@ interface SidepanelClasses {
 }
 
 export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<SidepanelEmitTypes>['emit']) => {
-  const { size, position, isStacking } = toRefs(props);
+  const { size, position, isStacking, footerNoPadding } = toRefs(props);
 
   const sidepanelClasses: ComputedRef<SidepanelClasses> = computed(() => {
     const sidepanelBaseClasses = classNames(
@@ -43,7 +43,10 @@ export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<Sidep
     const sidepanelContentClasses = classNames('spr-h-full spr-overflow-y-auto');
 
     const sidepanelFooterClasses = classNames(
-      'spr-bottom-0 spr-left-0 spr-w-full spr-rounded-b-border-radius-xl spr-border-0 spr-border-t spr-border-solid spr-border-mushroom-200 spr-bg-white-50 spr-py-3',
+      'spr-bottom-0 spr-left-0 spr-w-full spr-rounded-b-border-radius-xl spr-border-0 spr-border-t spr-border-solid spr-border-mushroom-200 spr-bg-white-50 ',
+      {
+        'spr-py-3': !footerNoPadding.value
+      }
     );
 
     const sidepanelTransitionActiveClasses = classNames(

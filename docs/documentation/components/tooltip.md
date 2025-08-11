@@ -204,13 +204,20 @@ You can enable or disable the maximum width of the tooltip by using the `has-max
 
 You can dynamically change the tooltip text by using the `text` prop. The tooltip will automatically update when the `text` prop changes.
 
-<spr-tooltip :text="tootltipText" :fit-content="false">
-  <spr-input v-model="inputValueDynamic" placeholder="Enter your text" class="spr-w-full" />
-</spr-tooltip>
+<div>
+  <spr-tooltip 
+    :text="tootltipText" 
+    :fit-content="false" 
+    show-triggers="hover" 
+    hide-triggers="hover"
+  >
+    <spr-input v-model="inputValueDynamic" placeholder="Enter your text" class="spr-w-full" />
+  </spr-tooltip>
+</div>
 
 ```vue
 <template>
-  <spr-tooltip :text="tootltipText" :fit-content="false">
+  <spr-tooltip :text="tootltipText" :fit-content="false" show-triggers="click" hide-triggers="focus" auto-recompute>
     <spr-input v-model="inputValueDynamic" placeholder="Enter your text" class="spr-w-full" />
   </spr-tooltip>
 </template>
@@ -225,6 +232,74 @@ watch(inputValueDynamic, (newValue) => {
   tootltipText.value = newValue ? newValue : '-';
 });
 </script>
+```
+
+## Triggers
+
+You can customize the triggers for showing and hiding the tooltip by using the `show-triggers` and `hide-triggers` props. By default, the tooltip will show on hover and hide on mouse leave. You can set these props to any valid trigger events.
+
+Possible trigger events include `focus`, `click`, `hover`, and `touch`. You can also combine triggers to show the tooltip on one event and hide it on another.
+
+<div class="spr-flex spr-gap-6">
+  <spr-tooltip 
+    text="This tooltip shows on focus" 
+    show-triggers="focus" 
+    hide-triggers="focus"
+  >
+    <spr-button tone="success">Focus Trigger</spr-button>
+  </spr-tooltip>
+  <spr-tooltip 
+    text="This tooltip shows on click" 
+    show-triggers="click" 
+    hide-triggers="click"
+  >
+    <spr-button tone="success">Click Trigger</spr-button>
+  </spr-tooltip>
+  <spr-tooltip 
+    text="This tooltip shows on hover" 
+    show-triggers="hover" 
+    hide-triggers="hover"
+  >
+    <spr-button tone="success">Hover Trigger</spr-button>
+  </spr-tooltip>
+</div>
+
+You can also combine triggers, for example, to show the tooltip on click and hide it on hover:
+
+<div class="spr-flex spr-gap-3">
+  <spr-tooltip 
+    text="This tooltip shows on click" 
+    :show-triggers="['click', 'hover']" 
+    :hide-triggers="['click', 'hover']"
+  >
+    <spr-button tone="success">Click + Hover Trigger</spr-button>
+  </spr-tooltip>
+</div>
+
+```vue
+<template>
+  <div class="spr-flex spr-gap-3">
+    <spr-tooltip text="This tooltip shows on focus" show-triggers="focus" hide-triggers="blur">
+      <spr-button tone="success">Focus Trigger</spr-button>
+    </spr-tooltip>
+    <spr-tooltip text="This tooltip shows on click" show-triggers="click" hide-triggers="click">
+      <spr-button tone="success">Click Trigger</spr-button>
+    </spr-tooltip>
+    <spr-tooltip text="This tooltip shows on hover" show-triggers="hover" hide-triggers="hover">
+      <spr-button tone="success">Hover Trigger</spr-button>
+    </spr-tooltip>
+  </div>
+
+  <div class="spr-flex spr-gap-3">
+    <spr-tooltip
+      text="This tooltip shows on click"
+      :show-triggers="['click', 'hover']"
+      :hide-triggers="['click', 'hover']"
+    >
+      <spr-button tone="success">Click + Hover Trigger</spr-button>
+    </spr-tooltip>
+  </div>
+</template>
 ```
 
 ## API Reference
@@ -273,6 +348,15 @@ watch(inputValueDynamic, (newValue) => {
       <td><code>Boolean</code></td>
       <td><code>true</code>, <code>false</code></td>
       <td><code>true</code></td>
+    </tr>
+    <tr>
+      <td>auto-hide</td>
+      <td>
+        Enable or disable the auto hide of the tooltip. When enabled, the tooltip will automatically hide when the mouse leaves the target element. 
+      </td>
+      <td><code>Boolean</code></td>
+      <td><code>true</code>, <code>false</code></td>
+      <td><code>false</code></td>
     </tr>
   </tbody>
 </table>

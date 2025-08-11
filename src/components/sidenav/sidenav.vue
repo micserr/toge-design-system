@@ -421,6 +421,7 @@
                 placement="right"
                 :triggers="['click', 'hover']"
                 instant-move
+                :show-group="'my-group-name' + parentLinkIndex"
               >
                 <!-- #region - Parent Links -->
                 <div
@@ -836,7 +837,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Menu, Tooltip } from 'floating-vue';
+import { Menu } from 'floating-vue';
 import { Icon } from '@iconify/vue';
 
 import 'floating-vue/dist/style.css';

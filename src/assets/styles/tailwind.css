@@ -121,18 +121,6 @@
       }
     }
   }
-
-  #sidenav-tooltip-wrapper {
-    .v-popper__wrapper {
-      .v-popper__inner {
-        @apply spr-label-xs spr-background-color-inverted spr-rounded-border-radius-md spr-px-2 spr-py-1.5 spr-font-main spr-opacity-100;
-      }
-
-      .v-popper__arrow-outer {
-        @apply spr-hidden;
-      }
-    }
-  }
   /* #endregion - Tooltips */
 
   /* #region - Dropdown */

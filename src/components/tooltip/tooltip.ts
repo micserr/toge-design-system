@@ -27,6 +27,10 @@ export const tooltipPropTypes = {
     validator: (value: (typeof PLACEMENTS)[number]) => PLACEMENTS.includes(value),
     default: 'top',
   },
+  distance: {
+    type: Number,
+    default: 6,
+  },
   hasMaxWidth: {
     type: Boolean,
     default: true,

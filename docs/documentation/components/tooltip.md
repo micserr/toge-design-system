@@ -70,7 +70,7 @@ If both `text` props and template `#popper-content` are used, the `text` prop wi
 </spr-tooltip>
 ```
 
-## Position
+## Plaacement
 
 <div class="spr-flex spr-flex-col spr-gap-3">
   <div class="spr-flex spr-gap-3">
@@ -121,6 +121,28 @@ If both `text` props and template `#popper-content` are used, the `text` prop wi
 
 ```vue
 <spr-tooltip text="My tooltip" placement="top-start">
+    <!-- Your component here -->
+</spr-tooltip>
+```
+
+## Distance
+
+You can set the distance of the tooltip from the target element by using the `distance` prop. The default distance is `8px`. You can set it to any value you want.
+
+<div class="spr-flex spr-gap-3">
+  <spr-tooltip text="My tooltip" :distance="16">
+    <spr-button tone="success">Distance 16px</spr-button>
+  </spr-tooltip>
+  <spr-tooltip text="My tooltip" :distance="32">
+    <spr-button tone="success">Distance 32px</spr-button>
+  </spr-tooltip>
+  <spr-tooltip text="My tooltip" :distance="64">
+    <spr-button tone="success">Distance 64px</spr-button>
+  </spr-tooltip>
+</div>
+
+```vue
+<spr-tooltip text="My tooltip" :distance="16">
     <!-- Your component here -->
 </spr-tooltip>
 ```

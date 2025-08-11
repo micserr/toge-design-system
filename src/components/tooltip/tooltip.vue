@@ -6,6 +6,7 @@
       :placement="placement"
       :show-triggers="['hover']"
       :hide-triggers="['hover']"
+      :distance="props.distance"
     >
       <template #popper>
         <span v-if="props.text">{{ props.text }}</span>

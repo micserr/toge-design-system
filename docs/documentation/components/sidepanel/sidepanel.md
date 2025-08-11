@@ -257,6 +257,12 @@ const isNoPaddingModal = ref(false);
       <td>boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td>footerNoPadding</td>
+      <td>Hides padding for the footer`</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
      <tr>
       <td>@onClose</td>
       <td>Function to call when the sidepanel is closed</td>

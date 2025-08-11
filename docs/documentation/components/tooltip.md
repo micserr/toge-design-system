@@ -217,7 +217,7 @@ You can dynamically change the tooltip text by using the `text` prop. The toolti
 
 ```vue
 <template>
-  <spr-tooltip :text="tootltipText" :fit-content="false" show-triggers="click" hide-triggers="focus" auto-recompute>
+  <spr-tooltip :text="tootltipText" :fit-content="false" show-triggers="hover" hide-triggers="hover">
     <spr-input v-model="inputValueDynamic" placeholder="Enter your text" class="spr-w-full" />
   </spr-tooltip>
 </template>

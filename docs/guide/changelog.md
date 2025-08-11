@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.11.20 (2025-08-11)
+
+- Fix
+  - Enhance Tooltip Triggers
+    ([#6b7d5cf5](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6b7d5cf56e6b9bc498890127fd7cf5e4f6e11494?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 2.11.19 (2025-08-11)
 
 - Fix

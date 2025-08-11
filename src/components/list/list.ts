@@ -80,6 +80,10 @@ export const listPropTypes = {
     type: Boolean,
     default: false,
   },
+  dropdown: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const listEmitTypes = {

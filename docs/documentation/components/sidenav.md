@@ -45,6 +45,7 @@ To use a custom icon for your navigation links, provide a CDN link to the image 
 CDN Naming convention \
 Default: https://eco-cdn-prod.azureedge.net/payroll.svg \
 Active: https://eco-cdn-prod.azureedge.net/payroll-fill.svg
+
 ```vue
 <script lang="ts" setup>
 const navLinks = ref({
@@ -54,11 +55,11 @@ const navLinks = ref({
         {
           title: 'Home',
           icon: 'https://eco-cdn-prod.azureedge.net/payroll.svg',
-        }
-      ]
-    }
-  ]
-})
+        },
+      ],
+    },
+  ],
+});
 </script>
 ```
 
@@ -584,6 +585,7 @@ const navLinks = ref({
 });
 </script>
 ```
+
 ### Manual URL Change Handling
 
 When a user manually changes the URL, the `active-nav` property will not automatically update. This is because `active-nav` is typically assigned through clicks on navigation icons, and manually typing a URL does not trigger the same logic.
@@ -591,20 +593,10 @@ When a user manually changes the URL, the `active-nav` property will not automat
 To handle this, you can use the `Router Meta Field`. Add an `activeNav` object inside the route's `meta` field and watch for route changes. Then, assign the `activeNav` object from the route meta to the `active-nav` property of your sidenav.
 
 ```vue
-const routes = [
-  {
-    path: 'workflows',
-    name: 'workflows',
-    meta:{
-      activeNav: {
-        parentNav: 'Flow',
-        menu: '',
-        submenu: '',
-      }
-    }
-  },
-]
+const routes = [ { path: 'workflows', name: 'workflows', meta:{ activeNav: { parentNav: 'Flow', menu: '', submenu: '', }
+} }, ]
 ```
+
 ```vue
 <script setup>
 import { ref } from 'vue';
@@ -623,7 +615,6 @@ router.beforeEach((to) => {
   }
 });
 </script>
-
 ```
 
 ## Quick Actions
@@ -1174,24 +1165,24 @@ const navLinks = ref({
     {
       parentLinks: [
         {
-          title: 'Home',
+          title: 'HR Home',
           icon: 'ph:house-simple',
           menuLinks: [
             {
-              menuHeading: 'Sub Heading 1',
+              menuHeading: 'HR Management',
               items: [
                 {
-                  title: 'Dashboard 1',
+                  title: 'HR Dashboard',
                   submenuLinks: [
                     {
-                      subMenuHeading: 'Sub Heading 1',
+                      subMenuHeading: 'Employee Overview',
                       items: [
                         {
-                          title: 'Home 1',
+                          title: 'Employee List',
                           redirect: {},
                         },
                         {
-                          title: 'Home 2',
+                          title: 'Attendance',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1201,10 +1192,10 @@ const navLinks = ref({
                       ],
                     },
                     {
-                      subMenuHeading: 'Sub Heading 2',
+                      subMenuHeading: 'Benefits',
                       items: [
                         {
-                          title: 'Home 3',
+                          title: 'Leave Management',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: true,
@@ -1212,7 +1203,7 @@ const navLinks = ref({
                           },
                         },
                         {
-                          title: 'Home 4',
+                          title: 'Compensation',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1224,7 +1215,7 @@ const navLinks = ref({
                   ],
                 },
                 {
-                  title: 'Dashboard 2',
+                  title: 'HR Analytics',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1236,7 +1227,7 @@ const navLinks = ref({
           ],
         },
         {
-          title: 'Employees',
+          title: 'HR Employees',
           icon: 'ph:users-three',
           redirect: {
             openInNewTab: false,
@@ -1249,14 +1240,14 @@ const navLinks = ref({
     {
       parentLinks: [
         {
-          title: 'Payroll',
+          title: 'HR Payroll',
           icon: 'ph:leaf',
           menuLinks: [
             {
-              menuHeading: 'Sub Heading 1',
+              menuHeading: 'Payroll Management',
               items: [
                 {
-                  title: 'Payroll Runs',
+                  title: 'Payroll Processing',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1264,13 +1255,13 @@ const navLinks = ref({
                   },
                 },
                 {
-                  title: 'Reports',
+                  title: 'Payroll Reports',
                   submenuLinks: [
                     {
-                      subMenuHeading: '',
+                      subMenuHeading: 'Government Reports',
                       items: [
                         {
-                          title: 'Payroll',
+                          title: 'SSS Report',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1278,7 +1269,7 @@ const navLinks = ref({
                           },
                         },
                         {
-                          title: 'SSS',
+                          title: 'PhilHealth Report',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1286,7 +1277,7 @@ const navLinks = ref({
                           },
                         },
                         {
-                          title: 'PHILHEALTH',
+                          title: 'Pag-IBIG Report',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1300,10 +1291,10 @@ const navLinks = ref({
               ],
             },
             {
-              menuHeading: 'Sub Heading 2',
+              menuHeading: 'HR Setup',
               items: [
                 {
-                  title: 'Setup',
+                  title: 'HR Settings',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1311,7 +1302,7 @@ const navLinks = ref({
                   },
                 },
                 {
-                  title: 'Employees',
+                  title: 'HR Employee Records',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1323,16 +1314,47 @@ const navLinks = ref({
           ],
         },
         {
-          title: 'Money',
+          title: 'HR Finance',
           icon: 'ph:currency-rub',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
             link: '/',
           },
+          menuLinks: [
+            {
+              menuHeading: 'Finance Operations',
+              items: [
+                {
+                  title: 'Payroll Budget',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+                {
+                  title: 'Expense Tracking',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+                {
+                  title: 'Financial Reports',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+              ],
+            },
+          ],
         },
         {
-          title: 'Car',
+          title: 'HR Vehicles',
           icon: 'ph:wallet',
           redirect: {
             openInNewTab: false,
@@ -1341,10 +1363,10 @@ const navLinks = ref({
           },
           menuLinks: [
             {
-              menuHeading: '',
+              menuHeading: 'HR Fleet',
               items: [
                 {
-                  title: 'Car 1',
+                  title: 'Company Cars',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1352,7 +1374,7 @@ const navLinks = ref({
                   },
                 },
                 {
-                  title: 'Car 2',
+                  title: 'Fleet Management',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1370,24 +1392,24 @@ const navLinks = ref({
     {
       parentLinks: [
         {
-          title: 'Gallery',
+          title: 'HR Gallery',
           icon: 'ph:address-book',
           menuLinks: [
             {
-              menuHeading: 'Sub Heading 1',
+              menuHeading: 'HR Resources',
               items: [
                 {
-                  title: 'Dashboard 1',
+                  title: 'HR Dashboard',
                   submenuLinks: [
                     {
-                      subMenuHeading: 'Sub Heading 1',
+                      subMenuHeading: 'HR Team',
                       items: [
                         {
-                          title: 'Home 1',
+                          title: 'HR Directory',
                           redirect: {},
                         },
                         {
-                          title: 'Home 2',
+                          title: 'HR Attendance',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1397,10 +1419,10 @@ const navLinks = ref({
                       ],
                     },
                     {
-                      subMenuHeading: 'Sub Heading 2',
+                      subMenuHeading: 'HR Benefits',
                       items: [
                         {
-                          title: 'Home 3',
+                          title: 'HR Leaves',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: true,
@@ -1408,7 +1430,7 @@ const navLinks = ref({
                           },
                         },
                         {
-                          title: 'Home 4',
+                          title: 'HR Compensation',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1420,7 +1442,7 @@ const navLinks = ref({
                   ],
                 },
                 {
-                  title: 'Dashboard 2',
+                  title: 'HR Analytics',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1436,7 +1458,7 @@ const navLinks = ref({
     {
       parentLinks: [
         {
-          title: 'Resources',
+          title: 'HR Resources',
           icon: 'ph:alien',
           redirect: {
             openInNewTab: false,
@@ -1445,7 +1467,7 @@ const navLinks = ref({
           },
         },
         {
-          title: 'News',
+          title: 'HR News',
           icon: 'ph:align-left',
           redirect: {
             openInNewTab: false,
@@ -1651,7 +1673,6 @@ The following table outlines the available attributes for the Sidenav component:
   <spr-logo name="ecosystem" theme="dark" width="50px" />
 </div>
 
-
 <script lang="ts" setup>
 import { ref } from 'vue';
 
@@ -1759,24 +1780,24 @@ const navLinks = ref({
     {
       parentLinks: [
         {
-          title: 'Home',
+          title: 'HR Home',
           icon: 'ph:house-simple',
           menuLinks: [
             {
-              menuHeading: 'Sub Heading 1',
+              menuHeading: 'HR Management',
               items: [
                 {
-                  title: 'Dashboard 1',
+                  title: 'HR Dashboard',
                   submenuLinks: [
                     {
-                      subMenuHeading: 'Sub Heading 1',
+                      subMenuHeading: 'Employee Overview',
                       items: [
                         {
-                          title: 'Home 1',
+                          title: 'Employee List',
                           redirect: {},
                         },
                         {
-                          title: 'Home 2',
+                          title: 'Attendance',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1786,10 +1807,10 @@ const navLinks = ref({
                       ],
                     },
                     {
-                      subMenuHeading: 'Sub Heading 2',
+                      subMenuHeading: 'Benefits',
                       items: [
                         {
-                          title: 'Home 3',
+                          title: 'Leave Management',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: true,
@@ -1797,7 +1818,7 @@ const navLinks = ref({
                           },
                         },
                         {
-                          title: 'Home 4',
+                          title: 'Compensation',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1809,7 +1830,7 @@ const navLinks = ref({
                   ],
                 },
                 {
-                  title: 'Dashboard 2',
+                  title: 'HR Analytics',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1821,7 +1842,7 @@ const navLinks = ref({
           ],
         },
         {
-          title: 'Employees',
+          title: 'HR Employees',
           icon: 'ph:users-three',
           redirect: {
             openInNewTab: false,
@@ -1834,14 +1855,14 @@ const navLinks = ref({
     {
       parentLinks: [
         {
-          title: 'Payroll',
+          title: 'HR Payroll',
           icon: 'ph:leaf',
           menuLinks: [
             {
-              menuHeading: 'Sub Heading 1',
+              menuHeading: 'Payroll Management',
               items: [
                 {
-                  title: 'Payroll Runs',
+                  title: 'Payroll Processing',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1849,13 +1870,13 @@ const navLinks = ref({
                   },
                 },
                 {
-                  title: 'Reports',
+                  title: 'Payroll Reports',
                   submenuLinks: [
                     {
-                      subMenuHeading: '',
+                      subMenuHeading: 'Government Reports',
                       items: [
                         {
-                          title: 'Payroll',
+                          title: 'SSS Report',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1863,7 +1884,7 @@ const navLinks = ref({
                           },
                         },
                         {
-                          title: 'SSS',
+                          title: 'PhilHealth Report',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1871,7 +1892,7 @@ const navLinks = ref({
                           },
                         },
                         {
-                          title: 'PHILHEALTH',
+                          title: 'Pag-IBIG Report',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1885,10 +1906,10 @@ const navLinks = ref({
               ],
             },
             {
-              menuHeading: 'Sub Heading 2',
+              menuHeading: 'HR Setup',
               items: [
                 {
-                  title: 'Setup',
+                  title: 'HR Settings',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1896,7 +1917,7 @@ const navLinks = ref({
                   },
                 },
                 {
-                  title: 'Employees',
+                  title: 'HR Employee Records',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1908,16 +1929,47 @@ const navLinks = ref({
           ],
         },
         {
-          title: 'Money',
+          title: 'HR Finance',
           icon: 'ph:currency-rub',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
             link: '/',
           },
+          menuLinks: [
+            {
+              menuHeading: 'Finance Operations',
+              items: [
+                {
+                  title: 'Payroll Budget',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+                {
+                  title: 'Expense Tracking',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+                {
+                  title: 'Financial Reports',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+              ],
+            },
+          ],
         },
         {
-          title: 'Car',
+          title: 'HR Vehicles',
           icon: 'ph:wallet',
           redirect: {
             openInNewTab: false,
@@ -1926,10 +1978,10 @@ const navLinks = ref({
           },
           menuLinks: [
             {
-              menuHeading: '',
+              menuHeading: 'HR Fleet',
               items: [
                 {
-                  title: 'Car 1',
+                  title: 'Company Cars',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1937,7 +1989,7 @@ const navLinks = ref({
                   },
                 },
                 {
-                  title: 'Car 2',
+                  title: 'Fleet Management',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1955,24 +2007,24 @@ const navLinks = ref({
     {
       parentLinks: [
         {
-          title: 'Gallery',
+          title: 'HR Gallery',
           icon: 'ph:address-book',
           menuLinks: [
             {
-              menuHeading: 'Sub Heading 1',
+              menuHeading: 'HR Resources',
               items: [
                 {
-                  title: 'Dashboard 1',
+                  title: 'HR Dashboard',
                   submenuLinks: [
                     {
-                      subMenuHeading: 'Sub Heading 1',
+                      subMenuHeading: 'HR Team',
                       items: [
                         {
-                          title: 'Home 1',
+                          title: 'HR Directory',
                           redirect: {},
                         },
                         {
-                          title: 'Home 2',
+                          title: 'HR Attendance',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1982,10 +2034,10 @@ const navLinks = ref({
                       ],
                     },
                     {
-                      subMenuHeading: 'Sub Heading 2',
+                      subMenuHeading: 'HR Benefits',
                       items: [
                         {
-                          title: 'Home 3',
+                          title: 'HR Leaves',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: true,
@@ -1993,7 +2045,7 @@ const navLinks = ref({
                           },
                         },
                         {
-                          title: 'Home 4',
+                          title: 'HR Compensation',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -2005,7 +2057,7 @@ const navLinks = ref({
                   ],
                 },
                 {
-                  title: 'Dashboard 2',
+                  title: 'HR Analytics',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -2021,7 +2073,7 @@ const navLinks = ref({
     {
       parentLinks: [
         {
-          title: 'Resources',
+          title: 'HR Resources',
           icon: 'ph:alien',
           redirect: {
             openInNewTab: false,
@@ -2030,7 +2082,7 @@ const navLinks = ref({
           },
         },
         {
-          title: 'News',
+          title: 'HR News',
           icon: 'ph:align-left',
           redirect: {
             openInNewTab: false,

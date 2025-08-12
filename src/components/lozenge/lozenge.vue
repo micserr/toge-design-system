@@ -1,7 +1,7 @@
 <template>
   <div :class="['spr-lozenge__wrapper', lozengeClasses.wrapperClasses]">
     <div v-if="visible && !loading" :class="['spr-lozenge__base', lozengeClasses.baseClasses]">
-      <div :class="['spr-lozenge__tone',lozengeClasses.toneClasses]">
+      <div :class="['spr-lozenge__tone',lozengeClasses.toneClasses]" :tabindex="props.interactive || props.dropdown ? 0 : -1">
         <div v-if="$slots.icon" class="spr-lozenge__prefix-icon spr-flex spr-h-3 spr-w-3 spr-items-center spr-overflow-hidden">
           <slot name="icon" />
         </div>

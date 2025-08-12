@@ -52,6 +52,14 @@ export const lozengePropTypes = {
     type: Boolean,
     default: false,
   },
+  interactive: {
+    type: Boolean,
+    default: false,
+  },
+  dropdown: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export type LozengePropTypes = ExtractPropTypes<typeof lozengePropTypes>;

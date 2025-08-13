@@ -98,7 +98,7 @@ Customize the lozenge's color style (tone) and choose between filled or outlined
 
 ## Avatar
 You can use the `url` property to display an avatar image, or use the `avatar` slot for custom avatar components.
-<div class="spr-flex spr-flex-col spr-gap-2 spr-bg-white-50 spr-p-4 spr-overflow-auto spr-py-3">
+<div class="spr-flex spr-flex-col spr-gap-2 spr-bg-white-50 spr-overflow-auto spr-py-3">
   <div class="spr-flex spr-items-center spr-gap-2">
     <spr-lozenge label="pending" tone="pending" url="https://tinyurl.com/2vzn782p"/>
     <spr-lozenge label="information" tone="information" url="https://tinyurl.com/2vzn782p"/>
@@ -172,12 +172,12 @@ import { Icon } from '@iconify/vue';
 ```
 
 ## Prefix and Postfix Icon
-You can use the `icon` slot to add a prefix icon to the lozenge. By default, the `icon` slot renders as a prefix icon.  
-To add a postfix icon, use the `postfixIcon` slot. This allows you to display an icon after the label.
+You can use the `icon` property or the `icon` slot to add a prefix icon to the lozenge. By default, the `icon` property or slot renders as a prefix icon before the label.  
+To add a postfix icon, use the `postfixIcon` property or the `postfixIcon` slot. This allows you to display an icon after the label.
 
-<div class="spr-flex spr-flex-col spr-gap-2 spr-bg-white-50 spr-p-4 spr-overflow-auto spr-py-3">
+<div class="spr-flex spr-flex-col spr-gap-2 spr-bg-white-50 spr-overflow-auto spr-py-3">
   <div class="spr-flex spr-items-center spr-gap-2">
-    <spr-lozenge label="pending" tone="pending">
+    <spr-lozenge label="pending" tone="pending" icon="ph:acorn">
       <template #icon>
         <Icon icon="ph:users-three" />
       </template>
@@ -251,7 +251,7 @@ To add a postfix icon, use the `postfixIcon` slot. This allows you to display an
     </spr-lozenge>
   </div>
 </div>
-<div class="spr-flex spr-flex-col spr-gap-2 spr-bg-white-50 spr-p-4 spr-overflow-auto spr-py-3">
+<div class="spr-flex spr-flex-col spr-gap-2 spr-bg-white-50 spr-overflow-auto spr-py-3">
   <div class="spr-flex spr-items-center spr-gap-2">
     <spr-lozenge label="pending" tone="pending">
       <template #postfixIcon>
@@ -331,6 +331,7 @@ To add a postfix icon, use the `postfixIcon` slot. This allows you to display an
 ```vue
 <template>
   <!-- Prefix Icon -->
+  <spr-lozenge label="pending" tone="pending" icon="ph:users-three" />
   <spr-lozenge label="pending" tone="pending">
     <template #icon>
       <Icon icon="ph:users-three" />
@@ -338,6 +339,7 @@ To add a postfix icon, use the `postfixIcon` slot. This allows you to display an
   </spr-lozenge>
 
   <!-- Postfix Icon -->
+   <spr-lozenge label="pending" tone="pending" postfix-icon="ph:users-three" />
   <spr-lozenge label="pending" tone="pending">
     <template #postfixIcon>
       <Icon icon="ph:users-three" />
@@ -435,7 +437,7 @@ The `dropdown` prop makes the lozenge behave as a predefined interactive element
 </div>
 ```
 ::: tip NOTE
-If you provide a `postfixIcon` slot, it will override the default dropdown icon.
+If you provide a `postfixIcon` prop or slot, it will override the default dropdown icon.
 :::
 
 <spr-lozenge label="plain" dropdown>
@@ -524,6 +526,18 @@ If you provide a `postfixIcon` slot, it will override the default dropdown icon.
     <tr>
       <td>url</td>
       <td>avatar image url</td>
+      <td>string</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>icon</td>
+      <td>Iconify prefix icon component</td>
+      <td>string</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>postfixIcon</td>
+      <td>Iconify postfix icon component</td>
       <td>string</td>
       <td></td>
     </tr>

@@ -52,6 +52,14 @@ export const lozengePropTypes = {
     type: Boolean,
     default: false,
   },
+  icon: {
+    type: String,
+    default: '',
+  },
+  postfixIcon: {
+    type: String,
+    default: '',
+  },
   interactive: {
     type: Boolean,
     default: false,

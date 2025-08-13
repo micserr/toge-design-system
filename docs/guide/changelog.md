@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.11.21 (2025-08-13)
+
+- Feat
+  - Added postfix icon and interactive states to lozenge component
+    ([#602e2ee](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/602e2ee27efe5872d85867558007b7fad461661b?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FLozengeEnhancement) by @jbanares)
+
 ## 2.11.20 (2025-08-11)
 
 - Fix

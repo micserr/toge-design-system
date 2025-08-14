@@ -1,5 +1,27 @@
 # Changelog
 
+## 2.11.22 (2025-08-14)
+
+- Feat
+  - Sidenav: Added comprehensive API data integration support with `isNavApi` property
+  - Sidenav: Enhanced documentation with real-world API data structure examples
+  - Sidenav: Added support for complex nested navigation hierarchies from API responses
+  - Sidenav: Improved handling of external URLs and new tab navigation through API data
+
+- Fix
+  - Sidenav: Fixed readonly props mutation error in navigation data transformation
+  - Sidenav: Improved TypeScript type safety for API navigation items
+  - JSON: Updated side-nav-api.json to comply with strict JSON syntax standards
+  - Sidenav: Enhanced type definitions for attributes property to support dynamic values without using 'any' type
+  - Sidenav: Improved TypeScript safety for navigation item attributes including lozenge configuration
+
+- Docs
+  - Sidenav: Added comprehensive "Using API Data (isNavApi)" documentation section
+  - Sidenav: Added "Full Example with API Data" with interactive demo
+  - Sidenav: Enhanced API data structure documentation with property descriptions
+  - Sidenav: Added real-world navigation examples for enterprise applications
+  ([#977f5dfb](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/34150?path=%2Fpackage.json&_a=commits) by @bsolis)
+
 ## 2.11.21 (2025-08-13)
 
 - Feat

@@ -241,10 +241,20 @@
                               class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                             ></div>
                             <span>{{ menuLinkItem.title }}</span>
-                            <Icon
-                              icon="ph:caret-right"
-                              class="spr-h-[16px] spr-w-[16px] spr-transform spr-font-normal spr-transition-transform spr-duration-300"
-                            />
+                            <div class="spr-flex spr-items-center spr-gap-1">
+                              <template v-for="(attr, i) in menuLinkItem?.attributes" :key="i"> 
+                                <spr-lozenge
+                                  v-if="attr?.name === 'lozenge' && attr?.value"
+                                  :label="(attr.value && typeof attr?.value === 'object' && 'label' in attr.value) ? String(attr.value.label) : ''"
+                                  :tone="getLozengeTone(attr)"
+                                  fill
+                                />
+                              </template>
+                              <Icon
+                                icon="ph:caret-right"
+                                class="spr-h-[16px] spr-w-[16px] spr-transform spr-font-normal spr-transition-transform spr-duration-300"
+                              />
+                            </div>
                           </div>
                           <!-- #endregion - Menu links -->
 
@@ -301,6 +311,16 @@
                                       class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                                     ></div>
                                     <span>{{ submenuLinkItem.title }}</span>
+                                    <div class="spr-flex spr-items-center spr-gap-1">
+                                      <template v-for="(attr, i) in submenuLinkItem?.attributes" :key="i"> 
+                                        <spr-lozenge
+                                          v-if="attr?.name === 'lozenge' && attr?.value"
+                                          :label="(attr.value && typeof attr?.value === 'object' && 'label' in attr.value) ? String(attr.value.label) : ''"
+                                          :tone="getLozengeTone(attr)"
+                                          fill
+                                        />
+                                      </template>
+                                    </div>
                                   </div>
                                   <!-- #endregion - Submenu Links -->
                                 </template>
@@ -330,6 +350,14 @@
                             class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                           ></div>
                           <span>{{ menuLinkItem.title }}</span>
+                          <template v-for="(attr, i) in menuLinkItem?.attributes" :key="i"> 
+                            <spr-lozenge
+                              v-if="attr?.name === 'lozenge' && attr?.value"
+                              :label="(attr.value && typeof attr?.value === 'object' && 'label' in attr.value) ? String(attr.value.label) : ''"
+                              :tone="getLozengeTone(attr)"
+                              fill
+                            />
+                          </template>
                         </div>
                       </template>
                       <!-- #endregion - Menu link only -->
@@ -765,7 +793,7 @@
           @click="isUserMenuVisible = !isUserMenuVisible"
         >
           <template v-if="props.userMenu.profileImage && !userProfileError">
-            <img :src="props.userMenu.profileImage" alt="profile-image" @error="userProfileError = true" />
+            <img :src="props.userMenu.profileImage" alt="profile" @error="userProfileError = true" />
           </template>
           <template v-else>
             <span>{{ getUserInitials(props.userMenu.name) }}</span>
@@ -788,7 +816,7 @@
                 ]"
               >
                 <template v-if="props.userMenu.profileImage && !userProfileError">
-                  <img :src="props.userMenu.profileImage" alt="profile-image" @error="userProfileError = true" />
+                  <img :src="props.userMenu.profileImage" alt="profile" @error="userProfileError = true" />
                 </template>
                 <template v-else>
                   <span>{{ getUserInitials(props.userMenu.name) }}</span>
@@ -847,6 +875,7 @@ import { useSidenav } from './use-sidenav';
 
 import SprTooltip from '../tooltip/tooltip.vue';
 import SprBadge from '../badge/badge.vue';
+import SprLozenge from '../lozenge/lozenge.vue';
 
 const props = defineProps(sidenavPropTypes);
 const emit = defineEmits(sidenavEmitTypes);
@@ -859,5 +888,6 @@ const {
   getUserInitials,
   handleRedirect,
   generateId,
+  getLozengeTone,
 } = useSidenav(props, emit);
 </script>

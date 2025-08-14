@@ -1,7 +1,7 @@
-import { ref, toRefs, onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
 
 import type { SetupContext } from 'vue';
-import type { SidenavPropTypes, SidenavEmitTypes, ParentLinkItem, NavLinks, NavItem, MenuLinkItem } from './sidenav';
+import type { SidenavPropTypes, SidenavEmitTypes, ParentLinkItem, NavLinks, NavItem, MenuLinkItem, Attributes } from './sidenav';
 
 interface ObjectItem {
   redirect?: {
@@ -17,7 +17,8 @@ interface ObjectItem {
 }
 
 export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEmitTypes>['emit']) => {
-  const { navLinks } = toRefs(props);
+  // Create a separate reactive reference for the navigation data
+  const navLinks = ref<NavLinks>({ top: [], bottom: [] });
 
   const isQuckActionMenuVisible = ref(false);
   const isUserMenuVisible = ref(false);
@@ -148,6 +149,7 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
         subMenuHeading: string;
         items: ParentLinkItem[];
       }[],
+      attributes: item.attributes || [],
     };
   };
 
@@ -180,9 +182,19 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
     return transformedData;
   };
 
+  const getLozengeTone = (attr: Attributes)  => {
+    if (typeof attr === 'object' && attr !== null && 'tone' in attr && typeof attr.tone === 'string' && ['danger', 'information', 'plain', 'pending', 'success', 'neutral', 'caution'].includes(attr.tone)) {
+      return attr.tone as 'danger' | 'information' | 'plain' | 'pending' | 'success' | 'neutral' | 'caution';
+    }
+    return 'success'; // Default tone
+  };
+
   onMounted(async () => {
     if (props.isNavApi) {
       navLinks.value = await transformedNavItems(props.navLinks);
+    } else {
+      // Use the original navLinks from props
+      navLinks.value = props.navLinks;
     }
   });
 
@@ -195,5 +207,6 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
     handleRedirect,
     generateId,
     transformedNavItems,
+    getLozengeTone
   };
 };

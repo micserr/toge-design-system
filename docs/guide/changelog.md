@@ -1,5 +1,53 @@
 # Changelog
 
+## 2.11.22 (2025-08-14)
+
+- Feat
+  - Sidenav: Added comprehensive API data integration support with `isNavApi` property
+  - Sidenav: Enhanced documentation with real-world API data structure examples
+  - Sidenav: Added support for complex nested navigation hierarchies from API responses
+  - Sidenav: Improved handling of external URLs and new tab navigation through API data
+
+- Fix
+  - Sidenav: Fixed readonly props mutation error in navigation data transformation
+  - Sidenav: Improved TypeScript type safety for API navigation items
+  - JSON: Updated side-nav-api.json to comply with strict JSON syntax standards
+  - Sidenav: Enhanced type definitions for attributes property to support dynamic values without using 'any' type
+  - Sidenav: Improved TypeScript safety for navigation item attributes including lozenge configuration
+
+- Docs
+  - Sidenav: Added comprehensive "Using API Data (isNavApi)" documentation section
+  - Sidenav: Added "Full Example with API Data" with interactive demo
+  - Sidenav: Enhanced API data structure documentation with property descriptions
+  - Sidenav: Added real-world navigation examples for enterprise applications
+  ([#977f5dfb](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/34150?path=%2Fpackage.json&_a=commits) by @bsolis)
+
+## 2.11.21 (2025-08-13)
+
+- Feat
+  - Added postfix icon and interactive states to lozenge component
+    ([#602e2ee](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/602e2ee27efe5872d85867558007b7fad461661b?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FLozengeEnhancement) by @jbanares)
+
+## 2.11.20 (2025-08-11)
+
+- Fix
+  - Enhance Tooltip Triggers
+    ([#6b7d5cf5](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6b7d5cf56e6b9bc498890127fd7cf5e4f6e11494?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 2.11.19 (2025-08-11)
+
+- Fix
+  - Added no padding footer for sidepanel
+    ([#439b5486](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/439b54860579c5da8266d046ece6467706b8e055?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FAddedNoPaddingFooterForSidepanel) by @jbanares)
+
+## 2.11.18 (2025-08-11)
+
+- Fix
+  - Adjust tooltip hiding state, handle focus state.
+  - Update Dropdown Documentation
+  - Added Regions Sidenav, Sidenav Cleanup
+    ([#33933](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/33933) by @jarias)
+
 ## 2.11.17 (2025-08-07)
 
 - Fix

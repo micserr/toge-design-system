@@ -1,12 +1,11 @@
 import type { PropType, ExtractPropTypes } from 'vue';
 
-type QuickAction = {
+export type QuickAction = {
   menuHeading: string;
   items: QuickActionItem[];
 };
 
-
-type QuickActionItem = {
+export type QuickActionItem = {
   title: string;
   description: string;
   icon: string;
@@ -33,45 +32,48 @@ export type ParentLinkItem = {
   menuLinks: MenuLink[];
   submenuLinks?: SubmenuLink[];
   hidden?: boolean;
+  attributes?: Attributes[];
 };
 
-type MenuLink = {
+export type MenuLink = {
   menuHeading: string;
   items: MenuLinkItem[] | ParentLinkItem[];
 };
 
-type MenuLinkItem = {
+export type MenuLinkItem = {
   title: string;
   hidden: boolean;
   redirect: Redirect;
+  attributes?: Attributes[];
   submenuLinks: SubmenuLink[];
 };
 
-type SubmenuLink = {
+export type SubmenuLink = {
   subMenuHeading: string;
   items: SubmenuLinkItem[] | ParentLinkItem[];
 };
 
-type SubmenuLinkItem = {
+export type SubmenuLinkItem = {
   title: string;
   hidden: boolean;
   redirect: Redirect;
+  attributes?: Attributes[];
 };
 
-type Redirect = {
+export type Redirect = {
   openInNewTab: boolean;
   isAbsoluteURL: boolean;
   link: string;
 };
 
-type UserMenu = {
+export type UserMenu = {
   name: string;
   email: string;
   profileImage: string;
   items: UserMenuItem[];
 };
 
-type UserMenuItem = {
+export type UserMenuItem = {
   title: string;
   icon: string;
   hidden: boolean;
@@ -86,23 +88,34 @@ export interface NavItem {
   children?: NavItem[] | null;
   groupName?: string | null;
   hidden?: boolean;
+  attributes?: Attributes[] | null;
+}
+
+export type Attributes = {
+  name: string;
+  value: unknown | string | number | boolean | AttrLozenge;
+};
+type AttrLozenge = {
+  label: string;
+  tone?: string;
 }
 
 export interface MappedNavItem {
   title: string;
   icon?: string;
   redirect?: {
-      openInNewTab: boolean;
-      isAbsoluteURL: boolean;
-      link: string;
+    openInNewTab: boolean;
+    isAbsoluteURL: boolean;
+    link: string;
   };
+  attributes?: AttrLozenge | unknown [];
   menuLinks?: {
-      menuHeading: string;
-      items: MappedNavItem[];
+    menuHeading: string;
+    items: MappedNavItem[];
   }[];
   submenuLinks?: {
-      subMenuHeading: string;
-      items: MappedNavItem[];
+    subMenuHeading: string;
+    items: MappedNavItem[];
   }[];
 }
 
@@ -159,7 +172,7 @@ export const sidenavPropTypes = {
     type: Boolean,
     validator: (value: unknown) => typeof value === 'boolean',
     default: false,
-  }
+  },
 };
 
 export const sidenavEmitTypes = {

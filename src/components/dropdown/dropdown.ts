@@ -107,6 +107,10 @@ export const dropdownPropTypes = {
     type: Boolean,
     default: false,
   },
+  dropdown: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const dropdownEmitTypes = {

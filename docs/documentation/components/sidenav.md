@@ -45,6 +45,7 @@ To use a custom icon for your navigation links, provide a CDN link to the image 
 CDN Naming convention \
 Default: https://eco-cdn-prod.azureedge.net/payroll.svg \
 Active: https://eco-cdn-prod.azureedge.net/payroll-fill.svg
+
 ```vue
 <script lang="ts" setup>
 const navLinks = ref({
@@ -54,11 +55,11 @@ const navLinks = ref({
         {
           title: 'Home',
           icon: 'https://eco-cdn-prod.azureedge.net/payroll.svg',
-        }
-      ]
-    }
-  ]
-})
+        },
+      ],
+    },
+  ],
+});
 </script>
 ```
 
@@ -584,6 +585,7 @@ const navLinks = ref({
 });
 </script>
 ```
+
 ### Manual URL Change Handling
 
 When a user manually changes the URL, the `active-nav` property will not automatically update. This is because `active-nav` is typically assigned through clicks on navigation icons, and manually typing a URL does not trigger the same logic.
@@ -591,20 +593,10 @@ When a user manually changes the URL, the `active-nav` property will not automat
 To handle this, you can use the `Router Meta Field`. Add an `activeNav` object inside the route's `meta` field and watch for route changes. Then, assign the `activeNav` object from the route meta to the `active-nav` property of your sidenav.
 
 ```vue
-const routes = [
-  {
-    path: 'workflows',
-    name: 'workflows',
-    meta:{
-      activeNav: {
-        parentNav: 'Flow',
-        menu: '',
-        submenu: '',
-      }
-    }
-  },
-]
+const routes = [ { path: 'workflows', name: 'workflows', meta:{ activeNav: { parentNav: 'Flow', menu: '', submenu: '', }
+} }, ]
 ```
+
 ```vue
 <script setup>
 import { ref } from 'vue';
@@ -623,8 +615,196 @@ router.beforeEach((to) => {
   }
 });
 </script>
-
 ```
+
+## Using API Data (isNavApi)
+
+When `isNavApi` is set to `true`, the sidenav component expects navigation data in a different format that comes directly from an API. This format includes additional properties like `id`, `code`, `position`, `order`, and `attributes`.
+
+```vue
+<template>
+  <spr-sidenav 
+    :nav-links="apiNavLinks" 
+    :is-nav-api="true"
+    :active-nav="activeNav"
+    @get-navlink-item="handleNavClick"
+  >
+    <template #logo-image>
+      <img src="/path/to/logo.png" alt="logo" />
+    </template>
+  </spr-sidenav>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+// Example API data structure
+const apiNavLinks = ref({
+  top: [
+    {
+      id: "135c50eb-3dbb-4e4a-b45a-9f58b4c0921f",
+      code: null,
+      label: "Dashboard",
+      url: "https://ecohub-qa.ecoapp-qa.sprout.ph/dashboard",
+      icon: "ph:house-simple",
+      children: [],
+      position: "top",
+      order: 1,
+      attributes: null,
+      groupId: "1",
+      groupName: null,
+      parentMenuId: null,
+      isNewTab: false
+    },
+    {
+      id: "8ee582db-afa7-4c6b-a80a-503eb7057cda",
+      code: null,
+      label: "App Management",
+      url: null,
+      icon: "ph:shapes",
+      children: [
+        {
+          id: "03b895a8-9de5-4f0e-b19b-4d965c99cd7d",
+          code: null,
+          label: "Marketplace",
+          url: "https://market.sprout.ph/",
+          icon: null,
+          children: [],
+          position: "top",
+          order: 2,
+          attributes: null,
+          groupId: null,
+          groupName: null,
+          parentMenuId: "8ee582db-afa7-4c6b-a80a-503eb7057cda",
+          isNewTab: true
+        }
+      ],
+      position: "top",
+      order: 2,
+      attributes: null,
+      groupId: "1",
+      groupName: null,
+      parentMenuId: null,
+      isNewTab: false
+    },
+    {
+      id: "e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2",
+      code: null,
+      label: "Payroll",
+      url: null,
+      icon: "https://eco-cdn-prod.azureedge.net/payroll.svg",
+      children: [
+        {
+          id: null,
+          code: null,
+          label: "Payroll Runs",
+          url: "https://ecohub-qa-payroll.sprout.ph/Client/Payrolls.aspx",
+          icon: null,
+          children: [],
+          position: null,
+          order: 1,
+          attributes: [],
+          groupId: null,
+          groupName: null,
+          parentMenuId: "e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2",
+          isNewTab: null
+        },
+        {
+          id: null,
+          code: null,
+          label: "Setup",
+          url: "",
+          icon: null,
+          children: [
+            {
+              id: null,
+              code: null,
+              label: "Company Profile",
+              url: "https://ecohub-qa-payroll-next-qa.sprout.ph/#/global/company-profile",
+              icon: null,
+              children: [],
+              position: null,
+              order: 1,
+              attributes: [],
+              groupId: null,
+              groupName: "COMPANY",
+              parentMenuId: null,
+              isNewTab: null
+            },
+            {
+              id: null,
+              code: null,
+              label: "Department",
+              url: "https://ecohub-qa-payroll-next-qa.sprout.ph/#/global/department",
+              icon: null,
+              children: [],
+              position: null,
+              order: 2,
+              attributes: [],
+              groupId: null,
+              groupName: "COMPANY",
+              parentMenuId: null,
+              isNewTab: null
+            }
+            // ... more nested items
+          ],
+          position: null,
+          order: 2,
+          attributes: [],
+          groupId: null,
+          groupName: null,
+          parentMenuId: "e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2",
+          isNewTab: null
+        }
+      ],
+      position: "top",
+      order: 6,
+      attributes: null,
+      groupId: "2",
+      groupName: null,
+      parentMenuId: null,
+      isNewTab: false
+    }
+  ],
+  bottom: [] // Bottom navigation items would follow the same structure
+});
+
+const activeNav = ref({
+  parentNav: '',
+  menu: '',
+  submenu: ''
+});
+
+const handleNavClick = (navItem) => {
+  console.log('Navigation clicked:', navItem);
+  // Handle navigation logic here
+};
+</script>
+```
+
+### API Data Structure
+
+When using `isNavApi: true`, the navigation data should follow this structure:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `id` | string | Unique identifier for the navigation item |
+| `code` | string \| null | Optional code identifier |
+| `label` | string | Display text for the navigation item |
+| `url` | string \| null | Navigation URL (null for parent items with children) |
+| `icon` | string \| null | Icon identifier (Iconify name or CDN URL) |
+| `children` | array | Child navigation items with the same structure |
+| `position` | string | Position indicator ("top" or "bottom") |
+| `order` | number | Sort order for the item |
+| `attributes` | array \| null | Additional attributes for the item |
+| `groupId` | string \| null | Group identifier for organizing items |
+| `groupName` | string \| null | Group name for subheadings |
+| `parentMenuId` | string \| null | Parent menu identifier |
+| `isNewTab` | boolean \| null | Whether to open link in new tab |
+
+::: info Note
+When `isNavApi` is true, the component automatically transforms the API data structure into the internal navigation format used by the sidenav component.
+:::
 
 ## Quick Actions
 
@@ -1174,24 +1354,24 @@ const navLinks = ref({
     {
       parentLinks: [
         {
-          title: 'Home',
+          title: 'HR Home',
           icon: 'ph:house-simple',
           menuLinks: [
             {
-              menuHeading: 'Sub Heading 1',
+              menuHeading: 'HR Management',
               items: [
                 {
-                  title: 'Dashboard 1',
+                  title: 'HR Dashboard',
                   submenuLinks: [
                     {
-                      subMenuHeading: 'Sub Heading 1',
+                      subMenuHeading: 'Employee Overview',
                       items: [
                         {
-                          title: 'Home 1',
+                          title: 'Employee List',
                           redirect: {},
                         },
                         {
-                          title: 'Home 2',
+                          title: 'Attendance',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1201,10 +1381,10 @@ const navLinks = ref({
                       ],
                     },
                     {
-                      subMenuHeading: 'Sub Heading 2',
+                      subMenuHeading: 'Benefits',
                       items: [
                         {
-                          title: 'Home 3',
+                          title: 'Leave Management',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: true,
@@ -1212,7 +1392,7 @@ const navLinks = ref({
                           },
                         },
                         {
-                          title: 'Home 4',
+                          title: 'Compensation',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1224,7 +1404,7 @@ const navLinks = ref({
                   ],
                 },
                 {
-                  title: 'Dashboard 2',
+                  title: 'HR Analytics',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1236,7 +1416,7 @@ const navLinks = ref({
           ],
         },
         {
-          title: 'Employees',
+          title: 'HR Employees',
           icon: 'ph:users-three',
           redirect: {
             openInNewTab: false,
@@ -1249,14 +1429,14 @@ const navLinks = ref({
     {
       parentLinks: [
         {
-          title: 'Payroll',
+          title: 'HR Payroll',
           icon: 'ph:leaf',
           menuLinks: [
             {
-              menuHeading: 'Sub Heading 1',
+              menuHeading: 'Payroll Management',
               items: [
                 {
-                  title: 'Payroll Runs',
+                  title: 'Payroll Processing',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1264,13 +1444,13 @@ const navLinks = ref({
                   },
                 },
                 {
-                  title: 'Reports',
+                  title: 'Payroll Reports',
                   submenuLinks: [
                     {
-                      subMenuHeading: '',
+                      subMenuHeading: 'Government Reports',
                       items: [
                         {
-                          title: 'Payroll',
+                          title: 'SSS Report',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1278,7 +1458,7 @@ const navLinks = ref({
                           },
                         },
                         {
-                          title: 'SSS',
+                          title: 'PhilHealth Report',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1286,7 +1466,7 @@ const navLinks = ref({
                           },
                         },
                         {
-                          title: 'PHILHEALTH',
+                          title: 'Pag-IBIG Report',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1300,10 +1480,10 @@ const navLinks = ref({
               ],
             },
             {
-              menuHeading: 'Sub Heading 2',
+              menuHeading: 'HR Setup',
               items: [
                 {
-                  title: 'Setup',
+                  title: 'HR Settings',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1311,7 +1491,7 @@ const navLinks = ref({
                   },
                 },
                 {
-                  title: 'Employees',
+                  title: 'HR Employee Records',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1323,16 +1503,47 @@ const navLinks = ref({
           ],
         },
         {
-          title: 'Money',
+          title: 'HR Finance',
           icon: 'ph:currency-rub',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
             link: '/',
           },
+          menuLinks: [
+            {
+              menuHeading: 'Finance Operations',
+              items: [
+                {
+                  title: 'Payroll Budget',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+                {
+                  title: 'Expense Tracking',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+                {
+                  title: 'Financial Reports',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+              ],
+            },
+          ],
         },
         {
-          title: 'Car',
+          title: 'HR Vehicles',
           icon: 'ph:wallet',
           redirect: {
             openInNewTab: false,
@@ -1341,10 +1552,10 @@ const navLinks = ref({
           },
           menuLinks: [
             {
-              menuHeading: '',
+              menuHeading: 'HR Fleet',
               items: [
                 {
-                  title: 'Car 1',
+                  title: 'Company Cars',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1352,7 +1563,7 @@ const navLinks = ref({
                   },
                 },
                 {
-                  title: 'Car 2',
+                  title: 'Fleet Management',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1370,24 +1581,24 @@ const navLinks = ref({
     {
       parentLinks: [
         {
-          title: 'Gallery',
+          title: 'HR Gallery',
           icon: 'ph:address-book',
           menuLinks: [
             {
-              menuHeading: 'Sub Heading 1',
+              menuHeading: 'HR Resources',
               items: [
                 {
-                  title: 'Dashboard 1',
+                  title: 'HR Dashboard',
                   submenuLinks: [
                     {
-                      subMenuHeading: 'Sub Heading 1',
+                      subMenuHeading: 'HR Team',
                       items: [
                         {
-                          title: 'Home 1',
+                          title: 'HR Directory',
                           redirect: {},
                         },
                         {
-                          title: 'Home 2',
+                          title: 'HR Attendance',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1397,10 +1608,10 @@ const navLinks = ref({
                       ],
                     },
                     {
-                      subMenuHeading: 'Sub Heading 2',
+                      subMenuHeading: 'HR Benefits',
                       items: [
                         {
-                          title: 'Home 3',
+                          title: 'HR Leaves',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: true,
@@ -1408,7 +1619,7 @@ const navLinks = ref({
                           },
                         },
                         {
-                          title: 'Home 4',
+                          title: 'HR Compensation',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1420,7 +1631,7 @@ const navLinks = ref({
                   ],
                 },
                 {
-                  title: 'Dashboard 2',
+                  title: 'HR Analytics',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1436,7 +1647,7 @@ const navLinks = ref({
     {
       parentLinks: [
         {
-          title: 'Resources',
+          title: 'HR Resources',
           icon: 'ph:alien',
           redirect: {
             openInNewTab: false,
@@ -1445,7 +1656,7 @@ const navLinks = ref({
           },
         },
         {
-          title: 'News',
+          title: 'HR News',
           icon: 'ph:align-left',
           redirect: {
             openInNewTab: false,
@@ -1517,6 +1728,402 @@ const userMenu = ref({
     },
   ],
 });
+</script>
+```
+
+## Full Example with API Data (isNavApi)
+
+Here's a complete implementation example using the sidenav component with `isNavApi: true` and real API data structure:
+
+<div class="no-darkmode spr-m-0 spr-bg-mushroom-100 spr-text-mushroom-950 spr-font-main spr-rounded-md spr-h-[100vh] spr-w-full spr-relative spr-flex">
+  <spr-sidenav 
+    class="spr-absolute spr-z-[1]" 
+    :nav-links="apiNavData"
+    :is-nav-api="true"
+    :active-nav="activeNav"
+    :notification-count="12"
+    :request-count="3"
+    :user-menu="userMenu"
+    has-search
+    @get-navlink-item="handleNavClick"
+    @search="handleSearch"
+    @notifications="handleNotifications"
+    @requests="handleRequests"
+  >
+    <template #logo-image>
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
+    </template>
+  </spr-sidenav>
+  <div class="spr-flex-1 spr-px-4 spr-py-4 spr-w-full spr-max-w-[calc(100%-60px)] spr-ml-[60px] spr-overflow-auto">
+    <h1>API-Driven Navigation Example</h1>
+    <p>
+      This example demonstrates how the sidenav component works with real API data structure. The navigation is dynamically generated from the API response, supporting complex nested hierarchies with multiple levels of menus and submenus.
+    </p>
+    <p>
+      The API data includes properties like <code>groupId</code>, <code>groupName</code>, <code>parentMenuId</code>, and <code>isNewTab</code> which provide additional functionality for organizing and managing navigation items. This structure is commonly used in enterprise applications where navigation needs to be flexible and configurable.
+    </p>
+    <p>
+      Notice how the Payroll section demonstrates deep nesting with Setup → Company Profile and Department items, while the App Management section shows external links that open in new tabs. This flexibility allows for comprehensive navigation systems that can accommodate various application architectures.
+    </p>
+  </div>
+</div>
+
+```vue
+<template>
+  <spr-sidenav 
+    :nav-links="apiNavData"
+    :is-nav-api="true"
+    :active-nav="activeNav"
+    :notification-count="12"
+    :request-count="3"
+    :user-menu="userMenu"
+    has-search
+    @get-navlink-item="handleNavClick"
+    @search="handleSearch"
+    @notifications="handleNotifications"
+    @requests="handleRequests"
+  >
+    <template #logo-image>
+      <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
+    </template>
+  </spr-sidenav>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+import SprSidenav from '@/components/sidenav/sidenav.vue';
+
+// Real API data structure example
+const apiNavData = ref({
+  top: [
+    {
+      id: "135c50eb-3dbb-4e4a-b45a-9f58b4c0921f",
+      code: null,
+      label: "Dashboard",
+      url: "https://ecohub-qa.ecoapp-qa.sprout.ph/dashboard",
+      icon: "ph:house-simple",
+      children: [],
+      position: "top",
+      order: 1,
+      attributes: null,
+      groupId: "1",
+      groupName: null,
+      parentMenuId: null,
+      isNewTab: false
+    },
+    {
+      id: "8ee582db-afa7-4c6b-a80a-503eb7057cda",
+      code: null,
+      label: "App Management",
+      url: null,
+      icon: "ph:shapes",
+      children: [
+        {
+          id: "03b895a8-9de5-4f0e-b19b-4d965c99cd7d",
+          code: null,
+          label: "Marketplace",
+          url: "https://market.sprout.ph/",
+          icon: null,
+          children: [],
+          position: "top",
+          order: 2,
+          attributes: null,
+          groupId: null,
+          groupName: null,
+          parentMenuId: "8ee582db-afa7-4c6b-a80a-503eb7057cda",
+          isNewTab: true
+        },
+        {
+          id: "04b895a8-9de5-4f0e-b19b-4d965c99cd8e",
+          code: null,
+          label: "Extensions",
+          url: "https://extensions.sprout.ph/",
+          icon: null,
+          children: [],
+          position: "top",
+          order: 3,
+          attributes: null,
+          groupId: null,
+          groupName: null,
+          parentMenuId: "8ee582db-afa7-4c6b-a80a-503eb7057cda",
+          isNewTab: true
+        }
+      ],
+      position: "top",
+      order: 2,
+      attributes: null,
+      groupId: "1",
+      groupName: null,
+      parentMenuId: null,
+      isNewTab: false
+    },
+    {
+      id: "e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2",
+      code: null,
+      label: "Payroll",
+      url: null,
+      icon: "https://eco-cdn-prod.azureedge.net/payroll.svg",
+      children: [
+        {
+          id: "payroll-runs-001",
+          code: null,
+          label: "Payroll Runs",
+          url: "https://ecohub-qa-payroll.sprout.ph/Client/Payrolls.aspx",
+          icon: null,
+          children: [],
+          position: null,
+          order: 1,
+          attributes: [],
+          groupId: null,
+          groupName: null,
+          parentMenuId: "e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2",
+          isNewTab: false
+        },
+        {
+          id: "payroll-setup-001",
+          code: null,
+          label: "Setup",
+          url: "",
+          icon: null,
+          children: [
+            {
+              id: "company-profile-001",
+              code: null,
+              label: "Company Profile",
+              url: "https://ecohub-qa-payroll-next-qa.sprout.ph/#/global/company-profile",
+              icon: null,
+              children: [],
+              position: null,
+              order: 1,
+              attributes: [],
+              groupId: null,
+              groupName: "COMPANY",
+              parentMenuId: "payroll-setup-001",
+              isNewTab: false
+            },
+            {
+              id: "department-001",
+              code: null,
+              label: "Department",
+              url: "https://ecohub-qa-payroll-next-qa.sprout.ph/#/global/department",
+              icon: null,
+              children: [],
+              position: null,
+              order: 2,
+              attributes: [],
+              groupId: null,
+              groupName: "COMPANY",
+              parentMenuId: "payroll-setup-001",
+              isNewTab: false
+            },
+            {
+              id: "employees-001",
+              code: null,
+              label: "Employees",
+              url: "https://ecohub-qa-payroll-next-qa.sprout.ph/#/global/employees",
+              icon: null,
+              children: [],
+              position: null,
+              order: 3,
+              attributes: [],
+              groupId: null,
+              groupName: "WORKFORCE",
+              parentMenuId: "payroll-setup-001",
+              isNewTab: false
+            }
+          ],
+          position: null,
+          order: 2,
+          attributes: [],
+          groupId: null,
+          groupName: null,
+          parentMenuId: "e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2",
+          isNewTab: false
+        },
+        {
+          id: "payroll-reports-001",
+          code: null,
+          label: "Reports",
+          url: null,
+          icon: null,
+          children: [
+            {
+              id: "sss-report-001",
+              code: null,
+              label: "SSS Reports",
+              url: "https://ecohub-qa-payroll.sprout.ph/Reports/SSS",
+              icon: null,
+              children: [],
+              position: null,
+              order: 1,
+              attributes: [],
+              groupId: null,
+              groupName: "GOVERNMENT",
+              parentMenuId: "payroll-reports-001",
+              isNewTab: false
+            },
+            {
+              id: "philhealth-report-001",
+              code: null,
+              label: "PhilHealth Reports",
+              url: "https://ecohub-qa-payroll.sprout.ph/Reports/PhilHealth",
+              icon: null,
+              children: [],
+              position: null,
+              order: 2,
+              attributes: [],
+              groupId: null,
+              groupName: "GOVERNMENT",
+              parentMenuId: "payroll-reports-001",
+              isNewTab: false
+            }
+          ],
+          position: null,
+          order: 3,
+          attributes: [],
+          groupId: null,
+          groupName: null,
+          parentMenuId: "e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2",
+          isNewTab: false
+        }
+      ],
+      position: "top",
+      order: 6,
+      attributes: null,
+      groupId: "2",
+      groupName: null,
+      parentMenuId: null,
+      isNewTab: false
+    }
+  ],
+  bottom: [
+    {
+      id: "settings-001",
+      code: null,
+      label: "Settings",
+      url: "/settings",
+      icon: "ph:gear",
+      children: [],
+      position: "bottom",
+      order: 1,
+      attributes: null,
+      groupId: "99",
+      groupName: null,
+      parentMenuId: null,
+      isNewTab: false
+    },
+    {
+      id: "help-001",
+      code: null,
+      label: "Help & Support",
+      url: "https://help.sprout.ph",
+      icon: "ph:question",
+      children: [],
+      position: "bottom",
+      order: 2,
+      attributes: null,
+      groupId: "99",
+      groupName: null,
+      parentMenuId: null,
+      isNewTab: true
+    }
+  ]
+});
+
+const activeNav = ref({
+  parentNav: 'Dashboard',
+  menu: '',
+  submenu: ''
+});
+
+const userMenu = ref({
+  name: 'John Rafael M. Arias',
+  email: 'jarias@sprout.ph',
+  profileImage: 'https://lh3.googleusercontent.com/ogw/AF2bZyiCP8eaKX7KiduREcMAogl0Ml2TwYJAPTgcKeNap81ztg=s32-c-mo',
+  items: [
+    {
+      title: 'My Profile',
+      icon: 'ph:user',
+      redirect: {
+        openInNewTab: false,
+        isAbsoluteURL: false,
+        link: '/profile',
+      },
+    },
+    {
+      title: 'Account Settings',
+      icon: 'ph:gear',
+      redirect: {
+        openInNewTab: false,
+        isAbsoluteURL: false,
+        link: '/settings',
+      },
+    },
+    {
+      title: 'Privacy Policy',
+      icon: 'ph:shield-check',
+      redirect: {
+        openInNewTab: true,
+        isAbsoluteURL: true,
+        link: 'https://sprout.ph/privacy',
+      },
+    },
+    {
+      title: 'Logout',
+      icon: 'ph:sign-out',
+      redirect: {
+        openInNewTab: false,
+        isAbsoluteURL: false,
+        link: '/logout',
+      },
+    },
+  ],
+});
+
+// Event handlers
+const handleNavClick = (navItem) => {
+  console.log('Navigation clicked:', navItem);
+  
+  // Update active navigation based on API structure
+  if (navItem.parentMenuId === null) {
+    // Top-level navigation
+    activeNav.value = {
+      parentNav: navItem.label,
+      menu: '',
+      submenu: ''
+    };
+  } else {
+    // Handle nested navigation logic here
+    console.log('Nested navigation:', navItem);
+  }
+  
+  // Handle URL navigation
+  if (navItem.url) {
+    if (navItem.isNewTab) {
+      window.open(navItem.url, '_blank');
+    } else {
+      // Use your router to navigate
+      // router.push(navItem.url);
+      console.log('Navigate to:', navItem.url);
+    }
+  }
+};
+
+const handleSearch = (searchTerm) => {
+  console.log('Search:', searchTerm);
+  // Implement search functionality
+};
+
+const handleNotifications = () => {
+  console.log('Notifications clicked');
+  // Handle notifications
+};
+
+const handleRequests = () => {
+  console.log('Requests clicked');
+  // Handle requests
+};
 </script>
 ```
 
@@ -1651,12 +2258,12 @@ The following table outlines the available attributes for the Sidenav component:
   <spr-logo name="ecosystem" theme="dark" width="50px" />
 </div>
 
-
 <script lang="ts" setup>
 import { ref } from 'vue';
 
 import SprSidenav from '@/components/sidenav/sidenav.vue';
 import SprLogo from "@/components/logo/logo.vue";
+import SideNavDataApi from '../../json-data/side-nav-api.json';
 
 const quickActions = ref([
   {
@@ -1753,30 +2360,30 @@ const activeNav = ref({
   menu: 'Dashboard 1',
   submenu: 'Home 2',
 });
-
+const apiNavData = ref(SideNavDataApi);
 const navLinks = ref({
   top: [
     {
       parentLinks: [
         {
-          title: 'Home',
+          title: 'HR Home',
           icon: 'ph:house-simple',
           menuLinks: [
             {
-              menuHeading: 'Sub Heading 1',
+              menuHeading: 'HR Management',
               items: [
                 {
-                  title: 'Dashboard 1',
+                  title: 'HR Dashboard',
                   submenuLinks: [
                     {
-                      subMenuHeading: 'Sub Heading 1',
+                      subMenuHeading: 'Employee Overview',
                       items: [
                         {
-                          title: 'Home 1',
+                          title: 'Employee List',
                           redirect: {},
                         },
                         {
-                          title: 'Home 2',
+                          title: 'Attendance',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1786,10 +2393,10 @@ const navLinks = ref({
                       ],
                     },
                     {
-                      subMenuHeading: 'Sub Heading 2',
+                      subMenuHeading: 'Benefits',
                       items: [
                         {
-                          title: 'Home 3',
+                          title: 'Leave Management',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: true,
@@ -1797,7 +2404,7 @@ const navLinks = ref({
                           },
                         },
                         {
-                          title: 'Home 4',
+                          title: 'Compensation',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1809,7 +2416,7 @@ const navLinks = ref({
                   ],
                 },
                 {
-                  title: 'Dashboard 2',
+                  title: 'HR Analytics',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1821,7 +2428,7 @@ const navLinks = ref({
           ],
         },
         {
-          title: 'Employees',
+          title: 'HR Employees',
           icon: 'ph:users-three',
           redirect: {
             openInNewTab: false,
@@ -1834,14 +2441,14 @@ const navLinks = ref({
     {
       parentLinks: [
         {
-          title: 'Payroll',
+          title: 'HR Payroll',
           icon: 'ph:leaf',
           menuLinks: [
             {
-              menuHeading: 'Sub Heading 1',
+              menuHeading: 'Payroll Management',
               items: [
                 {
-                  title: 'Payroll Runs',
+                  title: 'Payroll Processing',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1849,13 +2456,13 @@ const navLinks = ref({
                   },
                 },
                 {
-                  title: 'Reports',
+                  title: 'Payroll Reports',
                   submenuLinks: [
                     {
-                      subMenuHeading: '',
+                      subMenuHeading: 'Government Reports',
                       items: [
                         {
-                          title: 'Payroll',
+                          title: 'SSS Report',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1863,7 +2470,7 @@ const navLinks = ref({
                           },
                         },
                         {
-                          title: 'SSS',
+                          title: 'PhilHealth Report',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1871,7 +2478,7 @@ const navLinks = ref({
                           },
                         },
                         {
-                          title: 'PHILHEALTH',
+                          title: 'Pag-IBIG Report',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1885,10 +2492,10 @@ const navLinks = ref({
               ],
             },
             {
-              menuHeading: 'Sub Heading 2',
+              menuHeading: 'HR Setup',
               items: [
                 {
-                  title: 'Setup',
+                  title: 'HR Settings',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1896,7 +2503,7 @@ const navLinks = ref({
                   },
                 },
                 {
-                  title: 'Employees',
+                  title: 'HR Employee Records',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1908,16 +2515,47 @@ const navLinks = ref({
           ],
         },
         {
-          title: 'Money',
+          title: 'HR Finance',
           icon: 'ph:currency-rub',
           redirect: {
             openInNewTab: false,
             isAbsoluteURL: false,
             link: '/',
           },
+          menuLinks: [
+            {
+              menuHeading: 'Finance Operations',
+              items: [
+                {
+                  title: 'Payroll Budget',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+                {
+                  title: 'Expense Tracking',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+                {
+                  title: 'Financial Reports',
+                  redirect: {
+                    openInNewTab: false,
+                    isAbsoluteURL: false,
+                    link: '/',
+                  },
+                },
+              ],
+            },
+          ],
         },
         {
-          title: 'Car',
+          title: 'HR Vehicles',
           icon: 'ph:wallet',
           redirect: {
             openInNewTab: false,
@@ -1926,10 +2564,10 @@ const navLinks = ref({
           },
           menuLinks: [
             {
-              menuHeading: '',
+              menuHeading: 'HR Fleet',
               items: [
                 {
-                  title: 'Car 1',
+                  title: 'Company Cars',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1937,7 +2575,7 @@ const navLinks = ref({
                   },
                 },
                 {
-                  title: 'Car 2',
+                  title: 'Fleet Management',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -1955,24 +2593,24 @@ const navLinks = ref({
     {
       parentLinks: [
         {
-          title: 'Gallery',
+          title: 'HR Gallery',
           icon: 'ph:address-book',
           menuLinks: [
             {
-              menuHeading: 'Sub Heading 1',
+              menuHeading: 'HR Resources',
               items: [
                 {
-                  title: 'Dashboard 1',
+                  title: 'HR Dashboard',
                   submenuLinks: [
                     {
-                      subMenuHeading: 'Sub Heading 1',
+                      subMenuHeading: 'HR Team',
                       items: [
                         {
-                          title: 'Home 1',
+                          title: 'HR Directory',
                           redirect: {},
                         },
                         {
-                          title: 'Home 2',
+                          title: 'HR Attendance',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -1982,10 +2620,10 @@ const navLinks = ref({
                       ],
                     },
                     {
-                      subMenuHeading: 'Sub Heading 2',
+                      subMenuHeading: 'HR Benefits',
                       items: [
                         {
-                          title: 'Home 3',
+                          title: 'HR Leaves',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: true,
@@ -1993,7 +2631,7 @@ const navLinks = ref({
                           },
                         },
                         {
-                          title: 'Home 4',
+                          title: 'HR Compensation',
                           redirect: {
                             openInNewTab: false,
                             isAbsoluteURL: false,
@@ -2005,7 +2643,7 @@ const navLinks = ref({
                   ],
                 },
                 {
-                  title: 'Dashboard 2',
+                  title: 'HR Analytics',
                   redirect: {
                     openInNewTab: false,
                     isAbsoluteURL: false,
@@ -2021,7 +2659,7 @@ const navLinks = ref({
     {
       parentLinks: [
         {
-          title: 'Resources',
+          title: 'HR Resources',
           icon: 'ph:alien',
           redirect: {
             openInNewTab: false,
@@ -2030,7 +2668,7 @@ const navLinks = ref({
           },
         },
         {
-          title: 'News',
+          title: 'HR News',
           icon: 'ph:align-left',
           redirect: {
             openInNewTab: false,
@@ -2102,4 +2740,14 @@ const userMenu = ref({
     },
   ],
 });
+
+const handleNavClick = (navItem) => {
+  console.log('Navigation clicked:', navItem);
+  // Handle navigation logic here
+};  
+
+const handleRequests = () => {
+  console.log('Requests clicked');
+  // Handle requests
+};
 </script>

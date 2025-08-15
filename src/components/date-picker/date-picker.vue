@@ -22,60 +22,66 @@
         <label v-if="props.label" :for="props.id" :class="datePickerClasses.labelClasses">
           {{ props.label }}
         </label>
-        <div ref="datePickerRef" :class="datePickerClasses.datePickerBaseInputClasses" @click="datePopperState = true">
-          <div class="spr-flex spr-h-full spr-items-center spr-gap-1.5">
-            <input
-              :id="`${props.id}-month`"
-              ref="monthInputRef"
-              v-model="monthInput"
-              :class="['spr-w-[38px] spr-min-w-[38px]', datePickerClasses.datePickerInputClasses]"
-              type="text"
-              placeholder="MMM"
-              maxlength="3"
-              :disabled="props.disabled"
-              :readonly="props.readonly"
-              autocomplete="off"
-              @input="handleMonthInput"
-              @keyup="handleMonthInput"
-              @keydown="handleBackspace('month', $event)"
-            />
-            <span class="spr-text-color-strong spr-font-size-200 spr-text-color-weak">/</span>
-            <input
-              :id="`${props.id}-date`"
-              ref="dateInputRef"
-              v-model="dateInput"
-              :class="['spr-w-[24px] spr-min-w-[24px] spr-text-center', datePickerClasses.datePickerInputClasses]"
-              type="text"
-              placeholder="DD"
-              maxlength="2"
-              :disabled="props.disabled"
-              :readonly="props.readonly"
-              autocomplete="off"
-              @input="handleDateInput"
-              @keyup="handleDateInput"
-              @keydown="handleBackspace('date', $event)"
-            />
-            <span class="spr-text-color-strong spr-font-size-200 spr-text-color-weak">/</span>
-            <input
-              :id="`${props.id}-year`"
-              ref="yearInputRef"
-              v-model="yearInput"
-              :class="['spr-w-[42px] spr-min-w-[42px]', datePickerClasses.datePickerInputClasses]"
-              type="text"
-              placeholder="YYYY"
-              maxlength="4"
-              :disabled="props.disabled"
-              :readonly="props.readonly"
-              autocomplete="off"
-              @input="handleYearInput"
-              @keyup="handleYearInput"
-              @keydown="handleBackspace('year', $event)"
-            />
+        <slot :handle-click="handleSlotClick">
+          <div
+            ref="datePickerRef"
+            :class="datePickerClasses.datePickerBaseInputClasses"
+            @click="datePopperState = true"
+          >
+            <div class="spr-flex spr-h-full spr-items-center spr-gap-1.5">
+              <input
+                :id="`${props.id}-month`"
+                ref="monthInputRef"
+                v-model="monthInput"
+                :class="['spr-w-[38px] spr-min-w-[38px]', datePickerClasses.datePickerInputClasses]"
+                type="text"
+                placeholder="MMM"
+                maxlength="3"
+                :disabled="props.disabled"
+                :readonly="props.readonly"
+                autocomplete="off"
+                @input="handleMonthInput"
+                @keyup="handleMonthInput"
+                @keydown="handleBackspace('month', $event)"
+              />
+              <span class="spr-text-color-strong spr-font-size-200 spr-text-color-weak">/</span>
+              <input
+                :id="`${props.id}-date`"
+                ref="dateInputRef"
+                v-model="dateInput"
+                :class="['spr-w-[24px] spr-min-w-[24px] spr-text-center', datePickerClasses.datePickerInputClasses]"
+                type="text"
+                placeholder="DD"
+                maxlength="2"
+                :disabled="props.disabled"
+                :readonly="props.readonly"
+                autocomplete="off"
+                @input="handleDateInput"
+                @keyup="handleDateInput"
+                @keydown="handleBackspace('date', $event)"
+              />
+              <span class="spr-text-color-strong spr-font-size-200 spr-text-color-weak">/</span>
+              <input
+                :id="`${props.id}-year`"
+                ref="yearInputRef"
+                v-model="yearInput"
+                :class="['spr-w-[42px] spr-min-w-[42px]', datePickerClasses.datePickerInputClasses]"
+                type="text"
+                placeholder="YYYY"
+                maxlength="4"
+                :disabled="props.disabled"
+                :readonly="props.readonly"
+                autocomplete="off"
+                @input="handleYearInput"
+                @keyup="handleYearInput"
+                @keydown="handleBackspace('year', $event)"
+              />
+            </div>
+            <div class="spr-flex spr-items-center spr-justify-center">
+              <Icon class="spr-text-color-supporting spr-h-4 spr-w-4" icon="ph:calendar-blank" />
+            </div>
           </div>
-          <div class="spr-flex spr-items-center spr-justify-center">
-            <Icon class="spr-text-color-supporting spr-h-4 spr-w-4" icon="ph:calendar-blank" />
-          </div>
-        </div>
+        </slot>
       </div>
 
       <template #popper>
@@ -324,6 +330,7 @@ const {
   handleTabClick,
   handleBackspace,
   clearDate,
+  handleSlotClick
 } = useDatePicker(props, emit);
 
 defineExpose({

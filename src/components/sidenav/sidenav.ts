@@ -32,6 +32,7 @@ export type ParentLinkItem = {
   menuLinks: MenuLink[];
   submenuLinks?: SubmenuLink[];
   hidden?: boolean;
+  attributes?: Attributes[];
 };
 
 export type MenuLink = {
@@ -43,6 +44,7 @@ export type MenuLinkItem = {
   title: string;
   hidden: boolean;
   redirect: Redirect;
+  attributes?: Attributes[];
   submenuLinks: SubmenuLink[];
 };
 
@@ -55,6 +57,7 @@ export type SubmenuLinkItem = {
   title: string;
   hidden: boolean;
   redirect: Redirect;
+  attributes?: Attributes[];
 };
 
 export type Redirect = {
@@ -85,6 +88,16 @@ export interface NavItem {
   children?: NavItem[] | null;
   groupName?: string | null;
   hidden?: boolean;
+  attributes?: Attributes[] | null;
+}
+
+export type Attributes = {
+  name: string;
+  value: unknown | string | number | boolean | AttrLozenge;
+};
+type AttrLozenge = {
+  label: string;
+  tone?: string;
 }
 
 export interface MappedNavItem {
@@ -95,6 +108,7 @@ export interface MappedNavItem {
     isAbsoluteURL: boolean;
     link: string;
   };
+  attributes?: AttrLozenge | unknown [];
   menuLinks?: {
     menuHeading: string;
     items: MappedNavItem[];

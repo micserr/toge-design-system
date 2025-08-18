@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.12.0 (2025-08-15)
+- Feat
+  - Added default slot for date picker
+    ([#7c8b683f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7c8b683f6cb2b6b856a6d0869fe3f25c649a62c5?refName=refs%2Fheads%2F2025%2FFEATURE%2FDUSTIN%2Fdate-picker-slot) by @despiritu)
+
 ## 2.11.22 (2025-08-14)
 
 - Feat

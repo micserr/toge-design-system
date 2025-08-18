@@ -45,6 +45,52 @@ Chips can be used for various purposes:
 - To display applied filters that can be removed
 - As toggleable option selectors
 
+## Size
+
+Chips come in different sizes to accommodate various design needs. The available sizes are:
+
+- `sm` - Small size for compact displays
+- `md` - Medium size (default)
+
+<div class="spr-flex spr-items-center spr-gap-2">
+  <spr-chips label="Small Chip" size="sm" />
+  <spr-chips label="Medium Chip" />
+</div>
+
+```vue
+<template>
+  <spr-chips label="Small Chip" size="sm" />
+  <spr-chips label="Medium Chip" />
+</template>
+
+<script lang="ts" setup>
+import SprChips from '@/components/chips/chips.vue';
+</script>
+```
+
+## Tone
+
+Chips come in different tones to convey different meanings. The available tones are:
+
+- `subtle` - A subtle tone for less emphasis
+- `default` - The standard tone for general use
+
+<div class="spr-flex spr-items-center spr-gap-2">
+  <spr-chips label="Subtle Chip" tone="subtle" />
+  <spr-chips label="Default Chip" />
+</div>
+
+```vue
+<template>
+  <spr-chips label="Subtle Chip" tone="subtle" />
+  <spr-chips label="Default Chip" />
+</template>
+
+<script lang="ts" setup>
+import SprChips from '@/components/chips/chips.vue';
+</script>
+```
+
 ## Chips with Icons
 
 Icons can enhance the visual meaning of chips and make them more recognizable. The `icon` prop accepts Iconify icon names, and the `icon-weight` prop allows you to control the icon's style.
@@ -381,6 +427,12 @@ For more complex date selection needs, consider combining day chips with the Dat
       <td>Controls the size of the chip</td>
       <td>'sm' | 'md' | 'lg'</td>
       <td>'md'</td>
+    </tr>
+    <tr>
+      <td>tone</td>
+      <td>Controls the tone of the chip</td>
+      <td>'subtle' | 'default'</td>
+      <td>'default'</td>
     </tr>
     <tr>
       <td>active</td>

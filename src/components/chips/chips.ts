@@ -3,6 +3,7 @@ import type { PropType, ExtractPropTypes } from 'vue';
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
 const CHIPS_SIZE = ['lg', 'md', 'sm'] as const;
+export const TONES = ['subtle', 'default']
 export const ICON_WEIGHTS = ['regular', 'bold', 'thin', 'light', 'fill', 'duotone'] as const;
 const CHIPS_VARIANT = ['tag', 'day'] as const;
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] as const;
@@ -84,6 +85,11 @@ export const chipsPropTypes = {
     default: 'Sunday',
     validator: (value: string) => DAYS.includes(value as (typeof DAYS)[number]),
   },
+  tone: {
+    type: String as PropType<(typeof TONES)[number]>,
+    default: 'default',
+    validator: (value: string) => TONES.includes(value as (typeof TONES)[number]),
+  }
 };
 
 export type ChipsPropTypes = ExtractPropTypes<typeof chipsPropTypes>;

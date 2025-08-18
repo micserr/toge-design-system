@@ -10,7 +10,7 @@ The Avatar component is a versatile and commonly used element in user interfaces
 
 ## Basic Usage
 
-<spr-avatar  />
+<spr-avatar />
 
 ```vue
 <template>
@@ -20,7 +20,7 @@ The Avatar component is a versatile and commonly used element in user interfaces
 
 ## Notification
 
-<spr-avatar  :notification="true" />
+<spr-avatar :notification="true" />
 
 ```vue
 <template>
@@ -30,7 +30,7 @@ The Avatar component is a versatile and commonly used element in user interfaces
 
 ## Badge
 
-<spr-avatar  :badge="true" />
+<spr-avatar :badge="true" />
 
 ```vue
 <template>
@@ -40,7 +40,15 @@ The Avatar component is a versatile and commonly used element in user interfaces
 
 ## Image
 
-<spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" :notification="true" :badge="true" size="2xl" />
+<div>
+  <spr-avatar 
+    variant="image" 
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" 
+    :notification="true" 
+    :badge="true" 
+    size="2xl" 
+  />
+</div>
 
 ```vue
 <template>
@@ -59,81 +67,114 @@ The Avatar component is a versatile and commonly used element in user interfaces
 avatar component has 7 different sizes. You can use the `size` prop to set the size of the avatar. The default size is `2xl`. The available sizes are `2xl`, `xl`, `lg`, `md`, `sm`, `xs`, `2xs`.
 
 <div class="spr-space-x-3 spr-flex">
-  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="2xl" />
-
-  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="xl" />
-
-  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="lg"/>
-
-  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="md"/>
-
-  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="sm" />
-
-  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" :notification="true" :badge="true" size="xs"/>
-
-<spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" :notification="true" :badge="true"size="2xs" />
-
+  <spr-avatar 
+    variant="image" 
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" 
+    :notification="true" 
+    :badge="true" 
+    size="2xl" 
+  />
+  <spr-avatar 
+    variant="image" 
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" 
+    :notification="true" 
+    :badge="true" 
+    size="xl" 
+  />
+  <spr-avatar 
+    variant="image" 
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" 
+    :notification="true" 
+    :badge="true" 
+    size="lg" 
+  />
+  <spr-avatar 
+    variant="image" 
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" 
+    :notification="true" 
+    :badge="true" 
+    size="md" 
+  />
+  <spr-avatar 
+    variant="image" 
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" 
+    :notification="true" 
+    :badge="true" 
+    size="sm" 
+  />
+  <spr-avatar 
+    variant="image" 
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" 
+    :notification="true" 
+    :badge="true" 
+    size="xs" 
+  />
+  <spr-avatar 
+    variant="image" 
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" 
+    :notification="true" 
+    :badge="true" 
+    size="2xs" 
+  />
 </div>
 
 ```vue
 <template>
-  <div>
-    <spr-avatar
-      variant="image"
-      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-      :notification="true"
-      :badge="true"
-      size="2xl"
-    />
+  <spr-avatar
+    variant="image"
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    :notification="true"
+    :badge="true"
+    size="2xl"
+  />
 
-    <spr-avatar
-      variant="image"
-      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-      :notification="true"
-      :badge="true"
-      size="xl"
-    />
+  <spr-avatar
+    variant="image"
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    :notification="true"
+    :badge="true"
+    size="xl"
+  />
 
-    <spr-avatar
-      variant="image"
-      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-      :notification="true"
-      :badge="true"
-      size="lg"
-    />
+  <spr-avatar
+    variant="image"
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    :notification="true"
+    :badge="true"
+    size="lg"
+  />
 
-    <spr-avatar
-      variant="image"
-      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-      :notification="true"
-      :badge="true"
-      size="md"
-    />
+  <spr-avatar
+    variant="image"
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    :notification="true"
+    :badge="true"
+    size="md"
+  />
 
-    <spr-avatar
-      variant="image"
-      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-      :notification="true"
-      :badge="true"
-      size="sm"
-    />
+  <spr-avatar
+    variant="image"
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    :notification="true"
+    :badge="true"
+    size="sm"
+  />
 
-    <spr-avatar
-      variant="image"
-      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-      :notification="true"
-      :badge="true"
-      size="xs"
-    />
+  <spr-avatar
+    variant="image"
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    :notification="true"
+    :badge="true"
+    size="xs"
+  />
 
-    <spr-avatar
-      variant="image"
-      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-      :notification="true"
-      :badge="true"
-      size="2xs"
-    />
-  </div>
+  <spr-avatar
+    variant="image"
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    :notification="true"
+    :badge="true"
+    size="2xs"
+  />
 </template>
 ```
 
@@ -531,6 +572,24 @@ import { Icon } from '@iconify/vue';
       <td>When <code>true</code>, displays a skeletal loading state animation instead of the actual avatar content. Useful for showing loading states while data is being fetched.</td>
       <td>boolean</td>
       <td>false</td>
+    </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>imageError</td>
+      <td>Emitted when the image source is not an image.</td>
     </tr>
   </tbody>
 </table>

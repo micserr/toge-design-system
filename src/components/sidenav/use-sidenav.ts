@@ -1,7 +1,16 @@
 import { ref, onMounted } from 'vue';
 
 import type { SetupContext } from 'vue';
-import type { SidenavPropTypes, SidenavEmitTypes, ParentLinkItem, NavLinks, NavItem, MenuLinkItem, Attributes } from './sidenav';
+import type {
+  SidenavPropTypes,
+  SidenavEmitTypes,
+  ParentLinkItem,
+  NavLinks,
+  NavItem,
+  MenuLinkItem,
+  Attributes,
+} from './sidenav';
+import { image } from '@cloudinary/url-gen/qualifiers/source';
 
 interface ObjectItem {
   redirect?: {
@@ -22,16 +31,6 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
 
   const isQuckActionMenuVisible = ref(false);
   const isUserMenuVisible = ref(false);
-
-  const userProfileError = ref(false);
-
-  const getUserInitials = (name: string) => {
-    const nameArray = name.split(' ');
-
-    const initials = nameArray[0].charAt(0) + (nameArray[1] ? nameArray[1].charAt(0) : '');
-
-    return initials.toUpperCase();
-  };
 
   const handleRedirect = (objectItem: ObjectItem, parentNav: string, menu: string, submenu: string) => {
     if (objectItem && objectItem.redirect) {
@@ -182,8 +181,14 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
     return transformedData;
   };
 
-  const getLozengeTone = (attr: Attributes)  => {
-    if (typeof attr === 'object' && attr !== null && 'tone' in attr && typeof attr.tone === 'string' && ['danger', 'information', 'plain', 'pending', 'success', 'neutral', 'caution'].includes(attr.tone)) {
+  const getLozengeTone = (attr: Attributes) => {
+    if (
+      typeof attr === 'object' &&
+      attr !== null &&
+      'tone' in attr &&
+      typeof attr.tone === 'string' &&
+      ['danger', 'information', 'plain', 'pending', 'success', 'neutral', 'caution'].includes(attr.tone)
+    ) {
       return attr.tone as 'danger' | 'information' | 'plain' | 'pending' | 'success' | 'neutral' | 'caution';
     }
     return 'success'; // Default tone
@@ -202,11 +207,9 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
     navLinks,
     isQuckActionMenuVisible,
     isUserMenuVisible,
-    userProfileError,
-    getUserInitials,
     handleRedirect,
     generateId,
     transformedNavItems,
-    getLozengeTone
+    getLozengeTone,
   };
 };

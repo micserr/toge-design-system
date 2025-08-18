@@ -86,6 +86,8 @@ const sliderValueDisabled = ref(50);
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
@@ -97,41 +99,65 @@ const sliderValueDisabled = ref(50);
   </thead>
   <tbody>
     <tr>
-      <td>v-model</td>
-      <td>Changes slider value with two-way data binding</td>
+      <td>modelValue / v-model</td>
+      <td>The current value of the slider. This prop is used with v-model for two-way data binding, allowing the slider's value to be both read and updated by the parent component.</td>
       <td>number</td>
       <td>0</td>
     </tr>
     <tr>
       <td>size</td>
-      <td>Defines the size of the slider. The accepted values are 'lg' and 'sm'.</td>
-      <td>string</td>
-      <td>lg</td>
+      <td>Controls the size of the slider component. The 'lg' option provides a larger, more prominent slider suitable for primary controls, while 'sm' offers a more compact version for space-constrained interfaces.</td>
+      <td>'lg' | 'sm'</td>
+      <td>'lg'</td>
     </tr>
     <tr>
       <td>min</td>
-      <td>Sets minimum value</td>
+      <td>The minimum value that the slider can be set to. This defines the lower bound of the slider's range and corresponds to the leftmost position of the slider.</td>
       <td>number</td>
       <td>0</td>
     </tr>
     <tr>
       <td>max</td>
-      <td>Sets maximum value</td>
+      <td>The maximum value that the slider can be set to. This defines the upper bound of the slider's range and corresponds to the rightmost position of the slider.</td>
       <td>number</td>
       <td>100</td>
     </tr>
     <tr>
       <td>step</td>
-      <td>Defines range step</td>
+      <td>The increment between values on the slider. This determines the granularity of the slider movement. For example, a step of 5 would only allow values like 0, 5, 10, etc.</td>
       <td>number</td>
       <td>1</td>
     </tr>
     <tr>
       <td>disabled</td>
-      <td>Disables slider</td>
+      <td>When set to true, the slider becomes non-interactive, visually indicating that it cannot be manipulated. The slider will appear with reduced opacity and a "not-allowed" cursor.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>     
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>update:modelValue</td>
+      <td>Emitted when the slider value changes as the user drags the thumb. This event is used by v-model for two-way data binding. It fires continuously during the dragging process.</td>
+      <td>(value: number): The current value of the slider</td>
+    </tr>
+    <tr>
+      <td>slideend</td>
+      <td>Emitted when the user completes a sliding interaction (releases the pointer). This is useful for triggering actions that should only occur once the user has finished adjusting the value, rather than during the dragging process.</td>
+      <td>(value: number): The final value of the slider after the interaction is complete</td>
+    </tr>
   </tbody>
 </table>
 

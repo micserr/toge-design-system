@@ -39,9 +39,12 @@ Example: `1.2.9`
   - New Features
   - New Components
   - Large Style Updates
+  - Major Functionality Enhancements
 - **PATCH**:
   - Bug Fixes
   - Small Design Updates
+  - Documentation Updates
+  - Minor Enhancements
 
 ### Updating Version
 
@@ -62,10 +65,16 @@ Whenever a minor or major version is updated, the patch or minor version resets 
 2. Add entry to `changelog.md`:
 
 ```markdown
-## 1.0.1 (2025-01-01)
+## 2.12.2 (2025-01-01)
 
+- Feat:
+  - Add new component functionality and improved API support ([#commit_hash](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/commit_hash?refName=refs/heads/branch_name) by @JefMari)
+  
+- Fix:
+  - Resolve issue with component rendering and improve error handling
+  
 - Docs:
-  - Add new documentation for component creation and contribution guidelines ([#commit_hash])(commit_url) by @JefMari)
+  - Update documentation with new examples and usage guidelines
 ```
 
 ## Pull Request Guidelines
@@ -80,13 +89,14 @@ Example: `docs: add component creation and contribution guidelines`
 
 ### Types:
 
-- `feat`: New feature
+- `feat`: New feature or enhancement
 - `fix`: Bug fix
 - `docs`: Documentation changes
 - `chore`: Maintenance tasks
 - `refactor`: Code refactoring
 - `style`: Code style changes
 - `test`: Adding tests
+- `enhancement`: Improvements to existing features
 
 ### Description
 
@@ -104,24 +114,27 @@ Example: `docs: add component creation and contribution guidelines`
 
 ### Example Pull Request
 
-**Title**: `docs: add component creation and contribution guidelines`
+**Title**: `feat: add button dropdown component and enhance button functionality`
 
 **Description**:
 
 ```markdown
 ## Changes
 
-- Add new documentation for component creation process
-- Add contribution guidelines
-- Update changelog and version
+- Add new button dropdown component with customizable options
+- Enhance button component to support new dropdown integration
+- Update list component to work with button dropdown
+- Update documentation with examples and usage guidelines
+- Add accessibility improvements to interactive elements
 
 ## Checklist
 
-- [x] Updated version in package.json
+- [x] Updated version in package.json (1.0.1)
 - [x] Added changelog entry
 - [x] Documentation updated
 - [x] Tested locally
 - [x] No linting errors
+- [x] Accessibility considerations addressed
 ```
 
 ## Release Process
@@ -153,8 +166,14 @@ git commit -m "docs: add component creation and contribution guidelines"
 ```markdown
 ## 1.0.1 (2025-01-01)
 
+- Feat:
+  - Add new button dropdown component with improved functionality ([#commit_hash](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/commit_hash?refName=refs/heads/2025/FEATURE/JEF/BUTTON_DROPDOWN) by @JefMari)
+
+- Fix:
+  - Resolve styling issues in dropdown component
+  
 - Docs:
-  - Add new documentation for component creation and contribution guidelines ([#commit_hash])(commit_url) by @JefMari)
+  - Update documentation with new examples and usage guidelines
 ```
 
 5. Create pull request
@@ -171,23 +190,29 @@ git commit -m "docs: add component creation and contribution guidelines"
    - Use conventional commit messages
    - Keep commits focused and atomic
    - Reference issues in commit messages
+   - Include Jira ticket numbers (e.g., POLY-120) when applicable
 
 2. **Documentation**
 
    - Update docs alongside code changes
-   - Include examples where appropriate
-   - Keep documentation up to date
+   - Include examples with code snippets
+   - Add usage guidelines and prop documentation
+   - Document component API changes thoroughly
+   - Include images or diagrams when helpful
 
 3. **Code Quality**
 
    - Follow existing code style
    - Add/update tests as needed
    - Run linters before committing
+   - Consider accessibility implications
+   - Test on multiple browsers/devices when appropriate
 
 4. **Review Process**
    - Respond to review comments promptly
    - Test changes thoroughly
    - Update PR based on feedback
+   - Document any significant changes made during review
 
 ## Getting Help
 

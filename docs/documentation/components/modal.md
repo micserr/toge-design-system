@@ -421,6 +421,8 @@ const modalModel = ref<boolean>(false);
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
@@ -432,40 +434,98 @@ const modalModel = ref<boolean>(false);
   </thead>
   <tbody>
     <tr>
-      <td>v-model</td>
-      <td>Binds the modal visibility state. When true, the modal is shown; when false, it is hidden.</td>
+      <td>modelValue</td>
+      <td>Controls the visibility of the modal. When <code>true</code>, the modal is displayed; when <code>false</code>, it is hidden. Used with v-model for two-way binding.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
       <td>title</td>
-      <td>The title for the modal header. You can pass a string directly or use the header slot.</td>
+      <td>Text to display in the modal header. This provides a straightforward way to add a title without using a slot. If both this prop and the header slot are used, the slot content takes precedence.</td>
       <td>string</td>
-      <td>-</td>
+      <td>''</td>
     </tr>
     <tr>
       <td>size</td>
-      <td>Defines the size of the modal. Possible values: "sm", "md", "lg", "xl".</td>
-      <td>"sm" | "md" | "lg" | "xl"</td>
-      <td>md</td>
+      <td>
+        Determines the width of the modal dialog:
+        <ul>
+          <li><code>sm</code>: Small size (360px - 480px) - Good for alerts or brief messages</li>
+          <li><code>md</code>: Medium size (480px - 720px) - Default size, suitable for forms and moderate content</li>
+          <li><code>lg</code>: Large size (720px - 960px) - For detailed forms or complex information</li>
+          <li><code>xl</code>: Extra large size (900px - 1200px) - For extensive content or media-heavy information</li>
+        </ul>
+      </td>
+      <td>'sm' | 'md' | 'lg' | 'xl'</td>
+      <td>'md'</td>
     </tr>
     <tr>
       <td>closeButtonX</td>
-      <td>If set to false, disables the close button (X) in the header.</td>
+      <td>When <code>true</code>, displays an X button in the top-right corner of the modal header that allows users to close the modal. Set to <code>false</code> to remove this button.</td>
       <td>boolean</td>
       <td>true</td>
     </tr>
     <tr>
       <td>contentPadding</td>
-      <td>Controls the padding inside the modal content. Set to true to enable padding, false to disable.</td>
+      <td>Controls whether the modal content has padding. When <code>true</code>, adds standard padding to the content area; when <code>false</code>, removes padding, allowing content to extend to the edges of the modal.</td>
+      <td>boolean</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>hasFooter</td>
+      <td>Controls whether the modal has a footer section. When <code>true</code>, reserves space for a footer section; when <code>false</code>, no footer area is rendered.</td>
       <td>boolean</td>
       <td>true</td>
     </tr>
     <tr>
       <td>staticBackdrop</td>
-      <td>If set to true, the modal will not close when clicking outside the modal (on the backdrop).</td>
+      <td>When <code>true</code>, prevents the modal from closing when the user clicks on the backdrop (the area outside the modal). This is useful for modals that require explicit user actions to close. When enabled, clicking on the backdrop triggers a bounce animation to indicate the modal can't be closed this way.</td>
       <td>boolean</td>
       <td>false</td>
+    </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>update:modelValue</td>
+      <td>Emitted when the modal visibility state changes. This event is used for v-model binding to work correctly. Triggered when the modal is closed via the X button or by clicking on the backdrop (when <code>staticBackdrop</code> is <code>false</code>).</td>
+      <td>(value: boolean): The new visibility state of the modal.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>default</td>
+      <td>The main content area of the modal. Place your primary content here. Content will have padding by default (controlled by the <code>contentPadding</code> prop).</td>
+    </tr>
+    <tr>
+      <td>header</td>
+      <td>Custom content for the modal header. This slot takes precedence over the <code>title</code> prop if both are provided. The header always includes the X close button unless <code>closeButtonX</code> is set to <code>false</code>.</td>
+    </tr>
+    <tr>
+      <td>footer</td>
+      <td>Custom content for the modal footer. Typically contains action buttons such as "Cancel" or "Save". Only rendered when <code>hasFooter</code> is <code>true</code>.</td>
     </tr>
   </tbody>
 </table>

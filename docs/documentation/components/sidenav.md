@@ -2129,7 +2129,9 @@ const handleRequests = () => {
 
 ## API Reference
 
-The following table outlines the available attributes for the Sidenav component:
+### Props
+
+The following props are available for the Sidenav component:
 
 <table>
   <thead>
@@ -2137,7 +2139,7 @@ The following table outlines the available attributes for the Sidenav component:
       <td class="spr-min-w-[180px]">Name</td>
       <td>Description</td>
       <td>Type</td>
-      <td>Accepted Values</td>
+      <td>Default</td>
     </tr>
   </thead>
   <tbody>
@@ -2145,117 +2147,292 @@ The following table outlines the available attributes for the Sidenav component:
       <td>
         <code>quick-actions</code>
       </td>
-      <td>Shows quick action menu.</td>
-      <td>Array</td>
-      <td>
-        [
-          {
-            title: [string],
-            description: [string],
-            icon: [string],
-            iconBgColor: ['green' | 'purple'],
-            redirect: {
-              openInNewTab: [boolean],
-              isAbsoluteURL: [boolean],
-              link: [string],
-            },
-          },
-        ]
-      </td>
+      <td>Shows quick action menu with grouped items. Each quick action can have a title, description, icon, and redirection information.</td>
+      <td>QuickAction[]</td>
+      <td><code>[]</code></td>
     </tr>
     <tr>
       <td>
         <code>has-search</code>
       </td>
-      <td>Shows search button.</td>
+      <td>Controls the visibility of the search button in the side navigation.</td>
       <td>boolean</td>
-      <td>true | false</td>
+      <td><code>false</code></td>
     </tr>
     <tr>
       <td>
         <code>active-nav</code>
       </td>
-      <td>Set the active state for navigation, including the parent navigation, menu, and submenu.</td>
-      <td>Object</td>
-      <td>
-        {
-          parentNav: [string],
-          menu: [string],
-          submenu: [string],
-        }
-      </td>
+      <td>Sets the active state for navigation, including the parent navigation, menu, and submenu. Used to highlight active navigation items.</td>
+      <td>{ parentNav: string; menu: string; submenu: string }</td>
+      <td><code>{ parentNav: '', menu: '', submenu: '' }</code></td>
     </tr>
     <tr>
       <td>
         <code>nav-links</code>
       </td>
-      <td>Will generate navigation links including submenu links.</td>
-      <td>Array</td>
-      <td>See <a href="#navigation-links">Navigation Link</a></td>
+      <td>Defines the navigation structure with top and bottom sections, each containing parent links, menu links, and submenu links for hierarchical navigation.</td>
+      <td>NavLinks</td>
+      <td><code>{ top: [], bottom: [] }</code></td>
     </tr>
     <tr>
       <td>
         <code>notification-count</code>
       </td>
-      <td>Show notification counter badge</td>
-      <td>Number</td>
-      <td>Integer</td>
+      <td>Shows a notification counter badge on the notification icon. Use <code>0</code> to show icon without badge or empty string to hide completely.</td>
+      <td>string | number</td>
+      <td><code>''</code></td>
     </tr>
     <tr>
       <td>
         <code>request-count</code>
       </td>
-      <td>Show request counter badge</td>
-      <td>Number</td>
-      <td>Integer</td>
+      <td>Shows a request counter badge on the request icon. Use <code>0</code> to show icon without badge or empty string to hide completely.</td>
+      <td>string | number</td>
+      <td><code>''</code></td>
     </tr>
     <tr>
       <td>
         <code>user-menu</code>
       </td>
-      <td>Shows user avatar at the bottom of the sidenavigation along with a menu.</td>
-      <td>-</td>
-      <td>See <a href="#user-menu">User Menu</a></td>
+      <td>Shows user avatar at the bottom of the sidenav along with a menu containing user information and menu items. Set to false to hide user menu.</td>
+      <td>UserMenu | false</td>
+      <td><code>false</code></td>
     </tr>
     <tr>
       <td>
-        <code>@get-navlink-item</code>
+        <code>is-notif-active</code>
       </td>
-      <td>Will return link that is indicated in nav-links. This will be the conection to handle your router push.</td>
-      <td>-</td>
-      <td>function</td>
+      <td>Controls whether the notification icon appears in an active state with filled icon styling.</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
     </tr>
     <tr>
       <td>
-        <code>@search</code>
+        <code>is-request-active</code>
       </td>
-      <td>Handle the search functionality.</td>
-      <td>-</td>
-      <td>function</td>
+      <td>Controls whether the request icon appears in an active state with filled icon styling.</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
     </tr>
     <tr>
       <td>
-        <code>@notifications</code>
+        <code>is-nav-api</code>
       </td>
-      <td>Handle the notifications functionality.</td>
-      <td>-</td>
-      <td>function</td>
-    </tr>
-    <tr>
-      <td>
-        <code>@requests</code>
-      </td>
-      <td>Handle the requests functionality.</td>
-      <td>-</td>
-      <td>function</td>
+      <td>When set to true, the component expects navigation data in API format and will transform it to the internal format. Useful when integrating with backend APIs.</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
     </tr>
   </tbody>
 </table>
+
+### Events
+
+The following events are emitted by the Sidenav component:
+
+<table>
+  <thead>
+    <tr>
+      <td class="spr-min-w-[180px]">Name</td>
+      <td>Description</td>
+      <td>Parameters</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>get-navlink-item</code>
+      </td>
+      <td>Emitted when a navigation link is clicked. Returns the clicked item object including redirect information and active navigation state. This event provides a connection point to handle your router navigation.</td>
+      <td>
+        <code>objectItem: object</code> - The clicked navigation item with redirect and active navigation information
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>search</code>
+      </td>
+      <td>Emitted when the search button is clicked. Can be used to trigger search functionality in the parent application.</td>
+      <td>
+        <code>event: string</code> - Contains 'search-triggered' string value
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>notifications</code>
+      </td>
+      <td>Emitted when the notifications button is clicked. Can be used to trigger notifications panel or functionality in the parent application.</td>
+      <td>
+        <code>event: string</code> - Contains 'notifications-triggered' string value
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>requests</code>
+      </td>
+      <td>Emitted when the requests button is clicked. Can be used to trigger requests panel or functionality in the parent application.</td>
+      <td>
+        <code>event: string</code> - Contains 'requests-triggered' string value
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <td class="spr-min-w-[180px]">Name</td>
+      <td>Description</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>logo-image</code>
+      </td>
+      <td>
+        Slot for inserting a custom logo image at the top of the sidenav. Typically used with an <code>&lt;img&gt;</code> tag. The logo area has predefined styling for optimal display of small logos (24px × 24px).
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Types
+
+The Sidenav component uses the following complex data types:
+
+#### QuickAction
+
+```typescript
+type QuickAction = {
+  menuHeading: string;
+  items: QuickActionItem[];
+};
+
+type QuickActionItem = {
+  title: string;
+  description: string;
+  icon: string;
+  iconBgColor: string;  // Values: 'green' or 'purple'
+  redirect: Redirect;
+  hidden: boolean;
+};
+```
+
+#### NavLinks
+
+```typescript
+type NavLinks = {
+  top: { parentLinks: ParentLinkItem[] }[];
+  bottom: { parentLinks: ParentLinkItem[] }[];
+};
+
+type ParentLinkItem = {
+  title: string;
+  icon: string;
+  link?: string;
+  redirect?: Redirect;
+  menuLinks: MenuLink[];
+  submenuLinks?: SubmenuLink[];
+  hidden?: boolean;
+  attributes?: Attributes[];  // For additional metadata like lozenges
+};
+
+type MenuLink = {
+  menuHeading: string;
+  items: MenuLinkItem[] | ParentLinkItem[];
+};
+
+type MenuLinkItem = {
+  title: string;
+  hidden: boolean;
+  redirect: Redirect;
+  submenuLinks: SubmenuLink[];
+  attributes?: Attributes[];  // For additional metadata like lozenges
+};
+
+type SubmenuLink = {
+  subMenuHeading: string;
+  items: SubmenuLinkItem[] | ParentLinkItem[];
+};
+
+type SubmenuLinkItem = {
+  title: string;
+  hidden: boolean;
+  redirect: Redirect;
+  attributes?: Attributes[];  // For additional metadata like lozenges
+};
+
+type Redirect = {
+  openInNewTab: boolean;
+  isAbsoluteURL: boolean;
+  link: string;
+};
+```
+
+#### API Data Types
+
+When using `isNavApi: true`, the following types are used for API-sourced navigation:
+
+```typescript
+type NavAPILinks = {
+  top: { parentLinks: NavItem[] }[];
+  bottom: { parentLinks: NavItem[] }[];
+};
+
+interface NavItem {
+  id: string;
+  groupId: string;
+  label: string;
+  icon?: string | null;
+  url?: string | null;
+  isNewTab?: boolean;
+  children?: NavItem[] | null;
+  groupName?: string | null;
+  hidden?: boolean;
+  attributes?: Attributes[] | null;
+  position?: string;
+  order?: number;
+  parentMenuId?: string | null;
+}
+
+type Attributes = {
+  name: string;
+  value: unknown | string | number | boolean | AttrLozenge;
+};
+
+type AttrLozenge = {
+  label: string;
+  tone?: string;  // Valid values: 'danger', 'information', 'plain', 'pending', 'success', 'neutral', 'caution'
+}
+```
+
+#### UserMenu
+
+```typescript
+type UserMenu = {
+  name: string;
+  email: string;
+  profileImage: string;
+  items: UserMenuItem[];
+};
+
+type UserMenuItem = {
+  title: string;
+  icon: string;
+  hidden: boolean;
+  redirect: Redirect;
+};
+```
 
 ## Product Uses
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
   <spr-logo name="ecosystem" theme="dark" width="50px" />
+  <spr-logo name="hr" theme="dark"  width="50px" />
+  <spr-logo name="payroll" theme="dark" width="50px" />
 </div>
 
 <script lang="ts" setup>

@@ -942,189 +942,281 @@ const data = ref([
 
 ## API Reference
 
+### Props
+
 <table>
-  <tbody>
+  <thead>
     <tr>
       <th>Name</th>
       <th>Description</th>
       <th>Type</th>
-      <th>Value</th>
+      <th>Default</th>
     </tr>
+  </thead>
+  <tbody>
     <tr>
       <td>action</td>
-      <td>Slot for for table data</td>
+      <td>Enables an action column at the end of the table. When set to true, it allows custom content to be placed in an action column for each row.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
       <td>dataTable</td>
-      <td>For table values</td>
-      <td>Object</td>
-      <td>
-        TableData {
-          [key: string]: {
-            title: string | LozengeTitle | ChipTitle | LozengeTitle[] | ChipTitle[];
-            subtext: string;
-            image: string;
-            icon: string;
-            lozengeFill: boolean;
-            lozengeAvatarUrl: string;
-            lozengeTone: string;
-            lozengeIcon: string;
-          } | string | number;
-        }
-      </td>
-    </tr>
-    <tr>
-      <td>Lozenge Title</td>
-      <td>For use of Lozenges in titles</td>
-      <td>Object</td>
-      <td>
-        interface LozengeTitle {
-          title: string;
-          fill?: boolean;
-          avatarUrl?: string;
-          tone?: (typeof LOZENGE_TONE)[number];
-          icon?: string;
-        }
-      </td>
-    </tr>
-    <tr>
-      <td>Chip Title</td>
-      <td>For use of Lozenges in titles</td>
-      <td>Object</td>
-      <td>
-        interface ChipTitle {
-          title: string;
-          icon: string;
-          iconWeight: string;
-          badgeText: string;
-          badgeVariant: string;
-          avatarUrl: string;
-          avatarVariant: (typeof AVATAR_VARIANT)[number];
-        }
-      </td>
+      <td>Array of data objects to display in the table. Each object represents a row, with properties corresponding to columns defined in the headers.</td>
+      <td>Array&lt;TableData&gt;</td>
+      <td>[]</td>
     </tr>
     <tr>
       <td>headers</td>
-      <td>define your table headers</td>
-      <td>Object</td>
-      <td>
-        Header {
-          field: string;
-          name: string;
-          sort: boolean;
-          hasAvatar: boolean;
-          hasIcon: boolean;
-          hasSubtext: boolean;
-          hasLozengeTitle: boolean;
-          badgeText: string;
-          badgeVariant: string;
-        }
-      </td>
+      <td>Array of header configuration objects defining the columns of the table. Each header object includes field name, display name, and various display options.</td>
+      <td>Array&lt;Header&gt;</td>
+      <td>[]</td>
     </tr>
     <tr>
       <td>emptyState</td>
-      <td>Customize table empty state</td>
-      <td>Object</td>
-      <td>
-        {
-          description: 'No results found',
-          subDescription: 'Try a different search term',
-          image: 'location',
-          size: 'large',
-        }
-      </td>
+      <td>Configuration for the empty state displayed when the table has no data. Customize description, sub-description, image, and size.</td>
+      <td>EmptyState</td>
+      <td>{ description: 'No results found', subDescription: 'Try a different search term', image: 'location', size: 'large' }</td>
+    </tr>
+    <tr>
+      <td>loading</td>
+      <td>When set to true, displays a loading state instead of the table data or empty state.</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
     <tr>
       <td>tableActions</td>
-      <td>Customize table actions</td>
-      <td>Object</td>
-      <td>
-        {
-          search: boolean;
-          filter: boolean;
-          option: boolean;
-        }
-      </td>
+      <td>Configuration for table actions displayed above the table. Includes options for search, filter, and additional options.</td>
+      <td>{ search: boolean, filter: boolean, option: boolean }</td>
+      <td>{ search: false, filter: false, option: false }</td>
     </tr>
     <tr>
-      <td>tableFooter</td>
-      <td>Customize table footer</td>
-      <td>Object</td>
-      <td>
-        {
-          totalItems: number;
-          currentPage: number;
-          dropdownSelection: { text: string; value: string }[];
-        }
-      </td>
+      <td>searchModel</td>
+      <td>Used with v-model:searchModel to bind the search input value. When using the search feature, this prop enables two-way binding.</td>
+      <td>string</td>
+      <td>''</td>
+    </tr>
+    <tr>
+      <td>sortOrder</td>
+      <td>Default sort order for the table. Can be 'asc' (ascending) or 'desc' (descending).</td>
+      <td>'asc' | 'desc'</td>
+      <td>'asc'</td>
     </tr>
     <tr>
       <td>variant</td>
-      <td>Change background color of header</td>
-      <td>surface, white</td>
-      <td>surface</td>
+      <td>Controls the background color of the table header. Options are 'white' and 'surface'.</td>
+      <td>'surface' | 'white'</td>
+      <td>'surface'</td>
     </tr>
     <tr>
       <td>isRowClickable</td>
-      <td>Make table row clickable and emits onRowClick</td>
+      <td>When true, enables clicking on rows to trigger the onRowClick event. Useful for interactive tables where rows can be selected or expanded.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>@onSort</td>
-      <td>Emits when sorting is triggered</td>
-      <td>function</td>
-      <td>-</td>
-    </tr>
-     <tr>
-      <td>@onRowClick</td>
-      <td>Emits table data and row index when table row is clicked</td>
-      <td>function</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>@onHover</td>
-      <td>Emits triggered when hovered</td>
-      <td>function</td>
-      <td>{ active: true, data: item }</td>
-    </tr>
-    <tr>
-      <td>hasLozengeTitle</td>
-      <td>Allows the use of lozenge for title attribute of data</td>
+      <td>fullHeight</td>
+      <td>When true, the table will take up the full available height of its container.</td>
       <td>boolean</td>
-      <td>false</td>
+      <td>true</td>
     </tr>
     <tr>
       <td>removeHeaderOnEmpty</td>
-      <td>Removes the headers when table is empty</td>
+      <td>When true, the table headers will not be displayed if the table has no data.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
       <td>isMultiSelect</td>
-      <td>Allows the use of checkbox to multiselect from the table</td>
+      <td>Enables multi-select functionality with checkboxes in the first column of the table.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
       <td>selectedKeyId</td>
-      <td>Specifies which key in the table data object will be used as an identifier and acts as a reference to a specific property within each row of the table's data.</td>
+      <td>Specifies which key in the table data object will be used as an identifier for selected rows. Required when using isMultiSelect.</td>
       <td>string</td>
       <td>''</td>
     </tr>
     <tr>
-      <td>@update:selectedData</td>
-      <td>Emits selected data on select</td>
+      <td>returnCompleteSelectedProperties</td>
+      <td>Controls the structure of the data emitted when rows are selected. If true, the full row data object is emitted; if false, only the value of the property specified by selectedKeyId is emitted.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
     <tr>
-      <td>returnCompleteSelectedProperties</td>
-      <td>Determines the structure of the data emitted when rows are selected in the table. If set to true, will emit the entire table data object of the selected row. Else, will emit the value of the property specified by the <strong>selectedKeyId</strong> prop.</td>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>update:searchModel</td>
+      <td>Emitted when the search input value changes. Used with v-model:searchModel for two-way binding.</td>
+      <td>(value: string)</td>
+    </tr>
+    <tr>
+      <td>onSort</td>
+      <td>Emitted when a sortable column header is clicked. Provides the field name and the new sort order.</td>
+      <td>({ field: string, sortOrder: 'asc' | 'desc' })</td>
+    </tr>
+    <tr>
+      <td>onRowClick</td>
+      <td>Emitted when a row is clicked (if isRowClickable is true). Provides the row data and row index.</td>
+      <td>(rowData: TableData, rowIndex: number)</td>
+    </tr>
+    <tr>
+      <td>onHover</td>
+      <td>Emitted when the mouse enters or leaves a row. Provides the active state and the row data.</td>
+      <td>({ active: boolean, data: TableData })</td>
+    </tr>
+    <tr>
+      <td>update:selectedData</td>
+      <td>Emitted when row selection changes in multi-select mode. Provides an array of selected items based on the returnCompleteSelectedProperties setting.</td>
+      <td>(selectedItems: TableData[] | any[])</td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Props</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>default</td>
+      <td>Content displayed above the table. Typically used for a title or description.</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>tableActionSection</td>
+      <td>Custom content for the table actions area. Typically used to add buttons or other controls next to the search, filter, and options.</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>action</td>
+      <td>Content for the action column in each row. Only available when the action prop is true.</td>
+      <td>{ row: TableData }</td>
+    </tr>
+    <tr>
+      <td>action-name</td>
+      <td>Header content for the action column. Only available when the action prop is true.</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>empty-state</td>
+      <td>Custom content to display when the table has no data.</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>loading</td>
+      <td>Custom loading state content. Displayed when the loading prop is true.</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>footer</td>
+      <td>Content displayed at the bottom of the table. Typically used for pagination or summary information.</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>[field]</td>
+      <td>Dynamic slots based on the field names in the headers. Allows custom rendering for specific columns.</td>
+      <td>{ row: TableData, rowIndex: number }</td>
+    </tr>
+  </tbody>
+</table>
+
+### Header Object Properties
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>field</td>
+      <td>Unique identifier for the column. Maps to the property name in the data objects.</td>
+      <td>string</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>Display name for the column header.</td>
+      <td>string</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>sort</td>
+      <td>Whether the column is sortable.</td>
       <td>boolean</td>
-      <td>false</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>hasAvatar</td>
+      <td>Whether to display an avatar in the column cells. If true, the data object should include an image property.</td>
+      <td>boolean</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>hasIcon</td>
+      <td>Whether to display an icon in the column cells. If true, the data object should include an icon property.</td>
+      <td>boolean</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>hasSubtext</td>
+      <td>Whether to display subtext in the column cells. If true, the data object should include a subtext property.</td>
+      <td>boolean</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>hasLozengeTitle</td>
+      <td>Whether to display the title as a lozenge. If true, the title property should be a LozengeTitle object or array.</td>
+      <td>boolean</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>hasChipTitle</td>
+      <td>Whether to display the title as a chip. If true, the title property should be a ChipTitle object or array.</td>
+      <td>boolean</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>badgeText</td>
+      <td>Text to display in a badge next to the column header.</td>
+      <td>string</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>badgeVariant</td>
+      <td>Variant of the badge to display next to the column header. Options include 'disabled', 'brand', 'danger', and 'information'.</td>
+      <td>string</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>avatarVariant</td>
+      <td>Variant of the avatar to display in the column cells. Used with hasAvatar.</td>
+      <td>string</td>
+      <td>No</td>
     </tr>
   </tbody>
 </table>

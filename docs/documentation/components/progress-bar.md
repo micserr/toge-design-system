@@ -68,10 +68,12 @@ const progressValue = ref(25);
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th class="spr-min-w-[180px]">Name</th>
       <th>Description</th>
       <th>Type</th>
       <th>Default</th>
@@ -79,28 +81,43 @@ const progressValue = ref(25);
   </thead>
   <tbody>
     <tr>
-      <td>value</td>
-      <td>Value of the progress bar</td>
+      <td>
+        <code>value</code>
+      </td>
+      <td>The current progress value. This determines how much of the progress bar is filled. The value is calculated as a percentage of the <code>max</code> value.</td>
       <td>number</td>
-      <td>0</td>
+      <td><code>0</code></td>
     </tr>
     <tr>
-      <td>size</td>
-      <td>Defines the size of the progress bar. The accepted values are 'xs', 'sm' and 'lg'.</td>
-      <td>string</td>
-      <td>lg</td>
+      <td>
+        <code>size</code>
+      </td>
+      <td>
+        Defines the height of the progress bar. Options include:
+        <ul>
+          <li><code>xs</code>: Extra small (4px height)</li>
+          <li><code>sm</code>: Small (8px height)</li>
+          <li><code>lg</code>: Large (12px height)</li>
+        </ul>
+      </td>
+      <td>'xs' | 'sm' | 'lg'</td>
+      <td><code>'lg'</code></td>
     </tr>
     <tr>
-      <td>max</td>
-      <td>Defines the max value of the progress bar</td>
+      <td>
+        <code>max</code>
+      </td>
+      <td>The maximum value for the progress bar. The <code>value</code> prop is calculated as a percentage of this number. Must be between 1 and 100.</td>
       <td>number</td>
-      <td>100</td>
+      <td><code>100</code></td>
     </tr>
     <tr>
-      <td>label</td>
-      <td>Shows the label for the progress bar</td>
+      <td>
+        <code>label</code>
+      </td>
+      <td>When set to <code>true</code>, displays a percentage label below the progress bar. The label shows the calculated percentage based on <code>value</code> and <code>max</code>.</td>
       <td>boolean</td>
-      <td>true</td>
+      <td><code>true</code></td>
     </tr>       
   </tbody>
 </table>

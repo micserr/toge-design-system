@@ -654,6 +654,8 @@ const mockDropdownData = [
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
@@ -665,55 +667,142 @@ const mockDropdownData = [
   </thead>
   <tbody>
     <tr>
-      <td>v-model</td>
-      <td>Two-way binding for the selected items. It automatically updates the selected items in the component as an array.</td>
+      <td>modelValue</td>
+      <td>Two-way binding for the selected items. Contains the complete item objects of all selected items, not just their values. Used with v-model for reactivity.</td>
       <td>MenuListType[]</td>
       <td>[]</td>
     </tr>
     <tr>
-      <td>menu-list</td>
-      <td>The list of items to display in the menu. Each item should contain `text` and `value` properties.</td>
+      <td>menuList</td>
+      <td>The list of items to display in the component. Each item should contain at minimum <code>text</code> and <code>value</code> properties, with optional properties like <code>subtext</code>, <code>group</code>, <code>icon</code>, etc.</td>
       <td>MenuListType[]</td>
-      <td>[]</td>
+      <td>[] (required)</td>
     </tr>
     <tr>
-      <td>group-items-by</td>
-      <td>Groups the items in the list by their `text`. Can be set to `default`, `A-Z` or `Z-A` to define grouping order.</td>
-      <td>string</td>
-      <td>-</td>
+      <td>groupItemsBy</td>
+      <td>Controls how items are grouped in the list:
+        <ul>
+          <li><code>default</code>: Groups items by their <code>group</code> property</li>
+          <li><code>A-Z</code>: Sorts items alphabetically by <code>text</code> in ascending order</li>
+          <li><code>Z-A</code>: Sorts items alphabetically by <code>text</code> in descending order</li>
+        </ul>
+      </td>
+      <td>'default' | 'A-Z' | 'Z-A'</td>
+      <td>undefined</td>
     </tr>
     <tr>
-      <td>multi-select</td>
-      <td>Enables multi-selection of items. If set to `true`, multiple items can be selected at once.</td>
+      <td>multiSelect</td>
+      <td>Enables multi-selection mode, allowing users to select multiple items simultaneously. When enabled, checkboxes appear next to each item.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>pre-selected-items</td>
-      <td>Pre-selects items in the list. Pass an array of strings that correspond to the `value` of the item.</td>
-      <td>string[]</td>
+      <td>preSelectedItems</td>
+      <td>Pre-selects items in the list based on their values. Pass an array of strings or numbers that correspond to the <code>value</code> properties of items to be pre-selected.</td>
+      <td>(string | number | Record&lt;string, unknown&gt;)[]</td>
       <td>[]</td>
     </tr>
     <tr>
+      <td>searchableMenu</td>
+      <td>Enables a search input field at the top of the list for filtering items. When enabled, users can type to filter the list items by their text values.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>searchableMenuPlaceholder</td>
+      <td>Placeholder text for the search input field when <code>searchableMenu</code> is enabled.</td>
+      <td>string</td>
+      <td>'Search...'</td>
+    </tr>
+    <tr>
+      <td>searchValue</td>
+      <td>External search value to filter the list. Can be used to control the search from outside the component.</td>
+      <td>string</td>
+      <td>''</td>
+    </tr>
+    <tr>
+      <td>menuLevel</td>
+      <td>Indicates the nesting level of the list. Used internally for ladderized lists to track hierarchy.</td>
+      <td>number</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>ladderized</td>
+      <td>Enables ladderized (hierarchical) list mode. When enabled, items with <code>sublevel</code> properties will display nested lists.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
       <td>disabledLocalSearch</td>
-      <td>Disables the local search functionality.</td>
+      <td>Disables the local search/filtering functionality even when <code>searchableMenu</code> is true. Useful when implementing custom search logic externally.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
       <td>loading</td>
-      <td>Displays a loading indicator in the select component.</td>
+      <td>Displays a loading indicator instead of list items. Use this when fetching data asynchronously.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
       <td>noCheck</td>
-      <td>Disables the display of check in single select.</td>
+      <td>Hides the checkmark icon that appears next to selected items in single-select mode. Has no effect in multi-select mode.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>dropdown</td>
+      <td>Internal prop used to indicate the list is being used within a dropdown component. Affects certain visual behaviors.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
   </tbody>
 </table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>update:modelValue</td>
+      <td>Emitted when the selection changes. Provides the complete selected items with all their properties, not just values. Used for v-model binding.</td>
+      <td>(value: MenuListType[]): Array of the complete selected item objects</td>
+    </tr>
+    <tr>
+      <td>update:searchValue</td>
+      <td>Emitted when the search input value changes. Used for controlling the search externally.</td>
+      <td>(value: string): The new search text value</td>
+    </tr>
+  </tbody>
+</table>
+
+
+### MenuListType Interface
+
+The List component accepts items conforming to the `MenuListType` interface:
+
+```typescript
+type MenuListType = {
+  text: string;                                    // Display text for the item (required)
+  value: string | number;                          // Unique identifier for the item (required)
+  subtext?: string;                                // Optional secondary text displayed below main text
+  group?: string;                                  // Optional group identifier for grouping items
+  sublevel?: MenuListType[];                       // Optional nested items for ladderized lists
+  disabled?: boolean;                              // Optional flag to disable the item
+  _originalObject?: Record<string, unknown>;       // Optional reference to original object
+  icon?: string;                                   // Optional Iconify icon name
+  iconColor?: string;                              // Optional CSS class for icon color
+  textColor?: string;                              // Optional CSS class for text color
+  onClickFn?: () => void;                          // Optional click handler function
+};
+```
 
 ## Product Uses
 

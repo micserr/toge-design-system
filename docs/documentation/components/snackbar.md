@@ -212,10 +212,12 @@ const showSlottedSnackbarAction = () => {
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th class="spr-min-w-[180px]">Name</th>
       <th>Description</th>
       <th>Type</th>
       <th>Default</th>
@@ -223,86 +225,183 @@ const showSlottedSnackbarAction = () => {
   </thead>
   <tbody>
     <tr>
-      <td>text</td>
-      <td>Text label shown in the snackbar</td>
-      <td>string</td>
-      <td></td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <td>tone</td>
-      <td>Color of the snack bar</td>
-      <td>'success' | 'information' | 'danger' | 'caution'</td>
-      <td>'information'</td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <td>showIcon</td>
-      <td>Boolean value to display the icon</td>
-      <td>boolean</td>
-      <td>'false</td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <td>actionText</td>
-      <td>Text label for the action function</td>
-      <td>string</td>
-      <td>'action'</td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <td>showAction</td>
-      <td>Boolean value to show the action label</td>
-      <td>boolean</td>
-      <td>false</td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <td>action</td>
-      <td>On click function of the action text.</td>
-      <td>function</td>
-      <td>Function to delete snackbar</td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <td>duration</td>
-      <td>Duration in ms to show the snack.</td>
-      <td>number</td>
-      <td>4000</td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <td>actionIconProps</td>
       <td>
-      Action Icon properties.
+        <code>text</code>
+      </td>
+      <td>Text message to be displayed in the snackbar. This is the main content that communicates information to the user.</td>
+      <td>string</td>
+      <td><code>Required</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>tone</code>
+      </td>
+      <td>
+        Determines the color scheme and icon of the snackbar to convey different types of messages:
         <ul>
-          <li>icon: string - icon name</li>
-          <li>tone: 'neutral' | 'success' | 'danger'</li>
+          <li><code>success</code>: Green color scheme with check circle icon</li>
+          <li><code>information</code>: Blue color scheme with info icon</li>
+          <li><code>danger</code>: Red color scheme with warning circle icon</li>
+          <li><code>caution</code>: Orange color scheme with warning icon</li>
         </ul>
       </td>
-      <td>object</td>
-      <td></td>
+      <td>'success' | 'information' | 'danger' | 'caution'</td>
+      <td><code>'information'</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>showIcon</code>
+      </td>
+      <td>Controls the visibility of the tone-specific icon in the snackbar.</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>actionText</code>
+      </td>
+      <td>Label text for the action button. This appears as a clickable text that can trigger the action function.</td>
+      <td>string</td>
+      <td><code>'action'</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>showAction</code>
+      </td>
+      <td>Controls the visibility of the action button/text in the snackbar. When set to true, the action text/button will be shown.</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>action</code>
+      </td>
+      <td>Function to be executed when the action text/button is clicked. If not provided, the default action is to close the snackbar.</td>
+      <td>Function</td>
+      <td><code>() => {}</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>duration</code>
+      </td>
+      <td>Duration in milliseconds for which the snackbar will be displayed before automatically disappearing. Set via the snackbar store.</td>
+      <td>number</td>
+      <td><code>4000</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>actionIconProps</code>
+      </td>
+      <td>
+        Configuration object for the action icon button. Contains:
+        <ul>
+          <li><code>icon</code>: Iconify icon name to display on the button</li>
+          <li><code>tone</code>: Color scheme for the icon button</li>
+        </ul>
+      </td>
+      <td>{ icon: string; tone: 'neutral' | 'success' | 'danger' }</td>
+      <td><code>undefined</code></td>
     </tr>
   </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th class="spr-min-w-[180px]">Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
-      <td>Snack Slots</td>
-      <td>spr-snack / Snack has three slots
-        <ul>
-          <li>default (for the snackbarActions above)</li>
-          <li>icon - Slot for the icon</li>
-          <li>label - Slot for the text label</li>
-        </ul>
+      <td>
+        <code>click</code>
       </td>
-      <td>html / template</td>
-      <td></td>
+      <td>Emitted when the snackbar is clicked. This event is from the Snack component.</td>
+      <td><code>(evt: MouseEvent)</code> - The mouse event object</td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th class="spr-min-w-[180px]">Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>default</code> / <code>snackbarActions</code>
+      </td>
+      <td>Slot for customizing the action section of the snackbar. Note that <code>showAction</code> must be set to <code>true</code> for this slot to be rendered.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>icon</code>
+      </td>
+      <td>Slot for customizing the icon shown in the snackbar. Available in the Snack component.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>label</code>
+      </td>
+      <td>Slot for customizing the text label content. Available in the Snack component.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Exposed Methods
+
+<table>
+  <thead>
+    <tr>
+      <th class="spr-min-w-[180px]">Method</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>showSnackbar</code>
+      </td>
+      <td>Displays a snackbar with the provided configuration. Use this method when you want to fully customize the snackbar.</td>
+      <td><code>(payload: SnackPropTypes)</code> - Configuration object with the props described above</td>
+    </tr>
+    <tr>
+      <td>
+        <code>showSuccess</code>
+      </td>
+      <td>Displays a success snackbar (green) with the provided configuration. Automatically sets the tone to 'success'.</td>
+      <td><code>(payload: SnackPropTypes)</code> - Configuration object (tone will be overridden)</td>
+    </tr>
+    <tr>
+      <td>
+        <code>showInformation</code>
+      </td>
+      <td>Displays an information snackbar (blue) with the provided configuration. Automatically sets the tone to 'information'.</td>
+      <td><code>(payload: SnackPropTypes)</code> - Configuration object (tone will be overridden)</td>
+    </tr>
+    <tr>
+      <td>
+        <code>showDanger</code>
+      </td>
+      <td>Displays a danger snackbar (red) with the provided configuration. Automatically sets the tone to 'danger'.</td>
+      <td><code>(payload: SnackPropTypes)</code> - Configuration object (tone will be overridden)</td>
+    </tr>
+    <tr>
+      <td>
+        <code>showCaution</code>
+      </td>
+      <td>Displays a caution snackbar (orange) with the provided configuration. Automatically sets the tone to 'caution'.</td>
+      <td><code>(payload: SnackPropTypes)</code> - Configuration object (tone will be overridden)</td>
     </tr>
   </tbody>
 </table>

@@ -933,6 +933,11 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     yearInput.value = '';
   };
 
+  const handleSlotClick = () => {
+    if(disabled.value || readonly.value) return;
+    datePopperState.value = true;    
+  };
+
   watch(datePopperState, (newValue) => {
     if (newValue === false) {
       setTimeout(() => {
@@ -1032,5 +1037,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     handleTabClick,
     handleBackspace,
     clearDate,
+    handleSlotClick
   };
 };

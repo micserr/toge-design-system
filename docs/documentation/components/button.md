@@ -255,6 +255,8 @@ import { Icon } from '@iconify/vue';
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
@@ -267,36 +269,100 @@ import { Icon } from '@iconify/vue';
   <tbody>
     <tr>
       <td>tone</td>
-      <td>button tone</td>
+      <td>Controls the button's color theme. Use <code>neutral</code> for standard actions, <code>success</code> for positive actions, and <code>danger</code> for destructive actions.</td>
       <td>'neutral' | 'success' | 'danger'</td>
-      <td>neutral</td>
+      <td>'neutral'</td>
     </tr>
     <tr>
       <td>size</td>
-      <td>button size</td>
+      <td>Defines the button's size, affecting padding, font size, and overall dimensions.</td>
       <td>'small' | 'medium' | 'large'</td>
-      <td>medium</td>
+      <td>'medium'</td>
     </tr>
     <tr>
       <td>variant</td>
-      <td>button variant</td>
+      <td>Controls the button's visual style. <code>primary</code> provides the strongest emphasis, <code>secondary</code> has medium emphasis with an outline, and <code>tertiary</code> offers the subtlest styling.</td>
       <td>'primary' | 'secondary' | 'tertiary'</td>
-      <td>tertiary</td>
+      <td>'primary'</td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td>Specifies the native HTML button type attribute.</td>
+      <td>'button' | 'submit' | 'reset'</td>
+      <td>'button'</td>
+    </tr>
+    <tr>
+      <td>state</td>
+      <td>Defines the visual state of the button. Mostly used internally.</td>
+      <td>'base' | 'hover' | 'pressed' | 'focus'</td>
+      <td>'base'</td>
     </tr>
     <tr>
       <td>disabled</td>
-      <td>disable the button</td>
+      <td>When set to <code>true</code>, prevents user interaction and applies a visual disabled state.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>tag</td>
-      <td>custom element tag</td>
-      <td>string / Component</td>
-      <td>button</td>
+      <td>hasIcon</td>
+      <td>Indicates that the button contains an icon, which affects spacing and layout.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>fullwidth</td>
+      <td>When set to <code>true</code>, the button will expand to fill the width of its container.</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
   </tbody>
 </table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>click</td>
+      <td>Emitted when the button is clicked and not disabled.</td>
+      <td>(event: MouseEvent)</td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>default</td>
+      <td>Content to be displayed inside the button. This can include text, icons, or other elements.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Accessibility
+
+The button component follows accessibility best practices:
+
+- Uses native `<button>` element for proper keyboard navigation and screen reader support
+- Sets `aria-disabled="true"` when the button is disabled
+- Preserves hover and focus states for keyboard users
+- Maintains sufficient color contrast in all states and variants
+- Supports autofocus when the `state` prop is set to 'focus'
 
 ## Product Uses
 

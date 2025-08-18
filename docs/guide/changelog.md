@@ -1,5 +1,32 @@
 # Changelog
 
+## 2.12.3 (2025-08-18)
+- Feat
+  - Added tone and size for chips ([#72d10ecc](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/72d10ecc32ab43d108e821f370a380a45d59f0e3?refName=refs/heads/2025/FEATURE/Xyrk/CHIPS_SIZE_TONE) by @jfabula)
+
+## 2.21.2 (2025-08-18)
+- Feat
+  - Added custom tailwind classes on header of table ([#865a9d6a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/865a9d6abe7ee6f016adc66df1f074aa5d5be07c?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_HEADER_CUSTOM_CSS) by @jfabula)
+
+## 2.12.1 (2025-08-18)
+
+- Feat
+  - Add product usage logos to File Upload and Side Navigation documentation
+    ([#061c6de](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/061c6def9204731bcbec7cf7069633bc3dd1a4?refName=refs%2Fheads%2F2025%2FDOCS%2FJEF%2FUpdate_Component_Docs) by @jmari)
+
+- Fix
+  - Improve prop and event descriptions in Sidenav documentation for clarity
+    ([#b02b53a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b02b53a56ec6af4e8e7b559e26ece21d7da6292?refName=refs%2Fheads%2F2025%2FDOCS%2FJEF%2FUpdate_Component_Docs) by @jmari)
+
+- Docs
+  - Enhance documentation for components (Excluding Datepicker and Select)
+    ([#6b15de4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6b15de4c80bf29e70260e8ea15a706bb6601205f?refName=refs%2Fheads%2F2025%2FDOCS%2FJEF%2FUpdate_Component_Docs) by @jmari)
+
+## 2.12.0 (2025-08-15)
+- Feat
+  - Added default slot for date picker
+    ([#7c8b683f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7c8b683f6cb2b6b856a6d0869fe3f25c649a62c5?refName=refs%2Fheads%2F2025%2FFEATURE%2FDUSTIN%2Fdate-picker-slot) by @despiritu)
+
 ## 2.11.22 (2025-08-14)
 
 - Feat

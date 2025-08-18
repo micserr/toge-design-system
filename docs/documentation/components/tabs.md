@@ -190,6 +190,8 @@ const tabsIconOnly = [
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
@@ -201,22 +203,80 @@ const tabsIconOnly = [
   </thead>
   <tbody>
     <tr>
+      <td>list</td>
+      <td>Array of tab items to display. Each item should contain a <code>label</code> property (for text display), and can optionally include <code>icon</code> (icon to display), <code>iconFill</code> (icon to display when active), and <code>disabled</code> (whether the tab is disabled).</td>
+      <td>Array&lt;{ label: string; icon?: string; iconFill?: string | Component; disabled?: boolean }&gt;</td>
+      <td>[]</td>
+    </tr>
+    <tr>
       <td>underlined</td>
-      <td>tabs type</td>
+      <td>Determines the visual style of the tabs. When <code>true</code>, tabs will have an underline style with the active tab highlighted by an underline. When <code>false</code>, tabs will have a button-like appearance with borders.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>list</td>
-      <td>List of tab</td>
-      <td>Array</td>
-      <td>[]</td>
+      <td>activeTab</td>
+      <td>Sets which tab should be active by matching its label. If provided, the tab with the matching label will be activated on component mount. If not provided or no match is found, the first tab will be active by default.</td>
+      <td>string</td>
+      <td>''</td>
+    </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>tabIndex</td>
+      <td>Emitted when a tab is selected. Returns the index of the selected tab.</td>
+      <td>(index: number)</td>
+    </tr>
+  </tbody>
+</table>
+
+### List Item Properties
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>label</td>
+      <td>The text to display in the tab. This is also used to match against the <code>activeTab</code> prop.</td>
+      <td>string</td>
+      <td>Yes (unless using icon-only tabs)</td>
     </tr>
     <tr>
-      <td>@tabIndex</td>
-      <td>emits the selected tab index</td>
-      <td>function</td>
-      <td>-</td>
+      <td>icon</td>
+      <td>The icon to display in the tab. Uses Iconify for icon rendering.</td>
+      <td>string</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>iconFill</td>
+      <td>The icon to display when the tab is active. This allows for a different icon style when a tab is selected.</td>
+      <td>string | Component</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>Whether the tab is disabled. Disabled tabs cannot be selected and have a visual disabled state.</td>
+      <td>boolean</td>
+      <td>No</td>
     </tr>
   </tbody>
 </table>

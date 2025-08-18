@@ -3,7 +3,7 @@ import type { ChipTitle } from '@/components/table/table-chips-title/table-chips
 import type { LozengeTitle } from '@/components/table/table-lozenge-title/table-lozenge-title';
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
-interface Header {
+export interface Header {
   field: string;
   name: string;
   sort: boolean;
@@ -15,6 +15,7 @@ interface Header {
   badgeText: string;
   badgeVariant: string;
   avatarVariant: string;
+  customTailwindClasses?: string;
 }
 
 export interface TableData {

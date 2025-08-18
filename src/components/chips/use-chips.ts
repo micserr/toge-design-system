@@ -12,7 +12,7 @@ export const useChips = (
   emit: SetupContext<ChipsEmitTypes>['emit'], 
   slots: Record<string, unknown>,
 ) => {
-  const { disabled, active, variant, iconWeight, icon } = toRefs(props);
+  const { disabled, active, variant, iconWeight, icon, size, tone } = toRefs(props);
 
   const chipsBaseClasses: ComputedRef<string> = computed(() => {
     if (variant.value === 'day') {
@@ -38,10 +38,14 @@ export const useChips = (
     }
 
     return classNames(
-      'spr-body-xs-regular spr-py-1.5 spr-px-2 spr-text-color-strong spr-inline-flex spr-items-center spr-justify-center spr-gap-1 spr-rounded-full spr-transition-all spr-group',
+      'spr-body-xs-regular spr-text-color-strong spr-inline-flex spr-items-center spr-justify-center spr-gap-1 spr-rounded-full spr-transition-all spr-group',
       {
         // Base cursor state
         'hover:spr-cursor-pointer': !disabled.value,
+
+        // Padding for sizes
+        'spr-py-1.5 spr-px-2': size.value === 'md',
+        'spr-py-0.5 spr-px-1.5': size.value === 'sm',
 
         // Disabled state (highest priority)
         'spr-cursor-not-allowed spr-text-color-on-fill-disabled spr-background-color-disabled spr-border-solid spr-border-[1px] spr-border-color-disabled':
@@ -52,8 +56,12 @@ export const useChips = (
           active.value && !disabled.value,
 
         // Default state (with hover/pressed)
-        'spr-background-color-surface spr-border spr-border-solid spr-border-color-weak group-hover:spr-background-color-hover group-active:spr-background-color-pressed':
+        'spr-border spr-border-solid spr-border-color-weak group-hover:spr-background-color-hover group-active:spr-background-color-pressed':
           !active.value && !disabled.value,
+          
+        // Default state bg color
+        'spr-background-color-surface': !active.value && !disabled.value && tone.value === 'default',
+        'spr-background-color': !active.value && !disabled.value && tone.value === 'subtle',
 
         // Reset close button styles
         '[&_.chips-close]:hover:spr-cursor-pointer [&_.chips-close]:spr-p-0 [&_.chips-close]:spr-m-0 [&_.chips-close]:spr-border-0 [&_.chips-close]:spr-bg-transparent [&_.chips-close]:spr-inline-flex [&_.chips-close]:spr-items-center [&_.chips-close]:spr-leading-[0]':

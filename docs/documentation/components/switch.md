@@ -113,36 +113,14 @@ const switch7UpdateHandler = (value) => {
 </script>
 ```
 
-## Slots
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>rightText</td>
-      <td>right text label</td>
-      <td>string</td>
-    </tr>
-    <tr>
-      <td>leftText</td>
-      <td>left text label</td>
-      <td>string</td>
-    </tr>
-  </tbody>
-</table>
-
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th class="spr-min-w-[180px]">Name</th>
       <th>Description</th>
       <th>Type</th>
       <th>Default</th>
@@ -150,10 +128,98 @@ const switch7UpdateHandler = (value) => {
   </thead>
   <tbody>
     <tr>
-      <td>disabled</td>
-      <td>disable the switch</td>
+      <td>
+        <code>modelValue</code>
+      </td>
+      <td>The current value of the switch (on/off state). This prop is required for v-model binding to work correctly. Set to <code>true</code> for on state and <code>false</code> for off state.</td>
       <td>boolean</td>
-      <td>false</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>disabled</code>
+      </td>
+      <td>When set to <code>true</code>, the switch cannot be interacted with and appears visually disabled with reduced opacity. The switch will not emit events when disabled.</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>state</code>
+      </td>
+      <td>
+        Controls the visual state of the switch. This is primarily used internally but can be explicitly set:
+        <ul>
+          <li><code>default</code>: Normal state</li>
+          <li><code>hover</code>: Hovered state (also sets autofocus)</li>
+          <li><code>pressed</code>: When the switch is being clicked/pressed</li>
+          <li><code>disabled</code>: When the switch is disabled</li>
+        </ul>
+      </td>
+      <td>'default' | 'hover' | 'pressed' | 'disabled'</td>
+      <td><code>'default'</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>id</code>
+      </td>
+      <td>The HTML id attribute for the switch input element. Used for associating the switch with labels for accessibility. When not provided, a random ID will be generated with format <code>switch_input_[random]</code> or <code>[provided_id]_[random]</code> if an id is provided.</td>
+      <td>string</td>
+      <td><code>''</code></td>
+    </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th class="spr-min-w-[180px]">Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>update:modelValue</code>
+      </td>
+      <td>Emitted when the switch state changes. This event is used for v-model binding and will not be emitted when the switch is disabled. The component uses <code>@vueuse/core</code>'s <code>useVModel</code> for two-way binding.</td>
+      <td>
+        <code>(value: boolean)</code> - The new value of the switch after the state change
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th class="spr-min-w-[180px]">Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>default</code>
+      </td>
+      <td>Default slot that displays text to the left of the switch. Use this for providing a label when you want it on the left side. If both <code>default</code> and <code>leftText</code> slots are provided, <code>leftText</code> takes precedence.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>leftText</code>
+      </td>
+      <td>Explicitly places text to the left of the switch. This slot takes precedence over the default slot if both are provided. If this slot and the default slot are empty, no left label will be shown.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>rightText</code>
+      </td>
+      <td>Displays text to the right of the switch. Use this slot when you want the label to appear after the switch. If this slot is empty, no right label will be shown.</td>
     </tr>
   </tbody>
 </table>

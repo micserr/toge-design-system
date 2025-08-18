@@ -44,6 +44,78 @@ const datePickerModel = ref('');
 </script>
 ```
 
+## Custom Component
+
+You can use the default slot to use any component as the date picker input or to change the format of the rendered date without changing the format of the date model.
+
+<div>
+ <spr-date-picker
+    id="datepicker"
+    v-model="datePickerModel.date30"
+    label="Custom Date Picker Input"
+    display-helper
+    format="MMM-DD-YYYY"    
+    @update:model-value="handleDatePickerModelChange"
+  >
+    <template #default="{ handleClick }">
+      <spr-input
+        v-model="datePickerInputModel"
+        readonly
+        class="spr-w-full spr-cursor-pointer"
+        placeholder="MMM / DD"      
+        @click="handleClick"
+      >
+        <template #icon>
+          <Icon icon="ph:calendar-blank" />
+        </template>
+      </spr-input>
+    </template>
+  </spr-date-picker>
+</div>
+
+`datePickerModel:` <span class="spr-text-xs">{{datePickerModel.date30}}</span>
+<br/>
+`datePickerInputModel:` <span class="spr-text-xs">{{datePickerInputModel}}</span>
+
+```vue
+<template>
+  <spr-date-picker
+    id="datepicker"
+    v-model="datePickerModel"
+    label="Custom Date Picker Input"
+    display-helper
+    format="MMM-DD-YYYY"
+    @update:model-value="handleDatePickerModelChange"
+  >
+    <template #default="{ handleClick }">
+      <spr-input
+        v-model="datePickerInputModel"
+        readonly
+        class="spr-w-full spr-cursor-pointer"
+        placeholder="MMM / DD"
+        @click="handleClick"
+      >
+        <template #icon>
+          <Icon icon="ph:calendar-blank" />
+        </template>
+      </spr-input>
+    </template>
+  </spr-date-picker>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+import dayjs from 'dayjs';
+
+const datePickerModel = ref('');
+const datePickerInputModel = ref('');
+
+const handleDatePickerModelChange = (newValue: string) => {
+  datePickerInputModel.value = dayjs(newValue).format('MMM / DD').toUpperCase();
+};
+</script>
+```
+
 ## Custom Width
 
 You can manually set the width of the date picker by passing the `width` prop.
@@ -1015,6 +1087,7 @@ const datePickerModel = ref('');
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+import { Icon } from '@iconify/vue';
 
 const datePickerModel = ref('');
 const datePickerRef = ref(null);
@@ -1181,6 +1254,9 @@ import SprDatePicker from "@/components/date-picker/date-picker.vue";
 import SprButton from "@/components/button/button.vue";
 import SprModal from "@/components/modal/modal.vue";
 import SprLogo from "@/components/logo/logo.vue";
+import SprInput from "@/components/input/input.vue";
+
+import dayjs from "dayjs";
 
 const datePickerId = ref({
   date1: "date1",
@@ -1244,7 +1320,10 @@ const datePickerModel = ref({
   date27: "",
   date28: "",
   date29: "",
+  date30: ""
 }); 
+
+const datePickerInputModel = ref("");
 
 const dateErrors = ref([]);
 const dateFormats = ref({});
@@ -1270,6 +1349,10 @@ const getMonthList = (months) => {
 
 const getYearList = (years) => {
   yearLists.value = years;
+};
+
+const handleDatePickerModelChange = (newValue: string) => {
+  datePickerInputModel.value = dayjs(newValue).format('MMM / DD').toUpperCase();
 };
 
 const modalModel = ref(false);

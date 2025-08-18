@@ -354,6 +354,7 @@ import { Icon } from '@iconify/vue';
 
 ## Interactive
 The `interactive` prop enables interactive states for the lozenge, allowing it to respond to user actions such as hover and pressed. This is useful for making the lozenge behave like a button or menu trigger.
+
 <div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
   <spr-lozenge label="plain" interactive />
   <spr-lozenge label="pending" tone="pending" interactive />
@@ -436,6 +437,7 @@ The `dropdown` prop makes the lozenge behave as a predefined interactive element
   <spr-lozenge label="caution" tone="caution" fill dropdown />
 </div>
 ```
+
 ::: tip NOTE
 If you provide a `postfixIcon` prop or slot, it will override the default dropdown icon.
 :::
@@ -469,7 +471,6 @@ If you provide a `postfixIcon` prop or slot, it will override the default dropdo
 
 ## Slot
 
-
 <table>
   <thead>
     <tr>
@@ -495,6 +496,8 @@ If you provide a `postfixIcon` prop or slot, it will override the default dropdo
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
@@ -506,58 +509,124 @@ If you provide a `postfixIcon` prop or slot, it will override the default dropdo
   </thead>
   <tbody>
     <tr>
+      <td>label</td>
+      <td>The primary text content displayed in the lozenge.</td>
+      <td>string</td>
+      <td>'label'</td>
+    </tr>
+    <tr>
       <td>tone</td>
-      <td>lozenge tone</td>
-      <td>'pending' | 'information' | 'success' | 'neutral' | 'caution' | 'danger'</td>
-      <td>neutral</td>
+      <td>Determines the color scheme of the lozenge to indicate status or categorization. Each tone carries semantic meaning:
+        <ul>
+          <li><code>plain</code>: Default, neutral styling</li>
+          <li><code>pending</code>: For in-progress or waiting states</li>
+          <li><code>information</code>: For informational content</li>
+          <li><code>success</code>: For positive or completed actions</li>
+          <li><code>neutral</code>: For general, non-emphasized content</li>
+          <li><code>danger</code>: For errors or warnings requiring attention</li>
+          <li><code>caution</code>: For cautionary information</li>
+        </ul>
+      </td>
+      <td>'plain' | 'pending' | 'information' | 'success' | 'neutral' | 'caution' | 'danger'</td>
+      <td>'plain'</td>
     </tr>
     <tr>
       <td>fill</td>
-      <td>lozenge type (fill = true, hollow = false)</td>
+      <td>Controls the lozenge's visual style. When <code>true</code>, the lozenge has a solid background color. When <code>false</code>, it has an outline style with a transparent background.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>label</td>
-      <td>Label</td>
-      <td>string</td>
-      <td>label</td>
+      <td>removable</td>
+      <td>When <code>true</code>, the lozenge can be removed by the user (displays a remove icon).</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
     <tr>
       <td>url</td>
-      <td>avatar image url</td>
+      <td>URL for the avatar image to be displayed within the lozenge. If provided, an avatar will be shown at the beginning of the lozenge.</td>
       <td>string</td>
-      <td></td>
+      <td>''</td>
     </tr>
     <tr>
-      <td>icon</td>
-      <td>Iconify prefix icon component</td>
-      <td>string</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>postfixIcon</td>
-      <td>Iconify postfix icon component</td>
-      <td>string</td>
-      <td></td>
+      <td>visible</td>
+      <td>Controls the visibility of the lozenge. When <code>false</code>, the lozenge will not be rendered.</td>
+      <td>boolean</td>
+      <td>true</td>
     </tr>
     <tr>
       <td>loading</td>
-      <td>Shows a loading  within the lozenge, indicating that content is being loaded.</td>
+      <td>When <code>true</code>, displays a skeletal loading state instead of the actual content, indicating that data is being loaded.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
+      <td>icon</td>
+      <td>Name of an Iconify icon to be displayed as a prefix icon (before the label). Alternatively, use the <code>icon</code> slot for custom icons.</td>
+      <td>string</td>
+      <td>''</td>
+    </tr>
+    <tr>
+      <td>postfixIcon</td>
+      <td>Name of an Iconify icon to be displayed as a postfix icon (after the label). Alternatively, use the <code>postfixIcon</code> slot for custom icons.</td>
+      <td>string</td>
+      <td>''</td>
+    </tr>
+    <tr>
       <td>interactive</td>
-      <td>Enables interactive states for the lozenge, allowing it to respond to user actions such as hover and pressed.</td>
+      <td>When <code>true</code>, the lozenge responds to user interactions with hover and active states, making it suitable for clickable elements.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
       <td>dropdown</td>
-      <td>Enables dropdown behavior with a default postfix icon.</td>
+      <td>When <code>true</code>, the lozenge behaves as a dropdown trigger with a default caret icon and interactive styling. This automatically sets <code>interactive</code> to <code>true</code>.</td>
       <td>boolean</td>
       <td>false</td>
+    </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>onRemove</td>
+      <td>Emitted when the remove button is clicked on a removable lozenge.</td>
+      <td>(event: MouseEvent)</td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>icon</td>
+      <td>Custom content for the prefix icon area (displayed before the label). Use this slot to insert custom icons or components instead of using the <code>icon</code> prop.</td>
+    </tr>
+    <tr>
+      <td>avatar</td>
+      <td>Custom content for the avatar area. Use this slot to insert a custom avatar component instead of using the <code>url</code> prop.</td>
+    </tr>
+    <tr>
+      <td>postfixIcon</td>
+      <td>Custom content for the postfix icon area (displayed after the label). Use this slot to insert custom icons or components instead of using the <code>postfixIcon</code> prop.</td>
     </tr>
   </tbody>
 </table>

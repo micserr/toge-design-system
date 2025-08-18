@@ -203,121 +203,147 @@ const textarea2 = ref('Hello world, Sprout Design System!!!');
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
       <th>Name</th>
       <th>Description</th>
       <th>Type</th>
-      <th>Available Values</th>
       <th>Default</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>id</td>
-      <td>Specifies the unique identifier for the textarea.</td>
-      <td><code>String</code></td>
-      <td>-</td>
-      <td><code>''</code></td>
+      <td>A unique identifier for the textarea element. Used for label association and accessibility purposes.</td>
+      <td>string</td>
+      <td>''</td>
     </tr>
     <tr>
-      <td>modelValue</td>
-      <td>Specifies the value of the textarea.</td>
-      <td><code>String</code></td>
-      <td>-</td>
-      <td><code>''</code></td>
+      <td>modelValue / v-model</td>
+      <td>The value of the textarea. Used with v-model directive for two-way data binding to capture and update the user's input.</td>
+      <td>string</td>
+      <td>''</td>
     </tr>
     <tr>
       <td>label</td>
-      <td>Specifies the label for the textarea.</td>
-      <td><code>String</code></td>
-      <td>-</td>
-      <td><code>''</code></td>
+      <td>The text label displayed above the textarea to describe its purpose or content requirements.</td>
+      <td>string</td>
+      <td>''</td>
     </tr>
     <tr>
       <td>placeholder</td>
-      <td>Specifies the placeholder text for the textarea.</td>
-      <td><code>String</code></td>
-      <td>-</td>
-      <td><code>''</code></td>
+      <td>Placeholder text displayed inside the textarea when it's empty, providing guidance on what to enter.</td>
+      <td>string</td>
+      <td>''</td>
     </tr>
     <tr>
       <td>active</td>
-      <td>Indicates whether the textarea is active.</td>
-      <td><code>Boolean</code></td>
-      <td><code>true</code>, <code>false</code></td>
-      <td><code>false</code></td>
+      <td>When true, applies an active state style to the textarea. Can be used to highlight the textarea in certain application states.</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
     <tr>
       <td>disabled</td>
-      <td>Disables the textarea.</td>
-      <td><code>Boolean</code></td>
-      <td><code>true</code>, <code>false</code></td>
-      <td><code>false</code></td>
+      <td>When true, disables the textarea, preventing user interaction and applying a disabled appearance.</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
     <tr>
       <td>readonly</td>
-      <td>Sets the textarea to read-only mode.</td>
-      <td><code>Boolean</code></td>
-      <td><code>true</code>, <code>false</code></td>
-      <td><code>false</code></td>
+      <td>When true, makes the textarea read-only, allowing users to view but not modify the content.</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
     <tr>
       <td>error</td>
-      <td>Indicates whether the textarea is in an error state.</td>
-      <td><code>Boolean</code></td>
-      <td><code>true</code>, <code>false</code></td>
-      <td><code>false</code></td>
+      <td>When true, applies error state styling to indicate validation issues. Often used with helper text to provide feedback.</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
     <tr>
       <td>minLength</td>
-      <td>Specifies the minimum length of the textarea value.</td>
-      <td><code>Number</code></td>
-      <td>-</td>
-      <td>-</td>
+      <td>Sets the minimum number of characters required in the textarea. Used for HTML5 validation.</td>
+      <td>number</td>
+      <td>undefined</td>
     </tr>
     <tr>
       <td>maxLength</td>
-      <td>Specifies the maximum length of the textarea value.</td>
-      <td><code>Number</code></td>
-      <td>-</td>
-      <td>-</td>
+      <td>Sets the maximum number of characters allowed in the textarea. Used for HTML5 validation and character counting.</td>
+      <td>number</td>
+      <td>undefined</td>
     </tr>
     <tr>
       <td>rows</td>
-      <td>Specifies the number of rows for the textarea.</td>
-      <td><code>Number</code></td>
-      <td>-</td>
-      <td><code>4</code></td>
+      <td>Specifies the visible height of the textarea in text lines. Controls the initial size of the textarea.</td>
+      <td>number</td>
+      <td>4</td>
     </tr>
     <tr>
       <td>displayHelper</td>
-      <td>Enables the display of a helper message below the textarea.</td>
-      <td><code>Boolean</code></td>
-      <td><code>true</code>, <code>false</code></td>
-      <td><code>false</code></td>
+      <td>When true, displays a helper message area below the textarea. Used to provide additional information or validation feedback.</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
     <tr>
       <td>helperIcon</td>
-      <td>Specifies the icon to display alongside the helper message.</td>
-      <td><code>String</code></td>
-      <td>-</td>
-      <td><code>null</code></td>
+      <td>Specifies an icon to display alongside the helper message. Uses Iconify for icon rendering.</td>
+      <td>string</td>
+      <td>null</td>
     </tr>
     <tr>
       <td>helperText</td>
-      <td>Specifies the helper message text.</td>
-      <td><code>String</code></td>
-      <td>-</td>
-      <td><code>''</code></td>
+      <td>The text to display in the helper message area. Provides guidance, instructions, or validation feedback.</td>
+      <td>string</td>
+      <td>''</td>
     </tr>
     <tr>
       <td>hasCounter</td>
-      <td>Specifies the counter for maximum character.</td>
-      <td><code>Number</code></td>
-      <td>-</td>
-      <td><code>''</code></td>
+      <td>When true, displays a character counter showing the current length relative to maxLength. Only effective when maxLength is also specified.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>update:modelValue</td>
+      <td>Emitted when the textarea value changes. Used with v-model for two-way data binding.</td>
+      <td>(value: string)</td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>helperMessage</td>
+      <td>Allows for custom content in the helper message area. Use this slot to provide formatted text, icons, or other components in the helper message area.</td>
+    </tr>
+    <tr>
+      <td>counter</td>
+      <td>Allows for custom content in the character counter area. Use this slot to customize the appearance or behavior of the character counter.</td>
     </tr>
   </tbody>
 </table>

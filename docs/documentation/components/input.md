@@ -580,6 +580,8 @@ const dropdownInput = ref('');
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
@@ -591,88 +593,164 @@ const dropdownInput = ref('');
   </thead>
   <tbody>
     <tr>
-      <td>v-model</td>
-      <td>Two-way binding for the input value.</td>
+      <td>modelValue</td>
+      <td>The current value of the input field. This prop is used for v-model binding to enable two-way data binding between the component and parent.</td>
       <td>string | number</td>
-      <td>-</td>
+      <td>''</td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td>
+        Specifies the type of input field, which determines its behavior and validation. Supports all standard HTML input types including:
+        <ul>
+          <li>text, number, email, password, search, url, tel</li>
+          <li>date, datetime-local, month, time, week</li>
+          <li>checkbox, radio, range, color</li>
+          <li>file, button, submit, reset, image, hidden</li>
+          <li>contact-number (custom type)</li>
+        </ul>
+      </td>
+      <td>string</td>
+      <td>'text'</td>
+    </tr>
+    <tr>
+      <td>id</td>
+      <td>Unique identifier for the input element. Used for associating the input with a label for accessibility.</td>
+      <td>string</td>
+      <td>'spr-input'</td>
     </tr>
     <tr>
       <td>label</td>
-      <td>The label for the input field.</td>
+      <td>Text label displayed above the input field to describe its purpose.</td>
       <td>string</td>
-      <td>-</td>
+      <td>''</td>
     </tr>
     <tr>
       <td>placeholder</td>
-      <td>Placeholder text for the input field.</td>
+      <td>Hint text displayed inside the input when it's empty, providing guidance on what to enter.</td>
       <td>string</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>pre-value</td>
-      <td>Predefined value for the input, used when v-model is not set.</td>
-      <td>string | number</td>
-      <td>-</td>
+      <td>''</td>
     </tr>
     <tr>
       <td>active</td>
-      <td>Determines if the input is in an active state.</td>
+      <td>When set to <code>true</code>, the input will appear in its active/focused state even when not actually focused.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
       <td>error</td>
-      <td>Sets the input to an error state.</td>
+      <td>When set to <code>true</code>, displays the input in an error state with error styling. Typically used for validation feedback.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
       <td>disabled</td>
-      <td>Disables the input field.</td>
+      <td>When set to <code>true</code>, makes the input non-interactive and visually indicates its disabled state.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>min-length</td>
-      <td>Minimum length of the input value. Applied as an HTML attribute.</td>
+      <td>readonly</td>
+      <td>When set to <code>true</code>, makes the input read-only, preventing users from modifying its value, but still allowing focus and selection.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>minLength</td>
+      <td>Sets the minimum number of characters allowed in the input. Used for validation.</td>
       <td>number</td>
-      <td>-</td>
+      <td>undefined</td>
     </tr>
     <tr>
-      <td>max-length</td>
-      <td>Maximum length of the input value. When used with show-char-count, displays the limit in the character counter.</td>
+      <td>maxLength</td>
+      <td>Sets the maximum number of characters allowed in the input. Used for validation and with <code>showCharCount</code> to display limits.</td>
       <td>number</td>
-      <td>-</td>
+      <td>undefined</td>
     </tr>
     <tr>
-      <td>offset-size</td>
-      <td>Size of the offset for the input field, can be xs, sm, md, etc.</td>
-      <td>string</td>
-      <td>sm</td>
-    </tr>
-    <tr>
-      <td>display-helper</td>
-      <td>Whether to display the helper message.</td>
+      <td>showCharCount</td>
+      <td>When set to <code>true</code>, displays a character counter in the bottom right of the input field. When used with <code>maxLength</code>, shows current/max format.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>helper-text</td>
-      <td>Text for the helper message below the input field.</td>
-      <td>string</td>
-      <td>-</td>
+      <td>offsetSize</td>
+      <td>
+        Controls the spacing/offset size when using trailing content, affecting the positioning and padding:
+        <ul>
+          <li><code>xs</code>: Extra small offset, minimal padding</li>
+          <li><code>sm</code>: Small offset, standard padding</li>
+          <li><code>md</code>: Medium offset, larger padding</li>
+        </ul>
+      </td>
+      <td>'xs' | 'sm' | 'md'</td>
+      <td>'sm'</td>
     </tr>
     <tr>
-      <td>helper-icon</td>
-      <td>Icon to display alongside the helper message.</td>
-      <td>string</td>
-      <td>-</td>
-    </tr>
-    <tr>
-      <td>show-char-count</td>
-      <td>Shows character count in the bottom right of the input field. When used with max-length, displays in the format "current/max" and changes color when limit is reached.</td>
+      <td>displayHelper</td>
+      <td>When set to <code>true</code>, shows the helper text area below the input field.</td>
       <td>boolean</td>
       <td>false</td>
+    </tr>
+    <tr>
+      <td>helperText</td>
+      <td>Text content for the helper message displayed below the input field when <code>displayHelper</code> is true.</td>
+      <td>string</td>
+      <td>''</td>
+    </tr>
+    <tr>
+      <td>helperIcon</td>
+      <td>Icon name from Iconify to display alongside the helper text. Particularly useful for warning or error messages.</td>
+      <td>string</td>
+      <td>null</td>
+    </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>update:modelValue</td>
+      <td>Emitted when the input value changes. This event enables v-model binding to work correctly.</td>
+      <td>(value: string | number): The new value of the input field.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>prefix</td>
+      <td>Content to display at the beginning of the input field, typically used for icons or additional decorations.</td>
+    </tr>
+    <tr>
+      <td>trailing</td>
+      <td>Content to display at the end of the input field, used for units, additional text, or action buttons.</td>
+    </tr>
+    <tr>
+      <td>icon</td>
+      <td>Custom icon content to display inside the input field, particularly useful for custom input types.</td>
+    </tr>
+    <tr>
+      <td>helperMessage</td>
+      <td>Custom content for the helper message area, allowing more complex UI than just text and a single icon.</td>
     </tr>
   </tbody>
 </table>

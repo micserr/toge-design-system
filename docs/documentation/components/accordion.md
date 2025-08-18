@@ -220,61 +220,61 @@ By default, the accordion items are hidden. You can change the default state of 
 </script>
 ```
 
-## Slots
-<table>
-  <thead>
-    <tr>
-      <td>Name</td>
-      <td>Description</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>${collapseId}</td>
-      <td>Slots are dynamically generated based on the given collapseId of the accordion item.</td>
-    </tr>
-  </tbody>
-</table>
-
 ## API Reference
+
+### Props
+
 <table>
   <thead>
     <tr>
-      <td>Name</td>
-      <td>Description</td>
-      <td>Type</td>
-      <td>Default</td>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>accordionItems</td>
       <td>
-        Array of objects containing the title, subtitle, and collapseId for each accordion item.
+        <p>Array of objects defining the accordion items. Each item should have the following properties:</p>
+        <ul>
+          <li><code>title</code> (string): Main heading for the accordion item</li>
+          <li><code>subtitle</code> (string, optional): Additional descriptive text displayed below the title</li>
+          <li><code>collapseId</code> (string): Unique identifier for the accordion item, used to match with slot names</li>
+        </ul>
       </td>
-      <td>Array</td>
+      <td>Array&lt;{<br>
+        title: string,<br>
+        subtitle?: string,<br>
+        collapseId: string<br>
+      }&gt;</td>
       <td>[]</td>
     </tr>
     <tr>
       <td>alwaysOpen</td>
       <td>
-        Defines if the accordion items should be always open. When set to true, all items will remain open when one is opened.
+        When <code>true</code>, multiple accordion items can be expanded simultaneously. When <code>false</code>, opening one item will close any previously opened items.
       </td>
-      <td>Boolean</td>
+      <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
       <td>isDefaultOpen</td>
       <td>
-        Defines if the accordion items are visible on load. This prop will only work when the alwaysOpen prop is set to true.
+        When <code>true</code>, all accordion items will be expanded by default when the component mounts. <strong>Note:</strong> This property only works when <code>alwaysOpen</code> is set to <code>true</code>.
       </td>
-      <td>Boolean</td>
+      <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
       <td>accordionTrigger</td>
       <td>
-        Defines the trigger element for the accordion. This prop is used to customize the trigger element.
+        Determines which element acts as the trigger to expand/collapse accordion items:
+        <ul>
+          <li><code>header</code>: The entire header area (including title and subtitle) acts as the trigger</li>
+          <li><code>button</code>: Only the toggle button on the right side acts as the trigger</li>
+        </ul>
       </td>
       <td>'header' | 'button'</td>
       <td>'button'</td>
@@ -282,13 +282,39 @@ By default, the accordion items are hidden. You can change the default state of 
     <tr>
       <td>bordered</td>
       <td>
-        Defines if the accordion has a border and border radius.
+        When <code>true</code>, the accordion has a border and rounded corners around the entire component. When <code>false</code>, borders are removed for a more minimal appearance.
       </td>
-      <td>Boolean</td>
+      <td>boolean</td>
       <td>true</td>
     </tr>
   </tbody>
 </table>
+
+### Slots
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>${collapseId}</td>
+      <td>Dynamic slots that correspond to each accordion item's <code>collapseId</code>. Use these slots to add content inside each accordion panel.</td>
+    </tr>
+  </tbody>
+</table>
+
+### AccordionItem Interface
+
+```typescript
+interface AccordionItem {
+  title: string;       // Main heading text
+  subtitle?: string;   // Optional subheading text
+  collapseId: string;  // Unique identifier (used for slot naming)
+}
+```
 
 <script lang="ts" setup>
   import SprAccordion from '@/components/accordion/accordion.vue'

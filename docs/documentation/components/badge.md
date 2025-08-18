@@ -249,6 +249,8 @@ When using the default position, use can use the slot to wrap the element to whi
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
@@ -260,28 +262,72 @@ When using the default position, use can use the slot to wrap the element to whi
   </thead>
   <tbody>
     <tr>
-      <td>Text</td>
-      <td>short piece of text or a number</td>
+      <td>text</td>
+      <td>
+        The content displayed inside the badge. Typically a short text or number representing a count, notification, or status indicator. Note that when the size is set to <code>tiny</code>, the text will not be displayed.
+      </td>
       <td>string</td>
-      <td>0</td>
+      <td>'0'</td>
     </tr>
     <tr>
-      <td>Variant</td>
-      <td>color schemes to indicate various statuses</td>
-      <td>string</td>
-      <td>brand</td>
+      <td>variant</td>
+      <td>
+        Determines the color scheme and visual style of the badge to indicate various statuses:
+        <ul>
+          <li><code>brand</code>: Primary brand color, used for standard notifications</li>
+          <li><code>information</code>: Blue color, used for informational notifications</li>
+          <li><code>danger</code>: Red color, used for critical or error notifications</li>
+          <li><code>disabled</code>: Gray color, used for inactive or disabled states</li>
+        </ul>
+      </td>
+      <td>'brand' | 'information' | 'danger' | 'disabled'</td>
+      <td>'brand'</td>
     </tr>
     <tr>
-      <td>Size</td>
-      <td>big, small, tiny</td>
-      <td>string</td>
-      <td>small</td>
+      <td>size</td>
+      <td>
+        Controls the size of the badge:
+        <ul>
+          <li><code>big</code>: Largest size (20px height, 20px min-width), best for important notifications or when using longer text</li>
+          <li><code>small</code>: Medium size (16px height, 16px min-width), suitable for most use cases</li>
+          <li><code>tiny</code>: Smallest size (10px height, 10px min-width), used as a simple indicator dot without text</li>
+        </ul>
+      </td>
+      <td>'big' | 'small' | 'tiny'</td>
+      <td>'small'</td>
     </tr>
     <tr>
-      <td>Position</td>
-      <td>positioned relative to the element they are attached to</td>
-      <td>string</td>
+      <td>position</td>
+      <td>
+        Determines the position of the badge relative to its container or slotted content:
+        <ul>
+          <li><code>top</code>: Positions the badge at the top-right corner of the parent element</li>
+          <li><code>bottom</code>: Positions the badge at the bottom-right corner of the parent element</li>
+          <li><code>default</code>: Displays the badge as a standalone element</li>
+        </ul>
+        When using <code>top</code> or <code>bottom</code> position, you should use the default slot to wrap the element that the badge will be attached to.
+      </td>
+      <td>'top' | 'bottom' | 'default'</td>
+      <td>'default'</td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
       <td>default</td>
+      <td>
+        Content to which the badge will be attached. This is required when using the <code>top</code> or <code>bottom</code> position. The badge will be positioned relative to this content. If no slot content is provided, the badge will be displayed as a standalone element.
+      </td>
     </tr>
   </tbody>
 </table>

@@ -465,6 +465,57 @@ const data = ref([
 </script>
 ```
 
+## Custom Tailwind Classes for Headers
+
+You can customize the header cells with Tailwind CSS classes by using the `customTailwindClasses` property in the header configuration.
+
+::: warning
+Utilizing this field will remove all of the existing tailwind classes on the header only (th) the classes of the main DIV which holds the name, icon and badge will still take effect. Additionally, the only tested tailwind classes for this is the spr- tailwind classes. If you're using your own tailwind configurations, the component may not behave as expected.
+:::
+
+<spr-table :headers="customHeaders" :data-table="data">
+  <template #header="{ column }">
+    <div :class="column.customTailwindClasses">
+      {{ column.name }}
+    </div>
+  </template>
+</spr-table>
+
+
+```vue
+<template>
+  <spr-table :headers="headers" :data-table="data">
+    <template #header="{ column }">
+      <div :class="column.customTailwindClasses">
+        {{ column.name }}
+      </div>
+    </template>
+  </spr-table>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const headers = ref([
+  { 
+    field: 'name', 
+    name: 'Role Name', 
+    sort: true, 
+    hasAvatar: true, 
+    hasSubtext: true, 
+    customTailwindClasses: 'spr-bg-tomato-500' 
+  },
+  { 
+    field: 'lastUpdate', 
+    name: 'Date', 
+    sort: true, 
+    hasAvatar: false, 
+    hasSubtext: false, 
+    customTailwindClasses: 'spr-bg-blueberry-500' 
+  },
+]);
+</script>
+```
 
 ## Table Footer
 
@@ -1218,6 +1269,12 @@ const data = ref([
       <td>string</td>
       <td>No</td>
     </tr>
+    <tr>
+      <td>customTailwindClasses</td>
+      <td>Custom Tailwind CSS classes to apply to the column cells.</td>
+      <td>string</td>
+      <td>No</td>
+    </tr>
   </tbody>
 </table>
 
@@ -1528,7 +1585,6 @@ const dataChips = [
   },
 ]
 
-
 const headersMultiple = ref([
   { field: 'name', name: 'Role Name', sort: true, hasAvatar: false, hasSubtext: true, hasLozengeTitle: true },
   { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false, hasChipTitle: true },
@@ -1590,4 +1646,23 @@ const dataMultiple = [
 const handleSelectedData = (data) => {
   selectedTableData.value = [...data];
 }
+
+const customHeaders = ref([
+  { 
+    field: 'name', 
+    name: 'Role Name', 
+    sort: true, 
+    hasAvatar: true, 
+    hasSubtext: true, 
+    customTailwindClasses: '!spr-bg-tomato-500' // To override Vitepress' default styles
+  },
+  { 
+    field: 'lastUpdate', 
+    name: 'Date', 
+    sort: true, 
+    hasAvatar: false, 
+    hasSubtext: false, 
+    customTailwindClasses: '!spr-bg-blueberry-500' // To override Vitepress' default styles
+  },
+]);
 </script>

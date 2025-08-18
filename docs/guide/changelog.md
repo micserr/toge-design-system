@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.21.2 (2025-08-18)
+- Feat
+  - Added custom tailwind classes on header of table ([#865a9d6a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/865a9d6abe7ee6f016adc66df1f074aa5d5be07c?refName=refs/heads/2025/FEATURE/Xyrk/TABLE_HEADER_CUSTOM_CSS) by @jfabula)
+
 ## 2.12.1 (2025-08-18)
 
 - Feat

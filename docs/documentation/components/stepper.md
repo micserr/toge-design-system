@@ -296,51 +296,134 @@ const updateSteps = () => {
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th class="spr-min-w-[180px]">Name</th>
       <th>Description</th>
-      <th>Accepted Values</th>
       <th>Type</th>
       <th>Default</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>variant</td>
-      <td>Determines if the layout of the stepper is horizontal or vertical</td>
-      <td>'horizontal', 'vertical' </td>
-      <td>string</td>
-      <td>vertical</td>
-    </tr>
-    <tr>
-      <td>hasLines</td>
-      <td>Toggles the existence of lines</td>
-      <td> true / false </td>
-      <td>boolean</td>
-      <td>false</td>
-    </tr>
-    <tr>
-      <td>steps</td>
-      <td>For table values</td>
-      <td>Object</td>
       <td>
-        Steps {
-          number: number;
-          label: string;
-          status: 'completed' | 'active' | 'pending';
-          description?: string;
-        }
+        <code>variant</code>
       </td>
-      <td></td>
+      <td>Determines if the layout of the stepper is horizontal or vertical. Affects the arrangement and styling of the steps.</td>
+      <td>'horizontal' | 'vertical'</td>
+      <td><code>'vertical'</code></td>
     </tr>
     <tr>
-      <td>type</td>
-      <td>Stepper type if display as compact or in solid active background.</td>
-      <td>'compact', 'solid'</td>
+      <td>
+        <code>hasLines</code>
+      </td>
+      <td>Toggles the visibility of connector lines between steps. When true, shows lines connecting each step to visually indicate progress flow.</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>steps</code>
+      </td>
+      <td>
+        Array of step configuration objects that define the content and state of each step in the stepper. Each step can have the following properties:
+        <ul>
+          <li><code>number</code>: The step number (required)</li>
+          <li><code>label</code>: Text label shown for the step</li>
+          <li><code>status</code>: Current state of the step ('completed', 'active', or 'pending')</li>
+          <li><code>description</code>: Optional description text for the step</li>
+        </ul>
+      </td>
+      <td>StepPropTypes[]</td>
+      <td><code>[]</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>type</code>
+      </td>
+      <td>Controls the visual style of the stepper. 'compact' uses minimal styling with outline indicators, while 'solid' uses filled background colors for active and completed steps.</td>
+      <td>'compact' | 'solid'</td>
+      <td><code>'compact'</code></td>
+    </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th class="spr-min-w-[180px]">Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>click</code>
+      </td>
+      <td>Emitted when a step is clicked. This event is emitted by the individual Step component.</td>
+      <td>
+        <code>(evt: MouseEvent)</code> - The mouse event that triggered the click
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Step Props
+
+<table>
+  <thead>
+    <tr>
+      <th class="spr-min-w-[180px]">Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>number</code>
+      </td>
+      <td>The step number displayed in the step indicator.</td>
+      <td>number</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>
+        <code>label</code>
+      </td>
+      <td>Text label shown for the step.</td>
       <td>string</td>
-      <td>'compact'</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>
+        <code>status</code>
+      </td>
+      <td>
+        Current state of the step:
+        <ul>
+          <li><code>completed</code>: Step has been completed</li>
+          <li><code>active</code>: Current step being worked on</li>
+          <li><code>pending</code>: Step that hasn't been reached yet</li>
+        </ul>
+      </td>
+      <td>'completed' | 'active' | 'pending'</td>
+      <td>No (defaults to 'pending')</td>
+    </tr>
+    <tr>
+      <td>
+        <code>description</code>
+      </td>
+      <td>Optional descriptive text shown below the step label.</td>
+      <td>string</td>
+      <td>No</td>
     </tr>
   </tbody>
 </table>

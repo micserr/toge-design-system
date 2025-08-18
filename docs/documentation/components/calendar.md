@@ -1,36 +1,50 @@
+---
+outline: 'deep'
+description: 'A comprehensive and customizable weekly calendar component for employee scheduling and management.'
+---
+
 # Calendar Component
 
-The `Calendar` component is a reusable and customizable calendar designed for employee scheduling.
+The `Calendar` component is a comprehensive and customizable weekly calendar designed for employee scheduling and management. It provides a full-featured interface for viewing and interacting with employee schedules, including support for:
+
+- Weekly date navigation with intuitive controls
+- Employee listing with profile information and work hour tracking
+- Multiple shift display for each day with detailed information
+- Support for rest days and custom shift types
+- Infinite scrolling for large employee lists
+- Empty state customization
+- Loading states and skeleton loaders
+- Responsive design with proper handling of overflows
 
 ## Usage
 
 ### Basic Example
 
-  <div class="spr-text-base">
-    <div v-if="searchEmployee">
-    <span class="spr-font-medium">Search Employee:</span>
-     {{searchEmployee}}
-    </div>
-    <div v-if="selectedCell.employeeId">
-    <span class="spr-font-medium">Selected Cell: </span>
-    {{selectedCell}}
-    </div>
-    <div v-if="selectedCompany">
-    <span class="spr-font-medium">Selected Company:</span>
-     {{selectedCompany}}
-    </div>
-    <div v-if="selectedDepartment">
-    <span class="spr-font-medium">Selected Department:</span>
-     {{selectedDepartment}}
-    </div>
-    <div v-if="selectedBranch">
-    <span class="spr-font-medium">Selected Branch:</span>
-     {{selectedBranch}}
-    </div>
+<div class="spr-text-base">
+  <div v-if="searchEmployee">
+  <span class="spr-font-medium">Search Employee:</span>
+    {{searchEmployee}}
   </div>
+  <div v-if="selectedCell.employeeId">
+  <span class="spr-font-medium">Selected Cell: </span>
+  {{selectedCell}}
+  </div>
+  <div v-if="selectedCompany">
+  <span class="spr-font-medium">Selected Company:</span>
+    {{selectedCompany}}
+  </div>
+  <div v-if="selectedDepartment">
+  <span class="spr-font-medium">Selected Department:</span>
+    {{selectedDepartment}}
+  </div>
+  <div v-if="selectedBranch">
+  <span class="spr-font-medium">Selected Branch:</span>
+    {{selectedBranch}}
+  </div>
+</div>
 
-  <div class="spr-m-12 spr-overflow-auto">
-    <div class="spr-w-[1200px]">
+<div class="spr-overflow-x-auto">
+  <div class="spr-w-[1200px]">
     <SprCalendar
       v-model:search="searchEmployee"
       v-model:selected-cell="selectedCell"
@@ -44,9 +58,9 @@ The `Calendar` component is a reusable and customizable calendar designed for em
       :branch-options="branchOptions"
     />
   </div>
-  </div>
+</div>
 
-````vue
+```vue
 <template>
   <SprCalendar
     v-model:search="searchEmployee"
@@ -163,24 +177,9 @@ const branchOptions = [
   { text: 'Branch B', value: 'branch-b' },
 ];
 </script>
+```
 
-## Slots ### `filter` - **Description:** Slot for customizing the filter section. - **Example:** ```vue
-<template #filter>
-  <div>Custom Filter Content</div>
-</template>
-````
-
-### `loading`
-
-- **Description:** Slot for customizing the filter section.
-- **Example:**
-  ```vue
-  <template #loading>
-    <div>loading</div>
-  </template>
-  ```
-
----
+## Features
 
 ### Infinite Scroll
 
@@ -214,66 +213,54 @@ const handleLoadMore = async () => {
 <table>
   <thead>
     <tr>
-      <th>Prop</th>
+      <th>Name</th>
+      <th>Description</th>
       <th>Type</th>
       <th>Default</th>
-      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code>employees</code> (required)</td>
-      <td><code>Array&lt;Employee[]&gt;</code></td>
-      <td>N/A</td>
-      <td>List of employees to display in the calendar.</td>
+      <td>employees</td>
+      <td>Array of employee data to display in the calendar, including schedule information.</td>
+      <td>Array</td>
+      <td>[]</td>
     </tr>
     <tr>
-      <td><code>initialDate</code></td>
-      <td><code>Date</code></td>
-      <td><code>new Date()</code></td>
-      <td>The initial date to display in the calendar.</td>
+      <td>initialDate</td>
+      <td>The initial date to display in the calendar. The calendar will show the week containing this date.</td>
+      <td>Date</td>
+      <td>Current date</td>
     </tr>
     <tr>
-      <td><code>search</code></td>
-      <td><code>String</code></td>
-      <td><code>''</code></td>
-      <td>The search term for filtering employees.</td>
+      <td>loading</td>
+      <td>Controls whether to show a loading indicator, typically used during data fetching.</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
     <tr>
-      <td><code>selectedCell</code></td>
-      <td><code>Object&lt;SelectedShift&gt;</code></td>
-      <td><code>{ employeeId: '', date: '', shift: null }</code></td>
-      <td>The currently selected cell in the calendar.</td>
+      <td>companyOptions</td>
+      <td>Array of options for the company filter dropdown.</td>
+      <td>Array&lt;{text: string, value: string}&gt;</td>
+      <td>[]</td>
     </tr>
     <tr>
-      <td><code>emptyStateTitle</code></td>
-      <td><code>''</code></td>
-      <td><code>-</code></td>
-      <td>The title text displayed when the calendar has no events or data to show.</td>
+      <td>departmentOptions</td>
+      <td>Array of options for the department filter dropdown.</td>
+      <td>Array&lt;{text: string, value: string}&gt;</td>
+      <td>[]</td>
     </tr>
     <tr>
-      <td><code>emptyStateButtonText</code></td>
-      <td><code>string</code></td>
-      <td><code>-</code></td>
-      <td>The text displayed on the action button in the empty state, prompting the user to take an action (e.g., "Add Event").</td>
+      <td>branchOptions</td>
+      <td>Array of options for the branch filter dropdown.</td>
+      <td>Array&lt;{text: string, value: string}&gt;</td>
+      <td>[]</td>
     </tr>
     <tr>
-      <td><code>emptyStateDescription</code></td>
-      <td><code>string</code></td>
-      <td>-</td>
-      <td>The text displayed description for empty state</td>
-    </tr>
-    <tr>
-      <td><code>Loading</code></td>
-      <td><code>boolean</code></td>
-      <td>-</td>
-      <td>Displays a loading state for the calendar, typically shown as a spinner or skeleton while data is being fetched.</td>
-    </tr>
-    <tr>
-      <td><code>hideAddButton</code></td>
-      <td><code>boolean</code></td>
-      <td>-</td>
-      <td>Hide the add button</td>
+      <td>emptyState</td>
+      <td>Configuration for the empty state displayed when there are no employees to show.</td>
+      <td>Object</td>
+      <td>Default empty state</td>
     </tr>
   </tbody>
 </table>
@@ -283,54 +270,115 @@ const handleLoadMore = async () => {
 <table>
   <thead>
     <tr>
-      <th>Event Name</th>
-      <th>Parameters</th>
+      <th>Name</th>
       <th>Description</th>
+      <th>Parameters</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code>loadMore</code></td>
+      <td>loadMore</td>
+      <td>Emitted when the user scrolls near the bottom of the calendar (within 50px), indicating that more employee data should be loaded. Used for implementing infinite scroll.</td>
       <td>-</td>
-      <td>Emitted when the user scrolls near the bottom of the calendar, indicating that more employee data should be loaded.</td>
     </tr>
     <tr>
-      <td><code>onCellClick</code></td>
-      <td><code>SelectedShift</code></td>
-      <td>Emitted when a calendar cell is clicked.</td>
+      <td>onCellClick</td>
+      <td>Emitted when a calendar cell is clicked. The parameter contains the employeeId, date, and shift information for the clicked cell.</td>
+      <td>(data: SelectedShift)</td>
     </tr>
     <tr>
-      <td><code>update:firstLastDayOfWeek</code></td>
-      <td><code>{ firstDay: string, lastDay: string }</code></td>
-      <td>Emitted when the visible week range changes.</td>
+      <td>update:firstLastDayOfWeek</td>
+      <td>Emitted when the visible week range changes, either through navigation or initialization. The dates are formatted as 'YYYY-MM-DD'.</td>
+      <td>(range: { firstDay: string, lastDay: string })</td>
     </tr>
     <tr>
-      <td><code>update:sort</code></td>
-      <td><code>string</code></td>
-      <td>Emitted when the sort order changes.</td>
+      <td>update:sort</td>
+      <td>Emitted when the sort order changes by clicking the sort icon. Value will be 'asc', 'desc', or '' (empty string for no sorting).</td>
+      <td>(value: string)</td>
     </tr>
     <tr>
-      <td><code>update:search</code></td>
-      <td><code>string</code></td>
-      <td>Emitted when the search term changes.</td>
+      <td>update:search</td>
+      <td>Emitted when the search term changes. Used for v-model binding.</td>
+      <td>(value: string)</td>
     </tr>
     <tr>
-      <td><code>update:selectedCell</code></td>
-      <td><code>SelectedShift</code></td>
-      <td>Emitted when a cell is selected.</td>
+      <td>update:selectedCell</td>
+      <td>Emitted when a cell is selected. Used for v-model binding of the selectedCell prop.</td>
+      <td>(data: SelectedShift)</td>
     </tr>
     <tr>
-      <td><code>onClickEmptyButton</code></td>
+      <td>update:selectedCompany</td>
+      <td>Emitted when the company filter selection changes. Used for v-model binding.</td>
+      <td>(value: string)</td>
+    </tr>
+    <tr>
+      <td>update:selectedDepartment</td>
+      <td>Emitted when the department filter selection changes. Used for v-model binding.</td>
+      <td>(value: string)</td>
+    </tr>
+    <tr>
+      <td>update:selectedBranch</td>
+      <td>Emitted when the branch filter selection changes. Used for v-model binding.</td>
+      <td>(value: string)</td>
+    </tr>
+    <tr>
+      <td>onClickEmptyButton</td>
+      <td>Emitted when the empty state button is clicked. Can be used to trigger actions like adding a new employee.</td>
       <td>-</td>
-      <td>Emitted when the empty state button is clicked.</td>
     </tr>
   </tbody>
 </table>
 
----
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>filter</td>
+      <td>Slot for customizing the filter section above the calendar. Can be used to add custom filters or controls.</td>
+      <td>
+        <pre><code>&lt;template #filter&gt;
+  &lt;div&gt;Custom Filter Content&lt;/div&gt;
+&lt;/template&gt;</code></pre>
+      </td>
+    </tr>
+    <tr>
+      <td>loading</td>
+      <td>Slot for customizing the loading state displayed during data fetching.</td>
+      <td>
+        <pre><code>&lt;template #loading&gt;
+  &lt;div&gt;loading&lt;/div&gt;
+&lt;/template&gt;</code></pre>
+      </td>
+    </tr>
+    <tr>
+      <td>empty-state</td>
+      <td>Slot for customizing the empty state shown when there are no employees to display. By default, uses the SprEmptyState component.</td>
+      <td>
+        <pre><code>&lt;template #empty-state&gt;
+  &lt;div&gt;No employees found&lt;/div&gt;
+&lt;/template&gt;</code></pre>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## Product Uses
+
+<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
+  <spr-logo name="hr" theme="dark" width="50px" />
+</div>
 
 <script setup lang="ts">
 import SprCalendar from '@/components/calendar/calendar.vue';
+import SprLogo from "@/components/logo/logo.vue";
 import { ref } from 'vue';
 
 const initialDate = new Date();
@@ -430,3 +478,4 @@ const branchOptions = [
   { text: 'Branch B', value: 'branch-b' },
 ];
 </script>
+

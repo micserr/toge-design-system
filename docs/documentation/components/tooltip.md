@@ -304,6 +304,8 @@ You can also combine triggers, for example, to show the tooltip on click and hid
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
@@ -317,46 +319,80 @@ You can also combine triggers, for example, to show the tooltip on click and hid
   <tbody>
     <tr>
       <td>text</td>
-      <td>Tooltip Label</td>
-      <td><code>String</code></td>
-      <td>-</td>
-      <td><code>''</code></td>
+      <td>The content to display inside the tooltip. This can be a simple text string or more complex content.</td>
+      <td>string</td>
+      <td>Any text string</td>
+      <td>''</td>
     </tr>
     <tr>
       <td>placement</td>
-      <td>Tooltip Placement</td>
-      <td><code>String</code></td>
-      <td>
-        <code>'top'</code>, <code>'top-start'</code>, <code>'top-end'</code>, <code>'bottom'</code>, <code>'bottom-start'</code>, <code>'bottom-end'</code>, <code>'left'</code>, <code>'left-start'</code>, <code>'left-end'</code>, <code>'right'</code>, <code>'right-start'</code>, <code>'right-end'</code>
-      </td>
-      <td><code>'top'</code></td>
+      <td>Determines where the tooltip is positioned relative to the target element. The placement can be at the top, bottom, left, or right, with additional modifiers for start and end alignment.</td>
+      <td>string</td>
+      <td>'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end', 'right', 'right-start', 'right-end'</td>
+      <td>'top'</td>
     </tr>
     <tr>
-      <td>fit-content</td>
-      <td>
-        Enable or disable the fit content of the tooltip. When enabled, the tooltip will only take the width of its content.
-      </td>
-      <td><code>Boolean</code></td>
-      <td><code>true</code>, <code>false</code></td>
-      <td><code>true</code></td>
+      <td>distance</td>
+      <td>The distance in pixels between the tooltip and the target element. Increasing this value creates more space between the tooltip and its target.</td>
+      <td>number</td>
+      <td>Any positive number</td>
+      <td>6</td>
     </tr>
     <tr>
-      <td>has-max-width</td>
-      <td>
-        Enable or disable the maximum width of the tooltip. When enabled, the tooltip has a maximum width of 280px.
-      </td>
-      <td><code>Boolean</code></td>
-      <td><code>true</code>, <code>false</code></td>
-      <td><code>true</code></td>
+      <td>hasMaxWidth</td>
+      <td>Controls whether the tooltip has a maximum width constraint. When enabled, the tooltip has a maximum width of 280px, which helps with long content. When disabled, the tooltip width is determined by its content.</td>
+      <td>boolean</td>
+      <td>true, false</td>
+      <td>true</td>
     </tr>
     <tr>
-      <td>auto-hide</td>
-      <td>
-        Enable or disable the auto hide of the tooltip. When enabled, the tooltip will automatically hide when the mouse leaves the target element. 
-      </td>
-      <td><code>Boolean</code></td>
-      <td><code>true</code>, <code>false</code></td>
-      <td><code>false</code></td>
+      <td>fitContent</td>
+      <td>Determines if the tooltip width should fit its content or take the full width of its parent container. When true, the tooltip width adjusts to fit its content. When false, the tooltip takes the full width available.</td>
+      <td>boolean</td>
+      <td>true, false</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>showTriggers</td>
+      <td>Specifies the events that will trigger the tooltip to show. Can be a single event string or an array of event strings. Common triggers include hover (mouseenter), focus, click, and touch.</td>
+      <td>string | string[]</td>
+      <td>'hover', 'focus', 'click', 'touch', or arrays like ['hover', 'focus']</td>
+      <td>'hover'</td>
+    </tr>
+    <tr>
+      <td>hideTriggers</td>
+      <td>Specifies the events that will trigger the tooltip to hide. Can be a single event string or an array of event strings. Often set to match the showTriggers for consistent behavior.</td>
+      <td>string | string[]</td>
+      <td>'hover', 'focus', 'click', 'touch', or arrays like ['hover', 'focus']</td>
+      <td>'hover'</td>
+    </tr>
+    <tr>
+      <td>autoHide</td>
+      <td>When enabled, the tooltip will automatically hide when the cursor leaves the tooltip area. This is useful for tooltips that require interaction but should hide when no longer needed.</td>
+      <td>boolean</td>
+      <td>true, false</td>
+      <td>false</td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>default</td>
+      <td>The content that will trigger the tooltip. This can be any component or HTML element that should display the tooltip when interacted with.</td>
+    </tr>
+    <tr>
+      <td>popper-content</td>
+      <td>Custom content to display inside the tooltip. This slot allows for more complex tooltip content beyond simple text, including HTML elements and components. If both the <code>text</code> prop and this slot are provided, the <code>text</code> prop will be displayed first, followed by this slot's content.</td>
     </tr>
   </tbody>
 </table>

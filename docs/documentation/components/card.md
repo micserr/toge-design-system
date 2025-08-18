@@ -306,90 +306,108 @@ If the `title` prop is omitted, the `header` slot can fully customize the header
 </template>
 ```
 
-## Slots
-
-<table>
-  <thead>
-    <tr>
-      <td>Name</td>
-      <td>Description</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>header</td>
-      <td>Custom content for the header.</td>
-    </tr>
-    <tr>
-      <td>content</td>
-      <td>The main content of the card.</td>
-    </tr>
-    <tr>
-      <td>footer</td>
-      <td>Custom content for the footer.</td>
-    </tr>
-  </tbody>
-</table>
-
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
-      <td>Name</td>
-      <td>Type</td>
-      <td>Default</td>
-      <td>Description</td>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>title</td>
       <td>string</td>
-      <td>-</td>
-      <td>Sets the card's title.</td>
+      <td>''</td>
+      <td>Sets the card's title in the header section.</td>
     </tr>
     <tr>
       <td>subtitle</td>
       <td>string</td>
-      <td>-</td>
-      <td>Sets the card's subtitle. Requires title to be visible.</td>
+      <td>''</td>
+      <td>Sets the card's subtitle displayed below the title. Requires title to be visible.</td>
     </tr>
     <tr>
       <td>header-icon</td>
       <td>string</td>
-      <td>-</td>
-      <td>Displays an icon in the header. Requires title to be visible.</td>
+      <td>''</td>
+      <td>Displays an icon in the header using the Iconify icon name format. Requires title to be visible.</td>
     </tr>
     <tr>
       <td>show-header</td>
       <td>boolean</td>
       <td>true</td>
-      <td>Controls the visibility of the header.</td>
+      <td>Controls the visibility of the header section.</td>
     </tr>
     <tr>
       <td>show-footer</td>
       <td>boolean</td>
       <td>true</td>
-      <td>Controls the visibility of the footer.</td>
+      <td>Controls the visibility of the footer section.</td>
     </tr>
     <tr>
       <td>border-radius-size</td>
-      <td>string</td>
-      <td>xl</td>
-      <td>Sets the border radius of the card including header and footer. Accepts one of: xl, lg, md, sm, xs, 2xs.</td>
+      <td>'xl' | 'lg' | 'md' | 'sm' | 'xs' | '2xs'</td>
+      <td>'xl'</td>
+      <td>Sets the border radius of the card including header and footer.</td>
     </tr>
     <tr>
       <td>has-collapsible</td>
       <td>boolean</td>
       <td>false</td>
-      <td>Apply when use with collapsible component</td>
+      <td>Indicates that the card is used with a collapsible component, which affects the border styling.</td>
     </tr>
-     <tr>
+    <tr>
       <td>is-collapsible-open</td>
       <td>boolean</td>
       <td>false</td>
-      <td>Apply when use with collapsible component to track if content is expanded or not and apply border style changes</td>
+      <td>Tracks whether the content is expanded when used with a collapsible component to apply appropriate border styles.</td>
+    </tr>
+    <tr>
+      <td>has-content-padding</td>
+      <td>boolean</td>
+      <td>true</td>
+      <td>Controls whether padding is applied to the content area of the card.</td>
+    </tr>
+    <tr>
+      <td>flexbox</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>When true, applies flexbox layout to the card, making it a flex container with column direction.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>header</td>
+      <td>Custom content for the card header. Will be displayed alongside the title if provided, or can completely replace the default header if no title is set.</td>
+    </tr>
+    <tr>
+      <td>content</td>
+      <td>The main content of the card. This slot is recommended for organizing content within the card.</td>
+    </tr>
+    <tr>
+      <td>default</td>
+      <td>Alternative slot for content. Only used if no content slot is provided.</td>
+    </tr>
+    <tr>
+      <td>footer</td>
+      <td>Custom content for the card footer. Typically used for action buttons or summary information.</td>
     </tr>
   </tbody>
 </table>

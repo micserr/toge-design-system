@@ -31,7 +31,7 @@
                 />
               </div>
             </th>
-            <th v-for="(header, keyHeader) in headers" :key="keyHeader" :class="[getTableClasses.headerClasses]">
+            <th v-for="(header, keyHeader) in headers" :key="keyHeader" :class="[getTableClasses.headerClasses(header)]">
               <div :class="getTableClasses.headerNameClass">
                 <span :class="[{ 'spr-cursor-pointer': header.sort }]" @click="header.sort && sortData(header.field)">
                   {{ header.name }}

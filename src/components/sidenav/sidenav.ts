@@ -156,8 +156,8 @@ export const sidenavPropTypes = {
   },
   userMenu: {
     type: Object as PropType<UserMenu>,
-    validator: (value: unknown) => typeof value === 'object',
-    default: false,
+    validator: (value: unknown) => value === null || typeof value === 'object',
+    default: null,
   },
   isNotifActive: {
     type: Boolean,

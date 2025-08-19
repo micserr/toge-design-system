@@ -10,7 +10,6 @@ import type {
   MenuLinkItem,
   Attributes,
 } from './sidenav';
-import { image } from '@cloudinary/url-gen/qualifiers/source';
 
 interface ObjectItem {
   redirect?: {

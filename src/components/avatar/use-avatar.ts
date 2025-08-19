@@ -135,12 +135,10 @@ export const useAvatar = (props: AvatarPropTypes, emit: SetupContext<AvatarEmitT
 
   const imageError = ref<boolean>(false);
 
-  const handleImageError = (error: Event) => {
+  const handleImageError = () => {
     imageError.value = true;
 
     emit('image-error', true);
-
-    // console.error('Image failed to load:', error);
   };
 
   return {

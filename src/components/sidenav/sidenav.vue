@@ -322,8 +322,9 @@
                                       v-show="props.activeNav.submenu === submenuLinkItem.title"
                                       class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                                     ></div>
-                                    <span>{{ submenuLinkItem.title }}</span>
                                     <div class="spr-flex spr-items-center spr-gap-1">
+                                      <span>{{ submenuLinkItem.title }}</span>
+
                                       <template v-for="(attr, i) in submenuLinkItem?.attributes" :key="i">
                                         <spr-lozenge
                                           v-if="attr?.name === 'lozenge' && attr?.value"
@@ -622,7 +623,18 @@
                                       v-show="props.activeNav.submenu === submenuLinkItem.title"
                                       class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                                     ></div>
-                                    <span>{{ submenuLinkItem.title }}</span>
+                                    <div class="spr-flex spr-items-center spr-gap-1">
+                                      <span>{{ submenuLinkItem.title }}</span>
+
+                                      <template v-for="(attr, i) in submenuLinkItem?.attributes" :key="i">
+                                        <spr-lozenge
+                                          v-if="attr?.name === 'lozenge' && attr?.value"
+                                          :label="getLozengeLabel(attr)"
+                                          :tone="getLozengeTone(attr)"
+                                          fill
+                                        />
+                                      </template>
+                                    </div>
                                   </div>
                                   <!-- #endregion - Submenu Links -->
                                 </template>
@@ -897,8 +909,13 @@ import SprTooltip from '../tooltip/tooltip.vue';
 const props = defineProps(sidenavPropTypes);
 const emit = defineEmits(sidenavEmitTypes);
 
-const { navLinks, isQuckActionMenuVisible, isUserMenuVisible, handleRedirect, generateId, getLozengeTone } = useSidenav(
-  props,
-  emit,
-);
+const {
+  navLinks,
+  isQuckActionMenuVisible,
+  isUserMenuVisible,
+  handleRedirect,
+  generateId,
+  getLozengeLabel,
+  getLozengeTone,
+} = useSidenav(props, emit);
 </script>

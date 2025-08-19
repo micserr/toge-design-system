@@ -95,10 +95,11 @@ export type Attributes = {
   name: string;
   value: unknown | string | number | boolean | AttrLozenge;
 };
-type AttrLozenge = {
+
+export type AttrLozenge = {
   label: string;
   tone?: string;
-}
+};
 
 export interface MappedNavItem {
   title: string;
@@ -108,7 +109,7 @@ export interface MappedNavItem {
     isAbsoluteURL: boolean;
     link: string;
   };
-  attributes?: AttrLozenge | unknown [];
+  attributes?: AttrLozenge | unknown[];
   menuLinks?: {
     menuHeading: string;
     items: MappedNavItem[];
@@ -137,7 +138,7 @@ export const sidenavPropTypes = {
   },
   navLinks: {
     type: Object as PropType<NavLinks>,
-    default: () => [],
+    default: () => ({ top: [], bottom: [] }),
   },
   notificationCount: {
     type: [String, Number],

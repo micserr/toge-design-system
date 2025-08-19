@@ -50,6 +50,7 @@
             :pre-selected-items="dropdownValue"
             :no-check="props.noCheckInList"
             :dropdown="props.dropdown"
+            :lozenge="props.lozenge"
             @update:model-value="handleSelectedItem"
           />
           <spr-ladderized-list

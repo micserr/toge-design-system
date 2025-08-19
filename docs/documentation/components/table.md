@@ -470,7 +470,7 @@ const data = ref([
 You can customize the header cells with Tailwind CSS classes by using the `customTailwindClasses` property in the header configuration.
 
 ::: warning
-Utilizing this field will remove all of the existing tailwind classes on the header only (th) the classes of the main DIV which holds the name, icon and badge will still take effect. Additionally, the only tested tailwind classes for this is the spr- tailwind classes. If you're using your own tailwind configurations, the component may not behave as expected.
+Utilizing this field will remove all of the existing tailwind classes on the header only (th) the classes of the main DIV which holds the name, icon and badge will still take effect. Additionally, the only tested tailwind classes for this is the spr- tailwind classes. If you're using your own tailwind configurations, the component may not behave as expected. Additionally, changing the class of the multi-select header is currently not supported.
 :::
 
 <spr-table :headers="customHeaders" :data-table="data">

@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.12.5 (2025-08-19)
+## 2.12.6 (2025-08-19)
 
 - Feat
   Sidenav Updates:
@@ -14,6 +14,11 @@
   - Update Documentation
 
   ([#f77fd063](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f77fd0632d9835eeef10af8c829bf96f2032e1e4?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 2.12.5 (2025-08-19)
+
+- Fix
+  - Multi select checkbox header classes doesn't apply correctly ([#13fc0f74](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/13fc0f746213d8c453fef5171d1a3ca94a9b1d25?refName=refs/heads/2025/FIX/Xyrk/TABLE_MULTI_SELECT_HEADER_CLASSES) by @jfabula)
 
 ## 2.12.4 (2025-08-19)
 

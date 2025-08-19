@@ -21,7 +21,7 @@
       <table aria-describedby="describe" class="spr-h-full spr-w-full spr-table-fixed" cellspacing="0" cellpadding="0">
         <thead>
           <tr v-if="!(props.removeHeaderOnEmpty && sortedData.length <= 0)">
-            <th v-if="props.isMultiSelect" :class="[getTableClasses.multiselectClass, getTableClasses.headerClasses]">
+            <th v-if="props.isMultiSelect" :class="[getTableClasses.multiselectClass, getTableClasses.headerClasses(null)]">
               <div class="spr-flex spr-items-center spr-justify-center">
                 <spr-checkbox
                   label=""

@@ -248,11 +248,7 @@
                               <template v-for="(attr, i) in menuLinkItem?.attributes" :key="i">
                                 <spr-lozenge
                                   v-if="attr?.name === 'lozenge' && attr?.value"
-                                  :label="
-                                    attr.value && typeof attr?.value === 'object' && 'label' in attr.value
-                                      ? String(attr.value.label)
-                                      : ''
-                                  "
+                                  :label="getLozengeLabel(attr)"
                                   :tone="getLozengeTone(attr)"
                                   fill
                                 />
@@ -328,11 +324,7 @@
                                       <template v-for="(attr, i) in submenuLinkItem?.attributes" :key="i">
                                         <spr-lozenge
                                           v-if="attr?.name === 'lozenge' && attr?.value"
-                                          :label="
-                                            attr.value && typeof attr?.value === 'object' && 'label' in attr.value
-                                              ? String(attr.value.label)
-                                              : ''
-                                          "
+                                          :label="getLozengeLabel(attr)"
                                           :tone="getLozengeTone(attr)"
                                           fill
                                         />
@@ -370,11 +362,7 @@
                           <template v-for="(attr, i) in menuLinkItem?.attributes" :key="i">
                             <spr-lozenge
                               v-if="attr?.name === 'lozenge' && attr?.value"
-                              :label="
-                                attr.value && typeof attr?.value === 'object' && 'label' in attr.value
-                                  ? String(attr.value.label)
-                                  : ''
-                              "
+                              :label="getLozengeLabel(attr)"
                               :tone="getLozengeTone(attr)"
                               fill
                             />

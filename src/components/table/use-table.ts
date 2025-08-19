@@ -96,8 +96,8 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       'spr-background-color': props.variant === 'white',
       'spr-background-color-surface': props.variant === 'surface',
     });
-    const headerClasses = (header: Header) => {
-      if (header.customTailwindClasses){
+    const headerClasses = (header: Header | null) => {
+      if (header?.customTailwindClasses){
         return classNames(header.customTailwindClasses);
       }
 

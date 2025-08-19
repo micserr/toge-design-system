@@ -623,12 +623,7 @@ When `isNavApi` is set to `true`, the sidenav component expects navigation data 
 
 ```vue
 <template>
-  <spr-sidenav 
-    :nav-links="apiNavLinks" 
-    :is-nav-api="true"
-    :active-nav="activeNav"
-    @get-navlink-item="handleNavClick"
-  >
+  <spr-sidenav :nav-links="apiNavLinks" :is-nav-api="true" :active-nav="activeNav" @get-navlink-item="handleNavClick">
     <template #logo-image>
       <img src="/path/to/logo.png" alt="logo" />
     </template>
@@ -642,63 +637,63 @@ import { ref } from 'vue';
 const apiNavLinks = ref({
   top: [
     {
-      id: "135c50eb-3dbb-4e4a-b45a-9f58b4c0921f",
+      id: '135c50eb-3dbb-4e4a-b45a-9f58b4c0921f',
       code: null,
-      label: "Dashboard",
-      url: "https://ecohub-qa.ecoapp-qa.sprout.ph/dashboard",
-      icon: "ph:house-simple",
+      label: 'Dashboard',
+      url: 'https://ecohub-qa.ecoapp-qa.sprout.ph/dashboard',
+      icon: 'ph:house-simple',
       children: [],
-      position: "top",
+      position: 'top',
       order: 1,
       attributes: null,
-      groupId: "1",
+      groupId: '1',
       groupName: null,
       parentMenuId: null,
-      isNewTab: false
+      isNewTab: false,
     },
     {
-      id: "8ee582db-afa7-4c6b-a80a-503eb7057cda",
+      id: '8ee582db-afa7-4c6b-a80a-503eb7057cda',
       code: null,
-      label: "App Management",
+      label: 'App Management',
       url: null,
-      icon: "ph:shapes",
+      icon: 'ph:shapes',
       children: [
         {
-          id: "03b895a8-9de5-4f0e-b19b-4d965c99cd7d",
+          id: '03b895a8-9de5-4f0e-b19b-4d965c99cd7d',
           code: null,
-          label: "Marketplace",
-          url: "https://market.sprout.ph/",
+          label: 'Marketplace',
+          url: 'https://market.sprout.ph/',
           icon: null,
           children: [],
-          position: "top",
+          position: 'top',
           order: 2,
           attributes: null,
           groupId: null,
           groupName: null,
-          parentMenuId: "8ee582db-afa7-4c6b-a80a-503eb7057cda",
-          isNewTab: true
-        }
+          parentMenuId: '8ee582db-afa7-4c6b-a80a-503eb7057cda',
+          isNewTab: true,
+        },
       ],
-      position: "top",
+      position: 'top',
       order: 2,
       attributes: null,
-      groupId: "1",
+      groupId: '1',
       groupName: null,
       parentMenuId: null,
-      isNewTab: false
+      isNewTab: false,
     },
     {
-      id: "e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2",
+      id: 'e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2',
       code: null,
-      label: "Payroll",
+      label: 'Payroll',
       url: null,
-      icon: "https://eco-cdn-prod.azureedge.net/payroll.svg",
+      icon: 'https://eco-cdn-prod.azureedge.net/payroll.svg',
       children: [
         {
           id: null,
           code: null,
-          label: "Payroll Runs",
-          url: "https://ecohub-qa-payroll.sprout.ph/Client/Payrolls.aspx",
+          label: 'Payroll Runs',
+          url: 'https://ecohub-qa-payroll.sprout.ph/Client/Payrolls.aspx',
           icon: null,
           children: [],
           position: null,
@@ -706,46 +701,46 @@ const apiNavLinks = ref({
           attributes: [],
           groupId: null,
           groupName: null,
-          parentMenuId: "e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2",
-          isNewTab: null
+          parentMenuId: 'e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2',
+          isNewTab: null,
         },
         {
           id: null,
           code: null,
-          label: "Setup",
-          url: "",
+          label: 'Setup',
+          url: '',
           icon: null,
           children: [
             {
               id: null,
               code: null,
-              label: "Company Profile",
-              url: "https://ecohub-qa-payroll-next-qa.sprout.ph/#/global/company-profile",
+              label: 'Company Profile',
+              url: 'https://ecohub-qa-payroll-next-qa.sprout.ph/#/global/company-profile',
               icon: null,
               children: [],
               position: null,
               order: 1,
               attributes: [],
               groupId: null,
-              groupName: "COMPANY",
+              groupName: 'COMPANY',
               parentMenuId: null,
-              isNewTab: null
+              isNewTab: null,
             },
             {
               id: null,
               code: null,
-              label: "Department",
-              url: "https://ecohub-qa-payroll-next-qa.sprout.ph/#/global/department",
+              label: 'Department',
+              url: 'https://ecohub-qa-payroll-next-qa.sprout.ph/#/global/department',
               icon: null,
               children: [],
               position: null,
               order: 2,
               attributes: [],
               groupId: null,
-              groupName: "COMPANY",
+              groupName: 'COMPANY',
               parentMenuId: null,
-              isNewTab: null
-            }
+              isNewTab: null,
+            },
             // ... more nested items
           ],
           position: null,
@@ -753,26 +748,26 @@ const apiNavLinks = ref({
           attributes: [],
           groupId: null,
           groupName: null,
-          parentMenuId: "e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2",
-          isNewTab: null
-        }
+          parentMenuId: 'e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2',
+          isNewTab: null,
+        },
       ],
-      position: "top",
+      position: 'top',
       order: 6,
       attributes: null,
-      groupId: "2",
+      groupId: '2',
       groupName: null,
       parentMenuId: null,
-      isNewTab: false
-    }
+      isNewTab: false,
+    },
   ],
-  bottom: [] // Bottom navigation items would follow the same structure
+  bottom: [], // Bottom navigation items would follow the same structure
 });
 
 const activeNav = ref({
   parentNav: '',
   menu: '',
-  submenu: ''
+  submenu: '',
 });
 
 const handleNavClick = (navItem) => {
@@ -786,21 +781,21 @@ const handleNavClick = (navItem) => {
 
 When using `isNavApi: true`, the navigation data should follow this structure:
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `id` | string | Unique identifier for the navigation item |
-| `code` | string \| null | Optional code identifier |
-| `label` | string | Display text for the navigation item |
-| `url` | string \| null | Navigation URL (null for parent items with children) |
-| `icon` | string \| null | Icon identifier (Iconify name or CDN URL) |
-| `children` | array | Child navigation items with the same structure |
-| `position` | string | Position indicator ("top" or "bottom") |
-| `order` | number | Sort order for the item |
-| `attributes` | array \| null | Additional attributes for the item |
-| `groupId` | string \| null | Group identifier for organizing items |
-| `groupName` | string \| null | Group name for subheadings |
-| `parentMenuId` | string \| null | Parent menu identifier |
-| `isNewTab` | boolean \| null | Whether to open link in new tab |
+| Property       | Type            | Description                                          |
+| -------------- | --------------- | ---------------------------------------------------- |
+| `id`           | string          | Unique identifier for the navigation item            |
+| `code`         | string \| null  | Optional code identifier                             |
+| `label`        | string          | Display text for the navigation item                 |
+| `url`          | string \| null  | Navigation URL (null for parent items with children) |
+| `icon`         | string \| null  | Icon identifier (Iconify name or CDN URL)            |
+| `children`     | array           | Child navigation items with the same structure       |
+| `position`     | string          | Position indicator ("top" or "bottom")               |
+| `order`        | number          | Sort order for the item                              |
+| `attributes`   | array \| null   | Additional attributes for the item                   |
+| `groupId`      | string \| null  | Group identifier for organizing items                |
+| `groupName`    | string \| null  | Group name for subheadings                           |
+| `parentMenuId` | string \| null  | Parent menu identifier                               |
+| `isNewTab`     | boolean \| null | Whether to open link in new tab                      |
 
 ::: info Note
 When `isNavApi` is true, the component automatically transforms the API data structure into the internal navigation format used by the sidenav component.
@@ -1141,9 +1136,9 @@ The user menu allows you to add a user avatar at the bottom of the side navigati
 import { ref } from 'vue';
 
 const userMenu = ref({
-  name: 'John Rafael M. Arias',
-  email: 'jarias@sprout.ph',
-  profileImage: 'https://lh3.googleusercontent.com/ogw/AF2bZyiCP8eaKX7KiduREcMAogl0Ml2TwYJAPTgcKeNap81ztg=s32-c-mo',
+  name: 'John Doe',
+  email: 'johnDoe@sprout.ph',
+  profileImage: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
   items: [
     {
       title: 'My Profile',
@@ -1686,9 +1681,9 @@ const handleRequest = (request) => {
 };
 
 const userMenu = ref({
-  name: 'John Rafael M. Arias',
-  email: 'jarias@sprout.ph',
-  profileImage: 'https://lh3.googleusercontent.com/ogw/AF2bZyiCP8eaKX7KiduREcMAogl0Ml2TwYJAPTgcKeNap81ztg=s32-c-mo',
+  name: 'John Doe',
+  email: 'johnDoe@sprout.ph',
+  profileImage: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
   items: [
     {
       title: 'My Profile',
@@ -1770,7 +1765,7 @@ Here's a complete implementation example using the sidenav component with `isNav
 
 ```vue
 <template>
-  <spr-sidenav 
+  <spr-sidenav
     :nav-links="apiNavData"
     :is-nav-api="true"
     :active-nav="activeNav"
@@ -1798,78 +1793,78 @@ import SprSidenav from '@/components/sidenav/sidenav.vue';
 const apiNavData = ref({
   top: [
     {
-      id: "135c50eb-3dbb-4e4a-b45a-9f58b4c0921f",
+      id: '135c50eb-3dbb-4e4a-b45a-9f58b4c0921f',
       code: null,
-      label: "Dashboard",
-      url: "https://ecohub-qa.ecoapp-qa.sprout.ph/dashboard",
-      icon: "ph:house-simple",
+      label: 'Dashboard',
+      url: 'https://ecohub-qa.ecoapp-qa.sprout.ph/dashboard',
+      icon: 'ph:house-simple',
       children: [],
-      position: "top",
+      position: 'top',
       order: 1,
       attributes: null,
-      groupId: "1",
+      groupId: '1',
       groupName: null,
       parentMenuId: null,
-      isNewTab: false
+      isNewTab: false,
     },
     {
-      id: "8ee582db-afa7-4c6b-a80a-503eb7057cda",
+      id: '8ee582db-afa7-4c6b-a80a-503eb7057cda',
       code: null,
-      label: "App Management",
+      label: 'App Management',
       url: null,
-      icon: "ph:shapes",
+      icon: 'ph:shapes',
       children: [
         {
-          id: "03b895a8-9de5-4f0e-b19b-4d965c99cd7d",
+          id: '03b895a8-9de5-4f0e-b19b-4d965c99cd7d',
           code: null,
-          label: "Marketplace",
-          url: "https://market.sprout.ph/",
+          label: 'Marketplace',
+          url: 'https://market.sprout.ph/',
           icon: null,
           children: [],
-          position: "top",
+          position: 'top',
           order: 2,
           attributes: null,
           groupId: null,
           groupName: null,
-          parentMenuId: "8ee582db-afa7-4c6b-a80a-503eb7057cda",
-          isNewTab: true
+          parentMenuId: '8ee582db-afa7-4c6b-a80a-503eb7057cda',
+          isNewTab: true,
         },
         {
-          id: "04b895a8-9de5-4f0e-b19b-4d965c99cd8e",
+          id: '04b895a8-9de5-4f0e-b19b-4d965c99cd8e',
           code: null,
-          label: "Extensions",
-          url: "https://extensions.sprout.ph/",
+          label: 'Extensions',
+          url: 'https://extensions.sprout.ph/',
           icon: null,
           children: [],
-          position: "top",
+          position: 'top',
           order: 3,
           attributes: null,
           groupId: null,
           groupName: null,
-          parentMenuId: "8ee582db-afa7-4c6b-a80a-503eb7057cda",
-          isNewTab: true
-        }
+          parentMenuId: '8ee582db-afa7-4c6b-a80a-503eb7057cda',
+          isNewTab: true,
+        },
       ],
-      position: "top",
+      position: 'top',
       order: 2,
       attributes: null,
-      groupId: "1",
+      groupId: '1',
       groupName: null,
       parentMenuId: null,
-      isNewTab: false
+      isNewTab: false,
     },
     {
-      id: "e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2",
+      id: 'e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2',
       code: null,
-      label: "Payroll",
+      label: 'Payroll',
       url: null,
-      icon: "https://eco-cdn-prod.azureedge.net/payroll.svg",
+      icon: 'https://eco-cdn-prod.azureedge.net/payroll.svg',
       children: [
         {
-          id: "payroll-runs-001",
+          id: 'payroll-runs-001',
           code: null,
-          label: "Payroll Runs",
-          url: "https://ecohub-qa-payroll.sprout.ph/Client/Payrolls.aspx",
+          label: 'Payroll Runs',
+          url: 'https://ecohub-qa-payroll.sprout.ph/Client/Payrolls.aspx',
           icon: null,
           children: [],
           position: null,
@@ -1877,170 +1872,170 @@ const apiNavData = ref({
           attributes: [],
           groupId: null,
           groupName: null,
-          parentMenuId: "e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2",
-          isNewTab: false
+          parentMenuId: 'e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2',
+          isNewTab: false,
         },
         {
-          id: "payroll-setup-001",
+          id: 'payroll-setup-001',
           code: null,
-          label: "Setup",
-          url: "",
+          label: 'Setup',
+          url: '',
           icon: null,
           children: [
             {
-              id: "company-profile-001",
+              id: 'company-profile-001',
               code: null,
-              label: "Company Profile",
-              url: "https://ecohub-qa-payroll-next-qa.sprout.ph/#/global/company-profile",
+              label: 'Company Profile',
+              url: 'https://ecohub-qa-payroll-next-qa.sprout.ph/#/global/company-profile',
               icon: null,
               children: [],
               position: null,
               order: 1,
               attributes: [],
               groupId: null,
-              groupName: "COMPANY",
-              parentMenuId: "payroll-setup-001",
-              isNewTab: false
+              groupName: 'COMPANY',
+              parentMenuId: 'payroll-setup-001',
+              isNewTab: false,
             },
             {
-              id: "department-001",
+              id: 'department-001',
               code: null,
-              label: "Department",
-              url: "https://ecohub-qa-payroll-next-qa.sprout.ph/#/global/department",
+              label: 'Department',
+              url: 'https://ecohub-qa-payroll-next-qa.sprout.ph/#/global/department',
               icon: null,
               children: [],
               position: null,
               order: 2,
               attributes: [],
               groupId: null,
-              groupName: "COMPANY",
-              parentMenuId: "payroll-setup-001",
-              isNewTab: false
+              groupName: 'COMPANY',
+              parentMenuId: 'payroll-setup-001',
+              isNewTab: false,
             },
             {
-              id: "employees-001",
+              id: 'employees-001',
               code: null,
-              label: "Employees",
-              url: "https://ecohub-qa-payroll-next-qa.sprout.ph/#/global/employees",
+              label: 'Employees',
+              url: 'https://ecohub-qa-payroll-next-qa.sprout.ph/#/global/employees',
               icon: null,
               children: [],
               position: null,
               order: 3,
               attributes: [],
               groupId: null,
-              groupName: "WORKFORCE",
-              parentMenuId: "payroll-setup-001",
-              isNewTab: false
-            }
+              groupName: 'WORKFORCE',
+              parentMenuId: 'payroll-setup-001',
+              isNewTab: false,
+            },
           ],
           position: null,
           order: 2,
           attributes: [],
           groupId: null,
           groupName: null,
-          parentMenuId: "e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2",
-          isNewTab: false
+          parentMenuId: 'e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2',
+          isNewTab: false,
         },
         {
-          id: "payroll-reports-001",
+          id: 'payroll-reports-001',
           code: null,
-          label: "Reports",
+          label: 'Reports',
           url: null,
           icon: null,
           children: [
             {
-              id: "sss-report-001",
+              id: 'sss-report-001',
               code: null,
-              label: "SSS Reports",
-              url: "https://ecohub-qa-payroll.sprout.ph/Reports/SSS",
+              label: 'SSS Reports',
+              url: 'https://ecohub-qa-payroll.sprout.ph/Reports/SSS',
               icon: null,
               children: [],
               position: null,
               order: 1,
               attributes: [],
               groupId: null,
-              groupName: "GOVERNMENT",
-              parentMenuId: "payroll-reports-001",
-              isNewTab: false
+              groupName: 'GOVERNMENT',
+              parentMenuId: 'payroll-reports-001',
+              isNewTab: false,
             },
             {
-              id: "philhealth-report-001",
+              id: 'philhealth-report-001',
               code: null,
-              label: "PhilHealth Reports",
-              url: "https://ecohub-qa-payroll.sprout.ph/Reports/PhilHealth",
+              label: 'PhilHealth Reports',
+              url: 'https://ecohub-qa-payroll.sprout.ph/Reports/PhilHealth',
               icon: null,
               children: [],
               position: null,
               order: 2,
               attributes: [],
               groupId: null,
-              groupName: "GOVERNMENT",
-              parentMenuId: "payroll-reports-001",
-              isNewTab: false
-            }
+              groupName: 'GOVERNMENT',
+              parentMenuId: 'payroll-reports-001',
+              isNewTab: false,
+            },
           ],
           position: null,
           order: 3,
           attributes: [],
           groupId: null,
           groupName: null,
-          parentMenuId: "e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2",
-          isNewTab: false
-        }
+          parentMenuId: 'e9a88315-ecf7-49ea-82d9-0c6a5fd2a9e2',
+          isNewTab: false,
+        },
       ],
-      position: "top",
+      position: 'top',
       order: 6,
       attributes: null,
-      groupId: "2",
+      groupId: '2',
       groupName: null,
       parentMenuId: null,
-      isNewTab: false
-    }
+      isNewTab: false,
+    },
   ],
   bottom: [
     {
-      id: "settings-001",
+      id: 'settings-001',
       code: null,
-      label: "Settings",
-      url: "/settings",
-      icon: "ph:gear",
+      label: 'Settings',
+      url: '/settings',
+      icon: 'ph:gear',
       children: [],
-      position: "bottom",
+      position: 'bottom',
       order: 1,
       attributes: null,
-      groupId: "99",
+      groupId: '99',
       groupName: null,
       parentMenuId: null,
-      isNewTab: false
+      isNewTab: false,
     },
     {
-      id: "help-001",
+      id: 'help-001',
       code: null,
-      label: "Help & Support",
-      url: "https://help.sprout.ph",
-      icon: "ph:question",
+      label: 'Help & Support',
+      url: 'https://help.sprout.ph',
+      icon: 'ph:question',
       children: [],
-      position: "bottom",
+      position: 'bottom',
       order: 2,
       attributes: null,
-      groupId: "99",
+      groupId: '99',
       groupName: null,
       parentMenuId: null,
-      isNewTab: true
-    }
-  ]
+      isNewTab: true,
+    },
+  ],
 });
 
 const activeNav = ref({
   parentNav: 'Dashboard',
   menu: '',
-  submenu: ''
+  submenu: '',
 });
 
 const userMenu = ref({
-  name: 'John Rafael M. Arias',
-  email: 'jarias@sprout.ph',
-  profileImage: 'https://lh3.googleusercontent.com/ogw/AF2bZyiCP8eaKX7KiduREcMAogl0Ml2TwYJAPTgcKeNap81ztg=s32-c-mo',
+  name: 'John Doe',
+  email: 'johnDoe@sprout.ph',
+  profileImage: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
   items: [
     {
       title: 'My Profile',
@@ -2084,20 +2079,20 @@ const userMenu = ref({
 // Event handlers
 const handleNavClick = (navItem) => {
   console.log('Navigation clicked:', navItem);
-  
+
   // Update active navigation based on API structure
   if (navItem.parentMenuId === null) {
     // Top-level navigation
     activeNav.value = {
       parentNav: navItem.label,
       menu: '',
-      submenu: ''
+      submenu: '',
     };
   } else {
     // Handle nested navigation logic here
     console.log('Nested navigation:', navItem);
   }
-  
+
   // Handle URL navigation
   if (navItem.url) {
     if (navItem.isNewTab) {
@@ -2315,7 +2310,7 @@ type QuickActionItem = {
   title: string;
   description: string;
   icon: string;
-  iconBgColor: string;  // Values: 'green' or 'purple'
+  iconBgColor: string; // Values: 'green' or 'purple'
   redirect: Redirect;
   hidden: boolean;
 };
@@ -2337,7 +2332,7 @@ type ParentLinkItem = {
   menuLinks: MenuLink[];
   submenuLinks?: SubmenuLink[];
   hidden?: boolean;
-  attributes?: Attributes[];  // For additional metadata like lozenges
+  attributes?: Attributes[]; // For additional metadata like lozenges
 };
 
 type MenuLink = {
@@ -2350,7 +2345,7 @@ type MenuLinkItem = {
   hidden: boolean;
   redirect: Redirect;
   submenuLinks: SubmenuLink[];
-  attributes?: Attributes[];  // For additional metadata like lozenges
+  attributes?: Attributes[]; // For additional metadata like lozenges
 };
 
 type SubmenuLink = {
@@ -2362,7 +2357,7 @@ type SubmenuLinkItem = {
   title: string;
   hidden: boolean;
   redirect: Redirect;
-  attributes?: Attributes[];  // For additional metadata like lozenges
+  attributes?: Attributes[]; // For additional metadata like lozenges
 };
 
 type Redirect = {
@@ -2405,8 +2400,8 @@ type Attributes = {
 
 type AttrLozenge = {
   label: string;
-  tone?: string;  // Valid values: 'danger', 'information', 'plain', 'pending', 'success', 'neutral', 'caution'
-}
+  tone?: string; // Valid values: 'danger', 'information', 'plain', 'pending', 'success', 'neutral', 'caution'
+};
 ```
 
 #### UserMenu
@@ -2875,9 +2870,9 @@ const handleRequest = (request) => {
 };
 
 const userMenu = ref({
-  name: 'John Rafael M. Arias',
-  email: 'jarias@sprout.ph',
-  profileImage: 'https://lh3.googleusercontent.com/ogw/AF2bZyiCP8eaKX7KiduREcMAogl0Ml2TwYJAPTgcKeNap81ztg=s32-c-mo',
+  name: 'John Doe',
+  email: 'johnDoe@sprout.ph',
+  profileImage: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
   items: [
     {
       title: 'My Profile',

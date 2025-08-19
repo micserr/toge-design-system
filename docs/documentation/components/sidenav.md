@@ -1136,9 +1136,9 @@ The user menu allows you to add a user avatar at the bottom of the side navigati
 import { ref } from 'vue';
 
 const userMenu = ref({
-  name: 'John Rafael M. Arias',
-  email: 'jarias@sprout.ph',
-  profileImage: 'https://lh3.googleusercontent.com/ogw/AF2bZyiCP8eaKX7KiduREcMAogl0Ml2TwYJAPTgcKeNap81ztg=s32-c-mo',
+  name: 'John Doe',
+  email: 'johnDoe@sprout.ph',
+  profileImage: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
   items: [
     {
       title: 'My Profile',
@@ -1681,9 +1681,9 @@ const handleRequest = (request) => {
 };
 
 const userMenu = ref({
-  name: 'John Rafael M. Arias',
-  email: 'jarias@sprout.ph',
-  profileImage: 'https://lh3.googleusercontent.com/ogw/AF2bZyiCP8eaKX7KiduREcMAogl0Ml2TwYJAPTgcKeNap81ztg=s32-c-mo',
+  name: 'John Doe',
+  email: 'johnDoe@sprout.ph',
+  profileImage: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
   items: [
     {
       title: 'My Profile',
@@ -2033,9 +2033,9 @@ const activeNav = ref({
 });
 
 const userMenu = ref({
-  name: 'John Rafael M. Arias',
-  email: 'jarias@sprout.ph',
-  profileImage: 'https://lh3.googleusercontent.com/ogw/AF2bZyiCP8eaKX7KiduREcMAogl0Ml2TwYJAPTgcKeNap81ztg=s32-c-mo',
+  name: 'John Doe',
+  email: 'johnDoe@sprout.ph',
+  profileImage: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
   items: [
     {
       title: 'My Profile',
@@ -2870,9 +2870,9 @@ const handleRequest = (request) => {
 };
 
 const userMenu = ref({
-  name: 'John Rafael M. Arias',
-  email: 'jarias@sprout.ph',
-  profileImage: 'https://lh3.googleusercontent.com/ogw/AF2bZyiCP8eaKX7KiduREcMAogl0Ml2TwYJAPTgcKeNap81ztg=s32-c-mo',
+  name: 'John Doe',
+  email: 'johnDoe@sprout.ph',
+  profileImage: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
   items: [
     {
       title: 'My Profile',

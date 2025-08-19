@@ -1,8 +1,9 @@
-import { toRefs, computed, ComputedRef } from 'vue';
+import { toRefs, computed, ComputedRef, ref } from 'vue';
 
 import classNames from 'classnames';
 
-import type { AvatarPropTypes } from './avatar';
+import type { SetupContext } from 'vue';
+import type { AvatarPropTypes, AvatarEmitTypes } from './avatar';
 
 interface AvatarClasses {
   baseClasses: string;
@@ -12,7 +13,7 @@ interface AvatarClasses {
   onlineNotificationClasses: string;
 }
 
-export const useAvatar = (props: AvatarPropTypes) => {
+export const useAvatar = (props: AvatarPropTypes, emit: SetupContext<AvatarEmitTypes>['emit']) => {
   const { size, color, variant, initial, loading } = toRefs(props);
 
   const avatarClasses: ComputedRef<AvatarClasses> = computed(() => {
@@ -132,10 +133,20 @@ export const useAvatar = (props: AvatarPropTypes) => {
     return (firstInitial + lastInitial).slice(0, maxInitials);
   });
 
+  const imageError = ref<boolean>(false);
+
+  const handleImageError = () => {
+    imageError.value = true;
+
+    emit('image-error', true);
+  };
+
   return {
     avatarClasses,
     getAvatarSize,
     getIconVariant,
     getInitials,
+    imageError,
+    handleImageError,
   };
 };

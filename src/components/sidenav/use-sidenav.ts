@@ -90,7 +90,7 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
     }
   };
 
-  const groupByGroupId = (items: NavItem[]) => {
+  const groupByGroupId = (items: NavItem[]): { parentLinks: ParentLinkItem[] }[] => {
     const groups: Record<string, NavItem[]> = {};
 
     items.forEach((item) => {
@@ -100,7 +100,9 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
       groups[item.groupId].push(item);
     });
 
-    return Object.values(groups).map((group) => ({ parentLinks: group.map(mapItemToNav) }));
+    return Object.values(groups).map((group) => ({
+      parentLinks: group.map((item) => mapItemToNav(item) as ParentLinkItem),
+    }));
   };
 
   const mapItemToNav = (item: NavItem): ParentLinkItem | MenuLinkItem => {
@@ -131,12 +133,12 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
 
     return {
       title: item.label,
-      icon: item.icon || undefined,
+      icon: item.icon ?? '',
       redirect: item.url
         ? {
             openInNewTab: item.isNewTab || false,
             isAbsoluteURL: !confirmIfOwnDomain(item.url as string),
-            link: navLinkCondition(item),
+            link: navLinkCondition(item) ?? '',
           }
         : undefined,
       menuLinks: mapGroupedChildren(groupedChildren, 'menuHeading') as {
@@ -193,6 +195,10 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
     return 'success'; // Default tone
   };
 
+  const getLozengeLabel = (attr: Attributes) => {
+    return attr.value && typeof attr?.value === 'object' && 'label' in attr.value ? String(attr.value.label) : '';
+  };
+
   onMounted(async () => {
     if (props.isNavApi) {
       navLinks.value = await transformedNavItems(props.navLinks);
@@ -210,5 +216,6 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
     generateId,
     transformedNavItems,
     getLozengeTone,
+    getLozengeLabel,
   };
 };

@@ -4,7 +4,7 @@
       'spr-hidden-scrolls spr-fixed spr-bottom-0 spr-left-0 spr-top-0',
       'spr-background-color spr-w-auto spr-overflow-y-auto spr-overflow-x-hidden',
       'spr-border-color-weak spr-border-b-0 spr-border-l-0 spr-border-r spr-border-t-0 spr-border-solid',
-      'spr-transition spr-duration-150 spr-ease-in-out',
+      'spr-z-10 spr-transition spr-duration-150 spr-ease-in-out',
     ]"
   >
     <div

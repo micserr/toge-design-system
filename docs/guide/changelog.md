@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.12.4 (2025-08-19)
+## 2.12.5 (2025-08-19)
 
 - Feat
   Sidenav Updates:
@@ -14,6 +14,11 @@
   - Update Documentation
 
   ([#f77fd063](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f77fd0632d9835eeef10af8c829bf96f2032e1e4?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 2.12.4 (2025-08-19)
+
+- Fix
+  - Commit 39b56f7a: feat: update calendar component's emit types and enhance avatar options ([#39b56f7a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/39b56f7ac5e7f20386bc1b2ac3378086f5874831?refName=refs/heads/2025/Fix/andrea/CALENDAR_EMIT) by @adestajo)
 
 ## 2.12.3 (2025-08-18)
 

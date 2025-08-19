@@ -3,7 +3,7 @@ import type { PropType, ExtractPropTypes } from 'vue';
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
 const AVATAR_SIZE = ['2xl', 'xl', 'lg', 'md', 'sm', 'xs', '2xs'] as const;
-const AVATAR_PRIMARY = ['primary', 'secondary'] as const;
+const AVATAR_PRIMARY = ['primary', 'secondary', 'tertiary'] as const;
 const AVATAR_STATUS = ['danger', 'disabled', 'information', 'brand'] as const;
 
 export const AVATAR_VARIANT = ['image', 'initial', 'client', 'user', 'user-group', 'count'] as const;

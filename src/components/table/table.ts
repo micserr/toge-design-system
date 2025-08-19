@@ -6,15 +6,15 @@ export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<
 export interface Header {
   field: string;
   name: string;
-  sort: boolean;
-  hasAvatar: boolean;
-  hasIcon: boolean;
-  hasSubtext: boolean;
-  hasLozengeTitle: boolean;
-  hasChipTitle: boolean;
-  badgeText: string;
-  badgeVariant: string;
-  avatarVariant: string;
+  sort?: boolean;
+  hasAvatar?: boolean;
+  hasIcon?: boolean;
+  hasSubtext?: boolean;
+  hasLozengeTitle?: boolean;
+  hasChipTitle?: boolean;
+  badgeText?: string;
+  badgeVariant?: string;
+  avatarVariant?: string;
   customTailwindClasses?: string;
 }
 

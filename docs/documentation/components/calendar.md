@@ -44,7 +44,7 @@ The `Calendar` component is a comprehensive and customizable weekly calendar des
 </div>
 
 <div class="spr-overflow-x-auto">
-  <div class="spr-w-[1200px]">
+  <div>
     <SprCalendar
       v-model:search="searchEmployee"
       v-model:selected-cell="selectedCell"
@@ -478,4 +478,3 @@ const branchOptions = [
   { text: 'Branch B', value: 'branch-b' },
 ];
 </script>
-

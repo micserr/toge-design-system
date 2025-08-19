@@ -2,6 +2,15 @@
 
 ## 2.12.6 (2025-08-19)
 
+- Refactor
+
+  - Seperate file for sidenav menu links to improve code organization and maintainability
+  - Update package exporting component to include handling for exluded components
+
+  ([#838accd6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/838accd69ff38407c2c700504fca133170a579e5?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 2.12.6 (2025-08-19)
+
 - Feat
   Sidenav Updates:
 

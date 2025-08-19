@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.12.6 (2025-08-19)
+
+- Feat
+  Sidenav Updates:
+
+  - Fix Hide/Show transition
+  - Use Avatar component for user menu
+
+  Avatar Updates:
+
+  - Handle image error
+  - Update Documentation
+
+  ([#f77fd063](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f77fd0632d9835eeef10af8c829bf96f2032e1e4?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 2.12.5 (2025-08-19)
 
 - Fix

@@ -39,6 +39,7 @@
           :triggers="[]"
           :popper-hide-triggers="[]"
           instant-move
+          :delay="0"
         >
           <div
             :class="{
@@ -153,6 +154,7 @@
                 placement="right"
                 :triggers="['click', 'hover']"
                 instant-move
+                :delay="0"
               >
                 <!-- #region - Parent Links -->
                 <div
@@ -225,6 +227,7 @@
                           placement="right-start"
                           :triggers="['click', 'hover']"
                           instant-move
+                          :delay="0"
                         >
                           <!-- #region - Menu links -->
                           <div
@@ -242,10 +245,10 @@
                             ></div>
                             <span>{{ menuLinkItem.title }}</span>
                             <div class="spr-flex spr-items-center spr-gap-1">
-                              <template v-for="(attr, i) in menuLinkItem?.attributes" :key="i"> 
+                              <template v-for="(attr, i) in menuLinkItem?.attributes" :key="i">
                                 <spr-lozenge
                                   v-if="attr?.name === 'lozenge' && attr?.value"
-                                  :label="(attr.value && typeof attr?.value === 'object' && 'label' in attr.value) ? String(attr.value.label) : ''"
+                                  :label="getLozengeLabel(attr)"
                                   :tone="getLozengeTone(attr)"
                                   fill
                                 />
@@ -266,7 +269,12 @@
                                   "sidenav-submenu-l2-wrapper" - Popper is currently hidden since sidenav only has 1 level of submenu links.
                           -->
                           <template #popper>
-                            <Menu aria-id="sidenav-submenu-l2-wrapper" :triggers="['click', 'hover']" instant-move>
+                            <Menu
+                              aria-id="sidenav-submenu-l2-wrapper"
+                              :triggers="['click', 'hover']"
+                              instant-move
+                              :delay="0"
+                            >
                               <template
                                 v-for="(submenuLink, submenuLinkIndex) in menuLinkItem.submenuLinks"
                                 :key="submenuLinkIndex"
@@ -310,12 +318,13 @@
                                       v-show="props.activeNav.submenu === submenuLinkItem.title"
                                       class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                                     ></div>
-                                    <span>{{ submenuLinkItem.title }}</span>
                                     <div class="spr-flex spr-items-center spr-gap-1">
-                                      <template v-for="(attr, i) in submenuLinkItem?.attributes" :key="i"> 
+                                      <span>{{ submenuLinkItem.title }}</span>
+
+                                      <template v-for="(attr, i) in submenuLinkItem?.attributes" :key="i">
                                         <spr-lozenge
                                           v-if="attr?.name === 'lozenge' && attr?.value"
-                                          :label="(attr.value && typeof attr?.value === 'object' && 'label' in attr.value) ? String(attr.value.label) : ''"
+                                          :label="getLozengeLabel(attr)"
                                           :tone="getLozengeTone(attr)"
                                           fill
                                         />
@@ -350,10 +359,10 @@
                             class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                           ></div>
                           <span>{{ menuLinkItem.title }}</span>
-                          <template v-for="(attr, i) in menuLinkItem?.attributes" :key="i"> 
+                          <template v-for="(attr, i) in menuLinkItem?.attributes" :key="i">
                             <spr-lozenge
                               v-if="attr?.name === 'lozenge' && attr?.value"
-                              :label="(attr.value && typeof attr?.value === 'object' && 'label' in attr.value) ? String(attr.value.label) : ''"
+                              :label="getLozengeLabel(attr)"
                               :tone="getLozengeTone(attr)"
                               fill
                             />
@@ -417,7 +426,6 @@
                     <Icon v-else icon="ph:globe" />
                   </template>
                 </div>
-                <!-- #endregion - Parent Links -->
               </spr-tooltip>
             </template>
             <!-- #endregion - Parent link only  -->
@@ -449,7 +457,7 @@
                 placement="right"
                 :triggers="['click', 'hover']"
                 instant-move
-                :show-group="'my-group-name' + parentLinkIndex"
+                :delay="0"
               >
                 <!-- #region - Parent Links -->
                 <div
@@ -522,6 +530,7 @@
                           placement="right-start"
                           :triggers="['click', 'hover']"
                           instant-move
+                          :delay="0"
                         >
                           <!-- #region - Menu links -->
                           <div
@@ -553,7 +562,12 @@
                                   "sidenav-submenu-l2-wrapper" - Popper is currently hidden since sidenav only has 1 level of submenu links.
                           -->
                           <template #popper>
-                            <Menu aria-id="sidenav-submenu-l2-wrapper" :triggers="['click', 'hover']" instant-move>
+                            <Menu
+                              aria-id="sidenav-submenu-l2-wrapper"
+                              :triggers="['click', 'hover']"
+                              instant-move
+                              :delay="0"
+                            >
                               <template
                                 v-for="(submenuLink, submenuLinkIndex) in menuLinkItem.submenuLinks"
                                 :key="submenuLinkIndex"
@@ -597,7 +611,18 @@
                                       v-show="props.activeNav.submenu === submenuLinkItem.title"
                                       class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                                     ></div>
-                                    <span>{{ submenuLinkItem.title }}</span>
+                                    <div class="spr-flex spr-items-center spr-gap-1">
+                                      <span>{{ submenuLinkItem.title }}</span>
+
+                                      <template v-for="(attr, i) in submenuLinkItem?.attributes" :key="i">
+                                        <spr-lozenge
+                                          v-if="attr?.name === 'lozenge' && attr?.value"
+                                          :label="getLozengeLabel(attr)"
+                                          :tone="getLozengeTone(attr)"
+                                          fill
+                                        />
+                                      </template>
+                                    </div>
                                   </div>
                                   <!-- #endregion - Submenu Links -->
                                 </template>
@@ -775,30 +800,24 @@
       <Menu
         v-model:shown="isUserMenuVisible"
         aria-id="user-menu-wrapper"
-        distance="18"
+        distance="16"
         placement="right"
         :triggers="['click', 'hover']"
         instant-move
+        :delay="0"
       >
-        <div
-          id="sidenav_user_menu"
-          :class="[
-            'spr-background-color spr-flex spr-h-[36px] spr-w-[36px] spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-full',
-            'spr-border-color-weak spr-border spr-border-solid',
-            'spr-transition spr-duration-150 spr-ease-in-out',
-            'hover:spr-background-color-hover',
-            'active:spr-background-color-pressed active:spr-scale-90',
-            '[&>img]:spr-h-[36px] [&>img]:spr-w-[36px] [&>img]:spr-rounded-full [&>img]:spr-object-cover',
-          ]"
-          @click="isUserMenuVisible = !isUserMenuVisible"
-        >
-          <template v-if="props.userMenu.profileImage && !userProfileError">
-            <img :src="props.userMenu.profileImage" alt="profile" @error="userProfileError = true" />
-          </template>
-          <template v-else>
-            <span>{{ getUserInitials(props.userMenu.name) }}</span>
-          </template>
-        </div>
+        <template v-if="props.userMenu.profileImage">
+          <spr-avatar
+            class="spr-cursor-pointer"
+            variant="image"
+            :src="props.userMenu.profileImage"
+            :initial="props.userMenu.name"
+            size="md"
+          />
+        </template>
+        <template v-else>
+          <spr-avatar class="spr-cursor-pointer" :initial="props.userMenu.name" size="md" />
+        </template>
 
         <template #popper>
           <div
@@ -808,20 +827,17 @@
             ]"
           >
             <div class="spr-flex spr-items-center spr-gap-2">
-              <div
-                :class="[
-                  'spr-background-color spr-flex spr-h-[36px] spr-w-[36px] spr-items-center spr-justify-center spr-rounded-full',
-                  'spr-border-color-weak spr-border spr-border-solid',
-                  '[&>img]:spr-h-[36px] [&>img]:spr-w-[36px] [&>img]:spr-rounded-full [&>img]:spr-object-cover',
-                ]"
-              >
-                <template v-if="props.userMenu.profileImage && !userProfileError">
-                  <img :src="props.userMenu.profileImage" alt="profile" @error="userProfileError = true" />
-                </template>
-                <template v-else>
-                  <span>{{ getUserInitials(props.userMenu.name) }}</span>
-                </template>
-              </div>
+              <template v-if="props.userMenu.profileImage">
+                <spr-avatar
+                  variant="image"
+                  :src="props.userMenu.profileImage"
+                  :initial="props.userMenu.name"
+                  size="md"
+                />
+              </template>
+              <template v-else>
+                <spr-avatar :initial="props.userMenu.name" size="md" />
+              </template>
               <div class="spr-grid spr-justify-between spr-gap-1">
                 <h3 class="spr-body-sm-regular spr-m-0 spr-truncate">
                   {{ props.userMenu.name }}
@@ -873,9 +889,10 @@ import 'floating-vue/dist/style.css';
 import { sidenavPropTypes, sidenavEmitTypes } from './sidenav';
 import { useSidenav } from './use-sidenav';
 
-import SprTooltip from '../tooltip/tooltip.vue';
+import SprAvatar from '../avatar/avatar.vue';
 import SprBadge from '../badge/badge.vue';
 import SprLozenge from '../lozenge/lozenge.vue';
+import SprTooltip from '../tooltip/tooltip.vue';
 
 const props = defineProps(sidenavPropTypes);
 const emit = defineEmits(sidenavEmitTypes);
@@ -884,10 +901,9 @@ const {
   navLinks,
   isQuckActionMenuVisible,
   isUserMenuVisible,
-  userProfileError,
-  getUserInitials,
   handleRedirect,
   generateId,
+  getLozengeLabel,
   getLozengeTone,
 } = useSidenav(props, emit);
 </script>

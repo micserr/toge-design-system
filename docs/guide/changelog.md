@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.8 (2025-08-19)
+
+- Feat
+  - Update behavior for dropdown lozenge ([#e903765e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e903765efd892962e2e361605eb3ff895ac99007?refName=refs%2Fheads%2F2025%2FFATURE%2FPaulo%2FLozengeDropdownBehavior) by @jbanares)
+
+
 ## 2.12.6 (2025-08-19)
 
 - Refactor

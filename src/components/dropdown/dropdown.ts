@@ -111,6 +111,11 @@ export const dropdownPropTypes = {
     type: Boolean,
     default: false,
   },
+  // Enable lozenge style for dropdown items
+  lozenge: {
+    type: Boolean,
+    default: false,
+  }
 };
 
 export const dropdownEmitTypes = {

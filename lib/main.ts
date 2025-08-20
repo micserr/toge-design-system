@@ -9,15 +9,31 @@ const PREFIX = 'spr-';
 // Dynamically import all components from the components directory
 const components = import.meta.glob('../src/components/**/*.vue', { eager: true });
 
-const install = (app: App) => {
-  Object.entries(components).forEach(([path, component]) => {
-    // Extract component name from the file path and apply prefix
-    const componentName = path.split('/').pop()?.replace('.vue', '');
+// List of component files to exclude from global registration
+const excludedComponents: string[] = [
+  'sidenav-menu-links.vue',
+  'snack.vue',
+  'step.vue',
+  'table-actions.vue',
+  'table-chips-title.vue',
+  'table-lozenge-title.vue',
+  'table-pagination.vue',
+];
 
-    if (componentName) {
-      app.component(`${PREFIX}${componentName}`, (component as any).default);
-    }
-  });
+const install = (app: App) => {
+  Object.entries(components)
+    .filter(([path]) => {
+      const fileName = path.split('/').pop();
+      return fileName && !excludedComponents.includes(fileName);
+    })
+    .forEach(([path, component]) => {
+      // Extract component name from the file path and apply prefix
+      const componentName = path.split('/').pop()?.replace('.vue', '');
+
+      if (componentName) {
+        app.component(`${PREFIX}${componentName}`, (component as any).default);
+      }
+    });
 
   console.info(
     `%c🌱 Design System Next Installed v${pkg.version} 🌱`,

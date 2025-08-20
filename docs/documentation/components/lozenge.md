@@ -398,44 +398,70 @@ The `interactive` prop enables interactive states for the lozenge, allowing it t
 ### Dropdown
 The `dropdown` prop makes the lozenge behave as a predefined interactive element with a default postfix dropdown icon (`ph:caret-down-fill`).  
 
-<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
-  <spr-lozenge label="plain" dropdown />
-  <spr-lozenge label="pending" tone="pending" dropdown />
-  <spr-lozenge label="information" tone="information" dropdown />
-  <spr-lozenge label="success" tone="success" dropdown />
-  <spr-lozenge label="neutral" tone="neutral" dropdown />
-  <spr-lozenge label="danger" tone="danger" dropdown />
-  <spr-lozenge label="caution" tone="caution" dropdown />
-</div>
-<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
-  <spr-lozenge label="plain" fill dropdown />
-  <spr-lozenge label="pending" tone="pending" fill dropdown />
-  <spr-lozenge label="information" tone="information" fill dropdown />
-  <spr-lozenge label="success" tone="success" fill dropdown />
-  <spr-lozenge label="neutral" tone="neutral" fill dropdown />
-  <spr-lozenge label="danger" tone="danger" fill dropdown />
-  <spr-lozenge label="caution" tone="caution" fill dropdown />
-</div>
+<spr-dropdown id="lozengeDropdown" v-model="dropdownSelection" :menu-list="menuList" lozenge @update:model-value="dropdownUpdateHandler" >
+  <spr-lozenge v-bind="lozengeProps" dropdown />
+</spr-dropdown>
+<br/>
+<spr-dropdown id="hollowLozengeDropdown" v-model="dropdownSelectionHollow" :menu-list="hollowMenuList" lozenge @update:model-value="dropdownUpdateHandler" >
+  <spr-lozenge v-bind="hollowLozengeProps" dropdown />
+</spr-dropdown>
 
 ```vue
-<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
-  <spr-lozenge label="plain" dropdown />
-  <spr-lozenge label="pending" tone="pending" dropdown />
-  <spr-lozenge label="information" tone="information" dropdown />
-  <spr-lozenge label="success" tone="success" dropdown />
-  <spr-lozenge label="neutral" tone="neutral" dropdown />
-  <spr-lozenge label="danger" tone="danger" dropdown />
-  <spr-lozenge label="caution" tone="caution" dropdown />
-</div>
-<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
-  <spr-lozenge label="plain" fill dropdown />
-  <spr-lozenge label="pending" tone="pending" fill dropdown />
-  <spr-lozenge label="information" tone="information" fill dropdown />
-  <spr-lozenge label="success" tone="success" fill dropdown />
-  <spr-lozenge label="neutral" tone="neutral" fill dropdown />
-  <spr-lozenge label="danger" tone="danger" fill dropdown />
-  <spr-lozenge label="caution" tone="caution" fill dropdown />
-</div>
+<template>
+  <spr-dropdown id="lozengeDropdown" v-model="dropdownSelection" :menu-list="menuList" lozenge @update:model-value="dropdownUpdateHandler" >
+    <spr-lozenge v-bind="lozengeProps" dropdown />
+  </spr-dropdown>
+</template>
+
+<script lang="ts" setup>
+import { ref, computed } from 'vue';
+
+import { LOZENGE_TONE } from '@/components/lozenge/lozenge';
+import { MenuListType } from '@/components/list/list';
+import { Header } from '@/components/table/table';
+
+const menuList = ref(
+  LOZENGE_TONE.map((tone: string) => ({
+    text: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+    value: tone,
+    lozengeProps: {
+      label: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+      tone: tone,
+      fill: true,
+      url: "https://tinyurl.com/2vzn782p",
+      icon: "ph:address-book-tabs",
+    }
+  })) as MenuListType[]
+);
+
+const dropdownSelection = ref('neutral');
+const lozengeProps = computed(() => {
+  return menuList.value.find(item => item.value === dropdownSelection.value)?.lozengeProps;
+});
+
+const dropdownUpdateHandler = (newSelection: string) => {
+  console.log('Dropdown selection updated:', newSelection);
+};
+
+const hollowMenuList = ref(
+  LOZENGE_TONE.map((tone: string) => ({
+    text: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+    value: tone,
+    lozengeProps: {
+      label: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+      tone: tone,
+      fill: false,
+      url: "https://tinyurl.com/2vzn782p",
+      icon: "ph:address-book-tabs",
+    }
+  })) as MenuListType[]
+);
+
+const dropdownSelectionHollow = ref('neutral');
+const hollowLozengeProps = computed(() => {
+  return hollowMenuList.value.find(item => item.value === dropdownSelectionHollow.value)?.lozengeProps;
+});
+</script>
 ```
 
 ::: tip NOTE
@@ -641,8 +667,58 @@ If you provide a `postfixIcon` prop or slot, it will override the default dropdo
 </div>
 
 <script lang="ts" setup>  
+import { ref, computed } from 'vue';
 import { Icon } from '@iconify/vue';
-
 import SprLozenge from "@/components/lozenge/lozenge.vue"
 import SprLogo from "@/components/logo/logo.vue";
+import SprDropdown from '@/components/dropdown/dropdown.vue';
+import { LOZENGE_TONE } from '@/components/lozenge/lozenge';
+import { MenuListType } from '@/components/list/list';
+import { Header } from '@/components/table/table';
+
+const menuList = ref(
+  LOZENGE_TONE.map((tone: string) => ({
+    text: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+    value: tone,
+    lozengeProps: {
+      label: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+      tone: tone,
+      fill: true,
+      url: "https://tinyurl.com/2vzn782p",
+      icon: "ph:address-book-tabs",
+    }
+  })) as MenuListType[]
+);
+
+const dropdownSelection = ref('neutral');
+const lozengeProps = computed(() => {
+  return menuList.value.find(item => item.value === dropdownSelection.value)?.lozengeProps;
+});
+
+const dropdownUpdateHandler = (newSelection: string) => {
+  console.log('Dropdown selection updated:', newSelection);
+};
+
+const hollowMenuList = ref(
+  LOZENGE_TONE.map((tone: string) => ({
+    text: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+    value: tone,
+    lozengeProps: {
+      label: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+      tone: tone,
+      fill: false,
+      url: "https://tinyurl.com/2vzn782p",
+      icon: "ph:address-book-tabs",
+    }
+  })) as MenuListType[]
+);
+
+const dropdownSelectionHollow = ref('neutral');
+const hollowLozengeProps = computed(() => {
+  return hollowMenuList.value.find(item => item.value === dropdownSelectionHollow.value)?.lozengeProps;
+});
+
+const hollowDropdownUpdateHandler = (newSelection: string) => {
+  console.log('Dropdown selection updated:', newSelection);
+};
 </script>

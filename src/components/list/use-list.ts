@@ -343,8 +343,10 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   const getListItemClasses = (item: MenuListType) => ({
     [listClasses.value.listItemClasses]: !item.disabled,
     'spr-background-color-single-active': isItemSelected(item) && !item.disabled && !noCheck.value,
-    'hover:spr-cursor-not-allowed spr-flex spr-cursor-pointer spr-items-center spr-gap-1.5 spr-rounded-lg spr-p-2':
+    'hover:spr-cursor-not-allowed spr-flex spr-cursor-pointer spr-items-center spr-gap-1.5 spr-rounded-lg':
       item.disabled,
+    'spr-p-size-spacing-3xs': !props.lozenge,
+    'spr-py-size-spacing-3xs spr-px-size-spacing-4xs': props.lozenge,
     'spr-justify-between': !props.multiSelect,
   });
 

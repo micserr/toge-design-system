@@ -1,4 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue';
+import type { LozengePropTypes } from '../lozenge/lozenge';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
@@ -16,6 +17,7 @@ export type MenuListType = {
   icon?: string; // String value for Iconify
   iconColor?: string;
   textColor?: string;
+  lozengeProps?: LozengePropTypes; // Props for the lozenge component when list is displayed as lozenge
   onClickFn?: () => void;
 };
 
@@ -81,6 +83,11 @@ export const listPropTypes = {
     default: false,
   },
   dropdown: {
+    type: Boolean,
+    default: false,
+  },
+  // Display list as lozenge instead of text
+  lozenge: {
     type: Boolean,
     default: false,
   },

@@ -664,6 +664,12 @@ const menuList = ref([
       <td>boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td>lozenge</td>
+      <td>When true, enables lozenge list display.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 

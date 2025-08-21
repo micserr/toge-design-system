@@ -25,32 +25,44 @@
               @click="handleSelectedItem(item)"
             >
               <spr-checkbox v-if="props.multiSelect" :checked="isItemSelected(item)" />
-              <div :class="[item.textColor, 'spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-3xs']">
-                <span v-if="item.icon" :class="[item.iconColor, 'spr-mt-[2px]']">
-                  <icon :icon="item.icon" width="20px" height="20px" />
-                </span>
-                <div class="spr-flex spr-flex-auto spr-flex-col spr-justify-start">
-                  <span class="spr-text-left spr-text-xs">
-                    {{ item.text }}
-                  </span>
-                  <span v-if="item.subtext" class="spr-body-xs-regular spr-text-color-base spr-text-left">
-                    {{ item.subtext }}
-                  </span>
-                </div>
-              </div>
-              <template v-if="!props.multiSelect && !props.dropdown">
-                <Icon
-                  v-if="isItemSelected(item) && !props.noCheck"
-                  class="spr-text-color-brand-base spr-w-[1.39em]"
-                  icon="ph:check"
+              <template v-if="props.lozenge">
+                <spr-lozenge 
+                  :label="item.text || item.lozengeProps?.label as string" 
+                  :tone="item.lozengeProps?.tone as string & (typeof LOZENGE_TONE)[number]"
+                  :fill="item.lozengeProps?.fill as boolean"
+                  :url="item.lozengeProps?.url as string"
+                  :icon="item.icon || item.lozengeProps?.icon as string"
+                  :postfix-icon="item.lozengeProps?.postfixIcon as string"
                 />
               </template>
-              <template v-if="props.ladderized">
-                <Icon
-                  v-if="item.sublevel && item.sublevel?.length > 0"
-                  class="spr-text-color-weak spr-size-4"
-                  icon="ph:caret-right"
-                />
+              <template v-else>
+                <div :class="[item.textColor, 'spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-3xs']">
+                  <span v-if="item.icon" :class="[item.iconColor, 'spr-mt-[2px]']">
+                    <icon :icon="item.icon" width="20px" height="20px" />
+                  </span>
+                  <div class="spr-flex spr-flex-auto spr-flex-col spr-justify-start">
+                    <span class="spr-text-left spr-text-xs">
+                      {{ item.text }}
+                    </span>
+                    <span v-if="item.subtext" class="spr-body-xs-regular spr-text-color-base spr-text-left">
+                      {{ item.subtext }}
+                    </span>
+                  </div>
+                </div>
+                <template v-if="!props.multiSelect && !props.dropdown">
+                  <Icon
+                    v-if="isItemSelected(item) && !props.noCheck"
+                    class="spr-text-color-brand-base spr-w-[1.39em]"
+                    icon="ph:check"
+                  />
+                </template>
+                <template v-if="props.ladderized">
+                  <Icon
+                    v-if="item.sublevel && item.sublevel?.length > 0"
+                    class="spr-text-color-weak spr-size-4"
+                    icon="ph:caret-right"
+                  />
+                </template>
               </template>
             </div>
           </div>
@@ -73,41 +85,53 @@
           @click="handleSelectedItem(item)"
         >
           <spr-checkbox v-if="props.multiSelect" :disabled="item.disabled" :checked="isItemSelected(item)" />
-          <div :class="[item.textColor, 'spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-3xs']">
-            <span v-if="item.icon" :class="[item.iconColor, 'spr-mt-[2px]']"
-              ><icon :icon="item.icon" width="20px" height="20px"
-            /></span>
-            <div
-              :class="[
-                'spr-flex spr-flex-auto spr-flex-col spr-justify-start',
-                { 'spr-text-color-disabled': item.disabled },
-              ]"
-            >
-              <span class="spr-text-left spr-text-xs">{{ item.text }}</span>
-              <span
-                v-if="item.subtext"
+          <template v-if="props.lozenge">
+            <spr-lozenge 
+              :label="item.text || item.lozengeProps?.label as string" 
+              :tone="item.lozengeProps?.tone as string & (typeof LOZENGE_TONE)[number]"
+              :fill="item.lozengeProps?.fill as boolean"
+              :url="item.lozengeProps?.url as string"
+              :icon="item.lozengeProps?.icon as string"
+              :postfix-icon="item.lozengeProps?.postfixIcon as string"
+            />
+          </template>
+          <template v-else>
+            <div :class="[item.textColor, 'spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-3xs']">
+              <span v-if="item.icon" :class="[item.iconColor, 'spr-mt-[2px]']"
+                ><icon :icon="item.icon" width="20px" height="20px"
+              /></span>
+              <div
                 :class="[
-                  'spr-body-xs-regular spr-text-color-base spr-text-left',
+                  'spr-flex spr-flex-auto spr-flex-col spr-justify-start',
                   { 'spr-text-color-disabled': item.disabled },
                 ]"
               >
-                {{ item.subtext }}
-              </span>
+                <span class="spr-text-left spr-text-xs">{{ item.text }}</span>
+                <span
+                  v-if="item.subtext"
+                  :class="[
+                    'spr-body-xs-regular spr-text-color-base spr-text-left',
+                    { 'spr-text-color-disabled': item.disabled },
+                  ]"
+                >
+                  {{ item.subtext }}
+                </span>
+              </div>
             </div>
-          </div>
-          <template v-if="!props.multiSelect && !props.dropdown">
-            <Icon
-              v-if="isItemSelected(item) && !props.noCheck"
-              class="spr-text-color-brand-base spr-w-[1.39em]"
-              icon="ph:check"
-            />
-          </template>
-          <template v-if="props.ladderized">
-            <Icon
-              v-if="item.sublevel && item.sublevel?.length > 0"
-              class="spr-text-color-weak spr-size-4"
-              icon="ph:caret-right"
-            />
+            <template v-if="!props.multiSelect && !props.dropdown">
+              <Icon
+                v-if="isItemSelected(item) && !props.noCheck"
+                class="spr-text-color-brand-base spr-w-[1.39em]"
+                icon="ph:check"
+              />
+            </template>
+            <template v-if="props.ladderized">
+              <Icon
+                v-if="item.sublevel && item.sublevel?.length > 0"
+                class="spr-text-color-weak spr-size-4"
+                icon="ph:caret-right"
+              />
+            </template>
           </template>
         </div>
       </template>
@@ -123,12 +147,12 @@
 
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue';
-
 import { listPropTypes, listEmitTypes } from './list';
 import { useList } from './use-list';
-
 import SprCheckbox from '@/components/checkbox/checkbox.vue';
 import SprInputSearch from '@/components/input/input-search/input-search.vue';
+import SprLozenge from '@/components/lozenge/lozenge.vue';
+import { LOZENGE_TONE } from '@/components/lozenge/lozenge';
 
 const props = defineProps(listPropTypes);
 const emit = defineEmits(listEmitTypes);

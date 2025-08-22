@@ -10,6 +10,7 @@ import type { MenuListType } from '../../list/list';
 interface MultiSelectClasses {
   baseClasses: string;
   labelClasses: string;
+  supportingLabelClasses: string;
   chippedInputTextBaseClasses: string;
   chippedInputTextClasses: string;
   chippedIconClasses: string;
@@ -23,7 +24,11 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
   const multiSelectClasses: ComputedRef<MultiSelectClasses> = computed(() => {
     const baseClasses = classNames('spr-flex spr-flex-col spr-gap-size-spacing-4xs');
 
-    const labelClasses = classNames('spr-body-sm-regular spr-text-color-strong spr-block', {
+    const labelClasses = classNames('spr-body-sm-regular spr-text-color-strong spr-flex spr-gap-2', {
+      'spr-text-color-on-fill-disabled': disabled.value,
+    });
+
+    const supportingLabelClasses = classNames('spr-body-sm-regular spr-text-color-supporting', {
       'spr-text-color-on-fill-disabled': disabled.value,
     });
 
@@ -82,6 +87,7 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     return {
       baseClasses,
       labelClasses,
+      supportingLabelClasses,
       chippedInputTextBaseClasses,
       chippedInputTextClasses,
       chippedIconClasses,

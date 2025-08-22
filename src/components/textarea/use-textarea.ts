@@ -14,7 +14,12 @@ export const useTextArea = (props: TextAreaPropTypes, emit: SetupContext<TextAre
   const textareaClasses = computed(() => {
     const wrapperClasses = classNames('spr-flex spr-flex-col spr-gap-size-spacing-4xs');
 
-    const labelClasses = classNames('spr-body-sm-regular spr-text-color-strong spr-block', {
+    const labelClasses = classNames('spr-body-sm-regular spr-text-color-strong spr-flex spr-gap-2', {
+      'spr-text-color-on-fill-disabled': disabled.value,
+      'spr-text-color-base': readonly.value,
+    });
+
+    const supportingLabelClasses = classNames('spr-body-sm-regular spr-text-color-supporting', {
       'spr-text-color-on-fill-disabled': disabled.value,
       'spr-text-color-base': readonly.value,
     });
@@ -44,7 +49,7 @@ export const useTextArea = (props: TextAreaPropTypes, emit: SetupContext<TextAre
       'spr-justify-end': !props.displayHelper && props.hasCounter,
     });
 
-    return { wrapperClasses, labelClasses, textAreaClasses, helperClasses, slotWrapperClasses };
+    return { wrapperClasses, labelClasses, supportingLabelClasses, textAreaClasses, helperClasses, slotWrapperClasses };
   });
 
   const onInput = (event: Event) => {

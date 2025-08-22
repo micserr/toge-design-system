@@ -1,7 +1,10 @@
 <template>
   <div :class="ladderizedClasses.baseClasses">
-    <label v-if="props.label" :for="props.id" :class="ladderizedClasses.labelClasses">
-      {{ props.label }}
+    <label v-if="props.label || props.supportingLabel" :for="props.id" :class="ladderizedClasses.labelClasses">
+      <span v-if="props.label">{{ props.label }}</span>
+      <span v-if="props.supportingLabel" :class="ladderizedClasses.supportingLabelClasses">
+        {{ props.supportingLabel }}
+      </span>
     </label>
 
     <Menu

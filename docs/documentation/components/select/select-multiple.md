@@ -977,9 +977,15 @@ const userList = ref([
       <td>-</td>
     </tr>
     <tr>
-      <td>label</td>
+    <td>label</td>
       <td>Label for the select input.</td>
       <td>String</td>
+      <td>''</td>
+    </tr>
+    <tr>
+      <td>supporting-label</td>
+      <td>Text beside label that has a supporting style</td>
+      <td>string</td>
       <td>''</td>
     </tr>
     <tr>

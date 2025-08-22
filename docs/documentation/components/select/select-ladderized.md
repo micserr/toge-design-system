@@ -240,6 +240,49 @@ To preselect an item in the ladderized select, the model value array should repr
   </code>
 </div>
 
+## Text Seperator
+
+You can customize the separator between values in the ladderized text input by passing the `text-seperator` prop. The default separator is ' > '.
+
+<div class="spr-grid spr-gap-4">
+   <spr-select-ladderized
+    id="ladderized-select-text-seperator1"
+    v-model="laderrizedSelectModel.textSeperatorLadderizedSelect1"
+    :options="options"
+    label="Ladderized Select"
+    placeholder="Select an item"
+  />
+  <spr-select-ladderized
+    id="ladderized-select-text-seperator2"
+    v-model="laderrizedSelectModel.textSeperatorLadderizedSelect2"
+    :options="options"
+    text-seperator=", "
+    label="Ladderized Select"
+    placeholder="Select an item"
+  />
+</div>
+
+```vue
+<template>
+  <spr-select-ladderized
+    id="ladderized-select"
+    v-model="laderrizedSelectModel"
+    :options="options"
+    label="Ladderized Select"
+    placeholder="Select an item"
+  />
+
+  <spr-select-ladderized
+    id="ladderized-select"
+    v-model="laderrizedSelectModel"
+    :options="options"
+    label="Ladderized Select"
+    placeholder="Select an item"
+    text-seperator=", "
+  />
+</template>
+```
+
 ## Search
 
 To enable searching through the options, set the `searchable-options` prop to `true`. This allows users to filter options by typing in the input field.
@@ -606,6 +649,12 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
       <td><code>''</code></td>
     </tr>
     <tr>
+      <td><code>text-seperator</code></td>
+      <td>Customize the seperator between value in ladderized text input</td>
+      <td>String</td>
+      <td><code>' > '</code></td>
+    </tr>
+    <tr>
       <td><code>helperText</code></td>
       <td>Helper text below input</td>
       <td>String</td>
@@ -717,6 +766,8 @@ const laderrizedSelectModel = ref({
   basicLadderizedSelect: [],
   searchableOptionsLadderizedSelect: [],
   preSelectedLadderizedSelect: [ "lion", "cub", "cub1" ],
+  textSeperatorLadderizedSelect1: [],
+  textSeperatorLadderizedSelect2: [],
   placementsLadderizedSelect: [],
   clearableLadderizedSelect: [],
   widthLadderizedSelect: [],

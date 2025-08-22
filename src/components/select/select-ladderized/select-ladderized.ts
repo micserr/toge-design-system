@@ -48,6 +48,10 @@ export const selectLadderizedPropTypes = {
     type: String,
     default: '',
   },
+  textSeperator: {
+    type: String,
+    default: ' > ',
+  },
   helperText: {
     type: String,
     default: '',

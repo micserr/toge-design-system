@@ -9,7 +9,7 @@ export const useSelectLadderized = (
   props: SelectLadderizedPropTypes,
   emit: (event: string, ...args: unknown[]) => void,
 ) => {
-  const { options, disabled } = toRefs(props);
+  const { options, disabled, textSeperator } = toRefs(props);
 
   const ladderizedClasses = computed(() => ({
     baseClasses: 'spr-flex spr-flex-col spr-gap-size-spacing-4xs',
@@ -81,7 +81,7 @@ export const useSelectLadderized = (
         }
 
         ladderizedSelectModel.value = valuePath.map(String);
-        inputText.value = fullPath.join(' > ');
+        inputText.value = fullPath.join(props.textSeperator);
 
         // Find the actual item object for the last value in the path
         let leafItem: MenuListType | undefined = undefined;
@@ -129,7 +129,7 @@ export const useSelectLadderized = (
     if (itemToCheck) {
       const path = findPathToValue(ladderizedSelectOptions.value, itemToCheck.value);
 
-      inputText.value = path ? path.join(' > ') : itemToCheck.text || '';
+      inputText.value = path ? path.join(props.textSeperator) : itemToCheck.text || '';
 
       if (isLeafNode(itemToCheck)) {
         ladderizedSelectPopperState.value = false;
@@ -189,7 +189,7 @@ export const useSelectLadderized = (
           currentLevel = found.sublevel || [];
         }
 
-        inputText.value = pathTexts.join(' > ');
+        inputText.value = pathTexts.join(props.textSeperator);
       }
     },
     { immediate: true },

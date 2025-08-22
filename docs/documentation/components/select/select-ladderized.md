@@ -631,13 +631,13 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
       <td><code>[]</code></td>
     </tr>
     <tr>
-      <td>label</td>
+      <td><code>label</code></td>
       <td>Label for the select input.</td>
       <td>String</td>
       <td>''</td>
     </tr>
     <tr>
-      <td>supporting-label</td>
+      <td><code>supporting-label</code></td>
       <td>Text beside label that has a supporting style</td>
       <td>string</td>
       <td>''</td>

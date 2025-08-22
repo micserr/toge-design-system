@@ -13,7 +13,8 @@ export const useSelectLadderized = (
 
   const ladderizedClasses = computed(() => ({
     baseClasses: 'spr-flex spr-flex-col spr-gap-size-spacing-4xs',
-    labelClasses: 'spr-body-sm-regular spr-text-color-strong spr-block',
+    labelClasses: 'spr-body-sm-regular spr-text-color-strong spr-flex spr-gap-2',
+    supportingLabelClasses: 'spr-body-sm-regular spr-text-color-supporting',
   }));
 
   // Popper Variables

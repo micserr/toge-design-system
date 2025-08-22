@@ -2,7 +2,9 @@
   <div :class="textareaClasses.wrapperClasses">
     <label v-if="props.label || props.supportingLabel" :for="props.id" :class="textareaClasses.labelClasses">
       <span v-if="props.label">{{ props.label }}</span>
-      <span v-if="props.supportingLabel">{{ props.supportingLabel }}</span>
+      <span v-if="props.supportingLabel" :class="textareaClasses.supportingLabelClasses">
+        {{ props.supportingLabel }}
+      </span>
     </label>
 
     <textarea

@@ -164,6 +164,8 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     selectPopperState.value = !selectPopperState.value;
 
     isSearching.value = false;
+
+    emit('popper-state', !selectPopperState.value);
   };
 
   // Handle selected item for simple list component
@@ -201,6 +203,7 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     // Always close select for single selection
     setTimeout(() => {
       selectPopperState.value = false;
+      emit('popper-state', false);
     }, 10);
   };
 
@@ -334,6 +337,8 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     }
 
     isSearching.value = false;
+
+    emit('popper-state', false);
   });
 
   useInfiniteScroll(

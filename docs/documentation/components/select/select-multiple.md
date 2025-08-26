@@ -270,7 +270,6 @@ You can disable local search by passing the `disabled-local-search` prop. This i
 
 Use `@searchString` emit to get the search string when the user types in the search input. This allows you to handle the search logic externally, such as fetching options from an API based on the search query.
 
-````vue
 <div class="spr-grid spr-gap-4">
   <spr-select-multiple
     id="sample-selectSearchDisabledLocalSearch"
@@ -319,13 +318,12 @@ const options = ref([
   { text: '89 Quince', value: '50' },
 ]);
 </script>
-````
+```
 
 You can disable local search by passing the `disabled-local-search` prop. This is useful when you want to handle search via API only, and not filter the options locally.
 
 Use `@searchString` emit to get the search string when the user types in the search input. This allows you to handle the search logic externally, such as fetching options from an API based on the search query.
 
-````vue
 <div class="spr-grid spr-gap-4">
   <spr-select-multple
     id="sample-selectSearchDisabledLocalSearch"
@@ -374,7 +372,7 @@ const options = ref([
   { text: '89 Quince', value: '50' },
 ]);
 </script>
-````
+```
 
 ## Placements
 
@@ -655,14 +653,16 @@ For guidance on implementing error, active, and disabled states in the select co
 </div>
 
 ```vue
-<spr-select-multiple
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  active
-/>
+<template>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    active
+  />
+</template>
 ```
 
 ### Disabled State
@@ -679,14 +679,16 @@ For guidance on implementing error, active, and disabled states in the select co
 </div>
 
 ```vue
-<spr-select-multiple
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  disabled
-/>
+<template>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    disabled
+  />
+</template>
 ```
 
 ### Error State
@@ -703,14 +705,16 @@ For guidance on implementing error, active, and disabled states in the select co
 </div>
 
 ```vue
-<spr-select-multiple
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  error
-/>
+<template>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    error
+  />
+</template>
 ```
 
 ## Helper Message
@@ -743,27 +747,29 @@ To display the helper message, set the `display-helper` prop to `true` and add t
 </div>
 
 ```vue
-<spr-select-multiple
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  helper-text="This is a helper message"
-  display-helper
-/>
+<template>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    helper-text="This is a helper message"
+    display-helper
+  />
 
-<spr-select-multiple
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  helper-text="This is an error message"
-  helper-icon="ph:warning-circle-fill"
-  display-helper
-  error
-/>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    helper-text="This is an error message"
+    helper-icon="ph:warning-circle-fill"
+    display-helper
+    error
+  />
+</template>
 ```
 
 Alternatively, you can use the `helperMessage` slot to display a custom helper message.
@@ -796,31 +802,33 @@ Alternatively, you can use the `helperMessage` slot to display a custom helper m
 </div>
 
 ```vue
-<spr-select-multiple
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  display-helper
->
-  <template #helperMessage>This is a helper message</template>
-</spr-select-multiple>
+<template>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    display-helper
+  >
+    <template #helperMessage>This is a helper message</template>
+  </spr-select-multiple>
 
-<spr-select-multiple
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  display-helper
-  error
->
-  <template #helperMessage>
-    <icon icon="ph:warning-circle-fill" width="20px" height="20px" />
-    <span>This is an error message</span>
-  </template>
-</spr-select-multiple>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    display-helper
+    error
+  >
+    <template #helperMessage>
+      <icon icon="ph:warning-circle-fill" width="20px" height="20px" />
+      <span>This is an error message</span>
+    </template>
+  </spr-select-multiple>
+</template>
 ```
 
 ## Supported Value Types

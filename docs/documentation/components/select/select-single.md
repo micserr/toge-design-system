@@ -1077,7 +1077,7 @@ const userList = ref([
       <td>None</td>
     </tr>
     <tr>
-      <td>@searchString</td>
+      <td>@search-string</td>
       <td>Event emitted when you type in the search input</td>
       <td>None</td>
     </tr>

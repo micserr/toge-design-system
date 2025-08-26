@@ -283,6 +283,38 @@ You can customize the separator between values in the ladderized text input by p
 </template>
 ```
 
+## Prepend Text
+
+You can prepend text in the ladderized text input by passing the `prepend-text` prop.
+
+<div class="spr-grid spr-gap-4">
+   <spr-select-ladderized
+    id="ladderized-select-prepend-text"
+    v-model="laderrizedSelectModel.prependTextLadderizedSelect"
+    :options="options"
+    label="Ladderized Select"
+    placeholder="Select an item"
+    prepend-text
+  />
+
+  <code class="spr-font-medium">
+    V-Model: {{ laderrizedSelectModel.prependTextLadderizedSelect  }}
+  </code>
+</div>
+
+```vue
+<template>
+  <spr-select-ladderized
+    id="ladderized-select"
+    v-model="laderrizedSelectModel"
+    :options="options"
+    label="Ladderized Select"
+    placeholder="Select an item"
+    prepend-text
+  />
+</template>
+```
+
 ## Search
 
 To enable searching through the options, set the `searchable-options` prop to `true`. This allows users to filter options by typing in the input field.
@@ -655,19 +687,25 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
       <td><code>' > '</code></td>
     </tr>
     <tr>
-      <td><code>helperText</code></td>
+      <td><code>prepend-text</code></td>
+      <td>Prepend the text in the ladderized text input</td>
+      <td>Boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>helper-text</code></td>
       <td>Helper text below input</td>
       <td>String</td>
       <td><code>''</code></td>
     </tr>
     <tr>
-      <td><code>helperIcon</code></td>
+      <td><code>helper-icon</code></td>
       <td>Icon for helper text</td>
       <td>String</td>
       <td><code>null</code></td>
     </tr>
     <tr>
-      <td><code>displayHelper</code></td>
+      <td><code>display-helper</code></td>
       <td>Show helper text</td>
       <td>Boolean</td>
       <td><code>false</code></td>
@@ -685,7 +723,7 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
       <td><code>bottom</code></td>
     </tr>
     <tr>
-      <td><code>wrapperPosition</code></td>
+      <td><code>wrapper-position</code></td>
       <td>CSS position of wrapper</td>
       <td>String</td>
       <td><code>relative</code></td>
@@ -697,13 +735,13 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
       <td><code>100%</code></td>
     </tr>
     <tr>
-      <td><code>popperWidth</code></td>
+      <td><code>popper-width</code></td>
       <td>Width of the select popper</td>
       <td>String</td>
       <td><code>100%</code></td>
     </tr>
     <tr>
-      <td><code>popperStrategy</code></td>
+      <td><code>popper-strategy</code></td>
       <td>Popper positioning strategy ('absolute' or 'fixed')</td>
       <td>String</td>
       <td><code>absolute</code></td>
@@ -715,7 +753,7 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>removeCurrentLevelInBackLabel</code></td>
+      <td><code>remove-current-level-in-back-label</code></td>
       <td>Hide current level in back label</td>
       <td>Boolean</td>
       <td><code>false</code></td>
@@ -768,6 +806,7 @@ const laderrizedSelectModel = ref({
   preSelectedLadderizedSelect: [ "lion", "cub", "cub1" ],
   textSeperatorLadderizedSelect1: [],
   textSeperatorLadderizedSelect2: [],
+  prependTextLadderizedSelect: [],
   placementsLadderizedSelect: [],
   clearableLadderizedSelect: [],
   widthLadderizedSelect: [],

@@ -1,6 +1,12 @@
 <template>
   <div :class="textareaClasses.wrapperClasses">
-    <label v-if="label" :for="id" :class="textareaClasses.labelClasses">{{ label }}</label>
+    <label v-if="props.label || props.supportingLabel" :for="props.id" :class="textareaClasses.labelClasses">
+      <span v-if="props.label">{{ props.label }}</span>
+      <span v-if="props.supportingLabel" :class="textareaClasses.supportingLabelClasses">
+        {{ props.supportingLabel }}
+      </span>
+    </label>
+
     <textarea
       v-bind="$attrs"
       :id="props.id"

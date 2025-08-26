@@ -9,6 +9,7 @@ import type { InputPropTypes, InputEmitTypes } from './input';
 interface InputClasses {
   baseClasses: string;
   labelClasses: string;
+  supportingLabelClasses: string;
   inputTextBaseClasses: string;
   inputTextClasses: string;
   iconSlotClasses: string;
@@ -31,11 +32,11 @@ export const useInput = (
   const { focused } = useFocus(inputTextRef);
 
   const modelValue = useVModel(props, 'modelValue', emit);
-  
+
   const currentLength = computed(() => {
     return modelValue.value ? String(modelValue.value).length : 0;
   });
-  
+
   const hasCharLimit = computed(() => {
     return maxLength.value !== undefined && maxLength.value > 0;
   });
@@ -43,7 +44,11 @@ export const useInput = (
   const inputClasses: ComputedRef<InputClasses> = computed(() => {
     const baseClasses = classNames('spr-flex spr-flex-col spr-gap-size-spacing-4xs');
 
-    const labelClasses = classNames('spr-body-sm-regular spr-text-color-strong spr-block', {
+    const labelClasses = classNames('spr-body-sm-regular spr-text-color-strong spr-flex spr-gap-2', {
+      'spr-text-color-on-fill-disabled': disabled.value,
+    });
+
+    const supportingLabelClasses = classNames('spr-body-sm-regular spr-text-color-supporting', {
       'spr-text-color-on-fill-disabled': disabled.value,
     });
 
@@ -109,23 +114,30 @@ export const useInput = (
       'spr-text-mushroom-300': !error.value,
       'spr-text-tomato-600': error.value,
     });
-    
+
     const helperContainerClasses = classNames('spr-flex spr-flex-row spr-items-start spr-justify-between spr-w-full', {
       'spr-mt-1': showCharCount.value || props.displayHelper,
     });
 
-    const helperClasses = classNames('spr-body-sm-regular spr-flex spr-items-center spr-gap-size-spacing-5xs spr-flex-1', {
-      'spr-text-color-danger-base': error.value,
-      'spr-text-color-supporting': !error.value,
-    });
-    
-    const charCountClasses = classNames('spr-ml-auto spr-body-2xs-regular spr-text-right spr-text-xs spr-text-color-supporting', {
-      'spr-text-color-danger-base': hasCharLimit.value && currentLength.value >= (maxLength.value || 0),
-    });
+    const helperClasses = classNames(
+      'spr-body-sm-regular spr-flex spr-items-center spr-gap-size-spacing-5xs spr-flex-1',
+      {
+        'spr-text-color-danger-base': error.value,
+        'spr-text-color-supporting': !error.value,
+      },
+    );
+
+    const charCountClasses = classNames(
+      'spr-ml-auto spr-body-2xs-regular spr-text-right spr-text-xs spr-text-color-supporting',
+      {
+        'spr-text-color-danger-base': hasCharLimit.value && currentLength.value >= (maxLength.value || 0),
+      },
+    );
 
     return {
       baseClasses,
       labelClasses,
+      supportingLabelClasses,
       inputTextBaseClasses,
       inputTextClasses,
       iconSlotClasses,
@@ -140,12 +152,12 @@ export const useInput = (
   const onInput = (event: Event) => {
     const target = event.target as HTMLInputElement;
     let value: string | number = target.value;
-    
+
     // Convert to number if type is number
     if (props.type === 'number' && value !== '') {
       value = Number(value);
     }
-    
+
     modelValue.value = value;
   };
 

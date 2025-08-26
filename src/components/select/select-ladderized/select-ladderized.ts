@@ -40,9 +40,21 @@ export const selectLadderizedPropTypes = {
     type: String,
     default: '',
   },
+  supportingLabel: {
+    type: String,
+    default: '',
+  },
   placeholder: {
     type: String,
     default: '',
+  },
+  textSeperator: {
+    type: String,
+    default: ' > ',
+  },
+  prependText: {
+    type: Boolean,
+    default: false,
   },
   helperText: {
     type: String,

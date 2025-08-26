@@ -4,6 +4,7 @@
 
 - Fix
   - Added emit for popper state for single select, multi select and ladderized select
+  - single select, multi select and ladderized select documentation update
   - Fix error state for ladderized select
     ([#84a16ec0](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/84a16ec05f378afb0a4db072ebd4b1da994c5dca?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
 

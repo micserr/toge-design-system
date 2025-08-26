@@ -789,6 +789,11 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
       <td>Array | String | Number | Object</td>
       <td>Emitted when the selection changes. Payload is the new selected value(s).</td>
     </tr>
+    <tr>
+      <td>@popper-state</td>
+      <td>Bolean</td>
+      <td>Event emitted when you open or close the popper</td>
+    </tr>
   </tbody>
 </table>
 

@@ -1101,9 +1101,14 @@ const userList = ref([
   </thead>
   <tbody>
     <tr>
-      <td>update:modelValue</td>
-      <td>array</td>
+      <td>@update:modelValue</td>
+      <td>Array</td>
       <td>Emitted when the selection changes</td>
+    </tr>
+    <tr>
+      <td>@popper-state</td>
+      <td>Bolean</td>
+      <td>Event emitted when you open or close the popper</td>
     </tr>
   </tbody>
 </table>

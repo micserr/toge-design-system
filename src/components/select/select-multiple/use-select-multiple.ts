@@ -193,6 +193,8 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
    */
   const handleOptionsToggle = () => {
     multiSelectPopperState.value = !multiSelectPopperState.value;
+
+    emit('popper-state', !multiSelectPopperState.value);
   };
 
   /**
@@ -328,6 +330,8 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     multiSelectedListItems.value = [];
     inputText.value = '';
     multiSelectPopperState.value = false;
+
+    emit('popper-state', false);
   };
 
   watch(multiSelectModel, () => {
@@ -363,6 +367,8 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     multiSelectPopperState.value = false;
 
     updateMultiSelectedItemsFromValue();
+
+    emit('popper-state', false);
   });
 
   useInfiniteScroll(

@@ -67,6 +67,10 @@ export const multiSelectPropTypes = {
     type: String,
     default: '',
   },
+  supportingLabel: {
+    type: String,
+    default: '',
+  },
   placement: {
     type: String as PropType<(typeof PLACEMENTS_TYPES)[number]>,
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),

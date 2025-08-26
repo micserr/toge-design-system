@@ -270,7 +270,6 @@ You can disable local search by passing the `disabled-local-search` prop. This i
 
 Use `@searchString` emit to get the search string when the user types in the search input. This allows you to handle the search logic externally, such as fetching options from an API based on the search query.
 
-````vue
 <div class="spr-grid spr-gap-4">
   <spr-select-multiple
     id="sample-selectSearchDisabledLocalSearch"
@@ -319,13 +318,12 @@ const options = ref([
   { text: '89 Quince', value: '50' },
 ]);
 </script>
-````
+```
 
 You can disable local search by passing the `disabled-local-search` prop. This is useful when you want to handle search via API only, and not filter the options locally.
 
 Use `@searchString` emit to get the search string when the user types in the search input. This allows you to handle the search logic externally, such as fetching options from an API based on the search query.
 
-````vue
 <div class="spr-grid spr-gap-4">
   <spr-select-multple
     id="sample-selectSearchDisabledLocalSearch"
@@ -374,7 +372,7 @@ const options = ref([
   { text: '89 Quince', value: '50' },
 ]);
 </script>
-````
+```
 
 ## Placements
 
@@ -655,14 +653,16 @@ For guidance on implementing error, active, and disabled states in the select co
 </div>
 
 ```vue
-<spr-select-multiple
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  active
-/>
+<template>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    active
+  />
+</template>
 ```
 
 ### Disabled State
@@ -679,14 +679,16 @@ For guidance on implementing error, active, and disabled states in the select co
 </div>
 
 ```vue
-<spr-select-multiple
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  disabled
-/>
+<template>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    disabled
+  />
+</template>
 ```
 
 ### Error State
@@ -703,14 +705,16 @@ For guidance on implementing error, active, and disabled states in the select co
 </div>
 
 ```vue
-<spr-select-multiple
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  error
-/>
+<template>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    error
+  />
+</template>
 ```
 
 ## Helper Message
@@ -743,27 +747,29 @@ To display the helper message, set the `display-helper` prop to `true` and add t
 </div>
 
 ```vue
-<spr-select-multiple
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  helper-text="This is a helper message"
-  display-helper
-/>
+<template>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    helper-text="This is a helper message"
+    display-helper
+  />
 
-<spr-select-multiple
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  helper-text="This is an error message"
-  helper-icon="ph:warning-circle-fill"
-  display-helper
-  error
-/>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    helper-text="This is an error message"
+    helper-icon="ph:warning-circle-fill"
+    display-helper
+    error
+  />
+</template>
 ```
 
 Alternatively, you can use the `helperMessage` slot to display a custom helper message.
@@ -796,31 +802,33 @@ Alternatively, you can use the `helperMessage` slot to display a custom helper m
 </div>
 
 ```vue
-<spr-select-multiple
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  display-helper
->
-  <template #helperMessage>This is a helper message</template>
-</spr-select-multiple>
+<template>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    display-helper
+  >
+    <template #helperMessage>This is a helper message</template>
+  </spr-select-multiple>
 
-<spr-select-multiple
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  display-helper
-  error
->
-  <template #helperMessage>
-    <icon icon="ph:warning-circle-fill" width="20px" height="20px" />
-    <span>This is an error message</span>
-  </template>
-</spr-select-multiple>
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    display-helper
+    error
+  >
+    <template #helperMessage>
+      <icon icon="ph:warning-circle-fill" width="20px" height="20px" />
+      <span>This is an error message</span>
+    </template>
+  </spr-select-multiple>
+</template>
 ```
 
 ## Supported Value Types
@@ -929,145 +937,151 @@ const userList = ref([
   </thead>
   <tbody>
     <tr>
-      <td>id</td>
+      <td><code>id</code></td>
       <td>Required to bind popper within the select</td>
       <td>String</td>
       <td>-</td>
     </tr>
     <tr>
-      <td>v-model</td>
+      <td><code>v-model</code></td>
       <td>Value binding for the select. Accepts an array of strings, numbers, or objects. Always use an array for multi-select.</td>
       <td>Array</td>
       <td>[]</td>
     </tr>
     <tr>
-      <td>searchValue</td>
+      <td><code>search-value</code></td>
       <td>Value binding for the search input. Accepts a string.</td>
       <td>String</td>
       <td>''</td>
     </tr>
     <tr>
-      <td>options</td>
+      <td><code>options</code></td>
       <td>List of options. Can be an array of strings, numbers, or objects with <code>text</code> and <code>value</code> fields.</td>
       <td>Array</td>
       <td>[]</td>
     </tr>
     <tr>
-      <td>group-items-by</td>
+      <td><code>group-items-by</code></td>
       <td>Group items by a specific field. Supported: 'A-Z', 'Z-A'.</td>
       <td>String</td>
       <td>-</td>
     </tr>
     <tr>
-      <td>text-field</td>
+      <td><code>text-field</code></td>
       <td>Field name to use for display text when using object arrays.</td>
       <td>String</td>
       <td>'text'</td>
     </tr>
     <tr>
-      <td>value-field</td>
+      <td><code>value-field</code></td>
       <td>Field name to use for value when using object arrays.</td>
       <td>String</td>
       <td>'value'</td>
     </tr>
     <tr>
-      <td>placeholder</td>
+      <td><code>placeholder</code></td>
       <td>Placeholder text for the input.</td>
       <td>String</td>
       <td>-</td>
     </tr>
     <tr>
-      <td>label</td>
+    <td><code>label</code></td>
       <td>Label for the select input.</td>
       <td>String</td>
       <td>''</td>
     </tr>
     <tr>
-      <td>placement</td>
+      <td><code>supporting-label</code></td>
+      <td>Text beside label that has a supporting style</td>
+      <td>string</td>
+      <td>''</td>
+    </tr>
+    <tr>
+      <td><code>placement</code></td>
       <td>Popper placement. See available options in the documentation.</td>
       <td>String</td>
       <td>'bottom'</td>
     </tr>
     <tr>
-      <td>popper-strategy</td>
+      <td><code>popper-strategy</code></td>
       <td>Popper positioning strategy. 'absolute' or 'fixed'.</td>
       <td>String</td>
       <td>'absolute'</td>
     </tr>
     <tr>
-      <td>popper-width</td>
+      <td><code>popper-width</code></td>
       <td>Width of the popper element.</td>
       <td>String</td>
       <td>'100%'</td>
     </tr>
     <tr>
-      <td>width</td>
+      <td><code>width</code></td>
       <td>Width of the select wrapper.</td>
       <td>String</td>
       <td>'100%'</td>
     </tr>
     <tr>
-      <td>wrapper-position</td>
+      <td><code>wrapper-position</code></td>
       <td>CSS position of the wrapper. Use 'initial' for modal usage.</td>
       <td>String</td>
       <td>'relative'</td>
     </tr>
     <tr>
-      <td>display-text</td>
+      <td><code>display-text</code></td>
       <td>Display text for the input (useful for async/infinite scroll).</td>
       <td>String</td>
       <td>-</td>
     </tr>
     <tr>
-      <td>display-helper</td>
+      <td><code>display-helper</code></td>
       <td>Show helper text below the input.</td>
       <td>Boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>helper-icon</td>
+      <td><code>helper-icon</code></td>
       <td>Icon to display with the helper text.</td>
       <td>String</td>
       <td>null</td>
     </tr>
     <tr>
-      <td>helper-text</td>
+      <td><code>helper-text</code></td>
       <td>Helper text to display below the input.</td>
       <td>String</td>
       <td>''</td>
     </tr>
     <tr>
-      <td>disabled</td>
+      <td><code>disabled</code></td>
       <td>Disable the select input and popper.</td>
       <td>Boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>clearable</td>
+      <td><code>clearable</code></td>
       <td>Show a clear button to remove all selections.</td>
       <td>Boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>chipped</td>
+      <td><code>chipped</code></td>
       <td>Make the inut field selected items into chips.</td>
       <td>Boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>searchable</td>
+      <td><code>searchable</code></td>
       <td>Enable searching within the select options.</td>
       <td>Boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>loading</td>
+      <td><code>loading</code></td>
       <td>Show loading state for async options.</td>
       <td>Boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>disabledLocalSearch</td>
+      <td><code>disabled-local-search</code></td>
       <td>Disable local search functionality.</td>
       <td>Boolean</td>
       <td>false</td>

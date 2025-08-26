@@ -148,6 +148,7 @@ export const multiSelectEmitTypes = {
   'update:modelValue': (_value: unknown) => true,
   'update:searchValue': (value: string) => typeof value === 'string',
   'infinite-scroll-trigger': Boolean,
+  'popper-state': Boolean,
 };
 
 export type MultiSelectPropTypes = ExtractPropTypes<typeof multiSelectPropTypes>;

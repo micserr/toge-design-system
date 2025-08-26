@@ -142,6 +142,8 @@ export const selectEmitTypes = {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'search-string': (_search: string | number) => true,
+
+  'popper-state': Boolean,
 };
 
 export type SelectPropTypes = ExtractPropTypes<typeof selectPropTypes>;

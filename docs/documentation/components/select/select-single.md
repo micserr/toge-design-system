@@ -1061,25 +1061,30 @@ const userList = ref([
   <thead>
     <tr>
       <th>Event</th>
-      <th>Description</th>
       <th>Payload</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>@update:model-value</td>
-      <td>Event emitted when the model value changes</td>
       <td>Any</td>
+      <td>Event emitted when the model value changes</td>
     </tr>
     <tr>
       <td>@infinite-scroll-trigger</td>
-      <td>Event emitted when the select is scrolled to the bottom (for dynamic data loading)</td>
       <td>None</td>
+      <td>Event emitted when the select is scrolled to the bottom (for dynamic data loading)</td>
     </tr>
     <tr>
       <td>@search-string</td>
-      <td>Event emitted when you type in the search input</td>
       <td>None</td>
+      <td>Event emitted when you type in the search input</td>
+    </tr>
+    <tr>
+      <td>@popper-state</td>
+      <td>Bolean</td>
+      <td>Event emitted when you open or close the popper</td>
     </tr>
   </tbody>
 </table>

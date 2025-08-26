@@ -38,6 +38,7 @@
           :display-helper="props.displayHelper"
           readonly
           :disabled="props.disabled"
+          :error="props.error"
           @keyup="handleSearch"
         >
           <template #icon>
@@ -50,6 +51,10 @@
               />
               <Icon icon="ph:caret-down" />
             </div>
+          </template>
+
+          <template #helperMessage>
+            <slot name="helperMessage" />
           </template>
         </spr-input>
       </div>

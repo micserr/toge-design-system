@@ -102,6 +102,8 @@ export const useSelectLadderized = (
 
         if (leafItem && isLeafNode(leafItem)) {
           ladderizedSelectPopperState.value = false;
+
+          emit('popper-state', false);
         }
 
         return;
@@ -139,6 +141,8 @@ export const useSelectLadderized = (
 
       if (isLeafNode(itemToCheck)) {
         ladderizedSelectPopperState.value = false;
+
+        emit('popper-state', false);
       }
     } else if (selectedItems.length === 0 && !wasCleared.value) {
       inputText.value = '';
@@ -167,6 +171,8 @@ export const useSelectLadderized = (
     ladderizedSelectPopperState.value = true;
 
     isSearching.value = false;
+
+    emit('popper-state', true);
   };
 
   // Watch for changes in modelValue to update inputText
@@ -205,6 +211,8 @@ export const useSelectLadderized = (
 
   onClickOutside(ladderizedSelectRef, () => {
     ladderizedSelectPopperState.value = false;
+
+    emit('popper-state', false);
   });
 
   return {

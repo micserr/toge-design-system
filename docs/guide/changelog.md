@@ -3,6 +3,12 @@
 ## 2.12.10 (2025-08-26)
 
 - Fix
+  - DQA for Bordered Checkbox and Textarea
+    ([#96521980](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/965219807d8b57a026ee4c3e1f3c670006e2b245?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 2.12.10 (2025-08-26)
+
+- Fix
   - Added emit for popper state for single select, multi select and ladderized select
   - single select, multi select and ladderized select documentation update
   - Fix error state for ladderized select

@@ -44,7 +44,7 @@ export const useTextArea = (props: TextAreaPropTypes, emit: SetupContext<TextAre
       'spr-text-color-supporting': !error.value,
     });
 
-    const slotWrapperClasses = classNames('spr-flex spr-items-center', {
+    const slotWrapperClasses = classNames('spr-flex spr-items-start', {
       'spr-justify-between': props.displayHelper && props.hasCounter,
       'spr-justify-end': !props.displayHelper && props.hasCounter,
     });

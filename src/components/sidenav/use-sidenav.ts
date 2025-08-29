@@ -1,5 +1,7 @@
 import { ref, onMounted } from 'vue';
 
+import { LOZENGE_TONE } from '../lozenge/lozenge';
+
 import type { SetupContext } from 'vue';
 import type {
   SidenavPropTypes,
@@ -22,6 +24,7 @@ interface ObjectItem {
     menu: string;
     submenu: string;
   };
+  attributes?: Attributes[] | string;
 }
 
 export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEmitTypes>['emit']) => {
@@ -182,21 +185,60 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
     return transformedData;
   };
 
-  const getLozengeTone = (attr: Attributes) => {
-    if (
-      typeof attr === 'object' &&
-      attr !== null &&
-      'tone' in attr &&
-      typeof attr.tone === 'string' &&
-      ['danger', 'information', 'plain', 'pending', 'success', 'neutral', 'caution'].includes(attr.tone)
-    ) {
-      return attr.tone as 'danger' | 'information' | 'plain' | 'pending' | 'success' | 'neutral' | 'caution';
+  const getLozengeTone = (attributes: Attributes | string) => {
+    // Handle case where attr is a string (needs conversion)
+    if (!attributes) return;
+
+    let parsedAttributes;
+
+    if (typeof attributes === 'string') {
+      parsedAttributes = JSON.parse(attributes);
+    } else {
+      parsedAttributes = attributes;
     }
-    return 'success'; // Default tone
+
+    if (parsedAttributes.value.tone && LOZENGE_TONE.includes(parsedAttributes.value.tone)) {
+      return parsedAttributes.value.tone;
+    }
+
+    return 'neutral';
   };
 
-  const getLozengeLabel = (attr: Attributes) => {
-    return attr.value && typeof attr?.value === 'object' && 'label' in attr.value ? String(attr.value.label) : '';
+  const getLozengeLabel = (attributes: Attributes | string) => {
+    // Handle case where attr is a string (needs conversion)
+    if (!attributes) return;
+
+    let parsedAttributes;
+
+    if (typeof attributes === 'string') {
+      parsedAttributes = JSON.parse(attributes);
+    } else {
+      parsedAttributes = attributes;
+    }
+
+    if (parsedAttributes.value.label) {
+      return String(parsedAttributes.value.label);
+    }
+
+    return '';
+  };
+
+  // Utility function to convert string attributes to array
+  const convertAttributesToArray = (attributes: string | Attributes[] | undefined): Attributes[] => {
+    if (!attributes) {
+      return [];
+    }
+
+    if (typeof attributes === 'string') {
+      try {
+        const parsed = JSON.parse(attributes);
+        return Array.isArray(parsed) ? parsed : [parsed];
+      } catch {
+        return [];
+      }
+    }
+
+    return Array.isArray(attributes) ? attributes : [];
   };
 
   onMounted(async () => {
@@ -217,5 +259,6 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
     transformedNavItems,
     getLozengeTone,
     getLozengeLabel,
+    convertAttributesToArray,
   };
 };

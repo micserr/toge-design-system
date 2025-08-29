@@ -5,6 +5,7 @@ import type {
   TablePaginationPropTypes,
   TablePaginationEmitTypes,
 } from '@/components/table/table-pagination/table-pagination';
+import { useVModel } from '@vueuse/core';
 
 interface TablePaginationClasses {
   baseClass: string;
@@ -21,7 +22,9 @@ export const useTablePagination = (
   props: TablePaginationPropTypes,
   emit: SetupContext<TablePaginationEmitTypes>['emit'],
 ) => {
-  const { selectedRowCount, currentPage, totalItems, bordered } = toRefs(props);
+  const { selectedRowCount, totalItems, bordered, editableCurrentPage } = toRefs(props);
+
+  const currentPage = useVModel(props, 'currentPage', emit);
 
   const paginationClasses: ComputedRef<TablePaginationClasses> = computed(() => {
     const baseClass = classNames('spr-p-size-spacing-xs spr-flex spr-justify-between spr-bg-white-50 spr-h-max', {
@@ -30,9 +33,21 @@ export const useTablePagination = (
     });
     const dropdownInputFieldClass = classNames('spr-w-[120px] spr-h-full spr-space-x-2');
     const inputFieldIconClass = classNames('spr-mt-0.5 spr-pl-1 spr-text-mushroom-950');
-    const rightSideClass = classNames('spr-flex spr-justify-between spr-items-center spr-space-x-4');
+    const rightSideClass = classNames(
+      'spr-flex spr-justify-between spr-items-center',
+      {
+        'spr-space-x-4': !editableCurrentPage.value,
+        'spr-gap-size-spacing-3xs': editableCurrentPage.value
+      }
+    );
     const computeRowRangeClass = classNames('spr-text-color-base spr-body-sm-regular');
-    const navigationContainerClass = classNames('spr-flex spr-space-x-2');
+    const navigationContainerClass = classNames(
+      'spr-flex',
+      {
+        'spr-space-x-2': !editableCurrentPage.value,
+        'spr-gap-size-spacing-5xs': editableCurrentPage.value
+      }
+    );
     const navigationButtonClass = classNames('spr-rounded-border-radius-md');
     const dropdownClass = classNames('!spr-w-max');
     return {
@@ -58,7 +73,7 @@ export const useTablePagination = (
     return `${selectedRowCount.value} Rows`;
   });
 
-  const handleSelectedItem = (item: string[]) => {
+  const handleSelectedItem = (item: unknown) => {
     emit('update:selectedRowCount', Number(item));
   };
 
@@ -87,6 +102,11 @@ export const useTablePagination = (
 
   const dropdownId = ref(`dropdown-${generateUniqueId()}`);
 
+  // Get total number of pages
+  const totalPages = computed(() => {
+    return Math.ceil(props.totalItems / props.selectedRowCount);
+  });
+
   return {
     paginationClasses,
     handleSelectedItem,
@@ -98,5 +118,7 @@ export const useTablePagination = (
     disabledPrevious,
     dropdownSelection,
     dropdownId,
+    currentPage,
+    totalPages,
   };
 };

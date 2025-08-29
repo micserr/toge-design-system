@@ -86,7 +86,7 @@
                     <div
                       :id="`${generateId(parentLink.title, menuLinkItem.title)}`"
                       :class="{
-                        'spr-body-sm-regular spr-relative spr-m-0 spr-flex spr-cursor-pointer spr-justify-between spr-px-2 spr-py-1.5 spr-align-middle spr-duration-150 spr-ease-in-out': true,
+                        'spr-body-sm-regular spr-relative spr-m-0 spr-flex spr-cursor-pointer spr-px-2 spr-py-1.5 spr-align-middle spr-duration-150 spr-ease-in-out': true,
                         'spr-background-color-single-active': props.activeNav.menu === menuLinkItem.title,
                         'hover:spr-background-color-hover': props.activeNav.menu !== menuLinkItem.title,
                         'active:spr-background-color-pressed': true,
@@ -96,20 +96,27 @@
                         v-if="props.activeNav.menu === menuLinkItem.title"
                         class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                       ></div>
-                      <span>{{ menuLinkItem.title }}</span>
-                      <div class="spr-flex spr-items-center spr-gap-1">
-                        <template v-for="(attr, i) in menuLinkItem?.attributes" :key="i">
-                          <spr-lozenge
-                            v-if="attr?.name === 'lozenge' && attr?.value"
-                            :label="getLozengeLabel(attr)"
-                            :tone="getLozengeTone(attr)"
-                            fill
+
+                      <div class="spr-flex spr-w-full spr-items-center spr-justify-between spr-gap-1">
+                        <span>{{ menuLinkItem.title }}</span>
+
+                        <div class="spr-flex spr-items-center spr-gap-2">
+                          <template
+                            v-for="(attribute, i) in convertAttributesToArray(menuLinkItem?.attributes)"
+                            :key="i"
+                          >
+                            <spr-lozenge
+                              v-if="attribute?.name === 'lozenge' && attribute?.value"
+                              :label="getLozengeLabel(attribute)"
+                              :tone="getLozengeTone(attribute)"
+                              fill
+                            />
+                          </template>
+                          <Icon
+                            icon="ph:caret-right"
+                            class="spr-h-[16px] spr-w-[16px] spr-transform spr-font-normal spr-transition-transform spr-duration-300"
                           />
-                        </template>
-                        <Icon
-                          icon="ph:caret-right"
-                          class="spr-h-[16px] spr-w-[16px] spr-transform spr-font-normal spr-transition-transform spr-duration-300"
-                        />
+                        </div>
                       </div>
                     </div>
                     <!-- #endregion - Menu links -->
@@ -146,7 +153,7 @@
                               v-if="!submenuLinkItem.hidden"
                               :id="`${generateId(parentLink.title, menuLinkItem.title, submenuLinkItem.title)}`"
                               :class="{
-                                'spr-body-sm-regular spr-relative spr-m-0 spr-flex spr-cursor-pointer spr-justify-between spr-px-2 spr-py-1.5 spr-align-middle spr-duration-150 spr-ease-in-out': true,
+                                'spr-body-sm-regular spr-relative spr-m-0 spr-flex spr-cursor-pointer spr-px-2 spr-py-1.5 spr-align-middle spr-duration-150 spr-ease-in-out': true,
                                 'spr-background-color-single-active': props.activeNav.submenu === submenuLinkItem.title,
                                 'hover:spr-background-color-hover': props.activeNav.submenu !== submenuLinkItem.title,
                                 'active:spr-background-color-pressed': true,
@@ -164,17 +171,23 @@
                                 v-show="props.activeNav.submenu === submenuLinkItem.title"
                                 class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                               ></div>
-                              <div class="spr-flex spr-items-center spr-gap-1">
+
+                              <div class="spr-flex spr-w-full spr-items-center spr-justify-between spr-gap-1">
                                 <span>{{ submenuLinkItem.title }}</span>
 
-                                <template v-for="(attr, i) in submenuLinkItem?.attributes" :key="i">
-                                  <spr-lozenge
-                                    v-if="attr?.name === 'lozenge' && attr?.value"
-                                    :label="getLozengeLabel(attr)"
-                                    :tone="getLozengeTone(attr)"
-                                    fill
-                                  />
-                                </template>
+                                <div class="spr-flex spr-items-center spr-gap-2">
+                                  <template
+                                    v-for="(attribute, i) in convertAttributesToArray(submenuLinkItem?.attributes)"
+                                    :key="i"
+                                  >
+                                    <spr-lozenge
+                                      v-if="attribute?.name === 'lozenge' && attribute?.value"
+                                      :label="getLozengeLabel(attribute)"
+                                      :tone="getLozengeTone(attribute)"
+                                      fill
+                                    />
+                                  </template>
+                                </div>
                               </div>
                             </div>
                             <!-- #endregion - Submenu Links -->
@@ -193,7 +206,7 @@
                     v-if="!menuLinkItem.hidden"
                     :id="`${generateId(parentLink.title, menuLinkItem.title)}`"
                     :class="{
-                      'spr-body-sm-regular spr-relative spr-m-0 spr-flex spr-cursor-pointer spr-justify-between spr-px-2 spr-py-1.5 spr-align-middle spr-duration-150 spr-ease-in-out': true,
+                      'spr-body-sm-regular spr-relative spr-m-0 spr-flex spr-cursor-pointer spr-px-2 spr-py-1.5 spr-align-middle spr-duration-150 spr-ease-in-out': true,
                       'spr-background-color-single-active': props.activeNav.menu === menuLinkItem.title,
                       'hover:spr-background-color-hover': props.activeNav.menu !== menuLinkItem.title,
                       'active:spr-background-color-pressed': true,
@@ -204,15 +217,21 @@
                       v-if="props.activeNav.menu === menuLinkItem.title"
                       class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                     ></div>
-                    <span>{{ menuLinkItem.title }}</span>
-                    <template v-for="(attr, i) in menuLinkItem?.attributes" :key="i">
-                      <spr-lozenge
-                        v-if="attr?.name === 'lozenge' && attr?.value"
-                        :label="getLozengeLabel(attr)"
-                        :tone="getLozengeTone(attr)"
-                        fill
-                      />
-                    </template>
+
+                    <div class="spr-flex spr-w-full spr-items-center spr-justify-between spr-gap-1">
+                      <span>{{ menuLinkItem.title }}</span>
+
+                      <div class="spr-flex spr-items-center spr-gap-2">
+                        <template v-for="(attribute, i) in convertAttributesToArray(menuLinkItem?.attributes)" :key="i">
+                          <spr-lozenge
+                            v-if="attribute?.name === 'lozenge' && attribute?.value"
+                            :label="getLozengeLabel(attribute)"
+                            :tone="getLozengeTone(attribute)"
+                            fill
+                          />
+                        </template>
+                      </div>
+                    </div>
                   </div>
                 </template>
                 <!-- #endregion - Menu link only -->
@@ -300,5 +319,8 @@ import SprTooltip from '../tooltip/tooltip.vue';
 const props = defineProps(sidenavPropTypes);
 const emit = defineEmits(sidenavEmitTypes);
 
-const { handleRedirect, generateId, getLozengeLabel, getLozengeTone } = useSidenav(props, emit);
+const { handleRedirect, generateId, getLozengeLabel, getLozengeTone, convertAttributesToArray } = useSidenav(
+  props,
+  emit,
+);
 </script>

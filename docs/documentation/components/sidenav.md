@@ -1183,7 +1183,7 @@ const userMenu = ref({
 
 ## Full Example
 
-Here’s a full example of how to implement the Sidenav component with the above attributes:
+Here’s a full example of how to implement the Sidenav component:
 
 <div class="no-darkmode spr-m-0 spr-bg-mushroom-100 spr-text-mushroom-950 spr-font-main spr-rounded-md spr-h-[100vh] spr-w-full spr-relative spr-flex">
   <spr-sidenav 
@@ -1393,10 +1393,12 @@ const navLinks = ref({
                             isAbsoluteURL: false,
                             link: '/',
                           },
+                          attributes: [{ name: 'lozenge', value: { label: 'New', tone: 'success' } }],
                         },
                       ],
                     },
                   ],
+                  attributes: [{ name: 'lozenge', value: { label: 'New', tone: 'success' } }],
                 },
                 {
                   title: 'HR Analytics',
@@ -2540,6 +2542,7 @@ const navLinks = ref({
         {
           title: 'HR Home',
           icon: 'ph:house-simple',
+          attributes: [{ name: 'lozenge', value: { label: 'New', tone: 'success' } }],
           menuLinks: [
             {
               menuHeading: 'HR Management',
@@ -2582,10 +2585,12 @@ const navLinks = ref({
                             isAbsoluteURL: false,
                             link: '/',
                           },
+                          attributes: [{ name: 'lozenge', value: { label: 'New', tone: 'success' } }],
                         },
                       ],
                     },
                   ],
+                  attributes: [{ name: 'lozenge', value: { label: 'New', tone: 'success' } }],
                 },
                 {
                   title: 'HR Analytics',

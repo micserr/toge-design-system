@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.13 (2025-08-29)
+
+- Enhancement
+  - Editable current table page
+    ([#8e07c647](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8e07c6476ca1fce15d1bb5ddcd0733ec3d75f028?refName=refs%2Fheads%2F2025%2FEnhancement%2FPaulo%2FEditableCurrentTablePage) by @jbanares)
+
 ## 2.12.12 (2025-08-29)
 
 - Fix

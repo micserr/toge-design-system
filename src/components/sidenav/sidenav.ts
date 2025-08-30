@@ -1,5 +1,7 @@
 import type { PropType, ExtractPropTypes } from 'vue';
 
+import { LozengePropTypes } from '../lozenge/lozenge';
+
 export type QuickAction = {
   menuHeading: string;
   items: QuickActionItem[];
@@ -32,7 +34,7 @@ export type ParentLinkItem = {
   menuLinks: MenuLink[];
   submenuLinks?: SubmenuLink[];
   hidden?: boolean;
-  attributes?: Attributes[];
+  attributes?: Attributes[] | string;
 };
 
 export type MenuLink = {
@@ -44,7 +46,7 @@ export type MenuLinkItem = {
   title: string;
   hidden: boolean;
   redirect: Redirect;
-  attributes?: Attributes[];
+  attributes?: Attributes[] | string;
   submenuLinks: SubmenuLink[];
 };
 
@@ -57,7 +59,7 @@ export type SubmenuLinkItem = {
   title: string;
   hidden: boolean;
   redirect: Redirect;
-  attributes?: Attributes[];
+  attributes?: Attributes[] | string;
 };
 
 export type Redirect = {
@@ -88,7 +90,7 @@ export interface NavItem {
   children?: NavItem[] | null;
   groupName?: string | null;
   hidden?: boolean;
-  attributes?: Attributes[] | null;
+  attributes?: Attributes[] | string | null;
 }
 
 export type Attributes = {
@@ -96,10 +98,7 @@ export type Attributes = {
   value: unknown | string | number | boolean | AttrLozenge;
 };
 
-export type AttrLozenge = {
-  label: string;
-  tone?: string;
-};
+export type AttrLozenge = LozengePropTypes;
 
 export interface MappedNavItem {
   title: string;
@@ -109,7 +108,7 @@ export interface MappedNavItem {
     isAbsoluteURL: boolean;
     link: string;
   };
-  attributes?: AttrLozenge | unknown[];
+  attributes?: Attributes[] | string | unknown[];
   menuLinks?: {
     menuHeading: string;
     items: MappedNavItem[];

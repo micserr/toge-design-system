@@ -178,6 +178,12 @@ export default defineConfig({
             {
               text: 'Table',
               link: '/documentation/components/table',
+              items: [
+                {
+                  text: 'Table Pagination',
+                  link: '/documentation/components/table-pagination',
+                },
+              ],
             },
             {
               text: 'Tabs',

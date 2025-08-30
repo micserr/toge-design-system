@@ -1,5 +1,23 @@
 # Changelog
 
+## 2.12.13 (2025-08-29)
+
+- Enhancement
+  - Editable current table page
+    ([#8e07c647](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8e07c6476ca1fce15d1bb5ddcd0733ec3d75f028?refName=refs%2Fheads%2F2025%2FEnhancement%2FPaulo%2FEditableCurrentTablePage) by @jbanares)
+
+## 2.12.12 (2025-08-29)
+
+- Fix
+  - Sidenav Update
+    ([#130644ef](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/130644ef629ee990db378bcb3483ad9dccf70f57?refName=refs%2Fheads%2F2025%2FFIX%2FJef%2FCHANGE-ATTRIBUTE-HANDLING) by @jarias)
+
+## 2.12.11 (2025-08-26)
+
+- Fix
+  - DQA for Bordered Checkbox and Textarea
+    ([#96521980](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/965219807d8b57a026ee4c3e1f3c670006e2b245?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 ## 2.12.10 (2025-08-26)
 
 - Fix

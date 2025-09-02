@@ -20,7 +20,7 @@ test('Button tones are rendered correctly', async ({ page }) => {
 
   // Test:
   //  - Check if buttons exist
-  //  - Check if tones are applied correctly
+  //  - Check if buttons tones are applied correctly
   for (const button of buttons) {
     await testButton(page, button);
   }
@@ -40,7 +40,7 @@ test('Button sizes are rendered correctly', async ({ page }) => {
 
   // Test:
   //  - Check if buttons exist
-  //  - Check if sizes are applied correctly
+  //  - Check if buttons sizes are applied correctly
   for (const button of buttons) {
     await testButton(page, button);
   }
@@ -84,7 +84,7 @@ test('Button variant are rendered correctly', async ({ page }) => {
 
   // Test:
   //  - Check if buttons exist
-  //  - Check if variants are applied correctly
+  //  - Check if buttons variants are applied correctly
   for (const button of buttons) {
     await testButton(page, button);
   }
@@ -94,7 +94,7 @@ test('Button variant are rendered correctly', async ({ page }) => {
 const testButton = async (page: Page, buttons: { testId: string; class: string }) => {
   const button = page.locator(`[data-testid="${buttons.testId}"]`);
 
-  // Check if buttons exist
+  // Check if button exist
   await expect(button.first()).toBeVisible();
 
   // Check if classes/style are applied correctly

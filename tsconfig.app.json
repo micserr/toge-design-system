@@ -30,12 +30,14 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
+    "*.ts",
     "src/**/*.ts",
     "src/**/*.vue",
     "docs/**/*.js",
     "dist/lib/main.d.ts",
     "**/docs/.vitepress/**/*.ts",
-    "**/docs/documentation/**/*.vue"
+    "**/docs/documentation/**/*.vue",
+    "tests/**/*.ts"
   ],
   "exclude": ["dist/", "playground/"]
 }

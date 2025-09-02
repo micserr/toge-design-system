@@ -21,9 +21,9 @@ The Button component is a versatile and commonly used element in user interfaces
 ## Tone
 
 <div class="spr-flex spr-items-center spr-gap-2">
-  <spr-button>Neutral</spr-button>
-  <spr-button tone="success">Success</spr-button>
-  <spr-button tone="danger">Danger</spr-button>
+  <spr-button data-testid="button-tone-neutral">Neutral</spr-button>
+  <spr-button data-testid="button-tone-success" tone="success">Success</spr-button>
+  <spr-button data-testid="button-tone-danger" tone="danger">Danger</spr-button>
 </div>
 
 ```vue
@@ -35,9 +35,9 @@ The Button component is a versatile and commonly used element in user interfaces
 ## Sizes
 
 <div class="spr-flex spr-items-center spr-gap-2">
-  <spr-button size="small">Small</spr-button>
-  <spr-button>Medium</spr-button>
-  <spr-button size="large">Large</spr-button>
+  <spr-button size="small" data-testid="button-size-small">Small</spr-button>
+  <spr-button data-testid="button-size-medium">Medium</spr-button>
+  <spr-button size="large" data-testid="button-size-large">Large</spr-button>
 </div>
 
 ```vue
@@ -49,19 +49,19 @@ The Button component is a versatile and commonly used element in user interfaces
 ## Variant
 
 <div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
-  <spr-button>Primary</spr-button>
-  <spr-button variant="secondary">Secondary</spr-button>
-  <spr-button variant="tertiary">Tertiary</spr-button>
+  <spr-button data-testid="button-tone-neutral-variant-primary">Primary</spr-button>
+  <spr-button variant="secondary" data-testid="button-tone-neutral-variant-secondary">Secondary</spr-button>
+  <spr-button variant="tertiary" data-testid="button-tone-neutral-variant-tertiary">Tertiary</spr-button>
 </div>
 <div class="spr-flex spr-items-center spr-gap-2 spr-mb-2">
-  <spr-button tone="success">Primary</spr-button>
-  <spr-button tone="success" variant="secondary">Secondary</spr-button>
-  <spr-button tone="success" variant="tertiary">Tertiary</spr-button>
+  <spr-button tone="success" data-testid="button-tone-success-variant-primary">Primary</spr-button>
+  <spr-button tone="success" variant="secondary" data-testid="button-tone-success-variant-secondary">Secondary</spr-button>
+  <spr-button tone="success" variant="tertiary" data-testid="button-tone-success-variant-tertiary">Tertiary</spr-button>
 </div>
 <div class="spr-flex spr-items-center spr-gap-2">
-  <spr-button tone="danger">Primary</spr-button>
-  <spr-button tone="danger" variant="secondary">Secondary</spr-button>
-  <spr-button tone="danger" variant="tertiary">Tertiary</spr-button>
+  <spr-button tone="danger" data-testid="button-tone-danger-variant-primary">Primary</spr-button>
+  <spr-button tone="danger" variant="secondary" data-testid="button-tone-danger-variant-secondary">Secondary</spr-button>
+  <spr-button tone="danger" variant="tertiary" data-testid="button-tone-danger-variant-tertiary">Tertiary</spr-button>
 </div>
 
 ```vue

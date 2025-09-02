@@ -162,16 +162,13 @@ export const useButton = (props: ButtonPropTypes, emit: SetupContext<ButtonEmitT
   // #endregion - Background Css Class
 
   const buttonBorderCssClass: ComputedRef<string> = computed(() => {
-    return classNames(
-      'spr-border spr-border-solid',
-      {
-        'spr-border-transparent': variant.value === 'primary' || variant.value === 'tertiary',
-        'spr-border-white-50': focused.value && variant.value === 'primary' || variant.value === 'tertiary',
-        'spr-border-color-base': variant.value === 'secondary' && tone.value === 'neutral',
-        'spr-border-color-brand-base': variant.value === 'secondary' && tone.value === 'success',
-        'spr-border-color-danger-base': variant.value === 'secondary' && tone.value === 'danger',
-      }
-    );
+    return classNames('spr-border spr-border-solid', {
+      'spr-border-transparent': variant.value === 'primary' || variant.value === 'tertiary',
+      'spr-border-white-50': (focused.value && variant.value === 'primary') || variant.value === 'tertiary',
+      'spr-border-color-base': variant.value === 'secondary' && tone.value === 'neutral',
+      'spr-border-color-brand-base': variant.value === 'secondary' && tone.value === 'success',
+      'spr-border-color-danger-base': variant.value === 'secondary' && tone.value === 'danger',
+    });
   });
 
   const buttonProps: ComputedRef<Record<string, unknown>> = computed(() => {

@@ -12,7 +12,7 @@ test('Button tones should not have any contrast-related accessibility issues', a
 
   // Test:
   //  - Check if buttons exist
-  //  - Check if button tones contrast are correctly rendered
+  //  - Check if buttons tones contrast are correctly rendered
   for (const buttonTestId of buttonTestIds) {
     await testButton(page, buttonTestId);
   }
@@ -35,7 +35,7 @@ test('Button variation should not have any contrast-related accessibility issues
 
   // Test:
   //  - Check if buttons exist
-  //  - Check if button variations contrast are correctly rendered
+  //  - Check if buttons variations contrast are correctly rendered
   for (const buttonTestId of buttonTestIds) {
     await testButton(page, buttonTestId);
   }
@@ -45,7 +45,7 @@ test('Button variation should not have any contrast-related accessibility issues
 const testButton = async (page: Page, buttonTestId: string): Promise<void> => {
   const button: Locator = page.locator(`[data-testid="${buttonTestId}"]`);
 
-  // Check if buttons exist
+  // Check if button exist
   await expect(button.first()).toBeVisible();
 
   // Analyze each button

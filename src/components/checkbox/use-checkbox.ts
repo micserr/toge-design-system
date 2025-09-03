@@ -59,8 +59,8 @@ export const useCheckbox = (props: CheckboxPropTypes, emit: SetupContext<Checkbo
     const borderedClasses = classNames(
       'spr-border spr-rounded-md spr-p-size-spacing-2xs spr-border-solid spr-box-border',
       {
-        'spr-border-kangkong-700 spr-bg-kangkong-100': (modelValue.value || checked.value) && !disabled.value,
-        'spr-border-mushroom-200': (!modelValue.value || !checked.value) && !disabled.value,
+        'spr-border-color-success-base spr-bg-kangkong-100': (modelValue.value || checked.value) && !disabled.value,
+        'spr-border-color-base': (!modelValue.value || !checked.value) && !disabled.value,
         'hover:spr-background-color-hover': (!modelValue.value && !checked.value) || disabled.value,
         'spr-border-0 spr-bg-white-100': disabled.value,
         'spr-w-fit': !fullWidth.value,

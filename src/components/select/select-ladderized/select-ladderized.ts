@@ -40,23 +40,47 @@ export const selectLadderizedPropTypes = {
     type: String,
     default: '',
   },
+  supportingLabel: {
+    type: String,
+    default: '',
+  },
   placeholder: {
     type: String,
     default: '',
   },
-  helperText: {
+  textSeperator: {
     type: String,
-    default: '',
+    default: ' > ',
   },
-  helperIcon: {
-    type: String,
-    default: null,
+  prependText: {
+    type: Boolean,
+    default: false,
   },
   displayHelper: {
     type: Boolean,
     default: false,
   },
+  helperIcon: {
+    type: String,
+    default: null,
+  },
+  helperText: {
+    type: String,
+    default: '',
+  },
   clearable: {
+    type: Boolean,
+    default: false,
+  },
+  active: {
+    type: Boolean,
+    default: false,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  error: {
     type: Boolean,
     default: false,
   },
@@ -90,10 +114,6 @@ export const selectLadderizedPropTypes = {
     validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
     default: 'absolute',
   },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
   removeCurrentLevelInBackLabel: {
     type: Boolean,
     default: false,
@@ -103,6 +123,7 @@ export const selectLadderizedPropTypes = {
 export const selectLadderizedEmitTypes = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'update:modelValue': (_value: unknown) => true,
+  'popper-state': Boolean,
 };
 
 export type SelectLadderizedEmitFn = (event: string, ...args: unknown[]) => void;

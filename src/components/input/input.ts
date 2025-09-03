@@ -42,6 +42,10 @@ export const inputPropTypes = {
     type: String,
     default: '',
   },
+  supportingLabel: {
+    type: String,
+    default: '',
+  },
   showCharCount: {
     type: Boolean,
     default: false,

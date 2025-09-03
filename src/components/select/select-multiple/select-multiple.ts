@@ -67,6 +67,10 @@ export const multiSelectPropTypes = {
     type: String,
     default: '',
   },
+  supportingLabel: {
+    type: String,
+    default: '',
+  },
   placement: {
     type: String as PropType<(typeof PLACEMENTS_TYPES)[number]>,
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
@@ -144,6 +148,7 @@ export const multiSelectEmitTypes = {
   'update:modelValue': (_value: unknown) => true,
   'update:searchValue': (value: string) => typeof value === 'string',
   'infinite-scroll-trigger': Boolean,
+  'popper-state': Boolean,
 };
 
 export type MultiSelectPropTypes = ExtractPropTypes<typeof multiSelectPropTypes>;

@@ -15,6 +15,10 @@ export const textAreaPropTypes = {
     type: String,
     default: '',
   },
+  supportingLabel: {
+    type: String,
+    default: '',
+  },
   placeholder: {
     type: String,
     default: '',

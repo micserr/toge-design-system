@@ -1,4 +1,4 @@
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 
 import { LOZENGE_TONE } from '../lozenge/lozenge';
 
@@ -241,13 +241,24 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
     return Array.isArray(attributes) ? attributes : [];
   };
 
-  onMounted(async () => {
+  const setNavLinkItems = async () => {
     if (props.isNavApi) {
       navLinks.value = await transformedNavItems(props.navLinks);
     } else {
-      // Use the original navLinks from props
       navLinks.value = props.navLinks;
     }
+  };
+
+  watch(
+    () => props.navLinks,
+    async () => {
+      await setNavLinkItems();
+    },
+    { immediate: true },
+  );
+
+  onMounted(async () => {
+    await setNavLinkItems();
   });
 
   return {

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.15 (2025-09-03)
+
+- Fix
+  - Sidenav Redirect Click Issue and Active Nav
+    ([#a0d4fe5d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a0d4fe5df01a683f0e1625b2707e05c6e248a91a?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Ffix-sidenav-issues) by @jarias)
+
 ## 2.12.14 (2025-09-03)
 
 - Fix

@@ -1,5 +1,5 @@
 <template>
-  <div v-for="(navLink, navLinkIndex) in navLinks.top" :key="navLinkIndex">
+  <div v-for="(navLink, navLinkIndex) in navLinks" :key="navLinkIndex" class="spr-grid spr-gap-2">
     <template v-for="(parentLink, parentLinkIndex) in navLink.parentLinks" :key="parentLinkIndex">
       <!-- #region - Parent Links with Menus -->
       <template v-if="parentLink.menuLinks && parentLink.menuLinks.length > 0">
@@ -298,7 +298,7 @@
 
     <!-- Divider -->
     <div
-      v-if="navLinks.top.length > 0 && navLinkIndex < navLinks.top.length - 1"
+      v-if="navLinks.length > 0 && navLinkIndex < navLinks.length - 1"
       class="spr-background-color-hover spr-h-[2px] spr-w-full"
     ></div>
   </div>

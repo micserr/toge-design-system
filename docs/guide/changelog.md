@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.14 (2025-09-03)
+
+- Fix
+  - Commit 157cc0c7: feat: Enhance sidenav and table components with improved reactivity and formatting
+    ([#157cc0c7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/157cc0c7d9571c275b423abfd995a22cb8b2b41a?refName=refs/heads/2025/Fix/andrea/FIX_TABLE_HEADER_AND_SIDENAV) by @adestajo)
+
 ## 2.12.13 (2025-08-29)
 
 - Enhancement

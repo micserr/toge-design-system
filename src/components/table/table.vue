@@ -21,7 +21,10 @@
       <table aria-describedby="describe" class="spr-h-full spr-w-full spr-table-fixed" cellspacing="0" cellpadding="0">
         <thead>
           <tr v-if="!(props.removeHeaderOnEmpty && sortedData.length <= 0)">
-            <th v-if="props.isMultiSelect" :class="[getTableClasses.multiselectClass, getTableClasses.headerClasses(null)]">
+            <th
+              v-if="props.isMultiSelect"
+              :class="[getTableClasses.multiselectClass, getTableClasses.headerClasses(null)]"
+            >
               <div class="spr-flex spr-items-center spr-justify-center">
                 <spr-checkbox
                   label=""
@@ -31,7 +34,11 @@
                 />
               </div>
             </th>
-            <th v-for="(header, keyHeader) in headers" :key="keyHeader" :class="[getTableClasses.headerClasses(header)]">
+            <th
+              v-for="(header, keyHeader) in headers"
+              :key="keyHeader"
+              :class="[getTableClasses.headerClasses(header)]"
+            >
               <div :class="getTableClasses.headerNameClass">
                 <span :class="[{ 'spr-cursor-pointer': header.sort }]" @click="header.sort && sortData(header.field)">
                   {{ header.name }}
@@ -60,7 +67,7 @@
             </th>
 
             <!-- for action Button -->
-            <th v-if="action" :class="getTableClasses.headerClasses">
+            <th v-if="action" :class="getTableClasses.headerClasses(null)">
               <slot name="action-name" :class="getTableClasses.tableCellSlotClasses" />
             </th>
           </tr>

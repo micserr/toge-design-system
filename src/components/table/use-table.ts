@@ -97,7 +97,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       'spr-background-color-surface': props.variant === 'surface',
     });
     const headerClasses = (header: Header | null) => {
-      if (header?.customTailwindClasses){
+      if (header?.customTailwindClasses) {
         return classNames(header.customTailwindClasses);
       }
 
@@ -107,9 +107,10 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
         'spr-border-color-weak spr-border-x-0 spr-border-y spr-border-solid',
         {
           'spr-border-t-0': !slots.default,
-      },
-      headerBackground,
-    )};
+        },
+        headerBackground,
+      );
+    };
 
     const headerNameClass = 'spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-5xs';
 

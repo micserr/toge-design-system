@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.16 (2025-09-04)
+
+- Fix
+  - Add event emission for getting the selected option in select component
+    ([#40c51c17](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/40c51c1780b508ffbc2122ddcd7bfccb4f5b3713?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fselect-get-object) by @jarias)
+
 ## 2.12.15 (2025-09-03)
 
 - Fix

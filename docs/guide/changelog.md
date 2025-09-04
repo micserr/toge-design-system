@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.12.17 (2025-09-04)
+
+- Fix
+  - Commit f505f953:
+    - Update URL handling in getPathFromUrl
+    - set isAbsoluteURL to true for redirects
+      ([#f505f953](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f505f953a93134ab72a33ee76fa83bdbe8438b3a?refName=refs/heads/2025/Fix/andrea/SIDENAV-REDIRECT) by @adestajo)
+
 ## 2.12.16 (2025-09-04)
 
 - Fix

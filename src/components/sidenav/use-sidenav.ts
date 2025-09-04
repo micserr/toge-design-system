@@ -81,8 +81,7 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
 
   const getPathFromUrl = (url: string): string => {
     const parsedUrl = new URL(url);
-
-    return parsedUrl ? parsedUrl.pathname : '';
+    return parsedUrl ? `${parsedUrl.pathname}${parsedUrl.hash}` : '';
   };
 
   const navLinkCondition = (link: NavItem) => {
@@ -140,7 +139,7 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
       redirect: item.url
         ? {
             openInNewTab: item.isNewTab || false,
-            isAbsoluteURL: !confirmIfOwnDomain(item.url as string),
+            isAbsoluteURL: true,
             link: navLinkCondition(item) ?? '',
           }
         : undefined,

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.13.0 (2025-09-05)
+
+- Feat
+  - Initial Implementation Playwright with Contrast Test and e2e Component test
+    ([#34516](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/34516?_a=files) by @jarias)
+
 ## 2.12.17 (2025-09-04)
 
 - Fix

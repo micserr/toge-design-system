@@ -1082,6 +1082,11 @@ const userList = ref([
       <td>Event emitted when you type in the search input</td>
     </tr>
     <tr>
+      <td>@get-selected-option</td>
+      <td>Object</td>
+      <td>Event emitted to get the selected option</td>
+    </tr>
+    <tr>
       <td>@popper-state</td>
       <td>Bolean</td>
       <td>Event emitted when you open or close the popper</td>

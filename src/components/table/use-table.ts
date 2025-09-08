@@ -86,7 +86,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
 
   const getTableClasses = computed(() => {
     const tableWrapperClasses = classNames(
-      'spr-flex spr-flex-col spr-h-full spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid spr-table-wrapper spr-relative',
+      'spr-flex spr-flex-col spr-h-full spr-border-color-weak spr-w-full spr-overflow-hidden spr-rounded-border-radius-lg spr-border spr-border-solid spr-table-wrapper spr-relative spr-font-main',
     );
     const tableFooterClasses = classNames('spr-w-full spr-bottom-0 spr-left-0', {
       'spr-background-color-surface': props.variant === 'surface',
@@ -97,7 +97,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       'spr-background-color-surface': props.variant === 'surface',
     });
     const headerClasses = (header: Header | null) => {
-      if (header?.customTailwindClasses){
+      if (header?.customTailwindClasses) {
         return classNames(header.customTailwindClasses);
       }
 
@@ -107,9 +107,10 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
         'spr-border-color-weak spr-border-x-0 spr-border-y spr-border-solid',
         {
           'spr-border-t-0': !slots.default,
-      },
-      headerBackground,
-    )};
+        },
+        headerBackground,
+      );
+    };
 
     const headerNameClass = 'spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-5xs';
 

@@ -81,6 +81,7 @@ type MenuListType = {
   icon?: string; // String value for Iconify
   iconColor?: string;
   textColor?: string;
+  lozengeProps?: LozengePropTypes; // Props for the lozenge component when list is displayed as lozenge
   onClickFn?: () => void;
 };
 ```
@@ -652,6 +653,55 @@ const mockDropdownData = [
 </template>
 ```
 
+## Lozenge
+The list component can also be displayed as a lozenge by passing the `lozenge` prop. The items in the list should contain `lozengeProps` to define the properties of the lozenge.
+
+<div 
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="lozengeListValue" :menu-list="lozengeMenuList" lozenge />
+</div>
+<div class="spr-my-3 spr-p-4 spr-bg-blue-100">
+  <h5>Output:</h5>
+  <span>{{ lozengeListValue }}</span>
+</div>
+
+```vue
+<template>
+  <div
+    :class="[
+      'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
+      'spr-border-color-weak spr-border spr-border-solid',
+    ]"
+  >
+    <spr-list v-model="lozengeListValue" :menu-list="lozengeMenuList" lozenge />
+  </div>
+</template>
+<script setup lang="ts">
+import { LOZENGE_TONE } from '@/components/lozenge/lozenge';
+import { MenuListType } from '@/components/list/list';
+
+const lozengeListValue = ref([]);
+const lozengeMenuList = ref(
+  LOZENGE_TONE.map((tone: string) => ({
+    text: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+    value: tone,
+    lozengeProps: {
+      label: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+      tone: tone,
+      fill: true,
+      url: "https://tinyurl.com/2vzn782p",
+      icon: "ph:address-book-tabs",
+      postfixIcon: "ph:caret-right-fill",
+    }
+  })) as MenuListType[];
+);
+</script>
+```
+
 ## API Reference
 
 ### Props
@@ -756,6 +806,12 @@ const mockDropdownData = [
       <td>boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td>lozenge</td>
+      <td>Enables lozenge mode for the list items. When enabled, items are displayed as lozenges.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 
@@ -800,6 +856,7 @@ type MenuListType = {
   icon?: string;                                   // Optional Iconify icon name
   iconColor?: string;                              // Optional CSS class for icon color
   textColor?: string;                              // Optional CSS class for text color
+  lozengeProps?: LozengePropTypes;                 // Props for the lozenge component when list is displayed as lozenge
   onClickFn?: () => void;                          // Optional click handler function
 };
 ```
@@ -817,6 +874,8 @@ import { ref } from 'vue';
 import SprList from "@/components/list/list.vue"
 import SprLadderizedList from "@/components/list/ladderized-list/ladderized-list.vue"
 import SprLogo from "@/components/logo/logo.vue";
+import { LOZENGE_TONE } from '@/components/lozenge/lozenge';
+import { MenuListType } from '@/components/list/list';
 
 const preselectedItem = ref(['apple']);
 
@@ -975,4 +1034,20 @@ const multipleSelectText = ref("No selected items");
 const handleMultiSelect = (data) => {
   multipleSelectText.value = data.map((item) => item.text).join(", ");
 }
+
+const lozengeListValue = ref([]);
+const lozengeMenuList = ref(
+  LOZENGE_TONE.map((tone: string) => ({
+    text: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+    value: tone,
+    lozengeProps: {
+      label: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+      tone: tone,
+      fill: true,
+      url: "https://tinyurl.com/2vzn782p",
+      icon: "ph:address-book-tabs",
+      postfixIcon: "ph:caret-right-fill",
+    }
+  })) as MenuListType[]
+);
 </script>

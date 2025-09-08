@@ -54,25 +54,26 @@ A basic lozenge with a text is created with the label property.
 ```
 
 ## Tone and Fill
+
 Customize the lozenge's color style (tone) and choose between filled or outlined appearance (fill) to indicate status or emphasis.
 
 <div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
-  <spr-lozenge label="plain"/>
-  <spr-lozenge label="pending" tone="pending" />
-  <spr-lozenge label="information" tone="information" />
-  <spr-lozenge label="success" tone="success" />
-  <spr-lozenge label="neutral" tone="neutral" />
-  <spr-lozenge label="danger" tone="danger" />
-  <spr-lozenge label="caution" tone="caution" />
+  <spr-lozenge label="plain" data-testid="lozenge-tone-plain"/>
+  <spr-lozenge label="pending" tone="pending" data-testid="lozenge-tone-pending" />
+  <spr-lozenge label="information" tone="information" data-testid="lozenge-tone-information" />
+  <spr-lozenge label="success" tone="success" data-testid="lozenge-tone-success" />
+  <spr-lozenge label="neutral" tone="neutral" data-testid="lozenge-tone-neutral"/>
+  <spr-lozenge label="danger" tone="danger" data-testid="lozenge-tone-danger" />
+  <spr-lozenge label="caution" tone="caution" data-testid="lozenge-tone-caution" />
 </div>
 <div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
-  <spr-lozenge label="plain" fill />
-  <spr-lozenge label="pending" tone="pending" fill />
-  <spr-lozenge label="information" tone="information" fill />
-  <spr-lozenge label="success" tone="success" fill />
-  <spr-lozenge label="neutral" tone="neutral" fill />
-  <spr-lozenge label="danger" tone="danger" fill />
-  <spr-lozenge label="caution" tone="caution" fill />
+  <spr-lozenge label="plain" fill data-testid="lozenge-fill-plain" />
+  <spr-lozenge label="pending" tone="pending" fill data-testid="lozenge-fill-pending" />
+  <spr-lozenge label="information" tone="information" fill data-testid="lozenge-fill-information" />
+  <spr-lozenge label="success" tone="success" fill data-testid="lozenge-fill-success" />
+  <spr-lozenge label="neutral" tone="neutral" fill data-testid="lozenge-fill-neutral" />
+  <spr-lozenge label="danger" tone="danger" fill data-testid="lozenge-fill-danger" />
+  <spr-lozenge label="caution" tone="caution" fill data-testid="lozenge-fill-caution" />
 </div>
 
 ```vue
@@ -97,7 +98,9 @@ Customize the lozenge's color style (tone) and choose between filled or outlined
 ```
 
 ## Avatar
+
 You can use the `url` property to display an avatar image, or use the `avatar` slot for custom avatar components.
+
 <div class="spr-flex spr-flex-col spr-gap-2 spr-bg-white-50 spr-overflow-auto spr-py-3">
   <div class="spr-flex spr-items-center spr-gap-2">
     <spr-lozenge label="pending" tone="pending" url="https://tinyurl.com/2vzn782p"/>
@@ -136,6 +139,7 @@ You can use the `url` property to display an avatar image, or use the `avatar` s
 ```
 
 ### Slotted Avatar
+
 You can also use the `avatar` slot to customize the avatar component.
 
 <div class="spr-flex spr-flex-col spr-gap-2">
@@ -172,6 +176,7 @@ import { Icon } from '@iconify/vue';
 ```
 
 ## Prefix and Postfix Icon
+
 You can use the `icon` property or the `icon` slot to add a prefix icon to the lozenge. By default, the `icon` property or slot renders as a prefix icon before the label.  
 To add a postfix icon, use the `postfixIcon` property or the `postfixIcon` slot. This allows you to display an icon after the label.
 
@@ -339,7 +344,7 @@ To add a postfix icon, use the `postfixIcon` property or the `postfixIcon` slot.
   </spr-lozenge>
 
   <!-- Postfix Icon -->
-   <spr-lozenge label="pending" tone="pending" postfix-icon="ph:users-three" />
+  <spr-lozenge label="pending" tone="pending" postfix-icon="ph:users-three" />
   <spr-lozenge label="pending" tone="pending">
     <template #postfixIcon>
       <Icon icon="ph:users-three" />
@@ -353,6 +358,7 @@ import { Icon } from '@iconify/vue';
 ```
 
 ## Interactive
+
 The `interactive` prop enables interactive states for the lozenge, allowing it to respond to user actions such as hover and pressed. This is useful for making the lozenge behave like a button or menu trigger.
 
 <div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
@@ -396,46 +402,79 @@ The `interactive` prop enables interactive states for the lozenge, allowing it t
 ```
 
 ### Dropdown
-The `dropdown` prop makes the lozenge behave as a predefined interactive element with a default postfix dropdown icon (`ph:caret-down-fill`).  
 
-<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
-  <spr-lozenge label="plain" dropdown />
-  <spr-lozenge label="pending" tone="pending" dropdown />
-  <spr-lozenge label="information" tone="information" dropdown />
-  <spr-lozenge label="success" tone="success" dropdown />
-  <spr-lozenge label="neutral" tone="neutral" dropdown />
-  <spr-lozenge label="danger" tone="danger" dropdown />
-  <spr-lozenge label="caution" tone="caution" dropdown />
-</div>
-<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
-  <spr-lozenge label="plain" fill dropdown />
-  <spr-lozenge label="pending" tone="pending" fill dropdown />
-  <spr-lozenge label="information" tone="information" fill dropdown />
-  <spr-lozenge label="success" tone="success" fill dropdown />
-  <spr-lozenge label="neutral" tone="neutral" fill dropdown />
-  <spr-lozenge label="danger" tone="danger" fill dropdown />
-  <spr-lozenge label="caution" tone="caution" fill dropdown />
-</div>
+The `dropdown` prop makes the lozenge behave as a predefined interactive element with a default postfix dropdown icon (`ph:caret-down-fill`).
+
+<spr-dropdown id="lozengeDropdown" v-model="dropdownSelection" :menu-list="menuList" lozenge @update:model-value="dropdownUpdateHandler" >
+<spr-lozenge v-bind="lozengeProps" dropdown />
+</spr-dropdown>
+<br/>
+<spr-dropdown id="hollowLozengeDropdown" v-model="dropdownSelectionHollow" :menu-list="hollowMenuList" lozenge @update:model-value="dropdownUpdateHandler" >
+<spr-lozenge v-bind="hollowLozengeProps" dropdown />
+</spr-dropdown>
 
 ```vue
-<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
-  <spr-lozenge label="plain" dropdown />
-  <spr-lozenge label="pending" tone="pending" dropdown />
-  <spr-lozenge label="information" tone="information" dropdown />
-  <spr-lozenge label="success" tone="success" dropdown />
-  <spr-lozenge label="neutral" tone="neutral" dropdown />
-  <spr-lozenge label="danger" tone="danger" dropdown />
-  <spr-lozenge label="caution" tone="caution" dropdown />
-</div>
-<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
-  <spr-lozenge label="plain" fill dropdown />
-  <spr-lozenge label="pending" tone="pending" fill dropdown />
-  <spr-lozenge label="information" tone="information" fill dropdown />
-  <spr-lozenge label="success" tone="success" fill dropdown />
-  <spr-lozenge label="neutral" tone="neutral" fill dropdown />
-  <spr-lozenge label="danger" tone="danger" fill dropdown />
-  <spr-lozenge label="caution" tone="caution" fill dropdown />
-</div>
+<template>
+  <spr-dropdown
+    id="lozengeDropdown"
+    v-model="dropdownSelection"
+    :menu-list="menuList"
+    lozenge
+    @update:model-value="dropdownUpdateHandler"
+  >
+    <spr-lozenge v-bind="lozengeProps" dropdown />
+  </spr-dropdown>
+</template>
+
+<script lang="ts" setup>
+import { ref, computed } from 'vue';
+
+import { LOZENGE_TONE } from '@/components/lozenge/lozenge';
+import { MenuListType } from '@/components/list/list';
+import { Header } from '@/components/table/table';
+
+const menuList = ref(
+  LOZENGE_TONE.map((tone: string) => ({
+    text: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+    value: tone,
+    lozengeProps: {
+      label: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+      tone: tone,
+      fill: true,
+      url: 'https://tinyurl.com/2vzn782p',
+      icon: 'ph:address-book-tabs',
+    },
+  })) as MenuListType[],
+);
+
+const dropdownSelection = ref('neutral');
+const lozengeProps = computed(() => {
+  return menuList.value.find((item) => item.value === dropdownSelection.value)?.lozengeProps;
+});
+
+const dropdownUpdateHandler = (newSelection: string) => {
+  console.log('Dropdown selection updated:', newSelection);
+};
+
+const hollowMenuList = ref(
+  LOZENGE_TONE.map((tone: string) => ({
+    text: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+    value: tone,
+    lozengeProps: {
+      label: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+      tone: tone,
+      fill: false,
+      url: 'https://tinyurl.com/2vzn782p',
+      icon: 'ph:address-book-tabs',
+    },
+  })) as MenuListType[],
+);
+
+const dropdownSelectionHollow = ref('neutral');
+const hollowLozengeProps = computed(() => {
+  return hollowMenuList.value.find((item) => item.value === dropdownSelectionHollow.value)?.lozengeProps;
+});
+</script>
 ```
 
 ::: tip NOTE
@@ -455,7 +494,6 @@ If you provide a `postfixIcon` prop or slot, it will override the default dropdo
   </template>
 </spr-lozenge>
 ```
-
 
 ## Loading
 
@@ -641,8 +679,58 @@ If you provide a `postfixIcon` prop or slot, it will override the default dropdo
 </div>
 
 <script lang="ts" setup>  
+import { ref, computed } from 'vue';
 import { Icon } from '@iconify/vue';
-
 import SprLozenge from "@/components/lozenge/lozenge.vue"
 import SprLogo from "@/components/logo/logo.vue";
+import SprDropdown from '@/components/dropdown/dropdown.vue';
+import { LOZENGE_TONE } from '@/components/lozenge/lozenge';
+import { MenuListType } from '@/components/list/list';
+import { Header } from '@/components/table/table';
+
+const menuList = ref(
+  LOZENGE_TONE.map((tone: string) => ({
+    text: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+    value: tone,
+    lozengeProps: {
+      label: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+      tone: tone,
+      fill: true,
+      url: "https://tinyurl.com/2vzn782p",
+      icon: "ph:address-book-tabs",
+    }
+  })) as MenuListType[]
+);
+
+const dropdownSelection = ref('neutral');
+const lozengeProps = computed(() => {
+  return menuList.value.find(item => item.value === dropdownSelection.value)?.lozengeProps;
+});
+
+const dropdownUpdateHandler = (newSelection: string) => {
+  console.log('Dropdown selection updated:', newSelection);
+};
+
+const hollowMenuList = ref(
+  LOZENGE_TONE.map((tone: string) => ({
+    text: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+    value: tone,
+    lozengeProps: {
+      label: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
+      tone: tone,
+      fill: false,
+      url: "https://tinyurl.com/2vzn782p",
+      icon: "ph:address-book-tabs",
+    }
+  })) as MenuListType[]
+);
+
+const dropdownSelectionHollow = ref('neutral');
+const hollowLozengeProps = computed(() => {
+  return hollowMenuList.value.find(item => item.value === dropdownSelectionHollow.value)?.lozengeProps;
+});
+
+const hollowDropdownUpdateHandler = (newSelection: string) => {
+  console.log('Dropdown selection updated:', newSelection);
+};
 </script>

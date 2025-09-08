@@ -16,9 +16,22 @@
     </spr-dropdown>
 
     <div :class="paginationClasses.rightSideClass">
-      <div :class="paginationClasses.computeRowRangeClass">
-        {{ computeRowRange }}
+      <div v-if="editableCurrentPage" class="spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-4xs">
+        <span class="spr-body-xs-regular spr-text-color-base">Page</span>
+        <input
+          v-model="currentPage" type="number" min="1" :max="totalPages" 
+          class="number-input 
+            spr-text-center spr-font-main spr-font-medium spr-font-size-200 spr-font-height-300 sp-text-color-strong
+            spr-p-size-spacing-3xs spr-rounded-border-radius-md spr-border spr-border-solid spr-border-color-base spr-outline-none 
+            spr-min-w-[48px] spr-max-h-[36px] spr-w-[48px] spr-h-[32px] spr-box-border"
+        />
+        <span class="spr-body-xs-regular spr-text-color-base">of {{ totalPages }}</span>
       </div>
+      <template v-else>
+        <div :class="paginationClasses.computeRowRangeClass">
+          {{ computeRowRange }}
+        </div>
+      </template>
       <div :class="paginationClasses.navigationContainerClass">
         <spr-button
           id="previousButton"
@@ -68,5 +81,19 @@ const {
   disabledPrevious,
   dropdownSelection,
   dropdownId,
+  currentPage,
+  totalPages,
 } = useTablePagination(props, emit);
 </script>
+
+<style scoped>
+.number-input::-webkit-outer-spin-button,
+.number-input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.number-input {
+  -moz-appearance: textfield;
+}
+</style>

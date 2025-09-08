@@ -1,7 +1,10 @@
 <template>
   <div :class="multiSelectClasses.baseClasses">
-    <label v-if="props.label" :for="id" :class="multiSelectClasses.labelClasses">
-      {{ props.label }}
+    <label v-if="props.label || props.supportingLabel" :for="props.id" :class="multiSelectClasses.labelClasses">
+      <span v-if="props.label">{{ props.label }}</span>
+      <span v-if="props.supportingLabel" :class="multiSelectClasses.supportingLabelClasses">
+        {{ props.supportingLabel }}
+      </span>
     </label>
 
     <Menu

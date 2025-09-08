@@ -234,6 +234,12 @@ const textarea2 = ref('Hello world, Sprout Design System!!!');
       <td>''</td>
     </tr>
     <tr>
+      <td>supporting-label</td>
+      <td>Text beside label that has a supporting style</td>
+      <td>string</td>
+      <td>''</td>
+    </tr>
+    <tr>
       <td>placeholder</td>
       <td>Placeholder text displayed inside the textarea when it's empty, providing guidance on what to enter.</td>
       <td>string</td>

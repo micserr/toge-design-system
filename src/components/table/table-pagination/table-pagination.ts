@@ -51,10 +51,18 @@ export const tablePaginationPropTypes = {
     type: Boolean as PropType<boolean>,
     default: true,
   },
+  /**
+   * @description Toggle editable state for current page input
+   */
+  editableCurrentPage: {
+    type: Boolean as PropType<boolean>,
+    default: false,
+  },
 };
 
 export const tablePaginationEmitTypes = {
   'update:selectedRowCount': (value: number): value is number => typeof value === 'number',
+  'update:currentPage': (value: number): value is number => typeof value === 'number',
   previous: () => true,
   next: () => true,
 };

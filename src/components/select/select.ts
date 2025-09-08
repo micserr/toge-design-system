@@ -65,6 +65,10 @@ export const selectPropTypes = {
     type: String,
     default: '',
   },
+  supportingLabel: {
+    type: String,
+    default: '',
+  },
   placement: {
     type: String as PropType<(typeof PLACEMENTS_TYPES)[number]>,
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
@@ -138,6 +142,9 @@ export const selectEmitTypes = {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'search-string': (_search: string | number) => true,
+
+  'get-selected-option': Object,
+  'popper-state': Boolean,
 };
 
 export type SelectPropTypes = ExtractPropTypes<typeof selectPropTypes>;

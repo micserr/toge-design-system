@@ -432,9 +432,9 @@ Here’s a example of how to implement the active navigation property:
 import { ref } from 'vue';
 
 const activeNav = ref({
-  parentNav: 'Home',
-  menu: 'Dashboard 1',
-  submenu: 'Home 2',
+  parentNav: 'HR Home',
+  menu: 'HR Dashboard',
+  submenu: 'Leave Management',
 });
 
 const navLinks = ref({
@@ -604,9 +604,9 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const activeNav = ref({
-  parentNav: '',
-  menu: '',
-  submenu: '',
+  parentNav: 'HR Home',
+  menu: 'HR Dashboard',
+  submenu: 'Leave Management',
 });
 
 router.beforeEach((to) => {
@@ -765,9 +765,9 @@ const apiNavLinks = ref({
 });
 
 const activeNav = ref({
-  parentNav: '',
-  menu: '',
-  submenu: '',
+  parentNav: 'HR Home',
+  menu: 'HR Dashboard',
+  submenu: 'Leave Management',
 });
 
 const handleNavClick = (navItem) => {
@@ -912,9 +912,9 @@ const quickActions = ref([
 ]);
 
 const activeNav = ref({
-  parentNav: 'Home',
-  menu: 'Dashboard 1',
-  submenu: 'Home 2',
+  parentNav: 'HR Home',
+  menu: 'HR Dashboard',
+  submenu: 'Leave Management',
 });
 
 const navLinks = ref({
@@ -1183,7 +1183,7 @@ const userMenu = ref({
 
 ## Full Example
 
-Here’s a full example of how to implement the Sidenav component with the above attributes:
+Here’s a full example of how to implement the Sidenav component:
 
 <div class="no-darkmode spr-m-0 spr-bg-mushroom-100 spr-text-mushroom-950 spr-font-main spr-rounded-md spr-h-[100vh] spr-w-full spr-relative spr-flex">
   <spr-sidenav 
@@ -1339,9 +1339,9 @@ const quickActions = ref([
 ]);
 
 const activeNav = ref({
-  parentNav: 'Home',
-  menu: 'Dashboard 1',
-  submenu: 'Home 2',
+  parentNav: 'HR Home',
+  menu: 'HR Dashboard',
+  submenu: 'Leave Management',
 });
 
 const navLinks = ref({
@@ -1393,10 +1393,12 @@ const navLinks = ref({
                             isAbsoluteURL: false,
                             link: '/',
                           },
+                          attributes: [{ name: 'lozenge', value: { label: 'New', tone: 'success' } }],
                         },
                       ],
                     },
                   ],
+                  attributes: [{ name: 'lozenge', value: { label: 'New', tone: 'success' } }],
                 },
                 {
                   title: 'HR Analytics',
@@ -2027,9 +2029,9 @@ const apiNavData = ref({
 });
 
 const activeNav = ref({
-  parentNav: 'Dashboard',
-  menu: '',
-  submenu: '',
+  parentNav: 'HR Home',
+  menu: 'HR Dashboard',
+  submenu: 'Leave Management',
 });
 
 const userMenu = ref({
@@ -2528,9 +2530,9 @@ const quickActions = ref([
 ]);
 
 const activeNav = ref({
-  parentNav: 'Home',
-  menu: 'Dashboard 1',
-  submenu: 'Home 2',
+  parentNav: 'HR Home',
+  menu: 'HR Dashboard',
+  submenu: 'Leave Management',
 });
 const apiNavData = ref(SideNavDataApi);
 const navLinks = ref({
@@ -2540,6 +2542,7 @@ const navLinks = ref({
         {
           title: 'HR Home',
           icon: 'ph:house-simple',
+          attributes: [{ name: 'lozenge', value: { label: 'New', tone: 'success' } }],
           menuLinks: [
             {
               menuHeading: 'HR Management',
@@ -2582,10 +2585,12 @@ const navLinks = ref({
                             isAbsoluteURL: false,
                             link: '/',
                           },
+                          attributes: [{ name: 'lozenge', value: { label: 'New', tone: 'success' } }],
                         },
                       ],
                     },
                   ],
+                  attributes: [{ name: 'lozenge', value: { label: 'New', tone: 'success' } }],
                 },
                 {
                   title: 'HR Analytics',

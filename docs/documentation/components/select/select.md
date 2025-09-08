@@ -2,7 +2,7 @@
 outline: 'deep'
 ---
 
-# Single Select
+# Select
 
 Selects are interactive components that allow users to choose from a list of options.
 
@@ -926,13 +926,13 @@ const userList = ref([
   </thead>
   <tbody>
     <tr>
-      <td>id</td>
+      <td><code>id</code></td>
       <td>Required to bind popper within the select</td>
       <td>String</td>
       <td>-</td>
     </tr>
     <tr>
-      <td>v-model</td>
+      <td><code>v-model</code></td>
       <td>Value binding for the select. Accepts:<br>
         <ul>
           <li><b>Single primitive values:</b> String ('apple'), Number (42)</li>
@@ -945,55 +945,61 @@ const userList = ref([
       <td>[]</td>
     </tr>
     <tr>
-      <td>options</td>
+      <td><code>options</code></td>
       <td>List of options composed of <code>text</code> and <code>value</code> properties, or array of strings/objects</td>
       <td>optionsType[] | string[] | object[]</td>
       <td>[]</td>
     </tr>
     <tr>
-      <td>group-items-by</td>
+      <td><code>group-items-by</code></td>
       <td>Group items by order: 'A-Z', 'Z-A'</td>
       <td>'A-Z' | 'Z-A'</td>
       <td>-</td>
     </tr>
     <tr>
-      <td>text-field</td>
+      <td><code>text-field</code></td>
       <td>Field name to use for display text when using dynamic object arrays</td>
       <td>String</td>
       <td>'text'</td>
     </tr>
     <tr>
-      <td>value-field</td>
+      <td><code>value-field</code></td>
       <td>Field name to use for value when using dynamic object arrays</td>
       <td>String</td>
       <td>'value'</td>
     </tr>
     <tr>
-      <td>display-text</td>
+      <td><code>display-text</code></td>
       <td>Display text to show in the input on initial load (useful for API-driven selects). This value is only shown once, and will be replaced when the user selects a new item.</td>
       <td>String</td>
       <td>-</td>
     </tr>
     <tr>
-      <td>placeholder</td>
+      <td><code>placeholder</code></td>
       <td>Placeholder text for the input</td>
       <td>String</td>
       <td>-</td>
     </tr>
     <tr>
-      <td>label</td>
-      <td>Label text for the input</td>
+      <td><code>label</code></td>
+      <td>Label for the select input.</td>
       <td>String</td>
       <td>''</td>
     </tr>
     <tr>
-      <td>placement</td>
+      <td><code>supporting-label</code></td>
+      <td>Text beside label that has a supporting style</td>
+      <td>string</td>
+      <td>''</td>
+    </tr>
+    <tr>
+      <td><code>placement</code></td>
       <td>Placement of the select popper (e.g., 'bottom', 'top', 'left', 'right')</td>
       <td>String</td>
       <td>'bottom'</td>
     </tr>
     <tr>
-      <td>searchable</td>
+      <td><code>searchable</code></td>
       <td>
         Searchable is to allow typing in the input. If searchable is not set or is false, 
         the input will be readonly and users cannot type.
@@ -1002,7 +1008,7 @@ const userList = ref([
       <td>false</td>
     </tr>
     <tr>
-      <td>disabled-local-search</td>
+      <td><code>disabled-local-search</code></td>
       <td>
         Disables local search when the searchable prop is set to true. 
         This is useful when you want to handle search via API only.
@@ -1011,37 +1017,37 @@ const userList = ref([
       <td>false</td>
     </tr>
     <tr>
-      <td>popper-strategy</td>
+      <td><code>popper-strategy</code></td>
       <td>Defines how the select's popper is positioned: 'absolute' or 'fixed'</td>
       <td>String</td>
       <td>'absolute'</td>
     </tr>
     <tr>
-      <td>popper-width</td>
+      <td><code>popper-width</code></td>
       <td>Width of the select's popper</td>
       <td>String</td>
       <td>'100%'</td>
     </tr>
     <tr>
-      <td>width</td>
+      <td><code>width</code></td>
       <td>Width of the select component wrapper</td>
       <td>String</td>
       <td>'100%'</td>
     </tr>
     <tr>
-      <td>wrapper-position</td>
+      <td><code>wrapper-position</code></td>
       <td>CSS position of the select wrapper</td>
       <td>String</td>
       <td>'relative'</td>
     </tr>
     <tr>
-      <td>disabled</td>
+      <td><code>disabled</code></td>
       <td>Disables the select if true</td>
       <td>Boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>clearable</td>
+      <td><code>clearable</code></td>
       <td>Allows the user to clear the selected value with a clear button</td>
       <td>Boolean</td>
       <td>false</td>
@@ -1055,25 +1061,35 @@ const userList = ref([
   <thead>
     <tr>
       <th>Event</th>
-      <th>Description</th>
       <th>Payload</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>@update:model-value</td>
-      <td>Event emitted when the model value changes</td>
       <td>Any</td>
+      <td>Event emitted when the model value changes</td>
     </tr>
     <tr>
       <td>@infinite-scroll-trigger</td>
-      <td>Event emitted when the select is scrolled to the bottom (for dynamic data loading)</td>
       <td>None</td>
+      <td>Event emitted when the select is scrolled to the bottom (for dynamic data loading)</td>
     </tr>
     <tr>
-      <td>@searchString</td>
-      <td>Event emitted when you type in the search input</td>
+      <td>@search-string</td>
       <td>None</td>
+      <td>Event emitted when you type in the search input</td>
+    </tr>
+    <tr>
+      <td>@get-selected-option</td>
+      <td>Object</td>
+      <td>Event emitted to get the selected option</td>
+    </tr>
+    <tr>
+      <td>@popper-state</td>
+      <td>Bolean</td>
+      <td>Event emitted when you open or close the popper</td>
     </tr>
   </tbody>
 </table>

@@ -9,11 +9,12 @@ export const useSelectLadderized = (
   props: SelectLadderizedPropTypes,
   emit: (event: string, ...args: unknown[]) => void,
 ) => {
-  const { options, disabled } = toRefs(props);
+  const { options, disabled, textSeperator, prependText } = toRefs(props);
 
   const ladderizedClasses = computed(() => ({
     baseClasses: 'spr-flex spr-flex-col spr-gap-size-spacing-4xs',
-    labelClasses: 'spr-body-sm-regular spr-text-color-strong spr-block',
+    labelClasses: 'spr-body-sm-regular spr-text-color-strong spr-flex spr-gap-2',
+    supportingLabelClasses: 'spr-body-sm-regular spr-text-color-supporting',
   }));
 
   // Popper Variables
@@ -80,7 +81,9 @@ export const useSelectLadderized = (
         }
 
         ladderizedSelectModel.value = valuePath.map(String);
-        inputText.value = fullPath.join(' > ');
+        inputText.value = prependText.value
+          ? fullPath.slice().reverse().join(textSeperator.value)
+          : fullPath.join(textSeperator.value);
 
         // Find the actual item object for the last value in the path
         let leafItem: MenuListType | undefined = undefined;
@@ -99,6 +102,8 @@ export const useSelectLadderized = (
 
         if (leafItem && isLeafNode(leafItem)) {
           ladderizedSelectPopperState.value = false;
+
+          emit('popper-state', false);
         }
 
         return;
@@ -128,10 +133,16 @@ export const useSelectLadderized = (
     if (itemToCheck) {
       const path = findPathToValue(ladderizedSelectOptions.value, itemToCheck.value);
 
-      inputText.value = path ? path.join(' > ') : itemToCheck.text || '';
+      if (prependText.value) {
+        inputText.value = path ? path.reverse().join(textSeperator.value) : itemToCheck.text || '';
+      } else {
+        inputText.value = path ? path.join(textSeperator.value) : itemToCheck.text || '';
+      }
 
       if (isLeafNode(itemToCheck)) {
         ladderizedSelectPopperState.value = false;
+
+        emit('popper-state', false);
       }
     } else if (selectedItems.length === 0 && !wasCleared.value) {
       inputText.value = '';
@@ -160,6 +171,8 @@ export const useSelectLadderized = (
     ladderizedSelectPopperState.value = true;
 
     isSearching.value = false;
+
+    emit('popper-state', true);
   };
 
   // Watch for changes in modelValue to update inputText
@@ -188,7 +201,9 @@ export const useSelectLadderized = (
           currentLevel = found.sublevel || [];
         }
 
-        inputText.value = pathTexts.join(' > ');
+        inputText.value = prependText.value
+          ? pathTexts.slice().reverse().join(textSeperator.value)
+          : pathTexts.join(textSeperator.value);
       }
     },
     { immediate: true },
@@ -196,6 +211,8 @@ export const useSelectLadderized = (
 
   onClickOutside(ladderizedSelectRef, () => {
     ladderizedSelectPopperState.value = false;
+
+    emit('popper-state', false);
   });
 
   return {

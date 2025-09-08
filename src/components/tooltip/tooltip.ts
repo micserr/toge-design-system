@@ -18,20 +18,18 @@ const PLACEMENTS = [
 ] as const;
 
 export const tooltipPropTypes = {
-  /**
-   * @description Tooltip Label
-   */
   text: {
     type: String,
     default: '',
   },
-  /**
-   * @description Tooltip Placement
-   */
   placement: {
     type: String,
     validator: (value: (typeof PLACEMENTS)[number]) => PLACEMENTS.includes(value),
     default: 'top',
+  },
+  distance: {
+    type: Number,
+    default: 6,
   },
   hasMaxWidth: {
     type: Boolean,
@@ -39,8 +37,20 @@ export const tooltipPropTypes = {
   },
   fitContent: {
     type: Boolean,
-    default: true
-  }
+    default: true,
+  },
+  showTriggers: {
+    type: [String, Array] as PropType<string | string[]>,
+    default: 'hover',
+  },
+  hideTriggers: {
+    type: [String, Array] as PropType<string | string[]>,
+    default: 'hover',
+  },
+  autoHide: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export type TooltipPropTypes = ExtractPropTypes<typeof tooltipPropTypes>;

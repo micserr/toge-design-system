@@ -1,6 +1,6 @@
 import { ref, computed, toRefs, Slots, watch } from 'vue';
 
-import type { TablePropTypes, TableEmitTypes, TABLE_SORT, TableData, TableDataProps } from './table';
+import type { TablePropTypes, TableEmitTypes, TABLE_SORT, TableData, TableDataProps, Header } from './table';
 import type { SetupContext } from 'vue';
 
 import classNames from 'classnames';
@@ -96,15 +96,20 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       'spr-background-color': props.variant === 'white',
       'spr-background-color-surface': props.variant === 'surface',
     });
-    const headerClasses = classNames(
-      'spr-min-h-12 spr-px-size-spacing-2xs spr-py-size-spacing-3xs',
-      'spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-text-start spr-font-medium spr-uppercase',
-      'spr-border-color-weak spr-border-x-0 spr-border-y spr-border-solid',
-      {
-        'spr-border-t-0': !slots.default,
+    const headerClasses = (header: Header | null) => {
+      if (header?.customTailwindClasses){
+        return classNames(header.customTailwindClasses);
+      }
+
+      return classNames(
+        'spr-min-h-12 spr-px-size-spacing-2xs spr-py-size-spacing-3xs',
+        'spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-text-start spr-font-medium spr-uppercase',
+        'spr-border-color-weak spr-border-x-0 spr-border-y spr-border-solid',
+        {
+          'spr-border-t-0': !slots.default,
       },
       headerBackground,
-    );
+    )};
 
     const headerNameClass = 'spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-5xs';
 

@@ -82,31 +82,87 @@ status component has 7 different sizes. You can use the `size` prop to set the s
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th class="spr-min-w-[180px]">Name</th>
       <th>Description</th>
-      <th>Accepted Values</th>
       <th>Type</th>
       <th>Default</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>status</td>
-      <td>Defines the status of the state.</td>
-      <td>'success', 'information', 'pending', 'caution', 'danger' </td>
-      <td>string</td>
-      <td>success</td>
+      <td>
+        <code>state</code>
+      </td>
+      <td>
+        Defines the status state to display. Each state has a specific color and icon:
+        <ul>
+          <li><code>success</code>: Green check circle for successful operations</li>
+          <li><code>information</code>: Blue info icon for informational messages</li>
+          <li><code>pending</code>: Yellow warning icon for pending states</li>
+          <li><code>caution</code>: Orange warning icon for caution states</li>
+          <li><code>danger</code>: Red warning circle for error or danger states</li>
+        </ul>
+      </td>
+      <td>'success' | 'information' | 'pending' | 'caution' | 'danger'</td>
+      <td><code>'success'</code></td>
     </tr>
     <tr>
-      <td>size</td>
-      <td>Defines the size of the state. Options range from extra small to extra large, offering flexibility for different UI layouts</td>
-      <td>'2xl', 'xl', 'lg', 'base', 'sm', 'xs', '2xs'</td>
-      <td>string</td>
-      <td>base</td>
+      <td>
+        <code>size</code>
+      </td>
+      <td>
+        Defines the size of the status indicator. Provides flexibility for different UI layouts and emphasis levels:
+        <ul>
+          <li><code>2xs</code>: 14px × 14px</li>
+          <li><code>xs</code>: 16px × 16px</li>
+          <li><code>sm</code>: 20px × 20px</li>
+          <li><code>base</code>: 24px × 24px</li>
+          <li><code>lg</code>: 32px × 32px</li>
+          <li><code>xl</code>: 40px × 40px</li>
+          <li><code>2xl</code>: 48px × 48px</li>
+        </ul>
+      </td>
+      <td>'2xs' | 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl'</td>
+      <td><code>'base'</code></td>
     </tr>    
+  </tbody>
+</table>
+
+### Icons
+
+<table>
+  <thead>
+    <tr>
+      <th class="spr-min-w-[180px]">State</th>
+      <th>Icon</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Success</td>
+      <td><code>ph:check-circle-fill</code></td>
+    </tr>
+    <tr>
+      <td>Information</td>
+      <td><code>ph:info-fill</code></td>
+    </tr>
+    <tr>
+      <td>Pending</td>
+      <td><code>ph:warning-fill</code></td>
+    </tr>
+    <tr>
+      <td>Caution</td>
+      <td><code>ph:warning-fill</code></td>
+    </tr>
+    <tr>
+      <td>Danger</td>
+      <td><code>ph:warning-circle-fill</code></td>
+    </tr>
   </tbody>
 </table>
 

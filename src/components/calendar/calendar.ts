@@ -82,8 +82,18 @@ export const calendarPropTypes = {
   },
 };
 
-export const calendarEmitTypes = {};
-
+export const calendarEmitTypes = [
+  'loadMore',
+  'onCellClick',
+  'update:firstLastDayOfWeek',
+  'update:sort',
+  'update:search',
+  'update:selectedCell',
+  'update:selectedCompany',
+  'update:selectedDepartment',
+  'update:selectedBranch',
+  'onClickEmptyButton',
+];
 export type CalendarEmitTypes = typeof calendarEmitTypes;
 
 export type CalendarPropTypes = ExtractPropTypes<typeof calendarPropTypes>;

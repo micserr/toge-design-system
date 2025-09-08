@@ -10,7 +10,7 @@ The Avatar component is a versatile and commonly used element in user interfaces
 
 ## Basic Usage
 
-<spr-avatar  />
+<spr-avatar />
 
 ```vue
 <template>
@@ -20,7 +20,7 @@ The Avatar component is a versatile and commonly used element in user interfaces
 
 ## Notification
 
-<spr-avatar  :notification="true" />
+<spr-avatar :notification="true" />
 
 ```vue
 <template>
@@ -30,7 +30,7 @@ The Avatar component is a versatile and commonly used element in user interfaces
 
 ## Badge
 
-<spr-avatar  :badge="true" />
+<spr-avatar :badge="true" />
 
 ```vue
 <template>
@@ -40,7 +40,15 @@ The Avatar component is a versatile and commonly used element in user interfaces
 
 ## Image
 
-<spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" :notification="true" :badge="true" size="2xl" />
+<div>
+  <spr-avatar 
+    variant="image" 
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" 
+    :notification="true" 
+    :badge="true" 
+    size="2xl" 
+  />
+</div>
 
 ```vue
 <template>
@@ -59,81 +67,114 @@ The Avatar component is a versatile and commonly used element in user interfaces
 avatar component has 7 different sizes. You can use the `size` prop to set the size of the avatar. The default size is `2xl`. The available sizes are `2xl`, `xl`, `lg`, `md`, `sm`, `xs`, `2xs`.
 
 <div class="spr-space-x-3 spr-flex">
-  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="2xl" />
-
-  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="xl" />
-
-  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="lg"/>
-
-  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="md"/>
-
-  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"  :notification="true" :badge="true" size="sm" />
-
-  <spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" :notification="true" :badge="true" size="xs"/>
-
-<spr-avatar variant="image" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" :notification="true" :badge="true"size="2xs" />
-
+  <spr-avatar 
+    variant="image" 
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" 
+    :notification="true" 
+    :badge="true" 
+    size="2xl" 
+  />
+  <spr-avatar 
+    variant="image" 
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" 
+    :notification="true" 
+    :badge="true" 
+    size="xl" 
+  />
+  <spr-avatar 
+    variant="image" 
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" 
+    :notification="true" 
+    :badge="true" 
+    size="lg" 
+  />
+  <spr-avatar 
+    variant="image" 
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" 
+    :notification="true" 
+    :badge="true" 
+    size="md" 
+  />
+  <spr-avatar 
+    variant="image" 
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" 
+    :notification="true" 
+    :badge="true" 
+    size="sm" 
+  />
+  <spr-avatar 
+    variant="image" 
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" 
+    :notification="true" 
+    :badge="true" 
+    size="xs" 
+  />
+  <spr-avatar 
+    variant="image" 
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" 
+    :notification="true" 
+    :badge="true" 
+    size="2xs" 
+  />
 </div>
 
 ```vue
 <template>
-  <div>
-    <spr-avatar
-      variant="image"
-      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-      :notification="true"
-      :badge="true"
-      size="2xl"
-    />
+  <spr-avatar
+    variant="image"
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    :notification="true"
+    :badge="true"
+    size="2xl"
+  />
 
-    <spr-avatar
-      variant="image"
-      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-      :notification="true"
-      :badge="true"
-      size="xl"
-    />
+  <spr-avatar
+    variant="image"
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    :notification="true"
+    :badge="true"
+    size="xl"
+  />
 
-    <spr-avatar
-      variant="image"
-      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-      :notification="true"
-      :badge="true"
-      size="lg"
-    />
+  <spr-avatar
+    variant="image"
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    :notification="true"
+    :badge="true"
+    size="lg"
+  />
 
-    <spr-avatar
-      variant="image"
-      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-      :notification="true"
-      :badge="true"
-      size="md"
-    />
+  <spr-avatar
+    variant="image"
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    :notification="true"
+    :badge="true"
+    size="md"
+  />
 
-    <spr-avatar
-      variant="image"
-      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-      :notification="true"
-      :badge="true"
-      size="sm"
-    />
+  <spr-avatar
+    variant="image"
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    :notification="true"
+    :badge="true"
+    size="sm"
+  />
 
-    <spr-avatar
-      variant="image"
-      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-      :notification="true"
-      :badge="true"
-      size="xs"
-    />
+  <spr-avatar
+    variant="image"
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    :notification="true"
+    :badge="true"
+    size="xs"
+  />
 
-    <spr-avatar
-      variant="image"
-      src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
-      :notification="true"
-      :badge="true"
-      size="2xs"
-    />
-  </div>
+  <spr-avatar
+    variant="image"
+    src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+    :notification="true"
+    :badge="true"
+    size="2xs"
+  />
 </template>
 ```
 
@@ -403,6 +444,8 @@ import { Icon } from '@iconify/vue';
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
@@ -414,77 +457,160 @@ import { Icon } from '@iconify/vue';
   </thead>
 
   <tbody>
+    <tr>
+      <td>variant</td>
+      <td>
+        Defines the type of avatar to display:
+        <ul>
+          <li><code>image</code>: Displays an image using the <code>src</code> prop</li>
+          <li><code>initial</code>: Shows text initials based on the <code>initial</code> prop</li>
+          <li><code>client</code>: Shows a client-specific icon (building icon)</li>
+          <li><code>user</code>: Shows a user-specific icon (single person)</li>
+          <li><code>user-group</code>: Shows an icon representing a group of users (multiple people)</li>
+          <li><code>count</code>: Displays a numeric count from the <code>count</code> prop with a "+" prefix</li>
+        </ul>
+      </td>
+      <td>'image' | 'initial' | 'client' | 'user' | 'user-group' | 'count'</td>
+      <td>'initial'</td>
+    </tr>
     <tr> 
       <td>src</td>
-      <td>URL pointing to the image used as the avatar. This can be a link to an online image resource.</td>
+      <td>URL for the avatar image when using <code>variant="image"</code>. If not provided when using image variant, will fall back to the appropriate icon based on variant.</td>
       <td>string</td>
-      <td>''</td>
+      <td>undefined</td>
     </tr>
     <tr>
       <td>alt</td>
-      <td>Alternative text to display when the avatar image cannot be loaded. It serves as a description of the image for accessibility purposes.</td>
+      <td>Alternative text for the avatar image for accessibility. Important for screen readers to identify the avatar content.</td>
       <td>string</td>
-      <td>Avatar</td>
-    </tr>
-    <tr>
-      <td>notification</td>
-      <td>Flag that determines if a notification indicator should be shown on the avatar. A true value will display the notification icon.</td>
-      <td>boolean</td>
-      <td>false</td>
-    </tr>
-    <tr>
-      <td>badge</td>
-      <td>Indicates whether a status badge should be displayed on the avatar. Typically used to signify a user's online/offline status or activity.</td>
-      <td>boolean</td>
-      <td>false</td>
+      <td>'Avatar'</td>
     </tr>
     <tr>
       <td>size</td>
-      <td>Defines the size of the avatar. Options range from extra small to extra large, offering flexibility for different UI layouts.</td>
-      <td>'2xl', 'xl', 'lg', 'md', 'sm', 'xs', '2xs'</td>
-      <td>2xl</td>
+      <td>
+        Controls the size of the avatar, affecting dimensions, font size, and position of indicators:
+        <ul>
+          <li><code>2xl</code>: 80px (5rem) - Extra extra large</li>
+          <li><code>xl</code>: 56px (3.5rem) - Extra large</li>
+          <li><code>lg</code>: 40px (2.5rem) - Large</li>
+          <li><code>md</code>: 36px (2.25rem) - Medium</li>
+          <li><code>sm</code>: 24px (1.5rem) - Small</li>
+          <li><code>xs</code>: 20px (1.25rem) - Extra small</li>
+          <li><code>2xs</code>: 16px (1rem) - Extra extra small</li>
+        </ul>
+        Each size automatically adjusts notification and badge positions and sizes.
+      </td>
+      <td>'2xl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs' | '2xs'</td>
+      <td>'2xl'</td>
     </tr>
     <tr>
-      <td>NotificationText</td>
-      <td>The text that appears within the notification indicator. This can display a message or a count depending on the use case.</td>
+      <td>notification</td>
+      <td>When <code>true</code>, displays a small notification indicator (badge) at the top-right corner of the avatar. The notification uses the danger variant color.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>notificationText</td>
+      <td>Text to display in the notification indicator, typically a number. Only visible when <code>notification</code> is <code>true</code>.</td>
       <td>string</td>
-      <td>''</td>
+      <td>'0'</td>
+    </tr>
+    <tr>
+      <td>badge</td>
+      <td>When <code>true</code>, displays a status badge at the bottom-right corner of the avatar. The badge color is determined by the <code>status</code> prop.</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
     <tr>
       <td>initial</td>
-      <td>Initials that will be displayed when using the 'initial' variant of the avatar. This is a fallback option when no image is provided.</td>
+      <td>
+        Text to display when using <code>variant="initial"</code>. The component automatically extracts initials based on these rules:
+        <ul>
+          <li>For a single name: Uses the first letter (e.g., "John" → "J")</li>
+          <li>For multiple names: Uses the first letter of the first and last name (e.g., "John Doe" → "JD")</li>
+          <li>For small sizes (xs, 2xs): Limits to a single initial</li>
+        </ul>
+      </td>
       <td>string</td>
       <td>'Avatar'</td>
     </tr>
     <tr>
       <td>color</td>
-      <td>Determines the background color of the avatar. It can either be set to a primary color or a secondary color to match the design theme.</td>
+      <td>
+        Background color scheme for the avatar:
+        <ul>
+          <li><code>primary</code>: Uses the surface color for background</li>
+          <li><code>secondary</code>: Uses the standard background color</li>
+        </ul>
+        A third option, 'tertiary', is also implemented in the code but not exposed in the prop validation.
+      </td>
       <td>'primary' | 'secondary'</td>
       <td>'primary'</td>
     </tr>
     <tr>
       <td>status</td>
-      <td>Defines the type of status shown in the avatar's badge. It can indicate a variety of states such as 'danger', 'disabled', 'information', or 'brand'.</td>
-      <td>'danger', 'disabled', 'information', 'brand'</td>
+      <td>
+        Status indicator type when <code>badge</code> is <code>true</code>:
+        <ul>
+          <li><code>brand</code>: Primary brand color (green), typically used for online or active status</li>
+          <li><code>information</code>: Blue color, typically used for informational status</li>
+          <li><code>danger</code>: Red color, typically used for error or blocked status</li>
+          <li><code>disabled</code>: Gray color, typically used for offline or inactive status</li>
+        </ul>
+      </td>
+      <td>'brand' | 'information' | 'danger' | 'disabled'</td>
       <td>'brand'</td>
     </tr>
     <tr>
       <td>count</td>
-      <td>The numeric text displayed in certain avatar variants to indicate a quantity, such as unread messages or notifications.</td>
-      <td>Number</td>
+      <td>Numeric value to display when using <code>variant="count"</code>. Will be displayed with a "+" prefix (e.g., "+10").</td>
+      <td>number</td>
       <td>0</td>
     </tr>
     <tr>
-      <td>Variant</td>
-      <td>Defines the type of avatar to be used. Options include 'image' for a traditional avatar with a picture, 'initial' for displaying text initials, 'client' and 'user' for more personalized avatars, 'user-group' for group representations, and 'count' for showing numbers.</td>
-      <td>'image', 'initial', 'client', 'user', 'user-group', 'count'</td>
-      <td>initial</td>
-    </tr>
-    <tr>
       <td>loading</td>
-      <td>Shows a loading  within the avatar, indicating that content is being loaded.</td>
+      <td>When <code>true</code>, displays a skeletal loading state animation instead of the actual avatar content. Useful for showing loading states while data is being fetched.</td>
       <td>boolean</td>
       <td>false</td>
+    </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>imageError</td>
+      <td>Emitted when the image source is not an image.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>default</td>
+      <td>
+        <p>Custom content to display inside the avatar. This can be used to create custom avatars with icons, images, or other content.</p>
+        <p>When this slot is provided, it takes precedence over the standard icon or initial display. The slot content will be wrapped in the same container as images or icons, with appropriate sizing and styling.</p>
+        <p>Note: You should adjust your custom content to fit the avatar size, especially for the smaller size variants.</p>
+      </td>
     </tr>
   </tbody>
 </table>

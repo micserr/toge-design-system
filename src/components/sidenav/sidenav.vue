@@ -4,20 +4,21 @@
       'spr-hidden-scrolls spr-fixed spr-bottom-0 spr-left-0 spr-top-0',
       'spr-background-color spr-w-auto spr-overflow-y-auto spr-overflow-x-hidden',
       'spr-border-color-weak spr-border-b-0 spr-border-l-0 spr-border-r spr-border-t-0 spr-border-solid',
-      'spr-transition spr-duration-150 spr-ease-in-out',
+      'spr-z-10 spr-transition spr-duration-150 spr-ease-in-out',
     ]"
   >
     <div
       :class="{
         'spr-hidden-scrolls spr-flex spr-h-full spr-flex-col spr-justify-between spr-overflow-auto': true,
         'spr-max-h-[calc(100vh-60px)]': props.notificationCount === null && props.requestCount === null,
-        'spr-max-h-[calc(100vh-194px)]': props.notificationCount && props.requestCount || props.notificationCount === 0 || props.requestCount === 0,
-        '!spr-max-h-[calc(100vh-150px)]': props.requestCount === ''  || props.notificationCount === '',
+        'spr-max-h-[calc(100vh-194px)]':
+          (props.notificationCount && props.requestCount) || props.notificationCount === 0 || props.requestCount === 0,
+        '!spr-max-h-[calc(100vh-150px)]': props.requestCount === '' || props.notificationCount === '',
       }"
     >
-      <!-- Top Section -->
+      <!-- #region - Top Section -->
       <div class="spr-grid spr-justify-center spr-gap-2 spr-px-3 spr-pb-4 spr-pt-4">
-        <!-- Logo -->
+        <!-- #region - Logo -->
         <div
           :class="[
             'spr-grid spr-justify-center spr-p-2',
@@ -26,8 +27,9 @@
         >
           <slot name="logo-image" />
         </div>
+        <!-- #endregion - Logo -->
 
-        <!-- Quick Actions -->
+        <!-- #region - Quick Actions -->
         <Menu
           v-if="props.quickActions && props.quickActions.length > 0"
           v-model:shown="isQuckActionMenuVisible"
@@ -37,6 +39,7 @@
           :triggers="[]"
           :popper-hide-triggers="[]"
           instant-move
+          :delay="0"
         >
           <div
             :class="{
@@ -122,8 +125,9 @@
             </div>
           </template>
         </Menu>
+        <!-- #endregion - Quick Actions -->
 
-        <!-- Search -->
+        <!-- #region - Search -->
         <div
           v-if="props.hasSearch"
           id="sidenav_search"
@@ -131,17 +135,18 @@
             'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out',
             'hover:spr-background-color-hover',
             'active:spr-background-color-single-active active:spr-scale-90',
-            'spr-max-w-9 spr-max-h-9 spr-m-auto spr-box-border',
+            'spr-m-auto spr-box-border spr-max-h-9 spr-max-w-9',
           ]"
           @click="emit('search', 'search-triggered')"
         >
-          <Icon icon="ph:magnifying-glass" class="spr-h-[1.25em] spr-w-[1.25em]"/>
+          <Icon icon="ph:magnifying-glass" class="spr-h-[1.25em] spr-w-[1.25em]" />
         </div>
+        <!-- #endregion - Search -->
 
-        <!-- Grouped Nav Links -->
+        <!-- #region - Grouped Nav Links -->
         <template v-for="(navLink, navLinkIndex) in navLinks.top" :key="navLinkIndex">
           <template v-for="(parentLink, parentLinkIndex) in navLink.parentLinks" :key="parentLinkIndex">
-            <!-- Parent link with menu links -->
+            <!-- #region - Parent Links with Menus -->
             <template v-if="parentLink.menuLinks && parentLink.menuLinks.length > 0">
               <Menu
                 aria-id="sidenav-menu-wrapper"
@@ -149,11 +154,13 @@
                 placement="right"
                 :triggers="['click', 'hover']"
                 instant-move
+                :delay="0"
               >
+                <!-- #region - Parent Links -->
                 <div
                   :id="`${generateId(parentLink.title)}`"
                   :class="{
-                    'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out spr-max-w-9 spr-max-h-9 spr-m-auto spr-box-border': true,
+                    'spr-m-auto spr-box-border spr-flex spr-max-h-9 spr-max-w-9 spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out': true,
                     'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
                       props.activeNav.parentNav === parentLink.title,
                     'hover:spr-background-color-hover': props.activeNav.parentNav != parentLink.title,
@@ -165,20 +172,32 @@
                       v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
                       :src="parentLink.icon"
                       :alt="`${parentLink.title} icon`"
-                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]"
+                    />
                     <img
                       v-else-if="props.activeNav.parentNav === parentLink.title"
                       :src="parentLink.icon.replace(/\.(svg|png|jpg)$/, '-fill.$1')"
                       :alt="`${parentLink.title} icon`"
-                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]"
+                    />
                   </template>
                   <template v-else>
-                    <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
-                    <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon
+                      v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
+                      :icon="parentLink.icon"
+                      class="spr-h-[1.25em] spr-w-[1.25em]"
+                    />
+                    <Icon
+                      v-else-if="props.activeNav.parentNav === parentLink.title"
+                      :icon="`${parentLink.icon}-fill`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-text-kangkong-700"
+                    />
                     <Icon v-else icon="ph:globe" />
                   </template>
                 </div>
+                <!-- #endregion - Parent Links -->
 
+                <!-- #region - Menu Links Popper -->
                 <template #popper>
                   <div
                     class="spr-border-color-weak spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-2"
@@ -200,15 +219,17 @@
                     </h5>
 
                     <template v-for="(menuLinkItem, menuLinkItemIndex) in menuLink.items" :key="menuLinkItemIndex">
-                      <!-- Menu link with submenu links -->
+                      <!-- #region - Menu link with Submenu links -->
                       <template v-if="menuLinkItem.submenuLinks && menuLinkItem.submenuLinks.length > 0">
                         <Menu
-                          aria-id="sidenav-submenu-wrapper"
+                          aria-id="sidenav-submenu-l1-wrapper"
                           distance="4"
                           placement="right-start"
                           :triggers="['click', 'hover']"
                           instant-move
+                          :delay="0"
                         >
+                          <!-- #region - Menu links -->
                           <div
                             :id="`${generateId(parentLink.title, menuLinkItem.title)}`"
                             :class="{
@@ -223,18 +244,41 @@
                               class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                             ></div>
                             <span>{{ menuLinkItem.title }}</span>
-                            <Icon
-                              icon="ph:caret-right"
-                              class="spr-h-[16px] spr-w-[16px] spr-transform spr-font-normal spr-transition-transform spr-duration-300"
-                            />
+                            <div class="spr-flex spr-items-center spr-gap-1">
+                              <template v-for="(attr, i) in menuLinkItem?.attributes" :key="i">
+                                <spr-lozenge
+                                  v-if="attr?.name === 'lozenge' && attr?.value"
+                                  :label="getLozengeLabel(attr)"
+                                  :tone="getLozengeTone(attr)"
+                                  fill
+                                />
+                              </template>
+                              <Icon
+                                icon="ph:caret-right"
+                                class="spr-h-[16px] spr-w-[16px] spr-transform spr-font-normal spr-transition-transform spr-duration-300"
+                              />
+                            </div>
                           </div>
+                          <!-- #endregion - Menu links -->
 
+                          <!-- #region - Submenu Links Popper -->
+                          <!-- 
+                            Note: if you want the popper to stay open while hovering over submenuLink.subMenuHeading & submenuLinkItem.title, 
+                                  you need to keep it inside a <Menu> or ensure the content is part of the popper's interactive area.
+                                    
+                                  "sidenav-submenu-l2-wrapper" - Popper is currently hidden since sidenav only has 1 level of submenu links.
+                          -->
                           <template #popper>
-                            <template
-                              v-for="(submenuLink, submenuLinkIndex) in menuLinkItem.submenuLinks"
-                              :key="submenuLinkIndex"
+                            <Menu
+                              aria-id="sidenav-submenu-l2-wrapper"
+                              :triggers="['click', 'hover']"
+                              instant-move
+                              :delay="0"
                             >
-                              <Menu aria-id="sidenav-sub-submenu-subheading-wrapper" :triggers="['click', 'hover']" instant-move>
+                              <template
+                                v-for="(submenuLink, submenuLinkIndex) in menuLinkItem.submenuLinks"
+                                :key="submenuLinkIndex"
+                              >
                                 <h5
                                   v-if="submenuLink.subMenuHeading"
                                   :class="{
@@ -244,12 +288,12 @@
                                 >
                                   {{ submenuLink.subMenuHeading }}
                                 </h5>
-                              </Menu>
-                              <template
-                                v-for="(submenuLinkItem, submenuLinkItemIndex) in submenuLink.items"
-                                :key="submenuLinkItemIndex"
-                              >
-                                <Menu aria-id="sidenav-sub-submenu-wrapper" :triggers="['click', 'hover']" instant-move>
+
+                                <template
+                                  v-for="(submenuLinkItem, submenuLinkItemIndex) in submenuLink.items"
+                                  :key="submenuLinkItemIndex"
+                                >
+                                  <!-- #region - Submenu Links -->
                                   <div
                                     v-if="!submenuLinkItem.hidden"
                                     :id="`${generateId(parentLink.title, menuLinkItem.title, submenuLinkItem.title)}`"
@@ -274,16 +318,30 @@
                                       v-show="props.activeNav.submenu === submenuLinkItem.title"
                                       class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                                     ></div>
-                                    <span>{{ submenuLinkItem.title }}</span>
+                                    <div class="spr-flex spr-items-center spr-gap-1">
+                                      <span>{{ submenuLinkItem.title }}</span>
+
+                                      <template v-for="(attr, i) in submenuLinkItem?.attributes" :key="i">
+                                        <spr-lozenge
+                                          v-if="attr?.name === 'lozenge' && attr?.value"
+                                          :label="getLozengeLabel(attr)"
+                                          :tone="getLozengeTone(attr)"
+                                          fill
+                                        />
+                                      </template>
+                                    </div>
                                   </div>
-                                </Menu>
+                                  <!-- #endregion - Submenu Links -->
+                                </template>
                               </template>
-                            </template>
+                            </Menu>
                           </template>
+                          <!-- #endregion - Submenu Links Popper -->
                         </Menu>
                       </template>
+                      <!-- #endregion - Menu link with Submenu links -->
 
-                      <!-- Menu link only -->
+                      <!-- #region - Menu link only -->
                       <template v-else>
                         <div
                           v-if="!menuLinkItem.hidden"
@@ -301,30 +359,38 @@
                             class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                           ></div>
                           <span>{{ menuLinkItem.title }}</span>
+                          <template v-for="(attr, i) in menuLinkItem?.attributes" :key="i">
+                            <spr-lozenge
+                              v-if="attr?.name === 'lozenge' && attr?.value"
+                              :label="getLozengeLabel(attr)"
+                              :tone="getLozengeTone(attr)"
+                              fill
+                            />
+                          </template>
                         </div>
                       </template>
+                      <!-- #endregion - Menu link only -->
                     </template>
                   </template>
                 </template>
+                <!-- #endregion - Menu Links -->
               </Menu>
             </template>
+            <!-- #endregion - Parent Links with Menus -->
 
-            <!-- Parent link only  -->
+            <!-- #region - Parent link only -->
             <template v-else>
-              <Tooltip
+              <spr-tooltip
                 v-if="!parentLink.hidden"
-                aria-id="sidenav-tooltip-wrapper"
+                :text="parentLink.title"
                 placement="right"
-                distance="18"
-                :triggers="['hover']"
+                :distance="18"
+                :fit-content="false"
               >
-                <template #popper>
-                  <span class="spr-label-xs-medium spr-uppercase">{{ parentLink.title }}</span>
-                </template>
                 <div
                   :id="`${generateId(parentLink.title)}`"
                   :class="{
-                    'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out spr-max-w-9 spr-max-h-9 spr-m-auto spr-box-border': true,
+                    'spr-m-auto spr-box-border spr-flex spr-max-h-9 spr-max-w-9 spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out': true,
                     'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
                       props.activeNav.parentNav === parentLink.title,
                     'hover:spr-background-color-hover': props.activeNav.parentNav != parentLink.title,
@@ -337,38 +403,53 @@
                       v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
                       :src="parentLink.icon"
                       :alt="`${parentLink.title} icon`"
-                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]"
+                    />
                     <img
                       v-else-if="props.activeNav.parentNav === parentLink.title"
                       :src="parentLink.icon.replace(/\.(svg|png|jpg)$/, '-fill.$1')"
                       :alt="`${parentLink.title} icon`"
-                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]"
+                    />
                   </template>
                   <template v-else>
-                    <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
-                    <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon
+                      v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
+                      :icon="parentLink.icon"
+                      class="spr-h-[1.25em] spr-w-[1.25em]"
+                    />
+                    <Icon
+                      v-else-if="props.activeNav.parentNav === parentLink.title"
+                      :icon="`${parentLink.icon}-fill`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-text-kangkong-700"
+                    />
                     <Icon v-else icon="ph:globe" />
                   </template>
                 </div>
-              </Tooltip>
+              </spr-tooltip>
             </template>
+            <!-- #endregion - Parent link only  -->
           </template>
+
+          <!-- Divider -->
           <div
             v-if="navLinks.top.length > 0 && navLinkIndex < navLinks.top.length - 1"
             class="spr-background-color-hover spr-h-[2px] spr-w-full"
           ></div>
         </template>
+        <!-- #endregion - Grouped Nav Links -->
       </div>
+      <!-- #endregion - Top Section -->
 
-      <!-- Bottom Section -->
+      <!-- #region - Bottom Section -->
       <div
         v-if="navLinks.bottom && navLinks.bottom.length > 0"
         class="spr-grid spr-justify-center spr-gap-2 spr-px-3 spr-pb-4 spr-pt-0"
       >
-        <!-- Grouped Nav Links -->
+        <!-- #region - Grouped Nav Links -->
         <template v-for="(navLink, navLinkIndex) in navLinks.bottom" :key="navLinkIndex">
           <template v-for="(parentLink, parentLinkIndex) in navLink.parentLinks" :key="parentLinkIndex">
-            <!-- Parent link with menu links -->
+            <!-- #region - Parent Links with Menus -->
             <template v-if="parentLink.menuLinks && parentLink.menuLinks.length > 0">
               <Menu
                 aria-id="sidenav-menu-wrapper"
@@ -376,11 +457,13 @@
                 placement="right"
                 :triggers="['click', 'hover']"
                 instant-move
+                :delay="0"
               >
+                <!-- #region - Parent Links -->
                 <div
                   :id="`${generateId(parentLink.title)}`"
                   :class="{
-                    'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out spr-max-w-9 spr-max-h-9 spr-m-auto spr-box-border': true,
+                    'spr-m-auto spr-box-border spr-flex spr-max-h-9 spr-max-w-9 spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out': true,
                     'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
                       props.activeNav.parentNav === parentLink.title,
                     'hover:spr-background-color-hover': props.activeNav.parentNav != parentLink.title,
@@ -392,20 +475,32 @@
                       v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
                       :src="parentLink.icon"
                       :alt="`${parentLink.title} icon`"
-                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]"
+                    />
                     <img
                       v-else-if="props.activeNav.parentNav === parentLink.title"
                       :src="parentLink.icon.replace(/\.(svg|png|jpg)$/, '-fill.$1')"
                       :alt="`${parentLink.title} icon`"
-                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]"
+                    />
                   </template>
                   <template v-else>
-                    <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
-                    <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon
+                      v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
+                      :icon="parentLink.icon"
+                      class="spr-h-[1.25em] spr-w-[1.25em]"
+                    />
+                    <Icon
+                      v-else-if="props.activeNav.parentNav === parentLink.title"
+                      :icon="`${parentLink.icon}-fill`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-text-kangkong-700"
+                    />
                     <Icon v-else icon="ph:globe" />
                   </template>
                 </div>
+                <!-- #endregion - Parent Links -->
 
+                <!-- #region - Menu Links Popper -->
                 <template #popper>
                   <div
                     class="spr-border-color-weak spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-2"
@@ -427,15 +522,17 @@
                     </h5>
 
                     <template v-for="(menuLinkItem, menuLinkItemIndex) in menuLink.items" :key="menuLinkItemIndex">
-                      <!-- Menu link with submenu links -->
+                      <!-- #region - Menu link with Submenu links -->
                       <template v-if="menuLinkItem.submenuLinks && menuLinkItem.submenuLinks.length > 0">
                         <Menu
-                          aria-id="sidenav-submenu-wrapper"
+                          aria-id="sidenav-submenu-l1-wrapper"
                           distance="4"
                           placement="right-start"
                           :triggers="['click', 'hover']"
                           instant-move
+                          :delay="0"
                         >
+                          <!-- #region - Menu links -->
                           <div
                             :id="`${generateId(parentLink.title, menuLinkItem.title)}`"
                             :class="{
@@ -455,13 +552,26 @@
                               class="spr-h-[16px] spr-w-[16px] spr-transform spr-font-normal spr-transition-transform spr-duration-300"
                             />
                           </div>
+                          <!-- #endregion - Menu links -->
 
+                          <!-- #region - Submenu Links Popper -->
+                          <!-- 
+                            Note: if you want the popper to stay open while hovering over submenuLink.subMenuHeading & submenuLinkItem.title, 
+                                  you need to keep it inside a <Menu> or ensure the content is part of the popper's interactive area. 
+                            
+                                  "sidenav-submenu-l2-wrapper" - Popper is currently hidden since sidenav only has 1 level of submenu links.
+                          -->
                           <template #popper>
-                            <template
-                              v-for="(submenuLink, submenuLinkIndex) in menuLinkItem.submenuLinks"
-                              :key="submenuLinkIndex"
+                            <Menu
+                              aria-id="sidenav-submenu-l2-wrapper"
+                              :triggers="['click', 'hover']"
+                              instant-move
+                              :delay="0"
                             >
-                              <Menu aria-id="sidenav-sub-submenu-subheading-wrapper" :triggers="['click', 'hover']" instant-move>
+                              <template
+                                v-for="(submenuLink, submenuLinkIndex) in menuLinkItem.submenuLinks"
+                                :key="submenuLinkIndex"
+                              >
                                 <h5
                                   v-if="submenuLink.subMenuHeading"
                                   :class="{
@@ -471,12 +581,12 @@
                                 >
                                   {{ submenuLink.subMenuHeading }}
                                 </h5>
-                              </Menu>
-                              <template
-                                v-for="(submenuLinkItem, submenuLinkItemIndex) in submenuLink.items"
-                                :key="submenuLinkItemIndex"
-                              >
-                                <Menu aria-id="sidenav-sub-submenu-wrapper" :triggers="['click', 'hover']" instant-move>
+
+                                <template
+                                  v-for="(submenuLinkItem, submenuLinkItemIndex) in submenuLink.items"
+                                  :key="submenuLinkItemIndex"
+                                >
+                                  <!-- #region - Submenu Links -->
                                   <div
                                     v-if="!submenuLinkItem.hidden"
                                     :id="`${generateId(parentLink.title, menuLinkItem.title, submenuLinkItem.title)}`"
@@ -501,16 +611,30 @@
                                       v-show="props.activeNav.submenu === submenuLinkItem.title"
                                       class="spr-background-color-brand-base spr-absolute spr-left-0 spr-top-0 spr-h-full spr-w-[2px]"
                                     ></div>
-                                    <span>{{ submenuLinkItem.title }}</span>
+                                    <div class="spr-flex spr-items-center spr-gap-1">
+                                      <span>{{ submenuLinkItem.title }}</span>
+
+                                      <template v-for="(attr, i) in submenuLinkItem?.attributes" :key="i">
+                                        <spr-lozenge
+                                          v-if="attr?.name === 'lozenge' && attr?.value"
+                                          :label="getLozengeLabel(attr)"
+                                          :tone="getLozengeTone(attr)"
+                                          fill
+                                        />
+                                      </template>
+                                    </div>
                                   </div>
-                                </Menu>
+                                  <!-- #endregion - Submenu Links -->
+                                </template>
                               </template>
-                            </template>
+                            </Menu>
                           </template>
+                          <!-- #endregion - Submenu Links Popper -->
                         </Menu>
                       </template>
+                      <!-- #endregion - Menu link with Submenu links -->
 
-                      <!-- Menu link only -->
+                      <!-- #region - Menu link only -->
                       <template v-else>
                         <div
                           v-if="!menuLinkItem.hidden"
@@ -526,28 +650,29 @@
                           <span>{{ menuLinkItem.title }}</span>
                         </div>
                       </template>
+                      <!-- #endregion - Menu link only -->
                     </template>
                   </template>
                 </template>
+                <!-- #endregion - Menu Links Popper -->
               </Menu>
             </template>
+            <!-- #endregion - Parent Links with Menus -->
 
-            <!-- Parent link only  -->
+            <!-- #region - Parent link only -->
             <template v-else>
-              <Tooltip
+              <spr-tooltip
                 v-if="!parentLink.hidden"
-                aria-id="sidenav-tooltip-wrapper"
+                :text="parentLink.title"
                 placement="right"
-                distance="18"
-                :triggers="['hover']"
+                :distance="18"
+                :fit-content="false"
               >
-                <template #popper>
-                  <span class="spr-label-xs-medium spr-uppercase">{{ parentLink.title }}</span>
-                </template>
+                <!-- #region - Parent Links -->
                 <div
                   :id="`${generateId(parentLink.title)}`"
                   :class="{
-                    'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out spr-max-w-9 spr-max-h-9 spr-m-auto spr-box-border': true,
+                    'spr-m-auto spr-box-border spr-flex spr-max-h-9 spr-max-w-9 spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out': true,
                     'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
                       props.activeNav.parentNav === parentLink.title,
                     'hover:spr-background-color-hover': props.activeNav.parentNav != parentLink.title,
@@ -560,58 +685,67 @@
                       v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
                       :src="parentLink.icon"
                       :alt="`${parentLink.title} icon`"
-                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]"
+                    />
                     <img
                       v-else-if="props.activeNav.parentNav === parentLink.title"
                       :src="parentLink.icon.replace(/\.(svg|png|jpg)$/, '-fill.$1')"
                       :alt="`${parentLink.title} icon`"
-                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]" />
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]"
+                    />
                   </template>
                   <template v-else>
-                    <Icon v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title" :icon="parentLink.icon" class="spr-h-[1.25em] spr-w-[1.25em]" />
-                    <Icon v-else-if="props.activeNav.parentNav === parentLink.title" :icon="`${parentLink.icon}-fill`" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
+                    <Icon
+                      v-if="parentLink.icon && props.activeNav.parentNav !== parentLink.title"
+                      :icon="parentLink.icon"
+                      class="spr-h-[1.25em] spr-w-[1.25em]"
+                    />
+                    <Icon
+                      v-else-if="props.activeNav.parentNav === parentLink.title"
+                      :icon="`${parentLink.icon}-fill`"
+                      class="spr-h-[1.25em] spr-w-[1.25em] spr-text-kangkong-700"
+                    />
                     <Icon v-else icon="ph:globe" />
                   </template>
                 </div>
-              </Tooltip>
+                <!-- #endregion - Parent Links -->
+              </spr-tooltip>
             </template>
+            <!-- #endregion - Parent link only -->
           </template>
           <div
             v-if="navLinks.bottom.length > 0 && navLinkIndex < navLinks.bottom.length - 1"
             class="spr-background-color-hover spr-h-[2px] spr-w-full"
           ></div>
         </template>
+        <!-- #endregion - Grouped Nav Links -->
       </div>
+      <!-- #endregion - Bottom Section -->
     </div>
 
-    <div 
-      v-if="props.notificationCount || props.requestCount || props.notificationCount === 0 || props.requestCount === 0" 
+    <div
+      v-if="props.notificationCount || props.requestCount || props.notificationCount === 0 || props.requestCount === 0"
       class="spr-grid spr-gap-2 spr-py-6"
     >
-      <!-- Notification -->
-      <Tooltip
-        aria-id="sidenav-tooltip-wrapper"
-        placement="right"
-        distance="4"
-        :triggers="['hover']"
-      >
-        <template #popper>
-          <span class="spr-label-xs-medium spr-uppercase">NOTIFICATIONS</span>
-        </template>
+      <!-- #region - Notification -->
+      <spr-tooltip text="NOTIFICATIONS" placement="right" :distance="4" :fit-content="false">
         <div
           v-if="props.notificationCount || props.notificationCount === 0"
           id="sidenav_notification"
           :class="[
-            'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-2 spr-rounded-border-radius-md',
-            'spr-transition spr-duration-150 spr-ease-in-out spr-w-9 spr-h-9 spr-m-auto',
+            'spr-2 spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md',
+            'spr-m-auto spr-h-9 spr-w-9 spr-transition spr-duration-150 spr-ease-in-out',
             'active:spr-background-color-single-active active:spr-scale-90',
-            {'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90': props.isNotifActive},
-            {'hover:spr-background-color-hover': !props.isNotifActive},
+            {
+              'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
+                props.isNotifActive,
+            },
+            { 'hover:spr-background-color-hover': !props.isNotifActive },
           ]"
           @click="emit('notifications', 'notifications-triggered')"
         >
           <Icon v-if="!props.isNotifActive" icon="ph:bell" class="spr-h-[1.25em] spr-w-[1.25em]" />
-          <Icon v-else icon="ph:bell-fill" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
+          <Icon v-else icon="ph:bell-fill" class="spr-h-[1.25em] spr-w-[1.25em] spr-text-kangkong-700" />
           <spr-badge
             v-if="props.notificationCount !== 0"
             class="spr-absolute -spr-top-0.5 spr-right-0.5"
@@ -620,32 +754,28 @@
             size="small"
           />
         </div>
-      </Tooltip>
+      </spr-tooltip>
+      <!-- #endregion - Notification -->
 
-      <!-- Requests -->
-      <Tooltip
-        aria-id="sidenav-tooltip-wrapper"
-        placement="right"
-        distance="4"
-        :triggers="['hover']"
-      >
-        <template #popper>
-          <span class="spr-label-xs-medium spr-uppercase">REQUESTS</span>
-        </template>
+      <!-- #region - Requests -->
+      <spr-tooltip text="REQUESTS" placement="right" :distance="4" :fit-content="false">
         <div
           v-if="props.requestCount || props.requestCount === 0"
           id="sidenav_request"
           :class="[
-            'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-2 spr-rounded-border-radius-md',
-            'spr-transition spr-duration-150 spr-ease-in-out spr-w-9 spr-h-9 spr-m-auto',
+            'spr-2 spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md',
+            'spr-m-auto spr-h-9 spr-w-9 spr-transition spr-duration-150 spr-ease-in-out',
             'active:spr-background-color-single-active active:spr-scale-90',
-            {'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90': props.isRequestActive},
-            {'hover:spr-background-color-hover': !props.isRequestActive},
+            {
+              'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
+                props.isRequestActive,
+            },
+            { 'hover:spr-background-color-hover': !props.isRequestActive },
           ]"
           @click="emit('requests', 'requests-triggered')"
         >
           <Icon v-if="!props.isRequestActive" icon="ph:file-text" class="spr-h-[1.25em] spr-w-[1.25em]" />
-          <Icon v-else icon="ph:file-text-fill" class="spr-text-kangkong-700 spr-h-[1.25em] spr-w-[1.25em]" />
+          <Icon v-else icon="ph:file-text-fill" class="spr-h-[1.25em] spr-w-[1.25em] spr-text-kangkong-700" />
           <spr-badge
             v-if="props.requestCount !== 0"
             class="spr-absolute -spr-top-0.5 spr-right-0.5"
@@ -654,10 +784,11 @@
             size="small"
           />
         </div>
-      </Tooltip>
+      </spr-tooltip>
+      <!-- #endregion - Requests -->
     </div>
 
-    <!-- Avatar -->
+    <!-- #region - Avatar -->
     <div
       v-if="props.userMenu"
       :class="[
@@ -669,30 +800,24 @@
       <Menu
         v-model:shown="isUserMenuVisible"
         aria-id="user-menu-wrapper"
-        distance="1"
+        distance="16"
         placement="right"
         :triggers="['click', 'hover']"
         instant-move
+        :delay="0"
       >
-        <div
-          id="sidenav_user_menu"
-          :class="[
-            'spr-background-color spr-flex spr-h-[36px] spr-w-[36px] spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-full',
-            'spr-border-color-weak spr-border spr-border-solid',
-            'spr-transition spr-duration-150 spr-ease-in-out',
-            'hover:spr-background-color-hover',
-            'active:spr-background-color-pressed active:spr-scale-90',
-            '[&>img]:spr-h-[36px] [&>img]:spr-w-[36px] [&>img]:spr-rounded-full [&>img]:spr-object-cover',
-          ]"
-          @click="isUserMenuVisible = !isUserMenuVisible"
-        >
-          <template v-if="props.userMenu.profileImage && !userProfileError">
-            <img :src="props.userMenu.profileImage" alt="profile-image" @error="userProfileError = true" />
-          </template>
-          <template v-else>
-            <span>{{ getUserInitials(props.userMenu.name) }}</span>
-          </template>
-        </div>
+        <template v-if="props.userMenu.profileImage">
+          <spr-avatar
+            class="spr-cursor-pointer"
+            variant="image"
+            :src="props.userMenu.profileImage"
+            :initial="props.userMenu.name"
+            size="md"
+          />
+        </template>
+        <template v-else>
+          <spr-avatar class="spr-cursor-pointer" :initial="props.userMenu.name" size="md" />
+        </template>
 
         <template #popper>
           <div
@@ -702,25 +827,22 @@
             ]"
           >
             <div class="spr-flex spr-items-center spr-gap-2">
-              <div
-                :class="[
-                  'spr-background-color spr-flex spr-h-[36px] spr-w-[36px] spr-items-center spr-justify-center spr-rounded-full',
-                  'spr-border-color-weak spr-border spr-border-solid',
-                  '[&>img]:spr-h-[36px] [&>img]:spr-w-[36px] [&>img]:spr-rounded-full [&>img]:spr-object-cover',
-                ]"
-              >
-                <template v-if="props.userMenu.profileImage && !userProfileError">
-                  <img :src="props.userMenu.profileImage" alt="profile-image" @error="userProfileError = true" />
-                </template>
-                <template v-else>
-                  <span>{{ getUserInitials(props.userMenu.name) }}</span>
-                </template>
-              </div>
+              <template v-if="props.userMenu.profileImage">
+                <spr-avatar
+                  variant="image"
+                  :src="props.userMenu.profileImage"
+                  :initial="props.userMenu.name"
+                  size="md"
+                />
+              </template>
+              <template v-else>
+                <spr-avatar :initial="props.userMenu.name" size="md" />
+              </template>
               <div class="spr-grid spr-justify-between spr-gap-1">
                 <h3 class="spr-body-sm-regular spr-m-0 spr-truncate">
                   {{ props.userMenu.name }}
                 </h3>
-                <p class="spr-body-xs-regular spr-m-0 spr-truncate spr-text-color-supporting">
+                <p class="spr-body-xs-regular spr-text-color-supporting spr-m-0 spr-truncate">
                   {{ props.userMenu.email }}
                 </p>
               </div>
@@ -736,7 +858,7 @@
                   'spr-flex spr-cursor-pointer spr-gap-2 spr-p-2 spr-align-middle spr-duration-150 spr-ease-in-out',
                   'hover:spr-background-color-hover',
                   'active:spr-background-color-pressed spr-bg-red',
-                  'last-of-type:spr-border-t last-of-type:spr-border-solid last-of-type:spr-border-0 last-of-type:spr-border-color-weak'
+                  'last-of-type:spr-border-color-weak last-of-type:spr-border-0 last-of-type:spr-border-t last-of-type:spr-border-solid',
                 ]"
                 @click="handleRedirect(userMenuItem, '', '', '')"
               >
@@ -754,11 +876,12 @@
         </template>
       </Menu>
     </div>
+    <!-- #endregion - Avatar -->
   </div>
 </template>
 
 <script lang="ts" setup>
-import { Menu, Tooltip } from 'floating-vue';
+import { Menu } from 'floating-vue';
 import { Icon } from '@iconify/vue';
 
 import 'floating-vue/dist/style.css';
@@ -766,13 +889,21 @@ import 'floating-vue/dist/style.css';
 import { sidenavPropTypes, sidenavEmitTypes } from './sidenav';
 import { useSidenav } from './use-sidenav';
 
+import SprAvatar from '../avatar/avatar.vue';
 import SprBadge from '../badge/badge.vue';
+import SprLozenge from '../lozenge/lozenge.vue';
+import SprTooltip from '../tooltip/tooltip.vue';
 
 const props = defineProps(sidenavPropTypes);
 const emit = defineEmits(sidenavEmitTypes);
 
-const { navLinks, isQuckActionMenuVisible, isUserMenuVisible, userProfileError, getUserInitials, handleRedirect, generateId } = useSidenav(
-  props,
-  emit,
-);
+const {
+  navLinks,
+  isQuckActionMenuVisible,
+  isUserMenuVisible,
+  handleRedirect,
+  generateId,
+  getLozengeLabel,
+  getLozengeTone,
+} = useSidenav(props, emit);
 </script>

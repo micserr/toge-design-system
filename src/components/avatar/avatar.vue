@@ -1,10 +1,10 @@
 <template>
   <div class="spr-h-fit spr-w-fit">
-    <div v-if="!props.loading" :class="avatarClasses.baseClasses">
+    <div v-if="!props.loading && !imageError" :class="avatarClasses.baseClasses">
       <template v-if="['image', 'client', 'user', 'user-group'].includes(props.variant) || $slots.default">
         <div :class="avatarClasses.imageContainerClasses">
           <slot>
-            <img v-if="src" :src="src" :alt="alt" class="" />
+            <img v-if="src" :src="src" :alt="alt" @error="handleImageError" />
             <Icon v-else :icon="getIconVariant" />
           </slot>
         </div>
@@ -31,13 +31,18 @@
 </template>
 
 <script lang="ts" setup>
-import { avatarPropTypes } from './avatar';
-import { useAvatar } from './use-avatar';
 import { Icon } from '@iconify/vue';
+
+import { avatarPropTypes, avatarEmitTypes } from './avatar';
+import { useAvatar } from './use-avatar';
 
 import SprBadge from '@/components/badge/badge.vue';
 
 const props = defineProps(avatarPropTypes);
+const emit = defineEmits(avatarEmitTypes);
 
-const { avatarClasses, getAvatarSize, getIconVariant, getInitials } = useAvatar(props);
+const { avatarClasses, getAvatarSize, getIconVariant, getInitials, imageError, handleImageError } = useAvatar(
+  props,
+  emit,
+);
 </script>

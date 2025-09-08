@@ -16,17 +16,28 @@ Lozenge represents entities using icons, labels, and images.
   <li>
     <strong>Tone:</strong>
     <span>
-      A property that likely changes the visual style of the lozenge to indicate different 
-      statuses or types (e.g., "caution", "information").
+      Seven different visual styles to indicate status or type: plain, pending, information, success, neutral, danger, and caution.
     </span>
   </li>
   <li>
-    <strong>URL:</strong>
-    <span>A property to specify an image URL, which is used to display an avatar within the lozenge.</span>
+    <strong>Fill Type:</strong>
+    <span>Switch between hollow (outline) and filled styles for different visual emphasis.</span>
   </li>
   <li>
-    <strong>Icon Slot:</strong>
-    <span>A named slot (#icon) that allows you to pass a custom icon component to be displayed within the lozenge.</span>
+    <strong>Avatar Support:</strong>
+    <span>Display user avatars using URL property or custom avatar slot.</span>
+  </li>
+  <li>
+    <strong>Icon Slots:</strong>
+    <span>Named slots for prefix icons, postfix icons, and custom avatar components.</span>
+  </li>
+  <li>
+    <strong>Interactive States:</strong>
+    <span>Support for interactive and dropdown modes with hover and active states.</span>
+  </li>
+  <li>
+    <strong>Loading State:</strong>
+    <span>Built-in skeletal loading state for async content.</span>
   </li>
 </ul>
 
@@ -42,10 +53,11 @@ A basic lozenge with a text is created with the label property.
 <spr-lozenge label="Lozenge" />
 ```
 
-## Tone
+## Tone and Fill
+Customize the lozenge's color style (tone) and choose between filled or outlined appearance (fill) to indicate status or emphasis.
 
 <div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
-  <spr-lozenge label="Plain"/>
+  <spr-lozenge label="plain"/>
   <spr-lozenge label="pending" tone="pending" />
   <spr-lozenge label="information" tone="information" />
   <spr-lozenge label="success" tone="success" />
@@ -53,32 +65,40 @@ A basic lozenge with a text is created with the label property.
   <spr-lozenge label="danger" tone="danger" />
   <spr-lozenge label="caution" tone="caution" />
 </div>
-
-```vue
-<spr-lozenge label="Plain" />
-<spr-lozenge label="pending" tone="pending" />
-<spr-lozenge label="information" tone="information" />
-<spr-lozenge label="success" tone="success" />
-<spr-lozenge label="neutral" tone="neutral" />
-<spr-lozenge label="danger" tone="danger" />
-<spr-lozenge label="caution" tone="caution" />
-```
-
-## Type
-
 <div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
-  <spr-lozenge label="Hollow" tone="information" />
-  <spr-lozenge label="Fill" tone="information" fill/>
+  <spr-lozenge label="plain" fill />
+  <spr-lozenge label="pending" tone="pending" fill />
+  <spr-lozenge label="information" tone="information" fill />
+  <spr-lozenge label="success" tone="success" fill />
+  <spr-lozenge label="neutral" tone="neutral" fill />
+  <spr-lozenge label="danger" tone="danger" fill />
+  <spr-lozenge label="caution" tone="caution" fill />
 </div>
 
 ```vue
-<spr-lozenge label="Hollow" tone="information" />
-<spr-lozenge label="Fill" tone="information" fill />
+<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
+  <spr-lozenge label="plain"/>
+  <spr-lozenge label="pending" tone="pending" />
+  <spr-lozenge label="information" tone="information" />
+  <spr-lozenge label="success" tone="success" />
+  <spr-lozenge label="neutral" tone="neutral" />
+  <spr-lozenge label="danger" tone="danger" />
+  <spr-lozenge label="caution" tone="caution" />
+</div>
+<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
+  <spr-lozenge label="plain" fill />
+  <spr-lozenge label="pending" tone="pending" fill />
+  <spr-lozenge label="information" tone="information" fill />
+  <spr-lozenge label="success" tone="success" fill />
+  <spr-lozenge label="neutral" tone="neutral" fill />
+  <spr-lozenge label="danger" tone="danger" fill />
+  <spr-lozenge label="caution" tone="caution" fill />
+</div>
 ```
 
 ## Avatar
-
-<div class="spr-flex spr-flex-col spr-gap-2 spr-bg-white-50 spr-p-4 spr-overflow-auto spr-py-3">
+You can use the `url` property to display an avatar image, or use the `avatar` slot for custom avatar components.
+<div class="spr-flex spr-flex-col spr-gap-2 spr-bg-white-50 spr-overflow-auto spr-py-3">
   <div class="spr-flex spr-items-center spr-gap-2">
     <spr-lozenge label="pending" tone="pending" url="https://tinyurl.com/2vzn782p"/>
     <spr-lozenge label="information" tone="information" url="https://tinyurl.com/2vzn782p"/>
@@ -88,7 +108,6 @@ A basic lozenge with a text is created with the label property.
     <spr-lozenge label="caution" tone="caution" url="https://tinyurl.com/2vzn782p" />
     <spr-lozenge label="plain"  url="https://tinyurl.com/2vzn782p" />
   </div>
-
   <div class="spr-flex spr-items-center spr-gap-2">
     <spr-lozenge label="pending" tone="pending" fill url="https://tinyurl.com/2vzn782p"/>
     <spr-lozenge label="information" tone="information" fill url="https://tinyurl.com/2vzn782p"/>
@@ -116,7 +135,8 @@ A basic lozenge with a text is created with the label property.
 <spr-lozenge label="caution" tone="caution" fill url="https://tinyurl.com/2vzn782p" />
 ```
 
-## Slot Avatar
+### Slotted Avatar
+You can also use the `avatar` slot to customize the avatar component.
 
 <div class="spr-flex spr-flex-col spr-gap-2">
   <spr-lozenge label="Users" tone="information">
@@ -151,20 +171,177 @@ import { Icon } from '@iconify/vue';
 </script>
 ```
 
-## Icon
+## Prefix and Postfix Icon
+You can use the `icon` property or the `icon` slot to add a prefix icon to the lozenge. By default, the `icon` property or slot renders as a prefix icon before the label.  
+To add a postfix icon, use the `postfixIcon` property or the `postfixIcon` slot. This allows you to display an icon after the label.
 
-<div class="spr-flex spr-flex-col spr-gap-2">
-  <spr-lozenge label="Users" tone="information">
-    <template #icon>
-      <Icon icon="ph:users-three" />
-    </template>
-  </spr-lozenge>
+<div class="spr-flex spr-flex-col spr-gap-2 spr-bg-white-50 spr-overflow-auto spr-py-3">
+  <div class="spr-flex spr-items-center spr-gap-2">
+    <spr-lozenge label="pending" tone="pending" icon="ph:acorn">
+      <template #icon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="information" tone="information">
+      <template #icon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="success" tone="success">
+      <template #icon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="neutral" tone="neutral">
+      <template #icon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="danger" tone="danger">
+      <template #icon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="caution" tone="caution">
+      <template #icon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="plain">
+      <template #icon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+  </div>
+  <div class="spr-flex spr-items-center spr-gap-2">
+    <spr-lozenge label="pending" tone="pending" fill>
+      <template #icon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="information" tone="information" fill>
+      <template #icon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="success" tone="success" fill>
+      <template #icon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="neutral" tone="neutral" fill>
+      <template #icon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="danger" tone="danger" fill>
+      <template #icon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="caution" tone="caution" fill>
+      <template #icon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="plain" fill>
+      <template #icon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+  </div>
+</div>
+<div class="spr-flex spr-flex-col spr-gap-2 spr-bg-white-50 spr-overflow-auto spr-py-3">
+  <div class="spr-flex spr-items-center spr-gap-2">
+    <spr-lozenge label="pending" tone="pending">
+      <template #postfixIcon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="information" tone="information">
+      <template #postfixIcon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="success" tone="success">
+      <template #postfixIcon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="neutral" tone="neutral">
+      <template #postfixIcon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="danger" tone="danger">
+      <template #postfixIcon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="caution" tone="caution">
+      <template #postfixIcon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="plain">
+      <template #postfixIcon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+  </div>
+  <div class="spr-flex spr-items-center spr-gap-2">
+    <spr-lozenge label="pending" tone="pending" fill>
+      <template #postfixIcon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="information" tone="information" fill>
+      <template #postfixIcon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="success" tone="success" fill>
+      <template #postfixIcon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="neutral" tone="neutral" fill>
+      <template #postfixIcon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="danger" tone="danger" fill>
+      <template #postfixIcon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="caution" tone="caution" fill>
+      <template #postfixIcon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+    <spr-lozenge label="plain" fill>
+      <template #postfixIcon>
+        <Icon icon="ph:users-three" />
+      </template>
+    </spr-lozenge>
+  </div>
 </div>
 
 ```vue
 <template>
-  <spr-lozenge label="Users" tone="information">
+  <!-- Prefix Icon -->
+  <spr-lozenge label="pending" tone="pending" icon="ph:users-three" />
+  <spr-lozenge label="pending" tone="pending">
     <template #icon>
+      <Icon icon="ph:users-three" />
+    </template>
+  </spr-lozenge>
+
+  <!-- Postfix Icon -->
+   <spr-lozenge label="pending" tone="pending" postfix-icon="ph:users-three" />
+  <spr-lozenge label="pending" tone="pending">
+    <template #postfixIcon>
       <Icon icon="ph:users-three" />
     </template>
   </spr-lozenge>
@@ -174,6 +351,111 @@ import { Icon } from '@iconify/vue';
 import { Icon } from '@iconify/vue';
 </script>
 ```
+
+## Interactive
+The `interactive` prop enables interactive states for the lozenge, allowing it to respond to user actions such as hover and pressed. This is useful for making the lozenge behave like a button or menu trigger.
+
+<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
+  <spr-lozenge label="plain" interactive />
+  <spr-lozenge label="pending" tone="pending" interactive />
+  <spr-lozenge label="information" tone="information" interactive />
+  <spr-lozenge label="success" tone="success" interactive />
+  <spr-lozenge label="neutral" tone="neutral" interactive />
+  <spr-lozenge label="danger" tone="danger" interactive />
+  <spr-lozenge label="caution" tone="caution" interactive />
+</div>
+<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
+  <spr-lozenge label="plain" fill interactive />
+  <spr-lozenge label="pending" tone="pending" fill interactive />
+  <spr-lozenge label="information" tone="information" fill interactive />
+  <spr-lozenge label="success" tone="success" fill interactive />
+  <spr-lozenge label="neutral" tone="neutral" fill interactive />
+  <spr-lozenge label="danger" tone="danger" fill interactive />
+  <spr-lozenge label="caution" tone="caution" fill interactive />
+</div>
+
+```vue
+<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
+  <spr-lozenge label="plain" interactive />
+  <spr-lozenge label="pending" tone="pending" interactive />
+  <spr-lozenge label="information" tone="information" interactive />
+  <spr-lozenge label="success" tone="success" interactive />
+  <spr-lozenge label="neutral" tone="neutral" interactive />
+  <spr-lozenge label="danger" tone="danger" interactive />
+  <spr-lozenge label="caution" tone="caution" interactive />
+</div>
+<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
+  <spr-lozenge label="plain" fill interactive />
+  <spr-lozenge label="pending" tone="pending" fill interactive />
+  <spr-lozenge label="information" tone="information" fill interactive />
+  <spr-lozenge label="success" tone="success" fill interactive />
+  <spr-lozenge label="neutral" tone="neutral" fill interactive />
+  <spr-lozenge label="danger" tone="danger" fill interactive />
+  <spr-lozenge label="caution" tone="caution" fill interactive />
+</div>
+```
+
+### Dropdown
+The `dropdown` prop makes the lozenge behave as a predefined interactive element with a default postfix dropdown icon (`ph:caret-down-fill`).  
+
+<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
+  <spr-lozenge label="plain" dropdown />
+  <spr-lozenge label="pending" tone="pending" dropdown />
+  <spr-lozenge label="information" tone="information" dropdown />
+  <spr-lozenge label="success" tone="success" dropdown />
+  <spr-lozenge label="neutral" tone="neutral" dropdown />
+  <spr-lozenge label="danger" tone="danger" dropdown />
+  <spr-lozenge label="caution" tone="caution" dropdown />
+</div>
+<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
+  <spr-lozenge label="plain" fill dropdown />
+  <spr-lozenge label="pending" tone="pending" fill dropdown />
+  <spr-lozenge label="information" tone="information" fill dropdown />
+  <spr-lozenge label="success" tone="success" fill dropdown />
+  <spr-lozenge label="neutral" tone="neutral" fill dropdown />
+  <spr-lozenge label="danger" tone="danger" fill dropdown />
+  <spr-lozenge label="caution" tone="caution" fill dropdown />
+</div>
+
+```vue
+<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
+  <spr-lozenge label="plain" dropdown />
+  <spr-lozenge label="pending" tone="pending" dropdown />
+  <spr-lozenge label="information" tone="information" dropdown />
+  <spr-lozenge label="success" tone="success" dropdown />
+  <spr-lozenge label="neutral" tone="neutral" dropdown />
+  <spr-lozenge label="danger" tone="danger" dropdown />
+  <spr-lozenge label="caution" tone="caution" dropdown />
+</div>
+<div class="spr-flex spr-items-center spr-gap-2 spr-overflow-auto spr-py-3">
+  <spr-lozenge label="plain" fill dropdown />
+  <spr-lozenge label="pending" tone="pending" fill dropdown />
+  <spr-lozenge label="information" tone="information" fill dropdown />
+  <spr-lozenge label="success" tone="success" fill dropdown />
+  <spr-lozenge label="neutral" tone="neutral" fill dropdown />
+  <spr-lozenge label="danger" tone="danger" fill dropdown />
+  <spr-lozenge label="caution" tone="caution" fill dropdown />
+</div>
+```
+
+::: tip NOTE
+If you provide a `postfixIcon` prop or slot, it will override the default dropdown icon.
+:::
+
+<spr-lozenge label="plain" dropdown>
+  <template #postfixIcon>
+    <Icon icon="ph:dots-three-vertical-bold" />
+  </template>
+</spr-lozenge>
+
+```vue
+<spr-lozenge label="plain" dropdown>
+  <template #postfixIcon>
+    <Icon icon="ph:dots-three-vertical-bold" />
+  </template>
+</spr-lozenge>
+```
+
 
 ## Loading
 
@@ -192,23 +474,29 @@ import { Icon } from '@iconify/vue';
 <table>
   <thead>
     <tr>
-      <td>Name</td>
-      <td>Description</td>
+      <th>Name</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>icon</td>
-      <td>customize icon component</td>
+      <td>customize prefix icon component</td>
     </tr>
     <tr>
       <td>avatar</td>
       <td>customize avatar component</td>
     </tr>
+    <tr>
+      <td>postfixIcon</td>
+      <td>customize postfix icon component (displayed after the label)</td>
+    </tr>
   </tbody>
 </table>
 
 ## API Reference
+
+### Props
 
 <table>
   <thead>
@@ -221,34 +509,124 @@ import { Icon } from '@iconify/vue';
   </thead>
   <tbody>
     <tr>
+      <td>label</td>
+      <td>The primary text content displayed in the lozenge.</td>
+      <td>string</td>
+      <td>'label'</td>
+    </tr>
+    <tr>
       <td>tone</td>
-      <td>lozenge tone</td>
-      <td>'pending' | 'information' | 'success' | 'neutral' | 'caution' | 'danger'</td>
-      <td>neutral</td>
+      <td>Determines the color scheme of the lozenge to indicate status or categorization. Each tone carries semantic meaning:
+        <ul>
+          <li><code>plain</code>: Default, neutral styling</li>
+          <li><code>pending</code>: For in-progress or waiting states</li>
+          <li><code>information</code>: For informational content</li>
+          <li><code>success</code>: For positive or completed actions</li>
+          <li><code>neutral</code>: For general, non-emphasized content</li>
+          <li><code>danger</code>: For errors or warnings requiring attention</li>
+          <li><code>caution</code>: For cautionary information</li>
+        </ul>
+      </td>
+      <td>'plain' | 'pending' | 'information' | 'success' | 'neutral' | 'caution' | 'danger'</td>
+      <td>'plain'</td>
     </tr>
     <tr>
       <td>fill</td>
-      <td>lozenge type (fill = true, hollow = false)</td>
+      <td>Controls the lozenge's visual style. When <code>true</code>, the lozenge has a solid background color. When <code>false</code>, it has an outline style with a transparent background.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>label</td>
-      <td>Label</td>
-      <td>string</td>
-      <td>label</td>
+      <td>removable</td>
+      <td>When <code>true</code>, the lozenge can be removed by the user (displays a remove icon).</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
     <tr>
       <td>url</td>
-      <td>avatar image url</td>
+      <td>URL for the avatar image to be displayed within the lozenge. If provided, an avatar will be shown at the beginning of the lozenge.</td>
       <td>string</td>
-      <td></td>
+      <td>''</td>
+    </tr>
+    <tr>
+      <td>visible</td>
+      <td>Controls the visibility of the lozenge. When <code>false</code>, the lozenge will not be rendered.</td>
+      <td>boolean</td>
+      <td>true</td>
     </tr>
     <tr>
       <td>loading</td>
-      <td>Shows a loading  within the lozenge, indicating that content is being loaded.</td>
+      <td>When <code>true</code>, displays a skeletal loading state instead of the actual content, indicating that data is being loaded.</td>
       <td>boolean</td>
       <td>false</td>
+    </tr>
+    <tr>
+      <td>icon</td>
+      <td>Name of an Iconify icon to be displayed as a prefix icon (before the label). Alternatively, use the <code>icon</code> slot for custom icons.</td>
+      <td>string</td>
+      <td>''</td>
+    </tr>
+    <tr>
+      <td>postfixIcon</td>
+      <td>Name of an Iconify icon to be displayed as a postfix icon (after the label). Alternatively, use the <code>postfixIcon</code> slot for custom icons.</td>
+      <td>string</td>
+      <td>''</td>
+    </tr>
+    <tr>
+      <td>interactive</td>
+      <td>When <code>true</code>, the lozenge responds to user interactions with hover and active states, making it suitable for clickable elements.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>dropdown</td>
+      <td>When <code>true</code>, the lozenge behaves as a dropdown trigger with a default caret icon and interactive styling. This automatically sets <code>interactive</code> to <code>true</code>.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>onRemove</td>
+      <td>Emitted when the remove button is clicked on a removable lozenge.</td>
+      <td>(event: MouseEvent)</td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>icon</td>
+      <td>Custom content for the prefix icon area (displayed before the label). Use this slot to insert custom icons or components instead of using the <code>icon</code> prop.</td>
+    </tr>
+    <tr>
+      <td>avatar</td>
+      <td>Custom content for the avatar area. Use this slot to insert a custom avatar component instead of using the <code>url</code> prop.</td>
+    </tr>
+    <tr>
+      <td>postfixIcon</td>
+      <td>Custom content for the postfix icon area (displayed after the label). Use this slot to insert custom icons or components instead of using the <code>postfixIcon</code> prop.</td>
     </tr>
   </tbody>
 </table>

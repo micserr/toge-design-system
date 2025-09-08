@@ -1,12 +1,12 @@
 ---
 outline: 'deep'
 title: Documenting a Component
-description: The file provides a comprehensive guide on documenting components for sprout design system. It includes creating new documentation pages, and structuring content with examples, API documentation, and best practices. It also emphasizes the importance of organization, clear examples, and detailed API documentation.
+description: This guide provides comprehensive instructions on documenting components for the Sprout Design System. It includes creating new documentation pages, structuring content with examples, API documentation, and best practices. It emphasizes the importance of organization, clear examples, and detailed API documentation.
 ---
 
 # Documenting a Component
 
-The file provides a comprehensive guide on documenting components for sprout design system. It includes creating new documentation pages, and structuring content with examples, API documentation, and best practices. It also emphasizes the importance of organization, clear examples, and detailed API documentation.
+This guide provides comprehensive instructions on documenting components for the Sprout Design System. It includes creating new documentation pages, structuring content with examples, API documentation, and best practices. It emphasizes the importance of organization, clear examples, and detailed API documentation.
 
 ## VitePress Setup
 
@@ -33,45 +33,76 @@ docs/
 
 A typical documentation page consists of:
 
-1. Page content in Markdown
-2. Component examples with live demos
-3. Code snippets
-4. Component API documentation
-5. Product uses
+1. Frontmatter with outline, title, and description
+2. Component description and purpose
+3. Basic usage with live demos
+4. Various examples showing component variants and props
+5. API reference with tables for props, events, and slots
+6. Product uses section showing where the component is used
+7. Component imports in a script setup section
 
 ## Basic Page Structure
 
-```markdown
+````markdown
+---
+outline: 'deep'
+title: Your Component
+description: A detailed description of what the component does, its purpose, and when it should be used.
+---
+
 # Your Component
 
-Description of your component.
+A comprehensive description of the component, its purpose, and use cases.
 
 ## Basic Usage
 
-[Basic example with code]
+<div class="spr-flex spr-items-center spr-gap-2">
+  <spr-your-component>Example</spr-your-component>
+</div>
 
-## Variants
+```vue
+<spr-your-component>Example</spr-your-component>
+```
+````
 
-[Examples of different variants]
+## Variants/Props Examples
 
-## Props and Options
+<div class="spr-flex spr-items-center spr-gap-2">
+  <spr-your-component variant="primary">Primary</spr-your-component>
+  <spr-your-component variant="secondary">Secondary</spr-your-component>
+</div>
 
-[Examples demonstrating props]
+```vue
+<spr-your-component variant="primary">Primary</spr-your-component>
+<spr-your-component variant="secondary">Secondary</spr-your-component>
+```
 
-## Product Uses
+## API Reference
 
-[Define product where the component is used]
+### Props
 
-## Component API
-
-[API documentation]
-
-<script setup lang="ts">
-import SprYourComponent from "@/components/your-component/your-component.vue"
-</script>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>variant</td>
+      <td>Controls the component's visual style</td>
+      <td>'primary' | 'secondary'</td>
+      <td>'primary'</td>
+    </tr>
+  </tbody>
+</table>
 ```
 
 For a complete example, refer to the [Button documentation](/documentation/components/button).
+
 ## Creating a New Page
 
 1. Create a new `.md` file in the appropriate directory:
@@ -79,11 +110,21 @@ For a complete example, refer to the [Button documentation](/documentation/compo
 ```plaintext
 docs/
 ├── documentation/
-| ├── components/
-| └── your-component.md
+│   ├── components/
+│   │   └── your-component.md
 ```
 
-2. Add the page to VitePress configuration:
+2. Add frontmatter with title, description, and outline setting:
+
+```markdown
+---
+outline: 'deep'
+title: Your Component
+description: A detailed description of what the component does and when to use it.
+---
+```
+
+3. Add the page to VitePress configuration:
 
 ```typescript
 // docs/.vitepress/config.ts
@@ -110,9 +151,15 @@ Use VitePress [Markdown Syntax](https://vitepress.dev/guide/markdown) for elegan
 ### 1. Title and Description
 
 ```markdown
+---
+outline: 'deep'
+title: Your Component
+description: A detailed description of the component, its purpose, and when to use it.
+---
+
 # Your Component
 
-Brief description of what the component does and when to use it.
+A comprehensive description of what the component does, its purpose, and when to use it. This should provide context for developers and designers to understand when and how to use the component.
 ```
 
 ### 2. Basic Usage
@@ -120,22 +167,23 @@ Brief description of what the component does and when to use it.
 ````markdown
 ## Basic Usage
 
-```vue
-<div class="flex items-center gap-2">
-  <spr-your-component>Example</spr-your-component>
+<div class="spr-flex spr-items-center spr-gap-2">
+  <spr-your-component>Basic example</spr-your-component>
 </div>
 
-<spr-your-component>Example</spr-your-component>
+```vue
+<spr-your-component>Basic example</spr-your-component>
 ```
 ````
 
-
 ### 3. Variants and Props
+
+Display different variants, props, and configurations with both visual examples and code snippets:
 
 ````markdown
 ## Sizes
 
-<div class="flex items-center gap-2">
+<div class="spr-flex spr-items-center spr-gap-2">
   <spr-your-component size="small">Small</spr-your-component>
   <spr-your-component>Medium</spr-your-component>
   <spr-your-component size="large">Large</spr-your-component>
@@ -148,38 +196,96 @@ Brief description of what the component does and when to use it.
 ```
 ````
 
-### 4. Component API
+### 4. API Reference
+
+Document the component's API in a structured format using tables:
 
 ```markdown
-## Component API
+## API Reference
 
-### Attributes
+### Props
 
-| Name      | Description          | Type                     | Default |
-|-----------|----------------------|--------------------------|---------|
-| size      | Component size       | `'small' | 'medium' | 'large'` | medium  |
-````
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>size</td>
+      <td>Controls the component size, affecting padding, font size, and overall dimensions.</td>
+      <td>'small' | 'medium' | 'large'</td>
+      <td>'medium'</td>
+    </tr>
+    <tr>
+      <td>disabled</td>
+      <td>When <code>true</code>, prevents user interaction and applies a visual disabled state.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>click</td>
+      <td>Emitted when the component is clicked and not disabled.</td>
+      <td>(event: MouseEvent)</td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>default</td>
+      <td>Content to be displayed inside the component.</td>
+    </tr>
+  </tbody>
+</table>
+```
 
 ### 5. Product Uses
 
-::: tip Purpose
-The "Product Uses" section highlights where and how the component is used across different products. This provides context for developers and designers to understand its application.
-:::
+The "Product Uses" section highlights where and how the component is used across different Sprout products:
 
 ```markdown
 ## Product Uses
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
-  <spr-logo name="hr" theme="dark" title="Sprout HR" width="50px" />
-  <spr-logo name="payroll" theme="dark" title="Sprout Payroll" width="50px" />
+  <spr-logo name="hr" theme="dark" width="50px" />
+  <spr-logo name="payroll" theme="dark" width="50px" />
+  <spr-logo name="ecosystem" theme="dark" width="50px" />
+  <spr-logo name="sidekick" theme="dark" width="50px" />
 </div>
 
 <script lang="ts" setup>
 import SprLogo from "@/components/logo/logo.vue";
+import SprYourComponent from "@/components/your-component/your-component.vue";
 </script>
 ```
-
-
 
 ## Local Development
 
@@ -200,32 +306,44 @@ npm run docs:dev
 ## Best Practices
 
 1. **Organization**
-
    - Group similar components in the same section
    - Use consistent heading levels
    - Include all relevant examples
+   - Follow the standard documentation structure
 
 2. **Examples**
-
-   - Show basic usage first
-   - Demonstrate each prop and variant
-   - Include practical use cases
-   - Use the flex layout for displaying multiple examples
+   - Start with basic usage examples first
+   - Demonstrate each prop and variant with visual examples
+   - Include practical use cases that show the component in context
+   - Use the `spr-flex` class with `spr-items-center` and `spr-gap-2` for displaying multiple examples
+   - Always include corresponding code snippets for each example
 
 3. **Code Snippets**
-
-   - Include code for each example
-   - Use proper syntax highlighting
+   - Include code for each visual example
+   - Use proper syntax highlighting with ```vue code blocks
    - Show both simple and complex implementations
+   - Ensure code examples are complete and working
 
 4. **API Documentation**
-
-   - Document all props, events, and slots
-   - Include type information
+   - Document all props, events, and slots in tables
+   - Include detailed type information
    - Specify default values
-   - Add descriptions for each item
+   - Add thorough descriptions for each item, explaining purpose and usage
+   - Use `<code>` tags to highlight prop values in descriptions
 
 5. **Component Import**
-   - Always import the component at the bottom of the file
-   - Use the correct import path
+   - Always import the component at the bottom of the file in a `<script lang="ts" setup>` section
+   - Use the correct import path from "@/components/..."
+   - Import all required components, including SprLogo for the "Product Uses" section
+   - When showing icons, remember to import the Icon component from '@iconify/vue'
 
+6. **Visual Consistency**
+   - Use standard CSS classes with the `spr-` prefix
+   - Apply consistent spacing between examples
+   - Ensure all examples are visually aligned
+   - Use `spr-rounded` class for the "Product Uses" section
+
+7. **Accessibility**
+   - Include accessibility information where relevant
+   - Document ARIA attributes and keyboard navigation
+   - Mention screen reader support if applicable

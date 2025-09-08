@@ -389,7 +389,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Auto"
       placeholder="Select an option"
       :options="options"
       placement="auto"
@@ -398,7 +398,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Auto Start"
       placeholder="Select an option"
       :options="options"
       placement="auto-start"
@@ -407,7 +407,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Auto End"
       placeholder="Select an option"
       :options="options"
       placement="auto-end"
@@ -418,7 +418,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Top"
       placeholder="Select an option"
       :options="options"
       placement="top"
@@ -427,7 +427,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Top Start"
       placeholder="Select an option"
       :options="options"
       placement="top-start"
@@ -436,7 +436,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Top End"
       placeholder="Select an option"
       :options="options"
       placement="top-end"
@@ -447,7 +447,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Right"
       placeholder="Select an option"
       :options="options"
       placement="right"
@@ -456,7 +456,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Right Start"
       placeholder="Select an option"
       :options="options"
       placement="right-start"
@@ -465,7 +465,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Right End"
       placeholder="Select an option"
       :options="options"
       placement="right-end"
@@ -476,7 +476,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Bottom"
       placeholder="Select an option"
       :options="options"
       placement="bottom"
@@ -485,7 +485,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Bottom Start"
       placeholder="Select an option"
       :options="options"
       placement="bottom-start"
@@ -494,7 +494,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Bottom End"
       placeholder="Select an option"
       :options="options"
       placement="bottom-end"
@@ -505,7 +505,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Left"
       placeholder="Select an option"
       :options="options"
       placement="left"
@@ -514,7 +514,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Left Start"
       placeholder="Select an option"
       :options="options"
       placement="left-start"
@@ -523,7 +523,7 @@ The default placement is `bottom`.
     <spr-select-multiple
       id="sample-selectPlacements"
       v-model="selectModel.selectPlacements"
-      label="Multi-Select Label"
+      label="Left End"
       placeholder="Select an option"
       :options="options"
       placement="left-end"
@@ -907,119 +907,6 @@ const userList = ref([
   { id: 2, name: 'Jane', role: 'Designer' },
   { id: 3, name: 'Bob', role: 'Manager' },
 ]);
-</script>
-```
-
-## Infinite Scroll
-
-<div>
-  <spr-select-multiple
-    id="object-select"
-    v-model="multipleSelected"
-    v-model:searchValue="search"
-    label="Select Users"
-    placeholder="Select users"
-    :options="optionsAPI"
-    searchable
-    clearable
-    disabled-local-search
-    :loading="APIisLoading"
-    @infinite-scroll-trigger="handleInfiniteScrollTrigger"
-  />
-  <div class="spr-my-3 spr-p-4 spr-bg-blue-100">
-    <h5>Paginated Options - Should load 10 Items per page:</h5>
-    <p>Pagination:</p>
-    <pre>{{ JSON.stringify(pagination, null, 2) }}</pre>
-    <p>Data:</p>
-    {{ optionsAPI }}
-  </div>
-</div>
-
-```vue
-<template>
-  <spr-select-multiple
-    id="object-select"
-    v-model="multipleSelected"
-    v-model:searchValue="search"
-    label="Select Users"
-    placeholder="Select users"
-    :options="optionsAPI"
-    searchable
-    disabled-local-search
-    :loading="APIisLoading"
-    @infinite-scroll-trigger="handleInfiniteScrollTrigger"
-  />
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-import { useDebounceFn } from '@vueuse/core';
-
-const multipleSelected = ref([]);
-const optionsAPI = ref<optionsType[]>([]);
-const search = ref('');
-
-const APIisLoading = ref(false);
-
-const pagination = ref({
-  totalpages: 10,
-  currentPage: 1,
-});
-
-const setOptionsViaAPI = () => {
-  getNextOptionsViaAPI();
-};
-
-const handleInfiniteScrollTrigger = () => {
-  if (pagination.value.currentPage === pagination.value.totalpages || APIisLoading.value) return;
-
-  APIisLoading.value = true;
-  pagination.value.currentPage += 1;
-
-  getNextOptionsViaAPI();
-};
-
-const getNextOptionsViaAPI = async () => {
-  try {
-    const url = search.value
-      ? `https://api.thedogapi.com/v1/breeds/search?q=${search.value}&page=${pagination.value.currentPage}&limit=10`
-      : `https://api.thedogapi.com/v1/breeds?page=${pagination.value.currentPage}&limit=10`;
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    const options = await response.json();
-
-    optionsAPI.value = options.length
-      ? [
-          ...(optionsAPI.value || []),
-          ...options.map((option) => ({
-            text: option.name,
-            value: option.id,
-          })),
-        ]
-      : [];
-
-    APIisLoading.value = false;
-  } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-  }
-};
-
-// Create a debounced version of the API call function
-const debouncedSetOptions = useDebounceFn(() => {
-  APIisLoading.value = true;
-  pagination.value.currentPage = 1;
-  optionsAPI.value = [];
-  setOptionsViaAPI();
-}, 300); // 300ms debounce time - adjust as needed
-
-watch(search, () => {
-  debouncedSetOptions();
-});
-};
 </script>
 ```
 

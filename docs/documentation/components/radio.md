@@ -88,10 +88,12 @@ const radioModel = ref('');
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th class="spr-min-w-[180px]">Name</th>
       <th>Description</th>
       <th>Type</th>
       <th>Default</th>
@@ -99,40 +101,129 @@ const radioModel = ref('');
   </thead>
   <tbody>
     <tr>
-      <td>id</td>
-      <td>the id of the `input` element</td>
+      <td>
+        <code>id</code>
+      </td>
+      <td>Unique identifier for the radio input element. Required for accessibility and label association.</td>
       <td>string</td>
-      <td>-</td>
+      <td><code>Required</code></td>
     </tr>
     <tr>
-      <td>name</td>
-      <td>the name attribute of the `input` element</td>
-      <td>string</td>
-      <td>-</td>
+      <td>
+        <code>modelValue</code>
+      </td>
+      <td>Current selected value used with v-model for two-way binding. When this matches the radio's <code>value</code> prop, the radio is selected.</td>
+      <td>string | number | boolean</td>
+      <td><code>undefined</code></td>
     </tr>
     <tr>
-      <td>disabled</td>
-      <td>if `true`, the component is disabled</td>
+      <td>
+        <code>name</code>
+      </td>
+      <td>Name attribute for the radio input element. Radio buttons in the same group should share the same name to ensure only one can be selected at a time.</td>
+      <td>string</td>
+      <td><code>Required</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>value</code>
+      </td>
+      <td>The value associated with this radio button. When the radio is selected, this value is assigned to the <code>modelValue</code>.</td>
+      <td>string | number | boolean</td>
+      <td><code>Required</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>disabled</code>
+      </td>
+      <td>When set to <code>true</code>, the radio button becomes non-interactive and appears visually disabled. Users cannot select a disabled radio button.</td>
       <td>boolean</td>
-      <td>false</td>
+      <td><code>false</code></td>
     </tr>
     <tr>
-      <td>value</td>
-      <td>the value of the component</td>
-      <td>any</td>
-      <td>-</td>
+      <td>
+        <code>description</code>
+      </td>
+      <td>Additional explanatory text displayed below the radio label to provide more context or details about this option.</td>
+      <td>string</td>
+      <td><code>undefined</code></td>
     </tr>
     <tr>
-      <td>bordered</td>
-      <td>Add border to the component</td>
-      <td>Boolean</td>
-      <td>false</td>
+      <td>
+        <code>bordered</code>
+      </td>
+      <td>When set to <code>true</code>, adds a border around the entire radio component (including the label), providing visual separation from surrounding elements.</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
     </tr>
     <tr>
-      <td>fullWidth</td>
-      <td>Defines if component is fit-content or full width</td>
-      <td>Boolean</td>
-      <td>false</td>
+      <td>
+        <code>fullWidth</code>
+      </td>
+      <td>When set to <code>true</code>, the radio component will stretch to fill the full width of its container. When <code>false</code>, it will only be as wide as its content.</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+    </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th class="spr-min-w-[180px]">Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>update:modelValue</code>
+      </td>
+      <td>Emitted when the radio button is selected. This event is used for v-model binding to work correctly.</td>
+      <td>
+        <code>(value: string | number | boolean)</code> - The value of the selected radio button
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### Slots
+
+<table>
+  <thead>
+    <tr>
+      <th class="spr-min-w-[180px]">Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>default</code>
+      </td>
+      <td>Content to be displayed as the radio button's label. This typically contains text but can include other elements for more complex labels.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Animation
+
+<table>
+  <thead>
+    <tr>
+      <th class="spr-min-w-[180px]">Animation</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>animate-shadow-grow</code>
+      </td>
+      <td>Applied when the radio button is selected, creating a smooth transition from an empty circle to a filled circle with a white center.</td>
     </tr>
   </tbody>
 </table>

@@ -88,6 +88,10 @@ export const sidepanelPropTypes = {
   isStacking: {
     type: Boolean,
     default: false,
+  },
+  footerNoPadding: {
+    type: Boolean,
+    default: false,
   }
 }
 

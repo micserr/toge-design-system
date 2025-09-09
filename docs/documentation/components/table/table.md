@@ -991,6 +991,81 @@ const data = ref([
 </script>
 ```
 
+## Column Width Configuration
+
+The table component provides flexible column width management through the `width` property in header objects. This allows you to create well-balanced table layouts that adapt to different content types and screen sizes.
+
+### Width Value Types
+
+You can use any valid CSS width value:
+
+```javascript
+const headers = ref([
+  { field: 'id', name: 'ID', width: '80px' },           // Fixed pixel width
+  { field: 'name', name: 'Name', width: '300px' },      // Larger fixed width
+  { field: 'email', name: 'Email', width: '40%' },      // Percentage of table width
+  { field: 'role', name: 'Role', width: '15em' },       // Em-based width
+  { field: 'status', name: 'Status', width: 'auto' },   // Auto-sizing
+  { field: 'actions', name: 'Actions' },                // No width = auto
+]);
+```
+
+### Best Practices
+
+**Fixed Pixel Widths**: Best for columns with predictable content like IDs, dates, or status indicators.
+```javascript
+{ field: 'id', name: 'ID', width: '80px' }
+{ field: 'date', name: 'Created', width: '150px' }
+```
+
+**Percentage Widths**: Ideal for responsive layouts where columns should scale with table size.
+```javascript
+{ field: 'description', name: 'Description', width: '50%' }
+{ field: 'category', name: 'Category', width: '25%' }
+```
+
+**Mixed Width Strategy**: Combine fixed and flexible widths for optimal layouts.
+```javascript
+const headers = ref([
+  { field: 'avatar', name: '', width: '60px' },         // Fixed for avatar
+  { field: 'name', name: 'Name', width: '30%' },        // Flexible for names
+  { field: 'email', name: 'Email', width: '35%' },      // Flexible for emails
+  { field: 'status', name: 'Status', width: '120px' },  // Fixed for status
+  { field: 'actions', name: 'Actions', width: '100px' } // Fixed for actions
+]);
+```
+
+### Dynamic Width Considerations
+
+When using dynamic values, avoid Tailwind CSS classes like `spr-w-[${width}]` as they won't be generated at build time. Instead, use inline styles or the `width` property:
+
+```javascript
+// ❌ Avoid - Tailwind won't generate dynamic classes
+{ field: 'name', name: 'Name', customTailwindClasses: `spr-w-[${dynamicWidth}]` }
+
+// ✅ Recommended - Use the width property
+{ field: 'name', name: 'Name', width: dynamicWidth }
+```
+
+### Responsive Column Widths
+
+For responsive designs, consider using CSS custom properties or media queries in your styling:
+
+```javascript
+const headers = ref([
+  { 
+    field: 'name', 
+    name: 'Name', 
+    width: 'clamp(200px, 30%, 400px)' // Responsive with min/max
+  },
+  { 
+    field: 'description', 
+    name: 'Description', 
+    width: 'minmax(250px, 1fr)' // Grid-based responsive width
+  }
+]);
+```
+
 ## API Reference
 
 ### Props
@@ -1272,6 +1347,12 @@ const data = ref([
     <tr>
       <td>customTailwindClasses</td>
       <td>Custom Tailwind CSS classes to apply to the column cells.</td>
+      <td>string</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td>Sets the width of the column. Accepts any valid CSS width value (e.g., '200px', '25%', '15em', 'auto'). This property directly controls column sizing and is essential for creating properly proportioned tables.</td>
       <td>string</td>
       <td>No</td>
     </tr>
@@ -1654,7 +1735,7 @@ const customHeaders = ref([
     sort: true, 
     hasAvatar: true, 
     hasSubtext: true, 
-    customTailwindClasses: '!spr-bg-tomato-500' // To override Vitepress' default styles
+    customTailwindClasses: '!spr-bg-tomato-500', // To override Vitepress' default styles
   },
   { 
     field: 'lastUpdate', 
@@ -1662,7 +1743,7 @@ const customHeaders = ref([
     sort: true, 
     hasAvatar: false, 
     hasSubtext: false, 
-    customTailwindClasses: '!spr-bg-blueberry-500' // To override Vitepress' default styles
+    customTailwindClasses: '!spr-bg-blueberry-500', // To override Vitepress' default styles
   },
 ]);
 </script>

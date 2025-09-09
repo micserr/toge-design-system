@@ -38,6 +38,7 @@
               v-for="(header, keyHeader) in headers"
               :key="keyHeader"
               :class="[getTableClasses.headerClasses(header)]"
+              :style="{ width: header?.width }"
             >
               <div :class="getTableClasses.headerNameClass">
                 <span :class="[{ 'spr-cursor-pointer': header.sort }]" @click="header.sort && sortData(header.field)">
@@ -87,12 +88,13 @@
             <td
               v-if="props.isMultiSelect"
               :class="[getTableClasses.multiselectClass, getTableClasses.multiselectRowClass]"
+              
             >
               <div class="spr-flex spr-items-center spr-justify-center">
                 <spr-checkbox label="" :checked="isRowSelected(item)" @update:model-value="handleSelect(item)" />
               </div>
             </td>
-            <td v-for="(column, headerKey) in headers" :key="headerKey" :class="getTableClasses.tableDataClasses">
+            <td v-for="(column, headerKey) in headers" :key="headerKey" :class="getTableClasses.tableDataClasses" :style="{ width: column?.width }">
               <slot v-if="$slots[column.field]" :name="column.field" :row="item" :row-index="keyIndex" />
               <template v-else>
                 <div v-if="sortedData[keyIndex][column.field]" class="spr-flex spr-flex-row spr-items-center spr-gap-2">

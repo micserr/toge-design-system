@@ -16,6 +16,7 @@ export interface Header {
   badgeVariant?: string;
   avatarVariant?: string;
   customTailwindClasses?: string;
+  width?: string;
 }
 
 export interface TableData {

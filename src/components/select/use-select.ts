@@ -183,6 +183,8 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     // If we stored the original object, use it
     if ('_originalObject' in item) {
       selectModel.value = item._originalObject as Record<string, unknown>;
+
+      emit('get-selected-option', item._originalObject);
     } else {
       // For simple types, return the value (try to convert number strings to numbers)
       const itemValue = item.value;
@@ -199,6 +201,8 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
 
     // Clone inputText to backup after selection
     inputTextBackup.value = inputText.value;
+
+    emit('get-selected-option', item);
 
     // Always close select for single selection
     setTimeout(() => {

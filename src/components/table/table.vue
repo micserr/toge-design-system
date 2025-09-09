@@ -21,7 +21,10 @@
       <table aria-describedby="describe" class="spr-h-full spr-w-full spr-table-fixed" cellspacing="0" cellpadding="0">
         <thead>
           <tr v-if="!(props.removeHeaderOnEmpty && sortedData.length <= 0)">
-            <th v-if="props.isMultiSelect" :class="[getTableClasses.multiselectClass, getTableClasses.headerClasses(null)]">
+            <th
+              v-if="props.isMultiSelect"
+              :class="[getTableClasses.multiselectClass, getTableClasses.headerClasses(null)]"
+            >
               <div class="spr-flex spr-items-center spr-justify-center">
                 <spr-checkbox
                   label=""
@@ -31,7 +34,12 @@
                 />
               </div>
             </th>
-            <th v-for="(header, keyHeader) in headers" :key="keyHeader" :class="[getTableClasses.headerClasses(header)]">
+            <th
+              v-for="(header, keyHeader) in headers"
+              :key="keyHeader"
+              :class="[getTableClasses.headerClasses(header)]"
+              :style="{ width: header?.width }"
+            >
               <div :class="getTableClasses.headerNameClass">
                 <span :class="[{ 'spr-cursor-pointer': header.sort }]" @click="header.sort && sortData(header.field)">
                   {{ header.name }}
@@ -60,7 +68,7 @@
             </th>
 
             <!-- for action Button -->
-            <th v-if="action" :class="getTableClasses.headerClasses">
+            <th v-if="action" :class="getTableClasses.headerClasses(null)">
               <slot name="action-name" :class="getTableClasses.tableCellSlotClasses" />
             </th>
           </tr>
@@ -80,12 +88,13 @@
             <td
               v-if="props.isMultiSelect"
               :class="[getTableClasses.multiselectClass, getTableClasses.multiselectRowClass]"
+              
             >
               <div class="spr-flex spr-items-center spr-justify-center">
                 <spr-checkbox label="" :checked="isRowSelected(item)" @update:model-value="handleSelect(item)" />
               </div>
             </td>
-            <td v-for="(column, headerKey) in headers" :key="headerKey" :class="getTableClasses.tableDataClasses">
+            <td v-for="(column, headerKey) in headers" :key="headerKey" :class="getTableClasses.tableDataClasses" :style="{ width: column?.width }">
               <slot v-if="$slots[column.field]" :name="column.field" :row="item" :row-index="keyIndex" />
               <template v-else>
                 <div v-if="sortedData[keyIndex][column.field]" class="spr-flex spr-flex-row spr-items-center spr-gap-2">

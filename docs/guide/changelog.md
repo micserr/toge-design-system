@@ -1,5 +1,49 @@
 # Changelog
 
+
+## 2.13.1 (2025-09-09)
+
+- Enhancement
+  - Table Component Documentation: Added comprehensive column width configuration guide
+    - Added `width` property documentation to Header Object Properties table
+    - Created dedicated "Column Width Configuration" section with examples
+    - Documented best practices for fixed pixel, percentage, and mixed width strategies
+    - Added guidance on dynamic width considerations and Tailwind CSS limitations
+    - Included responsive column width examples using CSS functions
+    ([#b766ba9e] https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b766ba9e3f0c867f463b5c9059c14d4dc28361b9?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2Ftable-width by @bsolis)
+
+## 2.13.0 (2025-09-05)
+
+- Feat
+  - Initial Implementation Playwright with Contrast Test and e2e Component test
+    ([#34516](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/34516?_a=files) by @jarias)
+
+## 2.12.17 (2025-09-04)
+
+- Fix
+  - Commit f505f953:
+    - Update URL handling in getPathFromUrl
+    - set isAbsoluteURL to true for redirects
+      ([#f505f953](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f505f953a93134ab72a33ee76fa83bdbe8438b3a?refName=refs/heads/2025/Fix/andrea/SIDENAV-REDIRECT) by @adestajo)
+
+## 2.12.16 (2025-09-04)
+
+- Fix
+  - Add event emission for getting the selected option in select component
+    ([#40c51c17](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/40c51c1780b508ffbc2122ddcd7bfccb4f5b3713?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fselect-get-object) by @jarias)
+
+## 2.12.15 (2025-09-03)
+
+- Fix
+  - Sidenav Redirect Click Issue and Active Nav
+    ([#a0d4fe5d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a0d4fe5df01a683f0e1625b2707e05c6e248a91a?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Ffix-sidenav-issues) by @jarias)
+
+## 2.12.14 (2025-09-03)
+
+- Fix
+  - Commit 157cc0c7: feat: Enhance sidenav and table components with improved reactivity and formatting
+    ([#157cc0c7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/157cc0c7d9571c275b423abfd995a22cb8b2b41a?refName=refs/heads/2025/Fix/andrea/FIX_TABLE_HEADER_AND_SIDENAV) by @adestajo)
+
 ## 2.12.13 (2025-08-29)
 
 - Enhancement

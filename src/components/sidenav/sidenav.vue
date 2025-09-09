@@ -144,7 +144,11 @@
         <!-- #endregion - Search -->
 
         <!-- #region - Grouped Nav Links -->
-        <sidenav-menu-links :nav-links="navLinks" />
+        <sidenav-menu-links
+          :nav-links="navLinks.top"
+          :active-nav="props.activeNav"
+          @get-navlink-item="emit('get-navlink-item', $event)"
+        />
         <!-- #endregion - Grouped Nav Links -->
       </div>
       <!-- #endregion - Top Section -->
@@ -155,7 +159,11 @@
         class="spr-grid spr-justify-center spr-gap-2 spr-px-3 spr-pb-4 spr-pt-0"
       >
         <!-- #region - Grouped Nav Links -->
-        <sidenav-menu-links :nav-links="navLinks" />
+        <sidenav-menu-links
+          :nav-links="navLinks.bottom"
+          :active-nav="props.activeNav"
+          @get-navlink-item="emit('get-navlink-item', $event)"
+        />
         <!-- #endregion - Grouped Nav Links -->
       </div>
       <!-- #endregion - Bottom Section -->

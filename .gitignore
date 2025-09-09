@@ -60,3 +60,9 @@ vite.config.ts.*
 .cursor-test
 .cursor-cache
 .cursor-data
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

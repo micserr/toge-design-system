@@ -2,7 +2,7 @@
 outline: 'deep'
 ---
 
-# Single Select
+# Select
 
 Selects are interactive components that allow users to choose from a list of options.
 
@@ -1080,6 +1080,11 @@ const userList = ref([
       <td>@search-string</td>
       <td>None</td>
       <td>Event emitted when you type in the search input</td>
+    </tr>
+    <tr>
+      <td>@get-selected-option</td>
+      <td>Object</td>
+      <td>Event emitted to get the selected option</td>
     </tr>
     <tr>
       <td>@popper-state</td>

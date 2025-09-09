@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.13.2 (2025-09-09)
+
+- Fix
+  - Removed Table Pagination and Snack from DS Export exclude
+    ([#31a0cd14](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/31a0cd1485def965d4ed7343cbbfa5ef2c1157fc?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FRemovedTablePaginationAndSnackFromDSExportExclude) by @jbanares)
 
 ## 2.13.1 (2025-09-09)
 

@@ -2,7 +2,7 @@ import type { PropType, ExtractPropTypes } from 'vue';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
-const MODAL_SIZE = ['sm', 'md', 'lg', 'xl'] as const;
+const MODAL_SIZE = ['sm', 'md', 'lg', 'xl', 'xxl'] as const;
 
 export const modalPropTypes = {
   modelValue: {

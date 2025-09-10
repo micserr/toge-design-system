@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.13.2 (2025-09-10)
+
+- Enhancement
+  - Added xxl size for modal component
+    ([#cf599bee](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/34695?_a=files) by @bsolis)
+
 ## 2.13.2 (2025-09-09)
 
 - Fix

@@ -226,7 +226,7 @@ export default defineConfig({
             },
             {
               text: 'Select',
-              link: '/documentation/components/select/select-single',
+              link: '/documentation/components/select/select',
               items: [
                 {
                   text: 'Multi Select',

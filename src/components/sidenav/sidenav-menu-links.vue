@@ -65,7 +65,7 @@
                 v-if="menuLink.menuHeading"
                 :class="{
                   'spr-label-xs-medium spr-text-color-supporting spr-m-0 spr-p-2': true,
-                  'spr-mt-2': menuLinkIndex !== 0,
+                  'spr-pt-2': menuLinkIndex !== 0,
                 }"
               >
                 {{ menuLink.menuHeading }}
@@ -138,7 +138,7 @@
                             v-if="submenuLink.subMenuHeading"
                             :class="{
                               'spr-label-xs-medium spr-text-color-supporting spr-m-0 spr-p-2': true,
-                              'spr-mt-2': submenuLinkIndex !== 0,
+                              'spr-pt-2': submenuLinkIndex !== 0,
                             }"
                           >
                             {{ submenuLink.subMenuHeading }}

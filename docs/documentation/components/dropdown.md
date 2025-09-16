@@ -274,8 +274,8 @@ Available placement options:
 <div class="spr-grid spr-gap-4">
   <div class="spr-flex spr-gap-4">
     <spr-dropdown
-      id="sample-dropdownPlacements"
-      v-model="dropdownModel.dropdownPlacements"
+      id="sample-dropdownPlacements0"
+      v-model="dropdownModel.dropdownPlacements0"
       :menu-list="menuList"
       placement="auto"
       popper-width="200px"
@@ -286,8 +286,8 @@ Available placement options:
       </spr-button>
     </spr-dropdown>
     <spr-dropdown
-      id="sample-dropdownPlacements"
-      v-model="dropdownModel.dropdownPlacements"
+      id="sample-dropdownPlacements1"
+      v-model="dropdownModel.dropdownPlacements1"
       :menu-list="menuList"
       placement="auto-start"
       popper-width="200px"
@@ -298,8 +298,8 @@ Available placement options:
       </spr-button>
     </spr-dropdown>
     <spr-dropdown
-      id="sample-dropdownPlacements"
-      v-model="dropdownModel.dropdownPlacements"
+      id="sample-dropdownPlacements2"
+      v-model="dropdownModel.dropdownPlacements2"
       :menu-list="menuList"
       placement="auto-end"
       popper-width="200px"
@@ -741,7 +741,9 @@ const dropdownModel = ref({
   dropdownBasic3: '',
   dropdownGroupedItemsBy: '',
   dropdownPreSelectedItems:  'https://www.yahoo.com',
-  dropdownPlacements: '',
+  dropdownPlacements0: '',
+  dropdownPlacements1: '',
+  dropdownPlacements2: '',
   dropdownWidth: '',
   dropdownStrategy: '',
 });

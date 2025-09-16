@@ -274,8 +274,8 @@ Available placement options:
 <div class="spr-grid spr-gap-4">
   <div class="spr-flex spr-gap-4">
     <spr-dropdown
-      id="sample-dropdownPlacements"
-      v-model="dropdownModel.dropdownPlacements"
+      id="sample-dropdownPlacements0"
+      v-model="dropdownModel.dropdownPlacements0"
       :menu-list="menuList"
       placement="auto"
       popper-width="200px"
@@ -286,8 +286,8 @@ Available placement options:
       </spr-button>
     </spr-dropdown>
     <spr-dropdown
-      id="sample-dropdownPlacements"
-      v-model="dropdownModel.dropdownPlacements"
+      id="sample-dropdownPlacements1"
+      v-model="dropdownModel.dropdownPlacements1"
       :menu-list="menuList"
       placement="auto-start"
       popper-width="200px"
@@ -298,8 +298,8 @@ Available placement options:
       </spr-button>
     </spr-dropdown>
     <spr-dropdown
-      id="sample-dropdownPlacements"
-      v-model="dropdownModel.dropdownPlacements"
+      id="sample-dropdownPlacements2"
+      v-model="dropdownModel.dropdownPlacements2"
       :menu-list="menuList"
       placement="auto-end"
       popper-width="200px"
@@ -670,6 +670,24 @@ const menuList = ref([
       <td>boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td>triggers</td>
+      <td>Array of events that will trigger the dropdown to open</td>
+      <td>'click' | 'hover' | 'focus' | 'touch'[]</td>
+      <td>['click']</td>
+    </tr>
+    <tr>
+      <td>popperTriggers</td>
+      <td>Array of events that will trigger the dropdown menu (popper element) to open</td>
+      <td>'click' | 'hover' | 'focus' | 'touch'[]</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <td>autoHide</td>
+      <td>When true, automatically hides the dropdown when clicking outside it</td>
+      <td>boolean</td>
+      <td>true</td>
+    </tr>
   </tbody>
 </table>
 
@@ -741,7 +759,9 @@ const dropdownModel = ref({
   dropdownBasic3: '',
   dropdownGroupedItemsBy: '',
   dropdownPreSelectedItems:  'https://www.yahoo.com',
-  dropdownPlacements: '',
+  dropdownPlacements0: '',
+  dropdownPlacements1: '',
+  dropdownPlacements2: '',
   dropdownWidth: '',
   dropdownStrategy: '',
 });

@@ -10,7 +10,7 @@
     >
       <spr-input v-model="computeSelectedRowCount" :class="paginationClasses.dropdownInputFieldClass" :readonly="true">
         <template #icon>
-          <Icon icon="ph:caret-down-bold" :class="paginationClasses.inputFieldIconClass" />
+          <Icon icon="ph:caret-down-bold" :class="paginationClasses.inputFieldIconClass" width="12px" height="12px"/>
         </template>
       </spr-input>
     </spr-dropdown>

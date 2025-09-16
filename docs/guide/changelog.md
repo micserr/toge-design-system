@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.13.5 (2025-09-16)
+
+- Fix
+  - DQA fixes for Table Pagination and Dropdown
+    ([#57399f81](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/57399f8190887ed3255c822a4c606a74d3c44e55?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FDQA_TablePagination_%26_Dropdown) by @jbanares)
+
 ## 2.13.4 (2025-09-15)
 
 - Fix

@@ -4,9 +4,9 @@
     aria-id="dropdown-wrapper"
     distance="4"
     :placement="props.placement"
-    :triggers="[]"
-    :popper-hide-triggers="[]"
-    :auto-hide="false"
+    :triggers="props.triggers"
+    :popper-triggers="props.popperTriggers"
+    :auto-hide="props.autoHide"
     :disabled="isDropdownPopperDisabled"
     :container="`#${props.id}`"
     :strategy="
@@ -18,7 +18,7 @@
       width: props.width,
     }"
   >
-    <div @click="dropdownPopperState = true">
+    <div class="dropdown-slot">
       <slot />
     </div>
 

@@ -31,8 +31,13 @@ export const useTablePagination = (
       'spr-border spr-border-solid spr-border-color-weak': bordered.value,
       'spr-border-x-0 spr-border-t spr-border-b-0 spr-border-solid spr-border-color-weak': !bordered.value,
     });
-    const dropdownInputFieldClass = classNames('spr-w-[120px] spr-h-full spr-space-x-2');
-    const inputFieldIconClass = classNames('spr-mt-0.5 spr-pl-1 spr-text-mushroom-950');
+
+    const dropdownClass = classNames(
+      '!spr-w-max [&_.dropdown-slot_div_div]:spr-border-color-base [&_.dropdown-slot_div_div]:spr-p-0'
+    );
+    
+    const dropdownInputFieldClass = classNames('spr-max-w-[120px] spr-min-w-[48px] spr-h-full spr-font-semibold [&_input]:spr-py-size-spacing-3xs [&_input]:spr-pr-size-spacing-5xs');
+    const inputFieldIconClass = classNames('spr-text-mushroom-950 spr-pr-size-spacing-3xs spr-box-content');
     const rightSideClass = classNames(
       'spr-flex spr-justify-between spr-items-center',
       {
@@ -49,7 +54,6 @@ export const useTablePagination = (
       }
     );
     const navigationButtonClass = classNames('spr-rounded-border-radius-md');
-    const dropdownClass = classNames('!spr-w-max');
     return {
       baseClass,
       dropdownInputFieldClass,

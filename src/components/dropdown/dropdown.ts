@@ -24,6 +24,7 @@ export const PLACEMENTS_TYPES = [
 ] as const;
 
 const POPPER_STRATEGY_TYPES = ['fixed', 'absolute'] as const;
+const TRIGGER_EVENTS = ['click', 'hover', 'focus', 'touch'] as const;
 
 export const dropdownPropTypes = {
   id: {
@@ -115,6 +116,24 @@ export const dropdownPropTypes = {
   lozenge: {
     type: Boolean,
     default: false,
+  },
+  triggers: {
+    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
+    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
+      return value.every((val) => TRIGGER_EVENTS.includes(val));
+    },
+    default: () => ['click'],
+  },
+  popperTriggers: { 
+    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
+    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
+      return value.every((val) => TRIGGER_EVENTS.includes(val));
+    },
+    default: () => [],
+  },
+  autoHide: {
+    type: Boolean,
+    default: true,
   }
 };
 

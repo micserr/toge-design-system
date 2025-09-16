@@ -670,6 +670,24 @@ const menuList = ref([
       <td>boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td>triggers</td>
+      <td>Array of events that will trigger the dropdown to open</td>
+      <td>'click' | 'hover' | 'focus' | 'touch'[]</td>
+      <td>['click']</td>
+    </tr>
+    <tr>
+      <td>popperTriggers</td>
+      <td>Array of events that will trigger the dropdown menu (popper element) to open</td>
+      <td>'click' | 'hover' | 'focus' | 'touch'[]</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <td>autoHide</td>
+      <td>When true, automatically hides the dropdown when clicking outside it</td>
+      <td>boolean</td>
+      <td>true</td>
+    </tr>
   </tbody>
 </table>
 

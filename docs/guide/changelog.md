@@ -1,12 +1,18 @@
 # Changelog
 
-## 2.13.3 (2025-09-16)
+## 2.13.5 (2025-09-16)
 
 - Fix
   - DQA fixes for Table Pagination and Dropdown
     ([#57399f81](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/57399f8190887ed3255c822a4c606a74d3c44e55?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FDQA_TablePagination_%26_Dropdown) by @jbanares)
 
-## 2.13.2 (2025-09-10)
+## 2.13.4 (2025-09-15)
+
+- Fix
+  - Sidenav header closing menu when hovered and fix select documentation route issue
+    ([#12332ae8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/12332ae8c6815cc6c15fe7b0b5c17a1c04f9bc1c?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 2.13.3 (2025-09-10)
 
 - Enhancement
   - Added xxl size for modal component
@@ -27,7 +33,7 @@
     - Documented best practices for fixed pixel, percentage, and mixed width strategies
     - Added guidance on dynamic width considerations and Tailwind CSS limitations
     - Included responsive column width examples using CSS functions
-    ([#b766ba9e] https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b766ba9e3f0c867f463b5c9059c14d4dc28361b9?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2Ftable-width by @bsolis)
+      ([#b766ba9e] https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b766ba9e3f0c867f463b5c9059c14d4dc28361b9?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2Ftable-width by @bsolis)
 
 ## 2.13.0 (2025-09-05)
 

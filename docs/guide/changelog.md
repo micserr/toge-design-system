@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.13.6 (2025-09-16)
+
+- Fix
+  - DQA fix for font family of input component
+    ([#684972e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/684972efa1e0fa1208cc782ee82aa2aa028aa18e?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FDQA_InputFieldFont) by @jbanares)
+
 ## 2.13.5 (2025-09-16)
 
 - Fix

@@ -6,7 +6,7 @@
         {{ props.supportingLabel }}
       </span>
     </label>
-    {{ ladderizedSelectPopperState }}
+
     <Menu
       :shown="ladderizedSelectPopperState"
       aria-id="ladderized-select-wrapper"

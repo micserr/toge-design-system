@@ -1,22 +1,7 @@
 <template>
   <div class="ladderized-list">
     <transition :name="transitionName" mode="out-in">
-      <div v-if="activeLevel % 2 === 0">
-        <spr-ladderized-list-back v-if="activeLevel > 0" :label="backLabel ?? 'Back'" @back="handleBackClick" />
-        <spr-list
-          v-model="selectedListItem"
-          class="spr-p-size-spacing-3xs"
-          :menu-list="activeList"
-          :menu-level="props.menuLevel"
-          :multi-select="false"
-          :ladderized="true"
-          :searchable-menu="props.searchableMenu"
-          :searchable-menu-placeholder="props.searchableMenuPlaceholder"
-          @update:model-value="(value) => handleSelectedListItem(value[0])"
-        />
-      </div>
-
-      <div v-else>
+      <div :key="activeLevel">
         <spr-ladderized-list-back v-if="activeLevel > 0" :label="backLabel ?? 'Back'" @back="handleBackClick" />
         <spr-list
           v-model="selectedListItem"

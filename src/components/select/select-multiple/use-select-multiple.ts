@@ -194,7 +194,7 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
   const handleOptionsToggle = () => {
     multiSelectPopperState.value = !multiSelectPopperState.value;
 
-    emit('popper-state', !multiSelectPopperState.value);
+    emit('popper-state', multiSelectPopperState.value);
   };
 
   /**

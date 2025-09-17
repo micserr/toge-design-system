@@ -157,12 +157,15 @@
 
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue';
-import { listPropTypes, listEmitTypes } from './list';
-import { useList } from './use-list';
+
 import SprCheckbox from '@/components/checkbox/checkbox.vue';
 import SprInputSearch from '@/components/input/input-search/input-search.vue';
 import SprLozenge from '@/components/lozenge/lozenge.vue';
+
 import { LOZENGE_TONE } from '@/components/lozenge/lozenge';
+
+import { listPropTypes, listEmitTypes } from './list';
+import { useList } from './use-list';
 
 const props = defineProps(listPropTypes);
 const emit = defineEmits(listEmitTypes);

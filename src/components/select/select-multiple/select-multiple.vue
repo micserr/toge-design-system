@@ -124,7 +124,7 @@
       <template #popper>
         <div
           ref="multipleSelectPopperRef"
-          class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden spr-p-2"
+          class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden"
         >
           <spr-list
             v-model="multiSelectedListItems"

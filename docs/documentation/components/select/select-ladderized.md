@@ -836,12 +836,60 @@ const options = ref([
         sublevel: [
           { text: 'Cub 1', value: 'cub1' },
           { text: 'Cub 2', value: 'cub2' },
+          { text: 'Cub 3', value: 'cub3' },
+          { text: 'Cub 4', value: 'cub4' },
+          { text: 'Cub 5', value: 'cub5' },
+          { text: 'Cub 6', value: 'cub6' },
+          { text: 'Cub 7', value: 'cub7' },
+          { text: 'Cub 8', value: 'cub8' },
+          { text: 'Cub 9', value: 'cub9' },
+          { text: 'Cub 10', value: 'cub10' },
         ],
       },
       {
         text: 'Pride Member',
         value: 'pride-member',
         subtext: 'Member of a lion pride',
+      },
+      {
+        text: 'Hunter',
+        value: 'hunter',
+        subtext: 'Lion that hunts prey',
+      },
+      {
+        text: 'Guardian',
+        value: 'guardian',
+        subtext: 'Protects the pride',
+      },
+      {
+        text: 'Elder',
+        value: 'elder',
+        subtext: 'Older, experienced lion',
+      },
+      {
+        text: 'Nomad',
+        value: 'nomad',
+        subtext: 'Wanders independently',
+      },
+      {
+        text: 'Scout',
+        value: 'scout',
+        subtext: 'Explores new territory',
+      },
+      {
+        text: 'Alpha Male',
+        value: 'alpha-male',
+        subtext: 'Dominant male in pride',
+      },
+      {
+        text: 'Matriarch',
+        value: 'matriarch',
+        subtext: 'Leading female',
+      },
+      {
+        text: 'Sibling',
+        value: 'sibling',
+        subtext: 'Brother or sister lion',
       },
     ],
   },
@@ -916,16 +964,16 @@ const options = ref([
                     value: 'egg-layer',
                     subtext: 'Primary role of the queen',
                     sublevel: [
-                      {
-                        text: 'New Eggs',
-                        value: 'new-eggs',
-                        subtext: 'Recently laid eggs',
-                      },
-                      {
-                        text: 'Developing Larvae',
-                        value: 'developing-larvae',
-                        subtext: 'Eggs growing into ants',
-                      },
+                      { text: 'New Eggs', value: 'new-eggs', subtext: 'Recently laid eggs' },
+                      { text: 'Developing Larvae', value: 'developing-larvae', subtext: 'Eggs growing into ants' },
+                      { text: 'Stage 3 Larvae', value: 'larvae-3', subtext: 'Mid-stage larvae' },
+                      { text: 'Stage 4 Larvae', value: 'larvae-4', subtext: 'Advanced stage' },
+                      { text: 'Pupae', value: 'pupae', subtext: 'Ready to become ants' },
+                      { text: 'Emerging Ants', value: 'emerging-ants', subtext: 'Breaking out of cocoon' },
+                      { text: 'First Workers', value: 'first-workers', subtext: 'Initial group of helpers' },
+                      { text: 'Secondary Workers', value: 'secondary-workers', subtext: 'Support group' },
+                      { text: 'Royal Guards', value: 'royal-guards', subtext: 'Protect the queen' },
+                      { text: 'Brood Carers', value: 'brood-carers', subtext: 'Care for developing young' },
                     ],
                   },
                 ],
@@ -937,16 +985,8 @@ const options = ref([
             value: 'worker-section',
             subtext: 'Worker ants operate here',
             sublevel: [
-              {
-                text: 'Foragers',
-                value: 'foragers',
-                subtext: 'Collect food',
-              },
-              {
-                text: 'Nurses',
-                value: 'nurses',
-                subtext: 'Care for larvae',
-              },
+              { text: 'Foragers', value: 'foragers', subtext: 'Collect food' },
+              { text: 'Nurses', value: 'nurses', subtext: 'Care for larvae' },
             ],
           },
           {
@@ -957,6 +997,58 @@ const options = ref([
         ],
       },
     ],
+  },
+
+  // ✅ 10 More Parent Items
+  {
+    text: 'Leopard',
+    value: 'leopard',
+    subtext: 'Stealthy predator of the jungle',
+  },
+  {
+    text: 'Cheetah',
+    value: 'cheetah',
+    subtext: 'Fastest land animal',
+  },
+  {
+    text: 'Hippo',
+    value: 'hippo',
+    subtext: 'Large semi-aquatic mammal',
+  },
+  {
+    text: 'Rhino',
+    value: 'rhino',
+    subtext: 'Horned herbivore',
+  },
+  {
+    text: 'Hyena',
+    value: 'hyena',
+    subtext: 'Scavenger with strong jaws',
+  },
+  {
+    text: 'Crocodile',
+    value: 'crocodile',
+    subtext: 'Apex aquatic predator',
+  },
+  {
+    text: 'Ostrich',
+    value: 'ostrich',
+    subtext: 'Largest living bird',
+  },
+  {
+    text: 'Meerkat',
+    value: 'meerkat',
+    subtext: 'Small mongoose known for standing upright',
+  },
+  {
+    text: 'Warthog',
+    value: 'warthog',
+    subtext: 'Tusked wild pig',
+  },
+  {
+    text: 'Baboons',
+    value: 'baboons',
+    subtext: 'Social primates of the savanna',
   },
 ]);
 

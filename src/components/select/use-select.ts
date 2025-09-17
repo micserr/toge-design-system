@@ -165,7 +165,7 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
 
     isSearching.value = false;
 
-    emit('popper-state', !selectPopperState.value);
+    emit('popper-state', selectPopperState.value);
   };
 
   // Handle selected item for simple list component

@@ -17,9 +17,11 @@ export const useSelectLadderized = (
     supportingLabelClasses: 'spr-body-sm-regular spr-text-color-supporting',
   }));
 
+  const ladderizedSelectState = ref<HTMLDivElement | null>(null);
+
   // Popper Variables
-  const ladderizedSelectPopperState = ref(false);
-  const ladderizedSelectRef = ref(null);
+  const ladderizedSelectPopperState = ref<boolean>(false);
+  const ladderizedSelectPopperRef = ref<HTMLElement | null>(null);
   const isLadderizedSelectPopperDisabled = computed(() => disabled.value);
 
   // Ladderized Select Model
@@ -28,8 +30,8 @@ export const useSelectLadderized = (
 
   // Input Variables
   const inputText = ref<string>('');
-  const isSearching = ref(false);
-  const wasCleared = ref(false);
+  const isSearching = ref<boolean>(false);
+  const wasCleared = ref<boolean>(false);
 
   const isLeafNode = (item: MenuListType): boolean => {
     return !item.sublevel || item.sublevel.length === 0;
@@ -168,11 +170,11 @@ export const useSelectLadderized = (
   };
 
   const handleOptionsToggle = () => {
-    ladderizedSelectPopperState.value = true;
+    ladderizedSelectPopperState.value = !ladderizedSelectPopperState.value;
 
     isSearching.value = false;
 
-    emit('popper-state', true);
+    emit('popper-state', ladderizedSelectPopperState.value);
   };
 
   // Watch for changes in modelValue to update inputText
@@ -209,16 +211,23 @@ export const useSelectLadderized = (
     { immediate: true },
   );
 
-  onClickOutside(ladderizedSelectRef, () => {
-    ladderizedSelectPopperState.value = false;
-
-    emit('popper-state', false);
+  // Close only when clicking completely outside both the popper and the trigger wrapper.
+  onClickOutside(ladderizedSelectPopperRef, (event) => {
+    const triggerWrapper = ladderizedSelectState.value;
+    if (triggerWrapper && triggerWrapper.contains(event.target as Node)) {
+      return; // ignore clicks on trigger content
+    }
+    if (ladderizedSelectPopperState.value) {
+      ladderizedSelectPopperState.value = false;
+      emit('popper-state', false);
+    }
   });
 
   return {
     ladderizedClasses,
+    ladderizedSelectState,
     ladderizedSelectPopperState,
-    ladderizedSelectRef,
+    ladderizedSelectPopperRef,
     ladderizedSelectOptions,
     isLadderizedSelectPopperDisabled,
     ladderizedSelectModel,

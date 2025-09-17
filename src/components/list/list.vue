@@ -26,12 +26,12 @@
             >
               <spr-checkbox v-if="props.multiSelect" :checked="isItemSelected(item)" />
               <template v-if="props.lozenge">
-                <spr-lozenge 
-                  :label="item.text || item.lozengeProps?.label as string" 
+                <spr-lozenge
+                  :label="item.text || (item.lozengeProps?.label as string)"
                   :tone="item.lozengeProps?.tone as string & (typeof LOZENGE_TONE)[number]"
                   :fill="item.lozengeProps?.fill as boolean"
                   :url="item.lozengeProps?.url as string"
-                  :icon="item.icon || item.lozengeProps?.icon as string"
+                  :icon="item.icon || (item.lozengeProps?.icon as string)"
                   :postfix-icon="item.lozengeProps?.postfixIcon as string"
                 />
               </template>
@@ -49,18 +49,23 @@
                     </span>
                   </div>
                 </div>
-                <template v-if="!props.multiSelect && !props.dropdown">
+                <template v-if="props.ladderized">
+                  <template v-if="item.sublevel && item.sublevel?.length > 0">
+                    <Icon class="spr-text-color-weak spr-size-4" icon="ph:caret-right" />
+                  </template>
+                  <template v-else>
+                    <Icon
+                      v-if="isItemSelected(item) && !props.noCheck"
+                      class="spr-text-color-brand-base spr-w-[1.39em]"
+                      icon="ph:check"
+                    />
+                  </template>
+                </template>
+                <template v-else>
                   <Icon
-                    v-if="isItemSelected(item) && !props.noCheck"
+                    v-if="isItemSelected(item) && !props.noCheck && !props.multiSelect"
                     class="spr-text-color-brand-base spr-w-[1.39em]"
                     icon="ph:check"
-                  />
-                </template>
-                <template v-if="props.ladderized">
-                  <Icon
-                    v-if="item.sublevel && item.sublevel?.length > 0"
-                    class="spr-text-color-weak spr-size-4"
-                    icon="ph:caret-right"
                   />
                 </template>
               </template>
@@ -86,8 +91,8 @@
         >
           <spr-checkbox v-if="props.multiSelect" :disabled="item.disabled" :checked="isItemSelected(item)" />
           <template v-if="props.lozenge">
-            <spr-lozenge 
-              :label="item.text || item.lozengeProps?.label as string" 
+            <spr-lozenge
+              :label="item.text || (item.lozengeProps?.label as string)"
               :tone="item.lozengeProps?.tone as string & (typeof LOZENGE_TONE)[number]"
               :fill="item.lozengeProps?.fill as boolean"
               :url="item.lozengeProps?.url as string"
@@ -118,18 +123,23 @@
                 </span>
               </div>
             </div>
-            <template v-if="!props.multiSelect && !props.dropdown">
+            <template v-if="props.ladderized">
+              <template v-if="item.sublevel && item.sublevel?.length > 0">
+                <Icon class="spr-text-color-weak spr-size-4" icon="ph:caret-right" />
+              </template>
+              <template v-else>
+                <Icon
+                  v-if="isItemSelected(item) && !props.noCheck"
+                  class="spr-text-color-brand-base spr-w-[1.39em]"
+                  icon="ph:check"
+                />
+              </template>
+            </template>
+            <template v-else>
               <Icon
-                v-if="isItemSelected(item) && !props.noCheck"
+                v-if="isItemSelected(item) && !props.noCheck && !props.multiSelect"
                 class="spr-text-color-brand-base spr-w-[1.39em]"
                 icon="ph:check"
-              />
-            </template>
-            <template v-if="props.ladderized">
-              <Icon
-                v-if="item.sublevel && item.sublevel?.length > 0"
-                class="spr-text-color-weak spr-size-4"
-                icon="ph:caret-right"
               />
             </template>
           </template>

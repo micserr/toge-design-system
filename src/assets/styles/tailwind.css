@@ -198,6 +198,10 @@
     }
     tbody::-webkit-scrollbar {
       @apply spr-h-0 spr-w-0; /* Hides the scrollbar in WebKit browsers */
+    }    
+
+    .empty-table-dropzone-dragged-class {
+      @apply spr-hidden;
     }
   }
   /* #endregion - Table */

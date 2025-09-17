@@ -36,7 +36,7 @@ export const useTablePagination = (
       '!spr-w-max [&_.dropdown-slot_div_div]:spr-border-color-base [&_.dropdown-slot_div_div]:spr-p-0'
     );
     
-    const dropdownInputFieldClass = classNames('spr-max-w-[120px] spr-min-w-[48px] spr-h-full spr-font-semibold [&_input]:spr-py-size-spacing-3xs [&_input]:spr-pr-size-spacing-5xs');
+    const dropdownInputFieldClass = classNames('spr-max-w-[120px] spr-min-w-[48px] spr-h-full spr-font-medium [&_input]:spr-py-size-spacing-3xs [&_input]:spr-pr-size-spacing-5xs');
     const inputFieldIconClass = classNames('spr-text-mushroom-950 spr-pr-size-spacing-3xs spr-box-content');
     const rightSideClass = classNames(
       'spr-flex spr-justify-between spr-items-center',

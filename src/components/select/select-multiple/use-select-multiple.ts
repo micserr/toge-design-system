@@ -33,7 +33,7 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     });
 
     const chippedInputTextBaseClasses = classNames(
-      'spr-relative spr-flex spr-items-center spr-min-h-9 spr-rounded-border-radius-md spr-border-[1.5px] spr-border-solid',
+      'spr-relative spr-flex spr-items-center spr-min-h-10 spr-rounded-border-radius-md spr-border-[1.5px] spr-border-solid',
       {
         'spr-cursor-pointer': !disabled.value,
 

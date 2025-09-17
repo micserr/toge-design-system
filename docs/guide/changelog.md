@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.14.1 (2025-09-18)
+
+- Fix
+  - Fix Search UI to be sticky on top for select, multi-select, ladderized select
+  - Fix toggle emit for select, multi select, ladderized select
+  - Fix the appearing icon issue in ladderized select
+  - Fix encountered issue in multi-layered sublevel in ladderized select
+    ([#34835](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/34835?_a=files) by @jarias)
+
 ## 2.14.0 (2025-09-17)
 
 - Feat

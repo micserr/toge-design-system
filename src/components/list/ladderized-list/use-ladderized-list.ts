@@ -166,32 +166,44 @@ export const useLadderizedList = (
 
   const handleBackClick = () => {
     transitionName.value = 'slide-right';
-    activeLevel.value -= 1;
+    // Decrement level but clamp at 0
+    activeLevel.value = Math.max(activeLevel.value - 1, 0);
 
-    if (activeLevel.value > 0) {
-      // Update back label text
-      const textArray = backLabel.value.trim().split(',');
-
-      textArray?.pop();
-      backLabel.value = textArray?.join(', ') ?? '';
-
-      // Update output value
-      const valueArray = ladderizedListOutput.value;
-
-      valueArray?.pop();
-      ladderizedListOutput.value = valueArray ?? [];
-
-      // Get previous activeList from menuList
-      for (let i = 0; i < activeLevel.value; i++) {
-        activeList.value = props.menuList.find((item) => item.value === ladderizedListOutput.value[i])?.sublevel ?? [];
-      }
-    } else {
-      // Reset values
-      activeList.value = props.menuList;
-      ladderizedListOutput.value = [];
-      backLabel.value = '';
-      activeLevel.value = 0;
+    // Remove last selected value/path segment
+    if (ladderizedListOutput.value.length > activeLevel.value) {
+      ladderizedListOutput.value = ladderizedListOutput.value.slice(0, activeLevel.value);
     }
+    if (selectedListItem.value.length > activeLevel.value) {
+      selectedListItem.value = selectedListItem.value.slice(0, activeLevel.value);
+    }
+
+    if (activeLevel.value === 0) {
+      // Root reset
+      activeList.value = props.menuList;
+      prevList.value = [];
+      backLabel.value = '';
+      return;
+    }
+
+    // Reconstruct activeList by walking from root using remaining value path
+    let cursor: MenuListType[] = props.menuList;
+    for (let i = 0; i < activeLevel.value; i++) {
+      const val = ladderizedListOutput.value[i];
+      const found = cursor.find((item) => String(item.value) === String(val));
+      cursor = found?.sublevel ?? [];
+    }
+    activeList.value = cursor;
+    prevList.value = cursor; // maintain prevList for forward navigation consistency
+
+    // Recompute back label from selectedListItem values (excluding current level if prop set)
+    const computeBackLabel = () => {
+      const texts = selectedListItem.value.map((itm) => itm.text);
+      if (removeCurrentLevelInBackLabel.value && texts.length > 0) {
+        texts.pop();
+      }
+      return texts.join(', ');
+    };
+    backLabel.value = computeBackLabel();
   };
 
   const initializeMenuList = () => {

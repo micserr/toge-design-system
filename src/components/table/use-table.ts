@@ -1,18 +1,36 @@
-import { ref, computed, toRefs, Slots, watch } from 'vue';
+import { ref, computed, toRefs, Slots, watch, onMounted } from 'vue';
 
-import type { TablePropTypes, TableEmitTypes, TABLE_SORT, TableData, TableDataProps, Header } from './table';
+import type {
+  TablePropTypes,
+  TableEmitTypes,
+  TABLE_SORT,
+  TableData,
+  TableDataProps,
+  Header,
+  DragOnChangeEvent,
+} from './table';
 import type { SetupContext } from 'vue';
 
 import classNames from 'classnames';
 
 export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitTypes>['emit'], slots: Slots) => {
-  const { dataTable, action, headers, sortOrder, fullHeight, selectedKeyId, returnCompleteSelectedProperties } =
-    toRefs(props);
+  const {
+    dataTable,
+    action,
+    headers,
+    sortOrder,
+    fullHeight,
+    selectedKeyId,
+    returnCompleteSelectedProperties,
+    allowSelfDrag,
+    isDraggable,
+  } = toRefs(props);
   const sortField = ref('');
   const searchField = ref(props.searchModel);
   const tableSortOrder = ref<TABLE_SORT>(sortOrder.value);
   const selectAll = ref(false);
   const selectedData = ref<TableData[]>([]);
+  const tableData = ref<TableData[]>([]);
 
   const isAllSelected = computed(() => {
     if (selectedData.value.length === 0) return false;
@@ -35,6 +53,15 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       return 0;
     });
     return sorted;
+  });
+
+  const dragOptions = computed(() => {
+    return {
+      animation: 250,
+      group: { name: 'table', pull: true, put: true },
+      sort: allowSelfDrag.value,
+      disabled: !isDraggable.value,
+    };
   });
 
   const sortData = (field: string) => {
@@ -128,6 +155,8 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       'spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-3';
     const tableRowActionClasses =
       'spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-3';
+    const tableRowDragIconClasses =
+      'spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-w-[5%] spr-cursor-pointer spr-px-[6px]';
 
     const tableBackgroundClasses = classNames('spr-h-full');
 
@@ -172,12 +201,13 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       tableFooterClasses,
       emptyStateClasses,
       tableActionSlotClasses,
+      tableRowDragIconClasses,
     };
   });
 
   //assert type TableDataProps
   const sortedDataItem = (rowIndex: number, headerField: string) => {
-    return sortedData.value[rowIndex][headerField] as TableDataProps;
+    return tableData.value[rowIndex][headerField] as TableDataProps;
   };
 
   const isTableDataObject = (data: TableDataProps) => {
@@ -247,8 +277,22 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     }
   };
 
+  const handleDropToEmptyZone = (event: DragOnChangeEvent) => {    
+    emit('onDropToEmptyZone', event.added);
+  };
+
+  const handleOnDragChange = (event: DragOnChangeEvent) => {    
+    const dataToEmit = {
+      ...event,
+      updatedList: [...tableData.value],
+    };
+    emit('onDragChange', dataToEmit);
+  };
+
   watch(sortedData, (newVal) => {
-    if (newVal && props.isMultiSelect && selectedData.value.length > 0) {
+    tableData.value = [...newVal];
+
+    if (props.isMultiSelect && selectedData.value.length > 0) {
       // Remove items from selectedData that are not in the new sortedData
       // This is to ensure that the selectedData is always in sync with the sortedData
 
@@ -271,6 +315,10 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     }
   });
 
+  onMounted(() => {
+    tableData.value = [...sortedData.value];
+  });
+
   return {
     sortData,
     updateSearchField,
@@ -291,5 +339,11 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     sortedDataItem,
     getSortIcon,
     sortField,
+    allowSelfDrag,
+    handleDropToEmptyZone,
+    handleOnDragChange,
+    tableData,
+    isDraggable,
+    dragOptions
   };
 };

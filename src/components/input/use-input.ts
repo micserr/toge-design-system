@@ -71,8 +71,8 @@ export const useInput = (
     );
 
     const inputTextClasses = classNames(
-      'spr-block spr-h-8 spr-py-size-spacing-4xs spr-outline-none spr-ring-0 spr-border-none spr-rounded-border-radius-md spr-font-size-200',
-      'spr-font-size-200 [font-weight:inherit]',
+      'spr-block spr-h-8 spr-py-size-spacing-4xs spr-outline-none spr-ring-0 spr-border-none spr-rounded-border-radius-md',
+      'spr-font-main spr-font-size-200 [font-weight:inherit]',
       'placeholder:spr-text-mushroom-300',
       {
         'spr-text-color-strong': !disabled.value,

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.14.0 (2025-09-17)
+
+- Feat
+  - Add drag and drop feature to table component
+    ([#5755a4f6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5755a4f6daa5c74529e6288cd265172ad105d880?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fdraggable-table-rows) by @despiritu)
+
 ## 2.13.6 (2025-09-16)
 
 - Fix

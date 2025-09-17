@@ -277,11 +277,11 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     }
   };
 
-  const handleDropToEmptyZone = (event: DragOnChangeEvent) => {    
+  const handleDropToEmptyZone = (event: DragOnChangeEvent) => {
     emit('onDropToEmptyZone', event.added);
   };
 
-  const handleOnDragChange = (event: DragOnChangeEvent) => {    
+  const handleOnDragChange = (event: DragOnChangeEvent) => {
     const dataToEmit = {
       ...event,
       updatedList: [...tableData.value],
@@ -316,7 +316,9 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
   });
 
   onMounted(() => {
-    tableData.value = [...sortedData.value];
+    if (sortedData.value.length > 0) {
+      tableData.value = [...sortedData.value];
+    }
   });
 
   return {
@@ -344,6 +346,6 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     handleOnDragChange,
     tableData,
     isDraggable,
-    dragOptions
+    dragOptions,
   };
 };

@@ -8,13 +8,13 @@
     </label>
 
     <Menu
-      :shown="ladderizedSelectPopperState"
+      v-model:shown="ladderizedSelectPopperState"
       aria-id="ladderized-select-wrapper"
       distance="4"
       :placement="props.placement"
-      :triggers="[]"
-      :popper-hide-triggers="[]"
-      :auto-hide="false"
+      :triggers="props.triggers"
+      :popper-triggers="props.popperTriggers"
+      :auto-hide="props.autoHide"
       :disabled="isLadderizedSelectPopperDisabled"
       :container="`#${props.id}`"
       :strategy="
@@ -27,38 +27,36 @@
       }"
     >
       <div ref="ladderizedSelectState">
-        <div @click="handleOptionsToggle">
-          <spr-input
-            :id="`input-${props.id}`"
-            v-model="inputText"
-            class="spr-cursor-pointer"
-            :placeholder="props.placeholder"
-            autocomplete="off"
-            :helper-text="props.helperText"
-            :helper-icon="props.helperIcon"
-            :display-helper="props.displayHelper"
-            readonly
-            :disabled="props.disabled"
-            :error="props.error"
-            @keyup="handleSearch"
-          >
-            <template #icon>
-              <div class="spr-flex spr-items-center spr-gap-1">
-                <Icon
-                  v-if="props.clearable && inputText"
-                  class="spr-cursor-pointer"
-                  icon="ph:x"
-                  @click.stop="handleClear"
-                />
-                <Icon icon="ph:caret-down" />
-              </div>
-            </template>
+        <spr-input
+          :id="`input-${props.id}`"
+          v-model="inputText"
+          class="spr-cursor-pointer"
+          :placeholder="props.placeholder"
+          autocomplete="off"
+          :helper-text="props.helperText"
+          :helper-icon="props.helperIcon"
+          :display-helper="props.displayHelper"
+          readonly
+          :disabled="props.disabled"
+          :error="props.error"
+          @keyup="handleSearch"
+        >
+          <template #icon>
+            <div class="spr-flex spr-items-center spr-gap-1">
+              <Icon
+                v-if="props.clearable && inputText"
+                class="spr-cursor-pointer"
+                icon="ph:x"
+                @click.stop="handleClear"
+              />
+              <Icon icon="ph:caret-down" />
+            </div>
+          </template>
 
-            <template #helperMessage>
-              <slot name="helperMessage" />
-            </template>
-          </spr-input>
-        </div>
+          <template #helperMessage>
+            <slot name="helperMessage" />
+          </template>
+        </spr-input>
 
         <!-- This div used to poppulate popper menu -->
         <div :id="props.id" :style="{ width: props.popperWidth }"></div>
@@ -119,6 +117,5 @@ const {
   handleSelectedLadderizedItem,
   handleSearch,
   handleClear,
-  handleOptionsToggle,
 } = useSelectLadderized(props, emit as SelectLadderizedEmitFn);
 </script>

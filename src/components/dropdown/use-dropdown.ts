@@ -1,12 +1,21 @@
 import { ref, toRefs, computed, onMounted, watch } from 'vue';
-import { onClickOutside, useInfiniteScroll, useVModel } from '@vueuse/core';
+import { useInfiniteScroll, useVModel } from '@vueuse/core';
 
 import type { SetupContext } from 'vue';
 import type { DropdownPropTypes, DropdownEmitTypes } from './dropdown';
 import type { MenuListType } from '../list/list';
 
 export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<DropdownEmitTypes>['emit']) => {
-  const { menuList, searchString, disabled, multiSelect, removeCurrentLevelInBackLabel, ladderized, textField, valueField } = toRefs(props);
+  const {
+    menuList,
+    searchString,
+    disabled,
+    multiSelect,
+    removeCurrentLevelInBackLabel,
+    ladderized,
+    textField,
+    valueField,
+  } = toRefs(props);
 
   // Dropdown component ref variables
   const dropdownValue = useVModel(props, 'modelValue', emit); // v-model value of dropdown component
@@ -37,33 +46,35 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
       // We return only the second value from the [subvalue, value] format which is the actual selected value
       return [dropdownValue.value[1]?.toString() || ''];
     }
-    
+
     // For regular arrays (multi-select)
     if (Array.isArray(dropdownValue.value)) {
-      return dropdownValue.value.map(item => {
+      return dropdownValue.value.map((item) => {
         if (item === undefined || item === null) return '';
-        
+
         // For numbers, preserve the original number value instead of converting to string
         if (typeof item === 'number') return item;
-        
+
         // For objects, pass the original object reference
         // This is key for proper multi-select of objects
         if (typeof item === 'object') return item;
-        
+
         // For strings, pass as is
         return item.toString();
       });
     }
-    
+
     // For single values (single-select)
-    return dropdownValue.value !== undefined && dropdownValue.value !== null 
-      ? [typeof dropdownValue.value === 'object' ? 
-          // Pass object reference directly instead of stringifying
-          dropdownValue.value : 
-          // For numbers, preserve the original number value
-          typeof dropdownValue.value === 'number' ? 
-            dropdownValue.value : 
-            dropdownValue.value.toString()] 
+    return dropdownValue.value !== undefined && dropdownValue.value !== null
+      ? [
+          typeof dropdownValue.value === 'object'
+            ? // Pass object reference directly instead of stringifying
+              dropdownValue.value
+            : // For numbers, preserve the original number value
+              typeof dropdownValue.value === 'number'
+              ? dropdownValue.value
+              : dropdownValue.value.toString(),
+        ]
       : [];
   });
 
@@ -81,14 +92,14 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
       dropdownMenuList.value = [];
       return;
     }
-    
+
     // If ladderized is true and menu list items already conform to MenuListType, don't transform
     if (ladderized.value) {
       // Verify the items have the required structure for ladderized lists
-      const allValid = menuList.value.every(item => 
-        typeof item === 'object' && item !== null && 'text' in item && 'value' in item
+      const allValid = menuList.value.every(
+        (item) => typeof item === 'object' && item !== null && 'text' in item && 'value' in item,
       );
-      
+
       if (allValid) {
         dropdownMenuList.value = menuList.value as MenuListType[];
       } else {
@@ -102,18 +113,20 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
 
     // Handle array of strings
     if (typeof firstItem === 'string') {
-      dropdownMenuList.value = (menuList.value as string[]).map(item => ({
+      dropdownMenuList.value = (menuList.value as string[]).map((item) => ({
         text: item,
-        value: item
+        value: item,
       }));
       return;
     }
 
     // Handle array of numbers
     if (typeof firstItem === 'number') {
-      dropdownMenuList.value = (menuList.value as number[]).map(item => ({
+      // Narrowing confirmed via runtime check above; cast through unknown to appease TS
+      const numericList = menuList.value as unknown as number[];
+      dropdownMenuList.value = numericList.map((item) => ({
         text: item.toString(),
-        value: item // Keep the value as a number instead of converting to string
+        value: item, // Keep the value as a number instead of converting to string
       }));
       return;
     }
@@ -127,18 +140,24 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
       }
 
       // Transform to MenuListType format using textField and valueField
-      dropdownMenuList.value = (menuList.value as Record<string, unknown>[]).map(item => {
-        const displayText = item[textField.value] || 'Unnamed';
+      dropdownMenuList.value = (menuList.value as Record<string, unknown>[]).map((item) => {
+        const rawText = item[textField.value];
+        const displayText = typeof rawText === 'string' ? rawText : rawText != null ? String(rawText) : 'Unnamed';
         // Use the specified value field if available, otherwise use the entire object
-        const itemValue = valueField.value && item[valueField.value] !== undefined 
-          ? item[valueField.value] 
-          : item;
-          
+        const itemValue = valueField.value && item[valueField.value] !== undefined ? item[valueField.value] : item;
+        const normalizedValue =
+          itemValue === undefined || itemValue === null
+            ? ''
+            : typeof itemValue === 'object'
+              ? JSON.stringify(itemValue)
+              : String(itemValue);
+
         return {
           text: displayText,
-          value: typeof itemValue === 'object' ? JSON.stringify(itemValue) : itemValue.toString(),
-          _originalObject: item // Store the original object for reference
-        };
+          // Keep original object reference separately; value kept primitive/stringified for list
+          value: normalizedValue,
+          _originalObject: item, // Store the original object for reference
+        } as unknown as MenuListType;
       });
       return;
     }
@@ -161,7 +180,7 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
     } else {
       // Process menu list for searching
       processMenuList();
-      
+
       // Handle multi-select search - filter based on search string
       if (searchString.value.trim() !== '') {
         dropdownMenuList.value = getFilteredMenuList(dropdownMenuList.value);
@@ -180,7 +199,7 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
   const basicSearch = () => {
     // Process menu list first
     processMenuList();
-    
+
     // Then filter based on search string
     if (searchString.value.trim() !== '') {
       dropdownMenuList.value = getFilteredMenuList(dropdownMenuList.value);
@@ -240,10 +259,6 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
     handleSearch();
   });
 
-  onClickOutside(dropdownRef, () => {
-    dropdownPopperState.value = false;
-  });
-
   useInfiniteScroll(
     dropdownRef,
     () => {
@@ -258,20 +273,20 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
       // Determine the type of value to emit based on the original data type and multiSelect
       if (multiSelect.value) {
         // For multi-select, always return an array
-        const values = selectedItems.map(item => {
+        const values = selectedItems.map((item) => {
           // If we stored the original object, use it
           if ('_originalObject' in item) {
             return item._originalObject;
           }
-          
+
           // For simple types, handle value type conversion properly
           const val = item.value;
-          
+
           // If it's already a number, keep it as a number
           if (typeof val === 'number') {
             return val;
           }
-          
+
           // For strings that look like numbers, convert them
           if (typeof val === 'string' && !isNaN(Number(val)) && val.trim() !== '') {
             // Only convert if it looks like a proper number format
@@ -279,11 +294,11 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
               return Number(val);
             }
           }
-          
+
           // Return the original value for all other cases
           return val;
         });
-        
+
         dropdownValue.value = values as (string | number | Record<string, unknown>)[];
       } else {
         // For single-select
@@ -293,7 +308,7 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
         }
 
         const item = selectedItems[0];
-        
+
         // If we stored the original object, use it
         if ('_originalObject' in item) {
           dropdownValue.value = item._originalObject as Record<string, unknown>;
@@ -341,7 +356,7 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
     if (selectedItems.length > 0) {
       dropdownValue.value = selectedItems;
     }
-    
+
     // If item is from last sublevel, close the dropdown
     if (checkIfItemFromLastSublevel(selectedItems)) {
       dropdownPopperState.value = false;
@@ -367,7 +382,7 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
   // Update selected items when model value changes externally
   const updateSelectedItemsFromValue = () => {
     if (!dropdownMenuList.value.length) return;
-    
+
     const values = normalizedValue.value;
     if (!values || !values.length) {
       selectedListItems.value = [];
@@ -375,29 +390,29 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
     }
 
     // Store both original values and string versions for flexible matching
-    const valueData = values.map(val => {
+    const valueData = values.map((val) => {
       if (val === undefined || val === null) return { original: '', string: '' };
-      
+
       // For objects, use JSON string representation
       if (typeof val === 'object') {
-        return { 
-          original: val, 
+        return {
+          original: val,
           string: JSON.stringify(val),
           isObject: true,
-          id: 'id' in val ? val.id : undefined
+          id: 'id' in val ? val.id : undefined,
         };
       }
-      
+
       // For numbers and strings, keep original and string versions
-      return { 
+      return {
         original: val,
         string: val.toString(),
-        isObject: false
+        isObject: false,
       };
     });
-    
+
     // Extract just string values for comparison
-    const valueStrings = valueData.map(v => v.string);
+    const valueStrings = valueData.map((v) => v.string);
 
     if (props.ladderized) {
       // Special handling for ladderized dropdowns
@@ -405,16 +420,16 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
         // Handle [subvalue, value] format used in ladderized dropdowns with search
         const subvalue = dropdownValue.value[0]?.toString() || '';
         const value = dropdownValue.value[1]?.toString() || '';
-        
-        selectedListItems.value = dropdownMenuList.value.filter(item => {
+
+        selectedListItems.value = dropdownMenuList.value.filter((item) => {
           return item.value === value && (!item.subvalue || item.subvalue === subvalue);
         });
       } else {
         // Regular ladderized dropdown value
-        selectedListItems.value = dropdownMenuList.value.filter(item => {
+        selectedListItems.value = dropdownMenuList.value.filter((item) => {
           // Convert both to strings for comparison or check direct equality for numbers
           if (typeof item.value === 'number') {
-            return valueData.some(v => v.original === item.value || v.string === String(item.value));
+            return valueData.some((v) => v.original === item.value || v.string === String(item.value));
           } else {
             return valueStrings.includes(String(item.value));
           }
@@ -422,21 +437,21 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
       }
     } else {
       // Regular dropdown value
-      selectedListItems.value = dropdownMenuList.value.filter(item => {
+      selectedListItems.value = dropdownMenuList.value.filter((item) => {
         // Handle objects with _originalObject property
         if ('_originalObject' in item && item._originalObject) {
-          return valueData.some(v => {
+          return valueData.some((v) => {
             // If both are objects, compare by JSON string or by ID
             if (v.isObject && typeof v.original === 'object') {
               const originalObj = item._originalObject as Record<string, unknown>;
-              
+
               // First try direct equality comparison
               if (v.original === originalObj) return true;
-              
+
               // Try JSON string comparison
               const itemJson = JSON.stringify(originalObj);
               if (v.string === itemJson) return true;
-              
+
               // Try ID-based comparison if both have ID fields
               if (v.id !== undefined && 'id' in originalObj) {
                 return v.id === originalObj.id;
@@ -445,10 +460,10 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
             return false;
           });
         }
-        
+
         // Handle both numeric and string values correctly
         if (typeof item.value === 'number') {
-          return valueData.some(v => v.original === item.value || v.string === String(item.value));
+          return valueData.some((v) => v.original === item.value || v.string === String(item.value));
         } else {
           return valueStrings.includes(String(item.value));
         }
@@ -464,9 +479,13 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
     updateSelectedItemsFromValue();
   });
 
+  watch(dropdownPopperState, (newState) => {
+    emit('popper-state', newState);
+  });
+
   onMounted(() => {
     processMenuList();
-    
+
     // Set initial selected items based on model value
     if (normalizedValue.value.length > 0) {
       updateSelectedItemsFromValue();

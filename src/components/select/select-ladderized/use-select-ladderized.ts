@@ -104,8 +104,6 @@ export const useSelectLadderized = (
 
         if (leafItem && isLeafNode(leafItem)) {
           ladderizedSelectPopperState.value = false;
-
-          emit('popper-state', false);
         }
 
         return;
@@ -143,8 +141,6 @@ export const useSelectLadderized = (
 
       if (isLeafNode(itemToCheck)) {
         ladderizedSelectPopperState.value = false;
-
-        emit('popper-state', false);
       }
     } else if (selectedItems.length === 0 && !wasCleared.value) {
       inputText.value = '';
@@ -167,14 +163,6 @@ export const useSelectLadderized = (
     inputText.value = '';
 
     emit('update:modelValue', []);
-  };
-
-  const handleOptionsToggle = () => {
-    ladderizedSelectPopperState.value = !ladderizedSelectPopperState.value;
-
-    isSearching.value = false;
-
-    emit('popper-state', ladderizedSelectPopperState.value);
   };
 
   // Watch for changes in modelValue to update inputText
@@ -211,6 +199,10 @@ export const useSelectLadderized = (
     { immediate: true },
   );
 
+  watch(ladderizedSelectPopperState, (newState) => {
+    emit('popper-state', newState);
+  });
+
   // Close only when clicking completely outside both the popper and the trigger wrapper.
   onClickOutside(ladderizedSelectPopperRef, (event) => {
     const triggerWrapper = ladderizedSelectState.value;
@@ -219,7 +211,6 @@ export const useSelectLadderized = (
     }
     if (ladderizedSelectPopperState.value) {
       ladderizedSelectPopperState.value = false;
-      emit('popper-state', false);
     }
   });
 
@@ -235,6 +226,5 @@ export const useSelectLadderized = (
     handleSelectedLadderizedItem,
     handleSearch,
     handleClear,
-    handleOptionsToggle,
   };
 };

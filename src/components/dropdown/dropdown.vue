@@ -1,6 +1,6 @@
 <template>
   <Menu
-    :shown="dropdownPopperState"
+    v-model:shown="dropdownPopperState"
     aria-id="dropdown-wrapper"
     distance="4"
     :placement="props.placement"
@@ -33,8 +33,8 @@
       <div
         ref="dropdownRef"
         :class="[
-          (!props.ladderized || isLadderizedSearch) && 'spr-p-2',
           'spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden',
+          !props.ladderized || isLadderizedSearch,
         ]"
         :style="{
           width: props.popperInnerWidth,

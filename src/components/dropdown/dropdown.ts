@@ -124,7 +124,7 @@ export const dropdownPropTypes = {
     },
     default: () => ['click'],
   },
-  popperTriggers: { 
+  popperTriggers: {
     type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
     validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
       return value.every((val) => TRIGGER_EVENTS.includes(val));
@@ -134,13 +134,14 @@ export const dropdownPropTypes = {
   autoHide: {
     type: Boolean,
     default: true,
-  }
+  },
 };
 
 export const dropdownEmitTypes = {
   'infinite-scroll-trigger': Boolean,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'update:modelValue': (_value: unknown) => true, // Accept any type of value
+  'popper-state': Boolean,
 };
 
 export type DropdownPropTypes = ExtractPropTypes<typeof dropdownPropTypes>;

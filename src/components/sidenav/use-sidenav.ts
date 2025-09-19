@@ -37,9 +37,13 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
   const handleRedirect = (objectItem: ObjectItem, parentNav: string, menu: string, submenu: string) => {
     if (objectItem && objectItem.redirect) {
       if (objectItem.redirect.openInNewTab) {
-        window.open(objectItem.redirect.link, '_blank');
+        if (typeof window !== 'undefined') {
+          window.open(objectItem.redirect.link, '_blank');
+        }
       } else if (objectItem.redirect.isAbsoluteURL) {
-        location.href = objectItem.redirect.link;
+        if (typeof window !== 'undefined' && typeof location !== 'undefined') {
+          location.href = objectItem.redirect.link;
+        }
       } else {
         const modifiedObjectItem = { ...objectItem };
 
@@ -72,9 +76,12 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
   };
 
   const confirmIfOwnDomain = (url: string) => {
+    // Guard against SSR where location is undefined
+    if (typeof window === 'undefined') return false;
+
     const domain = window.location.hostname;
     const urlHostname = new URL(url).hostname;
-    const isOwnDomain = domain === urlHostname || window.location.hostname === 'localhost';
+    const isOwnDomain = domain === urlHostname || domain === 'localhost';
 
     return isOwnDomain;
   };

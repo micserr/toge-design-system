@@ -24,12 +24,12 @@ const PLACEMENTS_TYPES = [
 ] as const;
 
 const POPPER_STRATEGY_TYPES = ['fixed', 'absolute'] as const;
+const TRIGGER_EVENTS = ['click', 'hover', 'focus', 'touch'] as const;
 
 export const selectPropTypes = {
   id: {
     type: String,
     required: true,
-    default: 'select',
   },
   modelValue: {
     type: [String, Number, Object, Array] as PropType<
@@ -73,6 +73,24 @@ export const selectPropTypes = {
     type: String as PropType<(typeof PLACEMENTS_TYPES)[number]>,
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
     default: 'bottom',
+  },
+  triggers: {
+    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
+    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
+      return value.every((val) => TRIGGER_EVENTS.includes(val));
+    },
+    default: () => ['click'],
+  },
+  popperTriggers: {
+    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
+    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
+      return value.every((val) => TRIGGER_EVENTS.includes(val));
+    },
+    default: () => [],
+  },
+  autoHide: {
+    type: Boolean,
+    default: true,
   },
   popperStrategy: {
     type: String,

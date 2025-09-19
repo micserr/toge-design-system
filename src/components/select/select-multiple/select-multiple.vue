@@ -8,13 +8,13 @@
     </label>
 
     <Menu
-      :shown="multiSelectPopperState"
+      v-model:shown="multiSelectPopperState"
       aria-id="multi-select-wrapper"
       distance="4"
       :placement="props.placement"
-      :triggers="[]"
-      :popper-hide-triggers="[]"
-      :auto-hide="false"
+      :triggers="props.triggers"
+      :popper-triggers="props.popperTriggers"
+      :auto-hide="props.autoHide"
       :disabled="isMultiSelectPopperDisabled"
       :container="`#${props.id}`"
       :strategy="
@@ -27,7 +27,7 @@
       }"
     >
       <div ref="multiSelectRef">
-        <div @click="handleOptionsToggle">
+        <div @click="multiSelectPopperState = !multiSelectPopperState">
           <template v-if="props.chipped">
             <div :class="multiSelectClasses.chippedInputTextBaseClasses">
               <div ref="chippedInputTextRef" :class="multiSelectClasses.chippedInputTextClasses">
@@ -63,7 +63,11 @@
             <div v-if="props.displayHelper" :class="multiSelectClasses.chippedHelperContainerClasses">
               <div v-if="props.displayHelper" :class="multiSelectClasses.chippedHelperClasses">
                 <slot name="helperMessage">
-                  <Icon v-if="props.helperIcon" :icon="props.helperIcon" width="20px" height="20px" />
+                  <Icon
+                    v-if="props.helperIcon"
+                    class="spr-h-5 spr-min-h-5 spr-w-5 spr-min-w-5"
+                    :icon="props.helperIcon"
+                  />
                   <span>{{ props.helperText }}</span>
                 </slot>
               </div>
@@ -103,14 +107,14 @@
               </template>
             </spr-input>
           </template>
-
-          <!-- Hidden Select for QA automation -->
-          <select v-if="multiSelectOptions && multiSelectOptions.length" v-model="multiSelectModel" multiple hidden>
-            <option v-for="option in multiSelectOptions" :key="option.value" :value="option.value">
-              {{ option.text }}
-            </option>
-          </select>
         </div>
+
+        <!-- Hidden Select for QA automation -->
+        <select v-if="multiSelectOptions && multiSelectOptions.length" v-model="multiSelectModel" multiple hidden>
+          <option v-for="option in multiSelectOptions" :key="option.value" :value="option.value">
+            {{ option.text }}
+          </option>
+        </select>
 
         <!-- This div used to poppulate popper menu -->
         <div
@@ -124,7 +128,7 @@
       <template #popper>
         <div
           ref="multipleSelectPopperRef"
-          class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden spr-p-2"
+          class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden"
         >
           <spr-list
             v-model="multiSelectedListItems"
@@ -176,6 +180,5 @@ const {
   handleMultiSelectedItem,
   handleChippedRemoveItem,
   handleClear,
-  handleOptionsToggle,
 } = useMultiSelect(props, emit);
 </script>

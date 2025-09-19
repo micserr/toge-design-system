@@ -8,13 +8,13 @@
     </label>
 
     <Menu
-      :shown="selectPopperState"
+      v-model:shown="selectPopperState"
       aria-id="select-wrapper"
       distance="4"
       :placement="props.placement"
-      :triggers="[]"
-      :popper-hide-triggers="[]"
-      :auto-hide="false"
+      :triggers="props.triggers"
+      :popper-triggers="props.popperTriggers"
+      :auto-hide="props.autoHide"
       :disabled="isSelectPopperDisabled"
       :container="`#${props.id}`"
       :strategy="
@@ -27,55 +27,53 @@
       }"
     >
       <div ref="selectRef">
-        <div @click="handleOptionsToggle">
-          <spr-input
-            :id="`input-${props.id}`"
-            v-model="inputText"
-            :class="{
-              'spr-cursor-pointer': !props.searchable,
-            }"
-            :placeholder="props.placeholder"
-            autocomplete="off"
-            :helper-text="props.helperText"
-            :helper-icon="props.helperIcon"
-            :display-helper="props.displayHelper"
-            :active="props.active"
-            :readonly="!props.searchable"
-            :disabled="props.disabled"
-            :error="props.error"
-            @keyup="handleSearch"
-          >
-            <template #icon>
-              <div class="spr-flex spr-cursor-pointer spr-items-center">
-                <Icon
-                  v-if="props.clearable && inputText"
-                  class="spr-cursor-pointer"
-                  icon="ph:x"
-                  @click.stop="handleClear"
-                />
-                <Icon icon="ph:caret-down" />
-              </div>
-            </template>
+        <spr-input
+          :id="`input-${props.id}`"
+          v-model="inputText"
+          :class="{
+            'spr-cursor-pointer': !props.searchable,
+          }"
+          :placeholder="props.placeholder"
+          autocomplete="off"
+          :helper-text="props.helperText"
+          :helper-icon="props.helperIcon"
+          :display-helper="props.displayHelper"
+          :active="props.active"
+          :readonly="!props.searchable"
+          :disabled="props.disabled"
+          :error="props.error"
+          @keyup="handleSearch"
+        >
+          <template #icon>
+            <div class="spr-flex spr-cursor-pointer spr-items-center">
+              <Icon
+                v-if="props.clearable && inputText"
+                class="spr-cursor-pointer"
+                icon="ph:x"
+                @click.stop="handleClear"
+              />
+              <Icon icon="ph:caret-down" />
+            </div>
+          </template>
 
-            <template #helperMessage>
-              <slot name="helperMessage" />
-            </template>
-          </spr-input>
+          <template #helperMessage>
+            <slot name="helperMessage" />
+          </template>
+        </spr-input>
 
-          <!-- Hidden Select for QA automation -->
-          <select
-            v-if="selectOptions && selectOptions.length"
-            :value="Array.isArray(selectModel) ? selectModel[0] : selectModel"
-            data-testid="qa-hidden-select"
-            tabindex="-1"
-            aria-hidden="true"
-            hidden
-          >
-            <option v-for="item in selectOptions" :key="item.value" :value="item.value">
-              {{ item.text }}
-            </option>
-          </select>
-        </div>
+        <!-- Hidden Select for QA automation -->
+        <select
+          v-if="selectOptions && selectOptions.length"
+          :value="Array.isArray(selectModel) ? selectModel[0] : selectModel"
+          data-testid="qa-hidden-select"
+          tabindex="-1"
+          aria-hidden="true"
+          hidden
+        >
+          <option v-for="item in selectOptions" :key="item.value" :value="item.value">
+            {{ item.text }}
+          </option>
+        </select>
 
         <!-- This div used to poppulate popper menu -->
         <div
@@ -89,7 +87,7 @@
       <template #popper>
         <div
           ref="selectPopperRef"
-          class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden spr-p-2"
+          class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden"
         >
           <template v-if="isSearching">
             <template v-if="!props.disabledLocalSearch">
@@ -178,6 +176,5 @@ const {
   handleSelectedItem,
   handleSearch,
   handleClear,
-  handleOptionsToggle,
 } = useSelect(props, emit);
 </script>

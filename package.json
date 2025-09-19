@@ -1,7 +1,7 @@
 {
   "name": "design-system-next",
   "private": false,
-  "version": "2.12.17",
+  "version": "2.14.1",
   "main": "./dist/design-system-next.umd.js",
   "module": "./dist/design-system-next.es.js",
   "repository": {
@@ -38,6 +38,7 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "docs:preview": "vitepress preview docs",
+    "test:e2e": "npx playwright test --ui",
     "clean": "rm -rf node_modules dist coverage package-lock.json && npm install"
   },
   "dependencies": {
@@ -58,9 +59,12 @@
     "stylelint-config-recommended-vue": "^1.5.0",
     "typescript-eslint": "^8.19.1",
     "vite-plugin-sass": "^0.1.0",
-    "vue": "^3.0.0"
+    "vue": "^3.0.0",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.55.0",
     "@stylistic/stylelint-plugin": "^3.1.1",
     "@types/node": "^22.10.5",
     "@vitejs/plugin-vue": "^5.2.1",

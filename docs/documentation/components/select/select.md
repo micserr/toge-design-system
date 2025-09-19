@@ -2,7 +2,7 @@
 outline: 'deep'
 ---
 
-# Single Select
+# Select
 
 Selects are interactive components that allow users to choose from a list of options.
 
@@ -1015,6 +1015,24 @@ const userList = ref([
       </td>
       <td>Boolean</td>
       <td>false</td>
+    </tr>
+    <tr>
+      <td><code>triggers</code></td>
+      <td>Array of events that will trigger the dropdown to open</td>
+      <td>'click' | 'hover' | 'focus' | 'touch'[]</td>
+      <td>['click']</td>
+    </tr>
+    <tr>
+      <td><code>popper-triggers</code></td>
+      <td>Array of events that will trigger the dropdown menu (popper element) to open</td>
+      <td>'click' | 'hover' | 'focus' | 'touch'[]</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <td><code>auto-hide</code></td>
+      <td>When true, automatically hides the dropdown when clicking outside it</td>
+      <td>Boolean</td>
+      <td>true</td>
     </tr>
     <tr>
       <td><code>popper-strategy</code></td>

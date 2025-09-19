@@ -89,11 +89,11 @@ export default defineConfig({
             },
             {
               text: 'Button',
-              link: '/documentation/components/button',
+              link: '/documentation/components/button/button',
               items: [
                 {
                   text: 'Button Dropdown',
-                  link: '/documentation/components/button-dropdown',
+                  link: '/documentation/components/button/button-dropdown',
                 },
               ],
             },
@@ -177,11 +177,11 @@ export default defineConfig({
             },
             {
               text: 'Table',
-              link: '/documentation/components/table',
+              link: '/documentation/components/table/table',
               items: [
                 {
                   text: 'Table Pagination',
-                  link: '/documentation/components/table-pagination',
+                  link: '/documentation/components/table/table-pagination',
                 },
               ],
             },
@@ -204,11 +204,11 @@ export default defineConfig({
             },
             {
               text: 'Date Picker',
-              link: '/documentation/components/date-picker',
+              link: '/documentation/components/date-picker/date-picker',
               items: [
                 {
                   text: 'Date Range Picker',
-                  link: '/documentation/components/date-range-picker',
+                  link: '/documentation/components/date-picker/date-range-picker',
                 },
               ],
             },
@@ -226,11 +226,8 @@ export default defineConfig({
             },
             {
               text: 'Select',
+              link: '/documentation/components/select/select',
               items: [
-                {
-                  text: 'Single Select',
-                  link: '/documentation/components/select/select-single',
-                },
                 {
                   text: 'Multi Select',
                   link: '/documentation/components/select/select-multiple',

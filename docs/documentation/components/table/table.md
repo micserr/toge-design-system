@@ -1078,7 +1078,7 @@ Allows the drag and drop of table rows.
 
 <ul>
   <li>Mutation to original data must be done manually.</li>  
-  <li>Add an <strong>id</strong> property to each row data object. This is used to uniquely identify rows during drag and drop operations by the vuedraggable library.</li> 
+  <li>Add an <strong>id</strong> property to each row data object. This is used to uniquely identify rows during drag and drop operations.</li> 
 </ul>  
 :::
 
@@ -1089,10 +1089,10 @@ Allows the drag and drop of table rows.
       <spr-table
         :headers="draggableTableHeaders"
         :data-table="availableEmployees"
-        variant="white"        
-        @on-drop-to-empty-zone="handleOnDragToEmptyZone($event, 'available')"
-        @on-drag-change="handleOnDragChange($event, 'available')"                
-        :is-draggable="true"        
+        variant="white"                       
+        :is-draggable="true"   
+        @on-drag-add="handleOnDragAdd($event, 'available')"
+        @on-drag-remove="handleOnDragRemove($event, 'available')"     
       ></spr-table>
     </div>
     <div
@@ -1104,8 +1104,8 @@ Allows the drag and drop of table rows.
         :data-table="selectedEmployees"
         variant="white"        
         :is-draggable="true"
-        @on-drop-to-empty-zone="handleOnDragToEmptyZone($event, 'selected')"
-        @on-drag-change="handleOnDragChange($event, 'selected')"
+        @on-drag-add="handleOnDragAdd($event, 'selected')"
+        @on-drag-remove="handleOnDragRemove($event, 'selected')"
       ></spr-table>
     </div>
   </div>
@@ -1119,8 +1119,8 @@ Allows the drag and drop of table rows.
         :data-table="availableEmployees"
         :is-draggable="true"
         variant="white"
-        @on-drop-to-empty-zone="handleOnDragToEmptyZone($event, 'available')"
-        @on-drag-change="handleOnDragChange($event, 'available')"
+        @on-drag-add="handleOnDragAdd($event, 'available')"
+        @on-drag-remove="handleOnDragRemove($event, 'available')"
       ></spr-table>
     </div>
     <div
@@ -1132,8 +1132,8 @@ Allows the drag and drop of table rows.
         :data-table="selectedEmployees"
         variant="white"
         :is-draggable="true"
-        @on-drop-to-empty-zone="handleOnDragToEmptyZone($event, 'selected')"
-        @on-drag-change="handleOnDragChange($event, 'selected')"
+        @on-drag-add="handleOnDragAdd($event, 'selected')"
+        @on-drag-remove="handleOnDragRemove($event, 'selected')"
       ></spr-table>
     </div>
   </div>
@@ -1252,64 +1252,28 @@ const employeeStatusTone = {
   active: 'success',
 };
 
-const handleOnDragToEmptyZone = (event, tableType) => {  
-  onDragToEmptyZoneActions(event, tableType);
-};
 
-const handleOnDragChange = (event, tableType) => {
-  onDragChangeActions(event, tableType);
-};
-
-const onDragChangeActions = (event, tableType) => {
+const handleOnDragAdd = (event: DragOnAddEvent, tableType: TableTypes) => {
   if (!event) return;
-  const { added, removed } = event;
   let employeeList = tableType === 'selected' ? mockAvailableEmployees.value : mockSelectedEmployees.value;
-
-  if (added) {
-    onDragChangeAdd(added, tableType, employeeList);
-  } else if (removed) {
-    onDragChangeRemoved(removed, tableType, employeeList);
-  }
-};
-
-const onDragChangeAdd = (addedEvent, tableType, employeeList) => {
-  if (!addedEvent) return;
-  const employeeToAdd = employeeList.find((emp) => emp.id === addedEvent.element.id);
-  if (!employeeToAdd) return;
-
-  if (tableType === 'selected') {
-    mockSelectedEmployees.value.splice(addedEvent.newIndex, 0, employeeToAdd);
-  } else {
-    mockAvailableEmployees.value.splice(addedEvent.newIndex, 0, employeeToAdd);
-  }
-};
-
-const onDragChangeRemoved = (removedEvent, tableType, employeeList) => {
-  if (!removedEvent) return;
-  const employeeToRemove = employeeList.find((emp) => emp.id === removedEvent.element.id);
-
-  if (!employeeToRemove) return;
-
-  if (tableType === 'selected') {
-    mockSelectedEmployees.value.splice(removedEvent.oldIndex, 1);
-  } else {
-    mockAvailableEmployees.value.splice(removedEvent.oldIndex, 1);
-  }
-};
-
-const onDragToEmptyZoneActions = (addedEvent, tableType) => {
-  if (!addedEvent) return;
-  let employeeList = tableType === 'selected' ? mockAvailableEmployees.value : mockSelectedEmployees.value;
-  const employeeToAdd = employeeList.find((emp) => emp.id === addedEvent.element.id);
+  const employeeToAdd = employeeList.find((emp) => emp.id === event.element.id);
 
   if (!employeeToAdd) return;
 
   if (tableType === 'selected') {
-    mockSelectedEmployees.value = [];
     mockSelectedEmployees.value.push(employeeToAdd);
   } else {
-    mockAvailableEmployees.value = [];
     mockAvailableEmployees.value.push(employeeToAdd);
+  }
+};
+
+const handleOnDragRemove = (event: DragOnRemoveEvent, tableType: TableTypes) => {
+  if (!event) return;  
+  
+  if (tableType === 'selected') {
+    mockSelectedEmployees.value.splice(event.oldIndex, 1);
+  } else {
+    mockAvailableEmployees.value.splice(event.oldIndex, 1);
   }
 };
 </script>
@@ -2131,70 +2095,27 @@ const customHeaders = ref([
   },
 ]);
 
-
-const handleOnDragToEmptyZone = (event, tableType) => {
+const handleOnDragAdd = (event: DragOnAddEvent, tableType: TableTypes) => {
   if (!event) return;
-  onDragToEmptyZoneActions(event, tableType);
-};
-
-const handleOnDragChange = (event, tableType) => {  
-  onDragChangeActions(event, tableType);
-};
-
-const onDragChangeActions = (event, tableType) => {
-  if (!event) return;
-  const { added, removed } = event;
   let employeeList = tableType === 'selected' ? mockAvailableEmployees.value : mockSelectedEmployees.value;
-
-  if (added) {
-    onDragChangeAdd(added, tableType, employeeList);
-  } else if (removed) {
-    onDragChangeRemoved(removed, tableType, employeeList);
-  }
-};
-
-const onDragChangeAdd = (addedEvent, tableType, employeeList) => {
-  if (!addedEvent) return;
-  const employeeToAdd = employeeList.find((emp) => emp.id === addedEvent.element.id);
-  if (!employeeToAdd) return;
-
-  if (tableType === 'selected') {
-    mockSelectedEmployees.value.splice(addedEvent.newIndex, 0, employeeToAdd);
-  } else {
-    mockAvailableEmployees.value.splice(addedEvent.newIndex, 0, employeeToAdd);
-  }
-};
-
-const onDragChangeRemoved = (
-  removedEvent,
-  tableType,
-  employeeList
-) => {
-  if (!removedEvent) return;
-  const employeeToRemove = employeeList.find((emp) => emp.id === removedEvent.element.id);
-
-  if (!employeeToRemove) return;
-
-  if (tableType === 'selected') {
-    mockSelectedEmployees.value.splice(removedEvent.oldIndex, 1);
-  } else {
-    mockAvailableEmployees.value.splice(removedEvent.oldIndex, 1);
-  }
-};
-
-const onDragToEmptyZoneActions = (addedEvent, tableType) => {
-  if (!addedEvent) return;
-  let employeeList = tableType === 'selected' ? mockAvailableEmployees.value : mockSelectedEmployees.value;
-  const employeeToAdd = employeeList.find((emp) => emp.id === addedEvent.element.id);
+  const employeeToAdd = employeeList.find((emp) => emp.id === event.element.id);
 
   if (!employeeToAdd) return;
 
   if (tableType === 'selected') {
-    mockSelectedEmployees.value = [];
     mockSelectedEmployees.value.push(employeeToAdd);
   } else {
-    mockAvailableEmployees.value = [];
     mockAvailableEmployees.value.push(employeeToAdd);
+  }
+};
+
+const handleOnDragRemove = (event: DragOnRemoveEvent, tableType: TableTypes) => {
+  if (!event) return;  
+  
+  if (tableType === 'selected') {
+    mockSelectedEmployees.value.splice(event.oldIndex, 1);
+  } else {
+    mockAvailableEmployees.value.splice(event.oldIndex, 1);
   }
 };
 </script>

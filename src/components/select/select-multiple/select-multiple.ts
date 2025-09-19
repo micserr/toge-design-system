@@ -30,7 +30,6 @@ export const multiSelectPropTypes = {
   id: {
     type: String,
     required: true,
-    default: 'multi-select',
   },
   modelValue: {
     type: Array as PropType<(string | number | Record<string, unknown>)[]>,
@@ -82,7 +81,7 @@ export const multiSelectPropTypes = {
     validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
       return value.every((val) => TRIGGER_EVENTS.includes(val));
     },
-    default: () => ['click'],
+    default: () => [],
   },
   popperTriggers: {
     type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
@@ -93,7 +92,7 @@ export const multiSelectPropTypes = {
   },
   autoHide: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   popperStrategy: {
     type: String,

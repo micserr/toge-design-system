@@ -26,7 +26,6 @@ export const selectLadderizedPropTypes = {
   id: {
     type: String,
     required: true,
-    default: 'select-ladderized',
   },
   modelValue: {
     type: Array as PropType<string[]>,
@@ -103,7 +102,7 @@ export const selectLadderizedPropTypes = {
     validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
       return value.every((val) => TRIGGER_EVENTS.includes(val));
     },
-    default: () => ['click'],
+    default: () => [],
   },
   popperTriggers: {
     type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,

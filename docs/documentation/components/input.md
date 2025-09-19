@@ -413,12 +413,19 @@ const inputValueEmail = ref('');
 ### Password Input
 
 <div>
-  <spr-input-password v-model="inputValue.input15" label="Password" placeholder="Enter password" />
+  <form action="#">
+    <spr-input-password v-model="inputValue.input15" label="Password" placeholder="Enter password" />
+  </form>
 </div>
 
 ```vue
 <template>
-  <spr-input-password v-model="inputValuePassword" label="Password" placeholder="Enter password" />
+  <spr-input-password
+    v-model="inputValuePassword"
+    label="Password"
+    placeholder="Enter password"
+    autocomplete="new-password"
+  />
 </template>
 
 <script lang="ts" setup>

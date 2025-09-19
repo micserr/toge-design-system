@@ -1,5 +1,5 @@
 import { ref, toRefs, computed, watch } from 'vue';
-import { useVModel, useDebounceFn, onClickOutside } from '@vueuse/core';
+import { useVModel, onClickOutside } from '@vueuse/core';
 
 import type { SelectLadderizedPropTypes } from './select-ladderized';
 
@@ -30,7 +30,6 @@ export const useSelectLadderized = (
 
   // Input Variables
   const inputText = ref<string>('');
-  const isSearching = ref<boolean>(false);
   const wasCleared = ref<boolean>(false);
 
   const isLeafNode = (item: MenuListType): boolean => {

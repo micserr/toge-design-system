@@ -1,6 +1,7 @@
 import type { PropType, ExtractPropTypes } from 'vue';
 import type { ChipTitle } from '@/components/table/table-chips-title/table-chips-title';
 import type { LozengeTitle } from '@/components/table/table-lozenge-title/table-lozenge-title';
+import { type SortableEvent } from 'sortablejs';
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
 export interface Header {
@@ -48,23 +49,21 @@ interface SortEvent {
   sortOrder: TABLE_SORT;
 }
 
-export interface DragOnChangeEvent {
-  added?: DragOnChangeAddedProperties;  
-  removed?: DragOnChangeRemovedProperties;
+interface DragOnChangeEvent {
+  element: TableData;
+  updatedList: TableData[];
 }
 
-interface DragOnChangeAddedProperties {
-  element: TableData;
+export interface DragOnAddEvent extends DragOnChangeEvent {
   newIndex: number;
 }
 
-interface DragOnChangeRemovedProperties {
-  element: TableData;
+export interface DragOnRemoveEvent extends DragOnChangeEvent {
   oldIndex: number;
 }
 
-interface DragOnChangeEmit extends DragOnChangeEvent {
-  updatedList: TableData[];
+export interface SortableDragEvent extends SortableEvent {
+  originalEvent: DragEvent;
 }
 
 const TABLE_SORT = ['asc', 'desc'] as const;
@@ -180,7 +179,7 @@ export const tablePropTypes = {
   isDraggable: {
     type: Boolean,
     default: false,
-  }
+  },
 };
 
 export const tableEmitTypes = {
@@ -196,9 +195,10 @@ export const tableEmitTypes = {
     value.every(
       (item) => (typeof item === 'object' || typeof item === 'string' || typeof item === 'number') && item !== null,
     ),
-  onDropToEmptyZone: (event: DragOnChangeEvent['added']): event is DragOnChangeEvent['added'] => event !== undefined,
-  onDragChange: (event: DragOnChangeEmit): event is DragOnChangeEmit =>
+  onDragAdd: (event: DragOnAddEvent): event is DragOnAddEvent =>
     event !== undefined && Array.isArray(event.updatedList),
+  onDragRemove: (event: DragOnRemoveEvent): event is DragOnRemoveEvent =>
+    event !== undefined && Array.isArray(event.updatedList),  
 };
 
 export type TablePropTypes = ExtractPropTypes<typeof tablePropTypes>;

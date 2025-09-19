@@ -420,12 +420,7 @@ const inputValueEmail = ref('');
 
 ```vue
 <template>
-  <spr-input-password
-    v-model="inputValuePassword"
-    label="Password"
-    placeholder="Enter password"
-    autocomplete="new-password"
-  />
+  <spr-input-password v-model="inputValuePassword" label="Password" placeholder="Enter password" />
 </template>
 
 <script lang="ts" setup>

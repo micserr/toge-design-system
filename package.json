@@ -1,7 +1,7 @@
 {
   "name": "design-system-next",
   "private": false,
-  "version": "2.14.1",
+  "version": "2.14.2",
   "main": "./dist/design-system-next.umd.js",
   "module": "./dist/design-system-next.es.js",
   "repository": {
@@ -59,8 +59,7 @@
     "stylelint-config-recommended-vue": "^1.5.0",
     "typescript-eslint": "^8.19.1",
     "vite-plugin-sass": "^0.1.0",
-    "vue": "^3.0.0",
-    "vuedraggable": "^4.1.0"
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",

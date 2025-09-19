@@ -68,7 +68,7 @@
 
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply spr-overflow-hidden spr-rounded-none spr-border-none spr-bg-transparent spr-shadow-none;
+        @apply spr-overflow-hidden spr-rounded-none spr-border-none spr-bg-transparent spr-shadow-drop;
 
         .slide-fade-enter-active {
           @apply spr-duration-300 spr-ease-out;
@@ -89,7 +89,6 @@
       }
     }
   }
-
   /* #endregion - Sidenav */
 
   /* #region - Tooltips */
@@ -97,7 +96,7 @@
   #tooltip-full-width-wrapper {
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply spr-background-color-inverted spr-text-color-inverted-strong spr-body-xs-regular spr-break-all spr-rounded-border-radius-md spr-px-2 spr-py-1.5 spr-font-main spr-opacity-100;
+        @apply spr-background-color-inverted spr-text-color-inverted-strong spr-body-xs-regular spr-break-all spr-rounded-border-radius-md spr-px-2 spr-py-1.5 spr-font-main spr-opacity-100 spr-shadow-drop;
       }
 
       .v-popper__arrow-outer {
@@ -109,7 +108,7 @@
   #tooltip-wrapper {
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply spr-max-w-full;
+        @apply spr-max-w-full spr-shadow-drop;
       }
     }
   }
@@ -117,7 +116,7 @@
   #tooltip-full-width-wrapper {
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply spr-max-w-[280px];
+        @apply spr-max-w-[280px] spr-shadow-drop;
       }
     }
   }
@@ -129,7 +128,7 @@
 
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply spr-border-color-weak spr-w-full spr-rounded-xl spr-border spr-border-solid spr-font-main spr-shadow-none;
+        @apply spr-border-color-weak spr-w-full spr-rounded-xl spr-border spr-border-solid spr-font-main spr-shadow-drop;
 
         &::-webkit-scrollbar-track {
           @apply spr-rounded-br-xl spr-rounded-tr-xl;
@@ -142,15 +141,14 @@
     }
   }
 
-  #contact-number-country-dropdown {
+  #input-contact-number-country-dropdown,
+  #input-currency-dropdown {
     #dropdown-wrapper[data-popper-placement='top-start'] {
-      margin-top: -4px;
-      margin-left: -8px;
+      @apply spr-ml-[-8px] spr-mt-[-4px];
     }
 
     #dropdown-wrapper[data-popper-placement='bottom-start'] {
-      margin-top: 4px;
-      margin-left: -8px;
+      @apply spr-ml-[-8px] spr-mt-[4px];
     }
   }
   /* #endregion - Dropdown */
@@ -198,7 +196,7 @@
     }
     tbody::-webkit-scrollbar {
       @apply spr-h-0 spr-w-0; /* Hides the scrollbar in WebKit browsers */
-    }    
+    }
 
     .empty-table-dropzone-dragged-class {
       @apply spr-hidden;

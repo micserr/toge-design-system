@@ -27,36 +27,37 @@
       }"
     >
       <div ref="ladderizedSelectState">
-        <spr-input
-          :id="`input-${props.id}`"
-          v-model="inputText"
-          class="spr-cursor-pointer"
-          :placeholder="props.placeholder"
-          autocomplete="off"
-          :helper-text="props.helperText"
-          :helper-icon="props.helperIcon"
-          :display-helper="props.displayHelper"
-          readonly
-          :disabled="props.disabled"
-          :error="props.error"
-          @keyup="handleSearch"
-        >
-          <template #icon>
-            <div class="spr-flex spr-items-center spr-gap-1">
-              <Icon
-                v-if="props.clearable && inputText"
-                class="spr-cursor-pointer"
-                icon="ph:x"
-                @click.stop="handleClear"
-              />
-              <Icon icon="ph:caret-down" />
-            </div>
-          </template>
+        <div @click="ladderizedSelectPopperState = !ladderizedSelectPopperState">
+          <spr-input
+            :id="`input-${props.id}`"
+            v-model="inputText"
+            class="spr-cursor-pointer"
+            :placeholder="props.placeholder"
+            autocomplete="off"
+            :helper-text="props.helperText"
+            :helper-icon="props.helperIcon"
+            :display-helper="props.displayHelper"
+            readonly
+            :disabled="props.disabled"
+            :error="props.error"
+          >
+            <template #icon>
+              <div class="spr-flex spr-items-center spr-gap-1">
+                <Icon
+                  v-if="props.clearable && inputText"
+                  class="spr-cursor-pointer"
+                  icon="ph:x"
+                  @click.stop="handleClear"
+                />
+                <Icon icon="ph:caret-down" />
+              </div>
+            </template>
 
-          <template #helperMessage>
-            <slot name="helperMessage" />
-          </template>
-        </spr-input>
+            <template #helperMessage>
+              <slot name="helperMessage" />
+            </template>
+          </spr-input>
+        </div>
 
         <!-- This div used to poppulate popper menu -->
         <div :id="props.id" :style="{ width: props.popperWidth }"></div>
@@ -115,7 +116,6 @@ const {
   ladderizedSelectModel,
   inputText,
   handleSelectedLadderizedItem,
-  handleSearch,
   handleClear,
 } = useSelectLadderized(props, emit as SelectLadderizedEmitFn);
 </script>

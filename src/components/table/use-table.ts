@@ -1,4 +1,4 @@
-import { ref, computed, toRefs, Slots, watch, onMounted } from 'vue';
+import { ref, computed, toRefs, Slots, watch, onMounted, toRef } from 'vue';
 
 import type {
   TablePropTypes,
@@ -6,12 +6,14 @@ import type {
   TABLE_SORT,
   TableData,
   TableDataProps,
-  Header,
-  DragOnChangeEvent,
+  Header,  
+  SortableDragEvent,
 } from './table';
 import type { SetupContext } from 'vue';
 
 import classNames from 'classnames';
+import type { DragOptions } from './use-draggable-table-rows';
+import type { SortableEvent } from 'sortablejs';
 
 export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitTypes>['emit'], slots: Slots) => {
   const {
@@ -31,6 +33,8 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
   const selectAll = ref(false);
   const selectedData = ref<TableData[]>([]);
   const tableData = ref<TableData[]>([]);
+  const tableKey = ref(0);
+  const isDragging = ref(false);
 
   const isAllSelected = computed(() => {
     if (selectedData.value.length === 0) return false;
@@ -55,14 +59,95 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     return sorted;
   });
 
-  const dragOptions = computed(() => {
-    return {
-      animation: 250,
-      group: { name: 'table', pull: true, put: true },
-      sort: allowSelfDrag.value,
-      disabled: !isDraggable.value,
-    };
+  const isTouchDevice = computed(() => {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   });
+
+  const dragOptions = computed(() => {
+    let options: DragOptions = {
+      animation: isTouchDevice.value ? 70 : 250,
+      disabled: !isDraggable.value,
+      handle: '.table-row-drag-icon',
+      sort: allowSelfDrag.value,
+      forceFallback: isTouchDevice.value,
+      onStart: (evt: SortableEvent) => {
+        isDragging.value = true;
+        if (isTouchDevice.value) {
+          setDraggedItemDataInLocalStorage(evt.item.dataset.id!);
+        }
+      },
+      onEnd: () => {
+        isDragging.value = false;
+        if (isTouchDevice.value) {
+          clearDraggedItemDataInLocalStorage();
+        }
+      },
+      onAdd: (evt: SortableEvent) => {
+        const typedEvt = evt as SortableDragEvent;
+        const draggedItem = isTouchDevice.value
+          ? JSON.parse(localStorage.getItem('draggedItem') || '{}')
+          : JSON.parse(typedEvt.originalEvent.dataTransfer?.getData('draggedItem') || '{}');
+
+        if (!draggedItem || Object.keys(draggedItem).length === 0) return;
+
+        const newData = [...tableData.value];
+        newData.splice(evt.newIndex!, 0, draggedItem);
+        tableData.value = newData;
+
+        emit('onDragAdd', { element: draggedItem, newIndex: evt.newIndex!, updatedList: newData });
+      },
+      onRemove: (evt: SortableEvent) => {
+        const removedData = tableData.value.find((item) => item.id === evt.item.dataset.id);
+        const newData = [...tableData.value];
+        if (!removedData) return;
+
+        newData.splice(evt.oldIndex!, 1);
+        tableData.value = newData;
+
+        emit('onDragRemove', { element: removedData, oldIndex: evt.oldIndex!, updatedList: newData });
+      },
+      setData: (dataTransfer: DataTransfer, dragEl: HTMLElement) => {
+        const draggedItemData = tableData.value.find((item) => dragEl.dataset.id === item.id);
+        if (!draggedItemData) return;
+        dataTransfer.setData('draggedItem', JSON.stringify(draggedItemData));
+      },
+    };
+
+    if (tableData.value.length > 0) {
+      options = {
+        ...options,
+        group: {
+          name: 'table',
+          pull: true,
+          put: true,
+        },
+      };
+    } else {
+      options = {
+        ...options,
+        ghostClass: 'empty-table-dropzone-dragged-class',
+        group: {
+          name: 'table',
+          pull: false,
+          put: true,
+        },
+      };
+    }
+
+    return options;
+  });
+
+  const setDraggedItemDataInLocalStorage = (itemId: string) => {
+    const draggedItemData = tableData.value.find((item) => item.id === itemId) ?? null;
+    if (!draggedItemData) return;
+    localStorage.setItem('draggedItem', JSON.stringify(draggedItemData));
+  };
+
+  const clearDraggedItemDataInLocalStorage = () => {
+    if (localStorage.getItem('draggedItem')) {
+      localStorage.removeItem('draggedItem');
+    }
+  };
 
   const sortData = (field: string) => {
     if (sortField.value === field) {
@@ -277,16 +362,8 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     }
   };
 
-  const handleDropToEmptyZone = (event: DragOnChangeEvent) => {
-    emit('onDropToEmptyZone', event.added);
-  };
-
-  const handleOnDragChange = (event: DragOnChangeEvent) => {
-    const dataToEmit = {
-      ...event,
-      updatedList: [...tableData.value],
-    };
-    emit('onDragChange', dataToEmit);
+  const getRowKey = (element: TableData, index: number) => {
+    return (element.id as string | number) || index;
   };
 
   watch(sortedData, (newVal) => {
@@ -315,10 +392,12 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     }
   });
 
+  watch(tableData, () => {
+    tableKey.value = tableKey.value + 1;
+  });
+
   onMounted(() => {
-    if (sortedData.value.length > 0) {
-      tableData.value = [...sortedData.value];
-    }
+    tableData.value = [...sortedData.value];
   });
 
   return {
@@ -341,11 +420,12 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     sortedDataItem,
     getSortIcon,
     sortField,
-    allowSelfDrag,
-    handleDropToEmptyZone,
-    handleOnDragChange,
+    allowSelfDrag,    
     tableData,
     isDraggable,
     dragOptions,
+    getRowKey,
+    isDragging: toRef(() => isDragging.value),
+    tableKey,
   };
 };

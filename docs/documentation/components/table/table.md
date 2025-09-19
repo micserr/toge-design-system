@@ -181,9 +181,11 @@ watch(searchModel, (newValue) => {
 ```
 
 ## Multi Select
+
 Allows the selection of multiple or all rows in the table.
 
 ::: warning
+
 <ul>
   <li>If table is paginated, only the rows on the current page will be selected.</li>
   <li><strong>selectedKeyId</strong> prop must be provided.</li>
@@ -264,7 +266,7 @@ const data = ref([
       image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
   },
-    {
+  {
     name: {
       title: 'Shift 1',
       subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
@@ -281,7 +283,7 @@ const data = ref([
       image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
   },
-      {
+  {
     name: {
       title: 'Shift 2',
       subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
@@ -298,7 +300,7 @@ const data = ref([
       image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
   },
-      {
+  {
     name: {
       title: 'Shift 3',
       subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
@@ -315,7 +317,7 @@ const data = ref([
       image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
   },
-      {
+  {
     name: {
       title: 'Shift 4',
       subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
@@ -332,7 +334,7 @@ const data = ref([
       image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
   },
-      {
+  {
     name: {
       title: 'Shift 5',
       subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
@@ -354,12 +356,12 @@ const data = ref([
 const handleSelectedData = (data) => {
   // do anything with the selected data
   selectedTableData.value = [...data];
-}
+};
 </script>
-
 ```
 
 ## Custom Column
+
 You can customize the column of the table by using the dynamically named slot column field (the field property in the headers object).
 
 <div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
@@ -417,49 +419,49 @@ const rowTitleRef = ref<HTMLElement|null>(null);
 const cellWidth = ref(0)
 
 const getCellMaxWidth = computed(() => {
-  return cellWidth.value > 0 ? `${cellWidth.value}px` : '100%'
+return cellWidth.value > 0 ? `${cellWidth.value}px` : '100%'
 })
 
 const headers = ref([
-  { field: 'name', name: 'Role Name', sort: true, hasAvatar: true, hasSubtext: true },
-  { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false },
+{ field: 'name', name: 'Role Name', sort: true, hasAvatar: true, hasSubtext: true },
+{ field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false },
 ]);
 
 const data = ref([
-  {
-    name: {
-      title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis autem minus fugiat culpa ad magnam nisi ex facilis ducimus sit neque modi porro optio cupiditate iusto, blanditiis asperiores aperiam veritatis mollitia laboriosam? Consectetur, deserunt? Reprehenderit ipsa, debitis eaque accusamus ducimus quasi deserunt laborum asperiores ea, nemo, optio corporis rerum! Veniam ex voluptatibus eveniet consequuntur saepe doloribus sint laboriosam eligendi sequi esse vero, quam consectetur iste inventore aliquam soluta quibusdam at perferendis ratione, voluptatum accusantium amet dignissimos perspiciatis. Aspernatur, voluptate amet.',
-      subtext: 'Lorem ipsectetur adipiscing elit.',
-      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
-    },
-    lastUpdate: {
-      title: 'Nov 30, 2025',
-      subtext: 'Lorem ipsum dolor ',
-      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
-    },
-    status: {
-      title: 'Success',
-      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
-      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
-    },
-  },
-    {
-    name: {
-      title: 'Shift 1',
-      subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
-      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
-    },
-    lastUpdate: {
-      title: 'Nov 01, 2025',
-      subtext: 'Lorem ipsum dolor ',
-      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
-    },
-    status: {
-      title: 'Pending',
-      subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
-      image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
-    },
-  }
+{
+name: {
+title: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis autem minus fugiat culpa ad magnam nisi ex facilis ducimus sit neque modi porro optio cupiditate iusto, blanditiis asperiores aperiam veritatis mollitia laboriosam? Consectetur, deserunt? Reprehenderit ipsa, debitis eaque accusamus ducimus quasi deserunt laborum asperiores ea, nemo, optio corporis rerum! Veniam ex voluptatibus eveniet consequuntur saepe doloribus sint laboriosam eligendi sequi esse vero, quam consectetur iste inventore aliquam soluta quibusdam at perferendis ratione, voluptatum accusantium amet dignissimos perspiciatis. Aspernatur, voluptate amet.',
+subtext: 'Lorem ipsectetur adipiscing elit.',
+image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+},
+lastUpdate: {
+title: 'Nov 30, 2025',
+subtext: 'Lorem ipsum dolor ',
+image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+},
+status: {
+title: 'Success',
+subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+},
+},
+{
+name: {
+title: 'Shift 1',
+subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
+image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+},
+lastUpdate: {
+title: 'Nov 01, 2025',
+subtext: 'Lorem ipsum dolor ',
+image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+},
+status: {
+title: 'Pending',
+subtext: 'Lorem ipsum dolor sit amet, consectetur, sed etiam.',
+image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+},
+}
 ]);
 
 </script>
@@ -481,7 +483,6 @@ Utilizing this field will remove all of the existing tailwind classes on the hea
   </template>
 </spr-table>
 
-
 ```vue
 <template>
   <spr-table :headers="headers" :data-table="data">
@@ -497,21 +498,21 @@ Utilizing this field will remove all of the existing tailwind classes on the hea
 import { ref } from 'vue';
 
 const headers = ref([
-  { 
-    field: 'name', 
-    name: 'Role Name', 
-    sort: true, 
-    hasAvatar: true, 
-    hasSubtext: true, 
-    customTailwindClasses: 'spr-bg-tomato-500' 
+  {
+    field: 'name',
+    name: 'Role Name',
+    sort: true,
+    hasAvatar: true,
+    hasSubtext: true,
+    customTailwindClasses: 'spr-bg-tomato-500',
   },
-  { 
-    field: 'lastUpdate', 
-    name: 'Date', 
-    sort: true, 
-    hasAvatar: false, 
-    hasSubtext: false, 
-    customTailwindClasses: 'spr-bg-blueberry-500' 
+  {
+    field: 'lastUpdate',
+    name: 'Date',
+    sort: true,
+    hasAvatar: false,
+    hasSubtext: false,
+    customTailwindClasses: 'spr-bg-blueberry-500',
   },
 ]);
 </script>
@@ -642,13 +643,13 @@ const lozengeTitle = {
   tone: 'success',
   avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
   fill: true,
-  lozengeIcon: 'ph:building'
-}
+  lozengeIcon: 'ph:building',
+};
 
 const lozengeSecondTitle = {
   title: 'Lozenge',
   avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
-}
+};
 
 const dataLozenge = [
   {
@@ -670,7 +671,9 @@ const dataLozenge = [
 ```
 
 ### Chips
+
 You can change the title of a cell to a chip
+
 <div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
   <spr-table action :headers="headersChips" :data-table="dataChips" variant="surface" @onSort="handleSort">
     <div>
@@ -681,19 +684,17 @@ You can change the title of a cell to a chip
 
 ```vue
 <template>
-<spr-table action :headers="headersChips" :data-table="dataChips" variant="surface" @onSort="handleSort">
-  <div>
-    Customize your content here!
-  </div>
-</spr-table>
+  <spr-table action :headers="headersChips" :data-table="dataChips" variant="surface" @onSort="handleSort">
+    <div>Customize your content here!</div>
+  </spr-table>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { ref } from 'vue';
 const headersChips = ref([
   { field: 'name', name: 'Role Name', sort: true, hasAvatar: false, hasSubtext: true, hasChipTitle: true },
   { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false, hasChipTitle: true },
-])
+]);
 
 const chipsTitle = {
   title: 'Active',
@@ -701,7 +702,7 @@ const chipsTitle = {
   iconWeight: 'regular',
   avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
   avatarVariant: 'image',
-}
+};
 
 const chipsSecondTitle = {
   title: 'Second Title',
@@ -712,7 +713,7 @@ const chipsSecondTitle = {
   badgeVariant: 'brand',
   avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
   avatarVariant: 'image',
-}
+};
 
 const dataChips = [
   {
@@ -720,21 +721,23 @@ const dataChips = [
       title: chipsTitle,
       subtext: 'Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.',
       image: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
-      lozengeIcon: 'ph:user'
+      lozengeIcon: 'ph:user',
     },
     lastUpdate: {
       title: chipsSecondTitle,
       subtext: 'Lorem ipsum dolor ',
       lozengeFill: true,
-      lozengeAvatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'
+      lozengeAvatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     },
   },
-]
+];
 </script>
 ```
 
 ### Multiple Chips and Lozenges
+
 You can change the title to multiple chips and lozenges
+
 <div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
   <spr-table action :headers="headersMultiple" :data-table="dataMultiple" variant="surface" @onSort="handleSort">
     <div>
@@ -745,27 +748,25 @@ You can change the title to multiple chips and lozenges
 
 ```vue
 <template>
-<spr-table action :headers="headersMultiple" :data-table="dataMultiple" variant="surface" @onSort="handleSort">
-  <div>
-    Customize your content here!
-  </div>
-</spr-table>
+  <spr-table action :headers="headersMultiple" :data-table="dataMultiple" variant="surface" @onSort="handleSort">
+    <div>Customize your content here!</div>
+  </spr-table>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
 import { ref } from 'vue';
 
 const headersMultiple = ref([
   { field: 'name', name: 'Role Name', sort: true, hasAvatar: false, hasSubtext: true, hasLozengeTitle: true },
   { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false, hasChipTitle: true },
-])
+]);
 
-const lozengeCell =  {
-    title: 'Active',
-    tone: 'success',
-    avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
-    fill: true,
-    lozengeIcon: 'ph:building',
+const lozengeCell = {
+  title: 'Active',
+  tone: 'success',
+  avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
+  fill: true,
+  lozengeIcon: 'ph:building',
 };
 const chipCell = [
   {
@@ -787,8 +788,8 @@ const chipCell = [
     badgeVariant: 'brand',
     avatarUrl: 'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg',
     avatarVariant: 'image',
-  }
-]
+  },
+];
 
 const dataMultiple = [
   {
@@ -800,10 +801,10 @@ const dataMultiple = [
     lastUpdate: {
       title: chipCell,
       subtext: 'Lorem ipsum dolor ',
-      chipTitle: chipCell
+      chipTitle: chipCell,
     },
   },
-]
+];
 </script>
 ```
 
@@ -991,6 +992,329 @@ const data = ref([
 </script>
 ```
 
+## Column Width Configuration
+
+The table component provides flexible column width management through the `width` property in header objects. This allows you to create well-balanced table layouts that adapt to different content types and screen sizes.
+
+### Width Value Types
+
+You can use any valid CSS width value:
+
+```javascript
+const headers = ref([
+  { field: 'id', name: 'ID', width: '80px' }, // Fixed pixel width
+  { field: 'name', name: 'Name', width: '300px' }, // Larger fixed width
+  { field: 'email', name: 'Email', width: '40%' }, // Percentage of table width
+  { field: 'role', name: 'Role', width: '15em' }, // Em-based width
+  { field: 'status', name: 'Status', width: 'auto' }, // Auto-sizing
+  { field: 'actions', name: 'Actions' }, // No width = auto
+]);
+```
+
+### Best Practices
+
+**Fixed Pixel Widths**: Best for columns with predictable content like IDs, dates, or status indicators.
+
+```javascript
+{ field: 'id', name: 'ID', width: '80px' }
+{ field: 'date', name: 'Created', width: '150px' }
+```
+
+**Percentage Widths**: Ideal for responsive layouts where columns should scale with table size.
+
+```javascript
+{ field: 'description', name: 'Description', width: '50%' }
+{ field: 'category', name: 'Category', width: '25%' }
+```
+
+**Mixed Width Strategy**: Combine fixed and flexible widths for optimal layouts.
+
+```javascript
+const headers = ref([
+  { field: 'avatar', name: '', width: '60px' }, // Fixed for avatar
+  { field: 'name', name: 'Name', width: '30%' }, // Flexible for names
+  { field: 'email', name: 'Email', width: '35%' }, // Flexible for emails
+  { field: 'status', name: 'Status', width: '120px' }, // Fixed for status
+  { field: 'actions', name: 'Actions', width: '100px' }, // Fixed for actions
+]);
+```
+
+### Dynamic Width Considerations
+
+When using dynamic values, avoid Tailwind CSS classes like `spr-w-[${width}]` as they won't be generated at build time. Instead, use inline styles or the `width` property:
+
+```javascript
+// ❌ Avoid - Tailwind won't generate dynamic classes
+{ field: 'name', name: 'Name', customTailwindClasses: `spr-w-[${dynamicWidth}]` }
+
+// ✅ Recommended - Use the width property
+{ field: 'name', name: 'Name', width: dynamicWidth }
+```
+
+### Responsive Column Widths
+
+For responsive designs, consider using CSS custom properties or media queries in your styling:
+
+```javascript
+const headers = ref([
+  {
+    field: 'name',
+    name: 'Name',
+    width: 'clamp(200px, 30%, 400px)', // Responsive with min/max
+  },
+  {
+    field: 'description',
+    name: 'Description',
+    width: 'minmax(250px, 1fr)', // Grid-based responsive width
+  },
+]);
+```
+
+## Draggable Table Rows
+
+Allows the drag and drop of table rows.
+
+::: warning
+
+<ul>
+  <li>Mutation to original data must be done manually.</li>  
+  <li>Add an <strong>id</strong> property to each row data object. This is used to uniquely identify rows during drag and drop operations by the vuedraggable library.</li> 
+</ul>  
+:::
+
+<div    
+    class="spr-grid spr-w-full spr-grid-cols-2 spr-gap-size-spacing-2xs"
+  >
+    <div class="pr:max-w-[465px] pr:h-fit spr-background-color spr-rounded-border-radius-lg">
+      <spr-table
+        :headers="draggableTableHeaders"
+        :data-table="availableEmployees"
+        variant="white"        
+        @on-drop-to-empty-zone="handleOnDragToEmptyZone($event, 'available')"
+        @on-drag-change="handleOnDragChange($event, 'available')"                
+        :is-draggable="true"        
+      ></spr-table>
+    </div>
+    <div
+      id="select_employee_table_wrapper_2"
+      class="pr:max-w-[465px] spr-background-color spr-rounded-border-radius-lg"
+    >
+      <spr-table
+        :headers="draggableTableHeaders"
+        :data-table="selectedEmployees"
+        variant="white"        
+        :is-draggable="true"
+        @on-drop-to-empty-zone="handleOnDragToEmptyZone($event, 'selected')"
+        @on-drag-change="handleOnDragChange($event, 'selected')"
+      ></spr-table>
+    </div>
+  </div>
+
+```vue
+<template>
+  <div class="spr-grid spr-w-full spr-grid-cols-2 spr-gap-size-spacing-2xs">
+    <div class="pr:max-w-[465px] pr:h-fit spr-background-color spr-rounded-border-radius-lg">
+      <spr-table
+        :headers="tableHeaders"
+        :data-table="availableEmployees"
+        :is-draggable="true"
+        variant="white"
+        @on-drop-to-empty-zone="handleOnDragToEmptyZone($event, 'available')"
+        @on-drag-change="handleOnDragChange($event, 'available')"
+      ></spr-table>
+    </div>
+    <div
+      id="select_employee_table_wrapper_2"
+      class="pr:max-w-[465px] spr-background-color spr-rounded-border-radius-lg"
+    >
+      <spr-table
+        :headers="tableHeaders"
+        :data-table="selectedEmployees"
+        variant="white"
+        :is-draggable="true"
+        @on-drop-to-empty-zone="handleOnDragToEmptyZone($event, 'selected')"
+        @on-drag-change="handleOnDragChange($event, 'selected')"
+      ></spr-table>
+    </div>
+  </div>
+</template>
+<script setup lang="ts">
+import { ref, computed } from 'vue';
+const tableHeaders = ref([
+  {
+    field: 'name',
+    name: 'Name',
+    sort: false,
+    hasAvatar: true,
+    hasSubtext: true,
+    width: '75%',
+  },
+  { field: 'status', name: '', sort: false, hasAvatar: false, hasSubtext: false, hasLozengeTitle: true, width: '12%' },
+]);
+
+const mockAvailableEmployees = ref([
+  {
+    id: '1',
+    empIDNum: 'EMP001',
+    lastName: 'Smith',
+    firstName: 'John',
+    middleName: 'Michael',
+    empStatus: 'Active',
+    isProrated: false,
+  },
+  {
+    id: '2',
+    empIDNum: 'EMP002',
+    lastName: 'Johnson',
+    firstName: 'Sarah',
+    middleName: 'Elizabeth',
+    empStatus: 'Active',
+    isProrated: true,
+  },
+  {
+    id: '3',
+    empIDNum: 'EMP003',
+    lastName: 'Williams',
+    firstName: 'David',
+    middleName: 'Robert',
+    empStatus: 'Active',
+    isProrated: false,
+  },
+  {
+    id: '4',
+    empIDNum: 'EMP004',
+    lastName: 'Brown',
+    firstName: 'Emily',
+    middleName: 'Grace',
+    empStatus: 'Active',
+    isProrated: true,
+  },
+  {
+    id: '5',
+    empIDNum: 'EMP005',
+    lastName: 'Davis',
+    firstName: 'Michael',
+    middleName: 'James',
+    empStatus: 'Active',
+    isProrated: false,
+  },
+]);
+
+const mockSelectedEmployees = ref([
+  {
+    id: '6',
+    empIDNum: 'EMP006',
+    lastName: 'Doe',
+    firstName: 'John',
+    middleName: 'Michael',
+    empStatus: 'Active',
+    isProrated: false,
+  },
+]);
+
+const availableEmployees = computed(() => {
+  return mockAvailableEmployees.value.map((employee) => ({
+    id: employee.id, //add id property to each row data object
+    name: {
+      title: `${employee.firstName} ${employee.lastName}`,
+      subtext: employee.empIDNum,
+    },
+    status: {
+      title: {
+        title: employeeStatusLabel[employee.empStatus.toLowerCase()],
+        tone: employeeStatusTone[employee.empStatus.toLowerCase()],
+      },
+    },
+  }));
+});
+
+const selectedEmployees = computed(() => {
+  return mockSelectedEmployees.value.map((employee) => ({
+    id: employee.id,
+    name: {
+      title: `${employee.firstName} ${employee.lastName}`,
+      subtext: employee.empIDNum,
+    },
+    status: {
+      title: {
+        title: employeeStatusLabel[employee.empStatus.toLowerCase()],
+        tone: employeeStatusTone[employee.empStatus.toLowerCase()],
+      },
+    },
+  }));
+});
+
+const employeeStatusLabel = {
+  active: 'ACTIVE',
+};
+
+const employeeStatusTone = {
+  active: 'success',
+};
+
+const handleOnDragToEmptyZone = (event, tableType) => {  
+  onDragToEmptyZoneActions(event, tableType);
+};
+
+const handleOnDragChange = (event, tableType) => {
+  onDragChangeActions(event, tableType);
+};
+
+const onDragChangeActions = (event, tableType) => {
+  if (!event) return;
+  const { added, removed } = event;
+  let employeeList = tableType === 'selected' ? mockAvailableEmployees.value : mockSelectedEmployees.value;
+
+  if (added) {
+    onDragChangeAdd(added, tableType, employeeList);
+  } else if (removed) {
+    onDragChangeRemoved(removed, tableType, employeeList);
+  }
+};
+
+const onDragChangeAdd = (addedEvent, tableType, employeeList) => {
+  if (!addedEvent) return;
+  const employeeToAdd = employeeList.find((emp) => emp.id === addedEvent.element.id);
+  if (!employeeToAdd) return;
+
+  if (tableType === 'selected') {
+    mockSelectedEmployees.value.splice(addedEvent.newIndex, 0, employeeToAdd);
+  } else {
+    mockAvailableEmployees.value.splice(addedEvent.newIndex, 0, employeeToAdd);
+  }
+};
+
+const onDragChangeRemoved = (removedEvent, tableType, employeeList) => {
+  if (!removedEvent) return;
+  const employeeToRemove = employeeList.find((emp) => emp.id === removedEvent.element.id);
+
+  if (!employeeToRemove) return;
+
+  if (tableType === 'selected') {
+    mockSelectedEmployees.value.splice(removedEvent.oldIndex, 1);
+  } else {
+    mockAvailableEmployees.value.splice(removedEvent.oldIndex, 1);
+  }
+};
+
+const onDragToEmptyZoneActions = (addedEvent, tableType) => {
+  if (!addedEvent) return;
+  let employeeList = tableType === 'selected' ? mockAvailableEmployees.value : mockSelectedEmployees.value;
+  const employeeToAdd = employeeList.find((emp) => emp.id === addedEvent.element.id);
+
+  if (!employeeToAdd) return;
+
+  if (tableType === 'selected') {
+    mockSelectedEmployees.value = [];
+    mockSelectedEmployees.value.push(employeeToAdd);
+  } else {
+    mockAvailableEmployees.value = [];
+    mockAvailableEmployees.value.push(employeeToAdd);
+  }
+};
+</script>
+```
+
 ## API Reference
 
 ### Props
@@ -1095,6 +1419,18 @@ const data = ref([
       <td>boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td>isDraggable</td>
+      <td>Enables the drag and drop feature of the table.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>allowSelfDrag</td>
+      <td>Enables the drag and drop within the same table.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 
@@ -1133,6 +1469,16 @@ const data = ref([
       <td>update:selectedData</td>
       <td>Emitted when row selection changes in multi-select mode. Provides an array of selected items based on the returnCompleteSelectedProperties setting.</td>
       <td>(selectedItems: TableData[] | any[])</td>
+    </tr>
+    <tr>
+      <td>onDropToEmptyZone</td>
+      <td>Emitted when a dragged item is dropped into an empty state.</td>
+      <td>(event: DragOnChangeEvent['added'])</td>
+    </tr>
+    <tr>
+      <td>onDropChange</td>
+      <td>Emitted when a dragged item is dropped into a populated table.</td>
+      <td>(event: DragOnChangeEmit)</td>
     </tr>
   </tbody>
 </table>
@@ -1275,6 +1621,12 @@ const data = ref([
       <td>string</td>
       <td>No</td>
     </tr>
+    <tr>
+      <td>width</td>
+      <td>Sets the width of the column. Accepts any valid CSS width value (e.g., '200px', '25%', '15em', 'auto'). This property directly controls column sizing and is essential for creating properly proportioned tables.</td>
+      <td>string</td>
+      <td>No</td>
+    </tr>
   </tbody>
 </table>
 
@@ -1295,6 +1647,7 @@ import SprLozenge from "@/components/lozenge/lozenge.vue";
 import SprLogo from "@/components/logo/logo.vue";
 import SprTooltip from "@/components/tooltip/tooltip.vue";
 import { Icon } from '@iconify/vue';
+import draggable from 'vuedraggable';
 
 const selectedTableData = ref([]);
 
@@ -1321,6 +1674,118 @@ const headersWithBadge = ref([
   { field: 'name', name: 'Role Name', sort: true, hasAvatar: true, hasSubtext: true, badgeText:'1', badgeVariant:'brand' },
   { field: 'lastUpdate', name: 'Date', sort: true, hasAvatar: false, hasSubtext: false, badgeText:'2', badgeVariant:'danger'  },
 ]);
+
+const draggableTableHeaders = ref([
+  {
+    field: 'name',
+    name: 'Name',
+    sort: false,
+    hasAvatar: true,
+    hasSubtext: true,
+    width: '20%',
+  },
+  { field: 'status', name: '', sort: false, hasAvatar: false, hasSubtext: false, hasLozengeTitle: true, width: '12%' },
+]);
+
+const mockAvailableEmployees = ref([
+  {
+    id: '1',
+    empIDNum: 'EMP001',
+    lastName: 'Smith',
+    firstName: 'John',
+    middleName: 'Michael',
+    empStatus: 'Active',
+    isProrated: false,
+  },
+  {
+    id: '2',
+    empIDNum: 'EMP002',
+    lastName: 'Johnson',
+    firstName: 'Sarah',
+    middleName: 'Elizabeth',
+    empStatus: 'Active',
+    isProrated: true,
+  },
+  {
+    id: '3',
+    empIDNum: 'EMP003',
+    lastName: 'Williams',
+    firstName: 'David',
+    middleName: 'Robert',
+    empStatus: 'Active',
+    isProrated: false,
+  },
+  {
+    id: '4',
+    empIDNum: 'EMP004',
+    lastName: 'Brown',
+    firstName: 'Emily',
+    middleName: 'Grace',
+    empStatus: 'Active',
+    isProrated: true,
+  },
+  {
+    id: '5',
+    empIDNum: 'EMP005',
+    lastName: 'Davis',
+    firstName: 'Michael',
+    middleName: 'James',
+    empStatus: 'Active',
+    isProrated: false,
+  },
+]);
+
+const mockSelectedEmployees = ref([
+  {
+    id: '6',
+    empIDNum: 'EMP006',
+    lastName: 'Doe',
+    firstName: 'John',
+    middleName: 'Michael',
+    empStatus: 'Active',
+    isProrated: false,
+  },
+]);
+
+const availableEmployees = computed(() => {
+  return mockAvailableEmployees.value.map((employee) => ({
+    id: employee.id,
+    name: {
+      title: `${employee.firstName} ${employee.lastName}`,
+      subtext: employee.empIDNum,
+    },
+    status: {      
+      title: {
+        title: employeeStatusLabel[employee.empStatus.toLowerCase()],
+        tone: employeeStatusTone[employee.empStatus.toLowerCase()],
+      },
+    },
+  }));
+});
+
+const selectedEmployees = computed(() => {
+  return mockSelectedEmployees.value.map((employee) => ({
+    id: employee.id,
+    name: {
+      title: `${employee.firstName} ${employee.lastName}`,
+      subtext: employee.empIDNum,
+    },
+    status: {      
+      title: {
+        title: employeeStatusLabel[employee.empStatus.toLowerCase()],
+        tone: employeeStatusTone[employee.empStatus.toLowerCase()],
+      },
+    },
+  }));
+});
+
+const employeeStatusLabel = {
+  active: 'ACTIVE',
+};
+
+const employeeStatusTone = {
+  active: 'success',
+};
 
 const data = ref([
   {
@@ -1654,7 +2119,7 @@ const customHeaders = ref([
     sort: true, 
     hasAvatar: true, 
     hasSubtext: true, 
-    customTailwindClasses: '!spr-bg-tomato-500' // To override Vitepress' default styles
+    customTailwindClasses: '!spr-bg-tomato-500', // To override Vitepress' default styles
   },
   { 
     field: 'lastUpdate', 
@@ -1662,7 +2127,74 @@ const customHeaders = ref([
     sort: true, 
     hasAvatar: false, 
     hasSubtext: false, 
-    customTailwindClasses: '!spr-bg-blueberry-500' // To override Vitepress' default styles
+    customTailwindClasses: '!spr-bg-blueberry-500', // To override Vitepress' default styles
   },
 ]);
+
+
+const handleOnDragToEmptyZone = (event, tableType) => {
+  if (!event) return;
+  onDragToEmptyZoneActions(event, tableType);
+};
+
+const handleOnDragChange = (event, tableType) => {  
+  onDragChangeActions(event, tableType);
+};
+
+const onDragChangeActions = (event, tableType) => {
+  if (!event) return;
+  const { added, removed } = event;
+  let employeeList = tableType === 'selected' ? mockAvailableEmployees.value : mockSelectedEmployees.value;
+
+  if (added) {
+    onDragChangeAdd(added, tableType, employeeList);
+  } else if (removed) {
+    onDragChangeRemoved(removed, tableType, employeeList);
+  }
+};
+
+const onDragChangeAdd = (addedEvent, tableType, employeeList) => {
+  if (!addedEvent) return;
+  const employeeToAdd = employeeList.find((emp) => emp.id === addedEvent.element.id);
+  if (!employeeToAdd) return;
+
+  if (tableType === 'selected') {
+    mockSelectedEmployees.value.splice(addedEvent.newIndex, 0, employeeToAdd);
+  } else {
+    mockAvailableEmployees.value.splice(addedEvent.newIndex, 0, employeeToAdd);
+  }
+};
+
+const onDragChangeRemoved = (
+  removedEvent,
+  tableType,
+  employeeList
+) => {
+  if (!removedEvent) return;
+  const employeeToRemove = employeeList.find((emp) => emp.id === removedEvent.element.id);
+
+  if (!employeeToRemove) return;
+
+  if (tableType === 'selected') {
+    mockSelectedEmployees.value.splice(removedEvent.oldIndex, 1);
+  } else {
+    mockAvailableEmployees.value.splice(removedEvent.oldIndex, 1);
+  }
+};
+
+const onDragToEmptyZoneActions = (addedEvent, tableType) => {
+  if (!addedEvent) return;
+  let employeeList = tableType === 'selected' ? mockAvailableEmployees.value : mockSelectedEmployees.value;
+  const employeeToAdd = employeeList.find((emp) => emp.id === addedEvent.element.id);
+
+  if (!employeeToAdd) return;
+
+  if (tableType === 'selected') {
+    mockSelectedEmployees.value = [];
+    mockSelectedEmployees.value.push(employeeToAdd);
+  } else {
+    mockAvailableEmployees.value = [];
+    mockAvailableEmployees.value.push(employeeToAdd);
+  }
+};
 </script>

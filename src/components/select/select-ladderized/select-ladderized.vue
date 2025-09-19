@@ -8,15 +8,15 @@
     </label>
 
     <Menu
-      :shown="ladderizedSelectPopperState"
+      v-model:shown="ladderizedSelectPopperState"
       aria-id="ladderized-select-wrapper"
       distance="4"
       :placement="props.placement"
-      :triggers="[]"
-      :popper-hide-triggers="[]"
-      :auto-hide="false"
+      :triggers="props.triggers"
+      :popper-triggers="props.popperTriggers"
+      :auto-hide="props.autoHide"
       :disabled="isLadderizedSelectPopperDisabled"
-      :container="'#ladderized-select-wrapper'"
+      :container="`#${props.id}`"
       :strategy="
         props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
       "
@@ -26,7 +26,7 @@
         width: props.width,
       }"
     >
-      <div @click="handleOptionsToggle">
+      <div ref="ladderizedSelectState">
         <spr-input
           :id="`input-${props.id}`"
           v-model="inputText"
@@ -57,13 +57,14 @@
             <slot name="helperMessage" />
           </template>
         </spr-input>
-      </div>
 
-      <div id="ladderized-select-wrapper" :style="{ width: props.popperWidth }"></div>
+        <!-- This div used to poppulate popper menu -->
+        <div :id="props.id" :style="{ width: props.popperWidth }"></div>
+      </div>
 
       <template #popper>
         <div
-          ref="ladderizedSelectRef"
+          ref="ladderizedSelectPopperRef"
           class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden"
         >
           <template v-if="ladderizedSelectOptions.length > 0">
@@ -106,8 +107,9 @@ const emit = defineEmits(selectLadderizedEmitTypes);
 
 const {
   ladderizedClasses,
+  ladderizedSelectState,
   ladderizedSelectPopperState,
-  ladderizedSelectRef,
+  ladderizedSelectPopperRef,
   ladderizedSelectOptions,
   isLadderizedSelectPopperDisabled,
   ladderizedSelectModel,
@@ -115,6 +117,5 @@ const {
   handleSelectedLadderizedItem,
   handleSearch,
   handleClear,
-  handleOptionsToggle,
 } = useSelectLadderized(props, emit as SelectLadderizedEmitFn);
 </script>

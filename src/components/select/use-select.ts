@@ -159,15 +159,6 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     emit('search-string', inputText.value);
   }, 300);
 
-  // Toggle options popper state
-  const handleOptionsToggle = () => {
-    selectPopperState.value = !selectPopperState.value;
-
-    isSearching.value = false;
-
-    emit('popper-state', !selectPopperState.value);
-  };
-
   // Handle selected item for simple list component
   const handleSelectedItem = (selectedItems: MenuListType[]) => {
     if (selectedItems.length === 0) {
@@ -207,7 +198,6 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     // Always close select for single selection
     setTimeout(() => {
       selectPopperState.value = false;
-      emit('popper-state', false);
     }, 10);
   };
 
@@ -332,6 +322,10 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     { deep: true },
   );
 
+  watch(selectPopperState, (newState) => {
+    emit('popper-state', newState);
+  });
+
   onClickOutside(selectRef, () => {
     selectPopperState.value = false;
 
@@ -341,8 +335,6 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     }
 
     isSearching.value = false;
-
-    emit('popper-state', false);
   });
 
   useInfiniteScroll(
@@ -377,7 +369,6 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     inputText,
     isSelectPopperDisabled,
     isSearching,
-    handleOptionsToggle,
     handleSelectedItem,
     handleSearch,
     handleClear,

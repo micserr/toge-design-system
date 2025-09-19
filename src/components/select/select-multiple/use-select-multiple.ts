@@ -33,7 +33,7 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     });
 
     const chippedInputTextBaseClasses = classNames(
-      'spr-relative spr-flex spr-items-center spr-min-h-9 spr-rounded-border-radius-md spr-border-[1.5px] spr-border-solid',
+      'spr-relative spr-flex spr-items-center spr-min-h-10 spr-rounded-border-radius-md spr-border-[1.5px] spr-border-solid',
       {
         'spr-cursor-pointer': !disabled.value,
 
@@ -189,15 +189,6 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
   };
 
   /**
-   * Opens the multi-select options.
-   */
-  const handleOptionsToggle = () => {
-    multiSelectPopperState.value = !multiSelectPopperState.value;
-
-    emit('popper-state', !multiSelectPopperState.value);
-  };
-
-  /**
    * Handles selection changes from the multi-select and updates the model value.
    * Converts stringified objects back to objects if needed.
    */
@@ -330,8 +321,6 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     multiSelectedListItems.value = [];
     inputText.value = '';
     multiSelectPopperState.value = false;
-
-    emit('popper-state', false);
   };
 
   watch(multiSelectModel, () => {
@@ -360,6 +349,10 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     search.value = searchInput.value;
   });
 
+  watch(multiSelectPopperState, (newState) => {
+    emit('popper-state', newState);
+  });
+
   /**
    * Handles closing the multi-select when clicking outside.
    */
@@ -367,8 +360,6 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     multiSelectPopperState.value = false;
 
     updateMultiSelectedItemsFromValue();
-
-    emit('popper-state', false);
   });
 
   useInfiniteScroll(
@@ -404,6 +395,5 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     handleMultiSelectedItem,
     handleChippedRemoveItem,
     handleClear,
-    handleOptionsToggle,
   };
 };

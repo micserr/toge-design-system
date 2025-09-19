@@ -1,5 +1,69 @@
 # Changelog
 
+## 2.14.1 (2025-09-18)
+
+- Fix
+  - Fix Search UI to be sticky on top for select, multi-select, ladderized select
+  - Fix toggle, emit and custom triggers for select, multi select, ladderized select
+  - Fix the appearing icon issue in ladderized select
+  - Fix encountered issue in multi-layered sublevel in ladderized select
+  - Fix encountered in docs build in sidenav - Add guard against SSR where location is undefined
+  - Added popper-state emit for dropdown
+    ([#34835](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/34835?_a=files) by @jarias)
+
+## 2.14.0 (2025-09-17)
+
+- Feat
+  - Add drag and drop feature to table component
+    ([#5755a4f6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5755a4f6daa5c74529e6288cd265172ad105d880?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fdraggable-table-rows) by @despiritu)
+
+## 2.13.6 (2025-09-16)
+
+- Fix
+  - DQA fix for font family of input component
+    ([#684972e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/684972efa1e0fa1208cc782ee82aa2aa028aa18e?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FDQA_InputFieldFont) by @jbanares)
+
+## 2.13.5 (2025-09-16)
+
+- Fix
+  - DQA fixes for Table Pagination and Dropdown
+    ([#57399f81](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/57399f8190887ed3255c822a4c606a74d3c44e55?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FDQA_TablePagination_%26_Dropdown) by @jbanares)
+
+## 2.13.4 (2025-09-15)
+
+- Fix
+  - Sidenav header closing menu when hovered and fix select documentation route issue
+    ([#12332ae8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/12332ae8c6815cc6c15fe7b0b5c17a1c04f9bc1c?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 2.13.3 (2025-09-10)
+
+- Enhancement
+  - Added xxl size for modal component
+    ([#cf599bee](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/34695?_a=files) by @bsolis)
+
+## 2.13.2 (2025-09-09)
+
+- Fix
+  - Removed Table Pagination and Snack from DS Export exclude
+    ([#31a0cd14](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/31a0cd1485def965d4ed7343cbbfa5ef2c1157fc?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FRemovedTablePaginationAndSnackFromDSExportExclude) by @jbanares)
+
+## 2.13.1 (2025-09-09)
+
+- Enhancement
+  - Table Component Documentation: Added comprehensive column width configuration guide
+    - Added `width` property documentation to Header Object Properties table
+    - Created dedicated "Column Width Configuration" section with examples
+    - Documented best practices for fixed pixel, percentage, and mixed width strategies
+    - Added guidance on dynamic width considerations and Tailwind CSS limitations
+    - Included responsive column width examples using CSS functions
+      ([#b766ba9e] https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b766ba9e3f0c867f463b5c9059c14d4dc28361b9?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2Ftable-width by @bsolis)
+
+## 2.13.0 (2025-09-05)
+
+- Feat
+  - Initial Implementation Playwright with Contrast Test and e2e Component test
+    ([#34516](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/34516?_a=files) by @jarias)
+
 ## 2.12.17 (2025-09-04)
 
 - Fix

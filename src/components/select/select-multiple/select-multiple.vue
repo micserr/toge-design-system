@@ -27,26 +27,70 @@
       }"
     >
       <div ref="multiSelectRef">
-        <template v-if="props.chipped">
-          <div :class="multiSelectClasses.chippedInputTextBaseClasses">
-            <div ref="chippedInputTextRef" :class="multiSelectClasses.chippedInputTextClasses">
-              <div class="spr-h-auto spr-w-full">
-                <template v-if="multiSelectedListItems.length > 0">
-                  <template v-for="item in multiSelectedListItems" :key="item.value">
-                    <spr-chips
-                      class="spr-m-1 spr-inline-block"
-                      :label="String(item.text)"
-                      closable
-                      visible
-                      @close="handleChippedRemoveItem(String(item.value))"
-                    />
+        <div @click="multiSelectPopperState = !multiSelectPopperState">
+          <template v-if="props.chipped">
+            <div :class="multiSelectClasses.chippedInputTextBaseClasses">
+              <div ref="chippedInputTextRef" :class="multiSelectClasses.chippedInputTextClasses">
+                <div class="spr-h-auto spr-w-full">
+                  <template v-if="multiSelectedListItems.length > 0">
+                    <template v-for="item in multiSelectedListItems" :key="item.value">
+                      <spr-chips
+                        class="spr-m-1 spr-inline-block"
+                        :label="String(item.text)"
+                        closable
+                        visible
+                        @close="handleChippedRemoveItem(String(item.value))"
+                      />
+                    </template>
                   </template>
-                </template>
-                <template v-else>
-                  <span class="spr-placeholder spr-px-3 spr-text-gray-400">{{ props.placeholder }}</span>
-                </template>
+                  <template v-else>
+                    <span class="spr-placeholder spr-px-3 spr-text-gray-400">{{ props.placeholder }}</span>
+                  </template>
+                </div>
+                <div :class="multiSelectClasses.chippedIconClasses">
+                  <div class="spr-flex spr-items-center spr-gap-1">
+                    <Icon
+                      v-if="props.clearable && inputText"
+                      class="spr-cursor-pointer"
+                      icon="ph:x"
+                      @click.stop="handleClear"
+                    />
+                    <Icon icon="ph:caret-down" />
+                  </div>
+                </div>
               </div>
-              <div :class="multiSelectClasses.chippedIconClasses">
+            </div>
+            <div v-if="props.displayHelper" :class="multiSelectClasses.chippedHelperContainerClasses">
+              <div v-if="props.displayHelper" :class="multiSelectClasses.chippedHelperClasses">
+                <slot name="helperMessage">
+                  <Icon
+                    v-if="props.helperIcon"
+                    class="spr-h-5 spr-min-h-5 spr-w-5 spr-min-w-5"
+                    :icon="props.helperIcon"
+                  />
+                  <span>{{ props.helperText }}</span>
+                </slot>
+              </div>
+            </div>
+          </template>
+          <template v-else>
+            <spr-input
+              :id="`input-${props.id}`"
+              v-model="inputText"
+              :class="{
+                'spr-cursor-pointer': true,
+              }"
+              :placeholder="props.placeholder"
+              autocomplete="off"
+              :helper-text="props.helperText"
+              :helper-icon="props.helperIcon"
+              :display-helper="props.displayHelper"
+              :active="props.active"
+              :readonly="true"
+              :disabled="props.disabled"
+              :error="props.error"
+            >
+              <template #icon>
                 <div class="spr-flex spr-items-center spr-gap-1">
                   <Icon
                     v-if="props.clearable && inputText"
@@ -56,52 +100,14 @@
                   />
                   <Icon icon="ph:caret-down" />
                 </div>
-              </div>
-            </div>
-          </div>
-          <div v-if="props.displayHelper" :class="multiSelectClasses.chippedHelperContainerClasses">
-            <div v-if="props.displayHelper" :class="multiSelectClasses.chippedHelperClasses">
-              <slot name="helperMessage">
-                <Icon v-if="props.helperIcon" :icon="props.helperIcon" width="20px" height="20px" />
-                <span>{{ props.helperText }}</span>
-              </slot>
-            </div>
-          </div>
-        </template>
-        <template v-else>
-          <spr-input
-            :id="`input-${props.id}`"
-            v-model="inputText"
-            :class="{
-              'spr-cursor-pointer': true,
-            }"
-            :placeholder="props.placeholder"
-            autocomplete="off"
-            :helper-text="props.helperText"
-            :helper-icon="props.helperIcon"
-            :display-helper="props.displayHelper"
-            :active="props.active"
-            :readonly="true"
-            :disabled="props.disabled"
-            :error="props.error"
-          >
-            <template #icon>
-              <div class="spr-flex spr-items-center spr-gap-1">
-                <Icon
-                  v-if="props.clearable && inputText"
-                  class="spr-cursor-pointer"
-                  icon="ph:x"
-                  @click.stop="handleClear"
-                />
-                <Icon icon="ph:caret-down" />
-              </div>
-            </template>
+              </template>
 
-            <template #helperMessage>
-              <slot name="helperMessage" />
-            </template>
-          </spr-input>
-        </template>
+              <template #helperMessage>
+                <slot name="helperMessage" />
+              </template>
+            </spr-input>
+          </template>
+        </div>
 
         <!-- Hidden Select for QA automation -->
         <select v-if="multiSelectOptions && multiSelectOptions.length" v-model="multiSelectModel" multiple hidden>

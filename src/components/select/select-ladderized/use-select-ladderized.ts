@@ -147,16 +147,6 @@ export const useSelectLadderized = (
     }
   };
 
-  const handleSearch = () => {
-    isSearching.value = true;
-
-    debouncedEmitSearch();
-  };
-
-  const debouncedEmitSearch = useDebounceFn(() => {
-    // Optionally emit search event here if needed
-  }, 300);
-
   const handleClear = () => {
     wasCleared.value = true;
 
@@ -224,7 +214,6 @@ export const useSelectLadderized = (
     ladderizedSelectModel,
     inputText,
     handleSelectedLadderizedItem,
-    handleSearch,
     handleClear,
   };
 };

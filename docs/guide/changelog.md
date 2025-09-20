@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.14.3 (2025-09-19)
+
+- Fix
+  - Remove vuedraggable and fix build issue
+    ([#f09ea409](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f09ea409023e37aeecac86b37f6197fd624248e1?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fdraggable-table-rows) by @despiritu)
+
 ## 2.14.2 (2025-09-19)
 
 - Fix

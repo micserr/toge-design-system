@@ -1,7 +1,7 @@
 {
   "name": "design-system-next",
   "private": false,
-  "version": "2.14.2",
+  "version": "2.14.3",
   "main": "./dist/design-system-next.umd.js",
   "module": "./dist/design-system-next.es.js",
   "repository": {
@@ -53,20 +53,21 @@
     "libphonenumber-js": "^1.12.5",
     "lodash": "^4.17.21",
     "pinia": "^2.3.1",
+    "sortablejs": "^1.15.6",
     "stylelint": "^16.12.0",
     "stylelint-config-recess-order": "^5.1.1",
     "stylelint-config-recommended": "^14.0.1",
     "stylelint-config-recommended-vue": "^1.5.0",
     "typescript-eslint": "^8.19.1",
     "vite-plugin-sass": "^0.1.0",
-    "vue": "^3.0.0",
-    "vuedraggable": "^4.1.0"
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
     "@playwright/test": "^1.55.0",
     "@stylistic/stylelint-plugin": "^3.1.1",
     "@types/node": "^22.10.5",
+    "@types/sortablejs": "^1.15.8",
     "@vitejs/plugin-vue": "^5.2.1",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.17.0",

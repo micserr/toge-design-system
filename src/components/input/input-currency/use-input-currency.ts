@@ -9,8 +9,7 @@ interface InputCurrencyClasses {
 }
 
 export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupContext<InputCurrencyEmitTypes>['emit']) => {
-  const { preSelectedCurrency, disabledCountryCurrency, disabled, autoFormat, maxDecimals, minDecimals } =
-    toRefs(props);
+  const { preSelectedCurrency, disabledCountryCurrency, disabled, autoFormat, maxDecimals } = toRefs(props);
 
   const inputCurrencyClasses: ComputedRef<InputCurrencyClasses> = computed(() => {
     const baseInteractive = disabled.value
@@ -38,13 +37,11 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
 
   const selected = ref(initCurrency());
 
-  // Internal numeric representation (without formatting separators)
+  // Numeric representation (removing grouping separators) to emit numeric value
   const numericValue = computed<number | null>(() => {
     if (!modelValue.value) return null;
-
     const cleaned = String(modelValue.value).replace(/,/g, '');
     const parsed = Number(cleaned);
-
     return isNaN(parsed) ? null : parsed;
   });
 
@@ -68,40 +65,32 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     return grouped;
   };
 
-  const applyMinFractionDigits = (val: string): string => {
-    if (val === '') return '';
-
-    const [i, f = ''] = val.split('.');
-
-    if (minDecimals.value === 0) return val;
-
-    const padded = f.padEnd(minDecimals.value, '0');
-
-    return `${i}.${padded.slice(0, Math.max(minDecimals.value, f.length))}`;
-  };
-
   const handleCurrencyInput = (event: InputEvent) => {
     const inputEl = event.target as HTMLInputElement;
+    let raw = inputEl.value;
 
-    let value = inputEl.value;
+    raw = raw.replace(/\s+/g, '');
 
-    value = value.replace(/\s+/g, ''); // remove spaces
-    value = value.replace(/[^0-9.]/g, ''); // allow only digits & dot
+    let sign = '';
+    if (raw.startsWith('-')) {
+      sign = '-';
+      raw = raw.slice(1);
+    }
 
-    const firstDot = value.indexOf('.');
+    raw = raw.replace(/[^0-9.]/g, '');
 
+    const firstDot = raw.indexOf('.');
     if (firstDot !== -1) {
-      value = value.slice(0, firstDot + 1) + value.slice(firstDot + 1).replace(/\./g, '');
+      raw = raw.slice(0, firstDot + 1) + raw.slice(firstDot + 1).replace(/\./g, '');
     }
 
-    // Limit fractional digits during typing
-    if (maxDecimals.value >= 0 && value.includes('.')) {
-      const [i, f] = value.split('.');
-      value = `${i}.${f.slice(0, maxDecimals.value)}`;
-    }
+    // Do not truncate fractional digits while typing; allow user to input freely.
 
-    // Update without formatting first to keep caret predictable
-    modelValue.value = value;
+    if (sign && (raw === '' || raw === '0')) {
+      modelValue.value = sign + raw;
+    } else {
+      modelValue.value = sign + raw;
+    }
 
     emit('getCurrencyErrors', []);
   };
@@ -110,9 +99,7 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     if (!modelValue.value) return;
 
     let out = modelValue.value;
-
-    out = applyMinFractionDigits(out);
-    out = formatDisplay(out);
+    out = formatDisplay(out); // Only format with grouping; no forced decimal padding
     modelValue.value = out;
 
     if (numericValue.value !== null) emit('getNumericValue', numericValue.value);
@@ -158,8 +145,7 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
   onMounted(() => {
     handleSelectedCurrency(preSelectedCurrency.value);
     if (modelValue.value) {
-      modelValue.value = formatDisplay(applyMinFractionDigits(modelValue.value));
-
+      modelValue.value = formatDisplay(modelValue.value);
       if (numericValue.value !== null) emit('getNumericValue', numericValue.value);
     }
   });

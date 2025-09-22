@@ -557,7 +557,7 @@ import SprInputUsername from "@/components/input/input-username/input-username.v
 import SprInputEmail from "@/components/input/input-email/input-email.vue"
 import SprInputPassword from "@/components/input/input-password/input-password.vue"
 import SprInputUrl from "@/components/input/input-url/input-url.vue"
-import SprInputContactNumber from "@/components/input/input-contact-number/input-contact-number.vue"
+
 import SprInputDropdown from "@/components/input/input-dropdown/input-dropdown.vue"
 import SprLogo from "@/components/logo/logo.vue"
 

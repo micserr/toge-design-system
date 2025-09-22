@@ -24,7 +24,7 @@
         @get-popper-state="handlePopperState"
       >
         <span :class="inputContactNumberClasses.countryCallingCodeClasses">
-          +{{ selectedCountry.countryCallingCode }}
+          <span>+{{ selectedCountry.countryCallingCode }}</span>
           <icon v-if="!props.disabledCountryCallingCode" icon="ph:caret-down" width="16px" height="16px" />
         </span>
       </spr-dropdown>

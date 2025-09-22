@@ -8,48 +8,137 @@ Currency input with selectable currency code and formatting (thousand separators
 
 ## Basic Usage
 
-<spr-input-currency v-model="amount" label="Amount" />
+<spr-input-currency v-model="inputModel" label="Amount" />
 
 ```vue
 <template>
-  <spr-input-currency v-model="amount" label="Amount" />
+  <spr-input-currency v-model="inputModel" label="Amount" />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-const amount = ref('');
+
+const inputModel = ref('');
 </script>
 ```
 
-## Show Currency Code vs Symbol
+## Active State
+
+<spr-input-currency v-model="inputModel" label="Amount" active />
 
 ```vue
-<spr-input-currency v-model="amount" label="Amount" :display-as-code="true" />
-<spr-input-currency v-model="amount2" label="Amount" :display-as-code="false" />
+<template>
+  <spr-input-currency v-model="inputModel" label="Amount" active />
+</template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-const amount = ref('');
-const amount2 = ref('');
+
+const inputModel = ref('');
 </script>
 ```
 
-## Numeric Value Emit
+## Error State
 
-Listens to numeric parse result via `@get-numeric-value`.
+<spr-input-currency v-model="inputModel" label="Amount" :error="true">
+  <template #icon>
+    <Icon icon="ph:warning-circle-fill" />
+  </template>
+</spr-input-currency>
 
 ```vue
-<spr-input-currency v-model="raw" label="Salary" @get-numeric-value="(val) => (numeric = val)" />
+<template>
+  <spr-input-currency v-model="inputModel" label="Amount" :error="true">
+    <template #icon>
+      <Icon icon="ph:warning-circle-fill" />
+    </template>
+  </spr-input-currency>
+</template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-const raw = ref('');
-const numeric = ref(0);
+
+const inputModel = ref('');
 </script>
 ```
+
+## Disabled State
+
+<spr-input-currency v-model="inputModel" label="Amount" :disabled="true" />
+
+```vue
+<template>
+  <spr-input-currency v-model="inputModel" label="Amount" :disabled="true" />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const inputModel = ref('');
+</script>
+```
+
+## Disabled Country Currency
+
+<spr-input-currency v-model="inputModel" label="Amount" :disabled-country-currency="true" />
+
+````vue
+<template>
+  <spr-input-currency v-model="inputModel" label="Amount" :disabled-country-currency="true" />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const inputModel = ref('');
+</script>
+
+## Show Currency Code vs Symbol ```vue
+<template>
+  <spr-input-currency v-model="inputModel" label="Amount" :display-as-code="true" />
+
+  <spr-input-currency v-model="inputModel" label="Amount" :display-as-code="false" />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const inputModel = ref('');
+</script>
+````
 
 ## Pre-Selected Currency
 
 ```vue
-<spr-input-currency v-model="amount" label="Amount" pre-selected-currency="USD" />
+<template>
+  <spr-input-currency v-model="inputModel" label="Amount" pre-selected-currency="USD" />
+</template>
 ```
+
+## Numeric Value Emit
+
+Emits a parsed numeric value (number) stripped of grouping characters on blur and on mount (if an initial value exists) via `@get-numeric-value`.
+
+```vue
+<template>
+  <spr-input-currency v-model="inputModel" label="Salary" @get-numeric-value="(val) => (numeric = val)" />
+  <p>Numeric: {{ numeric }}</p>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const inputModel = ref('12345.67');
+const numeric = ref(0);
+</script>
+```
+
+<script setup lang="ts">
+import { ref, computed } from 'vue';
+
+import { Icon } from '@iconify/vue';
+
+import SprInputCurrency from "@/components/input/input-currency/input-currency.vue"
+
+const inputModel = ref('');
+</script>

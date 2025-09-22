@@ -23,7 +23,7 @@
         @get-popper-state="handlePopperState"
       >
         <span :class="inputCurrencyClasses.countrySelectClasses">
-          {{ displayToken }}
+          <span>{{ displayToken }}</span>
           <icon v-if="!props.disabledCountryCurrency" icon="ph:caret-down" width="16px" height="16px" />
         </span>
       </spr-dropdown>

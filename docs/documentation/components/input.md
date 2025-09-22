@@ -540,7 +540,7 @@ Since the v-model output is not in an international format (e.g., +63XXXXXXXXXXX
 </template>
 ```
 
-#### Set Pre Selected Country
+#### Set Pre Selected Country Code
 
 <div class="spr-mt-3">
   <spr-input-contact-number

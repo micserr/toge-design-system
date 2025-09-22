@@ -25,7 +25,8 @@ export const COUNTRY_OPTIONS: CountryOption[] = getCountries().map((countryCode)
 export const inputContactNumberPropTypes = {
   modelValue: {
     type: String,
-    required: true,
+    // Provide default to avoid runtime issues when parent forgets binding
+    default: '',
   },
   placeholder: {
     type: String,
@@ -69,13 +70,7 @@ export const inputContactNumberEmitTypes = {
 
 export interface InputContactNumberEmit {
   (event: 'update:modelValue', value: string): void;
-  (
-    event: 'getSelectedCountryCallingCode',
-    value: {
-      countryCode: string[];
-      countryCallingCode: string[];
-    },
-  ): void;
+  (event: 'getSelectedCountryCallingCode', value: { countryCode: string; countryCallingCode: string }): void;
   (event: 'getContactNumberErrors', value: Array<{ title: string; message: string }>): void;
 }
 

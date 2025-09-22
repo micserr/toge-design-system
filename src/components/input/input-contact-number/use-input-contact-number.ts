@@ -42,7 +42,7 @@ export const useInputContactNumber = (
 
   const popperState = ref(false);
 
-  const setselectedCountry = (selectedCountryCode: string) => {
+  const setSelectedCountry = (selectedCountryCode: string) => {
     const countryCallingCode = getCountryCallingCode(selectedCountryCode as CountryCode);
 
     const countryCode = getCountries().find((country) => {
@@ -98,21 +98,35 @@ export const useInputContactNumber = (
   };
 
   const formatContactNumber = () => {
-    if (!formattedValue.value) return;
+    if (!formattedValue.value) {
+      emit('getContactNumberErrors', []);
+      return;
+    }
 
-    const normalizedNumber = formattedValue.value.replace(/\D/g, '');
+    const original = formattedValue.value.trim();
+    const hasPlus = original.startsWith('+');
+    const normalizedNumber = hasPlus ? `+${original.replace(/[^0-9]/g, '')}` : original.replace(/\D/g, '');
 
-    const phoneNumber = parsePhoneNumber(normalizedNumber, {
-      defaultCountry: selectedCountry.value.countryCode as CountryCode,
-      extract: false,
-    });
+    let phoneNumber;
+    try {
+      phoneNumber = hasPlus
+        ? parsePhoneNumber(normalizedNumber)
+        : parsePhoneNumber(normalizedNumber, {
+            defaultCountry: selectedCountry.value.countryCode as CountryCode,
+            extract: false,
+          });
+    } catch {
+      phoneNumber = undefined;
+    }
 
     if (phoneNumber && phoneNumber.isValid()) {
       let formattedNumber = phoneNumber.formatInternational();
-
-      formattedNumber = formattedNumber.replace(`+${selectedCountry.value.countryCallingCode} `, '');
-
+      const prefix = `+${selectedCountry.value.countryCallingCode} `;
+      if (formattedNumber.startsWith(prefix)) {
+        formattedNumber = formattedNumber.slice(prefix.length);
+      }
       formattedValue.value = formattedNumber;
+      emit('getContactNumberErrors', []);
     } else {
       emit('getContactNumberErrors', [
         {
@@ -133,18 +147,18 @@ export const useInputContactNumber = (
 
   watch(preSelectedCountryCode, (newValue) => {
     if (newValue) {
-      setselectedCountry(newValue);
+      setSelectedCountry(newValue);
     }
   });
 
   onMounted(() => {
     emit('getSelectedCountryCallingCode', {
-      countryCode: selectedCountry.value.countryCode[0],
+      countryCode: selectedCountry.value.countryCode,
       countryCallingCode: selectedCountry.value.countryCallingCode,
     });
 
     if (preSelectedCountryCode.value) {
-      setselectedCountry(preSelectedCountryCode.value);
+      setSelectedCountry(preSelectedCountryCode.value);
     }
   });
 
@@ -158,5 +172,6 @@ export const useInputContactNumber = (
     formatContactNumber,
     handleUpdateModelValue,
     handlePopperState,
+    setSelectedCountry,
   };
 };

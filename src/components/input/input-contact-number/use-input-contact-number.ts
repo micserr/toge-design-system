@@ -36,8 +36,8 @@ export const useInputContactNumber = (
   const formattedValue = useVModel(props, 'modelValue', emit);
 
   const selectedCountry = ref({
-    countryCode: ['PH'],
-    countryCallingCode: ['63'],
+    countryCode: 'PH',
+    countryCallingCode: '63',
   });
 
   const popperState = ref(false);
@@ -51,8 +51,8 @@ export const useInputContactNumber = (
 
     if (countryCode && countryCallingCode) {
       selectedCountry.value = {
-        countryCode: [countryCode],
-        countryCallingCode: [countryCallingCode],
+        countryCode: countryCode,
+        countryCallingCode: countryCallingCode,
       };
 
       formatContactNumber();
@@ -81,10 +81,10 @@ export const useInputContactNumber = (
     }
   };
 
-  const handleSelectedCountryCode = (countryCode: string[]) => {
+  const handleSelectedCountryCode = (countryCode: string) => {
     selectedCountry.value = {
-      countryCode: [countryCode[0]],
-      countryCallingCode: [getCountryCallingCode(countryCode[0] as CountryCode)],
+      countryCode: countryCode,
+      countryCallingCode: getCountryCallingCode(countryCode as CountryCode),
     };
 
     emit('getContactNumberErrors', []);
@@ -92,8 +92,8 @@ export const useInputContactNumber = (
     formatContactNumber();
 
     emit('getSelectedCountryCallingCode', {
-      countryCode: selectedCountry.value.countryCode[0],
-      countryCallingCode: selectedCountry.value.countryCallingCode[0],
+      countryCode: selectedCountry.value.countryCode,
+      countryCallingCode: selectedCountry.value.countryCallingCode,
     });
   };
 
@@ -103,14 +103,14 @@ export const useInputContactNumber = (
     const normalizedNumber = formattedValue.value.replace(/\D/g, '');
 
     const phoneNumber = parsePhoneNumber(normalizedNumber, {
-      defaultCountry: selectedCountry.value.countryCode[0] as CountryCode,
+      defaultCountry: selectedCountry.value.countryCode as CountryCode,
       extract: false,
     });
 
     if (phoneNumber && phoneNumber.isValid()) {
       let formattedNumber = phoneNumber.formatInternational();
 
-      formattedNumber = formattedNumber.replace(`+${selectedCountry.value.countryCallingCode[0]} `, '');
+      formattedNumber = formattedNumber.replace(`+${selectedCountry.value.countryCallingCode} `, '');
 
       formattedValue.value = formattedNumber;
     } else {
@@ -140,7 +140,7 @@ export const useInputContactNumber = (
   onMounted(() => {
     emit('getSelectedCountryCallingCode', {
       countryCode: selectedCountry.value.countryCode[0],
-      countryCallingCode: selectedCountry.value.countryCallingCode[0],
+      countryCallingCode: selectedCountry.value.countryCallingCode,
     });
 
     if (preSelectedCountryCode.value) {

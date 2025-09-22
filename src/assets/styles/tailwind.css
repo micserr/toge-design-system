@@ -144,11 +144,11 @@
   #input-contact-number-country-dropdown,
   #input-currency-dropdown {
     #dropdown-wrapper[data-popper-placement='top-start'] {
-      @apply spr-ml-[-8px] spr-mt-[-4px];
+      @apply spr-ml-[-10px] spr-mt-[-6px];
     }
 
     #dropdown-wrapper[data-popper-placement='bottom-start'] {
-      @apply spr-ml-[-8px] spr-mt-[4px];
+      @apply spr-ml-[-10px] spr-mt-[6px];
     }
   }
   /* #endregion - Dropdown */

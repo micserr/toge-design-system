@@ -12,7 +12,7 @@
   >
     <template #prefix>
       <spr-dropdown
-        id="contact-number-country-dropdown"
+        id="input-contact-number-country-dropdown"
         v-model="selectedCountry.countryCode"
         class="[&>#dropdown-wrapper]:spr-my-1"
         :menu-list="COUNTRY_OPTIONS"
@@ -24,7 +24,7 @@
         @get-popper-state="handlePopperState"
       >
         <span :class="inputContactNumberClasses.countryCallingCodeClasses">
-          +{{ selectedCountry.countryCallingCode[0] }}
+          +{{ selectedCountry.countryCallingCode }}
           <icon v-if="!props.disabledCountryCallingCode" icon="ph:caret-down" width="16px" height="16px" />
         </span>
       </spr-dropdown>

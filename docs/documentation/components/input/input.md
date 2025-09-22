@@ -4,70 +4,39 @@ outline: 'deep'
 
 # Input
 
-Core text field for freeform user input. Specialized variants extend this base for specific semantics, validation, or UX affordances (search, email, contact number, etc.).
+UI element that allows users to enter and edit text or other data.
 
-## When To Use
+## Basic Usage
 
-Use the base `spr-input` when you need a generic editable field. Prefer a variant when:
-
-- Semantic validation or UX guidance is baked-in (e.g. email, password, URL)
-- Additional UI (country selector, currency selector) is required
-- Formatting / masking logic is specialized (contact number, currency)
-
-## Base Usage
-
-<spr-input v-model="model" label="Text Input" placeholder="Enter your username" />
+<spr-input v-model="inputValue.input1" label="Text Input" placeholder="Enter your username" />
 
 ```vue
 <template>
-  <spr-input v-model="model" label="Text Input" placeholder="Enter your username" />
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" />
 </template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const inputValue = ref('');
+</script>
 ```
 
-## Common Patterns
+## Pre Defined Values
 
-State & decoration features shared by variants:
+<spr-input v-model="inputValue.input2" label="Text Input" placeholder="Enter your username" />
 
-- Active, error, disabled states
-- Prefix / suffix (trailing) slots
-- Helper text & helperMessage slot
-- Character counting via `show-char-count`, `min-length`, `max-length`
+```vue
+<template>
+  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" />
+</template>
 
-## Variants
+<script lang="ts" setup>
+import { ref } from 'vue';
 
-| Variant        | Description                                             | Link                                                                                 |
-| -------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| Search         | Optimized for quick filtering & search affordance       | [/documentation/components/input/input-search](./input/input-search)                 |
-| Username       | Username field (future: uniqueness rules)               | [/documentation/components/input/input-username](./input/input-username)             |
-| Email          | Email-specific semantic input                           | [/documentation/components/input/input-email](./input/input-email)                   |
-| Password       | Masked entry with optional reveal                       | [/documentation/components/input/input-password](./input/input-password)             |
-| URL            | Enforces URL semantics                                  | [/documentation/components/input/input-url](./input/input-url)                       |
-| Contact Number | Country-aware number input + validation                 | [/documentation/components/input/input-contact-number](./input/input-contact-number) |
-| Dropdown Input | Display-only styled input used as dropdown trigger      | [/documentation/components/input/input-dropdown](./input/input-dropdown)             |
-| Currency       | Currency selection + formatting (code/symbol, decimals) | [/documentation/components/input/input-currency](./input/input-currency)             |
-
-## Advanced Slots
-
-| Slot            | Use Case                                         |
-| --------------- | ------------------------------------------------ |
-| `prefix`        | Icon or contextual identifier (e.g. search icon) |
-| `trailing`      | Units, inline labels, compact actions            |
-| `icon`          | Internal adornment (status / action)             |
-| `helperMessage` | Rich helper/error content (icons + text)         |
-
-## Accessibility Notes
-
-- Always pair `label` prop (or external `<label for>` association) for clarity.
-- Avoid placeholder-only labeling; placeholder should hint format, not supply meaning.
-- Use helper text to clarify constraints (length, allowed characters) instead of relying solely on validation errors.
-
-## See Also
-
-- Select Component (structured choices)
-- Textarea (multi-line content)
-- File Upload (non-text input)
-
-<!-- Removed earlier inline script; consolidated into single script at end -->
+const inputValue = ref('Sample Text');
+</script>
+```
 
 ## Active State
 
@@ -385,232 +354,6 @@ const inputValue = ref('');
 </script>
 ```
 
-## Input Types
-
-### Search Input
-
-<div>
-   <spr-input-search v-model="inputValue.input12" label="Search" placeholder="Search ..."/>
-</div>
-
-```vue
-<template>
-  <spr-input-search v-model="inputValueSearch" label="Search" placeholder="Search ..." />
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const inputValueSearch = ref('');
-</script>
-```
-
-### Username Input
-
-<div>
-  <spr-input-username v-model="inputValue.input13" label="Username" placeholder="Enter username" />
-</div>
-
-```vue
-<template>
-  <spr-input-username v-model="inputValueUsername" label="Username" placeholder="Enter username" />
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const inputValueUsername = ref('');
-</script>
-```
-
-### Email Input
-
-<div>
-  <spr-input-email v-model="inputValue.input14" label="Username" placeholder="Enter email" />
-</div>
-
-```vue
-<template>
-  <spr-input-email v-model="inputValueEmail" label="Username" placeholder="Enter email" />
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const inputValueEmail = ref('');
-</script>
-```
-
-### Password Input
-
-<div>
-  <form action="#">
-    <spr-input-password v-model="inputValue.input15" label="Password" placeholder="Enter password" />
-  </form>
-</div>
-
-```vue
-<template>
-  <spr-input-password v-model="inputValuePassword" label="Password" placeholder="Enter password" />
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const inputValuePassword = ref('');
-</script>
-```
-
-### URL Input
-
-<div>
-  <spr-input-url v-model="inputValue.input16" label="URL" placeholder="Enter url" />
-</div>
-
-```vue
-<template>
-  <spr-input-url v-model="inputValueURL" label="URL" placeholder="Enter url" />
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const inputValueURL = ref('');
-</script>
-```
-
-### Contact Number Input
-
-This component utilizes `libphonenumber-js` to parse and format the input on blur. Masking of contact number on change will be implemented in the future.
-
-<div>
-  <div class="spr-grid spr-gap-4">
-    <spr-input-contact-number 
-      v-model="inputValue.input17" 
-      label="Contact Number" 
-      @get-selected-country-calling-code="handleSelectedCountryCallingCode"
-      @get-contact-number-errors="handleContactNumberErrors" 
-    />
-    <spr-input-contact-number 
-      v-model="inputValue.input17" 
-      label="Disabled Calling Country Code" 
-      @get-selected-country-calling-code="handleSelectedCountryCallingCode"
-      @get-contact-number-errors="handleContactNumberErrors" 
-      disabledCountryCallingCode
-    />
-  </div>
-  <div class="spr-my-3 spr-p-4 spr-bg-blue-100">
-    <p>Model Output: {{ inputValue.input17 }}</p>
-    <p>Selected Country Code: {{ selectedCountryCode }}</p>
-    <p>Selected Country Calling Code: {{ selectedCountryCallingCode }}</p>
-    <p>Error Handling: {{ contactNumberErrors }}</p>
-    <p>Parsed International Number: {{ parseInternationalNumber }}</p>
-  </div>
-</div>
-
-::: info Importannt to note:
-Since the v-model output is not in an international format (e.g., +63XXXXXXXXXXX), you will need to create a separate function that parses the model output along with the selected country code.
-:::
-
-```vue
-<template>
-  <div>
-    <div class="spr-grid spr-gap-4">
-      <spr-input-contact-number
-        v-model="inputValueContactNumber"
-        label="Contact Number"
-        @get-selected-country-calling-code="handleSelectedCountryCallingCode"
-        @get-contact-number-errors="handleContactNumberErrors"
-      />
-      <spr-input-contact-number
-        v-model="inputValueContactNumber"
-        label="Disabled Calling Country Code"
-        @get-selected-country-calling-code="handleSelectedCountryCallingCode"
-        @get-contact-number-errors="handleContactNumberErrors"
-        disabledCountryCallingCode
-      />
-    </div>
-    <p>Model Output: {{ inputValueContactNumber }}</p>
-    <p>Selected Country Code: {{ selectedCountryCode }}</p>
-    <p>Selected Country Calling Code: {{ selectedCountryCallingCode }}</p>
-    <p>Error Handling: {{ contactNumberErrors }}</p>
-    <p>Parsed International Number: {{ parseInternationalNumber }}</p>
-  </div>
-
-  <script lang="ts" setup>
-    import { ref, computed } from 'vue';
-
-    const inputValueContactNumber = ref('');
-    const selectedCountryCode = ref('');
-    const selectedCountryCallingCode = ref('');
-    const contactNumberErrors = ref([]);
-
-    const handleSelectedCountryCallingCode = (value: string) => {
-      selectedCountryCode.value = value.countryCode;
-      selectedCountryCallingCode.value = value.countryCallingCode;
-    };
-
-    const handleContactNumberErrors = (errors: { title: string; message: string }[]) => {
-      contactNumberErrors.value = errors;
-    };
-
-    const handleContactNumberErrors = (errors: { title: string; message: string }[]) => {
-      contactNumberErrors.value = errors;
-    };
-
-    const parseInternationalNumber = computed(() => {
-      if (inputValueContactNumber.value) {
-        const formattedNumber = `+${selectedCountryCallingCode.value}${inputValueContactNumber.value.replace(/[^0-9]/g, '')}`;
-
-        return formattedNumber;
-      }
-
-      return '';
-    });
-  </script>
-</template>
-```
-
-#### Set Pre Selected Country Code
-
-<div class="spr-mt-3">
-  <spr-input-contact-number
-    v-model="inputValue.input18"
-    label="Contact Number"
-    pre-selected-country-code="US"
-  />
-</div>
-
-```vue
-<div class="spr-mt-3">
-  <spr-input-contact-number
-    v-model="inputValue"
-    label="Contact Number"
-    pre-selected-country-code="US"
-  />
-</div>
-```
-
-### Dropdown Input
-
-This is the one used in the dropdown component. If you want to implement a dropdown, you can refer to the <a href="/documentation/components/dropdown.html" target="_blank">Dropdown Component</a>.
-
-<div>
-  <spr-input-dropdown v-model="inputValue.input19" label="Dropdown Input" placeholder="Select an item ..." readonly />
-</div>
-
-```vue
-<template>
-  <spr-input-dropdown v-model="dropdownInput" label="Dropdown Input" placeholder="Select an item ..." readonly />
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const dropdownInput = ref('');
-</script>
-```
-
 ## API Reference
 
 ### Props
@@ -817,9 +560,6 @@ import SprInputUrl from "@/components/input/input-url/input-url.vue"
 import SprInputContactNumber from "@/components/input/input-contact-number/input-contact-number.vue"
 import SprInputDropdown from "@/components/input/input-dropdown/input-dropdown.vue"
 import SprLogo from "@/components/logo/logo.vue"
-
-// Base demo input model (formerly in a separate <script setup>)
-const model = ref('');
 
 const inputValue = ref({
   input1: '',

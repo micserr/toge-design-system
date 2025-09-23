@@ -8,55 +8,55 @@ UI element that allows users to enter and edit text or other data.
 
 ## Basic Usage
 
-<spr-input v-model="inputValue.input1" label="Text Input" placeholder="Enter your username" />
+<spr-input v-model="inputModels.basic" type="text" label="Text Input" placeholder="Enter your username"  />
 
 ```vue
 <template>
-  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" />
+  <spr-input v-model="inputModel" type="text" label="Text Input" placeholder="Enter your username" />
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const inputValue = ref('');
+const inputModel = ref('');
 </script>
 ```
 
 ## Pre Defined Values
 
-<spr-input v-model="inputValue.input2" label="Text Input" placeholder="Enter your username" />
+<spr-input v-model="inputModels.preDefinedValues" type="text" label="Text Input" placeholder="Enter your username" />
 
 ```vue
 <template>
-  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" />
+  <spr-input v-model="inputModel" type="text" label="Text Input" placeholder="Enter your username" />
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const inputValue = ref('Sample Text');
+const inputModel = ref('Sample Text');
 </script>
 ```
 
 ## Active State
 
-<spr-input v-model="inputValue.input3" label="Text Input" placeholder="Enter your username" active />
+<spr-input v-model="inputModels.activeState" type="text" label="Text Input" placeholder="Enter your username" active />
 
 ```vue
 <template>
-  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" active />
+  <spr-input v-model="inputModel" type="text" label="Text Input" placeholder="Enter your username" active />
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const inputValue = ref('');
+const inputModel = ref('');
 </script>
 ```
 
 ## Error State
 
-<spr-input v-model="inputValue.input4" label="Text Input" placeholder="Enter your username" :error="true">
+<spr-input v-model="inputModels.errorState" type="text" label="Text Input" placeholder="Enter your username" :error="true">
   <template #icon>
     <Icon icon="ph:warning-circle-fill" />
   </template>
@@ -64,7 +64,7 @@ const inputValue = ref('');
 
 ```vue
 <template>
-  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" :error="true">
+  <spr-input v-model="inputModel" type="text" label="Text Input" placeholder="Enter your username" :error="true">
     <template #icon>
       <Icon icon="ph:warning-circle-fill" />
     </template>
@@ -74,42 +74,47 @@ const inputValue = ref('');
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const inputValue = ref('');
+const inputModel = ref('');
 </script>
 ```
 
 ## Disabled State
 
-<spr-input v-model="inputValue.input5" label="Text Input" placeholder="Enter your username" :disabled="true" />
+<spr-input v-model="inputModels.disabledState" type="text" label="Text Input" placeholder="Enter your username" :disabled="true" />
 
 ```vue
 <template>
-  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" :disabled="true" />
+  <spr-input v-model="inputModel" type="text" label="Text Input" placeholder="Enter your username" :disabled="true" />
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const inputValue = ref('');
+const inputModel = ref('');
 </script>
 ```
 
-## Min Max Length & Character Count
+## Min-Max Character Count
 
 You can set minimum or maximum length limits by passing props `min-length` or `max-length` with the corresponding number value. Additionally, you can enable a character counter display in the bottom right of the input field with the `show-char-count` prop.
 
-<spr-input v-model="inputValue.input6" label="Text Input" placeholder="Enter your username" :min-length="0" :max-length="50" show-char-count />
-
-<p>Character Length: {{ inputValue.input6.length }}</p>
-
-<div class="spr-grid spr-gap-6">
+<div class="spr-grid spr-gap-3">
+  <spr-input 
+    v-model="inputModels.minMaxCharCount1" 
+    type="text" 
+    label="Text Input" 
+    placeholder="Enter your username" 
+    :min-length="0" 
+    :max-length="50" 
+    show-char-count 
+  />
   <spr-input
-    v-model="inputValue.input20" 
-    type="number"
-    label="Numeric Input" 
+    v-model="inputModels.minMaxCharCount2"
+    type="text"
+    label="Text Input" 
     placeholder="Enter a number" 
     :max-length="3"
-    helper-text="Max 3 digits allowed" 
+    helper-text="Max 3 character allowed" 
     display-helper
     show-char-count
   />
@@ -117,9 +122,9 @@ You can set minimum or maximum length limits by passing props `min-length` or `m
 
 ```vue
 <template>
-  <!-- Text input with character count -->
   <spr-input
-    v-model="inputValue"
+    v-model="inputModel"
+    type="text"
     label="Text Input"
     placeholder="Enter your username"
     :min-length="0"
@@ -127,14 +132,13 @@ You can set minimum or maximum length limits by passing props `min-length` or `m
     show-char-count
   />
 
-  <!-- Numeric input with character count and helper -->
   <spr-input
-    v-model="numericValue"
-    type="number"
-    label="Numeric Input"
+    v-model="inputModel"
+    type="text"
+    label="Text Input"
     placeholder="Enter a number"
     :max-length="3"
-    helper-text="Max 3 digits allowed"
+    helper-text="Max 3 character allowed"
     display-helper
     show-char-count
   />
@@ -143,14 +147,13 @@ You can set minimum or maximum length limits by passing props `min-length` or `m
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const inputValue = ref('');
-const numericValue = ref(0);
+const inputModel = ref('');
 </script>
 ```
 
 ## Prefix
 
-<spr-input v-model="inputValue.input7" label="Text Input" placeholder="Enter your username"  >
+<spr-input v-model="inputModels.prefix" type="text" label="Text Input" placeholder="Enter your username"  >
   <template #prefix>
     <Icon icon="ph:warning-circle-fill" />
   </template>
@@ -158,7 +161,7 @@ const numericValue = ref(0);
 
 ```vue
 <template>
-  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username">
+  <spr-input v-model="inputModel" type="text" label="Text Input" placeholder="Enter your username">
     <template #prefix>
       <Icon icon="ph:warning-circle-fill" />
     </template>
@@ -168,26 +171,26 @@ const numericValue = ref(0);
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const inputValue = ref('');
+const inputModel = ref('');
 </script>
 ```
 
 ## Trailing Label
 
 <div class="spr-flex spr-flex-col spr-gap-2">
-  <spr-input v-model="inputValue.input6" label="Offset xs" placeholder="00" offset-size="xs" type="number">
+  <spr-input v-model="inputModels.trailingLabel1" type="text" label="Offset xs" placeholder="00" offset-size="xs">
     <template #trailing>
       minutes
     </template>
   </spr-input>
 
-  <spr-input v-model="inputValue.input8" label="offset sm" placeholder="0000000" offset-size="sm" type="number">
+  <spr-input v-model="inputModels.trailingLabel2" type="text" label="offset sm" placeholder="0000000" offset-size="sm">
     <template #trailing>
       minutes
     </template>
   </spr-input>
 
-  <spr-input v-model="inputValue.input9" label="offset md" placeholder="Enter your name" offset-size="md" >
+  <spr-input v-model="inputModels.trailingLabel3" type="text" label="offset md" placeholder="Enter your name" offset-size="md" >
     <template #trailing>
       Name of the user
     </template>
@@ -197,17 +200,17 @@ const inputValue = ref('');
 ```vue
 <template>
   <!-- xs -->
-  <spr-input v-model="inputValueXS" label="Offset xs" placeholder="00" offset-size="xs" type="number">
+  <spr-input v-model="inputModel" type="text" label="Offset xs" placeholder="00" offset-size="xs">
     <template #trailing> minutes </template>
   </spr-input>
 
   <!-- sm -->
-  <spr-input v-model="inputValueSM" label="offset sm" placeholder="00" offset-size="sm" type="number">
+  <spr-input v-model="inputModel" type="text" label="offset sm" placeholder="00" offset-size="sm">
     <template #trailing> minutes </template>
   </spr-input>
 
   <!-- md -->
-  <spr-input v-model="inputValueMD" label="offset md" placeholder="Enter your name" offset-size="md">
+  <spr-input v-model="inputModel" type="text" label="offset md" placeholder="Enter your name" offset-size="md">
     <template #trailing> Name of the user </template>
   </spr-input>
 </template>
@@ -215,41 +218,7 @@ const inputValue = ref('');
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const inputValueXS = ref('');
-
-const inputValueSM = ref('');
-
-const inputValueMD = ref('');
-</script>
-```
-
-## Character Count Display
-
-You can display a character counter in the bottom right of the input field by setting the `show-char-count` prop to `true`. When used with `max-length`, the character count will display in the format "current/max" and will change color to indicate when the maximum length is reached.
-
-<spr-input 
-  v-model="inputValue.input21" 
-  label="Text with Character Count" 
-  placeholder="Type to see the counter" 
-  :max-length="20" 
-  show-char-count 
-/>
-
-```vue
-<template>
-  <spr-input
-    v-model="inputValue"
-    label="Text with Character Count"
-    placeholder="Type to see the counter"
-    :max-length="20"
-    show-char-count
-  />
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const inputValue = ref('');
+const inputModel = ref('');
 </script>
 ```
 
@@ -261,14 +230,16 @@ To display the helper message, set the `display-helper` prop to `true` and add t
 
 <div class="spr-grid spr-gap-6">
   <spr-input 
-    v-model="inputValue.input10" 
+    v-model="inputModels.helperMessage1"
+    type="text" 
     label="Text Input" 
     placeholder="Enter your text" 
     helper-text="This is a helper message" 
     display-helper 
   />
   <spr-input 
-    v-model="inputValue.input1" 
+    v-model="inputModels.helperMessage2" 
+    type="text"
     label="Text Input" 
     placeholder="Enter your text" 
     helper-text="This is an error message" 
@@ -281,7 +252,8 @@ To display the helper message, set the `display-helper` prop to `true` and add t
 ```vue
 <template>
   <spr-input
-    v-model="inputValue"
+    v-model="inputModel"
+    type="text"
     label="Text Input"
     placeholder="Enter your text"
     helper-text="This is a helper message"
@@ -289,7 +261,8 @@ To display the helper message, set the `display-helper` prop to `true` and add t
   />
 
   <spr-input
-    v-model="inputValue"
+    v-model="inputModel"
+    type="text"
     label="Text Input"
     placeholder="Enter your text"
     helper-text="This is an error message"
@@ -302,7 +275,7 @@ To display the helper message, set the `display-helper` prop to `true` and add t
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const inputValue = ref('');
+const inputModel = ref('');
 </script>
 ```
 
@@ -310,7 +283,8 @@ Alternatively, you can use the `helperMessage` slot to display a custom helper m
 
 <div class="spr-grid spr-gap-6">
   <spr-input 
-    v-model="inputValue.input11" 
+    v-model="inputModels.helperMessage3" 
+    type="text"
     label="Text Input" 
     placeholder="Enter your text" 
     display-helper
@@ -320,7 +294,8 @@ Alternatively, you can use the `helperMessage` slot to display a custom helper m
     </template>
   </spr-input>
   <spr-input 
-    v-model="inputValue.input1" 
+    v-model="inputModels.helperMessage4" 
+    type="text"
     label="Text Input" 
     placeholder="Enter your text" 
     display-helper 
@@ -335,11 +310,11 @@ Alternatively, you can use the `helperMessage` slot to display a custom helper m
 
 ```vue
 <template>
-  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your text">
+  <spr-input v-model="inputModel" type="text" label="Text Input" placeholder="Enter your text">
     <template #helperMessage> This is a helper message </template>
   </spr-input>
 
-  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your text" :error="true">
+  <spr-input v-model="inputModel" type="text" label="Text Input" placeholder="Enter your text" :error="true">
     <template #helperMessage>
       <icon icon="ph:warning-circle-fill" width="20px" height="20px" />
       <span>This is an error message</span>
@@ -350,7 +325,7 @@ Alternatively, you can use the `helperMessage` slot to display a custom helper m
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const inputValue = ref('');
+const inputModel = ref('');
 </script>
 ```
 
@@ -561,28 +536,22 @@ import SprInputUrl from "@/components/input/input-url/input-url.vue"
 import SprInputDropdown from "@/components/input/input-dropdown/input-dropdown.vue"
 import SprLogo from "@/components/logo/logo.vue"
 
-const inputValue = ref({
-  input1: '',
-  input2: 'Sample Text',
-  input3: '',
-  input4: '',
-  input5: '',
-  input6: '',
-  input7: '',
-  input8: '',
-  input9: '',
-  input10: '',
-  input11: '',
-  input12: '',
-  input13: '',
-  input14: '',
-  input15: '',
-  input16: '',
-  input17: '',
-  input18: '',
-  input19: '',
-  input20: 0,
-  input21: '',
+const inputModels = ref({
+  basic: '',
+  preDefinedValues: 'Sample Text',
+  activeState: '',
+  errorState: '',
+  disabledState: '',
+  minMaxCharCount1: '',
+  minMaxCharCount2: '',
+  prefix: '',
+  trailingLabel1: '',
+  trailingLabel2: '',
+  trailingLabel3: '',
+  helperMessage1: '',
+  helperMessage2: '',
+  helperMessage3: '',
+  helperMessage4: '',
 });
 
 const selectedCountryCode = ref('');

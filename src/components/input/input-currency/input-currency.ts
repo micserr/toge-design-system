@@ -1,101 +1,11 @@
 import type { ExtractPropTypes } from 'vue';
 
-import { countries } from 'countries-list';
-
-// Ambiguous symbols replaced by code for clarity
-const AMBIGUOUS_SYMBOLS = new Set(['$', '¥', '﷼', 'kr']);
-
-const deriveCurrencySymbol = (code: string, locale = 'en'): string => {
-  const formatter = new Intl.NumberFormat(locale, {
-    style: 'currency',
-    currency: code,
-    currencyDisplay: 'narrowSymbol',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
-
-  const f: unknown = formatter;
-
-  if (
-    f &&
-    typeof f === 'object' &&
-    'formatToParts' in f &&
-    typeof (f as { formatToParts: (n: number) => Intl.NumberFormatPart[] }).formatToParts === 'function'
-  ) {
-    const parts = (f as { formatToParts: (n: number) => Intl.NumberFormatPart[] }).formatToParts(1);
-    const currencyPart = parts.find((p) => p.type === 'currency');
-    if (currencyPart && currencyPart.value) {
-      return AMBIGUOUS_SYMBOLS.has(currencyPart.value) ? code : currencyPart.value;
-    }
-  }
-
-  return code;
-};
-
 export interface CurrencyOption {
   text: string;
   value: string;
   currency: string;
   symbol: string;
 }
-
-const currencyCodesSet = new Set<string>();
-const currencyCodeToName = new Map<string, string>();
-
-interface CountryLike {
-  name: string;
-  currency: string[] | undefined;
-}
-
-Object.values(countries).forEach((country) => {
-  const _country = country as CountryLike;
-  const codes: string[] = Array.isArray(_country.currency) ? _country.currency : [];
-
-  codes.forEach((code) => {
-    currencyCodesSet.add(code);
-
-    if (!currencyCodeToName.has(code)) {
-      currencyCodeToName.set(code, _country.name);
-    }
-  });
-});
-
-let displayNames: { of(code: string): string | undefined } | null = null;
-
-try {
-  const dn = (
-    Intl as unknown as { DisplayNames?: new (l: string[], o: { type: string }) => { of(code: string): string } }
-  ).DisplayNames;
-
-  if (dn) displayNames = new dn(['en'], { type: 'currency' });
-} catch {
-  displayNames = null;
-}
-
-const UNSORTED_CURRENCY_OPTIONS: CurrencyOption[] = Array.from(currencyCodesSet).map((code) => {
-  let displayName;
-
-  try {
-    displayName = displayNames ? displayNames.of(code) : null;
-  } catch {
-    displayName = null;
-  }
-
-  const fallbackName = currencyCodeToName.get(code) || code;
-  const name = typeof displayName === 'string' ? displayName : fallbackName;
-  const symbol = deriveCurrencySymbol(code);
-
-  return {
-    text: `${name} (${code})`,
-    value: code,
-    currency: code,
-    symbol,
-  };
-});
-
-export const CURRENCY_OPTIONS: CurrencyOption[] = [...UNSORTED_CURRENCY_OPTIONS].sort((a, b) =>
-  a.text.localeCompare(b.text, 'en', { sensitivity: 'base' }),
-);
 
 export const inputCurrencyPropTypes = {
   id: {

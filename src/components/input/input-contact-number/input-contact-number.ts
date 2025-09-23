@@ -23,9 +23,12 @@ export const COUNTRY_OPTIONS: CountryOption[] = getCountries().map((countryCode)
 });
 
 export const inputContactNumberPropTypes = {
+  id: {
+    type: String,
+    default: '',
+  },
   modelValue: {
     type: String,
-    // Provide default to avoid runtime issues when parent forgets binding
     default: '',
   },
   placeholder: {

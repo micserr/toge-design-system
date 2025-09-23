@@ -65,6 +65,10 @@ export const dropdownPropTypes = {
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
     default: 'bottom',
   },
+  distance: {
+    type: Number,
+    default: 6,
+  },
   groupItemsBy: {
     type: String as PropType<(typeof GROUPED_ITEMS_BY_TYPES)[number]>,
     validator: (value: (typeof GROUPED_ITEMS_BY_TYPES)[number] | undefined) => {

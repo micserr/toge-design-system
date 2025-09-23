@@ -11,9 +11,9 @@
   >
     <template #prefix>
       <spr-dropdown
-        id="input-currency-dropdown"
+        :id="dropdownId"
         v-model="selected.value"
-        class="[&>#dropdown-wrapper]:spr-my-1"
+        :class="inputCurrencyClasses.dropdownBaseClasses"
         :menu-list="CURRENCY_OPTIONS"
         placement="bottom-start"
         :width="!props.disabledCountryCurrency ? '45px' : '35px'"
@@ -22,7 +22,7 @@
         @update:model-value="handleSelectedCurrency"
         @get-popper-state="handlePopperState"
       >
-        <span :class="inputCurrencyClasses.countrySelectClasses">
+        <span :class="inputCurrencyClasses.dropdownWrappertClasses">
           <span>{{ displayToken }}</span>
           <icon v-if="!props.disabledCountryCurrency" icon="ph:caret-down" width="16px" height="16px" />
         </span>
@@ -44,6 +44,7 @@ const emit = defineEmits(inputCurrencyEmitTypes);
 
 const {
   inputCurrencyClasses,
+  dropdownId,
   modelValue,
   selected,
   displayToken,

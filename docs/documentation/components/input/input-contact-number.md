@@ -13,14 +13,15 @@ Uses `libphonenumber-js` internally for parsing and formatting on blur.
 
 <div class="spr-grid spr-gap-4">
   <spr-input-contact-number 
-    v-model="inputModel" 
+    id="input-contact-number-basic"
+    v-model="inputModels.basic" 
     label="Contact Number"  
     @get-selected-country-calling-code="handleSelectedCountryCallingCode"
     @get-contact-number-errors="handleContactNumberErrors" 
   />
 
   <div class="spr-p-4 spr-bg-blue-100">
-    <p>Model Output: {{ inputModel }}</p>
+    <p>Model Output: {{ inputModels.basic }}</p>
     <p>Selected Country Code: {{ selectedCountryCode }}</p>
     <p>Selected Country Calling Code: {{ selectedCountryCallingCode }}</p>
     <p>Error Handling: {{ contactNumberErrors }}</p>
@@ -30,7 +31,7 @@ Uses `libphonenumber-js` internally for parsing and formatting on blur.
 
 ```vue
 <template>
-  <spr-input-contact-number v-model="inputModel" label="Contact Number" />
+  <spr-input-contact-number id="input-contact-number-basic" v-model="inputModel" label="Contact Number" />
 </template>
 
 <script setup lang="ts">
@@ -42,7 +43,14 @@ const inputModel = ref('');
 
 ## Active State
 
-<spr-input-contact-number v-model="inputModel" label="Contact Number" active />
+<div>
+  <spr-input-contact-number 
+    id="input-contact-number-active-state" 
+    v-model="inputModels.activeState" 
+    label="Contact Number" 
+    active 
+  />
+</div>
 
 ```vue
 <template>
@@ -58,15 +66,22 @@ const inputModel = ref('');
 
 ## Error State
 
-<spr-input-contact-number v-model="inputModel" label="Contact Number" :error="true">
-  <template #icon>
-    <Icon icon="ph:warning-circle-fill" />
-  </template>
-</spr-input-contact-number>
+<div>
+  <spr-input-contact-number 
+    id="input-contact-number-error-state" 
+    v-model="inputModels.errorState" 
+    label="Contact Number" 
+    error
+  >
+    <template #icon>
+      <Icon icon="ph:warning-circle-fill" />
+    </template>
+  </spr-input-contact-number>
+</div>
 
 ```vue
 <template>
-  <spr-input-contact-number v-model="inputModel" label="Contact Number" :error="true">
+  <spr-input-contact-number v-model="inputModel" label="Contact Number" error>
     <template #icon>
       <Icon icon="ph:warning-circle-fill" />
     </template>
@@ -82,11 +97,18 @@ const inputModel = ref('');
 
 ## Disabled State
 
-<spr-input-contact-number v-model="inputModel" label="Contact Number" :disabled="true" />
+<div>
+  <spr-input-contact-number 
+    id="input-contact-number-disabled-state" 
+    v-model="inputModels.disabledState" 
+    label="Contact Number" 
+    disabled 
+  />
+</div>
 
 ```vue
 <template>
-  <spr-input-contact-number v-model="inputModel" label="Contact Number" :disabled="true" />
+  <spr-input-contact-number v-model="inputModel" label="Contact Number" disabled />
 </template>
 
 <script setup lang="ts">
@@ -98,7 +120,14 @@ const inputModel = ref('');
 
 ## Disabled Country Calling Code
 
-<spr-input-contact-number v-model="inputModel" label="Contact Number" :disabled-country-calling-code="true" />
+<div>
+  <spr-input-contact-number 
+    id="input-contact-number-disabled-country-calling-code" 
+    v-model="inputModels.disabledCountryCallingCode" 
+    label="Contact Number" 
+    :disabled-country-calling-code="true" 
+  />
+</div>
 
 ```vue
 <template>
@@ -145,7 +174,7 @@ const handleErrors = (val: { title: string; message: string }[]) => {
 
 ## Pre-Selected Country
 
-<spr-input-contact-number v-model="inputModel" label="Contact Number" pre-selected-country-code="US" />
+<spr-input-contact-number v-model="inputModels.preSelectedCountry" label="Contact Number" pre-selected-country-code="US" />
 
 ```vue
 <template>
@@ -165,6 +194,12 @@ const handleErrors = (val: { title: string; message: string }[]) => {
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td><code>id</code></td>
+      <td>The unique id for the component</td>
+      <td>String</td>
+      <td><code>''</code></td>
+    </tr>
     <tr>
       <td><code>v-model</code></td>
       <td>The current (unformatted) input value. Updates on user input and formatting events.</td>
@@ -239,7 +274,14 @@ import { Icon } from '@iconify/vue';
 
 import SprInputContactNumber from "@/components/input/input-contact-number/input-contact-number.vue"
 
-const inputModel = ref('');
+const inputModels = ref({
+  basic: '',
+  activeState: '',
+  errorState: '',
+  disabledState: '',
+  disabledCountryCallingCode: '',
+  preSelectedCountry: '',
+});
 
 const selectedCountryCode = ref('');
 const selectedCountryCallingCode = ref('');
@@ -255,8 +297,8 @@ const handleContactNumberErrors = (errors: { title: string; message: string }[])
 };
 
 const parseInternationalNumber = computed(() => {
-  if (inputModel.value) {
-    const formattedNumber = `+${selectedCountryCallingCode.value}${inputModel.value.replace(/[^0-9]/g, '')}`;
+  if (inputModels.value.basic) {
+    const formattedNumber = `+${selectedCountryCallingCode.value}${inputModels.value.basic.replace(/[^0-9]/g, '')}`;
 
     return formattedNumber;
   }

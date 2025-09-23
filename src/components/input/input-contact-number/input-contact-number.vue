@@ -12,9 +12,9 @@
   >
     <template #prefix>
       <spr-dropdown
-        id="input-contact-number-country-dropdown"
+        :id="dropdownId"
         v-model="selectedCountry.countryCode"
-        class="[&>#dropdown-wrapper]:spr-my-1"
+        :class="inputContactNumberClasses.dropdownBaseClasses"
         :menu-list="COUNTRY_OPTIONS"
         placement="bottom-start"
         :width="!props.disabledCountryCallingCode ? '45px' : '35px'"
@@ -23,10 +23,10 @@
         @update:model-value="handleSelectedCountryCode"
         @get-popper-state="handlePopperState"
       >
-        <span :class="inputContactNumberClasses.countryCallingCodeClasses">
+        <div :class="inputContactNumberClasses.dropdownWrappertClasses">
           <span>+{{ selectedCountry.countryCallingCode }}</span>
           <icon v-if="!props.disabledCountryCallingCode" icon="ph:caret-down" width="16px" height="16px" />
-        </span>
+        </div>
       </spr-dropdown>
     </template>
   </spr-input>
@@ -48,6 +48,7 @@ const emit = defineEmits(inputContactNumberEmitTypes);
 
 const {
   inputContactNumberClasses,
+  dropdownId,
   formattedValue,
   selectedCountry,
   popperState,

@@ -4,28 +4,41 @@ import classNames from 'classnames';
 import { CURRENCY_OPTIONS, type InputCurrencyPropTypes, type InputCurrencyEmitTypes } from './input-currency';
 
 interface InputCurrencyClasses {
-  countrySelectClasses: string;
-  currencySymbolClasses: string;
+  dropdownBaseClasses: string;
+  dropdownWrappertClasses: string;
 }
 
 export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupContext<InputCurrencyEmitTypes>['emit']) => {
-  const { preSelectedCurrency, disabledCountryCurrency, disabled, autoFormat, maxDecimals } = toRefs(props);
+  const { id, preSelectedCurrency, disabledCountryCurrency, disabled, autoFormat, maxDecimals } = toRefs(props);
 
   const inputCurrencyClasses: ComputedRef<InputCurrencyClasses> = computed(() => {
-    const baseInteractive = disabled.value
-      ? 'spr-cursor-not-allowed'
-      : disabledCountryCurrency.value
-        ? 'spr-cursor-default'
-        : 'spr-cursor-pointer';
+    const dropdownBaseClasses = classNames(
+      '[&_#dropdown-wrapper]:spr-my-1',
+      '[&_#dropdown-wrapper[data-popper-placement="bottom-start"]]:spr-ml-[-10px]',
+      '[&_#dropdown-wrapper[data-popper-placement="bottom-start"]]:spr-mt-[6px]',
+      '[&_#dropdown-wrapper[data-popper-placement="top-start"]]:spr-ml-[-10px]',
+      '[&_#dropdown-wrapper[data-popper-placement="top-start"]]:spr-mt-[-6px]',
+    );
+
+    const dropdownWrappertClasses = classNames(
+      'spr-font-weight-regular spr-font-size-200 spr-line-height-500 spr-letter-spacing-none spr-font-main',
+      'spr-flex spr-items-center spr-gap-size-spacing-5xs',
+      {
+        'spr-cursor-not-allowed': disabled.value,
+        'spr-cursor-default': disabledCountryCurrency.value && !disabled.value,
+        'spr-cursor-pointer': !disabledCountryCurrency.value && !disabled.value,
+      },
+    );
+
     return {
-      countrySelectClasses: classNames(
-        'spr-font-weight-regular spr-font-size-200 spr-line-height-500 spr-letter-spacing-none spr-font-main',
-        'spr-flex spr-items-center spr-gap-size-spacing-5xs',
-        baseInteractive,
-      ),
-      currencySymbolClasses: 'spr-font-weight-regular spr-font-size-200 spr-line-height-500 spr-font-main',
+      dropdownBaseClasses,
+      dropdownWrappertClasses,
     };
   });
+
+  // fallback random id if user does not provide one (stable per component instance)
+  const fallbackId = ref(`currency-${Math.random().toString(36).slice(2, 8)}-dropdown`);
+  const dropdownId = computed(() => (id.value ? `${id.value}-dropdown` : fallbackId.value));
 
   const modelValue = useVModel(props, 'modelValue', emit);
   const popperState = ref(false);
@@ -40,8 +53,10 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
   // Numeric representation (removing grouping separators) to emit numeric value
   const numericValue = computed<number | null>(() => {
     if (!modelValue.value) return null;
+
     const cleaned = String(modelValue.value).replace(/,/g, '');
     const parsed = Number(cleaned);
+
     return isNaN(parsed) ? null : parsed;
   });
 
@@ -80,12 +95,12 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     raw = raw.replace(/[^0-9.]/g, '');
 
     const firstDot = raw.indexOf('.');
+
     if (firstDot !== -1) {
       raw = raw.slice(0, firstDot + 1) + raw.slice(firstDot + 1).replace(/\./g, '');
     }
 
     // Do not truncate fractional digits while typing; allow user to input freely.
-
     if (sign && (raw === '' || raw === '0')) {
       modelValue.value = sign + raw;
     } else {
@@ -146,6 +161,7 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     handleSelectedCurrency(preSelectedCurrency.value);
     if (modelValue.value) {
       modelValue.value = formatDisplay(modelValue.value);
+
       if (numericValue.value !== null) emit('getNumericValue', numericValue.value);
     }
   });
@@ -154,6 +170,7 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
 
   return {
     inputCurrencyClasses,
+    dropdownId,
     modelValue,
     selected,
     popperState,

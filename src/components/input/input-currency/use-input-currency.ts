@@ -1,7 +1,15 @@
 import { ref, toRefs, computed, type ComputedRef, watch, onMounted, type SetupContext } from 'vue';
 import { useVModel } from '@vueuse/core';
+
+import { countries } from 'countries-list';
 import classNames from 'classnames';
-import { CURRENCY_OPTIONS, type InputCurrencyPropTypes, type InputCurrencyEmitTypes } from './input-currency';
+
+import { type InputCurrencyPropTypes, type InputCurrencyEmitTypes, type CurrencyOption } from './input-currency';
+
+interface CountryLike {
+  name: string;
+  currency: string[] | undefined;
+}
 
 interface InputCurrencyClasses {
   dropdownBaseClasses: string;
@@ -43,13 +51,6 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
   const modelValue = useVModel(props, 'modelValue', emit);
   const popperState = ref(false);
 
-  const initCurrency = () => {
-    const fallback = CURRENCY_OPTIONS.find((c) => c.value === 'USD') || CURRENCY_OPTIONS[0];
-    return CURRENCY_OPTIONS.find((c) => c.value === preSelectedCurrency.value) || fallback;
-  };
-
-  const selected = ref(initCurrency());
-
   // Numeric representation (removing grouping separators) to emit numeric value
   const numericValue = computed<number | null>(() => {
     if (!modelValue.value) return null;
@@ -60,7 +61,7 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     return isNaN(parsed) ? null : parsed;
   });
 
-  const formatDisplay = (raw: string): string => {
+  const handleFormatDisplay = (raw: string): string => {
     if (!autoFormat.value) return raw;
     if (!raw) return '';
 
@@ -114,7 +115,7 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     if (!modelValue.value) return;
 
     let out = modelValue.value;
-    out = formatDisplay(out); // Only format with grouping; no forced decimal padding
+    out = handleFormatDisplay(out); // Only format with grouping; no forced decimal padding
     modelValue.value = out;
 
     if (numericValue.value !== null) emit('getNumericValue', numericValue.value);
@@ -138,7 +139,7 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
       return;
     }
 
-    const found = CURRENCY_OPTIONS.find((c) => c.value === currencyCode);
+    const found = currencyOptions.find((c) => c.value === currencyCode);
 
     if (found) {
       selected.value = { ...found };
@@ -153,6 +154,127 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     popperState.value = state;
   };
 
+  const dropdownDisplayText = computed(() => (props.displayAsCode ? selected.value.currency : selected.value.symbol));
+
+  // #region - Set Currency Options
+  // Collect currency codes first so we can derive ambiguity and symbols deterministically.
+  const currencyCodesSet = new Set<string>();
+  const currencyCodeToName = new Map<string, string>();
+
+  Object.values(countries).forEach((country) => {
+    const _country = country as CountryLike;
+    const codes: string[] = Array.isArray(_country.currency) ? _country.currency : [];
+
+    codes.forEach((code) => {
+      currencyCodesSet.add(code);
+      if (!currencyCodeToName.has(code)) {
+        currencyCodeToName.set(code, _country.name);
+      }
+    });
+  });
+
+  // Dynamically detect ambiguous narrow symbols so we fall back to currency code when a symbol represents >1 code.
+  const detectAmbiguousSymbols = (codes: string[], locale = 'en'): Set<string> => {
+    const symbolToCodes = new Map<string, Set<string>>();
+    for (const code of codes) {
+      try {
+        const parts = new Intl.NumberFormat(locale, {
+          style: 'currency',
+          currency: code,
+          currencyDisplay: 'narrowSymbol',
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0,
+        }).formatToParts(1);
+        const sym = parts.find((p) => p.type === 'currency')?.value;
+
+        if (!sym) continue;
+        if (!symbolToCodes.has(sym)) symbolToCodes.set(sym, new Set());
+
+        symbolToCodes.get(sym)!.add(code);
+      } catch {
+        // Ignore unsupported currency
+      }
+    }
+
+    const ambiguous = new Set<string>();
+
+    for (const [sym, set] of symbolToCodes.entries()) {
+      if (set.size > 1) ambiguous.add(sym);
+    }
+
+    if (ambiguous.size === 0) ['$', '¥', '﷼', 'kr'].forEach((s) => ambiguous.add(s));
+
+    return ambiguous;
+  };
+
+  const AMBIGUOUS_SYMBOLS: Set<string> = detectAmbiguousSymbols(Array.from(currencyCodesSet));
+
+  const deriveCurrencySymbol = (code: string, locale = 'en'): string => {
+    const formatter = new Intl.NumberFormat(locale, {
+      style: 'currency',
+      currency: code,
+      currencyDisplay: 'narrowSymbol',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
+    const parts = formatter.formatToParts(1);
+    const currencyPart = parts.find((p) => p.type === 'currency');
+
+    if (currencyPart && currencyPart.value) {
+      return AMBIGUOUS_SYMBOLS.has(currencyPart.value) ? code : currencyPart.value;
+    }
+
+    return code;
+  };
+
+  let displayNames: { of(code: string): string | undefined } | null = null;
+
+  try {
+    const dn = (
+      Intl as unknown as { DisplayNames?: new (l: string[], o: { type: string }) => { of(code: string): string } }
+    ).DisplayNames;
+
+    if (dn) displayNames = new dn(['en'], { type: 'currency' });
+  } catch {
+    displayNames = null;
+  }
+
+  // Build UNSORTED_CURRENCY_OPTIONS now that we have supporting data & helpers.
+  const UNSORTED_CURRENCY_OPTIONS: CurrencyOption[] = Array.from(currencyCodesSet).map((code) => {
+    let displayName: string | null | undefined;
+
+    try {
+      displayName = displayNames ? displayNames.of(code) : null;
+    } catch {
+      displayName = null;
+    }
+
+    const fallbackName = currencyCodeToName.get(code) || code;
+    const name = typeof displayName === 'string' ? displayName : fallbackName;
+    const symbol = deriveCurrencySymbol(code);
+
+    return {
+      text: `${name} (${code})`,
+      value: code,
+      currency: code,
+      symbol,
+    };
+  });
+
+  const currencyOptions: CurrencyOption[] = [...UNSORTED_CURRENCY_OPTIONS].sort((a, b) =>
+    a.text.localeCompare(b.text, 'en', { sensitivity: 'base' }),
+  );
+
+  // Initialization of selected currency must occur AFTER currencyOptions is defined.
+  const initCurrency = () => {
+    const fallback = currencyOptions.find((c) => c.value === 'USD') || currencyOptions[0];
+
+    return currencyOptions.find((c) => c.value === preSelectedCurrency.value) || fallback;
+  };
+
+  const selected = ref(initCurrency());
+  // #endregion - Set Currency Options
+
   watch(preSelectedCurrency, (code) => {
     if (code) handleSelectedCurrency(code);
   });
@@ -160,25 +282,23 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
   onMounted(() => {
     handleSelectedCurrency(preSelectedCurrency.value);
     if (modelValue.value) {
-      modelValue.value = formatDisplay(modelValue.value);
+      modelValue.value = handleFormatDisplay(modelValue.value);
 
       if (numericValue.value !== null) emit('getNumericValue', numericValue.value);
     }
   });
 
-  const displayToken = computed(() => (props.displayAsCode ? selected.value.currency : selected.value.symbol));
-
   return {
     inputCurrencyClasses,
     dropdownId,
     modelValue,
+    currencyOptions,
     selected,
+    dropdownDisplayText,
     popperState,
-    displayToken,
     handleCurrencyInput,
     handleBlur,
     handleSelectedCurrency,
     handlePopperState,
-    formatDisplay,
   };
 };

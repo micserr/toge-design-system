@@ -2,7 +2,7 @@
   <Menu
     v-model:shown="dropdownPopperState"
     aria-id="dropdown-wrapper"
-    distance="4"
+    :distance="props.distance"
     :placement="props.placement"
     :triggers="props.triggers"
     :popper-triggers="props.popperTriggers"

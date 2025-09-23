@@ -8,11 +8,11 @@ Currency input with selectable currency code and formatting (thousand separators
 
 ## Basic Usage
 
-<spr-input-currency v-model="inputModel" label="Amount" />
+<spr-input-currency id="input-currency-basic" v-model="inputModels.basic" label="Currency" />
 
 ```vue
 <template>
-  <spr-input-currency v-model="inputModel" label="Amount" />
+  <spr-input-currency id="input-currency-basic" v-model="inputModel" label="Currency" />
 </template>
 
 <script setup lang="ts">
@@ -24,11 +24,11 @@ const inputModel = ref('');
 
 ## Active State
 
-<spr-input-currency v-model="inputModel" label="Amount" active />
+<spr-input-currency id="input-currency-active-state" v-model="inputModels.activeState" label="Currency" active />
 
 ```vue
 <template>
-  <spr-input-currency v-model="inputModel" label="Amount" active />
+  <spr-input-currency id="input-currency-active-state" v-model="inputModel" label="Currency" active />
 </template>
 
 <script setup lang="ts">
@@ -40,7 +40,7 @@ const inputModel = ref('');
 
 ## Error State
 
-<spr-input-currency v-model="inputModel" label="Amount" :error="true">
+<spr-input-currency id="input-currency-error-state" v-model="inputModels.errorState" label="Currency" error>
   <template #icon>
     <Icon icon="ph:warning-circle-fill" />
   </template>
@@ -48,7 +48,7 @@ const inputModel = ref('');
 
 ```vue
 <template>
-  <spr-input-currency v-model="inputModel" label="Amount" :error="true">
+  <spr-input-currency v-model="inputModel" label="Currency" error>
     <template #icon>
       <Icon icon="ph:warning-circle-fill" />
     </template>
@@ -64,11 +64,11 @@ const inputModel = ref('');
 
 ## Disabled State
 
-<spr-input-currency v-model="inputModel" label="Amount" :disabled="true" />
+<spr-input-currency v-model="inputModels.disabledState" label="Currency" :disabled="true" />
 
 ```vue
 <template>
-  <spr-input-currency v-model="inputModel" label="Amount" :disabled="true" />
+  <spr-input-currency v-model="inputModel" label="Currency" :disabled="true" />
 </template>
 
 <script setup lang="ts">
@@ -80,11 +80,11 @@ const inputModel = ref('');
 
 ## Disabled Country Currency
 
-<spr-input-currency v-model="inputModel" label="Amount" :disabled-country-currency="true" />
+<spr-input-currency v-model="inputModels.disabledCountryCurrency" label="Currency" :disabled-country-currency="true" />
 
-````vue
+```vue
 <template>
-  <spr-input-currency v-model="inputModel" label="Amount" :disabled-country-currency="true" />
+  <spr-input-currency v-model="inputModel" label="Currency" :disabled-country-currency="true" />
 </template>
 
 <script setup lang="ts">
@@ -92,12 +92,23 @@ import { ref } from 'vue';
 
 const inputModel = ref('');
 </script>
+```
 
-## Show Currency Code vs Symbol ```vue
+## Use Currency Code or Symbol
+
+The default of the currency component is to display the currency code (e.g., USD, EUR). You can switch to display the currency symbol (e.g., $, €) by setting the `:display-as-code` prop to `false`.
+
+<div class="spr-grid spr-gap-3">
+  <spr-input-currency v-model="inputModels.currencyCodeSymbol1" label="Currency" :display-as-code="true" />
+
+  <spr-input-currency v-model="inputModels.currencyCodeSymbol2" label="Currency" :display-as-code="false" />
+</div>
+
+```vue
 <template>
-  <spr-input-currency v-model="inputModel" label="Amount" :display-as-code="true" />
+  <spr-input-currency v-model="inputModel" label="Currency" :display-as-code="true" />
 
-  <spr-input-currency v-model="inputModel" label="Amount" :display-as-code="false" />
+  <spr-input-currency v-model="inputModel" label="Currency" :display-as-code="false" />
 </template>
 
 <script setup lang="ts">
@@ -105,19 +116,21 @@ import { ref } from 'vue';
 
 const inputModel = ref('');
 </script>
-````
+```
+
+## Get Selected Country Codes
 
 ## Pre-Selected Currency
 
 ```vue
 <template>
-  <spr-input-currency v-model="inputModel" label="Amount" pre-selected-currency="USD" />
+  <spr-input-currency v-model="inputModel" label="Currency" pre-selected-currency="USD" />
 </template>
 ```
 
-## Numeric Value Emit
+## Numeric Value Emit Emits a parsed numeric value (number) stripped of grouping characters on blur and on mount (if
 
-Emits a parsed numeric value (number) stripped of grouping characters on blur and on mount (if an initial value exists) via `@get-numeric-value`.
+an initial value exists) via `@get-numeric-value`.
 
 ```vue
 <template>
@@ -138,7 +151,15 @@ import { ref, computed } from 'vue';
 
 import { Icon } from '@iconify/vue';
 
-import SprInputCurrency from "@/components/input/input-currency/input-currency.vue"
+import SprInputCurrency from '@/components/input/input-currency/input-currency.vue';
 
-const inputModel = ref('');
+const inputModels = ref({
+  basic: '',
+  activeState: '',
+  errorState: '',
+  disabledState: '',
+  disabledCountryCurrency: '',
+  currencyCodeSymbol1: '',
+  currencyCodeSymbol2: '',
+});
 </script>

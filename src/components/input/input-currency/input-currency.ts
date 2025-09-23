@@ -98,6 +98,10 @@ export const CURRENCY_OPTIONS: CurrencyOption[] = [...UNSORTED_CURRENCY_OPTIONS]
 );
 
 export const inputCurrencyPropTypes = {
+  id: {
+    type: String,
+    default: '',
+  },
   modelValue: {
     type: String,
     default: '',

@@ -8,17 +8,26 @@ import parsePhoneNumber, { getCountries, getCountryCallingCode, CountryCode } fr
 import { type InputContactNumberEmitTypes, type InputContactNumberPropTypes } from './input-contact-number';
 
 interface InputContactNumberClasses {
-  countryCallingCodeClasses: string;
+  dropdownBaseClasses: string;
+  dropdownWrappertClasses: string;
 }
 
 export const useInputContactNumber = (
   props: InputContactNumberPropTypes,
   emit: SetupContext<InputContactNumberEmitTypes>['emit'],
 ) => {
-  const { preSelectedCountryCode, disabledCountryCallingCode, disabled } = toRefs(props);
+  const { id, preSelectedCountryCode, disabledCountryCallingCode, disabled } = toRefs(props);
 
   const inputContactNumberClasses: ComputedRef<InputContactNumberClasses> = computed(() => {
-    const countryCallingCodeClasses = classNames(
+    const dropdownBaseClasses = classNames(
+      '[&_#dropdown-wrapper]:spr-my-1',
+      '[&_#dropdown-wrapper[data-popper-placement="bottom-start"]]:spr-ml-[-10px]',
+      '[&_#dropdown-wrapper[data-popper-placement="bottom-start"]]:spr-mt-[6px]',
+      '[&_#dropdown-wrapper[data-popper-placement="top-start"]]:spr-ml-[-10px]',
+      '[&_#dropdown-wrapper[data-popper-placement="top-start"]]:spr-mt-[-6px]',
+    );
+
+    const dropdownWrappertClasses = classNames(
       'spr-font-weight-regular spr-font-size-200 spr-line-height-500 spr-letter-spacing-none spr-font-main',
       'spr-flex spr-items-center spr-gap-size-spacing-5xs',
       {
@@ -29,9 +38,14 @@ export const useInputContactNumber = (
     );
 
     return {
-      countryCallingCodeClasses,
+      dropdownBaseClasses,
+      dropdownWrappertClasses,
     };
   });
+
+  // fallback random id if user does not provide one (stable per component instance)
+  const fallbackId = ref(`currency-${Math.random().toString(36).slice(2, 8)}-dropdown`);
+  const dropdownId = computed(() => (id.value ? `${id.value}-dropdown` : fallbackId.value));
 
   const formattedValue = useVModel(props, 'modelValue', emit);
 
@@ -108,6 +122,7 @@ export const useInputContactNumber = (
     const normalizedNumber = hasPlus ? `+${original.replace(/[^0-9]/g, '')}` : original.replace(/\D/g, '');
 
     let phoneNumber;
+
     try {
       phoneNumber = hasPlus
         ? parsePhoneNumber(normalizedNumber)
@@ -121,11 +136,15 @@ export const useInputContactNumber = (
 
     if (phoneNumber && phoneNumber.isValid()) {
       let formattedNumber = phoneNumber.formatInternational();
+
       const prefix = `+${selectedCountry.value.countryCallingCode} `;
+
       if (formattedNumber.startsWith(prefix)) {
         formattedNumber = formattedNumber.slice(prefix.length);
       }
+
       formattedValue.value = formattedNumber;
+
       emit('getContactNumberErrors', []);
     } else {
       emit('getContactNumberErrors', [
@@ -164,6 +183,7 @@ export const useInputContactNumber = (
 
   return {
     inputContactNumberClasses,
+    dropdownId,
     formattedValue,
     selectedCountry,
     popperState,

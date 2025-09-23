@@ -11,27 +11,11 @@ Uses `libphonenumber-js` internally for parsing and formatting on blur.
 
 ## Basic Usage
 
-<div class="spr-grid spr-gap-4">
-  <spr-input-contact-number 
-    id="input-contact-number-basic"
-    v-model="inputModels.basic" 
-    label="Contact Number"  
-    @get-selected-country-calling-code="handleSelectedCountryCallingCode"
-    @get-contact-number-errors="handleContactNumberErrors" 
-  />
-
-  <div class="spr-p-4 spr-bg-blue-100">
-    <p>Model Output: {{ inputModels.basic }}</p>
-    <p>Selected Country Code: {{ selectedCountryCode }}</p>
-    <p>Selected Country Calling Code: {{ selectedCountryCallingCode }}</p>
-    <p>Error Handling: {{ contactNumberErrors }}</p>
-    <p>Parsed International Number: {{ parseInternationalNumber }}</p>
-  </div>
-</div>
+<spr-input-contact-number id="input-contact-number-basic" v-model="inputModels.basic" label="Input Contact Number"/>
 
 ```vue
 <template>
-  <spr-input-contact-number id="input-contact-number-basic" v-model="inputModel" label="Contact Number" />
+  <spr-input-contact-number id="input-contact-number-basic" v-model="inputModel" label="Input Contact Number" />
 </template>
 
 <script setup lang="ts">
@@ -47,14 +31,19 @@ const inputModel = ref('');
   <spr-input-contact-number 
     id="input-contact-number-active-state" 
     v-model="inputModels.activeState" 
-    label="Contact Number" 
+    label="Input Contact Number" 
     active 
   />
 </div>
 
 ```vue
 <template>
-  <spr-input-contact-number v-model="inputModel" label="Contact Number" active />
+  <spr-input-contact-number
+    id="input-contact-number-active-state"
+    v-model="inputModel"
+    label="Input Contact Number"
+    active
+  />
 </template>
 
 <script setup lang="ts">
@@ -70,7 +59,7 @@ const inputModel = ref('');
   <spr-input-contact-number 
     id="input-contact-number-error-state" 
     v-model="inputModels.errorState" 
-    label="Contact Number" 
+    label="Input Contact Number" 
     error
   >
     <template #icon>
@@ -81,7 +70,12 @@ const inputModel = ref('');
 
 ```vue
 <template>
-  <spr-input-contact-number v-model="inputModel" label="Contact Number" error>
+  <spr-input-contact-number
+    id="input-contact-number-error-state"
+    v-model="inputModel"
+    label="Input Contact Number"
+    error
+  >
     <template #icon>
       <Icon icon="ph:warning-circle-fill" />
     </template>
@@ -101,14 +95,19 @@ const inputModel = ref('');
   <spr-input-contact-number 
     id="input-contact-number-disabled-state" 
     v-model="inputModels.disabledState" 
-    label="Contact Number" 
+    label="Input Contact Number" 
     disabled 
   />
 </div>
 
 ```vue
 <template>
-  <spr-input-contact-number v-model="inputModel" label="Contact Number" disabled />
+  <spr-input-contact-number
+    id="input-contact-number-disabled-state"
+    v-model="inputModel"
+    label="Input Contact Number"
+    disabled
+  />
 </template>
 
 <script setup lang="ts">
@@ -124,14 +123,19 @@ const inputModel = ref('');
   <spr-input-contact-number 
     id="input-contact-number-disabled-country-calling-code" 
     v-model="inputModels.disabledCountryCallingCode" 
-    label="Contact Number" 
+    label="Input Contact Number" 
     :disabled-country-calling-code="true" 
   />
 </div>
 
 ```vue
 <template>
-  <spr-input-contact-number v-model="inputModel" label="Contact Number" :disabled-country-calling-code="true" />
+  <spr-input-contact-number
+    id="input-contact-number-disabled-country-calling-code"
+    v-model="inputModel"
+    label="Input Contact Number"
+    :disabled-country-calling-code="true"
+  />
 </template>
 
 <script setup lang="ts">
@@ -143,11 +147,30 @@ const inputModel = ref('');
 
 ## Get Selected Country Codes
 
+<div class="spr-grid spr-gap-4">
+  <spr-input-contact-number 
+    id="input-contact-number-selected-country-codes"
+    v-model="inputModels.selectedCountryCodes" 
+    label="Input Contact Number"  
+    @get-selected-country-calling-code="handleSelectedCountryCallingCode"
+    @get-contact-number-errors="handleContactNumberErrors" 
+  />
+
+  <div class="spr-p-4 spr-bg-blue-100">
+    <p>Model Output: {{ inputModels.selectedCountryCodes }}</p>
+    <p>Selected Country Code: {{ selectedCountryCode }}</p>
+    <p>Selected Country Calling Code: {{ selectedCountryCallingCode }}</p>
+    <p>Error Handling: {{ contactNumberErrors }}</p>
+    <p>Parsed International Number: {{ parseInternationalNumber }}</p>
+  </div>
+</div>
+
 ```vue
 <template>
   <spr-input-contact-number
+    id="input-contact-number-selected-country-codes"
     v-model="inputModel"
-    label="Contact Number"
+    label="Input Contact Number"
     @get-selected-country-calling-code="handleCodes"
     @get-contact-number-errors="handleErrors"
   />
@@ -174,11 +197,23 @@ const handleErrors = (val: { title: string; message: string }[]) => {
 
 ## Pre-Selected Country
 
-<spr-input-contact-number v-model="inputModels.preSelectedCountry" label="Contact Number" pre-selected-country-code="US" />
+<div>
+  <spr-input-contact-number 
+    id="input-contact-number-preselected-country" 
+    v-model="inputModels.preSelectedCountry" 
+    label="Input Contact Number" 
+    pre-selected-country-code="US" 
+  />
+</div>
 
 ```vue
 <template>
-  <spr-input-contact-number v-model="inputModel" label="Contact Number" pre-selected-country-code="US" />
+  <spr-input-contact-number
+    id="input-contact-number-preselected-country"
+    v-model="inputModel"
+    label="Input Contact Number"
+    pre-selected-country-code="US"
+  />
 </template>
 ```
 
@@ -233,6 +268,11 @@ const handleErrors = (val: { title: string; message: string }[]) => {
   </tbody>
 </table>
 
+<p class="spr-mt-4 spr-text-300">
+For additional shared props, events, slots, and behavior inherited from the base input component, please refer to the
+<a href="/documentation/components/input/input.html#api-reference">Input Component API Reference</a>.
+</p>
+
 ### Events
 
 <table>
@@ -280,6 +320,7 @@ const inputModels = ref({
   errorState: '',
   disabledState: '',
   disabledCountryCallingCode: '',
+  selectedCountryCodes: '',
   preSelectedCountry: '',
 });
 

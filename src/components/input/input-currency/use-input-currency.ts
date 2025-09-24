@@ -17,7 +17,16 @@ interface InputCurrencyClasses {
 }
 
 export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupContext<InputCurrencyEmitTypes>['emit']) => {
-  const { id, preSelectedCurrency, disabledCountryCurrency, disabled, autoFormat, maxDecimals } = toRefs(props);
+  const {
+    id,
+    preSelectedCurrency,
+    disabledCountryCurrency,
+    disabled,
+    autoFormat,
+    maxDecimals,
+    minDecimals,
+    disableRounding,
+  } = toRefs(props);
 
   const inputCurrencyClasses: ComputedRef<InputCurrencyClasses> = computed(() => {
     const dropdownBaseClasses = classNames(
@@ -51,49 +60,219 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
   const modelValue = useVModel(props, 'modelValue', emit);
   const popperState = ref(false);
 
-  // Numeric representation (removing grouping separators) to emit numeric value
+  // Locale mapping per currency (extend as needed). Fallback 'en-US'.
+  const currencyLocaleMap: Record<string, string> = {
+    EUR: 'de-DE',
+    USD: 'en-US',
+    GBP: 'en-GB',
+    JPY: 'ja-JP',
+    PHP: 'en-PH',
+    AUD: 'en-AU',
+    CAD: 'en-CA',
+    CHF: 'de-CH',
+  };
+
+  const currentLocale = computed(() => currencyLocaleMap[selected.value.currency] || 'en-US');
+
+  const buildNumberFormat = (minFrac: number, maxFrac: number) =>
+    new Intl.NumberFormat(currentLocale.value, {
+      style: 'currency',
+      currency: selected.value.currency,
+      currencyDisplay: 'symbol',
+      minimumFractionDigits: minFrac,
+      maximumFractionDigits: maxFrac,
+    });
+
+  const localeSeparators = computed(() => {
+    try {
+      const fmt = buildNumberFormat(0, 2);
+      const parts = fmt.formatToParts(1234.5);
+      const group = parts.find((p) => p.type === 'group')?.value || ',';
+      const decimal = parts.find((p) => p.type === 'decimal')?.value || '.';
+      return { group, decimal };
+    } catch {
+      return { group: ',', decimal: '.' };
+    }
+  });
+
+  // Numeric representation – removes locale grouping & normalizes decimal to '.'
   const numericValue = computed<number | null>(() => {
     if (!modelValue.value) return null;
-
-    const cleaned = String(modelValue.value).replace(/,/g, '');
+    const { group, decimal } = localeSeparators.value;
+    const escapedGroup = group.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+    const escapedDec = decimal.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+    let cleaned = String(modelValue.value)
+      .replace(new RegExp(escapedGroup, 'g'), '')
+      .replace(new RegExp(escapedDec, 'g'), '.');
+    cleaned = cleaned.replace(/[^0-9.-]/g, '');
     const parsed = Number(cleaned);
-
     return isNaN(parsed) ? null : parsed;
   });
 
+  const rawNumericString = computed<string | null>(() => {
+    if (!modelValue.value) return null;
+    const { group, decimal } = localeSeparators.value;
+    const escapedGroup = group.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+    const escapedDec = decimal.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+    let cleaned = String(modelValue.value)
+      .replace(new RegExp(escapedGroup, 'g'), '')
+      .replace(new RegExp(escapedDec, 'g'), '.');
+    cleaned = cleaned.replace(/[^0-9.-]/g, '');
+    return cleaned || null;
+  });
+
+  /**
+   * Derive the default fraction digits for a currency using Intl metadata.
+   * Falls back to 2 when unavailable.
+   */
+  const getCurrencyFractionDigits = (code: string): number => {
+    try {
+      const fmt = new Intl.NumberFormat('en', { style: 'currency', currency: code });
+      const resolved = fmt.resolvedOptions();
+      if (resolved && typeof resolved.minimumFractionDigits === 'number') {
+        return resolved.minimumFractionDigits;
+      }
+    } catch {
+      /* ignore */
+    }
+    return 2;
+  };
+
+  const currentCurrencyFractionDigits = computed(() => getCurrencyFractionDigits(selected.value.currency));
+
+  const effectiveMinDecimals = computed(() => {
+    // Minimum is the greater of user minDecimals and native fraction digits lower bound (native min == native max in most cases)
+    const userMin = Math.min(Math.max(0, minDecimals.value), 6);
+    return Math.min(6, Math.max(0, Math.min(userMin, maxDecimals.value)));
+  });
+
+  const effectiveMaxDecimals = computed(() => {
+    // Use native fraction digits as baseline but allow user to reduce (rare) or extend (not beyond 6)
+    const native = currentCurrencyFractionDigits.value; // e.g. JPY => 0, USD => 2
+    const userMax = Math.min(Math.max(0, maxDecimals.value), 6);
+    // If user sets max below native, keep native to respect currency standard.
+    const adjustedMax = Math.max(native, userMax);
+    // Ensure max >= min
+    return Math.max(adjustedMax, effectiveMinDecimals.value);
+  });
+
+  const clampFractionDigits = (frac: string): string => frac.slice(0, effectiveMaxDecimals.value);
+
+  const formatNumberForBlur = (value: number): string => {
+    const fmt = buildNumberFormat(effectiveMinDecimals.value, effectiveMaxDecimals.value);
+    // Remove currency symbol from formatted output (component is responsible only for numeric part in input)
+    const parts = fmt.formatToParts(value).filter((p) => p.type !== 'currency');
+    return parts
+      .map((p) => p.value)
+      .join('')
+      .replace(/\s+/g, '');
+  };
+
+  /**
+   * Formats a numeric string (no currency symbol) applying grouping and truncating decimals but not padding.
+   * Used while user is still interacting (on input) if autoFormat.
+   */
   const handleFormatDisplay = (raw: string): string => {
     if (!autoFormat.value) return raw;
     if (!raw) return '';
+    // Detect user decimal char as either '.' or last ','
+    let work = raw;
+    // Strip spaces
+    work = work.replace(/\s+/g, '');
+    // Allow only digits, separators, minus
+    work = work.replace(/[^0-9,.-]/g, '');
+    let sign = '';
+    if (work.startsWith('-')) {
+      sign = '-';
+      work = work.slice(1);
+    }
+    const lastDot = work.lastIndexOf('.');
+    const lastComma = work.lastIndexOf(',');
+    const lastSep = Math.max(lastDot, lastComma);
+    let intPart: string;
+    let fracPart = '';
+    if (lastSep !== -1) {
+      intPart = work.slice(0, lastSep).replace(/[.,]/g, '');
+      fracPart = work.slice(lastSep + 1);
+    } else {
+      intPart = work.replace(/[.,]/g, '');
+    }
+    if (!/^[0-9]*$/.test(intPart) || !/^[0-9]*$/.test(fracPart)) return raw;
+    const truncatedFrac = clampFractionDigits(fracPart);
+    const intNumber = Number(intPart || '0');
+    // Use Intl just for grouping integer portion
+    const fmtInt = buildNumberFormat(0, 0);
+    const groupedInt = fmtInt
+      .formatToParts(intNumber)
+      .filter((p) => p.type === 'integer' || p.type === 'group')
+      .map((p) => p.value)
+      .join('');
+    if (truncatedFrac.length > 0 || lastSep !== -1) {
+      // Use current locale decimal symbol
+      return sign + groupedInt + localeSeparators.value.decimal + truncatedFrac;
+    }
+    return sign + groupedInt;
+  };
 
-    const cleaned = raw.replace(/,/g, '');
+  /**
+   * Full formatting for blur: grouping + enforce min decimals padding and clamp to max.
+   */
+  const formatOnBlur = (raw: string): string => {
+    if (!raw) return '';
 
-    if (!/^\d*(\.)?\d*$/.test(cleaned)) return raw; // fallback: user mid-typing
+    const cleaned = raw.replace(/[^0-9,.-]/g, '');
+    let work = cleaned;
+    let sign = '';
+    if (work.startsWith('-')) {
+      sign = '-';
+      work = work.slice(1);
+    }
+    const lastDot = work.lastIndexOf('.');
+    const lastComma = work.lastIndexOf(',');
+    const lastSep = Math.max(lastDot, lastComma);
+    let intPart: string;
+    let fracPart = '';
+    if (lastSep !== -1) {
+      intPart = work.slice(0, lastSep).replace(/[.,]/g, '');
+      fracPart = work.slice(lastSep + 1);
+    } else {
+      intPart = work.replace(/[.,]/g, '');
+    }
+    if (!intPart) intPart = '0';
 
-    const parts = cleaned.split('.');
-    const intPart = parts[0] || '0';
-    const fracPart = parts[1] || '';
-    const grouped = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-
-    if (parts.length === 2) {
-      return `${grouped}.${fracPart.slice(0, maxDecimals.value)}`;
+    // Truncate fractional part to max without rounding if disableRounding
+    if (fracPart && disableRounding.value) {
+      fracPart = fracPart.slice(0, effectiveMaxDecimals.value);
     }
 
-    return grouped;
+    const canonical = sign + intPart + (fracPart ? '.' + fracPart : '');
+    let numeric = Number(canonical);
+    if (isNaN(numeric)) return raw;
+
+    if (disableRounding.value && fracPart) {
+      // Ensure numeric value is truncated (not rounded) at effectiveMaxDecimals
+      const factor = Math.pow(10, effectiveMaxDecimals.value);
+      numeric = Math.trunc(numeric * factor) / factor;
+    }
+
+    return formatNumberForBlur(numeric);
   };
 
   const handleCurrencyInput = (event: InputEvent) => {
     const inputEl = event.target as HTMLInputElement;
+
     let raw = inputEl.value;
 
     raw = raw.replace(/\s+/g, '');
 
     let sign = '';
+
     if (raw.startsWith('-')) {
       sign = '-';
       raw = raw.slice(1);
     }
 
-    raw = raw.replace(/[^0-9.]/g, '');
+    raw = raw.replace(/[^0-9.,-]/g, '');
 
     const firstDot = raw.indexOf('.');
 
@@ -102,21 +281,30 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     }
 
     // Do not truncate fractional digits while typing; allow user to input freely.
-    if (sign && (raw === '' || raw === '0')) {
-      modelValue.value = sign + raw;
-    } else {
-      modelValue.value = sign + raw;
-    }
+    const formatted = handleFormatDisplay(sign + raw);
+
+    modelValue.value = formatted;
 
     emit('getCurrencyErrors', []);
   };
 
   const handleBlur = () => {
-    if (!modelValue.value) return;
+    // Format only if there is a value
+    if (modelValue.value) {
+      let out = modelValue.value;
 
-    let out = modelValue.value;
-    out = handleFormatDisplay(out); // Only format with grouping; no forced decimal padding
-    modelValue.value = out;
+      out = formatOnBlur(out);
+
+      modelValue.value = out;
+    }
+
+    // Always emit meta on blur (even if empty -> numericValue/rawValue may be null)
+    emit('getSelectedCurrencyMeta', {
+      currency: selected.value.currency,
+      symbol: selected.value.symbol,
+      numericValue: numericValue.value,
+      rawValue: rawNumericString.value,
+    });
 
     if (numericValue.value !== null) emit('getNumericValue', numericValue.value);
   };
@@ -142,11 +330,48 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     const found = currencyOptions.find((c) => c.value === currencyCode);
 
     if (found) {
+      const previousCurrency = selected.value.currency;
+
+      // Locale-agnostic parse of current input before switching locale to avoid misinterpretation
+      let preSwitchNumeric: number | null = null;
+      if (modelValue.value) {
+        const raw = modelValue.value;
+        const cleaned = raw.replace(/[^0-9,.-]/g, '');
+        let work = cleaned;
+        let sign = '';
+        if (work.startsWith('-')) {
+          sign = '-';
+          work = work.slice(1);
+        }
+        // Identify last separator (either '.' or ',') as decimal; earlier ones are grouping
+        const lastDot = work.lastIndexOf('.');
+        const lastComma = work.lastIndexOf(',');
+        const lastSep = Math.max(lastDot, lastComma);
+        let intPart: string;
+        let fracPart = '';
+        if (lastSep !== -1) {
+          intPart = work.slice(0, lastSep).replace(/[.,]/g, '');
+          fracPart = work.slice(lastSep + 1);
+        } else {
+          intPart = work.replace(/[.,]/g, '');
+        }
+        const canonical = sign + intPart + (fracPart ? '.' + fracPart : '');
+        const parsed = Number(canonical);
+        preSwitchNumeric = isNaN(parsed) ? null : parsed;
+      }
+
       selected.value = { ...found };
       emit('getSelectedCurrencyMeta', {
         currency: found.currency,
         symbol: found.symbol,
+        numericValue: preSwitchNumeric !== null ? preSwitchNumeric : numericValue.value,
+        rawValue: preSwitchNumeric !== null ? String(preSwitchNumeric) : rawNumericString.value,
       });
+      // Re-format current input according to new currency fraction rules only if currency actually changed
+      if (preSwitchNumeric !== null && previousCurrency !== found.currency) {
+        modelValue.value = formatNumberForBlur(preSwitchNumeric);
+        emit('getNumericValue', preSwitchNumeric);
+      }
     }
   };
 
@@ -281,10 +506,15 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
 
   onMounted(() => {
     handleSelectedCurrency(preSelectedCurrency.value);
-    if (modelValue.value) {
-      modelValue.value = handleFormatDisplay(modelValue.value);
-
-      if (numericValue.value !== null) emit('getNumericValue', numericValue.value);
+    if (modelValue.value && numericValue.value !== null) {
+      modelValue.value = formatNumberForBlur(numericValue.value);
+      emit('getNumericValue', numericValue.value);
+      emit('getSelectedCurrencyMeta', {
+        currency: selected.value.currency,
+        symbol: selected.value.symbol,
+        numericValue: numericValue.value,
+        rawValue: rawNumericString.value,
+      });
     }
   });
 
@@ -300,5 +530,9 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     handleBlur,
     handleSelectedCurrency,
     handlePopperState,
+    effectiveMinDecimals,
+    effectiveMaxDecimals,
+    currentLocale,
+    rawNumericString,
   };
 };

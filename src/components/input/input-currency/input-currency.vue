@@ -6,6 +6,7 @@
     :placeholder="props.placeholder"
     :active="popperState"
     :disabled="props.disabled"
+    data-testid="input-currency-text"
     @input="handleCurrencyInput"
     @blur="handleBlur"
   >
@@ -19,6 +20,7 @@
         :width="!props.disabledCountryCurrency ? '45px' : '35px'"
         popper-width="300px"
         :disabled="props.disabled || props.disabledCountryCurrency"
+        data-testid="input-currency-dropdown"
         @update:model-value="handleSelectedCurrency"
         @get-popper-state="handlePopperState"
       >

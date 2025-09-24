@@ -170,8 +170,9 @@ const inputModel = ref('');
 
   <div class="spr-p-4 spr-bg-blue-100">
     <p>Model Output: {{ inputModels.selectedCurrencyMeta }}</p>
-    <p>Selected Currency: {{ selectedCurrency }}</p>
-    <p>Selected Symbol: {{ selectedSymbol }}</p>
+    <p>Selected Currency: {{ meta.currency }}</p>
+    <p>Selected Symbol: {{ meta.symbol }}</p>
+    <p>Raw Value: {{ meta.rawValue }}</p>
   </div>
 </div>
 
@@ -313,8 +314,8 @@ For additional shared props, events, slots, and behavior inherited from the base
     </tr>
     <tr>
       <td>@get-selected-currency-meta</td>
-      <td>{ currency: String; symbol: String }</td>
-      <td>Emitted after selecting a currency; provides the currency code and its display symbol (falls back to code if ambiguous).</td>
+      <td>{ currency: String; symbol: String; numericValue: Number | null; rawValue: String | null }</td>
+      <td>Emitted after selecting a currency and on blur. Includes code, symbol (or code if ambiguous), numericValue (parsed float) and rawValue (canonical unformatted string).</td>
     </tr>
     <tr>
       <td>@get-currency-errors</td>
@@ -348,16 +349,25 @@ const inputModels = ref({
   preSelectedCurrency: '',
 });
 
-const selectedCurrency = ref('');
-const selectedSymbol = ref('');
-const currencyNumeric = ref(0);
+const meta = ref<{
+  currency: string;
+  symbol: string;
+  numericValue: number | null;
+  rawValue: string | null;
+} >({
+  currency: '',
+  symbol: '',
+  numericValue: null,
+  rawValue: null,
+});
 
-const handleSelectedCurrencyMeta = (item: { currency: string; symbol: string }) => {
-  selectedCurrency.value = item.currency;
-  selectedSymbol.value = item.symbol;
-};
-
-const handleCurrencyNumeric = (value: number) => {
-  currencyNumeric.value = value;
+// Updated payload signature now includes numericValue and rawValue
+const handleSelectedCurrencyMeta = (payload: {
+  currency: string;
+  symbol: string;
+  numericValue: number | null;
+  rawValue: string | null;
+}) => {
+  meta.value = payload;
 };
 </script>

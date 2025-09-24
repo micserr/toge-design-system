@@ -48,6 +48,10 @@ export const inputCurrencyPropTypes = {
     type: Boolean,
     default: true,
   },
+  disableRounding: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const inputCurrencyEmitTypes = {
@@ -55,8 +59,13 @@ export const inputCurrencyEmitTypes = {
   getSelectedCurrencyMeta: (value: {
     currency: string;
     symbol: string;
-  }): value is { currency: string; symbol: string } =>
-    typeof value.currency === 'string' && typeof value.symbol === 'string',
+    numericValue: number | null;
+    rawValue: string | null;
+  }): value is { currency: string; symbol: string; numericValue: number | null; rawValue: string | null } =>
+    typeof value.currency === 'string' &&
+    typeof value.symbol === 'string' &&
+    (value.numericValue === null || (typeof value.numericValue === 'number' && !isNaN(value.numericValue))) &&
+    (value.rawValue === null || typeof value.rawValue === 'string'),
   getCurrencyErrors: (value: Array<{ title: string; message: string }>) => {
     return (
       Array.isArray(value) &&
@@ -74,7 +83,15 @@ export const inputCurrencyEmitTypes = {
 
 export interface InputCurrencyEmit {
   (event: 'update:modelValue', value: string): void;
-  (event: 'getSelectedCurrencyMeta', value: { currency: string; symbol: string }): void;
+  (
+    event: 'getSelectedCurrencyMeta',
+    value: {
+      currency: string;
+      symbol: string;
+      numericValue: number | null;
+      rawValue: string | null;
+    },
+  ): void;
   (event: 'getCurrencyErrors', value: Array<{ title: string; message: string }>): void;
   (event: 'getNumericValue', value: number): void;
 }

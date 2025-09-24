@@ -42,6 +42,10 @@ export const dropdownPropTypes = {
     required: true,
     default: [],
   },
+  searchableMenu: {
+    type: Boolean,
+    default: false,
+  },
   textField: {
     type: String,
     default: 'text',
@@ -116,7 +120,6 @@ export const dropdownPropTypes = {
     type: Boolean,
     default: false,
   },
-  // Enable lozenge style for dropdown items
   lozenge: {
     type: Boolean,
     default: false,

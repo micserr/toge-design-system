@@ -10,7 +10,7 @@
     <Menu
       v-model:shown="multiSelectPopperState"
       aria-id="multi-select-wrapper"
-      distance="4"
+      :distance="props.distance"
       :placement="props.placement"
       :triggers="props.triggers"
       :popper-triggers="props.popperTriggers"

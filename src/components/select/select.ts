@@ -74,6 +74,10 @@ export const selectPropTypes = {
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
     default: 'bottom',
   },
+  distance: {
+    type: Number,
+    default: 6,
+  },
   triggers: {
     type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
     validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {

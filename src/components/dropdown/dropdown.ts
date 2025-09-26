@@ -42,6 +42,10 @@ export const dropdownPropTypes = {
     required: true,
     default: [],
   },
+  searchableMenu: {
+    type: Boolean,
+    default: false,
+  },
   textField: {
     type: String,
     default: 'text',
@@ -64,6 +68,10 @@ export const dropdownPropTypes = {
     type: String as PropType<(typeof PLACEMENTS_TYPES)[number]>,
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
     default: 'bottom',
+  },
+  distance: {
+    type: Number,
+    default: 6,
   },
   groupItemsBy: {
     type: String as PropType<(typeof GROUPED_ITEMS_BY_TYPES)[number]>,
@@ -112,7 +120,6 @@ export const dropdownPropTypes = {
     type: Boolean,
     default: false,
   },
-  // Enable lozenge style for dropdown items
   lozenge: {
     type: Boolean,
     default: false,

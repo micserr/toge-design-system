@@ -2,7 +2,7 @@
   <Menu
     v-model:shown="dropdownPopperState"
     aria-id="dropdown-wrapper"
-    distance="4"
+    :distance="props.distance"
     :placement="props.placement"
     :triggers="props.triggers"
     :popper-triggers="props.popperTriggers"
@@ -45,6 +45,7 @@
             v-if="!props.ladderized || isLadderizedSearch"
             v-model="selectedListItems"
             :menu-list="dropdownMenuList"
+            :searchable-menu="props.searchableMenu"
             :group-items-by="props.groupItemsBy"
             :multi-select="props.multiSelect"
             :pre-selected-items="dropdownValue"
@@ -59,6 +60,7 @@
             :ladderized="props.ladderized"
             :dropdown="props.dropdown"
             :menu-list="dropdownMenuList"
+            :searchable-menu="props.searchableMenu"
             :remove-current-level-in-back-label="removeCurrentLevelInBackLabel"
             @update:model-value="handleSelectedLadderizedItem"
           />

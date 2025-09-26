@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.15.0 (2025-09-24)
+
+- Feat
+  - Added Input Currency
+  - Separate documentation for input types
+  - Fix Contact Number Input Change Country Issue
+  - Make the poppers distance dynamic
+    ([#34882](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/34882?_a=files) by @jarias)
+
 ## 2.14.3 (2025-09-19)
 
 - Fix

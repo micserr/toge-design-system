@@ -74,12 +74,16 @@ export const selectPropTypes = {
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
     default: 'bottom',
   },
+  distance: {
+    type: Number,
+    default: 6,
+  },
   triggers: {
     type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
     validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
       return value.every((val) => TRIGGER_EVENTS.includes(val));
     },
-    default: () => ['click'],
+    default: () => [],
   },
   popperTriggers: {
     type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
@@ -90,7 +94,7 @@ export const selectPropTypes = {
   },
   autoHide: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   popperStrategy: {
     type: String,

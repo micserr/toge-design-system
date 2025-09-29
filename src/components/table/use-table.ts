@@ -6,7 +6,7 @@ import type {
   TABLE_SORT,
   TableData,
   TableDataProps,
-  Header,  
+  Header,
   SortableDragEvent,
 } from './table';
 import type { SetupContext } from 'vue';
@@ -397,7 +397,9 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
   });
 
   onMounted(() => {
-    tableData.value = [...sortedData.value];
+    if (sortedData.value.length > 0) {
+      tableData.value = [...sortedData.value];
+    }
   });
 
   return {
@@ -420,7 +422,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     sortedDataItem,
     getSortIcon,
     sortField,
-    allowSelfDrag,    
+    allowSelfDrag,
     tableData,
     isDraggable,
     dragOptions,

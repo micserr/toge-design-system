@@ -23,9 +23,13 @@ export const COUNTRY_OPTIONS: CountryOption[] = getCountries().map((countryCode)
 });
 
 export const inputContactNumberPropTypes = {
+  id: {
+    type: String,
+    default: '',
+  },
   modelValue: {
     type: String,
-    required: true,
+    default: '',
   },
   placeholder: {
     type: String,
@@ -69,13 +73,7 @@ export const inputContactNumberEmitTypes = {
 
 export interface InputContactNumberEmit {
   (event: 'update:modelValue', value: string): void;
-  (
-    event: 'getSelectedCountryCallingCode',
-    value: {
-      countryCode: string[];
-      countryCallingCode: string[];
-    },
-  ): void;
+  (event: 'getSelectedCountryCallingCode', value: { countryCode: string; countryCallingCode: string }): void;
   (event: 'getContactNumberErrors', value: Array<{ title: string; message: string }>): void;
 }
 

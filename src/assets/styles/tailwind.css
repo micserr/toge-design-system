@@ -140,17 +140,6 @@
       }
     }
   }
-
-  #input-contact-number-country-dropdown,
-  #input-currency-dropdown {
-    #dropdown-wrapper[data-popper-placement='top-start'] {
-      @apply spr-ml-[-8px] spr-mt-[-4px];
-    }
-
-    #dropdown-wrapper[data-popper-placement='bottom-start'] {
-      @apply spr-ml-[-8px] spr-mt-[4px];
-    }
-  }
   /* #endregion - Dropdown */
 
   /* #region - Select */

@@ -8,17 +8,26 @@ import parsePhoneNumber, { getCountries, getCountryCallingCode, CountryCode } fr
 import { type InputContactNumberEmitTypes, type InputContactNumberPropTypes } from './input-contact-number';
 
 interface InputContactNumberClasses {
-  countryCallingCodeClasses: string;
+  dropdownBaseClasses: string;
+  dropdownWrappertClasses: string;
 }
 
 export const useInputContactNumber = (
   props: InputContactNumberPropTypes,
   emit: SetupContext<InputContactNumberEmitTypes>['emit'],
 ) => {
-  const { preSelectedCountryCode, disabledCountryCallingCode, disabled } = toRefs(props);
+  const { id, preSelectedCountryCode, disabledCountryCallingCode, disabled } = toRefs(props);
 
   const inputContactNumberClasses: ComputedRef<InputContactNumberClasses> = computed(() => {
-    const countryCallingCodeClasses = classNames(
+    const dropdownBaseClasses = classNames(
+      '[&_#dropdown-wrapper]:spr-my-1',
+      '[&_#dropdown-wrapper[data-popper-placement="bottom-start"]]:spr-ml-[-10px]',
+      '[&_#dropdown-wrapper[data-popper-placement="bottom-start"]]:spr-mt-[6px]',
+      '[&_#dropdown-wrapper[data-popper-placement="top-start"]]:spr-ml-[-10px]',
+      '[&_#dropdown-wrapper[data-popper-placement="top-start"]]:spr-mt-[-6px]',
+    );
+
+    const dropdownWrappertClasses = classNames(
       'spr-font-weight-regular spr-font-size-200 spr-line-height-500 spr-letter-spacing-none spr-font-main',
       'spr-flex spr-items-center spr-gap-size-spacing-5xs',
       {
@@ -29,20 +38,25 @@ export const useInputContactNumber = (
     );
 
     return {
-      countryCallingCodeClasses,
+      dropdownBaseClasses,
+      dropdownWrappertClasses,
     };
   });
+
+  // fallback random id if user does not provide one (stable per component instance)
+  const fallbackId = ref(`currency-${Math.random().toString(36).slice(2, 8)}-dropdown`);
+  const dropdownId = computed(() => (id.value ? `${id.value}-dropdown` : fallbackId.value));
 
   const formattedValue = useVModel(props, 'modelValue', emit);
 
   const selectedCountry = ref({
-    countryCode: ['PH'],
-    countryCallingCode: ['63'],
+    countryCode: 'PH',
+    countryCallingCode: '63',
   });
 
   const popperState = ref(false);
 
-  const setselectedCountry = (selectedCountryCode: string) => {
+  const setSelectedCountry = (selectedCountryCode: string) => {
     const countryCallingCode = getCountryCallingCode(selectedCountryCode as CountryCode);
 
     const countryCode = getCountries().find((country) => {
@@ -51,8 +65,8 @@ export const useInputContactNumber = (
 
     if (countryCode && countryCallingCode) {
       selectedCountry.value = {
-        countryCode: [countryCode],
-        countryCallingCode: [countryCallingCode],
+        countryCode: countryCode,
+        countryCallingCode: countryCallingCode,
       };
 
       formatContactNumber();
@@ -81,10 +95,10 @@ export const useInputContactNumber = (
     }
   };
 
-  const handleSelectedCountryCode = (countryCode: string[]) => {
+  const handleSelectedCountryCode = (countryCode: string) => {
     selectedCountry.value = {
-      countryCode: [countryCode[0]],
-      countryCallingCode: [getCountryCallingCode(countryCode[0] as CountryCode)],
+      countryCode: countryCode,
+      countryCallingCode: getCountryCallingCode(countryCode as CountryCode),
     };
 
     emit('getContactNumberErrors', []);
@@ -92,27 +106,46 @@ export const useInputContactNumber = (
     formatContactNumber();
 
     emit('getSelectedCountryCallingCode', {
-      countryCode: selectedCountry.value.countryCode[0],
-      countryCallingCode: selectedCountry.value.countryCallingCode[0],
+      countryCode: selectedCountry.value.countryCode,
+      countryCallingCode: selectedCountry.value.countryCallingCode,
     });
   };
 
   const formatContactNumber = () => {
-    if (!formattedValue.value) return;
+    if (!formattedValue.value) {
+      emit('getContactNumberErrors', []);
+      return;
+    }
 
-    const normalizedNumber = formattedValue.value.replace(/\D/g, '');
+    const original = formattedValue.value.trim();
+    const hasPlus = original.startsWith('+');
+    const normalizedNumber = hasPlus ? `+${original.replace(/[^0-9]/g, '')}` : original.replace(/\D/g, '');
 
-    const phoneNumber = parsePhoneNumber(normalizedNumber, {
-      defaultCountry: selectedCountry.value.countryCode[0] as CountryCode,
-      extract: false,
-    });
+    let phoneNumber;
+
+    try {
+      phoneNumber = hasPlus
+        ? parsePhoneNumber(normalizedNumber)
+        : parsePhoneNumber(normalizedNumber, {
+            defaultCountry: selectedCountry.value.countryCode as CountryCode,
+            extract: false,
+          });
+    } catch {
+      phoneNumber = undefined;
+    }
 
     if (phoneNumber && phoneNumber.isValid()) {
       let formattedNumber = phoneNumber.formatInternational();
 
-      formattedNumber = formattedNumber.replace(`+${selectedCountry.value.countryCallingCode[0]} `, '');
+      const prefix = `+${selectedCountry.value.countryCallingCode} `;
+
+      if (formattedNumber.startsWith(prefix)) {
+        formattedNumber = formattedNumber.slice(prefix.length);
+      }
 
       formattedValue.value = formattedNumber;
+
+      emit('getContactNumberErrors', []);
     } else {
       emit('getContactNumberErrors', [
         {
@@ -133,23 +166,24 @@ export const useInputContactNumber = (
 
   watch(preSelectedCountryCode, (newValue) => {
     if (newValue) {
-      setselectedCountry(newValue);
+      setSelectedCountry(newValue);
     }
   });
 
   onMounted(() => {
     emit('getSelectedCountryCallingCode', {
-      countryCode: selectedCountry.value.countryCode[0],
-      countryCallingCode: selectedCountry.value.countryCallingCode[0],
+      countryCode: selectedCountry.value.countryCode,
+      countryCallingCode: selectedCountry.value.countryCallingCode,
     });
 
     if (preSelectedCountryCode.value) {
-      setselectedCountry(preSelectedCountryCode.value);
+      setSelectedCountry(preSelectedCountryCode.value);
     }
   });
 
   return {
     inputContactNumberClasses,
+    dropdownId,
     formattedValue,
     selectedCountry,
     popperState,
@@ -158,5 +192,6 @@ export const useInputContactNumber = (
     formatContactNumber,
     handleUpdateModelValue,
     handlePopperState,
+    setSelectedCountry,
   };
 };

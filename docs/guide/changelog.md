@@ -1,4 +1,19 @@
 # Changelog
+## 2.15.1 (2025-09-29)
+
+- Feat
+  - Fix Single & Multi Select Search closing popper
+    ([#5c14e4d6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5c14e4d659d370a3ccde505f837d9a91af67b540?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+
+## 2.15.0 (2025-09-24)
+
+- Feat
+  - Added Input Currency
+  - Separate documentation for input types
+  - Fix Contact Number Input Change Country Issue
+  - Make the poppers distance dynamic
+    ([#34882](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/34882?_a=files) by @jarias)
 
 ## 2.14.3 (2025-09-19)
 

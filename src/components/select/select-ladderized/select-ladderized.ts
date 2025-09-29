@@ -117,7 +117,7 @@ export const selectLadderizedPropTypes = {
   },
   autoHide: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   wrapperPosition: {
     type: String,

@@ -1,4 +1,10 @@
 # Changelog
+## 2.15.1 (2025-09-29)
+
+- Feat
+  - Fix Single & Multi Select Search closing popper
+    ([#5c14e4d6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5c14e4d659d370a3ccde505f837d9a91af67b540?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
 
 ## 2.15.0 (2025-09-24)
 

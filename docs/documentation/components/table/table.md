@@ -1395,6 +1395,12 @@ const handleOnDragRemove = (event: DragOnRemoveEvent, tableType: TableTypes) => 
       <td>boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td>retainSelectionOnDataChange</td>
+      <td>Enables the retention of selected rows when the table data changes.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 
@@ -1497,6 +1503,23 @@ const handleOnDragRemove = (event: DragOnRemoveEvent, tableType: TableTypes) => 
       <td>[field]</td>
       <td>Dynamic slots based on the field names in the headers. Allows custom rendering for specific columns.</td>
       <td>{ row: TableData, rowIndex: number }</td>
+    </tr>
+  </tbody>
+</table>
+
+### Exposed Functions
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>clearSelectedData</td>
+      <td>Function to clear selected rows in multi-select.</td>      
     </tr>
   </tbody>
 </table>

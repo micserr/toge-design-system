@@ -240,6 +240,7 @@ const {
   dragOptions,
   tableKey,
   isDragging,
+  
 
   isRowSelected,
   sortData,
@@ -250,9 +251,14 @@ const {
   sortedDataItem,
   getSortIcon,
   getRowKey,
+  clearSelectedData
 } = useTable(props, emit, slots);
 
 const { reinitializeSortable } = useDraggableTableRows(sortableTBody, dragOptions);
+
+defineExpose({
+  clearSelectedData
+});
 
 watch(tableKey, () => {
   reinitializeSortable();

@@ -16,7 +16,7 @@
       :popper-triggers="props.popperTriggers"
       :auto-hide="props.autoHide"
       :disabled="isMultiSelectPopperDisabled"
-      :container="`#${props.id}`"
+      :container="`#multi-select-${props.id}`"
       :strategy="
         props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
       "
@@ -118,7 +118,7 @@
 
         <!-- This div used to poppulate popper menu -->
         <div
-          :id="props.id"
+          :id="`multi-select-${props.id}`"
           :style="{
             width: props.popperWidth,
           }"

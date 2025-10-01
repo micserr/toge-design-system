@@ -16,7 +16,7 @@
       :popper-triggers="props.popperTriggers"
       :auto-hide="props.autoHide"
       :disabled="isSelectPopperDisabled"
-      :container="`#${props.id}`"
+      :container="`#select-popper-${props.id}`"
       :strategy="
         props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
       "
@@ -27,7 +27,7 @@
       }"
     >
       <div ref="selectRef">
-        <div @click="!props.searchable? selectPopperState = !selectPopperState: null">
+        <div @click="!props.searchable ? (selectPopperState = !selectPopperState) : null">
           <spr-input
             :id="`input-${props.id}`"
             v-model="inputText"
@@ -44,7 +44,7 @@
             :disabled="props.disabled"
             :error="props.error"
             @keyup="handleSearch"
-            @click="props.searchable ? selectPopperState = true : null"
+            @click="props.searchable ? (selectPopperState = true) : null"
           >
             <template #icon>
               <div class="spr-flex spr-cursor-pointer spr-items-center">
@@ -57,12 +57,12 @@
                 <Icon icon="ph:caret-down" />
               </div>
             </template>
-  
+
             <template #helperMessage>
               <slot name="helperMessage" />
             </template>
           </spr-input>
-  
+
           <!-- Hidden Select for QA automation -->
           <select
             v-if="selectOptions && selectOptions.length"
@@ -80,7 +80,7 @@
 
         <!-- This div used to poppulate popper menu -->
         <div
-          :id="props.id"
+          :id="`select-popper-${props.id}`"
           :style="{
             width: props.popperWidth,
           }"

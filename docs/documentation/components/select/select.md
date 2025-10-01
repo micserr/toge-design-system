@@ -1112,6 +1112,27 @@ const userList = ref([
   </tbody>
 </table>
 
+### Exposed Methods
+
+<table>
+  <thead>
+    <tr>
+      <th class="spr-min-w-[180px]">Method</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>handleClear</code>
+      </td>
+      <td>Clears the current selection.</td>
+      <td><code>()</code></td>
+    </tr>
+  </tbody>
+</table>
+
 ## Product Uses
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">

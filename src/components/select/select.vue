@@ -16,7 +16,7 @@
       :popper-triggers="props.popperTriggers"
       :auto-hide="props.autoHide"
       :disabled="isSelectPopperDisabled"
-      :container="`#${props.id}`"
+      :container="`#select-popper-${props.id}`"
       :strategy="
         props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
       "
@@ -80,7 +80,7 @@
 
         <!-- This div used to poppulate popper menu -->
         <div
-          :id="props.id"
+          :id="`select-popper-${props.id}`"
           :style="{
             width: props.popperWidth,
           }"

@@ -6,7 +6,7 @@ import type {
   TABLE_SORT,
   TableData,
   TableDataProps,
-  Header,  
+  Header,
   SortableDragEvent,
 } from './table';
 import type { SetupContext } from 'vue';
@@ -263,7 +263,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       'spr-border-color-weak spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid',
     );
 
-    const multiselectClass = classNames('spr-px-size-spacing-2xs spr-py-size-spacing-3xs spr-w-[44px] ');
+    const multiselectClass = classNames('spr-px-size-spacing-2xs spr-py-size-spacing-3xs spr-w-[44px]');
 
     const emptyStateClasses = classNames(`${emptyStateBaseClasses} ${props.emptyStateCustomClasses}`);
     const tableActionSlotClasses = classNames(`${defaultSlotClasses} ${props.tableActionSlotCustomClasses}`);
@@ -369,7 +369,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
   watch(sortedData, (newVal) => {
     tableData.value = [...newVal];
 
-    if (props.isMultiSelect && selectedData.value.length > 0) {
+    if (props.isMultiSelect && selectedData.value.length > 0 && !props.retainSelectionOnDataChange) {
       // Remove items from selectedData that are not in the new sortedData
       // This is to ensure that the selectedData is always in sync with the sortedData
 
@@ -392,12 +392,18 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     }
   });
 
+  const clearSelectedData = () => {
+    selectedData.value = [];    
+  }
+
   watch(tableData, () => {
     tableKey.value = tableKey.value + 1;
   });
 
   onMounted(() => {
-    tableData.value = [...sortedData.value];
+    if (sortedData.value.length > 0) {
+      tableData.value = [...sortedData.value];
+    }
   });
 
   return {
@@ -420,12 +426,13 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     sortedDataItem,
     getSortIcon,
     sortField,
-    allowSelfDrag,    
+    allowSelfDrag,
     tableData,
     isDraggable,
     dragOptions,
     getRowKey,
     isDragging: toRef(() => isDragging.value),
     tableKey,
+    clearSelectedData
   };
 };

@@ -180,6 +180,10 @@ export const tablePropTypes = {
     type: Boolean,
     default: false,
   },
+  retainSelectionOnDataChange: {
+    type: Boolean,
+    default: false,
+  }
 };
 
 export const tableEmitTypes = {

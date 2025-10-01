@@ -181,4 +181,8 @@ const {
   handleChippedRemoveItem,
   handleClear,
 } = useMultiSelect(props, emit);
+
+defineExpose({
+  handleClear,
+});
 </script>

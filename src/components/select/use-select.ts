@@ -302,6 +302,7 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
 
   const handleClear = () => {
     emit('update:modelValue', '');
+    emit('search-string', '');
 
     inputText.value = '';
   };

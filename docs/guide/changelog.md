@@ -1,16 +1,22 @@
 # Changelog
 
-## 2.15.3 (2025-09-30)
+## 2.15.5 (2025-10-01)
 
 - Fix
   - Fix encountered issue in select popper with custom id
-    ([#afd9003a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/afd9003ac6458a4b63c8895845cfedab0b6ed3e1?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fdraggable-table-rows) by @jarias)
+    ([#a78646b0](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a78646b0a0ab23ad6879fe1f84099027c7de6854?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 2.15.4 (2025-10-01)
+
+- Feat
+  - Commit 51c2e2b0: feat: add handleClear method to select and multi-select components documentation
+    ([#51c2e2b0](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequestcreate?sourceRef=2025/Fix/andrea/SELECT_EXPOSE_CLEAR&targetRef=dev&sourceRepositoryId=ff11dd36-9e5b-4dee-ab48-0999d0a61cfd&targetRepositoryId=ff11dd36-9e5b-4dee-ab48-0999d0a61cfd) by @adestajo)
 
 ## 2.15.3 (2025-09-30)
 
 - Feat
   - Add `retainSelectionOnDataChange prop and clearSelectedData exposed function to table component
-    ([#afd9003a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/afd9003ac6458a4b63c8895845cfedab0b6ed3e1?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fdraggable-table-rows) by @adestajo)
+    ([#afd9003a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/afd9003ac6458a4b63c8895845cfedab0b6ed3e1?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fdraggable-table-rows) by @despiritu)
 
 ## 2.15.2 (2025-09-29)
 

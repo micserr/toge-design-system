@@ -180,4 +180,8 @@ const {
   handleSearch,
   handleClear,
 } = useSelect(props, emit);
+
+defineExpose({
+  handleClear,
+});
 </script>

@@ -204,7 +204,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useSlots, useTemplateRef, watch } from 'vue';
+import { useSlots, ref, watch } from 'vue';
 import { Icon } from '@iconify/vue';
 import SprAvatar from '@/components/avatar/avatar.vue';
 import SprEmptyState from '@/components/empty-state/empty-state.vue';
@@ -224,7 +224,7 @@ const props = defineProps(tablePropTypes);
 const emit = defineEmits(tableEmitTypes);
 const slots = useSlots();
 
-const sortableTBody = useTemplateRef<HTMLElement>('sortableTBody');
+const sortableTBody = ref<HTMLElement | null>(null);
 
 const {
   getHeaderCount,
@@ -240,6 +240,7 @@ const {
   dragOptions,
   tableKey,
   isDragging,
+  
 
   isRowSelected,
   sortData,
@@ -250,9 +251,14 @@ const {
   sortedDataItem,
   getSortIcon,
   getRowKey,
+  clearSelectedData
 } = useTable(props, emit, slots);
 
 const { reinitializeSortable } = useDraggableTableRows(sortableTBody, dragOptions);
+
+defineExpose({
+  clearSelectedData
+});
 
 watch(tableKey, () => {
   reinitializeSortable();

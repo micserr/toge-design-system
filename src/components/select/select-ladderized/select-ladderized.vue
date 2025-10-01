@@ -16,7 +16,7 @@
       :popper-triggers="props.popperTriggers"
       :auto-hide="props.autoHide"
       :disabled="isLadderizedSelectPopperDisabled"
-      :container="`#${props.id}`"
+      :container="`#ladderized-select-popper-${props.id}`"
       :strategy="
         props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
       "
@@ -60,7 +60,7 @@
         </div>
 
         <!-- This div used to poppulate popper menu -->
-        <div :id="props.id" :style="{ width: props.popperWidth }"></div>
+        <div :id="`ladderized-select-popper-${props.id}`" :style="{ width: props.popperWidth }"></div>
       </div>
 
       <template #popper>

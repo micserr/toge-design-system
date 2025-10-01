@@ -1,9 +1,16 @@
 # Changelog
+
+## 2.15.3 (2025-09-30)
+
+- Fix
+  - Fix encountered issue in select popper with custom id
+    ([#afd9003a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/afd9003ac6458a4b63c8895845cfedab0b6ed3e1?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fdraggable-table-rows) by @jarias)
+
 ## 2.15.3 (2025-09-30)
 
 - Feat
   - Add `retainSelectionOnDataChange prop and clearSelectedData exposed function to table component
-    ([#afd9003a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/afd9003ac6458a4b63c8895845cfedab0b6ed3e1?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fdraggable-table-rows) by @despiritu)
+    ([#afd9003a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/afd9003ac6458a4b63c8895845cfedab0b6ed3e1?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fdraggable-table-rows) by @adestajo)
 
 ## 2.15.2 (2025-09-29)
 
@@ -16,7 +23,6 @@
 - Feat
   - Fix Single & Multi Select Search closing popper
     ([#5c14e4d6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5c14e4d659d370a3ccde505f837d9a91af67b540?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
-
 
 ## 2.15.0 (2025-09-24)
 

@@ -1,4 +1,16 @@
 # Changelog
+## 2.15.3 (2025-09-30)
+
+- Feat
+  - Add `retainSelectionOnDataChange prop and clearSelectedData exposed function to table component
+    ([#afd9003a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/afd9003ac6458a4b63c8895845cfedab0b6ed3e1?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fdraggable-table-rows) by @despiritu)
+
+## 2.15.2 (2025-09-29)
+
+- Fix
+  - Fix readonly warning for table tbody ref
+    ([#af1f8afc](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/af1f8afc37651735fba3eee622e271c68d4dccf5?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fdraggable-table-rows) by @despiritu)
+
 ## 2.15.1 (2025-09-29)
 
 - Feat

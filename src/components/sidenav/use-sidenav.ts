@@ -232,8 +232,7 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
   // Utility function to convert string attributes to array
   const convertAttributesToArray = (attributes: string | Attributes[] | undefined): Attributes[] => {
     if (!attributes) return [];
-    console.log(attributes);
-    // Helper to parse the value property if it's a stringified object-like literal
+
     const parseAttributeValue = (raw: unknown): unknown => {
       if (raw === null || raw === undefined) return raw;
       if (typeof raw !== 'string') return raw;
@@ -253,7 +252,7 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
 
         return JSON.parse(jsonLike);
       } catch {
-        return raw; // Fallback to original string if parsing fails
+        return raw;
       }
     };
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.15.6 (2025-10-02)
+
+- Fix
+  - Fix sidenav attribute parsing
+    ([#987d6d68](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35048?_a=files) by @jarias)
+
 ## 2.15.5 (2025-10-01)
 
 - Fix

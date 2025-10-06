@@ -88,7 +88,12 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
 
   const getPathFromUrl = (url: string): string => {
     const parsedUrl = new URL(url);
-    return parsedUrl ? `${parsedUrl.pathname}${parsedUrl.hash}` : '';
+
+    if (!parsedUrl) return '';
+
+    const { pathname, search, hash } = parsedUrl;
+
+    return `${pathname}${search}${hash}`;
   };
 
   const navLinkCondition = (link: NavItem) => {

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.15.7 (2025-10-06)
+
+- Fix
+  - Fix Sidenav Redirect with params
+    ([#35132](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35132?_a=files) by @jarias)
+
 ## 2.15.6 (2025-10-02)
 
 - Fix

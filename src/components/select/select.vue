@@ -56,11 +56,7 @@
                   },
                 ]"
               >
-                <Icon
-                  v-if="props.clearable && inputText"
-                  icon="ph:x"
-                  @click.stop="!props.disabled ? handleClear() : null"
-                />
+                <Icon v-if="props.clearable && inputText" icon="ph:x" @click.stop="handleClear" />
                 <Icon icon="ph:caret-down" />
               </div>
             </template>

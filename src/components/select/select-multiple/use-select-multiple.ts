@@ -316,11 +316,13 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
    * Clears the selection and input text, and closes the multi-select.
    */
   const handleClear = () => {
-    emit('update:modelValue', []);
+    if (disabled.value) return;
 
     multiSelectedListItems.value = [];
     inputText.value = '';
     multiSelectPopperState.value = false;
+
+    emit('update:modelValue', []);
   };
 
   watch(multiSelectModel, () => {

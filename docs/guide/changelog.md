@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.16.0 (2025-10-09)
+
+- Feat
+  - Add attribute filter component
+    ([#480fbbe](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/480fbbeeba98c81b5c172c69ecbbdc0235c9725f?refName=refs/heads/2025/feat/dustin/attribute-filter) by @despiritu)
+
 ## 2.15.7 (2025-10-06)
 
 - Fix

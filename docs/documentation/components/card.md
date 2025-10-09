@@ -33,6 +33,71 @@ A flexible container with optional header, content, and footer used to group rel
 </template>
 ```
 
+## Tone
+
+<div class="spr-grid spr-gap-2">
+  <div class="spr-flex spr-gap-2 spr-justify-between">
+    <spr-card class="spr-w-full" tone="plain">
+      <template #content>
+        <div class="spr-text-center">
+          Plain
+        </div>
+      </template>
+    </spr-card>
+    <spr-card class="spr-w-full" tone="neutral">
+      <template #content>
+        <div class="spr-text-center">
+          Neutral
+        </div>
+      </template>
+    </spr-card>
+    <spr-card class="spr-w-full" tone="success">
+      <template #content>
+        <div class="spr-text-center">
+          Success
+        </div>
+      </template>
+    </spr-card>
+    <spr-card class="spr-w-full" tone="information">
+      <template #content>
+        <div class="spr-text-center">
+          Info
+        </div>
+      </template>
+    </spr-card>
+  </div>
+  <div class="spr-flex spr-gap-2 spr-justify-between">
+    <spr-card class="spr-w-full" tone="pending">
+      <template #content>
+        <div class="spr-text-center">
+          Pending
+        </div>
+      </template>
+    </spr-card>
+    <spr-card class="spr-w-full" tone="caution">
+      <template #content>
+        <div class="spr-text-center">
+          Caution
+        </div>
+      </template>
+    </spr-card>
+    <spr-card class="spr-w-full" tone="accent">
+      <template #content>
+        <div class="spr-text-center">
+          Accent
+        </div>
+      </template>
+    </spr-card>
+    <spr-card class="spr-w-full" tone="danger">
+      <template #content>
+        <div class="spr-text-center">
+          Danger
+        </div>
+      </template>
+    </spr-card>
+  </div>
+</div>
+
 ## Header and Footer
 
 Passing a `title` automatically displays the header. Use the `footer` slot to add a footer.
@@ -75,11 +140,7 @@ Passing a `title` automatically displays the header. Use the `footer` slot to ad
 </template>
 ```
 
-<br/>
-
-## Disable header and footer
-
-<br/>
+## Force Hide Header and Footer
 
 <spr-card title="Card Title" :show-header="false" :show-footer="false">
   <template #content>
@@ -233,8 +294,6 @@ Use the `header` slot to add a content to the header. It will be placed next to 
 </template>
 ```
 
-<br>
-
 If the `title` prop is omitted, the `header` slot can fully customize the header.
 
 <spr-card>
@@ -272,9 +331,25 @@ If the `title` prop is omitted, the `header` slot can fully customize the header
 </template>
 ```
 
-## Border Radius
+## Border Width
 
- <spr-card title="Card Title" border-radius-size="sm">
+<spr-card title="Card Title" border-width="6px">
+  <template #content>
+    <div>Card content</div>
+    <div>Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.</div>
+    <div>Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.</div>
+  </template>
+  <template #footer>
+    <div class="spr-ms-auto spr-flex spr-items-center spr-gap-size-spacing-3xs">
+      <spr-button variant="secondary">secondary</spr-button>
+      <spr-button tone="success">primary</spr-button>
+    </div>
+  </template>
+</spr-card>
+
+```vue
+<template>
+  <spr-card title="Card Title" border-width="6px">
     <template #content>
       <div>Card content</div>
       <div>Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.</div>
@@ -287,6 +362,24 @@ If the `title` prop is omitted, the `header` slot can fully customize the header
       </div>
     </template>
   </spr-card>
+</template>
+```
+
+## Border Radius
+
+<spr-card title="Card Title" border-radius-size="sm">
+  <template #content>
+    <div>Card content</div>
+    <div>Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.</div>
+    <div>Lorem ipsectetur adipiscing elit. Sed etiam, sed etiam.</div>
+  </template>
+  <template #footer>
+    <div class="spr-ms-auto spr-flex spr-items-center spr-gap-size-spacing-3xs">
+      <spr-button variant="secondary">secondary</spr-button>
+      <spr-button tone="success">primary</spr-button>
+    </div>
+  </template>
+</spr-card>
 
 ```vue
 <template>
@@ -321,6 +414,22 @@ If the `title` prop is omitted, the `header` slot can fully customize the header
   </thead>
   <tbody>
     <tr>
+      <td>id</td>
+      <td>string</td>
+      <td>''</td>
+      <td>
+        Unique identifier for the input element. Used for associating the input with a label for accessibility.
+      </td>
+    </tr>
+    <tr>
+      <td>tone</td>
+      <td>
+        'plain' | 'neutral' | 'success' | 'information' | 'pending' | 'caution' | 'accent' | 'danger'
+      </td>
+      <td>''</td>
+      <td>Sets the card's title in the header section.</td>
+    </tr>
+    <tr>
       <td>title</td>
       <td>string</td>
       <td>''</td>
@@ -349,6 +458,12 @@ If the `title` prop is omitted, the `header` slot can fully customize the header
       <td>boolean</td>
       <td>true</td>
       <td>Controls the visibility of the footer section.</td>
+    </tr>
+    <tr>
+      <td>border-width</td>
+      <td>Width Style</td>
+      <td>'1px'</td>
+      <td>Sets the border width of the card.</td>
     </tr>
     <tr>
       <td>border-radius-size</td>

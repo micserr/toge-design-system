@@ -1,5 +1,5 @@
 <template>
-  <div :class="cardClasses.baseClasses">
+  <div :class="cardClasses.baseClasses" :style="{ borderWidth: props.borderWidth }">
     <div v-if="props.showHeader && ($slots.header || props.title)" :class="cardClasses.headerClasses">
       <div v-if="props.title" class="spr-flex spr-items-center">
         <Icon

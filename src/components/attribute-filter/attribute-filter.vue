@@ -24,7 +24,7 @@
       <slot>
         <spr-chips
           :label="props.filterLabel"
-          :active="isFilterActive || savedFilters.length > 0"
+          :active="isFilterActive"
           icon="ph:funnel-simple"
           :badge="props.showBadge && savedFilters.length > 0"
           :badge-text="savedFilters.length.toString()"

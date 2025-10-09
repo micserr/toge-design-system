@@ -418,6 +418,26 @@
 
   /* #endregion - Labels */
 
+  /* #region - Attribute Filter */
+  #attribute_filter_wrapper {
+    @apply spr-z-[1000] spr-w-[inherit] spr-overflow-hidden;
+
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-border-color-weak spr-w-full spr-rounded-xl spr-border spr-border-solid spr-font-main spr-shadow-none;
+
+        &::-webkit-scrollbar-track {
+          @apply spr-rounded-br-xl spr-rounded-tr-xl;
+        }
+      }
+
+      .v-popper__arrow-container {
+        @apply spr-hidden;
+      }
+    }
+  }
+  /* #endregion - Attribute Filter */
+
   /* #region - Font Size */
   .spr-font-size-100 {
     @apply spr-text-100;

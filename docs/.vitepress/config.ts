@@ -76,6 +76,10 @@ export default defineConfig({
               link: '/documentation/components/accordion',
             },
             {
+              text: 'Attribute Filter',
+              link: '/documentation/components/attribute-filter',
+            },
+            {
               text: 'Avatar',
               link: '/documentation/components/avatar',
             },

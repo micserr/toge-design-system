@@ -61,7 +61,7 @@ A flexible container with optional header, content, and footer used to group rel
     <spr-card class="spr-w-full" tone="information">
       <template #content>
         <div class="spr-text-center">
-          Info
+          Information
         </div>
       </template>
     </spr-card>

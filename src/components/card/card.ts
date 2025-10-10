@@ -2,7 +2,7 @@ import type { PropType, ExtractPropTypes } from 'vue';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
-const Tones = ['plain', 'neutral', 'success', 'information', 'pending', 'caution', 'accent', 'danger'] as const;
+const TONES = ['plain', 'neutral', 'success', 'information', 'pending', 'caution', 'accent', 'danger'] as const;
 const BORDER_RADIUS_SIZE = ['xl', 'lg', 'md', 'sm', 'xs', '2xs'] as const;
 
 export const cardPropTypes = {
@@ -10,8 +10,8 @@ export const cardPropTypes = {
     type: String,
   },
   tone: {
-    type: String as PropType<(typeof Tones)[number] | undefined>,
-    validator: (val: string | undefined) => !val || Tones.includes(val as (typeof Tones)[number]),
+    type: String as PropType<(typeof TONES)[number] | undefined>,
+    validator: (val: string | undefined) => !val || TONES.includes(val as (typeof TONES)[number]),
   },
   title: {
     type: String,

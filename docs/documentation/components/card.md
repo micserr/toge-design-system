@@ -35,6 +35,8 @@ A flexible container with optional header, content, and footer used to group rel
 
 ## Tone
 
+Cards support different tones to indicate various states or importance levels. The available tones are: `plain`, `neutral`, `success`, `information`, `pending`, `caution`, `accent`, and `danger`.
+
 <div class="spr-grid spr-gap-2">
   <div class="spr-flex spr-gap-2 spr-justify-between">
     <spr-card class="spr-w-full" tone="plain">
@@ -141,6 +143,8 @@ Passing a `title` automatically displays the header. Use the `footer` slot to ad
 ```
 
 ## Force Hide Header and Footer
+
+Pass `show-header` and `show-footer` props as `false` to hide the header and footer even if content is provided.
 
 <spr-card title="Card Title" :show-header="false" :show-footer="false">
   <template #content>
@@ -333,6 +337,8 @@ If the `title` prop is omitted, the `header` slot can fully customize the header
 
 ## Border Width
 
+Pass a `border-width` prop to customize the border width of the card. Accepts any valid CSS width value.
+
 <spr-card title="Card Title" border-width="6px">
   <template #content>
     <div>Card content</div>
@@ -366,6 +372,8 @@ If the `title` prop is omitted, the `header` slot can fully customize the header
 ```
 
 ## Border Radius
+
+Pass a `border-radius-size` prop to customize the border radius of the card. Accepts predefined sizes: `xl`, `lg`, `md`, `sm`, `xs`, and `2xs`.
 
 <spr-card title="Card Title" border-radius-size="sm">
   <template #content>

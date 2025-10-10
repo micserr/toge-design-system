@@ -147,6 +147,8 @@ export const useSelectLadderized = (
   };
 
   const handleClear = () => {
+    if (disabled.value) return;
+
     wasCleared.value = true;
 
     inputText.value = '';

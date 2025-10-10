@@ -301,10 +301,12 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
   };
 
   const handleClear = () => {
-    emit('update:modelValue', '');
-    emit('search-string', '');
+    if (disabled.value) return;
 
     inputText.value = '';
+
+    emit('update:modelValue', '');
+    emit('search-string', '');
   };
 
   watch(selectModel, () => {

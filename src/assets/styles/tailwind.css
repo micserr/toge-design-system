@@ -64,11 +64,11 @@
   #sidenav-menu-wrapper,
   #sidenav-submenu-l1-wrapper,
   #user-menu-wrapper {
-    @apply spr-background-color spr-border-color-base spr-overflow-y-auto spr-overflow-x-hidden spr-rounded-[12px] spr-border spr-border-solid spr-drop-shadow-md;
+    @apply spr-background-color spr-border-color-base spr-overflow-y-auto spr-overflow-x-hidden spr-rounded-xl spr-border spr-border-solid spr-drop-shadow-md;
 
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply spr-overflow-hidden spr-rounded-none spr-border-none spr-bg-transparent spr-shadow-drop;
+        @apply spr-overflow-hidden spr-rounded-none spr-border-none spr-bg-transparent spr-shadow-none;
 
         .slide-fade-enter-active {
           @apply spr-duration-300 spr-ease-out;
@@ -124,11 +124,11 @@
 
   /* #region - Dropdown */
   #dropdown-wrapper {
-    @apply spr-z-[1000] spr-w-[inherit] spr-overflow-hidden;
+    @apply spr-border-color-weak spr-z-[1000] spr-w-[inherit] spr-overflow-hidden spr-rounded-xl spr-border spr-border-solid spr-shadow-drop;
 
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply spr-border-color-weak spr-w-full spr-rounded-xl spr-border spr-border-solid spr-font-main spr-shadow-drop;
+        @apply spr-w-full spr-rounded-none spr-border-none spr-font-main spr-shadow-none;
 
         &::-webkit-scrollbar-track {
           @apply spr-rounded-br-xl spr-rounded-tr-xl;
@@ -146,11 +146,11 @@
   #select-wrapper,
   #multi-select-wrapper,
   #ladderized-select-wrapper {
-    @apply spr-z-[1000] spr-w-[inherit] spr-overflow-hidden;
+    @apply spr-border-color-weak spr-z-[1000] spr-w-[inherit] spr-overflow-hidden spr-rounded-xl spr-border spr-border-solid spr-shadow-drop;
 
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply spr-border-color-weak spr-w-full spr-rounded-xl spr-border spr-border-solid spr-font-main spr-shadow-none;
+        @apply spr-w-full spr-rounded-none spr-border-none spr-font-main spr-shadow-none;
 
         &::-webkit-scrollbar-track {
           @apply spr-rounded-br-xl spr-rounded-tr-xl;
@@ -183,6 +183,7 @@
     thead {
       @apply spr-pr-size-spacing-6xs;
     }
+
     tbody::-webkit-scrollbar {
       @apply spr-h-0 spr-w-0; /* Hides the scrollbar in WebKit browsers */
     }

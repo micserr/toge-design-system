@@ -48,12 +48,19 @@
                   </template>
                 </div>
                 <div :class="multiSelectClasses.chippedIconClasses">
-                  <div class="spr-flex spr-items-center spr-gap-1">
+                  <div
+                    :class="[
+                      'spr-flex spr-items-center spr-gap-1',
+                      {
+                        'spr-cursor-pointer': !props.disabled,
+                        'spr-cursor-not-allowed': props.disabled,
+                      },
+                    ]"
+                  >
                     <Icon
                       v-if="props.clearable && inputText"
-                      class="spr-cursor-pointer"
                       icon="ph:x"
-                      @click.stop="handleClear"
+                      @click.stop="!props.disabled ? handleClear : null"
                     />
                     <Icon icon="ph:caret-down" />
                   </div>
@@ -91,13 +98,16 @@
               :error="props.error"
             >
               <template #icon>
-                <div class="spr-flex spr-items-center spr-gap-1">
-                  <Icon
-                    v-if="props.clearable && inputText"
-                    class="spr-cursor-pointer"
-                    icon="ph:x"
-                    @click.stop="handleClear"
-                  />
+                <div
+                  :class="[
+                    'spr-flex spr-items-center spr-gap-1',
+                    {
+                      'spr-cursor-pointer': !props.disabled,
+                      'spr-cursor-not-allowed': props.disabled,
+                    },
+                  ]"
+                >
+                  <Icon v-if="props.clearable && inputText" icon="ph:x" @click.stop="handleClear" />
                   <Icon icon="ph:caret-down" />
                 </div>
               </template>

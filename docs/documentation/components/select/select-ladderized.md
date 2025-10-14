@@ -1,5 +1,6 @@
 ---
 title: Ladderized Select
+descripttion: Ladderized select is for selecting options organized in hierarchical groups. It is ideal for large or categorized lists, and supports deeply nested sublevels and subtext for each item.
 outline: deep
 ---
 

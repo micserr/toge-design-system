@@ -1,7 +1,7 @@
 ---
-outline: 'deep'
 title: Badge
-description: The Badge component is a small visual indicator that can be used to convey information, status, or notifications. It is often used in conjunction with other UI elements to provide context or highlight important information. Badges can be customized in terms of text, color, size, and position.
+descripttion: The Badge component is a small visual indicator that can be used to convey information, status, or notifications. It is often used in conjunction with other UI elements to provide context or highlight important information. Badges can be customized in terms of text, color, size, and position.
+outline: deep
 ---
 
 # Badge

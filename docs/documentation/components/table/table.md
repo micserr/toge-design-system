@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Table
+descripttion: The Table component is a versatile and interactive data display element that organizes information into rows and columns, allowing users to easily view, sort, and manage large datasets. It supports features such as customizable headers, multi-select options, pagination, and dynamic content rendering through slots.
+outline: deep
 ---
 
 # Table
@@ -1252,7 +1254,6 @@ const employeeStatusTone = {
   active: 'success',
 };
 
-
 const handleOnDragAdd = (event: DragOnAddEvent, tableType: TableTypes) => {
   if (!event) return;
   let employeeList = tableType === 'selected' ? mockAvailableEmployees.value : mockSelectedEmployees.value;
@@ -1268,8 +1269,8 @@ const handleOnDragAdd = (event: DragOnAddEvent, tableType: TableTypes) => {
 };
 
 const handleOnDragRemove = (event: DragOnRemoveEvent, tableType: TableTypes) => {
-  if (!event) return;  
-  
+  if (!event) return;
+
   if (tableType === 'selected') {
     mockSelectedEmployees.value.splice(event.oldIndex, 1);
   } else {

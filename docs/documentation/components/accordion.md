@@ -1,10 +1,11 @@
 ---
-outline: 'deep'
 title: Accordion
-description: The accordion component allows users to expand and collapse sections of content. It is commonly used to organize large amounts of information in a compact and user-friendly manner. The accordion can contain various types of content, such as text, images, or other components, and can be customized in terms of behavior.
+descripttion: The Accordion component allows users to expand and collapse sections of content, helping to organize information in a compact and user-friendly manner.
+outline: deep
 ---
 
 # Accordion
+
 The accordion component allows users to expand and collapse sections of content. It is commonly used to organize large amounts of information in a compact and user-friendly manner. The accordion can contain various types of content, such as text, images, or other components, and can be customized in terms of appearance and behavior.
 
 ## Basic Usage
@@ -24,41 +25,37 @@ The accordion component allows users to expand and collapse sections of content.
 ```vue
 <template>
   <spr-accordion :accordion-items="accordionItems">
-    <template #item1>
-      Item1 content
-    </template>
-    <template #item2>
-      Item2 content
-    </template>
-    <template #item3>
-      Item3 content
-    </template>
+    <template #item1> Item1 content </template>
+    <template #item2> Item2 content </template>
+    <template #item3> Item3 content </template>
   </spr-accordion>
 </template>
-<script lang="ts" setup>  
-  import { ref } from 'vue'
+<script lang="ts" setup>
+import { ref } from 'vue';
 
-  const accordionItems = ref([
-    {
-      title: 'Accordion Item 1',
-      subtitle: 'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      collapseId: 'item1'
-    },
-    {
-      title: 'Accordion Item 2',
-      subtitle: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      collapseId: 'item2'
-    },
-    {
-      title: 'Accordion Item 3',
-      subtitle: 'lorem ipsum dolor sit amet.',
-      collapseId: 'item3'
-    }
-  ])
+const accordionItems = ref([
+  {
+    title: 'Accordion Item 1',
+    subtitle:
+      'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    collapseId: 'item1',
+  },
+  {
+    title: 'Accordion Item 2',
+    subtitle: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    collapseId: 'item2',
+  },
+  {
+    title: 'Accordion Item 3',
+    subtitle: 'lorem ipsum dolor sit amet.',
+    collapseId: 'item3',
+  },
+]);
 </script>
 ```
 
 ## Accordion Trigger
+
 By default, the accordion trigger is a button. You can change the trigger element to the header by setting the `accordionTrigger` prop to `header`.
 
 <spr-accordion :accordion-items="accordionItems" accordion-trigger="header">
@@ -76,43 +73,38 @@ By default, the accordion trigger is a button. You can change the trigger elemen
 ```vue
 <template>
   <spr-accordion :accordion-items="accordionItems" accordion-trigger="header">
-    <template #item1>
-      Item1 content
-    </template>
-    <template #item2>
-      Item2 content
-    </template>
-    <template #item3>
-      Item3 content
-    </template>
+    <template #item1> Item1 content </template>
+    <template #item2> Item2 content </template>
+    <template #item3> Item3 content </template>
   </spr-accordion>
 </template>
-<script lang="ts" setup>  
-  import { ref } from 'vue'
+<script lang="ts" setup>
+import { ref } from 'vue';
 
-  const accordionItems = ref([
-    {
-      title: 'Accordion Item 1',
-      subtitle: 'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      collapseId: 'item1'
-    },
-    {
-      title: 'Accordion Item 2',
-      subtitle: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      collapseId: 'item2'
-    },
-    {
-      title: 'Accordion Item 3',
-      subtitle: 'lorem ipsum dolor sit amet.',
-      collapseId: 'item3'
-    }
-  ])
+const accordionItems = ref([
+  {
+    title: 'Accordion Item 1',
+    subtitle:
+      'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    collapseId: 'item1',
+  },
+  {
+    title: 'Accordion Item 2',
+    subtitle: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    collapseId: 'item2',
+  },
+  {
+    title: 'Accordion Item 3',
+    subtitle: 'lorem ipsum dolor sit amet.',
+    collapseId: 'item3',
+  },
+]);
 </script>
 ```
 
 ## Always Open
-The `alwaysOpen` prop allows you to set the accordion items to be always open. This means that when one item is opened, the others will remain open as well.
 
+The `alwaysOpen` prop allows you to set the accordion items to be always open. This means that when one item is opened, the others will remain open as well.
 
 <spr-accordion :accordion-items="accordionItems" :always-open="true">
   <template #item1>
@@ -129,46 +121,41 @@ The `alwaysOpen` prop allows you to set the accordion items to be always open. T
 ```vue
 <template>
   <spr-accordion :accordion-items="accordionItems" :always-open="true">
-    <template #item1>
-      Item1 content
-    </template>
-    <template #item2>
-      Item2 content
-    </template>
-    <template #item3>
-      Item3 content
-    </template>
+    <template #item1> Item1 content </template>
+    <template #item2> Item2 content </template>
+    <template #item3> Item3 content </template>
   </spr-accordion>
 </template>
-<script lang="ts" setup>  
-  import { ref } from 'vue'
+<script lang="ts" setup>
+import { ref } from 'vue';
 
-  const accordionItems = ref([
-    {
-      title: 'Accordion Item 1',
-      subtitle: 'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      collapseId: 'item1'
-    },
-    {
-      title: 'Accordion Item 2',
-      subtitle: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      collapseId: 'item2'
-    },
-    {
-      title: 'Accordion Item 3',
-      subtitle: 'lorem ipsum dolor sit amet.',
-      collapseId: 'item3'
-    }
-  ])
+const accordionItems = ref([
+  {
+    title: 'Accordion Item 1',
+    subtitle:
+      'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    collapseId: 'item1',
+  },
+  {
+    title: 'Accordion Item 2',
+    subtitle: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    collapseId: 'item2',
+  },
+  {
+    title: 'Accordion Item 3',
+    subtitle: 'lorem ipsum dolor sit amet.',
+    collapseId: 'item3',
+  },
+]);
 </script>
 ```
 
-
 ## Default State
+
 By default, the accordion items are hidden. You can change the default state of the accordion items on load by setting the `isDefaultOpen` to `true`.
 
 ::: warning
-  The `isDefaultOpen` prop will only work when the `alwaysOpen` prop is set to `true`.
+The `isDefaultOpen` prop will only work when the `alwaysOpen` prop is set to `true`.
 :::
 
 <spr-accordion :accordion-items="accordionItems" :is-default-open="true" :always-open="true">
@@ -186,37 +173,32 @@ By default, the accordion items are hidden. You can change the default state of 
 ```vue
 <template>
   <spr-accordion :accordion-items="accordionItems" :is-default-open="true" :always-open="true">
-    <template #item1>
-      Item1 content
-    </template>
-    <template #item2>
-      Item2 content
-    </template>
-    <template #item3>
-      Item3 content
-    </template>
+    <template #item1> Item1 content </template>
+    <template #item2> Item2 content </template>
+    <template #item3> Item3 content </template>
   </spr-accordion>
 </template>
-<script lang="ts" setup>  
-  import { ref } from 'vue'
+<script lang="ts" setup>
+import { ref } from 'vue';
 
-  const accordionItems = ref([
-    {
-      title: 'Accordion Item 1',
-      subtitle: 'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      collapseId: 'item1'
-    },
-    {
-      title: 'Accordion Item 2',
-      subtitle: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      collapseId: 'item2'
-    },
-    {
-      title: 'Accordion Item 3',
-      subtitle: 'lorem ipsum dolor sit amet.',
-      collapseId: 'item3'
-    }
-  ])
+const accordionItems = ref([
+  {
+    title: 'Accordion Item 1',
+    subtitle:
+      'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    collapseId: 'item1',
+  },
+  {
+    title: 'Accordion Item 2',
+    subtitle: 'lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    collapseId: 'item2',
+  },
+  {
+    title: 'Accordion Item 3',
+    subtitle: 'lorem ipsum dolor sit amet.',
+    collapseId: 'item3',
+  },
+]);
 </script>
 ```
 
@@ -291,6 +273,7 @@ By default, the accordion items are hidden. You can change the default state of 
 </table>
 
 ### Slots
+
 <table>
   <thead>
     <tr>
@@ -310,9 +293,9 @@ By default, the accordion items are hidden. You can change the default state of 
 
 ```typescript
 interface AccordionItem {
-  title: string;       // Main heading text
-  subtitle?: string;   // Optional subheading text
-  collapseId: string;  // Unique identifier (used for slot naming)
+  title: string; // Main heading text
+  subtitle?: string; // Optional subheading text
+  collapseId: string; // Unique identifier (used for slot naming)
 }
 ```
 

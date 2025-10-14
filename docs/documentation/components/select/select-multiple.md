@@ -1,5 +1,6 @@
 ---
-title: Ladderized Select
+title: Multiple Select
+descripttion: The Multi Select component allows users to select multiple options from a select list.
 outline: deep
 ---
 
@@ -25,7 +26,12 @@ The Multi Select component allows users to select multiple options from a select
 
 ```vue
 <template>
-  id="sample-select" v-model="selectBasic" label="Multi-Select Label" placeholder="Select an option" :options="options"
+  <spr-select-multiple
+    id="sample-select"
+    v-model="selectBasic"
+    label="Multi-Select Label"
+    placeholder="Select an option"
+    :options="options"
   />
 
   <script lang="ts" setup>

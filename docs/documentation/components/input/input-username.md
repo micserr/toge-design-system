@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Username Input
+descripttion: Username specific input with potential future validation rules.
+outline: deep
 ---
 
 # Username Input

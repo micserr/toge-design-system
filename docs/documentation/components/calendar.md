@@ -1,6 +1,7 @@
 ---
-outline: 'deep'
-description: 'A comprehensive and customizable weekly calendar component for employee scheduling and management.'
+title: Calendar Component
+descripttion: The Calendar component is a comprehensive and customizable weekly calendar designed for employee scheduling and management. It provides a full-featured interface for viewing and interacting with employee schedules, including support for weekly date navigation, employee listing with profile information, multiple shift display, rest days, infinite scrolling, empty state customization, loading states, and responsive design.
+outline: deep
 ---
 
 # Calendar Component

@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Card
+descripttion: A flexible container with optional header, content, and footer used to group related information.
+outline: deep
 ---
 
 # Card

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.16.2 (2025-10-14)
+
+- Fix
+  - Add Custom Popper Content for Dropdown & Update Dropdown Docs
+    ([#35325](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35325?_a=files @jarias)
+
 ## 2.16.1 (2025-10-09)
 
 - Fix

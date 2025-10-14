@@ -18,7 +18,6 @@ The Dropdown component can be used with various trigger elements, such as button
     :menu-list="menuList" 
     width="100px" 
     popper-width="200px" 
-    dropdown
   >
     <spr-button class="spr-w-full" tone="success" has-icon>
       <span>Button</span>
@@ -31,7 +30,6 @@ The Dropdown component can be used with various trigger elements, such as button
     :menu-list="menuList" 
     width="100px" 
     popper-width="200px" 
-    dropdown
   >
     <spr-chips class="spr-w-full" label="Chips" />
   </spr-dropdown>
@@ -41,7 +39,6 @@ The Dropdown component can be used with various trigger elements, such as button
     :menu-list="menuList" 
     width="100px" 
     popper-width="200px" 
-    dropdown
   >
     <spr-lozenge class="spr-w-full" label="Lozange" />
   </spr-dropdown>
@@ -57,7 +54,6 @@ The Dropdown component can be used with various trigger elements, such as button
       :menu-list="menuList"
       width="100px"
       popper-width="200px"
-      dropdown
     >
       <spr-button class="spr-w-full" tone="success" has-icon>
         <span>Button</span>
@@ -72,7 +68,6 @@ The Dropdown component can be used with various trigger elements, such as button
       :menu-list="menuList"
       width="100px"
       popper-width="200px"
-      dropdown
     >
       <spr-chips class="spr-w-full" label="Chips" />
     </spr-dropdown>
@@ -84,7 +79,6 @@ The Dropdown component can be used with various trigger elements, such as button
       :menu-list="menuList"
       width="100px"
       popper-width="200px"
-      dropdown
     >
       <spr-lozenge class="spr-w-full" label="Lozange" />
     </spr-dropdown>
@@ -105,160 +99,9 @@ const menuList = ref([
   { text: 'Google', value: 'https://www.google.com' },
   { text: 'GitHub', value: 'https://github.com' },
   { text: 'Gmail', value: 'https://mail.google.com' },
-  // Additional items...
-]);
-
-// Optional: Handle selections to open URLs in new tabs
-const handleDropdownLink = (newValue, key) => {
-  if (newValue) {
-    window.open(newValue, '_blank', 'noopener,noreferrer');
-    dropdownModel.value[key] = null;
-  }
-};
-
-watch(
-  () => dropdownModel.value.dropdownBasic1,
-  (newValue) => handleDropdownLink(newValue, 'dropdownBasic1'),
-);
-
-// Similar watchers for other dropdown models...
-</script>
-```
-
-:::tip Important Properties
-
-- `id`: A unique identifier required for proper functioning of the dropdown
-- `v-model`: Binds the selected value(s) from the dropdown
-- `menu-list`: An array of options to display in the dropdown menu
-- `dropdown`: Set to `true` to enable dropdown behavior (as opposed to select behavior)
-  :::
-
-## Grouped Items By
-
-The Dropdown component supports organizing menu items into groups based on alphabetical order. You can group items by `A-Z` (alphabetical) or `Z-A` (reverse alphabetical) by using the `group-items-by` prop.
-
-<div class="spr-grid spr-gap-4">
-  <spr-dropdown
-    id="sample-dropdownGroupedItemsBy"
-    v-model="dropdownModel.dropdownGroupedItemsBy"
-    :menu-list="menuList"
-    width="100px"
-    popper-width="200px"
-    group-items-by="A-Z"
-    dropdown
-  >
-    <spr-button class="spr-w-full" tone="success" has-icon>
-      <span>Button</span>
-      <Icon icon="ph:caret-down" />
-    </spr-button>
-  </spr-dropdown>
-</div>
-
-```vue
-<template>
-  <div class="spr-grid spr-gap-4">
-    <spr-dropdown
-      id="sample-dropdownGroupedItemsBy"
-      v-model="dropdownModel.dropdownGroupedItemsBy"
-      :menu-list="menuList"
-      width="100px"
-      popper-width="200px"
-      group-items-by="A-Z"  <!-- Options: 'A-Z' or 'Z-A' -->
-      dropdown
-    >
-      <spr-button class="spr-w-full" tone="success" has-icon>
-        <span>Button</span>
-        <Icon icon="ph:caret-down" />
-      </spr-button>
-    </spr-dropdown>
-  </div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-const dropdownModel = ref({
-  dropdownGroupedItemsBy: ''
-});
-
-const menuList = ref([
-  { text: 'Google', value: 'https://www.google.com' },
-  { text: 'GitHub', value: 'https://github.com' },
-  // Additional items...
 ]);
 </script>
 ```
-
-:::tip Grouping Benefits
-Grouping items alphabetically helps users find options more easily when you have a large number of menu items. This is especially useful for navigation menus or application switching dropdowns.
-:::
-
-## Pre-Selected Items
-
-You can set a default selected value in the dropdown by initializing the `v-model` with a value that matches one of the options in your `menu-list`. This is useful when you want to show a pre-selected option or restore a previously selected value.
-
-<div class="spr-grid spr-gap-4">
-  <spr-dropdown
-    id="sample-dropdownPreSelectedItems"
-    v-model="dropdownModel.dropdownPreSelectedItems"
-    :menu-list="menuList"
-    width="100px"
-    popper-width="200px"
-    dropdown
-  >
-    <spr-button class="spr-w-full" tone="success" has-icon>
-      <span>Button</span>
-      <Icon icon="ph:caret-down" />
-    </spr-button>
-  </spr-dropdown>
-  <code class="spr-font-medium">
-    V-Model: {{ dropdownModel.dropdownPreSelectedItems ? dropdownModel.dropdownPreSelectedItems : `""` }}
-  </code>
-</div>
-
-```vue
-<template>
-  <div class="spr-grid spr-gap-4">
-    <spr-dropdown
-      id="sample-dropdownPreSelectedItems"
-      v-model="dropdownPreSelectedItems"
-      :menu-list="menuList"
-      width="100px"
-      popper-width="200px"
-      dropdown
-    >
-      <spr-button class="spr-w-full" tone="success" has-icon>
-        <span>Button</span>
-        <Icon icon="ph:caret-down" />
-      </spr-button>
-    </spr-dropdown>
-
-    <!-- Display the current selected value -->
-    <code class="spr-font-medium"> V-Model: {{ dropdownPreSelectedItems ? dropdownPreSelectedItems : `""` }} </code>
-  </div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-// Pre-select Yahoo by setting its value
-const dropdownPreSelectedItems = ref('https://www.yahoo.com');
-
-const menuList = ref([
-  { text: 'Google', value: 'https://www.google.com' },
-  { text: 'Yahoo', value: 'https://www.yahoo.com' },
-  // Additional items...
-]);
-</script>
-```
-
-:::tip Value Types
-The `v-model` for the dropdown component supports various value types including:
-
-- Single primitive values (strings, numbers)
-- Objects
-- Arrays (for multi-select dropdowns)
-  :::
 
 ## Placements
 
@@ -311,7 +154,6 @@ Available placement options:
       </spr-button>
     </spr-dropdown>
   </div>
-  <!-- Additional placement examples... -->
 </div>
 
 ```vue
@@ -333,10 +175,6 @@ Available placement options:
   </spr-dropdown>
 </template>
 ```
-
-:::tip Responsive Placement
-The `auto` placement options are particularly useful for responsive designs as they will automatically adjust based on available space, preventing dropdowns from being cut off at screen edges.
-:::
 
 ## Width and Popper Width
 
@@ -366,8 +204,8 @@ The Dropdown component provides two ways to control the sizing:
     id="sample-dropdownWidth"
     v-model="dropdownWidth"
     :menu-list="menuList"
-    width="50%"         <!-- Width of the trigger wrapper -->
-    popper-width="500px"  <!-- Width of the dropdown menu -->
+    width="50%"
+    popper-width="500px"
   >
     <spr-button class="spr-w-full" tone="success" has-icon>
       <span>Button</span>
@@ -376,15 +214,6 @@ The Dropdown component provides two ways to control the sizing:
   </spr-dropdown>
 </template>
 ```
-
-:::tip Size Units
-Both width properties accept any valid CSS unit:
-
-- Pixels: `"200px"`
-- Percentage: `"50%"`
-- Viewport units: `"50vw"`
-- `"auto"` or `"100%"` for full width
-  :::
 
 ## Popper Strategy
 
@@ -423,8 +252,8 @@ When using dropdowns inside positioned elements like modals or fixed panels, you
       id="sample-dropdownStrategy"
       v-model="dropdownStrategy"
       :menu-list="menuList"
-      wrapper-position="initial"  <!-- Important when using with modals -->
-      popper-strategy="fixed"     <!-- Use fixed strategy in modals -->
+      wrapper-position="initial"
+      popper-strategy="fixed"
       width="100px"
     >
       <spr-button class="spr-w-full" tone="success" has-icon>
@@ -432,9 +261,7 @@ When using dropdowns inside positioned elements like modals or fixed panels, you
         <Icon icon="ph:caret-down" />
       </spr-button>
     </spr-dropdown>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit...
-    </p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
   </spr-modal>
 </template>
 
@@ -450,65 +277,47 @@ const dropdownStrategy = ref('');
 When using the `fixed` popper strategy, you should also set `wrapper-position="initial"` to override the default `relative` positioning. This prevents positioning conflicts within complex layouts like modals.
 :::
 
-## Menu List Data Formats
+## Custom Popper Content
 
-The Dropdown component is flexible and supports various data formats for the `menu-list` prop:
+You can customize the content of the dropdown menu by using the `popper` slot. This allows you to include any custom HTML or components inside the dropdown.
 
-### Array of Objects with text/value Properties
-
-```js
-const menuList = [
-  { text: 'Google', value: 'https://www.google.com' },
-  { text: 'GitHub', value: 'https://github.com' },
-];
-```
-
-### Array of Strings
-
-```js
-const menuList = ['Google', 'GitHub', 'Gmail'];
-// Automatically converted to { text: 'Google', value: 'Google' }, etc.
-```
-
-### Array of Custom Objects
-
-```js
-const menuList = [
-  { name: 'John Doe', id: 1, department: 'Engineering' },
-  { name: 'Jane Smith', id: 2, department: 'Marketing' },
-];
-
-// Use textField and valueField props to specify which properties to use
-<spr-dropdown
-  :menu-list="menuList"
-  text-field="name"     // Display name property as text
-  value-field="id"      // Use id property as the value
-/>
-```
-
-## Multi-Select Dropdown
-
-To create a dropdown that allows selecting multiple items, set the `multi-select` prop to `true`. The `v-model` will be an array containing all selected values.
+<div>
+  <spr-dropdown
+    id="sample-dropdownCustomPopper"
+    width="150px"
+    :triggers="['hover', 'click']"
+    :popper-triggers="['hover', 'click']"
+    popper-width="500px"
+  >
+    <spr-button class="spr-w-full" tone="success" has-icon>
+      <span>Custom Popper</span>
+      <Icon icon="ph:caret-down" /> 
+    </spr-button>
+    <template #popper>
+      <h5 class="spr-text-center">This is a custom popper!</h5>
+    </template>
+  </spr-dropdown>
+</div>
 
 ```vue
 <template>
-  <spr-dropdown id="multi-select-dropdown" v-model="selectedValues" :menu-list="menuList" :multi-select="true" dropdown>
-    <spr-button class="spr-w-full" tone="success"> Select Multiple Items </spr-button>
+  <spr-dropdown
+    id="sample-dropdownCustomPopper"
+    width="150px"
+    :triggers="['hover', 'click']"
+    :popper-triggers="['hover', 'click']"
+    popper-width="500px"
+  >
+    <spr-button class="spr-w-full" tone="success" has-icon>
+      <span>Custom Popper</span>
+      <Icon icon="ph:caret-down" />
+    </spr-button>
+
+    <template #popper>
+      <h5 class="spr-text-center">This is a custom popper!</h5>
+    </template>
   </spr-dropdown>
 </template>
-
-<script setup>
-import { ref } from 'vue';
-
-// Initialize with pre-selected values
-const selectedValues = ref(['https://www.google.com', 'https://github.com']);
-
-const menuList = ref([
-  { text: 'Google', value: 'https://www.google.com' },
-  { text: 'GitHub', value: 'https://github.com' },
-  // Additional items...
-]);
-</script>
 ```
 
 ## API Reference
@@ -638,12 +447,6 @@ const menuList = ref([
       <td>false</td>
     </tr>
     <tr>
-      <td><code>dropdown</code></td>
-      <td>When true, enables dropdown-specific behavior (as opposed to select behavior)</td>
-      <td>boolean</td>
-      <td>false</td>
-    </tr>
-    <tr>
       <td><code>lozenge</code></td>
       <td>When true, enables lozenge list display.</td>
       <td>boolean</td>
@@ -712,6 +515,10 @@ const menuList = ref([
     <tr>
       <td>default</td>
       <td>The trigger element that opens the dropdown when clicked (typically a button, chips, or lozenge)</td>
+    </tr>
+    <tr>
+      <td>popper</td>
+      <td>Slot inside</td>
     </tr>
   </tbody>
 </table>

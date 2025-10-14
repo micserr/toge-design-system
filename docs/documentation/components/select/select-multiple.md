@@ -325,7 +325,7 @@ You can disable local search by passing the `disabled-local-search` prop. This i
 Use `@searchString` emit to get the search string when the user types in the search input. This allows you to handle the search logic externally, such as fetching options from an API based on the search query.
 
 <div class="spr-grid spr-gap-4">
-  <spr-select-multple
+  <spr-select-multiple
     id="sample-selectSearchDisabledLocalSearch"
     v-model="selectModel.selectSearchDisabledLocalSearch"
     label="Select Label"
@@ -342,7 +342,7 @@ Use `@searchString` emit to get the search string when the user types in the sea
 
 ```vue
 <template>
-  <spr-select-multple
+  <spr-select-multiple
     id="sample-select"
     v-model="selectModel"
     label="Select Label"
@@ -1003,6 +1003,24 @@ const userList = ref([
       <td>'bottom'</td>
     </tr>
     <tr>
+      <td><code>triggers</code></td>
+      <td>Array of events that will trigger the dropdown to open</td>
+      <td>'click' | 'hover' | 'focus' | 'touch'[]</td>
+      <td>['click']</td>
+    </tr>
+    <tr>
+      <td><code>popper-triggers</code></td>
+      <td>Array of events that will trigger the dropdown menu (popper element) to open</td>
+      <td>'click' | 'hover' | 'focus' | 'touch'[]</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <td><code>auto-hide</code></td>
+      <td>When true, automatically hides the dropdown when clicking outside it</td>
+      <td>Array</td>
+      <td>true</td>
+    </tr>
+    <tr>
       <td><code>popper-strategy</code></td>
       <td>Popper positioning strategy. 'absolute' or 'fixed'.</td>
       <td>String</td>
@@ -1109,6 +1127,27 @@ const userList = ref([
       <td>@popper-state</td>
       <td>Bolean</td>
       <td>Event emitted when you open or close the popper</td>
+    </tr>
+  </tbody>
+</table>
+
+### Exposed Methods
+
+<table>
+  <thead>
+    <tr>
+      <th class="spr-min-w-[180px]">Method</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>handleClear</code>
+      </td>
+      <td>Clears the current selection.</td>
+      <td><code>()</code></td>
     </tr>
   </tbody>
 </table>

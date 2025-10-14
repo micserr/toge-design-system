@@ -1,5 +1,124 @@
 # Changelog
 
+## 2.16.1 (2025-10-09)
+
+- Fix
+  - Fix select clearable button in disabled state
+  - Fix select & dropdown popper box-shadow
+    ([#35239](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35239?_a=files @jarias)
+
+## 2.16.0 (2025-10-09)
+
+- Feat
+  - Add attribute filter component
+    ([#480fbbe](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/480fbbeeba98c81b5c172c69ecbbdc0235c9725f?refName=refs/heads/2025/feat/dustin/attribute-filter) by @despiritu)
+
+## 2.15.7 (2025-10-06)
+
+- Fix
+  - Fix Sidenav Redirect with params
+    ([#35132](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35132?_a=files) by @jarias)
+
+## 2.15.6 (2025-10-02)
+
+- Fix
+  - Fix sidenav attribute parsing
+    ([#987d6d68](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35048?_a=files) by @jarias)
+
+## 2.15.5 (2025-10-01)
+
+- Fix
+  - Fix encountered issue in select popper with custom id
+    ([#a78646b0](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a78646b0a0ab23ad6879fe1f84099027c7de6854?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 2.15.4 (2025-10-01)
+
+- Feat
+  - Commit 51c2e2b0: feat: add handleClear method to select and multi-select components documentation
+    ([#51c2e2b0](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequestcreate?sourceRef=2025/Fix/andrea/SELECT_EXPOSE_CLEAR&targetRef=dev&sourceRepositoryId=ff11dd36-9e5b-4dee-ab48-0999d0a61cfd&targetRepositoryId=ff11dd36-9e5b-4dee-ab48-0999d0a61cfd) by @adestajo)
+
+## 2.15.3 (2025-09-30)
+
+- Feat
+  - Add `retainSelectionOnDataChange prop and clearSelectedData exposed function to table component
+    ([#afd9003a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/afd9003ac6458a4b63c8895845cfedab0b6ed3e1?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fdraggable-table-rows) by @despiritu)
+
+## 2.15.2 (2025-09-29)
+
+- Fix
+  - Fix readonly warning for table tbody ref
+    ([#af1f8afc](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/af1f8afc37651735fba3eee622e271c68d4dccf5?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fdraggable-table-rows) by @despiritu)
+
+## 2.15.1 (2025-09-29)
+
+- Feat
+  - Fix Single & Multi Select Search closing popper
+    ([#5c14e4d6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5c14e4d659d370a3ccde505f837d9a91af67b540?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 2.15.0 (2025-09-24)
+
+- Feat
+  - Added Input Currency
+  - Separate documentation for input types
+  - Fix Contact Number Input Change Country Issue
+  - Make the poppers distance dynamic
+    ([#34882](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/34882?_a=files) by @jarias)
+
+## 2.14.3 (2025-09-19)
+
+- Fix
+  - Remove vuedraggable and fix build issue
+    ([#f09ea409](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f09ea409023e37aeecac86b37f6197fd624248e1?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fdraggable-table-rows) by @despiritu)
+
+## 2.14.2 (2025-09-19)
+
+- Fix
+  - DQA: Fix Popper Box Shadow
+  - DQA: Fix helper message icon issue on small width
+  - Fix Multi-select and Ladderzed Auto Clossing Popper
+    ([#e6d27b4d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e6d27b4d04d98e79f3c9b0b62d52a01b42d440fe?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 2.14.1 (2025-09-18)
+
+- Fix
+  - Fix Search UI to be sticky on top for select, multi-select, ladderized select
+  - Fix toggle, emit and custom triggers for select, multi select, ladderized select
+  - Fix the appearing icon issue in ladderized select
+  - Fix encountered issue in multi-layered sublevel in ladderized select
+  - Fix encountered in docs build in sidenav - Add guard against SSR where location is undefined
+  - Added popper-state emit for dropdown
+    ([#34835](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/34835?_a=files) by @jarias)
+
+## 2.14.0 (2025-09-17)
+
+- Feat
+  - Add drag and drop feature to table component
+    ([#5755a4f6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/5755a4f6daa5c74529e6288cd265172ad105d880?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fdraggable-table-rows) by @despiritu)
+
+## 2.13.6 (2025-09-16)
+
+- Fix
+  - DQA fix for font family of input component
+    ([#684972e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/684972efa1e0fa1208cc782ee82aa2aa028aa18e?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FDQA_InputFieldFont) by @jbanares)
+
+## 2.13.5 (2025-09-16)
+
+- Fix
+  - DQA fixes for Table Pagination and Dropdown
+    ([#57399f81](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/57399f8190887ed3255c822a4c606a74d3c44e55?refName=refs%2Fheads%2F2025%2FFIX%2FPaulo%2FDQA_TablePagination_%26_Dropdown) by @jbanares)
+
+## 2.13.4 (2025-09-15)
+
+- Fix
+  - Sidenav header closing menu when hovered and fix select documentation route issue
+    ([#12332ae8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/12332ae8c6815cc6c15fe7b0b5c17a1c04f9bc1c?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
+
+## 2.13.3 (2025-09-10)
+
+- Enhancement
+  - Added xxl size for modal component
+    ([#cf599bee](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/34695?_a=files) by @bsolis)
+
 ## 2.13.2 (2025-09-09)
 
 - Fix
@@ -15,7 +134,7 @@
     - Documented best practices for fixed pixel, percentage, and mixed width strategies
     - Added guidance on dynamic width considerations and Tailwind CSS limitations
     - Included responsive column width examples using CSS functions
-    ([#b766ba9e] https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b766ba9e3f0c867f463b5c9059c14d4dc28361b9?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2Ftable-width by @bsolis)
+      ([#b766ba9e] https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b766ba9e3f0c867f463b5c9059c14d4dc28361b9?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2Ftable-width by @bsolis)
 
 ## 2.13.0 (2025-09-05)
 
@@ -92,7 +211,6 @@
 ## 2.12.7 (2025-08-19)
 
 - Refactor
-
   - Seperate file for sidenav menu links to improve code organization and maintainability
   - Update package exporting component to include handling for exluded components
 
@@ -102,12 +220,10 @@
 
 - Feat
   Sidenav Updates:
-
   - Fix Hide/Show transition
   - Use Avatar component for user menu
 
   Avatar Updates:
-
   - Handle image error
   - Update Documentation
 
@@ -136,12 +252,10 @@
 ## 2.12.1 (2025-08-18)
 
 - Feat
-
   - Add product usage logos to File Upload and Side Navigation documentation
     ([#061c6de](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/061c6def9204731bcbec7cf7069633bc3dd1a4?refName=refs%2Fheads%2F2025%2FDOCS%2FJEF%2FUpdate_Component_Docs) by @jmari)
 
 - Fix
-
   - Improve prop and event descriptions in Sidenav documentation for clarity
     ([#b02b53a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b02b53a56ec6af4e8e7b559e26ece21d7da6292?refName=refs%2Fheads%2F2025%2FDOCS%2FJEF%2FUpdate_Component_Docs) by @jmari)
 
@@ -158,14 +272,12 @@
 ## 2.11.22 (2025-08-14)
 
 - Feat
-
   - Sidenav: Added comprehensive API data integration support with `isNavApi` property
   - Sidenav: Enhanced documentation with real-world API data structure examples
   - Sidenav: Added support for complex nested navigation hierarchies from API responses
   - Sidenav: Improved handling of external URLs and new tab navigation through API data
 
 - Fix
-
   - Sidenav: Fixed readonly props mutation error in navigation data transformation
   - Sidenav: Improved TypeScript type safety for API navigation items
   - JSON: Updated side-nav-api.json to comply with strict JSON syntax standards
@@ -265,35 +377,29 @@
 ## 2.11.7 (2025-04-08)
 
 - Feat
-
   - Commit c85ae134: feat: add custom color support to calendar cell component ([#c85ae134](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c85ae134ff86a0e743bd4f8592310c37b081fd47?refName=refs/heads/2025/Fix/andrea/CELL) @adestajo)
 
 ## 2.11.6 (2025-04-08)
 
 - Fix
-
   - Documentation Build Issues ([#4e6a8ece](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4e6a8eced691a7e2945ce34ba49dce03da789a55?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-fix-button-dropdown) @jarias)
 
 ## 2.11.5 (2025-04-08)
 
 - Feat
-
   - Update button dropdown and added dropdown inner popper width ([#34e217ad](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/34e217ad62ef051f494adce93d9113063175357e?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-fix-button-dropdown) @jarias)
 
 ## 2.11.4 (2025-04-08)
 
 - Documentation
-
   - Update changelog for Skeletal Loader utility addition([#214292f2](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/214292f2147df3473b3a7715e3863ef5cb4a265b?refName=refs%2Fheads%2F2025%2FDOCS%2FANDREA%2FUPDATE_DOCS_MULTI_SELECT) @adestajo)
 
 ## 2.11.3 (2025-07-31)
 
 - Documentation
-
   - Commit 2f22358c: feat: add Skeletal Loader utility and update documentation([#2f22358c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2f22358cca982ec687639ad77a05003739c5f4f0?refName=refs/heads/2025/DOCS/ANDREA/UPDATE_DOCS_MULTI_SELECT) @adestajo)
 
 - Feat
-
   - search Field Supported
     - local
     - API Based Search
@@ -303,7 +409,6 @@
 ## 2.11.2 (2025-07-31)
 
 - Fix
-
   - Error Failed to resolve entry for package design-system-next ([#23bff266](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23bff266b392882e601c5ed2238be830e377b325?refName=refs/heads/2025/fix/dale/umd-file-creation&path=/package.json) @dale)
 
 ## 2.11.1 (2025-07-31)
@@ -354,7 +459,6 @@
 ## 2.9.10 (2025-07-29)
 
 - Fix
-
   - Commit b73c4c87: fix(calendar): adjust loading icon size and improve empty state handling in calendar component
 
 - Feat
@@ -378,25 +482,21 @@
 ## 2.9.7 (2025-07-15)
 
 - Fix
-
   - Added chipped for multi-select ([#137753a8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/137753a8def70de4ea8dd83e9db25519872c8e65?refName=refs/heads/2025/feature/arias/ds-updates) by @jarias)
 
 ## 2.9.6 (2025-07-07)
 
 - Fix
-
   - Commit 16cc3dff: fix: prepend input IDs with 'input-' for consistency across select components ([#16cc3dff](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/16cc3dffaacfac4a20545a713ab2488cf3eb64fb?refName=refs/heads/2025/Fix/andrea/change-default-id-name) by @adestajo)
 
 ## 2.9.5 (2025-07-07)
 
 - Fix
-
   - Commit d488a938: feat: add default IDs to select components and improve accessibility ([#d488a938](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d488a938a2dbe8bd724b3eaf0706d4792d5e18f9?refName=refs/heads/2025/Fix/andrea/added-ids-select-calendar) by @adestajo)
 
 ## 2.9.4 (2025-07-07)
 
 - Fix
-
   - Single and Multi Select Issues Encountered ([#3d283235](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3d28323540d3654a7fdf897aea31606f7fcbd0cd?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
 
 ## 2.9.3 (2025-07-07)
@@ -414,7 +514,6 @@
 ## 2.9.1 (2025-07-03)
 
 - Feat
-
   - Commit f0f0d2f2: feat(calendar): add hideAddButton prop and improve calendar header layout
 
   - Commit 4dad73dc: feat(calendar): enhance calendar component with infinite scroll and improved header layout ([#4dad73dc](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4dad73dc36608e754670f57ca21fb2edc7be4b82?refName=refs/heads/2025/Fix/andrea/calendar-update-dropdown-filter) by @adestajo)
@@ -428,44 +527,37 @@
 ## 2.8.4 (2025-07-02)
 
 - Feat
-
   - Stepper Type (compact and solid) ([#92a4e51d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/92a4e51d179fd85d6a7af57cbdd7207348afc619?refName=refs%2Fheads%2F2025%2FFEATURE%2FPaulo%2FStepperTypes) by @jbanares)
 
 ## 2.8.3 (2025-07-02)
 
 - Fix
-
   - Code and Documentation Cleanup ([#52ff936a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/52ff936a5b70229601e1733aaaa36f1ed18bef5a?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
 
 ## 2.8.2 (2025-07-01)
 
 - Feat
-
   - Added slot for snack ([#35063ba8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/35063ba8fec4218fc44eda7951d8d94f479dbfb9?refName=refs/heads/2025/FEATURE/Xyrk/SNACK_SLOTS) by @jfabula)
 
 ## 2.8.1 (2025-07-01)
 
 - Feat
-
   - Fiix Multi-Select and Ladderized Issues Encountered ([#2007b944](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2007b9445a49445edf25f9d00c286b07ff27342c?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
 
 ## 2.8.0 (2025-06-30)
 
 - Feat
-
   - Created Component Single Select, Multi Select and Ladderized Select ([#32806](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/32806) by @jarias)
 
 ## 2.7.45 (2025-06-24)
 
 - Fix
-
   - Commit 27dcaafd: refactor: simplify input value emission logic in date picker
     ([#27dcaafd](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/27dcaafdd422740dd895e2feed9f02508baffb9e?refName=refs/heads/2025/Fix/andrea/date-picker-model-value) by @adestajo)
 
 ## 2.7.44 (2025-06-24)
 
 - Enhancement
-
   - Input component improvements:
     - Added support for both string and number values in the model value
     - Added character count feature that displays in the bottom right of the input field
@@ -477,14 +569,12 @@
 ## 2.7.43 (2025-06-21)
 
 - Fix
-
   - Improve date input handling and formatting logic
     ([#381b2356](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/381b235622631fbabb7dfa9fe12eedf12462aa33?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
 
 ## 2.7.42 (2025-06-21)
 
 - Fix
-
   - Add Packge Version Installation, Code Cleanup
 
   ([#8b2377d7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8b2377d7002bcb5d4b749fcfbed62dcaed270627?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
@@ -492,7 +582,6 @@
 ## 2.7.41 (2025-06-20)
 
 - Fix
-
   - Fix issue date picker input year.
 
   ([#c9adfa40](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c9adfa4080634eaa80e70a2d75ac4496b609b7e2?refName=refs%2Fheads%2F2025%2FFEATURE%2FBEN%2FDATEPICKER-new) by @bsolis)
@@ -500,7 +589,6 @@
 ## 2.7.40 (2025-06-19)
 
 - Fix
-
   - Fix NaN issue on Table Pagination when using `selectedRowCount` prop with a number value.
 
   ([#dccc8046](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dccc80460cb2bc7e6c70d7422d8ca197ffc3a429?refName=refs%2Fheads%2F2025%2FFIX%2FTABLE-PAGINATION-DROPDOWN) by @bsolis)
@@ -508,7 +596,6 @@
 ## 2.7.39 (2025-06-19)
 
 - Feat
-
   - DatePicker: Added `format` prop to allow customization of date format in the date picker (e.g., 'MM-DD-YYYY', 'YYYY-MM-DD', 'MM/DD/YYYY')
   - DatePicker: Fixed text color for today's date when selected to be white instead of brand color
 
@@ -724,7 +811,6 @@
 ## 2.6.0 (2025-05-05)
 
 - Feat
-
   - Add custom icon feature for sidenav links
   - Add id for user menu avatar and links inside ([#e8cc6ac3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e8cc6ac3fc62899509fb552f487e654082fcc200?refName=refs%2Fheads%2F2025%2Ffeature%2Felii%2Fsidenav) by @elumilay)
 
@@ -787,7 +873,6 @@
 ## 2.1.0 (2025-04-28)
 
 - Feat
-
   - Added Action Icon and Slotted Action in Snackbar ([#3b6f8bc6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/3b6f8bc684e1dbbe3c6bf820820b4070427ca8bd?refName=refs/heads/2025/FEATURE/DUSTIN/SNACKBAR_ENHANCEMENT) by @despiritu)
 
 ## 2.0.0 (2025-04-28)
@@ -798,11 +883,9 @@
 ## 2.0.0 (2025-04-25)
 
 - Breaking Changes
-
   - Set new Major Version to 2.0.0
 
 - Feat
-
   - Improve Docs Landing Page, Added more informations on it
   - Added 'Product Logo' Component (Uses Cloudinary to Temporary Upload)
   - Add "Product Uses" section with logo to multiple component documentation
@@ -817,19 +900,16 @@
 ## 1.16.1 (2025-04-25)
 
 - Fix
-
   - Commit ae69a7ba: table heaight ([#ae69a7ba](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ae69a7babfa3aa48d60e8df3d17dd79b6fdf5596?refName=refs/heads/2025/Fix/andrea/table-height) by @adestajo)
 
 ## 1.16.0 (2025-04-23)
 
 - Feat
-
   - Added Search functionality to ladderized dropdown ([#d4da9803](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d4da98037c23e8a1653b668d6df44ebf097db33d?refName=refs%2Fheads%2F2025%2FFEATURE%2FDUSTIN%2FLADDERIZED_DROPDOWN_SEARCH) by @despiritu)
 
 ## 1.15.17 (2025-04-21)
 
 - Fix
-
   - Commit cc4d678a: added avatar ([#cc4d678a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cc4d678a66eaaf7420b141ae0b00fcc21b178b5d?refName=refs/heads/2025/Fix/andrea/shift-assignment-component) by @adestajo)
 
 - Feat
@@ -1148,7 +1228,6 @@
 ## 1.8.0 (2025-03-07)
 
 - Feat
-
   - Progress Bar component and documentation ([#d1420e1f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d1420e1fc6721ac8a0b1df9cca6689f0b10d9e7c?refName=refs%2Fheads%2F2025%2Ffeature%2Fdale%2Fprogressbar) by @dale)
 
 ## 1.7.4 (2025-03-07)
@@ -1221,7 +1300,6 @@
 ## 1.5.7 (2025-03-03)
 
 - Feature
-
   - Commit 97d44216: emit table sort ([#97d44216](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/97d44216912e82abe1d805dadba5b1f7244d4b37?refName=refs/heads/2025/Feature/andrea/added-badge-table) by @adestajo)
 
 - Fix
@@ -1295,7 +1373,6 @@
 ## 1.4.11 (2025-02-25)
 
 - Feature
-
   - Username input field ([#d001cb3a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/d001cb3a51a0ae2c568d4b5e46c44d6dba7d883c?refName=refs/heads/2025/FEATURE/Xyrk/SEARCH_USERNAME_EMAIL_PASSWORD_URL_FIELD) by @jfabula)
   - Email input field ([#66db9867](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/66db986714fd3315c66c1a20106ad7d018d58450?refName=refs/heads/2025/FEATURE/Xyrk/SEARCH_USERNAME_EMAIL_PASSWORD_URL_FIELD) by @jfabula)
   - Password input field ([#fd1614ce](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/fd1614ce492a50b324c5d53ea25705e953d60382?refName=refs/heads/2025/FEATURE/Xyrk/SEARCH_USERNAME_EMAIL_PASSWORD_URL_FIELD) by @jfabula)
@@ -1558,7 +1635,6 @@
 ## 1.0.37 (2025-01-17)
 
 - Feat:
-
   - Sidenav DQA Updates
   - Sidenav Top and Buttom Section
   - Quick Action - Sectionized
@@ -1638,13 +1714,11 @@
 ## 1.0.22 (2025-01-08)
 
 - Feat - Playground
-
   - ([#4ca65690](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4ca6569063af6ec6ff48a639b74946b69419904c) by @JefMari)
   - ([#819265bb](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/819265bb94cb2f3d728cf35c33d7c5fbf20194ab) by @JefMari)
   - ([#1bd53cd6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1bd53cd6117319bb7ca9f89ed810dc659b33d8bb) by @JefMari)
 
 - Fix - Sass warning for docs build
-
   - ([#4ca65690](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4ca6569063af6ec6ff48a639b74946b69419904c) by @JefMari)
 
 - Chore - Update packages

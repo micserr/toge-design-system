@@ -76,6 +76,10 @@ export default defineConfig({
               link: '/documentation/components/accordion',
             },
             {
+              text: 'Attribute Filter',
+              link: '/documentation/components/attribute-filter',
+            },
+            {
               text: 'Avatar',
               link: '/documentation/components/avatar',
             },
@@ -218,7 +222,17 @@ export default defineConfig({
             },
             {
               text: 'Input',
-              link: '/documentation/components/input',
+              link: '/documentation/components/input/input',
+              items: [
+                { text: 'Search Input', link: '/documentation/components/input/input-search' },
+                { text: 'Username Input', link: '/documentation/components/input/input-username' },
+                { text: 'Email Input', link: '/documentation/components/input/input-email' },
+                { text: 'Password Input', link: '/documentation/components/input/input-password' },
+                { text: 'URL Input', link: '/documentation/components/input/input-url' },
+                { text: 'Contact Number Input', link: '/documentation/components/input/input-contact-number' },
+                { text: 'Dropdown Input', link: '/documentation/components/input/input-dropdown' },
+                { text: 'Currency Input', link: '/documentation/components/input/input-currency' },
+              ],
             },
             {
               text: 'Radio',
@@ -226,7 +240,7 @@ export default defineConfig({
             },
             {
               text: 'Select',
-              link: '/documentation/components/select/select-single',
+              link: '/documentation/components/select/select',
               items: [
                 {
                   text: 'Multi Select',

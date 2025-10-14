@@ -4,39 +4,70 @@ outline: 'deep'
 
 # Input
 
-UI element that allows users to enter and edit text or other data.
+Core text field for freeform user input. Specialized variants extend this base for specific semantics, validation, or UX affordances (search, email, contact number, etc.).
 
-## Basic Usage
+## When To Use
 
-<spr-input v-model="inputValue.input1" label="Text Input" placeholder="Enter your username" />
+Use the base `spr-input` when you need a generic editable field. Prefer a variant when:
 
-```vue
-<template>
-  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" />
-</template>
+- Semantic validation or UX guidance is baked-in (e.g. email, password, URL)
+- Additional UI (country selector, currency selector) is required
+- Formatting / masking logic is specialized (contact number, currency)
 
-<script lang="ts" setup>
-import { ref } from 'vue';
+## Base Usage
 
-const inputValue = ref('');
-</script>
-```
-
-## Pre Defined Values
-
-<spr-input v-model="inputValue.input2" label="Text Input" placeholder="Enter your username" />
+<spr-input v-model="model" label="Text Input" placeholder="Enter your username" />
 
 ```vue
 <template>
-  <spr-input v-model="inputValue" label="Text Input" placeholder="Enter your username" />
+  <spr-input v-model="model" label="Text Input" placeholder="Enter your username" />
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const inputValue = ref('Sample Text');
-</script>
 ```
+
+## Common Patterns
+
+State & decoration features shared by variants:
+
+- Active, error, disabled states
+- Prefix / suffix (trailing) slots
+- Helper text & helperMessage slot
+- Character counting via `show-char-count`, `min-length`, `max-length`
+
+## Variants
+
+| Variant        | Description                                             | Link                                                                                 |
+| -------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Search         | Optimized for quick filtering & search affordance       | [/documentation/components/input/input-search](./input/input-search)                 |
+| Username       | Username field (future: uniqueness rules)               | [/documentation/components/input/input-username](./input/input-username)             |
+| Email          | Email-specific semantic input                           | [/documentation/components/input/input-email](./input/input-email)                   |
+| Password       | Masked entry with optional reveal                       | [/documentation/components/input/input-password](./input/input-password)             |
+| URL            | Enforces URL semantics                                  | [/documentation/components/input/input-url](./input/input-url)                       |
+| Contact Number | Country-aware number input + validation                 | [/documentation/components/input/input-contact-number](./input/input-contact-number) |
+| Dropdown Input | Display-only styled input used as dropdown trigger      | [/documentation/components/input/input-dropdown](./input/input-dropdown)             |
+| Currency       | Currency selection + formatting (code/symbol, decimals) | [/documentation/components/input/input-currency](./input/input-currency)             |
+
+## Advanced Slots
+
+| Slot            | Use Case                                         |
+| --------------- | ------------------------------------------------ |
+| `prefix`        | Icon or contextual identifier (e.g. search icon) |
+| `trailing`      | Units, inline labels, compact actions            |
+| `icon`          | Internal adornment (status / action)             |
+| `helperMessage` | Rich helper/error content (icons + text)         |
+
+## Accessibility Notes
+
+- Always pair `label` prop (or external `<label for>` association) for clarity.
+- Avoid placeholder-only labeling; placeholder should hint format, not supply meaning.
+- Use helper text to clarify constraints (length, allowed characters) instead of relying solely on validation errors.
+
+## See Also
+
+- Select Component (structured choices)
+- Textarea (multi-line content)
+- File Upload (non-text input)
+
+<!-- Removed earlier inline script; consolidated into single script at end -->
 
 ## Active State
 
@@ -413,7 +444,9 @@ const inputValueEmail = ref('');
 ### Password Input
 
 <div>
-  <spr-input-password v-model="inputValue.input15" label="Password" placeholder="Enter password" />
+  <form action="#">
+    <spr-input-password v-model="inputValue.input15" label="Password" placeholder="Enter password" />
+  </form>
 </div>
 
 ```vue
@@ -538,7 +571,7 @@ Since the v-model output is not in an international format (e.g., +63XXXXXXXXXXX
 </template>
 ```
 
-#### Set Pre Selected Country
+#### Set Pre Selected Country Code
 
 <div class="spr-mt-3">
   <spr-input-contact-number
@@ -784,6 +817,9 @@ import SprInputUrl from "@/components/input/input-url/input-url.vue"
 import SprInputContactNumber from "@/components/input/input-contact-number/input-contact-number.vue"
 import SprInputDropdown from "@/components/input/input-dropdown/input-dropdown.vue"
 import SprLogo from "@/components/logo/logo.vue"
+
+// Base demo input model (formerly in a separate <script setup>)
+const model = ref('');
 
 const inputValue = ref({
   input1: '',

@@ -39,8 +39,7 @@ export const dropdownPropTypes = {
   },
   menuList: {
     type: Array as PropType<MenuListType[] | string[] | Record<string, unknown>[]>,
-    required: true,
-    default: [],
+    default: () => [],
   },
   searchableMenu: {
     type: Boolean,
@@ -113,10 +112,6 @@ export const dropdownPropTypes = {
     default: false,
   },
   noCheckInList: {
-    type: Boolean,
-    default: false,
-  },
-  dropdown: {
     type: Boolean,
     default: false,
   },

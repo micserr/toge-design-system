@@ -518,7 +518,7 @@ You can customize the content of the dropdown menu by using the `popper` slot. T
     </tr>
     <tr>
       <td>popper</td>
-      <td>Slot inside</td>
+      <td>Custom elements for popper content.</td>
     </tr>
   </tbody>
 </table>

@@ -8,15 +8,15 @@
     </label>
 
     <Menu
-      :shown="ladderizedSelectPopperState"
+      v-model:shown="ladderizedSelectPopperState"
       aria-id="ladderized-select-wrapper"
-      distance="4"
+      :distance="props.distance"
       :placement="props.placement"
-      :triggers="[]"
-      :popper-hide-triggers="[]"
-      :auto-hide="false"
+      :triggers="props.triggers"
+      :popper-triggers="props.popperTriggers"
+      :auto-hide="props.autoHide"
       :disabled="isLadderizedSelectPopperDisabled"
-      :container="'#ladderized-select-wrapper'"
+      :container="`#ladderized-select-popper-${props.id}`"
       :strategy="
         props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
       "
@@ -26,44 +26,49 @@
         width: props.width,
       }"
     >
-      <div @click="handleOptionsToggle">
-        <spr-input
-          :id="`input-${props.id}`"
-          v-model="inputText"
-          class="spr-cursor-pointer"
-          :placeholder="props.placeholder"
-          autocomplete="off"
-          :helper-text="props.helperText"
-          :helper-icon="props.helperIcon"
-          :display-helper="props.displayHelper"
-          readonly
-          :disabled="props.disabled"
-          :error="props.error"
-          @keyup="handleSearch"
-        >
-          <template #icon>
-            <div class="spr-flex spr-items-center spr-gap-1">
-              <Icon
-                v-if="props.clearable && inputText"
-                class="spr-cursor-pointer"
-                icon="ph:x"
-                @click.stop="handleClear"
-              />
-              <Icon icon="ph:caret-down" />
-            </div>
-          </template>
+      <div ref="ladderizedSelectState">
+        <div @click="ladderizedSelectPopperState = !ladderizedSelectPopperState">
+          <spr-input
+            :id="`input-${props.id}`"
+            v-model="inputText"
+            class="spr-cursor-pointer"
+            :placeholder="props.placeholder"
+            autocomplete="off"
+            :helper-text="props.helperText"
+            :helper-icon="props.helperIcon"
+            :display-helper="props.displayHelper"
+            readonly
+            :disabled="props.disabled"
+            :error="props.error"
+          >
+            <template #icon>
+              <div
+                :class="[
+                  'spr-flex spr-items-center spr-gap-1',
+                  {
+                    'spr-cursor-pointer': !props.disabled,
+                    'spr-cursor-not-allowed': props.disabled,
+                  },
+                ]"
+              >
+                <Icon v-if="props.clearable && inputText" icon="ph:x" @click.stop="handleClear" />
+                <Icon icon="ph:caret-down" />
+              </div>
+            </template>
 
-          <template #helperMessage>
-            <slot name="helperMessage" />
-          </template>
-        </spr-input>
+            <template #helperMessage>
+              <slot name="helperMessage" />
+            </template>
+          </spr-input>
+        </div>
+
+        <!-- This div used to poppulate popper menu -->
+        <div :id="`ladderized-select-popper-${props.id}`" :style="{ width: props.popperWidth }"></div>
       </div>
-
-      <div id="ladderized-select-wrapper" :style="{ width: props.popperWidth }"></div>
 
       <template #popper>
         <div
-          ref="ladderizedSelectRef"
+          ref="ladderizedSelectPopperRef"
           class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden"
         >
           <template v-if="ladderizedSelectOptions.length > 0">
@@ -106,15 +111,14 @@ const emit = defineEmits(selectLadderizedEmitTypes);
 
 const {
   ladderizedClasses,
+  ladderizedSelectState,
   ladderizedSelectPopperState,
-  ladderizedSelectRef,
+  ladderizedSelectPopperRef,
   ladderizedSelectOptions,
   isLadderizedSelectPopperDisabled,
   ladderizedSelectModel,
   inputText,
   handleSelectedLadderizedItem,
-  handleSearch,
   handleClear,
-  handleOptionsToggle,
 } = useSelectLadderized(props, emit as SelectLadderizedEmitFn);
 </script>

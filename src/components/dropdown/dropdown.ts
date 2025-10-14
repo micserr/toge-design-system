@@ -24,6 +24,7 @@ export const PLACEMENTS_TYPES = [
 ] as const;
 
 const POPPER_STRATEGY_TYPES = ['fixed', 'absolute'] as const;
+const TRIGGER_EVENTS = ['click', 'hover', 'focus', 'touch'] as const;
 
 export const dropdownPropTypes = {
   id: {
@@ -40,6 +41,10 @@ export const dropdownPropTypes = {
     type: Array as PropType<MenuListType[] | string[] | Record<string, unknown>[]>,
     required: true,
     default: [],
+  },
+  searchableMenu: {
+    type: Boolean,
+    default: false,
   },
   textField: {
     type: String,
@@ -63,6 +68,10 @@ export const dropdownPropTypes = {
     type: String as PropType<(typeof PLACEMENTS_TYPES)[number]>,
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
     default: 'bottom',
+  },
+  distance: {
+    type: Number,
+    default: 6,
   },
   groupItemsBy: {
     type: String as PropType<(typeof GROUPED_ITEMS_BY_TYPES)[number]>,
@@ -111,17 +120,35 @@ export const dropdownPropTypes = {
     type: Boolean,
     default: false,
   },
-  // Enable lozenge style for dropdown items
   lozenge: {
     type: Boolean,
     default: false,
-  }
+  },
+  triggers: {
+    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
+    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
+      return value.every((val) => TRIGGER_EVENTS.includes(val));
+    },
+    default: () => ['click'],
+  },
+  popperTriggers: {
+    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
+    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
+      return value.every((val) => TRIGGER_EVENTS.includes(val));
+    },
+    default: () => [],
+  },
+  autoHide: {
+    type: Boolean,
+    default: true,
+  },
 };
 
 export const dropdownEmitTypes = {
   'infinite-scroll-trigger': Boolean,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'update:modelValue': (_value: unknown) => true, // Accept any type of value
+  'popper-state': Boolean,
 };
 
 export type DropdownPropTypes = ExtractPropTypes<typeof dropdownPropTypes>;

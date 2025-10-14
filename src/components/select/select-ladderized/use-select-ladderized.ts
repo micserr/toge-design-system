@@ -1,5 +1,5 @@
 import { ref, toRefs, computed, watch } from 'vue';
-import { useVModel, useDebounceFn, onClickOutside } from '@vueuse/core';
+import { useVModel, onClickOutside } from '@vueuse/core';
 
 import type { SelectLadderizedPropTypes } from './select-ladderized';
 
@@ -17,9 +17,11 @@ export const useSelectLadderized = (
     supportingLabelClasses: 'spr-body-sm-regular spr-text-color-supporting',
   }));
 
+  const ladderizedSelectState = ref<HTMLDivElement | null>(null);
+
   // Popper Variables
-  const ladderizedSelectPopperState = ref(false);
-  const ladderizedSelectRef = ref(null);
+  const ladderizedSelectPopperState = ref<boolean>(false);
+  const ladderizedSelectPopperRef = ref<HTMLElement | null>(null);
   const isLadderizedSelectPopperDisabled = computed(() => disabled.value);
 
   // Ladderized Select Model
@@ -28,8 +30,7 @@ export const useSelectLadderized = (
 
   // Input Variables
   const inputText = ref<string>('');
-  const isSearching = ref(false);
-  const wasCleared = ref(false);
+  const wasCleared = ref<boolean>(false);
 
   const isLeafNode = (item: MenuListType): boolean => {
     return !item.sublevel || item.sublevel.length === 0;
@@ -102,8 +103,6 @@ export const useSelectLadderized = (
 
         if (leafItem && isLeafNode(leafItem)) {
           ladderizedSelectPopperState.value = false;
-
-          emit('popper-state', false);
         }
 
         return;
@@ -141,38 +140,20 @@ export const useSelectLadderized = (
 
       if (isLeafNode(itemToCheck)) {
         ladderizedSelectPopperState.value = false;
-
-        emit('popper-state', false);
       }
     } else if (selectedItems.length === 0 && !wasCleared.value) {
       inputText.value = '';
     }
   };
 
-  const handleSearch = () => {
-    isSearching.value = true;
-
-    debouncedEmitSearch();
-  };
-
-  const debouncedEmitSearch = useDebounceFn(() => {
-    // Optionally emit search event here if needed
-  }, 300);
-
   const handleClear = () => {
+    if (disabled.value) return;
+
     wasCleared.value = true;
 
     inputText.value = '';
 
     emit('update:modelValue', []);
-  };
-
-  const handleOptionsToggle = () => {
-    ladderizedSelectPopperState.value = true;
-
-    isSearching.value = false;
-
-    emit('popper-state', true);
   };
 
   // Watch for changes in modelValue to update inputText
@@ -209,23 +190,31 @@ export const useSelectLadderized = (
     { immediate: true },
   );
 
-  onClickOutside(ladderizedSelectRef, () => {
-    ladderizedSelectPopperState.value = false;
+  watch(ladderizedSelectPopperState, (newState) => {
+    emit('popper-state', newState);
+  });
 
-    emit('popper-state', false);
+  // Close only when clicking completely outside both the popper and the trigger wrapper.
+  onClickOutside(ladderizedSelectPopperRef, (event) => {
+    const triggerWrapper = ladderizedSelectState.value;
+    if (triggerWrapper && triggerWrapper.contains(event.target as Node)) {
+      return; // ignore clicks on trigger content
+    }
+    if (ladderizedSelectPopperState.value) {
+      ladderizedSelectPopperState.value = false;
+    }
   });
 
   return {
     ladderizedClasses,
+    ladderizedSelectState,
     ladderizedSelectPopperState,
-    ladderizedSelectRef,
+    ladderizedSelectPopperRef,
     ladderizedSelectOptions,
     isLadderizedSelectPopperDisabled,
     ladderizedSelectModel,
     inputText,
     handleSelectedLadderizedItem,
-    handleSearch,
     handleClear,
-    handleOptionsToggle,
   };
 };

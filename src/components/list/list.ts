@@ -86,10 +86,13 @@ export const listPropTypes = {
     type: Boolean,
     default: false,
   },
-  // Display list as lozenge instead of text
   lozenge: {
     type: Boolean,
     default: false,
+  },
+  stickySearchOffset: {
+    type: [String, Number] as PropType<string | number>,
+    default: 0,
   },
 };
 

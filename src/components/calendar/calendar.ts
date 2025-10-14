@@ -65,7 +65,7 @@ export const calendarPropTypes = {
   },
   emptyStateButtonText: {
     type: String,
-    default: 'Add Employee',
+    default: '',
   },
   hideAddButton: {
     type: Boolean,

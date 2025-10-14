@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Calendar Cell Component
+descripttion: The Calendar Cell component is designed to display shift information in calendar views for scheduling and time management applications. Each cell can represent different shift types, statuses, and display customizable content.
+outline: deep
 ---
 
 # Calendar Cell Component

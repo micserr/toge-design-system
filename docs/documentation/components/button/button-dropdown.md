@@ -1,3 +1,9 @@
+---
+title: Button Dropdown
+descripttion: The Button Dropdown component combines a primary action button with a dropdown menu for additional options, supporting various tones, sizes, and variants.
+outline: deep
+---
+
 # Button Dropdown
 
 The Button Dropdown component combines two buttons with a dropdown menu, allowing users to trigger a primary action or select from a list of related options. This component is ideal for scenarios where a single button action is accompanied by additional, secondary actions accessible via a dropdown. It supports customization for tone, size, variant, and can be disabled as needed.
@@ -366,6 +372,7 @@ const mainButtonClicked = () => {
 ### Component Structure
 
 The Button Dropdown consists of three main parts:
+
 1. **Main Button**: The larger button on the left that triggers the primary action via the `click` event
 2. **Dropdown Trigger**: The smaller button on the right with a caret icon that opens the dropdown menu
 3. **Dropdown Menu**: The menu that appears when the dropdown trigger is clicked, containing the options specified in `menuList`
@@ -375,18 +382,18 @@ The Button Dropdown consists of three main parts:
 ```typescript
 // Key structure of objects that can be used in the menuList prop
 type MenuListType = {
-  text: string;                        // Display text for the menu item
-  value: string | number;              // Unique identifier for the item
-  icon?: string;                       // Optional Iconify icon name
-  iconColor?: string;                  // CSS class for icon color
-  textColor?: string;                  // CSS class for text color
-  onClickFn?: () => void;              // Function to call when item is clicked
-  disabled?: boolean;                  // Whether the item is disabled
+  text: string; // Display text for the menu item
+  value: string | number; // Unique identifier for the item
+  icon?: string; // Optional Iconify icon name
+  iconColor?: string; // CSS class for icon color
+  textColor?: string; // CSS class for text color
+  onClickFn?: () => void; // Function to call when item is clicked
+  disabled?: boolean; // Whether the item is disabled
   // Additional optional properties
-  subtext?: string;                    // Secondary text line
-  subvalue?: string;                   // Secondary value
-  sublevel?: MenuListType[];           // Nested menu items (for hierarchical menus)
-  group?: string;                      // Grouping identifier
+  subtext?: string; // Secondary text line
+  subvalue?: string; // Secondary value
+  sublevel?: MenuListType[]; // Nested menu items (for hierarchical menus)
+  group?: string; // Grouping identifier
 };
 ```
 

@@ -1,4 +1,6 @@
 ---
+title: Single Select
+descripttion: Selects are interactive components that allow users to choose from a list of options.
 outline: 'deep'
 ---
 
@@ -512,6 +514,91 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
     </p>
   </spr-modal>
 </template>
+```
+
+You can also use the `popper-container` prop to specify a custom container for the popper element. This is useful when you want to restrict the popper's positioning context to a specific element within your application.
+
+Since the popper is being teleported to a different container, the `popper-width` prop will not work as expected. To set a custom width for the popper in this case, you can use custom styles or CSS classes to define the desired width.
+
+<div>
+  <spr-dropdown
+    id="sample-dropdownCustomPopper"
+    width="300px"
+    :triggers="['hover', 'click']"
+    :popper-triggers="['hover', 'click']"
+    popper-width="500px"
+    :auto-hide="false"
+  >
+    <spr-button class="spr-w-full" tone="success" has-icon>
+      <span>Custom Popper With Dropdown</span>
+      <Icon icon="ph:caret-down" />
+    </spr-button>
+    <template #popper>
+      <spr-select
+        id="sample-select"
+        v-model="selectModel.selectStrategy"
+        label="Select Label"
+        placeholder="Select an option"
+        :options="options"
+        popper-container="#sample-dropdownCustomPopper"
+        wrapper-position="relative"
+        popper-strategy="fixed"
+        placement="bottom"
+      />
+    </template>
+  </spr-dropdown>
+</div>
+
+```vue
+<template>
+  <spr-dropdown
+    id="sample-dropdownCustomPopper"
+    width="150px"
+    :triggers="['hover', 'click']"
+    :popper-triggers="['hover', 'click']"
+    popper-width="500px"
+    :auto-hide="false"
+  >
+    <spr-button class="spr-w-full" tone="success" has-icon>
+      <span>Custom Popper</span>
+      <Icon icon="ph:caret-down" />
+    </spr-button>
+
+    <template #popper>
+      <spr-select
+        id="sample-select"
+        v-model="selectModel"
+        label="Select Label"
+        placeholder="Select an option"
+        :options="options"
+        popper-container="#sample-dropdownCustomPopper"
+        wrapper-position="relative"
+        popper-strategy="fixed"
+        placement="bottom"
+      />
+    </template>
+  </spr-dropdown>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectModel = ref('');
+
+const options = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+  { text: 'Fig', value: 'fig' },
+  { text: 'Grape', value: 'grape' },
+  { text: 'Nectarine', value: 'nectarine' },
+  { text: 'Orange', value: 'orange' },
+  { text: 'Papaya', value: 'papaya' },
+  { text: '89 Quince', value: '50' },
+]);
+</script>
 ```
 
 ## Infinite Scroll
@@ -1152,6 +1239,7 @@ import SprChips from "@/components/chips/chips.vue";
 import SprLozenge from "@/components/lozenge/lozenge.vue"
 import SprModal from "@/components/modal/modal.vue"
 import SprLogo from "@/components/logo/logo.vue";
+import SprDropdown from "@/components/dropdown/dropdown.vue";
 
 // Import optionsType for typing
 import type { optionsType } from '@/components/list/list';

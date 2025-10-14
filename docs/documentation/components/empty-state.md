@@ -1,6 +1,7 @@
 ---
-outline: 'deep'
-description: 'The Empty State component is used to display a message and optional actions when there is no content to show. This is commonly used in scenarios like empty search results, empty states in data tables, or when a user has not yet taken any action that would populate the view.'
+title: Empty State
+descripttion: The Empty State component is used to inform users when there is no content available or when a search yields no results. It provides a clear message, optional imagery, and actionable buttons to guide users on what to do next. This component helps improve user experience by providing context and options in situations where data is absent.
+outline: deep
 ---
 
 # Empty State
@@ -96,7 +97,7 @@ const imageTypes = [
   'list',
   'social-media-handles',
   'work-in-progress',
-  'work-location'
+  'work-location',
 ];
 
 const currentImage = ref('bug');

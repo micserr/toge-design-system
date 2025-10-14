@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Date Picker
+descripttion: The Date Picker component allows users to select a date from a calendar interface, supporting various formats, disabled dates, and customization options.
+outline: deep
 ---
 
 # Date Picker

@@ -1,6 +1,7 @@
 ---
-outline: 'deep'
-description: 'The Floating Action component provides a fixed action bar that appears at the bottom of the screen with a smooth animation. Its an essential UI element for providing contextual actions without disrupting the users workflow.'
+title: Floating Action
+descripttion: The Floating Action component provides a fixed action bar that appears at the bottom of the screen with a smooth animation. It's an essential UI element for providing contextual actions without disrupting the user's workflow.
+outline: deep
 ---
 
 # Floating Action
@@ -46,25 +47,19 @@ This predefined structure makes it easy to implement a consistent floating actio
 ```vue
 <template>
   <!-- Trigger button -->
-  <spr-button size="large" tone="success" @click="showFloatingAction = true">
-    Show Floating Action
-  </spr-button>
+  <spr-button size="large" tone="success" @click="showFloatingAction = true"> Show Floating Action </spr-button>
 
   <!-- Floating action component -->
   <spr-floating-action :show="showFloatingAction">
     <template #message>
       <div class="spr-flex spr-items-center spr-gap-1">
-        <Icon class="spr-text-mango-500 spr-size-5" icon="ph:warning-fill" />
+        <Icon class="spr-size-5 spr-text-mango-500" icon="ph:warning-fill" />
         <span>You have unsaved changes</span>
       </div>
     </template>
     <template #actions>
-      <spr-button size="large" variant="secondary" @click="showFloatingAction = false">
-        Discard
-      </spr-button>
-      <spr-button size="large" tone="success">
-        Save Changes
-      </spr-button>
+      <spr-button size="large" variant="secondary" @click="showFloatingAction = false"> Discard </spr-button>
+      <spr-button size="large" tone="success"> Save Changes </spr-button>
     </template>
   </spr-floating-action>
 </template>
@@ -102,12 +97,10 @@ While the default structure with `message` and `actions` slots works for most ca
   </spr-button>
 
   <spr-floating-action :show="showCustomFloatingAction" class="spr-rounded-sm">
-    <div class="spr-p-6 spr-w-full spr-flex spr-items-center spr-justify-between">
+    <div class="spr-flex spr-w-full spr-items-center spr-justify-between spr-p-6">
       <div class="spr-body-md-regular">Custom Content</div>
       <div>
-        <spr-button size="large" variant="secondary" @click="showCustomFloatingAction = false">
-          Cancel
-        </spr-button>
+        <spr-button size="large" variant="secondary" @click="showCustomFloatingAction = false"> Cancel </spr-button>
       </div>
     </div>
   </spr-floating-action>

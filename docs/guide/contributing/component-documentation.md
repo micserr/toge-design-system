@@ -1,7 +1,7 @@
 ---
-outline: 'deep'
-title: Documenting a Component
-description: This guide provides comprehensive instructions on documenting components for the Sprout Design System. It includes creating new documentation pages, structuring content with examples, API documentation, and best practices. It emphasizes the importance of organization, clear examples, and detailed API documentation.
+title: Component Documentation
+descripttion: This guide outlines the best practices and structure for documenting components in the Sprout Design System.
+outline: deep
 ---
 
 # Documenting a Component
@@ -306,14 +306,12 @@ npm run docs:dev
 ## Best Practices
 
 1. **Organization**
-
    - Group similar components in the same section
    - Use consistent heading levels
    - Include all relevant examples
    - Follow the standard documentation structure
 
 2. **Examples**
-
    - Start with basic usage examples first
    - Demonstrate each prop and variant with visual examples
    - Include practical use cases that show the component in context
@@ -321,14 +319,12 @@ npm run docs:dev
    - Always include corresponding code snippets for each example
 
 3. **Code Snippets**
-
    - Include code for each visual example
    - Use proper syntax highlighting with ```vue code blocks
    - Show both simple and complex implementations
    - Ensure code examples are complete and working
 
 4. **API Documentation**
-
    - Document all props, events, and slots in tables
    - Include detailed type information
    - Specify default values
@@ -336,14 +332,12 @@ npm run docs:dev
    - Use `<code>` tags to highlight prop values in descriptions
 
 5. **Component Import**
-
    - Always import the component at the bottom of the file in a `<script lang="ts" setup>` section
    - Use the correct import path from "@/components/..."
    - Import all required components, including SprLogo for the "Product Uses" section
    - When showing icons, remember to import the Icon component from '@iconify/vue'
 
 6. **Visual Consistency**
-
    - Use standard CSS classes with the `spr-` prefix
    - Apply consistent spacing between examples
    - Ensure all examples are visually aligned

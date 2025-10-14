@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Modal
+descripttion: A modal is a versatile UI component that allows you to display important information, alerts, or prompts to users without requiring them to leave the current page. Typically containing a header, body, and footer, it can present anything from notifications to forms. Modals can be closed by the user, providing an intuitive way to deliver essential details or gather input while maintaining the flow of interaction.
+outline: deep
 ---
 
 # Modal

@@ -1,6 +1,7 @@
 ---
-outline: 'deep'
-description: 'The Dropdown component provides a flexible way to display a menu of options when a user interacts with a trigger element. Dropdowns are commonly used for navigation menus, action lists, and other UI interactions where you want to conserve space while providing multiple options. They are distinct from form selection controls and are not intended for form field selection.'
+title: Dropdown
+descripttion: The Dropdown component provides a flexible way to display a menu of options when a user interacts with a trigger element. Dropdowns are commonly used for navigation menus, action lists, and other UI interactions where you want to conserve space while providing multiple options. They are distinct from form selection controls and are not intended for form field selection.
+outline: deep
 ---
 
 # Dropdown

@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Date Range Picker
+descripttion: The Date Range Picker component enables users to select a start and end date from a calendar interface, with options for customization, disabled dates, and various display formats.
+outline: deep
 ---
 
 # Date Range Picker
@@ -46,19 +48,9 @@ You can fully customize the date input area using the default slot. This allows 
 
 ```vue
 <template>
-  <spr-date-range-picker
-    id="inputSample"
-    v-model="liveInputRange"
-    label="Custom Input (spr-input)"
-    placement="top"
-  >
+  <spr-date-range-picker id="inputSample" v-model="liveInputRange" label="Custom Input (spr-input)" placement="top">
     <template #default="{ handleClick }">
-      <spr-input
-        v-model="inputDisplayString"
-        readonly
-        class="spr-w-full spr-cursor-pointer"
-        @click="handleClick"
-      >
+      <spr-input v-model="inputDisplayString" readonly class="spr-w-full spr-cursor-pointer" @click="handleClick">
         <template #icon>
           <Icon icon="ph:calendar-blank" />
         </template>
@@ -86,9 +78,13 @@ const formatRange = (range) => {
 };
 
 const inputDisplayString = ref('');
-watch(liveInputRange, (range) => {
-  inputDisplayString.value = formatRange(range);
-}, { immediate: true });
+watch(
+  liveInputRange,
+  (range) => {
+    inputDisplayString.value = formatRange(range);
+  },
+  { immediate: true },
+);
 </script>
 ```
 
@@ -108,7 +104,7 @@ watch(liveInputRange, (range) => {
 <template>
   <spr-date-range-picker id="chipsSample" v-model="dateRangeModel" label="Pay Period">
     <template #default>
-      <div class="spr-flex spr-gap-2 spr-items-center spr-p-2">
+      <div class="spr-flex spr-items-center spr-gap-2 spr-p-2">
         <spr-chips tone="info" :label="dateRangeModel.startDate || 'Start'" />
         <span class="spr-text-mushroom-500">to</span>
         <spr-chips tone="info" :label="dateRangeModel.endDate || 'End'" />
@@ -133,7 +129,13 @@ Value: {{ dateRangeModel.range2 }}
 
 ```vue
 <template>
-  <spr-date-range-picker id="dateRange2" v-model="dateRangeModel" label="Date Range" display-helper format="YYYY-MM-DD" />
+  <spr-date-range-picker
+    id="dateRange2"
+    v-model="dateRangeModel"
+    label="Date Range"
+    display-helper
+    format="YYYY-MM-DD"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -170,7 +172,13 @@ Value: <code>{{ dateRangeModel.range4 }}</code>
 
 ```vue
 <template>
-  <spr-date-range-picker id="dateRange4" v-model="dateRangeModel" label="Date Range" format="YYYY-MM-DD" display-helper />
+  <spr-date-range-picker
+    id="dateRange4"
+    v-model="dateRangeModel"
+    label="Date Range"
+    format="YYYY-MM-DD"
+    display-helper
+  />
 </template>
 
 <script lang="ts" setup>
@@ -223,7 +231,13 @@ To display the helper message, set the `display-helper` prop to true and add the
 
 ```vue
 <template>
-  <spr-date-range-picker id="dateRange7" v-model="dateRangeModel" label="Date Range" helper-text="Select a date range" display-helper />
+  <spr-date-range-picker
+    id="dateRange7"
+    v-model="dateRangeModel"
+    label="Date Range"
+    helper-text="Select a date range"
+    display-helper
+  />
 </template>
 
 <script lang="ts" setup>
@@ -240,7 +254,15 @@ To handle error states, add the `error` prop to the date range calendar. You can
 
 ```vue
 <template>
-  <spr-date-range-picker id="dateRange8" v-model="dateRangeModel" label="Date Range" helper-icon="ph:warning-circle-fill" helper-text="This is a helper message" display-helper error />
+  <spr-date-range-picker
+    id="dateRange8"
+    v-model="dateRangeModel"
+    label="Date Range"
+    helper-icon="ph:warning-circle-fill"
+    helper-text="This is a helper message"
+    display-helper
+    error
+  />
 </template>
 
 <script lang="ts" setup>
@@ -257,7 +279,13 @@ You can manually set the minimum and maximum year to be shown in the calendar. T
 
 ```vue
 <template>
-  <spr-date-range-picker id="dateRange9" v-model="dateRangeModel" label="Date Range" :min-max-year="{ min: 2000, max: 2025 }" display-helper />
+  <spr-date-range-picker
+    id="dateRange9"
+    v-model="dateRangeModel"
+    label="Date Range"
+    :min-max-year="{ min: 2000, max: 2025 }"
+    display-helper
+  />
 </template>
 
 <script lang="ts" setup>
@@ -278,7 +306,13 @@ const restDays = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa'];
 
 ```vue
 <template>
-  <spr-date-range-picker id="dateRange10" v-model="dateRangeModel" label="Date Range" :rest-days="['mo', 'we', 'fr', 'sa']" display-helper />
+  <spr-date-range-picker
+    id="dateRange10"
+    v-model="dateRangeModel"
+    label="Date Range"
+    :rest-days="['mo', 'we', 'fr', 'sa']"
+    display-helper
+  />
 </template>
 
 <script lang="ts" setup>
@@ -292,11 +326,14 @@ const dateRangeModel = ref({ startDate: '', endDate: '' });
 The date range picker uses intelligent placement logic for the calendar popover:
 
 ### Default Input Fields
+
 When using the default input fields (no custom slot), the component uses the `placement` prop to determine the base direction (`top` or `bottom`) and automatically concatenates it with the appropriate alignment based on which input field is clicked:
+
 - **Start Date Input**: Uses `{placement}-start` (e.g., `top-start` or `bottom-start`)
 - **End Date Input**: Uses `{placement}-end` (e.g., `top-end` or `bottom-end`)
 
 For example, if you set `placement="top"`:
+
 - Clicking the start date input will use `top-start` placement
 - Clicking the end date input will use `top-end` placement
 
@@ -308,12 +345,12 @@ This dynamic placement ensures the calendar always appears in the most appropria
 
 ```vue
 <template>
-  <spr-date-range-picker 
-    id="defaultTopPlacement" 
-    v-model="dateRangeModel" 
-    label="Top Placement" 
+  <spr-date-range-picker
+    id="defaultTopPlacement"
+    v-model="dateRangeModel"
+    label="Top Placement"
     placement="top"
-    display-helper 
+    display-helper
   />
 </template>
 
@@ -324,6 +361,7 @@ const dateRangeModel = ref({ startDate: '', endDate: '' });
 ```
 
 ### Custom Slot Components
+
 When using a custom slot for the input area, the component respects the `placement` prop you specify:
 
 <spr-date-range-picker v-model="liveInputRange" label="Custom Input (spr-input)">
@@ -343,17 +381,9 @@ When using a custom slot for the input area, the component respects the `placeme
 
 ```vue
 <template>
-  <spr-date-range-picker
-    v-model="liveInputRange"
-    label="Custom Input (spr-input)"
-  >
+  <spr-date-range-picker v-model="liveInputRange" label="Custom Input (spr-input)">
     <template #default="{ handleClick }">
-      <spr-input
-        v-model="inputDisplayString"
-        readonly
-        class="spr-w-full spr-cursor-pointer"
-        @click="handleClick"
-      >
+      <spr-input v-model="inputDisplayString" readonly class="spr-w-full spr-cursor-pointer" @click="handleClick">
         <template #icon>
           <Icon icon="ph:calendar-blank" />
         </template>
@@ -380,13 +410,18 @@ const formatRange = (range) => {
   }
   return '';
 };
-watch(liveInputRange, (range) => {
-  inputDisplayString.value = formatRange(range);
-}, { immediate: true });
+watch(
+  liveInputRange,
+  (range) => {
+    inputDisplayString.value = formatRange(range);
+  },
+  { immediate: true },
+);
 </script>
 ```
 
 ### Available Placement Options
+
 - `top-start`, `top`, `top-end`
 - `bottom-start`, `bottom`, `bottom-end`
 - `left-start`, `left`, `left-end`
@@ -395,6 +430,7 @@ watch(liveInputRange, (range) => {
 ## Disabled Dates
 
 You can disable specific dates by passing the `disabled-dates` prop. There are ways to disable dates:
+
 - Disable dates using From and To
 - Disable Past or Future Dates
 - Disable Past or Future with Selected Date
@@ -411,7 +447,13 @@ const disabledDates = { from: '02-12-2025', to: '05-15-2025' };
 
 ```vue
 <template>
-  <spr-date-range-picker id="dateRange11" v-model="dateRangeModel" label="Date Range" :disabled-dates="{ from: '02-12-2025', to: '05-15-2025' }" display-helper />
+  <spr-date-range-picker
+    id="dateRange11"
+    v-model="dateRangeModel"
+    label="Date Range"
+    :disabled-dates="{ from: '02-12-2025', to: '05-15-2025' }"
+    display-helper
+  />
 </template>
 
 <script lang="ts" setup>
@@ -610,4 +652,4 @@ const formatRange = (range) => {
 watch(liveInputRange, (range) => {
   inputDisplayString.value = formatRange(range);
 }, { immediate: true });
-</script> 
+</script>

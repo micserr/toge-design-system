@@ -1,3 +1,9 @@
+---
+title: Border Colors
+descripttion: These utility classes set border colors using semantic names for various states and contexts. Use them to ensure consistent border color application across your UI.
+outline: deep
+---
+
 # Border Colors
 
 These utility classes set border colors using semantic names for various states and contexts. Use them to ensure consistent border color application across your UI.

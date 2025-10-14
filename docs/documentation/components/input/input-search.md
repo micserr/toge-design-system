@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Search Input
+descripttion: Search input optimized for filtering lists or triggering search queries.
+outline: deep
 ---
 
 # Search Input

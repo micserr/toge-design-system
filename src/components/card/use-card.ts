@@ -12,8 +12,17 @@ interface CardClasses {
 }
 
 export const useCard = (props: CardPropTypes, slots: Slots) => {
-  const { tone, title, headerIcon, borderRadiusSize, hasCollapsible, isCollapsibleOpen, hasContentPadding, flexbox } =
-    toRefs(props);
+  const {
+    tone,
+    title,
+    headerIcon,
+    borderRadiusSize,
+    hasCollapsible,
+    isCollapsibleOpen,
+    hasContentPadding,
+    flexbox,
+    customBorderSize,
+  } = toRefs(props);
 
   const cardClasses: ComputedRef<CardClasses> = computed(() => {
     const toneValue = tone?.value;
@@ -47,6 +56,9 @@ export const useCard = (props: CardPropTypes, slots: Slots) => {
       'spr-rounded-border-radius-md': borderRadiusSize.value === 'xs',
       'spr-rounded-border-radius-lg': borderRadiusSize.value === 'lg',
       'spr-rounded-border-radius-xl': borderRadiusSize.value === 'xl' || !borderRadiusSize.value,
+
+      [`spr-border-[${customBorderSize.value}px]`]: customBorderSize.value,
+      'spr-border-none': customBorderSize.value === '0',
     });
 
     const headerClasses = classNames(`spr-flex spr-items-center transition-all duration-300 ease-in-out`, {

@@ -1,8 +1,10 @@
 ---
-outline: 'deep'
+title: Filter
+descripttion: The `Filter` component is a versatile and powerful filtering solution designed for complex data filtering scenarios. It supports both simple search functionality and advanced filtering options with category-based filtering, making it ideal for applications that require robust data exploration capabilities.
+outline: deep
 ---
 
-# Filter Component
+# Filter
 
 The `Filter` component is a versatile and powerful filtering solution designed for complex data filtering scenarios. It supports both simple search functionality and advanced filtering options with category-based filtering, making it ideal for applications that require robust data exploration capabilities.
 

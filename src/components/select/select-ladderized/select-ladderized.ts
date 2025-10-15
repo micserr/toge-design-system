@@ -101,6 +101,10 @@ export const selectLadderizedPropTypes = {
     type: Number,
     default: 6,
   },
+  autoHide: {
+    type: Boolean,
+    default: false,
+  },
   triggers: {
     type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
     validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
@@ -115,9 +119,18 @@ export const selectLadderizedPropTypes = {
     },
     default: () => [],
   },
-  autoHide: {
-    type: Boolean,
-    default: false,
+  popperStrategy: {
+    type: String,
+    validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
+    default: 'absolute',
+  },
+  popperWidth: {
+    type: String,
+    default: '100%',
+  },
+  popperContainer: {
+    type: String,
+    default: '',
   },
   wrapperPosition: {
     type: String,
@@ -126,15 +139,6 @@ export const selectLadderizedPropTypes = {
   width: {
     type: String,
     default: '100%',
-  },
-  popperWidth: {
-    type: String,
-    default: '100%',
-  },
-  popperStrategy: {
-    type: String,
-    validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
-    default: 'absolute',
   },
   removeCurrentLevelInBackLabel: {
     type: Boolean,

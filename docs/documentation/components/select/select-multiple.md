@@ -1,5 +1,6 @@
 ---
-title: Ladderized Select
+title: Multiple Select
+descripttion: The Multi Select component allows users to select multiple options from a select list.
 outline: deep
 ---
 
@@ -25,7 +26,12 @@ The Multi Select component allows users to select multiple options from a select
 
 ```vue
 <template>
-  id="sample-select" v-model="selectBasic" label="Multi-Select Label" placeholder="Select an option" :options="options"
+  <spr-select-multiple
+    id="sample-muti-select"
+    v-model="selectBasic"
+    label="Multi-Select Label"
+    placeholder="Select an option"
+    :options="options"
   />
 
   <script lang="ts" setup>
@@ -69,7 +75,7 @@ The Multi Select component allows users to select multiple options from a select
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectChipped"
     label="Multi-Select Label"
     placeholder="Select an option"
@@ -97,7 +103,7 @@ You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-ite
 <template>
   <div class="spr-grid spr-gap-4">
     <spr-select-multiple
-      id="sample-select"
+      id="sample-muti-select"
       v-model="selectGroupedItemsBy"
       label="Multi-Select Label"
       placeholder="Select an option"
@@ -151,7 +157,7 @@ Pre-selected items are options that are automatically selected when the select i
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectPreSelectedItems"
     label="Select Fruits"
     placeholder="Select one or more fruits"
@@ -236,7 +242,7 @@ The search feature allows users to quickly filter and find specific items within
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
@@ -289,7 +295,7 @@ Use `@searchString` emit to get the search string when the user types in the sea
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
@@ -343,7 +349,7 @@ Use `@searchString` emit to get the search string when the user types in the sea
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
@@ -572,7 +578,7 @@ You can modify the width of the select component in two ways: by adjusting the w
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel"
     label="Multi-Select Label"
     placeholder="Select an option"
@@ -599,13 +605,13 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
 
 <spr-modal v-model="modalModel" title="Select with Modal">
    <spr-select-multiple
-    id="sample-selectStrategy-modal"
+    id="sample-multiSelectPopperStrategy"
     v-model="selectModel.selectStrategy"
     label="Multi-Select Label"
     placeholder="Select an option"
     :options="options"
-    wrapper-position="initial"
     popper-strategy="fixed"
+    wrapper-position="initial"
   />
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -618,13 +624,13 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
 
   <spr-modal v-model="modalModel" title="Select with Modal">
     <spr-select-multiple
-      id="sample-select"
+      id="sample-muti-select"
       v-model="selectModel"
       label="Multi-Select Label"
       placeholder="Select an option"
       :options="options"
-      wrapper-position="initial"
       popper-strategy="fixed"
+      wrapper-position="initial"
     />
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
@@ -632,6 +638,70 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
       consequat.
     </p>
   </spr-modal>
+</template>
+```
+
+You can also use the `popper-container` prop to specify a custom container for the popper element. This is useful when you want to restrict the popper's positioning context to a specific element within your application.
+
+Since the popper is being teleported to a different container, the `popper-width` prop will not work as expected. To set a custom width for the popper in this case, you can use custom styles or CSS classes to define the desired width.
+
+<div>
+  <spr-dropdown
+    id="sample-dropdownCustomPopper"
+    width="300px"
+    :triggers="['hover', 'click']"
+    :popper-triggers="['hover', 'click']"
+    popper-width="500px"
+    :auto-hide="false"
+  >
+    <spr-button class="spr-w-full" tone="success" has-icon>
+      <span>Custom Popper With Dropdown</span>
+      <Icon icon="ph:caret-down" />
+    </spr-button>
+    <template #popper>
+      <spr-select-multiple
+        id="sample-muti-select"
+        v-model="selectModel.selectStrategy"
+        label="Select Label"
+        placeholder="Select an option"
+        :options="options"
+        popper-strategy="fixed"
+        popper-container="#sample-dropdownCustomPopper"
+        wrapper-position="relative"
+        placement="bottom"
+      />
+    </template>
+  </spr-dropdown>
+</div>
+
+```vue
+<template>
+  <spr-dropdown
+    id="sample-dropdownCustomPopper"
+    width="300px"
+    :triggers="['hover', 'click']"
+    :popper-triggers="['hover', 'click']"
+    popper-width="500px"
+    :auto-hide="false"
+  >
+    <spr-button class="spr-w-full" tone="success" has-icon>
+      <span>Custom Popper With Dropdown</span>
+      <Icon icon="ph:caret-down" />
+    </spr-button>
+    <template #popper>
+      <spr-select-multiple
+        id="sample-muti-select"
+        v-model="selectModel"
+        label="Multi-Select Label"
+        placeholder="Select an option"
+        :options="options"
+        popper-strategy="fixed"
+        popper-container="#sample-dropdownCustomPopper"
+        wrapper-position="relative"
+        placement="bottom"
+      />
+    </template>
+  </spr-dropdown>
 </template>
 ```
 
@@ -643,7 +713,7 @@ For guidance on implementing error, active, and disabled states in the select co
 
 <div>
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel.selectActiveState"
     label="Select Label"
     placeholder="Select an option"
@@ -655,7 +725,7 @@ For guidance on implementing error, active, and disabled states in the select co
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
@@ -669,7 +739,7 @@ For guidance on implementing error, active, and disabled states in the select co
 
 <div>
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel.selectDisabledState"
     label="Select Label"
     placeholder="Select an option"
@@ -681,7 +751,7 @@ For guidance on implementing error, active, and disabled states in the select co
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
@@ -695,7 +765,7 @@ For guidance on implementing error, active, and disabled states in the select co
 
 <div>
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel.selectErrorState"
     label="Select Label"
     placeholder="Select an option"
@@ -707,7 +777,7 @@ For guidance on implementing error, active, and disabled states in the select co
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
@@ -725,7 +795,7 @@ To display the helper message, set the `display-helper` prop to `true` and add t
 
 <div class="spr-grid spr-gap-8">
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel.selectErrorState"
     label="Select Label"
     placeholder="Select an option"
@@ -734,7 +804,7 @@ To display the helper message, set the `display-helper` prop to `true` and add t
     display-helper
   />
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel.selectErrorState"
     label="Select Label"
     placeholder="Select an option"
@@ -749,7 +819,7 @@ To display the helper message, set the `display-helper` prop to `true` and add t
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
@@ -759,7 +829,7 @@ To display the helper message, set the `display-helper` prop to `true` and add t
   />
 
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
@@ -776,7 +846,7 @@ Alternatively, you can use the `helperMessage` slot to display a custom helper m
 
 <div class="spr-grid spr-gap-8">
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel.selectErrorState"
     label="Select Label"
     placeholder="Select an option"
@@ -786,7 +856,7 @@ Alternatively, you can use the `helperMessage` slot to display a custom helper m
     <template #helperMessage>This is a helper message</template>
   </spr-select-multiple>
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel.selectErrorState"
     label="Select Label"
     placeholder="Select an option"
@@ -804,7 +874,7 @@ Alternatively, you can use the `helperMessage` slot to display a custom helper m
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
@@ -815,7 +885,7 @@ Alternatively, you can use the `helperMessage` slot to display a custom helper m
   </spr-select-multiple>
 
   <spr-select-multiple
-    id="sample-select"
+    id="sample-muti-select"
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
@@ -1033,6 +1103,12 @@ const userList = ref([
       <td>'100%'</td>
     </tr>
     <tr>
+      <td><code>popper-container</code></td>
+      <td>CSS selector or HTMLElement to specify a custom container for the popper element</td>
+      <td>String | HTMLElement</td>
+      <td>''</td>
+    </tr>
+    <tr>
       <td><code>width</code></td>
       <td>Width of the select wrapper.</td>
       <td>String</td>
@@ -1181,6 +1257,7 @@ import SprChips from "@/components/chips/chips.vue";
 import SprLozenge from "@/components/lozenge/lozenge.vue"
 import SprModal from "@/components/modal/modal.vue"
 import SprLogo from "@/components/logo/logo.vue";
+import SprDropdown from "@/components/dropdown/dropdown.vue";
 
 // Import MenuListType for typing
 import type { MenuListType } from '@/components/list/list';

@@ -8,7 +8,7 @@
     :popper-triggers="props.popperTriggers"
     :auto-hide="props.autoHide"
     :disabled="isDropdownPopperDisabled"
-    :container="`#${props.id}`"
+    :container="props.popperContainer ? props.popperContainer : `#${props.id}`"
     :strategy="
       props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
     "

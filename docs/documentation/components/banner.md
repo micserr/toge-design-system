@@ -1,7 +1,9 @@
 ---
-outline: 'deep'
-description: 'The Banner component is used to display important messages, statuses, or alerts to users. It supports different types (`success`, `error`, `info`, `pending`, `caution`), can be closed by the user, and allows for customizable content via slots.'
+title: Banner
+descripttion: The Banner component is used to display important messages, statuses, or alerts to users. It supports different types (success, error, info, pending, caution), can be closed by the user, and allows for customizable content via slots.
+outline: deep
 ---
+
 # Banner
 
 The Banner component is used to display important messages, statuses, or alerts to users. It supports different types (`success`, `error`, `info`, `pending`, `caution`), can be closed by the user, and allows for customizable content via slots.
@@ -20,11 +22,31 @@ Display banners of different types using the `type` prop.
 
 ```vue
 <template>
-  <spr-banner v-model:show="showBannerSuccess" type="success" :show-close-button="false" message="This is a success banner." />
-  <spr-banner v-model:show="showBannerError" type="error" :show-close-button="false" message="This is an error banner." />
+  <spr-banner
+    v-model:show="showBannerSuccess"
+    type="success"
+    :show-close-button="false"
+    message="This is a success banner."
+  />
+  <spr-banner
+    v-model:show="showBannerError"
+    type="error"
+    :show-close-button="false"
+    message="This is an error banner."
+  />
   <spr-banner v-model:show="showBannerInfo" type="info" :show-close-button="false" message="This is an info banner." />
-  <spr-banner v-model:show="showBannerPending" type="pending" :show-close-button="false" message="This is a pending banner." />
-  <spr-banner v-model:show="showBannerCaution" type="caution" :show-close-button="false" message="This is a caution banner." />
+  <spr-banner
+    v-model:show="showBannerPending"
+    type="pending"
+    :show-close-button="false"
+    message="This is a pending banner."
+  />
+  <spr-banner
+    v-model:show="showBannerCaution"
+    type="caution"
+    :show-close-button="false"
+    message="This is a caution banner."
+  />
 </template>
 
 <script setup lang="ts">
@@ -91,17 +113,42 @@ Banners can be closed by the user if `showCloseButton` is `true. Use `v-model:sh
 ```vue
 <template>
   ...
-    <spr-banner v-model:show="showBannerCloseSuccess" type="success" show-close-button message="This is a closable success banner." />
-    <spr-banner v-model:show="showBannerCloseError" type="error" show-close-button message="This is a closable error banner." />
-    <spr-banner v-model:show="showBannerCloseInfo" type="info" show-close-button message="This is a closable info banner." />
-    <spr-banner v-model:show="showBannerClosePending" type="pending" show-close-button message="This is a closable pending banner." />
-    <spr-banner v-model:show="showBannerCloseCaution" type="caution" show-close-button message="This is a closable caution banner." />
+  <spr-banner
+    v-model:show="showBannerCloseSuccess"
+    type="success"
+    show-close-button
+    message="This is a closable success banner."
+  />
+  <spr-banner
+    v-model:show="showBannerCloseError"
+    type="error"
+    show-close-button
+    message="This is a closable error banner."
+  />
+  <spr-banner
+    v-model:show="showBannerCloseInfo"
+    type="info"
+    show-close-button
+    message="This is a closable info banner."
+  />
+  <spr-banner
+    v-model:show="showBannerClosePending"
+    type="pending"
+    show-close-button
+    message="This is a closable pending banner."
+  />
+  <spr-banner
+    v-model:show="showBannerCloseCaution"
+    type="caution"
+    show-close-button
+    message="This is a closable caution banner."
+  />
   ...
-    <spr-button tone="success" @click="showBannerCloseSuccess = true">Show Success</spr-button>
-    <spr-button tone="danger" @click="showBannerCloseError = true">Show Error</spr-button>
-    <spr-button tone="info" @click="showBannerCloseInfo = true">Show Info</spr-button>
-    <spr-button tone="pending" @click="showBannerClosePending = true">Show Pending</spr-button>
-    <spr-button tone="caution" @click="showBannerCloseCaution = true">Show Caution</spr-button>
+  <spr-button tone="success" @click="showBannerCloseSuccess = true">Show Success</spr-button>
+  <spr-button tone="danger" @click="showBannerCloseError = true">Show Error</spr-button>
+  <spr-button tone="info" @click="showBannerCloseInfo = true">Show Info</spr-button>
+  <spr-button tone="pending" @click="showBannerClosePending = true">Show Pending</spr-button>
+  <spr-button tone="caution" @click="showBannerCloseCaution = true">Show Caution</spr-button>
   ...
 </template>
 

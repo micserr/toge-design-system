@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Status
+descripttion: The Status component provides a standardized way to display status indicators across the application. It ensures consistent color, iconography, and accessibility for different states such as Success, Information, Pending, Caution, and Danger.
+outline: deep
 ---
 
 # Status

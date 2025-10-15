@@ -94,11 +94,6 @@ export const dateRangePickerPropTypes = {
     type: String,
     default: '100%',
   },
-  popperStrategy: {
-    type: String,
-    validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
-    default: 'absolute',
-  },
   placement: {
     type: String as PropType<(typeof PLACEMENTS_TYPES)[number]>,
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
@@ -127,6 +122,19 @@ export const dateRangePickerPropTypes = {
     type: Number,
     default: 1,
     description: 'Minimum number of days required in the range',
+  },
+  wrapperPosition: {
+    type: String,
+    default: 'relative',
+  },
+  popperStrategy: {
+    type: String,
+    validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
+    default: 'absolute',
+  },
+  popperContainer: {
+    type: String,
+    default: '',
   },
 };
 
@@ -190,4 +198,4 @@ export const dateRangePickerEmitTypes = {
 };
 
 export type DateRangePickerPropTypes = ExtractPropTypes<typeof dateRangePickerPropTypes>;
-export type DateRangePickerEmitTypes = typeof dateRangePickerEmitTypes; 
+export type DateRangePickerEmitTypes = typeof dateRangePickerEmitTypes;

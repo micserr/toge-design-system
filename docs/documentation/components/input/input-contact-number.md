@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Contact Number Input
+descripttion: The Contact Number Input component allows users to enter and format international phone numbers with a country selector, utilizing libphonenumber-js for parsing and validation.
+outline: deep
 ---
 
 # Contact Number Input

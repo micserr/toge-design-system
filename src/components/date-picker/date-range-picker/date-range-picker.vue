@@ -9,7 +9,7 @@
       :popper-hide-triggers="[]"
       :auto-hide="false"
       :disabled="isDateRangePickerPopperDisabled"
-      :container="`#${props.id}`"
+      :container="props.popperContainer ? props.popperContainer : `#${props.id}`"
       :reference="activeInputRef"
       :strategy="
         props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
@@ -17,6 +17,7 @@
       :delay="0"
       :auto-placement="!isUsingCustomSlot"
       :style="{
+        position: props.wrapperPosition,
         width: props.width,
       }"
     >

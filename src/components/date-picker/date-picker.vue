@@ -9,12 +9,13 @@
       :popper-hide-triggers="[]"
       :auto-hide="false"
       :disabled="isDatePickerPopperDisabled"
-      :container="`#${props.id}`"
+      :container="props.popperContainer ? props.popperContainer : `#${props.id}`"
       :strategy="
         props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
       "
       :delay="0"
       :style="{
+        position: props.wrapperPosition,
         width: props.width,
       }"
     >

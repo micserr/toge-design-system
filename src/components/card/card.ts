@@ -59,6 +59,10 @@ export const cardPropTypes = {
     type: Boolean,
     default: false,
   },
+  customBorderSize: {
+    type: String,
+    default: null,
+  },
 };
 
 export type CardPropTypes = ExtractPropTypes<typeof cardPropTypes>;

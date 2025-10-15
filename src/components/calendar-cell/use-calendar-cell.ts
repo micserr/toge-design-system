@@ -4,8 +4,19 @@ import classNames from 'classnames';
 import type { CalendarCellPropTypes, CalendarCellEmitTypes } from './calendar-cell';
 
 export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext<CalendarCellEmitTypes>['emit']) => {
-  const { title, description, type, status, subDescription, icon, fullwidth, viewOnly, loading, customColor } =
-    toRefs(props);
+  const {
+    title,
+    description,
+    type,
+    status,
+    subDescription,
+    icon,
+    fullwidth,
+    viewOnly,
+    loading,
+    customColor,
+    customBorderSize,
+  } = toRefs(props);
   const offlineStatus = ['restday', 'vacation', 'holiday', 'exempt', 'sick', 'emergency'];
   const shiftLabels: Record<string, string> = {
     standard: 'Standard Day Shift',
@@ -68,6 +79,12 @@ export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext
 
   const getCustomColorStyles = computed(() => {
     if (!customColor.value || !customColor.value.startsWith('#')) return {};
+    if (customColor.value === '#FFFFFF') {
+      return {
+        borderColor: '#B8C1C0',
+        backgroundColor: customColor.value,
+      };
+    }
 
     const opacity = '20'; // 20 in hex = 12.5% opacity
 
@@ -80,11 +97,13 @@ export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext
   const getCalendarCellClassess = computed(() => {
     const calendarCellWrapper = classNames(
       'spr-flex spr-items-center spr-p-size-spacing-3xs spr-gap-size-spacing-3xs spr-relative spr-rounded-lg spr-border-2 spr-transition-all sm:spr-flex-col spr-overflow-hidden',
+
       {
         'spr-w-full': fullwidth.value,
         'spr-max-w-[217px]': !fullwidth.value,
         'hover:spr-drop-shadow-sm spr-cursor-pointer': !viewOnly.value,
         'spr-h-[80px] spr-skeletal-loader': loading.value,
+        [`spr-border-[${customBorderSize.value}px]`]: customBorderSize.value,
       },
     );
 

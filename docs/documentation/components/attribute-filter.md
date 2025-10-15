@@ -274,10 +274,16 @@ const handleSearch = (search: string) => {
       <td>false</td>
     </tr>
     <tr>
-      <td><code>showBadge</code></td>
-      <td>When true, displays a badge on the chip component trigger indicating the number of selected filters</td>
+      <td><code>showSelectedFilterCount</code></td>
+      <td>When true, displays a badge in the chip component trigger indicating the number of selected filters</td>
       <td>boolean</td>
       <td>true</td>
+    </tr>
+    <tr>
+      <td><code>selectedFilterCount</code></td>
+      <td>Set the text to display in the badge indicating the number of selected filters. If not provided and the no list prop is false, it will default to the length of the selected filters.</td>
+      <td>string</td>
+      <td>undefined</td>
     </tr>
     <tr>
       <td><code>badgeVariant</code></td>
@@ -293,7 +299,7 @@ const handleSearch = (search: string) => {
     </tr>
     <tr>
       <td><code>clearable</code></td>
-      <td>When true, will render an X icon in the default chip trigger to clear selected filters.</td>
+      <td>When true, will render an X icon in the default chip trigger to clear selected filters or if no list, will trigger the onClearFilter event.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>

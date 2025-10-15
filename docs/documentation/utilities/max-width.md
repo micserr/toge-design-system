@@ -1,3 +1,9 @@
+---
+title: Max-Width
+descripttion: Additional max-width classes.
+outline: deep
+---
+
 # max-width
 
 Additional max-width classes.

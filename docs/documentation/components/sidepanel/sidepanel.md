@@ -1,6 +1,7 @@
 ---
-outline: 'deep'
-description: 'A versatile UI element for displaying supplementary content without disrupting the main interface.'
+title: Sidepanel
+descripttion: The Sidepanel component is a versatile UI element that slides in from the edge of the screen to display supplementary content, forms, or detailed information without disrupting the main interface. It provides a contextual and non-intrusive way to present additional content and actions.
+outline: deep
 ---
 
 # Sidepanel

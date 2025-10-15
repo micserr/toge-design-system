@@ -1,3 +1,9 @@
+---
+title: Typography
+descripttion: We established a font convention to ensure consistent and optimal presentation across various platforms.
+outline: deep
+---
+
 # Typography
 
 We established a font convention to ensure consistent and optimal presentation across various platforms.

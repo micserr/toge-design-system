@@ -1,6 +1,7 @@
 ---
-outline: 'deep'
-description: 'A component for displaying multiple side panels in a stacked layout.'
+title: Stacking Sidepanel
+descripttion: The Stacking Sidepanel component allows multiple sidepanels to be displayed side-by-side, creating a layered effect that enhances navigation and context for users. It is ideal for multi-step workflows, master-detail views, and nested content exploration.
+outline: deep
 ---
 
 # Stacking Sidepanel

@@ -105,6 +105,10 @@ export const selectPropTypes = {
     type: String,
     default: '100%',
   },
+  popperContainer: {
+    type: String,
+    default: '',
+  },
   width: {
     type: String,
     default: '100%',

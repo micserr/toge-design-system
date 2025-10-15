@@ -358,11 +358,22 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
   /**
    * Handles closing the multi-select when clicking outside.
    */
-  onClickOutside(multiSelectRef, () => {
-    multiSelectPopperState.value = false;
+  onClickOutside(
+    multiSelectRef,
+    (event) => {
+      // If click happened inside the floating popper content, don't treat as outside
+      if (multipleSelectPopperRef.value && multipleSelectPopperRef.value.contains(event.target as Node)) {
+        return;
+      }
 
-    updateMultiSelectedItemsFromValue();
-  });
+      multiSelectPopperState.value = false;
+
+      updateMultiSelectedItemsFromValue();
+    },
+    {
+      ignore: [multipleSelectPopperRef],
+    },
+  );
 
   useInfiniteScroll(
     multipleSelectPopperRef,

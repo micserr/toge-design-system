@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: List
+descripttion: The List component is a versatile UI element that allows users to select one or multiple items from a list. It supports features such as grouping, pre-selection, ladderized structure, and displaying items as lozenges. The component is designed to handle large datasets with scrollable functionality and provides a clean and intuitive interface for item selection.
+outline: deep
 ---
 
 # List

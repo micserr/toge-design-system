@@ -16,7 +16,7 @@
       :popper-triggers="props.popperTriggers"
       :auto-hide="props.autoHide"
       :disabled="isMultiSelectPopperDisabled"
-      :container="`#multi-select-${props.id}`"
+      :container="props.popperContainer ? props.popperContainer : `#multi-select-${props.id}`"
       :strategy="
         props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
       "

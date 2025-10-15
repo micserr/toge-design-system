@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Email Input
+descripttion: Email input with native browser validation patterns.
+outline: deep
 ---
 
 # Email Input

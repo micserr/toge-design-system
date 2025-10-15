@@ -3,9 +3,10 @@
 ## 2.16.3 (2025-10-15)
 
 - Fix
-  - Update Documentations Tittle and Descriptions
-  - Update Popper Strategy Documentation (Select, Multi Select, Ladderized Select, Date Picker, Date Range Picker) - For popper inside popper approach support.
-    ([#35325](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35325?_a=files @jarias)
+  - Update Documentation Title and Descriptions
+  - Added For popper inside popper approach support.
+  - Popper Strategy Documentation (Select, Multi Select, Ladderized Select, Date Picker, Date Range Picker)
+    ([#35348](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35348?_a=files @jarias)
 
 ## 2.16.2 (2025-10-14)
 

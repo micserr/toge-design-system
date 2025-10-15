@@ -1,7 +1,7 @@
 ---
 title: Product Logo
-outline: 'deep'
-description: Display Sprout product logos with customizable themes and sizes
+descripttion: The Product Logo component provides a simple and consistent way to display various Sprout product logos throughout your application. It supports different products, color themes, and sizing options.
+outline: deep
 ---
 
 # Product Logo

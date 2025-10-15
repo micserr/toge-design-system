@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Chips
+descripttion: The Chips component provides interactive elements for filtering, selection, tagging, and displaying small pieces of information. Chips can include text, icons, avatars, and badges, and support various states such as active, disabled, and closable. They are versatile UI elements suitable for a wide range of applications.
+outline: deep
 ---
 
 # Chips Component

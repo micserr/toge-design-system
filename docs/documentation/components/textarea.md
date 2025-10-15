@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Textarea
+descripttion: The Textarea component is a multi-line text input field that allows users to enter and edit larger amounts of text. It supports features such as character limits, helper messages, error states, and read-only mode to enhance user experience and accessibility.
+outline: deep
 ---
 
 # Textarea

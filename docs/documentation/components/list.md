@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: List
+descripttion: The List component is a versatile UI element that allows users to select one or multiple items from a list. It supports features such as grouping, pre-selection, ladderized structure, and displaying items as lozenges. The component is designed to handle large datasets with scrollable functionality and provides a clean and intuitive interface for item selection.
+outline: deep
 ---
 
 # List
@@ -654,6 +656,7 @@ const mockDropdownData = [
 ```
 
 ## Lozenge
+
 The list component can also be displayed as a lozenge by passing the `lozenge` prop. The items in the list should contain `lozengeProps` to define the properties of the lozenge.
 
 <div 
@@ -801,12 +804,6 @@ const lozengeMenuList = ref(
       <td>false</td>
     </tr>
     <tr>
-      <td>dropdown</td>
-      <td>Internal prop used to indicate the list is being used within a dropdown component. Affects certain visual behaviors.</td>
-      <td>boolean</td>
-      <td>false</td>
-    </tr>
-    <tr>
       <td>lozenge</td>
       <td>Enables lozenge mode for the list items. When enabled, items are displayed as lozenges.</td>
       <td>boolean</td>
@@ -839,25 +836,24 @@ const lozengeMenuList = ref(
   </tbody>
 </table>
 
-
 ### MenuListType Interface
 
 The List component accepts items conforming to the `MenuListType` interface:
 
 ```typescript
 type MenuListType = {
-  text: string;                                    // Display text for the item (required)
-  value: string | number;                          // Unique identifier for the item (required)
-  subtext?: string;                                // Optional secondary text displayed below main text
-  group?: string;                                  // Optional group identifier for grouping items
-  sublevel?: MenuListType[];                       // Optional nested items for ladderized lists
-  disabled?: boolean;                              // Optional flag to disable the item
-  _originalObject?: Record<string, unknown>;       // Optional reference to original object
-  icon?: string;                                   // Optional Iconify icon name
-  iconColor?: string;                              // Optional CSS class for icon color
-  textColor?: string;                              // Optional CSS class for text color
-  lozengeProps?: LozengePropTypes;                 // Props for the lozenge component when list is displayed as lozenge
-  onClickFn?: () => void;                          // Optional click handler function
+  text: string; // Display text for the item (required)
+  value: string | number; // Unique identifier for the item (required)
+  subtext?: string; // Optional secondary text displayed below main text
+  group?: string; // Optional group identifier for grouping items
+  sublevel?: MenuListType[]; // Optional nested items for ladderized lists
+  disabled?: boolean; // Optional flag to disable the item
+  _originalObject?: Record<string, unknown>; // Optional reference to original object
+  icon?: string; // Optional Iconify icon name
+  iconColor?: string; // Optional CSS class for icon color
+  textColor?: string; // Optional CSS class for text color
+  lozengeProps?: LozengePropTypes; // Props for the lozenge component when list is displayed as lozenge
+  onClickFn?: () => void; // Optional click handler function
 };
 ```
 

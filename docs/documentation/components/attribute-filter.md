@@ -1,7 +1,7 @@
 ---
-outline: 'deep'
 title: Attribute Filter
-description: The Attribute Filter component provides a user interface for filtering items based on various attributes. By default, it utilizes the chip component as the trigger element and the list component to display filter options, but it can be customized to use other components as needed.
+descripttion: The Attribute Filter component provides a user interface for filtering items based on various attributes. By default, it utilizes the chip component as the trigger element and the list component to display filter options, but it can be customized to use other components as needed.
+outline: deep
 ---
 
 # Attribute Filter
@@ -43,6 +43,7 @@ const filterList = ref([
 ]);
 </script>
 ```
+
 ## Multi Select
 
 <SprAttributeFilter

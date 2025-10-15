@@ -82,10 +82,6 @@ export const listPropTypes = {
     type: Boolean,
     default: false,
   },
-  dropdown: {
-    type: Boolean,
-    default: false,
-  },
   lozenge: {
     type: Boolean,
     default: false,

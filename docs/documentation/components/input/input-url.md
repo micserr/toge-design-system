@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: URL Input
+descripttion: URL input with native browser validation for properly formatted URLs.
+outline: deep
 ---
 
 # URL Input

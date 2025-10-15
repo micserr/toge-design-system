@@ -594,8 +594,8 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
     label="Ladderized Select"
     placeholder="Select an item"
     :options="options"
-    wrapper-position="initial"
     popper-strategy="fixed"
+    wrapper-position="initial"
   />
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -613,8 +613,8 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
       label="Ladderized Select"
       placeholder="Select an item"
       :options="options"
-      wrapper-position="initial"
       popper-strategy="fixed"
+      wrapper-position="initial"
     />
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
@@ -622,6 +622,68 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
       consequat.
     </p>
   </spr-modal>
+</template>
+```
+
+You can also use the `popper-container` prop to specify a custom container for the popper element. This is useful when you want to restrict the popper's positioning context to a specific element within your application.
+
+Since the popper is being teleported to a different container, the `popper-width` prop will not work as expected. To set a custom width for the popper in this case, you can use custom styles or CSS classes to define the desired width.
+
+<div>
+  <spr-dropdown
+    id="sample-dropdownCustomPopper"
+    width="300px"
+    :triggers="['hover', 'click']"
+    :popper-triggers="['hover', 'click']"
+    popper-width="500px"
+    :auto-hide="false"
+  >
+    <spr-button class="spr-w-full" tone="success" has-icon>
+      <span>Custom Popper With Dropdown</span>
+      <Icon icon="ph:caret-down" />
+    </spr-button>
+    <template #popper>
+      <spr-select-ladderized
+        id="sample-ladderized-select"
+        v-model="laderrizedSelectModel.strategyLadderizedSelect"
+        label="Ladderized Select"
+        placeholder="Select an item"
+        :options="options"
+        popper-strategy="fixed"
+        popper-container="#sample-dropdownCustomPopper"
+        wrapper-position="initial"
+      />
+    </template>
+  </spr-dropdown>
+</div>
+
+```vue
+<template>
+  <spr-dropdown
+    id="sample-dropdownCustomPopper"
+    width="300px"
+    :triggers="['hover', 'click']"
+    :popper-triggers="['hover', 'click']"
+    popper-width="500px"
+    :auto-hide="false"
+  >
+    <spr-button class="spr-w-full" tone="success" has-icon>
+      <span>Custom Popper With Dropdown</span>
+      <Icon icon="ph:caret-down" />
+    </spr-button>
+    <template #popper>
+      <spr-select-ladderized
+        id="ladderized-select"
+        v-model="laderrizedSelectModel"
+        label="Ladderized Select"
+        placeholder="Select an item"
+        :options="options"
+        popper-strategy="fixed"
+        popper-container="#sample-dropdownCustomPopper"
+        wrapper-position="initial"
+      />
+    </template>
+  </spr-dropdown>
 </template>
 ```
 
@@ -766,6 +828,12 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
       <td><code>absolute</code></td>
     </tr>
     <tr>
+      <td><code>popper-container</code></td>
+      <td>CSS selector or HTMLElement to specify a custom container for the popper element</td>
+      <td>String | HTMLElement</td>
+      <td>''</td>
+    </tr>
+    <tr>
       <td><code>disabled</code></td>
       <td>Disable the select</td>
       <td>Boolean</td>
@@ -819,10 +887,13 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
 <script lang="ts" setup>
 import { ref } from 'vue';
 
+import { Icon } from '@iconify/vue';
+
 import SprSelectLadderized from "@/components/select/select-ladderized/select-ladderized.vue";
 import SprInput from "@/components/input/input.vue";
 import SprButton from "@/components/button/button.vue";
 import SprModal from "@/components/modal/modal.vue"
+import SprDropdown from "@/components/dropdown/dropdown.vue";
 
 const laderrizedSelectModel = ref({
   basicLadderizedSelect: [],

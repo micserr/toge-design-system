@@ -144,7 +144,6 @@ You can disable local search by passing the `disabled-local-search` prop. This i
 
 Use `@searchString` emit to get the search string when the user types in the search input. This allows you to handle the search logic externally, such as fetching options from an API based on the search query.
 
-````vue
 <div class="spr-grid spr-gap-4">
   <spr-select
     id="sample-selectSearchDisabledLocalSearch"
@@ -193,7 +192,7 @@ const options = ref([
   { text: '89 Quince', value: '50' },
 ]);
 </script>
-````
+```
 
 ## Pre-Selected Items
 
@@ -480,13 +479,13 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
 
 <spr-modal v-model="modalModel" title="Select with Modal">
    <spr-select
-    id="sample-selectStrategy-modal"
+    id="sample-selectPopperStrategy"
     v-model="selectModel.selectStrategy"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
-    wrapper-position="initial"
     popper-strategy="fixed"
+    wrapper-position="initial"
   />
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -504,8 +503,8 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
       label="Select Label"
       placeholder="Select an option"
       :options="options"
-      wrapper-position="initial"
       popper-strategy="fixed"
+      wrapper-position="initial"
     />
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
@@ -540,9 +539,9 @@ Since the popper is being teleported to a different container, the `popper-width
         label="Select Label"
         placeholder="Select an option"
         :options="options"
+        popper-strategy="fixed"
         popper-container="#sample-dropdownCustomPopper"
         wrapper-position="relative"
-        popper-strategy="fixed"
         placement="bottom"
       />
     </template>
@@ -553,17 +552,16 @@ Since the popper is being teleported to a different container, the `popper-width
 <template>
   <spr-dropdown
     id="sample-dropdownCustomPopper"
-    width="150px"
+    width="300px"
     :triggers="['hover', 'click']"
     :popper-triggers="['hover', 'click']"
     popper-width="500px"
     :auto-hide="false"
   >
     <spr-button class="spr-w-full" tone="success" has-icon>
-      <span>Custom Popper</span>
+      <span>Custom Popper With Dropdown</span>
       <Icon icon="ph:caret-down" />
     </spr-button>
-
     <template #popper>
       <spr-select
         id="sample-select"
@@ -571,34 +569,14 @@ Since the popper is being teleported to a different container, the `popper-width
         label="Select Label"
         placeholder="Select an option"
         :options="options"
+        popper-strategy="fixed"
         popper-container="#sample-dropdownCustomPopper"
         wrapper-position="relative"
-        popper-strategy="fixed"
         placement="bottom"
       />
     </template>
   </spr-dropdown>
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const selectModel = ref('');
-
-const options = ref([
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Cherry', value: 'cherry' },
-  { text: 'Date', value: 'date' },
-  { text: 'Elderberry', value: 'elderberry' },
-  { text: 'Fig', value: 'fig' },
-  { text: 'Grape', value: 'grape' },
-  { text: 'Nectarine', value: 'nectarine' },
-  { text: 'Orange', value: 'orange' },
-  { text: 'Papaya', value: 'papaya' },
-  { text: '89 Quince', value: '50' },
-]);
-</script>
 ```
 
 ## Infinite Scroll
@@ -1115,13 +1093,7 @@ const userList = ref([
       <td>'click' | 'hover' | 'focus' | 'touch'[]</td>
       <td>[]</td>
     </tr>
-    <tr>
-      <td><code>auto-hide</code></td>
-      <td>When true, automatically hides the dropdown when clicking outside it</td>
-      <td>Boolean</td>
-      <td>true</td>
-    </tr>
-    <tr>
+     <tr>
       <td><code>popper-strategy</code></td>
       <td>Defines how the select's popper is positioned: 'absolute' or 'fixed'</td>
       <td>String</td>
@@ -1132,6 +1104,18 @@ const userList = ref([
       <td>Width of the select's popper</td>
       <td>String</td>
       <td>'100%'</td>
+    </tr>
+    <tr>
+      <td><code>popper-container</code></td>
+      <td>CSS selector or HTMLElement to specify a custom container for the popper element</td>
+      <td>String | HTMLElement</td>
+      <td>''</td>
+    </tr>
+    <tr>
+      <td><code>auto-hide</code></td>
+      <td>When true, automatically hides the dropdown when clicking outside it</td>
+      <td>Boolean</td>
+      <td>true</td>
     </tr>
     <tr>
       <td><code>width</code></td>

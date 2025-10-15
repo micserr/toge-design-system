@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.17.0 (2025-10-15)
+
+- Feat
+  - Add Reusable Calender
+  - Update documentation following component documentation guidelines
+  ([#e41b78e7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35353))
 ## 2.16.3 (2025-10-15)
 
 - Fix

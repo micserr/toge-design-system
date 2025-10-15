@@ -5,12 +5,12 @@
     :class="[bannerClasses.base]"
   >
     <div :class="[bannerClasses.content]">
-    <slot>
-      <div class="spr-flex spr-items-top spr-gap-size-spacing-3xs">
-        <span :class="[bannerClasses.icon]"><icon :icon="bannerIcon" width="16px" height="16px" /></span>
-        <span :class="[bannerClasses.message]">{{ props.message }}</span>
-      </div>
-    </slot>
+      <slot>
+        <div class="spr-flex spr-items-top spr-gap-size-spacing-3xs">
+          <span :class="[bannerClasses.icon]"><icon :icon="bannerIcon" width="16px" height="16px" /></span>
+          <span :class="[bannerClasses.message]">{{ props.message }}</span>
+        </div>
+      </slot>
     </div>
     <icon v-if="props.showCloseButton" icon="ph:x-bold" width="16px" height="16px" :class="[bannerClasses.close]" @click="closeBanner"/>
   </div>

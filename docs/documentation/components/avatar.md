@@ -1,7 +1,7 @@
 ---
-outline: 'deep'
 title: Avatar
-description: The avatar component is a versatile and commonly used element in user interfaces, designed to represent users or entities visually. It can display images, initials, or icons, and can be customized in various ways, including size, tone, and variant, to suit different design needs. The avatar can also include notification indicators and badges for enhanced visual communication and can be disabled to prevent user interaction when necessary.
+descripttion: The Avatar component is a versatile and commonly used element in user interfaces, designed to represent users or entities visually. It can display images, initials, or icons, and can be customized in various ways, including size, tone, and variant, to suit different design needs. The avatar can also include notification indicators and badges for enhanced visual communication and can be disabled to prevent user interaction when necessary.
+outline: deep
 ---
 
 # AVATAR

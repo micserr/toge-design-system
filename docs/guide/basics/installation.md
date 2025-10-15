@@ -1,3 +1,9 @@
+---
+title: Installation
+descripttion: Instructions for installing the Design System Next package from Azure Artifacts or the public npm registry.
+outline: deep
+---
+
 # Installation
 
 > [!IMPORTANT]  

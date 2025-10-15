@@ -1,3 +1,9 @@
+---
+title: Spacing
+descripttion: Spacing ensures consistent margins, padding, gaps, etc. across various components. The spacing classes are derived from root variables.
+outline: deep
+---
+
 # Spacing
 
 Spacing ensures consistent margins, padding, gaps, etc. across various components. The spacing classes are derived from the following root variables.

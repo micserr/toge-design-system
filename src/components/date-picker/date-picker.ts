@@ -90,11 +90,6 @@ export const datePickerPropTypes = {
     type: String,
     default: '100%',
   },
-  popperStrategy: {
-    type: String,
-    validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
-    default: 'absolute',
-  },
   placement: {
     type: String as PropType<(typeof PLACEMENTS_TYPES)[number]>,
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
@@ -104,6 +99,19 @@ export const datePickerPropTypes = {
     type: String,
     default: 'MM-DD-YYYY',
     description: 'Format for the selected date. For example: MM/DD/YYYY, YYYY-MM-DD, etc.',
+  },
+  wrapperPosition: {
+    type: String,
+    default: 'relative',
+  },
+  popperStrategy: {
+    type: String,
+    validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
+    default: 'absolute',
+  },
+  popperContainer: {
+    type: String,
+    default: '',
   },
 };
 

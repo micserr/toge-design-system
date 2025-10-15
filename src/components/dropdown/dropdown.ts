@@ -39,8 +39,7 @@ export const dropdownPropTypes = {
   },
   menuList: {
     type: Array as PropType<MenuListType[] | string[] | Record<string, unknown>[]>,
-    required: true,
-    default: [],
+    default: () => [],
   },
   searchableMenu: {
     type: Boolean,
@@ -87,6 +86,29 @@ export const dropdownPropTypes = {
     type: String,
     default: '100%',
   },
+  autoHide: {
+    type: Boolean,
+    default: true,
+  },
+  triggers: {
+    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
+    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
+      return value.every((val) => TRIGGER_EVENTS.includes(val));
+    },
+    default: () => ['click'],
+  },
+  popperTriggers: {
+    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
+    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
+      return value.every((val) => TRIGGER_EVENTS.includes(val));
+    },
+    default: () => [],
+  },
+  popperStrategy: {
+    type: String,
+    validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
+    default: 'absolute',
+  },
   popperWidth: {
     type: String,
     default: '100%',
@@ -95,10 +117,9 @@ export const dropdownPropTypes = {
     type: String,
     default: 'unset',
   },
-  popperStrategy: {
+  popperContainer: {
     type: String,
-    validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
-    default: 'absolute',
+    default: '',
   },
   disabled: {
     type: Boolean,
@@ -116,31 +137,9 @@ export const dropdownPropTypes = {
     type: Boolean,
     default: false,
   },
-  dropdown: {
-    type: Boolean,
-    default: false,
-  },
   lozenge: {
     type: Boolean,
     default: false,
-  },
-  triggers: {
-    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
-    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
-      return value.every((val) => TRIGGER_EVENTS.includes(val));
-    },
-    default: () => ['click'],
-  },
-  popperTriggers: {
-    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
-    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
-      return value.every((val) => TRIGGER_EVENTS.includes(val));
-    },
-    default: () => [],
-  },
-  autoHide: {
-    type: Boolean,
-    default: true,
   },
 };
 

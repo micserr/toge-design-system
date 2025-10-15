@@ -1,3 +1,9 @@
+---
+title: Colors
+descripttion: Overview of the color scheme used in the design system, including primary colors and their variants.
+outline: deep
+---
+
 # Colors
 
 Our color scheme is styled with the Toge Design System v3.0 - Color Scheme to maintain a cohesive and accessible color palette across all components.

@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Input
+descripttion: UI element that allows users to enter and edit text or other data.
+outline: deep
 ---
 
 # Input

@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Dropdown Input
+descripttion: The Dropdown Input component is a styled input variant used as a trigger/display within dropdown-based components, supporting various states like active, error, and disabled.
+outline: deep
 ---
 
 # Dropdown Input

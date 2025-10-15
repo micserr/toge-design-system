@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Switch
+descripttion: Switch component to show a boolean state (similar to a checkbox).
+outline: deep
 ---
 
 # Switch

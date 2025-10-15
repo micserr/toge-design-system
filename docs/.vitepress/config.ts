@@ -214,6 +214,10 @@ export default defineConfig({
                   text: 'Date Range Picker',
                   link: '/documentation/components/date-picker/date-range-picker',
                 },
+                {
+                  text: 'Reusable Calendar',
+                  link: '/documentation/components/date-picker/reusable-calendar',
+                },
               ],
             },
             {

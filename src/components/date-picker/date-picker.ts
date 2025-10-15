@@ -162,3 +162,26 @@ export const datePickerEmitTypes = {
 
 export type DatePickerPropTypes = ExtractPropTypes<typeof datePickerPropTypes>;
 export type DatePickerEmitTypes = typeof datePickerEmitTypes;
+
+// Tab component interfaces
+export interface TabComponentProps {
+  selectedMonth?: number;
+  selectedYear?: number;
+  selectedDay?: number;
+  minMaxYear: MinMaxYearType;
+}
+
+export interface CalendarTabEmits {
+  'update:date': (day: { date: Date; inactive: boolean }) => void;
+  'update:month': (month: number) => void;
+  'update:year': (year: number) => void;
+}
+
+export interface MonthTabEmits {
+  'update:month': (month: number) => void;
+}
+
+export interface YearTabEmits {
+  'update:year': (year: number) => void;
+  'update:currentPage': (page: number) => void;
+}

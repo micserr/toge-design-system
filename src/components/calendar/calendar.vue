@@ -124,7 +124,7 @@
                         class="spr-w-full"
                       >
                         <div
-                          v-if="schedule.type === 'restday'"
+                          v-if="schedule.type === 'restday' || schedule.type === 'exempted'"
                           class="spr-flex spr-flex-col spr-items-center spr-justify-start"
                           @click="
                             onCellClick({
@@ -134,7 +134,7 @@
                             })
                           "
                         >
-                          <spr-calendar-cell type="restday" fullwidth />
+                          <spr-calendar-cell :type="schedule.type === 'restday' ? 'restday' : 'exempt'" fullwidth />
                         </div>
                         <div
                           v-else
@@ -159,21 +159,41 @@
                       </div>
                     </section>
 
-                    <section v-if="showAddShift(index, employee.id)">
-                      <spr-calendar-cell
-                        status="pending"
-                        type="exempt"
-                        :view-only="false"
-                        fullwidth
-                        @on-click="
-                          onCellClick({ employeeId: employee.id, date: formatDate(date, dateFormat), shift: null })
-                        "
+                    <section v-if="showCustomSlot(index, employee.id)">
+                      <slot
+                        name="cell"
+                        :details="{
+                          employeeId: employee.id,
+                          date: formatDate(date, dateFormat),
+                          shift: employee.schedule[formatDate(date, dateFormat)],
+                        }"
+                      />
+                    </section>
+
+                    <section v-if="showCopyShift(index, employee.id)">
+                      <slot
+                        name="copy"
+                        :copy="{
+                          employeeId: employee.id,
+                          date: formatDate(date, dateFormat),
+                          shift: employee.schedule[formatDate(date, dateFormat)],
+                        }"
                       >
-                        <template #prefix>
-                          <Icon icon="ph:plus" />
-                        </template>
-                        <div class="spr-label-xs-medium">Add New Shift</div>
-                      </spr-calendar-cell>
+                        <spr-calendar-cell
+                          :view-only="false"
+                          custom-border-size="1"
+                          custom-color="#FFFFFF"
+                          fullwidth
+                          @on-click="
+                            onCellClick({ employeeId: details.employeeId, date: details.date, shift: details.shift })
+                          "
+                        >
+                          <div class="spr-flex spr-w-full spr-items-center spr-justify-center spr-gap-size-spacing-3xs">
+                            <Icon icon="ph:copy-light" />
+                            <div class="spr-label-xs-medium">Copy</div>
+                          </div>
+                        </spr-calendar-cell>
+                      </slot>
                     </section>
                   </td>
                 </tr>
@@ -257,6 +277,7 @@
 </template>
 
 <script setup lang="ts">
+import { useSlots } from 'vue';
 import { Icon } from '@iconify/vue';
 import SprButton from '@/components/button/button.vue';
 import SprAvatar from '@/components/avatar/avatar.vue';
@@ -269,6 +290,7 @@ import { calendarPropTypes, calendarEmitTypes } from './calendar';
 const props = defineProps(calendarPropTypes);
 import { useCalendar } from './use-calendar';
 const emit = defineEmits(calendarEmitTypes);
+const slots = useSlots();
 
 const {
   // State
@@ -287,7 +309,8 @@ const {
   goToToday,
   onCellClick,
   handleHover,
-  showAddShift,
+  showCopyShift,
   handleSorting,
-} = useCalendar(props, emit);
+  showCustomSlot,
+} = useCalendar(props, emit, slots);
 </script>

@@ -26,10 +26,10 @@
           :label="props.filterLabel"
           :active="isFilterActive"
           icon="ph:funnel-simple"
-          :badge="props.showBadge && savedFilters.length > 0"
-          :badge-text="savedFilters.length.toString()"
+          :badge="props.showSelectedFilterCount"
+          :badge-text="props.selectedFilterCount ?? savedFilters.length.toString()"
           :badge-variant="props.badgeVariant"
-          :closable="props.clearable && savedFilters.length > 0"
+          :closable="props.clearable"
           :disabled="props.disabled"
           @close="handleClear"
         />

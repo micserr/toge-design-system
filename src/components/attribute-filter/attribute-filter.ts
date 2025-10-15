@@ -103,9 +103,13 @@ export const attributeFilterPropTypes = {
     type: Boolean,
     default: false,
   },
-  showBadge: {
+  showSelectedFilterCount: {
     type: Boolean,
     default: true,
+  },
+  selectedFilterCount: {
+    type: String,
+    default: undefined,
   },
   badgeVariant: {
     type: String,

@@ -57,7 +57,24 @@ The `Calendar` component is a comprehensive and customizable weekly calendar des
       :company-options="companyOptions"
       :department-options="departmentOptions"
       :branch-options="branchOptions"
-    />
+    >
+      <template #custom="{ details }">
+        <spr-calendar-cell
+          :view-only="false"
+          custom-border-size="1"
+          custom-color="#FFFFFF"
+          fullwidth
+          @on-click="
+            onCellClick({ employeeId: employee.id, date: formatDate(date, dateFormat), shift: null })
+          "
+        >
+          <div class="spr-flex spr-w-full spr-items-center spr-justify-center spr-gap-size-spacing-3xs">
+            <Icon icon="ph:plus" />
+            <div class="spr-label-xs-medium">Create</div>
+          </div>
+        </spr-calendar-cell>
+      </template>
+    </SprCalendar>
   </div>
 </div>
 
@@ -338,6 +355,7 @@ const handleLoadMore = async () => {
       <th>Name</th>
       <th>Description</th>
       <th>Example</th>
+      <th>props (Slot data)</th>
     </tr>
   </thead>
   <tbody>
@@ -349,6 +367,7 @@ const handleLoadMore = async () => {
   &lt;div&gt;Custom Filter Content&lt;/div&gt;
 &lt;/template&gt;</code></pre>
       </td>
+      <td></td>
     </tr>
     <tr>
       <td>loading</td>
@@ -358,6 +377,7 @@ const handleLoadMore = async () => {
   &lt;div&gt;loading&lt;/div&gt;
 &lt;/template&gt;</code></pre>
       </td>
+      <td></td>
     </tr>
     <tr>
       <td>empty-state</td>
@@ -367,6 +387,45 @@ const handleLoadMore = async () => {
   &lt;div&gt;No employees found&lt;/div&gt;
 &lt;/template&gt;</code></pre>
       </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>copy</td>
+      <td>Slot for customizing the copy action shown when there are no employees to display. By default, uses the SprCopy component.</td>
+      <td>
+        <pre><code>&lt;template #copy="{ copy }"&gt;
+  &lt;div&gt;No employees found&lt;/div&gt;
+&lt;/template&gt;</code></pre>
+      </td>
+      <td>{
+        employeeId: string,
+        date: Date,
+        shift: {
+          startTime?: string,
+          endTime?: string,
+          location?: string,
+          type: string
+        }
+      }</td> 
+    </tr>
+    <tr>
+      <td>cell</td>
+      <td>Slot for customizing the content of a calendar cell.</td>
+      <td>
+        <pre><code>&lt;template #cell="{ details }"&gt;
+  &lt;div&gt;No employees found&lt;/div&gt;
+&lt;/template&gt;</code></pre>
+      </td>
+      <td>{
+        employeeId: string,
+        date: Date,
+        shift: {
+          startTime?: string,
+          endTime?: string,
+          location?: string,
+          type: string
+        }
+      }</td> 
     </tr>
   </tbody>
 </table>
@@ -380,6 +439,7 @@ const handleLoadMore = async () => {
 <script setup lang="ts">
 import SprCalendar from '@/components/calendar/calendar.vue';
 import SprLogo from "@/components/logo/logo.vue";
+import SprCalendarCell from '@/components/calendar-cell/calendar-cell.vue';
 import { ref } from 'vue';
 
 const initialDate = new Date();

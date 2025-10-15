@@ -104,11 +104,14 @@ export default defineConfig({
             {
               text: 'Calendar',
               link: '/documentation/components/calendar',
+              items: [
+                {
+                  text: 'Calendar Cell',
+                  link: '/documentation/components/calendar-cell',
+                },
+              ],
             },
-            {
-              text: 'Calendar Cell',
-              link: '/documentation/components/calendar-cell',
-            },
+
             {
               text: 'Card',
               link: '/documentation/components/card',
@@ -136,6 +139,10 @@ export default defineConfig({
             {
               text: 'Floating Action',
               link: '/documentation/components/floating-action',
+            },
+            {
+              text: 'Icon',
+              link: '/documentation/components/icon',
             },
             {
               text: 'List',
@@ -180,6 +187,10 @@ export default defineConfig({
               link: '/documentation/components/stepper',
             },
             {
+              text: 'Popper',
+              link: '/documentation/components/popper',
+            },
+            {
               text: 'Table',
               link: '/documentation/components/table/table',
               items: [
@@ -213,6 +224,10 @@ export default defineConfig({
                 {
                   text: 'Date Range Picker',
                   link: '/documentation/components/date-picker/date-range-picker',
+                },
+                {
+                  text: 'Reusable Calendar',
+                  link: '/documentation/components/date-picker/reusable-calendar',
                 },
               ],
             },

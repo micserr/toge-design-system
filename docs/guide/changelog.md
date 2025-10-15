@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.16.3 (2025-01-15)
+
+- Feat:
+  - Update design tokens with improved color system and enhanced semantic color tokens
+  - Enhance lozenge component with consistent design token usage and improved hover/active states
+  - Add new background color variants for better component state management
+  - Improve text color hierarchy and accessibility contrast ratios
+  - Add comprehensive hover and pressed state variants for all color categories
+  - Refactor lozenge component to use semantic design tokens instead of hardcoded values
+  - Improve component maintainability and design system consistency
+  ([#commit_hash](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/commit_hash?refName=refs/heads/2025/FEATURE/MICS/DESIGN_TOKENS_LOZENGE_UPDATE) by @MICS)
+
 ## 2.16.2 (2025-10-14)
 
 - Fix

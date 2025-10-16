@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.17.4 (2025-10-16)
+- Fix
+  - Add selected filter count prop in attribute filter component. ([#dc519830](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dc519830dd8d969d1151db0f6a2dea8ff51ab46b?refName=refs/heads/2025/feat/dustin/attribute-filter by @despiritu)
+  - Return to calendar tab after selecting month or year in reusable calendar full mode. ([#dd1414b0](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dd1414b0fe32048f714144d7bbb54d9b2dbcd84a?refName=refs/heads/2025/feat/dustin/attribute-filter @despiritu) 
+
 ## 2.17.3 (2025-10-16)
 
 - Fix

@@ -10,7 +10,7 @@
   - Add comprehensive hover and pressed state variants for all color categories
   - Refactor lozenge component to use semantic design tokens instead of hardcoded values
   - Improve component maintainability and design system consistency
-  ([#commit_hash](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/commit_hash?refName=refs/heads/2025/FEATURE/MICS/DESIGN_TOKENS_LOZENGE_UPDATE) by @MICS)
+    ([#975744e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/975744e?refName=refs/heads/2025/FEATURE/MICS/DESIGN_TOKENS_LOZENGE_UPDATE) by @MICS)
 
 ## 2.16.2 (2025-10-14)
 

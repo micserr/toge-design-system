@@ -67,7 +67,7 @@ export const calendarPropTypes = {
     type: String,
     default: '',
   },
-  hideAddButton: {
+  hideCopyButton: {
     type: Boolean,
     default: false,
   },

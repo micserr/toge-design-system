@@ -1,8 +1,15 @@
+---
+title: Table Pagination
+descripttion: The Table Pagination component provides a standardized way to handle pagination controls for tables in your application. It includes features like row count selection, page navigation, and optionally editable current page input.
+outline: deep
+---
+
 # Table Pagination
 
 The Table Pagination component provides a standardized way to handle pagination controls for tables in your application. It includes features like row count selection, page navigation, and optionally editable current page input.
 
 ## Basic Usage
+
 <div class="spr-h-fit">
   <spr-table :headers="headers" :data-table="data" :full-height="true">
     <template #footer>
@@ -40,9 +47,9 @@ The Table Pagination component provides a standardized way to handle pagination 
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue';
-import SprTable from "@/components/table/table.vue";
-import SprTablePagination from "@/components/table/table-pagination/table-pagination.vue"
-import tableData from "@/mock/tableData";
+import SprTable from '@/components/table/table.vue';
+import SprTablePagination from '@/components/table/table-pagination/table-pagination.vue';
+import tableData from '@/mock/tableData';
 
 const rawData = ref([
   ...Array.from({ length: 100 }, (_, i) => ({
@@ -52,7 +59,7 @@ const rawData = ref([
       image: `https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg`,
     },
     lastUpdate: {
-      title: `Nov ${((i % 30) + 1)}, 2025`,
+      title: `Nov ${(i % 30) + 1}, 2025`,
       subtext: `Lorem ipsum dolor item ${i + 1}`,
       image: `https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg`,
     },
@@ -61,12 +68,12 @@ const rawData = ref([
       subtext: `Lorem ipsum dolor sit amet, consectetur, sed etiam. Status ${i + 1}`,
       image: `https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg`,
     },
-  }))
+  })),
 ]);
 
 const headers = ref([
   { field: 'name', name: 'Role Name', hasAvatar: true, hasSubtext: true },
-  { field: 'lastUpdate', name: 'Date'},
+  { field: 'lastUpdate', name: 'Date' },
   { field: 'status', name: 'Status' },
 ]);
 
@@ -82,8 +89,11 @@ const selectedRowCount = ref(10);
 const data = ref(rawData.value.slice(0, selectedRowCount.value));
 
 const updateDataTable = () => {
-  data.value = rawData.value.slice((currentPage.value - 1) * selectedRowCount.value, currentPage.value * selectedRowCount.value);
-}
+  data.value = rawData.value.slice(
+    (currentPage.value - 1) * selectedRowCount.value,
+    currentPage.value * selectedRowCount.value,
+  );
+};
 
 const handlePrevious = () => {
   if (currentPage.value > 1) {
@@ -105,7 +115,7 @@ watch(selectedRowCount, () => {
 });
 
 watch(currentPage, (newValue) => {
-  if(!currentPage.value) return;
+  if (!currentPage.value) return;
   else if (currentPage.value > Math.ceil(totalItems.value / selectedRowCount.value)) {
     currentPage.value = Math.ceil(totalItems.value / selectedRowCount.value);
   }
@@ -146,7 +156,7 @@ You can enable direct page number input by setting the `editable-current-page` p
       { text: '10', value: '10' },
       { text: '20', value: '20' },
       { text: '50', value: '50' },
-      { text: '100', value: '100' }
+      { text: '100', value: '100' },
     ]"
   />
 </template>

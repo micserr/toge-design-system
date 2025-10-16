@@ -1,6 +1,7 @@
 ---
-outline: 'deep'
-description: 'The Checkbox component allows users to select one or more items from a set of options. Checkboxes are commonly used in forms and settings interfaces to enable multiple selections.'
+title: Checkbox Component
+descripttion: The Checkbox component allows users to select one or more items from a set of options. It supports various states including checked, unchecked, indeterminate, and disabled, and can be customized with labels, descriptions, borders, and full-width layouts.
+outline: deep
 ---
 
 # Checkbox Component

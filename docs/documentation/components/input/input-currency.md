@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Currency Input
+descripttion: The Currency Input component allows users to enter and format currency values with selectable currency codes and symbols, supporting features like thousand separators, fixed decimals, and error handling.
+outline: deep
 ---
 
 # Currency Input

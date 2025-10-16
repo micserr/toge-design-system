@@ -1,3 +1,9 @@
+---
+title: Quick Start
+descripttion: A quick start guide to get you up and running with the Design System Next in your Vue application.
+outline: deep
+---
+
 # Quick Start
 
 ### Import the Library

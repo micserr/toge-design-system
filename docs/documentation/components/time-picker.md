@@ -1,6 +1,7 @@
 ---
-outline: 'deep'
-description: 'A user-friendly component for selecting time with customizable formats and intervals.'
+title: Time Picker
+descripttion: The Time Picker component provides an intuitive interface for users to select a specific time from a dropdown list of options. It's designed to be flexible and user-friendly, supporting both 12-hour and 24-hour formats with customizable time intervals.
+outline: deep
 ---
 
 # Time Picker

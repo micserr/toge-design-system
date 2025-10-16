@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Password Input
+descripttion: Password input with toggle visibility (if implemented in component) and native masking.
+outline: deep
 ---
 
 # Password Input

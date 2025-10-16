@@ -1,3 +1,9 @@
+---
+title: Creating Components
+descripttion: Create new components following the established structure, naming conventions, and best practices of our design system.
+outline: deep
+---
+
 # Creating Components
 
 Create a new component based on our design system's architecture. Each component is structured around three core files:

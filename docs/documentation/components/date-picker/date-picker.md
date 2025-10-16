@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Date Picker
+descripttion: The Date Picker component allows users to select a date from a calendar interface, supporting various formats, disabled dates, and customization options.
+outline: deep
 ---
 
 # Date Picker
@@ -1019,6 +1021,10 @@ By default, the Popper strategy is set to `absolute`, which positions the popper
 
 Pass the prop `popper-strategy` to change the behavior position of the popper.
 
+::: info Important to note:
+Do not forget to pass prop `wrapperPosition` to overwrite `relative` position into `initial`.
+:::
+
 <spr-button tone="success" @click="modalModel = true">Open Modal</spr-button>
 
 <spr-modal v-model="modalModel" title="Date Picker with Modal">
@@ -1028,6 +1034,7 @@ Pass the prop `popper-strategy` to change the behavior position of the popper.
     v-model="datePickerModel.date27" 
     label="Date Picker" 
     popper-strategy="fixed"
+    wrapper-position="initial"
     display-helper
   />
   <p>
@@ -1045,6 +1052,7 @@ Pass the prop `popper-strategy` to change the behavior position of the popper.
       v-model="datePickerModel"
       label="Date Picker"
       popper-strategy="fixed"
+      wrapper-position="initial"
       display-helper
     />
     <p>
@@ -1063,6 +1071,69 @@ const modalModel = ref(false);
 
 const datePickerModel = ref('');
 </script>
+```
+
+You can also use the `popper-container` prop to specify a custom container for the popper element. This is useful when you want to restrict the popper's positioning context to a specific element within your application.
+
+Since the popper is being teleported to a different container, the `popper-width` prop will not work as expected. To set a custom width for the popper in this case, you can use custom styles or CSS classes to define the desired width.
+
+<div>
+  <spr-dropdown
+    id="sample-dropdownCustomPopper"
+    width="300px"
+    :triggers="['hover', 'click']"
+    :popper-triggers="['hover', 'click']"
+    popper-width="500px"
+    :auto-hide="false"
+  >
+    <spr-button class="spr-w-full" tone="success" has-icon>
+      <span>Custom Popper With Dropdown</span>
+      <Icon icon="ph:caret-down" />
+    </spr-button>
+    <template #popper>
+      <spr-date-picker
+        :id="datePickerId.date27"
+        class="[&>p]:spr-m-0" 
+        v-model="datePickerModel.date27" 
+        label="Date Picker" 
+        popper-strategy="fixed"
+        popper-container="#sample-dropdownCustomPopper"
+        wrapper-position="initial"
+        display-helper
+      />
+    </template>
+  </spr-dropdown>
+</div>
+
+```vue
+<template>
+  <div>
+    <spr-dropdown
+      id="sample-dropdownCustomPopper"
+      width="300px"
+      :triggers="['hover', 'click']"
+      :popper-triggers="['hover', 'click']"
+      popper-width="500px"
+      :auto-hide="false"
+    >
+      <spr-button class="spr-w-full" tone="success" has-icon>
+        <span>Custom Popper With Dropdown</span>
+        <Icon icon="ph:caret-down" />
+      </spr-button>
+      <template #popper>
+        <spr-date-picker
+          id="datepicker"
+          v-model="datePickerModel"
+          label="Date Picker"
+          popper-strategy="fixed"
+          popper-container="#sample-dropdownCustomPopper"
+          wrapper-position="initial"
+          display-helper
+        />
+      </template>
+    </spr-dropdown>
+  </div>
+</template>
 ```
 
 ## Action
@@ -1207,6 +1278,24 @@ const clearDate = () => {
       <td>`bottom`</td>
     </tr>
     <tr>
+    <tr>
+      <td>wrapper-position</td>
+      <td>CSS position of the date picker wrapper</td>
+      <td>String</td>
+      <td>relative</td>
+    </tr>
+    <td>popper-strategy</td>
+      <td>Popper positioning strategy ('absolute' or 'fixed')</td>
+      <td>String</td>
+      <td><code>absolute</code></td>
+    </tr>
+    <tr>
+      <td>popper-container</td>
+      <td>CSS selector or HTMLElement to specify a custom container for the popper element</td>
+      <td>String | HTMLElement</td>
+      <td>''</td>
+    </tr>
+    <tr>
       <td>@get-input-value</td>
       <td>Emits the actual date that is being typed or select on the datepickker</td>
       <td>Function</td>
@@ -1255,6 +1344,7 @@ import SprButton from "@/components/button/button.vue";
 import SprModal from "@/components/modal/modal.vue";
 import SprLogo from "@/components/logo/logo.vue";
 import SprInput from "@/components/input/input.vue";
+import SprDropdown from "@/components/dropdown/dropdown.vue";
 
 import dayjs from "dayjs";
 

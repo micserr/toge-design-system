@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.16.3 (2025-01-15)
+## 2.17.4 (2025-01-16)
 
 - Feat:
   - Update design tokens with improved color system and enhanced semantic color tokens
@@ -11,6 +11,40 @@
   - Refactor lozenge component to use semantic design tokens instead of hardcoded values
   - Improve component maintainability and design system consistency
     ([#975744e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/975744e?refName=refs/heads/2025/FEATURE/MICS/DESIGN_TOKENS_LOZENGE_UPDATE) by @MICS)
+
+## 2.17.3 (2025-10-16)
+
+- Fix
+  - Commit fcfd1580: missing end-tag
+    ([#fcfd1580](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/fcfd1580bd6cd025606fba3c4b620fb48108b4e6?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FMISSING_END_TAG) @adestajo)
+
+## 2.17.2 (2025-10-15)
+
+- Fix
+  - Commit f8bf1244: set default tone to 'plain' and update background class for tone styling
+    ([#f8bf1244](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f8bf12448c63ead7d2249c2b544fe764a2a243c7?refName=refs/heads/2025/Fix/andrea/CARD_TONE_DEFAULT) @adestajo)
+
+## 2.17.1 (2025-10-15)
+
+- Feat
+  - Calendar: Custom slot for calendar cell copy functionality
+  - popper and icon component
+    ([#35360](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35360?_a=commits) @adestajo)
+
+## 2.17.0 (2025-10-15)
+
+- Feat
+  - Add Reusable Calendar
+  - Update documentation following component documentation guidelines
+    ([#e41b78e7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35353))
+
+## 2.16.3 (2025-10-15)
+
+- Fix
+  - Update Documentation Title and Descriptions
+  - Added For popper inside popper approach support.
+  - Popper Strategy Documentation (Select, Multi Select, Ladderized Select, Date Picker, Date Range Picker)
+    ([#35348](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35348?_a=files @jarias)
 
 ## 2.16.2 (2025-10-14)
 

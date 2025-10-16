@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Card
+descripttion: A flexible container with optional header, content, and footer used to group related information.
+outline: deep
 ---
 
 # Card
@@ -502,6 +504,12 @@ Pass a `border-radius-size` prop to customize the border radius of the card. Acc
       <td>boolean</td>
       <td>false</td>
       <td>When true, applies flexbox layout to the card, making it a flex container with column direction.</td>
+    </tr>
+    <tr>
+      <td>customBorderSize</td>
+      <td>string | null</td>
+      <td>null</td>
+      <td>Sets a custom border size for the card. If not set, the default border size will be used.</td>
     </tr>
   </tbody>
 </table>

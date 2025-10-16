@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Lozenge
+descripttion: Lozenge represents entities using icons, labels, and images. It supports various tones, fill types, avatar integration, interactive states, and loading indicators to enhance user experience and visual communication.
+outline: deep
 ---
 
 # Lozenge

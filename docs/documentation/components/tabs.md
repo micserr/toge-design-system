@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Tabs
+descripttion: Tabs are used to organize content into different sections. They are commonly used in web applications to manage multiple views.
+outline: deep
 ---
 
 # Tabs

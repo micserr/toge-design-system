@@ -80,6 +80,8 @@ export default tseslint.config(
             'timePicker',
             'tooltip',
             'logo',
+            'popper',
+            'icon',
           ],
         },
       ],

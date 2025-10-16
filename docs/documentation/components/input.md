@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Input
+descripttion: Core text field for freeform user input. Specialized variants extend this base for specific semantics, validation, or UX affordances (search, email, contact number, etc.).
+outline: deep
 ---
 
 # Input

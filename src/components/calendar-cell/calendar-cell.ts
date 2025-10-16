@@ -55,6 +55,10 @@ export const calendarCellPropTypes = {
     type: String,
     default: '',
   },
+  customBorderSize: {
+    type: String,
+    default: null,
+  },
 };
 
 export type CalendarCellPropTypes = ExtractPropTypes<typeof calendarCellPropTypes>;

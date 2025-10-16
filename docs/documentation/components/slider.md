@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Slider
+descripttion: The Slider component allows users to select a value from a range by dragging a handle. It supports minimum and maximum values, step increments, size variations, and can be disabled when needed. Additionally, it includes hover and press states for enhanced interactivity and emits a slideend event when the user finishes interacting with the slider.
+outline: deep
 ---
 
 # Slider

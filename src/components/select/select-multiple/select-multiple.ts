@@ -87,16 +87,16 @@ export const multiSelectPropTypes = {
     },
     default: () => [],
   },
+  autoHide: {
+    type: Boolean,
+    default: false,
+  },
   popperTriggers: {
     type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
     validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
       return value.every((val) => TRIGGER_EVENTS.includes(val));
     },
     default: () => [],
-  },
-  autoHide: {
-    type: Boolean,
-    default: false,
   },
   popperStrategy: {
     type: String,
@@ -106,6 +106,10 @@ export const multiSelectPropTypes = {
   popperWidth: {
     type: String,
     default: '100%',
+  },
+  popperContainer: {
+    type: String,
+    default: '',
   },
   width: {
     type: String,

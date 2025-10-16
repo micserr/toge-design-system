@@ -1,3 +1,9 @@
+---
+title: Contributing to Design System
+descripttion: Contribution process, from branching strategy to version updates and pull requests.
+outline: deep
+---
+
 # Contributing to Design System
 
 Contribution process, from branching strategy to version updates and pull requests.
@@ -69,10 +75,8 @@ Whenever a minor or major version is updated, the patch or minor version resets 
 
 - Feat:
   - Add new component functionality and improved API support ([#commit_hash](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/commit_hash?refName=refs/heads/branch_name) by @JefMari)
-  
 - Fix:
   - Resolve issue with component rendering and improve error handling
-  
 - Docs:
   - Update documentation with new examples and usage guidelines
 ```
@@ -171,7 +175,6 @@ git commit -m "docs: add component creation and contribution guidelines"
 
 - Fix:
   - Resolve styling issues in dropdown component
-  
 - Docs:
   - Update documentation with new examples and usage guidelines
 ```
@@ -186,14 +189,12 @@ git commit -m "docs: add component creation and contribution guidelines"
 ## Best Practices
 
 1. **Commits**
-
    - Use conventional commit messages
    - Keep commits focused and atomic
    - Reference issues in commit messages
    - Include Jira ticket numbers (e.g., POLY-120) when applicable
 
 2. **Documentation**
-
    - Update docs alongside code changes
    - Include examples with code snippets
    - Add usage guidelines and prop documentation
@@ -201,7 +202,6 @@ git commit -m "docs: add component creation and contribution guidelines"
    - Include images or diagrams when helpful
 
 3. **Code Quality**
-
    - Follow existing code style
    - Add/update tests as needed
    - Run linters before committing

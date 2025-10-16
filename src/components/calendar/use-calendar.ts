@@ -1,4 +1,4 @@
-import { computed, SetupContext, toRefs, ref, watch } from 'vue';
+import { computed, SetupContext, toRefs, ref, watch, Slots } from 'vue';
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 import classNames from 'classnames';
@@ -9,8 +9,8 @@ dayjs.extend(isBetween);
 
 import type { CalendarPropTypes, CalendarEmitTypes, SelectedShift } from './calendar';
 
-export const useCalendar = (props: CalendarPropTypes, emit: SetupContext<CalendarEmitTypes>['emit']) => {
-  const { initialDate, hideAddButton } = toRefs(props);
+export const useCalendar = (props: CalendarPropTypes, emit: SetupContext<CalendarEmitTypes>['emit'], slots: Slots) => {
+  const { initialDate, hideCopyButton } = toRefs(props);
 
   const state = {
     dateFormat: ref('YYYY-MM-DD'),
@@ -108,12 +108,18 @@ export const useCalendar = (props: CalendarPropTypes, emit: SetupContext<Calenda
     state.employeeId.value = employeeId;
   };
 
-  const showAddShift = (index: number, employeeId: number) => {
+  const showCopyShift = (index: number, employeeId: number) => {
     return (
       state.hoveredCell.value === index &&
       state.isHover.value &&
       state.employeeId.value === employeeId &&
-      !hideAddButton.value
+      !hideCopyButton.value
+    );
+  };
+
+  const showCustomSlot = (index: number, employeeId: number) => {
+    return (
+      state.hoveredCell.value === index && state.isHover.value && state.employeeId.value === employeeId && slots.cell
     );
   };
 
@@ -191,8 +197,9 @@ export const useCalendar = (props: CalendarPropTypes, emit: SetupContext<Calenda
     goToToday,
     onCellClick,
     handleHover,
-    showAddShift,
+    showCopyShift,
     handleSorting,
+    showCustomSlot,
 
     ...state,
   };

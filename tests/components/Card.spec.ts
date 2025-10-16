@@ -1,6 +1,6 @@
 /**
  * Card Component Tests
- * 
+ *
  * Test Coverage Rationale:
  * - Comprehensive prop testing including all tones, border radius sizes, and boolean flags
  * - Slot testing for header, content, footer, and default slots with conditional rendering
@@ -12,12 +12,12 @@
  * - Collapsible integration props for dynamic border styling
  * - Accessibility validation for semantic structure and screen reader support
  * - Edge cases including empty content, special characters, and prop combinations
- * 
+ *
  * ASSUMPTIONS:
  * - Icon component from @iconify/vue is available and functional
  * - CSS classes from the design system are properly defined
  * - useCard composable handles all styling logic correctly
- * 
+ *
  * TODO (Future Enhancements):
  * - Test keyboard navigation if card becomes interactive
  * - Add visual regression tests for different tones
@@ -26,13 +26,17 @@
  */
 
 import { test, expect } from '@playwright/experimental-ct-vue';
-import Card from '@/components/card/card-test.vue';
+import Card from '@/components/card/card.vue';
 
 test.describe('Card Component', () => {
   test.describe('Rendering', () => {
     test('renders with default props', async ({ mount }) => {
-      const component = await mount(Card);
-      
+      const component = await mount(Card, {
+        slots: {
+          default: '<div>Default content</div>',
+        },
+      });
+
       await expect(component).toBeVisible();
       await expect(component).toHaveClass(/spr-border-solid/);
       await expect(component).toHaveClass(/spr-background-color-base/);
@@ -43,10 +47,10 @@ test.describe('Card Component', () => {
     test('renders with basic content slot', async ({ mount }) => {
       const component = await mount(Card, {
         slots: {
-          content: '<div data-testid="card-content">Basic card content</div>'
-        }
+          content: '<div data-testid="card-content">Basic card content</div>',
+        },
       });
-      
+
       await expect(component).toBeVisible();
       const content = component.locator('[data-testid="card-content"]');
       await expect(content).toBeVisible();
@@ -56,10 +60,10 @@ test.describe('Card Component', () => {
     test('renders with default slot when no content slot provided', async ({ mount }) => {
       const component = await mount(Card, {
         slots: {
-          default: '<div data-testid="default-content">Default slot content</div>'
-        }
+          default: '<div data-testid="default-content">Default slot content</div>',
+        },
       });
-      
+
       await expect(component).toBeVisible();
       const content = component.locator('[data-testid="default-content"]');
       await expect(content).toBeVisible();
@@ -70,13 +74,13 @@ test.describe('Card Component', () => {
       const component = await mount(Card, {
         slots: {
           content: '<div data-testid="content-slot">Content slot</div>',
-          default: '<div data-testid="default-slot">Default slot</div>'
-        }
+          default: '<div data-testid="default-slot">Default slot</div>',
+        },
       });
-      
+
       const contentSlot = component.locator('[data-testid="content-slot"]');
       const defaultSlot = component.locator('[data-testid="default-slot"]');
-      
+
       await expect(contentSlot).toBeVisible();
       await expect(defaultSlot).toBeVisible(); // Default slot still renders outside content area
     });
@@ -87,11 +91,15 @@ test.describe('Card Component', () => {
       { tone: 'plain', bgClass: 'spr-bg-white', borderClass: 'spr-border-color-weak' },
       { tone: 'neutral', bgClass: 'spr-background-color-surface', borderClass: 'spr-border-color-base' },
       { tone: 'success', bgClass: 'spr-background-color-success-weak', borderClass: 'spr-border-color-success-base' },
-      { tone: 'information', bgClass: 'spr-background-color-information-weak', borderClass: 'spr-border-color-information-base' },
+      {
+        tone: 'information',
+        bgClass: 'spr-background-color-information-weak',
+        borderClass: 'spr-border-color-information-base',
+      },
       { tone: 'pending', bgClass: 'spr-background-color-pending-weak', borderClass: 'spr-border-color-pending-base' },
       { tone: 'caution', bgClass: 'spr-background-color-caution-weak', borderClass: 'spr-border-color-caution-base' },
       { tone: 'accent', bgClass: 'spr-background-color-accent-weak', borderClass: 'spr-border-color-accent-base' },
-      { tone: 'danger', bgClass: 'spr-background-color-danger-weak', borderClass: 'spr-border-color-danger-base' }
+      { tone: 'danger', bgClass: 'spr-background-color-danger-weak', borderClass: 'spr-border-color-danger-base' },
     ] as const;
 
     for (const { tone, bgClass, borderClass } of tones) {
@@ -99,10 +107,10 @@ test.describe('Card Component', () => {
         const component = await mount(Card, {
           props: { tone },
           slots: {
-            content: `<div>Card with ${tone} tone</div>`
-          }
+            content: `<div>Card with ${tone} tone</div>`,
+          },
         });
-        
+
         await expect(component).toBeVisible();
         await expect(component).toHaveClass(new RegExp(bgClass));
         await expect(component).toHaveClass(new RegExp(borderClass));
@@ -112,10 +120,10 @@ test.describe('Card Component', () => {
     test('renders without tone (default styling)', async ({ mount }) => {
       const component = await mount(Card, {
         slots: {
-          content: '<div>Default card</div>'
-        }
+          content: '<div>Default card</div>',
+        },
       });
-      
+
       await expect(component).toHaveClass(/spr-background-color-base/);
       await expect(component).toHaveClass(/spr-border-color-weak/);
     });
@@ -126,14 +134,14 @@ test.describe('Card Component', () => {
       const component = await mount(Card, {
         props: { title: 'Card Title' },
         slots: {
-          content: '<div>Card content</div>'
-        }
+          content: '<div>Card content</div>',
+        },
       });
-      
-      const header = component.locator('div').first().locator('div').first();
+
+      const header = component.locator('div.spr-flex.transition-all').first();
       await expect(header).toBeVisible();
       await expect(header).toContainText('Card Title');
-      
+
       const titleElement = component.getByText('Card Title');
       await expect(titleElement).toBeVisible();
       await expect(titleElement).toHaveClass(/spr-body-md-regular-medium/);
@@ -142,18 +150,18 @@ test.describe('Card Component', () => {
 
     test('displays subtitle when both title and subtitle are provided', async ({ mount }) => {
       const component = await mount(Card, {
-        props: { 
+        props: {
           title: 'Card Title',
-          subtitle: 'Card Subtitle'
+          subtitle: 'Card Subtitle',
         },
         slots: {
-          content: '<div>Card content</div>'
-        }
+          content: '<div>Card content</div>',
+        },
       });
-      
+
       const titleElement = component.getByText('Card Title');
       const subtitleElement = component.getByText('Card Subtitle');
-      
+
       await expect(titleElement).toBeVisible();
       await expect(subtitleElement).toBeVisible();
       await expect(subtitleElement).toHaveClass(/spr-body-xs-regular/);
@@ -164,25 +172,25 @@ test.describe('Card Component', () => {
       const component = await mount(Card, {
         props: { subtitle: 'Orphaned Subtitle' },
         slots: {
-          content: '<div>Card content</div>'
-        }
+          content: '<div>Card content</div>',
+        },
       });
-      
+
       const subtitleElement = component.locator('text=Orphaned Subtitle');
       await expect(subtitleElement).not.toBeVisible();
     });
 
     test('displays header icon when title and headerIcon are provided', async ({ mount }) => {
       const component = await mount(Card, {
-        props: { 
+        props: {
           title: 'Card Title',
-          headerIcon: 'ph:check-circle-duotone'
+          headerIcon: 'ph:check-circle-duotone',
         },
         slots: {
-          content: '<div>Card content</div>'
-        }
+          content: '<div>Card content</div>',
+        },
       });
-      
+
       const icon = component.locator('svg').first();
       await expect(icon).toBeVisible();
       await expect(icon).toHaveClass(/spr-me-size-spacing-3xs/);
@@ -195,25 +203,25 @@ test.describe('Card Component', () => {
       const component = await mount(Card, {
         props: { headerIcon: 'ph:check-circle-duotone' },
         slots: {
-          content: '<div>Card content</div>'
-        }
+          content: '<div>Card content</div>',
+        },
       });
-      
+
       const icon = component.locator('svg');
       await expect(icon).not.toBeVisible();
     });
 
     test('hides header when showHeader is false', async ({ mount }) => {
       const component = await mount(Card, {
-        props: { 
+        props: {
           title: 'Hidden Title',
-          showHeader: false
+          showHeader: false,
         },
         slots: {
-          content: '<div>Card content</div>'
-        }
+          content: '<div>Card content</div>',
+        },
       });
-      
+
       const titleElement = component.locator('text=Hidden Title');
       await expect(titleElement).not.toBeVisible();
     });
@@ -223,14 +231,14 @@ test.describe('Card Component', () => {
         props: { title: 'Card Title' },
         slots: {
           header: '<button data-testid="header-button">Action</button>',
-          content: '<div>Card content</div>'
-        }
+          content: '<div>Card content</div>',
+        },
       });
-      
+
       const headerButton = component.locator('[data-testid="header-button"]');
       await expect(headerButton).toBeVisible();
       await expect(headerButton).toHaveText('Action');
-      
+
       // Title should still be visible
       const titleElement = component.getByText('Card Title');
       await expect(titleElement).toBeVisible();
@@ -240,10 +248,10 @@ test.describe('Card Component', () => {
       const component = await mount(Card, {
         slots: {
           header: '<img data-testid="header-image" src="/banner.svg" alt="Banner" />',
-          content: '<div>Card content</div>'
-        }
+          content: '<div>Card content</div>',
+        },
       });
-      
+
       const headerImage = component.locator('[data-testid="header-image"]');
       await expect(headerImage).toBeVisible();
     });
@@ -252,11 +260,12 @@ test.describe('Card Component', () => {
       const component = await mount(Card, {
         props: { title: 'Test Title' },
         slots: {
-          content: '<div>Content</div>'
-        }
+          content: '<div>Content</div>',
+        },
       });
-      
-      const headerDiv = component.locator('div').first().locator('div').first();
+
+      // Target the header div by looking for the one with transition-all class
+      const headerDiv = component.locator('div.spr-flex.transition-all').first();
       await expect(headerDiv).toHaveClass(/spr-flex/);
       await expect(headerDiv).toHaveClass(/spr-items-center/);
       await expect(headerDiv).toHaveClass(/transition-all/);
@@ -276,10 +285,10 @@ test.describe('Card Component', () => {
       const component = await mount(Card, {
         slots: {
           content: '<div>Card content</div>',
-          footer: '<div data-testid="footer-content">Footer content</div>'
-        }
+          footer: '<div data-testid="footer-content">Footer content</div>',
+        },
       });
-      
+
       const footer = component.locator('[data-testid="footer-content"]');
       await expect(footer).toBeVisible();
       await expect(footer).toHaveText('Footer content');
@@ -290,10 +299,10 @@ test.describe('Card Component', () => {
         props: { showFooter: false },
         slots: {
           content: '<div>Card content</div>',
-          footer: '<div data-testid="hidden-footer">Hidden footer</div>'
-        }
+          footer: '<div data-testid="hidden-footer">Hidden footer</div>',
+        },
       });
-      
+
       const footer = component.locator('[data-testid="hidden-footer"]');
       await expect(footer).not.toBeVisible();
     });
@@ -302,12 +311,12 @@ test.describe('Card Component', () => {
       const component = await mount(Card, {
         slots: {
           content: '<div>Content</div>',
-          footer: '<div>Footer</div>'
-        }
+          footer: '<div data-testid="footer-content">Footer</div>',
+        },
       });
-      
-      // Find the footer container by looking for the div containing footer slot
-      const footerContainer = component.locator('div').filter({ has: component.locator('text=Footer') }).first();
+
+      // Find the footer container by looking for the parent of the footer slot content
+      const footerContainer = component.locator('[data-testid="footer-content"]').locator('..').first();
       await expect(footerContainer).toHaveClass(/spr-flex/);
       await expect(footerContainer).toHaveClass(/spr-items-center/);
       await expect(footerContainer).toHaveClass(/spr-border-0/);
@@ -323,10 +332,10 @@ test.describe('Card Component', () => {
     const borderRadiusSizes = [
       { size: '2xs', expectedClass: 'spr-rounded-border-radius-2xs' },
       { size: 'xs', expectedClass: 'spr-rounded-border-radius-xs' },
-      { size: 'sm', expectedClass: 'spr-rounded-border-radius-xs' },
-      { size: 'md', expectedClass: 'spr-rounded-border-radius-sm' },
+      { size: 'sm', expectedClass: 'spr-rounded-border-radius-sm' },
+      { size: 'md', expectedClass: 'spr-rounded-border-radius-md' },
       { size: 'lg', expectedClass: 'spr-rounded-border-radius-lg' },
-      { size: 'xl', expectedClass: 'spr-rounded-border-radius-xl' }
+      { size: 'xl', expectedClass: 'spr-rounded-border-radius-xl' },
     ] as const;
 
     for (const { size, expectedClass } of borderRadiusSizes) {
@@ -334,10 +343,10 @@ test.describe('Card Component', () => {
         const component = await mount(Card, {
           props: { borderRadiusSize: size },
           slots: {
-            content: '<div>Content</div>'
-          }
+            content: '<div>Content</div>',
+          },
         });
-        
+
         await expect(component).toHaveClass(new RegExp(expectedClass));
       });
     }
@@ -345,10 +354,10 @@ test.describe('Card Component', () => {
     test('defaults to xl border radius', async ({ mount }) => {
       const component = await mount(Card, {
         slots: {
-          content: '<div>Content</div>'
-        }
+          content: '<div>Content</div>',
+        },
       });
-      
+
       await expect(component).toHaveClass(/spr-rounded-border-radius-xl/);
     });
   });
@@ -358,20 +367,20 @@ test.describe('Card Component', () => {
       const component = await mount(Card, {
         props: { borderWidth: '3px' },
         slots: {
-          content: '<div>Content</div>'
-        }
+          content: '<div>Content</div>',
+        },
       });
-      
+
       await expect(component).toHaveAttribute('style', /border-width:\s*3px/);
     });
 
     test('applies default border width when not specified', async ({ mount }) => {
       const component = await mount(Card, {
         slots: {
-          content: '<div>Content</div>'
-        }
+          content: '<div>Content</div>',
+        },
       });
-      
+
       await expect(component).toHaveAttribute('style', /border-width:\s*1px/);
     });
 
@@ -379,10 +388,10 @@ test.describe('Card Component', () => {
       const component = await mount(Card, {
         props: { borderWidth: '0px' },
         slots: {
-          content: '<div>Content</div>'
-        }
+          content: '<div>Content</div>',
+        },
       });
-      
+
       await expect(component).toHaveAttribute('style', /border-width:\s*0px/);
     });
   });
@@ -391,12 +400,12 @@ test.describe('Card Component', () => {
     test('applies content padding by default', async ({ mount }) => {
       const component = await mount(Card, {
         slots: {
-          content: '<div data-testid="content">Content with padding</div>'
-        }
+          content: '<div data-testid="content">Content with padding</div>',
+        },
       });
-      
-      // Find the div containing the content slot
-      const contentContainer = component.locator('div').filter({ has: component.locator('[data-testid="content"]') }).first();
+
+      // Find the content container div - it's the parent of the slot content
+      const contentContainer = component.locator('[data-testid="content"]').locator('..').first();
       await expect(contentContainer).toHaveClass(/spr-py-size-spacing-2xs/);
       await expect(contentContainer).toHaveClass(/spr-px-size-spacing-xs/);
     });
@@ -405,11 +414,11 @@ test.describe('Card Component', () => {
       const component = await mount(Card, {
         props: { hasContentPadding: false },
         slots: {
-          content: '<div data-testid="content">Content without padding</div>'
-        }
+          content: '<div data-testid="content">Content without padding</div>',
+        },
       });
-      
-      const contentContainer = component.locator('div').filter({ has: component.locator('[data-testid="content"]') }).first();
+
+      const contentContainer = component.locator('[data-testid="content"]').locator('..').first();
       await expect(contentContainer).not.toHaveClass(/spr-py-size-spacing-2xs/);
       await expect(contentContainer).not.toHaveClass(/spr-px-size-spacing-xs/);
     });
@@ -420,11 +429,11 @@ test.describe('Card Component', () => {
       const component = await mount(Card, {
         props: { flexbox: true },
         slots: {
-          content: '<div>Flex content</div>'
-        }
+          content: '<div data-testid="flex-content">Flex content</div>',
+        },
       });
-      
-      const contentContainer = component.locator('div').filter({ has: component.locator('text=Flex content') }).first();
+
+      const contentContainer = component.locator('[data-testid="flex-content"]').locator('..').first();
       await expect(contentContainer).toHaveClass(/spr-flex/);
       await expect(contentContainer).toHaveClass(/spr-flex-col/);
       await expect(contentContainer).toHaveClass(/spr-h-full/);
@@ -433,11 +442,11 @@ test.describe('Card Component', () => {
     test('does not apply flexbox layout by default', async ({ mount }) => {
       const component = await mount(Card, {
         slots: {
-          content: '<div>Regular content</div>'
-        }
+          content: '<div data-testid="regular-content">Regular content</div>',
+        },
       });
-      
-      const contentContainer = component.locator('div').filter({ has: component.locator('text=Regular content') }).first();
+
+      const contentContainer = component.locator('[data-testid="regular-content"]').locator('..').first();
       await expect(contentContainer).not.toHaveClass(/spr-flex spr-flex-col spr-h-full/);
     });
   });
@@ -445,33 +454,33 @@ test.describe('Card Component', () => {
   test.describe('Props - Collapsible Integration', () => {
     test('applies transparent border when hasCollapsible is true and isCollapsibleOpen is false', async ({ mount }) => {
       const component = await mount(Card, {
-        props: { 
+        props: {
           title: 'Collapsible Card',
           hasCollapsible: true,
-          isCollapsibleOpen: false
+          isCollapsibleOpen: false,
         },
         slots: {
-          content: '<div>Collapsed content</div>'
-        }
+          content: '<div>Collapsed content</div>',
+        },
       });
-      
-      const headerDiv = component.locator('div').first().locator('div').first();
+
+      const headerDiv = component.locator('div.spr-flex.transition-all').first();
       await expect(headerDiv).toHaveClass(/spr-border-transparent/);
     });
 
     test('shows normal border when hasCollapsible is true and isCollapsibleOpen is true', async ({ mount }) => {
       const component = await mount(Card, {
-        props: { 
+        props: {
           title: 'Collapsible Card',
           hasCollapsible: true,
-          isCollapsibleOpen: true
+          isCollapsibleOpen: true,
         },
         slots: {
-          content: '<div>Expanded content</div>'
-        }
+          content: '<div>Expanded content</div>',
+        },
       });
-      
-      const headerDiv = component.locator('div').first().locator('div').first();
+
+      const headerDiv = component.locator('div.spr-flex.transition-all').first();
       await expect(headerDiv).not.toHaveClass(/spr-border-transparent/);
       await expect(headerDiv).toHaveClass(/spr-border-mushroom-200/);
     });
@@ -482,10 +491,10 @@ test.describe('Card Component', () => {
       const component = await mount(Card, {
         props: { customBorderSize: '5' },
         slots: {
-          content: '<div>Content</div>'
-        }
+          content: '<div>Content</div>',
+        },
       });
-      
+
       await expect(component).toHaveClass(/spr-border-\[5px\]/);
     });
 
@@ -493,10 +502,10 @@ test.describe('Card Component', () => {
       const component = await mount(Card, {
         props: { customBorderSize: '0' },
         slots: {
-          content: '<div>Content</div>'
-        }
+          content: '<div>Content</div>',
+        },
       });
-      
+
       await expect(component).toHaveClass(/spr-border-none/);
     });
   });
@@ -504,23 +513,23 @@ test.describe('Card Component', () => {
   test.describe('Accessibility', () => {
     test('has proper semantic structure', async ({ mount }) => {
       const component = await mount(Card, {
-        props: { 
+        props: {
           id: 'test-card',
-          title: 'Accessible Card'
+          title: 'Accessible Card',
         },
         slots: {
           content: '<div>Card content</div>',
-          footer: '<button>Action</button>'
-        }
+          footer: '<button>Action</button>',
+        },
       });
-      
+
       // Card should have the specified ID
       await expect(component).toHaveAttribute('id', 'test-card');
-      
+
       // Header content should be accessible
       const title = component.getByText('Accessible Card');
       await expect(title).toBeVisible();
-      
+
       // Interactive elements should be focusable
       const button = component.locator('button');
       await button.focus();
@@ -533,20 +542,20 @@ test.describe('Card Component', () => {
         slots: {
           header: '<button data-testid="header-btn">Header Action</button>',
           content: '<input data-testid="content-input" placeholder="Type here" />',
-          footer: '<button data-testid="footer-btn">Footer Action</button>'
-        }
+          footer: '<button data-testid="footer-btn">Footer Action</button>',
+        },
       });
-      
+
       // Test focus on header button
       const headerBtn = component.locator('[data-testid="header-btn"]');
       await headerBtn.focus();
       await expect(headerBtn).toBeFocused();
-      
+
       // Test focus on content input
       const contentInput = component.locator('[data-testid="content-input"]');
       await contentInput.focus();
       await expect(contentInput).toBeFocused();
-      
+
       // Test focus on footer button
       const footerBtn = component.locator('[data-testid="footer-btn"]');
       await footerBtn.focus();
@@ -555,21 +564,21 @@ test.describe('Card Component', () => {
 
     test('provides appropriate text contrast for different tones', async ({ mount }) => {
       const tones = ['plain', 'neutral', 'success', 'information', 'pending', 'caution', 'accent', 'danger'] as const;
-      
+
       for (const tone of tones) {
         const component = await mount(Card, {
-          props: { 
+          props: {
             tone,
-            title: `${tone} card`
+            title: `${tone} card`,
           },
           slots: {
-            content: `<div>Content for ${tone} tone</div>`
-          }
+            content: `<div>Content for ${tone} tone</div>`,
+          },
         });
-        
+
         const title = component.getByText(`${tone} card`);
         await expect(title).toBeVisible();
-        
+
         // Title should maintain readable text color
         await expect(title).toHaveClass(/spr-text-mushroom-950/);
       }
@@ -579,32 +588,35 @@ test.describe('Card Component', () => {
   test.describe('Edge Cases', () => {
     test('handles empty content gracefully', async ({ mount }) => {
       const component = await mount(Card, {
+        props: { title: 'Empty Card' },
         slots: {
-          content: ''
-        }
+          content: '',
+        },
       });
-      
+
       await expect(component).toBeVisible();
       await expect(component).toHaveClass(/spr-border-solid/);
     });
 
     test('handles long titles and subtitles', async ({ mount }) => {
-      const longTitle = 'This is a very long card title that might wrap to multiple lines and test text overflow behavior';
-      const longSubtitle = 'This is a very long subtitle that provides additional context and might also wrap to multiple lines';
-      
+      const longTitle =
+        'This is a very long card title that might wrap to multiple lines and test text overflow behavior';
+      const longSubtitle =
+        'This is a very long subtitle that provides additional context and might also wrap to multiple lines';
+
       const component = await mount(Card, {
-        props: { 
+        props: {
           title: longTitle,
-          subtitle: longSubtitle
+          subtitle: longSubtitle,
         },
         slots: {
-          content: '<div>Content</div>'
-        }
+          content: '<div>Content</div>',
+        },
       });
-      
+
       const titleElement = component.getByText(longTitle);
       const subtitleElement = component.getByText(longSubtitle);
-      
+
       await expect(titleElement).toBeVisible();
       await expect(subtitleElement).toBeVisible();
     });
@@ -612,17 +624,17 @@ test.describe('Card Component', () => {
     test('handles special characters in title and subtitle', async ({ mount }) => {
       const specialTitle = '🎉 Card Title with Émojis & Special Characters! @#$%';
       const specialSubtitle = 'Subtitle with <script>alert("test")</script> & HTML entities';
-      
+
       const component = await mount(Card, {
-        props: { 
+        props: {
           title: specialTitle,
-          subtitle: specialSubtitle
+          subtitle: specialSubtitle,
         },
         slots: {
-          content: '<div>Content</div>'
-        }
+          content: '<div>Content</div>',
+        },
       });
-      
+
       await expect(component.getByText(specialTitle)).toBeVisible();
       await expect(component.getByText(specialSubtitle)).toBeVisible();
     });
@@ -656,10 +668,10 @@ test.describe('Card Component', () => {
               <button>Cancel</button>
               <button>Save</button>
             </div>
-          `
-        }
+          `,
+        },
       });
-      
+
       await expect(component).toBeVisible();
       await expect(component.getByText('Complex Card')).toBeVisible();
       await expect(component.getByText('Status: Active')).toBeVisible();
@@ -674,13 +686,13 @@ test.describe('Card Component', () => {
         props: {
           title: undefined,
           subtitle: undefined,
-          tone: undefined
+          tone: undefined,
         },
         slots: {
-          content: '<div>Content with undefined props</div>'
-        }
+          content: '<div>Content with undefined props</div>',
+        },
       });
-      
+
       await expect(component).toBeVisible();
       await expect(component).toHaveClass(/spr-background-color-base/); // Default background
       await expect(component).toHaveClass(/spr-border-color-weak/); // Default border
@@ -695,29 +707,29 @@ test.describe('Card Component', () => {
           borderRadiusSize: 'lg',
           title: 'Success Card',
           headerIcon: 'ph:check-circle-duotone',
-          subtitle: 'Operation completed successfully'
+          subtitle: 'Operation completed successfully',
         },
         slots: {
           content: '<div>Success message content</div>',
-          footer: '<button>Continue</button>'
-        }
+          footer: '<button>Continue</button>',
+        },
       });
-      
+
       // Check tone styling
       await expect(component).toHaveClass(/spr-background-color-success-weak/);
       await expect(component).toHaveClass(/spr-border-color-success-base/);
-      
+
       // Check border radius
       await expect(component).toHaveClass(/spr-rounded-border-radius-lg/);
-      
+
       // Check header content
       await expect(component.getByText('Success Card')).toBeVisible();
       await expect(component.getByText('Operation completed successfully')).toBeVisible();
-      
+
       // Check icon
       const icon = component.locator('svg').first();
       await expect(icon).toBeVisible();
-      
+
       // Check footer
       await expect(component.getByText('Continue')).toBeVisible();
     });
@@ -729,25 +741,25 @@ test.describe('Card Component', () => {
           borderWidth: '4px',
           hasContentPadding: false,
           title: 'Error Card',
-          showFooter: false
+          showFooter: false,
         },
         slots: {
           content: '<div data-testid="error-content">Error occurred</div>',
-          footer: '<div>This footer should be hidden</div>'
-        }
+          footer: '<div>This footer should be hidden</div>',
+        },
       });
-      
+
       // Check tone styling
       await expect(component).toHaveClass(/spr-background-color-danger-weak/);
       await expect(component).toHaveClass(/spr-border-color-danger-base/);
-      
+
       // Check custom border width
       await expect(component).toHaveAttribute('style', /border-width:\s*4px/);
-      
+
       // Check no content padding
-      const contentContainer = component.locator('div').filter({ has: component.locator('[data-testid="error-content"]') }).first();
+      const contentContainer = component.locator('[data-testid="error-content"]').locator('..').first();
       await expect(contentContainer).not.toHaveClass(/spr-py-size-spacing-2xs/);
-      
+
       // Check hidden footer
       await expect(component.locator('text=This footer should be hidden')).not.toBeVisible();
     });
@@ -760,29 +772,29 @@ test.describe('Card Component', () => {
           hasCollapsible: true,
           isCollapsibleOpen: true,
           title: 'Expandable Card',
-          borderRadiusSize: 'md'
+          borderRadiusSize: 'md',
         },
         slots: {
-          content: '<div>Flexible content that expands</div>'
-        }
+          content: '<div data-testid="flexible-content">Flexible content that expands</div>',
+        },
       });
-      
+
       // Check tone styling
       await expect(component).toHaveClass(/spr-bg-white/);
       await expect(component).toHaveClass(/spr-border-color-weak/);
-      
+
       // Check flexbox layout
-      const contentContainer = component.locator('div').filter({ has: component.locator('text=Flexible content that expands') }).first();
+      const contentContainer = component.locator('[data-testid="flexible-content"]').locator('..').first();
       await expect(contentContainer).toHaveClass(/spr-flex/);
       await expect(contentContainer).toHaveClass(/spr-flex-col/);
       await expect(contentContainer).toHaveClass(/spr-h-full/);
-      
+
       // Check collapsible styling (expanded state)
-      const headerDiv = component.locator('div').first().locator('div').first();
+      const headerDiv = component.locator('div.spr-flex.transition-all').first();
       await expect(headerDiv).not.toHaveClass(/spr-border-transparent/);
-      
+
       // Check border radius
-      await expect(component).toHaveClass(/spr-rounded-border-radius-sm/);
+      await expect(component).toHaveClass(/spr-rounded-border-radius-md/);
     });
 
     test('card with all slots and various props', async ({ mount }) => {
@@ -796,30 +808,30 @@ test.describe('Card Component', () => {
           borderWidth: '2px',
           borderRadiusSize: 'sm',
           hasContentPadding: true,
-          flexbox: false
+          flexbox: false,
         },
         slots: {
           header: '<div data-testid="custom-header">Custom header content</div>',
           content: '<div data-testid="main-content">Main content area</div>',
           footer: '<div data-testid="custom-footer">Custom footer content</div>',
-          default: '<div data-testid="default-slot">Default slot content</div>'
-        }
+          default: '<div data-testid="default-slot">Default slot content</div>',
+        },
       });
-      
+
       // Check basic props
       await expect(component).toHaveAttribute('id', 'comprehensive-card');
       await expect(component).toHaveClass(/spr-background-color-accent-weak/);
       await expect(component).toHaveAttribute('style', /border-width:\s*2px/);
-      await expect(component).toHaveClass(/spr-rounded-border-radius-xs/);
-      
+      await expect(component).toHaveClass(/spr-rounded-border-radius-sm/);
+
       // Check title and subtitle
       await expect(component.getByText('Comprehensive Card')).toBeVisible();
       await expect(component.getByText('With all features enabled')).toBeVisible();
-      
+
       // Check icon
       const icon = component.locator('svg').first();
       await expect(icon).toBeVisible();
-      
+
       // Check all slots
       await expect(component.locator('[data-testid="custom-header"]')).toBeVisible();
       await expect(component.locator('[data-testid="main-content"]')).toBeVisible();
@@ -836,13 +848,13 @@ test.describe('Card Component', () => {
           header: '<div data-testid="header-slot">Header slot</div>',
           content: '<div data-testid="content-slot">Content slot</div>',
           footer: '<div data-testid="footer-slot">Footer slot</div>',
-          default: '<div data-testid="default-slot">Default slot</div>'
-        }
+          default: '<div data-testid="default-slot">Default slot</div>',
+        },
       });
-      
+
       // Root element should be the card container
       await expect(component).toBeVisible();
-      
+
       // Check order of elements in DOM
       const allContent = await component.textContent();
       const headerIndex = allContent?.indexOf('Test Card') ?? -1;
@@ -850,7 +862,7 @@ test.describe('Card Component', () => {
       const contentIndex = allContent?.indexOf('Content slot') ?? -1;
       const defaultIndex = allContent?.indexOf('Default slot') ?? -1;
       const footerIndex = allContent?.indexOf('Footer slot') ?? -1;
-      
+
       // Verify correct order: title, header slot, content slot, default slot, footer slot
       expect(headerIndex).toBeLessThan(headerSlotIndex);
       expect(headerSlotIndex).toBeLessThan(contentIndex);
@@ -862,17 +874,17 @@ test.describe('Card Component', () => {
       // Card with only content
       const contentOnlyCard = await mount(Card, {
         slots: {
-          content: '<div>Just content</div>'
-        }
+          content: '<div>Just content</div>',
+        },
       });
-      
+
       await expect(contentOnlyCard).toBeVisible();
       await expect(contentOnlyCard.getByText('Just content')).toBeVisible();
-      
+
       // Header and footer sections should not exist
       const headerElements = contentOnlyCard.locator('div').filter({ hasText: /spr-border-b/ });
       const footerElements = contentOnlyCard.locator('div').filter({ hasText: /spr-border-t/ });
-      
+
       await expect(headerElements).toHaveCount(0);
       await expect(footerElements).toHaveCount(0);
     });
@@ -882,17 +894,17 @@ test.describe('Card Component', () => {
         props: { title: 'Spaced Card' },
         slots: {
           content: '<div>Content with borders</div>',
-          footer: '<div>Footer with borders</div>'
-        }
+          footer: '<div data-testid="footer-borders">Footer with borders</div>',
+        },
       });
-      
+
       // Header should have bottom border when content exists
-      const headerDiv = component.locator('div').first().locator('div').first();
+      const headerDiv = component.locator('div.spr-flex.transition-all').first();
       await expect(headerDiv).toHaveClass(/spr-border-b/);
       await expect(headerDiv).toHaveClass(/spr-border-mushroom-200/);
-      
+
       // Footer should have top border
-      const footerContainer = component.locator('div').filter({ has: component.locator('text=Footer with borders') }).first();
+      const footerContainer = component.locator('[data-testid="footer-borders"]').locator('..').first();
       await expect(footerContainer).toHaveClass(/spr-border-t/);
       await expect(footerContainer).toHaveClass(/spr-border-mushroom-200/);
     });

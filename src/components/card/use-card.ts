@@ -50,10 +50,10 @@ export const useCard = (props: CardPropTypes, slots: Slots) => {
       'spr-border-color-danger-base': toneValue === 'danger',
 
       // Border radius
-      'spr-rounded-border-radius-2xs': borderRadiusSize.value === 'xs',
-      'spr-rounded-border-radius-xs': borderRadiusSize.value === 'sm',
-      'spr-rounded-border-radius-sm': borderRadiusSize.value === 'md',
-      'spr-rounded-border-radius-md': borderRadiusSize.value === 'xs',
+      'spr-rounded-border-radius-2xs': borderRadiusSize.value === '2xs',
+      'spr-rounded-border-radius-xs': borderRadiusSize.value === 'xs',
+      'spr-rounded-border-radius-sm': borderRadiusSize.value === 'sm',
+      'spr-rounded-border-radius-md': borderRadiusSize.value === 'md',
       'spr-rounded-border-radius-lg': borderRadiusSize.value === 'lg',
       'spr-rounded-border-radius-xl': borderRadiusSize.value === 'xl' || !borderRadiusSize.value,
 
@@ -67,10 +67,10 @@ export const useCard = (props: CardPropTypes, slots: Slots) => {
         (title.value || headerIcon.value) && (slots.content || slots.default),
       'spr-border-transparent': hasCollapsible.value && !isCollapsibleOpen.value,
       'spr-py-size-spacing-2xs spr-px-size-spacing-xs': title.value || headerIcon.value,
-      'spr-rounded-t-border-radius-2xs': borderRadiusSize.value === 'xs',
-      'spr-rounded-t-border-radius-xs': borderRadiusSize.value === 'sm',
-      'spr-rounded-t-border-radius-sm': borderRadiusSize.value === 'md',
-      'spr-rounded-t-border-radius-md': borderRadiusSize.value === 'xs',
+      'spr-rounded-t-border-radius-2xs': borderRadiusSize.value === '2xs',
+      'spr-rounded-t-border-radius-xs': borderRadiusSize.value === 'xs',
+      'spr-rounded-t-border-radius-sm': borderRadiusSize.value === 'sm',
+      'spr-rounded-t-border-radius-md': borderRadiusSize.value === 'md',
       'spr-rounded-t-border-radius-lg': borderRadiusSize.value === 'lg',
       'spr-rounded-t-border-radius-xl': borderRadiusSize.value === 'xl' || !borderRadiusSize.value,
     });
@@ -82,10 +82,10 @@ export const useCard = (props: CardPropTypes, slots: Slots) => {
     const footerClasses = classNames(
       `spr-flex spr-items-center spr-border-0 spr-border-t spr-border-solid spr-border-mushroom-200 spr-py-size-spacing-2xs spr-px-size-spacing-xs`,
       {
-        'spr-rounded-b-border-radius-2xs': borderRadiusSize.value === 'xs',
-        'spr-rounded-b-border-radius-xs': borderRadiusSize.value === 'sm',
-        'spr-rounded-b-border-radius-sm': borderRadiusSize.value === 'md',
-        'spr-rounded-b-border-radius-md': borderRadiusSize.value === 'xs',
+        'spr-rounded-b-border-radius-2xs': borderRadiusSize.value === '2xs',
+        'spr-rounded-b-border-radius-xs': borderRadiusSize.value === 'xs',
+        'spr-rounded-b-border-radius-sm': borderRadiusSize.value === 'sm',
+        'spr-rounded-b-border-radius-md': borderRadiusSize.value === 'md',
         'spr-rounded-b-border-radius-lg': borderRadiusSize.value === 'lg',
         'spr-rounded-b-border-radius-xl': borderRadiusSize.value === 'xl' || !borderRadiusSize.value,
       },

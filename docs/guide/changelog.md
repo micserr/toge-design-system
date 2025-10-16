@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.17.3 (2025-10-16)
+
+- Fix
+  - Commit fcfd1580: missing end-tag
+    ([#fcfd1580](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/fcfd1580bd6cd025606fba3c4b620fb48108b4e6?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2FMISSING_END_TAG) @adestajo)
+
 ## 2.17.2 (2025-10-15)
 
 - Fix

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.17.2 (2025-10-15)
+
+- Fix
+  - Commit f8bf1244: set default tone to 'plain' and update background class for tone styling
+    ([#f8bf1244](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f8bf12448c63ead7d2249c2b544fe764a2a243c7?refName=refs/heads/2025/Fix/andrea/CARD_TONE_DEFAULT) @adestajo)
+
 ## 2.17.1 (2025-10-15)
 
 - Feat

@@ -30,7 +30,7 @@ export const useCard = (props: CardPropTypes, slots: Slots) => {
     const baseClasses = classNames(`spr-border-solid`, {
       // Tones
       'spr-background-color-base': !toneValue,
-      'spr-bg-white': toneValue === 'plain',
+      'spr-background-color': toneValue === 'plain',
       'spr-background-color-surface': toneValue === 'neutral',
       'spr-background-color-success-weak': toneValue === 'success',
       'spr-background-color-information-weak': toneValue === 'information',

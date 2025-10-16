@@ -269,6 +269,26 @@
     @apply spr-min-w-[328px] spr-drop-shadow-md;
   }
   /* #endregion - Filter, time-picker */
+
+  /* #region - Popper */
+  #popper-wrapper {
+    @apply spr-border-color-weak spr-border-color-weak spr-z-[1000] spr-w-[inherit] spr-min-w-[240px] spr-rounded-border-radius-xl spr-border spr-border-solid spr-shadow-drop;
+
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-w-full spr-rounded-border-radius-xl spr-border-none spr-font-main spr-shadow-none;
+
+        &::-webkit-scrollbar-track {
+          @apply spr-rounded-br-xl spr-rounded-tr-xl;
+        }
+      }
+
+      .v-popper__arrow-container {
+        @apply spr-hidden;
+      }
+    }
+  }
+  /* #endregion - Popper */
 }
 
 @layer utilities {

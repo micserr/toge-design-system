@@ -1,9 +1,15 @@
 # Changelog
 
+## 2.17.5 (2025-10-16)
+
+- Fix
+  - Add 'neutral' variant and update badge documentation ([#35400](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35400?_a=files by @jarias)
+
 ## 2.17.4 (2025-10-16)
+
 - Fix
   - Add selected filter count prop in attribute filter component. ([#dc519830](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dc519830dd8d969d1151db0f6a2dea8ff51ab46b?refName=refs/heads/2025/feat/dustin/attribute-filter by @despiritu)
-  - Return to calendar tab after selecting month or year in reusable calendar full mode. ([#dd1414b0](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dd1414b0fe32048f714144d7bbb54d9b2dbcd84a?refName=refs/heads/2025/feat/dustin/attribute-filter @despiritu) 
+  - Return to calendar tab after selecting month or year in reusable calendar full mode. ([#dd1414b0](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dd1414b0fe32048f714144d7bbb54d9b2dbcd84a?refName=refs/heads/2025/feat/dustin/attribute-filter @despiritu)
 
 ## 2.17.3 (2025-10-16)
 
@@ -256,7 +262,6 @@
 ## 2.12.7 (2025-08-19)
 
 - Refactor
-
   - Seperate file for sidenav menu links to improve code organization and maintainability
   - Update package exporting component to include handling for exluded components
 
@@ -266,12 +271,10 @@
 
 - Feat
   Sidenav Updates:
-
   - Fix Hide/Show transition
   - Use Avatar component for user menu
 
   Avatar Updates:
-
   - Handle image error
   - Update Documentation
 
@@ -300,12 +303,10 @@
 ## 2.12.1 (2025-08-18)
 
 - Feat
-
   - Add product usage logos to File Upload and Side Navigation documentation
     ([#061c6de](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/061c6def9204731bcbec7cf7069633bc3dd1a4?refName=refs%2Fheads%2F2025%2FDOCS%2FJEF%2FUpdate_Component_Docs) by @jmari)
 
 - Fix
-
   - Improve prop and event descriptions in Sidenav documentation for clarity
     ([#b02b53a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b02b53a56ec6af4e8e7b559e26ece21d7da6292?refName=refs%2Fheads%2F2025%2FDOCS%2FJEF%2FUpdate_Component_Docs) by @jmari)
 
@@ -322,14 +323,12 @@
 ## 2.11.22 (2025-08-14)
 
 - Feat
-
   - Sidenav: Added comprehensive API data integration support with `isNavApi` property
   - Sidenav: Enhanced documentation with real-world API data structure examples
   - Sidenav: Added support for complex nested navigation hierarchies from API responses
   - Sidenav: Improved handling of external URLs and new tab navigation through API data
 
 - Fix
-
   - Sidenav: Fixed readonly props mutation error in navigation data transformation
   - Sidenav: Improved TypeScript type safety for API navigation items
   - JSON: Updated side-nav-api.json to comply with strict JSON syntax standards
@@ -449,7 +448,6 @@
 ## 2.11.3 (2025-07-31)
 
 - Documentation
-
   - Commit 2f22358c: feat: add Skeletal Loader utility and update documentation([#2f22358c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/2f22358cca982ec687639ad77a05003739c5f4f0?refName=refs/heads/2025/DOCS/ANDREA/UPDATE_DOCS_MULTI_SELECT) @adestajo)
 
 - Feat
@@ -512,7 +510,6 @@
 ## 2.9.10 (2025-07-29)
 
 - Fix
-
   - Commit b73c4c87: fix(calendar): adjust loading icon size and improve empty state handling in calendar component
 
 - Feat
@@ -568,7 +565,6 @@
 ## 2.9.1 (2025-07-03)
 
 - Feat
-
   - Commit f0f0d2f2: feat(calendar): add hideAddButton prop and improve calendar header layout
 
   - Commit 4dad73dc: feat(calendar): enhance calendar component with infinite scroll and improved header layout ([#4dad73dc](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4dad73dc36608e754670f57ca21fb2edc7be4b82?refName=refs/heads/2025/Fix/andrea/calendar-update-dropdown-filter) by @adestajo)
@@ -630,7 +626,6 @@
 ## 2.7.42 (2025-06-21)
 
 - Fix
-
   - Add Packge Version Installation, Code Cleanup
 
   ([#8b2377d7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8b2377d7002bcb5d4b749fcfbed62dcaed270627?refName=refs%2Fheads%2F2025%2Ffeature%2Farias%2Fds-updates) by @jarias)
@@ -638,7 +633,6 @@
 ## 2.7.41 (2025-06-20)
 
 - Fix
-
   - Fix issue date picker input year.
 
   ([#c9adfa40](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c9adfa4080634eaa80e70a2d75ac4496b609b7e2?refName=refs%2Fheads%2F2025%2FFEATURE%2FBEN%2FDATEPICKER-new) by @bsolis)
@@ -646,7 +640,6 @@
 ## 2.7.40 (2025-06-19)
 
 - Fix
-
   - Fix NaN issue on Table Pagination when using `selectedRowCount` prop with a number value.
 
   ([#dccc8046](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dccc80460cb2bc7e6c70d7422d8ca197ffc3a429?refName=refs%2Fheads%2F2025%2FFIX%2FTABLE-PAGINATION-DROPDOWN) by @bsolis)
@@ -654,7 +647,6 @@
 ## 2.7.39 (2025-06-19)
 
 - Feat
-
   - DatePicker: Added `format` prop to allow customization of date format in the date picker (e.g., 'MM-DD-YYYY', 'YYYY-MM-DD', 'MM/DD/YYYY')
   - DatePicker: Fixed text color for today's date when selected to be white instead of brand color
 
@@ -870,7 +862,6 @@
 ## 2.6.0 (2025-05-05)
 
 - Feat
-
   - Add custom icon feature for sidenav links
   - Add id for user menu avatar and links inside ([#e8cc6ac3](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e8cc6ac3fc62899509fb552f487e654082fcc200?refName=refs%2Fheads%2F2025%2Ffeature%2Felii%2Fsidenav) by @elumilay)
 
@@ -943,11 +934,9 @@
 ## 2.0.0 (2025-04-25)
 
 - Breaking Changes
-
   - Set new Major Version to 2.0.0
 
 - Feat
-
   - Improve Docs Landing Page, Added more informations on it
   - Added 'Product Logo' Component (Uses Cloudinary to Temporary Upload)
   - Add "Product Uses" section with logo to multiple component documentation
@@ -972,7 +961,6 @@
 ## 1.15.17 (2025-04-21)
 
 - Fix
-
   - Commit cc4d678a: added avatar ([#cc4d678a](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cc4d678a66eaaf7420b141ae0b00fcc21b178b5d?refName=refs/heads/2025/Fix/andrea/shift-assignment-component) by @adestajo)
 
 - Feat
@@ -1363,7 +1351,6 @@
 ## 1.5.7 (2025-03-03)
 
 - Feature
-
   - Commit 97d44216: emit table sort ([#97d44216](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/97d44216912e82abe1d805dadba5b1f7244d4b37?refName=refs/heads/2025/Feature/andrea/added-badge-table) by @adestajo)
 
 - Fix
@@ -1699,7 +1686,6 @@
 ## 1.0.37 (2025-01-17)
 
 - Feat:
-
   - Sidenav DQA Updates
   - Sidenav Top and Buttom Section
   - Quick Action - Sectionized
@@ -1779,13 +1765,11 @@
 ## 1.0.22 (2025-01-08)
 
 - Feat - Playground
-
   - ([#4ca65690](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4ca6569063af6ec6ff48a639b74946b69419904c) by @JefMari)
   - ([#819265bb](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/819265bb94cb2f3d728cf35c33d7c5fbf20194ab) by @JefMari)
   - ([#1bd53cd6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/1bd53cd6117319bb7ca9f89ed810dc659b33d8bb) by @JefMari)
 
 - Fix - Sass warning for docs build
-
   - ([#4ca65690](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4ca6569063af6ec6ff48a639b74946b69419904c) by @JefMari)
 
 - Chore - Update packages

@@ -10,7 +10,7 @@ export const lozengePropTypes = {
    */
   label: {
     type: String,
-    default: 'label',
+    default: '',
   },
   /**
    * @description Lozenge tone

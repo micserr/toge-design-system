@@ -396,6 +396,12 @@ When using custom colors, hexadecimal format (e.g., `#b134eb`) is recommended fo
       <td>string</td>
       <td><code>''</code></td>
     </tr>
+    <tr>
+      <td>customBorderSize</td>
+      <td>Applies a custom border size to the cell</td>
+      <td>string</td>
+      <td><code>''</code></td>
+    </tr>
   </tbody>
 </table>
 

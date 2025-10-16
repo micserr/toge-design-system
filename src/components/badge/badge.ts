@@ -2,7 +2,7 @@ import type { PropType, ExtractPropTypes } from 'vue';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
-const BADGE_VARIANT = ['danger', 'disabled', 'information', 'brand'] as const;
+const BADGE_VARIANT = ['neutral', 'danger', 'disabled', 'information', 'brand'] as const;
 const BADGE_SIZE = ['small', 'big', 'tiny'] as const;
 const BADGE_POSITION = ['top', 'bottom', 'default'] as const;
 

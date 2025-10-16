@@ -1,6 +1,7 @@
 import { defineConfig, devices } from '@playwright/experimental-ct-vue';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import vue from '@vitejs/plugin-vue';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -27,6 +28,7 @@ export default defineConfig({
     ctTemplateDir: 'playwright',
     ctPort: 3100,
     ctViteConfig: {
+      plugins: [vue()],
       resolve: {
         alias: {
           '@': resolve(__dirname, 'src'),

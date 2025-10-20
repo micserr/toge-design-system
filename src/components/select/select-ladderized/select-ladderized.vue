@@ -38,6 +38,7 @@
             :helper-icon="props.helperIcon"
             :display-helper="props.displayHelper"
             readonly
+            :active="props.active"
             :disabled="props.disabled"
             :error="props.error"
           >

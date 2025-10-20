@@ -149,6 +149,8 @@
             :group-items-by="props.groupItemsBy"
             :pre-selected-items="Array.isArray(multiSelectModel) ? multiSelectModel.flat() : [multiSelectModel]"
             :loading="props.loading"
+            :item-icon="props.itemIcon"
+            :lozenge="props.lozenge"
             multi-select
             :disabled-local-search="props.disabledLocalSearch"
             @update:model-value="handleMultiSelectedItem"

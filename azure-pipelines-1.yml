@@ -22,5 +22,9 @@ steps:
     displayName: 'npm install and build'
 
   - script: |
+      npx playwright install --with-deps chromium
+    displayName: 'Install Playwright browsers'
+
+  - script: |
       npm run test:components
     displayName: 'Run Test Components'

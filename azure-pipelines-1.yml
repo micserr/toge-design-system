@@ -17,11 +17,6 @@ steps:
     displayName: 'Install Node 22'
 
   - script: |
-      npm install
-      npm run build
-    displayName: 'npm install and build'
-
-  - script: |
       npx playwright install --with-deps chromium
     displayName: 'Install Playwright browsers'
 

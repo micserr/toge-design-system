@@ -1,0 +1,26 @@
+pr:
+  branches:
+    include:
+      - 2025/FEATURE/JEF/PLAYWRIGHT-COMPONENT-TEST
+trigger:
+  branches:
+    include:
+      - 2025/FEATURE/JEF/PLAYWRIGHT-COMPONENT-TEST
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '22.x'
+    displayName: 'Install Node 22'
+
+  - script: |
+      npm install
+      npm run build
+    displayName: 'npm install and build'
+
+  - script: |
+      npm run test:components
+    displayName: 'Run Test Components'

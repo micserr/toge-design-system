@@ -1,6 +1,6 @@
-import { computed, type Ref } from "vue";
-import type { BannerPropTypes } from "./banner";
-import classNames from "classnames";
+import { computed, type Ref } from 'vue';
+import type { BannerPropTypes } from './banner';
+import classNames from 'classnames';
 
 interface BannerClasses {
   base: string;
@@ -11,7 +11,7 @@ interface BannerClasses {
 }
 
 export const useBanner = (props: BannerPropTypes, showModel: Ref<boolean>) => {
-  const closeBanner = () => showModel.value = false;
+  const closeBanner = () => (showModel.value = false);
 
   const bannerClasses = computed<BannerClasses>(() => {
     const base = classNames(
@@ -22,45 +22,34 @@ export const useBanner = (props: BannerPropTypes, showModel: Ref<boolean>) => {
         'spr-background-color-information-weak': props.type === 'info',
         'spr-background-color-pending-weak': props.type === 'pending',
         'spr-background-color-caution-weak': props.type === 'caution',
-      }
+      },
     );
 
-    const content = classNames(
-      'spr-flex-auto'
-    );
+    const content = classNames('spr-flex-auto');
 
-    const icon = classNames(
-      'spr-mt-[2px]',
-      {
-        'spr-text-color-brand-base': props.type === 'success',
-        'spr-text-color-danger-base': props.type === 'error',
-        'spr-text-color-information-base': props.type === 'info',
-        'spr-text-color-pending-base': props.type === 'pending',
-        'spr-text-color-caution-base': props.type === 'caution',
-      }
-    );
+    const icon = classNames({
+      'spr-text-color-brand-base': props.type === 'success',
+      'spr-text-color-danger-base': props.type === 'error',
+      'spr-text-color-information-base': props.type === 'info',
+      'spr-text-color-pending-base': props.type === 'pending',
+      'spr-text-color-caution-base': props.type === 'caution',
+    });
 
-    const message = classNames(
-      'spr-body-sm-regular', 
-      {
-        'spr-text-color-brand-base': props.type === 'success',
-        'spr-text-color-danger-pressed': props.type === 'error',
-        'spr-text-color-information-pressed': props.type === 'info',
-        'spr-text-color-pending-pressed': props.type === 'pending',
-        'spr-text-color-caution-pressed': props.type === 'caution',
-      }
-    );
+    const message = classNames('spr-block spr-m-0 spr-body-sm-regular', {
+      'spr-text-color-brand-base': props.type === 'success',
+      'spr-text-color-danger-pressed': props.type === 'error',
+      'spr-text-color-information-pressed': props.type === 'info',
+      'spr-text-color-pending-pressed': props.type === 'pending',
+      'spr-text-color-caution-pressed': props.type === 'caution',
+    });
 
-    const close = classNames(
-      'spr-flex-none spr-cursor-pointer spr-mt-[2px]',
-      {
-        'spr-text-color-brand-base': props.type === 'success',
-        'spr-text-color-danger-base': props.type === 'error',
-        'spr-text-color-information-base': props.type === 'info',
-        'spr-text-color-pending-base': props.type === 'pending',
-        'spr-text-color-caution-base': props.type === 'caution',
-      }
-    );
+    const close = classNames('spr-flex-none spr-cursor-pointer spr-mt-[2px]', {
+      'spr-text-color-brand-base': props.type === 'success',
+      'spr-text-color-danger-base': props.type === 'error',
+      'spr-text-color-information-base': props.type === 'info',
+      'spr-text-color-pending-base': props.type === 'pending',
+      'spr-text-color-caution-base': props.type === 'caution',
+    });
 
     return {
       base,
@@ -68,7 +57,7 @@ export const useBanner = (props: BannerPropTypes, showModel: Ref<boolean>) => {
       icon,
       message,
       close,
-    }
+    };
   });
 
   const bannerIcon = computed(() => {

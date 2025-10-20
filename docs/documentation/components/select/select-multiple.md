@@ -787,6 +787,34 @@ For guidance on implementing error, active, and disabled states in the select co
 </template>
 ```
 
+## Display Selected Count Only
+
+By default, when multiple items are selected in the component, the selected items are displayed as text or chips within the input field. However, you can choose to display only the count of selected items instead of showing each selected item individually.
+
+<div>
+  <spr-select-multiple
+    id="select-multiple-display-selected-count-only"
+    v-model="multiSelectModel.multiSelectDisplaySelectedCountOnly"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    display-selected-count-only
+  />
+</div>
+
+```vue
+<template>
+  <spr-select-multiple
+    id="select-multiple-display-selected-count-only"
+    v-model="multiSelectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    display-selected-count-only
+  />
+</template>
+```
+
 ## Helper Message
 
 A helper message is a text label below the input field that provides additional information about instructions, formatting hints, validation feedback, etc.
@@ -1375,6 +1403,14 @@ const optionsWithLozenge = ref([
       <td>-</td>
     </tr>
     <tr>
+      <td><code>display-selected-count-only</code></td>
+      <td>
+        Displays selected item counter only when items are selected instead of their text in the input.
+      </td>
+      <td>Bolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
       <td><code>display-helper</code></td>
       <td>Show helper text below the input.</td>
       <td>Boolean</td>
@@ -1536,6 +1572,7 @@ const multiSelectModel = ref({
   multiSelectActiveState: [],
   multiSelectDisabledState: [],
   multiSelectErrorState: [],
+  multiSelectDisplaySelectedCountOnly: [],
   multiSelectHelperMessage: [],
   multiSelectItemSubtext: [],
   multiSelectItemIcon: [],

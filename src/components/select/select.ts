@@ -117,6 +117,18 @@ export const selectPropTypes = {
     type: String,
     default: 'relative',
   },
+  active: {
+    type: Boolean,
+    default: false,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  error: {
+    type: Boolean,
+    default: false,
+  },
   displayText: {
     type: String,
     default: '',
@@ -133,18 +145,6 @@ export const selectPropTypes = {
     type: String,
     default: '',
   },
-  active: {
-    type: Boolean,
-    default: false,
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  error: {
-    type: Boolean,
-    default: false,
-  },
   clearable: {
     type: Boolean,
     default: false,
@@ -156,6 +156,14 @@ export const selectPropTypes = {
   disabledLocalSearch: {
     type: Boolean,
     default: false,
+  },
+  lozenge: {
+    type: Boolean,
+    default: false,
+  },
+  itemIcon: {
+    type: String,
+    default: '',
   },
 };
 

@@ -167,6 +167,14 @@ export const multiSelectPropTypes = {
     type: Boolean,
     default: false,
   },
+  lozenge: {
+    type: Boolean,
+    default: false,
+  },
+  itemIcon: {
+    type: String,
+    default: '',
+  },
 };
 
 export const multiSelectEmitTypes = {

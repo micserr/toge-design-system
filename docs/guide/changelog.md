@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.17.6 (2025-10-20)
+
+- Fix
+  - Update Select, Multi-Select and Ladderized Select Documentation
+- Update Lozenge Documentation
+- Added Support for select & multi select item lozenge
+- Added Support for select & multi select item icon
+- Fix Ladderized Active State
+  ([#35434](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35434?_a=files by @jarias)
+
 ## 2.17.5 (2025-10-16)
 
 - Fix

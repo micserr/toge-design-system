@@ -12,23 +12,23 @@ The Multi Select component allows users to select multiple options from a select
 
 <div class="spr-grid spr-gap-4">
   <spr-select-multiple
-    id="sample-selectBasic"
-    v-model="selectModel.selectBasic"
+    id="select-multiple-basic"
+    v-model="multiSelectModel.multiSelectBasic"
     label="Multi-Select Label"
     placeholder="Select an option"
     :options="options"
   />
 
   <code class="spr-font-medium">
-    V-Model: {{ selectModel.selectBasic }}
+    V-Model: {{ multiSelectModel.multiSelectBasic }}
   </code>
 </div>
 
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectBasic"
+    id="select-multiple-basic"
+    v-model="multiSelectBasic"
     label="Multi-Select Label"
     placeholder="Select an option"
     :options="options"
@@ -37,7 +37,7 @@ The Multi Select component allows users to select multiple options from a select
   <script lang="ts" setup>
     import { ref } from 'vue';
 
-    const selectBasic = ref([]); // Use an array for multi-select
+    const multiSelectBasic = ref([]); // Use an array for multi-select
     const options = ref([
       { text: 'Apple', value: 'apple' },
       { text: 'Banana', value: 'banana' },
@@ -59,8 +59,8 @@ The Multi Select component allows users to select multiple options from a select
 
 <div class="spr-grid spr-gap-4">
   <spr-select-multiple
-    id="sample-selectChipped"
-    v-model="selectModel.selectChipped"
+    id="select-multiple-chipped"
+    v-model="multiSelectModel.multiSelectChipped"
     label="Multi-Select Label"
     placeholder="Select an option"
     :options="options"
@@ -68,15 +68,15 @@ The Multi Select component allows users to select multiple options from a select
   />
 
   <code class="spr-font-medium">
-    V-Model: {{ selectModel.selectChipped }}
+    V-Model: {{ multiSelectModel.multiSelectChipped }}
   </code>
 </div>
 
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectChipped"
+    id="select-multiple-chipped"
+    v-model="multiSelectChipped"
     label="Multi-Select Label"
     placeholder="Select an option"
     :options="options"
@@ -90,8 +90,8 @@ You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-ite
 
 <div class="spr-grid spr-gap-4">
   <spr-select-multiple
-    id="sample-selectGroupedItemsBy"
-    v-model="selectModel.selectGroupedItemsBy"
+    id="select-multiple-grouped-items-by"
+    v-model="multiSelectModel.multiSelectGroupedItemsBy"
     label="Multi-Select Label"
     placeholder="Select an option"
     :options="options"
@@ -103,8 +103,8 @@ You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-ite
 <template>
   <div class="spr-grid spr-gap-4">
     <spr-select-multiple
-      id="sample-muti-select"
-      v-model="selectGroupedItemsBy"
+      id="select-multiple-grouped-items-by"
+      v-model="multiSelectGroupedItemsBy"
       label="Multi-Select Label"
       placeholder="Select an option"
       :options="options"
@@ -116,7 +116,7 @@ You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-ite
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const selectGroupedItemsBy = ref([]); // Use an array for multi-select
+const multiSelectGroupedItemsBy = ref([]); // Use an array for multi-select
 const options = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
@@ -139,8 +139,8 @@ Pre-selected items are options that are automatically selected when the select i
 
 <div class="spr-grid spr-gap-4">
   <spr-select-multiple
-    id="sample-selectPreSelectedItems"
-    v-model="selectModel.selectPreSelectedItems"
+    id="select-multiple-preselected-items"
+    v-model="multiSelectModel.multiSelectPreSelectedItems"
     label="Select Fruits"
     placeholder="Select one or more fruits"
     :options="options"
@@ -150,15 +150,15 @@ Pre-selected items are options that are automatically selected when the select i
   />
   
   <code class="spr-font-medium">
-    V-Model: {{ selectModel.selectPreSelectedItems ? selectModel.selectPreSelectedItems : `[]` }}
+    V-Model: {{ multiSelectModel.multiSelectPreSelectedItems ? multiSelectModel.multiSelectPreSelectedItems : `[]` }}
   </code>
 </div>
 
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectPreSelectedItems"
+    id="select-multiple-preselected-items"
+    v-model="multiSelectPreSelectedItems"
     label="Select Fruits"
     placeholder="Select one or more fruits"
     :options="options"
@@ -170,7 +170,7 @@ Pre-selected items are options that are automatically selected when the select i
 import { ref } from 'vue';
 
 // Pre-select multiple items by passing an array of values
-const selectPreSelectedItems = ref(['100', 200, 'cherry']);
+const multiSelectPreSelectedItems = ref(['100', 200, 'cherry']);
 const options = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
@@ -226,8 +226,8 @@ The search feature allows users to quickly filter and find specific items within
 
 <div class="spr-grid spr-gap-4">
   <spr-select-multiple
-    id="sample-selectSearch"
-    v-model="selectModel.selectSearch"
+    id="select-multiple-search"
+    v-model="multiSelectModel.multiSelectSearch"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -235,15 +235,15 @@ The search feature allows users to quickly filter and find specific items within
   />
 
   <code class="spr-font-medium">
-    V-Model: {{ selectModel.selectSearch ? selectModel.selectSearch : `[]` }}
+    V-Model: {{ multiSelectModel.multiSelectSearch ? multiSelectModel.multiSelectSearch : `[]` }}
   </code>
 </div>
 
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel"
+    id="select-multiple-search"
+    v-model="multiSelectModel"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -254,7 +254,7 @@ The search feature allows users to quickly filter and find specific items within
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const selectModel = ref('');
+const multiSelectModel = ref('');
 
 const options = ref([
   { text: 'Apple', value: 'apple' },
@@ -278,8 +278,8 @@ Use `@searchString` emit to get the search string when the user types in the sea
 
 <div class="spr-grid spr-gap-4">
   <spr-select-multiple
-    id="sample-selectSearchDisabledLocalSearch"
-    v-model="selectModel.selectSearchDisabledLocalSearch"
+    id="select-multiple-search-disabled-local-search"
+    v-model="multiSelectModel.multiSelectSearchDisabledLocalSearch"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -288,15 +288,15 @@ Use `@searchString` emit to get the search string when the user types in the sea
   />
   
   <code class="spr-font-medium">
-    V-Model: {{ selectModel.selectSearchDisabledLocalSearch ? selectModel.selectSearchDisabledLocalSearch : `[]` }}
+    V-Model: {{ multiSelectModel.multiSelectSearchDisabledLocalSearch ? multiSelectModel.multiSelectSearchDisabledLocalSearch : `[]` }}
   </code>
 </div>
 
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel"
+    id="select-multiple-search-disabled-local-search"
+    v-model="multiSelectModel"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -308,7 +308,7 @@ Use `@searchString` emit to get the search string when the user types in the sea
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const selectModel = ref('');
+const multiSelectModel = ref('');
 
 const options = ref([
   { text: 'Apple', value: 'apple' },
@@ -332,8 +332,8 @@ Use `@searchString` emit to get the search string when the user types in the sea
 
 <div class="spr-grid spr-gap-4">
   <spr-select-multiple
-    id="sample-selectSearchDisabledLocalSearch"
-    v-model="selectModel.selectSearchDisabledLocalSearch"
+    id="select-multiple-search-disabled-local-search"
+    v-model="multiSelectModel.multiSelectSearchDisabledLocalSearch"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -342,15 +342,15 @@ Use `@searchString` emit to get the search string when the user types in the sea
   />
   
   <code class="spr-font-medium">
-    V-Model: {{ selectModel.selectSearchDisabledLocalSearch ? selectModel.selectSearchDisabledLocalSearch : `""` }}
+    V-Model: {{ multiSelectModel.multiSelectSearchDisabledLocalSearch ? multiSelectModel.multiSelectSearchDisabledLocalSearch : `""` }}
   </code>
 </div>
 
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel"
+    id="select-multiple-search-disabled-local-search"
+    v-model="multiSelectModel"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -362,7 +362,7 @@ Use `@searchString` emit to get the search string when the user types in the sea
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const selectModel = ref('');
+const multiSelectModel = ref('');
 
 const options = ref([
   { text: 'Apple', value: 'apple' },
@@ -391,8 +391,8 @@ The default placement is `bottom`.
 <div class="spr-grid spr-gap-4">
   <div class="spr-flex spr-gap-4">
     <spr-select-multiple
-      id="sample-selectPlacements"
-      v-model="selectModel.selectPlacements"
+      id="select-multiple-placement-auto"
+      v-model="multiSelectModel.multiSelectPlacement"
       label="Auto"
       placeholder="Select an option"
       :options="options"
@@ -400,8 +400,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-multiple
-      id="sample-selectPlacements"
-      v-model="selectModel.selectPlacements"
+      id="select-multiple-placement-auto-start"
+      v-model="multiSelectModel.multiSelectPlacement"
       label="Auto Start"
       placeholder="Select an option"
       :options="options"
@@ -409,8 +409,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-multiple
-      id="sample-selectPlacements"
-      v-model="selectModel.selectPlacements"
+      id="select-multiple-placement-auto-end"
+      v-model="multiSelectModel.multiSelectPlacement"
       label="Auto End"
       placeholder="Select an option"
       :options="options"
@@ -420,8 +420,8 @@ The default placement is `bottom`.
   </div>
   <div class="spr-flex spr-gap-4">
     <spr-select-multiple
-      id="sample-selectPlacements"
-      v-model="selectModel.selectPlacements"
+      id="select-multiple-placement-top"
+      v-model="multiSelectModel.multiSelectPlacement"
       label="Top"
       placeholder="Select an option"
       :options="options"
@@ -429,8 +429,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-multiple
-      id="sample-selectPlacements"
-      v-model="selectModel.selectPlacements"
+      id="select-multiple-placement-top-start"
+      v-model="multiSelectModel.multiSelectPlacement"
       label="Top Start"
       placeholder="Select an option"
       :options="options"
@@ -438,8 +438,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-multiple
-      id="sample-selectPlacements"
-      v-model="selectModel.selectPlacements"
+      id="select-multiple-placement-top-end"
+      v-model="multiSelectModel.multiSelectPlacement"
       label="Top End"
       placeholder="Select an option"
       :options="options"
@@ -449,8 +449,8 @@ The default placement is `bottom`.
   </div>
   <div class="spr-flex spr-gap-4">
     <spr-select-multiple
-      id="sample-selectPlacements"
-      v-model="selectModel.selectPlacements"
+      id="select-multiple-placement-right"
+      v-model="multiSelectModel.multiSelectPlacement"
       label="Right"
       placeholder="Select an option"
       :options="options"
@@ -458,8 +458,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-multiple
-      id="sample-selectPlacements"
-      v-model="selectModel.selectPlacements"
+      id="select-multiple-placement-right-start"
+      v-model="multiSelectModel.multiSelectPlacement"
       label="Right Start"
       placeholder="Select an option"
       :options="options"
@@ -467,8 +467,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-multiple
-      id="sample-selectPlacements"
-      v-model="selectModel.selectPlacements"
+      id="select-multiple-placement-right-end"
+      v-model="multiSelectModel.multiSelectPlacement"
       label="Right End"
       placeholder="Select an option"
       :options="options"
@@ -478,8 +478,8 @@ The default placement is `bottom`.
   </div>
   <div class="spr-flex spr-gap-4">
     <spr-select-multiple
-      id="sample-selectPlacements"
-      v-model="selectModel.selectPlacements"
+      id="select-multiple-placement-bottom"
+      v-model="multiSelectModel.multiSelectPlacement"
       label="Bottom"
       placeholder="Select an option"
       :options="options"
@@ -487,8 +487,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-multiple
-      id="sample-selectPlacements"
-      v-model="selectModel.selectPlacements"
+      id="select-multiple-placement-bottom-start"
+      v-model="multiSelectModel.multiSelectPlacement"
       label="Bottom Start"
       placeholder="Select an option"
       :options="options"
@@ -496,8 +496,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-multiple
-      id="sample-selectPlacements"
-      v-model="selectModel.selectPlacements"
+      id="select-multiple-placement-bottom-end"
+      v-model="multiSelectModel.multiSelectPlacement"
       label="Bottom End"
       placeholder="Select an option"
       :options="options"
@@ -507,8 +507,8 @@ The default placement is `bottom`.
   </div>
   <div class="spr-flex spr-gap-4">
     <spr-select-multiple
-      id="sample-selectPlacements"
-      v-model="selectModel.selectPlacements"
+      id="select-multiple-placement-left"
+      v-model="multiSelectModel.multiSelectPlacement"
       label="Left"
       placeholder="Select an option"
       :options="options"
@@ -516,8 +516,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-multiple
-      id="sample-selectPlacements"
-      v-model="selectModel.selectPlacements"
+      id="select-multiple-placement-left-start"
+      v-model="multiSelectModel.multiSelectPlacement"
       label="Left Start"
       placeholder="Select an option"
       :options="options"
@@ -525,8 +525,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-multiple
-      id="sample-selectPlacements"
-      v-model="selectModel.selectPlacements"
+      id="select-multiple-placement-left-end"
+      v-model="multiSelectModel.multiSelectPlacement"
       label="Left End"
       placeholder="Select an option"
       :options="options"
@@ -542,8 +542,8 @@ The clearable feature allows users to easily remove the selected value from the 
 
 <div class="spr-grid spr-gap-4">
   <spr-select-multiple
-    id="sample-selectClearable"
-    v-model="selectModel.selectClearable"
+    id="select-multiple-clearable"
+    v-model="multiSelectModel.multiSelectClearable"
     label="Multi-Select Label"
     placeholder="Select an option"
     :options="options"
@@ -551,7 +551,7 @@ The clearable feature allows users to easily remove the selected value from the 
   />
 
   <code class="spr-font-medium">
-    V-Model: {{ selectModel.selectClearable ? selectModel.selectClearable : `""` }}
+    V-Model: {{ multiSelectModel.multiSelectClearable ? multiSelectModel.multiSelectClearable : `""` }}
   </code>
 </div>
 
@@ -565,8 +565,8 @@ You can modify the width of the select component in two ways: by adjusting the w
 
 <div>
   <spr-select-multiple
-    id="sample-selectWidth"
-    v-model="selectModel.selectWidth"
+    id="select-multiple-width"
+    v-model="multiSelectModel.multiSelectWidth"
     label="Multi-Select Label"
     placeholder="Select an option"
     :options="options"
@@ -578,8 +578,8 @@ You can modify the width of the select component in two ways: by adjusting the w
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel"
+    id="select-multiple-width"
+    v-model="multiSelectModel"
     label="Multi-Select Label"
     placeholder="Select an option"
     :options="options"
@@ -605,8 +605,8 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
 
 <spr-modal v-model="modalModel" title="Select with Modal">
    <spr-select-multiple
-    id="sample-multiSelectPopperStrategy"
-    v-model="selectModel.selectStrategy"
+    id="select-multiple-popper-strategy"
+    v-model="multiSelectModel.multiSelectStrategy"
     label="Multi-Select Label"
     placeholder="Select an option"
     :options="options"
@@ -624,8 +624,8 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
 
   <spr-modal v-model="modalModel" title="Select with Modal">
     <spr-select-multiple
-      id="sample-muti-select"
-      v-model="selectModel"
+      id="select-multiple-popper-strategy"
+      v-model="multiSelectModel"
       label="Multi-Select Label"
       placeholder="Select an option"
       :options="options"
@@ -647,7 +647,7 @@ Since the popper is being teleported to a different container, the `popper-width
 
 <div>
   <spr-dropdown
-    id="sample-dropdownCustomPopper"
+    id="dropdown-custom-popper"
     width="300px"
     :triggers="['hover', 'click']"
     :popper-triggers="['hover', 'click']"
@@ -660,13 +660,13 @@ Since the popper is being teleported to a different container, the `popper-width
     </spr-button>
     <template #popper>
       <spr-select-multiple
-        id="sample-muti-select"
-        v-model="selectModel.selectStrategy"
+        id="select-multiple-dropdown-custom-popper"
+        v-model="multiSelectModel.multiSelectStrategy"
         label="Select Label"
         placeholder="Select an option"
         :options="options"
         popper-strategy="fixed"
-        popper-container="#sample-dropdownCustomPopper"
+        popper-container="#dropdown-custom-popper"
         wrapper-position="relative"
         placement="bottom"
       />
@@ -677,7 +677,7 @@ Since the popper is being teleported to a different container, the `popper-width
 ```vue
 <template>
   <spr-dropdown
-    id="sample-dropdownCustomPopper"
+    id="dropdown-custom-popper"
     width="300px"
     :triggers="['hover', 'click']"
     :popper-triggers="['hover', 'click']"
@@ -690,13 +690,13 @@ Since the popper is being teleported to a different container, the `popper-width
     </spr-button>
     <template #popper>
       <spr-select-multiple
-        id="sample-muti-select"
-        v-model="selectModel"
+        id="select-multiple-dropdown-custom-popper"
+        v-model="multiSelectModel"
         label="Multi-Select Label"
         placeholder="Select an option"
         :options="options"
         popper-strategy="fixed"
-        popper-container="#sample-dropdownCustomPopper"
+        popper-container="#dropdown-custom-popper"
         wrapper-position="relative"
         placement="bottom"
       />
@@ -713,8 +713,8 @@ For guidance on implementing error, active, and disabled states in the select co
 
 <div>
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel.selectActiveState"
+    id="select-multiple-active-state"
+    v-model="multiSelectModel.multiSelectActiveState"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -725,8 +725,8 @@ For guidance on implementing error, active, and disabled states in the select co
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel"
+    id="select-multiple-active-state"
+    v-model="multiSelectModel"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -739,8 +739,8 @@ For guidance on implementing error, active, and disabled states in the select co
 
 <div>
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel.selectDisabledState"
+    id="select-multiple-disabled-state"
+    v-model="multiSelectModel.multiSelectDisabledState"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -751,8 +751,8 @@ For guidance on implementing error, active, and disabled states in the select co
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel"
+    id="select-multiple-disabled-state"
+    v-model="multiSelectModel"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -765,8 +765,8 @@ For guidance on implementing error, active, and disabled states in the select co
 
 <div>
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel.selectErrorState"
+    id="select-multiple-error-state"
+    v-model="multiSelectModel.multiSelectErrorState"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -777,8 +777,8 @@ For guidance on implementing error, active, and disabled states in the select co
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel"
+    id="select-multiple-error-state"
+    v-model="multiSelectModel"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -795,8 +795,8 @@ To display the helper message, set the `display-helper` prop to `true` and add t
 
 <div class="spr-grid spr-gap-8">
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel.selectErrorState"
+    id="select-multiple-helper-message"
+    v-model="multiSelectModel.multiSelectHelperMessage"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -804,8 +804,8 @@ To display the helper message, set the `display-helper` prop to `true` and add t
     display-helper
   />
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel.selectErrorState"
+    id="select-multiple-helper-message-error"
+    v-model="multiSelectModel.multiSelectHelperMessage"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -819,8 +819,8 @@ To display the helper message, set the `display-helper` prop to `true` and add t
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel"
+    id="select-multiple-helper-message"
+    v-model="multiSelectModel"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -829,8 +829,8 @@ To display the helper message, set the `display-helper` prop to `true` and add t
   />
 
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel"
+    id="select-multiple-helper-message-error"
+    v-model="multiSelectModel"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -846,8 +846,8 @@ Alternatively, you can use the `helperMessage` slot to display a custom helper m
 
 <div class="spr-grid spr-gap-8">
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel.selectErrorState"
+    id="select-multiple-helper-message-slot"
+    v-model="multiSelectModel.multiSelectHelperMessage"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -856,8 +856,8 @@ Alternatively, you can use the `helperMessage` slot to display a custom helper m
     <template #helperMessage>This is a helper message</template>
   </spr-select-multiple>
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel.selectErrorState"
+    id="select-multiple-helper-message-slot-error"
+    v-model="multiSelectModel.multiSelectHelperMessage"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -874,8 +874,8 @@ Alternatively, you can use the `helperMessage` slot to display a custom helper m
 ```vue
 <template>
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel"
+    id="select-multiple-helper-message-slot"
+    v-model="multiSelectModel"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -885,8 +885,8 @@ Alternatively, you can use the `helperMessage` slot to display a custom helper m
   </spr-select-multiple>
 
   <spr-select-multiple
-    id="sample-muti-select"
-    v-model="selectModel"
+    id="select-multiple-helper-message-slot-error"
+    v-model="multiSelectModel"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -910,7 +910,7 @@ The `spr-select-multiple` component supports multiple value types for selection.
 ```vue
 <template>
   <spr-select-multiple
-    id="string-select"
+    id="select-multiple-string"
     v-model="stringValues"
     label="Select Fruits"
     placeholder="Select fruits"
@@ -936,7 +936,7 @@ const stringOptions = ref([
 ```vue
 <template>
   <spr-select-multiple
-    id="number-select"
+    id="select-multiple-number"
     v-model="numberValues"
     label="Select Numbers"
     placeholder="Select numbers"
@@ -962,7 +962,7 @@ const numberOptions = ref([
 ```vue
 <template>
   <spr-select-multiple
-    id="object-select"
+    id="select-multiple-object"
     v-model="selectedUsers"
     label="Select Users"
     placeholder="Select users"
@@ -988,11 +988,259 @@ const userList = ref([
 </script>
 ```
 
-> **Note:**
->
-> - If you want to start with no selection, use an empty array: `ref([])`.
-> - If you want to pre-select all items, use the full array of values from your options.
-> - The component will always treat the model as an array for multi-select, so toggling and pre-selection will work as expected.
+## Item Subtext
+
+The item subtext feature allows you to display additional information below the main text of each option in the select list. This can be useful for providing context or details about each option. Use the `subtext` props in the options array to specify the subtext for each option.
+
+<div>
+  <spr-select-multiple
+    id="select-multiple-item-subtext"
+    v-model="multiSelectModel.multiSelectItemSubtext"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="optionsWithSubtext"
+  />
+</div>
+
+```vue
+<template>
+  <spr-select-multiple
+    id="select-multiple-item-subtext"
+    v-model="multiSelectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="optionsWithSubtext"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const multiSelectModel = ref('');
+
+const optionsWithSubtext = ref([
+  { text: 'Apple', value: 'apple', subtext: 'A sweet red fruit' },
+  { text: 'Banana', value: 'banana', subtext: 'A long yellow fruit' },
+  { text: 'Cherry', value: 'cherry', subtext: 'A small red fruit' },
+  { text: 'Date', value: 'date', subtext: 'A sweet brown fruit' },
+  { text: 'Elderberry', value: 'elderberry', subtext: 'A small dark purple fruit' },
+]);
+</script>
+```
+
+## Item Icon
+
+The item icon feature allows you to display an icon alongside the text of each option in the select list. This can help users quickly identify options based on visual cues. Use the `icon` props in the options array to specify the icon for each option.
+
+Icon uses phosphor icons from [Iconify](https://icon-sets.iconify.design/)
+
+<div>
+  <spr-select-multiple
+    id="select-multiple-item-icon"
+    v-model="multiSelectModel.multiSelectItemIcon"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    item-icon="ph:alarm"
+  />
+</div>
+
+```vue
+<template>
+  <spr-select-multiple
+    id="select-multiple-item-icon"
+    v-model="multiSelectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    item-icon="ph:alarm"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const multiSelectModel = ref('');
+
+const options = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+]);
+</script>
+```
+
+### Item Custom Icon
+
+The item custom icon feature allows you to display different icons for each option in the select list. This is useful for providing unique visual representations for each option. Add property `icon` in the options array to specify the custom icon for each option.
+
+<div>
+  <spr-select-multiple
+    id="select-multiple-item-custom-icon"
+    v-model="multiSelectModel.multiSelectItemCustomIcon"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="optionsWithCustomIcon"
+  />
+</div>
+
+```vue
+<template>
+  <spr-select-multiple
+    id="select-multiple-item-custom-icon"
+    v-model="multiSelectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="optionsWithCustomIcon"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const multiSelectModel = ref('');
+
+const optionsWithCustomIcon = ref([
+  { text: 'Acorn', value: 'acorn', icon: 'ph:acorn' },
+  { text: 'Address Book', value: 'address book', icon: 'ph:address-book' },
+  { text: 'Alarm', value: 'alarm', icon: 'ph:alarm' },
+  { text: 'Angle', value: 'angle', icon: 'ph:angle' },
+  { text: 'Apple Logo', value: 'apple logo', icon: 'ph:apple-logo' },
+]);
+</script>
+```
+
+## Item Lozenge
+
+The item lozenge feature allows you to display a colored lozenge (badge) alongside the text of each option in the select list. This can be useful for categorizing or highlighting options.
+
+Lozenge Properties Reference:
+
+- `label`: The text label displayed inside the lozenge.
+- `tone`: The color tone of the lozenge. Available tones are: 'plain', 'pending', 'information', 'success', 'danger', 'neutral', 'caution'.
+- `fill`: A boolean indicating whether the lozenge should have a filled background (true) or an outlined style (false).
+- `removevalue`: A boolean indicating whether to show a remove icon inside the lozenge (true) or not (false).
+- `url`: The URL of the avatar image to be displayed inside the lozenge.
+- `visible`: A boolean indicating whether the lozenge is visible (true) or hidden (false).
+- `loading`: A boolean indicating whether to show a loading spinner inside the lozenge (true) or not (false).
+- `icon`: The icon to be displayed inside the lozenge.
+- `postfixIcon`: The icon to be displayed at the end of the lozenge.
+- `interactive`: A boolean indicating whether the lozenge is interactive (true) or not (false).
+- `dropdown`: A boolean indicating whether to show a dropdown arrow inside the lozenge (true) or not (false).
+
+### Display Items as Lozenge
+
+Add property `lozenge` to display the selected item as a lozenge in the select input. Then if you want to change the lozenge style for each option, you can use `lozengeProps` to customize the lozenge appearance.
+
+<div>
+  <spr-select-multiple
+    id="select-multiple-display-item-lozenge"
+    v-model="multiSelectModel.multiSelectItemLozenge"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    lozenge
+  />
+</div>
+
+```vue
+<template>
+  <spr-select-multiple
+    id="select-multiple-display-item-lozenge"
+    v-model="multiSelectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    lozenge
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const multiSelectModel = ref('');
+
+const options = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Carrot', value: 'carrot' },
+  { text: 'Bread', value: 'bread' },
+  { text: 'Chicken', value: 'chicken' },
+  { text: 'Milk', value: 'milk' },
+]);
+</script>
+```
+
+### Append Lozenge
+
+Add property `lozenge` in the options array to specify the lozenge for each option.
+
+<div>
+  <spr-select-multiple
+    id="select-multiple-item-lozenge"
+    v-model="multiSelectModel.multiSelectItemLozengeAppend"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="optionsWithLozenge"
+  />
+</div>
+
+```vue
+<template>
+  <spr-select-multiple
+    id="select-multiple-item-lozenge"
+    v-model="multiSelectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="optionsWithLozenge"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const multiSelectModel = ref('');
+
+const optionsWithLozenge = ref([
+  {
+    text: 'Apple',
+    value: 'apple',
+    lozenge: { label: 'Fruit', tone: 'plain' },
+  },
+  {
+    text: 'Carrot',
+    value: 'carrot',
+    lozenge: { label: 'Vegetable', tone: 'pending' },
+  },
+  {
+    text: 'Bread',
+    value: 'bread',
+    lozenge: { label: 'Grain', tone: 'information' },
+  },
+  {
+    text: 'Chicken',
+    value: 'chicken',
+    lozenge: { label: 'Protein', tone: 'success' },
+  },
+  {
+    text: 'Milk',
+    value: 'milk',
+    lozenge: { label: 'Dairy', tone: 'danger' },
+  },
+  {
+    text: 'Eggs',
+    value: 'eggs',
+    lozenge: { label: 'Poultry', tone: 'neutral' },
+  },
+  {
+    text: 'Fish',
+    value: 'fish',
+    lozenge: { label: 'Seafood', tone: 'caution' },
+  },
+]);
+</script>
+```
 
 ## API Reference
 
@@ -1180,6 +1428,18 @@ const userList = ref([
       <td>Boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td><code>lozenge</code></td>
+      <td>Enables lozenge mode for the list items. When enabled, items are displayed as lozenges.</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td><code>item-icon</code></td>
+      <td>Any icon from iconify (e.g. ph:trash)</td>
+      <td>String</td>
+      <td>''</td>
+    </tr>
   </tbody>
 </table>
 
@@ -1262,20 +1522,26 @@ import SprDropdown from "@/components/dropdown/dropdown.vue";
 // Import MenuListType for typing
 import type { MenuListType } from '@/components/list/list';
 
-const selectModel = ref({
-  selectBasic: [],
-  selectChipped: [],
-  selectGroupedItemsBy: [],
-  selectPreSelectedItems: ['100', '200', 'cherry'],
-  selectSearch: [],
-  selectSearchDisabledLocalSearch: [],
-  selectPlacements: [],
-  selectClearable: [],
-  selectWidth: [],
-  selectStrategy: [],
-  selectActiveState: [],
-  selectDisabledState: [],
-  selectErrorState: [],
+const multiSelectModel = ref({
+  multiSelectBasic: [],
+  multiSelectChipped: [],
+  multiSelectGroupedItemsBy: [],
+  multiSelectPreSelectedItems: ['100', '200', 'cherry'],
+  multiSelectSearch: [],
+  multiSelectSearchDisabledLocalSearch: [],
+  multiSelectPlacement: [],
+  multiSelectClearable: [],
+  multiSelectWidth: [],
+  multiSelectStrategy: [],
+  multiSelectActiveState: [],
+  multiSelectDisabledState: [],
+  multiSelectErrorState: [],
+  multiSelectHelperMessage: [],
+  multiSelectItemSubtext: [],
+  multiSelectItemIcon: [],
+  multiSelectItemCustomIcon: [],
+  multiSelectItemLozenge: [],
+  multiSelectItemLozengeAppend: [],
 });
 
 const options = ref([
@@ -1313,6 +1579,60 @@ const options = ref([
   { text: 'Cantaloupe', value: 'cantaloupe' },
   { text: 'Dragonfruit', value: 'dragonfruit' },
   { text: 'Pineapple', value: 'pineapple' },
+]);
+
+const optionsWithSubtext = ref([
+  { text: 'Apple', value: 'apple', subtext: 'A sweet red fruit' },
+  { text: 'Banana', value: 'banana', subtext: 'A long yellow fruit' },
+  { text: 'Cherry', value: 'cherry', subtext: 'A small red fruit' },
+  { text: 'Date', value: 'date', subtext: 'A sweet brown fruit' },
+  { text: 'Elderberry', value: 'elderberry', subtext: 'A small dark purple fruit' },
+]);
+
+const optionsWithCustomIcon = ref([
+  { text: 'Acorn', value: 'acorn', icon: 'ph:acorn' },
+  { text: 'Address Book', value: 'address book', icon: 'ph:address-book' },
+  { text: 'Alarm', value: 'alarm', icon: 'ph:alarm' },
+  { text: 'Angle', value: 'angle', icon: 'ph:angle' },
+  { text: 'Apple Logo', value: 'apple logo', icon: 'ph:apple-logo' },
+]);
+
+const optionsWithLozenge = ref([
+  {
+    text: 'Apple',
+    value: 'apple',
+    lozenge: { label: 'Fruit', tone: 'plain' },
+  },
+  {
+    text: 'Carrot',
+    value: 'carrot',
+    lozenge: { label: 'Vegetable', tone: 'pending' },
+  },
+  {
+    text: 'Bread',
+    value: 'bread',
+    lozenge: { label: 'Grain', tone: 'information' },
+  },
+  {
+    text: 'Chicken',
+    value: 'chicken',
+    lozenge: { label: 'Protein', tone: 'success' },
+  },
+  {
+    text: 'Milk',
+    value: 'milk',
+    lozenge: { label: 'Dairy', tone: 'danger' },
+  },
+  {
+    text: 'Eggs',
+    value: 'eggs',
+    lozenge: { label: 'Poultry', tone: 'neutral' },
+  },
+  {
+    text: 'Fish',
+    value: 'fish',
+    lozenge: { label: 'Seafood', tone: 'caution' },
+  },
 ]);
 
 const modalModel = ref(false);
@@ -1369,7 +1689,6 @@ const usersList = ref([
 ]);
 
 // Infinit-Scroll
-
 const multipleSelected = ref([]); 
 const optionsAPI = ref<optionsType[]>([]);
 const search = ref('');

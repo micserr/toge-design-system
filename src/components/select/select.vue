@@ -103,6 +103,8 @@
                   :menu-list="filteredSelectOptions"
                   :group-items-by="props.groupItemsBy"
                   :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
+                  :item-icon="props.itemIcon"
+                  :lozenge="props.lozenge"
                   @update:model-value="handleSelectedItem"
                 />
               </template>
@@ -119,6 +121,8 @@
                   :menu-list="selectOptions"
                   :group-items-by="props.groupItemsBy"
                   :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
+                  :item-icon="props.itemIcon"
+                  :lozenge="props.lozenge"
                   @update:model-value="handleSelectedItem"
                 />
               </template>
@@ -136,6 +140,8 @@
                 :menu-list="selectOptions"
                 :group-items-by="props.groupItemsBy"
                 :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
+                :item-icon="props.itemIcon"
+                :lozenge="props.lozenge"
                 @update:model-value="handleSelectedItem"
               />
             </template>

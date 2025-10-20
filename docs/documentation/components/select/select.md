@@ -1726,7 +1726,3 @@ onMounted(() => {
   getNextOptionsViaAPI();
 });
 </script>
-
-```
-
-```

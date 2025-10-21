@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.17.4 (2025-01-16)
+## 2.18.0 (2025-10-21)
 
 - Feat:
   - Update design tokens with improved color system and enhanced semantic color tokens
@@ -11,6 +11,40 @@
   - Refactor lozenge component to use semantic design tokens instead of hardcoded values
   - Improve component maintainability and design system consistency
     ([#8f6a6951](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8f6a6951d6de86574d20a829924c85ee9490e072?refName=refs/heads/2025/FEATURE/MICS/DESIGN_TOKENS_LOZENGE_UPDATE&_a=diffparent2) by @MICS)
+
+## 2.17.8 (2025-10-21)
+
+- Fix
+  - Banner DQA fixes
+    ([#35499](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35499?_a=files by @jarias)
+
+## 2.17.7 (2025-10-21)
+
+- Fix
+  - Banner DQA fixes
+  - Added Support for display selected count only in multi select
+    ([#35434](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35434?_a=files by @jarias)
+
+## 2.17.6 (2025-10-20)
+
+- Fix
+  - Update Select, Multi-Select and Ladderized Select Documentation
+- Update Lozenge Documentation
+- Added Support for select & multi select item lozenge
+- Added Support for select & multi select item icon
+- Fix Ladderized Active State
+  ([#35434](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35434?_a=files by @jarias)
+
+## 2.17.5 (2025-10-16)
+
+- Fix
+  - Add 'neutral' variant and update badge documentation ([#35400](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35400?_a=files by @jarias)
+
+## 2.17.4 (2025-10-16)
+
+- Fix
+  - Add selected filter count prop in attribute filter component. ([#dc519830](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dc519830dd8d969d1151db0f6a2dea8ff51ab46b?refName=refs/heads/2025/feat/dustin/attribute-filter by @despiritu)
+  - Return to calendar tab after selecting month or year in reusable calendar full mode. ([#dd1414b0](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/dd1414b0fe32048f714144d7bbb54d9b2dbcd84a?refName=refs/heads/2025/feat/dustin/attribute-filter @despiritu)
 
 ## 2.17.3 (2025-10-16)
 

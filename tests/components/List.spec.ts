@@ -9,6 +9,22 @@
  * - Tests pre-selected items and complex object handling
  * - Validates lozenge display mode
  * - Tests ladderized view with sublevels
+ *
+ * ASSUMPTIONS:
+ * - Icon component is properly imported and available
+ * - Checkbox and Lozenge components work as expected
+ * - CSS classes for styling are applied correctly
+ * - Input search component emits proper events
+ *
+ * TODO (Future Enhancements):
+ * - Test recursive search in sublevel items
+ * - Test complex nested object pre-selection scenarios
+ * - Test performance with very large datasets
+ * - Test integration with form validation
+ * - Test custom keyboard shortcuts
+ * - Test right-to-left (RTL) language support
+ * - Test high contrast mode compatibility
+ * - Test screen reader announcements for dynamic content
  */
 
 import { test, expect } from '@playwright/experimental-ct-vue';
@@ -771,19 +787,3 @@ test.describe('List Component', () => {
     });
   });
 });
-
-// ASSUMPTIONS:
-// - Icon component is properly imported and available
-// - Checkbox and Lozenge components work as expected
-// - CSS classes for styling are applied correctly
-// - Input search component emits proper events
-
-// TODO (Future Enhancements):
-// - Test recursive search in sublevel items
-// - Test complex nested object pre-selection scenarios
-// - Test performance with very large datasets
-// - Test integration with form validation
-// - Test custom keyboard shortcuts
-// - Test right-to-left (RTL) language support
-// - Test high contrast mode compatibility
-// - Test screen reader announcements for dynamic content

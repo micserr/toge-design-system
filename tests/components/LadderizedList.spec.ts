@@ -1,7 +1,3 @@
-import { test, expect } from '@playwright/experimental-ct-vue';
-import SprLadderizedList from '@/components/list/ladderized-list/ladderized-list.vue';
-import type { MenuListType } from '@/components/list/list';
-
 /**
  * Test Coverage Rationale:
  * - Hierarchical navigation through nested menu levels
@@ -12,17 +8,19 @@ import type { MenuListType } from '@/components/list/list';
  * - Accessibility and keyboard navigation
  * - Edge cases like empty lists and invalid selections
  * - Props validation and default behaviors
+ * - Component uses SprList internally for rendering menu items
+ * - Transitions are CSS-based with slide animations
+ * - Search functionality filters recursively through nested items
+
+ * TODO (Future Enhancements):
+ * - Test with very deep nesting levels (performance)
+ * - Test with large datasets (virtual scrolling if implemented)
+ * - Test with complex MenuListType objects containing all optional fields
  */
 
-// ASSUMPTIONS:
-// - Component uses SprList internally for rendering menu items
-// - Transitions are CSS-based with slide animations
-// - Search functionality filters recursively through nested items
-
-// TODO (Future Enhancements):
-// - Test with very deep nesting levels (performance)
-// - Test with large datasets (virtual scrolling if implemented)
-// - Test with complex MenuListType objects containing all optional fields
+import { test, expect } from '@playwright/experimental-ct-vue';
+import SprLadderizedList from '@/components/list/ladderized-list/ladderized-list.vue';
+import type { MenuListType } from '@/components/list/list';
 
 const mockMenuList: MenuListType[] = [
   {

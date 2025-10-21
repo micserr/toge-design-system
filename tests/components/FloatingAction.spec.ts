@@ -2,51 +2,16 @@
  * FloatingAction Component Tests
  * 
  * Test Coverage Summary:
- * Rendering and Visibility (3 tests)
- *    - Default hidden state (show=false)
- *    - Visible state with proper classes (show=true)
- *    - Dynamic show/hide state changes
- * 
- * CSS Classes and Styling (2 tests)
- *    - Wrapper classes application (positioning, styling, constraints)
- *    - DOM structure validation with transitions
- * 
- * Slots - Default Layout (4 tests)
- *    - Message and actions slots rendering
- *    - Message-only slot rendering
- *    - Actions-only slot rendering
- *    - Layout container classes application
- * 
- * Slots - Custom Default Slot (2 tests)
- *    - Custom slot overrides message/actions slots
- *    - Complex custom content rendering
- * 
- * Multiple Actions Slot (1 test)
- *    - Multiple action buttons with proper spacing
- * 
- * Accessibility (3 tests)
- *    - Keyboard accessibility for interactive elements
- *    - ARIA structure for notifications
- *    - Keyboard navigation support
- * 
- * Transition Animations (2 tests)
- *    - Transition classes during show state
- *    - Rapid show/hide state changes handling
- * 
- * Edge Cases (4 tests)
- *    - Empty slots graceful handling
- *    - Component without any slots
- *    - Special characters in slot content
- *    - Very long content with positioning constraints
- * 
- * Positioning and Layout (3 tests)
- *    - Fixed positioning at bottom center
- *    - Appropriate z-index for overlay behavior
- *    - Max-width constraints
- * 
- * Interaction Patterns (2 tests)
- *    - Interactive elements in message slot
- *    - Proper tab order between message and actions
+ * - Rendering and Visibility
+ * - CSS Classes and Styling
+ * - Slots - Default Layout
+ * - Slots - Custom Default Slot
+ * - Multiple Actions Slot
+ * - Accessibility
+ * - Transition Animations
+ * - Edge Cases
+ * - Positioning and Layout
+ * - Interaction Patterns
  * 
  * Technical Implementation Notes:
  * - Component uses v-if="isVisible" which completely removes/adds DOM elements

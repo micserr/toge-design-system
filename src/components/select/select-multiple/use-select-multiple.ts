@@ -297,7 +297,12 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
       });
     }
 
-    if (multiSelectedListItems.value.length > 3) {
+    // Determine input text based on whether count-only mode is enabled
+    if (props.displaySelectedCountOnly && multiSelectedListItems.value.length) {
+      inputText.value = `${multiSelectedListItems.value.length} item${
+        multiSelectedListItems.value.length === 1 ? '' : 's'
+      } selected`;
+    } else if (multiSelectedListItems.value.length > 3) {
       inputText.value = `${multiSelectedListItems.value.length} items selected`;
     } else {
       inputText.value = multiSelectedListItems.value.map((item) => item.text).join(', ');
@@ -408,5 +413,6 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     handleMultiSelectedItem,
     handleChippedRemoveItem,
     handleClear,
+    normalizedValue,
   };
 };

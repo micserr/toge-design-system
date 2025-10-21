@@ -12,6 +12,7 @@ export const cardPropTypes = {
   tone: {
     type: String as PropType<(typeof TONES)[number] | undefined>,
     validator: (val: string | undefined) => !val || TONES.includes(val as (typeof TONES)[number]),
+    default: 'plain',
   },
   title: {
     type: String,

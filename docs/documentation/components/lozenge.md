@@ -10,38 +10,17 @@ Lozenge represents entities using icons, labels, and images.
 
 ## Key Features
 
-<ul>
-  <li>
-    <strong>Label:</strong>
-    <span>The main text displayed on the lozenge.</span>
-  </li>
-  <li>
-    <strong>Tone:</strong>
-    <span>
-      Seven different visual styles to indicate status or type: plain, pending, information, success, neutral, danger, and caution.
-    </span>
-  </li>
-  <li>
-    <strong>Fill Type:</strong>
-    <span>Switch between hollow (outline) and filled styles for different visual emphasis.</span>
-  </li>
-  <li>
-    <strong>Avatar Support:</strong>
-    <span>Display user avatars using URL property or custom avatar slot.</span>
-  </li>
-  <li>
-    <strong>Icon Slots:</strong>
-    <span>Named slots for prefix icons, postfix icons, and custom avatar components.</span>
-  </li>
-  <li>
-    <strong>Interactive States:</strong>
-    <span>Support for interactive and dropdown modes with hover and active states.</span>
-  </li>
-  <li>
-    <strong>Loading State:</strong>
-    <span>Built-in skeletal loading state for async content.</span>
-  </li>
-</ul>
+- `label`: The text label displayed inside the lozenge.
+- `tone`: The color tone of the lozenge. Available tones are: 'plain', 'pending', 'information', 'success', 'danger', 'neutral', 'caution'.
+- `fill`: A boolean indicating whether the lozenge should have a filled background (true) or an outlined style (false).
+- `removevalue`: A boolean indicating whether to show a remove icon inside the lozenge (true) or not (false).
+- `url`: The URL of the avatar image to be displayed inside the lozenge.
+- `visible`: A boolean indicating whether the lozenge is visible (true) or hidden (false).
+- `loading`: A boolean indicating whether to show a loading spinner inside the lozenge (true) or not (false).
+- `icon`: The icon to be displayed inside the lozenge.
+- `postfixIcon`: The icon to be displayed at the end of the lozenge.
+- `interactive`: A boolean indicating whether the lozenge is interactive (true) or not (false).
+- `dropdown`: A boolean indicating whether to show a dropdown arrow inside the lozenge (true) or not (false).
 
 ## Basic Usage
 

@@ -12,22 +12,22 @@ Ladderized select is for selecting options organized in hierarchical groups. It 
 
 <div class="spr-grid spr-gap-4">
   <spr-select-ladderized
-    id="ladderized-select-basic"
-    v-model="laderrizedSelectModel.basicLadderizedSelect"
+    id="select-ladderized-basic"
+    v-model="laderrizedSelectModel.ladderizedSelectBasic"
     :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
   />
 
   <code class="spr-font-medium">
-    V-Model: {{ laderrizedSelectModel.basicLadderizedSelect  }}
+    V-Model: {{ laderrizedSelectModel.ladderizedSelectBasic  }}
   </code>
 </div>
 
 ```vue
 <template>
   <spr-select-ladderized
-    id="ladderized-select"
+    id="select-ladderized-basic"
     v-model="laderrizedSelectModel"
     :options="options"
     label="Ladderized Select"
@@ -229,15 +229,15 @@ To preselect an item in the ladderized select, the model value array should repr
 
 <div class="spr-grid spr-gap-4">
   <spr-select-ladderized
-    id="ladderized-select-preselected"
-    v-model="laderrizedSelectModel.preSelectedLadderizedSelect"
+    id="select-ladderized-preselected"
+    v-model="laderrizedSelectModel.ladderizedSelectPreSelected"
     :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
   />
 
   <code class="spr-font-medium">
-    V-Model: {{ laderrizedSelectModel.preSelectedLadderizedSelect  }}
+    V-Model: {{ laderrizedSelectModel.ladderizedSelectPreSelected  }}
   </code>
 </div>
 
@@ -247,15 +247,15 @@ You can customize the separator between values in the ladderized text input by p
 
 <div class="spr-grid spr-gap-4">
    <spr-select-ladderized
-    id="ladderized-select-text-seperator1"
-    v-model="laderrizedSelectModel.textSeperatorLadderizedSelect1"
+    id="select-ladderized-text-seperator1"
+    v-model="laderrizedSelectModel.ladderizedSelectTextSeperator1"
     :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
   />
   <spr-select-ladderized
-    id="ladderized-select-text-seperator2"
-    v-model="laderrizedSelectModel.textSeperatorLadderizedSelect2"
+    id="select-ladderized-text-seperator2"
+    v-model="laderrizedSelectModel.ladderizedSelectTextSeperator2"
     :options="options"
     text-seperator=", "
     label="Ladderized Select"
@@ -266,7 +266,7 @@ You can customize the separator between values in the ladderized text input by p
 ```vue
 <template>
   <spr-select-ladderized
-    id="ladderized-select"
+    id="select-ladderized-text-seperator1"
     v-model="laderrizedSelectModel"
     :options="options"
     label="Ladderized Select"
@@ -274,7 +274,7 @@ You can customize the separator between values in the ladderized text input by p
   />
 
   <spr-select-ladderized
-    id="ladderized-select"
+    id="select-ladderized-text-seperator2"
     v-model="laderrizedSelectModel"
     :options="options"
     label="Ladderized Select"
@@ -290,8 +290,8 @@ You can prepend text in the ladderized text input by passing the `prepend-text` 
 
 <div class="spr-grid spr-gap-4">
    <spr-select-ladderized
-    id="ladderized-select-prepend-text"
-    v-model="laderrizedSelectModel.prependTextLadderizedSelect"
+    id="select-ladderized-prepend-text"
+    v-model="laderrizedSelectModel.ladderizedSelectPrependText"
     :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
@@ -299,14 +299,14 @@ You can prepend text in the ladderized text input by passing the `prepend-text` 
   />
 
   <code class="spr-font-medium">
-    V-Model: {{ laderrizedSelectModel.prependTextLadderizedSelect  }}
+    V-Model: {{ laderrizedSelectModel.ladderizedSelectPrependText  }}
   </code>
 </div>
 
 ```vue
 <template>
   <spr-select-ladderized
-    id="ladderized-select"
+    id="select-ladderized-prepend-text"
     v-model="laderrizedSelectModel"
     :options="options"
     label="Ladderized Select"
@@ -324,8 +324,8 @@ You can also pass a `searchable-options-placeholder` prop to customize the place
 
 <div class="spr-grid spr-gap-4">
   <spr-select-ladderized
-    id="ladderized-select-searchable"
-    v-model="laderrizedSelectModel.searchableOptionsLadderizedSelect"
+    id="select-ladderized-searchable-options"
+    v-model="laderrizedSelectModel.ladderizedSelectSearchableOptions"
     :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
@@ -334,14 +334,14 @@ You can also pass a `searchable-options-placeholder` prop to customize the place
   />
 
   <code class="spr-font-medium">
-    V-Model: {{ laderrizedSelectModel.searchableOptionsLadderizedSelect  }}
+    V-Model: {{ laderrizedSelectModel.ladderizedSelectSearchableOptions  }}
   </code>
 </div>
 
 ```vue
 <template>
   <spr-select-ladderized
-    id="ladderized-select"
+    id="select-ladderized-searchable-options"
     v-model="laderrizedSelectModel"
     :options="options"
     label="Ladderized Select"
@@ -362,8 +362,8 @@ The default placement is `bottom`.
 <div class="spr-grid spr-gap-4">
   <div class="spr-flex spr-gap-4">
     <spr-select-ladderized
-      id="ladderized-select-placement-auto"
-      v-model="laderrizedSelectModel.placementsLadderizedSelect"
+      id="select-ladderized-placement-auto"
+      v-model="laderrizedSelectModel.ladderizedSelectPlacements"
       label="Auto"
       placeholder="Select an item"
       :options="options"
@@ -371,8 +371,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-ladderized
-      id="ladderized-select-placement-auto-start"
-      v-model="laderrizedSelectModel.placementsLadderizedSelect"
+      id="select-ladderized-placement-auto-start"
+      v-model="laderrizedSelectModel.ladderizedSelectPlacements"
       label="Auto Start"
       placeholder="Select an item"
       :options="options"
@@ -380,8 +380,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-ladderized
-      id="ladderized-select-placement-auto-end"
-      v-model="laderrizedSelectModel.placementsLadderizedSelect"
+      id="select-ladderized-placement-auto-end"
+      v-model="laderrizedSelectModel.ladderizedSelectPlacements"
       label="Auto End"
       placeholder="Select an item"
       :options="options"
@@ -391,8 +391,8 @@ The default placement is `bottom`.
   </div>
   <div class="spr-flex spr-gap-4">
     <spr-select-ladderized
-      id="ladderized-select-placement-top"
-      v-model="laderrizedSelectModel.placementsLadderizedSelect"
+      id="select-ladderized-placement-top"
+      v-model="laderrizedSelectModel.ladderizedSelectPlacements"
       label="Top"
       placeholder="Select an item"
       :options="options"
@@ -400,8 +400,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-ladderized
-      id="ladderized-select-placement-top-start"
-      v-model="laderrizedSelectModel.placementsLadderizedSelect"
+      id="select-ladderized-placement-top-start"
+      v-model="laderrizedSelectModel.ladderizedSelectPlacements"
       label="Top Start"
       placeholder="Select an item"
       :options="options"
@@ -409,8 +409,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-ladderized
-      id="ladderized-select-placement-top-end"
-      v-model="laderrizedSelectModel.placementsLadderizedSelect"
+      id="select-ladderized-placement-top-end"
+      v-model="laderrizedSelectModel.ladderizedSelectPlacements"
       label="Top End"
       placeholder="Select an item"
       :options="options"
@@ -420,8 +420,8 @@ The default placement is `bottom`.
   </div>
   <div class="spr-flex spr-gap-4">
     <spr-select-ladderized
-      id="ladderized-select-placement-right"
-      v-model="laderrizedSelectModel.placementsLadderizedSelect"
+      id="select-ladderized-placement-right"
+      v-model="laderrizedSelectModel.ladderizedSelectPlacements"
       label="Right"
       placeholder="Select an item"
       :options="options"
@@ -429,8 +429,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-ladderized
-      id="ladderized-select-placement-right-start"
-      v-model="laderrizedSelectModel.placementsLadderizedSelect"
+      id="select-ladderized-placement-right-start"
+      v-model="laderrizedSelectModel.ladderizedSelectPlacements"
       label="Right Start"
       placeholder="Select an item"
       :options="options"
@@ -438,8 +438,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-ladderized
-      id="ladderized-select-placement-right-end"
-      v-model="laderrizedSelectModel.placementsLadderizedSelect"
+      id="select-ladderized-placement-right-end"
+      v-model="laderrizedSelectModel.ladderizedSelectPlacements"
       label="Right End"
       placeholder="Select an item"
       :options="options"
@@ -449,8 +449,8 @@ The default placement is `bottom`.
   </div>
   <div class="spr-flex spr-gap-4">
     <spr-select-ladderized
-      id="ladderized-select-placement-bottom"
-      v-model="laderrizedSelectModel.placementsLadderizedSelect"
+      id="select-ladderized-placement-bottom"
+      v-model="laderrizedSelectModel.ladderizedSelectPlacements"
       label="Bottom"
       placeholder="Select an item"
       :options="options"
@@ -458,8 +458,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-ladderized
-      id="ladderized-select-placement-bottom-start"
-      v-model="laderrizedSelectModel.placementsLadderizedSelect"
+      id="select-ladderized-placement-bottom-start"
+      v-model="laderrizedSelectModel.ladderizedSelectPlacements"
       label="Bottom Start"
       placeholder="Select an item"
       :options="options"
@@ -467,8 +467,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-ladderized
-      id="ladderized-select-placement-bottom-end"
-      v-model="laderrizedSelectModel.placementsLadderizedSelect"
+      id="select-ladderized-placement-bottom-end"
+      v-model="laderrizedSelectModel.ladderizedSelectPlacements"
       label="Bottom End"
       placeholder="Select an item"
       :options="options"
@@ -478,8 +478,8 @@ The default placement is `bottom`.
   </div>
   <div class="spr-flex spr-gap-4">
     <spr-select-ladderized
-      id="ladderized-select-placement-left"
-      v-model="laderrizedSelectModel.placementsLadderizedSelect"
+      id="select-ladderized-placement-left"
+      v-model="laderrizedSelectModel.ladderizedSelectPlacements"
       label="Left"
       placeholder="Select an item"
       :options="options"
@@ -487,8 +487,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-ladderized
-      id="ladderized-select-placement-left-start"
-      v-model="laderrizedSelectModel.placementsLadderizedSelect"
+      id="select-ladderized-placement-left-start"
+      v-model="laderrizedSelectModel.ladderizedSelectPlacements"
       label="Left Start"
       placeholder="Select an item"
       :options="options"
@@ -496,8 +496,8 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select-ladderized
-      id="ladderized-select-placement-left-end"
-      v-model="laderrizedSelectModel.placementsLadderizedSelect"
+      id="select-ladderized-placement-left-end"
+      v-model="laderrizedSelectModel.ladderizedSelectPlacements"
       label="Left End"
       placeholder="Select an item"
       :options="options"
@@ -513,8 +513,8 @@ To allow users to clear the selected value, set the `clearable` prop to `true`. 
 
 <div class="spr-grid spr-gap-4">
   <spr-select-ladderized
-    id="ladderized-select-clearable"
-    v-model="laderrizedSelectModel.clearableLadderizedSelect"
+    id="select-ladderized-clearable"
+    v-model="laderrizedSelectModel.ladderizedSelectClearable"
     :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
@@ -522,14 +522,14 @@ To allow users to clear the selected value, set the `clearable` prop to `true`. 
   />
 
   <code class="spr-font-medium">
-    V-Model: {{ laderrizedSelectModel.clearableLadderizedSelect  }}
+    V-Model: {{ laderrizedSelectModel.ladderizedSelectClearable  }}
   </code>
 </div>
 
 ```vue
 <template>
   <spr-select-ladderized
-    id="ladderized-select"
+    id="select-ladderized-clearable"
     v-model="laderrizedSelectModel"
     :options="options"
     label="Ladderized Select"
@@ -549,8 +549,8 @@ You can modify the width of the select component in two ways: by adjusting the w
 
 <div>
   <spr-select-ladderized
-    id="ladderized-select-width"
-    v-model="laderrizedSelectModel.widthLadderizedSelect"
+    id="select-ladderized-width"
+    v-model="laderrizedSelectModel.ladderizedSelectWidth"
     :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
@@ -562,7 +562,7 @@ You can modify the width of the select component in two ways: by adjusting the w
 ```vue
 <template>
   <spr-select-ladderized
-    id="ladderized-select"
+    id="select-ladderized-width"
     v-model="laderrizedSelectModel"
     :options="options"
     label="Ladderized Select"
@@ -589,8 +589,8 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
 
 <spr-modal v-model="modalModel" title="Select with Modal">
   <spr-select-ladderized
-    id="ladderized-select-modal"
-    v-model="laderrizedSelectModel.strategyLadderizedSelect"
+    id="select-ladderized-popper-strategy"
+    v-model="laderrizedSelectModel.ladderizedSelectStrategy"
     label="Ladderized Select"
     placeholder="Select an item"
     :options="options"
@@ -608,7 +608,7 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
 
   <spr-modal v-model="modalModel" title="Select with Modal">
     <spr-select-ladderized
-      id="ladderized-select"
+      id="select-ladderized-popper-strategy"
       v-model="laderrizedSelectModel"
       label="Ladderized Select"
       placeholder="Select an item"
@@ -631,7 +631,7 @@ Since the popper is being teleported to a different container, the `popper-width
 
 <div>
   <spr-dropdown
-    id="sample-dropdownCustomPopper"
+    id="dropdown-custom-popper"
     width="300px"
     :triggers="['hover', 'click']"
     :popper-triggers="['hover', 'click']"
@@ -644,13 +644,13 @@ Since the popper is being teleported to a different container, the `popper-width
     </spr-button>
     <template #popper>
       <spr-select-ladderized
-        id="sample-ladderized-select"
-        v-model="laderrizedSelectModel.strategyLadderizedSelect"
+        id="select-ladderized-dropdown-custom-popper"
+        v-model="laderrizedSelectModel.ladderizedSelectStrategy"
         label="Ladderized Select"
         placeholder="Select an item"
         :options="options"
         popper-strategy="fixed"
-        popper-container="#sample-dropdownCustomPopper"
+        popper-container="#dropdown-custom-popper"
         wrapper-position="initial"
       />
     </template>
@@ -660,7 +660,7 @@ Since the popper is being teleported to a different container, the `popper-width
 ```vue
 <template>
   <spr-dropdown
-    id="sample-dropdownCustomPopper"
+    id="dropdown-custom-popper"
     width="300px"
     :triggers="['hover', 'click']"
     :popper-triggers="['hover', 'click']"
@@ -673,13 +673,13 @@ Since the popper is being teleported to a different container, the `popper-width
     </spr-button>
     <template #popper>
       <spr-select-ladderized
-        id="ladderized-select"
+        id="select-ladderized-dropdown-custom-popper"
         v-model="laderrizedSelectModel"
         label="Ladderized Select"
         placeholder="Select an item"
         :options="options"
         popper-strategy="fixed"
-        popper-container="#sample-dropdownCustomPopper"
+        popper-container="#dropdown-custom-popper"
         wrapper-position="initial"
       />
     </template>
@@ -687,11 +687,87 @@ Since the popper is being teleported to a different container, the `popper-width
 </template>
 ```
 
-## Active & Disabled
+## Active, Disabled, Error States
 
-This is only applicable to selected components, such as form input fields. You can learn more in the <a href='/documentation/components/input.html' target='_blank'>Input Form</a>.
+For guidance on implementing error, active, and disabled states in the select component, you can refer to the documentation for the input text component, as the approach is similar. See the [Input Form](/documentation/components/input.html) for detailed instructions.
 
-To disable the popper from showing when the wrapper is clicked, pass the disabled prop.
+### Active State
+
+<div>
+  <spr-select-ladderized
+    id="select-ladderized-active-state"
+    v-model="laderrizedSelectModel.ladderizedSelectActiveState"
+    label="Ladderized Select"
+    placeholder="Select an item"
+    :options="options"
+    active
+  />
+</div>
+
+```vue
+<template>
+  <spr-select-ladderized
+    id="select-ladderized-active-state"
+    v-model="laderrizedSelectModel"
+    label="Ladderized Select"
+    placeholder="Select an item"
+    :options="options"
+    active
+  />
+</template>
+```
+
+### Disabled State
+
+<div>
+  <spr-select-ladderized
+    id="select-ladderized-disabled-state"
+    v-model="laderrizedSelectModel.ladderizedSelectDisabledState"
+    label="Ladderized Select"
+    placeholder="Select an item"
+    :options="options"
+    disabled
+  />
+</div>
+
+```vue
+<template>
+  <spr-select-ladderized
+    id="select-ladderized-disabled-state"
+    v-model="laderrizedSelectModel"
+    label="Ladderized Select"
+    placeholder="Select an item"
+    :options="options"
+    disabled
+  />
+</template>
+```
+
+### Error State
+
+<div>
+  <spr-select-ladderized
+    id="select-ladderized-error-state"
+    v-model="laderrizedSelectModel.ladderizedSelectErrorState"
+    label="Ladderized Select"
+    placeholder="Select an item"
+    :options="options"
+    error
+  />
+</div>
+
+```vue
+<template>
+  <spr-select-ladderized
+    id="select-ladderized-error-state"
+    v-model="laderrizedSelectModel"
+    label="Ladderized Select"
+    placeholder="Select an item"
+    :options="options"
+    error
+  />
+</template>
+```
 
 ## API Reference
 
@@ -896,16 +972,19 @@ import SprModal from "@/components/modal/modal.vue"
 import SprDropdown from "@/components/dropdown/dropdown.vue";
 
 const laderrizedSelectModel = ref({
-  basicLadderizedSelect: [],
-  searchableOptionsLadderizedSelect: [],
-  preSelectedLadderizedSelect: [ "lion", "cub", "cub1" ],
-  textSeperatorLadderizedSelect1: [],
-  textSeperatorLadderizedSelect2: [],
-  prependTextLadderizedSelect: [],
-  placementsLadderizedSelect: [],
-  clearableLadderizedSelect: [],
-  widthLadderizedSelect: [],
-  strategyLadderizedSelect: [],
+  ladderizedSelectBasic: [],
+  ladderizedSelectSearchableOptions: [],
+  ladderizedSelectPreSelected: [ "lion", "cub", "cub1" ],
+  ladderizedSelectTextSeperator1: [],
+  ladderizedSelectTextSeperator2: [],
+  ladderizedSelectPrependText: [],
+  ladderizedSelectPlacements: [],
+  ladderizedSelectClearable: [],
+  ladderizedSelectWidth: [],
+  ladderizedSelectStrategy: [],
+  ladderizedSelectActiveState: [],
+  ladderizedSelectDisabledState: [],
+  ladderizedSelectErrorState: [],
 });
 
 const options = ref([

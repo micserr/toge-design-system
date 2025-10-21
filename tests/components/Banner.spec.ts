@@ -11,8 +11,8 @@
  * - Icon display based on banner type
  * - Edge cases and prop combinations
  *
- * Note: This component uses defineModel('show') which has some limitations
- * in test environments, so we focus on testing the visible content and behavior.
+ * Note: This component uses defineModel('show') which requires the show prop
+ * to be provided in all tests for proper mounting.
  */
 
 import { test, expect } from '@playwright/experimental-ct-vue';
@@ -23,6 +23,7 @@ test.describe('Banner Component', () => {
     test('renders banner content', async ({ mount }) => {
       const component = await mount(Banner, {
         props: {
+          show: true,
           message: 'Test banner message',
         },
       });
@@ -37,6 +38,9 @@ test.describe('Banner Component', () => {
 
     test('renders with custom slot content', async ({ mount }) => {
       const component = await mount(Banner, {
+        props: {
+          show: true,
+        },
         slots: {
           default: '<div data-testid="custom-content">Custom banner content</div>',
         },
@@ -48,7 +52,11 @@ test.describe('Banner Component', () => {
     });
 
     test('renders with empty message', async ({ mount }) => {
-      const component = await mount(Banner);
+      const component = await mount(Banner, {
+        props: {
+          show: true,
+        }
+      });
 
       await expect(component).toBeVisible();
 
@@ -65,6 +73,7 @@ test.describe('Banner Component', () => {
       test(`renders ${type} banner with correct styling`, async ({ mount }) => {
         const component = await mount(Banner, {
           props: {
+          show: true,
             type,
             message: `This is a ${type} banner`,
           },
@@ -88,6 +97,7 @@ test.describe('Banner Component', () => {
     test('shows close button when showCloseButton is true', async ({ mount }) => {
       const component = await mount(Banner, {
         props: {
+          show: true,
           showCloseButton: true,
           message: 'Banner with close button',
         },
@@ -103,6 +113,7 @@ test.describe('Banner Component', () => {
     test('hides close button when showCloseButton is false', async ({ mount }) => {
       const component = await mount(Banner, {
         props: {
+          show: true,
           showCloseButton: false,
           message: 'Banner without close button',
         },
@@ -118,6 +129,7 @@ test.describe('Banner Component', () => {
     test('close button has cursor pointer style', async ({ mount }) => {
       const component = await mount(Banner, {
         props: {
+          show: true,
           showCloseButton: true,
           message: 'Closable banner',
         },
@@ -144,6 +156,7 @@ test.describe('Banner Component', () => {
       for (const { type } of iconTests) {
         const component = await mount(Banner, {
           props: {
+          show: true,
             type,
             message: `${type} message`,
           },
@@ -164,6 +177,7 @@ test.describe('Banner Component', () => {
     test('applies correct text styling classes', async ({ mount }) => {
       const component = await mount(Banner, {
         props: {
+          show: true,
           message: 'Styled banner message',
         },
       });
@@ -182,15 +196,21 @@ test.describe('Banner Component', () => {
     test('applies correct layout classes', async ({ mount }) => {
       const component = await mount(Banner, {
         props: {
+          show: true,
           message: 'Layout test banner',
         },
       });
 
       await expect(component).toBeVisible();
 
-      // Check for flex layout
-      const flexContainer = component.locator('.spr-flex.spr-items-top.spr-gap-size-spacing-3xs');
-      await expect(flexContainer).toBeVisible();
+      // Check for main banner flex layout (the root element should be #spr-banner)
+      await expect(component).toHaveClass(/spr-w-full/);
+      await expect(component).toHaveClass(/spr-flex/);
+      await expect(component).toHaveClass(/spr-flex-row/);
+      
+      // Check for content flex layout (within default slot)
+      const contentContainer = component.locator('.spr-flex.spr-items-center.spr-gap-size-spacing-3xs');
+      await expect(contentContainer).toBeVisible();
     });
   });
 
@@ -207,6 +227,7 @@ test.describe('Banner Component', () => {
       for (const { type, expectedClass } of colorTests) {
         const component = await mount(Banner, {
           props: {
+          show: true,
             type,
             message: `${type} banner`,
           },
@@ -225,6 +246,7 @@ test.describe('Banner Component', () => {
     test('provides readable text content', async ({ mount }) => {
       const component = await mount(Banner, {
         props: {
+          show: true,
           type: 'error',
           message: 'Error: Please fix the form validation issues',
         },
@@ -237,6 +259,7 @@ test.describe('Banner Component', () => {
     test('icon has proper dimensions for accessibility', async ({ mount }) => {
       const component = await mount(Banner, {
         props: {
+          show: true,
           message: 'Accessible banner',
         },
       });
@@ -251,6 +274,7 @@ test.describe('Banner Component', () => {
     test('close button is interactive', async ({ mount }) => {
       const component = await mount(Banner, {
         props: {
+          show: true,
           showCloseButton: true,
           message: 'Interactive banner',
         },
@@ -273,6 +297,7 @@ test.describe('Banner Component', () => {
 
       const component = await mount(Banner, {
         props: {
+          show: true,
           message: longMessage,
         },
       });
@@ -286,6 +311,7 @@ test.describe('Banner Component', () => {
 
       const component = await mount(Banner, {
         props: {
+          show: true,
           message: specialMessage,
         },
       });
@@ -295,7 +321,11 @@ test.describe('Banner Component', () => {
     });
 
     test('works with minimal props', async ({ mount }) => {
-      const component = await mount(Banner);
+      const component = await mount(Banner, {
+        props: {
+          show: true,
+        }
+      });
 
       await expect(component).toBeVisible();
 
@@ -309,6 +339,7 @@ test.describe('Banner Component', () => {
     test('error banner with close button', async ({ mount }) => {
       const component = await mount(Banner, {
         props: {
+          show: true,
           type: 'error',
           showCloseButton: true,
           message: 'Error message with close button',
@@ -330,6 +361,7 @@ test.describe('Banner Component', () => {
     test('info banner without close button', async ({ mount }) => {
       const component = await mount(Banner, {
         props: {
+          show: true,
           type: 'info',
           showCloseButton: false,
           message: 'Info message without close button',
@@ -351,6 +383,7 @@ test.describe('Banner Component', () => {
     test('caution banner with custom slot content', async ({ mount }) => {
       const component = await mount(Banner, {
         props: {
+          show: true,
           type: 'caution',
           showCloseButton: true,
         },

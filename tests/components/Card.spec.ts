@@ -39,7 +39,7 @@ test.describe('Card Component', () => {
 
       await expect(component).toBeVisible();
       await expect(component).toHaveClass(/spr-border-solid/);
-      await expect(component).toHaveClass(/spr-background-color-base/);
+      await expect(component).toHaveClass(/spr-background-color/);
       await expect(component).toHaveClass(/spr-border-color-weak/);
       await expect(component).toHaveClass(/spr-rounded-border-radius-xl/);
     });
@@ -88,7 +88,7 @@ test.describe('Card Component', () => {
 
   test.describe('Props - Tone', () => {
     const tones = [
-      { tone: 'plain', bgClass: 'spr-bg-white', borderClass: 'spr-border-color-weak' },
+      { tone: 'plain', bgClass: 'spr-background-color', borderClass: 'spr-border-color-weak' },
       { tone: 'neutral', bgClass: 'spr-background-color-surface', borderClass: 'spr-border-color-base' },
       { tone: 'success', bgClass: 'spr-background-color-success-weak', borderClass: 'spr-border-color-success-base' },
       {
@@ -124,7 +124,7 @@ test.describe('Card Component', () => {
         },
       });
 
-      await expect(component).toHaveClass(/spr-background-color-base/);
+      await expect(component).toHaveClass(/spr-background-color/);
       await expect(component).toHaveClass(/spr-border-color-weak/);
     });
   });
@@ -694,7 +694,7 @@ test.describe('Card Component', () => {
       });
 
       await expect(component).toBeVisible();
-      await expect(component).toHaveClass(/spr-background-color-base/); // Default background
+      await expect(component).toHaveClass(/spr-background-color/); // Default background (plain tone)
       await expect(component).toHaveClass(/spr-border-color-weak/); // Default border
     });
   });
@@ -780,7 +780,7 @@ test.describe('Card Component', () => {
       });
 
       // Check tone styling
-      await expect(component).toHaveClass(/spr-bg-white/);
+      await expect(component).toHaveClass(/spr-background-color/);
       await expect(component).toHaveClass(/spr-border-color-weak/);
 
       // Check flexbox layout

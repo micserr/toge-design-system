@@ -4,7 +4,6 @@ import classNames from 'classnames';
 
 interface BannerClasses {
   base: string;
-  content: string;
   icon: string;
   message: string;
   close: string;
@@ -15,7 +14,7 @@ export const useBanner = (props: BannerPropTypes, showModel: Ref<boolean>) => {
 
   const bannerClasses = computed<BannerClasses>(() => {
     const base = classNames(
-      'spr-w-full spr-flex spr-flex-row spr-items-top spr-p-size-spacing-3xs spr-rounded-border-radius-md',
+      'spr-w-full spr-flex spr-p-size-spacing-3xs spr-justify-between spr-rounded-border-radius-md',
       {
         'spr-background-color-success-weak': props.type === 'success',
         'spr-background-color-danger-weak': props.type === 'error',
@@ -25,9 +24,7 @@ export const useBanner = (props: BannerPropTypes, showModel: Ref<boolean>) => {
       },
     );
 
-    const content = classNames('spr-flex-auto');
-
-    const icon = classNames({
+    const icon = classNames('spr-py-[2px]', {
       'spr-text-color-brand-base': props.type === 'success',
       'spr-text-color-danger-base': props.type === 'error',
       'spr-text-color-information-base': props.type === 'info',
@@ -53,7 +50,6 @@ export const useBanner = (props: BannerPropTypes, showModel: Ref<boolean>) => {
 
     return {
       base,
-      content,
       icon,
       message,
       close,

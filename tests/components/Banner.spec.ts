@@ -55,7 +55,7 @@ test.describe('Banner Component', () => {
       const component = await mount(Banner, {
         props: {
           show: true,
-        }
+        },
       });
 
       await expect(component).toBeVisible();
@@ -73,7 +73,7 @@ test.describe('Banner Component', () => {
       test(`renders ${type} banner with correct styling`, async ({ mount }) => {
         const component = await mount(Banner, {
           props: {
-          show: true,
+            show: true,
             type,
             message: `This is a ${type} banner`,
           },
@@ -156,7 +156,7 @@ test.describe('Banner Component', () => {
       for (const { type } of iconTests) {
         const component = await mount(Banner, {
           props: {
-          show: true,
+            show: true,
             type,
             message: `${type} message`,
           },
@@ -189,7 +189,7 @@ test.describe('Banner Component', () => {
       await expect(messageSpan).toBeVisible();
 
       // Check content wrapper
-      const contentDiv = component.locator('.spr-flex-auto');
+      const contentDiv = component.locator('.spr-flex.spr-items-start.spr-gap-size-spacing-3xs');
       await expect(contentDiv).toBeVisible();
     });
 
@@ -206,10 +206,10 @@ test.describe('Banner Component', () => {
       // Check for main banner flex layout (the root element should be #spr-banner)
       await expect(component).toHaveClass(/spr-w-full/);
       await expect(component).toHaveClass(/spr-flex/);
-      await expect(component).toHaveClass(/spr-flex-row/);
-      
+      await expect(component).toHaveClass(/spr-justify-between/);
+
       // Check for content flex layout (within default slot)
-      const contentContainer = component.locator('.spr-flex.spr-items-center.spr-gap-size-spacing-3xs');
+      const contentContainer = component.locator('.spr-flex.spr-items-start.spr-gap-size-spacing-3xs');
       await expect(contentContainer).toBeVisible();
     });
   });
@@ -227,7 +227,7 @@ test.describe('Banner Component', () => {
       for (const { type, expectedClass } of colorTests) {
         const component = await mount(Banner, {
           props: {
-          show: true,
+            show: true,
             type,
             message: `${type} banner`,
           },
@@ -324,7 +324,7 @@ test.describe('Banner Component', () => {
       const component = await mount(Banner, {
         props: {
           show: true,
-        }
+        },
       });
 
       await expect(component).toBeVisible();

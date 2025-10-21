@@ -118,7 +118,14 @@ export const useReusableCalendar = (
     }
 
     calendarTabPageData.value.calendarDays = calendar.map((day) => ({ ...day, date: day.date.toDate() }));
+    goBackToCalendarTab();
   };
+
+  const goBackToCalendarTab = () => {
+    if(props.mode === 'full' && currentTab.value !== 'tab-calendar') {      
+      currentTab.value = 'tab-calendar';
+    }
+  }
 
   // Navigation functions
   const calendarTabPrevMonth = () => {
@@ -172,7 +179,7 @@ export const useReusableCalendar = (
     };
   };
 
-  const handleTabClick = (tab: string) => {
+  const handleTabClick = (tab: string) => {    
     if (currentTab.value === tab && props.mode === 'full') {
       currentTab.value = 'tab-calendar';
     } else {

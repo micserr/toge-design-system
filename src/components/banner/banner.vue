@@ -1,17 +1,16 @@
 <template>
   <transition name="fade-in-out">
-    <div v-if="showModel" id="spr-banner" :class="[bannerClasses.base]">
-      <div :class="[bannerClasses.content]">
+    <div v-if="showModel" :class="[bannerClasses.base]" v-bind="$attrs">
+      <div class="spr-flex spr-items-start spr-gap-size-spacing-3xs">
         <slot>
-          <div class="spr-flex spr-items-center spr-gap-size-spacing-3xs">
-            <div :class="[bannerClasses.icon]">
-              <icon :icon="bannerIcon" width="16px" height="16px" />
-            </div>
-            <span :class="[bannerClasses.message]">{{ props.message }}</span>
+          <div :class="[bannerClasses.icon]">
+            <icon :icon="bannerIcon" width="16px" height="16px" />
           </div>
+          <span :class="[bannerClasses.message]">{{ props.message }}</span>
         </slot>
       </div>
-      <div v-if="props.showCloseButton" class="spr-flex spr-h-full spr-items-center">
+
+      <div v-if="props.showCloseButton" class="spr-flex spr-h-full spr-items-start">
         <icon icon="ph:x-bold" width="16px" height="16px" :class="[bannerClasses.close]" @click="closeBanner" />
       </div>
     </div>

@@ -4,13 +4,7 @@
     :shown="popperState"
     aria-id="popper-wrapper"
     distance="4"
-    :placement="props.placement"
-    :triggers="[]"
-    :popper-hide-triggers="[]"
-    :auto-hide="false"
     :container="`#${props.id}`"
-    :delay="0"
-    strategy="absolute"
     :style="{
       width: '100%',
     }"
@@ -20,7 +14,7 @@
     </div>
 
     <template #popper>
-      <div ref="popperRef" class="spr-min-w-[240px] spr-rounded-border-radius-xs">
+      <div ref="popperRef">
         <slot name="content" />
       </div>
     </template>

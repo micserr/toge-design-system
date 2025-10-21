@@ -21,6 +21,7 @@ export const useBadge = (props: BadgePropTypes) => {
     });
 
     const variantClasses = classNames({
+      'spr-background-color-surface spr-text-color-base': variant.value === 'neutral',
       'spr-background-color-danger-base spr-text-color-inverted-strong': variant.value === 'danger',
       'spr-background-color-disabled spr-text-color-on-fill-disabled': variant.value === 'disabled',
       'spr-background-color-information-base spr-text-color-inverted-strong': variant.value === 'information',

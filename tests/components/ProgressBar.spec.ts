@@ -19,7 +19,7 @@
  * - Validate accessibility compliance for screen readers
  * - Ensure proper visual progress representation
  * - Test boundary conditions and error handling
- * 
+ *
  * ASSUMPTIONS:
  * - Component uses Tailwind CSS classes with 'spr-' prefix
  * - Progress indicator width is set via inline styles

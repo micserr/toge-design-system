@@ -325,8 +325,9 @@ test.describe('List Component', () => {
       await expect(component.getByText('Apple')).not.toBeVisible();
     });
 
-    test('should emit search value when disabledLocalSearch is true', async ({ mount }) => {
+    test('should emit search value when disabledLocalSearch is true', async ({ mount, page }) => {
       let emittedSearchValue = '';
+      let emissionCount = 0;
 
       const component = await mount(List, {
         props: {
@@ -335,14 +336,38 @@ test.describe('List Component', () => {
           disabledLocalSearch: true,
           'onUpdate:searchValue': (value: string) => {
             emittedSearchValue = value;
+            emissionCount++;
           },
         },
       });
 
       const searchInput = component.locator('input[placeholder="Search..."]');
-      await searchInput.fill('test search');
-
-      expect(emittedSearchValue).toBe('test search');
+      
+      // Test initial state
+      expect(emittedSearchValue).toBe('');
+      
+      // Test typing multiple characters
+      await searchInput.fill('test');
+      await page.waitForTimeout(100); // Allow for debouncing
+      expect(emittedSearchValue).toBe('test');
+      
+      // Test clearing search
+      await searchInput.fill('');
+      await page.waitForTimeout(100);
+      expect(emittedSearchValue).toBe('');
+      
+      // Test special characters and spaces
+      await searchInput.fill('test search with spaces & symbols!');
+      await page.waitForTimeout(100);
+      expect(emittedSearchValue).toBe('test search with spaces & symbols!');
+      
+      // Verify that all items are still visible when local search is disabled
+      await expect(component.getByText('Apple')).toBeVisible();
+      await expect(component.getByText('Banana')).toBeVisible();
+      await expect(component.getByText('Cherry')).toBeVisible();
+      
+      // Verify multiple emissions occurred
+      expect(emissionCount).toBeGreaterThan(1);
     });
 
     test('should use custom search placeholder', async ({ mount }) => {

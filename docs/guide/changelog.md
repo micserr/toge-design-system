@@ -4,7 +4,7 @@
 
 - Fix
   - Banner DQA fixes
-    ([#35434](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35434?_a=files by @jarias)
+    ([#35499](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35499?_a=files by @jarias)
 
 ## 2.17.7 (2025-10-21)
 

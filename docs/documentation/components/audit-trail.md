@@ -1,6 +1,6 @@
 ---
 title: Audit Trail
-descripttion: The Audit Trail component displays a chronological log of changes made to a record.
+description: The Audit Trail component displays a chronological log of changes made to a record.
 outline: deep
 ---
 

@@ -22,31 +22,11 @@ Display banners of different types using the `type` prop.
 
 ```vue
 <template>
-  <spr-banner
-    v-model:show="showBannerSuccess"
-    type="success"
-    :show-close-button="false"
-    message="This is a success banner."
-  />
-  <spr-banner
-    v-model:show="showBannerError"
-    type="error"
-    :show-close-button="false"
-    message="This is an error banner."
-  />
-  <spr-banner v-model:show="showBannerInfo" type="info" :show-close-button="false" message="This is an info banner." />
-  <spr-banner
-    v-model:show="showBannerPending"
-    type="pending"
-    :show-close-button="false"
-    message="This is a pending banner."
-  />
-  <spr-banner
-    v-model:show="showBannerCaution"
-    type="caution"
-    :show-close-button="false"
-    message="This is a caution banner."
-  />
+  <spr-banner v-model:show="showBannerSuccess" type="success" message="This is a success banner." />
+  <spr-banner v-model:show="showBannerError" type="error" message="This is an error banner." />
+  <spr-banner v-model:show="showBannerInfo" type="info" message="This is an info banner." />
+  <spr-banner v-model:show="showBannerPending" type="pending" message="This is a pending banner." />
+  <spr-banner v-model:show="showBannerCaution" type="caution" message="This is a caution banner." />
 </template>
 
 <script setup lang="ts">

@@ -1,5 +1,52 @@
 # Changelog
 
+## 2.19.0 (2025-10-22)
+
+- Chore: Enhance Chips component documentation with slot customization examples
+    ([#958ee225](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/958ee225604fe7abf7f6a2be98e9fc0c0ff7eed3?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FChips-slot) by @bsolis)
+
+
+## 2.19.0 (2025-10-22)
+
+- Feat:
+  - Add Audit Trail component
+    ([#a365b231](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a365b231ef28e34dd96bd4522b3dd4894f416799?refName=refs/heads/2025/feat/dustin/audit-trail) by @despiritu)
+
+## 2.18.0 (2025-10-21)
+
+- Feat:
+  - Update design tokens with improved color system and enhanced semantic color tokens
+  - Enhance lozenge component with consistent design token usage and improved hover/active states
+  - Add new background color variants for better component state management
+  - Improve text color hierarchy and accessibility contrast ratios
+  - Add comprehensive hover and pressed state variants for all color categories
+  - Refactor lozenge component to use semantic design tokens instead of hardcoded values
+  - Improve component maintainability and design system consistency
+    ([#8f6a6951](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/8f6a6951d6de86574d20a829924c85ee9490e072?refName=refs/heads/2025/FEATURE/MICS/DESIGN_TOKENS_LOZENGE_UPDATE&_a=diffparent2) by @MICS)
+
+## 2.17.8 (2025-10-21)
+
+- Fix
+  - Banner DQA fixes
+    ([#35499](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35499?_a=files by @jarias)
+
+## 2.17.7 (2025-10-21)
+
+- Fix
+  - Banner DQA fixes
+  - Added Support for display selected count only in multi select
+    ([#35434](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35434?_a=files by @jarias)
+
+## 2.17.6 (2025-10-20)
+
+- Fix
+  - Update Select, Multi-Select and Ladderized Select Documentation
+- Update Lozenge Documentation
+- Added Support for select & multi select item lozenge
+- Added Support for select & multi select item icon
+- Fix Ladderized Active State
+  ([#35434](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35434?_a=files by @jarias)
+
 ## 2.17.5 (2025-10-16)
 
 - Fix

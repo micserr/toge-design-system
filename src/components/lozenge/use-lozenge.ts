@@ -32,54 +32,86 @@ export const useLozenge = (props: LozengePropTypes) => {
         'spr-border': !fill.value,
         'spr-cursor-pointer': isInteractive.value,
         // #region - Styles for hollow lozenge
+
         // Pending
-        'spr-text-mango-800 spr-background-color-pending-weak spr-border-mango-800': tone.value === 'pending' && !fill.value,
-        'hover:spr-bg-[#FFF89E] active:spr-bg-[#FFF56B]': tone.value === 'pending' && !fill.value && isInteractive.value,
+        'spr-text-color-pending-base spr-background-color-pending-weak spr-border-color-pending-base':
+          tone.value === 'pending' && !fill.value,
+        'hover:spr-background-color-pending-weak-hover active:spr-background-color-pending-weak-pressed':
+          tone.value === 'pending' && !fill.value && isInteractive.value,
+
         // Information
-        'spr-text-blueberry-800 spr-background-color-information-weak spr-border-blueberry-800': tone.value === 'information' && !fill.value,
-        'hover:spr-bg-[#ADD6FF] active:spr-bg-[#7ABDFF]': tone.value === 'information' && !fill.value && isInteractive.value,
+        'spr-text-color-information-base spr-background-color-information-weak spr-border-color-information-base':
+          tone.value === 'information' && !fill.value,
+        'hover:spr-background-color-information-weak-hover active:spr-background-color-information-weak-pressed':
+          tone.value === 'information' && !fill.value && isInteractive.value,
+
         // Success
-        'spr-text-kangkong-800 spr-background-color-success-weak spr-border-kangkong-800': tone.value === 'success' && !fill.value,
-        'hover:spr-bg-[#AFF8C6] active:spr-bg-[#80F4A4]': tone.value === 'success' && !fill.value && isInteractive.value,
+        'spr-text-color-success-base spr-background-color-success-weak spr-border-color-success-base':
+          tone.value === 'success' && !fill.value,
+        'hover:spr-background-color-success-weak-hover active:spr-background-color-success-weak-pressed':
+          tone.value === 'success' && !fill.value && isInteractive.value,
+
         // Neutral
-        'spr-text-mushroom-800 spr-background-color-base spr-border-mushroom-800': tone.value === 'neutral' && !fill.value,
-        'hover:spr-bg-[#D3D9D9] active:spr-bg-[#B8C1C1]': tone.value === 'neutral' && !fill.value && isInteractive.value,
+        'spr-text-color-base spr-background-color-surface-adaptive spr-border-color-base':
+          tone.value === 'neutral' && !fill.value,
+
         // Danger
-        'spr-text-tomato-800 spr-background-color-danger-weak spr-border-tomato-800': tone.value === 'danger' && !fill.value,
-        'hover:spr-bg-[#FCB0B3] active:spr-bg-[#FB7F83]': tone.value === 'danger' && !fill.value && isInteractive.value,
+        'spr-text-color-danger-base spr-background-color-danger-weak spr-border-color-danger-base':
+          tone.value === 'danger' && !fill.value,
+        'hover:spr-background-color-danger-weak-hover active:spr-background-color-danger-weak-pressed':
+          tone.value === 'danger' && !fill.value && isInteractive.value,
+
         // Caution
-        'spr-text-carrot-800 spr-background-color-caution-weak spr-border-carrot-800': tone.value === 'caution' && !fill.value,
-        'hover:spr-bg-[#FFE79E] active:spr-bg-[#FFDA6B]': tone.value === 'caution' && !fill.value && isInteractive.value,
+        'spr-text-color-caution-base spr-background-color-caution-weak spr-border-color-caution-base':
+          tone.value === 'caution' && !fill.value,
+        'hover:spr-background-color-caution-weak-hover active:spr-background-color-caution-weak-pressed':
+          tone.value === 'caution' && !fill.value && isInteractive.value,
+
         // Plain
         'spr-text-color-strong spr-border-color-base spr-background-color': tone.value === 'plain' && !fill.value,
-        'hover:spr-bg-[#E6E6E6] active:spr-bg-[#CCCCCC]': tone.value === 'plain' && !fill.value && isInteractive.value,
+
+        // Shared hover/active for neutral and plain
+        'hover:spr-background-color-hover active:spr-background-color-pressed':
+          (tone.value === 'neutral' || tone.value === 'plain') && !fill.value && isInteractive.value,
+
         // #endregion - Styles for hollow (!fill) lozenge
 
         // #region - Styles for filled lozenge
         'spr-border-0': fill.value,
-        'spr-text-color-strong': fill.value && (tone.value === 'pending' || tone.value === 'neutral' || tone.value === 'caution' || tone.value === 'plain'),
-        'spr-text-color-inverted-strong': fill.value && (tone.value === 'information' || tone.value === 'success' || tone.value === 'danger'),
+        'spr-text-color-strong':
+          fill.value &&
+          (tone.value === 'pending' || tone.value === 'neutral' || tone.value === 'caution' || tone.value === 'plain'),
+        'spr-text-color-inverted-strong':
+          fill.value && (tone.value === 'information' || tone.value === 'success' || tone.value === 'danger'),
         // Pending
         'spr-background-color-pending-base': tone.value === 'pending' && fill.value,
-        'hover:spr-background-color-pending-hover active:spr-background-color-pending-pressed': tone.value === 'pending' && fill.value && isInteractive.value,
+        'hover:spr-background-color-pending-hover active:spr-background-color-pending-pressed':
+          tone.value === 'pending' && fill.value && isInteractive.value,
         // Information
         'spr-background-color-information-base': tone.value === 'information' && fill.value,
-        'hover:spr-background-color-information-hover active:spr-background-color-information-pressed': tone.value === 'information' && fill.value && isInteractive.value,
+        'hover:spr-background-color-information-hover active:spr-background-color-information-pressed':
+          tone.value === 'information' && fill.value && isInteractive.value,
         // Success
         'spr-background-color-success-base': tone.value === 'success' && fill.value,
-        'hover:spr-background-color-success-hover active:spr-background-color-success-pressed': tone.value === 'success' && fill.value && isInteractive.value,
+        'hover:spr-background-color-success-hover active:spr-background-color-success-pressed':
+          tone.value === 'success' && fill.value && isInteractive.value,
         // Neutral
-        'spr-background-color-base': tone.value === 'neutral' && fill.value,
-        'hover:spr-background-color-surface active:spr-background-color-pressed': tone.value === 'neutral' && fill.value && isInteractive.value,
+        'spr-background-color-surface-adaptive': tone.value === 'neutral' && fill.value,
         // Danger
         'spr-background-color-danger-base': tone.value === 'danger' && fill.value,
-        'hover:spr-background-color-danger-hover active:spr-background-color-danger-pressed': tone.value === 'danger' && fill.value && isInteractive.value,
+        'hover:spr-background-color-danger-hover active:spr-background-color-danger-pressed':
+          tone.value === 'danger' && fill.value && isInteractive.value,
         // Caution
         'spr-background-color-caution-base': tone.value === 'caution' && fill.value,
-        'hover:spr-background-color-caution-hover active:spr-background-color-caution-pressed': tone.value === 'caution' && fill.value && isInteractive.value,
+        'hover:spr-background-color-caution-hover active:spr-background-color-caution-pressed':
+          tone.value === 'caution' && fill.value && isInteractive.value,
+
         // Plain
         'spr-background-color': tone.value === 'plain' && fill.value,
-        'hover:spr-background-color-hover active:spr-background-color-pressed': tone.value === 'plain' && fill.value && isInteractive.value,
+
+        // Shared hover/active for neutral and plain (filled)
+        'hover:spr-background-color-surface active:spr-background-color-pressed':
+          (tone.value === 'neutral' || tone.value === 'plain') && fill.value && isInteractive.value,
         // #endregion - Styles for filled lozenge
       },
     );

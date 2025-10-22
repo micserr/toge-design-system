@@ -37,9 +37,13 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
   const handleRedirect = (objectItem: ObjectItem, parentNav: string, menu: string, submenu: string) => {
     if (objectItem && objectItem.redirect) {
       if (objectItem.redirect.openInNewTab) {
-        window.open(objectItem.redirect.link, '_blank');
+        if (typeof window !== 'undefined') {
+          window.open(objectItem.redirect.link, '_blank');
+        }
       } else if (objectItem.redirect.isAbsoluteURL) {
-        location.href = objectItem.redirect.link;
+        if (typeof window !== 'undefined' && typeof location !== 'undefined') {
+          location.href = objectItem.redirect.link;
+        }
       } else {
         const modifiedObjectItem = { ...objectItem };
 
@@ -72,16 +76,24 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
   };
 
   const confirmIfOwnDomain = (url: string) => {
+    // Guard against SSR where location is undefined
+    if (typeof window === 'undefined') return false;
+
     const domain = window.location.hostname;
     const urlHostname = new URL(url).hostname;
-    const isOwnDomain = domain === urlHostname || window.location.hostname === 'localhost';
+    const isOwnDomain = domain === urlHostname || domain === 'localhost';
 
     return isOwnDomain;
   };
 
   const getPathFromUrl = (url: string): string => {
     const parsedUrl = new URL(url);
-    return parsedUrl ? `${parsedUrl.pathname}${parsedUrl.hash}` : '';
+
+    if (!parsedUrl) return '';
+
+    const { pathname, search, hash } = parsedUrl;
+
+    return `${pathname}${search}${hash}`;
   };
 
   const navLinkCondition = (link: NavItem) => {
@@ -224,20 +236,50 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
 
   // Utility function to convert string attributes to array
   const convertAttributesToArray = (attributes: string | Attributes[] | undefined): Attributes[] => {
-    if (!attributes) {
-      return [];
-    }
+    if (!attributes) return [];
+
+    const parseAttributeValue = (raw: unknown): unknown => {
+      if (raw === null || raw === undefined) return raw;
+      if (typeof raw !== 'string') return raw;
+
+      const trimmed = raw.trim();
+
+      if (!trimmed.startsWith('{') || !trimmed.endsWith('}')) return raw;
+
+      try {
+        let jsonLike = trimmed
+          // Remove leading/trailing braces will keep them for JSON parse
+          .replace(/([{,]\s*)([A-Za-z0-9_]+)\s*:/g, '$1"$2":') // quote keys
+          .replace(/'([^']*)'/g, '"$1"'); // single to double quotes inside values
+
+        // If the string still contains escaped quotes from being embedded in JSON previously, unescape them
+        jsonLike = jsonLike.replace(/\\"/g, '"');
+
+        return JSON.parse(jsonLike);
+      } catch {
+        return raw;
+      }
+    };
+
+    let array: Attributes[] = [];
 
     if (typeof attributes === 'string') {
       try {
         const parsed = JSON.parse(attributes);
-        return Array.isArray(parsed) ? parsed : [parsed];
+        array = Array.isArray(parsed) ? parsed : [parsed];
       } catch {
         return [];
       }
+    } else if (Array.isArray(attributes)) {
+      array = attributes;
     }
 
-    return Array.isArray(attributes) ? attributes : [];
+    // Parse each attribute's value if necessary
+    return array.map((attr: Attributes) => {
+      if (!attr) return attr;
+      const parsedValue = typeof attr.value === 'string' ? parseAttributeValue(attr.value) : attr.value;
+      return { ...attr, value: parsedValue } as Attributes;
+    });
   };
 
   const setNavLinkItems = async () => {

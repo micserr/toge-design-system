@@ -24,12 +24,12 @@ const PLACEMENTS_TYPES = [
 ] as const;
 
 const POPPER_STRATEGY_TYPES = ['fixed', 'absolute'] as const;
+const TRIGGER_EVENTS = ['click', 'hover', 'focus', 'touch'] as const;
 
 export const selectPropTypes = {
   id: {
     type: String,
     required: true,
-    default: 'select',
   },
   modelValue: {
     type: [String, Number, Object, Array] as PropType<
@@ -74,6 +74,28 @@ export const selectPropTypes = {
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
     default: 'bottom',
   },
+  distance: {
+    type: Number,
+    default: 6,
+  },
+  triggers: {
+    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
+    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
+      return value.every((val) => TRIGGER_EVENTS.includes(val));
+    },
+    default: () => [],
+  },
+  popperTriggers: {
+    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
+    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
+      return value.every((val) => TRIGGER_EVENTS.includes(val));
+    },
+    default: () => [],
+  },
+  autoHide: {
+    type: Boolean,
+    default: false,
+  },
   popperStrategy: {
     type: String,
     validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
@@ -83,6 +105,10 @@ export const selectPropTypes = {
     type: String,
     default: '100%',
   },
+  popperContainer: {
+    type: String,
+    default: '',
+  },
   width: {
     type: String,
     default: '100%',
@@ -90,6 +116,18 @@ export const selectPropTypes = {
   wrapperPosition: {
     type: String,
     default: 'relative',
+  },
+  active: {
+    type: Boolean,
+    default: false,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  error: {
+    type: Boolean,
+    default: false,
   },
   displayText: {
     type: String,
@@ -107,18 +145,6 @@ export const selectPropTypes = {
     type: String,
     default: '',
   },
-  active: {
-    type: Boolean,
-    default: false,
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  error: {
-    type: Boolean,
-    default: false,
-  },
   clearable: {
     type: Boolean,
     default: false,
@@ -130,6 +156,14 @@ export const selectPropTypes = {
   disabledLocalSearch: {
     type: Boolean,
     default: false,
+  },
+  lozenge: {
+    type: Boolean,
+    default: false,
+  },
+  itemIcon: {
+    type: String,
+    default: '',
   },
 };
 

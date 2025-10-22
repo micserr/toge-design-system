@@ -33,7 +33,7 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     });
 
     const chippedInputTextBaseClasses = classNames(
-      'spr-relative spr-flex spr-items-center spr-min-h-9 spr-rounded-border-radius-md spr-border-[1.5px] spr-border-solid',
+      'spr-relative spr-flex spr-items-center spr-min-h-10 spr-rounded-border-radius-md spr-border-[1.5px] spr-border-solid',
       {
         'spr-cursor-pointer': !disabled.value,
 
@@ -189,15 +189,6 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
   };
 
   /**
-   * Opens the multi-select options.
-   */
-  const handleOptionsToggle = () => {
-    multiSelectPopperState.value = !multiSelectPopperState.value;
-
-    emit('popper-state', !multiSelectPopperState.value);
-  };
-
-  /**
    * Handles selection changes from the multi-select and updates the model value.
    * Converts stringified objects back to objects if needed.
    */
@@ -306,7 +297,12 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
       });
     }
 
-    if (multiSelectedListItems.value.length > 3) {
+    // Determine input text based on whether count-only mode is enabled
+    if (props.displaySelectedCountOnly && multiSelectedListItems.value.length) {
+      inputText.value = `${multiSelectedListItems.value.length} item${
+        multiSelectedListItems.value.length === 1 ? '' : 's'
+      } selected`;
+    } else if (multiSelectedListItems.value.length > 3) {
       inputText.value = `${multiSelectedListItems.value.length} items selected`;
     } else {
       inputText.value = multiSelectedListItems.value.map((item) => item.text).join(', ');
@@ -325,13 +321,13 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
    * Clears the selection and input text, and closes the multi-select.
    */
   const handleClear = () => {
-    emit('update:modelValue', []);
+    if (disabled.value) return;
 
     multiSelectedListItems.value = [];
     inputText.value = '';
     multiSelectPopperState.value = false;
 
-    emit('popper-state', false);
+    emit('update:modelValue', []);
   };
 
   watch(multiSelectModel, () => {
@@ -360,16 +356,29 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     search.value = searchInput.value;
   });
 
+  watch(multiSelectPopperState, (newState) => {
+    emit('popper-state', newState);
+  });
+
   /**
    * Handles closing the multi-select when clicking outside.
    */
-  onClickOutside(multiSelectRef, () => {
-    multiSelectPopperState.value = false;
+  onClickOutside(
+    multiSelectRef,
+    (event) => {
+      // If click happened inside the floating popper content, don't treat as outside
+      if (multipleSelectPopperRef.value && multipleSelectPopperRef.value.contains(event.target as Node)) {
+        return;
+      }
 
-    updateMultiSelectedItemsFromValue();
+      multiSelectPopperState.value = false;
 
-    emit('popper-state', false);
-  });
+      updateMultiSelectedItemsFromValue();
+    },
+    {
+      ignore: [multipleSelectPopperRef],
+    },
+  );
 
   useInfiniteScroll(
     multipleSelectPopperRef,
@@ -404,6 +413,6 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     handleMultiSelectedItem,
     handleChippedRemoveItem,
     handleClear,
-    handleOptionsToggle,
+    normalizedValue,
   };
 };

@@ -10,15 +10,7 @@ const PREFIX = 'spr-';
 const components = import.meta.glob('../src/components/**/*.vue', { eager: true });
 
 // List of component files to exclude from global registration
-const excludedComponents: string[] = [
-  'sidenav-menu-links.vue',
-  'snack.vue',
-  'step.vue',
-  'table-actions.vue',
-  'table-chips-title.vue',
-  'table-lozenge-title.vue',
-  'table-pagination.vue',
-];
+const excludedComponents: string[] = ['sidenav-menu-links.vue'];
 
 const install = (app: App) => {
   Object.entries(components)

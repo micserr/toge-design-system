@@ -8,15 +8,15 @@
     </label>
 
     <Menu
-      :shown="selectPopperState"
+      v-model:shown="selectPopperState"
       aria-id="select-wrapper"
-      distance="4"
+      :distance="props.distance"
       :placement="props.placement"
-      :triggers="[]"
-      :popper-hide-triggers="[]"
-      :auto-hide="false"
+      :triggers="props.triggers"
+      :popper-triggers="props.popperTriggers"
+      :auto-hide="props.autoHide"
       :disabled="isSelectPopperDisabled"
-      :container="`#${props.id}`"
+      :container="props.popperContainer ? props.popperContainer : `#select-popper-${props.id}`"
       :strategy="
         props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
       "
@@ -27,7 +27,7 @@
       }"
     >
       <div ref="selectRef">
-        <div @click="handleOptionsToggle">
+        <div @click="!props.searchable ? (selectPopperState = !selectPopperState) : null">
           <spr-input
             :id="`input-${props.id}`"
             v-model="inputText"
@@ -44,15 +44,19 @@
             :disabled="props.disabled"
             :error="props.error"
             @keyup="handleSearch"
+            @click="props.searchable ? (selectPopperState = true) : null"
           >
             <template #icon>
-              <div class="spr-flex spr-cursor-pointer spr-items-center">
-                <Icon
-                  v-if="props.clearable && inputText"
-                  class="spr-cursor-pointer"
-                  icon="ph:x"
-                  @click.stop="handleClear"
-                />
+              <div
+                :class="[
+                  'spr-flex spr-items-center spr-gap-1',
+                  {
+                    'spr-cursor-pointer': !props.disabled,
+                    'spr-cursor-not-allowed': props.disabled,
+                  },
+                ]"
+              >
+                <Icon v-if="props.clearable && inputText" icon="ph:x" @click.stop="handleClear" />
                 <Icon icon="ph:caret-down" />
               </div>
             </template>
@@ -79,7 +83,7 @@
 
         <!-- This div used to poppulate popper menu -->
         <div
-          :id="props.id"
+          :id="`select-popper-${props.id}`"
           :style="{
             width: props.popperWidth,
           }"
@@ -89,7 +93,7 @@
       <template #popper>
         <div
           ref="selectPopperRef"
-          class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden spr-p-2"
+          class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden"
         >
           <template v-if="isSearching">
             <template v-if="!props.disabledLocalSearch">
@@ -99,6 +103,8 @@
                   :menu-list="filteredSelectOptions"
                   :group-items-by="props.groupItemsBy"
                   :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
+                  :item-icon="props.itemIcon"
+                  :lozenge="props.lozenge"
                   @update:model-value="handleSelectedItem"
                 />
               </template>
@@ -115,6 +121,8 @@
                   :menu-list="selectOptions"
                   :group-items-by="props.groupItemsBy"
                   :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
+                  :item-icon="props.itemIcon"
+                  :lozenge="props.lozenge"
                   @update:model-value="handleSelectedItem"
                 />
               </template>
@@ -132,6 +140,8 @@
                 :menu-list="selectOptions"
                 :group-items-by="props.groupItemsBy"
                 :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
+                :item-icon="props.itemIcon"
+                :lozenge="props.lozenge"
                 @update:model-value="handleSelectedItem"
               />
             </template>
@@ -178,6 +188,9 @@ const {
   handleSelectedItem,
   handleSearch,
   handleClear,
-  handleOptionsToggle,
 } = useSelect(props, emit);
+
+defineExpose({
+  handleClear,
+});
 </script>

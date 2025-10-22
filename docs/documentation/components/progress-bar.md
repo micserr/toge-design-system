@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Progress Bar
+descripttion: The Progress Bar component visually represents the progress of a task or process, allowing users to track completion at a glance. It supports different sizes and an optional label for enhanced clarity.
+outline: deep
 ---
 
 # Progress Bar

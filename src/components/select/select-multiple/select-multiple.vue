@@ -8,15 +8,15 @@
     </label>
 
     <Menu
-      :shown="multiSelectPopperState"
+      v-model:shown="multiSelectPopperState"
       aria-id="multi-select-wrapper"
-      distance="4"
+      :distance="props.distance"
       :placement="props.placement"
-      :triggers="[]"
-      :popper-hide-triggers="[]"
-      :auto-hide="false"
+      :triggers="props.triggers"
+      :popper-triggers="props.popperTriggers"
+      :auto-hide="props.autoHide"
       :disabled="isMultiSelectPopperDisabled"
-      :container="`#${props.id}`"
+      :container="props.popperContainer ? props.popperContainer : `#multi-select-${props.id}`"
       :strategy="
         props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
       "
@@ -27,20 +27,33 @@
       }"
     >
       <div ref="multiSelectRef">
-        <div @click="handleOptionsToggle">
+        <div @click="multiSelectPopperState = !multiSelectPopperState">
           <template v-if="props.chipped">
             <div :class="multiSelectClasses.chippedInputTextBaseClasses">
               <div ref="chippedInputTextRef" :class="multiSelectClasses.chippedInputTextClasses">
                 <div class="spr-h-auto spr-w-full">
                   <template v-if="multiSelectedListItems.length > 0">
-                    <template v-for="item in multiSelectedListItems" :key="item.value">
-                      <spr-chips
-                        class="spr-m-1 spr-inline-block"
-                        :label="String(item.text)"
-                        closable
-                        visible
-                        @close="handleChippedRemoveItem(String(item.value))"
-                      />
+                    <template v-if="!props.displaySelectedCountOnly">
+                      <template v-for="item in multiSelectedListItems" :key="item.value">
+                        <spr-chips
+                          class="spr-m-1 spr-inline-block"
+                          :label="String(item.text)"
+                          closable
+                          visible
+                          @close="handleChippedRemoveItem(String(item.value))"
+                        />
+                      </template>
+                    </template>
+                    <template v-else>
+                      <span
+                        class="spr-text-color-supporting spr-px-3"
+                        :aria-label="`${multiSelectedListItems.length} selected options`"
+                      >
+                        {{ multiSelectedListItems.length }} item{{
+                          multiSelectedListItems.length === 1 ? '' : 's'
+                        }}
+                        selected
+                      </span>
                     </template>
                   </template>
                   <template v-else>
@@ -48,12 +61,19 @@
                   </template>
                 </div>
                 <div :class="multiSelectClasses.chippedIconClasses">
-                  <div class="spr-flex spr-items-center spr-gap-1">
+                  <div
+                    :class="[
+                      'spr-flex spr-items-center spr-gap-1',
+                      {
+                        'spr-cursor-pointer': !props.disabled,
+                        'spr-cursor-not-allowed': props.disabled,
+                      },
+                    ]"
+                  >
                     <Icon
                       v-if="props.clearable && inputText"
-                      class="spr-cursor-pointer"
                       icon="ph:x"
-                      @click.stop="handleClear"
+                      @click.stop="!props.disabled ? handleClear : null"
                     />
                     <Icon icon="ph:caret-down" />
                   </div>
@@ -63,7 +83,11 @@
             <div v-if="props.displayHelper" :class="multiSelectClasses.chippedHelperContainerClasses">
               <div v-if="props.displayHelper" :class="multiSelectClasses.chippedHelperClasses">
                 <slot name="helperMessage">
-                  <Icon v-if="props.helperIcon" :icon="props.helperIcon" width="20px" height="20px" />
+                  <Icon
+                    v-if="props.helperIcon"
+                    class="spr-h-5 spr-min-h-5 spr-w-5 spr-min-w-5"
+                    :icon="props.helperIcon"
+                  />
                   <span>{{ props.helperText }}</span>
                 </slot>
               </div>
@@ -87,13 +111,16 @@
               :error="props.error"
             >
               <template #icon>
-                <div class="spr-flex spr-items-center spr-gap-1">
-                  <Icon
-                    v-if="props.clearable && inputText"
-                    class="spr-cursor-pointer"
-                    icon="ph:x"
-                    @click.stop="handleClear"
-                  />
+                <div
+                  :class="[
+                    'spr-flex spr-items-center spr-gap-1',
+                    {
+                      'spr-cursor-pointer': !props.disabled,
+                      'spr-cursor-not-allowed': props.disabled,
+                    },
+                  ]"
+                >
+                  <Icon v-if="props.clearable && inputText" icon="ph:x" @click.stop="handleClear" />
                   <Icon icon="ph:caret-down" />
                 </div>
               </template>
@@ -103,18 +130,18 @@
               </template>
             </spr-input>
           </template>
-
-          <!-- Hidden Select for QA automation -->
-          <select v-if="multiSelectOptions && multiSelectOptions.length" v-model="multiSelectModel" multiple hidden>
-            <option v-for="option in multiSelectOptions" :key="option.value" :value="option.value">
-              {{ option.text }}
-            </option>
-          </select>
         </div>
+
+        <!-- Hidden Select for QA automation -->
+        <select v-if="multiSelectOptions && multiSelectOptions.length" v-model="multiSelectModel" multiple hidden>
+          <option v-for="option in multiSelectOptions" :key="option.value" :value="option.value">
+            {{ option.text }}
+          </option>
+        </select>
 
         <!-- This div used to poppulate popper menu -->
         <div
-          :id="props.id"
+          :id="`multi-select-${props.id}`"
           :style="{
             width: props.popperWidth,
           }"
@@ -124,7 +151,7 @@
       <template #popper>
         <div
           ref="multipleSelectPopperRef"
-          class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden spr-p-2"
+          class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden"
         >
           <spr-list
             v-model="multiSelectedListItems"
@@ -135,6 +162,8 @@
             :group-items-by="props.groupItemsBy"
             :pre-selected-items="Array.isArray(multiSelectModel) ? multiSelectModel.flat() : [multiSelectModel]"
             :loading="props.loading"
+            :item-icon="props.itemIcon"
+            :lozenge="props.lozenge"
             multi-select
             :disabled-local-search="props.disabledLocalSearch"
             @update:model-value="handleMultiSelectedItem"
@@ -176,6 +205,9 @@ const {
   handleMultiSelectedItem,
   handleChippedRemoveItem,
   handleClear,
-  handleOptionsToggle,
 } = useMultiSelect(props, emit);
+
+defineExpose({
+  handleClear,
+});
 </script>

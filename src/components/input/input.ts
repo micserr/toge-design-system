@@ -32,7 +32,6 @@ export const INPUT_TYPES = [
 export const inputPropTypes = {
   id: {
     type: String,
-    default: 'spr-input',
   },
   modelValue: {
     type: [String, Number],

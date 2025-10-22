@@ -1,7 +1,7 @@
 ---
-outline: 'deep'
 title: Badge
-description: The Badge component is a small visual indicator that can be used to convey information, status, or notifications. It is often used in conjunction with other UI elements to provide context or highlight important information. Badges can be customized in terms of text, color, size, and position.
+descripttion: The Badge component is a small visual indicator that can be used to convey information, status, or notifications. It is often used in conjunction with other UI elements to provide context or highlight important information. Badges can be customized in terms of text, color, size, and position.
+outline: deep
 ---
 
 # Badge
@@ -24,6 +24,7 @@ The Badge component is a small visual indicator that can be used to convey infor
 ## Basic Usage
 
 <div class="spr-flex spr-items-center spr-gap-2 spr-p-1">
+  <spr-badge variant="neutral" size="big" />
   <spr-badge variant="disabled" size="big" />
   <spr-badge variant="danger" size="big" />
   <spr-badge variant="information" size="big" />
@@ -31,6 +32,7 @@ The Badge component is a small visual indicator that can be used to convey infor
 </div>
 
 <div class="spr-flex spr-items-center spr-gap-2 spr-p-1">
+  <spr-badge variant="neutral" size="small" />
   <spr-badge variant="disabled" size="small" />
   <spr-badge variant="danger" size="small" />
   <spr-badge variant="information" size="small" />
@@ -38,6 +40,7 @@ The Badge component is a small visual indicator that can be used to convey infor
 </div>
 
 <div class="spr-flex spr-items-center spr-gap-2 spr-p-1">
+  <spr-badge variant="neutral" size="tiny" />
   <spr-badge variant="disabled" size="tiny" />
   <spr-badge variant="danger" size="tiny" />
   <spr-badge variant="information" size="tiny" />
@@ -47,6 +50,7 @@ The Badge component is a small visual indicator that can be used to convey infor
 ```vue
 <template>
   <div>
+    <spr-badge text="9" variant="neutral" size="big" />
     <spr-badge text="9" variant="disabled" size="big" />
     <spr-badge text="9" variant="danger" size="big" />
     <spr-badge text="9" variant="information" size="big" />
@@ -54,6 +58,7 @@ The Badge component is a small visual indicator that can be used to convey infor
   </div>
 
   <div>
+    <spr-badge text="9" variant="neutral" size="small" />
     <spr-badge text="9" variant="disabled" size="small" />
     <spr-badge text="9" variant="danger" size="small" />
     <spr-badge text="9" variant="information" size="small" />
@@ -61,6 +66,7 @@ The Badge component is a small visual indicator that can be used to convey infor
   </div>
 
   <div>
+    <spr-badge variant="neutral" size="tiny" />
     <spr-badge variant="disabled" size="tiny" />
     <spr-badge variant="danger" size="tiny" />
     <spr-badge variant="information" size="tiny" />
@@ -74,6 +80,7 @@ The Badge component is a small visual indicator that can be used to convey infor
 used to customize the background of the badge
 
 <div class="spr-p-1 spr-flex spr-gap-4">
+  <spr-badge text="9" variant="neutral" size="big" />
   <spr-badge text="9" variant="disabled" size="big" />
   <spr-badge text="9" variant="danger" size="big" />
   <spr-badge text="9" variant="information" size="big" />
@@ -83,6 +90,7 @@ used to customize the background of the badge
 ```vue
 <template>
   <div>
+    <spr-badge text="9" variant="neutral" size="big" />
     <spr-badge text="9" variant="disabled" size="big" />
     <spr-badge text="9" variant="danger" size="big" />
     <spr-badge text="9" variant="information" size="big" />
@@ -114,6 +122,18 @@ used to customize the background of the badge
 used to display the badge in different positions (top, bottom).
 
 <div class="spr-grid spr-gap-4">
+  <div class="spr-flex spr-gap-4">
+    <spr-badge text="9" variant="neutral" size="big" position="top">
+      <spr-lozenge label="top" />
+    </spr-badge>
+    <spr-badge text="9" variant="neutral" size="small" position="top">
+      <spr-lozenge label="top"/>
+    </spr-badge>    
+    <spr-badge text="9" variant="neutral" size="tiny" position="top">
+      <spr-lozenge label="top"/>
+    </spr-badge>
+  </div>
+
   <div class="spr-flex spr-gap-4">
     <spr-badge text="9" variant="brand" size="big" position="top">
       <spr-lozenge label="top" />
@@ -153,6 +173,18 @@ used to display the badge in different positions (top, bottom).
 
 ```vue
 <template>
+  <div>
+    <spr-badge text="9" variant="neutral" size="big" position="top">
+      <spr-lozenge label="top" />
+    </spr-badge>
+    <spr-badge text="9" variant="neutral" size="small" position="top">
+      <spr-lozenge label="top" />
+    </spr-badge>
+    <spr-badge text="9" variant="neutral" size="tiny" position="top">
+      <spr-lozenge label="top" />
+    </spr-badge>
+  </div>
+
   <div>
     <spr-badge text="9" variant="brand" size="big" position="top">
       <spr-lozenge label="top" />
@@ -219,30 +251,6 @@ When using the default position, use can use the slot to wrap the element to whi
     <spr-badge text="9" variant="brand" size="tiny" position="top">
       <spr-lozenge label="top" />
     </spr-badge>
-  </div>
-</template>
-```
-
-### Default position without using slot
-
-When using the default position, use can use the slot to wrap the element to which you want to attach the badge.
-
-<div class="spr-flex spr-gap-4">
-  <spr-lozenge label="notification"/>
-  <spr-badge text="9" variant="brand" size="big"/>
-  <spr-badge text="9" variant="disabled" size="big"/>
-  <spr-badge text="9" variant="information" size="big"/>
-  <spr-badge text="9" variant="danger" size="big"/>
-</div>
-
-```vue
-<template>
-  <div>
-    <spr-lozenge label="notification" />
-    <spr-badge text="9" variant="brand" size="big" />
-    <spr-badge text="9" variant="disabled" size="big" />
-    <spr-badge text="9" variant="information" size="big" />
-    <spr-badge text="9" variant="danger" size="big" />
   </div>
 </template>
 ```

@@ -1,14 +1,14 @@
 <template>
   <Menu
-    :shown="dropdownPopperState"
+    v-model:shown="dropdownPopperState"
     aria-id="dropdown-wrapper"
-    distance="4"
+    :distance="props.distance"
     :placement="props.placement"
-    :triggers="[]"
-    :popper-hide-triggers="[]"
-    :auto-hide="false"
+    :triggers="props.triggers"
+    :popper-triggers="props.popperTriggers"
+    :auto-hide="props.autoHide"
     :disabled="isDropdownPopperDisabled"
-    :container="`#${props.id}`"
+    :container="props.popperContainer ? props.popperContainer : `#${props.id}`"
     :strategy="
       props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
     "
@@ -18,7 +18,7 @@
       width: props.width,
     }"
   >
-    <div @click="dropdownPopperState = true">
+    <div class="dropdown-slot">
       <slot />
     </div>
 
@@ -30,45 +30,57 @@
     ></div>
 
     <template #popper>
-      <div
-        ref="dropdownRef"
-        :class="[
-          (!props.ladderized || isLadderizedSearch) && 'spr-p-2',
-          'spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden',
-        ]"
-        :style="{
-          width: props.popperInnerWidth,
-        }"
-      >
-        <template v-if="dropdownMenuList.length > 0">
-          <spr-list
-            v-if="!props.ladderized || isLadderizedSearch"
-            v-model="selectedListItems"
-            :menu-list="dropdownMenuList"
-            :group-items-by="props.groupItemsBy"
-            :multi-select="props.multiSelect"
-            :pre-selected-items="dropdownValue"
-            :no-check="props.noCheckInList"
-            :dropdown="props.dropdown"
-            :lozenge="props.lozenge"
-            @update:model-value="handleSelectedItem"
-          />
-          <spr-ladderized-list
-            v-else
-            v-model="dropdownValue"
-            :ladderized="props.ladderized"
-            :dropdown="props.dropdown"
-            :menu-list="dropdownMenuList"
-            :remove-current-level-in-back-label="removeCurrentLevelInBackLabel"
-            @update:model-value="handleSelectedLadderizedItem"
-          />
-        </template>
-        <template v-else>
-          <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
-            <span class="spr-body-sm-regular spr-m-0">No results found</span>
-          </div>
-        </template>
-      </div>
+      <template v-if="$slots.popper">
+        <div
+          class="spr-overflow-y-auto spr-overflow-x-hidden spr-p-2"
+          :style="{
+            width: props.popperInnerWidth,
+          }"
+        >
+          <slot name="popper" />
+        </div>
+      </template>
+      <template v-else>
+        <div
+          ref="dropdownRef"
+          :class="[
+            'spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden',
+            !props.ladderized || isLadderizedSearch,
+          ]"
+          :style="{
+            width: props.popperInnerWidth,
+          }"
+        >
+          <template v-if="dropdownMenuList.length > 0">
+            <spr-list
+              v-if="!props.ladderized || isLadderizedSearch"
+              v-model="selectedListItems"
+              :menu-list="dropdownMenuList"
+              :searchable-menu="props.searchableMenu"
+              :group-items-by="props.groupItemsBy"
+              :multi-select="props.multiSelect"
+              :pre-selected-items="dropdownValue"
+              :no-check="props.noCheckInList"
+              :lozenge="props.lozenge"
+              @update:model-value="handleSelectedItem"
+            />
+            <spr-ladderized-list
+              v-else
+              v-model="dropdownValue"
+              :ladderized="props.ladderized"
+              :menu-list="dropdownMenuList"
+              :searchable-menu="props.searchableMenu"
+              :remove-current-level-in-back-label="removeCurrentLevelInBackLabel"
+              @update:model-value="handleSelectedLadderizedItem"
+            />
+          </template>
+          <template v-else>
+            <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
+              <span class="spr-body-sm-regular spr-m-0">No results found</span>
+            </div>
+          </template>
+        </div>
+      </template>
     </template>
   </Menu>
 </template>

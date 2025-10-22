@@ -1,4 +1,6 @@
 ---
+title: Single Select
+descripttion: Selects are interactive components that allow users to choose from a list of options.
 outline: 'deep'
 ---
 
@@ -10,7 +12,7 @@ Selects are interactive components that allow users to choose from a list of opt
 
 <div class="spr-grid spr-gap-4">
   <spr-select
-    id="sample-selectBasic"
+    id="select-basic"
     v-model="selectModel.selectBasic"
     label="Select Label"
     placeholder="Select an option"
@@ -25,7 +27,7 @@ Selects are interactive components that allow users to choose from a list of opt
 ```vue
 <template>
   <spr-select
-    id="sample-select"
+    id="select-basic"
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
@@ -60,7 +62,7 @@ You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-ite
 
 <div class="spr-grid spr-gap-4">
   <spr-select
-    id="sample-selectGroupedItemsBy"
+    id="select-grouped-items-by"
     v-model="selectModel.selectGroupedItemsBy"
     label="Select Label"
     placeholder="Select an option"
@@ -73,7 +75,7 @@ You can group items by `default`, `A-Z` or `Z-A` order by passing the `group-ite
 <template>
   <div class="spr-grid spr-gap-4">
     <spr-select
-      id="sample-select"
+      id="select-grouped-items-by"
       v-model="selectModel"
       label="Select Label"
       placeholder="Select an option"
@@ -92,7 +94,7 @@ The search feature allows users to quickly filter and find specific items within
 
 <div class="spr-grid spr-gap-4">
   <spr-select
-    id="sample-selectSearch"
+    id="select-search"
     v-model="selectModel.selectSearch"
     label="Select Label"
     placeholder="Select an option"
@@ -108,7 +110,7 @@ The search feature allows users to quickly filter and find specific items within
 ```vue
 <template>
   <spr-select
-    id="sample-select"
+    id="select-search"
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
@@ -142,10 +144,9 @@ You can disable local search by passing the `disabled-local-search` prop. This i
 
 Use `@searchString` emit to get the search string when the user types in the search input. This allows you to handle the search logic externally, such as fetching options from an API based on the search query.
 
-````vue
 <div class="spr-grid spr-gap-4">
   <spr-select
-    id="sample-selectSearchDisabledLocalSearch"
+    id="select-search-disabled-local-search"
     v-model="selectModel.selectSearchDisabledLocalSearch"
     label="Select Label"
     placeholder="Select an option"
@@ -162,7 +163,7 @@ Use `@searchString` emit to get the search string when the user types in the sea
 ```vue
 <template>
   <spr-select
-    id="sample-select"
+    id="select-search-disabled-local-search"
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
@@ -191,7 +192,7 @@ const options = ref([
   { text: '89 Quince', value: '50' },
 ]);
 </script>
-````
+```
 
 ## Pre-Selected Items
 
@@ -204,7 +205,7 @@ Pre-selected items are options that are automatically selected when the select i
 
 <div class="spr-grid spr-gap-4">
   <spr-select
-    id="sample-selectPreSelectedItems"
+    id="select-pre-selected-items"
     v-model="selectModel.selectPreSelectedItems"
     label="Select Label"
     placeholder="Select an option"
@@ -223,7 +224,7 @@ Pre-selected items are options that are automatically selected when the select i
 <template>
   <div class="spr-grid spr-gap-4">
     <spr-select
-      id="sample-select"
+      id="select-pre-selected-items"
       v-model="selectModel"
       label="Select Label"
       placeholder="Select an option"
@@ -244,7 +245,7 @@ You can also pre-select items with search functionality. This allows users to se
 
 <div class="spr-mt-4">
   <spr-select
-    id="sample-selectPreSelectedItemsSearch"
+    id="select-pre-selected-items-with-search"
     v-model="selectModel.selectPreSelectedItemsWithSearch"
     label="Select Label"
     placeholder="Select an option"
@@ -264,7 +265,7 @@ The default placement is `bottom`.
 <div class="spr-grid spr-gap-4">
   <div class="spr-flex spr-gap-4">
     <spr-select
-      id="sample-selectPlacements"
+      id="select-placement-auto"
       v-model="selectModel.selectPlacements"
       label="Auto"
       placeholder="Select an option"
@@ -273,7 +274,7 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select
-      id="sample-selectPlacements"
+      id="select-placement-auto-start"
       v-model="selectModel.selectPlacements"
       label="Auto Start"
       placeholder="Select an option"
@@ -282,7 +283,7 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select
-      id="sample-selectPlacements"
+      id="select-placement-auto-end"
       v-model="selectModel.selectPlacements"
       label="Auto End"
       placeholder="Select an option"
@@ -293,7 +294,7 @@ The default placement is `bottom`.
   </div>
   <div class="spr-flex spr-gap-4">
     <spr-select
-      id="sample-selectPlacements"
+      id="select-placement-top"
       v-model="selectModel.selectPlacements"
       label="Top"
       placeholder="Select an option"
@@ -302,7 +303,7 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select
-      id="sample-selectPlacements"
+      id="select-placement-top-start"
       v-model="selectModel.selectPlacements"
       label="Top Start"
       placeholder="Select an option"
@@ -311,7 +312,7 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select
-      id="sample-selectPlacements"
+      id="select-placement-top-end"
       v-model="selectModel.selectPlacements"
       label="Top End"
       placeholder="Select an option"
@@ -322,7 +323,7 @@ The default placement is `bottom`.
   </div>
   <div class="spr-flex spr-gap-4">
     <spr-select
-      id="sample-selectPlacements"
+      id="select-placement-right"
       v-model="selectModel.selectPlacements"
       label="Right"
       placeholder="Select an option"
@@ -331,7 +332,7 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select
-      id="sample-selectPlacements"
+      id="select-placement-right-start"
       v-model="selectModel.selectPlacements"
       label="Right Start"
       placeholder="Select an option"
@@ -340,7 +341,7 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select
-      id="sample-selectPlacements"
+      id="select-placement-right-end"
       v-model="selectModel.selectPlacements"
       label="Right End"
       placeholder="Select an option"
@@ -351,7 +352,7 @@ The default placement is `bottom`.
   </div>
   <div class="spr-flex spr-gap-4">
     <spr-select
-      id="sample-selectPlacements"
+      id="select-placement-bottom"
       v-model="selectModel.selectPlacements"
       label="Bottom"
       placeholder="Select an option"
@@ -360,7 +361,7 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select
-      id="sample-selectPlacements"
+      id="select-placement-bottom-start"
       v-model="selectModel.selectPlacements"
       label="Bottom Start"
       placeholder="Select an option"
@@ -369,7 +370,7 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select
-      id="sample-selectPlacements"
+      id="select-placement-bottom-end"
       v-model="selectModel.selectPlacements"
       label="Bottom End"
       placeholder="Select an option"
@@ -380,7 +381,7 @@ The default placement is `bottom`.
   </div>
   <div class="spr-flex spr-gap-4">
     <spr-select
-      id="sample-selectPlacements"
+      id="select-placement-left"
       v-model="selectModel.selectPlacements"
       label="Left"
       placeholder="Select an option"
@@ -389,7 +390,7 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select
-      id="sample-selectPlacements"
+      id="select-placement-left-start"
       v-model="selectModel.selectPlacements"
       label="Left Start"
       placeholder="Select an option"
@@ -398,7 +399,7 @@ The default placement is `bottom`.
       popper-width="200px"
     />
     <spr-select
-      id="sample-selectPlacements"
+      id="select-placement-left-end"
       v-model="selectModel.selectPlacements"
       label="Left End"
       placeholder="Select an option"
@@ -415,7 +416,7 @@ The clearable feature allows users to easily remove the selected value from the 
 
 <div class="spr-grid spr-gap-4">
   <spr-select
-    id="sample-selectClearable"
+    id="select-clearable"
     v-model="selectModel.selectClearable"
     label="Select Label"
     placeholder="Select an option"
@@ -438,7 +439,7 @@ You can modify the width of the select component in two ways: by adjusting the w
 
 <div>
   <spr-select
-    id="sample-selectWidth"
+    id="select-width"
     v-model="selectModel.selectWidth"
     label="Select Label"
     placeholder="Select an option"
@@ -451,7 +452,7 @@ You can modify the width of the select component in two ways: by adjusting the w
 ```vue
 <template>
   <spr-select
-    id="sample-select"
+    id="select-width"
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
@@ -478,13 +479,13 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
 
 <spr-modal v-model="modalModel" title="Select with Modal">
    <spr-select
-    id="sample-selectStrategy-modal"
+    id="select-popper-strategy"
     v-model="selectModel.selectStrategy"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
-    wrapper-position="initial"
     popper-strategy="fixed"
+    wrapper-position="initial"
   />
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -497,13 +498,13 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
 
   <spr-modal v-model="modalModel" title="Select with Modal">
     <spr-select
-      id="sample-select"
+      id="select-popper-strategy"
       v-model="selectModel"
       label="Select Label"
       placeholder="Select an option"
       :options="options"
-      wrapper-position="initial"
       popper-strategy="fixed"
+      wrapper-position="initial"
     />
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
@@ -511,6 +512,70 @@ Do not forget to pass prop `wrapperPosition` to overwrite `relative` position in
       consequat.
     </p>
   </spr-modal>
+</template>
+```
+
+You can also use the `popper-container` prop to specify a custom container for the popper element. This is useful when you want to restrict the popper's positioning context to a specific element within your application.
+
+Since the popper is being teleported to a different container, the `popper-width` prop will not work as expected. To set a custom width for the popper in this case, you can use custom styles or CSS classes to define the desired width.
+
+<div>
+  <spr-dropdown
+    id="dropdown-custom-popper"
+    width="300px"
+    :triggers="['hover', 'click']"
+    :popper-triggers="['hover', 'click']"
+    popper-width="500px"
+    :auto-hide="false"
+  >
+    <spr-button class="spr-w-full" tone="success" has-icon>
+      <span>Custom Popper With Dropdown</span>
+      <Icon icon="ph:caret-down" />
+    </spr-button>
+    <template #popper>
+      <spr-select
+        id="select-dropdown-custom-popper"
+        v-model="selectModel.selectStrategy"
+        label="Select Label"
+        placeholder="Select an option"
+        :options="options"
+        popper-strategy="fixed"
+        popper-container="#dropdown-custom-popper"
+        wrapper-position="relative"
+        placement="bottom"
+      />
+    </template>
+  </spr-dropdown>
+</div>
+
+```vue
+<template>
+  <spr-dropdown
+    id="dropdown-custom-popper"
+    width="300px"
+    :triggers="['hover', 'click']"
+    :popper-triggers="['hover', 'click']"
+    popper-width="500px"
+    :auto-hide="false"
+  >
+    <spr-button class="spr-w-full" tone="success" has-icon>
+      <span>Custom Popper With Dropdown</span>
+      <Icon icon="ph:caret-down" />
+    </spr-button>
+    <template #popper>
+      <spr-select
+        id="select-dropdown-custom-popper"
+        v-model="selectModel"
+        label="Select Label"
+        placeholder="Select an option"
+        :options="options"
+        popper-strategy="fixed"
+        popper-container="#dropdown-custom-popper"
+        wrapper-position="relative"
+        placement="bottom"
+      />
+    </template>
+  </spr-dropdown>
 </template>
 ```
 
@@ -522,7 +587,7 @@ When working with infinite scroll and API-driven selects, you can use the `displ
 
 <div>
   <spr-select
-    id="sample-selectInfiniteScroll"
+    id="select-infinite-scroll"
     v-model="selectModel.selectInfiniteScroll"
     label="Select Label"
     placeholder="Select an option"
@@ -542,7 +607,7 @@ When working with infinite scroll and API-driven selects, you can use the `displ
 ```vue
 <template>
   <spr-select
-    id="sample-select"
+    id="select-infinite-scroll"
     v-model="selectModel"
     label="Select Label"
     placeholder="Select an option"
@@ -616,7 +681,7 @@ For guidance on implementing error, active, and disabled states in the select co
 
 <div>
   <spr-select
-    id="sample-select"
+    id="select-active-state"
     v-model="selectModel.selectActiveState"
     label="Select Label"
     placeholder="Select an option"
@@ -626,21 +691,23 @@ For guidance on implementing error, active, and disabled states in the select co
 </div>
 
 ```vue
-<spr-select
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  active
-/>
+<template>
+  <spr-select
+    id="select-active-state"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    active
+  />
+</template>
 ```
 
 ### Disabled State
 
 <div>
   <spr-select
-    id="sample-select"
+    id="select-disabled-state"
     v-model="selectModel.selectDisabledState"
     label="Select Label"
     placeholder="Select an option"
@@ -650,21 +717,23 @@ For guidance on implementing error, active, and disabled states in the select co
 </div>
 
 ```vue
-<spr-select
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  disabled
-/>
+<template>
+  <spr-select
+    id="select-disabled-state"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    disabled
+  />
+</template>
 ```
 
 ### Error State
 
 <div>
   <spr-select
-    id="sample-select"
+    id="select-error-state"
     v-model="selectModel.selectErrorState"
     label="Select Label"
     placeholder="Select an option"
@@ -674,14 +743,16 @@ For guidance on implementing error, active, and disabled states in the select co
 </div>
 
 ```vue
-<spr-select
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  error
-/>
+<template>
+  <spr-select
+    id="select-error-state"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    error
+  />
+</template>
 ```
 
 ## Helper Message
@@ -692,8 +763,8 @@ To display the helper message, set the `display-helper` prop to `true` and add t
 
 <div class="spr-grid spr-gap-8">
   <spr-select
-    id="sample-select"
-    v-model="selectModel.selectErrorState"
+    id="select-helper-message"
+    v-model="selectModel.selectHelperMessage"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -701,8 +772,8 @@ To display the helper message, set the `display-helper` prop to `true` and add t
     display-helper
   />
   <spr-select
-    id="sample-select"
-    v-model="selectModel.selectErrorState"
+    id="select-helper-message-error"
+    v-model="selectModel.selectHelperMessage"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -714,35 +785,37 @@ To display the helper message, set the `display-helper` prop to `true` and add t
 </div>
 
 ```vue
-<spr-select
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  helper-text="This is a helper message"
-  display-helper
-/>
+<template>
+  <spr-select
+    id="select-helper-message"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    helper-text="This is a helper message"
+    display-helper
+  />
 
-<spr-select
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  helper-text="This is an error message"
-  helper-icon="ph:warning-circle-fill"
-  display-helper
-  error
-/>
+  <spr-select
+    id="select-helper-message-error"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    helper-text="This is an error message"
+    helper-icon="ph:warning-circle-fill"
+    display-helper
+    error
+  />
+</template>
 ```
 
 Alternatively, you can use the `helperMessage` slot to display a custom helper message.
 
 <div class="spr-grid spr-gap-8">
   <spr-select
-    id="sample-select"
-    v-model="selectModel.selectErrorState"
+    id="select-helper-message-slot"
+    v-model="selectModel.selectHelperMessage"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -751,8 +824,8 @@ Alternatively, you can use the `helperMessage` slot to display a custom helper m
     <template #helperMessage>This is a helper message</template>
   </spr-select>
   <spr-select
-    id="sample-select"
-    v-model="selectModel.selectErrorState"
+    id="select-helper-message-error-slot"
+    v-model="selectModel.selectHelperMessage"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
@@ -767,31 +840,33 @@ Alternatively, you can use the `helperMessage` slot to display a custom helper m
 </div>
 
 ```vue
-<spr-select
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  display-helper
->
-  <template #helperMessage>This is a helper message</template>
-</spr-select>
+<template>
+  <spr-select
+    id="select-helper-message-slot"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    display-helper
+  >
+    <template #helperMessage>This is a helper message</template>
+  </spr-select>
 
-<spr-select
-  id="sample-select"
-  v-model="selectModel"
-  label="Select Label"
-  placeholder="Select an option"
-  :options="options"
-  display-helper
-  error
->
-  <template #helperMessage>
-    <icon icon="ph:warning-circle-fill" width="20px" height="20px" />
-    <span>This is an error message</span>
-  </template>
-</spr-select>
+  <spr-select
+    id="select-helper-message-error-slot"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    display-helper
+    error
+  >
+    <template #helperMessage>
+      <icon icon="ph:warning-circle-fill" width="20px" height="20px" />
+      <span>This is an error message</span>
+    </template>
+  </spr-select>
+</template>
 ```
 
 ## Supported Value Types
@@ -804,7 +879,7 @@ For single selection of primitive types like strings or numbers:
 
 <div>
   <spr-select
-    id="select-number"
+    id="select-string"
     v-model="stringValue"
     label="Select Label"
     placeholder="Select an option"
@@ -816,7 +891,7 @@ Value: {{ stringValue }}
 
 <div>
   <spr-select
-    id="number-select"
+    id="select-number"
     v-model="numberValue"
     label="Select Label"
     placeholder="Select an option"
@@ -829,7 +904,7 @@ Value: {{ numberValue }}
 ```vue
 <template>
   <spr-select
-    id="string-select"
+    id="select-string"
     v-model="stringValue"
     label="Select Label"
     placeholder="Select an option"
@@ -837,7 +912,7 @@ Value: {{ numberValue }}
   />
 
   <spr-select
-    id="number-select"
+    id="select-number"
     v-model="numberValue"
     label="Select Label"
     placeholder="Select an option"
@@ -874,7 +949,7 @@ For single selection of full objects:
 
 <div>
   <spr-select
-    id="object-select"
+    id="select-object"
     v-model="selectedUser"
     label="Select Label"
     placeholder="Select an option"
@@ -889,7 +964,7 @@ Value: {{ selectedUser }}
 ```vue
 <template>
   <spr-select
-    id="object-select"
+    id="select-object"
     v-model="selectedUser"
     label="Select Label"
     placeholder="Select an option"
@@ -909,6 +984,260 @@ const userList = ref([
   { id: 1, name: 'John', role: 'Developer' },
   { id: 2, name: 'Jane', role: 'Designer' },
   { id: 3, name: 'Bob', role: 'Manager' }
+]);
+</script>
+```
+
+## Item Subtext
+
+The item subtext feature allows you to display additional information below the main text of each option in the select list. This can be useful for providing context or details about each option. Use the `subtext` props in the options array to specify the subtext for each option.
+
+<div>
+  <spr-select
+    id="select-item-subtext"
+    v-model="selectModel.selectItemSubtext"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="optionsWithSubtext"
+  />
+</div>
+
+```vue
+<template>
+  <spr-select
+    id="select-item-subtext"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="optionsWithSubtext"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectModel = ref('');
+
+const optionsWithSubtext = ref([
+  { text: 'Apple', value: 'apple', subtext: 'A sweet red fruit' },
+  { text: 'Banana', value: 'banana', subtext: 'A long yellow fruit' },
+  { text: 'Cherry', value: 'cherry', subtext: 'A small red fruit' },
+  { text: 'Date', value: 'date', subtext: 'A sweet brown fruit' },
+  { text: 'Elderberry', value: 'elderberry', subtext: 'A small dark purple fruit' },
+]);
+</script>
+```
+
+## Item Icon
+
+The item icon feature allows you to display an icon alongside the text of each option in the select list. This can help users quickly identify options based on visual cues. Use the `icon` props in the options array to specify the icon for each option.
+
+Icon uses phosphor icons from [Iconify](https://icon-sets.iconify.design/)
+
+<div>
+  <spr-select
+    id="select-item-icon"
+    v-model="selectModel.selectItemIcon"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    item-icon="ph:alarm"
+  />
+</div>
+
+```vue
+<template>
+  <spr-select
+    id="select-item-icon"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    item-icon="ph:alarm"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectModel = ref('');
+
+const options = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+]);
+</script>
+```
+
+### Item Custom Icon
+
+The item custom icon feature allows you to display different icons for each option in the select list. This is useful for providing unique visual representations for each option. Add property `icon` in the options array to specify the custom icon for each option.
+
+<div>
+  <spr-select
+    id="select-item-custom-icon"
+    v-model="selectModel.selectItemCustomIcon"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="optionsWithCustomIcon"
+  />
+</div>
+
+```vue
+<template>
+  <spr-select
+    id="select-item-custom-icon"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="optionsWithCustomIcon"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectModel = ref('');
+
+const optionsWithCustomIcon = ref([
+  { text: 'Acorn', value: 'acorn', icon: 'ph:acorn' },
+  { text: 'Address Book', value: 'address book', icon: 'ph:address-book' },
+  { text: 'Alarm', value: 'alarm', icon: 'ph:alarm' },
+  { text: 'Angle', value: 'angle', icon: 'ph:angle' },
+  { text: 'Apple Logo', value: 'apple logo', icon: 'ph:apple-logo' },
+]);
+</script>
+```
+
+## Item Lozenge
+
+The item lozenge feature allows you to display a colored lozenge (badge) alongside the text of each option in the select list. This can be useful for categorizing or highlighting options.
+
+Lozenge Properties Reference:
+
+- `label`: The text label displayed inside the lozenge.
+- `tone`: The color tone of the lozenge. Available tones are: 'plain', 'pending', 'information', 'success', 'danger', 'neutral', 'caution'.
+- `fill`: A boolean indicating whether the lozenge should have a filled background (true) or an outlined style (false).
+- `removevalue`: A boolean indicating whether to show a remove icon inside the lozenge (true) or not (false).
+- `url`: The URL of the avatar image to be displayed inside the lozenge.
+- `visible`: A boolean indicating whether the lozenge is visible (true) or hidden (false).
+- `loading`: A boolean indicating whether to show a loading spinner inside the lozenge (true) or not (false).
+- `icon`: The icon to be displayed inside the lozenge.
+- `postfixIcon`: The icon to be displayed at the end of the lozenge.
+- `interactive`: A boolean indicating whether the lozenge is interactive (true) or not (false).
+- `dropdown`: A boolean indicating whether to show a dropdown arrow inside the lozenge (true) or not (false).
+
+### Display Items as Lozenge
+
+Add property `lozenge` to display the selected item as a lozenge in the select input. Then if you want to change the lozenge style for each option, you can use `lozengeProps` to customize the lozenge appearance.
+
+<div>
+  <spr-select
+    id="select-display-item-lozenge"
+    v-model="selectModel.selectItemLozenge"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    lozenge
+  />
+</div>
+
+```vue
+<template>
+  <spr-select
+    id="select-display-item-lozenge"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    lozenge
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectModel = ref('');
+
+const options = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Carrot', value: 'carrot' },
+  { text: 'Bread', value: 'bread' },
+  { text: 'Chicken', value: 'chicken' },
+  { text: 'Milk', value: 'milk' },
+]);
+</script>
+```
+
+### Append Lozenge
+
+Add property `lozenge` in the options array to specify the lozenge for each option.
+
+<div>
+  <spr-select
+    id="select-item-lozenge"
+    v-model="selectModel.selectItemLozengeAppend"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="optionsWithLozenge"
+  />
+</div>
+
+```vue
+<template>
+  <spr-select
+    id="select-item-lozenge"
+    v-model="selectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="optionsWithLozenge"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectModel = ref('');
+
+const optionsWithLozenge = ref([
+  {
+    text: 'Apple',
+    value: 'apple',
+    lozenge: { label: 'Fruit', tone: 'plain' },
+  },
+  {
+    text: 'Carrot',
+    value: 'carrot',
+    lozenge: { label: 'Vegetable', tone: 'pending' },
+  },
+  {
+    text: 'Bread',
+    value: 'bread',
+    lozenge: { label: 'Grain', tone: 'information' },
+  },
+  {
+    text: 'Chicken',
+    value: 'chicken',
+    lozenge: { label: 'Protein', tone: 'success' },
+  },
+  {
+    text: 'Milk',
+    value: 'milk',
+    lozenge: { label: 'Dairy', tone: 'danger' },
+  },
+  {
+    text: 'Eggs',
+    value: 'eggs',
+    lozenge: { label: 'Poultry', tone: 'neutral' },
+  },
+  {
+    text: 'Fish',
+    value: 'fish',
+    lozenge: { label: 'Seafood', tone: 'caution' },
+  },
 ]);
 </script>
 ```
@@ -1001,7 +1330,7 @@ const userList = ref([
     <tr>
       <td><code>searchable</code></td>
       <td>
-        Searchable is to allow typing in the input. If searchable is not set or is false, 
+        Searchable is to allow typing in the input. If searchable is not set or is false,
         the input will be readonly and users cannot type.
       </td>
       <td>Boolean</td>
@@ -1010,13 +1339,25 @@ const userList = ref([
     <tr>
       <td><code>disabled-local-search</code></td>
       <td>
-        Disables local search when the searchable prop is set to true. 
+        Disables local search when the searchable prop is set to true.
         This is useful when you want to handle search via API only.
       </td>
       <td>Boolean</td>
       <td>false</td>
     </tr>
     <tr>
+      <td><code>triggers</code></td>
+      <td>Array of events that will trigger the dropdown to open</td>
+      <td>'click' | 'hover' | 'focus' | 'touch'[]</td>
+      <td>['click']</td>
+    </tr>
+    <tr>
+      <td><code>popper-triggers</code></td>
+      <td>Array of events that will trigger the dropdown menu (popper element) to open</td>
+      <td>'click' | 'hover' | 'focus' | 'touch'[]</td>
+      <td>[]</td>
+    </tr>
+     <tr>
       <td><code>popper-strategy</code></td>
       <td>Defines how the select's popper is positioned: 'absolute' or 'fixed'</td>
       <td>String</td>
@@ -1027,6 +1368,18 @@ const userList = ref([
       <td>Width of the select's popper</td>
       <td>String</td>
       <td>'100%'</td>
+    </tr>
+    <tr>
+      <td><code>popper-container</code></td>
+      <td>CSS selector or HTMLElement to specify a custom container for the popper element</td>
+      <td>String | HTMLElement</td>
+      <td>''</td>
+    </tr>
+    <tr>
+      <td><code>auto-hide</code></td>
+      <td>When true, automatically hides the dropdown when clicking outside it</td>
+      <td>Boolean</td>
+      <td>true</td>
     </tr>
     <tr>
       <td><code>width</code></td>
@@ -1051,6 +1404,18 @@ const userList = ref([
       <td>Allows the user to clear the selected value with a clear button</td>
       <td>Boolean</td>
       <td>false</td>
+    </tr>
+    <tr>
+      <td><code>lozenge</code></td>
+      <td>Enables lozenge mode for the list items. When enabled, items are displayed as lozenges.</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td><code>item-icon</code></td>
+      <td>Any icon from iconify (e.g. ph:trash)</td>
+      <td>String</td>
+      <td>''</td>
     </tr>
   </tbody>
 </table>
@@ -1094,6 +1459,27 @@ const userList = ref([
   </tbody>
 </table>
 
+### Exposed Methods
+
+<table>
+  <thead>
+    <tr>
+      <th class="spr-min-w-[180px]">Method</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>handleClear</code>
+      </td>
+      <td>Clears the current selection.</td>
+      <td><code>()</code></td>
+    </tr>
+  </tbody>
+</table>
+
 ## Product Uses
 
 <div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
@@ -1113,6 +1499,7 @@ import SprChips from "@/components/chips/chips.vue";
 import SprLozenge from "@/components/lozenge/lozenge.vue"
 import SprModal from "@/components/modal/modal.vue"
 import SprLogo from "@/components/logo/logo.vue";
+import SprDropdown from "@/components/dropdown/dropdown.vue";
 
 // Import optionsType for typing
 import type { optionsType } from '@/components/list/list';
@@ -1132,6 +1519,12 @@ const selectModel = ref({
   selectActiveState: '',
   selectDisabledState: '',
   selectErrorState: '',
+  selectHelperMessage: '',
+  selectItemSubtext: '',
+  selectItemIcon: '',
+  selectItemCustomIcon: '',
+  selectItemLozenge: '',
+  selectItemLozengeAppend: '',
 });
 
 const options = ref([
@@ -1166,6 +1559,60 @@ const options = ref([
   { text: 'Cantaloupe', value: 'cantaloupe' },
   { text: 'Dragonfruit', value: 'dragonfruit' },
   { text: 'Pineapple', value: 'pineapple' },
+]);
+
+const optionsWithSubtext = ref([
+  { text: 'Apple', value: 'apple', subtext: 'A sweet red fruit' },
+  { text: 'Banana', value: 'banana', subtext: 'A long yellow fruit' },
+  { text: 'Cherry', value: 'cherry', subtext: 'A small red fruit' },
+  { text: 'Date', value: 'date', subtext: 'A sweet brown fruit' },
+  { text: 'Elderberry', value: 'elderberry', subtext: 'A small dark purple fruit' },
+]);
+
+const optionsWithCustomIcon = ref([
+  { text: 'Acorn', value: 'acorn', icon: 'ph:acorn' },
+  { text: 'Address Book', value: 'address book', icon: 'ph:address-book' },
+  { text: 'Alarm', value: 'alarm', icon: 'ph:alarm' },
+  { text: 'Angle', value: 'angle', icon: 'ph:angle' },
+  { text: 'Apple Logo', value: 'apple logo', icon: 'ph:apple-logo' },
+]);
+
+const optionsWithLozenge = ref([
+  {
+    text: 'Apple',
+    value: 'apple',
+    lozenge: { label: 'Fruit', tone: 'plain' },
+  },
+  {
+    text: 'Carrot',
+    value: 'carrot',
+    lozenge: { label: 'Vegetable', tone: 'pending' },
+  },
+  {
+    text: 'Bread',
+    value: 'bread',
+    lozenge: { label: 'Grain', tone: 'information' },
+  },
+  {
+    text: 'Chicken',
+    value: 'chicken',
+    lozenge: { label: 'Protein', tone: 'success' },
+  },
+  {
+    text: 'Milk',
+    value: 'milk',
+    lozenge: { label: 'Dairy', tone: 'danger' },
+  },
+  {
+    text: 'Eggs',
+    value: 'eggs',
+    lozenge: { label: 'Poultry', tone: 'neutral' },
+  },
+  {
+    text: 'Fish',
+    value: 'fish',
+    lozenge: { label: 'Seafood', tone: 'caution' },
+  },
 ]);
 
 const modalModel = ref(false);
@@ -1228,11 +1675,11 @@ const handleInfiniteScrollTrigger = () => {
 const getNextOptionsViaAPI = async () => {
   try {
     const response = await fetch(`https://api.thedogapi.com/v1/breeds?page=${pagination.value.currentPage}&limit=10`);
-    
+
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    
+
     const options = await response.json();
 
     optionsAPI.value = options.length
@@ -1246,7 +1693,7 @@ const getNextOptionsViaAPI = async () => {
       : [];
 
     APIisLoading.value = false;
-    
+
   } catch (error) {
     console.error('There was a problem with the fetch operation:', error);
   }

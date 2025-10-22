@@ -743,8 +743,13 @@ test.describe('AttributeFilter Component', () => {
       const searchInput = component.getByPlaceholder('Search...');
       await expect(searchInput).toBeVisible();
 
-      // Test that we can type in the search input to verify it's functional
-      await searchInput.fill('test');
+      // Test that we can interact with the search input - focus and type
+      await searchInput.focus();
+      await expect(searchInput).toBeFocused();
+
+      // Clear any existing value and type new text
+      await searchInput.clear();
+      await searchInput.type('test');
       await expect(searchInput).toHaveValue('test');
     });
   });

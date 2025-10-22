@@ -19,7 +19,7 @@ interface MultiSelectClasses {
 }
 
 export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<MultiSelectEmitTypes>['emit']) => {
-  const { displayText, options, textField, valueField, active, disabled, error, disabledLocalSearch } = toRefs(props);
+  const { displayText, options, textField, valueField, active, disabled, error } = toRefs(props);
 
   const multiSelectClasses: ComputedRef<MultiSelectClasses> = computed(() => {
     const baseClasses = classNames('spr-flex spr-flex-col spr-gap-size-spacing-4xs');
@@ -256,56 +256,69 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
    * Handles stringified objects and updates the input text accordingly.
    */
   const updateMultiSelectedItemsFromValue = () => {
-    if (!multiSelectOptions.value.length) return;
+    const values = normalizedValue.value;
 
-    if (!disabledLocalSearch.value) {
-      const values = normalizedValue.value;
-      if (!values || !values.length) {
-        multiSelectedListItems.value = [];
-        inputText.value = '';
-        inputTextBackup.value = '';
-
-        return;
-      }
-      multiSelectedListItems.value = multiSelectOptions.value.filter((item) => {
-        return values.some((val) => {
-          let itemVal = item.value;
-          let valToCompare = val;
-
-          if (typeof itemVal === 'string' && itemVal.startsWith('{') && itemVal.endsWith('}')) {
-            try {
-              itemVal = JSON.parse(itemVal);
-            } catch {
-              // ignore
-            }
-          }
-
-          if (typeof valToCompare === 'string' && valToCompare.startsWith('{') && valToCompare.endsWith('}')) {
-            try {
-              valToCompare = JSON.parse(valToCompare);
-            } catch {
-              // ignore
-            }
-          }
-
-          if (typeof itemVal === 'object' && typeof valToCompare === 'object') {
-            return JSON.stringify(itemVal) === JSON.stringify(valToCompare);
-          }
-
-          return itemVal == valToCompare;
-        });
-      });
+    if (!values || !values.length) {
+      multiSelectedListItems.value = [];
+      inputText.value = '';
+      inputTextBackup.value = '';
+      return;
     }
 
+    // Always keep multiSelectedListItems in sync with selected values
+    multiSelectedListItems.value = multiSelectOptions.value.filter((item) => {
+      return values.some((val) => {
+        let itemVal = item.value;
+        let valToCompare = val;
+
+        if (typeof itemVal === 'string' && itemVal.startsWith('{') && itemVal.endsWith('}')) {
+          try {
+            itemVal = JSON.parse(itemVal);
+          } catch {}
+        }
+        if (typeof valToCompare === 'string' && valToCompare.startsWith('{') && valToCompare.endsWith('}')) {
+          try {
+            valToCompare = JSON.parse(valToCompare);
+          } catch {}
+        }
+        if (typeof itemVal === 'object' && typeof valToCompare === 'object') {
+          return JSON.stringify(itemVal) === JSON.stringify(valToCompare);
+        }
+        return itemVal == valToCompare;
+      });
+    });
+
     // Determine input text based on whether count-only mode is enabled
-    if (props.displaySelectedCountOnly && multiSelectedListItems.value.length) {
-      inputText.value = `${multiSelectedListItems.value.length} item${
-        multiSelectedListItems.value.length === 1 ? '' : 's'
-      } selected`;
-    } else if (multiSelectedListItems.value.length > 3) {
-      inputText.value = `${multiSelectedListItems.value.length} items selected`;
+    if (props.displaySelectedCountOnly && values.length) {
+      inputText.value = `${values.length} item${values.length === 1 ? '' : 's'} selected`;
+    } else if (values.length > 3) {
+      inputText.value = `${values.length} items selected`;
     } else {
-      inputText.value = multiSelectedListItems.value.map((item) => item.text).join(', ');
+      // Safely get display text for each value
+      inputText.value = values
+        .map((val) => {
+          // Try to find the corresponding option for display text
+          const found = multiSelectOptions.value.find((opt) => {
+            let optVal = opt.value;
+            let v = val;
+            if (typeof optVal === 'string' && optVal.startsWith('{') && optVal.endsWith('}')) {
+              try {
+                optVal = JSON.parse(optVal);
+              } catch {}
+            }
+            if (typeof v === 'string' && v.startsWith('{') && v.endsWith('}')) {
+              try {
+                v = JSON.parse(v);
+              } catch {}
+            }
+            if (typeof optVal === 'object' && typeof v === 'object') {
+              return JSON.stringify(optVal) === JSON.stringify(v);
+            }
+            return optVal == v;
+          });
+          return found ? found.text : typeof val === 'string' || typeof val === 'number' ? String(val) : '';
+        })
+        .join(', ');
     }
 
     // Always update backup to match inputText after update

@@ -76,6 +76,14 @@ export default defineConfig({
               link: '/documentation/components/accordion',
             },
             {
+              text: 'Attribute Filter',
+              link: '/documentation/components/attribute-filter',
+            },
+            {
+              text: 'Audit Trail',
+              link: '/documentation/components/audit-trail',
+            },
+            {
               text: 'Avatar',
               link: '/documentation/components/avatar',
             },
@@ -100,11 +108,14 @@ export default defineConfig({
             {
               text: 'Calendar',
               link: '/documentation/components/calendar',
+              items: [
+                {
+                  text: 'Calendar Cell',
+                  link: '/documentation/components/calendar-cell',
+                },
+              ],
             },
-            {
-              text: 'Calendar Cell',
-              link: '/documentation/components/calendar-cell',
-            },
+
             {
               text: 'Card',
               link: '/documentation/components/card',
@@ -132,6 +143,10 @@ export default defineConfig({
             {
               text: 'Floating Action',
               link: '/documentation/components/floating-action',
+            },
+            {
+              text: 'Icon',
+              link: '/documentation/components/icon',
             },
             {
               text: 'List',
@@ -176,6 +191,10 @@ export default defineConfig({
               link: '/documentation/components/stepper',
             },
             {
+              text: 'Popper',
+              link: '/documentation/components/popper',
+            },
+            {
               text: 'Table',
               link: '/documentation/components/table/table',
               items: [
@@ -210,6 +229,10 @@ export default defineConfig({
                   text: 'Date Range Picker',
                   link: '/documentation/components/date-picker/date-range-picker',
                 },
+                {
+                  text: 'Reusable Calendar',
+                  link: '/documentation/components/date-picker/reusable-calendar',
+                },
               ],
             },
             {
@@ -218,7 +241,17 @@ export default defineConfig({
             },
             {
               text: 'Input',
-              link: '/documentation/components/input',
+              link: '/documentation/components/input/input',
+              items: [
+                { text: 'Search Input', link: '/documentation/components/input/input-search' },
+                { text: 'Username Input', link: '/documentation/components/input/input-username' },
+                { text: 'Email Input', link: '/documentation/components/input/input-email' },
+                { text: 'Password Input', link: '/documentation/components/input/input-password' },
+                { text: 'URL Input', link: '/documentation/components/input/input-url' },
+                { text: 'Contact Number Input', link: '/documentation/components/input/input-contact-number' },
+                { text: 'Dropdown Input', link: '/documentation/components/input/input-dropdown' },
+                { text: 'Currency Input', link: '/documentation/components/input/input-currency' },
+              ],
             },
             {
               text: 'Radio',
@@ -226,7 +259,7 @@ export default defineConfig({
             },
             {
               text: 'Select',
-              link: '/documentation/components/select/select-single',
+              link: '/documentation/components/select/select',
               items: [
                 {
                   text: 'Multi Select',

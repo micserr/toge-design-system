@@ -32,6 +32,7 @@ export const useModal = (props: ModalPropTypes, emit: SetupContext<ModalEmitType
         'spr-w-[480px] spr-max-w-[720px]': size.value === 'md',
         'spr-w-[720px] spr-max-w-[960px]': size.value === 'lg',
         'spr-w-[900px] spr-max-w-[1200px]': size.value === 'xl',
+        'spr-w-[1200px] spr-max-w-[1400px]': size.value === 'xxl',
       },
       { 'bounce-animation': staticBackdropClicked.value },
     );

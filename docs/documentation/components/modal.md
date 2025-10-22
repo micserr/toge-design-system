@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Modal
+descripttion: A modal is a versatile UI component that allows you to display important information, alerts, or prompts to users without requiring them to leave the current page. Typically containing a header, body, and footer, it can present anything from notifications to forms. Modals can be closed by the user, providing an intuitive way to deliver essential details or gather input while maintaining the flow of interaction.
+outline: deep
 ---
 
 # Modal
@@ -272,6 +274,9 @@ Modals come in different sizes to suit various use cases. You can adjust the mod
   <spr-button tone="success" @click="modalModel.modal10 = true">
     Extra Large (xl)
   </spr-button>
+  <spr-button tone="success" @click="modalModel.modal11 = true">
+    Extra Extra Large (xxl)
+  </spr-button>
 </div>
 
 <div>
@@ -311,6 +316,15 @@ Modals come in different sizes to suit various use cases. You can adjust the mod
       </div>
     </template>
   </spr-modal>
+  <spr-modal v-model="modalModel.modal11" size="xxl">
+    <template #header>Modal Header Slot</template>
+    <p class="!spr-m-0 spr-text-center">This is a sample extra extra large modal</p>
+    <template #footer>
+      <div class="spr-flex spr-w-full spr-justify-end">
+        <spr-button tone="success" @click="modalModel.modal11 = false">Close</spr-button>
+      </div>
+    </template>
+  </spr-modal>
 </div>
 
 ```vue
@@ -320,6 +334,7 @@ Modals come in different sizes to suit various use cases. You can adjust the mod
     <spr-button tone="success" @click="modalModel.medium = true">Medium (md)</spr-button>
     <spr-button tone="success" @click="modalModel.large = true">Large (lg)</spr-button>
     <spr-button tone="success" @click="modalModel.extraLarge = true">Extra Large (xl)</spr-button>
+    <spr-button tone="success" @click="modalModel.extraExtraLarge = true">Extra Extra Large (xxl)</spr-button>
   </div>
 
   <spr-modal v-model="modalModel.small" size="sm">
@@ -361,6 +376,15 @@ Modals come in different sizes to suit various use cases. You can adjust the mod
       </div>
     </template>
   </spr-modal>
+
+  <spr-modal v-model="modalModel.extraExtraLarge" size="xxl">
+    <template #header>Modal Header Slot</template>
+    <p class="!spr-m-0 spr-text-center">This is a sample extra extra large modal</p>
+    <template #footer>
+      <div class="spr-flex spr-w-full spr-justify-end">
+        <spr-button tone="success" @click="modalModel.extraExtraLarge = false">Close</spr-button>
+      </div>
+    </template>
 </template>
 
 <script setup lang="ts">
@@ -371,6 +395,7 @@ const modalModel = ref({
   medium: false,
   large: false,
   extraLarge: false,
+  extraExtraLarge: false,
 });
 </script>
 ```
@@ -380,16 +405,16 @@ const modalModel = ref({
 To prevent the modal from closing when the user clicks on the backdrop (the area outside the modal), you can disable this behavior by setting the appropriate prop, such as `staticBackdrop` to `true`. This ensures that the modal remains open even if the user interacts with the backdrop, requiring explicit user actions (like clicking a close button) to close the modal.
 
 <div>
-  <spr-button tone="success" @click="modalModel.modal11 = true">
+  <spr-button tone="success" @click="modalModel.modal12 = true">
     Open Modal
   </spr-button>
 
-  <spr-modal v-model="modalModel.modal11" staticBackdrop>
+  <spr-modal v-model="modalModel.modal12" staticBackdrop>
     <template #header>Modal Header Slot</template>
     <p class="!spr-m-0 spr-text-center">This is a modal</p>
     <template #footer>
       <div class="spr-flex spr-w-full spr-justify-end">
-        <spr-button tone="success" @click="modalModel.modal11 = false">Close</spr-button>
+        <spr-button tone="success" @click="modalModel.modal12 = false">Close</spr-button>
       </div>
     </template>
   </spr-modal>
@@ -454,9 +479,10 @@ const modalModel = ref<boolean>(false);
           <li><code>md</code>: Medium size (480px - 720px) - Default size, suitable for forms and moderate content</li>
           <li><code>lg</code>: Large size (720px - 960px) - For detailed forms or complex information</li>
           <li><code>xl</code>: Extra large size (900px - 1200px) - For extensive content or media-heavy information</li>
+          <li><code>xxl</code>: Extra extra large size (1200px - 1400px) - For very large content or complex layouts</li>
         </ul>
       </td>
-      <td>'sm' | 'md' | 'lg' | 'xl'</td>
+      <td>'sm' | 'md' | 'lg' | 'xl' | 'xxl'</td>
       <td>'md'</td>
     </tr>
     <tr>
@@ -557,5 +583,6 @@ const modalModel = ref({
   modal9: false,
   modal10: false,
   modal11: false,
+  modal12: false,
 });
 </script>

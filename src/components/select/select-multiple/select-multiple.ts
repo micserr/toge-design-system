@@ -24,12 +24,12 @@ const PLACEMENTS_TYPES = [
 ] as const;
 
 const POPPER_STRATEGY_TYPES = ['fixed', 'absolute'] as const;
+const TRIGGER_EVENTS = ['click', 'hover', 'focus', 'touch'] as const;
 
 export const multiSelectPropTypes = {
   id: {
     type: String,
     required: true,
-    default: 'multi-select',
   },
   modelValue: {
     type: Array as PropType<(string | number | Record<string, unknown>)[]>,
@@ -76,6 +76,28 @@ export const multiSelectPropTypes = {
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
     default: 'bottom',
   },
+  distance: {
+    type: Number,
+    default: 6,
+  },
+  triggers: {
+    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
+    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
+      return value.every((val) => TRIGGER_EVENTS.includes(val));
+    },
+    default: () => [],
+  },
+  autoHide: {
+    type: Boolean,
+    default: false,
+  },
+  popperTriggers: {
+    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
+    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
+      return value.every((val) => TRIGGER_EVENTS.includes(val));
+    },
+    default: () => [],
+  },
   popperStrategy: {
     type: String,
     validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
@@ -84,6 +106,10 @@ export const multiSelectPropTypes = {
   popperWidth: {
     type: String,
     default: '100%',
+  },
+  popperContainer: {
+    type: String,
+    default: '',
   },
   width: {
     type: String,
@@ -96,6 +122,10 @@ export const multiSelectPropTypes = {
   displayText: {
     type: String,
     default: '',
+  },
+  displaySelectedCountOnly: {
+    type: Boolean,
+    default: false,
   },
   displayHelper: {
     type: Boolean,
@@ -140,6 +170,14 @@ export const multiSelectPropTypes = {
   disabledLocalSearch: {
     type: Boolean,
     default: false,
+  },
+  lozenge: {
+    type: Boolean,
+    default: false,
+  },
+  itemIcon: {
+    type: String,
+    default: '',
   },
 };
 

@@ -1,7 +1,7 @@
 ---
-outline: 'deep'
-title: Documenting a Component
-description: This guide provides comprehensive instructions on documenting components for the Sprout Design System. It includes creating new documentation pages, structuring content with examples, API documentation, and best practices. It emphasizes the importance of organization, clear examples, and detailed API documentation.
+title: Component Documentation
+descripttion: This guide outlines the best practices and structure for documenting components in the Sprout Design System.
+outline: deep
 ---
 
 # Documenting a Component
@@ -101,7 +101,7 @@ A comprehensive description of the component, its purpose, and use cases.
 </table>
 ```
 
-For a complete example, refer to the [Button documentation](/documentation/components/button).
+For a complete example, refer to the [Button documentation](/documentation/components/button/button.html).
 
 ## Creating a New Page
 

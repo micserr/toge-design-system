@@ -1,6 +1,7 @@
 ---
-outline: 'deep'
-description: 'The Dropdown component provides a flexible way to display a menu of options when a user interacts with a trigger element. Dropdowns are commonly used for navigation menus, action lists, and other UI interactions where you want to conserve space while providing multiple options. They are distinct from form selection controls and are not intended for form field selection.'
+title: Dropdown
+descripttion: The Dropdown component provides a flexible way to display a menu of options when a user interacts with a trigger element. Dropdowns are commonly used for navigation menus, action lists, and other UI interactions where you want to conserve space while providing multiple options. They are distinct from form selection controls and are not intended for form field selection.
+outline: deep
 ---
 
 # Dropdown
@@ -18,7 +19,6 @@ The Dropdown component can be used with various trigger elements, such as button
     :menu-list="menuList" 
     width="100px" 
     popper-width="200px" 
-    dropdown
   >
     <spr-button class="spr-w-full" tone="success" has-icon>
       <span>Button</span>
@@ -31,7 +31,6 @@ The Dropdown component can be used with various trigger elements, such as button
     :menu-list="menuList" 
     width="100px" 
     popper-width="200px" 
-    dropdown
   >
     <spr-chips class="spr-w-full" label="Chips" />
   </spr-dropdown>
@@ -41,7 +40,6 @@ The Dropdown component can be used with various trigger elements, such as button
     :menu-list="menuList" 
     width="100px" 
     popper-width="200px" 
-    dropdown
   >
     <spr-lozenge class="spr-w-full" label="Lozange" />
   </spr-dropdown>
@@ -57,14 +55,13 @@ The Dropdown component can be used with various trigger elements, such as button
       :menu-list="menuList"
       width="100px"
       popper-width="200px"
-      dropdown
     >
       <spr-button class="spr-w-full" tone="success" has-icon>
         <span>Button</span>
         <Icon icon="ph:caret-down" />
       </spr-button>
     </spr-dropdown>
-    
+
     <!-- Chips trigger dropdown -->
     <spr-dropdown
       id="sample-dropdownBasic2"
@@ -72,11 +69,10 @@ The Dropdown component can be used with various trigger elements, such as button
       :menu-list="menuList"
       width="100px"
       popper-width="200px"
-      dropdown
     >
       <spr-chips class="spr-w-full" label="Chips" />
     </spr-dropdown>
-    
+
     <!-- Lozenge trigger dropdown -->
     <spr-dropdown
       id="sample-dropdownBasic3"
@@ -84,7 +80,6 @@ The Dropdown component can be used with various trigger elements, such as button
       :menu-list="menuList"
       width="100px"
       popper-width="200px"
-      dropdown
     >
       <spr-lozenge class="spr-w-full" label="Lozange" />
     </spr-dropdown>
@@ -105,166 +100,16 @@ const menuList = ref([
   { text: 'Google', value: 'https://www.google.com' },
   { text: 'GitHub', value: 'https://github.com' },
   { text: 'Gmail', value: 'https://mail.google.com' },
-  // Additional items...
-]);
-
-// Optional: Handle selections to open URLs in new tabs
-const handleDropdownLink = (newValue, key) => {
-  if (newValue) {
-    window.open(newValue, '_blank', 'noopener,noreferrer');
-    dropdownModel.value[key] = null;
-  }
-};
-
-watch(
-  () => dropdownModel.value.dropdownBasic1,
-  (newValue) => handleDropdownLink(newValue, 'dropdownBasic1'),
-);
-
-// Similar watchers for other dropdown models...
-</script>
-```
-
-:::tip Important Properties
-- `id`: A unique identifier required for proper functioning of the dropdown
-- `v-model`: Binds the selected value(s) from the dropdown
-- `menu-list`: An array of options to display in the dropdown menu
-- `dropdown`: Set to `true` to enable dropdown behavior (as opposed to select behavior)
-:::
-
-## Grouped Items By
-
-The Dropdown component supports organizing menu items into groups based on alphabetical order. You can group items by `A-Z` (alphabetical) or `Z-A` (reverse alphabetical) by using the `group-items-by` prop.
-
-<div class="spr-grid spr-gap-4">
-  <spr-dropdown
-    id="sample-dropdownGroupedItemsBy"
-    v-model="dropdownModel.dropdownGroupedItemsBy"
-    :menu-list="menuList"
-    width="100px"
-    popper-width="200px"
-    group-items-by="A-Z"
-    dropdown
-  >
-    <spr-button class="spr-w-full" tone="success" has-icon>
-      <span>Button</span>
-      <Icon icon="ph:caret-down" />
-    </spr-button>
-  </spr-dropdown>
-</div>
-
-```vue
-<template>
-  <div class="spr-grid spr-gap-4">
-    <spr-dropdown
-      id="sample-dropdownGroupedItemsBy"
-      v-model="dropdownModel.dropdownGroupedItemsBy"
-      :menu-list="menuList"
-      width="100px"
-      popper-width="200px"
-      group-items-by="A-Z"  <!-- Options: 'A-Z' or 'Z-A' -->
-      dropdown
-    >
-      <spr-button class="spr-w-full" tone="success" has-icon>
-        <span>Button</span>
-        <Icon icon="ph:caret-down" />
-      </spr-button>
-    </spr-dropdown>
-  </div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-const dropdownModel = ref({
-  dropdownGroupedItemsBy: ''
-});
-
-const menuList = ref([
-  { text: 'Google', value: 'https://www.google.com' },
-  { text: 'GitHub', value: 'https://github.com' },
-  // Additional items...
 ]);
 </script>
 ```
-
-:::tip Grouping Benefits
-Grouping items alphabetically helps users find options more easily when you have a large number of menu items. This is especially useful for navigation menus or application switching dropdowns.
-:::
-
-## Pre-Selected Items
-
-You can set a default selected value in the dropdown by initializing the `v-model` with a value that matches one of the options in your `menu-list`. This is useful when you want to show a pre-selected option or restore a previously selected value.
-
-<div class="spr-grid spr-gap-4">
-  <spr-dropdown
-    id="sample-dropdownPreSelectedItems"
-    v-model="dropdownModel.dropdownPreSelectedItems"
-    :menu-list="menuList"
-    width="100px"
-    popper-width="200px"
-    dropdown
-  >
-    <spr-button class="spr-w-full" tone="success" has-icon>
-      <span>Button</span>
-      <Icon icon="ph:caret-down" />
-    </spr-button>
-  </spr-dropdown>
-  <code class="spr-font-medium">
-    V-Model: {{ dropdownModel.dropdownPreSelectedItems ? dropdownModel.dropdownPreSelectedItems : `""` }}
-  </code>
-</div>
-
-```vue
-<template>
-  <div class="spr-grid spr-gap-4">
-    <spr-dropdown
-      id="sample-dropdownPreSelectedItems"
-      v-model="dropdownPreSelectedItems"
-      :menu-list="menuList"
-      width="100px"
-      popper-width="200px"
-      dropdown
-    >
-      <spr-button class="spr-w-full" tone="success" has-icon>
-        <span>Button</span>
-        <Icon icon="ph:caret-down" />
-      </spr-button>
-    </spr-dropdown>
-    
-    <!-- Display the current selected value -->
-    <code class="spr-font-medium">
-      V-Model: {{ dropdownPreSelectedItems ? dropdownPreSelectedItems : `""` }}
-    </code>
-  </div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-// Pre-select Yahoo by setting its value
-const dropdownPreSelectedItems = ref('https://www.yahoo.com');
-
-const menuList = ref([
-  { text: 'Google', value: 'https://www.google.com' },
-  { text: 'Yahoo', value: 'https://www.yahoo.com' },
-  // Additional items...
-]);
-</script>
-```
-
-:::tip Value Types
-The `v-model` for the dropdown component supports various value types including:
-- Single primitive values (strings, numbers)
-- Objects
-- Arrays (for multi-select dropdowns)
-:::
 
 ## Placements
 
 The dropdown menu can be positioned in various ways relative to the trigger element. The `placement` prop controls where the dropdown menu appears.
 
 Available placement options:
+
 - `auto`, `auto-start`, `auto-end` - Automatically determine the best placement
 - `top`, `top-start`, `top-end` - Position above the trigger
 - `right`, `right-start`, `right-end` - Position to the right of the trigger
@@ -274,8 +119,8 @@ Available placement options:
 <div class="spr-grid spr-gap-4">
   <div class="spr-flex spr-gap-4">
     <spr-dropdown
-      id="sample-dropdownPlacements"
-      v-model="dropdownModel.dropdownPlacements"
+      id="sample-dropdownPlacements0"
+      v-model="dropdownModel.dropdownPlacements0"
       :menu-list="menuList"
       placement="auto"
       popper-width="200px"
@@ -286,8 +131,8 @@ Available placement options:
       </spr-button>
     </spr-dropdown>
     <spr-dropdown
-      id="sample-dropdownPlacements"
-      v-model="dropdownModel.dropdownPlacements"
+      id="sample-dropdownPlacements1"
+      v-model="dropdownModel.dropdownPlacements1"
       :menu-list="menuList"
       placement="auto-start"
       popper-width="200px"
@@ -298,8 +143,8 @@ Available placement options:
       </spr-button>
     </spr-dropdown>
     <spr-dropdown
-      id="sample-dropdownPlacements"
-      v-model="dropdownModel.dropdownPlacements"
+      id="sample-dropdownPlacements2"
+      v-model="dropdownModel.dropdownPlacements2"
       :menu-list="menuList"
       placement="auto-end"
       popper-width="200px"
@@ -310,33 +155,20 @@ Available placement options:
       </spr-button>
     </spr-dropdown>
   </div>
-  <!-- Additional placement examples... -->
 </div>
 
 ```vue
 <template>
   <!-- Auto placement -->
-  <spr-dropdown
-    id="dropdown-auto"
-    v-model="selectedValue"
-    :menu-list="menuList"
-    placement="auto"
-    popper-width="200px"
-  >
+  <spr-dropdown id="dropdown-auto" v-model="selectedValue" :menu-list="menuList" placement="auto" popper-width="200px">
     <spr-button class="spr-w-full" tone="success" has-icon>
       <span>Auto</span>
       <Icon icon="ph:caret-down" />
     </spr-button>
   </spr-dropdown>
-  
+
   <!-- Top placement -->
-  <spr-dropdown
-    id="dropdown-top"
-    v-model="selectedValue"
-    :menu-list="menuList"
-    placement="top"
-    popper-width="200px"
-  >
+  <spr-dropdown id="dropdown-top" v-model="selectedValue" :menu-list="menuList" placement="top" popper-width="200px">
     <spr-button class="spr-w-full" tone="success" has-icon>
       <span>Top</span>
       <Icon icon="ph:caret-down" />
@@ -344,10 +176,6 @@ Available placement options:
   </spr-dropdown>
 </template>
 ```
-
-:::tip Responsive Placement
-The `auto` placement options are particularly useful for responsive designs as they will automatically adjust based on available space, preventing dropdowns from being cut off at screen edges.
-:::
 
 ## Width and Popper Width
 
@@ -360,7 +188,6 @@ The Dropdown component provides two ways to control the sizing:
   <spr-dropdown
     id="sample-dropdownWidth"
     v-model="dropdownModel.dropdownWidth"
-    placeholder="Select an option"
     :menu-list="menuList"
     width="50%"
     popper-width="500px"
@@ -377,10 +204,9 @@ The Dropdown component provides two ways to control the sizing:
   <spr-dropdown
     id="sample-dropdownWidth"
     v-model="dropdownWidth"
-    placeholder="Select an option"
     :menu-list="menuList"
-    width="50%"         <!-- Width of the trigger wrapper -->
-    popper-width="500px"  <!-- Width of the dropdown menu -->
+    width="50%"
+    popper-width="500px"
   >
     <spr-button class="spr-w-full" tone="success" has-icon>
       <span>Button</span>
@@ -389,14 +215,6 @@ The Dropdown component provides two ways to control the sizing:
   </spr-dropdown>
 </template>
 ```
-
-:::tip Size Units
-Both width properties accept any valid CSS unit:
-- Pixels: `"200px"`
-- Percentage: `"50%"`
-- Viewport units: `"50vw"`
-- `"auto"` or `"100%"` for full width
-:::
 
 ## Popper Strategy
 
@@ -411,7 +229,6 @@ When using dropdowns inside positioned elements like modals or fixed panels, you
   <spr-dropdown
     id="sample-dropdownStrategy"
     v-model="dropdownModel.dropdownStrategy"
-    placeholder="Select an option"
     :menu-list="menuList"
     wrapper-position="initial"
     popper-strategy="fixed"
@@ -436,8 +253,8 @@ When using dropdowns inside positioned elements like modals or fixed panels, you
       id="sample-dropdownStrategy"
       v-model="dropdownStrategy"
       :menu-list="menuList"
-      wrapper-position="initial"  <!-- Important when using with modals -->
-      popper-strategy="fixed"     <!-- Use fixed strategy in modals -->
+      wrapper-position="initial"
+      popper-strategy="fixed"
       width="100px"
     >
       <spr-button class="spr-w-full" tone="success" has-icon>
@@ -445,9 +262,7 @@ When using dropdowns inside positioned elements like modals or fixed panels, you
         <Icon icon="ph:caret-down" />
       </spr-button>
     </spr-dropdown>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit...
-    </p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
   </spr-modal>
 </template>
 
@@ -463,73 +278,47 @@ const dropdownStrategy = ref('');
 When using the `fixed` popper strategy, you should also set `wrapper-position="initial"` to override the default `relative` positioning. This prevents positioning conflicts within complex layouts like modals.
 :::
 
-## Menu List Data Formats
+## Custom Popper Content
 
-The Dropdown component is flexible and supports various data formats for the `menu-list` prop:
+You can customize the content of the dropdown menu by using the `popper` slot. This allows you to include any custom HTML or components inside the dropdown.
 
-### Array of Objects with text/value Properties
-
-```js
-const menuList = [
-  { text: 'Google', value: 'https://www.google.com' },
-  { text: 'GitHub', value: 'https://github.com' },
-];
-```
-
-### Array of Strings
-
-```js
-const menuList = ['Google', 'GitHub', 'Gmail'];
-// Automatically converted to { text: 'Google', value: 'Google' }, etc.
-```
-
-### Array of Custom Objects
-
-```js
-const menuList = [
-  { name: 'John Doe', id: 1, department: 'Engineering' },
-  { name: 'Jane Smith', id: 2, department: 'Marketing' },
-];
-
-// Use textField and valueField props to specify which properties to use
-<spr-dropdown
-  :menu-list="menuList"
-  text-field="name"     // Display name property as text
-  value-field="id"      // Use id property as the value
-/>
-```
-
-## Multi-Select Dropdown
-
-To create a dropdown that allows selecting multiple items, set the `multi-select` prop to `true`. The `v-model` will be an array containing all selected values.
+<div>
+  <spr-dropdown
+    id="sample-dropdownCustomPopper"
+    width="150px"
+    :triggers="['hover', 'click']"
+    :popper-triggers="['hover', 'click']"
+    popper-width="500px"
+  >
+    <spr-button class="spr-w-full" tone="success" has-icon>
+      <span>Custom Popper</span>
+      <Icon icon="ph:caret-down" /> 
+    </spr-button>
+    <template #popper>
+      <h5 class="spr-text-center">This is a custom popper!</h5>
+    </template>
+  </spr-dropdown>
+</div>
 
 ```vue
 <template>
   <spr-dropdown
-    id="multi-select-dropdown"
-    v-model="selectedValues"
-    :menu-list="menuList"
-    :multi-select="true"
-    dropdown
+    id="sample-dropdownCustomPopper"
+    width="150px"
+    :triggers="['hover', 'click']"
+    :popper-triggers="['hover', 'click']"
+    popper-width="500px"
   >
-    <spr-button class="spr-w-full" tone="success">
-      Select Multiple Items
+    <spr-button class="spr-w-full" tone="success" has-icon>
+      <span>Custom Popper</span>
+      <Icon icon="ph:caret-down" />
     </spr-button>
+
+    <template #popper>
+      <h5 class="spr-text-center">This is a custom popper!</h5>
+    </template>
   </spr-dropdown>
 </template>
-
-<script setup>
-import { ref } from 'vue';
-
-// Initialize with pre-selected values
-const selectedValues = ref(['https://www.google.com', 'https://github.com']);
-
-const menuList = ref([
-  { text: 'Google', value: 'https://www.google.com' },
-  { text: 'GitHub', value: 'https://github.com' },
-  // Additional items...
-]);
-</script>
 ```
 
 ## API Reference
@@ -547,19 +336,19 @@ const menuList = ref([
   </thead>
   <tbody>
     <tr>
-      <td>id</td>
+      <td><code>id</code></td>
       <td><strong>Required.</strong> Unique identifier for the dropdown, used to bind the popper to the correct element</td>
       <td>string</td>
       <td>-</td>
     </tr>
     <tr>
-      <td>modelValue</td>
+      <td><code>model-value</code></td>
       <td>The selected value(s) in the dropdown. Bound with <code>v-model</code></td>
       <td>string | number | object | Array</td>
       <td>[]</td>
     </tr>
     <tr>
-      <td>menuList</td>
+      <td><code>menu-list</code></td>
       <td>List of options to display in the dropdown menu. Can be formatted as:<br>
         - Array of objects with <code>text</code> and <code>value</code> properties<br>
         - Array of strings<br>
@@ -569,106 +358,118 @@ const menuList = ref([
       <td>[]</td>
     </tr>
     <tr>
-      <td>textField</td>
+      <td><code>text-field</code></td>
       <td>When using custom objects in <code>menuList</code>, specifies which property to use for display text</td>
       <td>string</td>
       <td>'text'</td>
     </tr>
     <tr>
-      <td>valueField</td>
+      <td><code>value-field</code></td>
       <td>When using custom objects in <code>menuList</code>, specifies which property to use for the value</td>
       <td>string</td>
       <td>'value'</td>
     </tr>
     <tr>
-      <td>searchString</td>
+      <td><code>search-string</code></td>
       <td>Search term to filter the dropdown options</td>
       <td>string</td>
       <td>''</td>
     </tr>
     <tr>
-      <td>multiSelect</td>
+      <td><code>multiSelect</code></td>
       <td>When true, allows selecting multiple options from the dropdown</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>groupItemsBy</td>
+      <td><code>group-items-by</code></td>
       <td>Groups the dropdown items alphabetically</td>
       <td>'A-Z' | 'Z-A'</td>
       <td>-</td>
     </tr>
     <tr>
-      <td>placement</td>
+      <td><code>placement</code></td>
       <td>Controls the position of the dropdown menu relative to the trigger</td>
       <td>'auto' | 'auto-start' | 'auto-end' | 'top' | 'top-start' | 'top-end' | 'right' | 'right-start' | 'right-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end'</td>
       <td>'bottom'</td>
     </tr>
     <tr>
-      <td>wrapperPosition</td>
+      <td><code>wrapper-position</code></td>
       <td>CSS position value for the dropdown wrapper</td>
       <td>string</td>
       <td>'relative'</td>
     </tr>
     <tr>
-      <td>width</td>
+      <td><code>width</code></td>
       <td>Width of the dropdown wrapper (including the trigger element)</td>
       <td>string</td>
       <td>'100%'</td>
     </tr>
     <tr>
-      <td>popperWidth</td>
+      <td><code>popper-width</code></td>
       <td>Width of the dropdown menu that appears when triggered</td>
       <td>string</td>
       <td>'100%'</td>
     </tr>
     <tr>
-      <td>popperInnerWidth</td>
+      <td><code>popper-inner-width</code></td>
       <td>Width of the inner content area of the dropdown menu</td>
       <td>string</td>
       <td>'unset'</td>
     </tr>
     <tr>
-      <td>popperStrategy</td>
+      <td><code>popper-strategy</code></td>
       <td>Positioning strategy for the dropdown menu, especially important in modals</td>
       <td>'absolute' | 'fixed'</td>
       <td>'absolute'</td>
     </tr>
     <tr>
-      <td>disabled</td>
+      <td><code>disabled</code></td>
       <td>When true, disables the dropdown from being opened</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>ladderized</td>
+      <td><code>ladderized</code></td>
       <td>When true, enables hierarchical dropdown options (nested menus)</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>removeCurrentLevelInBackLabel</td>
+      <td><code>remove-current-level-in-back-label</code></td>
       <td>For ladderized dropdowns, controls the back label behavior</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>noCheckInList</td>
+      <td><code>no-check-in-list</code></td>
       <td>When true, hides the checkmark icons in the dropdown list</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>dropdown</td>
-      <td>When true, enables dropdown-specific behavior (as opposed to select behavior)</td>
+      <td><code>lozenge</code></td>
+      <td>When true, enables lozenge list display.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td>lozenge</td>
-      <td>When true, enables lozenge list display.</td>
+      <td><code>triggers</code></td>
+      <td>Array of events that will trigger the dropdown to open</td>
+      <td>'click' | 'hover' | 'focus' | 'touch'[]</td>
+      <td>['click']</td>
+    </tr>
+    <tr>
+      <td><code>popper-triggers</code></td>
+      <td>Array of events that will trigger the dropdown menu (popper element) to open</td>
+      <td>'click' | 'hover' | 'focus' | 'touch'[]</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <td><code>auto-hide</code></td>
+      <td>When true, automatically hides the dropdown when clicking outside it</td>
       <td>boolean</td>
-      <td>false</td>
+      <td>true</td>
     </tr>
   </tbody>
 </table>
@@ -690,9 +491,14 @@ const menuList = ref([
       <td>The new selected value(s)</td>
     </tr>
     <tr>
-      <td>infinite-scroll-trigger</td>
+      <td>@infinite-scroll-trigger</td>
       <td>Emitted when the user scrolls to the bottom of the dropdown list, useful for implementing lazy loading</td>
       <td>Boolean</td>
+    </tr>
+    <tr>
+      <td>@popper-state</td>
+      <td>Event emitted when you open or close the popper</td>
+      <td>Bolean</td>
     </tr>
   </tbody>
 </table>
@@ -710,6 +516,10 @@ const menuList = ref([
     <tr>
       <td>default</td>
       <td>The trigger element that opens the dropdown when clicked (typically a button, chips, or lozenge)</td>
+    </tr>
+    <tr>
+      <td>popper</td>
+      <td>Custom elements for popper content.</td>
     </tr>
   </tbody>
 </table>
@@ -741,7 +551,9 @@ const dropdownModel = ref({
   dropdownBasic3: '',
   dropdownGroupedItemsBy: '',
   dropdownPreSelectedItems:  'https://www.yahoo.com',
-  dropdownPlacements: '',
+  dropdownPlacements0: '',
+  dropdownPlacements1: '',
+  dropdownPlacements2: '',
   dropdownWidth: '',
   dropdownStrategy: '',
 });

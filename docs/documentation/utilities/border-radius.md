@@ -1,3 +1,9 @@
+---
+title: Border Radius
+descripttion: Utility classes for setting border radius on elements.
+outline: deep
+---
+
 # Border Radius
 
 Border radius classes for consistent rounded elements.

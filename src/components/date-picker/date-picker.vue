@@ -9,12 +9,13 @@
       :popper-hide-triggers="[]"
       :auto-hide="false"
       :disabled="isDatePickerPopperDisabled"
-      :container="`#${props.id}`"
+      :container="props.popperContainer ? props.popperContainer : `#${props.id}`"
       :strategy="
         props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
       "
       :delay="0"
       :style="{
+        position: props.wrapperPosition,
         width: props.width,
       }"
     >
@@ -266,7 +267,7 @@
     </Menu>
     <div v-if="props.displayHelper" :class="datePickerClasses.datePickerInputHelperClasses">
       <slot name="helperMessage">
-        <Icon v-if="props.helperIcon" :icon="props.helperIcon" width="20px" height="20px" />
+        <Icon v-if="props.helperIcon" class="spr-h-5 spr-min-h-5 spr-w-5 spr-min-w-5" :icon="props.helperIcon" />
         <span>{{ props.helperText }}</span>
       </slot>
     </div>
@@ -330,7 +331,7 @@ const {
   handleTabClick,
   handleBackspace,
   clearDate,
-  handleSlotClick
+  handleSlotClick,
 } = useDatePicker(props, emit);
 
 defineExpose({

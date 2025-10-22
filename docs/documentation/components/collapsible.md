@@ -1,6 +1,7 @@
 ---
-outline: 'deep'
-description: 'The Collapsible component provides a way to show and hide content in a smooth, animated transition. It is commonly used for expandable sections, accordions, and dropdown menus.'
+title: Collapsible
+descripttion: The Collapsible component provides a way to show and hide content in a smooth, animated transition. It's commonly used to create expandable sections, accordions, and dropdown menus, helping to conserve screen space while keeping content accessible.
+outline: deep
 ---
 
 # Collapsible
@@ -253,7 +254,6 @@ const toggleSection = (index) => {
     </tr>
   </tbody>
 </table>
-
 
 <script lang="ts" setup>
 import { ref } from 'vue';

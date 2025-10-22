@@ -17,6 +17,7 @@ export type MenuListType = {
   icon?: string; // String value for Iconify
   iconColor?: string;
   textColor?: string;
+  lozenge?: LozengePropTypes; // Props for the lozenge component when item has its own lozenge
   lozengeProps?: LozengePropTypes; // Props for the lozenge component when list is displayed as lozenge
   onClickFn?: () => void;
 };
@@ -82,14 +83,17 @@ export const listPropTypes = {
     type: Boolean,
     default: false,
   },
-  dropdown: {
-    type: Boolean,
-    default: false,
-  },
-  // Display list as lozenge instead of text
   lozenge: {
     type: Boolean,
     default: false,
+  },
+  stickySearchOffset: {
+    type: [String, Number] as PropType<string | number>,
+    default: 0,
+  },
+  itemIcon: {
+    type: String,
+    default: '',
   },
 };
 

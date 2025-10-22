@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Calendar Cell Component
+descripttion: The Calendar Cell component is designed to display shift information in calendar views for scheduling and time management applications. Each cell can represent different shift types, statuses, and display customizable content.
+outline: deep
 ---
 
 # Calendar Cell Component
@@ -391,6 +393,12 @@ When using custom colors, hexadecimal format (e.g., `#b134eb`) is recommended fo
     <tr>
       <td>className</td>
       <td>Additional CSS class names to apply to the component</td>
+      <td>string</td>
+      <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td>customBorderSize</td>
+      <td>Applies a custom border size to the cell</td>
       <td>string</td>
       <td><code>''</code></td>
     </tr>

@@ -1,7 +1,8 @@
 <template>
   <div
     :class="[
-      'spr-flex spr-cursor-pointer spr-items-center spr-gap-size-spacing-5xs spr-px-size-spacing-xs spr-py-size-spacing-2xs',
+      'spr-sticky spr-top-0 spr-z-30',
+      'spr-flex spr-cursor-pointer spr-items-center spr-gap-size-spacing-5xs spr-bg-white-50 spr-px-size-spacing-xs spr-py-size-spacing-2xs',
       'spr-body-xs-regular',
       'spr-border-color-weak spr-border-0 spr-border-b spr-border-solid',
     ]"

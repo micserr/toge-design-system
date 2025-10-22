@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Snackbar
+descripttion: A toast to display message and perform action.
+outline: deep
 ---
 
 # Snackbar
@@ -179,9 +181,7 @@ This slot allows you to customize the action section of the snackbar. You can us
   <spr-snackbar ref="slottedActionSnackbar">
     <template #snackbarActions>
       <div class="spr-flex spr-cursor-pointer spr-items-center">
-        <spr-button class="spr-mr-2" @click="handleSlottedAction">
-          Slotted Action
-        </spr-button>
+        <spr-button class="spr-mr-2" @click="handleSlottedAction"> Slotted Action </spr-button>
         Action Text
       </div>
     </template>

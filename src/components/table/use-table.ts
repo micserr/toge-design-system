@@ -1,18 +1,40 @@
-import { ref, computed, toRefs, Slots, watch } from 'vue';
+import { ref, computed, toRefs, Slots, watch, onMounted, toRef } from 'vue';
 
-import type { TablePropTypes, TableEmitTypes, TABLE_SORT, TableData, TableDataProps, Header } from './table';
+import type {
+  TablePropTypes,
+  TableEmitTypes,
+  TABLE_SORT,
+  TableData,
+  TableDataProps,
+  Header,
+  SortableDragEvent,
+} from './table';
 import type { SetupContext } from 'vue';
 
 import classNames from 'classnames';
+import type { DragOptions } from './use-draggable-table-rows';
+import type { SortableEvent } from 'sortablejs';
 
 export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitTypes>['emit'], slots: Slots) => {
-  const { dataTable, action, headers, sortOrder, fullHeight, selectedKeyId, returnCompleteSelectedProperties } =
-    toRefs(props);
+  const {
+    dataTable,
+    action,
+    headers,
+    sortOrder,
+    fullHeight,
+    selectedKeyId,
+    returnCompleteSelectedProperties,
+    allowSelfDrag,
+    isDraggable,
+  } = toRefs(props);
   const sortField = ref('');
   const searchField = ref(props.searchModel);
   const tableSortOrder = ref<TABLE_SORT>(sortOrder.value);
   const selectAll = ref(false);
   const selectedData = ref<TableData[]>([]);
+  const tableData = ref<TableData[]>([]);
+  const tableKey = ref(0);
+  const isDragging = ref(false);
 
   const isAllSelected = computed(() => {
     if (selectedData.value.length === 0) return false;
@@ -36,6 +58,96 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     });
     return sorted;
   });
+
+  const isTouchDevice = computed(() => {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  });
+
+  const dragOptions = computed(() => {
+    let options: DragOptions = {
+      animation: isTouchDevice.value ? 70 : 250,
+      disabled: !isDraggable.value,
+      handle: '.table-row-drag-icon',
+      sort: allowSelfDrag.value,
+      forceFallback: isTouchDevice.value,
+      onStart: (evt: SortableEvent) => {
+        isDragging.value = true;
+        if (isTouchDevice.value) {
+          setDraggedItemDataInLocalStorage(evt.item.dataset.id!);
+        }
+      },
+      onEnd: () => {
+        isDragging.value = false;
+        if (isTouchDevice.value) {
+          clearDraggedItemDataInLocalStorage();
+        }
+      },
+      onAdd: (evt: SortableEvent) => {
+        const typedEvt = evt as SortableDragEvent;
+        const draggedItem = isTouchDevice.value
+          ? JSON.parse(localStorage.getItem('draggedItem') || '{}')
+          : JSON.parse(typedEvt.originalEvent.dataTransfer?.getData('draggedItem') || '{}');
+
+        if (!draggedItem || Object.keys(draggedItem).length === 0) return;
+
+        const newData = [...tableData.value];
+        newData.splice(evt.newIndex!, 0, draggedItem);
+        tableData.value = newData;
+
+        emit('onDragAdd', { element: draggedItem, newIndex: evt.newIndex!, updatedList: newData });
+      },
+      onRemove: (evt: SortableEvent) => {
+        const removedData = tableData.value.find((item) => item.id === evt.item.dataset.id);
+        const newData = [...tableData.value];
+        if (!removedData) return;
+
+        newData.splice(evt.oldIndex!, 1);
+        tableData.value = newData;
+
+        emit('onDragRemove', { element: removedData, oldIndex: evt.oldIndex!, updatedList: newData });
+      },
+      setData: (dataTransfer: DataTransfer, dragEl: HTMLElement) => {
+        const draggedItemData = tableData.value.find((item) => dragEl.dataset.id === item.id);
+        if (!draggedItemData) return;
+        dataTransfer.setData('draggedItem', JSON.stringify(draggedItemData));
+      },
+    };
+
+    if (tableData.value.length > 0) {
+      options = {
+        ...options,
+        group: {
+          name: 'table',
+          pull: true,
+          put: true,
+        },
+      };
+    } else {
+      options = {
+        ...options,
+        ghostClass: 'empty-table-dropzone-dragged-class',
+        group: {
+          name: 'table',
+          pull: false,
+          put: true,
+        },
+      };
+    }
+
+    return options;
+  });
+
+  const setDraggedItemDataInLocalStorage = (itemId: string) => {
+    const draggedItemData = tableData.value.find((item) => item.id === itemId) ?? null;
+    if (!draggedItemData) return;
+    localStorage.setItem('draggedItem', JSON.stringify(draggedItemData));
+  };
+
+  const clearDraggedItemDataInLocalStorage = () => {
+    if (localStorage.getItem('draggedItem')) {
+      localStorage.removeItem('draggedItem');
+    }
+  };
 
   const sortData = (field: string) => {
     if (sortField.value === field) {
@@ -128,6 +240,8 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       'spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-3';
     const tableRowActionClasses =
       'spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-p-3';
+    const tableRowDragIconClasses =
+      'spr-border-color-weak spr-overflow-hidden spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid spr-w-[5%] spr-cursor-pointer spr-px-[6px]';
 
     const tableBackgroundClasses = classNames('spr-h-full');
 
@@ -149,7 +263,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       'spr-border-color-weak spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid',
     );
 
-    const multiselectClass = classNames('spr-px-size-spacing-2xs spr-py-size-spacing-3xs spr-w-[44px] ');
+    const multiselectClass = classNames('spr-px-size-spacing-2xs spr-py-size-spacing-3xs spr-w-[44px]');
 
     const emptyStateClasses = classNames(`${emptyStateBaseClasses} ${props.emptyStateCustomClasses}`);
     const tableActionSlotClasses = classNames(`${defaultSlotClasses} ${props.tableActionSlotCustomClasses}`);
@@ -172,12 +286,13 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       tableFooterClasses,
       emptyStateClasses,
       tableActionSlotClasses,
+      tableRowDragIconClasses,
     };
   });
 
   //assert type TableDataProps
   const sortedDataItem = (rowIndex: number, headerField: string) => {
-    return sortedData.value[rowIndex][headerField] as TableDataProps;
+    return tableData.value[rowIndex][headerField] as TableDataProps;
   };
 
   const isTableDataObject = (data: TableDataProps) => {
@@ -247,8 +362,14 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     }
   };
 
+  const getRowKey = (element: TableData, index: number) => {
+    return (element.id as string | number) || index;
+  };
+
   watch(sortedData, (newVal) => {
-    if (newVal && props.isMultiSelect && selectedData.value.length > 0) {
+    tableData.value = [...newVal];
+
+    if (props.isMultiSelect && selectedData.value.length > 0 && !props.retainSelectionOnDataChange) {
       // Remove items from selectedData that are not in the new sortedData
       // This is to ensure that the selectedData is always in sync with the sortedData
 
@@ -268,6 +389,20 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
           selectedData.value.splice(selectedIndex, 1);
         }
       });
+    }
+  });
+
+  const clearSelectedData = () => {
+    selectedData.value = [];    
+  }
+
+  watch(tableData, () => {
+    tableKey.value = tableKey.value + 1;
+  });
+
+  onMounted(() => {
+    if (sortedData.value.length > 0) {
+      tableData.value = [...sortedData.value];
     }
   });
 
@@ -291,5 +426,13 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     sortedDataItem,
     getSortIcon,
     sortField,
+    allowSelfDrag,
+    tableData,
+    isDraggable,
+    dragOptions,
+    getRowKey,
+    isDragging: toRef(() => isDragging.value),
+    tableKey,
+    clearSelectedData
   };
 };

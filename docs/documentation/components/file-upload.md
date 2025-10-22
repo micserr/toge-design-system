@@ -1,6 +1,7 @@
 ---
-outline: 'deep'
-description: 'The File Upload component provides an intuitive interface for users to upload files through both drag-and-drop and traditional file selection methods. It supports validation for file types and sizes, and provides visual feedback for errors.'
+title: File Upload
+descripttion: The File Upload component provides an intuitive interface for users to upload files through both drag-and-drop and traditional file selection methods. It supports validation for file types and sizes, and provides visual feedback for errors.
+outline: deep
 ---
 
 # File Upload

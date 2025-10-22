@@ -1,3 +1,9 @@
+---
+title: Skeletal Loader
+descripttion: The Skeletal Loader utility provides placeholder elements to indicate loading content, enhancing user experience during data fetch operations.
+outline: deep
+---
+
 # Skeletal Loader
 
 The Skeletal Loader is a utility designed to provide a placeholder for content that is being loaded. It is commonly used in user interfaces to enhance the user experience by indicating that data is being fetched, thereby reducing perceived loading times and improving user engagement.

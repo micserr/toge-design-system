@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Tooltip
+descripttion: The tooltip component is a simple component that displays a tooltip when hovered over.
+outline: deep
 ---
 
 # Tooltip

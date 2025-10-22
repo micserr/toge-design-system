@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Radio
+descripttion: A Radio Button is a component that enables a user to select a single option from a set of choices.
+outline: deep
 ---
 
 # Radio

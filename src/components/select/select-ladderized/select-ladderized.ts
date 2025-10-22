@@ -20,12 +20,12 @@ const PLACEMENTS_TYPES = [
 ] as const;
 
 const POPPER_STRATEGY_TYPES = ['fixed', 'absolute'] as const;
+const TRIGGER_EVENTS = ['click', 'hover', 'focus', 'touch'] as const;
 
 export const selectLadderizedPropTypes = {
   id: {
     type: String,
     required: true,
-    default: 'select-ladderized',
   },
   modelValue: {
     type: Array as PropType<string[]>,
@@ -97,6 +97,41 @@ export const selectLadderizedPropTypes = {
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
     default: 'bottom',
   },
+  distance: {
+    type: Number,
+    default: 6,
+  },
+  autoHide: {
+    type: Boolean,
+    default: false,
+  },
+  triggers: {
+    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
+    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
+      return value.every((val) => TRIGGER_EVENTS.includes(val));
+    },
+    default: () => [],
+  },
+  popperTriggers: {
+    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
+    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
+      return value.every((val) => TRIGGER_EVENTS.includes(val));
+    },
+    default: () => [],
+  },
+  popperStrategy: {
+    type: String,
+    validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
+    default: 'absolute',
+  },
+  popperWidth: {
+    type: String,
+    default: '100%',
+  },
+  popperContainer: {
+    type: String,
+    default: '',
+  },
   wrapperPosition: {
     type: String,
     default: 'relative',
@@ -104,15 +139,6 @@ export const selectLadderizedPropTypes = {
   width: {
     type: String,
     default: '100%',
-  },
-  popperWidth: {
-    type: String,
-    default: '100%',
-  },
-  popperStrategy: {
-    type: String,
-    validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
-    default: 'absolute',
   },
   removeCurrentLevelInBackLabel: {
     type: Boolean,

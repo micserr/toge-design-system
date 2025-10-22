@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Side Navigation
+descripttion: The side navigation provides a customizable navigation bar that includes a logo, navigation links, quick actions, and a search bar.
+outline: deep
 ---
 
 # Side Navigation

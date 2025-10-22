@@ -1,5 +1,7 @@
 ---
-outline: 'deep'
+title: Stepper
+descripttion: The Status component provides a standard way of listing down steps in a process. It is used to indicate the current step in a multi-step process, such as a form or a checkout flow. The component can be used to show the status of each step, such as whether it is complete, in progress, or not started.
+outline: deep
 ---
 
 # Stepper
@@ -18,9 +20,7 @@ There is no state management involved in this component. The status of each step
 
 ```vue
 <template>
-  <spr-stepper
-    :steps="steps"
-  />
+  <spr-stepper :steps="steps" />
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
@@ -30,7 +30,7 @@ const steps = ref([
     number: 1,
     label: 'Step 1',
     status: 'completed',
-    description: 'Description'
+    description: 'Description',
   },
   {
     number: 2,
@@ -45,14 +45,14 @@ const steps = ref([
   {
     number: 4,
     label: 'Step 4',
-    status: 'pending'
+    status: 'pending',
   },
 ]);
 </script>
-
 ```
 
 ## Type
+
 Stepper type is classified as `compact` (default) and `solid`. The stepper below is an example of a `solid` type.
 
 <div style="width:200px;">
@@ -65,10 +65,7 @@ Stepper type is classified as `compact` (default) and `solid`. The stepper below
 ```vue
 <template>
   <div style="width:200px;">
-    <spr-stepper
-      :steps="steps"
-      type="solid"
-    />
+    <spr-stepper :steps="steps" type="solid" />
   </div>
 </template>
 <script setup lang="ts">
@@ -79,7 +76,7 @@ const steps = ref([
     number: 1,
     label: 'Step 1',
     status: 'completed',
-    description: 'Description'
+    description: 'Description',
   },
   {
     number: 2,
@@ -94,13 +91,11 @@ const steps = ref([
   {
     number: 4,
     label: 'Step 4',
-    status: 'pending'
+    status: 'pending',
   },
 ]);
 </script>
-
 ```
-
 
 ## Horizontal Stepper
 
@@ -110,12 +105,8 @@ const steps = ref([
 />
 
 ```vue
-
 <template>
-  <spr-stepper
-    :steps="steps"
-    variant="horizontal"
-  />
+  <spr-stepper :steps="steps" variant="horizontal" />
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
@@ -124,7 +115,7 @@ const steps = ref([
     number: 1,
     label: 'Step 1',
     status: 'completed',
-    description: 'Description'
+    description: 'Description',
   },
   {
     number: 2,
@@ -139,11 +130,10 @@ const steps = ref([
   {
     number: 4,
     label: 'Step 4',
-    status: 'pending'
+    status: 'pending',
   },
 ]);
 </script>
-
 ```
 
 ## Steps with Description
@@ -154,9 +144,7 @@ const steps = ref([
 
 ```vue
 <template>
-  <spr-stepper
-    :steps="stepsWithDescription"
-  />
+  <spr-stepper :steps="stepsWithDescription" />
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
@@ -165,29 +153,28 @@ const stepsWithDescription = ref([
     number: 1,
     label: 'Step 1',
     status: 'completed',
-    description: 'Description 1'
+    description: 'Description 1',
   },
   {
     number: 2,
     label: 'Step 2',
     status: 'active',
-    description: 'Description 2'
+    description: 'Description 2',
   },
   {
     number: 3,
     label: 'Step 3',
     status: 'pending',
-    description: 'Description 3'
+    description: 'Description 3',
   },
   {
     number: 4,
     label: 'Step 4',
     status: 'pending',
-    description: 'Description 4'
+    description: 'Description 4',
   },
 ]);
 </script>
-
 ```
 
 ## Has Lines
@@ -209,19 +196,11 @@ The lines extend as long as there is an available space, you can manipulate the 
 
 ```vue
 <template>
-  <spr-stepper
-    :steps="steps"
-    has-lines
-  />
+  <spr-stepper :steps="steps" has-lines />
 
-  <spr-stepper
-    :steps="steps"
-    has-lines
-    variant="horizontal"
-  />
+  <spr-stepper :steps="steps" has-lines variant="horizontal" />
 </template>
 ```
-
 
 ## State Playground
 
@@ -242,18 +221,9 @@ The lines extend as long as there is an available space, you can manipulate the 
 
 ```vue
 <template>
-  <spr-stepper
-    :steps="playgroundSteps"
-    has-lines
-    variant="vertical"
-  />
+  <spr-stepper :steps="playgroundSteps" has-lines variant="vertical" />
 
-  <spr-stepper
-    :steps="playgroundSteps"
-    has-lines
-    variant="horizontal"
-    class="w-1/2"
-  />
+  <spr-stepper :steps="playgroundSteps" has-lines variant="horizontal" class="w-1/2" />
 
   <spr-button tone="success" @click="updateSteps">Next State</spr-button>
 </template>
@@ -278,7 +248,7 @@ const playgroundSteps = ref([
   {
     number: 4,
     label: 'Playground Step 4',
-    status: 'pending'
+    status: 'pending',
   },
 ]);
 const updateSteps = () => {
@@ -289,9 +259,8 @@ const updateSteps = () => {
     playgroundSteps.value[currentIndex].status = 'completed';
     playgroundSteps.value[currentIndex + 1].status = 'active';
   }
-}
+};
 </script>
-
 ```
 
 ## API Reference

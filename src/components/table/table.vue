@@ -3,7 +3,6 @@
     <div v-if="!!$slots.default" :class="getTableClasses.tableActionSlotClasses">
       <slot />
     </div>
-
     <div v-if="hasTableActions" :class="getTableClasses.tableHeaderActionsClasses">
       <spr-table-actions
         v-model:search-model="searchField"
@@ -18,9 +17,15 @@
       </spr-table-actions>
     </div>
     <div :class="getTableClasses.tableBackgroundClasses">
-      <table aria-describedby="describe" class="spr-h-full spr-w-full spr-table-fixed" cellspacing="0" cellpadding="0">
+      <table
+        :key="tableKey"
+        aria-describedby="describe"
+        class="spr-h-full spr-w-full spr-table-fixed"
+        cellspacing="0"
+        cellpadding="0"
+      >
         <thead>
-          <tr v-if="!(props.removeHeaderOnEmpty && sortedData.length <= 0)">
+          <tr v-if="!(props.removeHeaderOnEmpty && tableData.length <= 0)">
             <th
               v-if="props.isMultiSelect"
               :class="[getTableClasses.multiselectClass, getTableClasses.headerClasses(null)]"
@@ -38,6 +43,7 @@
               v-for="(header, keyHeader) in headers"
               :key="keyHeader"
               :class="[getTableClasses.headerClasses(header)]"
+              :style="{ width: header?.width }"
             >
               <div :class="getTableClasses.headerNameClass">
                 <span :class="[{ 'spr-cursor-pointer': header.sort }]" @click="header.sort && sortData(header.field)">
@@ -72,13 +78,18 @@
             </th>
           </tr>
         </thead>
-        <tbody v-if="sortedData.length > 0 && !loading" :class="getTableClasses.tableBodyClasses">
+
+        <tbody v-if="tableData.length > 0 && !loading" ref="sortableTBody" :class="getTableClasses.tableBodyClasses">
           <tr
-            v-for="(item, keyIndex) in sortedData"
-            :key="keyIndex"
+            v-for="(item, keyIndex) in tableData"
+            :key="getRowKey(item, keyIndex)"
+            :data-id="getRowKey(item, keyIndex)"
             :class="[
               getTableClasses.tableRowClasses,
-              isRowSelected(item) ? 'spr-bg-kangkong-100' : 'hover:spr-background-color-hover',
+              {
+                'hover:spr-background-color-hover': !isDragging && !isRowSelected(item),
+                'spr-bg-kangkong-100': isRowSelected(item),
+              },
             ]"
             @click="handleRowClick(item, keyIndex)"
             @mouseover="$emit('onHover', { active: true, data: item })"
@@ -92,10 +103,15 @@
                 <spr-checkbox label="" :checked="isRowSelected(item)" @update:model-value="handleSelect(item)" />
               </div>
             </td>
-            <td v-for="(column, headerKey) in headers" :key="headerKey" :class="getTableClasses.tableDataClasses">
+            <td
+              v-for="(column, headerKey) in headers"
+              :key="headerKey"
+              :class="getTableClasses.tableDataClasses"
+              :style="{ width: column?.width }"
+            >
               <slot v-if="$slots[column.field]" :name="column.field" :row="item" :row-index="keyIndex" />
               <template v-else>
-                <div v-if="sortedData[keyIndex][column.field]" class="spr-flex spr-flex-row spr-items-center spr-gap-2">
+                <div v-if="tableData[keyIndex][column.field]" class="spr-flex spr-flex-row spr-items-center spr-gap-2">
                   <spr-avatar
                     v-if="column.hasAvatar"
                     size="lg"
@@ -156,9 +172,14 @@
                 <slot name="action" :row="item" />
               </div>
             </td>
+            <td v-if="isDraggable" :class="getTableClasses.tableRowDragIconClasses">
+              <div class="table-row-drag-icon spr-flex spr-items-center spr-justify-center">
+                <Icon icon="ph:dots-six-vertical" width="16px" height="16px" />
+              </div>
+            </td>
           </tr>
         </tbody>
-        <tbody v-else :class="getTableClasses.emptyStateClasses">
+        <tbody v-else id="tbody_empty_state" ref="sortableTBody" :class="getTableClasses.emptyStateClasses">
           <tr v-if="!loading" class="spr-h-full">
             <td :colspan="getHeaderCount" class="spr-flex spr-h-full spr-items-center spr-justify-center">
               <slot name="empty-state">
@@ -183,7 +204,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useSlots } from 'vue';
+import { useSlots, ref, watch } from 'vue';
 import { Icon } from '@iconify/vue';
 import SprAvatar from '@/components/avatar/avatar.vue';
 import SprEmptyState from '@/components/empty-state/empty-state.vue';
@@ -197,13 +218,15 @@ import { tablePropTypes, tableEmitTypes } from './table';
 import type { ChipTitle } from '@/components/table/table-chips-title/table-chips-title';
 import type { LozengeTitle } from '@/components/table/table-lozenge-title/table-lozenge-title';
 import { useTable } from './use-table';
+import { useDraggableTableRows } from './use-draggable-table-rows';
 
 const props = defineProps(tablePropTypes);
 const emit = defineEmits(tableEmitTypes);
 const slots = useSlots();
 
+const sortableTBody = ref<HTMLElement | null>(null);
+
 const {
-  sortedData,
   getHeaderCount,
   hasTableActions,
   searchField,
@@ -212,6 +235,11 @@ const {
   isAllSelected,
   isIndeterminate,
   sortField,
+  tableData,
+  isDraggable,
+  dragOptions,
+  tableKey,
+  isDragging,
 
   isRowSelected,
   sortData,
@@ -221,5 +249,17 @@ const {
   handleSelectAll,
   sortedDataItem,
   getSortIcon,
+  getRowKey,
+  clearSelectedData,
 } = useTable(props, emit, slots);
+
+const { reinitializeSortable } = useDraggableTableRows(sortableTBody, dragOptions);
+
+defineExpose({
+  clearSelectedData,
+});
+
+watch(tableKey, () => {
+  reinitializeSortable();
+});
 </script>

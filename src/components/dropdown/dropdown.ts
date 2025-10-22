@@ -24,6 +24,7 @@ export const PLACEMENTS_TYPES = [
 ] as const;
 
 const POPPER_STRATEGY_TYPES = ['fixed', 'absolute'] as const;
+const TRIGGER_EVENTS = ['click', 'hover', 'focus', 'touch'] as const;
 
 export const dropdownPropTypes = {
   id: {
@@ -38,8 +39,11 @@ export const dropdownPropTypes = {
   },
   menuList: {
     type: Array as PropType<MenuListType[] | string[] | Record<string, unknown>[]>,
-    required: true,
-    default: [],
+    default: () => [],
+  },
+  searchableMenu: {
+    type: Boolean,
+    default: false,
   },
   textField: {
     type: String,
@@ -64,6 +68,10 @@ export const dropdownPropTypes = {
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
     default: 'bottom',
   },
+  distance: {
+    type: Number,
+    default: 6,
+  },
   groupItemsBy: {
     type: String as PropType<(typeof GROUPED_ITEMS_BY_TYPES)[number]>,
     validator: (value: (typeof GROUPED_ITEMS_BY_TYPES)[number] | undefined) => {
@@ -78,6 +86,29 @@ export const dropdownPropTypes = {
     type: String,
     default: '100%',
   },
+  autoHide: {
+    type: Boolean,
+    default: true,
+  },
+  triggers: {
+    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
+    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
+      return value.every((val) => TRIGGER_EVENTS.includes(val));
+    },
+    default: () => ['click'],
+  },
+  popperTriggers: {
+    type: Array as PropType<(typeof TRIGGER_EVENTS)[number][]>,
+    validator: (value: (typeof TRIGGER_EVENTS)[number][]) => {
+      return value.every((val) => TRIGGER_EVENTS.includes(val));
+    },
+    default: () => [],
+  },
+  popperStrategy: {
+    type: String,
+    validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
+    default: 'absolute',
+  },
   popperWidth: {
     type: String,
     default: '100%',
@@ -86,10 +117,9 @@ export const dropdownPropTypes = {
     type: String,
     default: 'unset',
   },
-  popperStrategy: {
+  popperContainer: {
     type: String,
-    validator: (value: 'fixed' | 'absolute') => POPPER_STRATEGY_TYPES.includes(value),
-    default: 'absolute',
+    default: '',
   },
   disabled: {
     type: Boolean,
@@ -107,21 +137,17 @@ export const dropdownPropTypes = {
     type: Boolean,
     default: false,
   },
-  dropdown: {
-    type: Boolean,
-    default: false,
-  },
-  // Enable lozenge style for dropdown items
   lozenge: {
     type: Boolean,
     default: false,
-  }
+  },
 };
 
 export const dropdownEmitTypes = {
   'infinite-scroll-trigger': Boolean,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'update:modelValue': (_value: unknown) => true, // Accept any type of value
+  'popper-state': Boolean,
 };
 
 export type DropdownPropTypes = ExtractPropTypes<typeof dropdownPropTypes>;

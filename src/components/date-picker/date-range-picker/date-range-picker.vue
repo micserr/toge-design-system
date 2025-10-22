@@ -1,42 +1,50 @@
 <template>
   <div>
     <Menu
-       v-model:shown="datePopperState"
-       aria-id="date-range-picker-wrapper"
-       distance="4"
-       :placement="finalPlacement"
-       :triggers="[]"
-       :popper-hide-triggers="[]"
-       :auto-hide="false"
-       :disabled="isDateRangePickerPopperDisabled"
-       :container="`#${props.id}`"
-       :reference="activeInputRef"
-       :strategy="
-         props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
-       "
-       :delay="0"
-       :auto-placement="!isUsingCustomSlot"
-       :style="{
-         width: props.width,
-       }"
-     >
+      v-model:shown="datePopperState"
+      aria-id="date-range-picker-wrapper"
+      distance="4"
+      :placement="finalPlacement"
+      :triggers="[]"
+      :popper-hide-triggers="[]"
+      :auto-hide="false"
+      :disabled="isDateRangePickerPopperDisabled"
+      :container="props.popperContainer ? props.popperContainer : `#${props.id}`"
+      :reference="activeInputRef"
+      :strategy="
+        props.popperStrategy === 'fixed' || props.popperStrategy === 'absolute' ? props.popperStrategy : 'absolute'
+      "
+      :delay="0"
+      :auto-placement="!isUsingCustomSlot"
+      :style="{
+        position: props.wrapperPosition,
+        width: props.width,
+      }"
+    >
       <div :id="props.id" class="spr-grid spr-gap-size-spacing-4xs">
         <label v-if="props.label" :for="props.id" :class="dateRangePickerClasses.labelClasses">
           {{ props.label }}
         </label>
-        
+
         <!-- Date Range Input Container -->
-        <div class="spr-flex spr-items-center spr-gap-2 spr-w-full">
+        <div class="spr-flex spr-w-full spr-items-center spr-gap-2">
           <slot :handle-click="handleCustomComponentClick">
             <!-- fallback: original input fields -->
             <!-- Start Date Input -->
-            <div ref="startDateContainerRef" :class="['spr-flex-1', dateRangePickerClasses.dateRangePickerBaseInputClasses]" @click.stop="handleStartDateClick" >
+            <div
+              ref="startDateContainerRef"
+              :class="['spr-flex-1', dateRangePickerClasses.dateRangePickerBaseInputClasses]"
+              @click.stop="handleStartDateClick"
+            >
               <div class="spr-flex spr-h-full spr-items-center spr-gap-1.5">
                 <input
                   :id="`${props.id}-start-month`"
                   ref="startMonthInputRef"
                   v-model="startMonthInput"
-                  :class="['spr-w-[38px] spr-min-w-[38px] spr-uppercase', dateRangePickerClasses.dateRangePickerInputClasses]"
+                  :class="[
+                    'spr-w-[38px] spr-min-w-[38px] spr-uppercase',
+                    dateRangePickerClasses.dateRangePickerInputClasses,
+                  ]"
                   type="text"
                   placeholder="MMM"
                   maxlength="3"
@@ -51,7 +59,10 @@
                   :id="`${props.id}-start-date`"
                   ref="startDateInputRef"
                   v-model="startDateInput"
-                  :class="['spr-w-[24px] spr-min-w-[24px] spr-text-center', dateRangePickerClasses.dateRangePickerInputClasses]"
+                  :class="[
+                    'spr-w-[24px] spr-min-w-[24px] spr-text-center',
+                    dateRangePickerClasses.dateRangePickerInputClasses,
+                  ]"
                   type="text"
                   placeholder="DD"
                   maxlength="2"
@@ -84,13 +95,20 @@
             <!-- Separator -->
             <span class="spr-text-color-strong spr-font-size-200 spr-text-color-weak">{{ props.separator }}</span>
             <!-- End Date Input -->
-            <div ref="endDateContainerRef" :class="['spr-flex-1', dateRangePickerClasses.dateRangePickerBaseInputClasses]" @click.stop="handleEndDateClick">
+            <div
+              ref="endDateContainerRef"
+              :class="['spr-flex-1', dateRangePickerClasses.dateRangePickerBaseInputClasses]"
+              @click.stop="handleEndDateClick"
+            >
               <div class="spr-flex spr-h-full spr-items-center spr-gap-1.5">
                 <input
                   :id="`${props.id}-end-month`"
                   ref="endMonthInputRef"
                   v-model="endMonthInput"
-                  :class="['spr-w-[38px] spr-min-w-[38px] spr-uppercase', dateRangePickerClasses.dateRangePickerInputClasses]"
+                  :class="[
+                    'spr-w-[38px] spr-min-w-[38px] spr-uppercase',
+                    dateRangePickerClasses.dateRangePickerInputClasses,
+                  ]"
                   type="text"
                   placeholder="MMM"
                   maxlength="3"
@@ -105,7 +123,10 @@
                   :id="`${props.id}-end-date`"
                   ref="endDateInputRef"
                   v-model="endDateInput"
-                  :class="['spr-w-[24px] spr-min-w-[24px] spr-text-center', dateRangePickerClasses.dateRangePickerInputClasses]"
+                  :class="[
+                    'spr-w-[24px] spr-min-w-[24px] spr-text-center',
+                    dateRangePickerClasses.dateRangePickerInputClasses,
+                  ]"
                   type="text"
                   placeholder="DD"
                   maxlength="2"
@@ -244,11 +265,11 @@
                       'spr-text-color-disabled': calendarTabIsInactiveMonthDates(day),
 
                       // Selected Date (Start or End) - Use brand color scheme from date picker
-                      'spr-background-color-brand-base active:spr-background-color-brand-pressed spr-text-color-inverted-strong !spr-text-white-50 active:spr-scale-95 spr-font-medium':
+                      'spr-background-color-brand-base active:spr-background-color-brand-pressed spr-text-color-inverted-strong spr-font-medium !spr-text-white-50 active:spr-scale-95':
                         calendarTabIsSelectedDate(day),
 
                       // In Range (between start and end) - Light green background with brand outline, no border, using spr- prefix
-                      'spr-bg-green-100 spr-cursor-pointer spr-outline spr-outline-1 spr-outline-offset-[-0.5px] spr-outline-kangkong-700':
+                      'spr-cursor-pointer spr-bg-green-100 spr-outline spr-outline-1 spr-outline-offset-[-0.5px] spr-outline-kangkong-700':
                         calendarTabIsInRange(day),
 
                       // Unselected Date - Gray border, no hover effects
@@ -264,7 +285,7 @@
                   <span>{{ day.date.date() }}</span>
                   <div
                     v-if="calendarTabIsTodayIndicator(day)"
-                    class="spr-bg-green-600 spr-absolute spr-bottom-1 spr-m-auto spr-h-1 spr-w-1 spr-rounded-full"
+                    class="spr-absolute spr-bottom-1 spr-m-auto spr-h-1 spr-w-1 spr-rounded-full spr-bg-green-600"
                   ></div>
                 </div>
                 <div v-else></div>
@@ -281,9 +302,11 @@
                   {
                     'spr-text-color-brand-base': month.monthValue === currentDate.month(),
                     'spr-border-color-weak hover:spr-background-color-hover active:spr-background-color-pressed':
-                      month.text.toLowerCase() !== startMonthInput.toLowerCase() && month.text.toLowerCase() !== endMonthInput.toLowerCase(),
+                      month.text.toLowerCase() !== startMonthInput.toLowerCase() &&
+                      month.text.toLowerCase() !== endMonthInput.toLowerCase(),
                     'spr-border-color-brand-base spr-background-color-single-active':
-                      month.text.toLowerCase() === startMonthInput.toLowerCase() || month.text.toLowerCase() === endMonthInput.toLowerCase(),
+                      month.text.toLowerCase() === startMonthInput.toLowerCase() ||
+                      month.text.toLowerCase() === endMonthInput.toLowerCase(),
                   },
                 ]"
                 @click="monthTabHandleSelectedMonth(month)"
@@ -308,7 +331,8 @@
                     'spr-text-color-brand-base': year === currentDate.year(),
                     'spr-border-color-weak hover:spr-background-color-hover active:spr-background-color-pressed':
                       year !== Number(startYearInput) && year !== Number(endYearInput),
-                    'spr-border-color-brand-base spr-background-color-single-active': year === Number(startYearInput) || year === Number(endYearInput),
+                    'spr-border-color-brand-base spr-background-color-single-active':
+                      year === Number(startYearInput) || year === Number(endYearInput),
                   },
                 ]"
                 @click="yearTabHandleSelectedYear(String(year))"
@@ -324,10 +348,10 @@
         </div>
       </template>
     </Menu>
-    
+
     <div v-if="props.displayHelper" :class="dateRangePickerClasses.dateRangePickerInputHelperClasses">
       <slot name="helperMessage">
-        <Icon v-if="props.helperIcon" :icon="props.helperIcon" width="20px" height="20px" />
+        <Icon v-if="props.helperIcon" class="spr-h-5 spr-min-h-5 spr-w-5 spr-min-w-5" :icon="props.helperIcon" />
         <span>{{ props.helperText }}</span>
       </slot>
     </div>
@@ -409,4 +433,4 @@ const {
   handleEndDateClick,
   handleCustomComponentClick,
 } = useDateRangePicker(props, emit);
-</script> 
+</script>

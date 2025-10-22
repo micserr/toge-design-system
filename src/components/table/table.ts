@@ -1,6 +1,7 @@
 import type { PropType, ExtractPropTypes } from 'vue';
 import type { ChipTitle } from '@/components/table/table-chips-title/table-chips-title';
 import type { LozengeTitle } from '@/components/table/table-lozenge-title/table-lozenge-title';
+import { type SortableEvent } from 'sortablejs';
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
 export interface Header {
@@ -16,6 +17,7 @@ export interface Header {
   badgeVariant?: string;
   avatarVariant?: string;
   customTailwindClasses?: string;
+  width?: string;
 }
 
 export interface TableData {
@@ -45,6 +47,23 @@ interface TableActions {
 interface SortEvent {
   field: string;
   sortOrder: TABLE_SORT;
+}
+
+interface DragOnChangeEvent {
+  element: TableData;
+  updatedList: TableData[];
+}
+
+export interface DragOnAddEvent extends DragOnChangeEvent {
+  newIndex: number;
+}
+
+export interface DragOnRemoveEvent extends DragOnChangeEvent {
+  oldIndex: number;
+}
+
+export interface SortableDragEvent extends SortableEvent {
+  originalEvent: DragEvent;
 }
 
 const TABLE_SORT = ['asc', 'desc'] as const;
@@ -85,11 +104,11 @@ export const tablePropTypes = {
   },
   emptyStateCustomClasses: {
     type: String,
-    default: ''
+    default: '',
   },
   tableActionSlotCustomClasses: {
     type: String,
-    default: ''
+    default: '',
   },
   loading: {
     type: Boolean as PropType<boolean>,
@@ -120,7 +139,7 @@ export const tablePropTypes = {
   sortOrder: {
     type: String as PropType<(typeof TABLE_SORT)[number]>,
     validator: (value: (typeof TABLE_SORT)[number]) => TABLE_SORT.includes(value),
-    default: 'asc'
+    default: 'asc',
   },
 
   variant: {
@@ -153,6 +172,18 @@ export const tablePropTypes = {
     type: Boolean,
     default: false,
   },
+  allowSelfDrag: {
+    type: Boolean,
+    default: false,
+  },
+  isDraggable: {
+    type: Boolean,
+    default: false,
+  },
+  retainSelectionOnDataChange: {
+    type: Boolean,
+    default: false,
+  }
 };
 
 export const tableEmitTypes = {
@@ -168,6 +199,10 @@ export const tableEmitTypes = {
     value.every(
       (item) => (typeof item === 'object' || typeof item === 'string' || typeof item === 'number') && item !== null,
     ),
+  onDragAdd: (event: DragOnAddEvent): event is DragOnAddEvent =>
+    event !== undefined && Array.isArray(event.updatedList),
+  onDragRemove: (event: DragOnRemoveEvent): event is DragOnRemoveEvent =>
+    event !== undefined && Array.isArray(event.updatedList),  
 };
 
 export type TablePropTypes = ExtractPropTypes<typeof tablePropTypes>;

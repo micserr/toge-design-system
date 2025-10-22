@@ -32,7 +32,7 @@
         <span
           :ref="(el) => setTitleRef(el, index)"
           id="audit_trail_title"
-          class="spr-text-color-strong spr-text-200 spr-font-normal spr-max-w-[314px]"
+          class="spr-text-color-strong spr-text-200 spr-font-normal"
         >
           {{ entry.title }}
         </span>

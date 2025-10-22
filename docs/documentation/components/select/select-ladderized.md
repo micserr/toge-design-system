@@ -17,6 +17,7 @@ Ladderized select is for selecting options organized in hierarchical groups. It 
     :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
+    :writable-input-text="true"
   />
 
   <code class="spr-font-medium">
@@ -856,6 +857,12 @@ To disable the popper from showing when the wrapper is clicked, pass the disable
       <td>Placeholder of the searh options</td>
       <td>String</td>
       <td><code>'Search...'</code></td>
+    </tr>
+    <tr>
+      <td><code>writableInputText</code></td>
+      <td>Enable input text to writable. This does not affect the search functionality.</td>
+      <td>Boolean</td>
+      <td><code>false</code></td>
     </tr>
   </tbody>
 </table>

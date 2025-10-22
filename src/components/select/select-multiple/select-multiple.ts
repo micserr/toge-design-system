@@ -199,6 +199,8 @@ export const multiSelectEmitTypes = {
   'update:searchValue': (value: string) => typeof value === 'string',
   'infinite-scroll-trigger': Boolean,
   'popper-state': Boolean,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  'get-selected-options': (_value: unknown) => true,
 };
 
 export type MultiSelectPropTypes = ExtractPropTypes<typeof multiSelectPropTypes>;

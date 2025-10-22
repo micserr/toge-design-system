@@ -568,18 +568,10 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
 
   onMounted(() => {
     searchString.value = searchText.value;
+
     setMenuList();
     setPreSelectedItems();
   });
-
-  // Watch for changes in selectedItems (modelValue) and update checked state
-  // watch(
-  //   selectedItems,
-  //   () => {
-  //     setPreSelectedItems();
-  //   },
-  //   { deep: true },
-  // );
 
   return {
     selectedItems,

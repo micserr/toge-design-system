@@ -200,7 +200,6 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
           return item.value;
         }
       }
-
       return item.value;
     });
 
@@ -208,6 +207,8 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     multiSelectModel.value = selectedValues;
 
     updateMultiSelectedItemsFromValue();
+
+    emit('get-selected-options', multiSelectedItems);
   };
 
   /**

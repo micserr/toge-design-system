@@ -587,7 +587,7 @@
   }
 
   .spr-text-color-supporting {
-    @apply spr-text-mushroom-400;
+    @apply spr-text-mushroom-500;
   }
 
   .spr-text-color-base {
@@ -595,15 +595,15 @@
   }
 
   .spr-text-color-weak {
-    @apply spr-text-mushroom-300;
+    @apply spr-text-mushroom-400;
   }
 
   .spr-text-color-disabled {
-    @apply spr-text-white-300;
+    @apply spr-text-white-400;
   }
 
   .spr-text-color-on-fill-disabled {
-    @apply spr-text-white-400;
+    @apply spr-text-white-500;
   }
 
   .spr-text-color-inverted-strong {
@@ -647,51 +647,51 @@
   }
 
   .spr-text-color-information-base {
-    @apply spr-text-blueberry-700;
-  }
-
-  .spr-text-color-information-hover {
     @apply spr-text-blueberry-800;
   }
 
-  .spr-text-color-information-pressed {
+  .spr-text-color-information-hover {
     @apply spr-text-blueberry-900;
   }
 
-  .spr-text-color-danger-base {
-    @apply spr-text-tomato-600;
+  .spr-text-color-information-pressed {
+    @apply spr-text-blueberry-950;
   }
 
-  .spr-text-color-danger-hover {
+  .spr-text-color-danger-base {
     @apply spr-text-tomato-700;
   }
 
-  .spr-text-color-danger-pressed {
+  .spr-text-color-danger-hover {
     @apply spr-text-tomato-800;
   }
 
-  .spr-text-color-pending-base {
-    @apply spr-text-mango-700;
+  .spr-text-color-danger-pressed {
+    @apply spr-text-tomato-900;
   }
 
-  .spr-text-color-pending-hover {
+  .spr-text-color-pending-base {
     @apply spr-text-mango-800;
   }
 
-  .spr-text-color-pending-pressed {
+  .spr-text-color-pending-hover {
     @apply spr-text-mango-900;
   }
 
-  .spr-text-color-caution-base {
-    @apply spr-text-carrot-700;
+  .spr-text-color-pending-pressed {
+    @apply spr-text-mango-950;
   }
 
-  .spr-text-color-caution-hover {
+  .spr-text-color-caution-base {
     @apply spr-text-carrot-800;
   }
 
-  .spr-text-color-caution-pressed {
+  .spr-text-color-caution-hover {
     @apply spr-text-carrot-900;
+  }
+
+  .spr-text-color-caution-pressed {
+    @apply spr-text-carrot-950;
   }
 
   .spr-text-color-accent-base {
@@ -713,6 +713,25 @@
   }
 
   .spr-background-color-surface {
+    @apply spr-bg-mushroom-50;
+  }
+  .spr-background-color-surface-adaptive {
+    @apply spr-bg-mushroom-950/[0.05];
+  }
+
+  .spr-background-color-base {
+    @apply spr-bg-mushroom-100;
+  }
+
+  .spr-background-color-hover {
+    @apply spr-bg-mushroom-950/[0.08];
+  }
+
+  .spr-background-color-pressed {
+    @apply spr-bg-mushroom-950/[0.12];
+  }
+
+  .spr-background-color-disabled {
     @apply spr-bg-white-100;
   }
 
@@ -728,10 +747,6 @@
     @apply spr-bg-mushroom-800;
   }
 
-  .spr-background-color-base {
-    @apply spr-bg-mushroom-50;
-  }
-
   .spr-background-color-single-active {
     @apply spr-bg-kangkong-100;
   }
@@ -740,18 +755,7 @@
     @apply spr-bg-kangkong-50;
   }
 
-  .spr-background-color-hover {
-    @apply spr-bg-mushroom-50;
-  }
-
-  .spr-background-color-pressed {
-    @apply spr-bg-mushroom-100;
-  }
-
-  .spr-background-color-disabled {
-    @apply spr-bg-white-100;
-  }
-
+  /* BRAND COLORS */
   .spr-background-color-brand-base {
     @apply spr-bg-kangkong-700;
   }
@@ -768,10 +772,18 @@
     @apply spr-bg-kangkong-100;
   }
 
+  .spr-background-color-brand-weak-hover {
+    @apply spr-bg-kangkong-200;
+  }
+  .spr-background-color-brand-weak-pressed {
+    @apply spr-bg-kangkong-300;
+  }
+
   .spr-background-color-success-base {
     @apply spr-bg-kangkong-600;
   }
 
+  /* SUCCESS COLORS */
   .spr-background-color-success-hover {
     @apply spr-bg-kangkong-700;
   }
@@ -784,6 +796,14 @@
     @apply spr-bg-kangkong-100;
   }
 
+  .spr-background-color-success-weak-hover {
+    @apply spr-bg-kangkong-200;
+  }
+  .spr-background-color-success-weak-pressed {
+    @apply spr-bg-kangkong-300;
+  }
+
+  /* INFORMATION COLORS */
   .spr-background-color-information-base {
     @apply spr-bg-blueberry-600;
   }
@@ -799,7 +819,14 @@
   .spr-background-color-information-weak {
     @apply spr-bg-blueberry-100;
   }
+  .spr-background-color-information-weak-hover {
+    @apply spr-bg-blueberry-200;
+  }
+  .spr-background-color-information-weak-pressed {
+    @apply spr-bg-blueberry-300;
+  }
 
+  /* PENDING COLORS */
   .spr-background-color-pending-base {
     @apply spr-bg-mango-500;
   }
@@ -815,7 +842,14 @@
   .spr-background-color-pending-weak {
     @apply spr-bg-mango-100;
   }
+  .spr-background-color-pending-weak-hover {
+    @apply spr-bg-mango-200;
+  }
+  .spr-background-color-pending-weak-pressed {
+    @apply spr-bg-mango-300;
+  }
 
+  /* CAUTION COLORS */
   .spr-background-color-caution-base {
     @apply spr-bg-carrot-500;
   }
@@ -831,7 +865,14 @@
   .spr-background-color-caution-weak {
     @apply spr-bg-carrot-100;
   }
+  .spr-background-color-caution-weak-hover {
+    @apply spr-bg-carrot-200;
+  }
+  .spr-background-color-caution-weak-pressed {
+    @apply spr-bg-carrot-300;
+  }
 
+  /* ACCENT COLORS */
   .spr-background-color-accent-base {
     @apply spr-bg-wintermelon-600;
   }
@@ -847,7 +888,14 @@
   .spr-background-color-accent-weak {
     @apply spr-bg-wintermelon-100;
   }
+  .spr-background-color-accent-weak-hover {
+    @apply spr-bg-wintermelon-200;
+  }
+  .spr-background-color-accent-weak-pressed {
+    @apply spr-bg-wintermelon-300;
+  }
 
+  /* DANGER COLORS */
   .spr-background-color-danger-base {
     @apply spr-bg-tomato-600;
   }
@@ -862,6 +910,12 @@
 
   .spr-background-color-danger-weak {
     @apply spr-bg-tomato-100;
+  }
+  .spr-background-color-danger-weak-hover {
+    @apply spr-bg-tomato-200;
+  }
+  .spr-background-color-danger-weak-pressed {
+    @apply spr-bg-tomato-300;
   }
 
   .spr-switch-background-default {
@@ -910,6 +964,7 @@
     @apply spr-border-white-200;
   }
 
+  /* BRAND COLORS */
   .spr-border-color-brand-base {
     @apply spr-border-kangkong-700;
   }
@@ -922,6 +977,7 @@
     @apply spr-border-kangkong-900;
   }
 
+  /* SUCCESS COLORS */
   .spr-border-color-success-base {
     @apply spr-border-kangkong-700;
   }
@@ -934,54 +990,59 @@
     @apply spr-border-kangkong-900;
   }
 
+  /* INFORMATION COLORS */
   .spr-border-color-information-base {
-    @apply spr-border-blueberry-700;
-  }
-
-  .spr-border-color-information-hover {
     @apply spr-border-blueberry-800;
   }
 
-  .spr-border-color-information-pressed {
+  .spr-border-color-information-hover {
     @apply spr-border-blueberry-900;
   }
 
-  .spr-border-color-danger-base {
-    @apply spr-border-tomato-600;
+  .spr-border-color-information-pressed {
+    @apply spr-border-blueberry-950;
   }
 
-  .spr-border-color-danger-hover {
+  /* DANGER COLORS */
+  .spr-border-color-danger-base {
     @apply spr-border-tomato-700;
   }
 
-  .spr-border-color-danger-pressed {
+  .spr-border-color-danger-hover {
     @apply spr-border-tomato-800;
   }
 
-  .spr-border-color-pending-base {
-    @apply spr-border-mango-700;
+  .spr-border-color-danger-pressed {
+    @apply spr-border-tomato-900;
   }
 
-  .spr-border-color-pending-hover {
+  /* PENDING COLORS */
+  .spr-border-color-pending-base {
     @apply spr-border-mango-800;
   }
 
-  .spr-border-color-pending-pressed {
+  .spr-border-color-pending-hover {
     @apply spr-border-mango-900;
   }
 
-  .spr-border-color-caution-base {
-    @apply spr-border-carrot-700;
+  .spr-border-color-pending-pressed {
+    @apply spr-border-mango-950;
   }
 
-  .spr-border-color-caution-hover {
+  /* CAUTION COLORS */
+  .spr-border-color-caution-base {
     @apply spr-border-carrot-800;
   }
 
-  .spr-border-color-caution-pressed {
+  .spr-border-color-caution-hover {
     @apply spr-border-carrot-900;
   }
 
+  .spr-border-color-caution-pressed {
+    @apply spr-border-carrot-950;
+  }
+
+  /* ACCENT COLORS */
   .spr-border-color-accent-base {
     @apply spr-border-wintermelon-700;
   }

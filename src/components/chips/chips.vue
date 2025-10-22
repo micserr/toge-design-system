@@ -8,7 +8,10 @@
     @click="handleClick"
     @keyup.enter="handleClick"
   >
-    <template v-if="variant === 'tag'">
+    <template v-if="slots.default">
+      <slot />
+    </template>
+    <template v-else-if="variant === 'tag'">
       <span v-if="hasIcon" class="chips-icon spr-inline-flex spr-items-center spr-leading-[0]">
         <slot name="icon">
           <Icon :icon="getIcon" class="spr-font-size-300" />

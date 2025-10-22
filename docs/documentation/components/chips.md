@@ -404,6 +404,195 @@ The day selection chips are particularly useful for:
 For more complex date selection needs, consider combining day chips with the DatePicker component.
 :::
 
+## Slots
+
+The Chips component provides several slots for customizing content and icons.
+
+### Default Slot
+
+The default slot allows you to completely customize the chip content, overriding the standard label display.
+
+<div class="spr-flex spr-items-center spr-gap-2">
+  <spr-chips :active="true">
+    <span class="spr-flex spr-items-center spr-gap-1">
+      <Icon icon="ph:star-fill" class="spr-text-yellow-500" />
+      <span>Custom Content</span>
+    </span>
+  </spr-chips>
+  <spr-chips>
+    <span class="spr-flex spr-items-center spr-gap-1">
+      <span class="spr-w-2 spr-h-2 spr-bg-green-500 spr-rounded-full"></span>
+      <span>Status: Online</span>
+    </span>
+  </spr-chips>
+  <spr-chips>
+    <span class="spr-flex spr-items-center spr-gap-1">
+      <Icon icon="ph:building"/>
+      <span>Status: Online</span>
+      <Icon icon="ph:caret-down" />
+    </span>
+  </spr-chips>
+</div>
+
+```vue
+<template>
+  <!-- Custom content with icon -->
+  <spr-chips :active="true">
+    <span class="spr-flex spr-items-center spr-gap-1">
+      <Icon icon="ph:star-fill" class="spr-text-yellow-500" />
+      <span>Custom Content</span>
+    </span>
+  </spr-chips>
+
+  <!-- Custom status indicator -->
+  <spr-chips>
+    <span class="spr-flex spr-items-center spr-gap-1">
+      <span class="spr-w-2 spr-h-2 spr-bg-green-500 spr-rounded-full"></span>
+      <span>Status: Online</span>
+    </span>
+  </spr-chips>
+</template>
+
+<script setup>
+import { Icon } from '@iconify/vue';
+import SprChips from '@/components/chips/chips.vue';
+</script>
+```
+
+### Icon Slot
+
+The `icon` slot allows you to customize the icon displayed in the chip while keeping the standard label structure.
+
+<div class="spr-flex spr-items-center spr-gap-2">
+  <spr-chips label="Custom Icon" icon="ph:heart" :active="true">
+    <template #icon>
+      <Icon icon="ph:heart-fill" class="spr-text-red-500 spr-font-size-300" />
+    </template>
+  </spr-chips>
+  <spr-chips label="Animated Icon" icon="ph:sparkle">
+    <template #icon>
+      <Icon icon="ph:sparkle" class="spr-text-purple-500 spr-font-size-300 spr-animate-spin" />
+    </template>
+  </spr-chips>
+</div>
+
+```vue
+<template>
+  <!-- Custom heart icon -->
+  <spr-chips label="Custom Icon" icon="ph:heart" :active="true">
+    <template #icon>
+      <Icon icon="ph:heart-fill" class="spr-text-red-500 spr-font-size-300" />
+    </template>
+  </spr-chips>
+
+  <!-- Animated icon -->
+  <spr-chips label="Animated Icon" icon="ph:sparkle">
+    <template #icon>
+      <Icon icon="ph:sparkle" class="spr-text-purple-500 spr-font-size-300 spr-animate-spin" />
+    </template>
+  </spr-chips>
+</template>
+
+<script setup>
+import { Icon } from '@iconify/vue';
+import SprChips from '@/components/chips/chips.vue';
+</script>
+```
+
+### Close Icon Slot
+
+The `close-icon` slot allows you to customize the close button icon for closable chips.
+
+<div class="spr-flex spr-items-center spr-gap-2">
+  <spr-chips label="Custom Close" closable :active="true">
+    <template #close-icon>
+      <Icon icon="ph:minus-circle" class="spr-text-red-500" />
+    </template>
+  </spr-chips>
+  <spr-chips label="Alternative Close" closable>
+    <template #close-icon>
+      <Icon icon="ph:x-circle" class="spr-text-gray-500" />
+    </template>
+  </spr-chips>
+</div>
+
+```vue
+<template>
+  <!-- Custom close icon -->
+  <spr-chips label="Custom Close" closable :active="true">
+    <template #close-icon>
+      <Icon icon="ph:minus-circle" class="spr-text-red-500" />
+    </template>
+  </spr-chips>
+
+  <!-- Alternative close icon -->
+  <spr-chips label="Alternative Close" closable>
+    <template #close-icon>
+      <Icon icon="ph:x-circle" class="spr-text-gray-500" />
+    </template>
+  </spr-chips>
+</template>
+
+<script setup>
+import { Icon } from '@iconify/vue';
+import SprChips from '@/components/chips/chips.vue';
+</script>
+```
+
+### Advanced Slot Combinations
+
+You can combine multiple slots to create sophisticated chip designs.
+
+<div class="spr-flex spr-items-center spr-gap-2">
+  <spr-chips :active="true">
+    <span class="spr-flex spr-items-center spr-gap-2">
+      <Icon icon="ph:user-circle" class="spr-text-blue-500" />
+      <span>John Doe</span>
+      <span class="spr-px-2 spr-py-1 spr-bg-blue-100 spr-text-blue-800 spr-text-xs spr-rounded-full">Admin</span>
+    </span>
+    <template #close-icon>
+      <Icon icon="ph:user-minus" class="spr-text-red-500" />
+    </template>
+  </spr-chips>
+  <spr-chips>
+    <span class="spr-flex spr-items-center spr-gap-2">
+      <span class="spr-w-3 spr-h-3 spr-bg-gradient-to-r spr-from-green-400 spr-to-blue-500 spr-rounded-full"></span>
+      <span>Project Alpha</span>
+      <span class="spr-px-2 spr-py-1 spr-bg-gray-100 spr-text-gray-600 spr-text-xs spr-rounded-full">Active</span>
+    </span>
+  </spr-chips>
+</div>
+
+```vue
+<template>
+  <!-- User chip with custom close -->
+  <spr-chips :active="true">
+    <span class="spr-flex spr-items-center spr-gap-2">
+      <Icon icon="ph:user-circle" class="spr-text-blue-500" />
+      <span>John Doe</span>
+      <span class="spr-px-2 spr-py-1 spr-bg-blue-100 spr-text-blue-800 spr-text-xs spr-rounded-full">Admin</span>
+    </span>
+    <template #close-icon>
+      <Icon icon="ph:user-minus" class="spr-text-red-500" />
+    </template>
+  </spr-chips>
+
+  <!-- Project chip with gradient indicator -->
+  <spr-chips>
+    <span class="spr-flex spr-items-center spr-gap-2">
+      <span class="spr-w-3 spr-h-3 spr-bg-gradient-to-r spr-from-green-400 spr-to-blue-500 spr-rounded-full"></span>
+      <span>Project Alpha</span>
+      <span class="spr-px-2 spr-py-1 spr-bg-gray-100 spr-text-gray-600 spr-text-xs spr-rounded-full">Active</span>
+    </span>
+  </spr-chips>
+</template>
+
+<script setup>
+import { Icon } from '@iconify/vue';
+import SprChips from '@/components/chips/chips.vue';
+</script>
+```
+
 ## API Reference
 
 ### Props
@@ -576,12 +765,16 @@ For more complex date selection needs, consider combining day chips with the Dat
   </thead>
   <tbody>
     <tr>
+      <td>default</td>
+      <td>Custom content that completely overrides the standard chip display</td>
+    </tr>
+    <tr>
       <td>icon</td>
-      <td>Custom content for the icon area</td>
+      <td>Custom content for the icon area (when using standard chip structure)</td>
     </tr>
     <tr>
       <td>close-icon</td>
-      <td>Custom content for the close button icon</td>
+      <td>Custom content for the close button icon (when closable is true)</td>
     </tr>
   </tbody>
 </table>

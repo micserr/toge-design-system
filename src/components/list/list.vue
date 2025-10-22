@@ -1,21 +1,30 @@
 <template>
   <div class="spr-font-main">
-    <div
-      v-if="props.searchableMenu"
-      :class="[
-        'spr-sticky spr-z-20',
-        'spr-grid spr-gap-3 spr-bg-white-50 spr-p-size-spacing-3xs',
-        'spr-border-color-weak spr-border spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid',
-      ]"
-      :style="{
-        top:
-          typeof props.stickySearchOffset === 'number'
-            ? props.stickySearchOffset + 'px'
-            : String(props.stickySearchOffset),
-      }"
-    >
-      <spr-input-search v-model="searchText" :placeholder="props.searchableMenuPlaceholder" autocomplete="off" />
-    </div>
+    <template v-if="props.searchableMenu || props.displayListItemSelected">
+      <div
+        :class="[
+          'spr-sticky spr-z-20',
+          'spr-grid spr-gap-3 spr-bg-white-50 spr-px-size-spacing-3xs spr-py-size-spacing-2xs',
+          'spr-border-color-weak spr-border spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid',
+        ]"
+        :style="{
+          top:
+            typeof props.stickySearchOffset === 'number'
+              ? props.stickySearchOffset + 'px'
+              : String(props.stickySearchOffset),
+        }"
+      >
+        <spr-input-search
+          v-if="props.searchableMenu"
+          v-model="searchText"
+          :placeholder="props.searchableMenuPlaceholder"
+          autocomplete="off"
+        />
+        <span v-if="props.displayListItemSelected" class="spr-label-sm-medium spr-text-color-base spr-block">
+          {{ selectedItems.length }} Selected
+        </span>
+      </div>
+    </template>
 
     <div class="spr-p-size-spacing-3xs">
       <template v-if="props.groupItemsBy">
@@ -231,6 +240,13 @@ import { useList } from './use-list';
 const props = defineProps(listPropTypes);
 const emit = defineEmits(listEmitTypes);
 
-const { searchText, localizedMenuList, groupedMenuList, isItemSelected, getListItemClasses, handleSelectedItem } =
-  useList(props, emit);
+const {
+  selectedItems,
+  searchText,
+  localizedMenuList,
+  groupedMenuList,
+  isItemSelected,
+  getListItemClasses,
+  handleSelectedItem,
+} = useList(props, emit);
 </script>

@@ -127,6 +127,10 @@ export const multiSelectPropTypes = {
     type: Boolean,
     default: false,
   },
+  displayListItemSelected: {
+    type: Boolean,
+    default: false,
+  },
   displayHelper: {
     type: Boolean,
     default: false,

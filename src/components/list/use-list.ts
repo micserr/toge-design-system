@@ -572,6 +572,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   });
 
   return {
+    selectedItems,
     searchText,
     listClasses,
     localizedMenuList,

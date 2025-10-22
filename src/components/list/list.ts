@@ -91,6 +91,10 @@ export const listPropTypes = {
     type: [String, Number] as PropType<string | number>,
     default: 0,
   },
+  displayListItemSelected: {
+    type: Boolean,
+    default: false,
+  },
   itemIcon: {
     type: String,
     default: '',

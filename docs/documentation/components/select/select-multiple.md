@@ -1016,6 +1016,49 @@ const userList = ref([
 </script>
 ```
 
+## Display list item selected
+
+The display list item selected feature allows you to visually indicate which items have been selected in the dropdown list. This can enhance the user experience by providing clear feedback on their selections. To enable this feature, use the `display-list-item-selected` prop.
+
+<div>
+  <spr-select-multiple
+    id="select-multiple-display-list-item-selected"
+    v-model="multiSelectModel.multiSelectDisplayListItemSelected"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    searchable
+    display-list-item-selected
+  />
+</div>
+
+```vue
+<template>
+  <spr-select-multiple
+    id="select-multiple-display-list-item-selected"
+    v-model="multiSelectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    display-list-item-selected
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const multiSelectModel = ref('');
+
+const options = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+]);
+</script>
+```
+
 ## Item Subtext
 
 The item subtext feature allows you to display additional information below the main text of each option in the select list. This can be useful for providing context or details about each option. Use the `subtext` props in the options array to specify the subtext for each option.
@@ -1467,6 +1510,12 @@ const optionsWithLozenge = ref([
     <tr>
       <td><code>lozenge</code></td>
       <td>Enables lozenge mode for the list items. When enabled, items are displayed as lozenges.</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td><code>display-list-item-selected</code></td>
+      <td>Displays the selected item inside the list.</td>
       <td>Boolean</td>
       <td>false</td>
     </tr>

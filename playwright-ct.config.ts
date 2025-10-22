@@ -28,7 +28,7 @@ export default defineConfig({
     ctTemplateDir: 'playwright',
     ctPort: 3100,
     ctViteConfig: {
-      plugins: [vue()],
+      plugins: [vue() as any],
       resolve: {
         alias: {
           '@': resolve(__dirname, 'src'),

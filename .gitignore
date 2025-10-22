@@ -51,9 +51,6 @@ vite.config.ts.*
 *.sw?
 .history
 
-# unplugin
-*.d.ts
-
 # Cursor IDE files
 .cursor
 **/*.mdc

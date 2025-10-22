@@ -2,6 +2,12 @@
 
 ## 2.19.0 (2025-10-22)
 
+- Fix:
+  - Add support for multi select display selected list item
+    ([#35548](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35548?_a=files) by @jarias)
+
+## 2.19.0 (2025-10-22)
+
 - Feat:
   - Add Audit Trail component
     ([#a365b231](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a365b231ef28e34dd96bd4522b3dd4894f416799?refName=refs/heads/2025/feat/dustin/audit-trail) by @despiritu)

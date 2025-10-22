@@ -18,11 +18,11 @@
     </div>
     <div :class="getTableClasses.tableBackgroundClasses">
       <table
+        :key="tableKey"
         aria-describedby="describe"
         class="spr-h-full spr-w-full spr-table-fixed"
         cellspacing="0"
         cellpadding="0"
-        :key="tableKey"
       >
         <thead>
           <tr v-if="!(props.removeHeaderOnEmpty && tableData.length <= 0)">
@@ -240,7 +240,6 @@ const {
   dragOptions,
   tableKey,
   isDragging,
-  
 
   isRowSelected,
   sortData,
@@ -251,13 +250,13 @@ const {
   sortedDataItem,
   getSortIcon,
   getRowKey,
-  clearSelectedData
+  clearSelectedData,
 } = useTable(props, emit, slots);
 
 const { reinitializeSortable } = useDraggableTableRows(sortableTBody, dragOptions);
 
 defineExpose({
-  clearSelectedData
+  clearSelectedData,
 });
 
 watch(tableKey, () => {

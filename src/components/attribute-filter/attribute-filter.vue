@@ -82,8 +82,8 @@
         <slot name="body">
           <div
             v-if="!noList"
-            ref="filterDropdownRef"
             id="attribute_filter_body"
+            ref="filterDropdownRef"
             class="spr-max-h-[250px] spr-overflow-y-auto"
           >
             <spr-list

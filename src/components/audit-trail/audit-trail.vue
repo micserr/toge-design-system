@@ -1,10 +1,6 @@
 <template>
-  <div
-    ref="auditTrailWrapperRef"
-    id="audit_trail_wrapper"
-    class="spr-flex spr-flex-col spr-gap-size-spacing-2xs"
-  >  
-    <div id="audit_trail_entry" class="spr-relative spr-h-fit" v-for="(entry, index) in auditTrailLogs">
+  <div id="audit_trail_wrapper" ref="auditTrailWrapperRef" class="spr-flex spr-flex-col spr-gap-size-spacing-2xs">
+    <div v-for="(entry, index) in auditTrailLogs" id="audit_trail_entry" :key="index" class="spr-relative spr-h-fit">
       <div class="spr-absolute spr-h-full spr-py-[6px]">
         <div
           :class="[
@@ -22,7 +18,7 @@
       </div>
       <div
         id="audit_trail_header"
-        class="hover:spr-background-color-hover spr-ml-[10px] spr-flex spr-w-full spr-justify-between spr-items-center spr-gap-size-spacing-3xs spr-self-start spr-px-2 spr-py-[6px] hover:spr-cursor-pointer hover:spr-rounded-lg"
+        class="hover:spr-background-color-hover spr-ml-[10px] spr-flex spr-w-full spr-items-center spr-justify-between spr-gap-size-spacing-3xs spr-self-start spr-px-2 spr-py-[6px] hover:spr-cursor-pointer hover:spr-rounded-lg"
         @click="toggleCollapse(index)"
       >
         <div id="audit_trail_avatar" :class="[{ 'spr-self-start': isMultiLine[index] }]">
@@ -30,8 +26,8 @@
           <SprAvatar v-else :initial="entry.userName" size="sm" />
         </div>
         <span
-          :ref="(el) => setTitleRef(el, index)"
           id="audit_trail_title"
+          :ref="(el) => setTitleRef(el, index)"
           class="spr-text-color-strong spr-text-200 spr-font-normal"
         >
           {{ entry.title }}
@@ -48,12 +44,13 @@
       <div id="audit_trail_logs_wrapper" class="spr-pl-[18px]">
         <SprCollapsible v-model="collapsedState[index]">
           <div
+            v-for="(log, logIndex) in entry.logs"
             id="audit_trail_log_entries"
+            :key="logIndex"
             :class="[
               'spr-flex spr-flex-col spr-gap-size-spacing-3xs',
               { 'spr-pb-size-spacing-3xs': logIndex !== entry.logs.length - 1 },
             ]"
-            v-for="(log, logIndex) in entry.logs"
           >
             <div id="log_label">
               <SprTooltip

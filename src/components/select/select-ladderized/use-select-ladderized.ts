@@ -200,6 +200,7 @@ export const useSelectLadderized = (
   });
 
   const handleInputChange = () => {
+    if (!props.writableInputText) return;
     wasCleared.value = false;
     isCustomInput.value = true;
     ladderizedSelectModel.value = [inputText.value];

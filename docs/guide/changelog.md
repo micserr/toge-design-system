@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.19.0 (2025-10-22)
+
+- Chore: Enhance Chips component documentation with slot customization examples
+    ([#958ee225](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/958ee225604fe7abf7f6a2be98e9fc0c0ff7eed3?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FChips-slot) by @bsolis)
+
+
+## 2.19.0 (2025-10-22)
+
+- Feat:
+  - Add Audit Trail component
+    ([#a365b231](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a365b231ef28e34dd96bd4522b3dd4894f416799?refName=refs/heads/2025/feat/dustin/audit-trail) by @despiritu)
+
 ## 2.18.0 (2025-10-21)
 
 - Feat:

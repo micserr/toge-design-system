@@ -80,6 +80,10 @@ export default defineConfig({
               link: '/documentation/components/attribute-filter',
             },
             {
+              text: 'Audit Trail',
+              link: '/documentation/components/audit-trail',
+            },
+            {
               text: 'Avatar',
               link: '/documentation/components/avatar',
             },

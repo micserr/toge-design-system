@@ -561,14 +561,11 @@ test.describe('Dropdown Component', () => {
 
       await expect(component.getByText('Option 1')).toBeVisible();
 
-      // Close with Escape
-      await component.press('Escape');
+      // Close with Escape - press on the page to ensure it's captured
+      await page.keyboard.press('Escape');
 
-      // Give time for dropdown to close
-      await page.waitForTimeout(100);
-
-      // Should close dropdown
-      await expect(component.getByText('Option 1')).not.toBeVisible();
+      // Wait for dropdown to close with a more robust check
+      await expect(component.getByText('Option 1')).toBeHidden({ timeout: 1000 });
     });
   });
 

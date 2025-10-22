@@ -162,6 +162,7 @@
             :loading="props.loading"
             :item-icon="props.itemIcon"
             :lozenge="props.lozenge"
+            :supporting-display-text="props.supportingDisplayText"
             :display-list-item-selected="props.displayListItemSelected"
             :disabled-local-search="props.disabledLocalSearch"
             multi-select

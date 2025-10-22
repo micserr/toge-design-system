@@ -20,8 +20,14 @@
           :placeholder="props.searchableMenuPlaceholder"
           autocomplete="off"
         />
-        <span v-if="props.displayListItemSelected" class="spr-label-sm-medium spr-text-color-base spr-block">
-          {{ selectedItems.length }} Selected
+        <span
+          v-if="props.supportingDisplayText || props.displayListItemSelected"
+          class="spr-label-sm-medium spr-text-color-base spr-block"
+        >
+          <template v-if="props.supportingDisplayText">
+            {{ props.supportingDisplayText }}
+          </template>
+          <template v-else> {{ selectedItems.length }} Selected</template>
         </span>
       </div>
     </template>

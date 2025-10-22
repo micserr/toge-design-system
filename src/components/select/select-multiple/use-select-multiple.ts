@@ -19,7 +19,7 @@ interface MultiSelectClasses {
 }
 
 export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<MultiSelectEmitTypes>['emit']) => {
-  const { displayText, options, textField, valueField, active, disabled, error } = toRefs(props);
+  const { displayText, persistentDisplayText, options, textField, valueField, active, disabled, error } = toRefs(props);
 
   const multiSelectClasses: ComputedRef<MultiSelectClasses> = computed(() => {
     const baseClasses = classNames('spr-flex spr-flex-col spr-gap-size-spacing-4xs');
@@ -106,7 +106,6 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
   const hasUserSelected = ref(false);
 
   const inputText = ref<string | number>('');
-  const inputTextBackup = ref<string | number>('');
   const chippedInputTextRef = ref(null);
 
   const search = useVModel(props, 'searchValue', emit);
@@ -207,10 +206,6 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
 
     hasUserSelected.value = true;
     multiSelectModel.value = selectedValues;
-    inputTextBackup.value =
-      multiSelectedItems.length > 3
-        ? `${multiSelectedItems.length} items selected`
-        : multiSelectedItems.map((item) => item.text).join(', ');
 
     updateMultiSelectedItemsFromValue();
   };
@@ -260,8 +255,11 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
 
     if (!values || !values.length) {
       multiSelectedListItems.value = [];
-      inputText.value = '';
-      inputTextBackup.value = '';
+
+      if (!persistentDisplayText.value) {
+        inputText.value = '';
+      }
+
       return;
     }
 
@@ -289,44 +287,45 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     });
 
     // Determine input text based on whether count-only mode is enabled
-    if (props.displaySelectedCountOnly && values.length) {
-      inputText.value = `${values.length} item${values.length === 1 ? '' : 's'} selected`;
-    } else if (values.length > 3) {
-      inputText.value = `${values.length} items selected`;
-    } else {
-      // Safely get display text for each value
-      inputText.value = values
-        .map((val) => {
-          // Try to find the corresponding option for display text
-          const found = multiSelectOptions.value.find((opt) => {
-            let optVal = opt.value;
-            let v = val;
-            if (typeof optVal === 'string' && optVal.startsWith('{') && optVal.endsWith('}')) {
-              try {
-                optVal = JSON.parse(optVal);
-              } catch {}
-            }
-            if (typeof v === 'string' && v.startsWith('{') && v.endsWith('}')) {
-              try {
-                v = JSON.parse(v);
-              } catch {}
-            }
-            if (typeof optVal === 'object' && typeof v === 'object') {
-              return JSON.stringify(optVal) === JSON.stringify(v);
-            }
-            return optVal == v;
-          });
-          return found ? found.text : typeof val === 'string' || typeof val === 'number' ? String(val) : '';
-        })
-        .join(', ');
+    if (!persistentDisplayText.value) {
+      if (props.displaySelectedCountOnly && values.length) {
+        inputText.value = `${values.length} item${values.length === 1 ? '' : 's'} selected`;
+      } else if (values.length > 3) {
+        inputText.value = `${values.length} items selected`;
+      } else {
+        // Safely get display text for each value
+        inputText.value = values
+          .map((val) => {
+            // Try to find the corresponding option for display text
+            const found = multiSelectOptions.value.find((opt) => {
+              let optVal = opt.value;
+              let v = val;
+              if (typeof optVal === 'string' && optVal.startsWith('{') && optVal.endsWith('}')) {
+                try {
+                  optVal = JSON.parse(optVal);
+                } catch {}
+              }
+              if (typeof v === 'string' && v.startsWith('{') && v.endsWith('}')) {
+                try {
+                  v = JSON.parse(v);
+                } catch {}
+              }
+              if (typeof optVal === 'object' && typeof v === 'object') {
+                return JSON.stringify(optVal) === JSON.stringify(v);
+              }
+              return optVal == v;
+            });
+            return found ? found.text : typeof val === 'string' || typeof val === 'number' ? String(val) : '';
+          })
+          .join(', ');
+      }
     }
 
-    // Always update backup to match inputText after update
-    inputTextBackup.value = inputText.value;
-
-    if (displayText.value && !hasUserSelected.value && (!inputText.value || inputText.value === '')) {
+    if (
+      persistentDisplayText.value ||
+      (displayText.value && !hasUserSelected.value && (!inputText.value || inputText.value === ''))
+    ) {
       inputText.value = displayText.value;
-      inputTextBackup.value = displayText.value;
     }
   };
 
@@ -408,7 +407,6 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
       updateMultiSelectedItemsFromValue();
     } else if (displayText.value) {
       inputText.value = displayText.value;
-      inputTextBackup.value = displayText.value;
     }
   });
 

@@ -161,6 +161,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
 
     if (previousSelected) {
       handleSelectedItem(item);
+
       return true;
     }
 

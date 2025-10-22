@@ -123,6 +123,14 @@ export const multiSelectPropTypes = {
     type: String,
     default: '',
   },
+  supportingDisplayText: {
+    type: String,
+    default: '',
+  },
+  persistentDisplayText: {
+    type: Boolean,
+    default: false,
+  },
   displaySelectedCountOnly: {
     type: Boolean,
     default: false,

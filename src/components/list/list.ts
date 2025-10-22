@@ -36,6 +36,10 @@ export const listPropTypes = {
     type: String,
     default: '',
   },
+  supportingDisplayText: {
+    type: String,
+    default: '',
+  },
   menuList: {
     type: Array as PropType<MenuListType[]>,
     required: true,

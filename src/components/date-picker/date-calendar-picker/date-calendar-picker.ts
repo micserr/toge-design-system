@@ -27,7 +27,7 @@ export type RestDayType = 'su' | 'mo' | 'tu' | 'we' | 'th' | 'fr' | 'sa';
 export type DatePickerMode = typeof DATE_PICKER_MODES[number];
 
 // Define props with JSDoc comments for documentation
-export const reusableCalendarPropTypes = {
+export const dateCalendarPickerPropTypes = {
   /**
    * @description The selected date value (v-model)
    */
@@ -109,7 +109,7 @@ export const reusableCalendarPropTypes = {
 };
 
 // Define emits with type validation
-export const reusableCalendarEmitTypes = {
+export const dateCalendarPickerEmitTypes = {
   'update:modelValue': (value: string): value is string => typeof value === 'string',
   'update:month': (month: number): month is number => typeof month === 'number',
   'update:year': (year: number): year is number => typeof year === 'number',
@@ -117,5 +117,5 @@ export const reusableCalendarEmitTypes = {
 };
 
 // Export types for use in other files
-export type ReusableCalendarPropTypes = ExtractPropTypes<typeof reusableCalendarPropTypes>;
-export type ReusableCalendarEmitTypes = typeof reusableCalendarEmitTypes;
+export type DateCalendarPickerPropTypes = ExtractPropTypes<typeof dateCalendarPickerPropTypes>;
+export type DateCalendarPickerEmitTypes = typeof dateCalendarPickerEmitTypes;

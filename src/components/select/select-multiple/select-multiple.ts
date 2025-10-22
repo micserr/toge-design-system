@@ -123,6 +123,10 @@ export const multiSelectPropTypes = {
     type: String,
     default: '',
   },
+  displaySelectedCountOnly: {
+    type: Boolean,
+    default: false,
+  },
   displayHelper: {
     type: Boolean,
     default: false,
@@ -166,6 +170,14 @@ export const multiSelectPropTypes = {
   disabledLocalSearch: {
     type: Boolean,
     default: false,
+  },
+  lozenge: {
+    type: Boolean,
+    default: false,
+  },
+  itemIcon: {
+    type: String,
+    default: '',
   },
 };
 

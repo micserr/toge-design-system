@@ -33,14 +33,27 @@
               <div ref="chippedInputTextRef" :class="multiSelectClasses.chippedInputTextClasses">
                 <div class="spr-h-auto spr-w-full">
                   <template v-if="multiSelectedListItems.length > 0">
-                    <template v-for="item in multiSelectedListItems" :key="item.value">
-                      <spr-chips
-                        class="spr-m-1 spr-inline-block"
-                        :label="String(item.text)"
-                        closable
-                        visible
-                        @close="handleChippedRemoveItem(String(item.value))"
-                      />
+                    <template v-if="!props.displaySelectedCountOnly">
+                      <template v-for="item in multiSelectedListItems" :key="item.value">
+                        <spr-chips
+                          class="spr-m-1 spr-inline-block"
+                          :label="String(item.text)"
+                          closable
+                          visible
+                          @close="handleChippedRemoveItem(String(item.value))"
+                        />
+                      </template>
+                    </template>
+                    <template v-else>
+                      <span
+                        class="spr-text-color-supporting spr-px-3"
+                        :aria-label="`${multiSelectedListItems.length} selected options`"
+                      >
+                        {{ multiSelectedListItems.length }} item{{
+                          multiSelectedListItems.length === 1 ? '' : 's'
+                        }}
+                        selected
+                      </span>
                     </template>
                   </template>
                   <template v-else>
@@ -149,6 +162,8 @@
             :group-items-by="props.groupItemsBy"
             :pre-selected-items="Array.isArray(multiSelectModel) ? multiSelectModel.flat() : [multiSelectModel]"
             :loading="props.loading"
+            :item-icon="props.itemIcon"
+            :lozenge="props.lozenge"
             multi-select
             :disabled-local-search="props.disabledLocalSearch"
             @update:model-value="handleMultiSelectedItem"

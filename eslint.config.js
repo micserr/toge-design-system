@@ -20,6 +20,7 @@ export default tseslint.config(
       'docs/.vitepress/dist',
       'docs/.vitepress/cache',
       'playground/*',
+      'playwright/**/*',
     ],
   },
   eslint.configs.recommended,

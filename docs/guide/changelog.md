@@ -3,10 +3,11 @@
 ## 2.19.4 (2025-10-23)
 
 - Fix:
-  - Add support for multi-select display selected list item.
   - Fix the issue encountered in the disabled local search list rendering reactiveness.
-  - Added support for multi select get-selected-items emit.
-  - Added support for multi select get-single-selected-item emit.
+  - Added support for multi-select persistent display text
+  - Added support for multi-select display selected list item.
+  - Added support for multi-select get-selected-items emit.
+  - Added support for multi-select get-single-selected-item emit.
     ([#35548](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35548?_a=files) by @jarias)
 
 ## 2.19.3 (2025-10-23)

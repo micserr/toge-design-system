@@ -225,6 +225,8 @@ test.describe('InputCurrency Component', () => {
       const input = component.locator('[data-testid="input-currency-text"]');
       await input.fill('123.45');
 
+      // Wait for the event to be processed
+      await component.waitFor();
       expect(emittedValue).toBe('123.45');
     });
 
@@ -452,11 +454,17 @@ test.describe('InputCurrency Component', () => {
 
       const input = component.locator('[data-testid="input-currency-text"]');
 
+      // Simulate rapid typing with proper sequencing
       await input.fill('1');
+      await component.waitFor(); // Wait for event processing
       await input.fill('12');
+      await component.waitFor(); // Wait for event processing
       await input.fill('123');
+      await component.waitFor(); // Wait for event processing
 
+      // Verify that events were emitted and the final value is correct
       expect(emittedValues.length).toBeGreaterThan(0);
+      expect(emittedValues[emittedValues.length - 1]).toBe('123'); // Check the last emitted value
     });
 
     test('handles invalid currency code gracefully', async ({ mount }) => {
@@ -584,7 +592,7 @@ test.describe('InputCurrency Component', () => {
 
 // ASSUMPTIONS:
 // - Component uses international currency formatting libraries
-// - Default currency is PHP (Philippines) 
+// - Default currency is PHP (Philippines)
 // - Currency dropdown provides full country names with codes
 // - Invalid input is cleared on blur rather than corrected
 // - Numeric validation allows negative numbers and decimals

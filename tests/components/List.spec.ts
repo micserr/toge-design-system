@@ -334,6 +334,9 @@ test.describe('List Component', () => {
       // Banana should be disabled (it's not selected and disabledUnselectedItems is true)
       const bananaCheckbox = component.locator('input[type="checkbox"]').nth(1);
       await expect(bananaCheckbox).toBeDisabled();
+      
+      // Verify initial value is maintained
+      expect(emittedValue).toEqual([{ text: 'Apple', value: 'apple', subtext: 'A red fruit' }]);
     });
   });
 

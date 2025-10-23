@@ -1,5 +1,5 @@
 <template>
-  <spr-input v-bind="props" :type="evaluatePasswordInputType" @update:modelValue="emit('update:modelValue', $event)">
+  <spr-input v-bind="props" :type="evaluatePasswordInputType" @update:model-value="emit('update:modelValue', $event)">
     <template v-for="(_, slotName) in $slots" #[slotName]>
       <slot :name="slotName" />
     </template>

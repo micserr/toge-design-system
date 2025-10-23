@@ -38,6 +38,9 @@ export default tseslint.config(
         extraFileExtensions: ['.vue'],
         sourceType: 'module',
       },
+      globals: {
+        console: 'readonly',
+      },
     },
     rules: {
       'vue/multi-word-component-names': [
@@ -85,6 +88,13 @@ export default tseslint.config(
           ],
         },
       ],
+    },
+  },
+  // Relax rules for test files
+  {
+    files: ['tests/**/*.{ts,js,vue}', '**/*.spec.{ts,js}', '**/*.test.{ts,js}'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
   eslintConfigPrettier,

@@ -28,6 +28,7 @@ export default defineConfig({
     ctTemplateDir: 'playwright',
     ctPort: 3100,
     ctViteConfig: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       plugins: [vue() as any],
       resolve: {
         alias: {

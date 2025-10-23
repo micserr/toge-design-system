@@ -384,7 +384,7 @@ test.describe('Avatar Component', () => {
     test('emits image-error when image fails to load', async ({ mount, page }) => {
       // Track the event emission
       let emittedError = false;
-      let eventData: any = null;
+      let eventData: unknown = null;
 
       const component = await mount(Avatar, {
         props: {

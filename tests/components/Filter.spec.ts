@@ -225,7 +225,7 @@ test.describe('Filter Component', () => {
       const component = await mount(Filter, {
         props: {
           options: mockOptions,
-          'onUpdate:modelValue': (_value: FilterPropsInterface['options']) => {
+          'onUpdate:modelValue': () => {
             // Handle model value updates
           },
         },
@@ -252,7 +252,7 @@ test.describe('Filter Component', () => {
       const component = await mount(Filter, {
         props: {
           options: mockOptions,
-          'onUpdate:modelValue': (_value: FilterPropsInterface['options']) => {
+          'onUpdate:modelValue': () => {
             // Handle model value updates
           },
         },

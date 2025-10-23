@@ -628,6 +628,9 @@ test.describe('Dropdown Component', () => {
 
       // Should handle gracefully without errors
       await expect(component.getByText('Option 1')).toBeVisible();
+      
+      // Verify that rapid clicks were handled properly
+      expect(clickCount).toBeGreaterThan(0);
     });
   });
 

@@ -34,10 +34,9 @@ const mockEmployee: any = {
   name: 'John Doe',
   position: 'Software Engineer',
   avatar: '/images/avatar-placeholder.svg',
-  hoursWorked: 40,
+  hoursWorked: 32,
   hoursTarget: 40,
-  schedule: [
-    {
+  schedule: {
     '2025-10-13': [
       {
         startTime: '09:00',
@@ -57,7 +56,7 @@ const mockEmployee: any = {
         color: 'secondary',
       },
     ],
-  }],
+  },
 };
 
 const mockEmployeeWithoutAvatar: any = {

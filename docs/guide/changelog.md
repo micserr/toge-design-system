@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.19.5 (2025-10-23)
+
+- Fix:
+  - Dropdown DQA
+    ([#35548](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35548?_a=files) by @jarias)
+
 ## 2.19.4 (2025-10-23)
 
 - Fix:

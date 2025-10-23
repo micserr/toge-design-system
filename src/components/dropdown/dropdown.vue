@@ -32,7 +32,7 @@
     <template #popper>
       <template v-if="$slots.popper">
         <div
-          class="spr-overflow-y-auto spr-overflow-x-hidden spr-p-2"
+          class="spr-overflow-y-auto spr-overflow-x-hidden spr-p-4"
           :style="{
             width: props.popperInnerWidth,
           }"

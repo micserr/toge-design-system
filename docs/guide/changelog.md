@@ -1,11 +1,23 @@
 # Changelog
 
-## 2.19.2 (2025-10-23)
+## 2.19.4 (2025-10-23)
 
 - Fix:
   - Add support for multi-select display selected list item.
   - Fix the issue encountered in the disabled local search list rendering reactiveness.
+  - Added support for multi select get-selected-items emit.
+  - Added support for multi select get-single-selected-item emit.
     ([#35548](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35548?_a=files) by @jarias)
+
+## 2.19.3 (2025-10-23)
+
+- Feat: Added writable input support to Ladderized Select components
+  ([#e7a5b4f9](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e7a5b4f94261d868fbe61baf2e62b83adcb8dd6d?refName=refs/heads/2025/feat/Paulo/UpdatedLadderizedListAndSelectToEnableWritableInput) by @jbanares)
+
+## 2.19.2 (2025-10-22)
+
+- Fix: Rename Reusable Calendar to Date Calendar Picker and update related documentation
+  ([#0fbc00b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0fbc00bd86882480a3fc0761d55d8807458be5f8?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2Fdate-calendar-picker-rename) by @bsolis)
 
 ## 2.19.1 (2025-10-22)
 

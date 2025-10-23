@@ -493,7 +493,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
       if (item.onClickFn) item.onClickFn();
     }
 
-    emit('get-single-selected-option', item);
+    emit('get-single-selected-item', item);
   };
   // #endregion - Helper Methods
 

@@ -144,12 +144,16 @@ export const selectLadderizedPropTypes = {
     type: Boolean,
     default: false,
   },
+  writableInputText: {
+    type: Boolean,
+    default: false,
+  }
 };
 
 export const selectLadderizedEmitTypes = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'update:modelValue': (_value: unknown) => true,
-  'popper-state': Boolean,
+  'popper-state': () => true,
 };
 
 export type SelectLadderizedEmitFn = (event: string, ...args: unknown[]) => void;

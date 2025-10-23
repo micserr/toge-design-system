@@ -202,7 +202,7 @@ export const multiSelectEmitTypes = {
   'popper-state': Boolean,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'get-selected-options': (_value: unknown) => true,
-  'get-single-selected-option': (item: MenuListType) => item,
+  'get-single-selected-item': (item: MenuListType) => item,
 };
 
 export type MultiSelectPropTypes = ExtractPropTypes<typeof multiSelectPropTypes>;

@@ -1572,7 +1572,7 @@ const optionsWithLozenge = ref([
       <td>Emitted when an item is selected. The payload is the selected options object.</td>
     </tr>
     <tr>
-      <td>@get-single-selected-option</td>
+      <td>@get-single-selected-item</td>
       <td>Object</td>
       <td>Emitted when a single option is selected in single-select mode. The payload is the selected item object.</td>
     </tr>

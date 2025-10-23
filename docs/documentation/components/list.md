@@ -834,7 +834,7 @@ const lozengeMenuList = ref(
       <td>(value: string): The new search text value</td>
     </tr>
     <tr>
-      <td>@get-single-selected-option</td>
+      <td>@get-single-selected-item</td>
       <td>Emitted when a single option is selected in single-select mode. The payload is the selected item object.</td>
       <td>Object</td>
     </tr>

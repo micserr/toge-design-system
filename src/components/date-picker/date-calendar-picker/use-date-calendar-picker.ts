@@ -3,11 +3,11 @@ import { toRefs } from 'vue';
 import dayjs from 'dayjs';
 
 import type { SetupContext } from 'vue';
-import type { ReusableCalendarEmitTypes, ReusableCalendarPropTypes } from './reusable-calendar';
+import type { DateCalendarPickerEmitTypes, DateCalendarPickerPropTypes } from './date-calendar-picker';
 
-export const useReusableCalendar = (
-  props: ReusableCalendarPropTypes, 
-  emit: SetupContext<ReusableCalendarEmitTypes>['emit']
+export const useDateCalendarPicker = (
+  props: DateCalendarPickerPropTypes, 
+  emit: SetupContext<DateCalendarPickerEmitTypes>['emit']
 ) => {
   // Extract reactive props
   const { 

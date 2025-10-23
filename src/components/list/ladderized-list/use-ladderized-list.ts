@@ -1,8 +1,6 @@
 import { onBeforeMount, ref, toRefs, watch } from 'vue';
-import { useVModel } from '@vueuse/core';
-
+import { useVModel, watchDeep } from '@vueuse/core';
 import { LadderizedListPropTypes, LadderizedListEmitTypes } from './ladderized-list';
-
 import type { SetupContext } from 'vue';
 import type { MenuListType } from '../list';
 
@@ -20,6 +18,8 @@ export const useLadderizedList = (
   const activeLevel = ref(0);
   const activeList = ref<MenuListType[]>(menuList.value); // List of items to display in the active level
   const searchText = ref('');
+
+  const modelValueIsCustom = ref(false);
 
   // Recursive filter function for ladderized options
   const filterOptionsRecursive = (items: MenuListType[], search: string): MenuListType[] => {
@@ -86,6 +86,12 @@ export const useLadderizedList = (
   const handleSelectedListItem = (item: MenuListType) => {
     transitionName.value = 'slide-left';
 
+    if (modelValueIsCustom.value) {
+      console.log("Custom");
+      ladderizedListOutput.value.shift();
+      modelValueIsCustom.value = false;
+    };
+
     // If searching, reconstruct full path as array of option objects
     if (searchText.value) {
       const path = findOptionPath(menuList.value, String(item.value));
@@ -111,7 +117,7 @@ export const useLadderizedList = (
       replaceItemInOutput(item);
     }
 
-    if (item.sublevel && item.sublevel.length > 0) updateLevel(item);
+    if (item.sublevel && item.sublevel.length > 0) updateLevel(item); // FIXME: This causes activeLevel one less than expected. Currently not critical since most forms are 2 levels deep.
     emit('update:modelValue', ladderizedListOutput.value);
   };
 
@@ -224,9 +230,14 @@ export const useLadderizedList = (
 
           prevList.value = activeList.value;
           activeList.value = item.sublevel ?? prevList.value;
-          activeLevel.value += item.sublevel ? 1 : 0;
+          activeLevel.value += item.sublevel ? 1 : 0; // FIXME: This causes activeLevel one less than expected. Currently not critical since most forms are 2 levels deep.
         } else {
-          // If no item found, skip the for loop
+          // If no item found, rest the values to initial state
+          selectedListItem.value = [];
+          prevList.value = [];
+          activeList.value = menuList.value;
+          activeLevel.value = 0;
+          modelValueIsCustom.value = true;
           return;
         }
       });
@@ -241,8 +252,8 @@ export const useLadderizedList = (
   };
 
   // Watch for modelValue changes and reset selectedListItem if cleared
-  watch(
-    () => props.modelValue,
+  watchDeep(
+    ladderizedListOutput,
     (newVal) => {
       if (!newVal || (Array.isArray(newVal) && newVal.length === 0)) {
         selectedListItem.value = [];

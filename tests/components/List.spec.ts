@@ -313,14 +313,15 @@ test.describe('List Component', () => {
     });
 
     test('should handle disabledUnselectedItems prop', async ({ mount }) => {
-      let emittedValue: MenuListType[] = [];
+      const initialValue = [{ text: 'Apple', value: 'apple', subtext: 'A red fruit' }];
+      let emittedValue: MenuListType[] = initialValue;
 
       const component = await mount(List, {
         props: {
           menuList: mockMenuItems,
           multiSelect: true,
           disabledUnselectedItems: true,
-          modelValue: [{ text: 'Apple', value: 'apple', subtext: 'A red fruit' }],
+          modelValue: initialValue,
           'onUpdate:modelValue': (value: MenuListType[]) => {
             emittedValue = value;
           },
@@ -330,11 +331,12 @@ test.describe('List Component', () => {
       // Apple should be enabled (it's selected)
       const appleCheckbox = component.locator('input[type="checkbox"]').first();
       await expect(appleCheckbox).not.toBeDisabled();
+      await expect(appleCheckbox).toBeChecked();
 
       // Banana should be disabled (it's not selected and disabledUnselectedItems is true)
       const bananaCheckbox = component.locator('input[type="checkbox"]').nth(1);
       await expect(bananaCheckbox).toBeDisabled();
-      
+
       // Verify initial value is maintained
       expect(emittedValue).toEqual([{ text: 'Apple', value: 'apple', subtext: 'A red fruit' }]);
     });

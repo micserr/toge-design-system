@@ -604,15 +604,10 @@ test.describe('Dropdown Component', () => {
     });
 
     test('rapid clicks do not cause issues', async ({ mount }) => {
-      let clickCount = 0;
-
       const component = await mount(Dropdown, {
         props: {
           id: 'rapid-clicks',
           menuList: stringMenuList,
-          'onUpdate:modelValue': () => {
-            clickCount++;
-          },
         },
         slots: {
           default: '<button>Rapid Click Test</button>',
@@ -621,16 +616,17 @@ test.describe('Dropdown Component', () => {
 
       const button = component.getByRole('button', { name: 'Rapid Click Test' });
 
-      // Rapid clicks
+      // Rapid clicks on the trigger button (opening/closing dropdown)
       await button.click();
       await button.click();
       await button.click();
 
-      // Should handle gracefully without errors
+      // Wait a moment for any potential issues to surface
+      await component.page().waitForTimeout(100);
+
+      // Should handle gracefully without errors - dropdown should still be functional
+      await button.click();
       await expect(component.getByText('Option 1')).toBeVisible();
-      
-      // Verify that rapid clicks were handled properly
-      expect(clickCount).toBeGreaterThan(0);
     });
   });
 

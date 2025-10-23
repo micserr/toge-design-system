@@ -1,11 +1,11 @@
 pr:
   branches:
     include:
-      - 2025/FEATURE/JEF/PLAYWRIGHT-COMPONENT-TEST
+      - dev
 trigger:
   branches:
     include:
-      - 2025/FEATURE/JEF/PLAYWRIGHT-COMPONENT-TEST
+      - dev
 
 pool:
   vmImage: ubuntu-latest

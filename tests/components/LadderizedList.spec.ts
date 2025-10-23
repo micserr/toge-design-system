@@ -92,8 +92,9 @@ test.describe('SprLadderizedList', () => {
         },
       });
 
-      // Check that back button/arrow is not visible at root level
-      await expect(component.locator('svg[viewBox="0 0 256 256"]')).not.toBeVisible();
+      // Check that back button component is not visible at root level
+      // Look for the back button specifically by checking for the sticky container with cursor-pointer
+      await expect(component.locator('.spr-sticky.spr-cursor-pointer')).not.toBeVisible();
     });
 
     test('should render with searchable menu when enabled', async ({ mount }) => {
@@ -126,8 +127,8 @@ test.describe('SprLadderizedList', () => {
       await expect(component.getByText('Subcategory 1.1')).toBeVisible({ timeout: 10000 });
       await expect(component.getByText('Subcategory 1.2')).toBeVisible();
 
-      // Should show back button with back arrow icon (first one is the back arrow)
-      await expect(component.locator('svg[viewBox="0 0 256 256"]').first()).toBeVisible();
+      // Should show back button component
+      await expect(component.locator('.spr-sticky.spr-cursor-pointer')).toBeVisible();
     });
 
     test('should show back button with correct label after navigation', async ({ mount }) => {

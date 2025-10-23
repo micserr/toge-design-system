@@ -9,6 +9,7 @@
  * - Path text display with custom separators and prepend/append options
  * - Clear functionality for resetting the hierarchical selection
  * - Search functionality within the ladderized menu structure
+ * - WritableInputText feature for manual text input and custom values
  * - Accessibility features (ARIA attributes, keyboard navigation patterns)
  * - Popper integration with different placements and positioning strategies
  * - Error states, disabled states, and helper content display
@@ -588,23 +589,23 @@ test.describe('SelectLadderized Component', () => {
 
   test.describe('Event Handling', () => {
     test('should emit popper-state event when menu opens/closes', async ({ mount }) => {
-      let popperState: boolean | undefined;
+      const popperStates: boolean[] = [];
 
       const component = await mount(SelectLadderized, {
         props: {
           id: 'test-select-ladderized',
           options: mockHierarchicalOptions,
-          'onPopper-state': (state: unknown) => {
-            popperState = state as boolean;
+          'onPopper-state': (state: boolean) => {
+            popperStates.push(state);
           },
         },
       });
 
       await component.locator('input').click();
-      expect(popperState).toBe(true);
+      expect(popperStates).toContain(true);
 
       await component.click({ position: { x: 0, y: 0 } });
-      expect(popperState).toBe(false);
+      expect(popperStates).toContain(false);
     });
   });
 
@@ -761,6 +762,168 @@ test.describe('SelectLadderized Component', () => {
       // Since we can't reliably target specific internal elements,
       // just verify the component renders
       await expect(component).toBeVisible();
+    });
+  });
+
+  test.describe('WritableInputText Feature', () => {
+    test('should have readonly input by default', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+        },
+      });
+
+      await expect(component.locator('input')).toHaveAttribute('readonly');
+    });
+
+    test('should have readonly input when writableInputText is explicitly false', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          writableInputText: false,
+        },
+      });
+
+      await expect(component.locator('input')).toHaveAttribute('readonly');
+    });
+
+    test('should allow text input when writableInputText is true', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          writableInputText: true,
+        },
+      });
+
+      await expect(component.locator('input')).not.toHaveAttribute('readonly');
+    });
+
+    test('should emit modelValue with custom text when writableInputText is enabled', async ({ mount }) => {
+      let emittedValue: string[] | undefined;
+
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          writableInputText: true,
+          'onUpdate:modelValue': (value: unknown) => {
+            emittedValue = value as string[];
+          },
+        },
+      });
+
+      const input = component.locator('input');
+      await input.fill('Custom text input');
+      await input.blur();
+
+      expect(emittedValue).toEqual(['Custom text input']);
+    });
+
+    test('should maintain custom text when writableInputText is enabled', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          writableInputText: true,
+        },
+      });
+
+      // Fill the input with custom text
+      const input = component.locator('input');
+      await input.fill('Custom input');
+      await input.blur();
+
+      await expect(input).toHaveValue('Custom input');
+    });
+
+    test('should handle modelValue with existing hierarchical options when writableInputText is enabled', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          writableInputText: true,
+          modelValue: ['animals', 'mammals'],
+        },
+      });
+
+      await expect(component.locator('input')).toHaveValue('Animals > Mammals');
+    });
+
+    test('should not interfere with hierarchical selection when writableInputText is false', async ({ mount }) => {
+      let emittedValue: string[] | undefined;
+
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          writableInputText: false,
+          'onUpdate:modelValue': (value: unknown) => {
+            emittedValue = value as string[];
+          },
+        },
+      });
+
+      await component.locator('input').click();
+      await component.getByText('Animals').click();
+
+      expect(emittedValue).toEqual(['animals']);
+      await expect(component.locator('input')).toHaveValue('Animals');
+    });
+
+    test('should handle blur event correctly with writableInputText enabled', async ({ mount }) => {
+      let blurEventFired = false;
+
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          writableInputText: true,
+          'onUpdate:modelValue': (_value: unknown) => {
+            blurEventFired = true;
+          },
+        },
+      });
+
+      const input = component.locator('input');
+      await input.fill('Test text');
+      await input.blur();
+
+      expect(blurEventFired).toBe(true);
+    });
+
+    test('should clear custom text when clear button is clicked', async ({ mount }) => {
+      let emittedValue: string[] | undefined;
+
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          writableInputText: true,
+          clearable: true,
+          'onUpdate:modelValue': (value: unknown) => {
+            emittedValue = value as string[];
+          },
+        },
+      });
+
+      // Fill the input with custom text first
+      const input = component.locator('input');
+      await input.fill('Custom text');
+      await input.blur();
+
+      // Verify text is there
+      await expect(input).toHaveValue('Custom text');
+
+      // Click clear button (first icon)
+      const icons = component.locator('svg');
+      await expect(icons).toHaveCount(2);
+      await icons.first().click();
+
+      expect(emittedValue).toEqual([]);
+      await expect(input).toHaveValue('');
     });
   });
 });

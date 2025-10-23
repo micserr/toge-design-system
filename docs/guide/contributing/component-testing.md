@@ -74,6 +74,7 @@ We use the **Playwright MCP (Model Context Protocol)** to generate comprehensive
 - **Consistent testing patterns** across components
 - **Intelligent test case generation** based on component analysis
 - **Accessibility-first testing** approach
+- **Lint-compliant code generation** following project standards
 
 ### Initial Prompt System
 
@@ -82,8 +83,9 @@ Our test generation uses the initial prompt located in `tests/components/1-compo
 1. **Comprehensive testing requirements**
 2. **Vue 3 specific patterns**
 3. **Accessibility testing guidelines**
-4. **Error handling strategies**
-5. **Best practices and conventions**
+4. **Linting and code quality standards**
+5. **Error handling strategies**
+6. **Best practices and conventions**
 
 ### Using the AI Test Generator
 
@@ -118,6 +120,7 @@ The AI will analyze your component and generate comprehensive tests covering:
 - Accessibility requirements
 - Error handling
 - User interactions
+- Code quality and linting compliance
 
 ## Test Coverage Requirements
 
@@ -221,6 +224,23 @@ test('should apply theme variants', async ({ mount }) => {
 
 ## Best Practices
 
+### Code Quality and Linting
+
+Before running tests, ensure your test files meet code quality standards:
+
+```bash
+# Check lint issues in test files
+npm run lint
+```
+
+**Key linting requirements for test files:**
+
+- Consistent code formatting and style
+- Proper TypeScript typing
+- ESLint rule compliance
+- Import statement organization
+- Consistent naming conventions
+
 ### Selector Strategy (Priority Order)
 
 1. **Role-based selectors** (preferred):
@@ -286,6 +306,9 @@ await page.waitForTimeout(500);
 ### Local Development
 
 ```bash
+# Run lint checks on test files (recommended before running tests)
+npm run lint
+
 # Run all component tests
 npm run test:components
 
@@ -463,11 +486,17 @@ Our component tests run automatically in CI/CD pipelines:
 - task: Node.js
   inputs:
     command: 'custom'
+    customCommand: 'npm run lint'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+
+- task: Node.js
+  inputs:
+    command: 'custom'
     customCommand: 'npm run test:components'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
 ```
 
-Tests must pass before code can be merged to main branches.
+Both linting and tests must pass before code can be merged to main branches.
 
 ## Getting Help
 
@@ -483,5 +512,12 @@ Use the Playwright MCP system to generate comprehensive tests quickly. The AI un
 :::
 
 ::: warning Important
-Always run tests locally before committing. Failed tests will block CI/CD deployment and prevent merging pull requests.
+Always run lint checks and tests locally before committing. Failed linting or tests will block CI/CD deployment and prevent merging pull requests.
+
+```bash
+# Recommended pre-commit workflow
+npm run lint        # Check code quality
+npm run test:components  # Run component tests
+```
+
 :::

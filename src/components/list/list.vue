@@ -78,16 +78,15 @@
                           { 'spr-text-color-disabled': item.disabled },
                         ]"
                       >
-                        <span class="spr-text-left spr-text-xs" style="word-break: break-word">
+                        <span class="spr-break-words spr-text-left spr-text-xs">
                           {{ item.text }}
                         </span>
                         <span
                           v-if="item.subtext"
                           :class="[
-                            'spr-body-xs-regular spr-text-color-base spr-text-left',
+                            'spr-body-xs-regular spr-text-color-base spr-break-words spr-text-left',
                             { 'spr-text-color-disabled': item.disabled },
                           ]"
-                          style="word-break: break-word"
                         >
                           {{ item.subtext }}
                         </span>
@@ -171,16 +170,15 @@
                       { 'spr-text-color-disabled': item.disabled },
                     ]"
                   >
-                    <span class="spr-text-left spr-text-xs" style="word-break: break-word">
+                    <span class="spr-break-words spr-text-left spr-text-xs">
                       {{ item.text }}
                     </span>
                     <span
                       v-if="item.subtext"
                       :class="[
-                        'spr-body-xs-regular spr-text-color-base spr-text-left',
+                        'spr-body-xs-regular spr-text-color-base spr-break-words spr-text-left',
                         { 'spr-text-color-disabled': item.disabled },
                       ]"
-                      style="word-break: break-word"
                     >
                       {{ item.subtext }}
                     </span>

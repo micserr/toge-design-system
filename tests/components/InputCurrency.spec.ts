@@ -442,7 +442,7 @@ test.describe('InputCurrency Component', () => {
 
     test('handles rapid input changes', async ({ mount }) => {
       // Test rapid input changes and event handling
-      let emittedValues: string[] = [];
+      const emittedValues: string[] = [];
 
       const component = await mount(InputCurrency, {
         props: {

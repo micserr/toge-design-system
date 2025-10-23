@@ -773,7 +773,7 @@ test.describe('AttributeFilter Component', () => {
     test('handles null/undefined filter values', async ({ mount }) => {
       const component = await mount(AttributeFilter, {
         props: {
-          filterMenuList: null as any,
+          filterMenuList: undefined,
         },
       });
 

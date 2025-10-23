@@ -28,15 +28,16 @@
 import { test, expect } from '@playwright/experimental-ct-vue';
 import Calendar from '@/components/calendar/calendar.vue';
 
-// Mock employee data for testing - using any to bypass TypeScript interface issues
+// Mock employee data for testing
 const mockEmployee: any = {
   id: '1',
   name: 'John Doe',
   position: 'Software Engineer',
-  avatar: 'https://example.com/avatar.jpg',
-  hoursWorked: 32,
+  avatar: '/images/avatar-placeholder.svg',
+  hoursWorked: 40,
   hoursTarget: 40,
-  schedule: {
+  schedule: [
+    {
     '2025-10-13': [
       {
         startTime: '09:00',
@@ -56,7 +57,7 @@ const mockEmployee: any = {
         color: 'secondary',
       },
     ],
-  },
+  }],
 };
 
 const mockEmployeeWithoutAvatar: any = {
@@ -226,7 +227,7 @@ test.describe('Calendar Component', () => {
     test('handles empty schedule cells', async ({ mount }) => {
       const employeeWithEmptySchedule = {
         ...mockEmployee,
-        schedule: {},
+        schedule: [],
       };
 
       const component = await mount(Calendar, {

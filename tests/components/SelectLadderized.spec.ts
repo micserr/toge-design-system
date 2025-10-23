@@ -565,7 +565,7 @@ test.describe('SelectLadderized Component', () => {
     });
 
     test('should handle rapid option changes', async ({ mount }) => {
-      let emittedValues: string[][] = [];
+      const emittedValues: string[][] = [];
 
       const component = await mount(SelectLadderized, {
         props: {
@@ -881,7 +881,7 @@ test.describe('SelectLadderized Component', () => {
           id: 'test-select-ladderized',
           options: mockHierarchicalOptions,
           writableInputText: true,
-          'onUpdate:modelValue': (_value: unknown) => {
+          'onUpdate:modelValue': () => {
             blurEventFired = true;
           },
         },

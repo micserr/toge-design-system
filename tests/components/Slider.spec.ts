@@ -252,7 +252,7 @@ test.describe('Slider Component', () => {
     });
 
     test('clamps values at boundaries during keyboard navigation', async ({ mount }) => {
-      let emittedValues: number[] = [];
+      const emittedValues: number[] = [];
 
       const component = await mount(Slider, {
         props: {

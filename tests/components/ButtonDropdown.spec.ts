@@ -328,7 +328,7 @@ test.describe('ButtonDropdown Component', () => {
 
     test('handles v-model updates from dropdown selection', async ({ mount, page }) => {
       let updateEventFired = false;
-      let updatedValue: any[] = [];
+      let updatedValue: (MenuListType | string | Record<string, unknown>)[] = [];
 
       const component = await mount(ButtonDropdown, {
         props: {
@@ -338,7 +338,7 @@ test.describe('ButtonDropdown Component', () => {
         },
         slots: { default: 'V-Model Test' },
         on: {
-          'update:modelValue': (value: any[]) => {
+          'update:modelValue': (value: (MenuListType | string | Record<string, unknown>)[]) => {
             updatedValue = value;
             updateEventFired = true;
           },

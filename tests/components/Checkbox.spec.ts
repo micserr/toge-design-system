@@ -303,7 +303,7 @@ test.describe('Checkbox Component', () => {
         }
       });
       
-      let checkbox = component.locator('input[type="checkbox"]');
+      const checkbox = component.locator('input[type="checkbox"]');
       await expect(checkbox).not.toBeChecked();
       
       // Update the prop to simulate v-model change

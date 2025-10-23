@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.20.0 (2025-10-23)
+
+- Feat: Added Component Testing with Playwright
+  ([#35580](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35580) by @jmari)
+
 ## 2.19.5 (2025-10-23)
 
 - Fix:

@@ -36,6 +36,10 @@ export const listPropTypes = {
     type: String,
     default: '',
   },
+  supportingDisplayText: {
+    type: String,
+    default: '',
+  },
   menuList: {
     type: Array as PropType<MenuListType[]>,
     required: true,
@@ -91,15 +95,24 @@ export const listPropTypes = {
     type: [String, Number] as PropType<string | number>,
     default: 0,
   },
+  displayListItemSelected: {
+    type: Boolean,
+    default: false,
+  },
   itemIcon: {
     type: String,
     default: '',
+  },
+  disabledUnselectedItems: {
+    type: Boolean,
+    default: false,
   },
 };
 
 export const listEmitTypes = {
   'update:modelValue': (value: MenuListType[]) => value,
   'update:searchValue': (value: string) => typeof value === 'string',
+  'get-single-selected-item': (item: MenuListType) => item,
 };
 
 export type ListPropTypes = ExtractPropTypes<typeof listPropTypes>;

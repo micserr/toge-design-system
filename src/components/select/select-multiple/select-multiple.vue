@@ -49,9 +49,7 @@
                         class="spr-text-color-supporting spr-px-3"
                         :aria-label="`${multiSelectedListItems.length} selected options`"
                       >
-                        {{ multiSelectedListItems.length }} item{{
-                          multiSelectedListItems.length === 1 ? '' : 's'
-                        }}
+                        {{ multiSelectedListItems.length }} item{{ multiSelectedListItems.length === 1 ? '' : 's' }}
                         selected
                       </span>
                     </template>
@@ -164,9 +162,13 @@
             :loading="props.loading"
             :item-icon="props.itemIcon"
             :lozenge="props.lozenge"
-            multi-select
+            :supporting-display-text="props.supportingDisplayText"
+            :display-list-item-selected="props.displayListItemSelected"
             :disabled-local-search="props.disabledLocalSearch"
+            :disabled-unselected-items="props.disabledUnselectedItems"
+            multi-select
             @update:model-value="handleMultiSelectedItem"
+            @get-single-selected-item="emit('get-single-selected-item', $event)"
           />
         </div>
       </template>

@@ -9,12 +9,16 @@
  * - Tests pre-selected items and complex object handling
  * - Validates lozenge display mode
  * - Tests ladderized view with sublevels
+ * - Tests disabledUnselectedItems prop and its effects on styling and interaction
+ * - Tests text and icon color customization
+ * - Validates disabled state styling and behavior
  *
  * ASSUMPTIONS:
  * - Icon component is properly imported and available
  * - Checkbox and Lozenge components work as expected
  * - CSS classes for styling are applied correctly
  * - Input search component emits proper events
+ * - Disabled styling classes (spr-text-color-disabled, spr-cursor-not-allowed) are available
  *
  * TODO (Future Enhancements):
  * - Test recursive search in sublevel items
@@ -25,6 +29,8 @@
  * - Test right-to-left (RTL) language support
  * - Test high contrast mode compatibility
  * - Test screen reader announcements for dynamic content
+ * - Test interaction between disabledUnselectedItems and other props
+ * - Test dynamic color changes for items
  */
 
 import { test, expect } from '@playwright/experimental-ct-vue';
@@ -45,6 +51,11 @@ const mockGroupedItems: MenuListType[] = [
   { text: 'Banana', value: 'banana', group: 'B' },
   { text: 'Cherry', value: 'cherry', group: 'C' },
   { text: 'Apricot', value: 'apricot', group: 'A' },
+];
+
+const mockItemsWithTextColors: MenuListType[] = [
+  { text: 'Red Item', value: 'red', textColor: 'spr-text-red-500' },
+  { text: 'Blue Item', value: 'blue', textColor: 'spr-text-blue-500' },
 ];
 
 const mockItemsWithIcons: MenuListType[] = [
@@ -207,6 +218,28 @@ test.describe('List Component', () => {
       const checkIcon = component.locator('[icon="ph:check"]');
       await expect(checkIcon).not.toBeVisible();
     });
+
+    test('should respect disabledUnselectedItems in single select mode', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          disabledUnselectedItems: true,
+          preSelectedItems: ['apple'], // Pre-select Apple
+        },
+      });
+
+      // Banana should have disabled text styling since it's not selected and disabledUnselectedItems is true
+      const bananaTextDiv = component
+        .getByText('Banana')
+        .locator('xpath=ancestor::div[contains(@class, "spr-text-color-disabled")]');
+      await expect(bananaTextDiv).toBeVisible();
+
+      // And the Banana container should have cursor-not-allowed class
+      const bananaContainer = component
+        .getByText('Banana')
+        .locator('xpath=ancestor::div[contains(@class, "spr-cursor-not-allowed")]');
+      await expect(bananaContainer).toBeVisible();
+    });
   });
 
   test.describe('Multi Select Behavior', () => {
@@ -278,6 +311,30 @@ test.describe('List Component', () => {
 
       await expect(disabledCheckbox).toBeDisabled();
     });
+
+    test('should handle disabledUnselectedItems prop', async ({ mount }) => {
+      let emittedValue: MenuListType[] = [];
+
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          multiSelect: true,
+          disabledUnselectedItems: true,
+          modelValue: [{ text: 'Apple', value: 'apple', subtext: 'A red fruit' }],
+          'onUpdate:modelValue': (value: MenuListType[]) => {
+            emittedValue = value;
+          },
+        },
+      });
+
+      // Apple should be enabled (it's selected)
+      const appleCheckbox = component.locator('input[type="checkbox"]').first();
+      await expect(appleCheckbox).not.toBeDisabled();
+
+      // Banana should be disabled (it's not selected and disabledUnselectedItems is true)
+      const bananaCheckbox = component.locator('input[type="checkbox"]').nth(1);
+      await expect(bananaCheckbox).toBeDisabled();
+    });
   });
 
   test.describe('Search Functionality', () => {
@@ -342,30 +399,30 @@ test.describe('List Component', () => {
       });
 
       const searchInput = component.locator('input[placeholder="Search..."]');
-      
+
       // Test initial state
       expect(emittedSearchValue).toBe('');
-      
+
       // Test typing multiple characters
       await searchInput.fill('test');
       await page.waitForTimeout(100); // Allow for debouncing
       expect(emittedSearchValue).toBe('test');
-      
+
       // Test clearing search
       await searchInput.fill('');
       await page.waitForTimeout(100);
       expect(emittedSearchValue).toBe('');
-      
+
       // Test special characters and spaces
       await searchInput.fill('test search with spaces & symbols!');
       await page.waitForTimeout(100);
       expect(emittedSearchValue).toBe('test search with spaces & symbols!');
-      
+
       // Verify that all items are still visible when local search is disabled
       await expect(component.getByText('Apple')).toBeVisible();
       await expect(component.getByText('Banana')).toBeVisible();
       await expect(component.getByText('Cherry')).toBeVisible();
-      
+
       // Verify multiple emissions occurred
       expect(emissionCount).toBeGreaterThan(1);
     });
@@ -381,6 +438,31 @@ test.describe('List Component', () => {
 
       const searchInput = component.locator('input[placeholder="Find items..."]');
       await expect(searchInput).toBeVisible();
+    });
+
+    test('should display supporting text when provided', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          searchableMenu: true,
+          supportingDisplayText: 'Custom supporting text',
+        },
+      });
+
+      await expect(component.getByText('Custom supporting text')).toBeVisible();
+    });
+
+    test('should display selected count when displayListItemSelected is true', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          multiSelect: true,
+          displayListItemSelected: true,
+          modelValue: [mockMenuItems[0], mockMenuItems[1]], // Pre-select 2 items
+        },
+      });
+
+      await expect(component.getByText('2 Selected')).toBeVisible();
     });
 
     test('should set sticky search offset', async ({ mount }) => {
@@ -530,6 +612,25 @@ test.describe('List Component', () => {
       // Should show SVG icons for all items
       const svgIcons = component.locator('svg');
       await expect(svgIcons).toHaveCount(mockMenuItems.length);
+    });
+
+    test('should apply text colors when provided', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockItemsWithTextColors,
+        },
+      });
+
+      // Check if text color classes are applied
+      const redItemDiv = component
+        .getByText('Red Item')
+        .locator('xpath=ancestor::div[contains(@class, "spr-text-red-500")]');
+      await expect(redItemDiv).toBeVisible();
+
+      const blueItemDiv = component
+        .getByText('Blue Item')
+        .locator('xpath=ancestor::div[contains(@class, "spr-text-blue-500")]');
+      await expect(blueItemDiv).toBeVisible();
     });
 
     test('should apply icon colors', async ({ mount }) => {
@@ -728,6 +829,35 @@ test.describe('List Component', () => {
       // Should not show check icon even for selected items
       const checkIcon = component.locator('[icon="ph:check"]');
       await expect(checkIcon).not.toBeVisible();
+    });
+
+    test('should show disabled styling for disabled items', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+        },
+      });
+
+      // Check that disabled items have disabled styling
+      const cherryItem = component.getByText('Cherry');
+      const cherryContainer = cherryItem.locator('xpath=ancestor::div[contains(@class, "spr-cursor-not-allowed")]');
+      await expect(cherryContainer).toBeVisible();
+    });
+
+    test('should show disabled styling when disabledUnselectedItems is true', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          disabledUnselectedItems: true,
+          modelValue: [{ text: 'Apple', value: 'apple', subtext: 'A red fruit' }],
+        },
+      });
+
+      // Banana should have disabled text styling since it's not selected
+      const bananaTextDiv = component
+        .getByText('Banana')
+        .locator('xpath=ancestor::div[contains(@class, "spr-text-color-disabled")]');
+      await expect(bananaTextDiv).toBeVisible();
     });
 
     test('should handle mixed value types (string and number)', async ({ mount }) => {

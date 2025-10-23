@@ -489,8 +489,11 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     } else {
       // For single-select, simply replace the selection
       selectedItems.value = [item];
+
       if (item.onClickFn) item.onClickFn();
     }
+
+    emit('get-single-selected-option', item);
   };
   // #endregion - Helper Methods
 

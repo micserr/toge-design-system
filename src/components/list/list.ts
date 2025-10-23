@@ -108,6 +108,7 @@ export const listPropTypes = {
 export const listEmitTypes = {
   'update:modelValue': (value: MenuListType[]) => value,
   'update:searchValue': (value: string) => typeof value === 'string',
+  'get-single-selected-option': (item: MenuListType) => item,
 };
 
 export type ListPropTypes = ExtractPropTypes<typeof listPropTypes>;

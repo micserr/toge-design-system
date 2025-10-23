@@ -1558,8 +1558,23 @@ const optionsWithLozenge = ref([
     </tr>
     <tr>
       <td>@popper-state</td>
-      <td>Bolean</td>
+      <td>Boolean</td>
       <td>Event emitted when you open or close the popper</td>
+    </tr>
+    <tr>
+      <td>@search-string</td>
+      <td>None</td>
+      <td>Event emitted when you type in the search input</td>
+    </tr>
+    <tr>
+      <td>@get-selected-options</td>
+      <td>Object</td>
+      <td>Emitted when an item is selected. The payload is the selected options object.</td>
+    </tr>
+    <tr>
+      <td>@get-single-selected-option</td>
+      <td>Object</td>
+      <td>Emitted when a single option is selected in single-select mode. The payload is the selected item object.</td>
     </tr>
   </tbody>
 </table>

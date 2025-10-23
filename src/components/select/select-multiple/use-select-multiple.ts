@@ -273,12 +273,16 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
         if (typeof itemVal === 'string' && itemVal.startsWith('{') && itemVal.endsWith('}')) {
           try {
             itemVal = JSON.parse(itemVal);
-          } catch {}
+          } catch {
+            // ignore error
+          }
         }
         if (typeof valToCompare === 'string' && valToCompare.startsWith('{') && valToCompare.endsWith('}')) {
           try {
             valToCompare = JSON.parse(valToCompare);
-          } catch {}
+          } catch {
+            // ignore error
+          }
         }
         if (typeof itemVal === 'object' && typeof valToCompare === 'object') {
           return JSON.stringify(itemVal) === JSON.stringify(valToCompare);
@@ -304,12 +308,16 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
               if (typeof optVal === 'string' && optVal.startsWith('{') && optVal.endsWith('}')) {
                 try {
                   optVal = JSON.parse(optVal);
-                } catch {}
+                } catch {
+                  // ignore error
+                }
               }
               if (typeof v === 'string' && v.startsWith('{') && v.endsWith('}')) {
                 try {
                   v = JSON.parse(v);
-                } catch {}
+                } catch {
+                  // ignore error
+                }
               }
               if (typeof optVal === 'object' && typeof v === 'object') {
                 return JSON.stringify(optVal) === JSON.stringify(v);

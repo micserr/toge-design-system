@@ -321,13 +321,17 @@ test.describe('InputContactNumber Component', () => {
 
       const input = component.locator('input');
 
-      // Simulate rapid typing
+      // Simulate rapid typing with proper sequencing
       await input.fill('1');
+      await component.waitFor(); // Wait for event processing
       await input.fill('12');
+      await component.waitFor(); // Wait for event processing
       await input.fill('123');
+      await component.waitFor(); // Wait for event processing
 
+      // Verify that events were emitted and the final value is correct
       expect(emittedValues.length).toBeGreaterThan(0);
-      expect(emittedValues).toContain('123');
+      expect(emittedValues[emittedValues.length - 1]).toBe('123'); // Check the last emitted value
     });
 
     test('handles country code edge cases', async ({ mount }) => {

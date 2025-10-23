@@ -815,6 +815,49 @@ By default, when multiple items are selected in the component, the selected item
 </template>
 ```
 
+## Display list item selected
+
+The display list item selected feature allows you to visually indicate which items have been selected in the dropdown list. This can enhance the user experience by providing clear feedback on their selections. To enable this feature, use the `display-list-item-selected` prop.
+
+<div>
+  <spr-select-multiple
+    id="select-multiple-display-list-item-selected"
+    v-model="multiSelectModel.multiSelectDisplayListItemSelected"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    searchable
+    display-list-item-selected
+  />
+</div>
+
+```vue
+<template>
+  <spr-select-multiple
+    id="select-multiple-display-list-item-selected"
+    v-model="multiSelectModel"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    display-list-item-selected
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const multiSelectModel = ref('');
+
+const options = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+]);
+</script>
+```
+
 ## Helper Message
 
 A helper message is a text label below the input field that provides additional information about instructions, formatting hints, validation feedback, etc.
@@ -1403,11 +1446,29 @@ const optionsWithLozenge = ref([
       <td>-</td>
     </tr>
     <tr>
+      <td><code>supporting-display-text</code></td>
+      <td>Display a custom text inside the list.</td>
+      <td>String</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><code>persistent-display-text</code></td>
+      <td>If true, displayText will always be shown in the input, even when selections change.</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
       <td><code>display-selected-count-only</code></td>
       <td>
         Displays selected item counter only when items are selected instead of their text in the input.
       </td>
       <td>Bolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td><code>display-list-item-selected</code></td>
+      <td>Displays the selected item inside the list.</td>
+      <td>Boolean</td>
       <td>false</td>
     </tr>
     <tr>
@@ -1497,8 +1558,23 @@ const optionsWithLozenge = ref([
     </tr>
     <tr>
       <td>@popper-state</td>
-      <td>Bolean</td>
+      <td>Boolean</td>
       <td>Event emitted when you open or close the popper</td>
+    </tr>
+    <tr>
+      <td>@search-string</td>
+      <td>None</td>
+      <td>Event emitted when you type in the search input</td>
+    </tr>
+    <tr>
+      <td>@get-selected-options</td>
+      <td>Object</td>
+      <td>Emitted when an item is selected. The payload is the selected options object.</td>
+    </tr>
+    <tr>
+      <td>@get-single-selected-item</td>
+      <td>Object</td>
+      <td>Emitted when a single option is selected in single-select mode. The payload is the selected item object.</td>
     </tr>
   </tbody>
 </table>

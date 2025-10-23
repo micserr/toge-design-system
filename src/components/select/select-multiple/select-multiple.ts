@@ -197,10 +197,12 @@ export const multiSelectEmitTypes = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'update:modelValue': (_value: unknown) => true,
   'update:searchValue': (value: string) => typeof value === 'string',
+  'search-string': (value: string) => typeof value === 'string',
   'infinite-scroll-trigger': Boolean,
   'popper-state': Boolean,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'get-selected-options': (_value: unknown) => true,
+  'get-single-selected-option': (item: MenuListType) => item,
 };
 
 export type MultiSelectPropTypes = ExtractPropTypes<typeof multiSelectPropTypes>;

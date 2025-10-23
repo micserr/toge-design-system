@@ -167,6 +167,7 @@
             :disabled-local-search="props.disabledLocalSearch"
             multi-select
             @update:model-value="handleMultiSelectedItem"
+            @get-single-selected-option="emit('get-single-selected-option', $event)"
           />
         </div>
       </template>

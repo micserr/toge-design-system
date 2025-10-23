@@ -367,6 +367,8 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
 
   watch(searchInput, () => {
     search.value = searchInput.value;
+
+    emit('search-string', searchInput.value);
   });
 
   watch(multiSelectPopperState, (newState) => {

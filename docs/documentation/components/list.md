@@ -833,6 +833,11 @@ const lozengeMenuList = ref(
       <td>Emitted when the search input value changes. Used for controlling the search externally.</td>
       <td>(value: string): The new search text value</td>
     </tr>
+    <tr>
+      <td>@get-single-selected-option</td>
+      <td>Emitted when a single option is selected in single-select mode. The payload is the selected item object.</td>
+      <td>Object</td>
+    </tr>
   </tbody>
 </table>
 

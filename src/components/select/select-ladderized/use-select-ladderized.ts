@@ -1,5 +1,5 @@
 import { ref, toRefs, computed, watch } from 'vue';
-import { useVModel, onClickOutside } from '@vueuse/core';
+import { useVModel, onClickOutside, watchDeep } from '@vueuse/core';
 
 import type { SelectLadderizedPropTypes } from './select-ladderized';
 
@@ -17,6 +17,7 @@ export const useSelectLadderized = (
     supportingLabelClasses: 'spr-body-sm-regular spr-text-color-supporting',
   }));
 
+  // Wrapper for input field
   const ladderizedSelectState = ref<HTMLDivElement | null>(null);
 
   // Popper Variables
@@ -31,6 +32,7 @@ export const useSelectLadderized = (
   // Input Variables
   const inputText = ref<string>('');
   const wasCleared = ref<boolean>(false);
+  const isCustomInput = ref<boolean>(false);
 
   const isLeafNode = (item: MenuListType): boolean => {
     return !item.sublevel || item.sublevel.length === 0;
@@ -57,6 +59,7 @@ export const useSelectLadderized = (
 
   const handleSelectedLadderizedItem = (selectedItems: string[], selectedItem?: MenuListType) => {
     wasCleared.value = false;
+    isCustomInput.value = false;
 
     // If the selectedItems is a single value (leaf from search), reconstruct the full path
     let fullPath: string[] | null = null;
@@ -157,15 +160,17 @@ export const useSelectLadderized = (
   };
 
   // Watch for changes in modelValue to update inputText
-  watch(
-    () => ladderizedSelectModel.value,
+  watchDeep(
+    ladderizedSelectModel,
     (newVal) => {
+      if (isCustomInput.value) return;
+
       if (wasCleared.value) {
         inputText.value = '';
         wasCleared.value = false;
 
         return;
-      }
+      };
 
       if (Array.isArray(newVal) && newVal.length > 0) {
         // Treat the array as a single path for ladderized select
@@ -194,6 +199,13 @@ export const useSelectLadderized = (
     emit('popper-state', newState);
   });
 
+  const handleInputChange = () => {
+    if (!props.writableInputText) return;
+    wasCleared.value = false;
+    isCustomInput.value = true;
+    ladderizedSelectModel.value = [inputText.value];
+  };
+
   // Close only when clicking completely outside both the popper and the trigger wrapper.
   onClickOutside(ladderizedSelectPopperRef, (event) => {
     const triggerWrapper = ladderizedSelectState.value;
@@ -216,5 +228,6 @@ export const useSelectLadderized = (
     inputText,
     handleSelectedLadderizedItem,
     handleClear,
+    handleInputChange,
   };
 };

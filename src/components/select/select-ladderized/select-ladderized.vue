@@ -37,10 +37,11 @@
             :helper-text="props.helperText"
             :helper-icon="props.helperIcon"
             :display-helper="props.displayHelper"
-            readonly
+            :readonly="!props.writableInputText"
             :active="props.active"
             :disabled="props.disabled"
             :error="props.error"
+            @blur="handleInputChange"
           >
             <template #icon>
               <div
@@ -121,5 +122,6 @@ const {
   inputText,
   handleSelectedLadderizedItem,
   handleClear,
+  handleInputChange,
 } = useSelectLadderized(props, emit as SelectLadderizedEmitFn);
 </script>

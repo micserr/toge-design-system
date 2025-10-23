@@ -1,7 +1,7 @@
 <template>
   <div 
-    ref="reusableCalendarRef"
-    :class="reusableCalendarClasses"
+    ref="dateCalendarPickerRef"
+    :class="dateCalendarPickerClasses"
   >
     <div
       :class="[
@@ -132,13 +132,13 @@ import DatePickerCalendarTab from '../tabs/DatePickerCalendarTab.vue';
 import DatePickerMonthTab from '../tabs/DatePickerMonthTab.vue';
 import DatePickerYearTab from '../tabs/DatePickerYearTab.vue';
 
-import { useReusableCalendar } from './use-reusable-calendar';
-import { reusableCalendarEmitTypes, reusableCalendarPropTypes } from './reusable-calendar';
+import { useDateCalendarPicker } from './use-date-calendar-picker';
+import { dateCalendarPickerEmitTypes, dateCalendarPickerPropTypes } from './date-calendar-picker';
 
-const props = defineProps(reusableCalendarPropTypes);
-const emit = defineEmits(reusableCalendarEmitTypes);
+const props = defineProps(dateCalendarPickerPropTypes);
+const emit = defineEmits(dateCalendarPickerEmitTypes);
 
-const reusableCalendarRef = ref<HTMLElement | null>(null);
+const dateCalendarPickerRef = ref<HTMLElement | null>(null);
 
 // Use the composable for all logic
 const {
@@ -176,12 +176,12 @@ const {
   handleMonthTabMonthUpdateWrapper,
   handleYearTabYearUpdateWrapper,
   handleYearTabCurrentPageUpdateWrapper,
-} = useReusableCalendar(props, emit);
+} = useDateCalendarPicker(props, emit);
 
 // Compute CSS classes using classNames utility
-const reusableCalendarClasses = computed(() => {
+const dateCalendarPickerClasses = computed(() => {
   return classNames(
-    'reusable-calendar-container spr-bg-white spr-rounded-lg spr-shadow-lg spr-border spr-border-solid spr-border-mushroom-200 min-w-[320px]',
+    'date-calendar-picker-container spr-bg-white spr-rounded-lg spr-shadow-lg spr-border spr-border-solid spr-border-mushroom-200 min-w-[320px]',
     {
       'spr-disabled': props.disabled,
       'spr-readonly': props.readonly,

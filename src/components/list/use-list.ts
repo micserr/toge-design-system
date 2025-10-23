@@ -14,8 +14,16 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   const selectedItems = useVModel(props, 'modelValue', emit);
   const searchString = useVModel(props, 'searchValue', emit);
 
-  const { menuList, menuLevel, groupItemsBy, multiSelect, preSelectedItems, disabledLocalSearch, noCheck } =
-    toRefs(props);
+  const {
+    menuList,
+    menuLevel,
+    groupItemsBy,
+    multiSelect,
+    preSelectedItems,
+    disabledLocalSearch,
+    noCheck,
+    disabledUnselectedItems,
+  } = toRefs(props);
 
   const listClasses: ComputedRef<ListClasses> = computed(() => {
     const listItemClasses = classNames(
@@ -342,10 +350,10 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   };
 
   const getListItemClasses = (item: MenuListType) => ({
-    [listClasses.value.listItemClasses]: !item.disabled,
+    [listClasses.value.listItemClasses]: !item.disabled && !(disabledUnselectedItems.value && !isItemSelected(item)),
     'spr-background-color-single-active': isItemSelected(item) && !item.disabled && !noCheck.value,
-    'hover:spr-cursor-not-allowed spr-flex spr-cursor-pointer spr-items-center spr-gap-1.5 spr-rounded-lg':
-      item.disabled,
+    'spr-cursor-not-allowed spr-flex spr-items-center spr-gap-1.5 spr-rounded-lg':
+      item.disabled || (disabledUnselectedItems.value && !isItemSelected(item)),
     'spr-p-size-spacing-3xs': !props.lozenge,
     'spr-py-size-spacing-3xs spr-px-size-spacing-4xs': props.lozenge,
   });
@@ -420,6 +428,8 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
 
   const handleSelectedItem = (item: MenuListType) => {
     if (item.disabled) return;
+
+    if (disabledUnselectedItems.value && !isItemSelected(item)) return;
 
     if (multiSelect.value) {
       // For multi-select, check if item is already selected

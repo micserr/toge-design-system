@@ -191,6 +191,10 @@ export const multiSelectPropTypes = {
     type: String,
     default: '',
   },
+  disabledUnselectedItems: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const multiSelectEmitTypes = {

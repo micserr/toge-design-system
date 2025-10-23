@@ -17,7 +17,6 @@ Ladderized select is for selecting options organized in hierarchical groups. It 
     :options="options"
     label="Ladderized Select"
     placeholder="Select an item"
-    :writable-input-text="true"
   />
 
   <code class="spr-font-medium">

@@ -285,11 +285,14 @@ await page.waitForTimeout(500);
 # Run all component tests
 npm run test:components
 
-# Run specific component test
-npx playwright test Button.spec.ts
+# Run specific component test (short name)
+npx playwright test Button.spec.ts --config=playwright-ct.config.ts
+
+# Run specific test file (full path)
+npx playwright test tests/components/Button.spec.ts --config=playwright-ct.config.ts
 
 # Run with UI mode for debugging
-npx playwright test --ui
+npx playwright test --ui --config=playwright-ct.config.ts
 
 # Generate test report
 npx playwright show-report

@@ -933,6 +933,12 @@ For guidance on implementing error, active, and disabled states in the select co
       <td>String</td>
       <td><code>'Search...'</code></td>
     </tr>
+    <tr>
+      <td><code>writableInputText</code></td>
+      <td>Enable input text to writable. This does not affect the search functionality.</td>
+      <td>Boolean</td>
+      <td><code>false</code></td>
+    </tr>
   </tbody>
 </table>
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.19.3 (2025-10-23)
+
+- Feat: Added writable input support to Ladderized Select components
+    ([#e7a5b4f9](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e7a5b4f94261d868fbe61baf2e62b83adcb8dd6d?refName=refs/heads/2025/feat/Paulo/UpdatedLadderizedListAndSelectToEnableWritableInput) by @jbanares)
+
 ## 2.19.2 (2025-10-22)
 
 - Fix: Rename Reusable Calendar to Date Calendar Picker and update related documentation

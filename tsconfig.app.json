@@ -39,5 +39,5 @@
     "**/docs/documentation/**/*.vue",
     "tests/**/*.ts"
   ],
-  "exclude": ["dist/", "playground/"]
+  "exclude": ["dist/", "playground/", "playwright/.cache/"]
 }

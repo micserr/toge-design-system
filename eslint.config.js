@@ -20,6 +20,7 @@ export default tseslint.config(
       'docs/.vitepress/dist',
       'docs/.vitepress/cache',
       'playground/*',
+      'playwright/**/*',
     ],
   },
   eslint.configs.recommended,
@@ -37,6 +38,9 @@ export default tseslint.config(
         project: './tsconfig.app.json',
         extraFileExtensions: ['.vue'],
         sourceType: 'module',
+      },
+      globals: {
+        console: 'readonly',
       },
     },
     rules: {
@@ -85,6 +89,13 @@ export default tseslint.config(
           ],
         },
       ],
+    },
+  },
+  // Relax rules for test files
+  {
+    files: ['tests/**/*.{ts,js,vue}', '**/*.spec.{ts,js}', '**/*.test.{ts,js}'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
   eslintConfigPrettier,

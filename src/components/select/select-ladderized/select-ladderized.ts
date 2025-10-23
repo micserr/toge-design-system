@@ -153,7 +153,8 @@ export const selectLadderizedPropTypes = {
 export const selectLadderizedEmitTypes = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'update:modelValue': (_value: unknown) => true,
-  'popper-state': () => true,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  'popper-state': (_state: boolean) => true,
 };
 
 export type SelectLadderizedEmitFn = (event: string, ...args: unknown[]) => void;

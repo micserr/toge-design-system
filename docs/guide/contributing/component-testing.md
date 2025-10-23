@@ -89,6 +89,10 @@ Our test generation uses the initial prompt located in `tests/components/1-compo
 
 To generate tests for a new component using the MCP system:
 
+::: info Model Requirement
+Use **Claude Sonnet 4+** as your AI model when generating component tests. This ensures optimal test quality, comprehensive coverage, and adherence to our testing patterns and Vue 3 best practices.
+:::
+
 ```markdown
 # Provide component information in this format:
 

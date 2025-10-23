@@ -1,6 +1,11 @@
 # Changelog
 
-## 2.19.0 (2025-10-22)
+## 2.19.2 (2025-10-22)
+
+- Fix: Rename Reusable Calendar to Date Calendar Picker and update related documentation
+  ([#0fbc00b](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0fbc00bd86882480a3fc0761d55d8807458be5f8?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2Fdate-calendar-picker-rename) by @bsolis)
+
+## 2.19.1 (2025-10-22)
 
 - Chore: Enhance Chips component documentation with slot customization examples
     ([#958ee225](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/958ee225604fe7abf7f6a2be98e9fc0c0ff7eed3?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FChips-slot) by @bsolis)

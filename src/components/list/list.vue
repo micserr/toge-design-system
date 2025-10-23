@@ -301,30 +301,4 @@ const {
   getListItemClasses,
   handleSelectedItem,
 } = useList(props, emit);
-
-// Disable unselected items if prop is true
-if (props.disabledUnselectedItems) {
-  if (Array.isArray(props.menuList)) {
-    props.menuList.forEach((item) => {
-      const isSelected = selectedItems.value.some((sel) => sel.value === item.value);
-
-      if (!isSelected) {
-        item.disabled = true;
-      }
-    });
-  }
-
-  if (Array.isArray(groupedMenuList)) {
-    groupedMenuList.forEach((group) => {
-      if (Array.isArray(group.items)) {
-        group.items.forEach((item: any) => {
-          const isSelected = selectedItems.value.some((sel) => sel.value === item.value);
-          if (!isSelected) {
-            item.disabled = true;
-          }
-        });
-      }
-    });
-  }
-}
 </script>

@@ -257,7 +257,10 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     if (!values || !values.length) {
       multiSelectedListItems.value = [];
 
-      if (!persistentDisplayText.value) {
+      // Always show displayText if provided and no selected items
+      if (displayText.value) {
+        inputText.value = displayText.value;
+      } else if (!persistentDisplayText.value) {
         inputText.value = '';
       }
 
@@ -381,6 +384,14 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
 
   watch(multiSelectPopperState, (newState) => {
     emit('popper-state', newState);
+  });
+
+  // Watcher for displayText to update inputText when displayText changes and there are no selected items
+  watch(displayText, (newVal) => {
+    // Only update inputText if there are no selected items
+    if (!multiSelectedListItems.value.length) {
+      inputText.value = newVal;
+    }
   });
 
   /**

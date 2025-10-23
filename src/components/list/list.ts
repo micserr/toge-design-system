@@ -103,6 +103,10 @@ export const listPropTypes = {
     type: String,
     default: '',
   },
+  disabledUnselectedItems: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const listEmitTypes = {

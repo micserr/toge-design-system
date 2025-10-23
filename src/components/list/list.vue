@@ -53,7 +53,11 @@
               >
                 <template v-if="props.lozenge">
                   <div class="spr-flex spr-items-center spr-gap-1">
-                    <spr-checkbox v-if="props.multiSelect" :disabled="item.disabled" :checked="isItemSelected(item)" />
+                    <spr-checkbox
+                      v-if="props.multiSelect"
+                      :disabled="item.disabled || (props.disabledUnselectedItems && !isItemSelected(item))"
+                      :checked="isItemSelected(item)"
+                    />
                     <spr-lozenge
                       v-if="props.lozenge"
                       :label="item.text || (item.lozengeProps?.label as string)"
@@ -67,15 +71,32 @@
                 </template>
                 <template v-else>
                   <div class="spr-flex spr-items-center spr-gap-1">
-                    <spr-checkbox v-if="props.multiSelect" :disabled="item.disabled" :checked="isItemSelected(item)" />
+                    <spr-checkbox
+                      v-if="props.multiSelect"
+                      :disabled="item.disabled || (props.disabledUnselectedItems && !isItemSelected(item))"
+                      :checked="isItemSelected(item)"
+                    />
                     <div :class="[item.textColor, 'spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-3xs']">
-                      <span v-if="props.itemIcon || item.icon" :class="[item.iconColor, 'spr-mt-[2px]']">
+                      <span
+                        v-if="props.itemIcon || item.icon"
+                        :class="[
+                          item.iconColor,
+                          'spr-mt-[2px]',
+                          {
+                            'spr-text-color-disabled':
+                              item.disabled || (props.disabledUnselectedItems && !isItemSelected(item)),
+                          },
+                        ]"
+                      >
                         <icon :icon="(props.itemIcon || item.icon) as string" width="20px" height="20px" />
                       </span>
                       <div
                         :class="[
                           'spr-flex spr-flex-auto spr-flex-col spr-justify-start',
-                          { 'spr-text-color-disabled': item.disabled },
+                          {
+                            'spr-text-color-disabled':
+                              item.disabled || (props.disabledUnselectedItems && !isItemSelected(item)),
+                          },
                         ]"
                       >
                         <span class="spr-break-words spr-text-left spr-text-xs">
@@ -85,7 +106,10 @@
                           v-if="item.subtext"
                           :class="[
                             'spr-body-xs-regular spr-text-color-base spr-break-words spr-text-left',
-                            { 'spr-text-color-disabled': item.disabled },
+                            {
+                              'spr-text-color-disabled':
+                                item.disabled || (props.disabledUnselectedItems && !isItemSelected(item)),
+                            },
                           ]"
                         >
                           {{ item.subtext }}
@@ -145,7 +169,11 @@
           >
             <template v-if="props.lozenge">
               <div class="spr-flex spr-items-center spr-gap-1">
-                <spr-checkbox v-if="props.multiSelect" :disabled="item.disabled" :checked="isItemSelected(item)" />
+                <spr-checkbox
+                  v-if="props.multiSelect"
+                  :disabled="item.disabled || (props.disabledUnselectedItems && !isItemSelected(item))"
+                  :checked="isItemSelected(item)"
+                />
                 <spr-lozenge
                   v-if="props.lozenge"
                   :label="item.text || (item.lozengeProps?.label as string)"
@@ -159,15 +187,32 @@
             </template>
             <template v-else>
               <div class="spr-flex spr-items-center spr-gap-1">
-                <spr-checkbox v-if="props.multiSelect" :disabled="item.disabled" :checked="isItemSelected(item)" />
+                <spr-checkbox
+                  v-if="props.multiSelect"
+                  :disabled="item.disabled || (props.disabledUnselectedItems && !isItemSelected(item))"
+                  :checked="isItemSelected(item)"
+                />
                 <div :class="[item.textColor, 'spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-3xs']">
-                  <span v-if="props.itemIcon || item.icon" :class="[item.iconColor, 'spr-mt-[2px]']">
+                  <span
+                    v-if="props.itemIcon || item.icon"
+                    :class="[
+                      item.iconColor,
+                      'spr-mt-[2px]',
+                      {
+                        'spr-text-color-disabled':
+                          item.disabled || (props.disabledUnselectedItems && !isItemSelected(item)),
+                      },
+                    ]"
+                  >
                     <icon :icon="(props.itemIcon || item.icon) as string" width="20px" height="20px" />
                   </span>
                   <div
                     :class="[
                       'spr-flex spr-flex-auto spr-flex-col spr-justify-start',
-                      { 'spr-text-color-disabled': item.disabled },
+                      {
+                        'spr-text-color-disabled':
+                          item.disabled || (props.disabledUnselectedItems && !isItemSelected(item)),
+                      },
                     ]"
                   >
                     <span class="spr-break-words spr-text-left spr-text-xs">
@@ -177,7 +222,10 @@
                       v-if="item.subtext"
                       :class="[
                         'spr-body-xs-regular spr-text-color-base spr-break-words spr-text-left',
-                        { 'spr-text-color-disabled': item.disabled },
+                        {
+                          'spr-text-color-disabled':
+                            item.disabled || (props.disabledUnselectedItems && !isItemSelected(item)),
+                        },
                       ]"
                     >
                       {{ item.subtext }}
@@ -253,4 +301,30 @@ const {
   getListItemClasses,
   handleSelectedItem,
 } = useList(props, emit);
+
+// Disable unselected items if prop is true
+if (props.disabledUnselectedItems) {
+  if (Array.isArray(props.menuList)) {
+    props.menuList.forEach((item) => {
+      const isSelected = selectedItems.value.some((sel) => sel.value === item.value);
+
+      if (!isSelected) {
+        item.disabled = true;
+      }
+    });
+  }
+
+  if (Array.isArray(groupedMenuList)) {
+    groupedMenuList.forEach((group) => {
+      if (Array.isArray(group.items)) {
+        group.items.forEach((item: any) => {
+          const isSelected = selectedItems.value.some((sel) => sel.value === item.value);
+          if (!isSelected) {
+            item.disabled = true;
+          }
+        });
+      }
+    });
+  }
+}
 </script>

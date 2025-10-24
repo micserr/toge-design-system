@@ -1,6 +1,12 @@
 # Changelog
 
-## 2.20.1 (2025-10-24)
+## 2.21.2 (2025-10-24)
+
+- Fix: Playground - Design System Next package version import path
+- Feat: Playground - Update package versions besides Vite
+  ([#35619](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35619) by @jmari)
+
+## 2.21.1 (2025-10-24)
 
 - Feat: Enhanced File Upload and Progress Bar Components
   - **File Upload Component**:

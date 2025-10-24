@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.20.3 (2025-10-24)
+
+- Fix: Update to Node 22 in Azure Static Web Apps workflows
+  ([#35621](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35621) by @jmari)
+
 ## 2.20.2 (2025-10-24)
 
 - Fix: Playground - Design System Next package version import path

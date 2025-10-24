@@ -1386,6 +1386,12 @@ const optionsWithLozenge = ref([
       <td>''</td>
     </tr>
     <tr>
+      <td><code>loader</code></td>
+      <td>Displays a loading spinner inside the select input. Useful while asynchronously fetching options (e.g., API search / infinite scroll). The current value, placeholder or selected chip summary remains visible beside the spinner.</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
       <td><code>placement</code></td>
       <td>Popper placement. See available options in the documentation.</td>
       <td>String</td>

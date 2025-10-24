@@ -57,7 +57,8 @@
                 ]"
               >
                 <Icon v-if="props.clearable && inputText" icon="ph:x" @click.stop="handleClear" />
-                <Icon icon="ph:caret-down" />
+                <Icon v-if="props.loader" icon="svg-spinners:270-ring" />
+                <Icon v-else icon="ph:caret-down" />
               </div>
             </template>
 

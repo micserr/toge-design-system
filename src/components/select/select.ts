@@ -69,6 +69,10 @@ export const selectPropTypes = {
     type: String,
     default: '',
   },
+  loader: {
+    type: Boolean,
+    default: false,
+  },
   placement: {
     type: String as PropType<(typeof PLACEMENTS_TYPES)[number]>,
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),

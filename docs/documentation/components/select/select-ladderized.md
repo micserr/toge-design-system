@@ -814,6 +814,12 @@ For guidance on implementing error, active, and disabled states in the select co
       <td>''</td>
     </tr>
     <tr>
+      <td><code>loader</code></td>
+      <td>Shows a loading spinner within the input while options (including nested sublevels) are being fetched asynchronously. Useful for API-driven hierarchical data loads.</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
       <td><code>placeholder</code></td>
       <td>Input placeholder</td>
       <td>String</td>

@@ -11,8 +11,8 @@ const { importMap } = useVueImportMap();
 const builtinImportMap = computed(() => {
   return mergeImportMap(importMap.value, {
     imports: {
-      'design-system-next': `https://unpkg.com/design-system-next@${packageVersion}/dist/design-system-next.js`,
-      '@iconify/vue': 'https://unpkg.com/@iconify/vue@4.3.0/dist/iconify.mjs',
+      'design-system-next': `https://unpkg.com/design-system-next@${packageVersion}/dist/design-system-next.es.js`,
+      '@iconify/vue': 'https://unpkg.com/@iconify/vue@5.0.0/dist/iconify.mjs',
     },
   });
 });

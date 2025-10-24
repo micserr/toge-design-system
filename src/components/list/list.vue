@@ -65,6 +65,7 @@
                       :fill="item.lozengeProps?.fill as boolean"
                       :url="item.lozengeProps?.url as string"
                       :icon="item.lozengeProps?.icon as string"
+                      :max-width="item.lozengeProps?.maxWidth as string"
                       :postfix-icon="item.lozengeProps?.postfixIcon as string"
                     />
                   </div>
@@ -138,6 +139,7 @@
                         :fill="item.lozenge?.fill as boolean"
                         :url="item.lozenge?.url as string"
                         :icon="item.lozenge?.icon as string"
+                        :max-width="item.lozenge?.maxWidth as string"
                         :postfix-icon="item.lozenge?.postfixIcon as string"
                       />
                       <Icon
@@ -181,6 +183,7 @@
                   :fill="item.lozengeProps?.fill as boolean"
                   :url="item.lozengeProps?.url as string"
                   :icon="item.lozengeProps?.icon as string"
+                  :max-width="item.lozengeProps?.maxWidth as string"
                   :postfix-icon="item.lozengeProps?.postfixIcon as string"
                 />
               </div>
@@ -254,6 +257,7 @@
                     :fill="item.lozenge?.fill as boolean"
                     :url="item.lozenge?.url as string"
                     :icon="item.lozenge?.icon as string"
+                    :max-width="item.lozenge?.maxWidth as string"
                     :postfix-icon="item.lozenge?.postfixIcon as string"
                   />
                   <Icon

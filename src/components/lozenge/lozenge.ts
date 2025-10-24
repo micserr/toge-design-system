@@ -1,4 +1,3 @@
-import { max } from '@cloudinary/url-gen/actions/roundCorners';
 import type { PropType, ExtractPropTypes } from 'vue';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;

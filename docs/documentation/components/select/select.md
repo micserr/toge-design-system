@@ -1322,6 +1322,12 @@ const optionsWithLozenge = ref([
       <td>''</td>
     </tr>
     <tr>
+      <td><code>loader</code></td>
+      <td>Displays a loading spinner inside the select input. Useful while asynchronously fetching options (e.g., API search). When true, the current value or placeholder is still shown with a spinner indicator.</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
       <td><code>placement</code></td>
       <td>Placement of the select popper (e.g., 'bottom', 'top', 'left', 'right')</td>
       <td>String</td>

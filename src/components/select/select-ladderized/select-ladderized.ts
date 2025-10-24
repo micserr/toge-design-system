@@ -44,6 +44,10 @@ export const selectLadderizedPropTypes = {
     type: String,
     default: '',
   },
+  loader: {
+    type: Boolean,
+    default: false,
+  },
   placeholder: {
     type: String,
     default: '',
@@ -147,7 +151,7 @@ export const selectLadderizedPropTypes = {
   writableInputText: {
     type: Boolean,
     default: false,
-  }
+  },
 };
 
 export const selectLadderizedEmitTypes = {

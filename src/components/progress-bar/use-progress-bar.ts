@@ -14,6 +14,12 @@ export const useProgressBar = (props: ProgressBarPropTypes) => {
         return 'spr-h-3';
     }
   });
+  
+  const validColor = computed<string>(() => {
+    const validColors = ['success', 'danger', 'warning', 'info', 'neutral'];
+    return validColors.includes(props.color) ? props.color : 'success';
+  });
+  
   const percentage = computed<number>(() => Math.min((props.value / (props.max || 100)) * 100, 100));
 
   const handleProgressBarStyle = computed<{ width: string; height: string }>(() => {
@@ -25,6 +31,7 @@ export const useProgressBar = (props: ProgressBarPropTypes) => {
 
   return {
     handleProgressBarSize,
+    validColor,
     percentage,
     handleProgressBarStyle,
   };

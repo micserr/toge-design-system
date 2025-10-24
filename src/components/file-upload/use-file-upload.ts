@@ -159,6 +159,29 @@ export const useFileUpload = (props: FileUploadPropTypes, emit: SetupContext<Fil
     return parsedFileTypes.join(', ');
   });
 
+  const iconMap = computed(() => {
+    return {
+      'application/msword': 'ph:file-word-fill',
+      'application/vnd.ms-excel': 'ph:file-excel-fill',
+      'application/vnd.ms-powerpoint': 'ph:file-ppt-fill',
+      'application/pdf': 'ph:file-pdf-fill',
+      'text/plain': 'ph:file-text-fill',
+      'image/svg+xml': 'ph:file-svg-fill',
+      'image/png': 'ph:file-png-fill',
+      'image/jpeg': 'ph:file-jpeg-fill',
+      'image/jpg': 'ph:file-jpg-fill',
+      'image/gif': 'ph:file-gif-fill',
+      'image/webp': 'ph:file-webp-fill',
+      'image/tiff': 'ph:file-tiff-fill',
+      'image/bmp': 'ph:file-bmp-fill',
+      'image/ico': 'ph:file-ico-fill',
+      'image/heic': 'ph:file-heic-fill',
+      'image/heif': 'ph:file-heif-fill',
+      'image/heif-sequence': 'ph:file-heif-sequence-fill',
+      'image/heic-sequence': 'ph:file-heic-sequence-fill',
+    }
+  });
+
   return {
     fileUploadRef,
     initialInputFileRef,
@@ -170,5 +193,6 @@ export const useFileUpload = (props: FileUploadPropTypes, emit: SetupContext<Fil
     clickListInputFile,
     replaceFile,
     supportedFileTypeLabel,
+    iconMap
   };
 };

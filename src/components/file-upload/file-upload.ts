@@ -74,10 +74,22 @@ export const fileUploadPropTypes = {
     type: Boolean,
     default: false,
   },
+  showSupportedFileTypeLabel: {
+    type: Boolean,
+    default: true,
+  },
   supportedFileTypeLabel: {
     type: String,
     default: null,
-  }
+  },
+  showProgress: {
+    type: Boolean,
+    default: false,
+  },
+  progressValue: {
+    type: Number,
+    default: 0,
+  },
 };
 
 export const fileUploadEmitTypes =  ['update:modelValue']

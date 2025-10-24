@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.20.3 (2025-10-24)
+
+- Fix: Revert package in playground and Update to Node 22 in Azure Static Web Apps workflows
+  ([#35621](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35621) by @jmari)
+
 ## 2.20.2 (2025-10-24)
 
 - Fix: Playground - Design System Next package version import path
@@ -24,7 +29,7 @@
     - Added comprehensive Playwright tests for new features
     - Included accessibility guidelines and usage best practices
     - Enhanced API reference with detailed prop descriptions
-  ([#ceeb3ff4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ceeb3ff4afa776d3086091631e54f39614327323?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FFile-Upload-Progress-Bar) by @bsolis)
+      ([#ceeb3ff4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ceeb3ff4afa776d3086091631e54f39614327323?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FFile-Upload-Progress-Bar) by @bsolis)
 
 ## 2.20.0 (2025-10-23)
 

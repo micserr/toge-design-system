@@ -24,7 +24,7 @@
         <label v-for="(error, index) in props.errorMessages" :key="index">{{ error }}</label>
       </div>
       <div v-else :class="fileUploadClasses.sublabelClasses">
-        <label>Supports: {{ supportedFileTypeLabel }} </label>
+        <label v-if="props.showSupportedFileTypeLabel">Supports: {{ supportedFileTypeLabel }} </label>
         <label>{{ props. maxFileSize }}MB maximum file size</label>
       </div>
     </div>
@@ -37,21 +37,26 @@
         hidden 
         @change="replaceFile"/>
       <div v-for="(file, index) in modelValue" :key="index" class="spr-flex spr-flex-col spr-gap-size-spacing-4xs">
-        <div class="spr-flex spr-justify-between">
-          <div class="spr-flex-auto spr-flex spr-break-all spr-overflow-hidden spr-whitespace-break-spaces spr-items-center">
-            <icon v-if="!props.hideFilePreviewIcon" icon="ph:check-circle-fill" width="16px" height="16px" class="spr-text-color-brand-base spr-flex-none"/>
+        <div class="spr-flex spr-justify-between spr-gap-2">
+          <div class="spr-flex-auto spr-flex spr-break-all spr-overflow-hidden spr-whitespace-break-spaces spr-items-center spr-gap-2">
+            <icon v-if="!props.hideFilePreviewIcon" :icon="iconMap[file.type as keyof typeof iconMap] || 'ph:check-circle-fill'" width="20px" height="20px" class="spr-text-color-brand-base spr-flex-none"/>
             <label class="spr-body-sm-regular">{{ file ? file.name : "" }}</label>
           </div>
-          <div class="spr-flex spr-gap-size-spacing-5xs spr-items-start">
+          <div class="spr-flex spr-gap-size-spacing-5xs spr-items-start spr-gap-2">
             <spr-button size="small" tone="neutral" variant="secondary" :disabled="props.disabled" @click="clickListInputFile(index)">Replace</spr-button>
             <spr-button size="small" tone="danger" variant="secondary" :disabled="props.disabled" @click="deleteFile(index)"><icon icon="ph:trash"/></spr-button>
           </div>
         </div>
-        <div v-if="props.showError && props.errorMessages[index]" class="spr-flex spr-gap-size-spacing-5xs spr-body-sm-regular spr-text-color-danger-base">
+        <div v-if="props.showError && props.errorMessages[index]" class="spr-flex spr-gap-size-spacing-5xs spr-body-sm-regular spr-text-color-danger-base spr-gap-2">
           <Icon class="spr-flex-none" icon="ph:warning-circle-fill" width="20px" height="20px" />
           <span class="spr-self-start">{{ props.errorMessages[index] }}</span>
         </div>
       </div>
+      <slot name="file-upload-progress-bar">
+        <div v-if="props.showProgress" class="spr-flex spr-gap-size-spacing-5xs spr-gap-2">
+          <spr-progress-bar :value="props.progressValue" :max="100" :color="props.showError ? 'danger' : 'success'" size="sm" class="spr-w-full" :label="false"/>
+        </div>
+      </slot>
     </div>
   </div>
 </template>
@@ -60,6 +65,7 @@
 import { fileUploadEmitTypes, fileUploadPropTypes } from './file-upload';
 import { useFileUpload } from './use-file-upload';
 import SprButton from '../button/button.vue';
+import SprProgressBar from '../progress-bar/progress-bar.vue';
 import { Icon } from '@iconify/vue';
 
 const props = defineProps(fileUploadPropTypes);
@@ -75,6 +81,7 @@ const {
   clickListInputFile,
   replaceFile,
   supportedFileTypeLabel,
+  iconMap
 } = useFileUpload(props, emit);
 
 

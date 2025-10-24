@@ -132,6 +132,69 @@ test.describe('ProgressBar Component', () => {
     });
   });
 
+  test.describe('Color Variants', () => {
+    test('renders with success color (default)', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50 },
+      });
+
+      const progressIndicator = component.locator('.spr-background-color-success-base');
+      await expect(progressIndicator).toBeAttached();
+      await expect(progressIndicator).toHaveAttribute('style', /width:\s*50%/);
+    });
+
+    test('renders with danger color', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, color: 'danger' },
+      });
+
+      const progressIndicator = component.locator('.spr-background-color-danger-base');
+      await expect(progressIndicator).toBeAttached();
+      await expect(progressIndicator).toHaveAttribute('style', /width:\s*50%/);
+    });
+
+    test('renders with warning color', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, color: 'warning' },
+      });
+
+      const progressIndicator = component.locator('.spr-background-color-warning-base');
+      await expect(progressIndicator).toBeAttached();
+      await expect(progressIndicator).toHaveAttribute('style', /width:\s*50%/);
+    });
+
+    test('renders with info color', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, color: 'info' },
+      });
+
+      const progressIndicator = component.locator('.spr-background-color-info-base');
+      await expect(progressIndicator).toBeAttached();
+      await expect(progressIndicator).toHaveAttribute('style', /width:\s*50%/);
+    });
+
+    test('renders with neutral color', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, color: 'neutral' },
+      });
+
+      const progressIndicator = component.locator('.spr-background-color-neutral-base');
+      await expect(progressIndicator).toBeAttached();
+      await expect(progressIndicator).toHaveAttribute('style', /width:\s*50%/);
+    });
+
+    test('falls back to success color for invalid color', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, color: 'invalid' as any },
+      });
+
+      // Should fallback to default success color
+      const progressIndicator = component.locator('.spr-background-color-success-base');
+      await expect(progressIndicator).toBeAttached();
+      await expect(progressIndicator).toHaveAttribute('style', /width:\s*50%/);
+    });
+  });
+
   test.describe('Value and Progress Calculations', () => {
     test('calculates percentage correctly for various values', async ({ mount }) => {
       const testCases = [
@@ -340,6 +403,7 @@ test.describe('ProgressBar Component', () => {
           value: 80,
           max: 200,
           label: true,
+          color: 'warning',
         },
       });
 
@@ -350,6 +414,11 @@ test.describe('ProgressBar Component', () => {
       // Check calculation: 80/200 = 40%
       const label = component.locator('span');
       await expect(label).toHaveText('40%');
+
+      // Check color
+      const progressIndicator = component.locator('.spr-background-color-warning-base');
+      await expect(progressIndicator).toBeAttached();
+      await expect(progressIndicator).toHaveAttribute('style', /width:\s*40%/);
 
       // Check ARIA
       await expect(component).toHaveAttribute('aria-valuemax', '200');
@@ -378,6 +447,33 @@ test.describe('ProgressBar Component', () => {
         } else {
           await expect(label).not.toBeVisible();
         }
+      }
+    });
+
+    test('works with different color and size combinations', async ({ mount }) => {
+      const combinations: Array<{ color: 'success' | 'danger' | 'warning' | 'info' | 'neutral'; size: 'xs' | 'sm' | 'lg' }> = [
+        { color: 'success', size: 'xs' },
+        { color: 'danger', size: 'sm' },
+        { color: 'warning', size: 'lg' },
+        { color: 'info', size: 'xs' },
+        { color: 'neutral', size: 'sm' },
+      ];
+
+      for (const combo of combinations) {
+        const component = await mount(ProgressBar, {
+          props: { ...combo, value: 60 },
+        });
+
+        // Check size
+        const progressContainer = component.locator('.spr-overflow-hidden');
+        const expectedSizeClass = combo.size === 'xs' ? 'spr-h-1' : combo.size === 'sm' ? 'spr-h-2' : 'spr-h-3';
+        await expect(progressContainer).toHaveClass(new RegExp(expectedSizeClass));
+
+        // Check color
+        const expectedColorClass = `spr-background-color-${combo.color}-base`;
+        const progressIndicator = component.locator(`.${expectedColorClass}`);
+        await expect(progressIndicator).toBeAttached();
+        await expect(progressIndicator).toHaveAttribute('style', /width:\s*60%/);
       }
     });
   });

@@ -34,6 +34,17 @@ export const progressBarPropTypes = {
       return true;
     },
   },
+  color: {
+    type: String as PropType<string>,
+    default: 'success',
+    validator(value: string) {
+      if (value !== 'success' && value !== 'danger' && value !== 'warning' && value !== 'info' && value !== 'neutral') {
+        console.error('Invalid prop: "color" must be one of the following: success, danger, warning, info, neutral.');
+        return false;
+      }
+      return true;
+    },
+  },
 };
 
 export type ProgressBarPropTypes = ExtractPropTypes<typeof progressBarPropTypes>;

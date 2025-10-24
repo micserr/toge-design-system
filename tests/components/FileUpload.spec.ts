@@ -297,6 +297,171 @@ test.describe('FileUpload Component', () => {
     });
   });
 
+  test.describe('Props - Progress Indicator', () => {
+    test('shows progress bar when showProgress is true', async ({ mount }) => {
+      const mockFile = createMockFile('test.pdf', 'application/pdf');
+
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: [mockFile],
+          showProgress: true,
+          progressValue: 75,
+        },
+      });
+
+      // Should show progress bar component
+      const progressBar = component.locator('[role="progressbar"]');
+      await expect(progressBar).toBeAttached();
+      await expect(progressBar).toHaveAttribute('aria-valuenow', '75');
+      await expect(progressBar).toHaveAttribute('aria-valuemax', '100');
+    });
+
+    test('hides progress bar when showProgress is false', async ({ mount }) => {
+      const mockFile = createMockFile('test.pdf', 'application/pdf');
+
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: [mockFile],
+          showProgress: false,
+          progressValue: 50,
+        },
+      });
+
+      // Should not show progress bar
+      const progressBar = component.locator('[role="progressbar"]');
+      await expect(progressBar).not.toBeVisible();
+    });
+
+    test('displays correct progress value', async ({ mount }) => {
+      const mockFile = createMockFile('test.pdf', 'application/pdf');
+
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: [mockFile],
+          showProgress: true,
+          progressValue: 60,
+        },
+      });
+
+      const progressBar = component.locator('[role="progressbar"]');
+      await expect(progressBar).toBeAttached();
+      await expect(progressBar).toHaveAttribute('aria-valuenow', '60');
+    });
+
+    test('shows progress bar with error state when showError is true', async ({ mount }) => {
+      const mockFile = createMockFile('test.pdf', 'application/pdf');
+
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: [mockFile],
+          showProgress: true,
+          progressValue: 30,
+          showError: true,
+          errorMessages: ['Upload failed'],
+        },
+      });
+
+      // Progress bar should be visible
+      const progressBar = component.locator('[role="progressbar"]');
+      await expect(progressBar).toBeAttached();
+
+      // Error message should also be visible
+      await expect(component.getByText('Upload failed')).toBeVisible();
+    });
+
+    test('progress bar updates when progressValue changes', async ({ mount }) => {
+      const mockFile = createMockFile('test.pdf', 'application/pdf');
+
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: [mockFile],
+          showProgress: true,
+          progressValue: 25,
+        },
+      });
+
+      // Initial progress
+      const progressBar = component.locator('[role="progressbar"]');
+      await expect(progressBar).toBeAttached();
+      await expect(progressBar).toHaveAttribute('aria-valuenow', '25');
+
+      // Update progress value - need to remount with new props
+      const updatedComponent = await mount(FileUpload, {
+        props: {
+          modelValue: [mockFile],
+          showProgress: true,
+          progressValue: 80,
+        },
+      });
+      
+      const updatedProgressBar = updatedComponent.locator('[role="progressbar"]');
+      await expect(updatedProgressBar).toHaveAttribute('aria-valuenow', '80');
+    });
+  });
+
+  test.describe('Props - File Icon Preview', () => {
+    test('shows file type icons by default', async ({ mount }) => {
+      const mockFiles = [
+        createMockFile('document.pdf', 'application/pdf'),
+        createMockFile('image.jpg', 'image/jpeg'),
+        createMockFile('text.txt', 'text/plain'),
+      ];
+
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: mockFiles,
+          fileTypes: ['application/pdf', 'image/jpeg', 'text/plain'],
+        },
+      });
+
+      // Should show file type icons for each file
+      const fileIcons = component.locator('svg, [class*="iconify"]');
+      await expect(fileIcons).toHaveCount(6); // 3 files × 2 icons each (file type + delete)
+    });
+
+    test('hides file type icons when hideFilePreviewIcon is true', async ({ mount }) => {
+      const mockFiles = [
+        createMockFile('document.pdf', 'application/pdf'),
+        createMockFile('image.jpg', 'image/jpeg'),
+      ];
+
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: mockFiles,
+          hideFilePreviewIcon: true,
+        },
+      });
+
+      // Should only show delete button icons, not file type icons
+      const fileIcons = component.locator('svg, [class*="iconify"]');
+      await expect(fileIcons).toHaveCount(2); // Only delete button icons
+    });
+
+    test('shows different icons for different file types', async ({ mount }) => {
+      const mockFiles = [
+        createMockFile('document.pdf', 'application/pdf'),
+        createMockFile('image.jpg', 'image/jpeg'),
+        createMockFile('spreadsheet.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'),
+      ];
+
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: mockFiles,
+          fileTypes: ['application/pdf', 'image/jpeg', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'],
+        },
+      });
+
+      // Each file should have its appropriate icon
+      await expect(component.getByText('document.pdf')).toBeVisible();
+      await expect(component.getByText('image.jpg')).toBeVisible();
+      await expect(component.getByText('spreadsheet.xlsx')).toBeVisible();
+
+      // Should have file type icons (one per file) plus delete icons
+      const fileIcons = component.locator('svg, [class*="iconify"]');
+      await expect(fileIcons).toHaveCount(6); // 3 files × 2 icons each
+    });
+  });
+
   test.describe('File List State', () => {
     test('displays uploaded files in list view', async ({ mount }) => {
       const component = await mount(FileUpload, {
@@ -625,6 +790,8 @@ test.describe('FileUpload Component', () => {
           hideFilePreviewIcon: false,
           hideDropzoneLabel: false,
           supportedFileTypeLabel: 'PDF and JPEG only',
+          showProgress: true,
+          progressValue: 75,
         },
       });
 
@@ -635,12 +802,38 @@ test.describe('FileUpload Component', () => {
       await expect(component.getByText('test.pdf')).toBeVisible();
       await expect(component.getByText('File validation failed')).toBeVisible();
 
+      // Should show progress bar
+      const progressBar = component.locator('[role="progressbar"]');
+      await expect(progressBar).toBeAttached();
+      await expect(progressBar).toHaveAttribute('aria-valuenow', '75');
+
       // Should show error styling and warning icon (SVG element)
       const svgElements = component.locator('svg');
       await expect(svgElements).toHaveCount(3); // File icon, delete icon, warning icon
 
       // Should maintain file operation buttons
       await expect(component.getByRole('button', { name: 'Replace' })).toBeVisible();
+    });
+
+    test('works with progress and icon preview props', async ({ mount }) => {
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: [createMockFile('document.pdf', 'application/pdf')],
+          title: 'Upload with Progress',
+          showProgress: true,
+          progressValue: 50,
+          hideFilePreviewIcon: false,
+        },
+      });
+
+      // Should show progress bar
+      const progressBar = component.locator('[role="progressbar"]');
+      await expect(progressBar).toBeAttached();
+      await expect(progressBar).toHaveAttribute('aria-valuenow', '50');
+
+      // Should show file type icon
+      const fileIcons = component.locator('svg, [class*="iconify"]');
+      await expect(fileIcons).toHaveCount(2); // File type icon, delete icon
     });
 
     test('maintains consistent styling across variants', async ({ mount }) => {

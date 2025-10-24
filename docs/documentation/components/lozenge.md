@@ -488,6 +488,19 @@ If you provide a `postfixIcon` prop or slot, it will override the default dropdo
 </template>
 ```
 
+### Max Width
+
+Use the <code>max-width</code> prop to constrain lozenges with long labels.
+
+<div class="spr-flex spr-items-center spr-gap-2">
+  <spr-lozenge label="A very long lozenge label that will be truncated" max-width="120px" tone="information" />
+  <spr-lozenge label="Unconstrained lozenge with long label" tone="information" />
+</div>
+
+```vue
+<spr-lozenge label="A very long lozenge label that will be truncated" max-width="120px" tone="information" />
+```
+
 ## Slot
 
 <table>
@@ -507,7 +520,7 @@ If you provide a `postfixIcon` prop or slot, it will override the default dropdo
       <td>customize avatar component</td>
     </tr>
     <tr>
-      <td>postfixIcon</td>
+      <td>postfix-icon</td>
       <td>customize postfix icon component (displayed after the label)</td>
     </tr>
   </tbody>
@@ -586,8 +599,8 @@ If you provide a `postfixIcon` prop or slot, it will override the default dropdo
       <td>''</td>
     </tr>
     <tr>
-      <td>postfixIcon</td>
-      <td>Name of an Iconify icon to be displayed as a postfix icon (after the label). Alternatively, use the <code>postfixIcon</code> slot for custom icons.</td>
+      <td>postfix-icon</td>
+      <td>Name of an Iconify icon to be displayed as a postfix icon (after the label). Alternatively, use the <code>postfix-icon</code> slot for custom icons.</td>
       <td>string</td>
       <td>''</td>
     </tr>
@@ -602,6 +615,12 @@ If you provide a `postfixIcon` prop or slot, it will override the default dropdo
       <td>When <code>true</code>, the lozenge behaves as a dropdown trigger with a default caret icon and interactive styling. This automatically sets <code>interactive</code> to <code>true</code>.</td>
       <td>boolean</td>
       <td>false</td>
+    </tr>
+    <tr>
+      <td>max-width</td>
+      <td>Sets a maximum width for the lozenge container. Accepts any valid CSS width value (e.g. <code>120px</code>, <code>12rem</code>, <code>clamp(100px, 50%, 240px)</code>, design token values, or <code>none</code>). Text beyond this width is truncated with an ellipsis.</td>
+      <td>string</td>
+      <td>'none'</td>
     </tr>
   </tbody>
 </table>

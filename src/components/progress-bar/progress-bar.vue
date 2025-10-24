@@ -3,11 +3,12 @@
     class="spr-flex spr-w-full spr-flex-col spr-gap-size-spacing-5xs"
     :aria-valuemin="0"
     :aria-valuemax="props.max || 100"
+    :aria-valuenow="props.value"
     role="progressbar"
   >
     <div :class="[handleProgressBarSize, 'spr-overflow-hidden spr-rounded-lg spr-bg-white-100']">
       <div
-        class="spr-background-color-success-base spr-transition-all spr-duration-300"
+        :class="[`spr-background-color-${validColor}-base`, 'spr-transition-all spr-duration-300']"
         :style="handleProgressBarStyle"
       ></div>
     </div>
@@ -25,5 +26,5 @@ import { useProgressBar } from './use-progress-bar';
 
 const props = defineProps(progressBarPropTypes);
 
-const { handleProgressBarSize, percentage, handleProgressBarStyle } = useProgressBar(props);
+const { handleProgressBarSize, validColor, percentage, handleProgressBarStyle } = useProgressBar(props);
 </script>

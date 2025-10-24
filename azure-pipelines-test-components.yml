@@ -1,0 +1,29 @@
+pr:
+  branches:
+    include:
+      - dev
+trigger:
+  branches:
+    include:
+      - dev
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '22.x'
+    displayName: 'Install Node 22'
+
+  - script: |
+      npm install
+    displayName: 'npm install'
+
+  - script: |
+      npx playwright install --with-deps chromium
+    displayName: 'Install Playwright browsers'
+
+  - script: |
+      npm run test:components
+    displayName: 'Run Test Components'

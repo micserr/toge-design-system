@@ -324,6 +324,194 @@ watch(uploadedFiles, (newFiles) => {
 </script>
 ```
 
+## Progress Indicator
+
+The File Upload component supports progress indicators to show upload status. Use the `show-progress` prop to display a progress bar and `progress-value` to control the progress percentage.
+
+<div class="spr-flex spr-flex-col spr-gap-2">
+  <spr-file-upload 
+    v-model="filesProgress1"
+    type="default"
+    :file-types="['image/jpeg','image/png']"
+    :max-file-size="10"
+    title="Upload with Progress"
+    :show-progress="true"
+    :progress-value="progressValue1"
+  />
+  <spr-file-upload 
+    v-model="filesProgress2"
+    type="center"
+    :file-types="['application/pdf']"
+    :max-file-size="5"
+    title="Document Upload with Progress"
+    :show-progress="true"
+    :progress-value="progressValue2"
+  />
+</div>
+
+**Progress Values:** <span class="spr-text-xs">Upload 1: {{progressValue1}}% | Upload 2: {{progressValue2}}%</span>
+
+```vue
+<template>
+  <div class="spr-flex spr-flex-col spr-gap-2">
+    <!-- Image upload with progress -->
+    <spr-file-upload
+      v-model="filesProgress1"
+      type="default"
+      :file-types="['image/jpeg', 'image/png']"
+      :max-file-size="10"
+      title="Upload with Progress"
+      :show-progress="true"
+      :progress-value="progressValue1"
+    />
+
+    <!-- Document upload with progress -->
+    <spr-file-upload
+      v-model="filesProgress2"
+      type="center"
+      :file-types="['application/pdf']"
+      :max-file-size="5"
+      title="Document Upload with Progress"
+      :show-progress="true"
+      :progress-value="progressValue2"
+    />
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const filesProgress1 = ref([]);
+const filesProgress2 = ref([]);
+
+// Simulate progress values (in real app, these would come from upload service)
+const progressValue1 = ref(75);
+const progressValue2 = ref(45);
+</script>
+```
+
+## File Icon Preview
+
+The File Upload component automatically displays appropriate icons for different file types. You can control icon visibility using the `hide-file-preview-icon` prop.
+
+<div class="spr-flex spr-flex-col spr-gap-2">
+  <spr-file-upload 
+    v-model="filesIcon1"
+    type="default"
+    :file-types="['image/jpeg','image/png','application/pdf','text/plain']"
+    :max-file-size="10"
+    title="With File Icons (Default)"
+    multiple
+  />
+  <spr-file-upload 
+    v-model="filesIcon2"
+    type="default"
+    :file-types="['image/jpeg','image/png','application/pdf','text/plain']"
+    :max-file-size="10"
+    title="Without File Icons"
+    multiple
+    :hide-file-preview-icon="true"
+  />
+</div>
+
+```vue
+<template>
+  <div class="spr-flex spr-flex-col spr-gap-2">
+    <!-- With file type icons (default behavior) -->
+    <spr-file-upload
+      v-model="filesIcon1"
+      type="default"
+      :file-types="['image/jpeg', 'image/png', 'application/pdf', 'text/plain']"
+      :max-file-size="10"
+      title="With File Icons (Default)"
+      multiple
+    />
+
+    <!-- Without file type icons -->
+    <spr-file-upload
+      v-model="filesIcon2"
+      type="default"
+      :file-types="['image/jpeg', 'image/png', 'application/pdf', 'text/plain']"
+      :max-file-size="10"
+      title="Without File Icons"
+      multiple
+      :hide-file-preview-icon="true"
+    />
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const filesIcon1 = ref([]);
+const filesIcon2 = ref([]);
+</script>
+```
+
+## Advanced Progress with Error States
+
+You can combine progress indicators with error states to provide comprehensive upload feedback.
+
+<div class="spr-flex spr-flex-col spr-gap-2">
+  <spr-file-upload 
+    v-model="filesAdvanced1"
+    type="default"
+    :file-types="['image/jpeg','image/png']"
+    :max-file-size="10"
+    title="Successful Upload"
+    :show-progress="true"
+    :progress-value="100"
+  />
+  <spr-file-upload 
+    v-model="filesAdvanced2"
+    type="default"
+    :file-types="['image/jpeg','image/png']"
+    :max-file-size="10"
+    title="Failed Upload"
+    :show-progress="true"
+    :progress-value="60"
+    :show-error="true"
+    :error-messages="['Upload failed. Please try again.']"
+  />
+</div>
+
+```vue
+<template>
+  <div class="spr-flex spr-flex-col spr-gap-2">
+    <!-- Successful upload with progress -->
+    <spr-file-upload
+      v-model="filesAdvanced1"
+      type="default"
+      :file-types="['image/jpeg', 'image/png']"
+      :max-file-size="10"
+      title="Successful Upload"
+      :show-progress="true"
+      :progress-value="100"
+    />
+
+    <!-- Failed upload with progress and error -->
+    <spr-file-upload
+      v-model="filesAdvanced2"
+      type="default"
+      :file-types="['image/jpeg', 'image/png']"
+      :max-file-size="10"
+      title="Failed Upload"
+      :show-progress="true"
+      :progress-value="60"
+      :show-error="true"
+      :error-messages="['Upload failed. Please try again.']"
+    />
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const filesAdvanced1 = ref([]);
+const filesAdvanced2 = ref([]);
+</script>
+```
+
 ## API Reference
 
 ### Props
@@ -410,6 +598,18 @@ watch(uploadedFiles, (newFiles) => {
       <td>string</td>
       <td>Auto-generated based on fileTypes</td>
     </tr>
+    <tr>
+      <td>showProgress</td>
+      <td>When true, displays a progress bar for upload status</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>progressValue</td>
+      <td>Progress percentage value (0-100) for the progress bar</td>
+      <td>number</td>
+      <td>0</td>
+    </tr>
   </tbody>
 </table>
 
@@ -476,4 +676,18 @@ const files4 = ref([]);
 const files5 = ref([]);
 const files6 = ref([]);
 const files7 = ref([]);
+
+// Progress examples
+const filesProgress1 = ref([]);
+const filesProgress2 = ref([]);
+const progressValue1 = ref(75);
+const progressValue2 = ref(45);
+
+// Icon preview examples
+const filesIcon1 = ref([]);
+const filesIcon2 = ref([]);
+
+// Advanced progress examples
+const filesAdvanced1 = ref([]);
+const filesAdvanced2 = ref([]);
 </script>

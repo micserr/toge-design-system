@@ -1,5 +1,5 @@
 <template>
-  <div :class="cardClasses.baseClasses" :style="{ borderWidth: props.borderWidth }">
+  <div v-bind="id ? { id } : {}" :class="cardClasses.baseClasses" :style="{ borderWidth: props.borderWidth }">
     <div v-if="props.showHeader && ($slots.header || props.title)" :class="cardClasses.headerClasses">
       <div v-if="props.title" class="spr-flex spr-items-center">
         <Icon
@@ -40,6 +40,9 @@ import { useCard } from './use-card';
 
 const props = defineProps(cardPropTypes);
 const slots = useSlots();
+
+// Destructure id for template usage
+const { id } = props;
 
 const { cardClasses } = useCard(props, slots);
 </script>

@@ -1,5 +1,30 @@
 # Changelog
 
+## 2.20.1 (2025-10-24)
+
+- Feat: Enhanced File Upload and Progress Bar Components
+  - **File Upload Component**:
+    - Added progress indicator support with `show-progress` and `progress-value` props
+    - Introduced file icon preview control with `hide-file-preview-icon` prop
+    - Enhanced user experience with visual progress feedback
+  - **Progress Bar Component**:
+    - Added color variant support: `success`, `danger`, `warning`, `info`, `neutral`
+    - Implemented robust color validation with fallback to success color
+    - Enhanced accessibility with proper ARIA attributes (`aria-valuenow`, `aria-valuemin`, `aria-valuemax`)
+    - Added comprehensive documentation with live examples and best practices
+    - Improved component reliability with better error handling
+  - **Documentation & Testing**:
+    - Updated component documentation with interactive examples
+    - Added comprehensive Playwright tests for new features
+    - Included accessibility guidelines and usage best practices
+    - Enhanced API reference with detailed prop descriptions
+      ([#ceeb3ff4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ceeb3ff4afa776d3086091631e54f39614327323?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FFile-Upload-Progress-Bar) by @bsolis)
+
+## 2.21.0 (2025-10-23)
+
+- Feat: Added Component Testing with Playwright
+  ([#35580](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35580) by @jmari)
+
 ## 2.19.5 (2025-10-23)
 
 - Fix:

@@ -172,9 +172,9 @@ export interface TabComponentProps {
 }
 
 export interface CalendarTabEmits {
-  'update:date': (day: { date: Date; inactive: boolean }) => void;
-  'update:month': (month: number) => void;
-  'update:year': (year: number) => void;
+  'update:date': [day: { date: Date; inactive: boolean }];
+  'update:month': [month: number];
+  'update:year': [year: number];
 }
 
 export interface MonthTabEmits {

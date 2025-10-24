@@ -22,10 +22,7 @@
             'spr-text-color-brand-base': isTodayIndicator(day) && !isSelectedDate(day),
 
             // Active Month Dates - only apply if not selected and not today
-            'spr-text-color-strong':
-              isActiveMonthDates(day) &&
-              !isSelectedDate(day) &&
-              !isTodayIndicator(day),
+            'spr-text-color-strong': isActiveMonthDates(day) && !isSelectedDate(day) && !isTodayIndicator(day),
 
             // Inactive Month Dates (Past/Future)
             'spr-text-color-disabled': isInactiveMonthDates(day),
@@ -74,17 +71,15 @@ interface Props extends TabComponentProps {
   selectedDay?: number;
 }
 
-type Emits = CalendarTabEmits;
-
 const props = defineProps<Props>();
-const emit = defineEmits<Emits>();
+const emit = defineEmits<CalendarTabEmits>();
 
 const daysOfWeek = computed(() =>
   Array.from({ length: 7 }, (_, i) => ({
     text: dayjs().day(i).format('dd'),
     fullText: dayjs().day(i).format('dddd'),
     dayValue: i,
-  }))
+  })),
 );
 
 const currentDate = computed(() => dayjs());
@@ -154,7 +149,6 @@ const isSelectedDate = (day: { date: Date; inactive: boolean }) => {
     return day.date.getDate() === props.selectedDay && !day.inactive;
   }
 
-
   return false;
 };
 
@@ -184,10 +178,7 @@ const isUnSelectedDate = (day: { date: Date }) => {
 
   // If day and month are selected, check if this date matches
   if (props.selectedDay && props.selectedMonth !== undefined && !props.selectedYear) {
-    return !(
-      day.date.getDate() === props.selectedDay &&
-      day.date.getMonth() === props.selectedMonth
-    );
+    return !(day.date.getDate() === props.selectedDay && day.date.getMonth() === props.selectedMonth);
   }
 
   // If only day is selected, check if this date matches

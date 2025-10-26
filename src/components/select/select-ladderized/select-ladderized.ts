@@ -44,7 +44,7 @@ export const selectLadderizedPropTypes = {
     type: String,
     default: '',
   },
-  loader: {
+  inputLoader: {
     type: Boolean,
     default: false,
   },
@@ -149,6 +149,10 @@ export const selectLadderizedPropTypes = {
     default: false,
   },
   writableInputText: {
+    type: Boolean,
+    default: false,
+  },
+  optionsLoader: {
     type: Boolean,
     default: false,
   },

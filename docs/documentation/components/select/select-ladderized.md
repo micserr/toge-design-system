@@ -814,7 +814,7 @@ For guidance on implementing error, active, and disabled states in the select co
       <td>''</td>
     </tr>
     <tr>
-      <td><code>loader</code></td>
+      <td><code>input-loader</code></td>
       <td>Shows a loading spinner within the input while options (including nested sublevels) are being fetched asynchronously. Useful for API-driven hierarchical data loads.</td>
       <td>Boolean</td>
       <td>false</td>
@@ -944,6 +944,12 @@ For guidance on implementing error, active, and disabled states in the select co
       <td>Enable input text to writable. This does not affect the search functionality.</td>
       <td>Boolean</td>
       <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>options-loader</code></td>
+      <td>Displays a skeletal loading inside the popper. Useful while asynchronously fetching options (e.g., API search).</td>
+      <td>Boolean</td>
+      <td>false</td>
     </tr>
   </tbody>
 </table>

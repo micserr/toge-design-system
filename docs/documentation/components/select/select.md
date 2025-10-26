@@ -1322,7 +1322,7 @@ const optionsWithLozenge = ref([
       <td>''</td>
     </tr>
     <tr>
-      <td><code>loader</code></td>
+      <td><code>input-loader</code></td>
       <td>Displays a loading spinner inside the select input. Useful while asynchronously fetching options (e.g., API search). When true, the current value or placeholder is still shown with a spinner indicator.</td>
       <td>Boolean</td>
       <td>false</td>
@@ -1408,6 +1408,12 @@ const optionsWithLozenge = ref([
     <tr>
       <td><code>clearable</code></td>
       <td>Allows the user to clear the selected value with a clear button</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td><code>options-loader</code></td>
+      <td>Displays a skeletal loading inside the popper. Useful while asynchronously fetching options (e.g., API search).</td>
       <td>Boolean</td>
       <td>false</td>
     </tr>

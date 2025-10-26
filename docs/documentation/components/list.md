@@ -603,30 +603,6 @@ const handleSelection = (items) => {
   </tbody>
 </table>
 
-### MenuListType Interface
-
-```typescript
-type MenuListType = {
-  text: string;                              // Display text (required)
-  value: string | number;                    // Unique identifier (required)
-  subtext?: string;                          // Secondary text below main text
-  group?: string;                            // Grouping identifier
-  sublevel?: MenuListType[];                 // Nested items for hierarchical lists
-  disabled?: boolean;                        // Disable this item
-  _originalObject?: Record<string, unknown>; // Original object reference
-  icon?: string;                             // Iconify icon name
-  iconColor?: string;                        // CSS class for icon color
-  textColor?: string;                        // CSS class for text color
-  lozenge?: LozengePropTypes;                // Lozenge badge on the RIGHT side of item
-  lozengeProps?: LozengePropTypes;           // Lozenge replacing item (for full lozenge mode)
-  onClickFn?: () => void;                    // Click handler
-};
-```
-
-**Key Differences:**
-- **`lozengeProps`**: Used when `lozenge` prop is `true` - the entire item becomes a lozenge
-- **`lozenge`**: Shows a lozenge badge on the right side of a regular list item
-
 <script lang="ts" setup>
 import { ref } from 'vue';
 import SprList from "@/components/list/list.vue"

@@ -12,6 +12,7 @@
           :searchable-menu="props.searchableMenu"
           :searchable-menu-placeholder="props.searchableMenuPlaceholder"
           :sticky-search-offset="activeLevel > 0 ? 42 : 0"
+          :loading="props.loading"
           @update:model-value="(value) => handleSelectedListItem(value[0])"
         />
       </div>

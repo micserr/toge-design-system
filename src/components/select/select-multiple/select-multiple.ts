@@ -71,7 +71,7 @@ export const multiSelectPropTypes = {
     type: String,
     default: '',
   },
-  loader: {
+  inputLoader: {
     type: Boolean,
     default: false,
   },
@@ -179,11 +179,11 @@ export const multiSelectPropTypes = {
     type: Boolean,
     default: false,
   },
-  loading: {
+  disabledLocalSearch: {
     type: Boolean,
     default: false,
   },
-  disabledLocalSearch: {
+  optionsLoader: {
     type: Boolean,
     default: false,
   },
@@ -196,6 +196,12 @@ export const multiSelectPropTypes = {
     default: '',
   },
   disabledUnselectedItems: {
+    type: Boolean,
+    default: false,
+  },
+
+  // Deprecated alias - kept for backward compatibility
+  loading: {
     type: Boolean,
     default: false,
   },

@@ -69,7 +69,7 @@ export const selectPropTypes = {
     type: String,
     default: '',
   },
-  loader: {
+  inputLoader: {
     type: Boolean,
     default: false,
   },
@@ -158,6 +158,10 @@ export const selectPropTypes = {
     default: false,
   },
   disabledLocalSearch: {
+    type: Boolean,
+    default: false,
+  },
+  optionsLoader: {
     type: Boolean,
     default: false,
   },

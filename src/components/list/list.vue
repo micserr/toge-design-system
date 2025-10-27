@@ -48,6 +48,20 @@
                 <Icon icon="svg-spinners:270-ring" />
               </div>
             </div>
+            <ListItem
+              v-for="item in list.items"
+              :key="item.value"
+              :item="item"
+              :is-selected="isItemSelected(item)"
+              :classes="getListItemClasses(item)"
+              :multi-select="props.multiSelect"
+              :lozenge="props.lozenge"
+              :ladderized="props.ladderized"
+              :no-check="props.noCheck"
+              :item-icon="props.itemIcon"
+              :disabled-unselected-items="props.disabledUnselectedItems"
+              @select="handleSelectedItem(item)"
+            />
           </div>
         </div>
       </template>

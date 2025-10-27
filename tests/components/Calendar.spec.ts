@@ -168,7 +168,7 @@ test.describe('Calendar Component', () => {
       await todayButton.click();
 
       // Should now show the current month/year (October 2025)
-      await expect(component.getByText(/2025/)).toBeVisible();
+      await expect(component.getByText(/Oct.*2025|Oct - Oct 2025/)).toBeVisible();
     });
   });
 

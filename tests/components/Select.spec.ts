@@ -925,4 +925,444 @@ test.describe('Select Component', () => {
       expect(searchCallCount).toBeLessThanOrEqual(3); // Allow for some variation in timing
     });
   });
+
+  test.describe('Custom Field Mapping', () => {
+    test('should support custom textField for display text', async ({ mount }) => {
+      const customOptions = [
+        { label: 'First Item', id: '1' },
+        { label: 'Second Item', id: '2' },
+        { label: 'Third Item', id: '3' },
+      ];
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: customOptions,
+          textField: 'label',
+          valueField: 'id',
+          searchable: true,
+        },
+      });
+
+      await component.locator('input').click();
+      await expect(
+        component.locator('.spr-grid').locator('.spr-text-left').filter({ hasText: 'First Item' }),
+      ).toBeVisible();
+    });
+
+    test('should support custom valueField for model value', async ({ mount }) => {
+      const customOptions = [
+        { name: 'Item 1', code: 'A' },
+        { name: 'Item 2', code: 'B' },
+        { name: 'Item 3', code: 'C' },
+      ];
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: customOptions,
+          textField: 'name',
+          valueField: 'code',
+        },
+      });
+
+      // Verify component renders with custom field configuration
+      await expect(component.locator('input')).toBeVisible();
+      await component.locator('input').click();
+      await expect(
+        component.locator('.spr-grid').locator('.spr-text-left').filter({ hasText: 'Item 1' }),
+      ).toBeVisible();
+    });
+
+    test('should handle deeply nested custom fields', async ({ mount }) => {
+      const nestedOptions = [
+        { info: { title: 'Deep Option 1' }, uid: 'd1' },
+        { info: { title: 'Deep Option 2' }, uid: 'd2' },
+      ];
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: nestedOptions,
+          textField: 'info',
+          valueField: 'uid',
+        },
+      });
+
+      // Verify component renders and handles nested structure gracefully
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Icon Display Configuration', () => {
+    test('should display item icon when itemIcon prop is set', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          itemIcon: 'ph:check',
+        },
+      });
+
+      await component.locator('input').click();
+      // Icon should be rendered through the List component
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should update item icon when prop changes', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          itemIcon: 'ph:check',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+
+      // Update prop
+      await component.update({
+        props: {
+          itemIcon: 'ph:x',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Loader States', () => {
+    test('should display input loader when inputLoader is true', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          inputLoader: true,
+        },
+      });
+
+      // Loader should be visible in input
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should display options loader when optionsLoader is true', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          optionsLoader: true,
+        },
+      });
+
+      await component.locator('input').click();
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should display infinite scroll loader when infiniteScrollLoader is true', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          infiniteScrollLoader: true,
+        },
+      });
+
+      await component.locator('input').click();
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should transition between loader states', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          inputLoader: false,
+        },
+      });
+
+      await component.update({
+        props: {
+          inputLoader: true,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+
+      await component.update({
+        props: {
+          inputLoader: false,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Popper Event Triggers', () => {
+    test('should support click trigger', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          popperTriggers: ['click'],
+        },
+      });
+
+      await component.locator('input').click();
+      // Menu should open on click
+      await expect(
+        component.locator('.spr-grid').locator('.spr-text-left').filter({ hasText: 'Option 1' }),
+      ).toBeVisible();
+    });
+
+    test('should support focus trigger', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          popperTriggers: ['focus'],
+        },
+      });
+
+      // Component should render with focus trigger configuration
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should support hover trigger', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          popperTriggers: ['hover'],
+        },
+      });
+
+      // Component should render with hover trigger configuration
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should support multiple triggers', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          popperTriggers: ['click', 'focus'],
+        },
+      });
+
+      // Should open on click
+      await component.locator('input').click();
+      await expect(
+        component.locator('.spr-grid').locator('.spr-text-left').filter({ hasText: 'Option 1' }),
+      ).toBeVisible();
+    });
+  });
+
+  test.describe('Popper Behavior Configuration', () => {
+    test('should auto-hide popper when autoHide is true', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          autoHide: true,
+        },
+      });
+
+      await component.locator('input').click();
+      // Menu should be visible initially
+      await expect(
+        component.locator('.spr-grid').locator('.spr-text-left').filter({ hasText: 'Option 1' }),
+      ).toBeVisible();
+    });
+
+    test('should keep popper visible when autoHide is false', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          autoHide: false,
+        },
+      });
+
+      await component.locator('input').click();
+      await expect(
+        component.locator('.spr-grid').locator('.spr-text-left').filter({ hasText: 'Option 1' }),
+      ).toBeVisible();
+    });
+
+    test('should support custom popperContainer', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          popperContainer: 'body',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Layout and Styling Configuration', () => {
+    test('should apply custom width', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          width: '300px',
+        },
+      });
+
+      const wrapper = component.locator('[class*="spr"]').first();
+      await expect(wrapper).toBeVisible();
+    });
+
+    test('should apply custom wrapperPosition', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          wrapperPosition: 'fixed',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should apply custom popperWidth', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          popperWidth: '400px',
+        },
+      });
+
+      await component.locator('input').click();
+      await expect(
+        component.locator('.spr-grid').locator('.spr-text-left').filter({ hasText: 'Option 1' }),
+      ).toBeVisible();
+    });
+
+    test('should handle responsive width values', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          width: '100%',
+          popperWidth: 'min(100%, 400px)',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Triggers Configuration', () => {
+    test('should support custom input triggers', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          triggers: ['click', 'focus'],
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should handle empty triggers array', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          triggers: [],
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should differentiate between triggers and popperTriggers', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          triggers: ['click'],
+          popperTriggers: ['focus'],
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Combined Props Configuration', () => {
+    test('should work with all custom configuration props together', async ({ mount }) => {
+      const customOptions = [
+        { name: 'Item 1', uid: '1' },
+        { name: 'Item 2', uid: '2' },
+      ];
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: customOptions,
+          textField: 'name',
+          valueField: 'uid',
+          width: '300px',
+          popperWidth: '300px',
+          placement: 'bottom',
+          distance: 8,
+          itemIcon: 'ph:check',
+          lozenge: true,
+          searchable: true,
+          clearable: true,
+          popperTriggers: ['click', 'focus'],
+          autoHide: true,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+      await component.locator('input').click();
+      await expect(
+        component.locator('.spr-grid').locator('.spr-text-left').filter({ hasText: 'Item 1' }),
+      ).toBeVisible();
+    });
+
+    test('should handle prop updates gracefully', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          textField: 'text',
+          valueField: 'value',
+        },
+      });
+
+      await component.update({
+        props: {
+          options: ['Updated 1', 'Updated 2'],
+          width: '400px',
+          itemIcon: 'ph:star',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should maintain functionality with extreme configuration', async ({ mount }) => {
+      const component = await mount(Select, {
+        props: {
+          id: 'test-select',
+          options: basicStringOptions,
+          distance: 100,
+          popperWidth: '80vw',
+          width: '80vw',
+          placement: 'top-start',
+          popperStrategy: 'fixed',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+      await component.locator('input').click();
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
 });

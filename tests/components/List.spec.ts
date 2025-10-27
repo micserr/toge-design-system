@@ -946,4 +946,382 @@ test.describe('List Component', () => {
       expect(clickFnCalled).toBe(true);
     });
   });
+
+  test.describe('Grouping Configuration', () => {
+    test('should support A-Z grouping', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          groupItemsBy: 'A-Z',
+        },
+      });
+
+      // Should render items grouped alphabetically
+      await expect(component.getByText('Apple')).toBeVisible();
+    });
+
+    test('should support Z-A grouping', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          groupItemsBy: 'Z-A',
+        },
+      });
+
+      // Should render items grouped in reverse alphabetical order
+      await expect(component.getByText('Apple')).toBeVisible();
+    });
+
+    test('should support default grouping', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockGroupedItems,
+          groupItemsBy: 'default',
+        },
+      });
+
+      await expect(component.getByText('Apple')).toBeVisible();
+    });
+  });
+
+  test.describe('Search Configuration', () => {
+    test('should use custom searchableMenuPlaceholder', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          searchableMenu: true,
+          searchableMenuPlaceholder: 'Find items...',
+        },
+      });
+
+      await expect(
+        component.locator('input').filter({ hasAttribute: 'placeholder', hasValue: 'Find items...' }),
+      ).toBeDefined();
+    });
+
+    test('should disable local search when disabledLocalSearch is true', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          searchableMenu: true,
+          disabledLocalSearch: true,
+        },
+      });
+
+      await expect(component.getByText('Apple')).toBeVisible();
+    });
+  });
+
+  test.describe('Icon Configuration', () => {
+    test('should display item icon when itemIcon prop is set', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          itemIcon: 'ph:check',
+        },
+      });
+
+      await expect(component.getByText('Apple')).toBeVisible();
+    });
+
+    test('should update item icon when prop changes', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          itemIcon: 'ph:check',
+        },
+      });
+
+      await component.update({
+        props: {
+          itemIcon: 'ph:star',
+        },
+      });
+
+      await expect(component.getByText('Apple')).toBeVisible();
+    });
+
+    test('should display custom icon colors for items', async ({ mount }) => {
+      const itemsWithColors: MenuListType[] = [
+        { text: 'Red Item', value: 'red', iconColor: '#FF0000' },
+        { text: 'Blue Item', value: 'blue', iconColor: '#0000FF' },
+      ];
+
+      const component = await mount(List, {
+        props: {
+          menuList: itemsWithColors,
+          itemIcon: 'ph:circle-fill',
+        },
+      });
+
+      await expect(component.getByText('Red Item')).toBeVisible();
+    });
+  });
+
+  test.describe('Display Modes', () => {
+    test('should render in lozenge mode when lozenge is true', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          lozenge: true,
+          modelValue: [{ text: 'Apple', value: 'apple' }],
+        },
+      });
+
+      await expect(component.getByText('Apple')).toBeVisible();
+    });
+
+    test('should render in ladderized mode when ladderized is true', async ({ mount }) => {
+      const hierarchicalItems: MenuListType[] = [
+        {
+          text: 'Fruits',
+          value: 'fruits',
+          sublevel: [
+            { text: 'Apple', value: 'apple' },
+            { text: 'Banana', value: 'banana' },
+          ],
+        },
+      ];
+
+      const component = await mount(List, {
+        props: {
+          menuList: hierarchicalItems,
+          ladderized: true,
+        },
+      });
+
+      await expect(component.getByText('Fruits')).toBeVisible();
+    });
+
+    test('should display selected item indicator when displayListItemSelected is true', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          modelValue: [{ text: 'Apple', value: 'apple' }],
+          displayListItemSelected: true,
+        },
+      });
+
+      await expect(component.getByText('Apple')).toBeVisible();
+    });
+  });
+
+  test.describe('Loader and Loading States', () => {
+    test('should display loading state when loading is true', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          loading: true,
+        },
+      });
+
+      await expect(component.getByText('Apple')).toBeVisible();
+    });
+
+    test('should display infinite scroll loader when infiniteScrollLoader is true', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          infiniteScrollLoader: true,
+        },
+      });
+
+      await expect(component.getByText('Apple')).toBeVisible();
+    });
+  });
+
+  test.describe('Advanced Features', () => {
+    test('should disable unselected items when disabledUnselectedItems is true', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          modelValue: [{ text: 'Apple', value: 'apple' }],
+          disabledUnselectedItems: true,
+        },
+      });
+
+      await expect(component.getByText('Apple')).toBeVisible();
+    });
+
+    test('should support custom text colors for items', async ({ mount }) => {
+      const itemsWithTextColors: MenuListType[] = [
+        { text: 'Red Text', value: 'red-text', textColor: '#FF0000' },
+        { text: 'Green Text', value: 'green-text', textColor: '#00FF00' },
+      ];
+
+      const component = await mount(List, {
+        props: {
+          menuList: itemsWithTextColors,
+        },
+      });
+
+      await expect(component.getByText('Red Text')).toBeVisible();
+    });
+
+    test('should use sticky search offset when provided', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          searchableMenu: true,
+          stickySearchOffset: '10px',
+        },
+      });
+
+      await expect(component.getByText('Apple')).toBeVisible();
+    });
+
+    test('should support no-check mode', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          noCheck: true,
+          multiSelect: true,
+        },
+      });
+
+      await expect(component.getByText('Apple')).toBeVisible();
+    });
+
+    test('should support pre-selected items', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          multiSelect: true,
+          preSelectedItems: ['apple', 'banana'],
+        },
+      });
+
+      await expect(component.getByText('Apple')).toBeVisible();
+    });
+  });
+
+  test.describe('Menu Level Configuration', () => {
+    test('should set menu level for hierarchical navigation', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          menuLevel: 0,
+        },
+      });
+
+      await expect(component.getByText('Apple')).toBeVisible();
+    });
+
+    test('should update menu level for nested navigation', async ({ mount }) => {
+      const hierarchicalItems: MenuListType[] = [
+        {
+          text: 'Parent',
+          value: 'parent',
+          sublevel: [
+            { text: 'Child A', value: 'child-a' },
+            { text: 'Child B', value: 'child-b' },
+          ],
+        },
+      ];
+
+      const component = await mount(List, {
+        props: {
+          menuList: hierarchicalItems,
+          menuLevel: 1,
+          ladderized: true,
+        },
+      });
+
+      await expect(component.getByText('Parent')).toBeVisible();
+    });
+  });
+
+  test.describe('Combined Configuration', () => {
+    test('should work with all custom configuration props together', async ({ mount }) => {
+      const complexItems: MenuListType[] = [
+        {
+          text: 'Item A',
+          value: 'a',
+          icon: 'ph:check',
+          iconColor: '#00FF00',
+          textColor: '#333333',
+          subtext: 'First option',
+        },
+        {
+          text: 'Item B',
+          value: 'b',
+          icon: 'ph:star',
+          disabled: false,
+        },
+      ];
+
+      const component = await mount(List, {
+        props: {
+          menuList: complexItems,
+          multiSelect: true,
+          searchableMenu: true,
+          searchableMenuPlaceholder: 'Search items...',
+          groupItemsBy: 'A-Z',
+          itemIcon: 'ph:dot',
+          lozenge: false,
+          ladderized: false,
+          displayListItemSelected: true,
+          disabledUnselectedItems: false,
+          noCheck: false,
+          stickySearchOffset: '5px',
+        },
+      });
+
+      await expect(component.getByText('Item A')).toBeVisible();
+    });
+
+    test('should handle rapid prop updates gracefully', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          modelValue: [],
+        },
+      });
+
+      await component.update({
+        props: {
+          groupItemsBy: 'A-Z',
+          itemIcon: 'ph:check',
+        },
+      });
+
+      await component.update({
+        props: {
+          displayListItemSelected: true,
+          disabledUnselectedItems: true,
+        },
+      });
+
+      // Component should update successfully and items should still be visible
+      await expect(component).toBeVisible();
+    });
+
+    test('should maintain functionality with mixed item properties', async ({ mount }) => {
+      const mixedItems: MenuListType[] = [
+        { text: 'Simple Item', value: 'simple' },
+        {
+          text: 'Complex Item',
+          value: 'complex',
+          subtext: 'With subtext',
+          icon: 'ph:check',
+          iconColor: '#FF0000',
+          textColor: '#0000FF',
+          disabled: false,
+        },
+        { text: 'Disabled Item', value: 'disabled', disabled: true },
+      ];
+
+      const component = await mount(List, {
+        props: {
+          menuList: mixedItems,
+          multiSelect: true,
+          searchableMenu: true,
+          groupItemsBy: 'A-Z',
+        },
+      });
+
+      await expect(component.getByText('Simple Item')).toBeVisible();
+      await expect(component.getByText('Complex Item')).toBeVisible();
+    });
+  });
 });

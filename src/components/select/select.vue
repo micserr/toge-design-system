@@ -92,10 +92,7 @@
       </div>
 
       <template #popper>
-        <div
-          ref="selectPopperRef"
-          class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden"
-        >
+        <div ref="selectPopperRef" class="spr-max-h-[300px] spr-overflow-y-auto spr-overflow-x-hidden">
           <template v-if="isSearching">
             <template v-if="!props.disabledLocalSearch">
               <template v-if="filteredSelectOptions.length > 0">
@@ -112,8 +109,10 @@
                 />
               </template>
               <template v-else>
-                <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
-                  <span class="spr-body-sm-regular spr-m-0">No results found</span>
+                <div class="spr-grid">
+                  <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
+                    <span class="spr-body-sm-regular spr-m-0">No results found</span>
+                  </div>
                 </div>
               </template>
             </template>
@@ -132,8 +131,10 @@
                 />
               </template>
               <template v-else>
-                <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
-                  <span class="spr-body-sm-regular spr-m-0">No results found</span>
+                <div class="spr-grid">
+                  <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
+                    <span class="spr-body-sm-regular spr-m-0">No results found</span>
+                  </div>
                 </div>
               </template>
             </template>
@@ -153,8 +154,10 @@
               />
             </template>
             <template v-else>
-              <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
-                <span class="spr-body-sm-regular spr-m-0">No results found</span>
+              <div class="spr-grid">
+                <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
+                  <span class="spr-body-sm-regular spr-m-0">No results found</span>
+                </div>
               </div>
             </template>
           </template>

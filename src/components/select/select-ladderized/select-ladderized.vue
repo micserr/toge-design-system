@@ -70,10 +70,7 @@
       </div>
 
       <template #popper>
-        <div
-          ref="ladderizedSelectPopperRef"
-          class="spr-grid spr-max-h-[300px] spr-gap-0.5 spr-overflow-y-auto spr-overflow-x-hidden"
-        >
+        <div ref="ladderizedSelectPopperRef" class="spr-max-h-[300px] spr-overflow-y-auto spr-overflow-x-hidden">
           <template v-if="ladderizedSelectOptions.length > 0">
             <spr-ladderized-list
               v-model="ladderizedSelectModel"

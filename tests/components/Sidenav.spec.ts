@@ -29,7 +29,7 @@
  * - Icons are provided via @iconify/vue
  * - Active navigation state is managed externally
  * - Redirect handling is managed by parent component via events
- * 
+ *
  * TODO (Future Enhancements):
  * - Test drag and drop interactions if implemented
  * - Test keyboard shortcuts for navigation
@@ -207,7 +207,9 @@ test.describe('Sidenav Component', () => {
       });
 
       // Should show 5 loaders in the top section by default
-      const topSectionLoaders = component.locator('.spr-grid.spr-justify-center.spr-gap-2.spr-px-3.spr-pb-4.spr-pt-4 .spr-skeletal-loader');
+      const topSectionLoaders = component.locator(
+        '.spr-grid.spr-justify-center.spr-gap-2.spr-px-3.spr-pb-4.spr-pt-4 .spr-skeletal-loader',
+      );
       await expect(topSectionLoaders).toHaveCount(5);
     });
 
@@ -220,7 +222,9 @@ test.describe('Sidenav Component', () => {
       });
 
       // Should show 3 loaders in the bottom section
-      const bottomSectionLoaders = component.locator('.spr-grid.spr-justify-center.spr-gap-2.spr-px-3.spr-pb-4.spr-pt-0 .spr-skeletal-loader');
+      const bottomSectionLoaders = component.locator(
+        '.spr-grid.spr-justify-center.spr-gap-2.spr-px-3.spr-pb-4.spr-pt-0 .spr-skeletal-loader',
+      );
       await expect(bottomSectionLoaders).toHaveCount(3);
     });
 

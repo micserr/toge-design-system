@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.20.5 (2025-10-27)
+
+- Fix:
+  - Update Component Test File for Select, Multi Select, Ladderized Select, and List
+  - Added support for infinite scroll loader
+    ([#35627](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35627) by @jarias)
+
 ## 2.20.4 (2025-10-27)
 
 - Fix:

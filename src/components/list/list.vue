@@ -21,7 +21,7 @@
     <div class="spr-p-size-spacing-3xs">
       <!-- Grouped Items -->
       <template v-if="props.groupItemsBy && groupedMenuList && groupedMenuList.length > 0">
-        <div class="spr-grid spr-gap-2">
+        <div class="spr-grid spr-gap-3">
           <div v-for="(list, listIndex) in groupedMenuList" :key="listIndex" class="spr-grid spr-gap-0.5">
             <div
               v-if="list.groupLabel !== 'no-group'"
@@ -29,45 +29,55 @@
             >
               {{ list.groupLabel }}
             </div>
-            <ListItem
-              v-for="item in list.items"
-              :key="item.value"
-              :item="item"
-              :is-selected="isItemSelected(item)"
-              :classes="getListItemClasses(item)"
-              :multi-select="props.multiSelect"
-              :lozenge="props.lozenge"
-              :ladderized="props.ladderized"
-              :no-check="props.noCheck"
-              :item-icon="props.itemIcon"
-              :disabled-unselected-items="props.disabledUnselectedItems"
-              @select="handleSelectedItem(item)"
-            />
+            <div class="spr-grid spr-gap-[2px]">
+              <ListItem
+                v-for="item in list.items"
+                :key="item.value"
+                :item="item"
+                :is-selected="isItemSelected(item)"
+                :classes="getListItemClasses(item)"
+                :multi-select="props.multiSelect"
+                :lozenge="props.lozenge"
+                :ladderized="props.ladderized"
+                :no-check="props.noCheck"
+                :item-icon="props.itemIcon"
+                :disabled-unselected-items="props.disabledUnselectedItems"
+                @select="handleSelectedItem(item)"
+              />
+              <div v-if="props.infiniteScrollLoader" class="spr-flex spr-items-center spr-justify-center spr-p-2">
+                <Icon icon="svg-spinners:270-ring" />
+              </div>
+            </div>
           </div>
         </div>
       </template>
 
       <!-- Non-Grouped Items -->
       <template v-else-if="localizedMenuList && localizedMenuList.length > 0">
-        <ListItem
-          v-for="item in localizedMenuList"
-          :key="item.value"
-          :item="item"
-          :is-selected="isItemSelected(item)"
-          :classes="getListItemClasses(item)"
-          :multi-select="props.multiSelect"
-          :lozenge="props.lozenge"
-          :ladderized="props.ladderized"
-          :no-check="props.noCheck"
-          :item-icon="props.itemIcon"
-          :disabled-unselected-items="props.disabledUnselectedItems"
-          @select="handleSelectedItem(item)"
-        />
+        <div class="spr-grid spr-gap-[2px]">
+          <ListItem
+            v-for="item in localizedMenuList"
+            :key="item.value"
+            :item="item"
+            :is-selected="isItemSelected(item)"
+            :classes="getListItemClasses(item)"
+            :multi-select="props.multiSelect"
+            :lozenge="props.lozenge"
+            :ladderized="props.ladderized"
+            :no-check="props.noCheck"
+            :item-icon="props.itemIcon"
+            :disabled-unselected-items="props.disabledUnselectedItems"
+            @select="handleSelectedItem(item)"
+          />
+          <div v-if="props.infiniteScrollLoader" class="spr-flex spr-items-center spr-justify-center spr-p-2">
+            <Icon icon="svg-spinners:270-ring" />
+          </div>
+        </div>
       </template>
 
       <!-- Loading State -->
       <template v-else-if="props.loading">
-        <div class="spr-grid spr-gap-2">
+        <div class="spr-grid spr-gap-[2px]">
           <div v-for="i in 5" :key="i" class="spr-skeletal-loader spr-h-8 spr-w-full spr-rounded-md" />
         </div>
       </template>
@@ -83,6 +93,8 @@
 </template>
 
 <script lang="ts" setup>
+import { Icon } from '@iconify/vue';
+
 import SprInputSearch from '@/components/input/input-search/input-search.vue';
 import ListItem from './list-item/list-item.vue';
 

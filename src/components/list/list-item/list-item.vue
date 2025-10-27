@@ -1,20 +1,20 @@
 <template>
-  <div :class="classes" @click="$emit('select')">
+  <div :class="props.classes" @click="$emit('select')">
     <template v-if="showLozengeMode">
       <div class="spr-flex spr-items-center spr-gap-1">
         <spr-checkbox
           v-if="props.multiSelect"
-          :disabled="item.disabled || (props.disabledUnselectedItems && !isSelected)"
+          :disabled="listItem.disabled || (props.disabledUnselectedItems && !isSelected)"
           :checked="isSelected"
         />
         <spr-lozenge
-          :label="item.text || (item.lozengeProps?.label as string)"
-          :tone="item.lozengeProps?.tone as string & (typeof LOZENGE_TONE)[number]"
-          :fill="item.lozengeProps?.fill as boolean"
-          :url="item.lozengeProps?.url as string"
-          :icon="item.lozengeProps?.icon as string"
-          :max-width="item.lozengeProps?.maxWidth as string"
-          :postfix-icon="item.lozengeProps?.postfixIcon as string"
+          :label="listItem.text || (listItem.lozengeProps?.label as string)"
+          :tone="listItem.lozengeProps?.tone as string & (typeof LOZENGE_TONE)[number]"
+          :fill="listItem.lozengeProps?.fill as boolean"
+          :url="listItem.lozengeProps?.url as string"
+          :icon="listItem.lozengeProps?.icon as string"
+          :max-width="listItem.lozengeProps?.maxWidth as string"
+          :postfix-icon="listItem.lozengeProps?.postfixIcon as string"
         />
       </div>
     </template>
@@ -22,16 +22,16 @@
       <div class="spr-flex spr-items-center spr-gap-1">
         <spr-checkbox
           v-if="props.multiSelect"
-          :disabled="item.disabled || (props.disabledUnselectedItems && !isSelected)"
+          :disabled="listItem.disabled || (props.disabledUnselectedItems && !isSelected)"
           :checked="isSelected"
         />
-        <div :class="[item.textColor, 'spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-3xs']">
+        <div :class="[listItem.textColor, 'spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-3xs']">
           <span
             v-if="hasIcon"
             :class="[
-              item.iconColor,
+              listItem.iconColor,
               'spr-mt-[2px]',
-              { 'spr-text-color-disabled': item.disabled || (props.disabledUnselectedItems && !isSelected) },
+              { 'spr-text-color-disabled': listItem.disabled || (props.disabledUnselectedItems && !isSelected) },
             ]"
           >
             <Icon :icon="iconName" width="20px" height="20px" />
@@ -39,20 +39,20 @@
           <div
             :class="[
               'spr-flex spr-flex-auto spr-flex-col spr-justify-start',
-              { 'spr-text-color-disabled': item.disabled || (props.disabledUnselectedItems && !isSelected) },
+              { 'spr-text-color-disabled': listItem.disabled || (props.disabledUnselectedItems && !isSelected) },
             ]"
           >
             <span class="spr-break-words spr-text-left spr-text-xs">
-              {{ item.text }}
+              {{ listItem.text }}
             </span>
             <span
               v-if="item.subtext"
               :class="[
                 'spr-body-xs-regular spr-text-color-base spr-break-words spr-text-left',
-                { 'spr-text-color-disabled': item.disabled || (props.disabledUnselectedItems && !isSelected) },
+                { 'spr-text-color-disabled': listItem.disabled || (props.disabledUnselectedItems && !isSelected) },
               ]"
             >
-              {{ item.subtext }}
+              {{ listItem.subtext }}
             </span>
           </div>
         </div>
@@ -70,14 +70,14 @@
         </template>
         <template v-else>
           <spr-lozenge
-            v-if="item.lozenge"
-            :label="item.lozenge?.label as string"
-            :tone="item.lozenge?.tone as string & (typeof LOZENGE_TONE)[number]"
-            :fill="item.lozenge?.fill as boolean"
-            :url="item.lozenge?.url as string"
-            :icon="item.lozenge?.icon as string"
-            :max-width="item.lozenge?.maxWidth as string"
-            :postfix-icon="item.lozenge?.postfixIcon as string"
+            v-if="listItem.lozenge"
+            :label="listItem.lozenge?.label as string"
+            :tone="listItem.lozenge?.tone as string & (typeof LOZENGE_TONE)[number]"
+            :fill="listItem.lozenge?.fill as boolean"
+            :url="listItem.lozenge?.url as string"
+            :icon="listItem.lozenge?.icon as string"
+            :max-width="listItem.lozenge?.maxWidth as string"
+            :postfix-icon="listItem.lozenge?.postfixIcon as string"
           />
           <Icon
             v-if="isSelected && !props.noCheck && !props.multiSelect"
@@ -91,7 +91,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
 import { Icon } from '@iconify/vue';
 
 import SprCheckbox from '@/components/checkbox/checkbox.vue';
@@ -105,8 +104,5 @@ import { useListItem } from './use-list-item';
 const props = defineProps(listItemPropTypes);
 const emit = defineEmits(listItemEmitTypes);
 
-const { hasIcon, iconName, hasSublevels, showLozengeMode } = useListItem(props, emit);
-
-// Computed property to ensure item is always defined
-const item = computed(() => props.item!);
+const { listItem, hasIcon, iconName, hasSublevels, showLozengeMode } = useListItem(props, emit);
 </script>

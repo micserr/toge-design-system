@@ -161,6 +161,7 @@
             :group-items-by="props.groupItemsBy"
             :pre-selected-items="Array.isArray(multiSelectModel) ? multiSelectModel.flat() : [multiSelectModel]"
             :loading="props.optionsLoader || props.loading"
+            :infinite-scroll-loader="props.infiniteScrollLoader"
             :item-icon="props.itemIcon"
             :lozenge="props.lozenge"
             :supporting-display-text="props.supportingDisplayText"

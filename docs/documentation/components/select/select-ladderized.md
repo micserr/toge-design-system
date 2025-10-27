@@ -951,6 +951,12 @@ For guidance on implementing error, active, and disabled states in the select co
       <td>Boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td><code>infinite-scroll-loader</code></td>
+      <td>Displays a loading spinner at the bottom of the list when infinite scroll is triggered. Useful when loading more items as the user scrolls to the end of the list.</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 

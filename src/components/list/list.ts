@@ -83,6 +83,10 @@ export const listPropTypes = {
     type: Boolean,
     default: false,
   },
+  infiniteScrollLoader: {
+    type: Boolean,
+    default: false,
+  },
   noCheck: {
     type: Boolean,
     default: false,

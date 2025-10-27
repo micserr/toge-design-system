@@ -165,6 +165,10 @@ export const selectPropTypes = {
     type: Boolean,
     default: false,
   },
+  infiniteScrollLoader: {
+    type: Boolean,
+    default: false,
+  },
   lozenge: {
     type: Boolean,
     default: false,
@@ -178,7 +182,6 @@ export const selectPropTypes = {
 export const selectEmitTypes = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'update:modelValue': (_value: unknown) => true,
-
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'infinite-scroll-trigger': (_triggered: boolean) => true,
 

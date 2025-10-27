@@ -286,7 +286,7 @@ const lozengeItems = ref([
     value: 'active',
     lozengeProps: {
       label: 'Active',
-      tone: 'positive',
+      tone: 'success',
       fill: true,
       icon: 'ph:check-circle',
     },
@@ -355,7 +355,7 @@ const menuItems = ref([
     subtext: 'Completed',
     lozenge: {
       label: 'Done',
-      tone: 'positive',
+      tone: 'success',
       fill: true,
     },
   },
@@ -365,7 +365,7 @@ const menuItems = ref([
     subtext: 'In progress',
     lozenge: {
       label: 'Active',
-      tone: 'brand',
+      tone: 'success',
       fill: true,
     },
   },
@@ -605,8 +605,12 @@ const handleSelection = (items) => {
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+
+import { Icon } from '@iconify/vue';
+
 import SprList from "@/components/list/list.vue"
 import SprLadderizedList from "@/components/list/ladderized-list/ladderized-list.vue"
+
 import { MenuListType } from '@/components/list/list';
 
 const menuList = ref([
@@ -667,7 +671,7 @@ const lozengeMenuList = ref([
     value: 'active',
     lozengeProps: {
       label: 'Active',
-      tone: 'positive',
+      tone: 'success',
       fill: true,
     },
   },
@@ -711,7 +715,7 @@ const menuItemsWithLozenge = ref([
     subtext: 'Completed',
     lozenge: {
       label: 'Done',
-      tone: 'positive',
+      tone: 'success',
       fill: true,
     },
   },
@@ -721,7 +725,7 @@ const menuItemsWithLozenge = ref([
     subtext: 'In progress',
     lozenge: {
       label: 'Active',
-      tone: 'brand',
+      tone: 'success',
       fill: true,
     },
   },

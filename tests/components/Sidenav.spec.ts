@@ -8,6 +8,7 @@
  * - Validates accessibility patterns for navigation and interactive elements
  * - Tests both simple navigation items and complex nested menu structures
  * - Covers conditional rendering based on props and state
+ * - Comprehensive loading state testing to ensure proper UX during data fetching
  *
  * Coverage includes:
  * - Rendering with default and various prop configurations
@@ -18,6 +19,9 @@
  * - Event emissions and navigation handling
  * - Accessibility compliance (ARIA, keyboard navigation, screen reader support)
  * - Conditional visibility and active states
+ * - Loading states with skeleton loaders replacing content
+ * - Loading behavior across all component sections and prop combinations
+ * - State transitions between loading and loaded states
  * - Edge cases and error handling
  *
  * ASSUMPTIONS:
@@ -159,6 +163,435 @@ test.describe('Sidenav Component', () => {
       },
     ],
   };
+
+  test.describe('Loading States', () => {
+    test('does not show loader when loading is false by default', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+        },
+      });
+
+      // Should not show any loader components
+      const loaders = component.locator('.spr-skeletal-loader');
+      await expect(loaders).not.toBeAttached();
+
+      // Should show actual navigation content
+      const dashboardLink = component.locator('#dashboard');
+      await expect(dashboardLink).toBeAttached();
+    });
+
+    test('shows loaders and hides content when loading is true', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          loading: true,
+        },
+      });
+
+      // Should show skeleton loaders
+      const loaders = component.locator('.spr-skeletal-loader');
+      await expect(loaders.first()).toBeAttached();
+
+      // Should hide actual navigation content
+      const dashboardLink = component.locator('#dashboard');
+      await expect(dashboardLink).not.toBeAttached();
+    });
+
+    test('shows correct number of loaders in top section', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          loading: true,
+        },
+      });
+
+      // Should show 5 loaders in the top section by default
+      const topSectionLoaders = component.locator('.spr-grid.spr-justify-center.spr-gap-2.spr-px-3.spr-pb-4.spr-pt-4 .spr-skeletal-loader');
+      await expect(topSectionLoaders).toHaveCount(5);
+    });
+
+    test('shows correct number of loaders in bottom section when bottom nav exists', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinksWithMenus, // has bottom navigation
+          loading: true,
+        },
+      });
+
+      // Should show 3 loaders in the bottom section
+      const bottomSectionLoaders = component.locator('.spr-grid.spr-justify-center.spr-gap-2.spr-px-3.spr-pb-4.spr-pt-0 .spr-skeletal-loader');
+      await expect(bottomSectionLoaders).toHaveCount(3);
+    });
+
+    test('does not show bottom loaders when no bottom navigation exists', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks, // no bottom navigation
+          loading: true,
+        },
+      });
+
+      // Should not show bottom section loaders
+      const bottomSection = component.locator('.spr-grid.spr-justify-center.spr-gap-2.spr-px-3.spr-pb-4.spr-pt-0');
+      await expect(bottomSection).not.toBeAttached();
+    });
+
+    test('hides quick actions when loading', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          quickActions: mockQuickActions,
+          loading: true,
+        },
+      });
+
+      // Quick actions should be hidden
+      const quickActionButton = component.locator('.spr-text-color-brand-base, .spr-text-color-inverted-disabled');
+      await expect(quickActionButton).not.toBeAttached();
+
+      // Should show loaders instead
+      const loaders = component.locator('.spr-skeletal-loader');
+      await expect(loaders.first()).toBeAttached();
+    });
+
+    test('hides search when loading', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          hasSearch: true,
+          loading: true,
+        },
+      });
+
+      // Search should be hidden
+      const searchButton = component.locator('#sidenav_search');
+      await expect(searchButton).not.toBeAttached();
+
+      // Should show loaders instead
+      const loaders = component.locator('.spr-skeletal-loader');
+      await expect(loaders.first()).toBeAttached();
+    });
+
+    test('hides navigation menu links when loading', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinksWithMenus,
+          loading: true,
+        },
+      });
+
+      // Navigation links should be hidden
+      const analyticsLink = component.locator('#analytics');
+      await expect(analyticsLink).not.toBeAttached();
+
+      const settingsLink = component.locator('#settings');
+      await expect(settingsLink).not.toBeAttached();
+
+      // Should show loaders instead
+      const loaders = component.locator('.spr-skeletal-loader');
+      await expect(loaders.first()).toBeAttached();
+    });
+
+    test('shows loaders for notifications and requests section when loading', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          notificationCount: 5,
+          requestCount: 3,
+          loading: true,
+        },
+      });
+
+      // Notification and request buttons should be hidden
+      const notificationButton = component.locator('#sidenav_notification');
+      await expect(notificationButton).not.toBeAttached();
+
+      const requestButton = component.locator('#sidenav_request');
+      await expect(requestButton).not.toBeAttached();
+
+      // Should show loaders in their section
+      const notificationRequestSection = component.locator('.spr-grid.spr-gap-2.spr-py-6');
+      const loaders = notificationRequestSection.locator('.spr-skeletal-loader');
+      await expect(loaders.first()).toBeAttached();
+    });
+
+    test('does not show loaders in notifications section when no counts provided', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          loading: true,
+        },
+      });
+
+      // Notification/request section should not exist
+      const notificationRequestSection = component.locator('.spr-grid.spr-gap-2.spr-py-6');
+      await expect(notificationRequestSection).not.toBeAttached();
+    });
+
+    test('still shows user menu when loading (user menu is not affected by loading)', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          userMenu: mockUserMenu,
+          loading: true,
+        },
+      });
+
+      // User menu should still be visible during loading
+      const userSection = component.locator('.spr-absolute.spr-bottom-0');
+      await expect(userSection).toBeAttached();
+    });
+
+    test('transitions correctly from loading to loaded state', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          hasSearch: true,
+          loading: true,
+        },
+      });
+
+      // Initially should show loaders
+      let loaders = component.locator('.spr-skeletal-loader');
+      await expect(loaders.first()).toBeAttached();
+
+      let searchButton = component.locator('#sidenav_search');
+      await expect(searchButton).not.toBeAttached();
+
+      // Update to loaded state
+      await component.update({
+        props: {
+          navLinks: mockNavLinks,
+          hasSearch: true,
+          loading: false,
+        },
+      });
+
+      // Should hide loaders and show content
+      loaders = component.locator('.spr-skeletal-loader');
+      await expect(loaders).not.toBeAttached();
+
+      searchButton = component.locator('#sidenav_search');
+      await expect(searchButton).toBeAttached();
+
+      const dashboardLink = component.locator('#dashboard');
+      await expect(dashboardLink).toBeAttached();
+    });
+
+    test('transitions correctly from loaded to loading state', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          quickActions: mockQuickActions,
+          loading: false,
+        },
+      });
+
+      // Initially should show content
+      let quickActionButton = component.locator('.spr-text-color-brand-base, .spr-text-color-inverted-disabled');
+      await expect(quickActionButton).toBeAttached();
+
+      let loaders = component.locator('.spr-skeletal-loader');
+      await expect(loaders).not.toBeAttached();
+
+      // Update to loading state
+      await component.update({
+        props: {
+          navLinks: mockNavLinks,
+          quickActions: mockQuickActions,
+          loading: true,
+        },
+      });
+
+      // Should show loaders and hide content
+      loaders = component.locator('.spr-skeletal-loader');
+      await expect(loaders.first()).toBeAttached();
+
+      quickActionButton = component.locator('.spr-text-color-brand-base, .spr-text-color-inverted-disabled');
+      await expect(quickActionButton).not.toBeAttached();
+    });
+
+    test('loader elements have correct styling classes', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          loading: true,
+        },
+      });
+
+      const loaders = component.locator('.spr-skeletal-loader');
+      await expect(loaders.first()).toHaveClass(/spr-skeletal-loader/);
+      await expect(loaders.first()).toHaveClass(/spr-h-\[24px\]/);
+      await expect(loaders.first()).toHaveClass(/spr-w-\[24px\]/);
+      await expect(loaders.first()).toHaveClass(/spr-rounded/);
+    });
+
+    test('loader containers have correct positioning classes', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          loading: true,
+        },
+      });
+
+      // Check the parent containers of skeleton loaders
+      const loaderParents = component.locator('.spr-skeletal-loader').locator('xpath=..');
+      await expect(loaderParents.first()).toHaveClass(/spr-m-auto/);
+      await expect(loaderParents.first()).toHaveClass(/spr-flex/);
+    });
+
+    test('loading works with all features enabled', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinksWithMenus,
+          quickActions: mockQuickActions,
+          hasSearch: true,
+          notificationCount: 5,
+          requestCount: 3,
+          userMenu: mockUserMenu,
+          loading: true,
+        },
+      });
+
+      // All main content should be hidden
+      const quickActionButton = component.locator('.spr-text-color-brand-base, .spr-text-color-inverted-disabled');
+      await expect(quickActionButton).not.toBeAttached();
+
+      const searchButton = component.locator('#sidenav_search');
+      await expect(searchButton).not.toBeAttached();
+
+      const analyticsLink = component.locator('#analytics');
+      await expect(analyticsLink).not.toBeAttached();
+
+      const notificationButton = component.locator('#sidenav_notification');
+      await expect(notificationButton).not.toBeAttached();
+
+      // Loaders should be present
+      const loaders = component.locator('.spr-skeletal-loader');
+      await expect(loaders.first()).toBeAttached();
+
+      // User menu should still be visible
+      const userSection = component.locator('.spr-absolute.spr-bottom-0');
+      await expect(userSection).toBeAttached();
+    });
+
+    test('loading with zero notification and request counts', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          notificationCount: 0,
+          requestCount: 0,
+          loading: true,
+        },
+      });
+
+      // Should still show the notification/request section loader when counts are 0
+      const notificationRequestSection = component.locator('.spr-grid.spr-gap-2.spr-py-6');
+      await expect(notificationRequestSection).toBeAttached();
+
+      const loaders = notificationRequestSection.locator('.spr-skeletal-loader');
+      await expect(loaders.first()).toBeAttached();
+    });
+
+    test('loading with string notification and request counts', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          notificationCount: '99+',
+          requestCount: '5',
+          loading: true,
+        },
+      });
+
+      // Should show loaders instead of notification/request buttons
+      const notificationButton = component.locator('#sidenav_notification');
+      await expect(notificationButton).not.toBeAttached();
+
+      const requestButton = component.locator('#sidenav_request');
+      await expect(requestButton).not.toBeAttached();
+
+      const notificationRequestSection = component.locator('.spr-grid.spr-gap-2.spr-py-6');
+      const loaders = notificationRequestSection.locator('.spr-skeletal-loader');
+      await expect(loaders.first()).toBeAttached();
+    });
+
+    test('loading state does not interfere with logo slot', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          loading: true,
+        },
+        slots: {
+          'logo-image': '<img src="/logo.png" alt="Company Logo" data-testid="logo" />',
+        },
+      });
+
+      // Logo should still be visible during loading
+      const logo = component.locator('[data-testid="logo"]');
+      await expect(logo).toBeVisible();
+
+      // Loaders should also be present
+      const loaders = component.locator('.spr-skeletal-loader');
+      await expect(loaders.first()).toBeAttached();
+    });
+
+    test('multiple state transitions work correctly', async ({ mount }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          hasSearch: true,
+          loading: true,
+        },
+      });
+
+      // Start with loading
+      let loaders = component.locator('.spr-skeletal-loader');
+      await expect(loaders.first()).toBeAttached();
+
+      // Transition to loaded
+      await component.update({
+        props: {
+          navLinks: mockNavLinks,
+          hasSearch: true,
+          loading: false,
+        },
+      });
+
+      let searchButton = component.locator('#sidenav_search');
+      await expect(searchButton).toBeAttached();
+
+      // Back to loading
+      await component.update({
+        props: {
+          navLinks: mockNavLinks,
+          hasSearch: true,
+          loading: true,
+        },
+      });
+
+      loaders = component.locator('.spr-skeletal-loader');
+      await expect(loaders.first()).toBeAttached();
+
+      searchButton = component.locator('#sidenav_search');
+      await expect(searchButton).not.toBeAttached();
+
+      // Final transition to loaded
+      await component.update({
+        props: {
+          navLinks: mockNavLinks,
+          hasSearch: true,
+          loading: false,
+        },
+      });
+
+      searchButton = component.locator('#sidenav_search');
+      await expect(searchButton).toBeAttached();
+
+      loaders = component.locator('.spr-skeletal-loader');
+      await expect(loaders).not.toBeAttached();
+    });
+  });
 
   test.describe('Basic Rendering', () => {
     test('renders with minimal props', async ({ mount }) => {

@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.20.2 (2025-10-27)
+
+- Added Input Loader and Options Loader in Select, Multi-Select, and Ladderized Select
+- Added Max Width in Lozenge
+- Updated List Documentation
+- Optimize List Component Code
+- Fix Calendar Component Testing
+- Update Git Ignore
+  ([#35623](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35623) by @jarias)
+
 ## 2.20.1 (2025-10-24)
 
 - Feat: Enhanced File Upload and Progress Bar Components
@@ -20,7 +30,7 @@
     - Enhanced API reference with detailed prop descriptions
       ([#ceeb3ff4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ceeb3ff4afa776d3086091631e54f39614327323?refName=refs%2Fheads%2F2025%2FFIX%2FBEN%2FFile-Upload-Progress-Bar) by @bsolis)
 
-## 2.21.0 (2025-10-23)
+## 2.20.0 (2025-10-23)
 
 - Feat: Added Component Testing with Playwright
   ([#35580](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35580) by @jmari)

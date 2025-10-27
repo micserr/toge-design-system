@@ -1,4 +1,4 @@
-name: Azure Static Web Apps CI/CD
+name: Deploy to Jollyrock
 
 pr:
   branches:
@@ -20,6 +20,10 @@ jobs:
   steps:
   - checkout: self
     submodules: true
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '22.x'
+    displayName: 'Install Node.js 22'
   - script: rm -f ~/.npmrc
     displayName: "Remove npm authentication"
   - task: AzureStaticWebApp@0

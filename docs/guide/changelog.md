@@ -3,6 +3,12 @@
 ## 2.20.5 (2025-10-27)
 
 - Fix:
+  - Enhance file upload documentation with automatic validation features
+    ([#95c2338d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35637) by @bsolis)
+
+## 2.20.5 (2025-10-27)
+
+- Fix:
   - Update Component Test File for Select, Multi Select, Ladderized Select, and List
   - Added support for infinite scroll loader
     ([#35627](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35627) by @jarias)

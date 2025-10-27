@@ -156,6 +156,10 @@ export const selectLadderizedPropTypes = {
     type: Boolean,
     default: false,
   },
+  infiniteScrollLoader: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const selectLadderizedEmitTypes = {

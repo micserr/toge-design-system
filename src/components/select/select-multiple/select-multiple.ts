@@ -71,6 +71,10 @@ export const multiSelectPropTypes = {
     type: String,
     default: '',
   },
+  inputLoader: {
+    type: Boolean,
+    default: false,
+  },
   placement: {
     type: String as PropType<(typeof PLACEMENTS_TYPES)[number]>,
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
@@ -175,11 +179,11 @@ export const multiSelectPropTypes = {
     type: Boolean,
     default: false,
   },
-  loading: {
+  disabledLocalSearch: {
     type: Boolean,
     default: false,
   },
-  disabledLocalSearch: {
+  optionsLoader: {
     type: Boolean,
     default: false,
   },
@@ -192,6 +196,12 @@ export const multiSelectPropTypes = {
     default: '',
   },
   disabledUnselectedItems: {
+    type: Boolean,
+    default: false,
+  },
+
+  // Deprecated alias - kept for backward compatibility
+  loading: {
     type: Boolean,
     default: false,
   },

@@ -6,6 +6,7 @@ interface LozengeClasses {
   wrapperClasses: string;
   baseClasses: string;
   toneClasses: string;
+  labelClasses: string;
 }
 
 export const useLozenge = (props: LozengePropTypes) => {
@@ -116,10 +117,15 @@ export const useLozenge = (props: LozengePropTypes) => {
       },
     );
 
+    const labelClasses = classNames(
+      'spr-lozenge__label spr-label-xs-medium spr-flex-1 spr-min-w-0 spr-whitespace-nowrap spr-text-ellipsis spr-overflow-hidden',
+    );
+
     return {
       wrapperClasses,
       baseClasses,
       toneClasses,
+      labelClasses,
     };
   });
 

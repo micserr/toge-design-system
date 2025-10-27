@@ -1,14 +1,16 @@
 ---
 title: List
-descripttion: The List component is a versatile UI element that allows users to select one or multiple items from a list. It supports features such as grouping, pre-selection, ladderized structure, and displaying items as lozenges. The component is designed to handle large datasets with scrollable functionality and provides a clean and intuitive interface for item selection.
+description: A versatile and customizable list component that supports single and multi-select, grouping, searching, hierarchical structures (ladderized), and lozenge display modes. Perfect for building accessible dropdown menus and selection interfaces.
 outline: deep
 ---
 
 # List
 
+The List component is a powerful and flexible UI element designed for displaying and selecting items from a list. It supports a wide range of features including single and multi-select modes, item grouping, search functionality, hierarchical navigation, and lozenge display formats.
+
 ## Basic Usage
 
-The list component uses the `v-model` directive to bind the selected items to a variable. The `menu-list` prop is used to pass the list of items to display in the menu. Each item in the list should contain `text` and `value` properties.
+The most basic usage involves binding your selection to `v-model` and providing a list of items via the `menu-list` prop. Each item must have at minimum a `text` (display label) and `value` (unique identifier) property.
 
 <div 
   :class="[
@@ -18,10 +20,6 @@ The list component uses the `v-model` directive to bind the selected items to a 
 >
   <spr-list v-model="singleSelectOutput.example1" :menu-list="menuList" />
 </div>
-<div class="spr-my-3 spr-p-4 spr-bg-blue-100">
-  <h5>Output:</h5>
-  <span>{{ singleSelectOutput.example1 }}</span>
-</div>
 
 ```vue
 <template>
@@ -31,14 +29,14 @@ The list component uses the `v-model` directive to bind the selected items to a 
       'spr-border-color-weak spr-border spr-border-solid',
     ]"
   >
-    <spr-list v-model="singleSelectOutput" :menu-list="menuList" />
+    <spr-list v-model="selectedItems" :menu-list="menuList" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const singleSelectOutput = ref([]);
+const selectedItems = ref([]);
 
 const menuList = ref([
   { text: 'Apple', value: 'apple' },
@@ -47,64 +45,25 @@ const menuList = ref([
   { text: 'Date', value: 'date' },
   { text: 'Elderberry', value: 'elderberry' },
   { text: 'Fig', value: 'fig' },
-  { text: '5 Grape', value: 'grape' },
+  { text: 'Grape', value: 'grape' },
   { text: 'Honeydew', value: 'honeydew' },
-  { text: 'Indian Fig', value: 'indian_fig' },
-  { text: 'Jackfruit', value: 'jackfruit' },
   { text: 'Kiwi', value: 'kiwi' },
-  { text: 'Lemon', value: 'lemon' },
   { text: 'Mango', value: 'mango' },
-  { text: 'Nectarine', value: 'nectarine' },
-  { text: '89 Watermelon', value: 'watermelon' },
-  { text: 'Xigua', value: 'xigua' },
-  { text: 'Yunnan Hackberry', value: 'yunnan_hackberry' },
-  { text: '1 Zucchini', value: 'zucchini' },
-  { text: 'Apricot', value: 'apricot' },
-  { text: 'Blueberry', value: 'blueberry' },
-  { text: 'Cantaloupe', value: 'cantaloupe' },
-  { text: 'Dragonfruit', value: 'dragonfruit' },
-  { text: 'Pineapple', value: 'pineapple' },
 ]);
 </script>
 ```
 
-::: tip NOTE
-The `menu-list` is an array of `MenuListType` as defined below:
+## Multi-Select
 
-```ts
-type MenuListType = {
-  text: string;
-  value: string;
-  subtext?: string;
-  group?: string; // Property to group items
-  sublevel?: MenuListType[]; // Property used for ladderized list
-  disabled?: boolean;
-  _originalObject?: Record<string, unknown>; // Store original object reference when mapping complex objects
-  icon?: string; // String value for Iconify
-  iconColor?: string;
-  textColor?: string;
-  lozengeProps?: LozengePropTypes; // Props for the lozenge component when list is displayed as lozenge
-  onClickFn?: () => void;
-};
-```
+Enable multiple item selection by adding the `multi-select` prop. This displays checkboxes next to each item, allowing users to select multiple items simultaneously.
 
-:::
-
-## Pre-Selected Items
-
-You can pre-select items by using `pre-selected-items` in the component and passing an array of strings that correspond to the`value` of the item.
-
-<div 
+<div
   :class="[
     'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example2" :menu-list="menuList" :pre-selected-items="preselectedItems" />
-</div>
-<div class="spr-my-3 spr-p-4 spr-bg-blue-100">
-  <h5>Output:</h5>
-  <span>{{ singleSelectOutput.example2 }}</span>
+  <spr-list v-model="singleSelectOutput.example2" :menu-list="menuList" multi-select />
 </div>
 
 ```vue
@@ -115,15 +74,14 @@ You can pre-select items by using `pre-selected-items` in the component and pass
       'spr-border-color-weak spr-border spr-border-solid',
     ]"
   >
-    <spr-list v-model="singleSelectOutput" :menu-list="menuList" :pre-selected-items="preselectedItem" />
+    <spr-list v-model="selectedItems" :menu-list="menuList" multi-select />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const singleSelectOutput = ref([]);
-const preselectedItem = ref(['apple']);
+const selectedItems = ref([]);
 
 const menuList = ref([
   { text: 'Apple', value: 'apple' },
@@ -131,535 +89,179 @@ const menuList = ref([
   { text: 'Cherry', value: 'cherry' },
   { text: 'Date', value: 'date' },
   { text: 'Elderberry', value: 'elderberry' },
-  { text: 'Fig', value: 'fig' },
-  { text: '5 Grape', value: 'grape' },
-  { text: 'Honeydew', value: 'honeydew' },
-  { text: 'Indian Fig', value: 'indian_fig' },
-  { text: 'Jackfruit', value: 'jackfruit' },
-  { text: 'Kiwi', value: 'kiwi' },
-  { text: 'Lemon', value: 'lemon' },
-  { text: 'Mango', value: 'mango' },
-  { text: 'Nectarine', value: 'nectarine' },
-  { text: '89 Watermelon', value: 'watermelon' },
-  { text: 'Xigua', value: 'xigua' },
-  { text: 'Yunnan Hackberry', value: 'yunnan_hackberry' },
-  { text: '1 Zucchini', value: 'zucchini' },
-  { text: 'Apricot', value: 'apricot' },
-  { text: 'Blueberry', value: 'blueberry' },
-  { text: 'Cantaloupe', value: 'cantaloupe' },
-  { text: 'Dragonfruit', value: 'dragonfruit' },
-  { text: 'Pineapple', value: 'pineapple' },
 ]);
 </script>
 ```
 
-## Grouped Items
+## Grouping Items
 
-You can group items by passing the `group-items-by` prop. The value of this prop can be either `default`,`A-Z` or `Z-A`. `default` will group the list by the individual item group.
+Group items using the `group-items-by` prop with values `'default'`, `'A-Z'`, or `'Z-A'`:
+
+- **default**: Groups by the item's `group` property
+- **A-Z**: Sorts alphabetically in ascending order
+- **Z-A**: Sorts alphabetically in descending order
 
 <div class="spr-grid spr-gap-4">
-  <div>
-    <h5 class="spr-mb-2">Grouped by default</h5>
-    <div 
-      :class="[
-        'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
-        'spr-border spr-border-solid spr-border-color-weak'
-      ]"
-    >
-      <spr-list v-model="singleSelectOutput.example3" :menu-list="groupedMenuList" group-items-by="default" />
-    </div>
+  <div
+    :class="[
+      'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+      'spr-border spr-border-solid spr-border-color-weak'
+    ]"
+  >
+    <h5 class="spr-mb-2 spr-text-sm spr-font-medium">Grouped by default</h5>
+    <spr-list v-model="singleSelectOutput.example3" :menu-list="groupedMenuList" group-items-by="default" />
   </div>
-  <div>
-    <h5 class="spr-mb-2">Grouped by A-Z</h5>
-    <div 
-      :class="[
-        'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
-        'spr-border spr-border-solid spr-border-color-weak'
-      ]"
-    >
-      <spr-list v-model="singleSelectOutput.example4" :menu-list="groupedMenuList" group-items-by="A-Z" />
-    </div>
-  </div>
-  <div>
-    <h5 class="spr-mb-2">Grouped by Z-A:</h5>
-    <div 
-      :class="[
-        'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
-        'spr-border spr-border-solid spr-border-color-weak'
-      ]"
-    >
-      <spr-list v-model="singleSelectOutput.example5" :menu-list="groupedMenuList" group-items-by="Z-A" />
-    </div>
+  <div
+    :class="[
+      'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+      'spr-border spr-border-solid spr-border-color-weak'
+    ]"
+  >
+    <h5 class="spr-mb-2 spr-text-sm spr-font-medium">Grouped by A-Z</h5>
+    <spr-list v-model="singleSelectOutput.example4" :menu-list="groupedMenuList" group-items-by="A-Z" />
   </div>
 </div>
 
 ```vue
 <template>
-  <div class="spr-grid spr-gap-4">
-    <div>
-      <h5 class="spr-mb-2">Grouped by default</h5>
-      <div
-        :class="[
-          'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
-          'spr-border-color-weak spr-border spr-border-solid',
-        ]"
-      >
-        <spr-list v-model="singleSelectOutput.example3" :menu-list="groupedMenuList" group-items-by="default" />
-      </div>
-    </div>
-    <div>
-      <h5 class="spr-mb-2">Grouped by A-Z</h5>
-      <div
-        :class="[
-          'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
-          'spr-border-color-weak spr-border spr-border-solid',
-        ]"
-      >
-        <spr-list v-model="singleSelectOutput.example4" :menu-list="groupedMenuList" group-items-by="A-Z" />
-      </div>
-    </div>
-    <div>
-      <h5 class="spr-mb-2">Grouped by Z-A:</h5>
-      <div
-        :class="[
-          'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
-          'spr-border-color-weak spr-border spr-border-solid',
-        ]"
-      >
-        <spr-list v-model="singleSelectOutput.example5" :menu-list="groupedMenuList" group-items-by="Z-A" />
-      </div>
-    </div>
-  </div>
+  <spr-list v-model="selectedItems" :menu-list="menuList" group-items-by="default" />
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const groupedMenuList = ref([
+const selectedItems = ref([]);
+
+const menuList = ref([
   { text: 'Apple', value: 'apple', group: 'Fruits' },
   { text: 'Banana', value: 'banana', group: 'Fruits' },
   { text: 'Carrot', value: 'carrot', group: 'Vegetables' },
   { text: 'Date', value: 'date', group: 'Fruits' },
   { text: 'Eggplant', value: 'eggplant', group: 'Vegetables' },
-  { text: 'Fig', value: 'fig', group: 'Fruits' },
-  { text: 'Grape', value: 'grape', group: 'Fruits' },
-  { text: 'Honeydew', value: 'honeydew', group: 'Fruits' },
-  { text: 'Indian Fig', value: 'indian_fig', group: 'Fruits' },
-  { text: 'Jackfruit', value: 'jackfruit', group: 'Fruits' },
-  { text: 'Kale', value: 'kale', group: 'Vegetables' },
-  { text: 'Lemon', value: 'lemon', group: 'Fruits' },
-  { text: 'Mango', value: 'mango', group: 'Fruits' },
-  { text: 'Nectarine', value: 'nectarine', group: 'Fruits' },
-  { text: 'Okra', value: 'okra', group: 'Vegetables' },
-  { text: 'Peach', value: 'peach', group: 'Fruits' },
-  { text: 'Quince', value: 'quince', group: 'Fruits' },
-  { text: 'Radish', value: 'radish', group: 'Vegetables' },
-  { text: 'Spinach', value: 'spinach', group: 'Vegetables' },
-  { text: 'Tomato', value: 'tomato', group: 'Vegetables' },
-  { text: 'Ugli Fruit', value: 'ugli_fruit', group: 'Fruits' },
-  { text: 'Watermelon', value: 'watermelon', group: 'Fruits' },
-  { text: 'Xigua', value: 'xigua', group: 'Fruits' },
-  { text: 'Yam', value: 'yam', group: 'Vegetables' },
-  { text: 'Zucchini', value: 'zucchini', group: 'Vegetables' },
-]);
-
-const singleSelectOutput = ref({
-  example3: [],
-  example4: [],
-  example5: [],
-});
-</script>
-```
-
-## Multi Select
-
-You can enable multiple selection of items by passing the `multi-select` prop, which can be either `true` or `false`.
-
-<div class="spr-grid spr-gap-4">
-  <div 
-    :class="[
-      'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
-      'spr-border spr-border-solid spr-border-color-weak'
-    ]"
-  >
-    <spr-list v-model="singleSelectOutput.example6" :menu-list="menuList" multi-select />
-  </div>
-
-  <div 
-    :class="[
-      'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
-      'spr-border spr-border-solid spr-border-color-weak'
-    ]"
-  >
-    <spr-list v-model="singleSelectOutput.example7" :menu-list="menuList" group-items-by="A-Z" multi-select />
-  </div>
-</div>
-
-```vue
-<template>
-  <div class="spr-grid spr-gap-4">
-    <div
-      :class="[
-        'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
-        'spr-border-color-weak spr-border spr-border-solid',
-      ]"
-    >
-      <spr-list v-model="singleSelectOutput.example6" :menu-list="menuList" multi-select />
-    </div>
-
-    <div
-      :class="[
-        'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
-        'spr-border-color-weak spr-border spr-border-solid',
-      ]"
-    >
-      <spr-list v-model="singleSelectOutput.example7" :menu-list="menuList" group-items-by="A-Z" multi-select />
-    </div>
-  </div>
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const singleSelectOutput = ref({
-  example6: [],
-  example7: [],
-});
-
-const menuList = ref([
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Cherry', value: 'cherry' },
-  { text: 'Date', value: 'date' },
-  { text: 'Elderberry', value: 'elderberry' },
-  { text: 'Fig', value: 'fig' },
-  { text: '5 Grape', value: 'grape' },
-  { text: 'Honeydew', value: 'honeydew' },
-  { text: 'Indian Fig', value: 'indian_fig' },
-  { text: 'Jackfruit', value: 'jackfruit' },
-  { text: 'Kiwi', value: 'kiwi' },
-  { text: 'Lemon', value: 'lemon' },
-  { text: 'Mango', value: 'mango' },
-  { text: 'Nectarine', value: 'nectarine' },
-  { text: '89 Watermelon', value: 'watermelon' },
-  { text: 'Xigua', value: 'xigua' },
-  { text: 'Yunnan Hackberry', value: 'yunnan_hackberry' },
-  { text: '1 Zucchini', value: 'zucchini' },
-  { text: 'Apricot', value: 'apricot' },
-  { text: 'Blueberry', value: 'blueberry' },
-  { text: 'Cantaloupe', value: 'cantaloupe' },
-  { text: 'Dragonfruit', value: 'dragonfruit' },
-  { text: 'Pineapple', value: 'pineapple' },
 ]);
 </script>
 ```
 
-## Get Selected Item
+## Searchable List
 
-You can retrieve the data of the selected item using the `@update:model-value` emit.
+Add search functionality with the `searchable-menu` prop. Users can filter items by typing in the search field.
 
-<div class="spr-grid spr-gap-4">
-  <div 
-    :class="[
-      'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
-      'spr-border spr-border-solid spr-border-color-weak'
-    ]"
-  >
-    <spr-list v-model="singleSelectOutput.example8" :menu-list="menuList" @update:model-value="handleSingleSelect" />
-  </div>
-  <div class="spr-my-3 spr-p-4 spr-bg-blue-100">
-    <h5>Output:</h5>
-    <span>{{ singleSelectText }}</span>
-  </div>
-
-  <div 
-    :class="[
-      'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
-      'spr-border spr-border-solid spr-border-color-weak'
-    ]"
-  >
-    <spr-list v-model="singleSelectOutput.example9" :menu-list="menuList" group-items-by="A-Z" multi-select @update:model-value="handleMultiSelect" />
-  </div>
-  <div class="spr-my-3 spr-p-4 spr-bg-blue-100">
-    <h5>Output:</h5>
-    <span>{{ multipleSelectText }}</span>
-  </div>
-</div>
-
-```vue
-<template>
-  <div class="spr-grid spr-gap-4">
-    <div
-      :class="[
-        'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
-        'spr-border-color-weak spr-border spr-border-solid',
-      ]"
-    >
-      <spr-list v-model="singleSelectOutput.example8" :menu-list="menuList" @update:model-value="handleSingleSelect" />
-    </div>
-    <div class="spr-my-3 spr-bg-blue-100 spr-p-4">
-      <h5>Output:</h5>
-      <span>{{ singleSelectText }}</span>
-    </div>
-
-    <div
-      :class="[
-        'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
-        'spr-border-color-weak spr-border spr-border-solid',
-      ]"
-    >
-      <spr-list
-        v-model="singleSelectOutput.example9"
-        :menu-list="menuList"
-        group-items-by="A-Z"
-        multi-select
-        @update:model-value="handleMultiSelect"
-      />
-    </div>
-    <div class="spr-my-3 spr-bg-blue-100 spr-p-4">
-      <h5>Output:</h5>
-      <span>{{ multipleSelectText }}</span>
-    </div>
-  </div>
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const menuList = ref([
-  { text: 'Apple', value: 'apple' },
-  { text: 'Banana', value: 'banana' },
-  { text: 'Cherry', value: 'cherry' },
-  { text: 'Date', value: 'date' },
-  { text: 'Elderberry', value: 'elderberry' },
-  { text: 'Fig', value: 'fig' },
-  { text: '5 Grape', value: 'grape' },
-  { text: 'Honeydew', value: 'honeydew' },
-  { text: 'Indian Fig', value: 'indian_fig' },
-  { text: 'Jackfruit', value: 'jackfruit' },
-  { text: 'Kiwi', value: 'kiwi' },
-  { text: 'Lemon', value: 'lemon' },
-  { text: 'Mango', value: 'mango' },
-  { text: 'Nectarine', value: 'nectarine' },
-  { text: '89 Watermelon', value: 'watermelon' },
-  { text: 'Xigua', value: 'xigua' },
-  { text: 'Yunnan Hackberry', value: 'yunnan_hackberry' },
-  { text: '1 Zucchini', value: 'zucchini' },
-  { text: 'Apricot', value: 'apricot' },
-  { text: 'Blueberry', value: 'blueberry' },
-  { text: 'Cantaloupe', value: 'cantaloupe' },
-  { text: 'Dragonfruit', value: 'dragonfruit' },
-  { text: 'Pineapple', value: 'pineapple' },
-]);
-
-const singleSelectOutput = ref({
-  example8: [],
-  example9: [],
-});
-
-const singleSelectText = ref('No selected item');
-const handleSingleSelect = (data) => {
-  singleSelectText.value = data[0].text;
-};
-
-const multipleSelectText = ref('No selected items');
-const handleMultiSelect = (data) => {
-  multipleSelectText.value = data.map((item) => item.text).join(', ');
-};
-</script>
-```
-
-## List with Subtext
-
-You can add subtext to the list items by including the `subtext` property in the object from the `menu-list` array.
-
-<div class="spr-grid spr-gap-4">
-  <div 
-    :class="[
-      'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
-      'spr-border spr-border-solid spr-border-color-weak'
-    ]"
-  >
-    <spr-list v-model="singleSelectOutput.example10" :menu-list="mockDropdownData" />
-  </div>
-</div>
-
-```vue
-<template>
-  <div class="spr-grid spr-gap-4">
-    <div
-      :class="[
-        'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
-        'spr-border-color-weak spr-border spr-border-solid',
-      ]"
-    >
-      <spr-list v-model="singleSelectOutput" :menu-list="mockDropdownData" />
-    </div>
-  </div>
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const singleSelectOutput = ref([]);
-const mockDropdownData = [
-  {
-    text: 'Lion',
-    value: 'lion',
-    subtext: 'King of the jungle',
-  },
-  {
-    text: 'Elephant',
-    value: 'elephant',
-    subtext: 'Largest land animal',
-  },
-  {
-    text: 'Giraffe',
-    value: 'giraffe',
-    subtext: 'Tallest living terrestrial animal',
-  },
-  {
-    text: 'Zebra',
-    value: 'zebra',
-    subtext: 'Known for distinctive black and white stripes',
-  },
-];
-</script>
-```
-
-## Ladderized List
-
-Ladderized list is a variation of the list component that allows you to display items in a hierarchical structure. You can pass the `sublevel` property in the object from the `menu-list` array to create a ladderized list.
-
-<div class="spr-grid spr-gap-4">
-  <div class="spr-rounded-md spr-max-h-[300px] spr-border spr-border-solid spr-border-color-weak spr-overflow-hidden">
-    <spr-ladderized-list v-model="singleSelectOutput.example11" :menu-list="mockDropdownData" />
-  </div>
-</div>
-
-```vue
-<template>
-  <div class="spr-grid spr-gap-4">
-    <div class="spr-border-color-weak spr-max-h-[300px] spr-overflow-hidden spr-rounded-md spr-border spr-border-solid">
-      <spr-ladderized-list v-model="singleSelectOutput" :menu-list="mockDropdownData" />
-    </div>
-  </div>
-</template>
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const singleSelectOutput = ref([]);
-const mockDropdownData = [
-  {
-    text: 'Lion',
-    value: 'lion',
-    subtext: 'King of the jungle',
-    sublevel: [
-      {
-        text: 'Cub',
-        value: 'cub',
-        subtext: 'Young lion',
-        sublevel: [
-          {
-            text: 'Cub 1',
-            value: 'cub1',
-          },
-          {
-            text: 'Cub 2',
-            value: 'cub2',
-          },
-        ],
-      },
-      {
-        text: 'Pride Member',
-        value: 'pride-member',
-        subtext: 'Member of a lion pride',
-      },
-    ],
-  },
-  {
-    text: 'Elephant',
-    value: 'elephant',
-    subtext: 'Largest land animal',
-    sublevel: [
-      {
-        text: 'Calf',
-        value: 'calf',
-        subtext: 'Young elephant',
-      },
-    ],
-  },
-  {
-    text: 'Giraffe',
-    value: 'giraffe',
-    subtext: 'Tallest living terrestrial animal',
-    sublevel: [
-      {
-        text: 'Calf',
-        value: 'giraffe-calf',
-        subtext: 'Young giraffe',
-      },
-      {
-        text: 'Adult',
-        value: 'giraffe-adult',
-        subtext: 'Mature giraffe',
-      },
-    ],
-  },
-  {
-    text: 'Zebra',
-    value: 'zebra',
-    subtext: 'Known for distinctive black and white stripes',
-    sublevel: [
-      {
-        text: 'Foal',
-        value: 'zebra-foal',
-        subtext: 'Young zebra',
-      },
-      {
-        text: 'Mare',
-        value: 'zebra-mare',
-        subtext: 'Adult female zebra',
-      },
-    ],
-  },
-];
-</script>
-```
-
-## No Check
-
-<div 
+<div
   :class="[
     'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example1" :menu-list="menuList" noCheck/>
-</div>
-<div class="spr-my-3 spr-p-4 spr-bg-blue-100">
-  <h5>Output:</h5>
-  <span>{{ singleSelectOutput.example1 }}</span>
+  <spr-list v-model="singleSelectOutput.example5" :menu-list="menuList" searchable-menu />
 </div>
 
 ```vue
 <template>
-  <div
-    :class="[
-      'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
-      'spr-border-color-weak spr-border spr-border-solid',
-    ]"
-  >
-    <spr-list v-model="singleSelectOutput" :menu-list="menuList" noCheck />
-  </div>
+  <spr-list
+    v-model="selectedItems"
+    :menu-list="menuList"
+    searchable-menu
+    searchable-menu-placeholder="Search items..."
+  />
 </template>
 ```
 
-## Lozenge
+## With Icons and Subtext
 
-The list component can also be displayed as a lozenge by passing the `lozenge` prop. The items in the list should contain `lozengeProps` to define the properties of the lozenge.
+Enhance list items with icons and descriptive subtext by including `icon` and `subtext` properties.
 
-<div 
+<div
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="singleSelectOutput.example6" :menu-list="itemsWithIcons" />
+</div>
+
+```vue
+<template>
+  <spr-list v-model="selectedItems" :menu-list="itemsWithIcons" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const itemsWithIcons = ref([
+  {
+    text: 'Home',
+    value: 'home',
+    icon: 'ph:house',
+    subtext: 'Go to home page',
+  },
+  {
+    text: 'Settings',
+    value: 'settings',
+    icon: 'ph:gear',
+    subtext: 'Configure preferences',
+    iconColor: 'spr-text-blue-500',
+  },
+  {
+    text: 'Users',
+    value: 'users',
+    icon: 'ph:users',
+    subtext: 'Manage user accounts',
+  },
+]);
+</script>
+```
+
+## Ladderized (Hierarchical) List
+
+Create nested hierarchical lists using the `ladderized` prop and including `sublevel` properties in items.
+
+<div class="spr-rounded-md spr-max-h-[300px] spr-border spr-border-solid spr-border-color-weak spr-overflow-hidden">
+  <spr-ladderized-list v-model="singleSelectOutput.example7" :menu-list="hierarchicalData" />
+</div>
+
+```vue
+<template>
+  <spr-ladderized-list v-model="selectedItems" :menu-list="hierarchicalData" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const hierarchicalData = ref([
+  {
+    text: 'Fruits',
+    value: 'fruits',
+    sublevel: [
+      { text: 'Apple', value: 'apple' },
+      { text: 'Banana', value: 'banana' },
+      { text: 'Cherry', value: 'cherry' },
+    ],
+  },
+  {
+    text: 'Vegetables',
+    value: 'vegetables',
+    sublevel: [
+      { text: 'Carrot', value: 'carrot' },
+      { text: 'Broccoli', value: 'broccoli' },
+    ],
+  },
+]);
+</script>
+```
+
+## Lozenge Display
+
+The List component supports two different lozenge display modes:
+
+### 1. Full Lozenge Mode (Item as Lozenge)
+
+Display entire list items as lozenges by enabling the `lozenge` prop and providing `lozengeProps` for each item. The item becomes the lozenge itself.
+
+<div
   :class="[
     'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
     'spr-border spr-border-solid spr-border-color-weak'
@@ -667,43 +269,179 @@ The list component can also be displayed as a lozenge by passing the `lozenge` p
 >
   <spr-list v-model="lozengeListValue" :menu-list="lozengeMenuList" lozenge />
 </div>
-<div class="spr-my-3 spr-p-4 spr-bg-blue-100">
-  <h5>Output:</h5>
-  <span>{{ lozengeListValue }}</span>
+
+```vue
+<template>
+  <spr-list v-model="selectedItems" :menu-list="lozengeItems" lozenge />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const lozengeItems = ref([
+  {
+    text: 'Active',
+    value: 'active',
+    lozengeProps: {
+      label: 'Active',
+      tone: 'positive',
+      fill: true,
+      icon: 'ph:check-circle',
+    },
+  },
+  {
+    text: 'Pending',
+    value: 'pending',
+    lozengeProps: {
+      label: 'Pending',
+      tone: 'neutral',
+      fill: false,
+      icon: 'ph:clock',
+    },
+  },
+  {
+    text: 'Disabled',
+    value: 'disabled',
+    lozengeProps: {
+      label: 'Disabled',
+      tone: 'negative',
+      fill: true,
+      icon: 'ph:x-circle',
+    },
+  },
+]);
+</script>
+```
+
+### 2. Lozenge Badge (Item with Right-Side Lozenge)
+
+Display a regular list item with a lozenge badge on the right side by using the `lozenge` property on individual items. This allows you to show metadata or status alongside the item text.
+
+<div
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="singleSelectOutput.example9" :menu-list="menuItemsWithLozenge" />
 </div>
 
 ```vue
 <template>
-  <div
-    :class="[
-      'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
-      'spr-border-color-weak spr-border spr-border-solid',
-    ]"
-  >
-    <spr-list v-model="lozengeListValue" :menu-list="lozengeMenuList" lozenge />
-  </div>
+  <spr-list v-model="selectedItems" :menu-list="menuItems" />
 </template>
-<script setup lang="ts">
-import { LOZENGE_TONE } from '@/components/lozenge/lozenge';
-import { MenuListType } from '@/components/list/list';
 
-const lozengeListValue = ref([]);
-const lozengeMenuList = ref(
-  LOZENGE_TONE.map((tone: string) => ({
-    text: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
-    value: tone,
-    lozengeProps: {
-      label: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
-      tone: tone,
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const menuItems = ref([
+  {
+    text: 'Task 1',
+    value: 'task1',
+    subtext: 'Due tomorrow',
+    lozenge: {
+      label: 'Pending',
+      tone: 'neutral',
+      fill: false,
+    },
+  },
+  {
+    text: 'Task 2',
+    value: 'task2',
+    subtext: 'Completed',
+    lozenge: {
+      label: 'Done',
+      tone: 'positive',
       fill: true,
-      url: "https://tinyurl.com/2vzn782p",
-      icon: "ph:address-book-tabs",
-      postfixIcon: "ph:caret-right-fill",
-    }
-  })) as MenuListType[];
-);
+    },
+  },
+  {
+    text: 'Task 3',
+    value: 'task3',
+    subtext: 'In progress',
+    lozenge: {
+      label: 'Active',
+      tone: 'brand',
+      fill: true,
+    },
+  },
+]);
 </script>
 ```
+
+## Pre-Selected Items
+
+Use `pre-selected-items` to set initial selections based on item values.
+
+```vue
+<template>
+  <spr-list v-model="selectedItems" :menu-list="menuList" :pre-selected-items="['apple', 'banana']" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const menuList = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+]);
+</script>
+```
+
+## Event Handling
+
+Use `@update:model-value` to react to selection changes and retrieve the complete selected item objects.
+
+<div
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak spr-mb-4'
+  ]"
+>
+  <spr-list 
+    v-model="singleSelectOutput.example8" 
+    :menu-list="menuList" 
+    @update:model-value="handleSelection"
+  />
+</div>
+<div class="spr-p-4 spr-bg-blue-50 spr-rounded-md spr-border spr-border-blue-200">
+  <p class="spr-text-sm">Selected: {{ selectedItemInfo }}</p>
+</div>
+
+```vue
+<template>
+  <spr-list v-model="selectedItems" :menu-list="menuList" @update:model-value="handleSelection" />
+  <div v-if="selectedItem" class="spr-mt-4 spr-bg-blue-50 spr-p-4">
+    <p>Selected Item: {{ selectedItem.text }}</p>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+const selectedItem = ref(null);
+
+const menuList = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+]);
+
+const handleSelection = (items) => {
+  selectedItem.value = items[0] || null;
+};
+</script>
+```
+
+---
 
 ## API Reference
 
@@ -712,7 +450,7 @@ const lozengeMenuList = ref(
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Prop</th>
       <th>Description</th>
       <th>Type</th>
       <th>Default</th>
@@ -720,94 +458,118 @@ const lozengeMenuList = ref(
   </thead>
   <tbody>
     <tr>
-      <td>modelValue</td>
-      <td>Two-way binding for the selected items. Contains the complete item objects of all selected items, not just their values. Used with v-model for reactivity.</td>
-      <td>MenuListType[]</td>
-      <td>[]</td>
+      <td><code>modelValue</code> (v-model)</td>
+      <td>Two-way binding for selected items containing full item objects</td>
+      <td><code>MenuListType[]</code></td>
+      <td><code>[]</code></td>
     </tr>
     <tr>
-      <td>menuList</td>
-      <td>The list of items to display in the component. Each item should contain at minimum <code>text</code> and <code>value</code> properties, with optional properties like <code>subtext</code>, <code>group</code>, <code>icon</code>, etc.</td>
-      <td>MenuListType[]</td>
-      <td>[] (required)</td>
+      <td><code>menuList</code></td>
+      <td>Array of items to display</td>
+      <td><code>MenuListType[]</code></td>
+      <td><code>[]</code> (required)</td>
     </tr>
     <tr>
-      <td>groupItemsBy</td>
-      <td>Controls how items are grouped in the list:
-        <ul>
-          <li><code>default</code>: Groups items by their <code>group</code> property</li>
-          <li><code>A-Z</code>: Sorts items alphabetically by <code>text</code> in ascending order</li>
-          <li><code>Z-A</code>: Sorts items alphabetically by <code>text</code> in descending order</li>
-        </ul>
-      </td>
-      <td>'default' | 'A-Z' | 'Z-A'</td>
-      <td>undefined</td>
+      <td><code>groupItemsBy</code></td>
+      <td>Grouping strategy: <code>'default'</code> (by group property), <code>'A-Z'</code> (ascending), or <code>'Z-A'</code> (descending)</td>
+      <td><code>'default' | 'A-Z' | 'Z-A'</code></td>
+      <td><code>undefined</code></td>
     </tr>
     <tr>
-      <td>multiSelect</td>
-      <td>Enables multi-selection mode, allowing users to select multiple items simultaneously. When enabled, checkboxes appear next to each item.</td>
-      <td>boolean</td>
-      <td>false</td>
+      <td><code>multiSelect</code></td>
+      <td>Enable multi-selection mode with checkboxes</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
     </tr>
     <tr>
-      <td>preSelectedItems</td>
-      <td>Pre-selects items in the list based on their values. Pass an array of strings or numbers that correspond to the <code>value</code> properties of items to be pre-selected.</td>
-      <td>(string | number | Record&lt;string, unknown&gt;)[]</td>
-      <td>[]</td>
+      <td><code>preSelectedItems</code></td>
+      <td>Pre-select items by their values</td>
+      <td><code>(string | number | Record&lt;string, unknown&gt;)[]</code></td>
+      <td><code>[]</code></td>
     </tr>
     <tr>
-      <td>searchableMenu</td>
-      <td>Enables a search input field at the top of the list for filtering items. When enabled, users can type to filter the list items by their text values.</td>
-      <td>boolean</td>
-      <td>false</td>
+      <td><code>searchableMenu</code></td>
+      <td>Display search input for filtering items</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
     </tr>
     <tr>
-      <td>searchableMenuPlaceholder</td>
-      <td>Placeholder text for the search input field when <code>searchableMenu</code> is enabled.</td>
-      <td>string</td>
-      <td>'Search...'</td>
+      <td><code>searchableMenuPlaceholder</code></td>
+      <td>Placeholder text for search input</td>
+      <td><code>string</code></td>
+      <td><code>'Search...'</code></td>
     </tr>
     <tr>
-      <td>searchValue</td>
-      <td>External search value to filter the list. Can be used to control the search from outside the component.</td>
-      <td>string</td>
-      <td>''</td>
+      <td><code>searchValue</code></td>
+      <td>External search value (two-way binding)</td>
+      <td><code>string</code></td>
+      <td><code>''</code></td>
     </tr>
     <tr>
-      <td>menuLevel</td>
-      <td>Indicates the nesting level of the list. Used internally for ladderized lists to track hierarchy.</td>
-      <td>number</td>
-      <td>0</td>
+      <td><code>menuLevel</code></td>
+      <td>Nesting level for hierarchical lists</td>
+      <td><code>number</code></td>
+      <td><code>0</code></td>
     </tr>
     <tr>
-      <td>ladderized</td>
-      <td>Enables ladderized (hierarchical) list mode. When enabled, items with <code>sublevel</code> properties will display nested lists.</td>
-      <td>boolean</td>
-      <td>false</td>
+      <td><code>ladderized</code></td>
+      <td>Enable hierarchical/ladderized list display</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
     </tr>
     <tr>
-      <td>disabledLocalSearch</td>
-      <td>Disables the local search/filtering functionality even when <code>searchableMenu</code> is true. Useful when implementing custom search logic externally.</td>
-      <td>boolean</td>
-      <td>false</td>
+      <td><code>disabledLocalSearch</code></td>
+      <td>Disable local search filtering</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
     </tr>
     <tr>
-      <td>loading</td>
-      <td>Displays a loading indicator instead of list items. Use this when fetching data asynchronously.</td>
-      <td>boolean</td>
-      <td>false</td>
+      <td><code>loading</code></td>
+      <td>Show loading skeleton instead of items</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
     </tr>
     <tr>
-      <td>noCheck</td>
-      <td>Hides the checkmark icon that appears next to selected items in single-select mode. Has no effect in multi-select mode.</td>
-      <td>boolean</td>
-      <td>false</td>
+      <td><code>noCheck</code></td>
+      <td>Hide checkmark icon in single-select mode</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
     </tr>
     <tr>
-      <td>lozenge</td>
-      <td>Enables lozenge mode for the list items. When enabled, items are displayed as lozenges.</td>
-      <td>boolean</td>
-      <td>false</td>
+      <td><code>lozenge</code></td>
+      <td>Display items as lozenges</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>supportingDisplayText</code></td>
+      <td>Display custom text (e.g., "2 Selected")</td>
+      <td><code>string</code></td>
+      <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td><code>displayListItemSelected</code></td>
+      <td>Display count of selected items when searchable</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>stickySearchOffset</code></td>
+      <td>Offset for sticky search header</td>
+      <td><code>string | number</code></td>
+      <td><code>0</code></td>
+    </tr>
+    <tr>
+      <td><code>itemIcon</code></td>
+      <td>Default icon for all items</td>
+      <td><code>string</code></td>
+      <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td><code>disabledUnselectedItems</code></td>
+      <td>Disable and gray out unselected items</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
     </tr>
   </tbody>
 </table>
@@ -817,68 +579,35 @@ const lozengeMenuList = ref(
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Event</th>
       <th>Description</th>
-      <th>Parameters</th>
+      <th>Payload</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>update:modelValue</td>
-      <td>Emitted when the selection changes. Provides the complete selected items with all their properties, not just values. Used for v-model binding.</td>
-      <td>(value: MenuListType[]): Array of the complete selected item objects</td>
+      <td><code>update:modelValue</code></td>
+      <td>Emitted when selection changes</td>
+      <td><code>MenuListType[]</code> - Array of selected item objects</td>
     </tr>
     <tr>
-      <td>update:searchValue</td>
-      <td>Emitted when the search input value changes. Used for controlling the search externally.</td>
-      <td>(value: string): The new search text value</td>
+      <td><code>update:searchValue</code></td>
+      <td>Emitted when search input changes</td>
+      <td><code>string</code> - New search text</td>
     </tr>
     <tr>
-      <td>@get-single-selected-item</td>
-      <td>Emitted when a single option is selected in single-select mode. The payload is the selected item object.</td>
-      <td>Object</td>
+      <td><code>@get-single-selected-item</code></td>
+      <td>Emitted when item selected in single-select mode</td>
+      <td><code>MenuListType</code> - Selected item object</td>
     </tr>
   </tbody>
 </table>
 
-### MenuListType Interface
-
-The List component accepts items conforming to the `MenuListType` interface:
-
-```typescript
-type MenuListType = {
-  text: string; // Display text for the item (required)
-  value: string | number; // Unique identifier for the item (required)
-  subtext?: string; // Optional secondary text displayed below main text
-  group?: string; // Optional group identifier for grouping items
-  sublevel?: MenuListType[]; // Optional nested items for ladderized lists
-  disabled?: boolean; // Optional flag to disable the item
-  _originalObject?: Record<string, unknown>; // Optional reference to original object
-  icon?: string; // Optional Iconify icon name
-  iconColor?: string; // Optional CSS class for icon color
-  textColor?: string; // Optional CSS class for text color
-  lozengeProps?: LozengePropTypes; // Props for the lozenge component when list is displayed as lozenge
-  onClickFn?: () => void; // Optional click handler function
-};
-```
-
-## Product Uses
-
-<div class="spr-flex spr-items-center spr-gap-4 spr-rounded">
-  <spr-logo name="hr" theme="dark"  width="50px" />
-  <spr-logo name="payroll" theme="dark"  width="50px" />
-</div>
-
-<script lang="ts" setup> 
+<script lang="ts" setup>
 import { ref } from 'vue';
-
 import SprList from "@/components/list/list.vue"
 import SprLadderizedList from "@/components/list/ladderized-list/ladderized-list.vue"
-import SprLogo from "@/components/logo/logo.vue";
-import { LOZENGE_TONE } from '@/components/lozenge/lozenge';
 import { MenuListType } from '@/components/list/list';
-
-const preselectedItem = ref(['apple']);
 
 const menuList = ref([
   { text: 'Apple', value: 'apple' },
@@ -887,23 +616,10 @@ const menuList = ref([
   { text: 'Date', value: 'date' },
   { text: 'Elderberry', value: 'elderberry' },
   { text: 'Fig', value: 'fig' },
-  { text: '5 Grape', value: 'grape' },
+  { text: 'Grape', value: 'grape' },
   { text: 'Honeydew', value: 'honeydew' },
-  { text: 'Indian Fig', value: 'indian_fig' },
-  { text: 'Jackfruit', value: 'jackfruit' },
   { text: 'Kiwi', value: 'kiwi' },
-  { text: 'Lemon', value: 'lemon' },
   { text: 'Mango', value: 'mango' },
-  { text: 'Nectarine', value: 'nectarine' },
-  { text: '89 Watermelon', value: 'watermelon' },
-  { text: 'Xigua', value: 'xigua' },
-  { text: 'Yunnan Hackberry', value: 'yunnan_hackberry' },
-  { text: '1 Zucchini', value: 'zucchini' },
-  { text: 'Apricot', value: 'apricot' },
-  { text: 'Blueberry', value: 'blueberry' },
-  { text: 'Cantaloupe', value: 'cantaloupe' },
-  { text: 'Dragonfruit', value: 'dragonfruit' },
-  { text: 'Pineapple', value: 'pineapple' },
 ]);
 
 const groupedMenuList = ref([
@@ -915,103 +631,57 @@ const groupedMenuList = ref([
   { text: 'Fig', value: 'fig', group: 'Fruits' },
   { text: 'Grape', value: 'grape', group: 'Fruits' },
   { text: 'Honeydew', value: 'honeydew', group: 'Fruits' },
-  { text: 'Indian Fig', value: 'indian_fig', group: 'Fruits' },
-  { text: 'Jackfruit', value: 'jackfruit', group: 'Fruits' },
   { text: 'Kale', value: 'kale', group: 'Vegetables' },
   { text: 'Lemon', value: 'lemon', group: 'Fruits' },
-  { text: 'Mango', value: 'mango', group: 'Fruits' },
-  { text: 'Nectarine', value: 'nectarine', group: 'Fruits' },
-  { text: 'Okra', value: 'okra', group: 'Vegetables' },
-  { text: 'Peach', value: 'peach', group: 'Fruits' },
-  { text: 'Quince', value: 'quince', group: 'Fruits' },
-  { text: 'Radish', value: 'radish', group: 'Vegetables' },
-  { text: 'Spinach', value: 'spinach', group: 'Vegetables' },
-  { text: 'Tomato', value: 'tomato', group: 'Vegetables' },
-  { text: 'Ugli Fruit', value: 'ugli_fruit', group: 'Fruits' },
-  { text: 'Watermelon', value: 'watermelon', group: 'Fruits' },
-  { text: 'Xigua', value: 'xigua', group: 'Fruits' },
-  { text: 'Yam', value: 'yam', group: 'Vegetables' },
-  { text: 'Zucchini', value: 'zucchini', group: 'Vegetables' },
 ]);
 
-const mockDropdownData = [
-  {
-    text: "Lion",
-    value: "lion",
-    subtext: "King of the jungle",
-    sublevel: [
-      {
-        text: "Cub",
-        value: "cub",
-        subtext: "Young lion",
-        sublevel: [
-          {
-            text: "Cub 1",
-            value: "cub1",
-            
-          },
-          {
-            text: "Cub 2",
-            value: "cub2",
-          },
-        ],
-      },
-      {
-        text: "Pride Member",
-        value: "pride-member",
-        subtext: "Member of a lion pride",
-      },
-    ],
-  },
-  {
-    text: "Elephant",
-    value: "elephant",
-    subtext: "Largest land animal",
-    sublevel: [
-      {
-        text: "Calf",
-        value: "calf",
-        subtext: "Young elephant",
-      },
-    ],
-  },
-  {
-    text: "Giraffe",
-    value: "giraffe",
-    subtext: "Tallest living terrestrial animal",
-    sublevel: [
-      {
-        text: "Calf",
-        value: "giraffe-calf",
-        subtext: "Young giraffe",
-      },
-      {
-        text: "Adult",
-        value: "giraffe-adult",
-        subtext: "Mature giraffe",
-      },
-    ],
-  },
-  {
-    text: "Zebra",
-    value: "zebra",
-    subtext: "Known for distinctive black and white stripes",
-    sublevel: [
-      {
-        text: "Foal",
-        value: "zebra-foal",
-        subtext: "Young zebra",
-      },
-      {
-        text: "Mare",
-        value: "zebra-mare",
-        subtext: "Adult female zebra",
-      },
-    ],
-  },
-];
+const itemsWithIcons = ref([
+  { text: 'Home', value: 'home', icon: 'ph:house', subtext: 'Go to home page' },
+  { text: 'Settings', value: 'settings', icon: 'ph:gear', subtext: 'Configure preferences', iconColor: 'spr-text-blue-500' },
+  { text: 'Users', value: 'users', icon: 'ph:users', subtext: 'Manage user accounts' },
+]);
 
-const preselectedItems = ref(['apple']);
+const hierarchicalData = ref([
+  {
+    text: 'Fruits',
+    value: 'fruits',
+    sublevel: [
+      { text: 'Apple', value: 'apple' },
+      { text: 'Banana', value: 'banana' },
+      { text: 'Cherry', value: 'cherry' },
+    ],
+  },
+  {
+    text: 'Vegetables',
+    value: 'vegetables',
+    sublevel: [
+      { text: 'Carrot', value: 'carrot' },
+      { text: 'Broccoli', value: 'broccoli' },
+    ],
+  },
+]);
+
+const lozengeMenuList = ref([
+  {
+    text: 'Active',
+    value: 'active',
+    lozengeProps: {
+      label: 'Active',
+      tone: 'positive',
+      fill: true,
+    },
+  },
+  {
+    text: 'Pending',
+    value: 'pending',
+    lozengeProps: {
+      label: 'Pending',
+      tone: 'neutral',
+      fill: false,
+    },
+  },
+]);
+
 const singleSelectOutput = ref({
   example1: [],
   example2: [],
@@ -1022,33 +692,49 @@ const singleSelectOutput = ref({
   example7: [],
   example8: [],
   example9: [],
-  example10: [],
-  example11: [],
 });
 
-const singleSelectText = ref("No selected item")
-const handleSingleSelect = (data) => {
-  singleSelectText.value = data[0].text;
-}
-
-const multipleSelectText = ref("No selected items");
-const handleMultiSelect = (data) => {
-  multipleSelectText.value = data.map((item) => item.text).join(", ");
-}
+const menuItemsWithLozenge = ref([
+  {
+    text: 'Task 1',
+    value: 'task1',
+    subtext: 'Due tomorrow',
+    lozenge: {
+      label: 'Pending',
+      tone: 'neutral',
+      fill: false,
+    },
+  },
+  {
+    text: 'Task 2',
+    value: 'task2',
+    subtext: 'Completed',
+    lozenge: {
+      label: 'Done',
+      tone: 'positive',
+      fill: true,
+    },
+  },
+  {
+    text: 'Task 3',
+    value: 'task3',
+    subtext: 'In progress',
+    lozenge: {
+      label: 'Active',
+      tone: 'brand',
+      fill: true,
+    },
+  },
+]);
 
 const lozengeListValue = ref([]);
-const lozengeMenuList = ref(
-  LOZENGE_TONE.map((tone: string) => ({
-    text: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
-    value: tone,
-    lozengeProps: {
-      label: `${tone.charAt(0).toUpperCase() + tone.slice(1)}`,
-      tone: tone,
-      fill: true,
-      url: "https://tinyurl.com/2vzn782p",
-      icon: "ph:address-book-tabs",
-      postfixIcon: "ph:caret-right-fill",
-    }
-  })) as MenuListType[]
-);
+const selectedItemInfo = ref('None selected');
+
+const handleSelection = (items) => {
+  if (items.length > 0) {
+    selectedItemInfo.value = items[0].text;
+  } else {
+    selectedItemInfo.value = 'None selected';
+  }
+};
 </script>

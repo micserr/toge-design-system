@@ -57,7 +57,8 @@
                 ]"
               >
                 <Icon v-if="props.clearable && inputText" icon="ph:x" @click.stop="handleClear" />
-                <Icon icon="ph:caret-down" />
+                <Icon v-if="props.inputLoader" icon="svg-spinners:270-ring" />
+                <Icon v-else icon="ph:caret-down" />
               </div>
             </template>
 
@@ -103,6 +104,7 @@
                   :menu-list="filteredSelectOptions"
                   :group-items-by="props.groupItemsBy"
                   :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
+                  :loading="props.optionsLoader"
                   :item-icon="props.itemIcon"
                   :lozenge="props.lozenge"
                   @update:model-value="handleSelectedItem"
@@ -121,6 +123,7 @@
                   :menu-list="selectOptions"
                   :group-items-by="props.groupItemsBy"
                   :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
+                  :loading="props.optionsLoader"
                   :item-icon="props.itemIcon"
                   :lozenge="props.lozenge"
                   @update:model-value="handleSelectedItem"
@@ -140,6 +143,7 @@
                 :menu-list="selectOptions"
                 :group-items-by="props.groupItemsBy"
                 :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
+                :loading="props.optionsLoader"
                 :item-icon="props.itemIcon"
                 :lozenge="props.lozenge"
                 @update:model-value="handleSelectedItem"

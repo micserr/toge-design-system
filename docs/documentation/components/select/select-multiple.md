@@ -1386,6 +1386,12 @@ const optionsWithLozenge = ref([
       <td>''</td>
     </tr>
     <tr>
+      <td><code>input-loader</code></td>
+      <td>Displays a loading spinner inside the select input. Useful while asynchronously fetching options (e.g., API search / infinite scroll). The current value, placeholder or selected chip summary remains visible beside the spinner.</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
       <td><code>placement</code></td>
       <td>Popper placement. See available options in the documentation.</td>
       <td>String</td>
@@ -1514,14 +1520,14 @@ const optionsWithLozenge = ref([
       <td>false</td>
     </tr>
     <tr>
-      <td><code>loading</code></td>
-      <td>Show loading state for async options.</td>
+      <td><code>disabled-local-search</code></td>
+      <td>Disable local search functionality.</td>
       <td>Boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td><code>disabled-local-search</code></td>
-      <td>Disable local search functionality.</td>
+      <td><code>options-loader</code></td>
+      <td>Displays a skeletal loading inside the popper. Useful while asynchronously fetching options (e.g., API search).</td>
       <td>Boolean</td>
       <td>false</td>
     </tr>

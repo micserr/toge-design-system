@@ -54,7 +54,8 @@
                 ]"
               >
                 <Icon v-if="props.clearable && inputText" icon="ph:x" @click.stop="handleClear" />
-                <Icon icon="ph:caret-down" />
+                <Icon v-if="props.inputLoader" icon="svg-spinners:270-ring" />
+                <Icon v-else icon="ph:caret-down" />
               </div>
             </template>
 
@@ -82,6 +83,7 @@
               :remove-current-level-in-back-label="props.removeCurrentLevelInBackLabel"
               :searchable-menu="props.searchableOptions"
               :searchable-menu-placeholder="props.searchableOptionsPlaceholder"
+              :loading:="props.optionsLoader"
               @update:model-value="handleSelectedLadderizedItem"
             />
           </template>

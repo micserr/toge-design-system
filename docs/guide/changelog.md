@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.20.4 (2025-10-27)
+
+- Fix:
+  - Added Input Loader and Options Loader in Select, Multi-Select, and Ladderized Select
+  - Added Max Width in Lozenge
+  - Updated List Documentation
+  - Optimize List Component Code
+  - Fix Calendar Component Testing
+  - Update Git Ignore
+    ([#35623](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35623) by @jarias)
+
 ## 2.20.3 (2025-10-24)
 
 - Fix: Revert package in playground and Update to Node 22 in Azure Static Web Apps workflows

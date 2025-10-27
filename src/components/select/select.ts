@@ -69,6 +69,10 @@ export const selectPropTypes = {
     type: String,
     default: '',
   },
+  inputLoader: {
+    type: Boolean,
+    default: false,
+  },
   placement: {
     type: String as PropType<(typeof PLACEMENTS_TYPES)[number]>,
     validator: (value: (typeof PLACEMENTS_TYPES)[number]) => PLACEMENTS_TYPES.includes(value),
@@ -154,6 +158,10 @@ export const selectPropTypes = {
     default: false,
   },
   disabledLocalSearch: {
+    type: Boolean,
+    default: false,
+  },
+  optionsLoader: {
     type: Boolean,
     default: false,
   },

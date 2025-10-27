@@ -7,13 +7,11 @@ import type { SetupContext } from 'vue';
 import type { ListPropTypes, ListEmitTypes, MenuListType, GroupedMenuListType } from './list';
 
 interface ListClasses {
+  headerClasses: string;
   listItemClasses: string;
 }
 
 export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>['emit']) => {
-  const selectedItems = useVModel(props, 'modelValue', emit);
-  const searchString = useVModel(props, 'searchValue', emit);
-
   const {
     menuList,
     menuLevel,
@@ -23,9 +21,16 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     disabledLocalSearch,
     noCheck,
     disabledUnselectedItems,
+    stickySearchOffset,
   } = toRefs(props);
 
   const listClasses: ComputedRef<ListClasses> = computed(() => {
+    const headerClasses = classNames(
+      'spr-sticky spr-z-20',
+      'spr-grid spr-gap-3 spr-bg-white-50 spr-px-size-spacing-3xs spr-py-size-spacing-2xs',
+      'spr-border-color-weak spr-border spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid',
+    );
+
     const listItemClasses = classNames(
       'spr-flex spr-cursor-pointer spr-items-center spr-justify-between spr-gap-1.5 spr-rounded-lg spr-p-2',
       'spr-transition spr-duration-150 spr-ease-in-out',
@@ -33,8 +38,16 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
       'active:spr-background-color-single-active active:spr-scale-[.98]',
     );
 
-    return { listItemClasses };
+    return { headerClasses, listItemClasses };
   });
+
+  const stickyOffsetStyle = computed(() => ({
+    top:
+      typeof stickySearchOffset.value === 'number' ? `${stickySearchOffset.value}px` : String(stickySearchOffset.value),
+  }));
+
+  const selectedItems = useVModel(props, 'modelValue', emit);
+  const searchString = useVModel(props, 'searchValue', emit);
 
   const searchText = ref<string>('');
 
@@ -587,9 +600,10 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   });
 
   return {
+    listClasses,
+    stickyOffsetStyle,
     selectedItems,
     searchText,
-    listClasses,
     localizedMenuList,
     groupedMenuList,
     apiSelectedList,

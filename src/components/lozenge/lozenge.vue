@@ -1,8 +1,15 @@
 <template>
   <div :class="['spr-lozenge__wrapper', lozengeClasses.wrapperClasses]">
     <div v-if="visible && !loading" :class="['spr-lozenge__base', lozengeClasses.baseClasses]">
-      <div :class="['spr-lozenge__tone',lozengeClasses.toneClasses]" :tabindex="props.interactive || props.dropdown ? 0 : -1">
-        <div v-if="$slots.icon || props.icon" class="spr-lozenge__prefix-icon spr-flex spr-h-3 spr-w-3 spr-items-center spr-overflow-hidden">
+      <div
+        :class="['spr-lozenge__tone', lozengeClasses.toneClasses]"
+        :tabindex="props.interactive || props.dropdown ? 0 : -1"
+        :style="{ maxWidth: props.maxWidth }"
+      >
+        <div
+          v-if="$slots.icon || props.icon"
+          class="spr-lozenge__prefix-icon spr-flex spr-h-3 spr-w-3 spr-items-center spr-overflow-hidden"
+        >
           <slot name="icon">
             <icon :icon="props.icon" />
           </slot>
@@ -16,9 +23,12 @@
           </slot>
         </div>
 
-        <span class="spr-lozenge__label spr-label-xs-medium">{{ label }}</span>
+        <span :class="lozengeClasses.labelClasses">{{ label }}</span>
 
-        <div v-if="$slots.postfixIcon || props.postfixIcon || props.dropdown" class="spr-lozenge__prefix-icon spr-flex spr-h-3 spr-w-3 spr-items-center spr-overflow-hidden">
+        <div
+          v-if="$slots.postfixIcon || props.postfixIcon || props.dropdown"
+          class="spr-lozenge__prefix-icon spr-flex spr-h-3 spr-w-3 spr-items-center spr-overflow-hidden"
+        >
           <slot name="postfixIcon">
             <icon v-if="props.postfixIcon" :icon="props.postfixIcon" />
             <icon v-else icon="ph:caret-down-fill" />

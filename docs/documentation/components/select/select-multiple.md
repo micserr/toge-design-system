@@ -1520,12 +1520,6 @@ const optionsWithLozenge = ref([
       <td>false</td>
     </tr>
     <tr>
-      <td><code>loading</code></td>
-      <td>Show loading state for async options.</td>
-      <td>Boolean</td>
-      <td>false</td>
-    </tr>
-    <tr>
       <td><code>disabled-local-search</code></td>
       <td>Disable local search functionality.</td>
       <td>Boolean</td>

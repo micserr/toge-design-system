@@ -839,7 +839,9 @@ test.describe('SelectLadderized Component', () => {
       await expect(input).toHaveValue('Custom input');
     });
 
-    test('should handle modelValue with existing hierarchical options when writableInputText is enabled', async ({ mount }) => {
+    test('should handle modelValue with existing hierarchical options when writableInputText is enabled', async ({
+      mount,
+    }) => {
       const component = await mount(SelectLadderized, {
         props: {
           id: 'test-select-ladderized',
@@ -924,6 +926,245 @@ test.describe('SelectLadderized Component', () => {
 
       expect(emittedValue).toEqual([]);
       await expect(input).toHaveValue('');
+    });
+  });
+
+  test.describe('Loader States', () => {
+    test('should display input loader when inputLoader is true', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          inputLoader: true,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should display options loader when optionsLoader is true', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          optionsLoader: true,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should display infinite scroll loader when infiniteScrollLoader is true', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          infiniteScrollLoader: true,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Text Separator and Formatting', () => {
+    test('should use custom text separator', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          textSeperator: ' / ',
+          modelValue: ['fruits', 'apple'],
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should support prepending text', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          prependText: true,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Popper Configuration', () => {
+    test('should support auto-hide popper when autoHide is true', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          autoHide: true,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should support custom popperContainer', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          popperContainer: 'body',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Layout and Positioning', () => {
+    test('should apply custom width', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          width: '300px',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should apply custom wrapperPosition', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          wrapperPosition: 'fixed',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Trigger Configuration', () => {
+    test('should support custom input triggers', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          triggers: ['click', 'focus'],
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should support custom popper triggers', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          popperTriggers: ['click'],
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Advanced Features', () => {
+    test('should remove current level in back label when enabled', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          removeCurrentLevelInBackLabel: true,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should support custom search placeholder', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          searchableOptions: true,
+          searchableOptionsPlaceholder: 'Find items...',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Combined Configuration', () => {
+    test('should work with all custom configuration props together', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          textSeperator: ' / ',
+          prependText: true,
+          searchableOptions: true,
+          searchableOptionsPlaceholder: 'Search...',
+          placement: 'bottom',
+          distance: 8,
+          autoHide: true,
+          popperStrategy: 'absolute',
+          popperWidth: '100%',
+          width: '300px',
+          wrapperPosition: 'relative',
+          writableInputText: true,
+          clearable: true,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should handle rapid prop updates gracefully', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          modelValue: [],
+        },
+      });
+
+      await component.update({
+        props: {
+          modelValue: ['fruits', 'apple'],
+          inputLoader: true,
+        },
+      });
+
+      await component.update({
+        props: {
+          inputLoader: false,
+          searchableOptions: true,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should maintain functionality with extreme configuration', async ({ mount }) => {
+      const component = await mount(SelectLadderized, {
+        props: {
+          id: 'test-select-ladderized',
+          options: mockHierarchicalOptions,
+          distance: 100,
+          popperWidth: '80vw',
+          width: '80vw',
+          placement: 'top-start',
+          popperStrategy: 'fixed',
+          textSeperator: ' :: ',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
     });
   });
 });

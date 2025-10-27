@@ -187,6 +187,10 @@ export const multiSelectPropTypes = {
     type: Boolean,
     default: false,
   },
+  infiniteScrollLoader: {
+    type: Boolean,
+    default: false,
+  },
   lozenge: {
     type: Boolean,
     default: false,

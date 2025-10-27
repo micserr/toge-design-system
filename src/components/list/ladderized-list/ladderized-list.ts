@@ -33,6 +33,10 @@ export const ladderizedListPropTypes = {
     type: Boolean,
     default: false,
   },
+  infiniteScrollLoader: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const ladderizedListEmitTypes = {

@@ -1,6 +1,6 @@
-import type { ComputedRef } from 'vue';
-import { computed } from 'vue';
+import { computed, toRefs } from 'vue';
 
+import type { ComputedRef } from 'vue';
 import type { ListItemPropTypes } from './list-item';
 
 export function useListItem(
@@ -8,20 +8,26 @@ export function useListItem(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _emit?: unknown,
 ): {
+  listItem: ComputedRef<ListItemPropTypes['item']>;
   hasIcon: ComputedRef<boolean>;
   iconName: ComputedRef<string>;
   hasSublevels: ComputedRef<boolean>;
   showLozengeMode: ComputedRef<boolean>;
 } {
-  const hasIcon = computed(() => !!(props.itemIcon || props.item!.icon));
+  const { item, itemIcon, lozenge } = toRefs(props);
 
-  const iconName = computed(() => props.itemIcon || props.item!.icon || '');
+  const listItem = computed(() => item?.value);
 
-  const hasSublevels = computed(() => !!(props.item!.sublevel && props.item!.sublevel.length > 0));
+  const hasIcon = computed(() => !!(itemIcon.value || item?.value!.icon));
 
-  const showLozengeMode = computed(() => props.lozenge && !!props.item!.lozengeProps);
+  const iconName = computed(() => itemIcon.value || item?.value!.icon || '');
+
+  const hasSublevels = computed(() => !!(item?.value!.sublevel && item?.value!.sublevel.length > 0));
+
+  const showLozengeMode = computed(() => lozenge.value && !!item?.value!.lozengeProps);
 
   return {
+    listItem,
     hasIcon,
     iconName,
     hasSublevels,

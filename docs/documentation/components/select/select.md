@@ -1418,6 +1418,12 @@ const optionsWithLozenge = ref([
       <td>false</td>
     </tr>
     <tr>
+      <td><code>infinite-scroll-loader</code></td>
+      <td>Displays a loading spinner at the bottom of the list when infinite scroll is triggered. Useful when loading more items as the user scrolls to the end of the list.</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
       <td><code>lozenge</code></td>
       <td>Enables lozenge mode for the list items. When enabled, items are displayed as lozenges.</td>
       <td>Boolean</td>

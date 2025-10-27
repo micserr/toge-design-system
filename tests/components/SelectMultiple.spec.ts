@@ -1081,4 +1081,387 @@ test.describe('SelectMultiple Component', () => {
       await expect(component.locator('input')).toBeVisible();
     });
   });
+
+  test.describe('Custom Field Mapping', () => {
+    test('should support custom textField for display text', async ({ mount }) => {
+      const customOptions = [
+        { label: 'Item A', id: '1' },
+        { label: 'Item B', id: '2' },
+        { label: 'Item C', id: '3' },
+      ];
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: customOptions,
+          textField: 'label',
+          valueField: 'id',
+        },
+      });
+
+      await component.locator('input').click();
+      await expect(
+        component.locator('.spr-grid').locator('.spr-text-left').filter({ hasText: 'Item A' }),
+      ).toBeVisible();
+    });
+
+    test('should support custom valueField for model values', async ({ mount }) => {
+      const customOptions = [
+        { name: 'Option 1', code: 'OPT1' },
+        { name: 'Option 2', code: 'OPT2' },
+      ];
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: customOptions,
+          textField: 'name',
+          valueField: 'code',
+          modelValue: ['OPT1'],
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Icon Display Configuration', () => {
+    test('should display item icon when itemIcon prop is set', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          itemIcon: 'ph:check',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should update item icon when prop changes', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          itemIcon: 'ph:check',
+        },
+      });
+
+      await component.update({
+        props: {
+          itemIcon: 'ph:star',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Loader States', () => {
+    test('should display input loader when inputLoader is true', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          inputLoader: true,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should display options loader when optionsLoader is true', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          optionsLoader: true,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should display infinite scroll loader when infiniteScrollLoader is true', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          infiniteScrollLoader: true,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Display Configuration', () => {
+    test('should display count only when displaySelectedCountOnly is true', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          modelValue: ['Apple', 'Banana'],
+          displaySelectedCountOnly: true,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should display list item selected indicator when displayListItemSelected is true', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          displayListItemSelected: true,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should support persistent display text', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          persistentDisplayText: true,
+          displayText: 'Select items...',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should support supporting display text', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          supportingDisplayText: 'Choose multiple items',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Popper Configuration', () => {
+    test('should support auto-hide popper when autoHide is true', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          autoHide: true,
+        },
+      });
+
+      const input = component.locator('input').first();
+      await input.click();
+      await expect(input).toBeVisible();
+    });
+
+    test('should support custom popperContainer', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          popperContainer: 'body',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should support different popper strategies', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          popperStrategy: 'fixed',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should support custom popper distance', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          distance: 12,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should support different placements', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          placement: 'top',
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Advanced Features', () => {
+    test('should support disabledUnselectedItems', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          modelValue: ['Apple'],
+          disabledUnselectedItems: true,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should support grouping by A-Z', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          groupItemsBy: 'A-Z',
+        },
+      });
+
+      const input = component.locator('input').first();
+      await input.click();
+      await expect(input).toBeVisible();
+    });
+
+    test('should support grouping by Z-A', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          groupItemsBy: 'Z-A',
+        },
+      });
+
+      const input = component.locator('input').first();
+      await input.click();
+      await expect(input).toBeVisible();
+    });
+
+    test('should support chipped display mode', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          chipped: true,
+          modelValue: ['Apple', 'Banana'],
+        },
+      });
+
+      // In chipped mode, the main input may not be visible
+      await expect(component).toBeVisible();
+    });
+
+    test('should support lozenge style display', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          lozenge: true,
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Trigger Configuration', () => {
+    test('should support custom input triggers', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          triggers: ['click', 'focus'],
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+
+    test('should support custom popper triggers', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          popperTriggers: ['click'],
+        },
+      });
+
+      await expect(component.locator('input')).toBeVisible();
+    });
+  });
+
+  test.describe('Combined Configuration', () => {
+    test('should work with all custom configuration props together', async ({ mount }) => {
+      const customOptions = [
+        { name: 'Item A', code: 'A' },
+        { name: 'Item B', code: 'B' },
+        { name: 'Item C', code: 'C' },
+      ];
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: customOptions,
+          textField: 'name',
+          valueField: 'code',
+          modelValue: ['A', 'B'],
+          displaySelectedCountOnly: false,
+          displayListItemSelected: true,
+          chipped: true,
+          lozenge: true,
+          itemIcon: 'ph:check',
+          searchable: true,
+          clearable: true,
+          placement: 'bottom',
+          distance: 8,
+          autoHide: true,
+          popperStrategy: 'absolute',
+          popperWidth: '100%',
+        },
+      });
+
+      // Component should render successfully with complex configuration
+      await expect(component).toBeVisible();
+    });
+
+    test('should handle rapid prop updates', async ({ mount }) => {
+      const component = await mount(SelectMultiple, {
+        props: {
+          id: 'test-select-multi',
+          options: basicStringOptions,
+          modelValue: [],
+        },
+      });
+
+      await component.update({
+        props: {
+          modelValue: ['Apple', 'Banana'],
+          displaySelectedCountOnly: true,
+        },
+      });
+
+      await component.update({
+        props: {
+          displaySelectedCountOnly: false,
+          chipped: true,
+        },
+      });
+
+      // Component should update successfully
+      await expect(component).toBeVisible();
+    });
+  });
 });

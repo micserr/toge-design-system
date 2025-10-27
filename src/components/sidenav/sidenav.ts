@@ -173,6 +173,11 @@ export const sidenavPropTypes = {
     validator: (value: unknown) => typeof value === 'boolean',
     default: false,
   },
+  loading: {
+    type: Boolean,
+    validator: (value: unknown) => typeof value === 'boolean',
+    default: false,
+  },
 };
 
 export const sidenavEmitTypes = {

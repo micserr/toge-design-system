@@ -150,6 +150,52 @@ Components are automatically registered globally with the configured prefix. For
 
 The prefix `spr-` is the default for our design system components.
 
+## Exporting Components and Types
+
+After creating your component, you need to export it for individual imports and ensure its types are available to consumers of the library.
+
+### Export Component in main.ts
+
+Add your component to the individual component exports in `lib/main.ts`:
+
+```ts
+// Add to the export section (alphabetically ordered)
+export { default as YourComponent } from '../src/components/your-component/your-component.vue';
+```
+
+This allows users to import your component directly:
+
+```ts
+import { YourComponent } from 'design-system-next';
+```
+
+### Export Types in types.ts
+
+Add your component's prop types to `lib/types.ts` for TypeScript support:
+
+```ts
+// Add to the type exports (alphabetically ordered)
+export type { ComponentPropTypes, ComponentEmitTypes } from '../src/components/your-component/your-component';
+```
+
+This enables users to access your component's types for type-safe development:
+
+```ts
+import type { ComponentPropTypes } from 'design-system-next';
+
+const props: ComponentPropTypes = {
+  size: 'medium',
+  disabled: false,
+};
+```
+
+### Important Notes
+
+- **Alphabetical Order**: Maintain alphabetical ordering in both `main.ts` and `types.ts` for consistency and easier maintenance.
+- **Export All Public Types**: Export prop types, emit types, and any public constants or enums that users might need.
+- **Naming Convention**: Use PascalCase for component exports (e.g., `YourComponent`, not `yourComponent`).
+- **Type Paths**: Type exports should point to the `.ts` file (without extension), not the `.vue` file.
+
 ## Example Usage
 
 Here's how to use your newly created component:

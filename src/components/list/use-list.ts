@@ -63,6 +63,15 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   // #region - Helper Methods
   const isParentMenu = computed(() => menuLevel.value === 0);
 
+  const hasGroupedItems = computed(() => {
+    return (
+      props.groupItemsBy &&
+      groupedMenuList.value &&
+      groupedMenuList.value.length > 0 &&
+      groupedMenuList.value.some((g) => g.items.length > 0)
+    );
+  });
+
   const isItemSelected = (item: MenuListType) => {
     // First check standard selection via the selectedItems array
     const directSelected = selectedItems.value.some((selectedItem) => {
@@ -608,6 +617,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     groupedMenuList,
     apiSelectedList,
     isParentMenu,
+    hasGroupedItems,
     isItemSelected,
     getListItemClasses,
     handleSearch,

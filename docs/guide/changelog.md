@@ -1,5 +1,22 @@
 # Changelog
 
+## 2.21.0 (2025-10-28)
+
+- Feat:
+  - Add individual component exports and types for improved usability
+  - Enable tree-shakable imports for better bundle optimization
+  - Update type definitions in package.json and enable rollup types in vite.config.ts
+- Docs:
+  - Enhance quick start guide with usage options and tree-shakable imports
+  - Update component creation guidelines with export examples
+    ([#35662](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35662) by @jmari)
+
+## 2.20.6 (2025-10-27)
+
+- Fix:
+  - Enhance file upload documentation with automatic validation features
+    ([#95c2338d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35637) by @bsolis)
+
 ## 2.20.5 (2025-10-27)
 
 - Fix:

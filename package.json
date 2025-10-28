@@ -1,9 +1,10 @@
 {
   "name": "design-system-next",
   "private": false,
-  "version": "2.20.5",
+  "version": "2.21.0",
   "main": "./dist/design-system-next.umd.js",
   "module": "./dist/design-system-next.es.js",
+  "types": "./dist/design-system-next.es.d.ts",
   "repository": {
     "type": "git",
     "url": "https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next"
@@ -18,16 +19,21 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/design-system-next.es.d.ts",
       "import": "./dist/design-system-next.es.js",
       "require": "./dist/design-system-next.umd.js"
     },
-    "./style.css": "./dist/main.css"
+    "./style.css": "./dist/main.css",
+    "./types": {
+      "types": "./dist/design-system-next.es.d.ts",
+      "import": "./dist/design-system-next.es.d.ts"
+    }
   },
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "watch-build": "vue-tsc && vite build --watch",
-    "types": "vue-tsc",
+    "build": "vite build",
+    "watch-build": "vite build --watch",
+    "types": "vue-tsc --noEmit",
     "preview": "vite preview",
     "lint:script": "eslint \"**/*.{js,ts,vue}\"",
     "lint:style": "stylelint \"**/*.{vue,css}\"",

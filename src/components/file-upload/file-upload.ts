@@ -92,7 +92,10 @@ export const fileUploadPropTypes = {
   },
 };
 
-export const fileUploadEmitTypes =  ['update:modelValue']
+export const fileUploadEmitTypes = {
+  'update:modelValue': () => true,
+  'validation-error': () => true,
+}
 
 export type FileUploadPropTypes = ExtractPropTypes<typeof fileUploadPropTypes>;
 export type FileUploadEmitTypes = typeof fileUploadEmitTypes;

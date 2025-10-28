@@ -270,6 +270,69 @@ const validateFile = (file) => {
 </script>
 ```
 
+## Automatic File Type Validation
+
+The File Upload component automatically validates uploaded files against the accepted file types specified in the `fileTypes` prop. When a user attempts to upload an invalid file type, the component:
+
+1. **Filters out invalid files** - Only valid files are added to the model
+2. **Emits validation errors** - Triggers a `validation-error` event with error messages
+3. **Shows error feedback** - Displays error messages when `showError` is true
+
+<div>
+  <spr-file-upload 
+    v-model="filesValidation"
+    :file-types="['image/jpeg','image/png']"
+    :max-file-size="10"
+    title="Upload Images Only (Try uploading a PDF or other file type)"
+    multiple
+    :show-error="showValidationError"
+    :error-messages="validationErrorMessages"
+    @validation-error="handleValidationError"
+  />
+</div>
+
+```vue
+<template>
+  <spr-file-upload
+    v-model="filesValidation"
+    :file-types="['image/jpeg', 'image/png']"
+    :max-file-size="10"
+    title="Upload Images Only"
+    multiple
+    :show-error="showValidationError"
+    :error-messages="validationErrorMessages"
+    @validation-error="handleValidationError"
+  />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const filesValidation = ref([]);
+const showValidationError = ref(false);
+const validationErrorMessages = ref([]);
+
+const handleValidationError = (errors) => {
+  validationErrorMessages.value = errors;
+  showValidationError.value = errors.length > 0;
+  
+  // Optionally, clear the error after a few seconds
+  if (errors.length > 0) {
+    setTimeout(() => {
+      showValidationError.value = false;
+      validationErrorMessages.value = [];
+    }, 5000);
+  }
+};
+</script>
+```
+
+:::tip Validation Behavior
+- **Drag & Drop**: Invalid files are automatically filtered out before being added
+- **File Selector**: Invalid files are rejected and an error message is displayed
+- **Multiple Files**: If some files are valid and others are invalid, only valid files are added, and an error message lists the invalid files
+:::
+
 ## Customizing File Type Labels
 
 By default, the component shows a list of supported file types in the upload area. You can customize this text using the `supportedFileTypeLabel` prop.
@@ -629,6 +692,11 @@ const filesAdvanced2 = ref([]);
       <td>Emitted when files are added, replaced, or removed</td>
       <td>File[]: The updated array of files</td>
     </tr>
+    <tr>
+      <td>validation-error</td>
+      <td>Emitted when files fail validation (e.g., unsupported file type). Emits an empty array when all files are valid.</td>
+      <td>string[]: Array of error messages describing validation failures</td>
+    </tr>
   </tbody>
 </table>
 
@@ -690,4 +758,22 @@ const filesIcon2 = ref([]);
 // Advanced progress examples
 const filesAdvanced1 = ref([]);
 const filesAdvanced2 = ref([]);
+
+// Validation example
+const filesValidation = ref([]);
+const showValidationError = ref(false);
+const validationErrorMessages = ref([]);
+
+const handleValidationError = (errors) => {
+  validationErrorMessages.value = errors;
+  showValidationError.value = errors.length > 0;
+  
+  // Optionally, clear the error after a few seconds
+  if (errors.length > 0) {
+    setTimeout(() => {
+      showValidationError.value = false;
+      validationErrorMessages.value = [];
+    }, 5000);
+  }
+};
 </script>

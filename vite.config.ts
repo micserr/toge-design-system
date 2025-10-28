@@ -30,6 +30,7 @@ export default defineConfig({
       insertTypesEntry: true,
       copyDtsFiles: false,
       staticImport: true,
+      rollupTypes: true,
       exclude: ['src/**/*.spec.ts', 'tests/**/*', 'playwright/**/*'],
       compilerOptions: {
         composite: false,

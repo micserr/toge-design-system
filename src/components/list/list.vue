@@ -20,7 +20,7 @@
 
     <div class="spr-p-size-spacing-3xs">
       <!-- Grouped Items -->
-      <template v-if="props.groupItemsBy && groupedMenuList && groupedMenuList.length > 0">
+      <template v-if="hasGroupedItems">
         <div class="spr-grid spr-gap-3">
           <div v-for="(list, listIndex) in groupedMenuList" :key="listIndex" class="spr-grid spr-gap-0.5">
             <div
@@ -111,6 +111,7 @@ const {
   searchText,
   localizedMenuList,
   groupedMenuList,
+  hasGroupedItems,
   isItemSelected,
   getListItemClasses,
   handleSelectedItem,

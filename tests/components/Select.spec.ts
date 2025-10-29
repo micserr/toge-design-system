@@ -183,7 +183,7 @@ test.describe('Select Component', () => {
       });
 
       await component.locator('input').click();
-      await expect(component.locator('.spr-grid').getByText('No results found')).toBeVisible();
+      await expect(component.getByText('No results found')).toBeVisible();
     });
   });
 
@@ -353,7 +353,7 @@ test.describe('Select Component', () => {
       await component.locator('input').click();
       await component.locator('input').type('nonexistent');
 
-      await expect(component.locator('.spr-grid').getByText('No results found')).toBeVisible();
+      await expect(component.getByText('No results found')).toBeVisible();
     });
 
     test('should disable local search when disabledLocalSearch is true', async ({ mount }) => {

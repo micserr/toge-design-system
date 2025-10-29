@@ -29,127 +29,130 @@
         </div>
         <!-- #endregion - Logo -->
 
-        <!-- #region - Quick Actions -->
-        <Menu
-          v-if="props.quickActions && props.quickActions.length > 0"
-          v-model:shown="isQuckActionMenuVisible"
-          aria-id="quick-action-menu-wrapper"
-          distance="18"
-          placement="right-start"
-          :triggers="[]"
-          :popper-hide-triggers="[]"
-          instant-move
-          :delay="0"
-        >
-          <div
-            :class="{
-              'spr-flex spr-w-full spr-cursor-pointer spr-items-center spr-text-center spr-text-[28px] spr-transition spr-duration-150 spr-ease-in-out': true,
-              'hover:spr-brightness-75': true,
-              'active:spr-text-color-success-pressed active:spr-scale-90': true,
-              'spr-text-color-inverted-disabled spr-rotate-180': isQuckActionMenuVisible,
-              'spr-text-color-brand-base': !isQuckActionMenuVisible,
-            }"
-            @click="isQuckActionMenuVisible = !isQuckActionMenuVisible"
+        <template v-if="!props.loading">
+          <!-- #region - Quick Actions -->
+          <Menu
+            v-if="props.quickActions && props.quickActions.length > 0"
+            v-model:shown="isQuckActionMenuVisible"
+            aria-id="quick-action-menu-wrapper"
+            distance="18"
+            placement="right-start"
+            :triggers="[]"
+            :popper-hide-triggers="[]"
+            instant-move
+            :delay="0"
           >
-            <Icon icon="ph:plus-circle-fill" class="spr-w-full" />
-          </div>
-
-          <template #popper>
             <div
-              :class="[
-                'spr-px-4 spr-py-3',
-                'spr-border-color-weak spr-flex spr-justify-between spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid',
-              ]"
+              :class="{
+                'spr-flex spr-w-full spr-cursor-pointer spr-items-center spr-text-center spr-text-[28px] spr-transition spr-duration-150 spr-ease-in-out': true,
+                'hover:spr-brightness-75': true,
+                'active:spr-text-color-success-pressed active:spr-scale-90': true,
+                'spr-text-color-inverted-disabled spr-rotate-180': isQuckActionMenuVisible,
+                'spr-text-color-brand-base': !isQuckActionMenuVisible,
+              }"
+              @click="isQuckActionMenuVisible = !isQuckActionMenuVisible"
             >
-              <h3 class="spr-body-sm-regular-medium spr-m-0">Quick Actions</h3>
-              <Icon
-                icon="ph:x"
+              <Icon icon="ph:plus-circle-fill" class="spr-w-full" />
+            </div>
+
+            <template #popper>
+              <div
                 :class="[
-                  'spr-text-color-weak spr-h-[20px] spr-w-[20px] spr-cursor-pointer',
-                  'spr-transition spr-duration-150 spr-ease-in-out',
-                  'active:spr-scale-90',
+                  'spr-px-4 spr-py-3',
+                  'spr-border-color-weak spr-flex spr-justify-between spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid',
                 ]"
-                @click="isQuckActionMenuVisible = !isQuckActionMenuVisible"
-              />
-            </div>
-
-            <div class="spr-max-h-[268px] spr-overflow-auto">
-              <template v-for="(quickAction, quickActionIndex) in props.quickActions" :key="quickActionIndex">
-                <h5
-                  v-if="quickAction.menuHeading"
+              >
+                <h3 class="spr-body-sm-regular-medium spr-m-0">Quick Actions</h3>
+                <Icon
+                  icon="ph:x"
                   :class="[
-                    {
-                      'spr-label-xs-medium spr-text-color-supporting spr-m-0 spr-p-2': true,
-                      'spr-mt-3': quickActionIndex !== 0,
-                    },
+                    'spr-text-color-weak spr-h-[20px] spr-w-[20px] spr-cursor-pointer',
+                    'spr-transition spr-duration-150 spr-ease-in-out',
+                    'active:spr-scale-90',
                   ]"
-                >
-                  {{ quickAction.menuHeading }}
-                </h5>
-                <template v-for="(menuLinkItem, menuLinkItemIndex) in quickAction.items" :key="menuLinkItemIndex">
-                  <div
-                    v-if="!menuLinkItem.hidden"
+                  @click="isQuckActionMenuVisible = !isQuckActionMenuVisible"
+                />
+              </div>
+
+              <div class="spr-max-h-[268px] spr-overflow-auto">
+                <template v-for="(quickAction, quickActionIndex) in props.quickActions" :key="quickActionIndex">
+                  <h5
+                    v-if="quickAction.menuHeading"
                     :class="[
-                      'spr-flex spr-cursor-pointer spr-gap-2 spr-px-4 spr-py-3 spr-align-middle spr-duration-150 spr-ease-in-out',
-                      'hover:spr-background-color-hover',
-                      'active:spr-background-color-pressed',
+                      {
+                        'spr-label-xs-medium spr-text-color-supporting spr-m-0 spr-p-2': true,
+                        'spr-mt-3': quickActionIndex !== 0,
+                      },
                     ]"
-                    @click="handleRedirect(menuLinkItem, '', '', '')"
                   >
+                    {{ quickAction.menuHeading }}
+                  </h5>
+                  <template v-for="(menuLinkItem, menuLinkItemIndex) in quickAction.items" :key="menuLinkItemIndex">
                     <div
-                      :class="{
-                        'spr-flex spr-items-center spr-rounded-border-radius-md spr-p-2': true,
-                        'spr-border spr-border-solid spr-border-kangkong-400 spr-bg-kangkong-50 spr-text-kangkong-800':
-                          menuLinkItem.iconBgColor === 'green',
-                        'spr-border spr-border-solid spr-border-ubas-400 spr-bg-ubas-50 spr-text-ubas-800':
-                          menuLinkItem.iconBgColor === 'purple',
-                      }"
+                      v-if="!menuLinkItem.hidden"
+                      :class="[
+                        'spr-flex spr-cursor-pointer spr-gap-2 spr-px-4 spr-py-3 spr-align-middle spr-duration-150 spr-ease-in-out',
+                        'hover:spr-background-color-hover',
+                        'active:spr-background-color-pressed',
+                      ]"
+                      @click="handleRedirect(menuLinkItem, '', '', '')"
                     >
-                      <Icon
-                        v-if="menuLinkItem.icon"
-                        :icon="menuLinkItem.icon"
-                        class="spr-h-[1em] spr-w-[1em] spr-text-[20px]"
-                      />
+                      <div
+                        :class="{
+                          'spr-flex spr-items-center spr-rounded-border-radius-md spr-p-2': true,
+                          'spr-border spr-border-solid spr-border-kangkong-400 spr-bg-kangkong-50 spr-text-kangkong-800':
+                            menuLinkItem.iconBgColor === 'green',
+                          'spr-border spr-border-solid spr-border-ubas-400 spr-bg-ubas-50 spr-text-ubas-800':
+                            menuLinkItem.iconBgColor === 'purple',
+                        }"
+                      >
+                        <Icon
+                          v-if="menuLinkItem.icon"
+                          :icon="menuLinkItem.icon"
+                          class="spr-h-[1em] spr-w-[1em] spr-text-[20px]"
+                        />
+                      </div>
+                      <div class="spr-grid spr-justify-between">
+                        <h5 class="spr-body-sm-regular-medium spr-text-color-strong spr-m-0 spr-truncate">
+                          {{ menuLinkItem.title }}
+                        </h5>
+                        <p class="spr-body-xs-regular spr-text-color-base spr-m-0 spr-truncate">
+                          {{ menuLinkItem.description }}
+                        </p>
+                      </div>
                     </div>
-                    <div class="spr-grid spr-justify-between">
-                      <h5 class="spr-body-sm-regular-medium spr-text-color-strong spr-m-0 spr-truncate">
-                        {{ menuLinkItem.title }}
-                      </h5>
-                      <p class="spr-body-xs-regular spr-text-color-base spr-m-0 spr-truncate">
-                        {{ menuLinkItem.description }}
-                      </p>
-                    </div>
-                  </div>
+                  </template>
                 </template>
-              </template>
-            </div>
-          </template>
-        </Menu>
-        <!-- #endregion - Quick Actions -->
+              </div>
+            </template>
+          </Menu>
+          <!-- #endregion - Quick Actions -->
 
-        <!-- #region - Search -->
-        <div
-          v-if="props.hasSearch"
-          id="sidenav_search"
-          :class="[
-            'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out',
-            'hover:spr-background-color-hover',
-            'active:spr-background-color-single-active active:spr-scale-90',
-            'spr-m-auto spr-box-border spr-max-h-9 spr-max-w-9',
-          ]"
-          @click="emit('search', 'search-triggered')"
-        >
-          <Icon icon="ph:magnifying-glass" class="spr-h-[1.25em] spr-w-[1.25em]" />
-        </div>
-        <!-- #endregion - Search -->
+          <!-- #region - Search -->
+          <div
+            v-if="props.hasSearch"
+            id="sidenav_search"
+            :class="[
+              'spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out',
+              'hover:spr-background-color-hover',
+              'active:spr-background-color-single-active active:spr-scale-90',
+              'spr-m-auto spr-box-border spr-max-h-9 spr-max-w-9',
+            ]"
+            @click="emit('search', 'search-triggered')"
+          >
+            <Icon icon="ph:magnifying-glass" class="spr-h-[1.25em] spr-w-[1.25em]" />
+          </div>
+          <!-- #endregion - Search -->
 
-        <!-- #region - Grouped Nav Links -->
-        <sidenav-menu-links
-          :nav-links="navLinks.top"
-          :active-nav="props.activeNav"
-          @get-navlink-item="emit('get-navlink-item', $event)"
-        />
-        <!-- #endregion - Grouped Nav Links -->
+          <!-- #region - Grouped Nav Links -->
+          <sidenav-menu-links
+            :nav-links="navLinks.top"
+            :active-nav="props.activeNav"
+            @get-navlink-item="emit('get-navlink-item', $event)"
+          />
+          <!-- #endregion - Grouped Nav Links -->
+        </template>
+        <sidenav-loader v-else :count="5" />
       </div>
       <!-- #endregion - Top Section -->
 
@@ -160,10 +163,13 @@
       >
         <!-- #region - Grouped Nav Links -->
         <sidenav-menu-links
+          v-if="!props.loading"
           :nav-links="navLinks.bottom"
           :active-nav="props.activeNav"
           @get-navlink-item="emit('get-navlink-item', $event)"
         />
+
+        <sidenav-loader v-else :count="3" />
         <!-- #endregion - Grouped Nav Links -->
       </div>
       <!-- #endregion - Bottom Section -->
@@ -173,65 +179,68 @@
       v-if="props.notificationCount || props.requestCount || props.notificationCount === 0 || props.requestCount === 0"
       class="spr-grid spr-gap-2 spr-py-6"
     >
-      <!-- #region - Notification -->
-      <spr-tooltip text="NOTIFICATIONS" placement="right" :distance="4" :fit-content="false">
-        <div
-          v-if="props.notificationCount || props.notificationCount === 0"
-          id="sidenav_notification"
-          :class="[
-            'spr-2 spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md',
-            'spr-m-auto spr-h-9 spr-w-9 spr-transition spr-duration-150 spr-ease-in-out',
-            'active:spr-background-color-single-active active:spr-scale-90',
-            {
-              'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
-                props.isNotifActive,
-            },
-            { 'hover:spr-background-color-hover': !props.isNotifActive },
-          ]"
-          @click="emit('notifications', 'notifications-triggered')"
-        >
-          <Icon v-if="!props.isNotifActive" icon="ph:bell" class="spr-h-[1.25em] spr-w-[1.25em]" />
-          <Icon v-else icon="ph:bell-fill" class="spr-h-[1.25em] spr-w-[1.25em] spr-text-kangkong-700" />
-          <spr-badge
-            v-if="props.notificationCount !== 0"
-            class="spr-absolute -spr-top-0.5 spr-right-0.5"
-            :text="String(props.notificationCount)"
-            variant="danger"
-            size="small"
-          />
-        </div>
-      </spr-tooltip>
-      <!-- #endregion - Notification -->
+      <template v-if="!props.loading">
+        <!-- #region - Notification -->
+        <spr-tooltip text="NOTIFICATIONS" placement="right" :distance="4" :fit-content="false">
+          <div
+            v-if="props.notificationCount || props.notificationCount === 0"
+            id="sidenav_notification"
+            :class="[
+              'spr-2 spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md',
+              'spr-m-auto spr-h-9 spr-w-9 spr-transition spr-duration-150 spr-ease-in-out',
+              'active:spr-background-color-single-active active:spr-scale-90',
+              {
+                'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
+                  props.isNotifActive,
+              },
+              { 'hover:spr-background-color-hover': !props.isNotifActive },
+            ]"
+            @click="emit('notifications', 'notifications-triggered')"
+          >
+            <Icon v-if="!props.isNotifActive" icon="ph:bell" class="spr-h-[1.25em] spr-w-[1.25em]" />
+            <Icon v-else icon="ph:bell-fill" class="spr-h-[1.25em] spr-w-[1.25em] spr-text-kangkong-700" />
+            <spr-badge
+              v-if="props.notificationCount !== 0"
+              class="spr-absolute -spr-top-0.5 spr-right-0.5"
+              :text="String(props.notificationCount)"
+              variant="danger"
+              size="small"
+            />
+          </div>
+        </spr-tooltip>
+        <!-- #endregion - Notification -->
 
-      <!-- #region - Requests -->
-      <spr-tooltip text="REQUESTS" placement="right" :distance="4" :fit-content="false">
-        <div
-          v-if="props.requestCount || props.requestCount === 0"
-          id="sidenav_request"
-          :class="[
-            'spr-2 spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md',
-            'spr-m-auto spr-h-9 spr-w-9 spr-transition spr-duration-150 spr-ease-in-out',
-            'active:spr-background-color-single-active active:spr-scale-90',
-            {
-              'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
-                props.isRequestActive,
-            },
-            { 'hover:spr-background-color-hover': !props.isRequestActive },
-          ]"
-          @click="emit('requests', 'requests-triggered')"
-        >
-          <Icon v-if="!props.isRequestActive" icon="ph:file-text" class="spr-h-[1.25em] spr-w-[1.25em]" />
-          <Icon v-else icon="ph:file-text-fill" class="spr-h-[1.25em] spr-w-[1.25em] spr-text-kangkong-700" />
-          <spr-badge
-            v-if="props.requestCount !== 0"
-            class="spr-absolute -spr-top-0.5 spr-right-0.5"
-            :text="String(props.requestCount)"
-            variant="danger"
-            size="small"
-          />
-        </div>
-      </spr-tooltip>
-      <!-- #endregion - Requests -->
+        <!-- #region - Requests -->
+        <spr-tooltip text="REQUESTS" placement="right" :distance="4" :fit-content="false">
+          <div
+            v-if="props.requestCount || props.requestCount === 0"
+            id="sidenav_request"
+            :class="[
+              'spr-2 spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md',
+              'spr-m-auto spr-h-9 spr-w-9 spr-transition spr-duration-150 spr-ease-in-out',
+              'active:spr-background-color-single-active active:spr-scale-90',
+              {
+                'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
+                  props.isRequestActive,
+              },
+              { 'hover:spr-background-color-hover': !props.isRequestActive },
+            ]"
+            @click="emit('requests', 'requests-triggered')"
+          >
+            <Icon v-if="!props.isRequestActive" icon="ph:file-text" class="spr-h-[1.25em] spr-w-[1.25em]" />
+            <Icon v-else icon="ph:file-text-fill" class="spr-h-[1.25em] spr-w-[1.25em] spr-text-kangkong-700" />
+            <spr-badge
+              v-if="props.requestCount !== 0"
+              class="spr-absolute -spr-top-0.5 spr-right-0.5"
+              :text="String(props.requestCount)"
+              variant="danger"
+              size="small"
+            />
+          </div>
+        </spr-tooltip>
+        <!-- #endregion - Requests -->
+      </template>
+      <sidenav-loader v-else />
     </div>
 
     <!-- #region - Avatar -->
@@ -336,6 +345,7 @@ import { sidenavPropTypes, sidenavEmitTypes } from './sidenav';
 import { useSidenav } from './use-sidenav';
 
 import SidenavMenuLinks from './sidenav-menu-links.vue';
+import SidenavLoader from './sidenav-loader.vue';
 
 import SprAvatar from '../avatar/avatar.vue';
 import SprBadge from '../badge/badge.vue';

@@ -1186,6 +1186,11 @@ const userMenu = ref({
 ## Full Example
 
 Here’s a full example of how to implement the Sidenav component:
+Switch to loading to see the loading state.
+
+<div class="spr-p-4 spr-w-full spr-justify-end spr-flex">
+  <spr-switch v-model="loading" >Switch to loading</spr-switch>
+</div>
 
 <div class="no-darkmode spr-m-0 spr-bg-mushroom-100 spr-text-mushroom-950 spr-font-main spr-rounded-md spr-h-[100vh] spr-w-full spr-relative spr-flex">
   <spr-sidenav 
@@ -1197,6 +1202,7 @@ Here’s a full example of how to implement the Sidenav component:
     :notification-count="5"
     :request-count="`99+`"
     :user-menu="userMenu"
+    :loading="loading"
     @get-navlink-item="handleGetNavLinkItem"
     @search="handleSearch"
     @notifications="handleNotifications"
@@ -1743,6 +1749,7 @@ Here's a complete implementation example using the sidenav component with `isNav
     :notification-count="12"
     :request-count="3"
     :user-menu="userMenu"
+    :loading="loading"
     has-search
     @get-navlink-item="handleNavClick"
     @search="handleSearch"
@@ -2440,7 +2447,9 @@ import { ref } from 'vue';
 import SprSidenav from '@/components/sidenav/sidenav.vue';
 import SprLogo from "@/components/logo/logo.vue";
 import SideNavDataApi from '../../json-data/side-nav-api.json';
+import SprSwitch from '@/components/switch/switch.vue';
 
+const loading= ref(false);
 const quickActions = ref([
   {
     menuHeading: 'Sub Heading 1',

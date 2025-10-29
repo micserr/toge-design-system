@@ -123,11 +123,11 @@
 
                     <!-- #region - Submenu Links Popper -->
                     <!-- 
-                      Note: if you want the popper to stay open while hovering over submenuLink.subMenuHeading & submenuLinkItem.title, 
-                            you need to keep it inside a <Menu> or ensure the content is part of the popper's interactive area.
-                              
-                            "sidenav-submenu-l2-wrapper" - Popper is currently hidden since sidenav only has 1 level of submenu links.
-                    -->
+                        Note: if you want the popper to stay open while hovering over submenuLink.subMenuHeading & submenuLinkItem.title, 
+                              you need to keep it inside a <Menu> or ensure the content is part of the popper's interactive area.
+                                
+                              "sidenav-submenu-l2-wrapper" - Popper is currently hidden since sidenav only has 1 level of submenu links.
+                      -->
                     <template #popper>
                       <Menu aria-id="sidenav-submenu-l2-wrapper" :triggers="['click', 'hover']" instant-move :delay="0">
                         <template

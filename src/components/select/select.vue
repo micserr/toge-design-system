@@ -93,74 +93,17 @@
 
       <template #popper>
         <div ref="selectPopperRef" class="spr-max-h-[300px] spr-overflow-y-auto spr-overflow-x-hidden">
-          <template v-if="isSearching">
-            <template v-if="!props.disabledLocalSearch">
-              <template v-if="filteredSelectOptions.length > 0">
-                <spr-list
-                  v-model="selectedListItems"
-                  :menu-list="filteredSelectOptions"
-                  :group-items-by="props.groupItemsBy"
-                  :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
-                  :loading="props.optionsLoader"
-                  :infinite-scroll-loader="props.infiniteScrollLoader"
-                  :item-icon="props.itemIcon"
-                  :lozenge="props.lozenge"
-                  @update:model-value="handleSelectedItem"
-                />
-              </template>
-              <template v-else>
-                <div class="spr-grid">
-                  <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
-                    <span class="spr-body-sm-regular spr-m-0">No results found</span>
-                  </div>
-                </div>
-              </template>
-            </template>
-            <template v-else>
-              <template v-if="selectOptions.length > 0">
-                <spr-list
-                  v-model="selectedListItems"
-                  :menu-list="selectOptions"
-                  :group-items-by="props.groupItemsBy"
-                  :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
-                  :loading="props.optionsLoader"
-                  :infinite-scroll-loading="props.infiniteScrollLoader"
-                  :item-icon="props.itemIcon"
-                  :lozenge="props.lozenge"
-                  @update:model-value="handleSelectedItem"
-                />
-              </template>
-              <template v-else>
-                <div class="spr-grid">
-                  <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
-                    <span class="spr-body-sm-regular spr-m-0">No results found</span>
-                  </div>
-                </div>
-              </template>
-            </template>
-          </template>
-          <template v-else>
-            <template v-if="selectOptions.length > 0">
-              <spr-list
-                v-model="selectedListItems"
-                :menu-list="selectOptions"
-                :group-items-by="props.groupItemsBy"
-                :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
-                :loading="props.optionsLoader"
-                :infinite-scroll-loading="props.infiniteScrollLoader"
-                :item-icon="props.itemIcon"
-                :lozenge="props.lozenge"
-                @update:model-value="handleSelectedItem"
-              />
-            </template>
-            <template v-else>
-              <div class="spr-grid">
-                <div class="spr-flex spr-items-center spr-justify-center spr-p-2 spr-text-center">
-                  <span class="spr-body-sm-regular spr-m-0">No results found</span>
-                </div>
-              </div>
-            </template>
-          </template>
+          <spr-list
+            v-model="selectedListItems"
+            :menu-list="isSearching && !props.disabledLocalSearch ? filteredSelectOptions : selectOptions"
+            :group-items-by="props.groupItemsBy"
+            :pre-selected-items="Array.isArray(selectModel) ? selectModel.flat() : [selectModel]"
+            :loading="props.optionsLoader"
+            :infinite-scroll-loader="props.infiniteScrollLoader"
+            :item-icon="props.itemIcon"
+            :lozenge="props.lozenge"
+            @update:model-value="handleSelectedItem"
+          />
         </div>
       </template>
     </Menu>

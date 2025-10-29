@@ -20,20 +20,51 @@ export const useFileUpload = (props: FileUploadPropTypes, emit: SetupContext<Fil
   // Hidden shared input file in file list. Used for replace function.
   const listInputFileRef = ref<HTMLInputElement | null>(null);
   const fileArray = useVModel(props, 'modelValue', emit);
+  const validationErrors = ref<string[]>([]);
 
   // Shared file change event for input file and drag & drop
   const onFileChangeHandler = (files: File[] | Event | null) => {
     if (props.disabled || files === null) return;
 
+    let filesToValidate: File[] = [];
+
     // For input file event
     if(files instanceof Event) {
       const target = files.target as HTMLInputElement;
       const fileList = target.files;
-      fileArray.value = fileList ? Array.from(fileList) : [];
+      filesToValidate = fileList ? Array.from(fileList) : [];
     }
     // For drag and drop event
     else {
-      fileArray.value = files.filter((file) => props.fileTypes.includes(file.type));
+      filesToValidate = files;
+    }
+
+    // Validate file types
+    const validFiles: File[] = [];
+    const invalidFiles: string[] = [];
+
+    filesToValidate.forEach((file) => {
+      if (props.fileTypes.includes(file.type)) {
+        validFiles.push(file);
+      } else {
+        invalidFiles.push(file.name);
+      }
+    });
+
+    // Update file array with valid files only
+    fileArray.value = validFiles;
+
+    // Emit validation errors if any invalid files were found
+    if (invalidFiles.length > 0) {
+      const errorMessage = invalidFiles.length === 1
+        ? `File "${invalidFiles[0]}" is not a supported file type.`
+        : `Files ${invalidFiles.map(name => `"${name}"`).join(', ')} are not supported file types.`;
+      
+      validationErrors.value = [errorMessage];
+      emit('validation-error', validationErrors.value);
+    } else {
+      validationErrors.value = [];
+      emit('validation-error', []);
     }
   }
 
@@ -127,10 +158,11 @@ export const useFileUpload = (props: FileUploadPropTypes, emit: SetupContext<Fil
   };
 
   const replaceFile = (event: Event,) => {
-    if ((event.target as HTMLInputElement).files?.length <= 0) return;
+    const target = event.target as HTMLInputElement;
+    if (!target.files || target.files.length <= 0) return;
     if (tempFileIndex.value === null) return;
 
-    fileArray.value[tempFileIndex.value] = (event.target as HTMLInputElement).files![0];
+    fileArray.value[tempFileIndex.value] = target.files[0];
     tempFileIndex.value = null;
   }
 
@@ -193,6 +225,7 @@ export const useFileUpload = (props: FileUploadPropTypes, emit: SetupContext<Fil
     clickListInputFile,
     replaceFile,
     supportedFileTypeLabel,
-    iconMap
+    iconMap,
+    validationErrors
   };
 };

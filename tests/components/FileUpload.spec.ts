@@ -863,4 +863,411 @@ test.describe('FileUpload Component', () => {
       }
     });
   });
+
+  test.describe('Automatic File Type Validation', () => {
+    test('emits validation-error event when invalid file type is uploaded', async ({ mount }) => {
+      const validationErrors: string[][] = [];
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: [],
+          fileTypes: ['image/jpeg', 'image/png'],
+          multiple: true,
+        },
+        on: {
+          'validation-error': (errors: string[]) => {
+            validationErrors.push(errors);
+          },
+        },
+      });
+
+      // Create a mock file with invalid type (PDF)
+      const invalidFile = new File(['test content'], 'document.pdf', { type: 'application/pdf' });
+      const fileInput = component.locator('input[type="file"]').first();
+
+      // Simulate file selection
+      await fileInput.setInputFiles([
+        {
+          name: invalidFile.name,
+          mimeType: invalidFile.type,
+          buffer: Buffer.from('test content'),
+        },
+      ]);
+
+      // Wait for validation to complete
+      await component.page().waitForTimeout(100);
+
+      // Verify validation-error event was emitted
+      expect(validationErrors.length).toBeGreaterThan(0);
+      expect(validationErrors[validationErrors.length - 1].length).toBeGreaterThan(0);
+      expect(validationErrors[validationErrors.length - 1][0]).toContain('document.pdf');
+      expect(validationErrors[validationErrors.length - 1][0]).toContain('not a supported file type');
+    });
+
+    test('emits empty array when valid file type is uploaded', async ({ mount }) => {
+      const validationErrors: string[][] = [];
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: [],
+          fileTypes: ['image/jpeg', 'image/png'],
+          multiple: true,
+        },
+        on: {
+          'validation-error': (errors: string[]) => {
+            validationErrors.push(errors);
+          },
+        },
+      });
+
+      // Create a mock file with valid type (JPEG)
+      const validFile = new File(['test content'], 'image.jpg', { type: 'image/jpeg' });
+      const fileInput = component.locator('input[type="file"]').first();
+
+      // Simulate file selection
+      await fileInput.setInputFiles([
+        {
+          name: validFile.name,
+          mimeType: validFile.type,
+          buffer: Buffer.from('test content'),
+        },
+      ]);
+
+      // Wait for validation to complete
+      await component.page().waitForTimeout(100);
+
+      // Verify validation-error event was emitted with empty array
+      expect(validationErrors.length).toBeGreaterThan(0);
+      expect(validationErrors[validationErrors.length - 1]).toEqual([]);
+    });
+
+    test('filters out invalid files and only adds valid files to modelValue', async ({ mount }) => {
+      let fileCount = 0;
+      const validationErrors: string[][] = [];
+      
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: [],
+          fileTypes: ['image/jpeg', 'image/png'],
+          multiple: true,
+        },
+        on: {
+          'update:modelValue': (files: File[]) => {
+            fileCount = files.length;
+          },
+          'validation-error': (errors: string[]) => {
+            validationErrors.push(errors);
+          },
+        },
+      });
+
+      const fileInput = component.locator('input[type="file"]').first();
+
+      // Simulate file selection with mixed valid and invalid files
+      await fileInput.setInputFiles([
+        {
+          name: 'valid-image.jpg',
+          mimeType: 'image/jpeg',
+          buffer: Buffer.from('valid image content'),
+        },
+        {
+          name: 'invalid-document.pdf',
+          mimeType: 'application/pdf',
+          buffer: Buffer.from('invalid pdf content'),
+        },
+        {
+          name: 'valid-image.png',
+          mimeType: 'image/png',
+          buffer: Buffer.from('valid png content'),
+        },
+      ]);
+
+      // Wait for validation to complete
+      await component.page().waitForTimeout(100);
+
+      // Verify only 2 valid files were added (PDF was filtered out)
+      expect(fileCount).toBe(2);
+      
+      // Verify validation error was emitted for the invalid file
+      expect(validationErrors.length).toBeGreaterThan(0);
+      expect(validationErrors[validationErrors.length - 1][0]).toContain('invalid-document.pdf');
+    });
+
+    test('generates correct error message for single invalid file', async ({ mount }) => {
+      const validationErrors: string[][] = [];
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: [],
+          fileTypes: ['image/jpeg', 'image/png'],
+          multiple: true,
+        },
+        on: {
+          'validation-error': (errors: string[]) => {
+            validationErrors.push(errors);
+          },
+        },
+      });
+
+      const fileInput = component.locator('input[type="file"]').first();
+
+      // Upload single invalid file
+      await fileInput.setInputFiles([
+        {
+          name: 'report.pdf',
+          mimeType: 'application/pdf',
+          buffer: Buffer.from('test content'),
+        },
+      ]);
+
+      await component.page().waitForTimeout(100);
+
+      // Verify error message format for single file
+      expect(validationErrors[validationErrors.length - 1][0]).toBe(
+        'File "report.pdf" is not a supported file type.'
+      );
+    });
+
+    test('generates correct error message for multiple invalid files', async ({ mount }) => {
+      const validationErrors: string[][] = [];
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: [],
+          fileTypes: ['image/jpeg', 'image/png'],
+          multiple: true,
+        },
+        on: {
+          'validation-error': (errors: string[]) => {
+            validationErrors.push(errors);
+          },
+        },
+      });
+
+      const fileInput = component.locator('input[type="file"]').first();
+
+      // Upload multiple invalid files
+      await fileInput.setInputFiles([
+        {
+          name: 'document.pdf',
+          mimeType: 'application/pdf',
+          buffer: Buffer.from('test content'),
+        },
+        {
+          name: 'spreadsheet.xlsx',
+          mimeType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+          buffer: Buffer.from('test content'),
+        },
+      ]);
+
+      await component.page().waitForTimeout(100);
+
+      // Verify error message format for multiple files
+      const errorMessage = validationErrors[validationErrors.length - 1][0];
+      expect(errorMessage).toContain('Files');
+      expect(errorMessage).toContain('"document.pdf"');
+      expect(errorMessage).toContain('"spreadsheet.xlsx"');
+      expect(errorMessage).toContain('are not supported file types');
+    });
+
+    test('validation works with different file type configurations', async ({ mount }) => {
+      const validationErrors: string[][] = [];
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: [],
+          fileTypes: ['application/pdf', 'text/plain'],
+          multiple: true,
+        },
+        on: {
+          'validation-error': (errors: string[]) => {
+            validationErrors.push(errors);
+          },
+        },
+      });
+
+      const fileInput = component.locator('input[type="file"]').first();
+
+      // Upload valid PDF
+      await fileInput.setInputFiles([
+        {
+          name: 'document.pdf',
+          mimeType: 'application/pdf',
+          buffer: Buffer.from('test content'),
+        },
+      ]);
+
+      await component.page().waitForTimeout(100);
+
+      // Should emit empty array for valid file
+      expect(validationErrors[validationErrors.length - 1]).toEqual([]);
+
+      // Upload invalid image
+      await fileInput.setInputFiles([
+        {
+          name: 'image.jpg',
+          mimeType: 'image/jpeg',
+          buffer: Buffer.from('test content'),
+        },
+      ]);
+
+      await component.page().waitForTimeout(100);
+
+      // Should emit error for invalid file
+      expect(validationErrors[validationErrors.length - 1].length).toBeGreaterThan(0);
+      expect(validationErrors[validationErrors.length - 1][0]).toContain('image.jpg');
+    });
+
+    test('validation does not trigger when component is disabled', async ({ mount }) => {
+      const validationErrors: string[][] = [];
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: [],
+          fileTypes: ['image/jpeg', 'image/png'],
+          multiple: true,
+          disabled: true,
+        },
+        on: {
+          'validation-error': (errors: string[]) => {
+            validationErrors.push(errors);
+          },
+        },
+      });
+
+      const fileInput = component.locator('input[type="file"]').first();
+
+      // Try to upload file while disabled
+      await fileInput.setInputFiles([
+        {
+          name: 'document.pdf',
+          mimeType: 'application/pdf',
+          buffer: Buffer.from('test content'),
+        },
+      ]);
+
+      await component.page().waitForTimeout(100);
+
+      // No validation should occur when disabled
+      expect(validationErrors.length).toBe(0);
+    });
+
+    test('validation integrates with error display props', async ({ mount }) => {
+      const validationErrors: string[][] = [];
+      let showError = false;
+      let errorMessages: string[] = [];
+
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: [],
+          fileTypes: ['image/jpeg', 'image/png'],
+          multiple: true,
+          showError: showError,
+          errorMessages: errorMessages,
+        },
+        on: {
+          'validation-error': (errors: string[]) => {
+            validationErrors.push(errors);
+            showError = errors.length > 0;
+            errorMessages = errors;
+          },
+        },
+      });
+
+      const fileInput = component.locator('input[type="file"]').first();
+
+      // Upload invalid file
+      await fileInput.setInputFiles([
+        {
+          name: 'document.pdf',
+          mimeType: 'application/pdf',
+          buffer: Buffer.from('test content'),
+        },
+      ]);
+
+      await component.page().waitForTimeout(100);
+
+      // Verify validation error was emitted
+      expect(validationErrors.length).toBeGreaterThan(0);
+      expect(showError).toBe(true);
+      expect(errorMessages.length).toBeGreaterThan(0);
+    });
+
+    test('validation handles empty file selection gracefully', async ({ mount }) => {
+      const validationErrors: string[][] = [];
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: [],
+          fileTypes: ['image/jpeg', 'image/png'],
+          multiple: true,
+        },
+        on: {
+          'validation-error': (errors: string[]) => {
+            // Only track non-empty error arrays
+            if (errors.length > 0) {
+              validationErrors.push(errors);
+            }
+          },
+        },
+      });
+
+      const fileInput = component.locator('input[type="file"]').first();
+
+      // Simulate empty file selection (user cancels)
+      await fileInput.setInputFiles([]);
+
+      await component.page().waitForTimeout(100);
+
+      // Should not emit validation errors for empty selection
+      expect(validationErrors.length).toBe(0);
+    });
+
+    test('validation works correctly with single file mode', async ({ mount }) => {
+      const validationErrors: string[][] = [];
+      let fileCount = 0;
+
+      const component = await mount(FileUpload, {
+        props: {
+          modelValue: [],
+          fileTypes: ['image/jpeg', 'image/png'],
+          multiple: false,
+        },
+        on: {
+          'validation-error': (errors: string[]) => {
+            validationErrors.push(errors);
+          },
+          'update:modelValue': (files: File[]) => {
+            fileCount = files.length;
+          },
+        },
+      });
+
+      const fileInput = component.locator('input[type="file"]').first();
+
+      // Upload invalid file in single mode
+      await fileInput.setInputFiles([
+        {
+          name: 'document.pdf',
+          mimeType: 'application/pdf',
+          buffer: Buffer.from('test content'),
+        },
+      ]);
+
+      await component.page().waitForTimeout(100);
+
+      // Should emit validation error and not add file
+      expect(validationErrors.length).toBeGreaterThan(0);
+      expect(validationErrors[validationErrors.length - 1][0]).toContain('document.pdf');
+      expect(fileCount).toBe(0);
+
+      // Upload valid file in single mode
+      await fileInput.setInputFiles([
+        {
+          name: 'image.jpg',
+          mimeType: 'image/jpeg',
+          buffer: Buffer.from('test content'),
+        },
+      ]);
+
+      await component.page().waitForTimeout(100);
+
+      // Should emit empty error array and add file
+      expect(validationErrors[validationErrors.length - 1]).toEqual([]);
+      expect(fileCount).toBe(1);
+    });
+  });
 });

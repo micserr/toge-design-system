@@ -1,12 +1,21 @@
 # Changelog
 
-## 2.20.6 (2025-10-27)
+## 2.21.0 (2025-10-28)
 
 - Feat:
-  - Commit c474a9fe: feat: add loading state to sidenav component and implement sidenav loader
-  - Commit 9bd00d30: test: enhance loading state tests for Sidenav component
-  - Commit aad01540: refactor: format locator queries for better readability in Sidenav tests
-    ([#c474a9fe](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c474a9fef7aa67e8894bd432b60a6f500b02e2d1?refName=refs%2Fheads%2F2025%2Ffeat%2Fandrea%2Floader-sidenav) by @destajo)
+  - Add individual component exports and types for improved usability
+  - Enable tree-shakable imports for better bundle optimization
+  - Update type definitions in package.json and enable rollup types in vite.config.ts
+- Docs:
+  - Enhance quick start guide with usage options and tree-shakable imports
+  - Update component creation guidelines with export examples
+    ([#35662](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35662) by @jmari)
+
+## 2.20.5 (2025-10-27)
+
+- Fix:
+  - Enhance file upload documentation with automatic validation features
+    ([#95c2338d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35637) by @bsolis)
 
 ## 2.20.5 (2025-10-27)
 

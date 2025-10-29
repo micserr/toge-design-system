@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.21.2 (2025-10-29)
+
+- Fix:
+  - Fix List Empty State for Grouped Items
+  - Fix Select Loaders for Grouped Items
+  - Optimize Select Component Code
+    ([#35668](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35668) by @jarias)
+
 ## 2.21.1 (2025-10-29)
 
 - Feat:

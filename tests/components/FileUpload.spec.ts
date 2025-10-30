@@ -393,7 +393,7 @@ test.describe('FileUpload Component', () => {
           progressValue: 80,
         },
       });
-      
+
       const updatedProgressBar = updatedComponent.locator('[role="progressbar"]');
       await expect(updatedProgressBar).toHaveAttribute('aria-valuenow', '80');
     });
@@ -420,10 +420,7 @@ test.describe('FileUpload Component', () => {
     });
 
     test('hides file type icons when hideFilePreviewIcon is true', async ({ mount }) => {
-      const mockFiles = [
-        createMockFile('document.pdf', 'application/pdf'),
-        createMockFile('image.jpg', 'image/jpeg'),
-      ];
+      const mockFiles = [createMockFile('document.pdf', 'application/pdf'), createMockFile('image.jpg', 'image/jpeg')];
 
       const component = await mount(FileUpload, {
         props: {
@@ -447,7 +444,11 @@ test.describe('FileUpload Component', () => {
       const component = await mount(FileUpload, {
         props: {
           modelValue: mockFiles,
-          fileTypes: ['application/pdf', 'image/jpeg', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'],
+          fileTypes: [
+            'application/pdf',
+            'image/jpeg',
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+          ],
         },
       });
 
@@ -728,7 +729,7 @@ test.describe('FileUpload Component', () => {
       await expect(component.getByText(longFileName)).toBeVisible();
 
       // Should handle text wrapping properly
-      const fileNameElement = component.locator('.spr-break-all');
+      const fileNameElement = component.locator('.spr-break-words');
       await expect(fileNameElement).toBeVisible();
     });
 
@@ -942,7 +943,7 @@ test.describe('FileUpload Component', () => {
     test('filters out invalid files and only adds valid files to modelValue', async ({ mount }) => {
       let fileCount = 0;
       const validationErrors: string[][] = [];
-      
+
       const component = await mount(FileUpload, {
         props: {
           modelValue: [],
@@ -985,7 +986,7 @@ test.describe('FileUpload Component', () => {
 
       // Verify only 2 valid files were added (PDF was filtered out)
       expect(fileCount).toBe(2);
-      
+
       // Verify validation error was emitted for the invalid file
       expect(validationErrors.length).toBeGreaterThan(0);
       expect(validationErrors[validationErrors.length - 1][0]).toContain('invalid-document.pdf');
@@ -1020,9 +1021,7 @@ test.describe('FileUpload Component', () => {
       await component.page().waitForTimeout(100);
 
       // Verify error message format for single file
-      expect(validationErrors[validationErrors.length - 1][0]).toBe(
-        'File "report.pdf" is not a supported file type.'
-      );
+      expect(validationErrors[validationErrors.length - 1][0]).toBe('File "report.pdf" is not a supported file type.');
     });
 
     test('generates correct error message for multiple invalid files', async ({ mount }) => {

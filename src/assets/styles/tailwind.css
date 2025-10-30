@@ -96,7 +96,7 @@
   #tooltip-full-width-wrapper {
     .v-popper__wrapper {
       .v-popper__inner {
-        @apply spr-background-color-inverted spr-text-color-inverted-strong spr-body-xs-regular spr-break-all spr-rounded-border-radius-md spr-px-2 spr-py-1.5 spr-font-main spr-opacity-100 spr-shadow-drop;
+        @apply spr-background-color-inverted spr-text-color-inverted-strong spr-body-xs-regular spr-break-words spr-rounded-border-radius-md spr-px-2 spr-py-1.5 spr-font-main spr-opacity-100 spr-shadow-drop;
       }
 
       .v-popper__arrow-outer {

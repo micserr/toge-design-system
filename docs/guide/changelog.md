@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.21.3 (2025-10-30)
+
+- Fix:
+  - Fix Word Break for tooltip and Fileupload
+    ([#35698](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35698) by @jarias)
+
 ## 2.21.2 (2025-10-29)
 
 - Fix:

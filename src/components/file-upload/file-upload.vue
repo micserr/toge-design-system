@@ -1,60 +1,103 @@
 <template>
   <div class="media-upload">
-    <label v-if="props.title" class="spr-body-md-regular"> 
+    <label v-if="props.title" class="spr-body-md-regular">
       {{ props.title }}
     </label>
     <div v-if="props.modelValue.length <= 0" ref="fileUploadRef" :class="fileUploadClasses.wrapperClasses">
       <div :class="fileUploadClasses.inputClasses">
-        <input 
-          ref="initialInputFileRef" 
+        <input
+          ref="initialInputFileRef"
           type="file"
-          hidden 
-          :multiple="props.multiple" 
-          :disabled="props.disabled" 
+          hidden
+          :multiple="props.multiple"
+          :disabled="props.disabled"
           :accept="props.fileTypes.join(',')"
           @change="onFileChangeHandler"
         />
-        <icon icon="ph:cloud-arrow-up" width="28px" height="28px"/>
-        <spr-button size="small" tone="neutral" variant="secondary" :disabled="props.disabled" @click="clickInitialInputFile">Browse Files</spr-button>
-        <label v-if="!props.hideDropzoneLabel" class="spr-body-sm-regular"> 
-          {{ "or drop your " + (props.multiple ? "files" : "file") +" to upload" }}
+        <icon icon="ph:cloud-arrow-up" width="28px" height="28px" />
+        <spr-button
+          size="small"
+          tone="neutral"
+          variant="secondary"
+          :disabled="props.disabled"
+          @click="clickInitialInputFile"
+          >Browse Files</spr-button
+        >
+        <label v-if="!props.hideDropzoneLabel" class="spr-body-sm-regular">
+          {{ 'or drop your ' + (props.multiple ? 'files' : 'file') + ' to upload' }}
         </label>
       </div>
-      <div v-if="props.showError" class="spr-grid spr-content-center spr-text-center spr-body-xs-regular spr-text-color-danger-base">
+      <div
+        v-if="props.showError"
+        class="spr-body-xs-regular spr-text-color-danger-base spr-grid spr-content-center spr-text-center"
+      >
         <label v-for="(error, index) in props.errorMessages" :key="index">{{ error }}</label>
       </div>
       <div v-else :class="fileUploadClasses.sublabelClasses">
         <label v-if="props.showSupportedFileTypeLabel">Supports: {{ supportedFileTypeLabel }} </label>
-        <label>{{ props. maxFileSize }}MB maximum file size</label>
+        <label>{{ props.maxFileSize }}MB maximum file size</label>
       </div>
     </div>
     <div v-else :class="fileUploadClasses.fileListClasses">
-      <input 
-        ref="listInputFileRef" 
-        type="file" 
-        multiple="false" 
+      <input
+        ref="listInputFileRef"
+        type="file"
+        multiple="false"
         :accept="props.fileTypes.join(',')"
-        hidden 
-        @change="replaceFile"/>
+        hidden
+        @change="replaceFile"
+      />
       <div v-for="(file, index) in modelValue" :key="index" class="spr-flex spr-flex-col spr-gap-size-spacing-4xs">
         <div class="spr-flex spr-justify-between spr-gap-2">
-          <div class="spr-flex-auto spr-flex spr-break-all spr-overflow-hidden spr-whitespace-break-spaces spr-items-center spr-gap-2">
-            <icon v-if="!props.hideFilePreviewIcon" :icon="iconMap[file.type as keyof typeof iconMap] || 'ph:check-circle-fill'" width="20px" height="20px" class="spr-text-color-brand-base spr-flex-none"/>
-            <label class="spr-body-sm-regular">{{ file ? file.name : "" }}</label>
+          <div
+            class="spr-flex spr-flex-auto spr-items-center spr-gap-2 spr-overflow-hidden spr-whitespace-break-spaces spr-break-words"
+          >
+            <icon
+              v-if="!props.hideFilePreviewIcon"
+              :icon="iconMap[file.type as keyof typeof iconMap] || 'ph:check-circle-fill'"
+              width="20px"
+              height="20px"
+              class="spr-text-color-brand-base spr-flex-none"
+            />
+            <label class="spr-body-sm-regular">{{ file ? file.name : '' }}</label>
           </div>
-          <div class="spr-flex spr-gap-size-spacing-5xs spr-items-start spr-gap-2">
-            <spr-button size="small" tone="neutral" variant="secondary" :disabled="props.disabled" @click="clickListInputFile(index)">Replace</spr-button>
-            <spr-button size="small" tone="danger" variant="secondary" :disabled="props.disabled" @click="deleteFile(index)"><icon icon="ph:trash"/></spr-button>
+          <div class="spr-flex spr-items-start spr-gap-2 spr-gap-size-spacing-5xs">
+            <spr-button
+              size="small"
+              tone="neutral"
+              variant="secondary"
+              :disabled="props.disabled"
+              @click="clickListInputFile(index)"
+              >Replace</spr-button
+            >
+            <spr-button
+              size="small"
+              tone="danger"
+              variant="secondary"
+              :disabled="props.disabled"
+              @click="deleteFile(index)"
+              ><icon icon="ph:trash"
+            /></spr-button>
           </div>
         </div>
-        <div v-if="props.showError && props.errorMessages[index]" class="spr-flex spr-gap-size-spacing-5xs spr-body-sm-regular spr-text-color-danger-base spr-gap-2">
+        <div
+          v-if="props.showError && props.errorMessages[index]"
+          class="spr-body-sm-regular spr-text-color-danger-base spr-flex spr-gap-size-spacing-5xs"
+        >
           <Icon class="spr-flex-none" icon="ph:warning-circle-fill" width="20px" height="20px" />
           <span class="spr-self-start">{{ props.errorMessages[index] }}</span>
         </div>
       </div>
       <slot name="file-upload-progress-bar">
-        <div v-if="props.showProgress" class="spr-flex spr-gap-size-spacing-5xs spr-gap-2">
-          <spr-progress-bar :value="props.progressValue" :max="100" :color="props.showError ? 'danger' : 'success'" size="sm" class="spr-w-full" :label="false"/>
+        <div v-if="props.showProgress" class="spr-flex spr-gap-size-spacing-5xs">
+          <spr-progress-bar
+            :value="props.progressValue"
+            :max="100"
+            :color="props.showError ? 'danger' : 'success'"
+            size="sm"
+            class="spr-w-full"
+            :label="false"
+          />
         </div>
       </slot>
     </div>
@@ -62,15 +105,18 @@
 </template>
 
 <script lang="ts" setup>
+import { Icon } from '@iconify/vue';
+
 import { fileUploadEmitTypes, fileUploadPropTypes } from './file-upload';
 import { useFileUpload } from './use-file-upload';
+
 import SprButton from '../button/button.vue';
 import SprProgressBar from '../progress-bar/progress-bar.vue';
-import { Icon } from '@iconify/vue';
 
 const props = defineProps(fileUploadPropTypes);
 const emit = defineEmits(fileUploadEmitTypes);
-const { 
+
+const {
   fileUploadRef,
   initialInputFileRef,
   listInputFileRef,
@@ -81,10 +127,8 @@ const {
   clickListInputFile,
   replaceFile,
   supportedFileTypeLabel,
-  iconMap
+  iconMap,
 } = useFileUpload(props, emit);
-
-
 </script>
 
 <style lang="scss" scoped>

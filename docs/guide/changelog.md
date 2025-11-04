@@ -1,10 +1,16 @@
 # Changelog
 
+## 2.21.6 (2025-11-04)
+
+- Fix:
+  - Found dead link in Documentation
+    ([#134c42c8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/134c42c8feaa95a4a2ebdd4a9c83ba676ecf4169?refName=refs/heads/2025/Fix/andrea/dead-link-in-docu) by @adestajo)
+
 ## 2.21.5 (2025-11-04)
 
 - Feat:
   - Thailand language
-    ([#35698](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e26f2090b74871a0addd8a4f79c2bd59da0810d0?refName=refs%2Fheads%2F2025%2Ffeat%2Fandrea%2Fsupport-multi-language) by @adestajo)
+    ([#e26f2090](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e26f2090b74871a0addd8a4f79c2bd59da0810d0?refName=refs%2Fheads%2F2025%2Ffeat%2Fandrea%2Fsupport-multi-language) by @adestajo)
 
 ## 2.21.3 (2025-10-30)
 

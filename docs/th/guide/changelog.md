@@ -1,5 +1,11 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.21.6 (2025-11-04)
+
+- แก้ไข:
+  - พบลิงก์ที่ตายแล้วในเอกสาร
+    ([#134c42c8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/134c42c8feaa95a4a2ebdd4a9c83ba676ecf4169?refName=refs/heads/2025/Fix/andrea/dead-link-in-docu) โดย @adestajo)
+
 ## 2.21.5 (2025-11-04)
 
 - คุณสมบัติ:

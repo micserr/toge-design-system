@@ -29,7 +29,7 @@ features:
     title: รูปแบบคอมโพเนนต์
     details: สำรวจรูปแบบและเลย์เอาต์ของคอมโพเนนต์ที่หลากหลายเพื่อตอบสนองความต้องการในการออกแบบของคุณ.
   - icon: 🛝
-    title: Live Playground
+    title: สนามทดลองแบบสด
     details: ทดลองกับคอมโพเนนต์แบบเรียลไทม์โดยใช้ playground แบบโต้ตอบ.
 
 favicon: /public/favicon.ico

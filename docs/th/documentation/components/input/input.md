@@ -37,25 +37,25 @@ outline: deep
 
 ## ตัวแปร
 
-| ตัวแปร        | คำอธิบาย                                             | ลิงก์                                                                                 |
-| -------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| ค้นหา         | เพิ่มประสิทธิภาพสำหรับการกรองและความสะดวกในการค้นหา       | [/documentation/components/input/input-search](./input/input-search)                 |
-| ชื่อผู้ใช้       | ช่องชื่อผู้ใช้ (อนาคต: กฎความเป็นเอกลักษณ์)               | [/documentation/components/input/input-username](./input/input-username)             |
-| อีเมล          | ช่องป้อนข้อมูลเฉพาะอีเมล                           | [/documentation/components/input/input-email](./input/input-email)                   |
-| รหัสผ่าน       | รายการที่ถูกมาสก์ด้วยการเปิดเผยทางเลือก                       | [/documentation/components/input/input-password](./input/input-password)             |
-| URL            | บังคับใช้ความหมาย URL                                  | [/documentation/components/input/input-url](./input/input-url)                       |
-| หมายเลขติดต่อ | ช่องป้อนหมายเลขที่รับรู้ประเทศ + การตรวจสอบ                 | [/documentation/components/input/input-contact-number](./input/input-contact-number) |
-| ช่องป้อนดรอปดาวน์ | ช่องป้อนที่จัดสไตล์แสดงเท่านั้นใช้เป็นทริกเกอร์ดรอปดาวน์      | [/documentation/components/input/input-dropdown](./input/input-dropdown)             |
-| สกุลเงิน       | การเลือกสกุลเงิน + การจัดรูปแบบ (รหัส/สัญลักษณ์ ทศนิยม) | [/documentation/components/input/input-currency](./input/input-currency)             |
+| ตัวแปร            | คำอธิบาย                                                 | ลิงก์                                                                          |
+| ----------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| ค้นหา             | เพิ่มประสิทธิภาพสำหรับการกรองและความสะดวกในการค้นหา      | [/documentation/components/input/input-search](./input-search)                 |
+| ชื่อผู้ใช้        | ช่องชื่อผู้ใช้ (อนาคต: กฎความเป็นเอกลักษณ์)              | [/documentation/components/input/input-username](./input-username)             |
+| อีเมล             | ช่องป้อนข้อมูลเฉพาะอีเมล                                 | [/documentation/components/input/input-email](./input-email)                   |
+| รหัสผ่าน          | รายการที่ถูกมาสก์ด้วยการเปิดเผยทางเลือก                  | [/documentation/components/input/input-password](./input-password)             |
+| URL               | บังคับใช้ความหมาย URL                                    | [/documentation/components/input/input-url](./input-url)                       |
+| หมายเลขติดต่อ     | ช่องป้อนหมายเลขที่รับรู้ประเทศ + การตรวจสอบ              | [/documentation/components/input/input-contact-number](./input-contact-number) |
+| ช่องป้อนดรอปดาวน์ | ช่องป้อนที่จัดสไตล์แสดงเท่านั้นใช้เป็นทริกเกอร์ดรอปดาวน์ | [/documentation/components/input/input-dropdown](./input-dropdown)             |
+| สกุลเงิน          | การเลือกสกุลเงิน + การจัดรูปแบบ (รหัส/สัญลักษณ์ ทศนิยม)  | [/documentation/components/input/input-currency](./input-currency)             |
 
 ## สล็อตขั้นสูง
 
-| สล็อต            | กรณีการใช้งาน                                         |
-| --------------- | ------------------------------------------------ |
-| `prefix`        | ไอคอนหรือตัวระบุตามบริบท (เช่น ไอคอนค้นหา) |
-| `trailing`      | หน่วย ป้ายในบรรทัด การดำเนินการขนาดกะทัดรัด            |
-| `icon`          | การตกแต่งภายใน (สถานะ/การดำเนินการ)             |
-| `helperMessage` | เนื้อหาข้อความช่วยเหลือ/ข้อผิดพลาดที่สมบูรณ์ (ไอคอน + ข้อความ)         |
+| สล็อต           | กรณีการใช้งาน                                                  |
+| --------------- | -------------------------------------------------------------- |
+| `prefix`        | ไอคอนหรือตัวระบุตามบริบท (เช่น ไอคอนค้นหา)                     |
+| `trailing`      | หน่วย ป้ายในบรรทัด การดำเนินการขนาดกะทัดรัด                    |
+| `icon`          | การตกแต่งภายใน (สถานะ/การดำเนินการ)                            |
+| `helperMessage` | เนื้อหาข้อความช่วยเหลือ/ข้อผิดพลาดที่สมบูรณ์ (ไอคอน + ข้อความ) |
 
 ## หมายเหตุการเข้าถึง
 

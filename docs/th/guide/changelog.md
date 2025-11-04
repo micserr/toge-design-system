@@ -1,5 +1,11 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.21.7 (2025-11-04)
+
+- แก้ไข:
+  - Commit e7d0fd5f: เพิ่มการกำหนดค่า VitePress และลบเอกสารประกอบส่วนประกอบภาษาไทย
+    ([#e7d0fd5f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e7d0fd5ffd26fd0bec8d1c6cf1ca16ef92c0ace1?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fprod-dev-tool-error) โดย @adestajo)
+
 ## 2.21.6 (2025-11-04)
 
 - แก้ไข:

@@ -1,3 +1,6 @@
+// docs/.vitepress/config.ts
+(globalThis as Record<string, unknown>).__VUE_PROD_DEVTOOLS__ = false;
+
 import { defineConfig } from 'vitepress';
 
 export default defineConfig({

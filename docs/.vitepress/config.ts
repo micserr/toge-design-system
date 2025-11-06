@@ -6,6 +6,11 @@ import { defineConfig } from 'vitepress';
 export default defineConfig({
   title: 'Sprout Design System',
   description: 'Toge - The Sprout Design System',
+  themeConfig: {
+    search: {
+      provider: 'local',
+    },
+  },
   head: [
     ['link', { rel: 'icon', type: 'image/ico', href: '/favicon.ico' }],
     ['meta', { name: 'theme-color', content: '#5f67ee' }],
@@ -357,10 +362,6 @@ export default defineConfig({
           },
         ],
 
-        search: {
-          provider: 'local',
-        },
-
         footer: {
           copyright: 'Copyright © 2025 Sprout Frontend Engineers',
         },
@@ -704,10 +705,6 @@ export default defineConfig({
             ariaLabel: 'ลิงก์ไปยัง Azure DevOps',
           },
         ],
-
-        search: {
-          provider: 'local',
-        },
 
         footer: {
           copyright: 'ลิขสิทธิ์ © 2025 วิศวกร Frontend ของ Sprout',

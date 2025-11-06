@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.21.8 (2025-11-06)
+
+- Fix:
+  - Commit a76279c6: feat: add local search provider to theme configuration and remove redundant search settings from documentation
+    ([#a76279c6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a76279c6f10e828c3497218d6d60769862aae231?refName=refs/heads/2025/Fix/andrea/missing-search-field) by @adestajo)
+
+## 2.21.7 (2025-11-04)
+
+- Fix:
+  - Commit e7d0fd5f: Add VitePress configuration and remove Thai component documentation
+    ([#e7d0fd5f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e7d0fd5ffd26fd0bec8d1c6cf1ca16ef92c0ace1?refName=refs%2Fheads%2F2025%2FFix%2Fandrea%2Fprod-dev-tool-error) by @adestajo)
+
+## 2.21.6 (2025-11-04)
+
+- Fix:
+  - Found dead link in Documentation
+    ([#134c42c8](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/134c42c8feaa95a4a2ebdd4a9c83ba676ecf4169?refName=refs/heads/2025/Fix/andrea/dead-link-in-docu) by @adestajo)
+
+## 2.21.5 (2025-11-04)
+
+- Feat:
+  - Thailand language
+    ([#e26f2090](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/e26f2090b74871a0addd8a4f79c2bd59da0810d0?refName=refs%2Fheads%2F2025%2Ffeat%2Fandrea%2Fsupport-multi-language) by @adestajo)
+
 ## 2.21.3 (2025-10-30)
 
 - Fix:

@@ -707,7 +707,7 @@ Since the popper is being teleported to a different container, the `popper-width
 
 ## Active, Disabled, Error States
 
-For guidance on implementing error, active, and disabled states in the select component, you can refer to the documentation for the input text component, as the approach is similar. See the [Input Form](/documentation/components/input.html) for detailed instructions.
+For guidance on implementing error, active, and disabled states in the select component, you can refer to the documentation for the input text component, as the approach is similar. See the [Input Form](/en/documentation/components/input/input) for detailed instructions.
 
 ### Active State
 

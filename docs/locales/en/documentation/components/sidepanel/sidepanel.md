@@ -18,7 +18,7 @@ Sidepanels are ideal for presenting:
 - Multi-step workflows
 - Supplementary information that doesn't require a full page
 
-![Sidepanel Sample](./../../../public/images/sidepanel-sample.png)
+![Sidepanel Sample](./../../../../../public/images/sidepanel-sample.png)
 
 ## Basic Usage
 

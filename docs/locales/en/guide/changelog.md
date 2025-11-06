@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.21.9 (2025-11-09)
+
+- Fix:
+  - Fix to Organized Documentation Locales
+    ([#35872](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35872) by @jarias)
+
 ## 2.21.8 (2025-11-06)
 
 - Fix:

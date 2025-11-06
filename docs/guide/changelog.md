@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.21.8 (2025-11-06)
+
+- Fix:
+  - Commit a76279c6: feat: add local search provider to theme configuration and remove redundant search settings from documentation
+    ([#a76279c6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a76279c6f10e828c3497218d6d60769862aae231?refName=refs/heads/2025/Fix/andrea/missing-search-field) by @adestajo)
+
 ## 2.21.7 (2025-11-04)
 
 - Fix:

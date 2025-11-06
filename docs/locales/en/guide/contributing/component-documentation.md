@@ -101,7 +101,7 @@ A comprehensive description of the component, its purpose, and use cases.
 </table>
 ```
 
-For a complete example, refer to the [Button documentation](/documentation/components/button/button.html).
+For a complete example, refer to the [Button documentation](/en/documentation/components/button/button).
 
 ## Creating a New Page
 

@@ -8,7 +8,7 @@ outline: deep
 
 แถบนำทางด้านข้างให้แถบนำทางที่ปรับแต่งได้ซึ่งรวมโลโก้ ลิงก์นำทาง การดำเนินการด่วน และแถบค้นหา
 
-![ตัวอย่าง Sidenav](../../../public/images/sidenav-sample.png)
+![ตัวอย่าง Sidenav](../../../../public/images/sidenav-sample.png)
 
 ## การใช้งานพื้นฐาน
 
@@ -2098,9 +2098,10 @@ type UserMenuItem = {
 <script lang="ts" setup>
 import { ref } from 'vue';
 
+import SideNavDataApi from '../../../../json-data/side-nav-api.json';
+
 import SprSidenav from '@/components/sidenav/sidenav.vue';
 import SprLogo from "@/components/logo/logo.vue";
-import SideNavDataApi from '../../../json-data/side-nav-api.json';
 import SprSwitch from '@/components/switch/switch.vue';
 
 const loading= ref(false);

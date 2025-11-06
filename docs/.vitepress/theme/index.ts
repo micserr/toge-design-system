@@ -1,24 +1,9 @@
 import DefaultTheme from 'vitepress/theme';
-import type { App } from 'vue';
-import { createI18n } from 'vue-i18n';
 
 import pkg from '../../../package.json';
 
-import '@/assets/styles/tailwind.css';
+import '../../../src/assets/styles/tailwind.css';
 import './custom.css';
-
-const i18n = createI18n({
-  legacy: false,
-  locale: 'en',
-  messages: {
-    en: {
-      // English translations will be added here
-    },
-    th: {
-      // Thai translations will be added here
-    },
-  },
-});
 
 const setPackageVersion = () => {
   if (typeof window !== 'undefined') {
@@ -58,7 +43,4 @@ setPackageVersion();
 
 export default {
   extends: DefaultTheme,
-  enhanceApp({ app }: { app: App }) {
-    app.use(i18n);
-  },
 };

@@ -3,10 +3,7 @@
 ## 2.21.10 (2025-11-07)
 
 - Fix:
-  - Upgraded Vite to 6.4.1 and @vitejs/plugin-vue to 5.2.1 for compatibility with Node.js 18.20.8
-  - Added @microsoft/api-extractor (7.48.1) to resolve TypeScript version mismatch warnings
-  - Updated Node.js engine requirement to support Node.js 18.0.0+
-  - Fixed build error: `crypto.hash is not a function` caused by Vite 7.x incompatibility with Node.js 18
+  - Fix Deploy Package to Azure Artifacts
     ([#35875](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35875) by @jarias)
 
 ## 2.21.9 (2025-11-09)

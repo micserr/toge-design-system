@@ -1,5 +1,11 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.21.10 (2025-11-07)
+
+- แก้ไข:
+  - แก้ไขการปรับใช้แพ็กเกจไปยัง Azure Artifacts
+    ([#2025/feature/arias/ds-updates](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/branches?baseVersion=GC2025/feature/arias/ds-updates) โดย @jarias)
+
 ## 2.21.9 (2025-11-09)
 
 - แก้ไข:

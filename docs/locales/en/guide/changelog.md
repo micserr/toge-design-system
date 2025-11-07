@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.21.10 (2025-11-07)
+
+- Fix:
+  - Fix Deploy Package to Azure Artifacts
+    ([#35875](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35875) by @jarias)
+
 ## 2.21.9 (2025-11-09)
 
 - Fix:

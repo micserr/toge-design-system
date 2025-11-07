@@ -1,5 +1,14 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.21.10 (2025-11-07)
+
+- แก้ไข:
+  - อัปเกรด Vite เป็น 6.4.1 และ @vitejs/plugin-vue เป็น 5.2.1 เพื่อความเข้ากันได้กับ Node.js 18.20.8
+  - เพิ่ม @microsoft/api-extractor (7.48.1) เพื่อแก้ไขคำเตือนเกี่ยวกับความไม่ตรงกันของเวอร์ชัน TypeScript
+  - อัปเดตข้อกำหนด Node.js engine ให้รองรับ Node.js 18.0.0+
+  - แก้ไขข้อผิดพลาดในการสร้าง: `crypto.hash is not a function` ที่เกิดจากความไม่เข้ากันของ Vite 7.x กับ Node.js 18
+    ([#35875](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35875) by @jarias)
+
 ## 2.21.9 (2025-11-09)
 
 - แก้ไข:

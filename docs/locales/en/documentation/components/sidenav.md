@@ -8,7 +8,7 @@ outline: deep
 
 The side navigation provides a customizable navigation bar that includes a logo, navigation links, quick actions, and a search bar.
 
-![Sidenav Sample](../../public/images/sidenav-sample.png)
+![Sidenav Sample](../../../../public/images/sidenav-sample.png)
 
 ## Basic Implementation
 
@@ -2444,9 +2444,10 @@ type UserMenuItem = {
 <script lang="ts" setup>
 import { ref } from 'vue';
 
+import SideNavDataApi from '../../../../json-data/side-nav-api.json';
+
 import SprSidenav from '@/components/sidenav/sidenav.vue';
 import SprLogo from "@/components/logo/logo.vue";
-import SideNavDataApi from '../../json-data/side-nav-api.json';
 import SprSwitch from '@/components/switch/switch.vue';
 
 const loading= ref(false);

@@ -1,10 +1,11 @@
 import { fileURLToPath, URL } from 'url';
-import tailwind from 'tailwindcss';
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
 
 export default {
   css: {
     postcss: {
-      plugins: [tailwind()],
+      plugins: [tailwindcss(), autoprefixer()],
     },
     preprocessorOptions: {
       scss: {

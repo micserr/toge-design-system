@@ -1,5 +1,17 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.21.9 (2025-11-09)
+
+- แก้ไข:
+  - แก้ไขการจัดระเบียบโลเคลของเอกสาร
+    ([#35872](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35872) โดย @jarias)
+
+## 2.21.8 (2025-11-06)
+
+- แก้ไข:
+  - Commit a76279c6: เพิ่มผู้ให้บริการการค้นหาในเครื่องไปยังการกำหนดค่าชุดรูปแบบและลบการตั้งค่าการค้นหาที่ซ้ำซ้อนจากเอกสาร
+    ([#a76279c6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/a76279c6f10e828c3497218d6d60769862aae231?refName=refs/heads/2025/Fix/andrea/missing-search-field) โดย @adestajo)
+
 ## 2.21.7 (2025-11-04)
 
 - แก้ไข:

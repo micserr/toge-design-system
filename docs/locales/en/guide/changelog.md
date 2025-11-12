@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.22.0 (2025-11-12)
+
+- Feat:
+  - Expandable Sidepanel
+    ([#6fda6de6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6fda6de6ddb18216e6337181c75a965694da2c37?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fexpandable-sidepanel) by @despiritu)
+
+
 ## 2.21.10 (2025-11-07)
 
 - Fix:

@@ -24,7 +24,15 @@
           <div id="sidepanel-title" :class="sidepanelClasses.sidepanelHeaderTitleClasses">
             {{ headerTitle }}
           </div>
-          <Icon :class="sidepanelClasses.sidepanelHeaderIconClasses" icon="ph:x" @click="handleClose" />
+          <div class="spr-flex spr-items-center spr-gap-size-spacing-3xs">            
+            <Icon
+              v-if="props.isExpandable"
+              :class="sidepanelClasses.sidepanelHeaderIconClasses"
+              :icon="isExpanded ? 'ph:arrows-in-simple' : 'ph:arrows-out-simple'"
+              @click="handlePanelExpansion"
+            />
+            <Icon :class="sidepanelClasses.sidepanelHeaderIconClasses" icon="ph:x" @click="handleClose" />
+          </div>
         </div>
         <div v-else>
           <slot name="header"></slot>
@@ -51,5 +59,5 @@ import { sidepanelPropTypes, sidepanelEmitTypes } from './sidepanel';
 const props = defineProps(sidepanelPropTypes);
 const emit = defineEmits(sidepanelEmitTypes);
 
-const { sidepanelClasses, sidepanelRef, handleClose } = useSidepanel(props, emit);
+const { sidepanelClasses, sidepanelRef, handleClose, isExpanded, handlePanelExpansion } = useSidepanel(props, emit);
 </script>

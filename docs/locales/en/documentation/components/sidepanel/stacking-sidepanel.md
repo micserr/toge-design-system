@@ -136,6 +136,148 @@ const activePanelsHandler = (panel: string[]) => {
 </script>
 ```
 
+## Expanding Sidepanels
+
+  <spr-button @click="stackingSidepanel?.showPanel('sidepanel-1')">Show Panel 1</spr-button>
+  <span class="spr-body-md">Active Panels: {{ activePanelText }}</span>
+
+  <spr-stacking-sidepanel
+    ref="stacking-sidepanel"
+    v-model:stack="activePanel"
+    @update:stack="activePanelsHandler"    
+  >
+  <template #sidepanel-1>      
+      <spr-sidepanel
+        size="sm"
+        position="right"
+        :is-stacking="true"
+        header-title="Sidepanel 1"
+        :is-expandable="true"
+        :is-expanded="stackingSidepanel?.expandedPanel === 'sidepanel-1'"
+        @close="stackingSidepanel?.hidePanel('sidepanel-1')"
+        @expand="stackingSidepanel?.handleExpandPanel('expand', 'sidepanel-1')"
+        @shrink="stackingSidepanel?.handleExpandPanel('shrink', 'sidepanel-1')"
+      >
+        <div class="spr-p-size-spacing-2xs">
+          <spr-button @click="stackingSidepanel?.showPanel('sidepanel-2')">Show Panel 2</spr-button>          
+        </div>
+      </spr-sidepanel>
+    </template>
+    <template #sidepanel-2>
+      <spr-sidepanel
+        size="md"
+        position="right"
+        :is-stacking="true"
+        :is-expandable="true"
+        :is-expanded="stackingSidepanel?.expandedPanel === 'sidepanel-2'"
+        header-title="Sidepanel 2"
+        @close="stackingSidepanel?.hidePanel('sidepanel-2')"
+        @expand="stackingSidepanel?.handleExpandPanel('expand', 'sidepanel-2')"
+        @shrink="stackingSidepanel?.handleExpandPanel('shrink', 'sidepanel-2')"
+      >
+        <div class="spr-p-size-spacing-2xs">
+          <spr-button @click="stackingSidepanel?.showPanel('sidepanel-3')">Show Panel 3</spr-button>
+        </div>
+      </spr-sidepanel>
+    </template>
+    <template #sidepanel-3>
+      <spr-sidepanel
+        size="lg"
+        position="right"
+        :is-stacking="true"
+        header-title="Sidepanel 3"
+        :is-expandable="true"
+        :is-expanded="stackingSidepanel?.expandedPanel === 'sidepanel-3'"
+        @close="stackingSidepanel?.hidePanel('sidepanel-3')"
+        @expand="stackingSidepanel?.handleExpandPanel('expand', 'sidepanel-3')"
+        @shrink="stackingSidepanel?.handleExpandPanel('shrink', 'sidepanel-3')"
+      >
+        <div class="spr-p-size-spacing-2xs">
+          <spr-button @click="stackingSidepanel?.hidePanel('sidepanel-3')">Close Panel 3</spr-button>
+        </div>
+      </spr-sidepanel>
+    </template>
+  </spr-stacking-sidepanel>
+
+```vue
+<template>
+    <spr-button @click="stackingSidepanel?.showPanel('sidepanel-1')">Show Panel 1</spr-button>
+  <span class="spr-body-md">Active Panels: {{ activePanelText }}</span>
+
+  <spr-stacking-sidepanel
+    ref="stacking-sidepanel"
+    v-model:stack="activePanel"
+    @update:stack="activePanelsHandler"
+    :expanded-panel="expandedPanel"
+  >
+  <template #sidepanel-1>      
+      <spr-sidepanel
+        size="sm"
+        position="right"
+        :is-stacking="true"
+        header-title="Sidepanel 1"
+        :is-expandable="true"
+        :is-expanded="stackingSidepanel?.expandedPanel === 'sidepanel-1'"
+        @close="stackingSidepanel?.hidePanel('sidepanel-1')"
+        @expand="stackingSidepanel?.handleExpandPanel('expand', 'sidepanel-1')"
+        @shrink="stackingSidepanel?.handleExpandPanel('shrink', 'sidepanel-1')"
+      >
+        <div class="spr-p-size-spacing-2xs">
+          <spr-button @click="stackingSidepanel?.showPanel('sidepanel-2')">Show Panel 2</spr-button>          
+        </div>
+      </spr-sidepanel>
+    </template>
+    <template #sidepanel-2>
+      <spr-sidepanel
+        size="md"
+        position="right"
+        :is-stacking="true"
+        :is-expandable="true"
+        :is-expanded="stackingSidepanel?.expandedPanel === 'sidepanel-2'"
+        header-title="Sidepanel 2"
+        @close="stackingSidepanel?.hidePanel('sidepanel-2')"
+        @expand="stackingSidepanel?.handleExpandPanel('expand', 'sidepanel-2')"
+        @shrink="stackingSidepanel?.handleExpandPanel('shrink', 'sidepanel-2')"
+      >
+        <div class="spr-p-size-spacing-2xs">
+          <spr-button @click="stackingSidepanel?.showPanel('sidepanel-3')">Show Panel 3</spr-button>
+        </div>
+      </spr-sidepanel>
+    </template>
+    <template #sidepanel-3>
+      <spr-sidepanel
+        size="lg"
+        position="right"
+        :is-stacking="true"
+        header-title="Sidepanel 3"
+        :is-expandable="true"
+        :is-expanded="stackingSidepanel?.expandedPanel === 'sidepanel-3'"
+        @close="stackingSidepanel?.hidePanel('sidepanel-3')"
+        @expand="stackingSidepanel?.handleExpandPanel('expand', 'sidepanel-3')"
+        @shrink="stackingSidepanel?.handleExpandPanel('shrink', 'sidepanel-3')"
+      >
+        <div class="spr-p-size-spacing-2xs">
+          <spr-button @click="stackingSidepanel?.hidePanel('sidepanel-3')">Close Panel 3</spr-button>
+        </div>
+      </spr-sidepanel>
+    </template>
+  </spr-stacking-sidepanel>
+</template>
+
+<script lang="ts" setup>
+import { ref, useTemplateRef } from 'vue';
+
+const activePanel = ref<string[]>([]);
+const stackingSidepanel = useTemplateRef("stacking-sidepanel"); // Use component reference to access exposed methods
+
+const activePanelText = ref("none");
+const activePanelsHandler = (panel: string[]) => {
+  activePanelText.value = panel.length > 0 ? panel.join(', ') : 'none';
+}
+const expandedPanel = ref('');
+</script>
+```
+
 ## API Reference
 
 ### Props
@@ -199,6 +341,27 @@ const activePanelsHandler = (panel: string[]) => {
       <td>Hides a panel by its slot name</td>
       <td><code>(name: string)</code></td>
     </tr>
+    <tr>
+      <td><code>handleExpandPanel</code></td>
+      <td>Function to update expandedPanel variable.</td>
+      <td><code>(action: 'expand' | 'shrink' , name: string)</code></td>
+    </tr>
+  </tbody>
+</table>
+
+### Exposed Variables
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>expandedPanel</code></td>
+      <td>Sidepanel name that is currently expanded.</td>
+    </tr>    
   </tbody>
 </table>
 
@@ -269,6 +432,7 @@ import SprStackingSidepanel from "@/components/sidepanel/stacking-sidepanel/stac
 const activePanel = ref<string[]>([]);
 const stackingSidepanel = useTemplateRef("stacking-sidepanel");
 const activePanelText = ref("none");
+const expandedPanel = ref('');
 const activePanelsHandler = (panel: string[]) => { 
   activePanelText.value = panel.length > 0 ? panel.join(', ') : 'none';
 }

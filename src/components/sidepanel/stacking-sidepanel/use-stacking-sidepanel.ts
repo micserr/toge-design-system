@@ -9,6 +9,8 @@ export const useStackingSidepanel = (
   stackingSidepanelBase: Readonly<ShallowRef<HTMLDivElement | null>>,
 ) => {
   const activePanels = useVModel(props, 'stack', emits, { deep: true });
+  const expandedPanel = ref('');
+  const isTransitioning = ref(false);  
 
   // Ensure activePanels is an array
   watchDeep(activePanels, (newValue) => {
@@ -17,6 +19,7 @@ export const useStackingSidepanel = (
   });
 
   const showPanel = (name: string) => {
+    expandedPanel.value = '';
     if (!activePanels.value.includes(name)) {
       activePanels.value.push(name);
       // Update transform immediately
@@ -25,15 +28,18 @@ export const useStackingSidepanel = (
   };
 
   const hidePanel = (name: string) => {
+    expandedPanel.value = '';
     const index = activePanels.value.indexOf(name);
     if (index !== -1) {
-      activePanels.value.splice(index, 1);
-      // Undo resize tracker two times of history
-      undoResizeTracker();
+      activePanels.value.splice(index, 1);      
       undoResizeTracker();
       // Update transform immediately
       updateTransform();
     }
+  };
+
+  const handleExpandPanel = (action: 'expand' | 'shrink', name: string) => {
+    expandedPanel.value = action === 'expand' ? name : '';
   };
 
   // Styling for the stacking sidepanel
@@ -43,10 +49,13 @@ export const useStackingSidepanel = (
   const { history, undo: undoResizeTracker } = useRefHistory(resizeTracker);
 
   // Watch for changes in the active panels to update the transform
-  useResizeObserver(stackingSidepanelBase, (entries) => {
+  useResizeObserver(stackingSidepanelBase, (entries) => {  
+    //stop observer if panel is expanding to stop population of history of resizeTracker
+    if (!!isTransitioning.value || !!expandedPanel.value) return;
+
     const entry = entries[0];
     const { width } = entry.contentRect;
-    resizeTracker.value = resizeTracker.value !== width ? width : resizeTracker.value;
+    resizeTracker.value = resizeTracker.value !== width ? width : resizeTracker.value;    
     updateTransform();
   });
 
@@ -58,7 +67,14 @@ export const useStackingSidepanel = (
       return;
     }
 
-    stackingSidepanelBaseTransform.value = `transform: translateX(${history.value[0].snapshot}px);`;
+    let snapshot = history.value[0].snapshot;
+
+    const numOfActivePanels = activePanels.value.length - 1;
+    const numOfSnapshotHistory = history.value.length - 1;
+    snapshot = history.value[numOfSnapshotHistory - numOfActivePanels]?.snapshot;
+    if(!snapshot) return    
+
+    stackingSidepanelBaseTransform.value = `transform: translateX(${snapshot}px);`;
   };
 
   // Watch for changes in active panels and update transform immediately
@@ -68,6 +84,17 @@ export const useStackingSidepanel = (
       updateTransform();
     },
     { flush: 'post' },
+  );
+
+  watch(
+    expandedPanel,
+    () => {
+      // transition delay of expanding panel
+      isTransitioning.value = true;
+      setTimeout(() => {
+        isTransitioning.value = false;
+      }, 150);
+    },
   );
 
   const stackingSidepanelClasses = computed(() => {
@@ -114,5 +141,7 @@ export const useStackingSidepanel = (
     stackingSidepanelClasses,
     stackingSidepanelBaseTransform,
     activePanels,
+    expandedPanel,
+    handleExpandPanel,
   };
 };

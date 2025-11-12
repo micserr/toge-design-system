@@ -80,6 +80,58 @@ const isSidepanelOpen = ref(false);
 The Sidepanel includes a built-in close button in the header and can also be closed by clicking outside the panel or pressing the ESC key.
 :::
 
+## Expandable Sidepanel
+
+<div>
+  <spr-button tone="success" @click="isExpandableSidepanelOpen = true">
+    Open Sidepanel
+  </spr-button>
+  <spr-sidepanel
+    :is-open="isExpandableSidepanelOpen"
+    @close="isExpandableSidepanelOpen = false"
+    :is-expandable="true"
+    :is-expanded="isSidepanelExpanded"
+    @expand="isSidepanelExpanded = true"
+    @shrink="isSidepanelExpanded = false"
+    header-title="Sidepanel Example"
+  >
+    <div class="spr-p-4">
+      Sidepanel Content
+    </div>
+    <template #footer>
+      <div class="spr-px-4 spr-flex spr-justify-end spr-gap-2">
+        <spr-button @click="isExpandableSidepanelOpen = false">Cancel</spr-button>
+        <spr-button tone="success">Submit</spr-button>
+      </div>
+    </template>
+  </spr-sidepanel>
+</div>
+
+```vue
+<template>
+  <div>
+    <spr-button tone="success" @click="isExpandableSidepanelOpen = true"> Open Sidepanel </spr-button>
+    <spr-sidepanel
+      :is-open="isExpandableSidepanelOpen"
+      @close="isExpandableSidepanelOpen = false"
+      :is-expandable="true"
+      :is-expanded="isSidepanelExpanded"
+      @expand="isSidepanelExpanded = true"
+      @shrink="isSidepanelExpanded = false"
+      header-title="Sidepanel Example"
+    >
+      <div class="spr-p-4">Sidepanel Content</div>
+      <template #footer>
+        <div class="spr-flex spr-justify-end spr-gap-2 spr-px-4">
+          <spr-button @click="isExpandableSidepanelOpen = false">Cancel</spr-button>
+          <spr-button tone="success">Submit</spr-button>
+        </div>
+      </template>
+    </spr-sidepanel>
+  </div>
+</template>
+```
+
 ## Sidepanel Sizes
 
 The Sidepanel component offers three predefined sizes to accommodate different content needs. Use the `size` prop to specify the width of the panel.
@@ -422,6 +474,18 @@ The Sidepanel component provides three slots for customizing different sections 
       <td>boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td><code>isExpandable</code></td>
+      <td>When true, renders an icon for expanding or shrinking the sidepanel.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td><code>isExpanded</code></td>
+      <td>Specifies if the sidepanel is currently expanded.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 
@@ -444,6 +508,16 @@ The Sidepanel component provides three slots for customizing different sections 
     <tr>
       <td><code>on-close</code></td>
       <td>Emitted after the sidepanel has been closed</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td><code>expand</code></td>
+      <td>Emitted when the expand icon is clicked</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td><code>shrink</code></td>
+      <td>Emitted when the shrink icon is clicked</td>
       <td>None</td>
     </tr>
   </tbody>
@@ -479,6 +553,8 @@ const isMediumSidepanelOpen = ref(false)
 const isLargeSidepanelOpen = ref(false)
 const isCustomHeaderTitleOpen = ref(false)
 const isNoPaddingModal = ref(false)
+const isSidepanelExpanded = ref(false)
+const isExpandableSidepanelOpen = ref(false)
 
 import SprSidenav from '@/components/sidenav/sidenav.vue';
 

@@ -19,16 +19,20 @@ interface SidepanelClasses {
 }
 
 export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<SidepanelEmitTypes>['emit']) => {
-  const { size, position, isStacking, footerNoPadding } = toRefs(props);
+  const { size, position, isStacking, footerNoPadding, isExpanded } = toRefs(props);
 
   const sidepanelClasses: ComputedRef<SidepanelClasses> = computed(() => {
     const sidepanelBaseClasses = classNames(
-      'spr-right-4 spr-top-1/2 spr-z-[1015] spr-flex spr-h-full spr-min-h-[200px] spr-translate-y-[-50%] spr-flex-col spr-rounded-border-radius-xl spr-bg-white-50 spr-drop-shadow',
+      'spr-right-4 spr-top-1/2 spr-z-[1015] spr-flex spr-h-full spr-min-h-[200px] spr-translate-y-[-50%] spr-flex-col spr-rounded-border-radius-xl spr-bg-white-50 spr-drop-shadow spr-transition-all spr-ease-[ease-in-out] spr-duration-[150ms]',
       {
         'spr-fixed': !isStacking.value,
-        'spr-w-[360px] sm:spr-w-[calc(100%-35px)]': size.value === 'sm',
-        'spr-w-[420px] sm:spr-w-[calc(100%-35px)]': size.value === 'md',
-        'spr-w-[480px] sm:spr-w-[calc(100%-35px)]': size.value === 'lg',
+        'spr-w-[360px]': size.value === 'sm' && !isExpanded.value,
+        'spr-w-[420px]': size.value === 'md' && !isExpanded.value,
+        'spr-w-[480px]': size.value === 'lg' && !isExpanded.value,
+        '[@media(max-width:360px)]:spr-w-[calc(100vw-35px)]': size.value === 'sm' && !isExpanded.value && !isStacking.value,
+        '[@media(max-width:420px)]:spr-w-[calc(100vw-35px)]': size.value === 'md' && !isExpanded.value && !isStacking.value,
+        '[@media(max-width:480px)]:spr-w-[calc(100vw-35px)]': size.value === 'lg' && !isExpanded.value && !isStacking.value,
+        'spr-w-[calc(100vw-50px)]': isExpanded.value,
       },
     );
 
@@ -45,13 +49,13 @@ export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<Sidep
     const sidepanelFooterClasses = classNames(
       'spr-bottom-0 spr-left-0 spr-w-full spr-rounded-b-border-radius-xl spr-border-0 spr-border-t spr-border-solid spr-border-mushroom-200 spr-bg-white-50 ',
       {
-        'spr-py-3': !footerNoPadding.value
-      }
+        'spr-py-3': !footerNoPadding.value,
+      },
     );
 
-    const sidepanelTransitionActiveClasses = classNames(
-      { 'spr-transition-all spr-duration-[150ms] spr-ease-[ease-in-out]': !isStacking.value },
-    );
+    const sidepanelTransitionActiveClasses = classNames({
+      'spr-transition-all spr-duration-[150ms] spr-ease-[ease-in-out]': !isStacking.value,
+    });
 
     const sidepanelTransitionHiddenClasses = classNames('spr-opacity-0', {
       'spr-translate-x-full -spr-translate-y-2/4': !isStacking.value && position.value === 'right',
@@ -84,6 +88,14 @@ export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<Sidep
     emit('close');
   };
 
+  const handlePanelExpansion = () => {    
+    if (isExpanded.value) {
+      emit('shrink');
+    } else {
+      emit('expand');
+    }
+  };
+
   let ignoreClick = false;
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -111,7 +123,7 @@ export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<Sidep
         emit('onClose');
       }
     },
-  );
+  );  
 
   onMounted(() => {
     document.addEventListener('click', handleClickOutside);
@@ -126,6 +138,8 @@ export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<Sidep
   return {
     sidepanelClasses,
     sidepanelRef,
+    isExpanded,
     handleClose,
+    handlePanelExpansion,
   };
 };

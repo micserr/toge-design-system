@@ -5,6 +5,10 @@ export const stackingSidePanelProps = {
     type: Array as PropType<string[]>,
     default: [],
     required: true,
+  },
+  expandedPanel: {
+    type: String,
+    default: ''
   }
 };
 

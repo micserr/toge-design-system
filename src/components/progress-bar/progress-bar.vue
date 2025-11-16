@@ -1,22 +1,39 @@
 <template>
   <div
-    class="spr-flex spr-w-full spr-flex-col spr-gap-size-spacing-5xs"
+    :class="containerClasses"
     :aria-valuemin="0"
     :aria-valuemax="props.max || 100"
     :aria-valuenow="props.value"
     role="progressbar"
   >
-    <div :class="[handleProgressBarSize, 'spr-overflow-hidden spr-rounded-lg spr-bg-white-100']">
+    <div
+      :class="[
+        handleProgressBarSize,
+        'spr-overflow-hidden spr-rounded-lg spr-bg-white-100',
+        {
+          'spr-w-full': [
+            'top',
+            'top-start',
+            'top-center',
+            'top-end',
+            'bottom',
+            'bottom-start',
+            'bottom-center',
+            'bottom-end',
+          ].includes(props.labelPlacement),
+          'spr-flex-1': ['left', 'right'].includes(props.labelPlacement),
+        },
+      ]"
+    >
       <div
         :class="[`spr-background-color-${validColor}-base`, 'spr-transition-all spr-duration-300']"
         :style="handleProgressBarStyle"
       ></div>
     </div>
-    <span
-      v-if="props.label"
-      class="spr-text-color-base spr-font-weight-regular spr-font-size-100 spr-line-height-100 spr-font-main"
-      >{{ percentage }}%</span
-    >
+    <div v-if="props.label || props.supportingLabel" class="spr-flex spr-gap-1.5">
+      <span v-if="props.label" class="spr-text-color-strong spr-subheading-sm">{{ percentage }}%</span>
+      <span v-if="props.supportingLabel" class="spr-body-md-regular">{{ props.supportingLabel }}</span>
+    </div>
   </div>
 </template>
 
@@ -26,5 +43,6 @@ import { useProgressBar } from './use-progress-bar';
 
 const props = defineProps(progressBarPropTypes);
 
-const { handleProgressBarSize, validColor, percentage, handleProgressBarStyle } = useProgressBar(props);
+const { handleProgressBarSize, validColor, percentage, handleProgressBarStyle, containerClasses } =
+  useProgressBar(props);
 </script>

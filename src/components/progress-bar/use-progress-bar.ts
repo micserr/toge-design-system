@@ -33,6 +33,7 @@ export const useProgressBar = (props: ProgressBarPropTypes) => {
   const containerClasses = computed<string>(() => {
     switch (props.labelPlacement) {
       case 'top':
+        return 'spr-flex spr-flex-col-reverse spr-gap-size-spacing-5xs';
       case 'top-start':
         return 'spr-flex spr-flex-col-reverse spr-gap-size-spacing-5xs';
       case 'top-center':
@@ -40,6 +41,7 @@ export const useProgressBar = (props: ProgressBarPropTypes) => {
       case 'top-end':
         return 'spr-flex spr-flex-col-reverse spr-gap-size-spacing-5xs spr-items-end';
       case 'bottom':
+        return 'spr-flex spr-flex-col spr-gap-size-spacing-5xs';
       case 'bottom-start':
         return 'spr-flex spr-flex-col spr-gap-size-spacing-5xs';
       case 'bottom-center':

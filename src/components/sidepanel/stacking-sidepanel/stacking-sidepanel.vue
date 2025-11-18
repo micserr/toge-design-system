@@ -29,13 +29,22 @@ const stackingSidepanelBase = useTemplateRef('stacking-sidepanel-base');
 const props = defineProps(stackingSidePanelProps);
 const emits = defineEmits(stackingSidePanelEmits);
 
-const { showPanel, hidePanel, stackingSidepanelClasses, stackingSidepanelBaseTransform, activePanels, handleExpandPanel, expandedPanel } =
-  useStackingSidepanel(props, emits, stackingSidepanelBase);
+const {
+  showPanel,
+  hidePanel,
+  stackingSidepanelClasses,
+  stackingSidepanelBaseTransform,
+  activePanels,
+  handleExpandPanel,
+  expandedPanel,
+  activePanel
+} = useStackingSidepanel(props, emits, stackingSidepanelBase);
 
 defineExpose({
   showPanel,
   hidePanel,
   handleExpandPanel,
-  expandedPanel
+  expandedPanel,
+  activePanel
 });
 </script>

@@ -19,7 +19,7 @@ interface SidepanelClasses {
 }
 
 export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<SidepanelEmitTypes>['emit']) => {
-  const { size, position, isStacking, footerNoPadding, isExpanded } = toRefs(props);
+  const { size, position, isStacking, footerNoPadding, isExpanded, isActivePanel } = toRefs(props);
 
   const sidepanelClasses: ComputedRef<SidepanelClasses> = computed(() => {
     const sidepanelBaseClasses = classNames(
@@ -33,6 +33,7 @@ export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<Sidep
         '[@media(max-width:420px)]:spr-w-[calc(100vw-35px)]': size.value === 'md' && !isExpanded.value && !isStacking.value,
         '[@media(max-width:480px)]:spr-w-[calc(100vw-35px)]': size.value === 'lg' && !isExpanded.value && !isStacking.value,
         'spr-w-[calc(100vw-50px)]': isExpanded.value,
+        'spr-pointer-events-none': !isActivePanel.value && isStacking.value
       },
     );
 

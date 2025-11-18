@@ -11,6 +11,7 @@ export const useStackingSidepanel = (
   const activePanels = useVModel(props, 'stack', emits, { deep: true });
   const expandedPanel = ref('');
   const isTransitioning = ref(false);  
+  const activePanel = computed(() => activePanels.value[activePanels.value.length -1] || null);
 
   // Ensure activePanels is an array
   watchDeep(activePanels, (newValue) => {
@@ -143,5 +144,6 @@ export const useStackingSidepanel = (
     activePanels,
     expandedPanel,
     handleExpandPanel,
+    activePanel
   };
 };

@@ -154,6 +154,7 @@ const activePanelsHandler = (panel: string[]) => {
         header-title="Sidepanel 1"
         :is-expandable="true"
         :is-expanded="stackingSidepanel?.expandedPanel === 'sidepanel-1'"
+        :is-active-panel="stackingSidepanel?.activePanel === 'sidepanel-1'"
         @close="stackingSidepanel?.hidePanel('sidepanel-1')"
         @expand="stackingSidepanel?.handleExpandPanel('expand', 'sidepanel-1')"
         @shrink="stackingSidepanel?.handleExpandPanel('shrink', 'sidepanel-1')"
@@ -170,6 +171,7 @@ const activePanelsHandler = (panel: string[]) => {
         :is-stacking="true"
         :is-expandable="true"
         :is-expanded="stackingSidepanel?.expandedPanel === 'sidepanel-2'"
+        :is-active-panel="stackingSidepanel?.activePanel === 'sidepanel-2'"
         header-title="Sidepanel 2"
         @close="stackingSidepanel?.hidePanel('sidepanel-2')"
         @expand="stackingSidepanel?.handleExpandPanel('expand', 'sidepanel-2')"
@@ -188,6 +190,7 @@ const activePanelsHandler = (panel: string[]) => {
         header-title="Sidepanel 3"
         :is-expandable="true"
         :is-expanded="stackingSidepanel?.expandedPanel === 'sidepanel-3'"
+        :is-active-panel="stackingSidepanel?.activePanel === 'sidepanel-3'"
         @close="stackingSidepanel?.hidePanel('sidepanel-3')"
         @expand="stackingSidepanel?.handleExpandPanel('expand', 'sidepanel-3')"
         @shrink="stackingSidepanel?.handleExpandPanel('shrink', 'sidepanel-3')"
@@ -218,6 +221,7 @@ const activePanelsHandler = (panel: string[]) => {
         header-title="Sidepanel 1"
         :is-expandable="true"
         :is-expanded="stackingSidepanel?.expandedPanel === 'sidepanel-1'"
+        :is-active-panel="stackingSidepanel?.activePanel === 'sidepanel-1'" // Remove pointer events when not active
         @close="stackingSidepanel?.hidePanel('sidepanel-1')"
         @expand="stackingSidepanel?.handleExpandPanel('expand', 'sidepanel-1')"
         @shrink="stackingSidepanel?.handleExpandPanel('shrink', 'sidepanel-1')"
@@ -234,6 +238,7 @@ const activePanelsHandler = (panel: string[]) => {
         :is-stacking="true"
         :is-expandable="true"
         :is-expanded="stackingSidepanel?.expandedPanel === 'sidepanel-2'"
+        :is-active-panel="stackingSidepanel?.activePanel === 'sidepanel-2'"
         header-title="Sidepanel 2"
         @close="stackingSidepanel?.hidePanel('sidepanel-2')"
         @expand="stackingSidepanel?.handleExpandPanel('expand', 'sidepanel-2')"
@@ -252,6 +257,7 @@ const activePanelsHandler = (panel: string[]) => {
         header-title="Sidepanel 3"
         :is-expandable="true"
         :is-expanded="stackingSidepanel?.expandedPanel === 'sidepanel-3'"
+        :is-active-panel="stackingSidepanel?.activePanel === 'sidepanel-3'"
         @close="stackingSidepanel?.hidePanel('sidepanel-3')"
         @expand="stackingSidepanel?.handleExpandPanel('expand', 'sidepanel-3')"
         @shrink="stackingSidepanel?.handleExpandPanel('shrink', 'sidepanel-3')"
@@ -361,6 +367,10 @@ const expandedPanel = ref('');
     <tr>
       <td><code>expandedPanel</code></td>
       <td>Sidepanel name that is currently expanded.</td>
+    </tr>    
+    <tr>
+      <td><code>activePanel</code></td>
+      <td>Sidepanel name that is currently shown.</td>
     </tr>    
   </tbody>
 </table>

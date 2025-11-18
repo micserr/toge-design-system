@@ -100,6 +100,10 @@ export const sidepanelPropTypes = {
   isExpanded: {
     type: Boolean,
     default: false
+  },
+  isActivePanel: {
+    type: Boolean,
+    default: false
   }
 };
 

@@ -47,7 +47,7 @@ export default defineConfig({
     ['meta', { property: 'og:site_name', content: 'Toge' }],
   ],
   locales: {
-    root: enConfig,
+    en: enConfig,
     th: thConfig,
   },
 });

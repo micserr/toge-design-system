@@ -41,7 +41,10 @@
                 :ladderized="props.ladderized"
                 :no-check="props.noCheck"
                 :item-icon="props.itemIcon"
+                :item-icon-tone="props.itemIconTone"
+                :item-icon-fill="props.itemIconFill"
                 :disabled-unselected-items="props.disabledUnselectedItems"
+                :radio-list="props.radioList"
                 @select="handleSelectedItem(item)"
               />
               <div v-if="props.infiniteScrollLoader" class="spr-flex spr-items-center spr-justify-center spr-p-2">
@@ -66,7 +69,10 @@
             :ladderized="props.ladderized"
             :no-check="props.noCheck"
             :item-icon="props.itemIcon"
+            :item-icon-tone="props.itemIconTone"
+            :item-icon-fill="props.itemIconFill"
             :disabled-unselected-items="props.disabledUnselectedItems"
+            :radio-list="props.radioList"
             @select="handleSelectedItem(item)"
           />
           <div v-if="props.infiniteScrollLoader" class="spr-flex spr-items-center spr-justify-center spr-p-2">

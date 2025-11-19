@@ -39,7 +39,30 @@ const setPackageVersion = () => {
   }
 };
 
+const setLocalesOnChange = () => {
+  if (typeof window !== 'undefined') {
+    setInterval(() => {
+      const localesOptionsEl = document.querySelectorAll<HTMLElement>('.VPNavBarTranslations .VPMenu .VPMenuLink');
+
+      if (localesOptionsEl.length > 0) {
+        localesOptionsEl.forEach((element) => {
+          element.addEventListener('click', () => {
+            const linkElement = element.querySelector('.link');
+
+            if (linkElement) {
+              const locale = linkElement.getAttribute('href')?.replace(/\//g, '') || '';
+
+              localStorage.setItem('locale', locale);
+            }
+          });
+        });
+      }
+    }, 500);
+  }
+};
+
 setPackageVersion();
+setLocalesOnChange();
 
 export default {
   extends: DefaultTheme,

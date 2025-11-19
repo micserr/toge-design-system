@@ -1,5 +1,28 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.22.2 (2025-11-19)
+
+- แก้ไข:
+  - แก้ไขปัญหาการแปลเอกสารเมื่อสลับไปยังภาษาต่างๆ
+  - เพิ่มการรองรับ Label Placement และ Supporting Label Text สำหรับ Progress Component
+  - อัปเดตเอกสารประกอบสำหรับ Progress Component
+  - เพิ่มการรองรับ List Item Radio Button
+  - เพิ่มการรองรับ List Item Icon Fill และ Tone
+  - อัปเดตเอกสารประกอบสำหรับ List Component
+    ([#35957](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35957) โดย @jarias)
+
+## 2.22.1 (2025-11-18)
+
+- แก้ไข:
+  - ลบ pointer events สำหรับ sidepanel ที่ไม่ได้ active ใน stacked sidepanel
+    ([499caa80](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/499caa8085900218792e4c5272c45e8f8f3803cb?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fexpandable-sidepanel) โดย @despiritu)
+
+## 2.22.0 (2025-11-12)
+
+- คุณสมบัติ:
+  - Expandable Sidepanel
+    ([#6fda6de6](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/6fda6de6ddb18216e6337181c75a965694da2c37?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fexpandable-sidepanel) โดย @despiritu)
+
 ## 2.21.10 (2025-11-07)
 
 - แก้ไข:

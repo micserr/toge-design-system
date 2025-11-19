@@ -1,7 +1,7 @@
 // docs/.vitepress/locales/th.ts
 export const thConfig = {
   label: 'ไทย',
-  lang: 'th',
+  lang: 'th-TH',
   title: 'ระบบการออกแบบ Sprout',
   description: 'Toge - ระบบการออกแบบ Sprout',
   themeConfig: {
@@ -156,6 +156,10 @@ export const thConfig = {
               link: '/th/documentation/components/progress-bar',
             },
             {
+              text: 'ป็อปเปอร์',
+              link: '/th/documentation/components/popper',
+            },
+            {
               text: 'แถบด้านข้าง',
               link: '/th/documentation/components/sidenav',
             },
@@ -180,10 +184,6 @@ export const thConfig = {
             {
               text: 'สเตปเปอร์',
               link: '/th/documentation/components/stepper',
-            },
-            {
-              text: 'ป็อปเปอร์',
-              link: '/th/documentation/components/popper',
             },
             {
               text: 'ตาราง',

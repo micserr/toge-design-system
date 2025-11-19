@@ -18,7 +18,7 @@ outline: deep
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example1" :menu-list="menuList" />
+  <spr-list v-model="singleSelectOutput.basicUsage" :menu-list="menuList" />
 </div>
 
 ```vue
@@ -63,7 +63,7 @@ const menuList = ref([
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example2" :menu-list="menuList" multi-select />
+  <spr-list v-model="singleSelectOutput.multiSelect" :menu-list="menuList" multi-select />
 </div>
 
 ```vue
@@ -109,7 +109,7 @@ const menuList = ref([
     ]"
   >
     <h5 class="spr-mb-2 spr-text-sm spr-font-medium">จัดกลุ่มตามค่าเริ่มต้น</h5>
-    <spr-list v-model="singleSelectOutput.example3" :menu-list="groupedMenuList" group-items-by="default" />
+    <spr-list v-model="singleSelectOutput.groupingDefault" :menu-list="groupedMenuList" group-items-by="default" />
   </div>
   <div
     :class="[
@@ -117,8 +117,8 @@ const menuList = ref([
       'spr-border spr-border-solid spr-border-color-weak'
     ]"
   >
-    <h5 class="spr-mb-2 spr-text-sm spr-font-medium">จัดกลุ่มตาม A-Z</h5>
-    <spr-list v-model="singleSelectOutput.example4" :menu-list="groupedMenuList" group-items-by="A-Z" />
+    <h5 class="spr-mb-2 spr-text-sm spr-font-medium">Grouped by A-Z</h5>
+    <spr-list v-model="singleSelectOutput.groupingAlphabetical" :menu-list="groupedMenuList" group-items-by="A-Z" />
   </div>
 </div>
 
@@ -152,7 +152,7 @@ const menuList = ref([
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example5" :menu-list="menuList" searchable-menu />
+  <spr-list v-model="singleSelectOutput.searchableList" :menu-list="menuList" searchable-menu />
 </div>
 
 ```vue
@@ -166,9 +166,9 @@ const menuList = ref([
 </template>
 ```
 
-## ด้วยไอคอนและข้อความรอง
+## รายการปุ่มวิทยุ
 
-เพิ่มไอเท็มรายการด้วยไอคอนและข้อความอธิบายรองโดยรวมพร็อพส์ `icon` และ `subtext`
+แสดงตัวเลือกปุ่มวิทยุสำหรับรายการการเลือกเดี่ยวโดยใช้พร็อพส์ `radio-list` ปุ่มวิทยุปรากฏขึ้นก่อนข้อความไอเท็มและไอคอน ซึ่งให้การระบุภาพที่ชัดเจนสำหรับโหมดการเลือกเดี่ยว
 
 <div
   :class="[
@@ -176,7 +176,107 @@ const menuList = ref([
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example6" :menu-list="itemsWithIcons" />
+  <spr-list v-model="singleSelectOutput.radioList" :menu-list="menuList" radio-list />
+</div>
+
+```vue
+<template>
+  <spr-list v-model="selectedItems" :menu-list="menuList" radio-list />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const menuList = ref([
+  { text: 'Option 1', value: 'option1' },
+  { text: 'Option 2', value: 'option2' },
+  { text: 'Option 3', value: 'option3' },
+  { text: 'Option 4', value: 'option4' },
+  { text: 'Option 5', value: 'option5' },
+]);
+</script>
+```
+
+## ข้อความรอง
+
+เพิ่มข้อความรองที่อธิบายไว้ในรายการไอเท็มโดยรวมพร็อพส์ `subtext` สิ่งนี้มีประโยชน์สำหรับการให้บริบทเพิ่มเติมหรือข้อมูลเกี่ยวกับแต่ละไอเท็ม
+
+<div
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="singleSelectOutput.subtext" :menu-list="itemsWithSubtext" />
+</div>
+
+```vue
+<template>
+  <spr-list v-model="selectedItems" :menu-list="itemsWithSubtext" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const itemsWithSubtext = ref([
+  {
+    text: 'Home',
+    value: 'home',
+    subtext: 'Go to home page',
+  },
+  {
+    text: 'Settings',
+    value: 'settings',
+    subtext: 'Configure preferences',
+  },
+  {
+    text: 'Users',
+    value: 'users',
+    subtext: 'Manage user accounts',
+  },
+]);
+</script>
+```
+
+## ไอคอน
+
+### ไอคอนรายการเริ่มต้น
+
+ใช้ไอคอนเริ่มต้นกับรายการทั้งหมดในรายการโดยใช้พร็อพส์ `itemIcon` สิ่งนี้มีประโยชน์เมื่อรายการทั้งหมดควรแสดงไอคอนเดียวกัน
+
+```vue
+<template>
+  <spr-list v-model="selectedItems" :menu-list="menuList" item-icon="ph:check" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const menuList = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+]);
+</script>
+```
+
+### ไอคอนรายการ
+
+เพิ่มไอคอนในรายการไอเท็มแต่ละรายการโดยรวมพร็อพส์ `icon` คุณสามารถปรับแต่งสีไอคอนได้เป็นทางเลือกโดยใช้พร็อพส์ `iconColor`
+
+<div
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="singleSelectOutput.lozengeBadge" :menu-list="menuItemsWithLozenge" />
 </div>
 
 ```vue
@@ -194,21 +294,57 @@ const itemsWithIcons = ref([
     text: 'Home',
     value: 'home',
     icon: 'ph:house',
-    subtext: 'Go to home page',
   },
   {
     text: 'Settings',
     value: 'settings',
     icon: 'ph:gear',
-    subtext: 'Configure preferences',
     iconColor: 'spr-text-blue-500',
   },
   {
     text: 'Users',
     value: 'users',
     icon: 'ph:users',
-    subtext: 'Manage user accounts',
   },
+]);
+</script>
+```
+
+### โทนและเติมไอคอน
+
+ปรับแต่งลักษณะของไอคอนรายการเริ่มต้นโดยใช้พร็อพส์ `item-icon-tone` และ `item-icon-fill` สิ่งเหล่านี้ช่วยให้คุณสามารถใช้โทนสีและรูปแบบการเติมที่คล้ายกับส่วนประกอบ lozenge
+
+โทนที่พร้อมใช้งาน: 'plain', 'pending', 'information', 'success', 'danger', 'neutral', 'caution'
+
+<div
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="listModels.iconToneFill" :menu-list="menuList" item-icon="ph:star" item-icon-tone="success" :item-icon-fill="true" />
+</div>
+
+```vue
+<template>
+  <spr-list
+    v-model="selectedItems"
+    :menu-list="menuList"
+    item-icon="ph:star"
+    item-icon-tone="success"
+    :item-icon-fill="true"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const menuList = ref([
+  { text: 'ตัวเลือก 1', value: 'option1' },
+  { text: 'ตัวเลือก 2', value: 'option2' },
+  { text: 'ตัวเลือก 3', value: 'option3' },
 ]);
 </script>
 ```
@@ -218,7 +354,7 @@ const itemsWithIcons = ref([
 สร้างรายการซ้อนลำดับชั้นโดยใช้พร็อพส์ `ladderized` และรวมพร็อพส์ `sublevel` ในไอเท็ม
 
 <div class="spr-rounded-md spr-max-h-[300px] spr-border spr-border-solid spr-border-color-weak spr-overflow-hidden">
-  <spr-ladderized-list v-model="singleSelectOutput.example7" :menu-list="hierarchicalData" />
+  <spr-ladderized-list v-model="singleSelectOutput.hierarchicalList" :menu-list="hierarchicalData" />
 </div>
 
 ```vue
@@ -319,13 +455,13 @@ const lozengeItems = ref([
 
 แสดงไอเท็มรายการปกติที่มีป้าย lozenge ด้านขวาโดยใช้พร็อพส์ `lozenge` ในไอเท็มแต่ละรายการ สิ่งนี้ช่วยให้คุณแสดงข้อมูลเมตาหรือสถานะควบคู่ไปกับข้อความไอเท็ม
 
-<div
+ <div
   :class="[
     'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example9" :menu-list="menuItemsWithLozenge" />
+  <spr-list v-model="singleSelectOutput.subtext" :menu-list="itemsWithSubtext" />
 </div>
 
 ```vue
@@ -406,7 +542,7 @@ const menuList = ref([
   ]"
 >
   <spr-list 
-    v-model="singleSelectOutput.example8" 
+    v-model="singleSelectOutput.eventHandling" 
     :menu-list="menuList" 
     @update:model-value="handleSelection"
   />
@@ -458,55 +594,55 @@ const handleSelection = (items) => {
   </thead>
   <tbody>
     <tr>
-      <td><code>modelValue</code> (v-model)</td>
+      <td><code>model-value</code> (v-model)</td>
       <td>การผูกสองทางสำหรับไอเท็มที่เลือกซึ่งประกอบด้วยออบเจ็กต์ไอเท็มทั้งหมด</td>
       <td><code>MenuListType[]</code></td>
       <td><code>[]</code></td>
     </tr>
     <tr>
-      <td><code>menuList</code></td>
+      <td><code>menu-list</code></td>
       <td>อาร์เรย์ของไอเท็มที่จะแสดง</td>
       <td><code>MenuListType[]</code></td>
       <td><code>[]</code> (จำเป็น)</td>
     </tr>
     <tr>
-      <td><code>groupItemsBy</code></td>
+      <td><code>group-items-by</code></td>
       <td>กลยุทธ์การจัดกลุ่ม: <code>'default'</code> (ตามพร็อพส์กลุ่ม), <code>'A-Z'</code> (จากน้อยไปมาก), หรือ <code>'Z-A'</code> (จากมากไปน้อย)</td>
       <td><code>'default' | 'A-Z' | 'Z-A'</code></td>
       <td><code>undefined</code></td>
     </tr>
     <tr>
-      <td><code>multiSelect</code></td>
+      <td><code>multi-select</code></td>
       <td>เปิดใช้งานโหมดการเลือกหลายรายการด้วยช่องทำเครื่องหมาย</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>preSelectedItems</code></td>
+      <td><code>pre-selected-items</code></td>
       <td>เลือกไอเท็มล่วงหน้าตามค่าของพวกเขา</td>
       <td><code>(string | number | Record&lt;string, unknown&gt;)[]</code></td>
       <td><code>[]</code></td>
     </tr>
     <tr>
-      <td><code>searchableMenu</code></td>
+      <td><code>searchable-menu</code></td>
       <td>แสดงอินพุตการค้นหาสำหรับกรองไอเท็ม</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>searchableMenuPlaceholder</code></td>
+      <td><code>searchable-menu-placeholder</code></td>
       <td>ข้อความตัวยึดตำแหน่งสำหรับอินพุตการค้นหา</td>
       <td><code>string</code></td>
       <td><code>'Search...'</code></td>
     </tr>
     <tr>
-      <td><code>searchValue</code></td>
+      <td><code>search-value</code></td>
       <td>ค่าการค้นหาภายนอก (การผูกสองทาง)</td>
       <td><code>string</code></td>
       <td><code>''</code></td>
     </tr>
     <tr>
-      <td><code>menuLevel</code></td>
+      <td><code>menu-level</code></td>
       <td>ระดับการซ้อนสำหรับรายการลำดับชั้น</td>
       <td><code>number</code></td>
       <td><code>0</code></td>
@@ -518,7 +654,7 @@ const handleSelection = (items) => {
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>disabledLocalSearch</code></td>
+      <td><code>disabled-local-search</code></td>
       <td>ปิดใช้งานการกรองการค้นหาในเครื่อง</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
@@ -530,7 +666,7 @@ const handleSelection = (items) => {
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>noCheck</code></td>
+      <td><code>no-check</code></td>
       <td>ซ่อนไอคอนเครื่องหมายถูกในโหมดการเลือกเดี่ยว</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
@@ -542,32 +678,50 @@ const handleSelection = (items) => {
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>supportingDisplayText</code></td>
+      <td><code>supporting-display-text</code></td>
       <td>แสดงข้อความแบบกำหนดเอง (เช่น "2 Selected")</td>
       <td><code>string</code></td>
       <td><code>''</code></td>
     </tr>
     <tr>
-      <td><code>displayListItemSelected</code></td>
+      <td><code>display-list-item-selected</code></td>
       <td>แสดงจำนวนไอเท็มที่เลือกเมื่อค้นหาได้</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>stickySearchOffset</code></td>
+      <td><code>sticky-search-offset</code></td>
       <td>ออฟเซ็ตสำหรับส่วนหัวการค้นหาที่ติด</td>
       <td><code>string | number</code></td>
       <td><code>0</code></td>
     </tr>
     <tr>
-      <td><code>itemIcon</code></td>
+      <td><code>item-icon</code></td>
       <td>ไอคอนเริ่มต้นสำหรับไอเท็มทั้งหมด</td>
       <td><code>string</code></td>
       <td><code>''</code></td>
     </tr>
     <tr>
-      <td><code>disabledUnselectedItems</code></td>
+      <td><code>item-icon-tone</code></td>
+      <td>โทน/สีสำหรับไอคอนไอเท็ม: <code>'plain'</code>, <code>'pending'</code>, <code>'information'</code>, <code>'success'</code>, <code>'danger'</code>, <code>'neutral'</code>, หรือ <code>'caution'</code></td>
+      <td><code>string</code></td>
+      <td><code>'plain'</code></td>
+    </tr>
+    <tr>
+      <td><code>item-icon-fill</code></td>
+      <td>รูปแบบการเติมสำหรับไอคอนไอเท็ม (พื้นหลังที่เป็นของแข็ง)</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>disabled-unselected-items</code></td>
       <td>ปิดใช้งานและทำให้ไอเท็มที่ไม่ได้เลือกเป็นสีเทา</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>radio-list</code></td>
+      <td>แสดงปุ่มวิทยุสำหรับโหมดการเลือกเดี่ยว (ต้องใช้การเลือกเดี่ยว ไม่เข้ากันได้กับการเลือกหลายรายการ)</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
@@ -687,15 +841,17 @@ const lozengeMenuList = ref([
 ]);
 
 const singleSelectOutput = ref({
-  example1: [],
-  example2: [],
-  example3: [],
-  example4: [],
-  example5: [],
-  example6: [],
-  example7: [],
-  example8: [],
-  example9: [],
+  basicUsage: [],
+  multiSelect: [],
+  groupingDefault: [],
+  groupingAlphabetical: [],
+  searchableList: [],
+  radioList: [],
+  subtext: [],
+  itemIcons: [],
+  hierarchicalList: [],
+  eventHandling: [],
+  lozengeBadge: [],
 });
 
 const menuItemsWithLozenge = ref([

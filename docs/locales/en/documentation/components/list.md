@@ -18,7 +18,7 @@ The most basic usage involves binding your selection to `v-model` and providing 
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example1" :menu-list="menuList" />
+  <spr-list v-model="listModels.basicUsage" :menu-list="menuList" />
 </div>
 
 ```vue
@@ -63,7 +63,7 @@ Enable multiple item selection by adding the `multi-select` prop. This displays 
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example2" :menu-list="menuList" multi-select />
+  <spr-list v-model="listModels.multiSelect" :menu-list="menuList" multi-select />
 </div>
 
 ```vue
@@ -109,7 +109,7 @@ Group items using the `group-items-by` prop with values `'default'`, `'A-Z'`, or
     ]"
   >
     <h5 class="spr-mb-2 spr-text-sm spr-font-medium">Grouped by default</h5>
-    <spr-list v-model="singleSelectOutput.example3" :menu-list="groupedMenuList" group-items-by="default" />
+    <spr-list v-model="listModels.groupingDefault" :menu-list="groupedMenuList" group-items-by="default" />
   </div>
   <div
     :class="[
@@ -118,7 +118,7 @@ Group items using the `group-items-by` prop with values `'default'`, `'A-Z'`, or
     ]"
   >
     <h5 class="spr-mb-2 spr-text-sm spr-font-medium">Grouped by A-Z</h5>
-    <spr-list v-model="singleSelectOutput.example4" :menu-list="groupedMenuList" group-items-by="A-Z" />
+    <spr-list v-model="listModels.groupingAlphabetical" :menu-list="groupedMenuList" group-items-by="A-Z" />
   </div>
 </div>
 
@@ -152,7 +152,7 @@ Add search functionality with the `searchable-menu` prop. Users can filter items
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example5" :menu-list="menuList" searchable-menu />
+  <spr-list v-model="listModels.searchableList" :menu-list="menuList" searchable-menu />
 </div>
 
 ```vue
@@ -166,9 +166,76 @@ Add search functionality with the `searchable-menu` prop. Users can filter items
 </template>
 ```
 
-## With Icons and Subtext
+## Subtext
 
-Enhance list items with icons and descriptive subtext by including `icon` and `subtext` properties.
+Add descriptive subtext to list items by including the `subtext` property. This is useful for providing additional context or information about each item.
+
+ <div
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="listModels.subtext" :menu-list="itemsWithSubtext" />
+</div>
+
+```vue
+<template>
+  <spr-list v-model="selectedItems" :menu-list="itemsWithSubtext" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const itemsWithSubtext = ref([
+  {
+    text: 'Home',
+    value: 'home',
+    subtext: 'Go to home page',
+  },
+  {
+    text: 'Settings',
+    value: 'settings',
+    subtext: 'Configure preferences',
+  },
+  {
+    text: 'Users',
+    value: 'users',
+    subtext: 'Manage user accounts',
+  },
+]);
+</script>
+```
+
+## Icons
+
+### Default Item Icon
+
+Apply a default icon to all items in the list using the `itemIcon` prop. This is useful when all items should display the same icon.
+
+```vue
+<template>
+  <spr-list v-model="selectedItems" :menu-list="menuList" item-icon="ph:check" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const menuList = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+]);
+</script>
+```
+
+### Item Icons
+
+Add icons to individual list items by including the `icon` property. You can optionally customize the icon color with the `iconColor` property.
 
 <div
   :class="[
@@ -176,7 +243,7 @@ Enhance list items with icons and descriptive subtext by including `icon` and `s
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example6" :menu-list="itemsWithIcons" />
+  <spr-list v-model="listModels.itemIcons" :menu-list="itemsWithIcons" />
 </div>
 
 ```vue
@@ -194,20 +261,17 @@ const itemsWithIcons = ref([
     text: 'Home',
     value: 'home',
     icon: 'ph:house',
-    subtext: 'Go to home page',
   },
   {
     text: 'Settings',
     value: 'settings',
     icon: 'ph:gear',
-    subtext: 'Configure preferences',
     iconColor: 'spr-text-blue-500',
   },
   {
     text: 'Users',
     value: 'users',
     icon: 'ph:users',
-    subtext: 'Manage user accounts',
   },
 ]);
 </script>
@@ -218,7 +282,7 @@ const itemsWithIcons = ref([
 Create nested hierarchical lists using the `ladderized` prop and including `sublevel` properties in items.
 
 <div class="spr-rounded-md spr-max-h-[300px] spr-border spr-border-solid spr-border-color-weak spr-overflow-hidden">
-  <spr-ladderized-list v-model="singleSelectOutput.example7" :menu-list="hierarchicalData" />
+  <spr-ladderized-list v-model="listModels.hierarchicalList" :menu-list="hierarchicalData" />
 </div>
 
 ```vue
@@ -325,7 +389,7 @@ Display a regular list item with a lozenge badge on the right side by using the 
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example9" :menu-list="menuItemsWithLozenge" />
+  <spr-list v-model="listModels.lozengeBadge" :menu-list="menuItemsWithLozenge" />
 </div>
 
 ```vue
@@ -406,7 +470,7 @@ Use `@update:model-value` to react to selection changes and retrieve the complet
   ]"
 >
   <spr-list 
-    v-model="singleSelectOutput.example8" 
+    v-model="listModels.eventHandling" 
     :menu-list="menuList" 
     @update:model-value="handleSelection"
   />
@@ -613,6 +677,19 @@ import SprLadderizedList from "@/components/list/ladderized-list/ladderized-list
 
 import { MenuListType } from '@/components/list/list';
 
+const listModels = ref({
+  basicUsage: [],
+  multiSelect: [],
+  groupingDefault: [],
+  groupingAlphabetical: [],
+  searchableList: [],
+  subtext: [],
+  itemIcons: [],
+  hierarchicalList: [],
+  eventHandling: [],
+  lozengeBadge: [],
+});
+
 const menuList = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
@@ -637,12 +714,6 @@ const groupedMenuList = ref([
   { text: 'Honeydew', value: 'honeydew', group: 'Fruits' },
   { text: 'Kale', value: 'kale', group: 'Vegetables' },
   { text: 'Lemon', value: 'lemon', group: 'Fruits' },
-]);
-
-const itemsWithIcons = ref([
-  { text: 'Home', value: 'home', icon: 'ph:house', subtext: 'Go to home page' },
-  { text: 'Settings', value: 'settings', icon: 'ph:gear', subtext: 'Configure preferences', iconColor: 'spr-text-blue-500' },
-  { text: 'Users', value: 'users', icon: 'ph:users', subtext: 'Manage user accounts' },
 ]);
 
 const hierarchicalData = ref([
@@ -686,17 +757,42 @@ const lozengeMenuList = ref([
   },
 ]);
 
-const singleSelectOutput = ref({
-  example1: [],
-  example2: [],
-  example3: [],
-  example4: [],
-  example5: [],
-  example6: [],
-  example7: [],
-  example8: [],
-  example9: [],
-});
+const itemsWithSubtext = ref([
+  {
+    text: 'Home',
+    value: 'home',
+    subtext: 'Go to home page',
+  },
+  {
+    text: 'Settings',
+    value: 'settings',
+    subtext: 'Configure preferences',
+  },
+  {
+    text: 'Users',
+    value: 'users',
+    subtext: 'Manage user accounts',
+  },
+]);
+
+const itemsWithIcons = ref([
+  {
+    text: 'Home',
+    value: 'home',
+    icon: 'ph:house',
+  },
+  {
+    text: 'Settings',
+    value: 'settings',
+    icon: 'ph:gear',
+    iconColor: 'spr-text-blue-500',
+  },
+  {
+    text: 'Users',
+    value: 'users',
+    icon: 'ph:users',
+  },
+]); 
 
 const menuItemsWithLozenge = ref([
   {

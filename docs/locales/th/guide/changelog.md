@@ -3,13 +3,7 @@
 ## 2.23.0 (2025-11-120)
 
 - คุณสมบัติ:
-  - สร้าง RadioGrouped component พร้อม v-model binding และ options array support
-  - ใช้ error state styling ด้วย danger-base color สำหรับ validation feedback
-  - เพิ่ม display helper feature พร้อม optional icon support (helperIcon prop)
-  - บูรณาการ @iconify/vue Icon component พร้อม ph:info-fill icon สำหรับ error states
-  - ใช้ horizontalAlign prop รองรับ 'left', 'center', และ 'right' alignment
-  - เพิ่ม comprehensive English และ Thai documentation พร้อมหลายตัวอย่าง
-  - ตัวอย่างการกำหนดค่า: basic usage, pre-selected values, disabled states, error handling
+  - สร้างคอมโพเนนต์ Radio Grouped พร้อมการผูก v-model และการสนับสนุนอาร์เรย์ตัวเลือก
     ([#35957](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36031) โดย @jarias)
 
 ## 2.22.3 (2025-11-19)

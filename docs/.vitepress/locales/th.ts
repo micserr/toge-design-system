@@ -249,7 +249,13 @@ export const thConfig = {
             },
             {
               text: 'เรดิโอ',
-              link: '/th/documentation/components/radio',
+              link: '/th/documentation/components/radio/radio',
+              items: [
+                {
+                  text: 'เรดิโอแบบกลุ่ม',
+                  link: '/en/documentation/components/radio/radio-grouped',
+                },
+              ],
             },
             {
               text: 'เลือก',

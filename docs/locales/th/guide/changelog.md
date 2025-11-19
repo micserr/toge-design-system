@@ -1,5 +1,12 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.22.3 (2025-11-19)
+
+- แก้ไข:
+  - เพิ่มการรองรับ Display Helper สำหรับ Radio Component
+  - อัปเดตเอกสารประกอบสำหรับ Radio Component
+    ([#35957](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36031) โดย @jarias)
+
 ## 2.22.2 (2025-11-19)
 
 - แก้ไข:

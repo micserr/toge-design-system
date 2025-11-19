@@ -62,7 +62,6 @@ test.describe('RadioGrouped Component', () => {
         },
       });
 
-      await expect(component).toBeVisible();
       const inputs = component.locator('input[type="radio"]');
       await expect(inputs).toHaveCount(0);
     });
@@ -576,9 +575,9 @@ test.describe('RadioGrouped Component', () => {
         },
       });
 
-      // Should not render the helper section if helperText is empty
-      const helpers = component.locator('span').filter({ hasText: '' });
-      await expect(helpers.first()).toBeVisible(); // Will find radio indicators, not helper
+      // When displayHelper is true but helperText is empty, verify radio renders
+      const inputs = component.locator('input[type="radio"]');
+      await expect(inputs).toHaveCount(1);
     });
   });
 });

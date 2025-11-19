@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.23.0 (2025-11-120)
+
+- Feat:
+  - Created RadioGrouped component with v-model binding and options array support.
+  - Implemented error state styling with danger-base color for validation feedback.
+  - Added display helper feature with optional icon support (helperIcon prop).
+  - Integrated @iconify/vue Icon component with ph:info-fill icon for error states.
+  - Implemented horizontalAlign prop supporting 'left', 'center', and 'right' alignment.
+  - Added comprehensive English and Thai documentation with multiple examples.
+  - Example configurations: basic usage, pre-selected values, disabled states, error handling.
+    ([#35957](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36031) by @jarias)
+
 ## 2.22.3 (2025-11-19)
 
 - Fix:

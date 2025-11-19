@@ -246,7 +246,13 @@ export const enConfig = {
             },
             {
               text: 'Radio',
-              link: '/en/documentation/components/radio',
+              link: '/en/documentation/components/radio/radio',
+              items: [
+                {
+                  text: 'Radio Grouped',
+                  link: '/en/documentation/components/radio/radio-grouped',
+                },
+              ],
             },
             {
               text: 'Select',

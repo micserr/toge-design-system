@@ -182,21 +182,6 @@ const selectedOption = ref('');
       helper-text="จำเป็นต้องกรอกข้อมูลในช่องนี้"
     />
   </div>
-  <div>
-    <p class="spr-text-sm spr-font-semibold spr-mb-2">สถานะข้อผิดพลาดพร้อมไอคอน</p>
-    <spr-radio-grouped
-      id="grouped-radio5c"
-      v-model="radioModel.grouped5c"
-      name="grouped_name5c"
-      :options="[
-        { text: 'Option 1', value: 'value1' },
-        { text: 'Option 2', value: 'value2' },
-      ]"
-      :error="true"
-      helper-icon="ph:info-fill"
-      helper-text="จำเป็นต้องกรอกข้อมูลในช่องนี้"
-    />
-  </div>
 </div>
 
 ```vue
@@ -225,20 +210,6 @@ const selectedOption = ref('');
         { text: 'Option 2', value: 'value2' },
       ]"
       :error="true"
-      helper-text="จำเป็นต้องกรอกข้อมูลในช่องนี้"
-    />
-
-    <!-- สถานะข้อผิดพลาดพร้อมไอคอน -->
-    <spr-radio-grouped
-      id="grouped-radio-error-icon"
-      v-model="selectedOption"
-      name="grouped_options_error_icon"
-      :options="[
-        { text: 'Option 1', value: 'value1' },
-        { text: 'Option 2', value: 'value2' },
-      ]"
-      :error="true"
-      helper-icon="ph:info-fill"
       helper-text="จำเป็นต้องกรอกข้อมูลในช่องนี้"
     />
   </div>
@@ -499,7 +470,6 @@ const radioModel = ref({
   grouped4: '',
   grouped5: '',
   grouped5b: '',
-  grouped5c: '',
   grouped6: '',
   grouped7: '',
   grouped8: '',

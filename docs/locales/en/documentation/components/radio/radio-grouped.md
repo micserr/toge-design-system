@@ -178,8 +178,10 @@ Display helpful text or error messages below the radio group using the `display-
         { text: 'Option 1', value: 'value1' },
         { text: 'Option 2', value: 'value2' },
       ]"
-      :error="true"
+      display-helper
+      helper-icon="ph:info-fill"
       helper-text="This field is required"
+      error
     />
   </div>
 </div>
@@ -209,8 +211,10 @@ Display helpful text or error messages below the radio group using the `display-
         { text: 'Option 1', value: 'value1' },
         { text: 'Option 2', value: 'value2' },
       ]"
-      :error="true"
+      display-helper
+      helper-icon="ph:info-fill"
       helper-text="This field is required"
+      error
     />
   </div>
 </template>

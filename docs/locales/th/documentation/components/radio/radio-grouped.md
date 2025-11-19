@@ -178,8 +178,10 @@ const selectedOption = ref('');
         { text: 'Option 1', value: 'value1' },
         { text: 'Option 2', value: 'value2' },
       ]"
-      :error="true"
+      display-helper
+      helper-icon="ph:info-fill"
       helper-text="จำเป็นต้องกรอกข้อมูลในช่องนี้"
+      error
     />
   </div>
 </div>
@@ -209,8 +211,10 @@ const selectedOption = ref('');
         { text: 'Option 1', value: 'value1' },
         { text: 'Option 2', value: 'value2' },
       ]"
-      :error="true"
+      display-helper
+      helper-icon="ph:info-fill"
       helper-text="จำเป็นต้องกรอกข้อมูลในช่องนี้"
+      error
     />
   </div>
 </template>

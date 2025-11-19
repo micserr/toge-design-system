@@ -111,6 +111,10 @@ export const listPropTypes = {
     type: Boolean,
     default: false,
   },
+  radioList: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const listEmitTypes = {

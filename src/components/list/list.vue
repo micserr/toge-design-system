@@ -42,6 +42,7 @@
                 :no-check="props.noCheck"
                 :item-icon="props.itemIcon"
                 :disabled-unselected-items="props.disabledUnselectedItems"
+                :radio-list="props.radioList"
                 @select="handleSelectedItem(item)"
               />
               <div v-if="props.infiniteScrollLoader" class="spr-flex spr-items-center spr-justify-center spr-p-2">
@@ -67,6 +68,7 @@
             :no-check="props.noCheck"
             :item-icon="props.itemIcon"
             :disabled-unselected-items="props.disabledUnselectedItems"
+            :radio-list="props.radioList"
             @select="handleSelectedItem(item)"
           />
           <div v-if="props.infiniteScrollLoader" class="spr-flex spr-items-center spr-justify-center spr-p-2">

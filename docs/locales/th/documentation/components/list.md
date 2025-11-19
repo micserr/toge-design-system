@@ -166,6 +166,39 @@ const menuList = ref([
 </template>
 ```
 
+## รายการปุ่มวิทยุ
+
+แสดงตัวเลือกปุ่มวิทยุสำหรับรายการการเลือกเดี่ยวโดยใช้พร็อพส์ `list-radio` ปุ่มวิทยุปรากฏขึ้นก่อนข้อความไอเท็มและไอคอน ซึ่งให้การระบุภาพที่ชัดเจนสำหรับโหมดการเลือกเดี่ยว
+
+<div
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="singleSelectOutput.radioList" :menu-list="menuList" :radio-list="true" />
+</div>
+
+```vue
+<template>
+  <spr-list v-model="selectedItems" :menu-list="menuList" list-radio />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const menuList = ref([
+  { text: 'Option 1', value: 'option1' },
+  { text: 'Option 2', value: 'option2' },
+  { text: 'Option 3', value: 'option3' },
+  { text: 'Option 4', value: 'option4' },
+  { text: 'Option 5', value: 'option5' },
+]);
+</script>
+```
+
 ## ข้อความรอง
 
 เพิ่มข้อความรองที่อธิบายไว้ในรายการไอเท็มโดยรวมพร็อพส์ `subtext` สิ่งนี้มีประโยชน์สำหรับการให้บริบทเพิ่มเติมหรือข้อมูลเกี่ยวกับแต่ละไอเท็ม
@@ -635,6 +668,12 @@ const handleSelection = (items) => {
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
+    <tr>
+      <td><code>radioList</code></td>
+      <td>แสดงปุ่มวิทยุสำหรับโหมดการเลือกเดี่ยว (ต้องใช้การเลือกเดี่ยว ไม่เข้ากันได้กับการเลือกหลายรายการ)</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+    </tr>
   </tbody>
 </table>
 
@@ -756,6 +795,7 @@ const singleSelectOutput = ref({
   groupingDefault: [],
   groupingAlphabetical: [],
   searchableList: [],
+  radioList: [],
   subtext: [],
   itemIcons: [],
   hierarchicalList: [],

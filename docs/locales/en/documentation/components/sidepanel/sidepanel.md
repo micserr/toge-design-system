@@ -486,6 +486,12 @@ The Sidepanel component provides three slots for customizing different sections 
       <td>boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td><code>isActivePanel</code></td>
+      <td>Specifies if the sidepanel is currently shown in a stacked sidepanels.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 

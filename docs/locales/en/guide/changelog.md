@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.22.1 (2025-11-18)
+## 2.22.2 (2025-11-19)
 
 - Fix:
   - Fix Documentation Locales Issues when switching to different languages
@@ -8,6 +8,12 @@
   - Update Documentation for Progress Component.
   - Update Documentation for List Component.
     ([#35957](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35957) by @jarias)
+
+## 2.22.1 (2025-11-18)
+
+- Fix:
+  - Remove pointer events for sidepanel that are not active in stacked sidepanel
+    ([499caa80](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/499caa8085900218792e4c5272c45e8f8f3803cb?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fexpandable-sidepanel) by @despiritu)
 
 ## 2.22.0 (2025-11-12)
 

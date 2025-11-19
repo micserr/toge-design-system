@@ -168,7 +168,7 @@ Add search functionality with the `searchable-menu` prop. Users can filter items
 
 ## Radio List
 
-Display a radio button selector for single-select lists using the `list-radio` prop. Radio buttons appear before the item text and icon, providing a clear visual indicator for single selection mode.
+Display a radio button selector for single-select lists using the `radio-list` prop. Radio buttons appear before the item text and icon, providing a clear visual indicator for single selection mode.
 
 <div
   :class="[
@@ -176,12 +176,12 @@ Display a radio button selector for single-select lists using the `list-radio` p
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="listModels.radioList" :menu-list="menuList" :radio-list="true" />
+  <spr-list v-model="listModels.radioList" :menu-list="menuList" radio-list />
 </div>
 
 ```vue
 <template>
-  <spr-list v-model="selectedItems" :menu-list="menuList" :radio-list="true" />
+  <spr-list v-model="selectedItems" :menu-list="menuList" radio-list />
 </template>
 
 <script lang="ts" setup>
@@ -555,55 +555,55 @@ const handleSelection = (items) => {
   </thead>
   <tbody>
     <tr>
-      <td><code>modelValue</code> (v-model)</td>
+      <td><code>model-value</code> (v-model)</td>
       <td>Two-way binding for selected items containing full item objects</td>
       <td><code>MenuListType[]</code></td>
       <td><code>[]</code></td>
     </tr>
     <tr>
-      <td><code>menuList</code></td>
+      <td><code>menu-list</code></td>
       <td>Array of items to display</td>
       <td><code>MenuListType[]</code></td>
       <td><code>[]</code> (required)</td>
     </tr>
     <tr>
-      <td><code>groupItemsBy</code></td>
+      <td><code>group-items-by</code></td>
       <td>Grouping strategy: <code>'default'</code> (by group property), <code>'A-Z'</code> (ascending), or <code>'Z-A'</code> (descending)</td>
       <td><code>'default' | 'A-Z' | 'Z-A'</code></td>
       <td><code>undefined</code></td>
     </tr>
     <tr>
-      <td><code>multiSelect</code></td>
+      <td><code>multi-select</code></td>
       <td>Enable multi-selection mode with checkboxes</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>preSelectedItems</code></td>
+      <td><code>pre-selected-items</code></td>
       <td>Pre-select items by their values</td>
       <td><code>(string | number | Record&lt;string, unknown&gt;)[]</code></td>
       <td><code>[]</code></td>
     </tr>
     <tr>
-      <td><code>searchableMenu</code></td>
+      <td><code>searchable-menu</code></td>
       <td>Display search input for filtering items</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>searchableMenuPlaceholder</code></td>
+      <td><code>searchable-menu-placeholder</code></td>
       <td>Placeholder text for search input</td>
       <td><code>string</code></td>
       <td><code>'Search...'</code></td>
     </tr>
     <tr>
-      <td><code>searchValue</code></td>
+      <td><code>search-value</code></td>
       <td>External search value (two-way binding)</td>
       <td><code>string</code></td>
       <td><code>''</code></td>
     </tr>
     <tr>
-      <td><code>menuLevel</code></td>
+      <td><code>menu-level</code></td>
       <td>Nesting level for hierarchical lists</td>
       <td><code>number</code></td>
       <td><code>0</code></td>
@@ -615,7 +615,7 @@ const handleSelection = (items) => {
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>disabledLocalSearch</code></td>
+      <td><code>disabled-local-search</code></td>
       <td>Disable local search filtering</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
@@ -627,7 +627,7 @@ const handleSelection = (items) => {
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>noCheck</code></td>
+      <td><code>no-check</code></td>
       <td>Hide checkmark icon in single-select mode</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
@@ -639,37 +639,37 @@ const handleSelection = (items) => {
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>supportingDisplayText</code></td>
+      <td><code>supporting-display-text</code></td>
       <td>Display custom text (e.g., "2 Selected")</td>
       <td><code>string</code></td>
       <td><code>''</code></td>
     </tr>
     <tr>
-      <td><code>displayListItemSelected</code></td>
+      <td><code>display-list-item-selected</code></td>
       <td>Display count of selected items when searchable</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>stickySearchOffset</code></td>
+      <td><code>sticky-search-offset</code></td>
       <td>Offset for sticky search header</td>
       <td><code>string | number</code></td>
       <td><code>0</code></td>
     </tr>
     <tr>
-      <td><code>itemIcon</code></td>
+      <td><code>item-icon</code></td>
       <td>Default icon for all items</td>
       <td><code>string</code></td>
       <td><code>''</code></td>
     </tr>
     <tr>
-      <td><code>disabledUnselectedItems</code></td>
+      <td><code>disabled-unselected-items</code></td>
       <td>Disable and gray out unselected items</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>radioList</code></td>
+      <td><code>radio-list</code></td>
       <td>Display radio buttons for single-select mode (requires single-select, incompatible with multi-select)</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>

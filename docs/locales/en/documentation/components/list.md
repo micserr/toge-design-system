@@ -166,6 +166,39 @@ Add search functionality with the `searchable-menu` prop. Users can filter items
 </template>
 ```
 
+## Radio List
+
+Display a radio button selector for single-select lists using the `list-radio` prop. Radio buttons appear before the item text and icon, providing a clear visual indicator for single selection mode.
+
+<div
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="listModels.radioList" :menu-list="menuList" :radio-list="true" />
+</div>
+
+```vue
+<template>
+  <spr-list v-model="selectedItems" :menu-list="menuList" :radio-list="true" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const menuList = ref([
+  { text: 'Option 1', value: 'option1' },
+  { text: 'Option 2', value: 'option2' },
+  { text: 'Option 3', value: 'option3' },
+  { text: 'Option 4', value: 'option4' },
+  { text: 'Option 5', value: 'option5' },
+]);
+</script>
+```
+
 ## Subtext
 
 Add descriptive subtext to list items by including the `subtext` property. This is useful for providing additional context or information about each item.
@@ -635,6 +668,12 @@ const handleSelection = (items) => {
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
+    <tr>
+      <td><code>radioList</code></td>
+      <td>Display radio buttons for single-select mode (requires single-select, incompatible with multi-select)</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+    </tr>
   </tbody>
 </table>
 
@@ -683,6 +722,7 @@ const listModels = ref({
   groupingDefault: [],
   groupingAlphabetical: [],
   searchableList: [],
+  radioList: [],
   subtext: [],
   itemIcons: [],
   hierarchicalList: [],

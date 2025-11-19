@@ -25,6 +25,16 @@
           :disabled="listItem.disabled || (props.disabledUnselectedItems && !isSelected)"
           :checked="isSelected"
         />
+        <spr-radio
+          v-if="props.radioList && !props.multiSelect"
+          :id="`radio-${props.item?.value}`"
+          class="spr-flex spr-items-center"
+          name="radio-group"
+          :value="props.item?.value"
+          :model-value="isSelected ? props.item?.value : undefined"
+          :disabled="props.item?.disabled || (props.disabledUnselectedItems && !isSelected)"
+          @update:model-value="$emit('select')"
+        />
         <div :class="[listItem.textColor, 'spr-flex spr-flex-row spr-items-center spr-gap-size-spacing-3xs']">
           <span
             v-if="hasIcon"
@@ -63,7 +73,7 @@
         <template v-if="props.ladderized">
           <Icon v-if="hasSublevels" class="spr-text-color-weak spr-size-4" icon="ph:caret-right" />
           <Icon
-            v-else-if="isSelected && !props.noCheck"
+            v-else-if="isSelected && !props.noCheck && !props.multiSelect && !props.radioList"
             class="spr-text-color-brand-base spr-w-[1.39em]"
             icon="ph:check"
           />
@@ -80,7 +90,7 @@
             :postfix-icon="listItem.lozenge?.postfixIcon as string"
           />
           <Icon
-            v-if="isSelected && !props.noCheck && !props.multiSelect"
+            v-if="isSelected && !props.noCheck && !props.multiSelect && !props.radioList"
             class="spr-text-color-brand-base spr-w-[1.39em]"
             icon="ph:check"
           />
@@ -94,6 +104,7 @@
 import { Icon } from '@iconify/vue';
 
 import SprCheckbox from '@/components/checkbox/checkbox.vue';
+import SprRadio from '@/components/radio/radio.vue';
 import SprLozenge from '@/components/lozenge/lozenge.vue';
 
 import { LOZENGE_TONE } from '@/components/lozenge/lozenge';

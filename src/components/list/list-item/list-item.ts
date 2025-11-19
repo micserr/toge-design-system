@@ -38,6 +38,10 @@ export const listItemPropTypes = {
     type: Boolean,
     default: false,
   },
+  radioList: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const listItemEmitTypes = {

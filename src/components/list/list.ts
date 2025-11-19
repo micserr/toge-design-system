@@ -107,6 +107,14 @@ export const listPropTypes = {
     type: String,
     default: '',
   },
+  itemIconTone: {
+    type: String,
+    default: 'plain',
+  },
+  itemIconFill: {
+    type: Boolean,
+    default: false,
+  },
   disabledUnselectedItems: {
     type: Boolean,
     default: false,

@@ -310,6 +310,45 @@ const itemsWithIcons = ref([
 </script>
 ```
 
+### โทนและเติมไอคอน
+
+ปรับแต่งลักษณะของไอคอนรายการเริ่มต้นโดยใช้พร็อพส์ `item-icon-tone` และ `item-icon-fill` สิ่งเหล่านี้ช่วยให้คุณสามารถใช้โทนสีและรูปแบบการเติมที่คล้ายกับส่วนประกอบ lozenge
+
+โทนที่พร้อมใช้งาน: 'plain', 'pending', 'information', 'success', 'danger', 'neutral', 'caution'
+
+<div
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="listModels.iconToneFill" :menu-list="menuList" item-icon="ph:star" item-icon-tone="success" :item-icon-fill="true" />
+</div>
+
+```vue
+<template>
+  <spr-list
+    v-model="selectedItems"
+    :menu-list="menuList"
+    item-icon="ph:star"
+    item-icon-tone="success"
+    :item-icon-fill="true"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const menuList = ref([
+  { text: 'ตัวเลือก 1', value: 'option1' },
+  { text: 'ตัวเลือก 2', value: 'option2' },
+  { text: 'ตัวเลือก 3', value: 'option3' },
+]);
+</script>
+```
+
 ## รายการแบบบันได (ลำดับชั้น)
 
 สร้างรายการซ้อนลำดับชั้นโดยใช้พร็อพส์ `ladderized` และรวมพร็อพส์ `sublevel` ในไอเท็ม
@@ -661,6 +700,18 @@ const handleSelection = (items) => {
       <td>ไอคอนเริ่มต้นสำหรับไอเท็มทั้งหมด</td>
       <td><code>string</code></td>
       <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td><code>item-icon-tone</code></td>
+      <td>โทน/สีสำหรับไอคอนไอเท็ม: <code>'plain'</code>, <code>'pending'</code>, <code>'information'</code>, <code>'success'</code>, <code>'danger'</code>, <code>'neutral'</code>, หรือ <code>'caution'</code></td>
+      <td><code>string</code></td>
+      <td><code>'plain'</code></td>
+    </tr>
+    <tr>
+      <td><code>item-icon-fill</code></td>
+      <td>รูปแบบการเติมสำหรับไอคอนไอเท็ม (พื้นหลังที่เป็นของแข็ง)</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
     </tr>
     <tr>
       <td><code>disabled-unselected-items</code></td>

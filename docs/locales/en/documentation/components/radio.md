@@ -88,102 +88,6 @@ const radioModel = ref('');
 </script>
 ```
 
-## Display Helper
-
-Add helper text or icons to provide additional information or feedback to users.
-
-<div class="spr-flex spr-flex-col spr-items-start spr-gap-6">
-  <spr-radio id="radio7" v-model="radioModel.radio4" name="radio_name4" value="value1" display-helper helper-text="This option is recommended">
-    Option 1
-  </spr-radio>
-  <spr-radio id="radio8" v-model="radioModel.radio4" name="radio_name4" value="value2" display-helper helper-text="Contact support for assistance" error>
-    Option 2
-  </spr-radio>
-</div>
-
-```vue
-<template>
-  <div class="spr-flex spr-flex-col spr-items-start spr-gap-6">
-    <spr-radio
-      id="radio1"
-      v-model="radioModel"
-      name="radio_name"
-      value="value1"
-      display-helper
-      helper-text="This option is recommended"
-    >
-      Option 1
-    </spr-radio>
-    <spr-radio
-      id="radio2"
-      v-model="radioModel"
-      name="radio_name"
-      value="value2"
-      display-helper
-      helper-text="Contact support for assistance"
-      error
-    >
-      Option 2
-    </spr-radio>
-  </div>
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const radioModel = ref('');
-</script>
-```
-
-### With Icon
-
-You can also display an icon alongside the helper text using the `helper-icon` prop.
-
-<div class="spr-flex spr-flex-col spr-items-start spr-gap-6">
-  <spr-radio id="radio9" v-model="radioModel.radio5" name="radio_name5" value="value1" display-helper helper-icon="ph:check-circle" helper-text="Verified and safe">
-    Recommended
-  </spr-radio>
-  <spr-radio id="radio10" v-model="radioModel.radio5" name="radio_name5" value="value2" display-helper helper-icon="ph:warning-circle" helper-text="Requires attention" error>
-    Needs Review
-  </spr-radio>
-</div>
-
-```vue
-<template>
-  <div class="spr-flex spr-flex-col spr-items-start spr-gap-6">
-    <spr-radio
-      id="radio1"
-      v-model="radioModel"
-      name="radio_name"
-      value="value1"
-      display-helper
-      helper-icon="ph:check-circle"
-      helper-text="Verified and safe"
-    >
-      Recommended
-    </spr-radio>
-    <spr-radio
-      id="radio2"
-      v-model="radioModel"
-      name="radio_name"
-      value="value2"
-      display-helper
-      helper-icon="ph:warning-circle"
-      helper-text="Requires attention"
-      error
-    >
-      Needs Review
-    </spr-radio>
-  </div>
-</template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const radioModel = ref('');
-</script>
-```
-
 ## API Reference
 
 ### Props
@@ -262,38 +166,6 @@ const radioModel = ref('');
       <td>boolean</td>
       <td><code>false</code></td>
     </tr>
-    <tr>
-      <td>
-        <code>display-helper</code>
-      </td>
-      <td>When set to <code>true</code>, displays a helper message below the radio button. Use this to provide additional context or feedback to users.</td>
-      <td>boolean</td>
-      <td><code>false</code></td>
-    </tr>
-    <tr>
-      <td>
-        <code>helper-text</code>
-      </td>
-      <td>The text content to display in the helper message. Only visible when <code>display-helper</code> is set to <code>true</code>.</td>
-      <td>string</td>
-      <td><code>''</code></td>
-    </tr>
-    <tr>
-      <td>
-        <code>helper-icon</code>
-      </td>
-      <td>Iconify icon name to display alongside the helper text. Only visible when <code>display-helper</code> is set to <code>true</code>. Example: <code>ph:check-circle</code></td>
-      <td>string</td>
-      <td><code>null</code></td>
-    </tr>
-    <tr>
-      <td>
-        <code>error</code>
-      </td>
-      <td>When set to <code>true</code>, the helper message appears in danger/error color to indicate an error state.</td>
-      <td>boolean</td>
-      <td><code>false</code></td>
-    </tr>
   </tbody>
 </table>
 
@@ -335,12 +207,6 @@ const radioModel = ref('');
         <code>default</code>
       </td>
       <td>Content to be displayed as the radio button's label. This typically contains text but can include other elements for more complex labels.</td>
-    </tr>
-    <tr>
-      <td>
-        <code>helperMessage</code>
-      </td>
-      <td>Custom slot for the helper message. Allows you to replace the default helper message with custom content. Only displayed when <code>display-helper</code> is true.</td>
     </tr>
   </tbody>
 </table>

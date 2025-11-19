@@ -25,26 +25,15 @@
             'spr-text-xs spr-font-normal spr-leading-4 spr-text-mushroom-600',
             { 'spr-text-color-disabled': props.disabled },
           ]"
+          >{{ props.description }}</span
         >
-          {{ props.description }}
-        </span>
       </div>
     </label>
-    <div v-if="props.displayHelper" :class="radioClasses.helperContainerClasses">
-      <div :class="radioClasses.helperClasses">
-        <slot name="helperMessage">
-          <Icon v-if="props.helperIcon" class="spr-h-5 spr-min-h-5 spr-w-5 spr-min-w-5" :icon="props.helperIcon" />
-          <span>{{ props.helperText }}</span>
-        </slot>
-      </div>
-    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { useSlots } from 'vue';
-
-import { Icon } from '@iconify/vue';
 
 import { radioPropTypes, radioEmitTypes } from './radio';
 import { useRadioButton } from './use-radio';

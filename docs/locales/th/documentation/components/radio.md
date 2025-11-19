@@ -88,6 +88,102 @@ const radioModel = ref('');
 </script>
 ```
 
+## แสดงข้อความช่วยเหลือ
+
+เพิ่มข้อความช่วยเหลือหรือไอคอนเพื่อให้ข้อมูลเพิ่มเติมหรือข้อเสนอแนะแก่ผู้ใช้
+
+<div class="spr-flex spr-flex-col spr-items-start spr-gap-6">
+  <spr-radio id="radio7" v-model="radioModel.radio4" name="radio_name4" value="value1" display-helper helper-text="ตัวเลือกนี้แนะนำ">
+    ตัวเลือก 1
+  </spr-radio>
+  <spr-radio id="radio8" v-model="radioModel.radio4" name="radio_name4" value="value2" display-helper helper-text="ติดต่อฝ่ายสนับสนุนเพื่อขอความช่วยเหลือ" error>
+    ตัวเลือก 2
+  </spr-radio>
+</div>
+
+```vue
+<template>
+  <div class="spr-flex spr-flex-col spr-items-start spr-gap-6">
+    <spr-radio
+      id="radio1"
+      v-model="radioModel"
+      name="radio_name"
+      value="value1"
+      display-helper
+      helper-text="ตัวเลือกนี้แนะนำ"
+    >
+      ตัวเลือก 1
+    </spr-radio>
+    <spr-radio
+      id="radio2"
+      v-model="radioModel"
+      name="radio_name"
+      value="value2"
+      display-helper
+      helper-text="ติดต่อฝ่ายสนับสนุนเพื่อขอความช่วยเหลือ"
+      error
+    >
+      ตัวเลือก 2
+    </spr-radio>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const radioModel = ref('');
+</script>
+```
+
+### ใช้ไอคอน
+
+คุณยังสามารถแสดงไอคอนพร้อมกับข้อความช่วยเหลือได้โดยใช้พร็อพส์ `helper-icon`
+
+<div class="spr-flex spr-flex-col spr-items-start spr-gap-6">
+  <spr-radio id="radio9" v-model="radioModel.radio5" name="radio_name5" value="value1" display-helper helper-icon="ph:check-circle" helper-text="ตรวจสอบและปลอดภัยแล้ว">
+    แนะนำ
+  </spr-radio>
+  <spr-radio id="radio10" v-model="radioModel.radio5" name="radio_name5" value="value2" display-helper helper-icon="ph:warning-circle" helper-text="ต้องการการตรวจสอบ" error>
+    ต้องการตรวจสอบ
+  </spr-radio>
+</div>
+
+```vue
+<template>
+  <div class="spr-flex spr-flex-col spr-items-start spr-gap-6">
+    <spr-radio
+      id="radio1"
+      v-model="radioModel"
+      name="radio_name"
+      value="value1"
+      display-helper
+      helper-icon="ph:check-circle"
+      helper-text="ตรวจสอบและปลอดภัยแล้ว"
+    >
+      แนะนำ
+    </spr-radio>
+    <spr-radio
+      id="radio2"
+      v-model="radioModel"
+      name="radio_name"
+      value="value2"
+      display-helper
+      helper-icon="ph:warning-circle"
+      helper-text="ต้องการการตรวจสอบ"
+      error
+    >
+      ต้องการตรวจสอบ
+    </spr-radio>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const radioModel = ref('');
+</script>
+```
+
 ## การอ้างอิง API
 
 ### พร็อพส์
@@ -162,7 +258,39 @@ const radioModel = ref('');
       <td>
         <code>fullWidth</code>
       </td>
-      <td>เมื่อตั้งค่าเป็น <code>true</code> คอมโพเนนต์เรดิโอจะยืดเพื่อเติมเต็มความกว้างเต็มของคอนเทนเนอร์ เมื่อ <code>false</code> จะกว้างเพียงเท่ากับเนื้อหา</td>
+      <td>เมื่อตั้งค่าเป็น <code>true</code> คอมโพเนนต์เรดิโอจะขยายให้เต็มความกว้างของคอนเทนเนอร์ เมื่อตั้งค่าเป็น <code>false</code> จะมีความกว้างเท่ากับเนื้อหาเท่านั้น</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>display-helper</code>
+      </td>
+      <td>เมื่อตั้งค่าเป็น <code>true</code> จะแสดงข้อความช่วยเหลือด้านล่างปุ่มเรดิโอ ใช้เพื่อให้บริบทเพิ่มเติมหรือข้อเสนอแนะแก่ผู้ใช้</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>helper-text</code>
+      </td>
+      <td>เนื้อหาข้อความที่จะแสดงในข้อความช่วยเหลือ มองเห็นได้เมื่อ <code>display-helper</code> ตั้งค่าเป็น <code>true</code> เท่านั้น</td>
+      <td>string</td>
+      <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>helper-icon</code>
+      </td>
+      <td>ชื่อไอคอน Iconify ที่จะแสดงพร้อมกับข้อความช่วยเหลือ มองเห็นได้เมื่อ <code>display-helper</code> ตั้งค่าเป็น <code>true</code> เท่านั้น ตัวอย่าง: <code>ph:check-circle</code></td>
+      <td>string</td>
+      <td><code>null</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>error</code>
+      </td>
+      <td>เมื่อตั้งค่าเป็น <code>true</code> ข้อความช่วยเหลือจะปรากฏเป็นสีอันตราย/ข้อผิดพลาดเพื่อระบุสถานะข้อผิดพลาด</td>
       <td>boolean</td>
       <td><code>false</code></td>
     </tr>
@@ -192,7 +320,7 @@ const radioModel = ref('');
   </tbody>
 </table>
 
-### สล็อต
+### ช่องเสียบ
 
 <table>
   <thead>
@@ -206,7 +334,13 @@ const radioModel = ref('');
       <td>
         <code>default</code>
       </td>
-      <td>เนื้อหาที่จะแสดงเป็นป้ายกำกับของปุ่มเรดิโอ โดยทั่วไปจะมีข้อความแต่สามารถรวมองค์ประกอบอื่นสำหรับป้ายกำกับที่ซับซ้อนมากขึ้น</td>
+      <td>เนื้อหาที่จะแสดงเป็นป้ายกำกับของปุ่มเรดิโอ โดยปกติจะมีข้อความแต่สามารถรวมองค์ประกอบอื่นๆ ได้สำหรับป้ายกำกับที่ซับซ้อนมากขึ้น</td>
+    </tr>
+    <tr>
+      <td>
+        <code>helperMessage</code>
+      </td>
+      <td>ช่องเสียบแบบกำหนดเองสำหรับข้อความช่วยเหลือ ช่วยให้คุณแทนที่ข้อความช่วยเหลือเริ่มต้นด้วยเนื้อหาแบบกำหนดเอง มองเห็นได้เมื่อ <code>display-helper</code> เป็น true</td>
     </tr>
   </tbody>
 </table>

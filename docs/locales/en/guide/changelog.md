@@ -4,7 +4,9 @@
 
 - Fix:
   - Fix Documentation Locales Issues when switching to different languages
-  - Progress: Added Support Label Placement and Support Label Text.
+  - Added Support Label Placement and Support Label Text for Progress Component.
+  - Update Documentation for Progress Component.
+  - Update Documentation for List Component.
     ([#35957](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35957) by @jarias)
 
 ## 2.22.0 (2025-11-12)

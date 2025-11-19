@@ -18,7 +18,7 @@ outline: deep
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example1" :menu-list="menuList" />
+  <spr-list v-model="singleSelectOutput.basicUsage" :menu-list="menuList" />
 </div>
 
 ```vue
@@ -63,7 +63,7 @@ const menuList = ref([
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example2" :menu-list="menuList" multi-select />
+  <spr-list v-model="singleSelectOutput.multiSelect" :menu-list="menuList" multi-select />
 </div>
 
 ```vue
@@ -109,7 +109,7 @@ const menuList = ref([
     ]"
   >
     <h5 class="spr-mb-2 spr-text-sm spr-font-medium">จัดกลุ่มตามค่าเริ่มต้น</h5>
-    <spr-list v-model="singleSelectOutput.example3" :menu-list="groupedMenuList" group-items-by="default" />
+    <spr-list v-model="singleSelectOutput.groupingDefault" :menu-list="groupedMenuList" group-items-by="default" />
   </div>
   <div
     :class="[
@@ -117,8 +117,8 @@ const menuList = ref([
       'spr-border spr-border-solid spr-border-color-weak'
     ]"
   >
-    <h5 class="spr-mb-2 spr-text-sm spr-font-medium">จัดกลุ่มตาม A-Z</h5>
-    <spr-list v-model="singleSelectOutput.example4" :menu-list="groupedMenuList" group-items-by="A-Z" />
+    <h5 class="spr-mb-2 spr-text-sm spr-font-medium">Grouped by A-Z</h5>
+    <spr-list v-model="singleSelectOutput.groupingAlphabetical" :menu-list="groupedMenuList" group-items-by="A-Z" />
   </div>
 </div>
 
@@ -152,7 +152,7 @@ const menuList = ref([
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example5" :menu-list="menuList" searchable-menu />
+  <spr-list v-model="singleSelectOutput.searchableList" :menu-list="menuList" searchable-menu />
 </div>
 
 ```vue
@@ -166,9 +166,9 @@ const menuList = ref([
 </template>
 ```
 
-## ด้วยไอคอนและข้อความรอง
+## ข้อความรอง
 
-เพิ่มไอเท็มรายการด้วยไอคอนและข้อความอธิบายรองโดยรวมพร็อพส์ `icon` และ `subtext`
+เพิ่มข้อความรองที่อธิบายไว้ในรายการไอเท็มโดยรวมพร็อพส์ `subtext` สิ่งนี้มีประโยชน์สำหรับการให้บริบทเพิ่มเติมหรือข้อมูลเกี่ยวกับแต่ละไอเท็ม
 
 <div
   :class="[
@@ -176,7 +176,74 @@ const menuList = ref([
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example6" :menu-list="itemsWithIcons" />
+  <spr-list v-model="singleSelectOutput.subtext" :menu-list="itemsWithSubtext" />
+</div>
+
+```vue
+<template>
+  <spr-list v-model="selectedItems" :menu-list="itemsWithSubtext" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const itemsWithSubtext = ref([
+  {
+    text: 'Home',
+    value: 'home',
+    subtext: 'Go to home page',
+  },
+  {
+    text: 'Settings',
+    value: 'settings',
+    subtext: 'Configure preferences',
+  },
+  {
+    text: 'Users',
+    value: 'users',
+    subtext: 'Manage user accounts',
+  },
+]);
+</script>
+```
+
+## ไอคอน
+
+### ไอคอนรายการเริ่มต้น
+
+ใช้ไอคอนเริ่มต้นกับรายการทั้งหมดในรายการโดยใช้พร็อพส์ `itemIcon` สิ่งนี้มีประโยชน์เมื่อรายการทั้งหมดควรแสดงไอคอนเดียวกัน
+
+```vue
+<template>
+  <spr-list v-model="selectedItems" :menu-list="menuList" item-icon="ph:check" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const menuList = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+]);
+</script>
+```
+
+### ไอคอนรายการ
+
+เพิ่มไอคอนในรายการไอเท็มแต่ละรายการโดยรวมพร็อพส์ `icon` คุณสามารถปรับแต่งสีไอคอนได้เป็นทางเลือกโดยใช้พร็อพส์ `iconColor`
+
+<div
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="singleSelectOutput.lozengeBadge" :menu-list="menuItemsWithLozenge" />
 </div>
 
 ```vue
@@ -194,20 +261,17 @@ const itemsWithIcons = ref([
     text: 'Home',
     value: 'home',
     icon: 'ph:house',
-    subtext: 'Go to home page',
   },
   {
     text: 'Settings',
     value: 'settings',
     icon: 'ph:gear',
-    subtext: 'Configure preferences',
     iconColor: 'spr-text-blue-500',
   },
   {
     text: 'Users',
     value: 'users',
     icon: 'ph:users',
-    subtext: 'Manage user accounts',
   },
 ]);
 </script>
@@ -218,7 +282,7 @@ const itemsWithIcons = ref([
 สร้างรายการซ้อนลำดับชั้นโดยใช้พร็อพส์ `ladderized` และรวมพร็อพส์ `sublevel` ในไอเท็ม
 
 <div class="spr-rounded-md spr-max-h-[300px] spr-border spr-border-solid spr-border-color-weak spr-overflow-hidden">
-  <spr-ladderized-list v-model="singleSelectOutput.example7" :menu-list="hierarchicalData" />
+  <spr-ladderized-list v-model="singleSelectOutput.hierarchicalList" :menu-list="hierarchicalData" />
 </div>
 
 ```vue
@@ -319,13 +383,13 @@ const lozengeItems = ref([
 
 แสดงไอเท็มรายการปกติที่มีป้าย lozenge ด้านขวาโดยใช้พร็อพส์ `lozenge` ในไอเท็มแต่ละรายการ สิ่งนี้ช่วยให้คุณแสดงข้อมูลเมตาหรือสถานะควบคู่ไปกับข้อความไอเท็ม
 
-<div
+ <div
   :class="[
     'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example9" :menu-list="menuItemsWithLozenge" />
+  <spr-list v-model="singleSelectOutput.subtext" :menu-list="itemsWithSubtext" />
 </div>
 
 ```vue
@@ -406,7 +470,7 @@ const menuList = ref([
   ]"
 >
   <spr-list 
-    v-model="singleSelectOutput.example8" 
+    v-model="singleSelectOutput.eventHandling" 
     :menu-list="menuList" 
     @update:model-value="handleSelection"
   />
@@ -687,15 +751,16 @@ const lozengeMenuList = ref([
 ]);
 
 const singleSelectOutput = ref({
-  example1: [],
-  example2: [],
-  example3: [],
-  example4: [],
-  example5: [],
-  example6: [],
-  example7: [],
-  example8: [],
-  example9: [],
+  basicUsage: [],
+  multiSelect: [],
+  groupingDefault: [],
+  groupingAlphabetical: [],
+  searchableList: [],
+  subtext: [],
+  itemIcons: [],
+  hierarchicalList: [],
+  eventHandling: [],
+  lozengeBadge: [],
 });
 
 const menuItemsWithLozenge = ref([

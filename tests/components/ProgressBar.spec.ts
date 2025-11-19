@@ -7,6 +7,8 @@
  * - Value and max prop combinations
  * - Label display/hide functionality
  * - Percentage calculations and display
+ * - Label placement variants (top, bottom, left, right with alignment options)
+ * - Supporting label display
  * - Accessibility (ARIA attributes, progressbar role)
  * - Visual progress indicator width
  * - Edge cases (boundary values, invalid values)
@@ -19,12 +21,15 @@
  * - Validate accessibility compliance for screen readers
  * - Ensure proper visual progress representation
  * - Test boundary conditions and error handling
+ * - Test label placement and alignment combinations
+ * - Test supporting label rendering alongside main label
  *
  * ASSUMPTIONS:
  * - Component uses Tailwind CSS classes with 'spr-' prefix
  * - Progress indicator width is set via inline styles
  * - Invalid prop values are handled gracefully by Vue validators
  * - Component follows design system spacing and color conventions
+ * - Label and supporting label are rendered in a flex container with gap
  *
  * TODO (Future Enhancements):
  * - Test animation/transition behaviors if needed
@@ -296,7 +301,6 @@ test.describe('ProgressBar Component', () => {
 
       // Main container classes (root component div)
       await expect(component).toHaveClass(/spr-flex/);
-      await expect(component).toHaveClass(/spr-w-full/);
       await expect(component).toHaveClass(/spr-flex-col/);
       await expect(component).toHaveClass(/spr-gap-size-spacing-5xs/);
 
@@ -323,12 +327,9 @@ test.describe('ProgressBar Component', () => {
         props: { label: true },
       });
 
-      const label = component.locator('span');
-      await expect(label).toHaveClass(/spr-text-color-base/);
-      await expect(label).toHaveClass(/spr-font-weight-regular/);
-      await expect(label).toHaveClass(/spr-font-size-100/);
-      await expect(label).toHaveClass(/spr-line-height-100/);
-      await expect(label).toHaveClass(/spr-font-main/);
+      const label = component.locator('span').first();
+      await expect(label).toHaveClass(/spr-text-color-strong/);
+      await expect(label).toHaveClass(/spr-subheading-sm/);
     });
 
     test('progress indicator has 100% height', async ({ mount }) => {
@@ -451,7 +452,10 @@ test.describe('ProgressBar Component', () => {
     });
 
     test('works with different color and size combinations', async ({ mount }) => {
-      const combinations: Array<{ color: 'success' | 'danger' | 'warning' | 'info' | 'neutral'; size: 'xs' | 'sm' | 'lg' }> = [
+      const combinations: Array<{
+        color: 'success' | 'danger' | 'warning' | 'info' | 'neutral';
+        size: 'xs' | 'sm' | 'lg';
+      }> = [
         { color: 'success', size: 'xs' },
         { color: 'danger', size: 'sm' },
         { color: 'warning', size: 'lg' },
@@ -474,6 +478,296 @@ test.describe('ProgressBar Component', () => {
         const progressIndicator = component.locator(`.${expectedColorClass}`);
         await expect(progressIndicator).toBeAttached();
         await expect(progressIndicator).toHaveAttribute('style', /width:\s*60%/);
+      }
+    });
+  });
+
+  test.describe('Label Placement', () => {
+    test('renders with top placement', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, labelPlacement: 'top' },
+      });
+
+      await expect(component).toHaveClass(/spr-flex-col-reverse/);
+    });
+
+    test('renders with top-start placement', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, labelPlacement: 'top-start' },
+      });
+
+      await expect(component).toHaveClass(/spr-flex-col-reverse/);
+    });
+
+    test('renders with top-center placement', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, labelPlacement: 'top-center' },
+      });
+
+      await expect(component).toHaveClass(/spr-flex-col-reverse/);
+      await expect(component).toHaveClass(/spr-items-center/);
+    });
+
+    test('renders with top-end placement', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, labelPlacement: 'top-end' },
+      });
+
+      await expect(component).toHaveClass(/spr-flex-col-reverse/);
+      await expect(component).toHaveClass(/spr-items-end/);
+    });
+
+    test('renders with bottom placement (default)', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, labelPlacement: 'bottom' },
+      });
+
+      await expect(component).toHaveClass(/spr-flex-col/);
+    });
+
+    test('renders with bottom-start placement', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, labelPlacement: 'bottom-start' },
+      });
+
+      await expect(component).toHaveClass(/spr-flex-col/);
+    });
+
+    test('renders with bottom-center placement', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, labelPlacement: 'bottom-center' },
+      });
+
+      await expect(component).toHaveClass(/spr-flex-col/);
+      await expect(component).toHaveClass(/spr-items-center/);
+    });
+
+    test('renders with bottom-end placement', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, labelPlacement: 'bottom-end' },
+      });
+
+      await expect(component).toHaveClass(/spr-flex-col/);
+      await expect(component).toHaveClass(/spr-items-end/);
+    });
+
+    test('renders with left placement', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, labelPlacement: 'left' },
+      });
+
+      await expect(component).toHaveClass(/spr-flex-row/);
+      await expect(component).toHaveClass(/spr-items-center/);
+    });
+
+    test('renders with right placement', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, labelPlacement: 'right' },
+      });
+
+      await expect(component).toHaveClass(/spr-flex-row-reverse/);
+      await expect(component).toHaveClass(/spr-items-center/);
+    });
+
+    test('applies full width to progress bar for vertical placements', async ({ mount }) => {
+      const verticalPlacements = [
+        'top',
+        'top-start',
+        'top-center',
+        'top-end',
+        'bottom',
+        'bottom-start',
+        'bottom-center',
+        'bottom-end',
+      ];
+
+      for (const placement of verticalPlacements) {
+        const component = await mount(ProgressBar, {
+          props: { value: 50, labelPlacement: placement as any },
+        });
+
+        const progressContainer = component.locator('.spr-overflow-hidden');
+        await expect(progressContainer).toHaveClass(/spr-w-full/);
+      }
+    });
+
+    test('applies flex-1 to progress bar for horizontal placements', async ({ mount }) => {
+      const horizontalPlacements = ['left', 'right'];
+
+      for (const placement of horizontalPlacements) {
+        const component = await mount(ProgressBar, {
+          props: { value: 50, labelPlacement: placement as any },
+        });
+
+        const progressContainer = component.locator('.spr-overflow-hidden');
+        await expect(progressContainer).toHaveClass(/spr-flex-1/);
+      }
+    });
+  });
+
+  test.describe('Supporting Label', () => {
+    test('does not render supporting label by default', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, label: true },
+      });
+
+      const spanCount = await component.locator('span').count();
+      expect(spanCount).toBe(1); // Only the percentage label
+    });
+
+    test('renders supporting label when provided', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, label: true, supportingLabel: 'of 100 MB' },
+      });
+
+      const spans = component.locator('span');
+      const spanCount = await spans.count();
+      expect(spanCount).toBe(2); // Percentage + supporting label
+
+      const firstSpan = spans.nth(0);
+      const secondSpan = spans.nth(1);
+
+      await expect(firstSpan).toHaveText('50%');
+      await expect(secondSpan).toHaveText('of 100 MB');
+    });
+
+    test('renders supporting label even without main label', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, label: false, supportingLabel: 'Processing' },
+      });
+
+      const labelContainer = component.locator('div:has(> span)').last();
+      const spans = labelContainer.locator('span');
+      const spanCount = await spans.count();
+      expect(spanCount).toBe(1); // Only supporting label
+    });
+
+    test('renders both labels in a flex container with gap', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 60, label: true, supportingLabel: 'Complete' },
+      });
+
+      // Find the container that has both labels
+      const labelDivs = component.locator('div.spr-flex.spr-gap-1\\.5');
+      await expect(labelDivs).toBeAttached();
+    });
+
+    test('supporting label displays with correct text', async ({ mount }) => {
+      const testCases = ['of 100 MB', 'Complete', 'Remaining', 'in progress'];
+
+      for (const supportingText of testCases) {
+        const component = await mount(ProgressBar, {
+          props: { value: 50, label: true, supportingLabel: supportingText },
+        });
+
+        const spans = component.locator('span');
+        const secondSpan = spans.nth(1);
+        await expect(secondSpan).toHaveText(supportingText);
+      }
+    });
+
+    test('supporting label and main label work with label placement', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: {
+          value: 50,
+          label: true,
+          supportingLabel: 'of 100',
+          labelPlacement: 'top-center',
+        },
+      });
+
+      // Verify placement class
+      await expect(component).toHaveClass(/spr-flex-col-reverse/);
+      await expect(component).toHaveClass(/spr-items-center/);
+
+      // Verify both labels are present
+      const spans = component.locator('span');
+      const spanCount = await spans.count();
+      expect(spanCount).toBe(2);
+
+      await expect(spans.nth(0)).toHaveText('50%');
+      await expect(spans.nth(1)).toHaveText('of 100');
+    });
+
+    test('hides labels container when both label and supportingLabel are false/empty', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, label: false, supportingLabel: '' },
+      });
+
+      const labelDivs = component.locator('div.spr-flex.spr-gap-1\\.5');
+      await expect(labelDivs).not.toBeAttached();
+    });
+
+    test('shows labels container when only supporting label is provided', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: { value: 50, label: false, supportingLabel: 'Active' },
+      });
+
+      const labelDivs = component.locator('div.spr-flex.spr-gap-1\\.5');
+      await expect(labelDivs).toBeAttached();
+
+      const spans = component.locator('span');
+      const spanCount = await spans.count();
+      expect(spanCount).toBe(1); // Only supporting label
+      await expect(spans.nth(0)).toHaveText('Active');
+    });
+  });
+
+  test.describe('Complex Combinations', () => {
+    test('combines label placement with supporting label', async ({ mount }) => {
+      const component = await mount(ProgressBar, {
+        props: {
+          value: 75,
+          size: 'lg',
+          color: 'success',
+          label: true,
+          supportingLabel: 'of 100 files',
+          labelPlacement: 'bottom-end',
+        },
+      });
+
+      // Check size
+      const progressContainer = component.locator('.spr-overflow-hidden');
+      await expect(progressContainer).toHaveClass(/spr-h-3/);
+
+      // Check color
+      const progressIndicator = component.locator('.spr-background-color-success-base');
+      await expect(progressIndicator).toBeAttached();
+
+      // Check placement
+      await expect(component).toHaveClass(/spr-flex-col/);
+      await expect(component).toHaveClass(/spr-items-end/);
+
+      // Check labels
+      const spans = component.locator('span');
+      const spanCount = await spans.count();
+      expect(spanCount).toBe(2);
+
+      await expect(spans.nth(0)).toHaveText('75%');
+      await expect(spans.nth(1)).toHaveText('of 100 files');
+    });
+
+    test('works with all placement options and supporting label', async ({ mount }) => {
+      const placements = ['top', 'top-center', 'top-end', 'bottom', 'bottom-center', 'bottom-end', 'left', 'right'];
+
+      for (const placement of placements) {
+        const component = await mount(ProgressBar, {
+          props: {
+            value: 50,
+            label: true,
+            supportingLabel: 'Test',
+            labelPlacement: placement as any,
+          },
+        });
+
+        // Verify labels are present
+        const spans = component.locator('span');
+        const spanCount = await spans.count();
+        expect(spanCount).toBe(2);
+
+        // Verify placement is applied
+        const containerClasses = await component.getAttribute('class');
+        expect(containerClasses).toBeTruthy();
       }
     });
   });

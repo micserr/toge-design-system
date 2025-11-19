@@ -1,6 +1,18 @@
 import { PropType, ExtractPropTypes } from 'vue';
 
 const PROGRESS_BAR_SIZES = ['xs', 'sm', 'lg'] as const;
+const PERCENTAGE_PLACEMENTS = [
+  'top',
+  'top-start',
+  'top-center',
+  'top-end',
+  'bottom',
+  'bottom-start',
+  'bottom-center',
+  'bottom-end',
+  'left',
+  'right',
+] as const;
 
 export const progressBarPropTypes = {
   size: {
@@ -44,6 +56,15 @@ export const progressBarPropTypes = {
       }
       return true;
     },
+  },
+  labelPlacement: {
+    type: String as PropType<(typeof PERCENTAGE_PLACEMENTS)[number]>,
+    validator: (value: (typeof PERCENTAGE_PLACEMENTS)[number]) => PERCENTAGE_PLACEMENTS.includes(value),
+    default: 'bottom',
+  },
+  supportingLabel: {
+    type: String as PropType<string>,
+    default: '',
   },
 };
 

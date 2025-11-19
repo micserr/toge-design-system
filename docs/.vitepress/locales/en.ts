@@ -1,7 +1,7 @@
 // docs/.vitepress/locales/en.ts
 export const enConfig = {
   label: 'English',
-  lang: 'en',
+  lang: 'en-US',
   title: 'Sprout Design System',
   description: 'Toge - The Sprout Design System',
   themeConfig: {
@@ -156,6 +156,20 @@ export const enConfig = {
               link: '/en/documentation/components/progress-bar',
             },
             {
+              text: 'Popper',
+              link: '/en/documentation/components/popper',
+            },
+            {
+              text: 'Table',
+              link: '/en/documentation/components/table/table',
+              items: [
+                {
+                  text: 'Table Pagination',
+                  link: '/en/documentation/components/table/table-pagination',
+                },
+              ],
+            },
+            {
               text: 'Sidenav',
               link: '/en/documentation/components/sidenav',
             },
@@ -180,20 +194,6 @@ export const enConfig = {
             {
               text: 'Stepper',
               link: '/en/documentation/components/stepper',
-            },
-            {
-              text: 'Popper',
-              link: '/en/documentation/components/popper',
-            },
-            {
-              text: 'Table',
-              link: '/en/documentation/components/table/table',
-              items: [
-                {
-                  text: 'Table Pagination',
-                  link: '/en/documentation/components/table/table-pagination',
-                },
-              ],
             },
             {
               text: 'Tabs',

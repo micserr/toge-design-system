@@ -68,6 +68,105 @@ const progressValue = ref(25);
 </script>
 ```
 
+### ป้ายกำกับสนับสนุน
+
+พร็อพพ์เพอร์ตี้ `supporting-label` แสดงข้อความเพิ่มเติมพร้อมกับป้ายกำกับเปอร์เซ็นต์ สิ่งนี้มีประโยชน์สำหรับการให้ข้อมูลบริบท เช่น มูลค่ารวมหรือหน่วยวัด
+
+<div>
+  <spr-progress-bar :value="60" :max="100" :label="true" supporting-label="of 100 MB"/>
+  <br/>
+  <spr-progress-bar :value="75" :label="true" supporting-label="Complete"/>
+  <br/>
+  <spr-progress-bar :value="45" :label="true" supporting-label="Remaining"/>
+</div>
+
+```vue
+<template>
+  <!-- แสดงความคืบหน้ากับค่ารวม -->
+  <spr-progress-bar :value="60" :max="100" :label="true" supporting-label="of 100 MB" />
+
+  <!-- แสดงพร้อมข้อความสถานะ -->
+  <spr-progress-bar :value="75" :label="true" supporting-label="Complete" />
+
+  <!-- แสดงพร้อมข้อมูลบริบท -->
+  <spr-progress-bar :value="45" :label="true" supporting-label="Remaining" />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const progressValue = ref(60);
+</script>
+```
+
+### ตำแหน่งการวาง
+
+พร็อพพ์เพอร์ตี้ `label-placement` ควบคุมตำแหน่งที่ป้ายกำกับเปอร์เซ็นต์ปรากฏขึ้นเมื่อเทียบกับแถบความคืบหน้า เมื่อพร็อพ `label` ถูกตั้งค่าเป็น `true` คุณสามารถวางป้ายกำกับเปอร์เซ็นต์ในการจัดตำแหน่งต่างๆ
+
+#### ตำแหน่งด้านบน
+
+<div class="spr-grid spr-gap-4 spr-mt-4">
+  <spr-progress-bar :value="60" label-placement="top-start" :label="true"/>
+  <spr-progress-bar :value="60" label-placement="top-center" :label="true"/>
+  <spr-progress-bar :value="60" label-placement="top-end" :label="true"/>
+</div>
+
+```vue
+<template>
+  <spr-progress-bar :value="60" label-placement="top-start" :label="true" />
+  <spr-progress-bar :value="60" label-placement="top-center" :label="true" />
+  <spr-progress-bar :value="60" label-placement="top-end" :label="true" />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const progressValue = ref(60);
+</script>
+```
+
+#### ตำแหน่งด้านล่าง
+
+<div class="spr-grid spr-gap-4 spr-mt-4">
+  <spr-progress-bar :value="60" label-placement="bottom-start" :label="true"/>
+  <spr-progress-bar :value="60" label-placement="bottom-center" :label="true"/>
+  <spr-progress-bar :value="60" label-placement="bottom-end" :label="true"/>
+</div>
+
+```vue
+<template>
+  <spr-progress-bar :value="60" label-placement="bottom-start" :label="true" />
+  <spr-progress-bar :value="60" label-placement="bottom-center" :label="true" />
+  <spr-progress-bar :value="60" label-placement="bottom-end" :label="true" />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const progressValue = ref(60);
+</script>
+```
+
+#### ตำแหน่งด้านข้าง
+
+<div class="spr-grid spr-gap-4 spr-mt-4">
+  <spr-progress-bar :value="60" label-placement="left" :label="true"/>
+  <spr-progress-bar :value="60" label-placement="right" :label="true"/>
+</div>
+
+```vue
+<template>
+  <spr-progress-bar :value="60" label-placement="left" :label="true" />
+  <spr-progress-bar :value="60" label-placement="right" :label="true" />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const progressValue = ref(60);
+</script>
+```
+
 ## รูปแบบสี
 
 คอมโพเนนต์แถบความคืบหน้ารองรับรูปแบบสีต่างๆ เพื่อระบุสถานะหรือบริบทที่แตกต่างกัน
@@ -130,6 +229,41 @@ const progressValue = ref(25);
 
   <!-- 8 จาก 20 = 40% -->
   <spr-progress-bar :value="8" :max="20" :label="true" />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+const progressValue = ref(25);
+</script>
+```
+
+## ตำแหน่งเปอร์เซ็นต์
+
+ควบคุมตำแหน่งที่ป้ายกำกับเปอร์เซ็นต์ปรากฏขึ้นเมื่อเทียบกับแถบความคืบหน้า คุณสามารถวางตำแหน่งไว้ด้านบน ด้านล่าง ด้านซ้าย หรือด้านขวา
+
+<div>
+  <spr-progress-bar :value="60" labelPlacement="top" :label="true"/>
+  <br />
+  <spr-progress-bar :value="60" labelPlacement="bottom" :label="true"/>
+  <br />
+  <spr-progress-bar :value="60" labelPlacement="left" :label="true"/>
+  <br />
+  <spr-progress-bar :value="60" labelPlacement="right" :label="true"/>
+</div>
+
+```vue
+<template>
+  <!-- เปอร์เซ็นต์อยู่เหนือแถบความคืบหน้า -->
+  <spr-progress-bar :value="60" labelPlacement="top" :label="true" />
+
+  <!-- เปอร์เซ็นต์อยู่ใต้แถบความคืบหน้า (ค่าเริ่มต้น) -->
+  <spr-progress-bar :value="60" labelPlacement="bottom" :label="true" />
+
+  <!-- เปอร์เซ็นต์อยู่ด้านซ้ายของแถบความคืบหน้า -->
+  <spr-progress-bar :value="60" labelPlacement="left" :label="true" />
+
+  <!-- เปอร์เซ็นต์อยู่ด้านขวาของแถบความคืบหน้า -->
+  <spr-progress-bar :value="60" labelPlacement="right" :label="true" />
 </template>
 
 <script setup>
@@ -289,41 +423,38 @@ const stepProgress = ref(60); // 3/5 = 60%
       <td>'success' | 'danger' | 'warning' | 'info' | 'neutral'</td>
       <td><code>'success'</code></td>
     </tr>
+    <tr>
+      <td>
+        <code>label-placement</code>
+      </td>
+      <td>
+        กำหนดตำแหน่งและการจัดตำแหน่งของป้ายกำกับเปอร์เซ็นต์เมื่อเทียบกับแถบความคืบหน้า ตัวเลือกประกอบด้วย:
+        <ul>
+          <li><code>top</code>: วางป้ายกำกับเปอร์เซ็นต์เหนือแถบความคืบหน้า จัดตำแหน่งซ้าย (เหมือนกับ <code>top-start</code>)</li>
+          <li><code>top-start</code>: วางป้ายกำกับเปอร์เซ็นต์เหนือแถบความคืบหน้า จัดตำแหน่งซ้าย</li>
+          <li><code>top-center</code>: วางป้ายกำกับเปอร์เซ็นต์เหนือแถบความคืบหน้า จัดตำแหน่งกลาง</li>
+          <li><code>top-end</code>: วางป้ายกำกับเปอร์เซ็นต์เหนือแถบความคืบหน้า จัดตำแหน่งขวา</li>
+          <li><code>bottom</code>: วางป้ายกำกับเปอร์เซ็นต์ใต้แถบความคืบหน้า จัดตำแหน่งซ้าย (เหมือนกับ <code>bottom-start</code>, ค่าเริ่มต้น)</li>
+          <li><code>bottom-start</code>: วางป้ายกำกับเปอร์เซ็นต์ใต้แถบความคืบหน้า จัดตำแหน่งซ้าย</li>
+          <li><code>bottom-center</code>: วางป้ายกำกับเปอร์เซ็นต์ใต้แถบความคืบหน้า จัดตำแหน่งกลาง</li>
+          <li><code>bottom-end</code>: วางป้ายกำกับเปอร์เซ็นต์ใต้แถบความคืบหน้า จัดตำแหน่งขวา</li>
+          <li><code>left</code>: วางป้ายกำกับเปอร์เซ็นต์ด้านซ้ายของแถบความคืบหน้า</li>
+          <li><code>right</code>: วางป้ายกำกับเปอร์เซ็นต์ด้านขวาของแถบความคืบหน้า</li>
+        </ul>
+      </td>
+      <td>'top' | 'top-start' | 'top-center' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-center' | 'bottom-end' | 'left' | 'right'</td>
+      <td><code>'bottom'</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>supporting-label</code>
+      </td>
+      <td>แสดงข้อความเพิ่มเติมพร้อมกับป้ายกำกับเปอร์เซ็นต์ สิ่งนี้มีประโยชน์สำหรับการให้ข้อมูลบริบท เช่น มูลค่ารวม หน่วยวัด หรือข้อมูลสถานะ ป้ายกำกับสนับสนุนปรากฏถัดจากป้ายกำกับหลัก</td>
+      <td>string</td>
+      <td><code>''</code></td>
+    </tr>
   </tbody>
 </table>
-
-## การเข้าถึง
-
-คอมโพเนนต์แถบความคืบหน้ามีแอตทริบิวต์ ARIA ที่เหมาะสมสำหรับโปรแกรมอ่านหน้าจอและการปฏิบัติตามการเข้าถึง:
-
-- **`role="progressbar"`**: ระบุองค์ประกอบว่าเป็นแถบความคืบหน้า
-- **`aria-valuemin`**: ตั้งค่าเป็น 0 (ค่าต่ำสุด)
-- **`aria-valuemax`**: ตั้งค่าเป็นค่า max prop (ค่าเริ่มต้น: 100)
-- **`aria-valuenow`**: ตั้งค่าเป็นค่า value prop ปัจจุบัน
-
-แอตทริบิวต์เหล่านี้ช่วยให้เทคโนโลยีช่วยเหลือสามารถประกาศสถานะความคืบหน้าให้กับผู้ใช้ได้อย่างถูกต้อง
-
-## แนวทางปฏิบัติที่ดีที่สุด
-
-### เมื่อใดควรใช้สีแต่ละแบบ
-
-- **`success`**: งานที่เสร็จสิ้น การอัปโหลดที่สำเร็จ กระบวนการที่เสร็จสิ้น
-- **`danger`**: การดำเนินการที่ล้มเหลว ข้อผิดพลาด ปัญหาที่สำคัญ
-- **`warning`**: การดำเนินการที่รอดำเนินการ สถานะคำเตือน งานที่ไม่สมบูรณ์
-- **`info`**: ข้อมูลทั่วไป ความคืบหน้าเป็นกลาง การอัปเดตสถานะ
-- **`neutral`**: สถานะเริ่มต้น ความคืบหน้าไม่ทราบ เนื้อหา placeholder
-
-### แนวทางขนาด
-
-- **`xs`**: ใช้ในพื้นที่ที่กระชับ ตัวบ่งชี้ความคืบหน้าแบบอินไลน์ หรือเมื่อพื้นที่จำกัด
-- **`sm`**: ใช้ในแบบฟอร์ม การ์ด หรือตัวบ่งชี้ความคืบหน้าทางรอง
-- **`lg`**: ใช้เป็นตัวบ่งชี้ความคืบหน้าหลัก พื้นที่เนื้อหาหลัก หรือเมื่อความชัดเจนสำคัญ
-
-### การใช้ป้ายกำกับ
-
-- **แสดงป้ายกำกับ** เมื่อเปอร์เซ็นต์ที่แน่นอนสำคัญต่อการทำความเข้าใจของผู้ใช้
-- **ซ่อนป้ายกำกับ** เมื่อแถบความคืบหน้าที่เป็นภาพเพียงอย่างเดียวเพียงพอ
-- **แสดงป้ายกำกับเสมอ** สำหรับกระบวนการที่สำคัญซึ่งผู้ใช้ต้องการข้อเสนอแนะที่แม่นยำ
 
 <script lang="ts" setup>
 import {ref} from 'vue'

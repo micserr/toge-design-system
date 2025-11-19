@@ -18,7 +18,7 @@ The most basic usage involves binding your selection to `v-model` and providing 
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example1" :menu-list="menuList" />
+  <spr-list v-model="listModels.basicUsage" :menu-list="menuList" />
 </div>
 
 ```vue
@@ -63,7 +63,7 @@ Enable multiple item selection by adding the `multi-select` prop. This displays 
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example2" :menu-list="menuList" multi-select />
+  <spr-list v-model="listModels.multiSelect" :menu-list="menuList" multi-select />
 </div>
 
 ```vue
@@ -109,7 +109,7 @@ Group items using the `group-items-by` prop with values `'default'`, `'A-Z'`, or
     ]"
   >
     <h5 class="spr-mb-2 spr-text-sm spr-font-medium">Grouped by default</h5>
-    <spr-list v-model="singleSelectOutput.example3" :menu-list="groupedMenuList" group-items-by="default" />
+    <spr-list v-model="listModels.groupingDefault" :menu-list="groupedMenuList" group-items-by="default" />
   </div>
   <div
     :class="[
@@ -118,7 +118,7 @@ Group items using the `group-items-by` prop with values `'default'`, `'A-Z'`, or
     ]"
   >
     <h5 class="spr-mb-2 spr-text-sm spr-font-medium">Grouped by A-Z</h5>
-    <spr-list v-model="singleSelectOutput.example4" :menu-list="groupedMenuList" group-items-by="A-Z" />
+    <spr-list v-model="listModels.groupingAlphabetical" :menu-list="groupedMenuList" group-items-by="A-Z" />
   </div>
 </div>
 
@@ -152,7 +152,7 @@ Add search functionality with the `searchable-menu` prop. Users can filter items
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example5" :menu-list="menuList" searchable-menu />
+  <spr-list v-model="listModels.searchableList" :menu-list="menuList" searchable-menu />
 </div>
 
 ```vue
@@ -166,9 +166,9 @@ Add search functionality with the `searchable-menu` prop. Users can filter items
 </template>
 ```
 
-## With Icons and Subtext
+## Radio List
 
-Enhance list items with icons and descriptive subtext by including `icon` and `subtext` properties.
+Display a radio button selector for single-select lists using the `radio-list` prop. Radio buttons appear before the item text and icon, providing a clear visual indicator for single selection mode.
 
 <div
   :class="[
@@ -176,7 +176,107 @@ Enhance list items with icons and descriptive subtext by including `icon` and `s
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example6" :menu-list="itemsWithIcons" />
+  <spr-list v-model="listModels.radioList" :menu-list="menuList" radio-list />
+</div>
+
+```vue
+<template>
+  <spr-list v-model="selectedItems" :menu-list="menuList" radio-list />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const menuList = ref([
+  { text: 'Option 1', value: 'option1' },
+  { text: 'Option 2', value: 'option2' },
+  { text: 'Option 3', value: 'option3' },
+  { text: 'Option 4', value: 'option4' },
+  { text: 'Option 5', value: 'option5' },
+]);
+</script>
+```
+
+## Subtext
+
+Add descriptive subtext to list items by including the `subtext` property. This is useful for providing additional context or information about each item.
+
+ <div
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="listModels.subtext" :menu-list="itemsWithSubtext" />
+</div>
+
+```vue
+<template>
+  <spr-list v-model="selectedItems" :menu-list="itemsWithSubtext" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const itemsWithSubtext = ref([
+  {
+    text: 'Home',
+    value: 'home',
+    subtext: 'Go to home page',
+  },
+  {
+    text: 'Settings',
+    value: 'settings',
+    subtext: 'Configure preferences',
+  },
+  {
+    text: 'Users',
+    value: 'users',
+    subtext: 'Manage user accounts',
+  },
+]);
+</script>
+```
+
+## Icons
+
+### Default Item Icon
+
+Apply a default icon to all items in the list using the `itemIcon` prop. This is useful when all items should display the same icon.
+
+```vue
+<template>
+  <spr-list v-model="selectedItems" :menu-list="menuList" item-icon="ph:check" />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const menuList = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+]);
+</script>
+```
+
+### Item Icons
+
+Add icons to individual list items by including the `icon` property. You can optionally customize the icon color with the `iconColor` property.
+
+<div
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="listModels.itemIcons" :menu-list="itemsWithIcons" />
 </div>
 
 ```vue
@@ -194,21 +294,57 @@ const itemsWithIcons = ref([
     text: 'Home',
     value: 'home',
     icon: 'ph:house',
-    subtext: 'Go to home page',
   },
   {
     text: 'Settings',
     value: 'settings',
     icon: 'ph:gear',
-    subtext: 'Configure preferences',
     iconColor: 'spr-text-blue-500',
   },
   {
     text: 'Users',
     value: 'users',
     icon: 'ph:users',
-    subtext: 'Manage user accounts',
   },
+]);
+</script>
+```
+
+### Icon Tone and Fill
+
+Customize the appearance of default item icons using the `item-icon-tone` and `item-icon-fill` props. These allow you to apply color tones and fill styles similar to the lozenge component.
+
+Available tones: 'plain', 'pending', 'information', 'success', 'danger', 'neutral', 'caution'
+
+<div
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="listModels.iconToneFill" :menu-list="menuList" item-icon="ph:star" item-icon-tone="success" :item-icon-fill="true" />
+</div>
+
+```vue
+<template>
+  <spr-list
+    v-model="selectedItems"
+    :menu-list="menuList"
+    item-icon="ph:star"
+    item-icon-tone="success"
+    :item-icon-fill="true"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const menuList = ref([
+  { text: 'Option 1', value: 'option1' },
+  { text: 'Option 2', value: 'option2' },
+  { text: 'Option 3', value: 'option3' },
 ]);
 </script>
 ```
@@ -218,7 +354,7 @@ const itemsWithIcons = ref([
 Create nested hierarchical lists using the `ladderized` prop and including `sublevel` properties in items.
 
 <div class="spr-rounded-md spr-max-h-[300px] spr-border spr-border-solid spr-border-color-weak spr-overflow-hidden">
-  <spr-ladderized-list v-model="singleSelectOutput.example7" :menu-list="hierarchicalData" />
+  <spr-ladderized-list v-model="listModels.hierarchicalList" :menu-list="hierarchicalData" />
 </div>
 
 ```vue
@@ -325,7 +461,7 @@ Display a regular list item with a lozenge badge on the right side by using the 
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.example9" :menu-list="menuItemsWithLozenge" />
+  <spr-list v-model="listModels.lozengeBadge" :menu-list="menuItemsWithLozenge" />
 </div>
 
 ```vue
@@ -406,7 +542,7 @@ Use `@update:model-value` to react to selection changes and retrieve the complet
   ]"
 >
   <spr-list 
-    v-model="singleSelectOutput.example8" 
+    v-model="listModels.eventHandling" 
     :menu-list="menuList" 
     @update:model-value="handleSelection"
   />
@@ -458,55 +594,55 @@ const handleSelection = (items) => {
   </thead>
   <tbody>
     <tr>
-      <td><code>modelValue</code> (v-model)</td>
+      <td><code>model-value</code> (v-model)</td>
       <td>Two-way binding for selected items containing full item objects</td>
       <td><code>MenuListType[]</code></td>
       <td><code>[]</code></td>
     </tr>
     <tr>
-      <td><code>menuList</code></td>
+      <td><code>menu-list</code></td>
       <td>Array of items to display</td>
       <td><code>MenuListType[]</code></td>
       <td><code>[]</code> (required)</td>
     </tr>
     <tr>
-      <td><code>groupItemsBy</code></td>
+      <td><code>group-items-by</code></td>
       <td>Grouping strategy: <code>'default'</code> (by group property), <code>'A-Z'</code> (ascending), or <code>'Z-A'</code> (descending)</td>
       <td><code>'default' | 'A-Z' | 'Z-A'</code></td>
       <td><code>undefined</code></td>
     </tr>
     <tr>
-      <td><code>multiSelect</code></td>
+      <td><code>multi-select</code></td>
       <td>Enable multi-selection mode with checkboxes</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>preSelectedItems</code></td>
+      <td><code>pre-selected-items</code></td>
       <td>Pre-select items by their values</td>
       <td><code>(string | number | Record&lt;string, unknown&gt;)[]</code></td>
       <td><code>[]</code></td>
     </tr>
     <tr>
-      <td><code>searchableMenu</code></td>
+      <td><code>searchable-menu</code></td>
       <td>Display search input for filtering items</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>searchableMenuPlaceholder</code></td>
+      <td><code>searchable-menu-placeholder</code></td>
       <td>Placeholder text for search input</td>
       <td><code>string</code></td>
       <td><code>'Search...'</code></td>
     </tr>
     <tr>
-      <td><code>searchValue</code></td>
+      <td><code>search-value</code></td>
       <td>External search value (two-way binding)</td>
       <td><code>string</code></td>
       <td><code>''</code></td>
     </tr>
     <tr>
-      <td><code>menuLevel</code></td>
+      <td><code>menu-level</code></td>
       <td>Nesting level for hierarchical lists</td>
       <td><code>number</code></td>
       <td><code>0</code></td>
@@ -518,7 +654,7 @@ const handleSelection = (items) => {
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>disabledLocalSearch</code></td>
+      <td><code>disabled-local-search</code></td>
       <td>Disable local search filtering</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
@@ -530,7 +666,7 @@ const handleSelection = (items) => {
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>noCheck</code></td>
+      <td><code>no-check</code></td>
       <td>Hide checkmark icon in single-select mode</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
@@ -542,32 +678,50 @@ const handleSelection = (items) => {
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>supportingDisplayText</code></td>
+      <td><code>supporting-display-text</code></td>
       <td>Display custom text (e.g., "2 Selected")</td>
       <td><code>string</code></td>
       <td><code>''</code></td>
     </tr>
     <tr>
-      <td><code>displayListItemSelected</code></td>
+      <td><code>display-list-item-selected</code></td>
       <td>Display count of selected items when searchable</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>stickySearchOffset</code></td>
+      <td><code>sticky-search-offset</code></td>
       <td>Offset for sticky search header</td>
       <td><code>string | number</code></td>
       <td><code>0</code></td>
     </tr>
     <tr>
-      <td><code>itemIcon</code></td>
+      <td><code>item-icon</code></td>
       <td>Default icon for all items</td>
       <td><code>string</code></td>
       <td><code>''</code></td>
     </tr>
     <tr>
-      <td><code>disabledUnselectedItems</code></td>
+      <td><code>item-icon-tone</code></td>
+      <td>Tone/color for item icons: <code>'plain'</code>, <code>'pending'</code>, <code>'information'</code>, <code>'success'</code>, <code>'danger'</code>, <code>'neutral'</code>, or <code>'caution'</code></td>
+      <td><code>string</code></td>
+      <td><code>'plain'</code></td>
+    </tr>
+    <tr>
+      <td><code>item-icon-fill</code></td>
+      <td>Fill style for item icons (solid background)</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>disabled-unselected-items</code></td>
       <td>Disable and gray out unselected items</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>radio-list</code></td>
+      <td>Display radio buttons for single-select mode (requires single-select, incompatible with multi-select)</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
@@ -613,6 +767,20 @@ import SprLadderizedList from "@/components/list/ladderized-list/ladderized-list
 
 import { MenuListType } from '@/components/list/list';
 
+const listModels = ref({
+  basicUsage: [],
+  multiSelect: [],
+  groupingDefault: [],
+  groupingAlphabetical: [],
+  searchableList: [],
+  radioList: [],
+  subtext: [],
+  itemIcons: [],
+  hierarchicalList: [],
+  eventHandling: [],
+  lozengeBadge: [],
+});
+
 const menuList = ref([
   { text: 'Apple', value: 'apple' },
   { text: 'Banana', value: 'banana' },
@@ -637,12 +805,6 @@ const groupedMenuList = ref([
   { text: 'Honeydew', value: 'honeydew', group: 'Fruits' },
   { text: 'Kale', value: 'kale', group: 'Vegetables' },
   { text: 'Lemon', value: 'lemon', group: 'Fruits' },
-]);
-
-const itemsWithIcons = ref([
-  { text: 'Home', value: 'home', icon: 'ph:house', subtext: 'Go to home page' },
-  { text: 'Settings', value: 'settings', icon: 'ph:gear', subtext: 'Configure preferences', iconColor: 'spr-text-blue-500' },
-  { text: 'Users', value: 'users', icon: 'ph:users', subtext: 'Manage user accounts' },
 ]);
 
 const hierarchicalData = ref([
@@ -686,17 +848,42 @@ const lozengeMenuList = ref([
   },
 ]);
 
-const singleSelectOutput = ref({
-  example1: [],
-  example2: [],
-  example3: [],
-  example4: [],
-  example5: [],
-  example6: [],
-  example7: [],
-  example8: [],
-  example9: [],
-});
+const itemsWithSubtext = ref([
+  {
+    text: 'Home',
+    value: 'home',
+    subtext: 'Go to home page',
+  },
+  {
+    text: 'Settings',
+    value: 'settings',
+    subtext: 'Configure preferences',
+  },
+  {
+    text: 'Users',
+    value: 'users',
+    subtext: 'Manage user accounts',
+  },
+]);
+
+const itemsWithIcons = ref([
+  {
+    text: 'Home',
+    value: 'home',
+    icon: 'ph:house',
+  },
+  {
+    text: 'Settings',
+    value: 'settings',
+    icon: 'ph:gear',
+    iconColor: 'spr-text-blue-500',
+  },
+  {
+    text: 'Users',
+    value: 'users',
+    icon: 'ph:users',
+  },
+]); 
 
 const menuItemsWithLozenge = ref([
   {

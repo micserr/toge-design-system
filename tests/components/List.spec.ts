@@ -79,6 +79,7 @@ const mockItemsWithLozenges: MenuListType[] = [
       postfixIcon: '',
       interactive: false,
       dropdown: false,
+      maxWidth: 'auto',
     },
   },
   {
@@ -96,6 +97,7 @@ const mockItemsWithLozenges: MenuListType[] = [
       postfixIcon: '',
       interactive: false,
       dropdown: false,
+      maxWidth: 'auto',
     },
   },
 ];
@@ -994,9 +996,7 @@ test.describe('List Component', () => {
         },
       });
 
-      await expect(
-        component.locator('input').filter({ hasAttribute: 'placeholder', hasValue: 'Find items...' }),
-      ).toBeDefined();
+      await expect(component.locator('input[placeholder="Find items..."]')).toBeVisible();
     });
 
     test('should disable local search when disabledLocalSearch is true', async ({ mount }) => {
@@ -1127,6 +1127,258 @@ test.describe('List Component', () => {
       });
 
       await expect(component.getByText('Apple')).toBeVisible();
+    });
+  });
+
+  test.describe('Radio List Mode', () => {
+    test('should display radio buttons when radioList is true', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          radioList: true,
+        },
+      });
+
+      // Should show radio buttons
+      const radioInputs = component.locator('input[type="radio"]');
+      await expect(radioInputs.first()).toBeVisible();
+    });
+
+    test('should allow single selection with radio buttons', async ({ mount }) => {
+      let emittedValue: MenuListType[] = [];
+
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          radioList: true,
+          modelValue: [],
+          'onUpdate:modelValue': (value: MenuListType[]) => {
+            emittedValue = value;
+          },
+        },
+      });
+
+      // Select Apple
+      await component.getByText('Apple').click();
+      expect(emittedValue).toHaveLength(1);
+      expect(emittedValue[0].value).toBe('apple');
+
+      // Select Banana - should replace Apple
+      await component.getByText('Banana').click();
+      expect(emittedValue).toHaveLength(1);
+      expect(emittedValue[0].value).toBe('banana');
+    });
+
+    test('should not show radio buttons in multiSelect mode', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          radioList: true,
+          multiSelect: true,
+        },
+      });
+
+      // Should show checkboxes instead of radio buttons
+      const checkboxes = component.locator('input[type="checkbox"]');
+      await expect(checkboxes.first()).toBeVisible();
+
+      const radioInputs = component.locator('input[type="radio"]');
+      await expect(radioInputs).toHaveCount(0);
+    });
+
+    test('should hide checkmark icon when radio button is enabled', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          radioList: true,
+          modelValue: [{ text: 'Apple', value: 'apple' }],
+        },
+      });
+
+      // Checkmark icon should not be visible in radio mode
+      const checkIcon = component.locator('[icon="ph:check"]');
+      await expect(checkIcon).not.toBeVisible();
+    });
+
+    test('should work with pre-selected items via modelValue', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          radioList: true,
+          modelValue: [{ text: 'Apple', value: 'apple', subtext: 'A red fruit' }],
+        },
+      });
+
+      // Apple should be pre-selected
+      const radioButtons = component.locator('input[type="radio"]');
+      await expect(radioButtons.first()).toBeChecked();
+    });
+
+    test('should disable radio buttons for disabled items', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          radioList: true,
+        },
+      });
+
+      // Get all radio buttons and find the one for Cherry (disabled item)
+      const allRadios = component.locator('input[type="radio"]');
+      const disabledRadio = allRadios.nth(2); // Cherry is the 3rd item (index 2)
+
+      await expect(disabledRadio).toBeDisabled();
+    });
+
+    test('should not allow multiple selections with radio buttons', async ({ mount }) => {
+      let emittedValue: MenuListType[] = [];
+
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          radioList: true,
+          modelValue: [],
+          'onUpdate:modelValue': (value: MenuListType[]) => {
+            emittedValue = value;
+          },
+        },
+      });
+
+      // Select Apple
+      await component.getByText('Apple').click();
+      expect(emittedValue).toHaveLength(1);
+
+      // Select Banana
+      await component.getByText('Banana').click();
+      expect(emittedValue).toHaveLength(1); // Should still be 1, not 2
+    });
+  });
+
+  test.describe('Icon Tone and Fill', () => {
+    test('should apply icon tone styling', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockItemsWithIcons,
+          itemIconTone: 'success',
+        },
+      });
+
+      // Icon should have success tone class
+      const iconSpan = component.locator('span').first();
+      await expect(iconSpan).toHaveClass(/spr-text-green-600|spr-bg-green-100/);
+    });
+
+    test('should apply filled icon tone styling', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockItemsWithIcons,
+          itemIconTone: 'success',
+          itemIconFill: true,
+        },
+      });
+
+      // Icon should have filled success tone class
+      const iconSpan = component.locator('span').first();
+      await expect(iconSpan).toHaveClass(/spr-bg-green-100|spr-text-green-700/);
+    });
+
+    test('should support all tone options', async ({ mount }) => {
+      const tones = ['plain', 'pending', 'information', 'success', 'danger', 'neutral', 'caution'];
+
+      for (const tone of tones) {
+        const component = await mount(List, {
+          props: {
+            menuList: mockItemsWithIcons,
+            itemIconTone: tone,
+          },
+        });
+
+        await expect(component.getByText('Home')).toBeVisible();
+      }
+    });
+
+    test('should apply padding and rounded styling with tone', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockItemsWithIcons,
+          itemIconTone: 'information',
+        },
+      });
+
+      // Icon should have rounded and padding classes when tone is applied
+      const iconSpan = component.locator('span').first();
+      await expect(iconSpan).toHaveClass(/spr-rounded-md|spr-p-1.5/);
+    });
+
+    test('should not apply padding when tone is plain', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockItemsWithIcons,
+          itemIconTone: 'plain',
+        },
+      });
+
+      // Plain tone should not have the extra styling classes
+      const iconSpan = component.locator('span').first();
+      const classes = await iconSpan.getAttribute('class');
+      // Should not have rounded-md and p-1.5 classes when tone is plain
+      expect(classes).not.toContain('spr-p-1.5');
+    });
+
+    test('should prioritize individual item icon color over tone', async ({ mount }) => {
+      const itemsWithIconColors: MenuListType[] = [
+        { text: 'Home', value: 'home', icon: 'ph:house', iconColor: 'spr-text-red-500' },
+      ];
+
+      const component = await mount(List, {
+        props: {
+          menuList: itemsWithIconColors,
+          itemIconTone: 'success', // This should be overridden by item's iconColor
+        },
+      });
+
+      // Item's individual icon color should take precedence
+      const iconSpan = component.locator('span').first();
+      await expect(iconSpan).toHaveClass(/spr-text-red-500/);
+    });
+
+    test('should apply different fill styles correctly', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockItemsWithIcons,
+          itemIconTone: 'danger',
+          itemIconFill: false,
+        },
+      });
+
+      // Non-filled danger tone should have text color only
+      const iconSpan = component.locator('span').first();
+      await expect(iconSpan).toHaveClass(/spr-text-red-600/);
+
+      const filledComponent = await mount(List, {
+        props: {
+          menuList: mockItemsWithIcons,
+          itemIconTone: 'danger',
+          itemIconFill: true,
+        },
+      });
+
+      // Filled danger tone should have background color
+      const filledIconSpan = filledComponent.locator('span').first();
+      await expect(filledIconSpan).toHaveClass(/spr-bg-red-100|spr-text-red-700/);
+    });
+
+    test('should combine icon tone with global item icon', async ({ mount }) => {
+      const component = await mount(List, {
+        props: {
+          menuList: mockMenuItems,
+          itemIcon: 'ph:star',
+          itemIconTone: 'caution',
+        },
+      });
+
+      // Should show icon with caution tone styling
+      const iconSpan = component.locator('span').first();
+      await expect(iconSpan).toHaveClass(/spr-text-orange-600|spr-bg-orange-100/);
     });
   });
 

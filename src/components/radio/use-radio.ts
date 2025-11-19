@@ -11,8 +11,6 @@ interface RadioClasses {
   baseIndicatorClasses: string;
   labelClasses: string;
   borderedClasses: string;
-  helperContainerClasses: string;
-  helperClasses: string;
 }
 
 export const useRadioButton = (
@@ -20,7 +18,7 @@ export const useRadioButton = (
   emit: SetupContext<RadioEmitTypes>['emit'],
   slots: Record<string, unknown>,
 ) => {
-  const { modelValue, disabled, description, bordered, fullWidth, displayHelper, error } = toRefs(props);
+  const { modelValue, disabled, description, bordered, fullWidth } = toRefs(props);
 
   const radioRef = ref<HTMLInputElement | null>(null);
   const isHovered = useElementHover(radioRef);
@@ -121,25 +119,11 @@ export const useRadioButton = (
       },
     );
 
-    const helperContainerClasses = classNames('spr-flex spr-flex-row spr-items-start spr-justify-between spr-w-full', {
-      'spr-mt-1': displayHelper.value,
-    });
-
-    const helperClasses = classNames(
-      'spr-body-sm-regular spr-flex spr-items-center spr-gap-size-spacing-5xs spr-flex-1',
-      {
-        'spr-text-color-danger-base': error.value,
-        'spr-text-color-supporting': !error.value,
-      },
-    );
-
     return {
       baseClasses,
       baseIndicatorClasses,
       labelClasses,
       borderedClasses,
-      helperContainerClasses,
-      helperClasses,
     };
   });
 

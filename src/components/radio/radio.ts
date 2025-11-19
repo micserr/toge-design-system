@@ -33,22 +33,6 @@ export const radioPropTypes = {
     type: Boolean,
     default: false,
   },
-  displayHelper: {
-    type: Boolean,
-    default: false,
-  },
-  helperIcon: {
-    type: String,
-    default: null,
-  },
-  helperText: {
-    type: String,
-    default: '',
-  },
-  error: {
-    type: Boolean,
-    default: false,
-  },
 };
 
 export const radioEmitTypes = ['update:modelValue'];

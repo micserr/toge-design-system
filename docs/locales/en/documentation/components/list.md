@@ -310,6 +310,45 @@ const itemsWithIcons = ref([
 </script>
 ```
 
+### Icon Tone and Fill
+
+Customize the appearance of default item icons using the `item-icon-tone` and `item-icon-fill` props. These allow you to apply color tones and fill styles similar to the lozenge component.
+
+Available tones: 'plain', 'pending', 'information', 'success', 'danger', 'neutral', 'caution'
+
+<div
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="listModels.iconToneFill" :menu-list="menuList" item-icon="ph:star" item-icon-tone="success" :item-icon-fill="true" />
+</div>
+
+```vue
+<template>
+  <spr-list
+    v-model="selectedItems"
+    :menu-list="menuList"
+    item-icon="ph:star"
+    item-icon-tone="success"
+    :item-icon-fill="true"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const menuList = ref([
+  { text: 'Option 1', value: 'option1' },
+  { text: 'Option 2', value: 'option2' },
+  { text: 'Option 3', value: 'option3' },
+]);
+</script>
+```
+
 ## Ladderized (Hierarchical) List
 
 Create nested hierarchical lists using the `ladderized` prop and including `sublevel` properties in items.
@@ -661,6 +700,18 @@ const handleSelection = (items) => {
       <td>Default icon for all items</td>
       <td><code>string</code></td>
       <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td><code>item-icon-tone</code></td>
+      <td>Tone/color for item icons: <code>'plain'</code>, <code>'pending'</code>, <code>'information'</code>, <code>'success'</code>, <code>'danger'</code>, <code>'neutral'</code>, or <code>'caution'</code></td>
+      <td><code>string</code></td>
+      <td><code>'plain'</code></td>
+    </tr>
+    <tr>
+      <td><code>item-icon-fill</code></td>
+      <td>Fill style for item icons (solid background)</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
     </tr>
     <tr>
       <td><code>disabled-unselected-items</code></td>

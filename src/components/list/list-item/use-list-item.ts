@@ -11,16 +11,51 @@ export function useListItem(
   listItem: ComputedRef<ListItemPropTypes['item']>;
   hasIcon: ComputedRef<boolean>;
   iconName: ComputedRef<string>;
+  iconClasses: ComputedRef<string>;
   hasSublevels: ComputedRef<boolean>;
   showLozengeMode: ComputedRef<boolean>;
 } {
-  const { item, itemIcon, lozenge } = toRefs(props);
+  const { item, itemIcon, itemIconTone, itemIconFill, lozenge } = toRefs(props);
 
   const listItem = computed(() => item?.value);
 
   const hasIcon = computed(() => !!(itemIcon.value || item?.value!.icon));
 
   const iconName = computed(() => itemIcon.value || item?.value!.icon || '');
+
+  const iconClasses = computed(() => {
+    // If item has a specific iconColor, use that
+    if (item?.value?.iconColor) {
+      return item.value.iconColor;
+    }
+
+    const tone = itemIconTone?.value || 'plain';
+    const fill = itemIconFill?.value || false;
+
+    const toneClasses: Record<string, string> = {
+      plain: 'spr-text-color-base',
+      pending: fill
+        ? 'spr-bg-yellow-100 spr-text-yellow-700 spr-rounded-md spr-p-1.5'
+        : 'spr-text-yellow-600 spr-rounded-md spr-p-1.5',
+      information: fill
+        ? 'spr-bg-blue-100 spr-text-blue-700 spr-rounded-md spr-p-1.5'
+        : 'spr-text-blue-600 spr-rounded-md spr-p-1.5',
+      success: fill
+        ? 'spr-bg-green-100 spr-text-green-700 spr-rounded-md spr-p-1.5'
+        : 'spr-text-green-600 spr-rounded-md spr-p-1.5',
+      danger: fill
+        ? 'spr-bg-red-100 spr-text-red-700 spr-rounded-md spr-p-1.5'
+        : 'spr-text-red-600 spr-rounded-md spr-p-1.5',
+      neutral: fill
+        ? 'spr-bg-gray-100 spr-text-gray-700 spr-rounded-md spr-p-1.5'
+        : 'spr-text-gray-600 spr-rounded-md spr-p-1.5',
+      caution: fill
+        ? 'spr-bg-orange-100 spr-text-orange-700 spr-rounded-md spr-p-1.5'
+        : 'spr-text-orange-600 spr-rounded-md spr-p-1.5',
+    };
+
+    return toneClasses[tone] || toneClasses['plain'];
+  });
 
   const hasSublevels = computed(() => !!(item?.value!.sublevel && item?.value!.sublevel.length > 0));
 
@@ -30,6 +65,7 @@ export function useListItem(
     listItem,
     hasIcon,
     iconName,
+    iconClasses,
     hasSublevels,
     showLozengeMode,
   };

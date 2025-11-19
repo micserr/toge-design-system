@@ -1,7 +1,7 @@
 <template>
   <div :class="props.classes" @click="$emit('select')">
     <template v-if="showLozengeMode">
-      <div class="spr-flex spr-items-center spr-gap-1">
+      <div class="spr-flex spr-items-center spr-gap-2">
         <spr-checkbox
           v-if="props.multiSelect"
           :disabled="listItem.disabled || (props.disabledUnselectedItems && !isSelected)"
@@ -19,7 +19,7 @@
       </div>
     </template>
     <template v-else>
-      <div class="spr-flex spr-items-center spr-gap-1">
+      <div class="spr-flex spr-items-center spr-gap-2">
         <spr-checkbox
           v-if="props.multiSelect"
           :disabled="listItem.disabled || (props.disabledUnselectedItems && !isSelected)"
@@ -39,12 +39,12 @@
           <span
             v-if="hasIcon"
             :class="[
-              listItem.iconColor,
-              'spr-mt-[2px]',
+              'spr-flex spr-h-[30px] spr-w-[30px] spr-items-center spr-justify-center',
+              iconClasses,
               { 'spr-text-color-disabled': listItem.disabled || (props.disabledUnselectedItems && !isSelected) },
             ]"
           >
-            <Icon :icon="iconName" width="20px" height="20px" />
+            <Icon class="spr-text-xl" :icon="iconName" />
           </span>
           <div
             :class="[
@@ -69,7 +69,7 @@
       </div>
 
       <!-- Right Side Actions -->
-      <div class="spr-flex spr-items-center spr-gap-1">
+      <div class="spr-flex spr-items-center spr-gap-2">
         <template v-if="props.ladderized">
           <Icon v-if="hasSublevels" class="spr-text-color-weak spr-size-4" icon="ph:caret-right" />
           <Icon
@@ -115,5 +115,5 @@ import { useListItem } from './use-list-item';
 const props = defineProps(listItemPropTypes);
 const emit = defineEmits(listItemEmitTypes);
 
-const { listItem, hasIcon, iconName, hasSublevels, showLozengeMode } = useListItem(props, emit);
+const { listItem, hasIcon, iconName, iconClasses, hasSublevels, showLozengeMode } = useListItem(props, emit);
 </script>

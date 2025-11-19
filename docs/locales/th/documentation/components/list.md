@@ -168,7 +168,7 @@ const menuList = ref([
 
 ## รายการปุ่มวิทยุ
 
-แสดงตัวเลือกปุ่มวิทยุสำหรับรายการการเลือกเดี่ยวโดยใช้พร็อพส์ `list-radio` ปุ่มวิทยุปรากฏขึ้นก่อนข้อความไอเท็มและไอคอน ซึ่งให้การระบุภาพที่ชัดเจนสำหรับโหมดการเลือกเดี่ยว
+แสดงตัวเลือกปุ่มวิทยุสำหรับรายการการเลือกเดี่ยวโดยใช้พร็อพส์ `radio-list` ปุ่มวิทยุปรากฏขึ้นก่อนข้อความไอเท็มและไอคอน ซึ่งให้การระบุภาพที่ชัดเจนสำหรับโหมดการเลือกเดี่ยว
 
 <div
   :class="[
@@ -176,12 +176,12 @@ const menuList = ref([
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.radioList" :menu-list="menuList" :radio-list="true" />
+  <spr-list v-model="singleSelectOutput.radioList" :menu-list="menuList" radio-list />
 </div>
 
 ```vue
 <template>
-  <spr-list v-model="selectedItems" :menu-list="menuList" list-radio />
+  <spr-list v-model="selectedItems" :menu-list="menuList" radio-list />
 </template>
 
 <script lang="ts" setup>
@@ -555,55 +555,55 @@ const handleSelection = (items) => {
   </thead>
   <tbody>
     <tr>
-      <td><code>modelValue</code> (v-model)</td>
+      <td><code>model-value</code> (v-model)</td>
       <td>การผูกสองทางสำหรับไอเท็มที่เลือกซึ่งประกอบด้วยออบเจ็กต์ไอเท็มทั้งหมด</td>
       <td><code>MenuListType[]</code></td>
       <td><code>[]</code></td>
     </tr>
     <tr>
-      <td><code>menuList</code></td>
+      <td><code>menu-list</code></td>
       <td>อาร์เรย์ของไอเท็มที่จะแสดง</td>
       <td><code>MenuListType[]</code></td>
       <td><code>[]</code> (จำเป็น)</td>
     </tr>
     <tr>
-      <td><code>groupItemsBy</code></td>
+      <td><code>group-items-by</code></td>
       <td>กลยุทธ์การจัดกลุ่ม: <code>'default'</code> (ตามพร็อพส์กลุ่ม), <code>'A-Z'</code> (จากน้อยไปมาก), หรือ <code>'Z-A'</code> (จากมากไปน้อย)</td>
       <td><code>'default' | 'A-Z' | 'Z-A'</code></td>
       <td><code>undefined</code></td>
     </tr>
     <tr>
-      <td><code>multiSelect</code></td>
+      <td><code>multi-select</code></td>
       <td>เปิดใช้งานโหมดการเลือกหลายรายการด้วยช่องทำเครื่องหมาย</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>preSelectedItems</code></td>
+      <td><code>pre-selected-items</code></td>
       <td>เลือกไอเท็มล่วงหน้าตามค่าของพวกเขา</td>
       <td><code>(string | number | Record&lt;string, unknown&gt;)[]</code></td>
       <td><code>[]</code></td>
     </tr>
     <tr>
-      <td><code>searchableMenu</code></td>
+      <td><code>searchable-menu</code></td>
       <td>แสดงอินพุตการค้นหาสำหรับกรองไอเท็ม</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>searchableMenuPlaceholder</code></td>
+      <td><code>searchable-menu-placeholder</code></td>
       <td>ข้อความตัวยึดตำแหน่งสำหรับอินพุตการค้นหา</td>
       <td><code>string</code></td>
       <td><code>'Search...'</code></td>
     </tr>
     <tr>
-      <td><code>searchValue</code></td>
+      <td><code>search-value</code></td>
       <td>ค่าการค้นหาภายนอก (การผูกสองทาง)</td>
       <td><code>string</code></td>
       <td><code>''</code></td>
     </tr>
     <tr>
-      <td><code>menuLevel</code></td>
+      <td><code>menu-level</code></td>
       <td>ระดับการซ้อนสำหรับรายการลำดับชั้น</td>
       <td><code>number</code></td>
       <td><code>0</code></td>
@@ -615,7 +615,7 @@ const handleSelection = (items) => {
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>disabledLocalSearch</code></td>
+      <td><code>disabled-local-search</code></td>
       <td>ปิดใช้งานการกรองการค้นหาในเครื่อง</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
@@ -627,7 +627,7 @@ const handleSelection = (items) => {
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>noCheck</code></td>
+      <td><code>no-check</code></td>
       <td>ซ่อนไอคอนเครื่องหมายถูกในโหมดการเลือกเดี่ยว</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
@@ -639,37 +639,37 @@ const handleSelection = (items) => {
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>supportingDisplayText</code></td>
+      <td><code>supporting-display-text</code></td>
       <td>แสดงข้อความแบบกำหนดเอง (เช่น "2 Selected")</td>
       <td><code>string</code></td>
       <td><code>''</code></td>
     </tr>
     <tr>
-      <td><code>displayListItemSelected</code></td>
+      <td><code>display-list-item-selected</code></td>
       <td>แสดงจำนวนไอเท็มที่เลือกเมื่อค้นหาได้</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>stickySearchOffset</code></td>
+      <td><code>sticky-search-offset</code></td>
       <td>ออฟเซ็ตสำหรับส่วนหัวการค้นหาที่ติด</td>
       <td><code>string | number</code></td>
       <td><code>0</code></td>
     </tr>
     <tr>
-      <td><code>itemIcon</code></td>
+      <td><code>item-icon</code></td>
       <td>ไอคอนเริ่มต้นสำหรับไอเท็มทั้งหมด</td>
       <td><code>string</code></td>
       <td><code>''</code></td>
     </tr>
     <tr>
-      <td><code>disabledUnselectedItems</code></td>
+      <td><code>disabled-unselected-items</code></td>
       <td>ปิดใช้งานและทำให้ไอเท็มที่ไม่ได้เลือกเป็นสีเทา</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
     <tr>
-      <td><code>radioList</code></td>
+      <td><code>radio-list</code></td>
       <td>แสดงปุ่มวิทยุสำหรับโหมดการเลือกเดี่ยว (ต้องใช้การเลือกเดี่ยว ไม่เข้ากันได้กับการเลือกหลายรายการ)</td>
       <td><code>boolean</code></td>
       <td><code>false</code></td>

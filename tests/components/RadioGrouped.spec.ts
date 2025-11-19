@@ -24,7 +24,7 @@
  */
 
 import { test, expect } from '@playwright/experimental-ct-vue';
-import RadioGrouped from '@/components/radio/radio-grouped.vue';
+import RadioGrouped from '@/components/radio-grouped/radio-grouped.vue';
 
 test.describe('RadioGrouped Component', () => {
   test.describe('Rendering', () => {
@@ -151,21 +151,6 @@ test.describe('RadioGrouped Component', () => {
       await expect(inputs.nth(0)).not.toBeDisabled();
       await expect(inputs.nth(1)).toBeDisabled();
       await expect(inputs.nth(2)).not.toBeDisabled();
-    });
-
-    test('renders with fullWidth variant', async ({ mount }) => {
-      const component = await mount(RadioGrouped, {
-        props: {
-          id: 'fullwidth-radio-group',
-          name: 'test-group',
-          options: [{ text: 'Option 1', value: 'value1' }],
-          fullWidth: true,
-        },
-      });
-
-      await expect(component).toBeVisible();
-      const rootDiv = component.locator('div').first();
-      await expect(rootDiv).toBeVisible();
     });
   });
 

@@ -6,6 +6,7 @@
   - Fix Documentation Locales Issues when switching to different languages
   - Added Support Label Placement and Support Label Text for Progress Component.
   - Update Documentation for Progress Component.
+  - Added Support for List Item Radio Button.
   - Update Documentation for List Component.
     ([#35957](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/35957) by @jarias)
 

@@ -29,8 +29,6 @@ tests/
 │   ├── Button.spec.ts                      # Component tests
 │   ├── Modal.spec.ts
 │   └── ...
-└── e2e/
-    └── a11y/                               # End-to-end accessibility tests
 ```
 
 ### Configuration

@@ -4,6 +4,7 @@
 
 - คุณสมบัติ:
   - สร้างคอมโพเนนต์ Radio Grouped พร้อมการผูก v-model และการสนับสนุนอาร์เรย์ตัวเลือก
+  - เพิ่มการรองรับ Display Helper แบบกำหนดเองสำหรับคอมโพเนนต์ Input Contact Number
     ([#35957](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36031) โดย @jarias)
 
 ## 2.22.3 (2025-11-19)

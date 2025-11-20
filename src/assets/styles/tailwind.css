@@ -712,6 +712,10 @@
     @apply spr-bg-white-50;
   }
 
+  .spr-background-color-default {
+    @apply spr-bg-mushroom-200;
+  }
+
   .spr-background-color-surface {
     @apply spr-bg-mushroom-50;
   }

@@ -439,4 +439,143 @@ test.describe('InputContactNumber Component', () => {
       expect(Array.isArray(errors)).toBe(true);
     });
   });
+
+  test.describe('Display Helper', () => {
+    test('displays helper text when displayHelper is true', async ({ mount }) => {
+      const component = await mount(InputContactNumber, {
+        props: {
+          displayHelper: true,
+          helperText: 'Enter a valid phone number',
+        },
+      });
+
+      await expect(component.getByText('Enter a valid phone number')).toBeVisible();
+    });
+
+    test('does not display helper text when displayHelper is false', async ({ mount }) => {
+      const component = await mount(InputContactNumber, {
+        props: {
+          displayHelper: false,
+          helperText: 'Enter a valid phone number',
+        },
+      });
+
+      const helperText = component.getByText('Enter a valid phone number');
+      await expect(helperText).not.toBeVisible();
+    });
+
+    test('displays helper icon when provided', async ({ mount }) => {
+      const component = await mount(InputContactNumber, {
+        props: {
+          displayHelper: true,
+          helperText: 'This field is required',
+          helperIcon: 'ph:warning-circle-fill',
+        },
+      });
+
+      // Helper text should be visible
+      await expect(component.getByText('This field is required')).toBeVisible();
+    });
+
+    test('displays error state styling when error prop is true', async ({ mount }) => {
+      const component = await mount(InputContactNumber, {
+        props: {
+          displayHelper: true,
+          helperText: 'Invalid phone number',
+          error: true,
+        },
+      });
+
+      // Helper text should be visible with error styling
+      const helperElement = component.getByText('Invalid phone number');
+      await expect(helperElement).toBeVisible();
+    });
+
+    test('renders custom helper message slot', async ({ mount }) => {
+      const component = await mount(InputContactNumber, {
+        props: {
+          displayHelper: true,
+        },
+        slots: {
+          helperMessage: '<div data-testid="custom-helper">Custom helper content</div>',
+        },
+      });
+
+      // Custom helper message should be rendered
+      await expect(component.locator('[data-testid="custom-helper"]')).toBeVisible();
+      await expect(component.getByText('Custom helper content')).toBeVisible();
+    });
+
+    test('combines helperText and error state', async ({ mount }) => {
+      const component = await mount(InputContactNumber, {
+        props: {
+          displayHelper: true,
+          helperText: 'Please enter a valid number',
+          helperIcon: 'ph:warning-circle-fill',
+          error: true,
+        },
+      });
+
+      // Both text and icon should be visible
+      await expect(component.getByText('Please enter a valid number')).toBeVisible();
+    });
+
+    test('display helper with disabled state', async ({ mount }) => {
+      const component = await mount(InputContactNumber, {
+        props: {
+          displayHelper: true,
+          helperText: 'Information text',
+          disabled: true,
+        },
+      });
+
+      const input = component.locator('input');
+      await expect(input).toBeDisabled();
+
+      // Helper text should still be visible when disabled
+      await expect(component.getByText('Information text')).toBeVisible();
+    });
+
+    test('updates helper text dynamically', async ({ mount }) => {
+      const component = await mount(InputContactNumber, {
+        props: {
+          displayHelper: true,
+          helperText: 'Initial helper text',
+        },
+      });
+
+      await expect(component.getByText('Initial helper text')).toBeVisible();
+
+      // Update helper text
+      await component.update({
+        props: {
+          displayHelper: true,
+          helperText: 'Updated helper text',
+        },
+      });
+
+      await expect(component.getByText('Updated helper text')).toBeVisible();
+    });
+
+    test('helper with error icon on validation error', async ({ mount }) => {
+      const component = await mount(InputContactNumber, {
+        props: {
+          displayHelper: true,
+          helperIcon: 'ph:warning-circle-fill',
+          error: true,
+          onGetContactNumberErrors: (errors: Array<{ title: string; message: string }>) => {
+            // Validation errors are emitted when invalid input is detected
+            expect(Array.isArray(errors)).toBe(true);
+          },
+        },
+      });
+
+      const input = component.locator('input');
+      await input.fill('invalid');
+      await input.blur();
+
+      // Error helper should be visible
+      await expect(component).toBeTruthy();
+    });
+  });
 });

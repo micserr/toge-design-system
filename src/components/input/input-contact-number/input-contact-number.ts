@@ -47,6 +47,22 @@ export const inputContactNumberPropTypes = {
     type: Boolean,
     default: false,
   },
+  displayHelper: {
+    type: Boolean,
+    default: false,
+  },
+  helperText: {
+    type: String,
+    default: '',
+  },
+  helperIcon: {
+    type: String,
+    default: null,
+  },
+  error: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const inputContactNumberEmitTypes = {

@@ -4,6 +4,7 @@
 
 - Feat:
   - Created Radio Grouped component with v-model binding and options array support.
+  - Added support for custom display helper for input contact number component.
     ([#35957](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36031) by @jarias)
 
 ## 2.22.3 (2025-11-19)

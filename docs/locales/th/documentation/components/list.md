@@ -18,7 +18,7 @@ outline: deep
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.basicUsage" :menu-list="menuList" />
+  <spr-list v-model="listModels.basicUsage" :menu-list="menuList" />
 </div>
 
 ```vue
@@ -63,7 +63,7 @@ const menuList = ref([
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.multiSelect" :menu-list="menuList" multi-select />
+  <spr-list v-model="listModels.multiSelect" :menu-list="menuList" multi-select />
 </div>
 
 ```vue
@@ -109,7 +109,7 @@ const menuList = ref([
     ]"
   >
     <h5 class="spr-mb-2 spr-text-sm spr-font-medium">จัดกลุ่มตามค่าเริ่มต้น</h5>
-    <spr-list v-model="singleSelectOutput.groupingDefault" :menu-list="groupedMenuList" group-items-by="default" />
+    <spr-list v-model="listModels.groupingDefault" :menu-list="groupedMenuList" group-items-by="default" />
   </div>
   <div
     :class="[
@@ -118,7 +118,7 @@ const menuList = ref([
     ]"
   >
     <h5 class="spr-mb-2 spr-text-sm spr-font-medium">Grouped by A-Z</h5>
-    <spr-list v-model="singleSelectOutput.groupingAlphabetical" :menu-list="groupedMenuList" group-items-by="A-Z" />
+    <spr-list v-model="listModels.groupingAlphabetical" :menu-list="groupedMenuList" group-items-by="A-Z" />
   </div>
 </div>
 
@@ -152,7 +152,7 @@ const menuList = ref([
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.searchableList" :menu-list="menuList" searchable-menu />
+  <spr-list v-model="listModels.searchableList" :menu-list="menuList" searchable-menu />
 </div>
 
 ```vue
@@ -176,7 +176,7 @@ const menuList = ref([
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.radioList" :menu-list="menuList" radio-list />
+  <spr-list v-model="listModels.radioList" :menu-list="menuList" radio-list />
 </div>
 
 ```vue
@@ -209,7 +209,7 @@ const menuList = ref([
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.subtext" :menu-list="itemsWithSubtext" />
+  <spr-list v-model="listModels.subtext" :menu-list="itemsWithSubtext" />
 </div>
 
 ```vue
@@ -276,38 +276,13 @@ const menuList = ref([
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.lozengeBadge" :menu-list="menuItemsWithLozenge" />
+  <spr-list v-model="listModels.itemIcons" :menu-list="itemsWithIcons" />
 </div>
 
 ```vue
 <template>
   <spr-list v-model="selectedItems" :menu-list="itemsWithIcons" />
 </template>
-
-<script lang="ts" setup>
-import { ref } from 'vue';
-
-const selectedItems = ref([]);
-
-const itemsWithIcons = ref([
-  {
-    text: 'Home',
-    value: 'home',
-    icon: 'ph:house',
-  },
-  {
-    text: 'Settings',
-    value: 'settings',
-    icon: 'ph:gear',
-    iconColor: 'spr-text-blue-500',
-  },
-  {
-    text: 'Users',
-    value: 'users',
-    icon: 'ph:users',
-  },
-]);
-</script>
 ```
 
 ### โทนและเติมไอคอน
@@ -354,7 +329,7 @@ const menuList = ref([
 สร้างรายการซ้อนลำดับชั้นโดยใช้พร็อพส์ `ladderized` และรวมพร็อพส์ `sublevel` ในไอเท็ม
 
 <div class="spr-rounded-md spr-max-h-[300px] spr-border spr-border-solid spr-border-color-weak spr-overflow-hidden">
-  <spr-ladderized-list v-model="singleSelectOutput.hierarchicalList" :menu-list="hierarchicalData" />
+  <spr-ladderized-list v-model="listModels.hierarchicalList" :menu-list="hierarchicalData" />
 </div>
 
 ```vue
@@ -461,7 +436,7 @@ const lozengeItems = ref([
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="singleSelectOutput.subtext" :menu-list="itemsWithSubtext" />
+  <spr-list v-model="lozengeListValue" :menu-list="lozengeMenuList" lozenge />
 </div>
 
 ```vue
@@ -542,7 +517,7 @@ const menuList = ref([
   ]"
 >
   <spr-list 
-    v-model="singleSelectOutput.eventHandling" 
+    v-model="listModels.eventHandling" 
     :menu-list="menuList" 
     @update:model-value="handleSelection"
   />
@@ -819,6 +794,24 @@ const hierarchicalData = ref([
   },
 ]);
 
+const itemsWithSubtext = ref([
+  {
+    text: 'Home',
+    value: 'home',
+    subtext: 'Go to home page',
+  },
+  {
+    text: 'Settings',
+    value: 'settings',
+    subtext: 'Configure preferences',
+  },
+  {
+    text: 'Users',
+    value: 'users',
+    subtext: 'Manage user accounts',
+  },
+]);
+
 const lozengeMenuList = ref([
   {
     text: 'Active',
@@ -840,7 +833,7 @@ const lozengeMenuList = ref([
   },
 ]);
 
-const singleSelectOutput = ref({
+const listModels = ref({
   basicUsage: [],
   multiSelect: [],
   groupingDefault: [],

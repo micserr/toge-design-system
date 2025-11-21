@@ -163,6 +163,20 @@ Image size can be controlled by passing the `size` prop. The default size is `sm
 </template>
 ```
 
+## Coming Soon
+
+Display a coming soon message using only the description prop without any additional imagery or buttons:
+
+<div class="spr-p-8 spr-bg-white-500">
+  <spr-empty-state description="Coming Soon" />
+</div>
+
+```vue
+<template>
+  <spr-empty-state description="Coming Soon" />
+</template>
+```
+
 ## API Reference
 
 ### Props

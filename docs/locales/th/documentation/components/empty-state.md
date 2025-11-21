@@ -163,6 +163,20 @@ const changeImage = () => {
 </template>
 ```
 
+## เร็ว ๆ นี้
+
+แสดงข้อความที่จะมาเร็ว ๆ นี้โดยใช้เพียงพร็อพส์คำอธิบายโดยไม่มีรูปภาพหรือปุ่มเพิ่มเติม:
+
+<div class="spr-p-8 spr-bg-white-500">
+  <spr-empty-state description="Coming Soon" />
+</div>
+
+```vue
+<template>
+  <spr-empty-state description="Coming Soon" />
+</template>
+```
+
 ## API Reference
 
 ### Props

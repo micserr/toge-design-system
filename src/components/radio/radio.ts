@@ -32,7 +32,7 @@ export const radioPropTypes = {
   fullWidth: {
     type: Boolean,
     default: false,
-  }
+  },
 };
 
 export const radioEmitTypes = ['update:modelValue'];

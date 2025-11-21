@@ -6,6 +6,10 @@
     :placeholder="props.placeholder"
     :active="popperState"
     :disabled="props.disabled"
+    :display-helper="props.displayHelper"
+    :helper-text="props.helperText"
+    :helper-icon="props.helperIcon"
+    :error="props.error"
     @keyup="handleContactNumberInput"
     @blur="formatContactNumber"
     @update:model-value="handleUpdateModelValue"
@@ -28,6 +32,10 @@
           <icon v-if="!props.disabledCountryCallingCode" icon="ph:caret-down" width="16px" height="16px" />
         </div>
       </spr-dropdown>
+    </template>
+
+    <template #helperMessage>
+      <slot name="helperMessage" />
     </template>
   </spr-input>
 </template>

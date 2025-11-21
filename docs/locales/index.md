@@ -1,9 +1,9 @@
 <script setup>
   import { onMounted } from 'vue';
 
-  window.location.href = '/en/';
-
   const setLocaleRedirect = () => {
+    if (typeof window === 'undefined') return;
+    
     let currentLocale = localStorage.getItem('locale');
     
     switch (currentLocale) {

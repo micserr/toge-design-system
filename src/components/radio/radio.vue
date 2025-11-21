@@ -1,5 +1,5 @@
 <template>
-  <div :class="['spr-relative', { 'spr-w-full' : props.fullWidth }]">
+  <div :class="['spr-relative', { 'spr-w-full': props.fullWidth }]">
     <input
       :id="props.id"
       ref="radioRef"
@@ -21,7 +21,10 @@
         <slot />
         <span
           v-if="props.description && props.description !== ''"
-          :class="['spr-text-xs spr-font-normal spr-leading-4 spr-text-mushroom-600', { 'spr-text-color-disabled' : props.disabled}]"
+          :class="[
+            'spr-text-xs spr-font-normal spr-leading-4 spr-text-mushroom-600',
+            { 'spr-text-color-disabled': props.disabled },
+          ]"
           >{{ props.description }}</span
         >
       </div>

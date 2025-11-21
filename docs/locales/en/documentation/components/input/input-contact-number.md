@@ -219,6 +219,111 @@ const handleErrors = (val: { title: string; message: string }[]) => {
 </template>
 ```
 
+## Display Helper
+
+Display helpful text or error messages below the input field using the `display-helper`, `helper-text`, `helper-icon`, and `error` props. You can also customize the helper message with a slot.
+
+<div class="spr-grid spr-gap-4">
+  <div>
+    <p class="spr-text-sm spr-font-semibold spr-mb-2">Helper Text</p>
+    <spr-input-contact-number
+      id="input-contact-number-helper-text"
+      v-model="inputModels.helperText"
+      label="Input Contact Number"
+      display-helper
+      helper-text="Enter a valid international phone number"
+    />
+  </div>
+  <div>
+    <p class="spr-text-sm spr-font-semibold spr-mb-2">Error State with Helper</p>
+    <spr-input-contact-number
+      id="input-contact-number-error-helper"
+      v-model="inputModels.errorHelper"
+      label="Input Contact Number"
+      display-helper
+      helper-icon="ph:warning-circle-fill"
+      helper-text="Invalid phone number format"
+      error
+    />
+  </div>
+  <div>
+    <p class="spr-text-sm spr-font-semibold spr-mb-2">Custom Helper Message</p>
+    <spr-input-contact-number
+      id="input-contact-number-custom-helper"
+      v-model="inputModels.customHelper"
+      label="Input Contact Number"
+      display-helper
+      helper-icon="ph:info-fill"
+      helper-text="Phone number info"
+    >
+      <template #helperMessage>
+        <div class="spr-flex spr-w-full spr-justify-between spr-gap-2">
+          <div class="spr-body-sm-regular spr-flex spr-items-center spr-gap-1">
+            <Icon class="spr-min-h-5 spr-min-w-5" icon="ph:info-fill" />
+            <span>Enter number with country code prefix</span>
+          </div>
+          <div class="spr-body-sm-regular">
+            {{ inputModels.customHelper.length }} characters
+          </div>
+        </div>
+      </template>
+    </spr-input-contact-number>
+  </div>
+</div>
+
+```vue
+<template>
+  <div class="spr-grid spr-gap-4">
+    <!-- Helper Text -->
+    <spr-input-contact-number
+      id="input-contact-number-helper-text"
+      v-model="inputModel"
+      label="Input Contact Number"
+      display-helper
+      helper-text="Enter a valid international phone number"
+    />
+
+    <!-- Error State with Helper -->
+    <spr-input-contact-number
+      id="input-contact-number-error-helper"
+      v-model="inputModel"
+      label="Input Contact Number"
+      display-helper
+      helper-icon="ph:warning-circle-fill"
+      helper-text="Invalid phone number format"
+      error
+    />
+
+    <!-- Custom Helper Message -->
+    <spr-input-contact-number
+      id="input-contact-number-custom-helper"
+      v-model="inputModel"
+      label="Input Contact Number"
+      display-helper
+      helper-icon="ph:info-fill"
+      helper-text="Phone number info"
+    >
+      <template #helperMessage>
+        <div class="spr-flex spr-w-full spr-justify-between spr-gap-2">
+          <div class="spr-body-sm-regular spr-flex spr-items-center spr-gap-1">
+            <Icon class="spr-min-h-5 spr-min-w-5" icon="ph:info-fill" />
+            <span>Enter number with country code prefix</span>
+          </div>
+          <div class="spr-body-sm-regular">{{ inputModel.length }} characters</div>
+        </div>
+      </template>
+    </spr-input-contact-number>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import { Icon } from '@iconify/vue';
+
+const inputModel = ref('');
+</script>
+```
+
 ## API Reference
 
 <table>
@@ -264,6 +369,30 @@ const handleErrors = (val: { title: string; message: string }[]) => {
     <tr>
       <td><code>disabled-country-calling-code</code></td>
       <td>Disables only the country calling code selector while keeping the number field interactive.</td>
+      <td>Boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>display-helper</code></td>
+      <td>When set to <code>true</code>, displays the helper text below the input field.</td>
+      <td>Boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>helper-text</code></td>
+      <td>Helper text to display below the input when <code>display-helper</code> is <code>true</code>. Provides additional context or instructions for the user.</td>
+      <td>String</td>
+      <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td><code>helper-icon</code></td>
+      <td>Icon name to display alongside the helper text. Accepts any icon name from the icon library.</td>
+      <td>String</td>
+      <td><code>null</code></td>
+    </tr>
+    <tr>
+      <td><code>error</code></td>
+      <td>When set to <code>true</code>, displays the input in an error state with red text for the helper message.</td>
       <td>Boolean</td>
       <td><code>false</code></td>
     </tr>
@@ -324,6 +453,9 @@ const inputModels = ref({
   disabledCountryCallingCode: '',
   selectedCountryCodes: '',
   preSelectedCountry: '',
+  helperText: '',
+  errorHelper: '',
+  customHelper: '',
 });
 
 const selectedCountryCode = ref('');

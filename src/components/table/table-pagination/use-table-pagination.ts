@@ -22,7 +22,7 @@ export const useTablePagination = (
   props: TablePaginationPropTypes,
   emit: SetupContext<TablePaginationEmitTypes>['emit'],
 ) => {
-  const { selectedRowCount, totalItems, bordered, editableCurrentPage } = toRefs(props);
+  const { selectedRowCount, totalItems, bordered, editableCurrentPage, showNumberOfRowsDropdown } = toRefs(props);
 
   const currentPage = useVModel(props, 'currentPage', emit);
 
@@ -67,13 +67,14 @@ export const useTablePagination = (
   });
 
   const dropdownSelection = ref(props.dropdownSelection);
-  const computeRowRange = computed(() => {
+  const computeRowRange = computed(() => {    
     const startRow = (currentPage.value - 1) * selectedRowCount.value + 1;
     const endRow = Math.min(currentPage.value * selectedRowCount.value, totalItems.value);
     return `${startRow} - ${endRow} of ${totalItems.value}`;
   });
 
   const computeSelectedRowCount = computed(() => {
+    console.log('selectedRowCount.value', selectedRowCount.value);
     return `${selectedRowCount.value} Rows`;
   });
 
@@ -124,5 +125,6 @@ export const useTablePagination = (
     dropdownId,
     currentPage,
     totalPages,
+    showNumberOfRowsDropdown
   };
 };

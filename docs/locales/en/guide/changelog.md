@@ -5,7 +5,7 @@
 - Feat:
   - Add footerNoTopBorder prop for sidepanel component.
   - Add showNumberOfRowsDropdown prop for table pagination component.    
-    ([#23889453](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36031) by @despiritu)
+    ([#23889453](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23889453bf7176d8671f7507ef1b519c3d505e49?refName=refs/heads/2025/feat/dustin/pagination-update) by @despiritu)
     
 ## 2.23.0 (2025-11-20)
 

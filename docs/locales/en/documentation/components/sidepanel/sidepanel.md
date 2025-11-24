@@ -492,6 +492,12 @@ The Sidepanel component provides three slots for customizing different sections 
       <td>boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td><code>footerNoTopBorder</code></td>
+      <td>When true, removes the top border from the footer slot.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 

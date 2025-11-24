@@ -1,7 +1,7 @@
 {
   "name": "design-system-next",
   "private": false,
-  "version": "2.23.0",
+  "version": "2.24.0",
   "main": "./dist/design-system-next.umd.js",
   "module": "./dist/design-system-next.es.js",
   "types": "./dist/design-system-next.es.d.ts",

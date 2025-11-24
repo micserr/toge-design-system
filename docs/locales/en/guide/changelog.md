@@ -1,6 +1,14 @@
 # Changelog
 
-## 2.23.0 (2025-11-120)
+## 2.24.0 (2025-11-23)
+
+- Feat:
+  - Add footerNoTopBorder prop for sidepanel component.
+  - Add showNumberOfRowsDropdown prop for table pagination component.    
+    ([#23889453](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36031) by @despiritu)
+    
+## 2.23.0 (2025-11-20)
+
 
 - Feat:
   - Created Radio Grouped component with v-model binding and options array support.

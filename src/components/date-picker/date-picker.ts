@@ -158,6 +158,7 @@ export const datePickerEmitTypes = {
       )
     );
   },
+  blur: () => true,
 };
 
 export type DatePickerPropTypes = ExtractPropTypes<typeof datePickerPropTypes>;

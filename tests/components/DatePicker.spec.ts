@@ -439,11 +439,10 @@ test.describe('DatePicker Component', () => {
         await component.locator('#test-date-picker-date').fill('15');
         await component.locator('#test-date-picker-year').fill('2024');
 
-        // Trigger blur to emit value
-        await component.locator('#test-date-picker-year').blur();
-        await new Promise((resolve) => setTimeout(resolve, 200));
+        // Wait for debounced validation to complete (500ms + buffer)
+        await new Promise((resolve) => setTimeout(resolve, 600));
 
-        // Value should be emitted when all fields are filled
+        // Value should be emitted when all fields are filled and validated
         expect(emittedValue).toBeTruthy();
       }
     });

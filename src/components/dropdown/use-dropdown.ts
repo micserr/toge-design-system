@@ -82,6 +82,17 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
   const dropdownPopperState = ref<boolean>(false);
   const isDropdownPopperDisabled = computed(() => disabled.value);
 
+  // Exposed methods to show/hide dropdown. This is for custom trigger handling for custom dropdown.
+  // To use these methods, set :triggers="[]" on the SprDropdown component to disable default triggers. (reference: https://floating-vue.starpad.dev/api/#shown)
+  /* #region - Exposed Methods */
+  const showDropdown = () => {
+    dropdownPopperState.value = true;
+  };
+  const hideDropdown = () => {
+    dropdownPopperState.value = false;
+  };
+  /* #endregion - Exposed Methods */
+
   const isLadderizedSearch = computed(
     () => ladderized.value && searchString.value !== '' && normalizedValue.value.length === 0,
   );
@@ -503,5 +514,7 @@ export const useDropdown = (props: DropdownPropTypes, emit: SetupContext<Dropdow
     dropdownValue: compatPreSelectedItems, // Use compatible format for lists
     removeCurrentLevelInBackLabel,
     isLadderizedSearch,
+    showDropdown,
+    hideDropdown,
   };
 };

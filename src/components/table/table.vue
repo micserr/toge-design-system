@@ -20,7 +20,7 @@
       <table
         :key="tableKey"
         aria-describedby="describe"
-        class="spr-h-full spr-w-full spr-table-fixed"
+        class="spr-h-full spr-w-full"
         cellspacing="0"
         cellpadding="0"
       >
@@ -45,7 +45,18 @@
               :class="[getTableClasses.headerClasses(header)]"
               :style="{ width: header?.width }"
             >
-              <div :class="getTableClasses.headerNameClass">
+              <!-- Header with Dropdown Filter -->
+              <spr-table-header-dropdown
+                v-if="props.showHeaderFilter"
+                :id="`th-dropdown-${keyHeader}`"
+                :header="header"
+                :is-sortable="true"
+                :header-classes="getTableClasses.headerNameClass"
+                :filter-options="header.filterList"
+                @on-apply-filter="(filters) => emit('onApplyFilter', filters)"
+              />
+              <!-- Default Header -->
+              <div v-else :class="getTableClasses.headerNameClass">
                 <span :class="[{ 'spr-cursor-pointer': header.sort }]" @click="header.sort && sortData(header.field)">
                   {{ header.name }}
                 </span>
@@ -68,6 +79,9 @@
                     width="16"
                     :class="[{ 'spr-text-kangkong-700': sortField === header.field }]"
                   />
+                </span>
+                <span v-if="props.showHeaderFilter">
+                  <Icon icon="ph:funnel-simple" height="20" width="20" class="spr-ml-size-spacing-5xs spr-text-[#4B685E]" />
                 </span>
               </div>
             </th>
@@ -213,6 +227,7 @@ import SprTableActions from '@/components/table/table-actions/table-actions.vue'
 import SprTableLozengeTitle from '@/components/table/table-lozenge-title/table-lozenge-title.vue';
 import SprTableChipsTitle from '@/components/table/table-chips-title/table-chips-title.vue';
 import SprCheckbox from '@/components/checkbox/checkbox.vue';
+import SprTableHeaderDropdown from '@/components/table/table-header-dropdown/table-header-dropdown.vue';
 
 import { tablePropTypes, tableEmitTypes } from './table';
 import type { ChipTitle } from '@/components/table/table-chips-title/table-chips-title';

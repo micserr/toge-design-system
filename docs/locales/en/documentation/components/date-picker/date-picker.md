@@ -1171,6 +1171,8 @@ const clearDate = () => {
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
@@ -1278,13 +1280,13 @@ const clearDate = () => {
       <td>`bottom`</td>
     </tr>
     <tr>
-    <tr>
       <td>wrapper-position</td>
       <td>CSS position of the date picker wrapper</td>
       <td>String</td>
       <td>relative</td>
     </tr>
-    <td>popper-strategy</td>
+    <tr>
+      <td>popper-strategy</td>
       <td>Popper positioning strategy ('absolute' or 'fixed')</td>
       <td>String</td>
       <td><code>absolute</code></td>
@@ -1295,34 +1297,53 @@ const clearDate = () => {
       <td>String | HTMLElement</td>
       <td>''</td>
     </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>@update:model-value</td>
+      <td>Emits when the selected date value changes</td>
+      <td>String (formatted date)</td>
+    </tr>
     <tr>
       <td>@get-input-value</td>
-      <td>Emits the actual date that is being typed or select on the datepickker</td>
-      <td>Function</td>
-      <td>-</td>
+      <td>Emits the actual date that is being typed or selected on the datepicker</td>
+      <td>String | null</td>
     </tr>
     <tr>
       <td>@get-date-formats</td>
-      <td>Emits the available date formats</td>
-      <td>Function</td>
-      <td>-</td>
+      <td>Emits the available date formats when a valid date is selected</td>
+      <td>Object (various date format strings)</td>
     </tr>
     <tr>
       <td>@get-month-list</td>
-      <td>Emits the list of months</td>
-      <td>Function</td>
-      <td>-</td>
+      <td>Emits the list of months available in the component</td>
+      <td>Array (month objects)</td>
     </tr>
     <tr>
       <td>@get-year-list</td>
-      <td>Emits the list of years</td>
-      <td>Function</td>
-      <td>-</td>
+      <td>Emits the list of years available in the component</td>
+      <td>Array (year numbers)</td>
     </tr>
     <tr>
-      <td>@get-date-error</td>
-      <td>Emits the available date errors</td>
-      <td>Function</td>
+      <td>@get-date-errors</td>
+      <td>Emits validation errors from the date picker</td>
+      <td>Array (error objects with title and message)</td>
+    </tr>
+    <tr>
+      <td>@blur</td>
+      <td>Emits when any input field loses focus</td>
       <td>-</td>
     </tr>
   </tbody>

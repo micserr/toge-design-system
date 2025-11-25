@@ -399,7 +399,8 @@ test.describe('DatePicker Component', () => {
      * Alternative approach: Test manual input triggering value changes.
      */
     test('should emit update:modelValue when date is selected', async ({ mount }) => {
-      let emittedValue = '';
+      let emittedModelValue = '';
+      let emittedInputValue = '';
 
       const component = await mount(DatePicker, {
         props: {
@@ -409,7 +410,10 @@ test.describe('DatePicker Component', () => {
         },
         on: {
           'update:modelValue': (value: string) => {
-            emittedValue = value;
+            emittedModelValue = value;
+          },
+          getInputValue: (value: string) => {
+            emittedInputValue = value;
           },
         },
       });
@@ -431,7 +435,9 @@ test.describe('DatePicker Component', () => {
         if ((await availableDates.count()) > 0) {
           await availableDates.first().click();
           await new Promise((resolve) => setTimeout(resolve, 200));
-          expect(emittedValue).toBeTruthy();
+          // Calendar selection emits both events
+          expect(emittedModelValue).toBeTruthy();
+          expect(emittedInputValue).toBeTruthy();
         }
       } else {
         // Calendar not visible - test manual input instead
@@ -439,12 +445,11 @@ test.describe('DatePicker Component', () => {
         await component.locator('#test-date-picker-date').fill('15');
         await component.locator('#test-date-picker-year').fill('2024');
 
-        // Trigger blur to emit value
-        await component.locator('#test-date-picker-year').blur();
-        await new Promise((resolve) => setTimeout(resolve, 200));
+        // Wait for debounced validation to complete (500ms + buffer)
+        await new Promise((resolve) => setTimeout(resolve, 600));
 
-        // Value should be emitted when all fields are filled
-        expect(emittedValue).toBeTruthy();
+        // Manual input emits getInputValue with full date in format 'MM-DD-YYYY'
+        expect(emittedInputValue).toBeTruthy();
       }
     });
 

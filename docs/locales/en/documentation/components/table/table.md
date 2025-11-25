@@ -1402,6 +1402,12 @@ const handleOnDragRemove = (event: DragOnRemoveEvent, tableType: TableTypes) => 
       <td>boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td>showHeaderFilter</td>
+      <td>When true, displays filter dropdowns in the table headers. Requires filterList to be defined in header objects.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
   </tbody>
 </table>
 
@@ -1613,6 +1619,12 @@ const handleOnDragRemove = (event: DragOnRemoveEvent, tableType: TableTypes) => 
       <td>width</td>
       <td>Sets the width of the column. Accepts any valid CSS width value (e.g., '200px', '25%', '15em', 'auto'). This property directly controls column sizing and is essential for creating properly proportioned tables.</td>
       <td>string</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>filterList</td>
+      <td>Array of filter options for the table header dropdown. Provides a list of available filters that can be applied to the column.</td>
+      <td>MenuListType[]</td>
       <td>No</td>
     </tr>
   </tbody>

@@ -358,6 +358,12 @@ You can customize the content of the dropdown menu by using the `popper` slot. T
       <td>[]</td>
     </tr>
     <tr>
+      <td><code>searchable-menu</code></td>
+      <td>When true, enables search functionality in the dropdown menu</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
       <td><code>text-field</code></td>
       <td>When using custom objects in <code>menuList</code>, specifies which property to use for display text</td>
       <td>string</td>
@@ -376,22 +382,28 @@ You can customize the content of the dropdown menu by using the `popper` slot. T
       <td>''</td>
     </tr>
     <tr>
-      <td><code>multiSelect</code></td>
+      <td><code>multi-select</code></td>
       <td>When true, allows selecting multiple options from the dropdown</td>
       <td>boolean</td>
       <td>false</td>
-    </tr>
-    <tr>
-      <td><code>group-items-by</code></td>
-      <td>Groups the dropdown items alphabetically</td>
-      <td>'A-Z' | 'Z-A'</td>
-      <td>-</td>
     </tr>
     <tr>
       <td><code>placement</code></td>
       <td>Controls the position of the dropdown menu relative to the trigger</td>
       <td>'auto' | 'auto-start' | 'auto-end' | 'top' | 'top-start' | 'top-end' | 'right' | 'right-start' | 'right-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end'</td>
       <td>'bottom'</td>
+    </tr>
+    <tr>
+      <td><code>distance</code></td>
+      <td>Distance between the trigger element and the dropdown menu</td>
+      <td>number</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td><code>group-items-by</code></td>
+      <td>Groups the dropdown items alphabetically</td>
+      <td>'A-Z' | 'Z-A'</td>
+      <td>-</td>
     </tr>
     <tr>
       <td><code>wrapper-position</code></td>
@@ -406,6 +418,30 @@ You can customize the content of the dropdown menu by using the `popper` slot. T
       <td>'100%'</td>
     </tr>
     <tr>
+      <td><code>auto-hide</code></td>
+      <td>When true, automatically hides the dropdown when clicking outside it</td>
+      <td>boolean</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>triggers</code></td>
+      <td>Array of events that will trigger the dropdown to open</td>
+      <td>('click' | 'hover' | 'focus' | 'touch')[]</td>
+      <td>['click']</td>
+    </tr>
+    <tr>
+      <td><code>popper-triggers</code></td>
+      <td>Array of events that will trigger the dropdown menu (popper element) to open</td>
+      <td>('click' | 'hover' | 'focus' | 'touch')[]</td>
+      <td>[]</td>
+    </tr>
+    <tr>
+      <td><code>popper-strategy</code></td>
+      <td>Positioning strategy for the dropdown menu, especially important in modals</td>
+      <td>'absolute' | 'fixed'</td>
+      <td>'absolute'</td>
+    </tr>
+    <tr>
       <td><code>popper-width</code></td>
       <td>Width of the dropdown menu that appears when triggered</td>
       <td>string</td>
@@ -418,10 +454,10 @@ You can customize the content of the dropdown menu by using the `popper` slot. T
       <td>'unset'</td>
     </tr>
     <tr>
-      <td><code>popper-strategy</code></td>
-      <td>Positioning strategy for the dropdown menu, especially important in modals</td>
-      <td>'absolute' | 'fixed'</td>
-      <td>'absolute'</td>
+      <td><code>popper-container</code></td>
+      <td>Selector for the container where the popper will be mounted</td>
+      <td>string</td>
+      <td>''</td>
     </tr>
     <tr>
       <td><code>disabled</code></td>
@@ -449,27 +485,15 @@ You can customize the content of the dropdown menu by using the `popper` slot. T
     </tr>
     <tr>
       <td><code>lozenge</code></td>
-      <td>When true, enables lozenge list display.</td>
+      <td>When true, enables lozenge list display</td>
       <td>boolean</td>
       <td>false</td>
     </tr>
     <tr>
-      <td><code>triggers</code></td>
-      <td>Array of events that will trigger the dropdown to open</td>
-      <td>'click' | 'hover' | 'focus' | 'touch'[]</td>
-      <td>['click']</td>
-    </tr>
-    <tr>
-      <td><code>popper-triggers</code></td>
-      <td>Array of events that will trigger the dropdown menu (popper element) to open</td>
-      <td>'click' | 'hover' | 'focus' | 'touch'[]</td>
-      <td>[]</td>
-    </tr>
-    <tr>
-      <td><code>auto-hide</code></td>
-      <td>When true, automatically hides the dropdown when clicking outside it</td>
+      <td><code>no-padding</code></td>
+      <td>When true, removes padding from the popper content</td>
       <td>boolean</td>
-      <td>true</td>
+      <td>false</td>
     </tr>
   </tbody>
 </table>
@@ -498,7 +522,31 @@ You can customize the content of the dropdown menu by using the `popper` slot. T
     <tr>
       <td>@popper-state</td>
       <td>Event emitted when you open or close the popper</td>
-      <td>Bolean</td>
+      <td>Boolean</td>
+    </tr>
+  </tbody>
+</table>
+
+### Methods
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>showDropdown()</code></td>
+      <td>Programmatically opens/shows the dropdown menu</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td><code>hideDropdown()</code></td>
+      <td>Programmatically closes/hides the dropdown menu</td>
+      <td>None</td>
     </tr>
   </tbody>
 </table>

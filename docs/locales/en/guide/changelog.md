@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.24.0 (2025-11-25)
+
+- Feat:
+  - Add footerNoTopBorder prop for sidepanel component.
+  - Add showNumberOfRowsDropdown prop for table pagination component.    
+    ([#23889453](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23889453bf7176d8671f7507ef1b519c3d505e49?refName=refs/heads/2025/feat/dustin/pagination-update) by @despiritu)
+
 ## 2.23.1 (2025-11-25)
 
 - Fix:
@@ -14,7 +21,7 @@
   - Now emits partial date values with zeros for empty fields as user types (e.g., "12-0-0" → "12-0-1997" → "12-12-1997")
     ([#36142](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36142) by @jarias)
 
-## 2.23.0 (2025-11-120)
+## 2.23.0 (2025-11-20)
 
 - Feat:
   - Created Radio Grouped component with v-model binding and options array support.

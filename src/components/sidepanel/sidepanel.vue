@@ -17,6 +17,7 @@
       aria-labelledby="sidepanel-title"
       aria-describedby="sidepanel-content"
       :class="sidepanelClasses.sidepanelBaseClasses"
+      data-testid="sidepanel-dialog"
       :style="{ height: typeof height === 'number' ? `${height}px` : height }"
     >
       <template v-if="!props.hideHeader">
@@ -29,9 +30,10 @@
               v-if="props.isExpandable"
               :class="sidepanelClasses.sidepanelHeaderIconClasses"
               :icon="isExpanded ? 'ph:arrows-in-simple' : 'ph:arrows-out-simple'"
+              data-testid="expand-icon"
               @click="handlePanelExpansion"
             />
-            <Icon :class="sidepanelClasses.sidepanelHeaderIconClasses" icon="ph:x" @click="handleClose" />
+            <Icon :class="sidepanelClasses.sidepanelHeaderIconClasses" icon="ph:x" data-testid="x-icon" @click="handleClose" />
           </div>
         </div>
         <div v-else>

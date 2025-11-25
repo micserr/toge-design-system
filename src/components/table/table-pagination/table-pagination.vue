@@ -1,6 +1,8 @@
 <template>
-  <div :class="paginationClasses.baseClass">
+  <div :class="paginationClasses.baseClass" v-bind="$attrs">
+    
     <spr-dropdown
+      v-if="showNumberOfRowsDropdown"
       :id="dropdownId"
       :menu-list="dropdownSelection"
       dropdown-type="single-select"
@@ -53,6 +55,9 @@
         </spr-button>
       </div>
     </div>
+    <div id="table_pagination_actions_slot">
+      <slot name="actions" />
+    </div>
   </div>
 </template>
 
@@ -83,6 +88,7 @@ const {
   dropdownId,
   currentPage,
   totalPages,
+  showNumberOfRowsDropdown
 } = useTablePagination(props, emit);
 </script>
 

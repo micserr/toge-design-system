@@ -620,6 +620,8 @@ const datePickerModel = ref('');
 
 ## API Reference
 
+### Props
+
 <table>
   <thead>
     <tr>
@@ -743,6 +745,55 @@ const datePickerModel = ref('');
       <td>CSS selector หรือ HTMLElement เพื่อกำหนดคอนเทนเนอร์ที่กำหนดเองสำหรับองค์ประกอบ popper</td>
       <td>String | HTMLElement</td>
       <td>''</td>
+    </tr>
+  </tbody>
+</table>
+
+### Events
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>คำอธิบาย</th>
+      <th>Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>@update:model-value</td>
+      <td>ส่งออกเมื่อค่าวันที่ที่เลือกเปลี่ยนแปลง</td>
+      <td>String (formatted date)</td>
+    </tr>
+    <tr>
+      <td>@get-input-value</td>
+      <td>ส่งออกวันที่จริงที่กำลังพิมพ์หรือเลือกในปฏิทิน</td>
+      <td>String | null</td>
+    </tr>
+    <tr>
+      <td>@get-date-formats</td>
+      <td>ส่งออกรูปแบบวันที่ที่มีอยู่เมื่อเลือกวันที่ที่ถูกต้อง</td>
+      <td>Object (various date format strings)</td>
+    </tr>
+    <tr>
+      <td>@get-month-list</td>
+      <td>ส่งออกรายชื่อเดือนที่มีอยู่ในคอมโพเนนต์</td>
+      <td>Array (month objects)</td>
+    </tr>
+    <tr>
+      <td>@get-year-list</td>
+      <td>ส่งออกรายชื่อปีที่มีอยู่ในคอมโพเนนต์</td>
+      <td>Array (year numbers)</td>
+    </tr>
+    <tr>
+      <td>@get-date-errors</td>
+      <td>ส่งออกข้อผิดพลาดในการตรวจสอบจากปฏิทินวันที่</td>
+      <td>Array (error objects with title and message)</td>
+    </tr>
+    <tr>
+      <td>@blur</td>
+      <td>ส่งออกเมื่อช่องอินพุตใดๆ สูญเสียโฟกัส</td>
+      <td>-</td>
     </tr>
   </tbody>
 </table>

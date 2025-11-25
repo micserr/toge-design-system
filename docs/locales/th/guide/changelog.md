@@ -10,6 +10,8 @@
   - การแท็บระหว่างช่องอินพุตจะไม่ส่งออก blur event อีกต่อไป
   - Popper จะปิดโดยอัตโนมัติเมื่อคลิกนอกคอมโพเนนต์ (auto-hide เปิดใช้งาน)
   - อัปเดตเอกสาร API เพื่อแยก Props และ Events sections ในท้องถิ่น English และ Thai
+  - แก้ไขข้อผิดพลาดการสร้าง: ลบการประกาศฟังก์ชัน `emitPartialInputValue` ที่ซ้ำกัน
+  - ส่งค่าวันที่บางส่วนพร้อมศูนย์สำหรับฟิลด์ว่างขณะที่ผู้ใช้พิมพ์ (เช่น "12-0-0" → "12-0-1997" → "12-12-1997")
     ([#36142](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36142) โดย @jarias)
 
 ## 2.23.0 (2025-11-120)

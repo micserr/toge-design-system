@@ -696,12 +696,8 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     handleValidateDate();
 
-    // Emit null if any required field is empty
-    if (!monthInput.value || !dateInput.value || !yearInput.value) {
-      emit('getInputValue', null);
-    } else {
-      emitInputValue();
-    }
+    // Emit the partial date value as user types
+    emitPartialInputValue();
   };
 
   const handleDateInput = () => {
@@ -715,12 +711,8 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     handleValidateDate();
 
-    // Emit null if any required field is empty
-    if (!monthInput.value || !dateInput.value || !yearInput.value) {
-      emit('getInputValue', null);
-    } else {
-      emitInputValue();
-    }
+    // Emit the partial date value as user types
+    emitPartialInputValue();
   };
 
   const handleYearInput = () => {
@@ -732,14 +724,8 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     emit('getDateErrors', datePickerErrors.value);
 
-    // Emit null if any required field is empty or year is incomplete
-    if (!monthInput.value || !dateInput.value || !yearInput.value || yearInput.value.length !== 4) {
-      emit('getInputValue', null);
-    } else if (yearInput.value.length === 4) {
-      // Only validate and emit when all fields are complete and year is 4 digits
-      handleValidateDate();
-      emitInputValue();
-    }
+    // Emit the partial date value as user types
+    emitPartialInputValue();
   };
 
   const handleConvertMonthIfValid = () => {
@@ -834,6 +820,36 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
         });
       }
     }
+  };
+
+  const emitPartialInputValue = () => {
+    // Convert month to numeric format if it's text
+    let emittedMonth = monthInput.value;
+
+    if (monthInput.value) {
+      const isNumeric = !isNaN(Number(monthInput.value)) && !isNaN(parseFloat(monthInput.value));
+
+      if (!isNumeric) {
+        const monthIsValid = monthsList.value.find(
+          (_month: MonthsList) => _month.text.toLowerCase() === monthInput.value.toLowerCase(),
+        );
+
+        if (monthIsValid) {
+          emittedMonth =
+            monthIsValid.monthValue < 10 ? `0${monthIsValid.monthValue + 1}` : `${monthIsValid.monthValue + 1}`;
+        }
+      }
+    }
+
+    // Build the partial date string with zeros for empty fields
+    const partialMonth = emittedMonth || '0';
+    const partialDate = dateInput.value || '0';
+    const partialYear = yearInput.value || '0';
+
+    const partialDateString = `${partialMonth}-${partialDate}-${partialYear}`;
+
+    // Emit the partial date string
+    emit('getInputValue', partialDateString);
   };
 
   const emitDateFormats = () => {
@@ -965,7 +981,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
   onClickOutside(datePickerRef, () => {
     datePopperState.value = false;
-    emit('blur');
   });
 
   onMounted(() => {

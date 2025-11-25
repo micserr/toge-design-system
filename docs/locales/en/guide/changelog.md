@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.24.0 (2025-11-23)
+## 2.24.0 (2025-11-24)
 
 - Feat:
   - Add footerNoTopBorder prop for sidepanel component.

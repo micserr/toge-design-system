@@ -1,14 +1,27 @@
 # Changelog
 
-## 2.24.0 (2025-11-24)
+## 2.24.0 (2025-11-25)
 
 - Feat:
   - Add footerNoTopBorder prop for sidepanel component.
   - Add showNumberOfRowsDropdown prop for table pagination component.    
     ([#23889453](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23889453bf7176d8671f7507ef1b519c3d505e49?refName=refs/heads/2025/feat/dustin/pagination-update) by @despiritu)
-    
-## 2.23.0 (2025-11-20)
 
+## 2.23.1 (2025-11-25)
+
+- Fix:
+  - Fixed DatePicker component `getInputValue` event to emit `null` when date input is incomplete
+  - Now emits `null` when any required field (month, date, year) is empty
+  - Now emits `null` when year field has less than 4 digits (incomplete year)
+  - Added support for `@blur` event that only fires when clicking outside the component
+  - Tabbing between input fields no longer triggers blur event
+  - Popper now closes automatically when clicking outside the component (auto-hide enabled)
+  - Updated API documentation to separate Props and Events sections in both English and Thai locales
+  - Fixed build error: removed duplicate `emitPartialInputValue` function declaration
+  - Now emits partial date values with zeros for empty fields as user types (e.g., "12-0-0" → "12-0-1997" → "12-12-1997")
+    ([#36142](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36142) by @jarias)
+
+## 2.23.0 (2025-11-20)
 
 - Feat:
   - Created Radio Grouped component with v-model binding and options array support.

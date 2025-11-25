@@ -6,6 +6,10 @@
   - Fixed DatePicker component `getInputValue` event to emit `null` when date input is incomplete
   - Now emits `null` when any required field (month, date, year) is empty
   - Now emits `null` when year field has less than 4 digits (incomplete year)
+  - Added support for `@blur` event that only fires when clicking outside the component
+  - Tabbing between input fields no longer triggers blur event
+  - Popper now closes automatically when clicking outside the component (auto-hide enabled)
+  - Updated API documentation to separate Props and Events sections in both English and Thai locales
     ([#36142](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36142) by @jarias)
 
 ## 2.23.0 (2025-11-120)

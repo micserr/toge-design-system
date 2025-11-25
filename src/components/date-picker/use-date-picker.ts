@@ -965,6 +965,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
   onClickOutside(datePickerRef, () => {
     datePopperState.value = false;
+    emit('blur');
   });
 
   onMounted(() => {

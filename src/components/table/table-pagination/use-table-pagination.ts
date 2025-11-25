@@ -73,8 +73,7 @@ export const useTablePagination = (
     return `${startRow} - ${endRow} of ${totalItems.value}`;
   });
 
-  const computeSelectedRowCount = computed(() => {
-    console.log('selectedRowCount.value', selectedRowCount.value);
+  const computeSelectedRowCount = computed(() => {    
     return `${selectedRowCount.value} Rows`;
   });
 

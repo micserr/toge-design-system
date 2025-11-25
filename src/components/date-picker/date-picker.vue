@@ -7,7 +7,7 @@
       :placement="props.placement"
       :triggers="[]"
       :popper-hide-triggers="[]"
-      :auto-hide="false"
+      :auto-hide="true"
       :disabled="isDatePickerPopperDisabled"
       :container="props.popperContainer ? props.popperContainer : `#${props.id}`"
       :strategy="
@@ -44,7 +44,6 @@
                 @input="handleMonthInput"
                 @keyup="handleMonthInput"
                 @keydown="handleBackspace('month', $event)"
-                @blur="emit('blur')"
               />
               <span class="spr-text-color-strong spr-font-size-200 spr-text-color-weak">/</span>
               <input
@@ -61,7 +60,6 @@
                 @input="handleDateInput"
                 @keyup="handleDateInput"
                 @keydown="handleBackspace('date', $event)"
-                @blur="emit('blur')"
               />
               <span class="spr-text-color-strong spr-font-size-200 spr-text-color-weak">/</span>
               <input
@@ -78,7 +76,6 @@
                 @input="handleYearInput"
                 @keyup="handleYearInput"
                 @keydown="handleBackspace('year', $event)"
-                @blur="emit('blur')"
               />
             </div>
             <div class="spr-flex spr-items-center spr-justify-center">

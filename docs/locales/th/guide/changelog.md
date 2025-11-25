@@ -6,6 +6,10 @@
   - แก้ไขคอมโพเนนต์ DatePicker โดยให้ `getInputValue` event ส่ง `null` เมื่อการป้อนวันที่ไม่สมบูรณ์
   - ส่ง `null` เมื่อฟิลด์ที่จำเป็นใดๆ (เดือน, วันที่, ปี) ว่างเปล่า
   - ส่ง `null` เมื่อฟิลด์ปีมีตัวเลขน้อยกว่า 4 หลัก (ปีไม่สมบูรณ์)
+  - เพิ่มการรองรับ `@blur` event ที่ส่งออกเฉพาะเมื่อคลิกนอกคอมโพเนนต์
+  - การแท็บระหว่างช่องอินพุตจะไม่ส่งออก blur event อีกต่อไป
+  - Popper จะปิดโดยอัตโนมัติเมื่อคลิกนอกคอมโพเนนต์ (auto-hide เปิดใช้งาน)
+  - อัปเดตเอกสาร API เพื่อแยก Props และ Events sections ในท้องถิ่น English และ Thai
     ([#36142](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36142) โดย @jarias)
 
 ## 2.23.0 (2025-11-120)

@@ -696,12 +696,10 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     handleValidateDate();
 
-    // Do not set yearInput when typing monthInput
-    if (!monthInput.value && !dateInput.value && !yearInput.value) {
+    // Emit null if any required field is empty
+    if (!monthInput.value || !dateInput.value || !yearInput.value) {
       emit('getInputValue', null);
-    }
-
-    if (monthInput.value && dateInput.value && yearInput.value) {
+    } else {
       emitInputValue();
     }
   };
@@ -717,12 +715,10 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     handleValidateDate();
 
-    // Do not set yearInput when typing dateInput
-    if (!monthInput.value && !dateInput.value && !yearInput.value) {
+    // Emit null if any required field is empty
+    if (!monthInput.value || !dateInput.value || !yearInput.value) {
       emit('getInputValue', null);
-    }
-
-    if (monthInput.value && dateInput.value && yearInput.value) {
+    } else {
       emitInputValue();
     }
   };
@@ -736,19 +732,13 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     emit('getDateErrors', datePickerErrors.value);
 
-    // Only validate year, do not set monthInput or dateInput
-    // Only emit year-related changes
-    // Only validate if yearInput is 4 digits (full year)
-    if (yearInput.value.length === 4) {
+    // Emit null if any required field is empty or year is incomplete
+    if (!monthInput.value || !dateInput.value || !yearInput.value || yearInput.value.length !== 4) {
+      emit('getInputValue', null);
+    } else if (yearInput.value.length === 4) {
+      // Only validate and emit when all fields are complete and year is 4 digits
       handleValidateDate();
-
-      if (!monthInput.value && !dateInput.value && !yearInput.value) {
-        emit('getInputValue', null);
-      }
-
-      if (monthInput.value && dateInput.value && yearInput.value) {
-        emitInputValue();
-      }
+      emitInputValue();
     }
   };
 
@@ -934,8 +924,8 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   };
 
   const handleSlotClick = () => {
-    if(disabled.value || readonly.value) return;
-    datePopperState.value = true;    
+    if (disabled.value || readonly.value) return;
+    datePopperState.value = true;
   };
 
   watch(datePopperState, (newValue) => {
@@ -1037,6 +1027,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     handleTabClick,
     handleBackspace,
     clearDate,
-    handleSlotClick
+    handleSlotClick,
   };
 };

@@ -2,6 +2,8 @@ import type { PropType, ExtractPropTypes } from 'vue';
 import type { ChipTitle } from '@/components/table/table-chips-title/table-chips-title';
 import type { LozengeTitle } from '@/components/table/table-lozenge-title/table-lozenge-title';
 import { type SortableEvent } from 'sortablejs';
+import type { MenuListType } from '../list/list';
+import type { TableHeaderFilterType } from './table-header-dropdown/table-header-dropdown';
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
 export interface Header {
@@ -18,6 +20,7 @@ export interface Header {
   avatarVariant?: string;
   customTailwindClasses?: string;
   width?: string;
+  filterList?: MenuListType[]; // List of filter options for table header dropdown
 }
 
 export interface TableData {
@@ -183,6 +186,10 @@ export const tablePropTypes = {
   retainSelectionOnDataChange: {
     type: Boolean,
     default: false,
+  },
+  showHeaderFilter: {
+    type: Boolean, 
+    default: false,
   }
 };
 
@@ -202,7 +209,8 @@ export const tableEmitTypes = {
   onDragAdd: (event: DragOnAddEvent): event is DragOnAddEvent =>
     event !== undefined && Array.isArray(event.updatedList),
   onDragRemove: (event: DragOnRemoveEvent): event is DragOnRemoveEvent =>
-    event !== undefined && Array.isArray(event.updatedList),  
+    event !== undefined && Array.isArray(event.updatedList),
+  onApplyFilter: (filter: TableHeaderFilterType) => !!filter,
 };
 
 export type TablePropTypes = ExtractPropTypes<typeof tablePropTypes>;

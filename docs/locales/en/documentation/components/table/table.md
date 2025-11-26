@@ -63,6 +63,81 @@ const data = ref([
 </script>
 ```
 
+### Table Header Dropdown Filter
+
+You can add filter dropdowns to table headers by using the `filterList` property in the header configuration and enabling the `showHeaderFilter` prop.
+
+
+  <spr-table :headers="headersTableHeaderFilter" :data-table="dataTableHeaderFilter" show-header-filter @on-apply-filter="handleApplyFilter" />
+
+
+```vue
+<template>
+  <spr-table 
+    :headers="headersTableHeaderFilter" 
+    :data-table="dataTableHeaderFilter" 
+    show-header-filter
+    @on-apply-filter="handleApplyFilter"
+  />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import type { Header } from '@/components/table/table';
+
+const headersTableHeaderFilter = ref<Header[]>([
+  { field: 'name', name: 'Role Name', sort: false, hasAvatar: true, hasSubtext: true, 
+    filterList: [
+      { text: 'Role 11', value: 'role11' },
+      { text: 'Role 12', value: 'role12' },
+      { text: 'Role 13', value: 'role13' },
+      { text: 'Role 14', value: 'role14' },
+      { text: 'Role 15', value: 'role15' }
+    ] 
+  },
+  { field: 'note', name: 'Note', sort: false, hasAvatar: false, hasSubtext: true,
+    filterList: [
+      { text: 'Note 11', value: 'note11' },
+      { text: 'Note 12', value: 'note12' },
+      { text: 'Note 13', value: 'note13' },
+      { text: 'Note 14', value: 'note14' },
+      { text: 'Note 15', value: 'note15' }
+    ]
+  },
+  { field: 'status', name: 'Status', sort: false, hasAvatar: false, hasSubtext: true,
+    filterList: [
+      { text: 'Success', value: 'success' },
+      { text: 'Pending', value: 'pending' },
+      { text: 'Error', value: 'error' }
+    ]
+  },
+]);
+
+const dataTableHeaderFilter = ref([
+  // 40 more elements
+  ...Array.from({ length: 10 }, (_, i) => ({
+    name: {
+      title: `Role ${i + 11}`,
+      subtext: `Subtext for role ${i + 11}`,
+    },
+    note: {
+      title: `Note  ${i + 11}`,
+      subtext: `Subtext for role ${i + 11}`,
+    },
+    status: {
+      title: ['Success', 'Pending', 'Error'][(i + 1) % 3],
+      subtext: `Status subtext ${i + 11}`,
+    },
+  })),
+]);
+
+const handleApplyFilter = (filters) => {
+  console.log('Applied filters:', filters);
+  // Handle filter logic here (e.g., API call to filter data)
+};
+</script>
+```
+
 ## No Slot and Action
 
 <div class="spr-space-y-4 spr-bg-white-50 spr-p-size-spacing-sm">
@@ -1648,6 +1723,7 @@ import SprLogo from "@/components/logo/logo.vue";
 import SprTooltip from "@/components/tooltip/tooltip.vue";
 import { Icon } from '@iconify/vue';
 import draggable from 'vuedraggable';
+import type { Header } from '@/components/table/table';
 
 const selectedTableData = ref([]);
 
@@ -2153,5 +2229,56 @@ const handleOnDragRemove = (event: DragOnRemoveEvent, tableType: TableTypes) => 
   } else {
     mockAvailableEmployees.value.splice(event.oldIndex, 1);
   }
+};
+
+const headersTableHeaderFilter = ref<Header[]>([
+  { field: 'name', name: 'Role Name', sort: false, hasAvatar: true, hasSubtext: true, 
+    filterList: [
+      { text: 'Role 11', value: 'role11' },
+      { text: 'Role 12', value: 'role12' },
+      { text: 'Role 13', value: 'role13' },
+      { text: 'Role 14', value: 'role14' },
+      { text: 'Role 15', value: 'role15' }
+    ] 
+  },
+  { field: 'note', name: 'Note', sort: false, hasAvatar: false, hasSubtext: true,
+    filterList: [
+      { text: 'Note 11', value: 'note11' },
+      { text: 'Note 12', value: 'note12' },
+      { text: 'Note 13', value: 'note13' },
+      { text: 'Note 14', value: 'note14' },
+      { text: 'Note 15', value: 'note15' }
+    ]
+  },
+  { field: 'status', name: 'Status', sort: false, hasAvatar: false, hasSubtext: true,
+    filterList: [
+      { text: 'Success', value: 'success' },
+      { text: 'Pending', value: 'pending' },
+      { text: 'Error', value: 'error' }
+    ]
+  },
+]);
+
+const dataTableHeaderFilter = ref([
+  // 40 more elements
+  ...Array.from({ length: 10 }, (_, i) => ({
+    name: {
+      title: `Role ${i + 11}`,
+      subtext: `Subtext for role ${i + 11}`,
+    },
+    note: {
+      title: `Note  ${i + 11}`,
+      subtext: `Subtext for role ${i + 11}`,
+    },
+    status: {
+      title: ['Success', 'Pending', 'Error'][(i + 1) % 3],
+      subtext: `Status subtext ${i + 11}`,
+    },
+  })),
+]);
+
+const handleApplyFilter = (filters) => {
+  console.log('Applied filters:', filters);
+  // Handle filter logic here (e.g., API call to filter data)
 };
 </script>

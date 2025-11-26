@@ -2,16 +2,16 @@
 
 ## 2.24.2 (2025-11-26)
 
-- Fix:
-  - Fixed table pagination layout without actions slot.
-    ([#19965264](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/199652649e805afd26577a3602a6777d3f1d9fc1?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fpagination-update) by @despiritu)
-
-## 2.24.1 (2025-11-25)
-
 - Feat:
   - New table subcomponent for table header filter
   - Dropdown and Table enhancement to fit functional requirements for table header filter dropdown    
     ([#ce3572da](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ce3572da1dc3a1b7a0549055df91fa2f065d418d?refName=refs%2Fheads%2F2025%2Ffeat%2FPaulo%2FTableHeaderFilterDropdown) by @jbanares)
+
+## 2.24.1 (2025-11-26)
+
+- Fix:
+  - Fixed table pagination layout without actions slot.
+    ([#19965264](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/199652649e805afd26577a3602a6777d3f1d9fc1?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fpagination-update) by @despiritu)
 
 ## 2.24.0 (2025-11-25)
 

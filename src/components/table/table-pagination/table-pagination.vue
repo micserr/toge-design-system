@@ -55,7 +55,7 @@
         </spr-button>
       </div>
     </div>
-    <div id="table_pagination_actions_slot">
+    <div v-if="slots.actions" id="table_pagination_actions_slot">
       <slot name="actions" />
     </div>
   </div>
@@ -70,8 +70,10 @@ import { useTablePagination } from './use-table-pagination';
 import SprInput from '@/components/input/input.vue';
 import SprButton from '@/components/button/button.vue';
 import SprDropdown from '@/components/dropdown/dropdown.vue';
+import { useSlots } from 'vue';
 
 const emit = defineEmits(tablePaginationEmitTypes);
+const slots = useSlots();
 
 const props = defineProps(tablePaginationPropTypes);
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.24.1 (2025-11-26)
+
+- Fix:
+  - Fixed table pagination layout without actions slot.
+    ([#19965264](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/199652649e805afd26577a3602a6777d3f1d9fc1?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fpagination-update) by @despiritu)
+
 ## 2.24.0 (2025-11-25)
 
 - Feat:

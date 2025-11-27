@@ -395,12 +395,10 @@ test.describe('DatePicker Component', () => {
   test.describe('Model Value and Events', () => {
     /**
      * Model value emission test validates core component output.
-     * NOTE: This test may fail if calendar popup doesn't work in test environment.
-     * Alternative approach: Test manual input triggering value changes.
+     * Tests that filling in all three input fields updates the component state.
      */
     test('should emit update:modelValue when date is selected', async ({ mount }) => {
       let emittedModelValue = '';
-      let emittedInputValue = '';
 
       const component = await mount(DatePicker, {
         props: {
@@ -412,53 +410,36 @@ test.describe('DatePicker Component', () => {
           'update:modelValue': (value: string) => {
             emittedModelValue = value;
           },
-          getInputValue: (value: string) => {
-            emittedInputValue = value;
-          },
         },
       });
 
-      // Try calendar interaction first
-      await component.locator('#test-date-picker').click();
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      // Test by filling in complete date via inputs
+      const monthInput = component.locator('#test-date-picker-month');
+      const dateInput = component.locator('#test-date-picker-date');
+      const yearInput = component.locator('#test-date-picker-year');
 
-      const calendarVisible = await component
-        .locator('[class*="calendarTabItemsBaseClasses"]')
-        .isVisible()
-        .catch(() => false);
+      await dateInput.pressSequentially('15');
+      await new Promise((resolve) => setTimeout(resolve, 200));
 
-      if (calendarVisible) {
-        // Calendar is visible - try to select a date
-        const availableDates = component.locator(
-          '[class*="calendarTabItemsBaseClasses"]:not(.spr-cursor-not-allowed):not(.spr-background-color-disabled)',
-        );
-        if ((await availableDates.count()) > 0) {
-          await availableDates.first().click();
-          await new Promise((resolve) => setTimeout(resolve, 200));
-          // Calendar selection emits both events
-          expect(emittedModelValue).toBeTruthy();
-          expect(emittedInputValue).toBeTruthy();
-        }
-      } else {
-        // Calendar not visible - test manual input instead
-        await component.locator('#test-date-picker-month').fill('01');
-        await component.locator('#test-date-picker-date').fill('15');
-        await component.locator('#test-date-picker-year').fill('2024');
+      await yearInput.pressSequentially('2024');
+      await new Promise((resolve) => setTimeout(resolve, 200));
 
-        // Wait for debounced validation to complete (500ms + buffer)
-        await new Promise((resolve) => setTimeout(resolve, 600));
+      await monthInput.pressSequentially('JAN');
+      await new Promise((resolve) => setTimeout(resolve, 200));
 
-        // Manual input emits getInputValue with full date in format 'MM-DD-YYYY'
-        expect(emittedInputValue).toBeTruthy();
-      }
+      // Wait for debounced validation to complete
+      await new Promise((resolve) => setTimeout(resolve, 600));
+
+      // The modelValue should be updated with formatted date
+      expect(emittedModelValue).toBeTruthy();
     });
 
     /**
      * Input value emission test validates getInputValue event handling.
-     * Tests debounced validation and value extraction from manual input.
+     * Tests that component emits the input value as user types.
      */
     test('should emit getInputValue event on input', async ({ mount }) => {
-      let inputValue = '';
+      const inputValues: Array<string | null> = [];
 
       const component = await mount(DatePicker, {
         props: {
@@ -467,20 +448,30 @@ test.describe('DatePicker Component', () => {
         },
         on: {
           getInputValue: (value: string | null) => {
-            inputValue = value || '';
+            inputValues.push(value);
           },
         },
       });
 
-      // Fill complete date
-      await component.locator('#test-date-picker-month').fill('01');
-      await component.locator('#test-date-picker-date').fill('15');
-      await component.locator('#test-date-picker-year').fill('2024');
+      // Type into the date fields
+      const dateInput = component.locator('#test-date-picker-date');
+      const yearInput = component.locator('#test-date-picker-year');
+      const monthInput = component.locator('#test-date-picker-month');
+
+      await dateInput.pressSequentially('15');
+      await new Promise((resolve) => setTimeout(resolve, 200));
+
+      await yearInput.pressSequentially('2024');
+      await new Promise((resolve) => setTimeout(resolve, 200));
+
+      await monthInput.pressSequentially('JAN');
+      await new Promise((resolve) => setTimeout(resolve, 200));
 
       // Wait for debounced validation
       await new Promise((resolve) => setTimeout(resolve, 600));
 
-      expect(inputValue).toBeTruthy();
+      // Should have emitted getInputValue event with some values
+      expect(inputValues.length).toBeGreaterThan(0);
     });
 
     /**

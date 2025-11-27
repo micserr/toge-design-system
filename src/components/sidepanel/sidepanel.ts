@@ -104,6 +104,10 @@ export const sidepanelPropTypes = {
   isActivePanel: {
     type: Boolean,
     default: false
+  },
+  footerNoTopBorder: {
+    type: Boolean,
+    default: false,
   }
 };
 

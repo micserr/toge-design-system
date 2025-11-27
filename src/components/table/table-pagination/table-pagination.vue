@@ -1,6 +1,8 @@
 <template>
-  <div :class="paginationClasses.baseClass">
+  <div :class="paginationClasses.baseClass" v-bind="$attrs">
+    
     <spr-dropdown
+      v-if="showNumberOfRowsDropdown"
       :id="dropdownId"
       :menu-list="dropdownSelection"
       dropdown-type="single-select"
@@ -53,6 +55,9 @@
         </spr-button>
       </div>
     </div>
+    <div v-if="slots.actions" id="table_pagination_actions_slot">
+      <slot name="actions" />
+    </div>
   </div>
 </template>
 
@@ -65,8 +70,10 @@ import { useTablePagination } from './use-table-pagination';
 import SprInput from '@/components/input/input.vue';
 import SprButton from '@/components/button/button.vue';
 import SprDropdown from '@/components/dropdown/dropdown.vue';
+import { useSlots } from 'vue';
 
 const emit = defineEmits(tablePaginationEmitTypes);
+const slots = useSlots();
 
 const props = defineProps(tablePaginationPropTypes);
 
@@ -83,6 +90,7 @@ const {
   dropdownId,
   currentPage,
   totalPages,
+  showNumberOfRowsDropdown
 } = useTablePagination(props, emit);
 </script>
 

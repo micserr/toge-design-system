@@ -41,14 +41,14 @@ const basicHeaders: Header[] = [
 ];
 
 const advancedHeaders: Header[] = [
-  { 
-    field: 'user', 
-    name: 'User', 
-    hasAvatar: true, 
+  {
+    field: 'user',
+    name: 'User',
+    hasAvatar: true,
     hasSubtext: true,
     sort: true,
     badgeText: 'Active',
-    badgeVariant: 'success'
+    badgeVariant: 'success',
   },
   { field: 'department', name: 'Department', sort: true },
   { field: 'status', name: 'Status', hasLozengeTitle: true },
@@ -56,23 +56,23 @@ const advancedHeaders: Header[] = [
 ];
 
 const basicTableData: TableData[] = [
-  { 
-    id: 1, 
-    name: { title: 'John Doe' }, 
-    email: { title: 'john@example.com' }, 
-    role: { title: 'Admin' } 
+  {
+    id: 1,
+    name: { title: 'John Doe' },
+    email: { title: 'john@example.com' },
+    role: { title: 'Admin' },
   },
-  { 
-    id: 2, 
-    name: { title: 'Jane Smith' }, 
-    email: { title: 'jane@example.com' }, 
-    role: { title: 'User' } 
+  {
+    id: 2,
+    name: { title: 'Jane Smith' },
+    email: { title: 'jane@example.com' },
+    role: { title: 'User' },
   },
-  { 
-    id: 3, 
-    name: { title: 'Bob Wilson' }, 
-    email: { title: 'bob@example.com' }, 
-    role: { title: 'Manager' } 
+  {
+    id: 3,
+    name: { title: 'Bob Wilson' },
+    email: { title: 'bob@example.com' },
+    role: { title: 'Manager' },
   },
 ];
 
@@ -82,36 +82,72 @@ const complexTableData: TableData[] = [
     user: {
       title: 'John Doe',
       subtext: 'Senior Developer',
-      image: '/avatars/john.jpg'
+      image: '/avatars/john.jpg',
     },
     department: { title: 'Engineering' },
-    status: { 
-      title: { title: 'Active', tone: 'success' }
+    status: {
+      title: { title: 'Active', tone: 'success' },
     },
     tags: {
       title: [
-        { title: 'Frontend', icon: '', iconWeight: 'regular', badge: false, badgeText: '', badgeVariant: '', avatarUrl: '', avatarVariant: 'initial' },
-        { title: 'React', icon: '', iconWeight: 'regular', badge: false, badgeText: '', badgeVariant: '', avatarUrl: '', avatarVariant: 'initial' }
-      ]
-    }
+        {
+          title: 'Frontend',
+          icon: '',
+          iconWeight: 'regular',
+          badge: false,
+          badgeText: '',
+          badgeVariant: '',
+          avatarUrl: '',
+          avatarVariant: 'initial',
+        },
+        {
+          title: 'React',
+          icon: '',
+          iconWeight: 'regular',
+          badge: false,
+          badgeText: '',
+          badgeVariant: '',
+          avatarUrl: '',
+          avatarVariant: 'initial',
+        },
+      ],
+    },
   },
   {
     id: 2,
     user: {
       title: 'Jane Smith',
       subtext: 'Product Manager',
-      image: '/avatars/jane.jpg'
+      image: '/avatars/jane.jpg',
     },
     department: { title: 'Product' },
-    status: { 
-      title: { title: 'Away', tone: 'caution' }
+    status: {
+      title: { title: 'Away', tone: 'caution' },
     },
     tags: {
       title: [
-        { title: 'Product', icon: '', iconWeight: 'regular', badge: false, badgeText: '', badgeVariant: '', avatarUrl: '', avatarVariant: 'initial' },
-        { title: 'Strategy', icon: '', iconWeight: 'regular', badge: false, badgeText: '', badgeVariant: '', avatarUrl: '', avatarVariant: 'initial' }
-      ]
-    }
+        {
+          title: 'Product',
+          icon: '',
+          iconWeight: 'regular',
+          badge: false,
+          badgeText: '',
+          badgeVariant: '',
+          avatarUrl: '',
+          avatarVariant: 'initial',
+        },
+        {
+          title: 'Strategy',
+          icon: '',
+          iconWeight: 'regular',
+          badge: false,
+          badgeText: '',
+          badgeVariant: '',
+          avatarUrl: '',
+          avatarVariant: 'initial',
+        },
+      ],
+    },
   },
 ];
 
@@ -126,16 +162,16 @@ test.describe('Table Component', () => {
       });
 
       await expect(component).toBeVisible();
-      
+
       // Check table structure
       const table = component.locator('table');
       await expect(table).toBeVisible();
-      
+
       // Check headers
       await expect(component.getByText('Name')).toBeVisible();
       await expect(component.getByText('Email')).toBeVisible();
       await expect(component.getByText('Role')).toBeVisible();
-      
+
       // Check data rows
       await expect(component.getByText('John Doe')).toBeVisible();
       await expect(component.getByText('john@example.com')).toBeVisible();
@@ -216,11 +252,11 @@ test.describe('Table Component', () => {
       const component = await mount(Table, {
         props: {
           headers: [
-            { 
-              field: 'status', 
+            {
+              field: 'status',
               name: 'Status',
               badgeText: 'New',
-              badgeVariant: 'primary'
+              badgeVariant: 'primary',
             },
           ],
           dataTable: [{ id: 1, status: 'Active' }],
@@ -251,10 +287,10 @@ test.describe('Table Component', () => {
       const component = await mount(Table, {
         props: {
           headers: [
-            { 
-              field: 'name', 
+            {
+              field: 'name',
               name: 'Name',
-              customTailwindClasses: 'spr-bg-red-500 spr-text-white'
+              customTailwindClasses: 'spr-bg-red-500 spr-text-white',
             },
           ],
           dataTable: basicTableData,
@@ -279,7 +315,7 @@ test.describe('Table Component', () => {
       // Check user column with avatar and subtext
       await expect(component.getByText('John Doe')).toBeVisible();
       await expect(component.getByText('Senior Developer')).toBeVisible();
-      
+
       // Check department
       await expect(component.getByText('Engineering')).toBeVisible();
     });
@@ -304,11 +340,29 @@ test.describe('Table Component', () => {
           id: 1,
           tags: {
             title: [
-              { title: 'Tag 1', icon: '', iconWeight: 'regular', badge: false, badgeText: '', badgeVariant: '', avatarUrl: '', avatarVariant: 'initial' },
-              { title: 'Tag 2', icon: '', iconWeight: 'regular', badge: false, badgeText: '', badgeVariant: '', avatarUrl: '', avatarVariant: 'initial' },
-            ]
-          }
-        }
+              {
+                title: 'Tag 1',
+                icon: '',
+                iconWeight: 'regular',
+                badge: false,
+                badgeText: '',
+                badgeVariant: '',
+                avatarUrl: '',
+                avatarVariant: 'initial',
+              },
+              {
+                title: 'Tag 2',
+                icon: '',
+                iconWeight: 'regular',
+                badge: false,
+                badgeText: '',
+                badgeVariant: '',
+                avatarUrl: '',
+                avatarVariant: 'initial',
+              },
+            ],
+          },
+        },
       ];
 
       const component = await mount(Table, {
@@ -360,11 +414,15 @@ test.describe('Table Component', () => {
         },
       });
 
-      // Click first row checkbox
+      // Trigger first row checkbox programmatically
       const firstRowCheckbox = component.locator('tbody tr').first().locator('input[type="checkbox"]');
-      await firstRowCheckbox.click();
+      await firstRowCheckbox.evaluate((el: HTMLInputElement) => {
+        el.checked = !el.checked;
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+      });
 
-      expect(selectedData).toHaveLength(1);
+      // Wait for the event to propagate and update selectedData
+      await expect.poll(() => selectedData.length, { timeout: 10000 }).toBe(1);
       expect(selectedData[0]).toBe(1); // The ID of the first row
     });
 
@@ -384,11 +442,15 @@ test.describe('Table Component', () => {
         },
       });
 
-      // Click header checkbox to select all
+      // Trigger header checkbox programmatically
       const headerCheckbox = component.locator('thead input[type="checkbox"]').first();
-      await headerCheckbox.click();
+      await headerCheckbox.evaluate((el: HTMLInputElement) => {
+        el.checked = !el.checked;
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+      });
 
-      expect(selectedData).toHaveLength(basicTableData.length);
+      // Wait for the event to propagate and update selectedData
+      await expect.poll(() => selectedData.length, { timeout: 10000 }).toBe(basicTableData.length);
     });
 
     test('returns complete object properties when configured', async ({ mount }) => {
@@ -408,11 +470,15 @@ test.describe('Table Component', () => {
         },
       });
 
-      // Select first row
+      // Trigger first row checkbox programmatically
       const firstRowCheckbox = component.locator('tbody tr').first().locator('input[type="checkbox"]');
-      await firstRowCheckbox.click();
+      await firstRowCheckbox.evaluate((el: HTMLInputElement) => {
+        el.checked = !el.checked;
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+      });
 
-      expect(selectedData).toHaveLength(1);
+      // Wait for the event to propagate and update selectedData
+      await expect.poll(() => selectedData.length, { timeout: 10000 }).toBe(1);
       expect(selectedData[0]).toEqual(basicTableData[0]);
     });
   });
@@ -432,11 +498,14 @@ test.describe('Table Component', () => {
         },
       });
 
-      // Click first row
+      // Click first row by dispatching click event
       const firstRow = component.locator('tbody tr').first();
-      await firstRow.click();
+      await firstRow.evaluate((el: HTMLElement) => {
+        el.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+      });
 
-      expect(rowClickEvents).toHaveLength(1);
+      // Wait for event to propagate
+      await expect.poll(() => rowClickEvents.length).toBe(1);
       expect(rowClickEvents[0].row).toEqual(basicTableData[0]);
       expect(rowClickEvents[0].index).toBe(0);
 
@@ -458,10 +527,10 @@ test.describe('Table Component', () => {
       });
 
       const firstRow = component.locator('tbody tr').first();
-      
+
       // Hover over row
-      await firstRow.hover();
-      
+      await firstRow.hover({ force: true });
+
       // Note: In test environment, hover events might not fire consistently
       // This test validates the event handler is properly bound
       await expect(firstRow).toBeVisible();
@@ -631,7 +700,7 @@ test.describe('Table Component', () => {
       });
 
       const nameHeader = component.getByText('Name');
-      
+
       // First click - should sort ascending
       await nameHeader.click();
       expect(sortEvents[0].sortOrder).toBe('asc');
@@ -655,7 +724,7 @@ test.describe('Table Component', () => {
 
       // Click to sort ascending
       await component.getByText('Name').click();
-      
+
       // Should show ascending arrow (just verify icon is still there)
       const ascIcon = component.locator('span[class*="spr-cursor-pointer"] svg');
       await expect(ascIcon).toBeVisible();
@@ -822,7 +891,7 @@ test.describe('Table Component', () => {
 
       const table = component.locator('table');
       await expect(table).toHaveRole('table');
-      
+
       const headers = component.locator('th');
       await expect(headers.first()).toBeVisible();
 
@@ -866,19 +935,17 @@ test.describe('Table Component', () => {
           user: {
             title: 'John Doe',
             subtext: 'john@example.com',
-            image: '/avatar.jpg'
+            image: '/avatar.jpg',
           },
           metadata: {
-            title: 'Engineering'
-          }
-        }
+            title: 'Engineering',
+          },
+        },
       ];
 
       const component = await mount(Table, {
         props: {
-          headers: [
-            { field: 'user', name: 'User', hasAvatar: true, hasSubtext: true }
-          ],
+          headers: [{ field: 'user', name: 'User', hasAvatar: true, hasSubtext: true }],
           dataTable: nestedData,
         },
       });

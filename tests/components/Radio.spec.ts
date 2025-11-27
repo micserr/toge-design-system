@@ -184,7 +184,7 @@ test.describe('Radio Component', () => {
         },
       });
 
-      await component.locator('input').check();
+      await component.locator('label').click();
       expect(emittedValue).toBe('string-value');
       await expect(component.locator('input')).toBeChecked();
     });
@@ -207,7 +207,7 @@ test.describe('Radio Component', () => {
         },
       });
 
-      await component.locator('input').check();
+      await component.locator('label').click();
       expect(emittedValue).toBe(42);
       await expect(component.locator('input')).toBeChecked();
     });
@@ -230,7 +230,7 @@ test.describe('Radio Component', () => {
         },
       });
 
-      await component.locator('input').check();
+      await component.locator('label').click();
       expect(emittedValue).toBe(true);
       await expect(component.locator('input')).toBeChecked();
     });
@@ -306,7 +306,8 @@ test.describe('Radio Component', () => {
         },
       });
 
-      await component.locator('input').click();
+      // Input is visually hidden (sr-only), so force click to test programmatic interaction
+      await component.locator('input').click({ force: true });
       expect(emittedValue).toBe('input-clickable');
       await expect(component.locator('input')).toBeChecked();
     });
@@ -510,7 +511,7 @@ test.describe('Radio Component', () => {
         },
       });
 
-      await component.locator('input').check();
+      await component.locator('label').click();
       expect(emittedValue).toBe(specialValue);
       await expect(component.locator('input')).toHaveAttribute('value', specialValue);
     });

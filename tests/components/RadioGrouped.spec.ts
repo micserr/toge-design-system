@@ -234,8 +234,8 @@ test.describe('RadioGrouped Component', () => {
         },
       });
 
-      const inputs = component.locator('input[type="radio"]');
-      await inputs.nth(1).click();
+      const labels = component.locator('label');
+      await labels.nth(1).click();
       expect(emittedValue).toBe('value2');
     });
   });
@@ -286,8 +286,8 @@ test.describe('RadioGrouped Component', () => {
         },
       });
 
-      const inputs = component.locator('input[type="radio"]');
-      await inputs.nth(1).click();
+      const labels = component.locator('label');
+      await labels.nth(1).click();
       expect(emittedValue).toBe('value2');
     });
 
@@ -523,8 +523,8 @@ test.describe('RadioGrouped Component', () => {
         },
       });
 
-      const inputs = component.locator('input[type="radio"]');
-      await inputs.nth(1).click();
+      const labels = component.locator('label');
+      await labels.nth(1).click();
       expect(emittedValue).toBe(specialValue);
     });
 

@@ -558,8 +558,8 @@ test.describe('Empty State Component', () => {
       const component = await mount(EmptyState, {
         slots: {
           default: `
-            <div class="custom-image-container">
-              <svg viewBox="0 0 200 200" data-testid="complex-svg">
+            <div class="custom-image-container spr-h-full spr-w-full spr-flex spr-items-center spr-justify-center">
+              <svg viewBox="0 0 200 200" data-testid="complex-svg" style="width: 100%; height: 100%;">
                 <rect width="200" height="200" fill="#f0f0f0"/>
                 <text x="100" y="100" text-anchor="middle">Custom</text>
               </svg>

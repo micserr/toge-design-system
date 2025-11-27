@@ -894,23 +894,8 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   };
 
   const emitPartialInputValue = () => {
-    // Convert month to numeric format if it's text
-    let emittedMonth = monthInput.value;
-
-    if (monthInput.value) {
-      const isNumeric = !isNaN(Number(monthInput.value)) && !isNaN(parseFloat(monthInput.value));
-
-      if (!isNumeric) {
-        const monthIsValid = monthsList.value.find(
-          (_month: MonthsList) => _month.text.toLowerCase() === monthInput.value.toLowerCase(),
-        );
-
-        if (monthIsValid) {
-          emittedMonth =
-            monthIsValid.monthValue < 10 ? `0${monthIsValid.monthValue + 1}` : `${monthIsValid.monthValue + 1}`;
-        }
-      }
-    }
+    // Keep the month as typed (abbreviation) instead of converting to numeric
+    const emittedMonth = monthInput.value;
 
     // Build the partial date string with zeros for empty fields
     const partialMonth = emittedMonth || '0';
@@ -974,25 +959,11 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   };
 
   const emitInputValue = () => {
-    let emittedMonth = monthInput.value;
+    // Keep the month as typed (abbreviation) instead of converting to numeric
+    const emittedMonth = monthInput.value;
 
-    const isNumeric = !isNaN(Number(monthInput.value)) && !isNaN(parseFloat(monthInput.value));
-
-    if (!isNumeric) {
-      const monthIsValid = monthsList.value.find(
-        (_month: MonthsList) => _month.text.toLowerCase() === monthInput.value.toLowerCase(),
-      );
-
-      if (monthIsValid) {
-        emittedMonth =
-          monthIsValid.monthValue < 10 ? `0${monthIsValid.monthValue + 1}` : `${monthIsValid.monthValue + 1}`;
-      }
-    }
-    // Format the date according to the format prop
-    const dateObj = dayjs(`${emittedMonth}-${dateInput.value}-${yearInput.value}`, 'MM-DD-YYYY');
-
-    // Use the specified format for the input value
-    emit('getInputValue', (modelValue.value = dateObj.format(format.value)));
+    // Format as DEC-12-1997 (month abbreviation - date - year)
+    emit('getInputValue', `${emittedMonth}-${dateInput.value}-${yearInput.value}`);
   };
 
   const emitMonthList = () => {

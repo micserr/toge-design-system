@@ -295,12 +295,18 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     }
 
     // Check if date and month are selected, but not year
-    if (dateInput.value && monthInput && !yearInput.value && !calendarTabIsDateIsDisabled(day)) {
+    if (dateInput.value && monthInput.value && !yearInput.value && !calendarTabIsDateIsDisabled(day)) {
       return day.date.getDate() === Number(dateInput.value) && day.date.getMonth() === monthValue && !day.inactive;
     }
 
     // Check if date, month, and year are selected
-    if (dateInput.value && monthInput.value && yearInput.value && !calendarTabIsDateIsDisabled(day)) {
+    if (
+      dateInput.value &&
+      monthInput.value &&
+      yearInput.value &&
+      monthValue !== undefined &&
+      !calendarTabIsDateIsDisabled(day)
+    ) {
       return (
         day.date.getDate() === Number(dateInput.value) &&
         day.date.getMonth() === monthValue &&
@@ -686,8 +692,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   };
 
   const handleMonthInput = () => {
-    datePopperState.value = false;
-
     monthInput.value = monthInput.value.replace(/[^A-Za-z0-9\s]/g, '').toLocaleUpperCase();
 
     datePickerErrors.value = [];
@@ -696,6 +700,18 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     handleConvertMonthIfValid();
 
+    // Update calendar if month, date, and year are all provided
+    if (monthInput.value && dateInput.value && yearInput.value) {
+      const monthValue = getMonthObject('text', monthInput.value)?.monthValue;
+      const yearNumber = Number(yearInput.value);
+
+      if (monthValue !== undefined && yearNumber >= minMaxYear.value.min && yearNumber <= minMaxYear.value.max) {
+        calendarTabPageData.value.selectedMonth = monthValue;
+        calendarTabPageData.value.selectedYear = yearNumber;
+        calendarTabUpdateCalendar();
+      }
+    }
+
     handleValidateDate();
 
     // Emit the partial date value as user types
@@ -703,13 +719,23 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   };
 
   const handleDateInput = () => {
-    datePopperState.value = false;
-
     dateInput.value = dateInput.value.replace(/[^0-9]/g, '');
 
     datePickerErrors.value = [];
 
     emit('getDateErrors', datePickerErrors.value);
+
+    // Update calendar if month, date, and year are all provided
+    if (monthInput.value && dateInput.value && yearInput.value) {
+      const monthValue = getMonthObject('text', monthInput.value)?.monthValue;
+      const yearNumber = Number(yearInput.value);
+
+      if (monthValue !== undefined && yearNumber >= minMaxYear.value.min && yearNumber <= minMaxYear.value.max) {
+        calendarTabPageData.value.selectedMonth = monthValue;
+        calendarTabPageData.value.selectedYear = yearNumber;
+        calendarTabUpdateCalendar();
+      }
+    }
 
     handleValidateDate();
 
@@ -718,16 +744,29 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   };
 
   const handleYearInput = () => {
-    datePopperState.value = false;
-
     yearInput.value = yearInput.value.replace(/[^0-9]/g, '');
 
     datePickerErrors.value = [];
 
     emit('getDateErrors', datePickerErrors.value);
 
+    // Update calendar if month, date, and year are all provided
+    if (monthInput.value && dateInput.value && yearInput.value) {
+      const monthValue = getMonthObject('text', monthInput.value)?.monthValue;
+      const yearNumber = Number(yearInput.value);
+
+      if (monthValue !== undefined && yearNumber >= minMaxYear.value.min && yearNumber <= minMaxYear.value.max) {
+        calendarTabPageData.value.selectedMonth = monthValue;
+        calendarTabPageData.value.selectedYear = yearNumber;
+        calendarTabUpdateCalendar();
+      }
+    }
+
     // Emit the partial date value as user types
     emitPartialInputValue();
+
+    // Validate the complete date
+    handleValidateDate();
   };
 
   const handleConvertMonthIfValid = () => {
@@ -773,6 +812,24 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
         calendarTabUpdateCalendar();
         emitDateFormats();
+
+        // Update the model value when a valid date is typed
+        let emittedMonth = monthInput.value;
+        const isNumeric = !isNaN(Number(monthInput.value)) && !isNaN(parseFloat(monthInput.value));
+
+        if (!isNumeric) {
+          const monthIsValid = monthsList.value.find(
+            (_month: MonthsList) => _month.text.toLowerCase() === monthInput.value.toLowerCase(),
+          );
+          if (monthIsValid) {
+            emittedMonth =
+              monthIsValid.monthValue < 10 ? `0${monthIsValid.monthValue + 1}` : `${monthIsValid.monthValue + 1}`;
+          }
+        }
+
+        const dateObj = dayjs(`${emittedMonth}-${dateInput.value}-${yearInput.value}`, 'MM-DD-YYYY');
+        modelValue.value = dateObj.format(format.value);
+        emit('getInputValue', modelValue.value);
       } else {
         const errorExists = datePickerErrors.value.some((error) => error.title === 'Invalid Date');
 

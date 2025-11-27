@@ -7,7 +7,7 @@
       :placement="props.placement"
       :triggers="[]"
       :popper-hide-triggers="[]"
-      :auto-hide="true"
+      :auto-hide="false"
       :disabled="isDatePickerPopperDisabled"
       :container="props.popperContainer ? props.popperContainer : `#${props.id}`"
       :strategy="

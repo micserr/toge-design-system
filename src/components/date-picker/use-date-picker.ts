@@ -710,6 +710,10 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
         calendarTabPageData.value.selectedYear = yearNumber;
         calendarTabUpdateCalendar();
       }
+    } else if (!monthInput.value && !dateInput.value && !yearInput.value) {
+      // Clear modelValue when all inputs are empty
+      modelValue.value = '';
+      emit('getInputValue', null);
     }
 
     handleValidateDate();
@@ -735,6 +739,10 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
         calendarTabPageData.value.selectedYear = yearNumber;
         calendarTabUpdateCalendar();
       }
+    } else if (!monthInput.value && !dateInput.value && !yearInput.value) {
+      // Clear modelValue when all inputs are empty
+      modelValue.value = '';
+      emit('getInputValue', null);
     }
 
     handleValidateDate();
@@ -760,6 +768,10 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
         calendarTabPageData.value.selectedYear = yearNumber;
         calendarTabUpdateCalendar();
       }
+    } else if (!monthInput.value && !dateInput.value && !yearInput.value) {
+      // Clear modelValue when all inputs are empty
+      modelValue.value = '';
+      emit('getInputValue', null);
     }
 
     // Emit the partial date value as user types
@@ -996,6 +1008,8 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     monthInput.value = '';
     dateInput.value = '';
     yearInput.value = '';
+    modelValue.value = '';
+    emit('getInputValue', null);
   };
 
   const handleSlotClick = () => {

@@ -58,6 +58,10 @@ export const tablePaginationPropTypes = {
     type: Boolean as PropType<boolean>,
     default: false,
   },
+  showNumberOfRowsDropdown: {
+    type: Boolean as PropType<boolean>,
+    default: true,
+  }
 };
 
 export const tablePaginationEmitTypes = {

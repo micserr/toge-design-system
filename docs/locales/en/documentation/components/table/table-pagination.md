@@ -225,6 +225,13 @@ You can enable direct page number input by setting the `editable-current-page` p
         <td>No</td>
         <td>Enable direct input of page number</td>
       </tr>
+      <tr>
+        <td>showNumberOfRowsDropdown</td>
+        <td>boolean</td>
+        <td>true</td>
+        <td>No</td>
+        <td>When false, hides the dropdown for selecting the number of rows per page</td>
+      </tr>
     </tbody>
   </table>
 </div>

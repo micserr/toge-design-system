@@ -1341,11 +1341,6 @@ const clearDate = () => {
       <td>Emits validation errors from the date picker</td>
       <td>Array (error objects with title and message)</td>
     </tr>
-    <tr>
-      <td>@blur</td>
-      <td>Emits when any input field loses focus</td>
-      <td>-</td>
-    </tr>
   </tbody>
 </table>
 

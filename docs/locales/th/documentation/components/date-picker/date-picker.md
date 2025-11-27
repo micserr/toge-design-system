@@ -790,11 +790,6 @@ const datePickerModel = ref('');
       <td>ส่งออกข้อผิดพลาดในการตรวจสอบจากปฏิทินวันที่</td>
       <td>Array (error objects with title and message)</td>
     </tr>
-    <tr>
-      <td>@blur</td>
-      <td>ส่งออกเมื่อช่องอินพุตใดๆ สูญเสียโฟกัส</td>
-      <td>-</td>
-    </tr>
   </tbody>
 </table>
 

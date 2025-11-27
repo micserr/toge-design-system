@@ -1,10 +1,16 @@
 # Changelog
 
+## 2.25.2 (2025-11-26)
+
+- chore: update Playwright configuration and integrate Tailwind CSS
+- Fix: Failing tests due to missing Tailwind CSS in Playwright environment
+  ([#36134](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36134) by @jmari)
+
 ## 2.24.2 (2025-11-26)
 
 - Feat:
   - New table subcomponent for table header filter
-  - Dropdown and Table enhancement to fit functional requirements for table header filter dropdown    
+  - Dropdown and Table enhancement to fit functional requirements for table header filter dropdown  
     ([#ce3572da](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ce3572da1dc3a1b7a0549055df91fa2f065d418d?refName=refs%2Fheads%2F2025%2Ffeat%2FPaulo%2FTableHeaderFilterDropdown) by @jbanares)
 
 ## 2.24.1 (2025-11-26)
@@ -17,7 +23,7 @@
 
 - Feat:
   - Add footerNoTopBorder prop for sidepanel component.
-  - Add showNumberOfRowsDropdown prop for table pagination component.    
+  - Add showNumberOfRowsDropdown prop for table pagination component.  
     ([#23889453](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23889453bf7176d8671f7507ef1b519c3d505e49?refName=refs/heads/2025/feat/dustin/pagination-update) by @despiritu)
 
 ## 2.23.1 (2025-11-25)

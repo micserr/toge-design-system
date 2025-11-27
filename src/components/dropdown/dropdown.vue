@@ -32,7 +32,7 @@
     <template #popper>
       <template v-if="$slots.popper">
         <div
-          class="spr-overflow-y-auto spr-overflow-x-hidden spr-p-4"
+          :class="['spr-overflow-y-auto spr-overflow-x-hidden', !props.noPadding && 'spr-p-4']"
           :style="{
             width: props.popperInnerWidth,
           }"
@@ -111,5 +111,12 @@ const {
   dropdownValue,
   removeCurrentLevelInBackLabel,
   isLadderizedSearch,
+  showDropdown,
+  hideDropdown,
 } = useDropdown(props, emit);
+
+defineExpose({
+  showDropdown,
+  hideDropdown,
+});
 </script>

@@ -141,13 +141,17 @@ export const dropdownPropTypes = {
     type: Boolean,
     default: false,
   },
+  noPadding: {
+    type: Boolean,
+    default: false,
+  }
 };
 
 export const dropdownEmitTypes = {
-  'infinite-scroll-trigger': Boolean,
+  'infinite-scroll-trigger': (value: boolean) => typeof value === 'boolean',
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'update:modelValue': (_value: unknown) => true, // Accept any type of value
-  'popper-state': Boolean,
+  'popper-state': (state: boolean) => typeof state === 'boolean',
 };
 
 export type DropdownPropTypes = ExtractPropTypes<typeof dropdownPropTypes>;

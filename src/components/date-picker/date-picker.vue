@@ -7,7 +7,7 @@
       :placement="props.placement"
       :triggers="[]"
       :popper-hide-triggers="[]"
-      :auto-hide="false"
+      :auto-hide="true"
       :disabled="isDatePickerPopperDisabled"
       :container="props.popperContainer ? props.popperContainer : `#${props.id}`"
       :strategy="
@@ -26,7 +26,7 @@
         <slot :handle-click="handleSlotClick">
           <div
             ref="datePickerRef"
-            :class="datePickerClasses.datePickerBaseInputClasses"
+            :class="[datePickerClasses.datePickerBaseInputClasses, 'spr-relative spr-z-10']"
             @click="datePopperState = true"
           >
             <div class="spr-flex spr-h-full spr-items-center spr-gap-1.5">

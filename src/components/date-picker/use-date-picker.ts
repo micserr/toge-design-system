@@ -494,6 +494,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     handleConvertMonthIfValid();
     calendarTabUpdateCalendar();
     emitDateFormats();
+    emitPartialInputValue();
 
     datePickerErrors.value = [];
 
@@ -563,6 +564,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     handleConvertMonthIfValid();
     calendarTabUpdateCalendar();
     emitDateFormats();
+    emitPartialInputValue();
 
     datePickerErrors.value = [];
 
@@ -696,14 +698,8 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     handleValidateDate();
 
-    // Do not set yearInput when typing monthInput
-    if (!monthInput.value && !dateInput.value && !yearInput.value) {
-      emit('getInputValue', null);
-    }
-
-    if (monthInput.value && dateInput.value && yearInput.value) {
-      emitInputValue();
-    }
+    // Emit the partial date value as user types
+    emitPartialInputValue();
   };
 
   const handleDateInput = () => {
@@ -717,14 +713,8 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     handleValidateDate();
 
-    // Do not set yearInput when typing dateInput
-    if (!monthInput.value && !dateInput.value && !yearInput.value) {
-      emit('getInputValue', null);
-    }
-
-    if (monthInput.value && dateInput.value && yearInput.value) {
-      emitInputValue();
-    }
+    // Emit the partial date value as user types
+    emitPartialInputValue();
   };
 
   const handleYearInput = () => {
@@ -736,20 +726,8 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     emit('getDateErrors', datePickerErrors.value);
 
-    // Only validate year, do not set monthInput or dateInput
-    // Only emit year-related changes
-    // Only validate if yearInput is 4 digits (full year)
-    if (yearInput.value.length === 4) {
-      handleValidateDate();
-
-      if (!monthInput.value && !dateInput.value && !yearInput.value) {
-        emit('getInputValue', null);
-      }
-
-      if (monthInput.value && dateInput.value && yearInput.value) {
-        emitInputValue();
-      }
-    }
+    // Emit the partial date value as user types
+    emitPartialInputValue();
   };
 
   const handleConvertMonthIfValid = () => {
@@ -846,6 +824,36 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     }
   };
 
+  const emitPartialInputValue = () => {
+    // Convert month to numeric format if it's text
+    let emittedMonth = monthInput.value;
+
+    if (monthInput.value) {
+      const isNumeric = !isNaN(Number(monthInput.value)) && !isNaN(parseFloat(monthInput.value));
+
+      if (!isNumeric) {
+        const monthIsValid = monthsList.value.find(
+          (_month: MonthsList) => _month.text.toLowerCase() === monthInput.value.toLowerCase(),
+        );
+
+        if (monthIsValid) {
+          emittedMonth =
+            monthIsValid.monthValue < 10 ? `0${monthIsValid.monthValue + 1}` : `${monthIsValid.monthValue + 1}`;
+        }
+      }
+    }
+
+    // Build the partial date string with zeros for empty fields
+    const partialMonth = emittedMonth || '0';
+    const partialDate = dateInput.value || '0';
+    const partialYear = yearInput.value || '0';
+
+    const partialDateString = `${partialMonth}-${partialDate}-${partialYear}`;
+
+    // Emit the partial date string
+    emit('getInputValue', partialDateString);
+  };
+
   const emitDateFormats = () => {
     if (monthInput.value && dateInput.value && yearInput.value) {
       const monthIsValid = monthsList.value.find(
@@ -934,8 +942,8 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   };
 
   const handleSlotClick = () => {
-    if(disabled.value || readonly.value) return;
-    datePopperState.value = true;    
+    if (disabled.value || readonly.value) return;
+    datePopperState.value = true;
   };
 
   watch(datePopperState, (newValue) => {
@@ -1037,6 +1045,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     handleTabClick,
     handleBackspace,
     clearDate,
-    handleSlotClick
+    handleSlotClick,
   };
 };

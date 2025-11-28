@@ -904,8 +904,8 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
     const partialDateString = `${partialMonth}-${partialDate}-${partialYear}`;
 
-    // Emit the partial date string
-    emit('getInputValue', partialDateString);
+    // Emit null if all fields are empty (0-0-0), otherwise emit the partial date string
+    emit('getInputValue', partialDateString === '0-0-0' ? null : partialDateString);
   };
 
   const emitDateFormats = () => {

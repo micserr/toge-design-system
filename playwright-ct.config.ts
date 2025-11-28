@@ -2,6 +2,8 @@ import { defineConfig, devices } from '@playwright/experimental-ct-vue';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 import vue from '@vitejs/plugin-vue';
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -33,6 +35,11 @@ export default defineConfig({
       resolve: {
         alias: {
           '@': resolve(__dirname, 'src'),
+        },
+      },
+      css: {
+        postcss: {
+          plugins: [tailwindcss(), autoprefixer()],
         },
       },
     },

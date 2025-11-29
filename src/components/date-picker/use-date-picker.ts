@@ -500,7 +500,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     handleConvertMonthIfValid();
     calendarTabUpdateCalendar();
     emitDateFormats();
-    emitPartialInputValue();
+    emitInputValue();
 
     datePickerErrors.value = [];
 
@@ -570,7 +570,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     handleConvertMonthIfValid();
     calendarTabUpdateCalendar();
     emitDateFormats();
-    emitPartialInputValue();
+    emitInputValue();
 
     datePickerErrors.value = [];
 
@@ -646,8 +646,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
         const date = formattedDate.format('DD');
         const year = formattedDate.format('YYYY');
 
-        handleValidateDate();
-
         monthInput.value = month;
         dateInput.value = date;
         yearInput.value = year;
@@ -661,13 +659,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
         handleConvertMonthIfValid();
         calendarTabUpdateCalendar();
         emitDateFormats();
-
-        // Use the specified format for the input value
-        if (!monthInput.value && !dateInput.value && !yearInput.value) {
-          emit('getInputValue', null);
-        } else {
-          emit('getInputValue', formattedDate.format(format.value));
-        }
+        emitInputValue();
       } else {
         console.error(`Error: Could not parse date "${modelValue.value}" with format "${format.value}"`);
       }
@@ -713,13 +705,10 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     } else if (!monthInput.value && !dateInput.value && !yearInput.value) {
       // Clear modelValue when all inputs are empty
       modelValue.value = '';
-      emit('getInputValue', null);
     }
 
-    handleValidateDate();
-
     // Emit the partial date value as user types
-    emitPartialInputValue();
+    emitInputValue();
   };
 
   const handleDateInput = () => {
@@ -742,13 +731,10 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     } else if (!monthInput.value && !dateInput.value && !yearInput.value) {
       // Clear modelValue when all inputs are empty
       modelValue.value = '';
-      emit('getInputValue', null);
     }
 
-    handleValidateDate();
-
     // Emit the partial date value as user types
-    emitPartialInputValue();
+    emitInputValue();
   };
 
   const handleYearInput = () => {
@@ -771,14 +757,10 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     } else if (!monthInput.value && !dateInput.value && !yearInput.value) {
       // Clear modelValue when all inputs are empty
       modelValue.value = '';
-      emit('getInputValue', null);
     }
 
     // Emit the partial date value as user types
-    emitPartialInputValue();
-
-    // Validate the complete date
-    handleValidateDate();
+    emitInputValue();
   };
 
   const handleConvertMonthIfValid = () => {
@@ -806,69 +788,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     }
   };
 
-  const handleValidateDate = useDebounceFn(() => {
-    if (monthInput.value && dateInput.value && yearInput.value) {
-      const selectedDate = `${monthInput.value}-${dateInput.value}-${yearInput.value}`;
-
-      const isDateValid = dayjs(selectedDate, 'MM-DD-YYYY').isValid();
-      const isYearValid =
-        Number(yearInput.value) >= minMaxYear.value.min && Number(yearInput.value) <= minMaxYear.value.max;
-
-      if (isDateValid && isYearValid) {
-        datePickerErrors.value = datePickerErrors.value.filter((error) => error.title !== 'Invalid Date');
-
-        const monthValue = getMonthObject('text', monthInput.value)?.monthValue;
-
-        calendarTabPageData.value.selectedMonth = Number(monthValue);
-        calendarTabPageData.value.selectedYear = Number(yearInput.value);
-
-        calendarTabUpdateCalendar();
-        emitDateFormats();
-
-        // Update the model value when a valid date is typed
-        let emittedMonth = monthInput.value;
-        const isNumeric = !isNaN(Number(monthInput.value)) && !isNaN(parseFloat(monthInput.value));
-
-        if (!isNumeric) {
-          const monthIsValid = monthsList.value.find(
-            (_month: MonthsList) => _month.text.toLowerCase() === monthInput.value.toLowerCase(),
-          );
-          if (monthIsValid) {
-            emittedMonth =
-              monthIsValid.monthValue < 10 ? `0${monthIsValid.monthValue + 1}` : `${monthIsValid.monthValue + 1}`;
-          }
-        }
-
-        const dateObj = dayjs(`${emittedMonth}-${dateInput.value}-${yearInput.value}`, 'MM-DD-YYYY');
-        modelValue.value = dateObj.format(format.value);
-        emit('getInputValue', modelValue.value);
-      } else {
-        const errorExists = datePickerErrors.value.some((error) => error.title === 'Invalid Date');
-
-        if (!errorExists) {
-          let errorMessage;
-
-          if (!isYearValid) {
-            errorMessage = `Year must be between ${minMaxYear.value.min} and ${minMaxYear.value.max}.`;
-          } else {
-            errorMessage = `Invalid Date Format. Please use ${format.value}`;
-          }
-
-          datePickerErrors.value.push({
-            title: 'Invalid Date',
-            message: errorMessage,
-          });
-
-          datePopperState.value = false;
-
-          emit('getDateErrors', datePickerErrors.value);
-
-          console.error(`Invalid Date: "${selectedDate}". ${errorMessage}`);
-        }
-      }
-    }
-  }, 500);
-
   const handleTabClick = (tab: string) => {
     if (currentTab.value === tab) {
       currentTab.value = 'tab-calendar';
@@ -893,19 +812,12 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     }
   };
 
-  const emitPartialInputValue = () => {
-    // Keep the month as typed (abbreviation) instead of converting to numeric
-    const emittedMonth = monthInput.value;
-
-    // Build the partial date string with zeros for empty fields
-    const partialMonth = emittedMonth || '0';
-    const partialDate = dateInput.value || '0';
-    const partialYear = yearInput.value || '0';
-
-    const partialDateString = `${partialMonth}-${partialDate}-${partialYear}`;
-
-    // Emit null if all fields are empty (0-0-0), otherwise emit the partial date string
-    emit('getInputValue', partialDateString === '0-0-0' ? null : partialDateString);
+  const emitInputValue = () => {
+    if (monthInput.value || dateInput.value || yearInput.value) {
+      emit('getInputValue', `${monthInput.value}-${dateInput.value}-${yearInput.value}`);
+    } else {
+      emit('getInputValue', null);
+    }
   };
 
   const emitDateFormats = () => {
@@ -958,14 +870,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     }
   };
 
-  const emitInputValue = () => {
-    // Keep the month as typed (abbreviation) instead of converting to numeric
-    const emittedMonth = monthInput.value;
-
-    // Format as DEC-12-1997 (month abbreviation - date - year)
-    emit('getInputValue', `${emittedMonth}-${dateInput.value}-${yearInput.value}`);
-  };
-
   const emitMonthList = () => {
     emit('getMonthList', monthsList.value);
   };
@@ -980,7 +884,8 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     dateInput.value = '';
     yearInput.value = '';
     modelValue.value = '';
-    emit('getInputValue', null);
+
+    emitInputValue();
   };
 
   const handleSlotClick = () => {

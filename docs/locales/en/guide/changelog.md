@@ -34,8 +34,6 @@
   - Now emits partial date values with zeros for empty fields as user types (e.g., "12-0-0" → "12-0-1997" → "12-12-1997")
     ([#36142](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36142) by @jarias)
 
-<<<<<<< HEAD
-
 ## 2.23.0 (2025-11-120)
 
 =======

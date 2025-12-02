@@ -791,6 +791,22 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       emit('getInputValue', `${monthInput.value}-${dateInput.value}-${yearInput.value}`);
     } else {
       emit('getInputValue', null);
+
+      modelValue.value = '';
+    }
+
+    if (monthInput.value && dateInput.value && yearInput.value) {
+      const monthIsValid = monthsList.value.find(
+        (_month: MonthsList) => _month.text.toLowerCase() === monthInput.value.toLowerCase(),
+      );
+
+      const yearIsValid = yearTabPageData.value.yearsArray.find((_year) => _year === Number(yearInput.value));
+
+      if (monthIsValid && yearIsValid) {
+        const _date = dayjs(`${monthInput.value}-${dateInput.value}-${yearInput.value}`, 'MM-DD-YYYY');
+
+        modelValue.value = _date.format(format.value);
+      }
     }
   };
 

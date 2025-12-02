@@ -1,6 +1,16 @@
 # Changelog
 
-## 2.25.2 (2025-11-26)
+## 2.25.1 (2025-12-2)
+
+- Feat: 
+  - subtitle prop and slot and is-loading prop in Sidepanel component
+  - allow-deselect prop in list component
+- Fix: 
+  - stacking sidepanel docs
+  - table header dropdown event propagation issue
+  ([#ecf1589f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ecf1589fd1c93db2a8c8b47b749968eafad28d31?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fupdates) by @despiritu)
+
+## 2.25.0 (2025-11-26)
 
 - chore: update Playwright configuration and integrate Tailwind CSS
 - Fix: Failing tests due to missing Tailwind CSS in Playwright environment

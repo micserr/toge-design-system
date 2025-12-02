@@ -123,12 +123,17 @@ export const listPropTypes = {
     type: Boolean,
     default: false,
   },
+  allowDeselect: {
+    type: Boolean,
+    default: false
+  }
 };
 
 export const listEmitTypes = {
   'update:modelValue': (value: MenuListType[]) => value,
   'update:searchValue': (value: string) => typeof value === 'string',
   'get-single-selected-item': (item: MenuListType) => item,
+  'get-single-deselected-item': (item: MenuListType) => item,
 };
 
 export type ListPropTypes = ExtractPropTypes<typeof listPropTypes>;

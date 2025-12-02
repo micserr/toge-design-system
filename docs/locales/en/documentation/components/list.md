@@ -176,7 +176,7 @@ Display a radio button selector for single-select lists using the `radio-list` p
     'spr-border spr-border-solid spr-border-color-weak'
   ]"
 >
-  <spr-list v-model="listModels.radioList" :menu-list="menuList" radio-list />
+  <spr-list v-model="listModels.radioList" :menu-list="menuList" radio-list/>
 </div>
 
 ```vue
@@ -725,6 +725,12 @@ const handleSelection = (items) => {
       <td><code>boolean</code></td>
       <td><code>false</code></td>
     </tr>
+    <tr>
+      <td><code>allow-deselect</code></td>
+      <td>When true, allows deselection on selected item (requires single-select, incompatible with multi-select)</td>
+      <td><code>boolean</code></td>
+      <td><code>false</code></td>
+    </tr>
   </tbody>
 </table>
 
@@ -753,6 +759,11 @@ const handleSelection = (items) => {
       <td><code>@get-single-selected-item</code></td>
       <td>Emitted when item selected in single-select mode</td>
       <td><code>MenuListType</code> - Selected item object</td>
+    </tr>
+    <tr>
+      <td><code>@get-single-deselected-item</code></td>
+      <td>Emitted when item is deselected in allow-deselect mode</td>
+      <td><code>MenuListType</code> - Deselected item object</td>
     </tr>
   </tbody>
 </table>

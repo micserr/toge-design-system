@@ -25,7 +25,7 @@
         </template>
         <template #content>
           <div v-if="props.isSortable" class="spr-border-0 spr-border-b spr-border-solid spr-border-color-weak">
-            <spr-list v-model="selectedSort" class="spr-capitalize spr-body-sm-regular spr-text-color-strong [&_svg]:spr-w-[16px] [&_svg]:spr-h-[16px] [&_svg.spr-text-color-brand-base]:spr-hidden" :menu-list="props.sortOptions"/>
+            <spr-list v-model="selectedSort" class="spr-capitalize spr-body-sm-regular spr-text-color-strong [&_svg]:spr-w-[16px] [&_svg]:spr-h-[16px] [&_svg.spr-text-color-brand-base]:spr-hidden" :menu-list="props.sortOptions" :allow-deselect="true"/>
           </div>
           <div v-if="props.header.filterList && props.header.filterList.length > 0" >
             <spr-list v-model="selectedFilters" class="spr-capitalize spr-body-sm-regular spr-text-color-strong [&_svg]:spr-w-[16px] [&_svg]:spr-h-[16px]" :menu-list="props.header.filterList" multi-select/>
@@ -81,4 +81,8 @@ const selectAll = () => {
   selectedFilters.value = props.header.filterList ? [...props.header.filterList] : [];
   emits('onSelectAll');
 };
+
+defineExpose({
+  showDropdown  
+});
 </script>

@@ -893,14 +893,19 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     }
   });
 
-  watch(minMaxYear, () => {
-    yearTabPageData.value.yearsArray = Array.from(
-      { length: minMaxYear.value.max - minMaxYear.value.min + 1 },
-      (_, index) => minMaxYear.value.min + index,
-    ).filter((year) => year <= minMaxYear.value.max && year >= minMaxYear.value.min);
+  watch(
+    minMaxYear,
+    () => {
+      yearTabPageData.value.yearsArray = Array.from(
+        { length: minMaxYear.value.max - minMaxYear.value.min + 1 },
+        (_, index) => minMaxYear.value.min + index,
+      ).filter((year) => year <= minMaxYear.value.max && year >= minMaxYear.value.min);
 
-    yearTabPageData.value.currentPage = 0;
-  });
+      yearTabPageData.value.currentPage = 0;
+      emitYearList();
+    },
+    { deep: true },
+  );
 
   onClickOutside(datePickerRef, () => {
     datePopperState.value = false;

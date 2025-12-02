@@ -45,9 +45,11 @@
               :class="[getTableClasses.headerClasses(header)]"
               :style="{ width: header?.width }"
             >
+              <div v-if="props.showHeaderFilter" class="spr-cursor-pointer hover:spr-background-color-hover active:spr-background-color-pressed spr-absolute spr-inset-0 spr-z-[2]" @click="handleHeaderDropdownClick(keyHeader)"></div>
               <!-- Header with Dropdown Filter -->
               <spr-table-header-dropdown
                 v-if="props.showHeaderFilter"
+                :ref="(el: unknown) => setHeaderDropdownRef(el, keyHeader)"      
                 :id="`th-dropdown-${keyHeader}`"
                 :header="header"
                 :is-sortable="true"
@@ -238,6 +240,18 @@ import { useDraggableTableRows } from './use-draggable-table-rows';
 const props = defineProps(tablePropTypes);
 const emit = defineEmits(tableEmitTypes);
 const slots = useSlots();
+const headerDropdownRefs = ref<Record<string, Element | null>>({});
+
+const setHeaderDropdownRef = (el: unknown, key: string | number) => {  
+  if (el) {
+    headerDropdownRefs.value[String(key)] = el as Element;
+  }
+};
+
+const handleHeaderDropdownClick = (keyHeader: string | number) => {
+  const dropdownRef = headerDropdownRefs.value[String(keyHeader)] as InstanceType<typeof SprTableHeaderDropdown> | null;
+  dropdownRef?.showDropdown();
+};
 
 const sortableTBody = ref<HTMLElement | null>(null);
 

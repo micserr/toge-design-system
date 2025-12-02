@@ -59,6 +59,15 @@ export const datePickerPropTypes = {
   },
   minMaxYear: {
     type: Object as PropType<MinMaxYearType>,
+    validator: (value: MinMaxYearType): boolean => {
+      return (
+        value &&
+        typeof value.min === 'number' &&
+        typeof value.max === 'number' &&
+        value.min >= 1900 &&
+        value.min <= value.max
+      );
+    },
     default: () => ({
       min: 1900,
       max: new Date().getFullYear(),

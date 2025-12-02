@@ -141,7 +141,7 @@ test.describe('Calendar Component', () => {
         .locator('.spr-heading-xs')
         .first()
         .textContent();
-      
+
       expect(weekRangeText).toBeTruthy();
       expect(weekRangeText).toMatch(/\d{4}/); // Should contain a year (4 digits)
       expect(weekRangeText).toMatch(/[A-Z][a-z]{2}/); // Should contain a month abbreviation
@@ -223,7 +223,7 @@ test.describe('Calendar Component', () => {
         .locator('.spr-heading-xs')
         .first()
         .textContent();
-      
+
       expect(weekRangeText).toBeTruthy();
       expect(weekRangeText).toMatch(/\d{4}/); // Should contain a year (4 digits)
       expect(weekRangeText).toMatch(/[A-Z][a-z]{2}/); // Should contain a month abbreviation

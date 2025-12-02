@@ -143,8 +143,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   const dateInput = ref<string>('');
   const yearInput = ref<string>('');
 
-  const datePickerErrors = ref<{ title: string; message: string }[]>([]);
-
   // #region - Calendar Tab
   const calendarTabPageData = ref({
     selectedMonth: dayjs().month(),
@@ -477,10 +475,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     emitDateFormats();
     emitInputValue();
 
-    datePickerErrors.value = [];
-
-    emit('getDateErrors', datePickerErrors.value);
-
     setTimeout(() => {
       datePopperState.value = false;
     }, 100);
@@ -501,10 +495,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     calendarTabUpdateCalendar();
     emitDateFormats();
     emitInputValue();
-
-    datePickerErrors.value = [];
-
-    emit('getDateErrors', datePickerErrors.value);
   };
   // #endregion - Month Tab
 
@@ -571,10 +561,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     calendarTabUpdateCalendar();
     emitDateFormats();
     emitInputValue();
-
-    datePickerErrors.value = [];
-
-    emit('getDateErrors', datePickerErrors.value);
   };
   // #endregion - Year Tab
 
@@ -686,10 +672,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   const handleMonthInput = () => {
     monthInput.value = monthInput.value.replace(/[^A-Za-z0-9\s]/g, '').toLocaleUpperCase();
 
-    datePickerErrors.value = [];
-
-    emit('getDateErrors', datePickerErrors.value);
-
     handleConvertMonthIfValid();
 
     // Update calendar if month, date, and year are all provided
@@ -714,10 +696,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   const handleDateInput = () => {
     dateInput.value = dateInput.value.replace(/[^0-9]/g, '');
 
-    datePickerErrors.value = [];
-
-    emit('getDateErrors', datePickerErrors.value);
-
     // Update calendar if month, date, and year are all provided
     if (monthInput.value && dateInput.value && yearInput.value) {
       const monthValue = getMonthObject('text', monthInput.value)?.monthValue;
@@ -739,10 +717,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
 
   const handleYearInput = () => {
     yearInput.value = yearInput.value.replace(/[^0-9]/g, '');
-
-    datePickerErrors.value = [];
-
-    emit('getDateErrors', datePickerErrors.value);
 
     // Update calendar if month, date, and year are all provided
     if (monthInput.value && dateInput.value && yearInput.value) {
@@ -961,7 +935,6 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
     dateInput,
     monthInput,
     yearInput,
-    datePickerErrors,
     calendarTabPageData,
     calendarTabIsMinMonth,
     calendarTabIsMaxMonth,

@@ -224,6 +224,10 @@ export const thConfig = {
                   text: 'เครื่องมือเลือกวันที่แบบปฏิทิน',
                   link: '/th/documentation/components/date-picker/date-calendar-picker',
                 },
+                {
+                  text: 'เครื่องมือเลือกเดือน-ปี',
+                  link: '/th/documentation/components/date-picker/month-year-picker',
+                },
               ],
             },
             {

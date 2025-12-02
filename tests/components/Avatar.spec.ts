@@ -39,7 +39,7 @@ test.describe('Avatar Component', () => {
       const component = await mount(Avatar, {
         props: {
           variant: 'image',
-          src: 'https://via.placeholder.com/150',
+          src: 'https://placeholdit.com/150x150/dddddd/999999',
           alt: 'Test Avatar',
         },
       });
@@ -49,7 +49,7 @@ test.describe('Avatar Component', () => {
       // Wait for the image to be in the DOM
       const img = component.locator('img');
       await expect(img).toBeAttached();
-      await expect(img).toHaveAttribute('src', 'https://via.placeholder.com/150');
+      await expect(img).toHaveAttribute('src', 'https://placeholdit.com/150x150/dddddd/999999');
       await expect(img).toHaveAttribute('alt', 'Test Avatar');
     });
 
@@ -513,7 +513,7 @@ test.describe('Avatar Component', () => {
       const component = await mount(Avatar, {
         props: {
           variant: 'image',
-          src: 'https://via.placeholder.com/150',
+          src: 'https://placeholdit.com/150x150/dddddd/999999',
           alt: 'John Doe Profile Picture',
         },
       });

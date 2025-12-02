@@ -54,6 +54,7 @@ export { default as Collapsible } from '../src/components/collapsible/collapsibl
 export { default as DatePicker } from '../src/components/date-picker/date-picker.vue';
 export { default as DateCalendarPicker } from '../src/components/date-picker/date-calendar-picker/date-calendar-picker.vue';
 export { default as DateRangePicker } from '../src/components/date-picker/date-range-picker/date-range-picker.vue';
+export { default as MonthYearPicker } from '../src/components/date-picker/month-year-picker/month-year-picker.vue';
 export { default as DatePickerCalendarTab } from '../src/components/date-picker/tabs/DatePickerCalendarTab.vue';
 export { default as DatePickerMonthTab } from '../src/components/date-picker/tabs/DatePickerMonthTab.vue';
 export { default as DatePickerYearTab } from '../src/components/date-picker/tabs/DatePickerYearTab.vue';

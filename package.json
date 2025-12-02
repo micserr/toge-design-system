@@ -1,7 +1,7 @@
 {
   "name": "design-system-next",
   "private": false,
-  "version": "2.24.2",
+  "version": "2.26.0",
   "main": "./dist/design-system-next.umd.js",
   "module": "./dist/design-system-next.es.js",
   "types": "./dist/design-system-next.es.d.ts",
@@ -44,7 +44,7 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "docs:preview": "vitepress preview docs",
-    "test:ui": "npx playwright test --ui",
+    "test:ui": "npx playwright test --ui --config=playwright-ct.config.ts",
     "test:components": "npx playwright test --config=playwright-ct.config.ts --reporter=line",
     "test:component": "npx playwright test --config=playwright-ct.config.ts --reporter=line",
     "clean": "rm -rf node_modules dist coverage package-lock.json && npm install"

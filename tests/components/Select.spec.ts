@@ -562,7 +562,7 @@ test.describe('Select Component', () => {
       expect(popperState).toBe(false);
     });
 
-    test('should emit infinite-scroll-trigger', async ({ mount }) => {
+    test('should emit infinite-scroll-trigger', async ({ mount, page }) => {
       let scrollTriggered = false;
       const component = await mount(Select, {
         props: {
@@ -576,12 +576,17 @@ test.describe('Select Component', () => {
 
       await component.locator('input').click();
 
-      // Scroll to bottom of the list to trigger infinite scroll
+      // Wait for the dropdown to be visible and fully rendered
       const dropdown = component.locator('.spr-max-h-\\[300px\\]');
-      await dropdown.hover();
+      await dropdown.waitFor({ state: 'visible' });
+
+      // Scroll to bottom of the list to trigger infinite scroll
       await dropdown.evaluate((el) => {
         el.scrollTop = el.scrollHeight;
       });
+
+      // Wait for the infinite scroll event to be processed
+      await page.waitForTimeout(100);
 
       // The infinite scroll should trigger
       expect(scrollTriggered).toBe(true);

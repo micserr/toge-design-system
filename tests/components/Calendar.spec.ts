@@ -130,12 +130,12 @@ test.describe('Calendar Component', () => {
       const component = await mount(Calendar, {
         props: {
           employees: mockEmployees,
-          initialDate: new Date(),
+          initialDate: new Date('2025-12-01'), // Use specific date for consistent testing
         },
       });
 
-      // Should display current month/year (November 2025)
-      await expect(component.getByText(/Nov 2025/)).toBeVisible();
+      // Should display month/year (December 2025)
+      await expect(component.getByText(/Dec 2025/)).toBeVisible();
     });
 
     test('navigates to previous week when prev button clicked', async ({ mount }) => {
@@ -207,8 +207,8 @@ test.describe('Calendar Component', () => {
       const todayButton = component.getByRole('button', { name: 'Today' });
       await todayButton.click();
 
-      // Should now show the current month/year (November 2025)
-      await expect(component.getByText(/Nov.*2025|Nov - Nov 2025/)).toBeVisible();
+      // Should now show the current month/year (December 2025)
+      await expect(component.getByText(/Dec.*2025|Dec - Dec 2025/)).toBeVisible();
     });
   });
 

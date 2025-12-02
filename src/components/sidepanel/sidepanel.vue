@@ -22,10 +22,25 @@
     >
       <template v-if="!props.hideHeader">
         <div v-if="!$slots.header" :class="sidepanelClasses.sidepanelHeaderClasses">
-          <div id="sidepanel-title" :class="sidepanelClasses.sidepanelHeaderTitleClasses">
-            {{ headerTitle }}
+          <div v-if="!isLoading" id="headers">
+            <div id="sidepanel-title" :class="sidepanelClasses.sidepanelHeaderTitleClasses">
+              {{ headerTitle }}
+            </div>
+            <div id="sidepanel-subtitle" :class="sidepanelClasses.sidepanelHeaderSubtitleClasses">
+              <slot name="subtitle">
+                <span class="spr-text-color-base">{{ headerSubtitle }}</span>
+              </slot>
+            </div>
           </div>
-          <div class="spr-flex spr-items-center spr-gap-size-spacing-3xs">            
+          <div v-else id="header-loaders" class="spr-w-full spr-flex spr-flex-col spr-gap-size-spacing-4xs">
+            <div class="spr-skeletal-loader spr-h-4 spr-w-[90%] spr-rounded-md"></div>
+            <div
+              v-if="headerSubtitle || $slots.subtitle"
+              class="spr-skeletal-loader spr-h-8 spr-w-[95%] spr-rounded-md"
+            ></div>
+          </div>
+
+          <div class="spr-flex spr-items-center spr-gap-size-spacing-3xs">
             <Icon
               v-if="props.isExpandable"
               :class="sidepanelClasses.sidepanelHeaderIconClasses"
@@ -33,7 +48,12 @@
               data-testid="expand-icon"
               @click="handlePanelExpansion"
             />
-            <Icon :class="sidepanelClasses.sidepanelHeaderIconClasses" icon="ph:x" data-testid="x-icon" @click="handleClose" />
+            <Icon
+              :class="sidepanelClasses.sidepanelHeaderIconClasses"
+              icon="ph:x"
+              data-testid="x-icon"
+              @click="handleClose"
+            />
           </div>
         </div>
         <div v-else>

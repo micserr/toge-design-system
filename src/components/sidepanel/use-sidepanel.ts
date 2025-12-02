@@ -16,6 +16,7 @@ interface SidepanelClasses {
   sidepanelTransitionHiddenClasses: string;
   sidepanelTransitionVisibleClasses: string;
   backdropBaseClasses: string;
+  sidepanelHeaderSubtitleClasses: string;
 }
 
 export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<SidepanelEmitTypes>['emit']) => {
@@ -42,6 +43,8 @@ export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<Sidep
     );
 
     const sidepanelHeaderTitleClasses = classNames('spr-subheading-xs');
+
+    const sidepanelHeaderSubtitleClasses = classNames('spr-text-200 spr-max-w-[95%]');
 
     const sidepanelHeaderIconClasses = classNames('spr-text-color-weak spr-h-5 spr-w-5 spr-cursor-pointer');
 
@@ -81,6 +84,7 @@ export const useSidepanel = (props: SidepanelPropTypes, emit: SetupContext<Sidep
       sidepanelTransitionHiddenClasses,
       sidepanelTransitionVisibleClasses,
       backdropBaseClasses,
+      sidepanelHeaderSubtitleClasses
     };
   });
 

@@ -218,12 +218,11 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       }
 
       return classNames(
-        'spr-min-h-12 spr-px-size-spacing-2xs spr-py-size-spacing-3xs',
+        'spr-min-h-12 spr-px-size-spacing-2xs spr-py-size-spacing-3xs spr-relative',
         'spr-text-color-strong spr-font-size-100 spr-font-line-height-100 spr-font-letter-spacing-normal spr-text-start spr-font-medium spr-uppercase',
         'spr-border-color-weak spr-border-x-0 spr-border-y spr-border-solid',
         {
           'spr-border-t-0': !slots.default,
-          'spr-cursor-pointer hover:spr-background-color-hover active:spr-background-color-pressed': props.showHeaderFilter,
         },
         headerBackground,
       );

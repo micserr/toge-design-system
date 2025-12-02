@@ -388,6 +388,10 @@ The Sidepanel component provides three slots for customizing different sections 
       <td>Used to replace the default header with custom content. When using this slot, you'll need to implement your own close button.</td>
     </tr>
     <tr>
+      <td><code>subtitle</code></td>
+      <td>Used to replace the default header subtitle with custom content.</td>
+    </tr>
+    <tr>
       <td><code>footer</code></td>
       <td>Used to add a footer section at the bottom of the sidepanel. Typically contains action buttons.</td>
     </tr>
@@ -498,6 +502,18 @@ The Sidepanel component provides three slots for customizing different sections 
       <td>boolean</td>
       <td>false</td>
     </tr>
+    <tr>
+      <td><code>headerSubtitle</code></td>
+      <td>The title text displayed under the sidepanel's header title.</td>
+      <td>string</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td><code>isLoading</code></td>
+      <td>When true, will render skelatal loaders in the header.</td>
+      <td>boolean</td>
+      <td>false</td>
+    </tr>    
   </tbody>
 </table>
 

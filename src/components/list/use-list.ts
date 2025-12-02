@@ -22,6 +22,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     noCheck,
     disabledUnselectedItems,
     stickySearchOffset,
+    allowDeselect,
   } = toRefs(props);
 
   const listClasses: ComputedRef<ListClasses> = computed(() => {
@@ -518,14 +519,31 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
         // Track the deselection but DON'T add items back to selectedItems when deselecting
         trackNewlySelectedItems(item, true);
       }
+      emit('get-single-selected-item', item);
     } else {
       // For single-select, simply replace the selection
-      selectedItems.value = [item];
+      if (allowDeselect.value) {
+        handleDeselect(item);
+      } else {
+        handleSingleSelect(item);
+      }
+    }    
+  };
 
-      if (item.onClickFn) item.onClickFn();
+  const handleDeselect = (item: MenuListType) => {
+    if (selectedItems.value.length === 0 || !isItemSelected(item)) {
+      selectedItems.value = [item];  
+      emit('get-single-selected-item', item);    
+    } else {
+      selectedItems.value = [];
+      emit('get-single-deselected-item', item);
     }
+  };
 
-    emit('get-single-selected-item', item);
+  const handleSingleSelect = (item: MenuListType) => {
+    selectedItems.value = [item];
+    if (item.onClickFn) item.onClickFn();   
+    emit('get-single-selected-item', item); 
   };
   // #endregion - Helper Methods
 

@@ -20,6 +20,9 @@ export const sidepanelPropTypes = {
     type: String,
     default: 'Sidepanel Header',
   },
+  headerSubtitle: {
+    type: String    
+  },
   /**
    * @description Specifies the size of the side panel.
    * Acceptable values are: `'sm'`, `'md'`, `'lg'`, `'xl'`.
@@ -106,6 +109,10 @@ export const sidepanelPropTypes = {
     default: false
   },
   footerNoTopBorder: {
+    type: Boolean,
+    default: false,
+  },
+  isLoading: {
     type: Boolean,
     default: false,
   }

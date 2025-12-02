@@ -1,5 +1,47 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.25.1 (2025-12-2)
+
+- คุณสมบัติ:
+  - เพิ่มคอมโพเนนต์ Month Year Picker (ตัวเลือกเดือน-ปี)
+  ([#f4274d0c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f4274d0c5fa313ba88028036f4c76f1d3a6757c2?refName=refs%2Fheads%2F2025%2FFEATURE%2FBEN%2Fmonth-year-picker) โดย @bsolis)
+
+## 2.25.1 (2025-12-2)
+
+- คุณสมบัติ: 
+  - subtitle prop และ slot และ is-loading prop ในคอมโพเนนต์ Sidepanel
+  - allow-deselect prop ในคอมโพเนนต์ list
+- แก้ไข: 
+  - เอกสาร stacking sidepanel
+  - ปัญหาการส่งต่อ event ของ table header dropdown
+  ([#ecf1589f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ecf1589fd1c93db2a8c8b47b749968eafad28d31?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fupdates) โดย @despiritu)
+
+## 2.25.0 (2025-11-26)
+
+- chore: อัปเดตการกำหนดค่า Playwright และรวม Tailwind CSS
+- แก้ไข: การทดสอบที่ล้มเหลวเนื่องจากขาด Tailwind CSS ในสภาพแวดล้อม Playwright
+  ([#36134](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36134) โดย @jmari)
+
+## 2.24.2 (2025-11-26)
+
+- คุณสมบัติ:
+  - คอมโพเนนต์ย่อยใหม่ของตารางสำหรับตัวกรองส่วนหัวตาราง
+  - การปรับปรุง Dropdown และ Table เพื่อให้เหมาะกับข้อกำหนดการทำงานสำหรับ dropdown ตัวกรองส่วนหัวตาราง  
+    ([#ce3572da](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ce3572da1dc3a1b7a0549055df91fa2f065d418d?refName=refs%2Fheads%2F2025%2Ffeat%2FPaulo%2FTableHeaderFilterDropdown) โดย @jbanares)
+
+## 2.24.1 (2025-11-26)
+
+- แก้ไข:
+  - แก้ไขเลย์เอาต์การแบ่งหน้าตารางโดยไม่มี actions slot
+    ([#19965264](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/199652649e805afd26577a3602a6777d3f1d9fc1?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fpagination-update) โดย @despiritu)
+
+## 2.24.0 (2025-11-25)
+
+- คุณสมบัติ:
+  - เพิ่ม footerNoTopBorder prop สำหรับคอมโพเนนต์ sidepanel
+  - เพิ่ม showNumberOfRowsDropdown prop สำหรับคอมโพเนนต์ table pagination  
+    ([#23889453](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/23889453bf7176d8671f7507ef1b519c3d505e49?refName=refs/heads/2025/feat/dustin/pagination-update) โดย @despiritu)
+
 ## 2.23.1 (2025-11-25)
 
 - แก้ไข:

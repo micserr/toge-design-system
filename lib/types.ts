@@ -17,6 +17,7 @@ export type {
   CollapsibleEmitTypes,
 } from '../src/components/collapsible/collapsible';
 export type { DatePickerPropTypes } from '../src/components/date-picker/date-picker';
+export type { MonthYearPickerPropTypes } from '../src/components/date-picker/month-year-picker/month-year-picker';
 export type { DropdownPropTypes } from '../src/components/dropdown/dropdown';
 export type { EmptyStatePropTypes } from '../src/components/empty-state/empty-state';
 export type { FileUploadPropTypes } from '../src/components/file-upload/file-upload';

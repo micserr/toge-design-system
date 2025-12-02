@@ -3,6 +3,12 @@
 ## 2.25.1 (2025-12-2)
 
 - Feat: 
+  - add Month Year Picker component
+  ([#f4274d0c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f4274d0c5fa313ba88028036f4c76f1d3a6757c2?refName=refs%2Fheads%2F2025%2FFEATURE%2FBEN%2Fmonth-year-picker) by @bsolis)
+
+## 2.25.1 (2025-12-2)
+
+- Feat: 
   - subtitle prop and slot and is-loading prop in Sidepanel component
   - allow-deselect prop in list component
 - Fix: 

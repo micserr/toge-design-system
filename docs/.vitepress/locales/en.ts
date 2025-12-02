@@ -224,6 +224,10 @@ export const enConfig = {
                   text: 'Date Calendar Picker',
                   link: '/en/documentation/components/date-picker/date-calendar-picker',
                 },
+                {
+                  text: 'Month Year Picker',
+                  link: '/en/documentation/components/date-picker/month-year-picker',
+                },
               ],
             },
             {

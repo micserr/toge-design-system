@@ -398,18 +398,11 @@ test.describe('DatePicker Component', () => {
      * Tests that filling in all three input fields updates the component state.
      */
     test('should emit update:modelValue when date is selected', async ({ mount }) => {
-      let emittedModelValue = '';
-
       const component = await mount(DatePicker, {
         props: {
           id: 'test-date-picker',
           modelValue: '',
           format: 'MM-DD-YYYY',
-        },
-        on: {
-          'update:modelValue': (value: string) => {
-            emittedModelValue = value;
-          },
         },
       });
 
@@ -484,17 +477,10 @@ test.describe('DatePicker Component', () => {
      * Tests validation feedback for impossible date combinations.
      */
     test('should emit getDateErrors when invalid date is entered', async ({ mount }) => {
-      let dateErrors: Array<{ title: string; message: string }> = [];
-
       const component = await mount(DatePicker, {
         props: {
           id: 'test-date-picker',
           modelValue: '',
-        },
-        on: {
-          getDateErrors: (errors: Array<{ title: string; message: string }>) => {
-            dateErrors = errors;
-          },
         },
       });
 
@@ -655,18 +641,11 @@ test.describe('DatePicker Component', () => {
 
   test.describe('Edge Cases', () => {
     test('should handle year outside minMaxYear range', async ({ mount }) => {
-      let dateErrors: Array<{ title: string; message: string }> = [];
-
       const component = await mount(DatePicker, {
         props: {
           id: 'test-date-picker',
           modelValue: '',
           minMaxYear: { min: 2020, max: 2025 },
-        },
-        on: {
-          getDateErrors: (errors: Array<{ title: string; message: string }>) => {
-            dateErrors = errors;
-          },
         },
       });
 

@@ -148,11 +148,15 @@ export const useSelect = (props: SelectPropTypes, emit: SetupContext<SelectEmitT
     return selectOptions.value.filter((item) => item.text?.toString().toLowerCase().includes(query));
   });
 
-  // Search handler: always emit search-string, but only filter locally if local search is enabled
-  const handleSearch = () => {
-    isSearching.value = true;
+  // Search handler: only emit search-string on regular keys and ENTER, ignore modifier-only keys
+  const handleSearch = (event: KeyboardEvent) => {
+    // Ignore pure modifier keys: Shift, Control, Alt, Meta (Command/Windows), CapsLock
+    const modifierOnlyKeys = ['Shift', 'Control', 'Alt', 'Meta', 'CapsLock'];
 
-    debouncedEmitSearch();
+    if (!modifierOnlyKeys.includes(event.key)) {
+      isSearching.value = true;
+      debouncedEmitSearch();
+    }
   };
 
   const debouncedEmitSearch = useDebounceFn(() => {

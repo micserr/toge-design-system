@@ -63,6 +63,15 @@ export const dateRangePickerPropTypes = {
   },
   minMaxYear: {
     type: Object as PropType<MinMaxYearType>,
+    validator: (value: MinMaxYearType): boolean => {
+      return (
+        value &&
+        typeof value.min === 'number' &&
+        typeof value.max === 'number' &&
+        value.min >= 1900 &&
+        value.min <= value.max
+      );
+    },
     default: () => ({
       min: 1900,
       max: new Date().getFullYear(),
@@ -174,18 +183,6 @@ export const dateRangePickerEmitTypes = {
   },
   getMonthList: (value: Array<object>) => Array.isArray(value),
   getYearList: (value: Array<number>) => Array.isArray(value),
-  getDateErrors: (value: Array<{ title: string; message: string }>) => {
-    return (
-      Array.isArray(value) &&
-      value.every(
-        (item) =>
-          item !== null &&
-          typeof item === 'object' &&
-          typeof item.title === 'string' &&
-          typeof item.message === 'string',
-      )
-    );
-  },
   rangeChange: (value: { startDate: string; endDate: string; isValid: boolean }) => {
     return (
       typeof value === 'object' &&

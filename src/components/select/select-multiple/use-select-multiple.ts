@@ -376,10 +376,14 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     { deep: true },
   );
 
-  watch(searchInput, () => {
-    search.value = searchInput.value;
+  watch(searchInput, (newVal, oldVal) => {
+    search.value = newVal;
 
-    emit('search-string', searchInput.value);
+    // Only emit search-string if value actually changed (not just modifier keys)
+    // Modifier key presses alone won't change the input value
+    if (newVal !== oldVal) {
+      emit('search-string', newVal);
+    }
   });
 
   watch(multiSelectPopperState, (newState) => {

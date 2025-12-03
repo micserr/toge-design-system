@@ -310,8 +310,8 @@ npm run lint
 # Run all component tests
 npm run test:components
 
-# Run specific component test (short name)
-npx playwright test Button.spec.ts --config=playwright-ct.config.ts
+# Run specific component test using grep filter
+npm run test:component -- --grep "DatePicker"
 
 # Run specific test file (full path)
 npx playwright test tests/components/Button.spec.ts --config=playwright-ct.config.ts
@@ -514,8 +514,11 @@ Always run lint checks and tests locally before committing. Failed linting or te
 
 ```bash
 # Recommended pre-commit workflow
-npm run lint        # Check code quality
-npm run test:components  # Run component tests
+npm run lint              # Check code quality
+npm run test:components   # Run all component tests
+
+# Or test a specific component during development
+npm run test:component -- --grep "DatePicker"
 ```
 
 :::

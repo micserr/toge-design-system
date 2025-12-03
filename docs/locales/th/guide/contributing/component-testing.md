@@ -310,8 +310,8 @@ npm run lint
 # รันการทดสอบคอมโพเนนต์ทั้งหมด
 npm run test:components
 
-# รันการทดสอบคอมโพเนนต์เฉพาะ (ชื่อสั้น)
-npx playwright test Button.spec.ts --config=playwright-ct.config.ts
+# รันการทดสอบคอมโพเนนต์เฉพาะโดยใช้ grep filter
+npm run test:component -- --grep "DatePicker"
 
 # รันไฟล์ทดสอบเฉพาะ (เส้นทางเต็ม)
 npx playwright test tests/components/Button.spec.ts --config=playwright-ct.config.ts
@@ -514,8 +514,11 @@ test('ควรให้การประกาศ screen reader', async ({ mou
 
 ```bash
 # workflow ก่อน commit ที่แนะนำ
-npm run lint        # ตรวจสอบคุณภาพโค้ด
-npm run test:components  # รันการทดสอบคอมโพเนนต์
+npm run lint              # ตรวจสอบคุณภาพโค้ด
+npm run test:components   # รันการทดสอบคอมโพเนนต์ทั้งหมด
+
+# หรือทดสอบคอมโพเนนต์เฉพาะระหว่างการพัฒนา
+npm run test:component -- --grep "DatePicker"
 ```
 
 :::

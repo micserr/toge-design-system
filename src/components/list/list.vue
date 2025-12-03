@@ -8,6 +8,7 @@
           v-model="searchText"
           :placeholder="props.searchableMenuPlaceholder"
           autocomplete="off"
+          @keyup="handleSearchKeyup"
         />
         <span
           v-if="props.supportingDisplayText || props.displayListItemSelected"
@@ -121,5 +122,6 @@ const {
   isItemSelected,
   getListItemClasses,
   handleSelectedItem,
+  handleSearchKeyup,
 } = useList(props, emit);
 </script>

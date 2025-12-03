@@ -1,20 +1,29 @@
 # บันทึกการเปลี่ยนแปลง
 
-## 2.25.1 (2025-12-2)
+## 2.26.1 (2025-12-2)
+
+- แก้ไข:
+  - แก้ไข datepicker - ค่า model value ไม่ได้อัปเดตเมื่อผู้ใช้พิมพ์เฉพาะวันที่เท่านั้น
+  - แก้ไข date calendar - สไตล์สีของวันที่ที่ไม่ได้เลือก
+  - ปรับปรุงพฤติกรรมคีย์การค้นหาของ select และ multi-select
+  - แก้ไข date picker, date range picker, date calendar picker และ month-year picker getYearList emit
+    ([#36210](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36210) โดย @jarias)
+
+## 2.26.0 (2025-12-2)
 
 - คุณสมบัติ:
   - เพิ่มคอมโพเนนต์ Month Year Picker (ตัวเลือกเดือน-ปี)
-  ([#f4274d0c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f4274d0c5fa313ba88028036f4c76f1d3a6757c2?refName=refs%2Fheads%2F2025%2FFEATURE%2FBEN%2Fmonth-year-picker) โดย @bsolis)
+    ([#f4274d0c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f4274d0c5fa313ba88028036f4c76f1d3a6757c2?refName=refs%2Fheads%2F2025%2FFEATURE%2FBEN%2Fmonth-year-picker) โดย @bsolis)
 
 ## 2.25.1 (2025-12-2)
 
-- คุณสมบัติ: 
+- คุณสมบัติ:
   - subtitle prop และ slot และ is-loading prop ในคอมโพเนนต์ Sidepanel
   - allow-deselect prop ในคอมโพเนนต์ list
-- แก้ไข: 
+- แก้ไข:
   - เอกสาร stacking sidepanel
   - ปัญหาการส่งต่อ event ของ table header dropdown
-  ([#ecf1589f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ecf1589fd1c93db2a8c8b47b749968eafad28d31?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fupdates) โดย @despiritu)
+    ([#ecf1589f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ecf1589fd1c93db2a8c8b47b749968eafad28d31?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fupdates) โดย @despiritu)
 
 ## 2.25.0 (2025-11-26)
 

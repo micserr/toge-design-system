@@ -33,7 +33,10 @@ interface MonthsList {
 
 type DayAbbreviation = 'su' | 'mo' | 'tu' | 'we' | 'th' | 'fr' | 'sa';
 
-export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupContext<DateRangePickerEmitTypes>['emit']) => {
+export const useDateRangePicker = (
+  props: DateRangePickerPropTypes,
+  emit: SetupContext<DateRangePickerEmitTypes>['emit'],
+) => {
   const { active, disabled, readonly, error, currentYear, minMaxYear, restDays, disabledDates, format } = toRefs(props);
   const slots = useSlots();
 
@@ -152,7 +155,7 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
       text: dayjs().month(i).format('MMM'),
       fullText: dayjs().month(i).format('MMMM'),
       monthValue: i,
-    }))
+    })),
   );
 
   // Start date inputs
@@ -280,44 +283,43 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
   };
 
   const calendarTabIsSelectedDate = (day: { date: dayjs.Dayjs; inactive: boolean }) => {
-   
     const startDate = dayjs(modelValue.value.startDate).format('MM-DD-YYYY');
     const endDate = dayjs(modelValue.value.endDate).format('MM-DD-YYYY');
-    
+
     const dayDate = day.date.format('MM-DD-YYYY');
     // If only start date is selected, highlight it
     if (startDate && !endDate) {
       return dayDate === startDate;
     }
-    
+
     // If both dates are selected, highlight start and end
     if (startDate && endDate) {
       return dayDate === startDate || dayDate === endDate;
     }
-    
+
     return false;
   };
 
   const calendarTabIsInRange = (day: { date: dayjs.Dayjs; inactive: boolean }) => {
     const startDate = modelValue.value.startDate;
     const endDate = modelValue.value.endDate;
-    
+
     // Only show range when both dates are selected
     if (!startDate || !endDate) return false;
-    
+
     const dayDate = day.date;
     const start = dayjs(startDate, 'MM-DD-YYYY');
     const end = dayjs(endDate, 'MM-DD-YYYY');
-    
+
     return dayDate.isAfter(start, 'day') && dayDate.isBefore(end, 'day');
   };
 
   const calendarTabIsUnSelectedDate = (day: { date: dayjs.Dayjs }) => {
     const startDate = modelValue.value.startDate;
     const endDate = modelValue.value.endDate;
-    
+
     if (!startDate || !endDate) return true;
-    
+
     const dayDate = day.date.format('MM-DD-YYYY');
     return dayDate !== startDate && dayDate !== endDate;
   };
@@ -346,12 +348,12 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
     if (!safeDisabledDates.value?.pastDates) return false;
     const dayDate = day.date;
     const currentDate = dayjs();
-    
+
     if (typeof safeDisabledDates.value.pastDates === 'string') {
       const pastDate = dayjs(safeDisabledDates.value.pastDates, 'MM-DD-YYYY');
       return dayDate.isBefore(pastDate, 'day');
     }
-    
+
     return dayDate.isBefore(currentDate, 'day');
   };
 
@@ -359,12 +361,12 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
     if (!safeDisabledDates.value?.futureDates) return false;
     const dayDate = day.date;
     const currentDate = dayjs();
-    
+
     if (typeof safeDisabledDates.value.futureDates === 'string') {
       const futureDate = dayjs(safeDisabledDates.value.futureDates, 'MM-DD-YYYY');
       return dayDate.isAfter(futureDate, 'day');
     }
-    
+
     return dayDate.isAfter(currentDate, 'day');
   };
 
@@ -395,9 +397,9 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
   // Update calendarTabHandleDateInput to use format.value
   const calendarTabHandleDateInput = (day: { date: dayjs.Dayjs }) => {
     if (calendarTabIsDateIsDisabled(day)) return;
-    
+
     const selectedDate = dayjs(day.date).format(format.value);
-    
+
     // If no start date is selected, set it as start date
     if (!modelValue.value.startDate) {
       modelValue.value = {
@@ -431,7 +433,7 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
       };
       selectionMode.value = 'end';
     }
-    
+
     updateInputFields();
     emitRangeChange();
   };
@@ -477,7 +479,10 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
   };
 
   const yearTabGoToNextPage = () => {
-    if ((yearTabPageData.value.currentPage + 1) * yearTabPageData.value.itemsPerPage < yearTabPageData.value.yearsArray.length) {
+    if (
+      (yearTabPageData.value.currentPage + 1) * yearTabPageData.value.itemsPerPage <
+      yearTabPageData.value.yearsArray.length
+    ) {
       yearTabPageData.value.currentPage++;
     }
   };
@@ -488,7 +493,8 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
 
   const yearTabIsNextButtonDisabled = computed(() => {
     return (
-      (yearTabPageData.value.currentPage + 1) * yearTabPageData.value.itemsPerPage >= yearTabPageData.value.yearsArray.length
+      (yearTabPageData.value.currentPage + 1) * yearTabPageData.value.itemsPerPage >=
+      yearTabPageData.value.yearsArray.length
     );
   });
 
@@ -551,7 +557,7 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
   const setModelValue = () => {
     const startDateValid = validateDate(startMonthInput.value, startDateInput.value, startYearInput.value);
     const endDateValid = validateDate(endMonthInput.value, endDateInput.value, endYearInput.value);
-    
+
     if (startDateValid && endDateValid) {
       const startDate = `${startMonthInput.value}-${startDateInput.value}-${startYearInput.value}`;
       const endDate = `${endMonthInput.value}-${endDateInput.value}-${endYearInput.value}`;
@@ -572,25 +578,25 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
 
   const validateDate = (month: string, date: string, year: string): boolean => {
     if (!month || !date || !year) return false;
-    
+
     const monthObj = getMonthObject('monthValue', month);
     if (!monthObj) {
       setWarningPropsValue('startDate');
       return false;
     }
-    
+
     const dayjsDate = dayjs(`${monthObj.monthValue + 1}-${date}-${year}`, 'M-D-YYYY');
     if (!dayjsDate.isValid()) {
       setWarningPropsValue('startDate');
       return false;
     }
-    
+
     const yearNum = Number(year);
     if (yearNum < minMaxYear.value.min || yearNum > minMaxYear.value.max) {
       setWarningPropsValue('year');
       return false;
     }
-    
+
     clearWarningPropsValue('startDate');
     clearWarningPropsValue('year');
     return true;
@@ -668,9 +674,7 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
 
   const handleConvertMonthIfValid = (type: 'start' | 'end') => {
     const monthInput = type === 'start' ? startMonthInput.value : endMonthInput.value;
-    const monthObj = monthsList.value.find(
-      (month) => month.text.toLowerCase() === monthInput.toLowerCase(),
-    );
+    const monthObj = monthsList.value.find((month) => month.text.toLowerCase() === monthInput.toLowerCase());
 
     if (monthObj) {
       if (type === 'start') {
@@ -719,7 +723,7 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
       startDateInput.value = startDate.format('DD');
       startYearInput.value = startDate.format('YYYY');
     }
-    
+
     if (modelValue.value.endDate) {
       const endDate = dayjs(modelValue.value.endDate, 'MM-DD-YYYY');
       endMonthInput.value = endDate.format('MMM');
@@ -741,7 +745,7 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
     if (modelValue.value.startDate && modelValue.value.endDate) {
       const startDate = dayjs(modelValue.value.startDate, 'MM-DD-YYYY');
       const endDate = dayjs(modelValue.value.endDate, 'MM-DD-YYYY');
-      
+
       const formats = {
         'MM-DD-YYYY': {
           startDate: startDate.format('MM-DD-YYYY'),
@@ -760,7 +764,7 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
           endDate: endDate.format('DD-MM-YYYY'),
         },
       };
-      
+
       emit('getDateFormats', formats);
     }
   };
@@ -782,21 +786,32 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
     emit('getYearList', years);
   };
 
-  const emitDateErrors = () => {
-    emit('getDateErrors', dateRangePickerErrors.value);
-  };
-
   // #region - Watchers
-  watch(modelValue, () => {
-    updateInputFields();
-    emitDateFormats();
-    emitInputValue();
-    emitDateErrors();
-  }, { deep: true });
+  watch(
+    modelValue,
+    () => {
+      updateInputFields();
+      emitDateFormats();
+      emitInputValue();
+    },
+    { deep: true },
+  );
 
-  watch(dateRangePickerErrors, () => {
-    emitDateErrors();
-  }, { deep: true });
+  watch(dateRangePickerErrors, () => {}, { deep: true });
+
+  watch(
+    minMaxYear,
+    () => {
+      yearTabPageData.value.yearsArray = Array.from(
+        { length: minMaxYear.value.max - minMaxYear.value.min + 1 },
+        (_, index) => minMaxYear.value.min + index,
+      ).filter((year) => year <= minMaxYear.value.max && year >= minMaxYear.value.min);
+
+      yearTabPageData.value.currentPage = 0;
+      emitYearList();
+    },
+    { deep: true },
+  );
 
   // #region - Lifecycle
   onMounted(() => {
@@ -842,7 +857,7 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
     if (basePlacement !== 'top' && basePlacement !== 'bottom') {
       basePlacement = 'bottom';
     }
-    
+
     if (clickedInputType.value === 'start') {
       // For start date: concatenate base placement with 'start'
       return `${basePlacement}-start`;
@@ -864,7 +879,7 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
   // Handle start date input clicks
   const handleStartDateClick = () => {
     if (disabled.value || readonly.value) return;
-    
+
     clickedInputType.value = 'start';
     activeInputRef.value = startDateContainerRef.value;
     datePopperState.value = true;
@@ -873,7 +888,7 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
   // Handle end date input clicks
   const handleEndDateClick = () => {
     if (disabled.value || readonly.value) return;
-    
+
     clickedInputType.value = 'end';
     activeInputRef.value = endDateContainerRef.value;
     datePopperState.value = true;
@@ -882,7 +897,7 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
   // Handle custom component clicks (for slot usage)
   const handleCustomComponentClick = (event: Event) => {
     if (disabled.value || readonly.value) return;
-    
+
     // For custom slots, use the clicked element as reference
     activeInputRef.value = event.currentTarget as HTMLElement;
     datePopperState.value = true;
@@ -954,4 +969,4 @@ export const useDateRangePicker = (props: DateRangePickerPropTypes, emit: SetupC
     handleEndDateClick,
     handleCustomComponentClick,
   };
-}; 
+};

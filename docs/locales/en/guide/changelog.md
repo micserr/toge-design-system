@@ -1,20 +1,29 @@
 # Changelog
 
-## 2.25.1 (2025-12-2)
+## 2.26.1 (2025-12-2)
 
-- Feat: 
+- Fix:
+  - Fix datepicker - The model value is not updating when the user only types the date
+  - Fix date calendar - non-selected color date style
+  - Enhance select and multi-select - search behavior keys
+  - Fix date picker, date range picker, date calendar picker and month-year picker getYearList emit
+    ([#36210](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36210) by @jarias)
+
+## 2.26.0 (2025-12-2)
+
+- Feat:
   - add Month Year Picker component
-  ([#f4274d0c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f4274d0c5fa313ba88028036f4c76f1d3a6757c2?refName=refs%2Fheads%2F2025%2FFEATURE%2FBEN%2Fmonth-year-picker) by @bsolis)
+    ([#f4274d0c](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/f4274d0c5fa313ba88028036f4c76f1d3a6757c2?refName=refs%2Fheads%2F2025%2FFEATURE%2FBEN%2Fmonth-year-picker) by @bsolis)
 
 ## 2.25.1 (2025-12-2)
 
-- Feat: 
+- Feat:
   - subtitle prop and slot and is-loading prop in Sidepanel component
   - allow-deselect prop in list component
-- Fix: 
+- Fix:
   - stacking sidepanel docs
   - table header dropdown event propagation issue
-  ([#ecf1589f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ecf1589fd1c93db2a8c8b47b749968eafad28d31?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fupdates) by @despiritu)
+    ([#ecf1589f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ecf1589fd1c93db2a8c8b47b749968eafad28d31?refName=refs%2Fheads%2F2025%2Ffeat%2Fdustin%2Fupdates) by @despiritu)
 
 ## 2.25.0 (2025-11-26)
 
@@ -56,7 +65,13 @@
   - Now emits partial date values with zeros for empty fields as user types (e.g., "12-0-0" → "12-0-1997" → "12-12-1997")
     ([#36142](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36142) by @jarias)
 
+## 2.23.0 (2025-11-120)
+
+=======
+
 ## 2.23.0 (2025-11-20)
+
+> > > > > > > 8d159372ab61d7c745bee0cec25be68baf1bfde3
 
 - Feat:
   - Created Radio Grouped component with v-model binding and options array support.

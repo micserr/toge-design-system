@@ -141,7 +141,6 @@ export const useMonthYearPicker = (
     emitPartialInputValue();
 
     monthYearPickerErrors.value = [];
-    emit('getDateErrors', monthYearPickerErrors.value);
 
     // If both month and year are selected, close the popper
     if (yearInput.value) {
@@ -217,7 +216,6 @@ export const useMonthYearPicker = (
     emitPartialInputValue();
 
     monthYearPickerErrors.value = [];
-    emit('getDateErrors', monthYearPickerErrors.value);
 
     // If both month and year are selected, close the popper
     if (monthInput.value) {
@@ -325,8 +323,6 @@ export const useMonthYearPicker = (
 
     monthYearPickerErrors.value = [];
 
-    emit('getDateErrors', monthYearPickerErrors.value);
-
     handleConvertMonthIfValid();
 
     handleValidateDate();
@@ -341,8 +337,6 @@ export const useMonthYearPicker = (
     yearInput.value = yearInput.value.replace(/[^0-9]/g, '');
 
     monthYearPickerErrors.value = [];
-
-    emit('getDateErrors', monthYearPickerErrors.value);
 
     // Emit the partial date value as user types
     emitPartialInputValue();
@@ -408,8 +402,6 @@ export const useMonthYearPicker = (
           });
 
           monthYearPopperState.value = false;
-
-          emit('getDateErrors', monthYearPickerErrors.value);
 
           console.error(`Invalid Date: "${selectedDate}". ${errorMessage}`);
         }
@@ -547,14 +539,19 @@ export const useMonthYearPicker = (
     }
   });
 
-  watch(minMaxYear, () => {
-    yearTabPageData.value.yearsArray = Array.from(
-      { length: minMaxYear.value.max - minMaxYear.value.min + 1 },
-      (_, index) => minMaxYear.value.min + index,
-    ).filter((year) => year <= minMaxYear.value.max && year >= minMaxYear.value.min);
+  watch(
+    minMaxYear,
+    () => {
+      yearTabPageData.value.yearsArray = Array.from(
+        { length: minMaxYear.value.max - minMaxYear.value.min + 1 },
+        (_, index) => minMaxYear.value.min + index,
+      ).filter((year) => year <= minMaxYear.value.max && year >= minMaxYear.value.min);
 
-    yearTabPageData.value.currentPage = 0;
-  });
+      yearTabPageData.value.currentPage = 0;
+      emitYearList();
+    },
+    { deep: true },
+  );
 
   onClickOutside(monthYearPickerRef, () => {
     monthYearPopperState.value = false;
@@ -604,4 +601,3 @@ export const useMonthYearPicker = (
     handleSlotClick,
   };
 };
-

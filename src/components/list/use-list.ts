@@ -626,6 +626,20 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     setPreSelectedItems();
   });
 
+  // Handle search keyup to ignore modifier-only keys
+  const handleSearchKeyup = (event: KeyboardEvent) => {
+    // Ignore pure modifier keys: Shift, Control, Alt, Meta (Command/Windows), CapsLock
+    const modifierOnlyKeys = ['Shift', 'Control', 'Alt', 'Meta', 'CapsLock'];
+
+    if (!modifierOnlyKeys.includes(event.key)) {
+      // Allow the search to proceed - v-model will handle the actual update
+      return;
+    }
+
+    // For modifier-only keys, prevent default behavior if needed
+    event.preventDefault();
+  };
+
   return {
     listClasses,
     stickyOffsetStyle,
@@ -641,5 +655,6 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     handleSearch,
     handleSelectedItem,
     trackNewlySelectedItems,
+    handleSearchKeyup,
   };
 };

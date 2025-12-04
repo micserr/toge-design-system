@@ -48,6 +48,10 @@ export const inputCurrencyPropTypes = {
     type: Boolean,
     default: true,
   },
+  displayAsSymbol: {
+    type: Boolean,
+    default: false,
+  },
   disableRounding: {
     type: Boolean,
     default: false,

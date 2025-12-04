@@ -10,6 +10,10 @@
     @input="handleCurrencyInput"
     @blur="handleBlur"
   >
+    <template v-for="(_, slotName) in $slots" #[slotName]>
+      <slot :name="slotName" />
+    </template>
+
     <template #prefix>
       <spr-dropdown
         :id="dropdownId"

@@ -138,80 +138,42 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     return 2;
   };
 
-  const currentCurrencyFractionDigits = computed(() => getCurrencyFractionDigits(selected.value.currency));
-
   const effectiveMinDecimals = computed(() => {
-    // Minimum is the greater of user minDecimals and native fraction digits lower bound (native min == native max in most cases)
+    // Minimum is just the user's minDecimals value
     const userMin = Math.min(Math.max(0, minDecimals.value), 6);
-    return Math.min(6, Math.max(0, Math.min(userMin, maxDecimals.value)));
+    return Math.min(6, Math.max(0, userMin));
   });
 
   const effectiveMaxDecimals = computed(() => {
-    // Use native fraction digits as baseline but allow user to reduce (rare) or extend (not beyond 6)
-    const native = currentCurrencyFractionDigits.value; // e.g. JPY => 0, USD => 2
+    // Use the user-provided maxDecimals value directly (clamped to 0-6)
     const userMax = Math.min(Math.max(0, maxDecimals.value), 6);
-    // If user sets max below native, keep native to respect currency standard.
-    const adjustedMax = Math.max(native, userMax);
     // Ensure max >= min
-    return Math.max(adjustedMax, effectiveMinDecimals.value);
+    return Math.max(userMax, effectiveMinDecimals.value);
   });
-
-  const clampFractionDigits = (frac: string): string => frac.slice(0, effectiveMaxDecimals.value);
 
   const formatNumberForBlur = (value: number): string => {
     const fmt = buildNumberFormat(effectiveMinDecimals.value, effectiveMaxDecimals.value);
     // Remove currency symbol from formatted output (component is responsible only for numeric part in input)
     const parts = fmt.formatToParts(value).filter((p) => p.type !== 'currency');
-    return parts
+    let result = parts
       .map((p) => p.value)
       .join('')
       .replace(/\s+/g, '');
-  };
 
-  /**
-   * Formats a numeric string (no currency symbol) applying grouping and truncating decimals but not padding.
-   * Used while user is still interacting (on input) if autoFormat.
-   */
-  const handleFormatDisplay = (raw: string): string => {
-    if (!autoFormat.value) return raw;
-    if (!raw) return '';
-    // Detect user decimal char as either '.' or last ','
-    let work = raw;
-    // Strip spaces
-    work = work.replace(/\s+/g, '');
-    // Allow only digits, separators, minus
-    work = work.replace(/[^0-9,.-]/g, '');
-    let sign = '';
-    if (work.startsWith('-')) {
-      sign = '-';
-      work = work.slice(1);
+    // Ensure minimum decimals are enforced by padding if needed
+    const { decimal: decimalSep } = localeSeparators.value;
+    if (effectiveMinDecimals.value > 0) {
+      const [integerPart, decimalPart] = result.split(decimalSep);
+      const currentDecimals = decimalPart ? decimalPart.length : 0;
+
+      if (currentDecimals < effectiveMinDecimals.value) {
+        // Pad with zeros to meet minimum decimals
+        const paddedDecimal = (decimalPart || '').padEnd(effectiveMinDecimals.value, '0');
+        result = integerPart + decimalSep + paddedDecimal;
+      }
     }
-    const lastDot = work.lastIndexOf('.');
-    const lastComma = work.lastIndexOf(',');
-    const lastSep = Math.max(lastDot, lastComma);
-    let intPart: string;
-    let fracPart = '';
-    if (lastSep !== -1) {
-      intPart = work.slice(0, lastSep).replace(/[.,]/g, '');
-      fracPart = work.slice(lastSep + 1);
-    } else {
-      intPart = work.replace(/[.,]/g, '');
-    }
-    if (!/^[0-9]*$/.test(intPart) || !/^[0-9]*$/.test(fracPart)) return raw;
-    const truncatedFrac = clampFractionDigits(fracPart);
-    const intNumber = Number(intPart || '0');
-    // Use Intl just for grouping integer portion
-    const fmtInt = buildNumberFormat(0, 0);
-    const groupedInt = fmtInt
-      .formatToParts(intNumber)
-      .filter((p) => p.type === 'integer' || p.type === 'group')
-      .map((p) => p.value)
-      .join('');
-    if (truncatedFrac.length > 0 || lastSep !== -1) {
-      // Use current locale decimal symbol
-      return sign + groupedInt + localeSeparators.value.decimal + truncatedFrac;
-    }
-    return sign + groupedInt;
+
+    return result;
   };
 
   /**
@@ -258,32 +220,28 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     return formatNumberForBlur(numeric);
   };
 
-  const handleCurrencyInput = (event: InputEvent) => {
-    const inputEl = event.target as HTMLInputElement;
+  const handleCurrencyInput = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    let raw = target.value;
 
-    let raw = inputEl.value;
-
+    // Remove spaces
     raw = raw.replace(/\s+/g, '');
 
-    let sign = '';
+    // Only allow digits and dots (.) as decimal separator
+    // Reject commas (,) during typing - they will be added during formatting on blur
+    raw = raw.replace(/[^0-9.]/g, '');
 
-    if (raw.startsWith('-')) {
-      sign = '-';
-      raw = raw.slice(1);
+    // Handle multiple dots (keep only the last one as decimal separator)
+    const lastDot = raw.lastIndexOf('.');
+    if (lastDot !== -1) {
+      const beforeDecimal = raw.slice(0, lastDot).replace(/\./g, '');
+      const afterDecimal = raw.slice(lastDot + 1).replace(/\./g, '');
+      raw = beforeDecimal + '.' + afterDecimal;
     }
 
-    raw = raw.replace(/[^0-9.,-]/g, '');
-
-    const firstDot = raw.indexOf('.');
-
-    if (firstDot !== -1) {
-      raw = raw.slice(0, firstDot + 1) + raw.slice(firstDot + 1).replace(/\./g, '');
-    }
-
-    // Do not truncate fractional digits while typing; allow user to input freely.
-    const formatted = handleFormatDisplay(sign + raw);
-
-    modelValue.value = formatted;
+    // Just update the value without formatting during typing
+    // Formatting happens on blur to avoid cursor jumping
+    modelValue.value = raw;
 
     emit('getCurrencyErrors', []);
   };
@@ -379,7 +337,12 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     popperState.value = state;
   };
 
-  const dropdownDisplayText = computed(() => (props.displayAsCode ? selected.value.currency : selected.value.symbol));
+  const dropdownDisplayText = computed(() => {
+    if (props.displayAsSymbol) {
+      return selected.value.symbol;
+    }
+    return props.displayAsCode ? selected.value.currency : selected.value.symbol;
+  });
 
   // #region - Set Currency Options
   // Collect currency codes first so we can derive ambiguity and symbols deterministically.

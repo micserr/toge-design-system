@@ -14,6 +14,10 @@
     @blur="formatContactNumber"
     @update:model-value="handleUpdateModelValue"
   >
+    <template v-for="(_, slotName) in $slots" #[slotName]>
+      <slot :name="slotName" />
+    </template>
+
     <template #prefix>
       <spr-dropdown
         :id="dropdownId"
@@ -33,10 +37,6 @@
         </div>
       </spr-dropdown>
     </template>
-
-    <template #helperMessage>
-      <slot name="helperMessage" />
-    </template>
   </spr-input>
 </template>
 
@@ -47,9 +47,7 @@ import SprInput from '@/components/input/input.vue';
 import SprDropdown from '@/components/dropdown/dropdown.vue';
 
 import { useInputContactNumber } from './use-input-contact-number';
-import { COUNTRY_OPTIONS } from './input-contact-number';
-
-import { inputContactNumberPropTypes, inputContactNumberEmitTypes } from './input-contact-number';
+import { COUNTRY_OPTIONS, inputContactNumberPropTypes, inputContactNumberEmitTypes } from './input-contact-number';
 
 const props = defineProps(inputContactNumberPropTypes);
 const emit = defineEmits(inputContactNumberEmitTypes);

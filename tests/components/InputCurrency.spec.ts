@@ -581,7 +581,7 @@ test.describe('InputCurrency Component', () => {
       });
 
       const input = component.locator('[data-testid="input-currency-text"]');
-      
+
       // Type each character
       await input.fill('123');
 
@@ -673,7 +673,7 @@ test.describe('InputCurrency Component', () => {
 
       // Initial emissions from mount
       const initialEmissions = emissionCount;
-      
+
       // Now change the currency
       const dropdown = component.locator('[data-testid="input-currency-dropdown"]');
       await dropdown.click();
@@ -767,7 +767,8 @@ test.describe('InputCurrency Component', () => {
           onGetCurrencyValue: (value: number | null) => {
             emittedValue = value;
           },
-        },\n      });
+        },
+      });
 
       const input = component.locator('[data-testid="input-currency-text"]');
       await input.fill('');
@@ -790,7 +791,7 @@ test.describe('InputCurrency Component', () => {
       });
 
       const input = component.locator('[data-testid="input-currency-text"]');
-      
+
       // Should show base value formatted on mount
       const value = await input.inputValue();
       expect(value).toContain('5');
@@ -827,14 +828,14 @@ test.describe('InputCurrency Component', () => {
       });
 
       const input = component.locator('[data-testid="input-currency-text"]');
-      
+
       // First, verify base value is shown on mount
       let value = await input.inputValue();
       expect(value).toContain('3');
 
       // Clear the input
       await input.fill('');
-      
+
       // Blur to trigger formatting
       await input.blur();
 
@@ -857,7 +858,7 @@ test.describe('InputCurrency Component', () => {
       });
 
       const input = component.locator('[data-testid="input-currency-text"]');
-      
+
       // Should show 0.00
       const value = await input.inputValue();
       expect(value).toContain('0');
@@ -874,7 +875,7 @@ test.describe('InputCurrency Component', () => {
       });
 
       const input = component.locator('[data-testid="input-currency-text"]');
-      
+
       // Should show 50.75
       const value = await input.inputValue();
       expect(value).toContain('50');

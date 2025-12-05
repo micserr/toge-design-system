@@ -523,7 +523,7 @@ const errorMessage = computed(() => {
 
 ## เหตุการณ์ Get Currency Value
 
-เข้าถึงค่าดิบที่ไม่มีการจัดรูปแบบ (เหมือน v-model) ผ่านเหตุการณ์ `@get-currency-value` นี่มีประโยชน์เมื่อคุณต้องการค่า input ธรรมชาติโดยไม่มีการจัดรูปแบบใด ๆ
+เข้าถึงค่าตัวเลขที่แยกวิเคราะห์โดยตรงไปยังเหตุการณ์ `@get-currency-value` ซึ่งส่งหอให้ค่าตัวเลขชนิด ทำให้งายต่อใช้กุดก่อนการแปลงปลายจากสตริง
 
 <div>
   <spr-input-currency 
@@ -560,27 +560,28 @@ const errorMessage = computed(() => {
 import { ref } from 'vue';
 
 const currencyValue = ref('');
-const rawValue = ref('');
+const numericValue = ref<number | null>(null);
 
-const handleGetCurrencyValue = (value: string) => {
-  rawValue.value = value;
-  console.log('Raw unformatted value:', value);
+const handleGetCurrencyValue = (value: number) => {
+  numericValue.value = value;
+  console.log('Numeric value:', value);
 };
 </script>
 ```
 
 **ตัวอย่างการใช้งาน:**
 
-เมื่อคุณพิมพ์ `1234567.89` และเบลอ `@get-currency-value` จะปล่อย `"1234567.89"` (สตริงดิบที่ไม่มีการจัดรูปแบบ)
+เมื่อคุณพิมพ์ `1234567.89` และเบลอ `@get-currency-value` จะปล่อย `1234567.89` (ตัวเลข)
 
 ```typescript
-// ในองค์ประกอบของคุณ
-const onGetCurrencyValue = (value: string) => {
-  // ใช้ค่าดิบสำหรับตรรมชาติแบบกำหนดเอง
+// ในหติวาปิดของคุณ
+const onGetCurrencyValue = (value: number) => {
+  // ใช้ค่าตัวเลขสำหรับคำนวณแต้โดยตรง
   console.log('User entered:', value);
   // ส่งไปยัง API
-  // เก็บในฐานข้อมูล
-  // ตรวจสอบรูปแบบ
+  // เก็บไว้ในรฐานข้อมูล
+  // ทำการคำนวณ
+  const discounted = value * 0.9;
 };
 ```
 
@@ -705,17 +706,12 @@ const onGetCurrencyValue = (value: string) => {
     <tr>
       <td>@get-selected-currency-meta</td>
       <td>{ currency: String; symbol: String; numericValue: Number | null; rawValue: String | null }</td>
-      <td>ปล่อยออกมาหลังจากเลือกสกุลเงินและเมื่อเบลอ รวมถึงรหัส สัญลักษณ์ (หรือรหัสหากคลุมเครือ) numericValue (float ที่แยกวิเคราะห์) และ rawValue (สตริงที่ไม่ได้จัดรูปแบบที่มีรูปแบบบัญญัติ)</td>
-    </tr>
-    <tr>
-      <td>@get-numeric-value</td>
-      <td>Number</td>
-      <td>ค่าตัวเลขที่แยกวิเคราะห์ (ตัวคั่นกลุ่มถูกลบออก) ปล่อยออกมาเมื่อติดตั้งและเบลอ</td>
+      <td>ปล่อยออกมาหลังจากเลือกสกุลเงิน และเบลอ รวมถึงรหัส สัญลักษณ์ (หรือรหัสหากคลุมเครือ) numericValue (float ที่แยกวิเคราะห์) และ rawValue (สตริงที่ไม่มีการจัดรูปแบบบัญญัติ)</td>
     </tr>
     <tr>
       <td>@get-currency-value</td>
-      <td>String</td>
-      <td>ค่าตัวเลขที่ไม่มีการจัดรูปแบบ (ไม่มีตัวคั่นหลักพัน) ปล่อยออกมาขณะพิมพ์ เมื่อเบลอ หรือเมื่อติดตั้ง ใช้ตัวคั่นทศนิยมของภาษาเพื่อให้ตรงกับการจัดรูปแบบของ v-model</td>
+      <td>Number | null</td>
+      <td>ค่าตัวเลขที่แยกวิเคราะห์ ปล่อยออกมาขณะพิมพ์ เมื่อเบลอ เมื่อเปลี่ยนสกุลเงิน และเมื่อติดตั้ง (หากมีค่าเริ่มต้น) ปล่อยออกมาเป็น null สำหรับอินพุตว่าง ให้การเข้าถึงโดยตรงไปยังค่าตัวเลขโดยไม่ต้องแปลงสตริง</td>
     </tr>
   </tbody>
 </table>

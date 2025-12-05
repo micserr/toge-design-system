@@ -24,6 +24,7 @@
         :disabled="props.disabled"
         :readonly="props.readonly"
         @input="onInput"
+        @blur="onBlur"
       />
       <div v-if="$slots.trailing" :class="inputClasses.trailingSlotClasses">
         <slot name="trailing" />
@@ -59,7 +60,7 @@ const emit = defineEmits(inputEmitTypes);
 const props = defineProps(inputPropTypes);
 const slots = useSlots();
 
-const { inputClasses, inputTextRef, onInput, disableClickEvent, currentLength } = useInput(props, emit, slots);
+const { inputClasses, inputTextRef, onInput, onBlur, disableClickEvent, currentLength } = useInput(props, emit, slots);
 </script>
 
 <style scoped>

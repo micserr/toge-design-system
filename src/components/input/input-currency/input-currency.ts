@@ -70,8 +70,8 @@ export const inputCurrencyEmitTypes = {
     typeof value.symbol === 'string' &&
     (value.numericValue === null || (typeof value.numericValue === 'number' && !isNaN(value.numericValue))) &&
     (value.rawValue === null || typeof value.rawValue === 'string'),
-  getNumericValue: (value: number): value is number => typeof value === 'number' && !isNaN(value),
-  getCurrencyValue: (value: string): value is string => typeof value === 'string',
+  getCurrencyValue: (value: number | null): value is number | null =>
+    value === null || (typeof value === 'number' && !isNaN(value)),
 };
 
 export interface InputCurrencyEmit {
@@ -85,8 +85,7 @@ export interface InputCurrencyEmit {
       rawValue: string | null;
     },
   ): void;
-  (event: 'getNumericValue', value: number): void;
-  (event: 'getCurrencyValue', value: string): void;
+  (event: 'getCurrencyValue', value: number | null): void;
 }
 
 export type InputCurrencyPropTypes = ExtractPropTypes<typeof inputCurrencyPropTypes>;

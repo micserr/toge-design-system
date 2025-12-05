@@ -153,27 +153,20 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
 
   const formatNumberForBlur = (value: number): string => {
     const fmt = buildNumberFormat(effectiveMinDecimals.value, effectiveMaxDecimals.value);
-    // Remove currency symbol from formatted output (component is responsible only for numeric part in input)
-    const parts = fmt.formatToParts(value).filter((p) => p.type !== 'currency');
-    let result = parts
-      .map((p) => p.value)
-      .join('')
-      .replace(/\s+/g, '');
+    // Format the number and get parts
+    const parts = fmt.formatToParts(value);
 
-    // Ensure minimum decimals are enforced by padding if needed
-    const { decimal: decimalSep } = localeSeparators.value;
-    if (effectiveMinDecimals.value > 0) {
-      const [integerPart, decimalPart] = result.split(decimalSep);
-      const currentDecimals = decimalPart ? decimalPart.length : 0;
-
-      if (currentDecimals < effectiveMinDecimals.value) {
-        // Pad with zeros to meet minimum decimals
-        const paddedDecimal = (decimalPart || '').padEnd(effectiveMinDecimals.value, '0');
-        result = integerPart + decimalSep + paddedDecimal;
+    // Extract only numeric parts (number, decimal, group)
+    let result = '';
+    for (const part of parts) {
+      if (part.type === 'currency') {
+        // Skip currency symbol/code
+        continue;
       }
+      result += part.value;
     }
 
-    return result;
+    return result.trim();
   };
 
   /**
@@ -242,8 +235,12 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     // Just update the value without formatting during typing
     // Formatting happens on blur to avoid cursor jumping
     modelValue.value = raw;
-    // Emit raw unformatted value (no thousand separators) while typing
-    emit('getCurrencyValue', raw);
+    // Emit numeric value while typing (null for empty, parsed value otherwise)
+    const parsedNumeric = raw === '' ? null : Number(raw);
+    // Only emit if it's a valid number (not NaN) or null
+    if (parsedNumeric === null || !isNaN(parsedNumeric)) {
+      emit('getCurrencyValue', parsedNumeric);
+    }
   };
 
   const handleBlur = () => {
@@ -264,12 +261,10 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
       rawValue: rawNumericString.value,
     });
 
-    if (numericValue.value !== null) emit('getNumericValue', numericValue.value);
-
-    // Emit the unformatted numeric value after blur (no thousand separators, but with locale decimal)
+    // Emit the numeric value after blur (null for empty, numeric value otherwise)
     // Use setTimeout to ensure the formatted value is set before emitting
     setTimeout(() => {
-      emit('getCurrencyValue', rawNumericString.value || '');
+      emit('getCurrencyValue', numericValue.value ?? null);
     }, 0);
   };
 
@@ -334,7 +329,7 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
       // Re-format current input according to new currency fraction rules only if currency actually changed
       if (preSwitchNumeric !== null && previousCurrency !== found.currency) {
         modelValue.value = formatNumberForBlur(preSwitchNumeric);
-        emit('getNumericValue', preSwitchNumeric);
+        emit('getCurrencyValue', preSwitchNumeric);
       }
     }
   };
@@ -477,13 +472,21 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     handleSelectedCurrency(preSelectedCurrency.value);
     if (modelValue.value && numericValue.value !== null) {
       modelValue.value = formatNumberForBlur(numericValue.value);
-      emit('getNumericValue', numericValue.value);
-      emit('getCurrencyValue', rawNumericString.value || '');
+      emit('getCurrencyValue', numericValue.value);
       emit('getSelectedCurrencyMeta', {
         currency: selected.value.currency,
         symbol: selected.value.symbol,
         numericValue: numericValue.value,
         rawValue: rawNumericString.value,
+      });
+    } else {
+      // Always emit null for empty on mount
+      emit('getCurrencyValue', null);
+      emit('getSelectedCurrencyMeta', {
+        currency: selected.value.currency,
+        symbol: selected.value.symbol,
+        numericValue: null,
+        rawValue: null,
       });
     }
   });

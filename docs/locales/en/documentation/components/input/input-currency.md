@@ -521,6 +521,79 @@ const errorMessage = computed(() => {
 </script>
 ```
 
+## Get Currency Value Event
+
+Access the raw unformatted value (like v-model) through the `@get-currency-value` event. This is useful when you need the plain input value without any formatting applied.
+
+<div>
+  <spr-input-currency 
+    id="input-currency-get-value" 
+    v-model="inputModels.getCurrencyValue" 
+    label="Get Raw Value" 
+    placeholder="Type and blur to see raw value"
+    @get-currency-value="onGetCurrencyValue"
+  />
+  <div v-if="displayedRawValue" class="spr-mt-4 spr-p-3 spr-bg-gray-100 spr-rounded">
+    <p class="spr-text-sm spr-text-gray-700">Raw Value: <span class="spr-font-bold">{{ displayedRawValue }}</span></p>
+  </div>
+</div>
+
+```vue
+<template>
+  <div>
+    <spr-input-currency
+      id="input-currency-get-value"
+      v-model="currencyValue"
+      label="Get Raw Value"
+      placeholder="Type and blur to see raw value"
+      @get-currency-value="handleGetCurrencyValue"
+    />
+    <div v-if="rawValue" class="spr-mt-4 spr-rounded spr-bg-gray-100 spr-p-3">
+      <p class="spr-text-sm spr-text-gray-700">
+        Raw Value: <span class="spr-font-bold">{{ rawValue }}</span>
+      </p>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const currencyValue = ref('');
+const rawValue = ref('');
+
+const handleGetCurrencyValue = (value: string) => {
+  rawValue.value = value;
+  console.log('Raw unformatted value:', value);
+};
+</script>
+```
+
+**Example Usage:**
+
+When you type `1234567.89` and blur, `@get-currency-value` emits `"1234567.89"` (the raw unformatted string).
+
+```typescript
+// In your component
+const onGetCurrencyValue = (value: string) => {
+  // Use the raw value for any custom logic
+  console.log('User entered:', value);
+  // Send to API
+  // Store in database
+  // Validate format
+};
+```
+
+**Key Points:**
+
+- `@get-currency-value` emits the numeric value without thousand separators
+- Uses the locale's decimal separator (e.g., `.` for en-US, `,` for de-DE)
+- While typing: emits the raw input as typed (e.g., `123`)
+- On blur: emits the formatted numeric value without thousand separators (e.g., `123.00`)
+- Also emitted on **component mount** if there's an initial value
+- NOT emitted when currency changes
+- Useful for storing the unformatted user input or for custom processing
+
 ## API Reference
 
 <table>
@@ -639,6 +712,11 @@ For additional shared props, events, slots, and behavior inherited from the base
       <td>Number</td>
       <td>Parsed numeric value (group separators stripped) emitted on mount (if initial value) and blur.</td>
     </tr>
+    <tr>
+      <td>@get-currency-value</td>
+      <td>String</td>
+      <td>Unformatted numeric value (no thousand separators) emitted while typing, on blur, or on mount. Uses the locale's decimal separator to match v-model formatting.</td>
+    </tr>
   </tbody>
 </table>
 
@@ -666,7 +744,15 @@ const inputModels = ref({
   disableRounding: '',
   customHelper: '',
   customHelperError: '',
+  getCurrencyValue: '',
 });
+
+const displayedRawValue = ref('');
+
+const onGetCurrencyValue = (value: string) => {
+  displayedRawValue.value = value;
+  console.log('Raw unformatted value:', value);
+};
 
 const meta = ref<{
   currency: string;

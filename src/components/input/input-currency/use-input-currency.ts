@@ -242,8 +242,6 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     // Just update the value without formatting during typing
     // Formatting happens on blur to avoid cursor jumping
     modelValue.value = raw;
-
-    emit('getCurrencyErrors', []);
   };
 
   const handleBlur = () => {

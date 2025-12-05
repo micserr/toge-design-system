@@ -6,7 +6,7 @@
  * - Currency selection and dropdown functionality
  * - Number input validation and formatting
  * - v-model two-way binding behavior
- * - Event emissions (update:modelValue, getSelectedCurrencyMeta, getNumericValue, getCurrencyErrors)
+ * - Event emissions (update:modelValue, getSelectedCurrencyMeta, getNumericValue)
  * - International currency support (USD, EUR, JPY, THB, PHP)
  * - Disabled states (component and currency selection)
  * - Accessibility (test IDs, focus management, proper form controls)
@@ -272,24 +272,6 @@ test.describe('InputCurrency Component', () => {
           expect(emittedMeta.numericValue).toBeCloseTo(123.45, 2);
         }
       }
-    });
-
-    test('clears errors on valid input', async ({ mount }) => {
-      // Test error clearing with valid input
-      let emittedErrors: any[] = [];
-
-      const component = await mount(InputCurrency, {
-        props: {
-          onGetCurrencyErrors: (errors: any[]) => {
-            emittedErrors = errors;
-          },
-        },
-      });
-
-      const input = component.locator('[data-testid="input-currency-text"]');
-      await input.fill('123.45');
-
-      expect(emittedErrors).toHaveLength(0);
     });
   });
 
@@ -570,9 +552,6 @@ test.describe('InputCurrency Component', () => {
           onGetNumericValue: (value: number) => {
             numericValue = value;
           },
-          onGetCurrencyErrors: (value: any[]) => {
-            errors = value;
-          },
         },
       });
 
@@ -585,7 +564,6 @@ test.describe('InputCurrency Component', () => {
       if (numericValue !== undefined) {
         expect(numericValue).toBeCloseTo(1234.56, 2);
       }
-      expect(Array.isArray(errors)).toBe(true);
     });
   });
 });

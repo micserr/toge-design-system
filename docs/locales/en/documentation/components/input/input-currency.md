@@ -635,11 +635,6 @@ For additional shared props, events, slots, and behavior inherited from the base
       <td>Emitted after selecting a currency and on blur. Includes code, symbol (or code if ambiguous), numericValue (parsed float) and rawValue (canonical unformatted string).</td>
     </tr>
     <tr>
-      <td>@get-currency-errors</td>
-      <td>Array&lt;{ title: String; message: String }&gt;</td>
-      <td>Validation or parsing errors encountered during input normalization.</td>
-    </tr>
-    <tr>
       <td>@get-numeric-value</td>
       <td>Number</td>
       <td>Parsed numeric value (group separators stripped) emitted on mount (if initial value) and blur.</td>

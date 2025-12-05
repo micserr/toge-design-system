@@ -70,18 +70,6 @@ export const inputCurrencyEmitTypes = {
     typeof value.symbol === 'string' &&
     (value.numericValue === null || (typeof value.numericValue === 'number' && !isNaN(value.numericValue))) &&
     (value.rawValue === null || typeof value.rawValue === 'string'),
-  getCurrencyErrors: (value: Array<{ title: string; message: string }>) => {
-    return (
-      Array.isArray(value) &&
-      value.every(
-        (item) =>
-          item !== null &&
-          typeof item === 'object' &&
-          typeof item.title === 'string' &&
-          typeof item.message === 'string',
-      )
-    );
-  },
   getNumericValue: (value: number): value is number => typeof value === 'number' && !isNaN(value),
 };
 
@@ -96,7 +84,6 @@ export interface InputCurrencyEmit {
       rawValue: string | null;
     },
   ): void;
-  (event: 'getCurrencyErrors', value: Array<{ title: string; message: string }>): void;
   (event: 'getNumericValue', value: number): void;
 }
 

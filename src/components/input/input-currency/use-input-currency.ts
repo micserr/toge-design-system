@@ -246,7 +246,7 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
 
   const handleBlur = () => {
     // If input is empty and baseValue is provided, use baseValue
-    if (!modelValue.value && baseValue?.value !== undefined) {
+    if (!modelValue.value && baseValue && baseValue.value !== undefined) {
       modelValue.value = formatNumberForBlur(baseValue.value);
     } else if (modelValue.value) {
       // Format only if there is a value
@@ -482,6 +482,16 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
         symbol: selected.value.symbol,
         numericValue: numericValue.value,
         rawValue: rawNumericString.value,
+      });
+    } else if (!modelValue.value && baseValue && baseValue.value !== undefined) {
+      // If empty on mount and baseValue is provided, use it
+      modelValue.value = formatNumberForBlur(baseValue.value);
+      emit('getCurrencyValue', baseValue.value);
+      emit('getSelectedCurrencyMeta', {
+        currency: selected.value.currency,
+        symbol: selected.value.symbol,
+        numericValue: baseValue.value,
+        rawValue: String(baseValue.value),
       });
     } else {
       // Always emit null for empty on mount

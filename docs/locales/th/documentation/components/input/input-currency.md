@@ -595,6 +595,70 @@ const onGetCurrencyValue = (value: number) => {
 - NOT ปล่อยออกมาเมื่อเลือกสกุลเงินเปลี่ยนแปลง
 - มีประโยชน์สำหรับการจัดเก็บ input ของผู้ใช้ที่ไม่มีการจัดรูปแบบหรือเพื่อการประมวลผลแบบกำหนดเอง
 
+## ค่าฐาน
+
+ใช้ prop `base-value` เพื่อกรอกค่าเริ่มต้นโดยอัตโนมัติลงในอินพุตเมื่อว่างและสูญเสียโฟกัส สิ่งนี้มีประโยชน์เพื่อให้แน่ใจว่ามีค่าต่ำสุดเสมอ
+
+<div class="spr-grid spr-gap-4">
+  <spr-input-currency 
+    id="input-currency-base-value-zero" 
+    v-model="inputModels.baseValueZero" 
+    label="ค่าฐาน 0" 
+    placeholder="พยายามว่างและเบลอ"
+    :base-value="0"
+  />
+  
+  <spr-input-currency 
+    id="input-currency-base-value-two" 
+    v-model="inputModels.baseValueTwo" 
+    label="ค่าฐาน 2" 
+    placeholder="พยายามว่างและเบลอ"
+    :base-value="2"
+  />
+</div>
+
+```vue
+<template>
+  <div class="spr-grid spr-gap-4">
+    <spr-input-currency
+      id="input-currency-base-value-zero"
+      v-model="amount"
+      label="ค่าฐาน 0"
+      placeholder="พยายามว่างและเบลอ"
+      :base-value="0"
+    />
+
+    <spr-input-currency
+      id="input-currency-base-value-two"
+      v-model="amount"
+      label="ค่าฐาน 2"
+      placeholder="พยายามว่างและเบลอ"
+      :base-value="2"
+    />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const amount = ref('');
+</script>
+```
+
+**ตัวอย่างการใช้งาน:**
+
+เมื่อตั้งค่า `base-value` และลบอินพุต เมื่อเบลอ องค์ประกอบจะเติมค่าฐานที่จัดรูปแบบโดยอัตโนมัติ:
+
+- ถ้าผู้ใช้ลบช่องด้วย `:base-value="0"` → เมื่อเบลอจะแสดง `0.00`
+- ถ้าผู้ใช้ลบช่องด้วย `:base-value="2"` → เมื่อเบลอจะแสดง `2.00`
+- ถ้าผู้ใช้ลบช่องด้วย `:base-value="100.50"` → เมื่อเบลอจะแสดง `100.50`
+
+สิ่งนี้มีประโยชน์สำหรับ:
+
+- การตรวจสอบให้แน่ใจว่ามีค่าต่ำสุดในแบบฟอร์มการเงิน
+- ปริมาณเริ่มต้นในรถเข็นช็อปปิ้ง
+- ค่าสำรองเมื่อลบอินพุต
+
 ## การอ้างอิง API
 
 <table>
@@ -660,6 +724,12 @@ const onGetCurrencyValue = (value: number) => {
       <td>จำนวนทศนิยมขั้นต่ำ (ปัจจุบันไม่มีการเติมรหัสอัตโนมัติ)</td>
       <td>Number</td>
       <td><code>2</code></td>
+    </tr>
+    <tr>
+      <td><code>base-value</code></td>
+      <td>ค่าตัวเลขเริ่มต้นที่จะใช้เมื่ออินพุตว่างเมื่อเบลอ หากตั้งค่าไว้ การลบอินพุตจะคืนค่านี้เมื่อสูญเสียโฟกัส</td>
+      <td>Number</td>
+      <td><code>undefined</code></td>
     </tr>
     <tr>
       <td><code>display-as-code</code></td>
@@ -740,6 +810,8 @@ const inputModels = ref({
   disableRounding: '',
   customHelper: '',
   customHelperError: '',
+  baseValueZero: '',
+  baseValueTwo: '',
 });
 
 const meta = ref<{

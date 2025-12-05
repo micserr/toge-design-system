@@ -777,6 +777,149 @@ test.describe('InputCurrency Component', () => {
       expect(emittedValue).toBeNull();
     });
   });
+
+  test.describe('Base Value', () => {
+    test('shows base value on component mount with empty input', async ({ mount }) => {
+      // Test that baseValue is applied on mount when input is empty
+      const component = await mount(InputCurrency, {
+        props: {
+          baseValue: 5,
+          minDecimals: 2,
+          maxDecimals: 2,
+        },
+      });
+
+      const input = component.locator('[data-testid="input-currency-text"]');
+      
+      // Should show base value formatted on mount
+      const value = await input.inputValue();
+      expect(value).toContain('5');
+      expect(value).toContain('.');
+    });
+
+    test('emits base value on mount with empty input', async ({ mount }) => {
+      // Test that getCurrencyValue emits baseValue on mount
+      let mountEmittedValue: number | null | undefined;
+
+      const component = await mount(InputCurrency, {
+        props: {
+          baseValue: 10,
+          onGetCurrencyValue: (value: number | null) => {
+            mountEmittedValue = value;
+          },
+        },
+      });
+
+      await component.waitFor();
+
+      // Should emit the base value on mount
+      expect(mountEmittedValue).toBe(10);
+    });
+
+    test('restores base value on blur when input is emptied', async ({ mount }) => {
+      // Test that baseValue is restored when user clears the input and blurs
+      const component = await mount(InputCurrency, {
+        props: {
+          baseValue: 3,
+          minDecimals: 2,
+          maxDecimals: 2,
+        },
+      });
+
+      const input = component.locator('[data-testid="input-currency-text"]');
+      
+      // First, verify base value is shown on mount
+      let value = await input.inputValue();
+      expect(value).toContain('3');
+
+      // Clear the input
+      await input.fill('');
+      
+      // Blur to trigger formatting
+      await input.blur();
+
+      // Wait a bit for formatting to complete
+      await component.page().waitForTimeout(100);
+
+      // Should restore base value after blur
+      value = await input.inputValue();
+      expect(value).toContain('3');
+    });
+
+    test('base value with zero', async ({ mount }) => {
+      // Test that baseValue works with 0
+      const component = await mount(InputCurrency, {
+        props: {
+          baseValue: 0,
+          minDecimals: 2,
+          maxDecimals: 2,
+        },
+      });
+
+      const input = component.locator('[data-testid="input-currency-text"]');
+      
+      // Should show 0.00
+      const value = await input.inputValue();
+      expect(value).toContain('0');
+    });
+
+    test('base value with decimal amount', async ({ mount }) => {
+      // Test that baseValue works with decimal values
+      const component = await mount(InputCurrency, {
+        props: {
+          baseValue: 50.75,
+          minDecimals: 2,
+          maxDecimals: 2,
+        },
+      });
+
+      const input = component.locator('[data-testid="input-currency-text"]');
+      
+      // Should show 50.75
+      const value = await input.inputValue();
+      expect(value).toContain('50');
+      expect(value).toContain('75');
+    });
+
+    test('no base value uses null behavior', async ({ mount }) => {
+      // Test that without baseValue, empty input stays empty or uses null
+      let emittedValue: number | null | undefined;
+
+      const component = await mount(InputCurrency, {
+        props: {
+          onGetCurrencyValue: (value: number | null) => {
+            emittedValue = value;
+          },
+        },
+      });
+
+      const input = component.locator('[data-testid="input-currency-text"]');
+      await input.fill('');
+      await input.blur();
+
+      // Should emit null when no baseValue is set
+      expect(emittedValue).toBeNull();
+    });
+
+    test('base value emits in getSelectedCurrencyMeta', async ({ mount }) => {
+      // Test that baseValue is included in currency meta on mount
+      let emittedMeta: any;
+
+      const component = await mount(InputCurrency, {
+        props: {
+          baseValue: 25,
+          onGetSelectedCurrencyMeta: (value: any) => {
+            emittedMeta = value;
+          },
+        },
+      });
+
+      await component.waitFor();
+
+      // Should include base value in metadata
+      expect(emittedMeta?.numericValue).toBe(25);
+    });
+  });
 });
 
 // ASSUMPTIONS:

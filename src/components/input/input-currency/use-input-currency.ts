@@ -242,6 +242,8 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     // Just update the value without formatting during typing
     // Formatting happens on blur to avoid cursor jumping
     modelValue.value = raw;
+    // Emit raw unformatted value (no thousand separators) while typing
+    emit('getCurrencyValue', raw);
   };
 
   const handleBlur = () => {
@@ -263,6 +265,12 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     });
 
     if (numericValue.value !== null) emit('getNumericValue', numericValue.value);
+
+    // Emit the unformatted numeric value after blur (no thousand separators, but with locale decimal)
+    // Use setTimeout to ensure the formatted value is set before emitting
+    setTimeout(() => {
+      emit('getCurrencyValue', rawNumericString.value || '');
+    }, 0);
   };
 
   const handleSelectedCurrency = (currencyRaw: unknown) => {
@@ -470,6 +478,7 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     if (modelValue.value && numericValue.value !== null) {
       modelValue.value = formatNumberForBlur(numericValue.value);
       emit('getNumericValue', numericValue.value);
+      emit('getCurrencyValue', rawNumericString.value || '');
       emit('getSelectedCurrencyMeta', {
         currency: selected.value.currency,
         symbol: selected.value.symbol,

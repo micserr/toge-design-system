@@ -521,6 +521,79 @@ const errorMessage = computed(() => {
 </script>
 ```
 
+## เหตุการณ์ Get Currency Value
+
+เข้าถึงค่าดิบที่ไม่มีการจัดรูปแบบ (เหมือน v-model) ผ่านเหตุการณ์ `@get-currency-value` นี่มีประโยชน์เมื่อคุณต้องการค่า input ธรรมชาติโดยไม่มีการจัดรูปแบบใด ๆ
+
+<div>
+  <spr-input-currency 
+    id="input-currency-get-value" 
+    v-model="inputModels.getCurrencyValue" 
+    label="รับค่าดิบ" 
+    placeholder="พิมพ์และเบลอเพื่อดูค่าดิบ"
+    @get-currency-value="onGetCurrencyValue"
+  />
+  <div v-if="displayedRawValue" class="spr-mt-4 spr-p-3 spr-bg-gray-100 spr-rounded">
+    <p class="spr-text-sm spr-text-gray-700">ค่าดิบ: <span class="spr-font-bold">{{ displayedRawValue }}</span></p>
+  </div>
+</div>
+
+```vue
+<template>
+  <div>
+    <spr-input-currency
+      id="input-currency-get-value"
+      v-model="currencyValue"
+      label="รับค่าดิบ"
+      placeholder="พิมพ์และเบลอเพื่อดูค่าดิบ"
+      @get-currency-value="handleGetCurrencyValue"
+    />
+    <div v-if="rawValue" class="spr-mt-4 spr-rounded spr-bg-gray-100 spr-p-3">
+      <p class="spr-text-sm spr-text-gray-700">
+        ค่าดิบ: <span class="spr-font-bold">{{ rawValue }}</span>
+      </p>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const currencyValue = ref('');
+const rawValue = ref('');
+
+const handleGetCurrencyValue = (value: string) => {
+  rawValue.value = value;
+  console.log('Raw unformatted value:', value);
+};
+</script>
+```
+
+**ตัวอย่างการใช้งาน:**
+
+เมื่อคุณพิมพ์ `1234567.89` และเบลอ `@get-currency-value` จะปล่อย `"1234567.89"` (สตริงดิบที่ไม่มีการจัดรูปแบบ)
+
+```typescript
+// ในองค์ประกอบของคุณ
+const onGetCurrencyValue = (value: string) => {
+  // ใช้ค่าดิบสำหรับตรรมชาติแบบกำหนดเอง
+  console.log('User entered:', value);
+  // ส่งไปยัง API
+  // เก็บในฐานข้อมูล
+  // ตรวจสอบรูปแบบ
+};
+```
+
+**ประเด็นหลัก:**
+
+- `@get-currency-value` ปล่อยค่าตัวเลขโดยไม่มีตัวคั่นหลักพัน
+- ใช้ตัวคั่นทศนิยมของภาษา (เช่น `.` สำหรับ en-US, `,` สำหรับ de-DE)
+- ขณะพิมพ์: ปล่อยค่าอินพุตดิบตามที่พิมพ์ (เช่น `123`)
+- เมื่อเบลอ: ปล่อยค่าตัวเลขที่จัดรูปแบบแล้วโดยไม่มีตัวคั่นหลักพัน (เช่น `123.00`)
+- ปล่อยออกมาเมื่อ **ติดตั้งองค์ประกอบ** หากมีค่าเริ่มต้น
+- NOT ปล่อยออกมาเมื่อเลือกสกุลเงินเปลี่ยนแปลง
+- มีประโยชน์สำหรับการจัดเก็บ input ของผู้ใช้ที่ไม่มีการจัดรูปแบบหรือเพื่อการประมวลผลแบบกำหนดเอง
+
 ## การอ้างอิง API
 
 <table>
@@ -638,6 +711,11 @@ const errorMessage = computed(() => {
       <td>@get-numeric-value</td>
       <td>Number</td>
       <td>ค่าตัวเลขที่แยกวิเคราะห์ (ตัวคั่นกลุ่มถูกลบออก) ปล่อยออกมาเมื่อติดตั้งและเบลอ</td>
+    </tr>
+    <tr>
+      <td>@get-currency-value</td>
+      <td>String</td>
+      <td>ค่าตัวเลขที่ไม่มีการจัดรูปแบบ (ไม่มีตัวคั่นหลักพัน) ปล่อยออกมาขณะพิมพ์ เมื่อเบลอ หรือเมื่อติดตั้ง ใช้ตัวคั่นทศนิยมของภาษาเพื่อให้ตรงกับการจัดรูปแบบของ v-model</td>
     </tr>
   </tbody>
 </table>

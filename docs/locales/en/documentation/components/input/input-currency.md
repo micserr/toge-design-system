@@ -523,7 +523,7 @@ const errorMessage = computed(() => {
 
 ## Get Currency Value Event
 
-Access the raw unformatted value (like v-model) through the `@get-currency-value` event. This is useful when you need the plain input value without any formatting applied.
+Access the numeric value directly through the `@get-currency-value` event. This emits the parsed numeric value, making it easy to work with currency values without string conversion.
 
 <div>
   <spr-input-currency 
@@ -560,39 +560,44 @@ Access the raw unformatted value (like v-model) through the `@get-currency-value
 import { ref } from 'vue';
 
 const currencyValue = ref('');
-const rawValue = ref('');
+const numericValue = ref<number | null>(null);
 
-const handleGetCurrencyValue = (value: string) => {
-  rawValue.value = value;
-  console.log('Raw unformatted value:', value);
+const handleGetCurrencyValue = (value: number | null) => {
+  numericValue.value = value;
+  console.log('Numeric value:', value);
 };
 </script>
 ```
 
 **Example Usage:**
 
-When you type `1234567.89` and blur, `@get-currency-value` emits `"1234567.89"` (the raw unformatted string).
+When you type `1234567.89` and blur, `@get-currency-value` emits `1234567.89` (a number).
 
 ```typescript
 // In your component
-const onGetCurrencyValue = (value: string) => {
-  // Use the raw value for any custom logic
+const onGetCurrencyValue = (value: number | null) => {
+  // Use the numeric value directly (null for empty input)
+  if (value === null) {
+    console.log('Input is empty');
+    return;
+  }
   console.log('User entered:', value);
   // Send to API
   // Store in database
-  // Validate format
+  // Perform calculations
+  const discounted = value * 0.9;
 };
 ```
 
 **Key Points:**
 
-- `@get-currency-value` emits the numeric value without thousand separators
-- Uses the locale's decimal separator (e.g., `.` for en-US, `,` for de-DE)
-- While typing: emits the raw input as typed (e.g., `123`)
-- On blur: emits the formatted numeric value without thousand separators (e.g., `123.00`)
+- `@get-currency-value` emits the parsed numeric value (Number type)
+- Direct numeric value useful for calculations, API calls, and storage
+- While typing: emits the numeric value as typed (e.g., `123`)
+- On blur: emits the parsed numeric value with decimals applied (e.g., `123.00`)
 - Also emitted on **component mount** if there's an initial value
-- NOT emitted when currency changes
-- Useful for storing the unformatted user input or for custom processing
+- Emitted on currency change when applicable
+- No need for string conversion - use it directly in calculations
 
 ## API Reference
 
@@ -708,14 +713,9 @@ For additional shared props, events, slots, and behavior inherited from the base
       <td>Emitted after selecting a currency and on blur. Includes code, symbol (or code if ambiguous), numericValue (parsed float) and rawValue (canonical unformatted string).</td>
     </tr>
     <tr>
-      <td>@get-numeric-value</td>
-      <td>Number</td>
-      <td>Parsed numeric value (group separators stripped) emitted on mount (if initial value) and blur.</td>
-    </tr>
-    <tr>
       <td>@get-currency-value</td>
-      <td>String</td>
-      <td>Unformatted numeric value (no thousand separators) emitted while typing, on blur, or on mount. Uses the locale's decimal separator to match v-model formatting.</td>
+      <td>Number | null</td>
+      <td>Parsed numeric value emitted while typing, on blur, on currency change, and on mount (if initial value). Emits null for empty input. Provides direct access to the numeric value without string conversion.</td>
     </tr>
   </tbody>
 </table>

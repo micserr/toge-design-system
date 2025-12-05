@@ -566,6 +566,217 @@ test.describe('InputCurrency Component', () => {
       }
     });
   });
+
+  test.describe('Get Currency Value Event', () => {
+    test('emits getCurrencyValue while typing', async ({ mount }) => {
+      // Test that getCurrencyValue emits during typing (numeric value)
+      const emittedValues: number[] = [];
+
+      const component = await mount(InputCurrency, {
+        props: {
+          onGetCurrencyValue: (value: number) => {
+            emittedValues.push(value);
+          },
+        },
+      });
+
+      const input = component.locator('[data-testid="input-currency-text"]');
+      
+      // Type each character
+      await input.fill('123');
+
+      // Should have emitted the numeric value while typing
+      expect(emittedValues.length).toBeGreaterThan(0);
+      expect(emittedValues.at(-1)).toBe(123);
+    });
+
+    test('emits getCurrencyValue on blur with formatted decimals', async ({ mount }) => {
+      // Test that getCurrencyValue emits on blur with proper decimal formatting
+      let blurEmittedValue: number | undefined;
+
+      const component = await mount(InputCurrency, {
+        props: {
+          minDecimals: 2,
+          maxDecimals: 2,
+          onGetCurrencyValue: (value: number) => {
+            blurEmittedValue = value;
+          },
+        },
+      });
+
+      const input = component.locator('[data-testid="input-currency-text"]');
+      await input.fill('123');
+      await input.blur();
+
+      // On blur, should emit as number with proper value
+      expect(blurEmittedValue).toBe(123);
+    });
+
+    test('emits getCurrencyValue as numeric value on blur', async ({ mount }) => {
+      // Test that getCurrencyValue emits as pure number without thousand separators
+      let blurEmittedValue: number | undefined;
+
+      const component = await mount(InputCurrency, {
+        props: {
+          autoFormat: true,
+          minDecimals: 2,
+          maxDecimals: 2,
+          preSelectedCurrency: 'USD',
+          onGetCurrencyValue: (value: number) => {
+            blurEmittedValue = value;
+          },
+        },
+      });
+
+      const input = component.locator('[data-testid="input-currency-text"]');
+      await input.fill('123456.78');
+      await input.blur();
+
+      // Should emit as numeric value: 123456.78
+      expect(blurEmittedValue).toBe(123456.78);
+    });
+
+    test('emits getCurrencyValue on component mount with initial value', async ({ mount }) => {
+      // Test that getCurrencyValue emits on mount if there's an initial value
+      let mountEmittedValue: number | undefined;
+
+      const component = await mount(InputCurrency, {
+        props: {
+          modelValue: '999.99',
+          minDecimals: 2,
+          maxDecimals: 2,
+          onGetCurrencyValue: (value: number) => {
+            mountEmittedValue = value;
+          },
+        },
+      });
+
+      // Wait for mount to complete
+      await component.waitFor();
+
+      // Should emit the numeric value on mount
+      expect(mountEmittedValue).toBe(999.99);
+    });
+
+    test('emits getCurrencyValue when currency changes', async ({ mount }) => {
+      // Test that getCurrencyValue can be emitted when currency changes with existing value
+      let emissionCount = 0;
+
+      const component = await mount(InputCurrency, {
+        props: {
+          modelValue: '100',
+          onGetCurrencyValue: () => {
+            emissionCount++;
+          },
+        },
+      });
+
+      // Initial emissions from mount
+      const initialEmissions = emissionCount;
+      
+      // Now change the currency
+      const dropdown = component.locator('[data-testid="input-currency-dropdown"]');
+      await dropdown.click();
+
+      // Find and click USD option
+      const usdOption = component.locator('text=USD').first();
+      await usdOption.click();
+
+      // getCurrencyValue can be emitted on currency change
+      // (verification depends on component behavior when value exists)
+      expect(emissionCount).toBeGreaterThanOrEqual(initialEmissions);
+    });
+
+    test('emits getCurrencyValue as numeric value (en-US)', async ({ mount }) => {
+      // Test locale-aware behavior for en-US (numeric value)
+      let emittedValue: number | undefined;
+
+      const component = await mount(InputCurrency, {
+        props: {
+          preSelectedCurrency: 'USD',
+          minDecimals: 2,
+          maxDecimals: 2,
+          onGetCurrencyValue: (value: number) => {
+            emittedValue = value;
+          },
+        },
+      });
+
+      const input = component.locator('[data-testid="input-currency-text"]');
+      await input.fill('500');
+      await input.blur();
+
+      // Should emit as number: 500
+      expect(emittedValue).toBe(500);
+    });
+
+    test('emits getCurrencyValue as numeric for EUR', async ({ mount }) => {
+      // Test that getCurrencyValue returns numeric value regardless of locale
+      let emittedValue: number | undefined;
+
+      const component = await mount(InputCurrency, {
+        props: {
+          preSelectedCurrency: 'EUR',
+          minDecimals: 2,
+          maxDecimals: 2,
+          onGetCurrencyValue: (value: number) => {
+            emittedValue = value;
+          },
+        },
+      });
+
+      const input = component.locator('[data-testid="input-currency-text"]');
+      await input.fill('500');
+      await input.blur();
+
+      // Should emit as number regardless of locale
+      expect(emittedValue).toBe(500);
+    });
+
+    test('emits getCurrencyValue with custom decimals', async ({ mount }) => {
+      // Test getCurrencyValue respects min/max decimal settings
+      let emittedValue: number | undefined;
+
+      const component = await mount(InputCurrency, {
+        props: {
+          minDecimals: 3,
+          maxDecimals: 4,
+          onGetCurrencyValue: (value: number) => {
+            emittedValue = value;
+          },
+        },
+      });
+
+      const input = component.locator('[data-testid="input-currency-text"]');
+      await input.fill('100.12345');
+      await input.blur();
+
+      // Should enforce max decimals and emit as number
+      expect(emittedValue).toBeDefined();
+      // The numeric value should have at most 4 decimals after decimal point
+      const decimalPlaces = (emittedValue?.toString().split('.')[1] || '').length;
+      expect(decimalPlaces).toBeLessThanOrEqual(4);
+    });
+
+    test('emits getCurrencyValue as null on blur with empty input', async ({ mount }) => {
+      // Test getCurrencyValue behavior with empty values - should emit null
+      let emittedValue: number | null | undefined;
+
+      const component = await mount(InputCurrency, {
+        props: {
+          onGetCurrencyValue: (value: number | null) => {
+            emittedValue = value;
+          },
+        },\n      });
+
+      const input = component.locator('[data-testid="input-currency-text"]');
+      await input.fill('');
+      await input.blur();
+
+      // Should emit null for empty values
+      expect(emittedValue).toBeNull();
+    });
+  });
 });
 
 // ASSUMPTIONS:

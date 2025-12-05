@@ -599,6 +599,70 @@ const onGetCurrencyValue = (value: number | null) => {
 - Emitted on currency change when applicable
 - No need for string conversion - use it directly in calculations
 
+## Base Value
+
+Use the `base-value` prop to automatically fill the input with a default value when it's empty and loses focus. This is useful for ensuring a minimum value is always present.
+
+<div class="spr-grid spr-gap-4">
+  <spr-input-currency 
+    id="input-currency-base-value-zero" 
+    v-model="inputModels.baseValueZero" 
+    label="With Base Value 0" 
+    placeholder="Try to empty and blur"
+    :base-value="0"
+  />
+  
+  <spr-input-currency 
+    id="input-currency-base-value-two" 
+    v-model="inputModels.baseValueTwo" 
+    label="With Base Value 2" 
+    placeholder="Try to empty and blur"
+    :base-value="2"
+  />
+</div>
+
+```vue
+<template>
+  <div class="spr-grid spr-gap-4">
+    <spr-input-currency
+      id="input-currency-base-value-zero"
+      v-model="amount"
+      label="With Base Value 0"
+      placeholder="Try to empty and blur"
+      :base-value="0"
+    />
+
+    <spr-input-currency
+      id="input-currency-base-value-two"
+      v-model="amount"
+      label="With Base Value 2"
+      placeholder="Try to empty and blur"
+      :base-value="2"
+    />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const amount = ref('');
+</script>
+```
+
+**Example Usage:**
+
+When `base-value` is set and the input is emptied, on blur the component will automatically fill with the base value formatted:
+
+- If user empties field with `:base-value="0"` → On blur shows `0.00`
+- If user empties field with `:base-value="2"` → On blur shows `2.00`
+- If user empties field with `:base-value="100.50"` → On blur shows `100.50`
+
+This is useful for:
+
+- Ensuring minimum values in financial forms
+- Default quantities in shopping carts
+- Fallback values when input is cleared
+
 ## API Reference
 
 <table>
@@ -664,6 +728,12 @@ const onGetCurrencyValue = (value: number | null) => {
       <td>Minimum number of fractional digits (currently not padded automatically if you removed padding logic).</td>
       <td>Number</td>
       <td><code>2</code></td>
+    </tr>
+    <tr>
+      <td><code>base-value</code></td>
+      <td>Default numeric value to use when input is empty on blur. If set, emptying the input will restore this value when losing focus.</td>
+      <td>Number</td>
+      <td><code>undefined</code></td>
     </tr>
     <tr>
       <td><code>display-as-code</code></td>
@@ -745,6 +815,8 @@ const inputModels = ref({
   customHelper: '',
   customHelperError: '',
   getCurrencyValue: '',
+  baseValueZero: '',
+  baseValueTwo: '',
 });
 
 const displayedRawValue = ref('');

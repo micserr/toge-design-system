@@ -26,6 +26,7 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     maxDecimals,
     minDecimals,
     disableRounding,
+    baseValue,
   } = toRefs(props);
 
   const inputCurrencyClasses: ComputedRef<InputCurrencyClasses> = computed(() => {
@@ -244,8 +245,11 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
   };
 
   const handleBlur = () => {
-    // Format only if there is a value
-    if (modelValue.value) {
+    // If input is empty and baseValue is provided, use baseValue
+    if (!modelValue.value && baseValue?.value !== undefined) {
+      modelValue.value = formatNumberForBlur(baseValue.value);
+    } else if (modelValue.value) {
+      // Format only if there is a value
       let out = modelValue.value;
 
       out = formatOnBlur(out);

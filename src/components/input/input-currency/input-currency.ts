@@ -44,6 +44,10 @@ export const inputCurrencyPropTypes = {
     type: Number,
     default: 2,
   },
+  baseValue: {
+    type: Number,
+    default: undefined,
+  },
   displayAsCode: {
     type: Boolean,
     default: true,

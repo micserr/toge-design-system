@@ -538,7 +538,6 @@ test.describe('InputCurrency Component', () => {
       let modelValue: string = '';
       let currencyMeta: any;
       let numericValue: number | undefined;
-      const errors: any[] = [];
 
       const component = await mount(InputCurrency, {
         props: {

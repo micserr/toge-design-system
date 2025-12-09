@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.26.2 (2025-12-9)
+
+- Fix:
+  - Apply support for the custom display helper for those inputs that have not yet been implemented. (Currency, Dropdown, Search)
+  - Fix lint error in table
+  - Update the Input Currency documentation
+  - Fix the Input Currency issues encountered
+  - Added support for get currency value (Numeric with no format)
+  - Added support for base value
+
 ## 2.26.1 (2025-12-2)
 
 - Fix:

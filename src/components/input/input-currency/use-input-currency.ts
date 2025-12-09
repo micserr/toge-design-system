@@ -22,7 +22,6 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     preSelectedCurrency,
     disabledCountryCurrency,
     disabled,
-    autoFormat,
     maxDecimals,
     minDecimals,
     disableRounding,
@@ -121,23 +120,6 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     cleaned = cleaned.replace(/[^0-9.-]/g, '');
     return cleaned || null;
   });
-
-  /**
-   * Derive the default fraction digits for a currency using Intl metadata.
-   * Falls back to 2 when unavailable.
-   */
-  const getCurrencyFractionDigits = (code: string): number => {
-    try {
-      const fmt = new Intl.NumberFormat('en', { style: 'currency', currency: code });
-      const resolved = fmt.resolvedOptions();
-      if (resolved && typeof resolved.minimumFractionDigits === 'number') {
-        return resolved.minimumFractionDigits;
-      }
-    } catch {
-      /* ignore */
-    }
-    return 2;
-  };
 
   const effectiveMinDecimals = computed(() => {
     // Minimum is just the user's minDecimals value

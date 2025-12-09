@@ -17,13 +17,7 @@
       </spr-table-actions>
     </div>
     <div :class="getTableClasses.tableBackgroundClasses">
-      <table
-        :key="tableKey"
-        aria-describedby="describe"
-        class="spr-h-full spr-w-full"
-        cellspacing="0"
-        cellpadding="0"
-      >
+      <table :key="tableKey" aria-describedby="describe" class="spr-h-full spr-w-full" cellspacing="0" cellpadding="0">
         <thead>
           <tr v-if="!(props.removeHeaderOnEmpty && tableData.length <= 0)">
             <th
@@ -45,12 +39,16 @@
               :class="[getTableClasses.headerClasses(header)]"
               :style="{ width: header?.width }"
             >
-              <div v-if="props.showHeaderFilter" class="spr-cursor-pointer hover:spr-background-color-hover active:spr-background-color-pressed spr-absolute spr-inset-0 spr-z-[2]" @click="handleHeaderDropdownClick(keyHeader)"></div>
+              <div
+                v-if="props.showHeaderFilter"
+                class="hover:spr-background-color-hover active:spr-background-color-pressed spr-absolute spr-inset-0 spr-z-[2] spr-cursor-pointer"
+                @click="handleHeaderDropdownClick(keyHeader)"
+              ></div>
               <!-- Header with Dropdown Filter -->
               <spr-table-header-dropdown
                 v-if="props.showHeaderFilter"
-                :ref="(el: unknown) => setHeaderDropdownRef(el, keyHeader)"      
                 :id="`th-dropdown-${keyHeader}`"
+                :ref="(el: unknown) => setHeaderDropdownRef(el, keyHeader)"
                 :header="header"
                 :is-sortable="true"
                 :header-classes="getTableClasses.headerNameClass"
@@ -83,7 +81,12 @@
                   />
                 </span>
                 <span v-if="props.showHeaderFilter">
-                  <Icon icon="ph:funnel-simple" height="20" width="20" class="spr-ml-size-spacing-5xs spr-text-[#4B685E]" />
+                  <Icon
+                    icon="ph:funnel-simple"
+                    height="20"
+                    width="20"
+                    class="spr-ml-size-spacing-5xs spr-text-[#4B685E]"
+                  />
                 </span>
               </div>
             </th>
@@ -242,7 +245,7 @@ const emit = defineEmits(tableEmitTypes);
 const slots = useSlots();
 const headerDropdownRefs = ref<Record<string, Element | null>>({});
 
-const setHeaderDropdownRef = (el: unknown, key: string | number) => {  
+const setHeaderDropdownRef = (el: unknown, key: string | number) => {
   if (el) {
     headerDropdownRefs.value[String(key)] = el as Element;
   }

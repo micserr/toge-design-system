@@ -1,5 +1,9 @@
 <template>
   <spr-input v-bind="$attrs">
+    <template v-for="(_, slotName) in $slots" #[slotName]>
+      <slot :name="slotName" />
+    </template>
+
     <template #icon>
       <Icon icon="ph:magnifying-glass" />
     </template>

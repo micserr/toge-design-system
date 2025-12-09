@@ -101,6 +101,7 @@ export const inputPropTypes = {
 
 export const inputEmitTypes = {
   'update:modelValue': (value: string | number): boolean => typeof value === 'string' || typeof value === 'number',
+  blur: (event: Event): boolean => event instanceof Event,
 };
 
 export type InputEmitTypes = { 'update:modelValue': typeof inputEmitTypes };

@@ -22,10 +22,10 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     preSelectedCurrency,
     disabledCountryCurrency,
     disabled,
-    autoFormat,
     maxDecimals,
     minDecimals,
     disableRounding,
+    baseValue,
   } = toRefs(props);
 
   const inputCurrencyClasses: ComputedRef<InputCurrencyClasses> = computed(() => {
@@ -121,97 +121,35 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     return cleaned || null;
   });
 
-  /**
-   * Derive the default fraction digits for a currency using Intl metadata.
-   * Falls back to 2 when unavailable.
-   */
-  const getCurrencyFractionDigits = (code: string): number => {
-    try {
-      const fmt = new Intl.NumberFormat('en', { style: 'currency', currency: code });
-      const resolved = fmt.resolvedOptions();
-      if (resolved && typeof resolved.minimumFractionDigits === 'number') {
-        return resolved.minimumFractionDigits;
-      }
-    } catch {
-      /* ignore */
-    }
-    return 2;
-  };
-
-  const currentCurrencyFractionDigits = computed(() => getCurrencyFractionDigits(selected.value.currency));
-
   const effectiveMinDecimals = computed(() => {
-    // Minimum is the greater of user minDecimals and native fraction digits lower bound (native min == native max in most cases)
+    // Minimum is just the user's minDecimals value
     const userMin = Math.min(Math.max(0, minDecimals.value), 6);
-    return Math.min(6, Math.max(0, Math.min(userMin, maxDecimals.value)));
+    return Math.min(6, Math.max(0, userMin));
   });
 
   const effectiveMaxDecimals = computed(() => {
-    // Use native fraction digits as baseline but allow user to reduce (rare) or extend (not beyond 6)
-    const native = currentCurrencyFractionDigits.value; // e.g. JPY => 0, USD => 2
+    // Use the user-provided maxDecimals value directly (clamped to 0-6)
     const userMax = Math.min(Math.max(0, maxDecimals.value), 6);
-    // If user sets max below native, keep native to respect currency standard.
-    const adjustedMax = Math.max(native, userMax);
     // Ensure max >= min
-    return Math.max(adjustedMax, effectiveMinDecimals.value);
+    return Math.max(userMax, effectiveMinDecimals.value);
   });
-
-  const clampFractionDigits = (frac: string): string => frac.slice(0, effectiveMaxDecimals.value);
 
   const formatNumberForBlur = (value: number): string => {
     const fmt = buildNumberFormat(effectiveMinDecimals.value, effectiveMaxDecimals.value);
-    // Remove currency symbol from formatted output (component is responsible only for numeric part in input)
-    const parts = fmt.formatToParts(value).filter((p) => p.type !== 'currency');
-    return parts
-      .map((p) => p.value)
-      .join('')
-      .replace(/\s+/g, '');
-  };
+    // Format the number and get parts
+    const parts = fmt.formatToParts(value);
 
-  /**
-   * Formats a numeric string (no currency symbol) applying grouping and truncating decimals but not padding.
-   * Used while user is still interacting (on input) if autoFormat.
-   */
-  const handleFormatDisplay = (raw: string): string => {
-    if (!autoFormat.value) return raw;
-    if (!raw) return '';
-    // Detect user decimal char as either '.' or last ','
-    let work = raw;
-    // Strip spaces
-    work = work.replace(/\s+/g, '');
-    // Allow only digits, separators, minus
-    work = work.replace(/[^0-9,.-]/g, '');
-    let sign = '';
-    if (work.startsWith('-')) {
-      sign = '-';
-      work = work.slice(1);
+    // Extract only numeric parts (number, decimal, group)
+    let result = '';
+    for (const part of parts) {
+      if (part.type === 'currency') {
+        // Skip currency symbol/code
+        continue;
+      }
+      result += part.value;
     }
-    const lastDot = work.lastIndexOf('.');
-    const lastComma = work.lastIndexOf(',');
-    const lastSep = Math.max(lastDot, lastComma);
-    let intPart: string;
-    let fracPart = '';
-    if (lastSep !== -1) {
-      intPart = work.slice(0, lastSep).replace(/[.,]/g, '');
-      fracPart = work.slice(lastSep + 1);
-    } else {
-      intPart = work.replace(/[.,]/g, '');
-    }
-    if (!/^[0-9]*$/.test(intPart) || !/^[0-9]*$/.test(fracPart)) return raw;
-    const truncatedFrac = clampFractionDigits(fracPart);
-    const intNumber = Number(intPart || '0');
-    // Use Intl just for grouping integer portion
-    const fmtInt = buildNumberFormat(0, 0);
-    const groupedInt = fmtInt
-      .formatToParts(intNumber)
-      .filter((p) => p.type === 'integer' || p.type === 'group')
-      .map((p) => p.value)
-      .join('');
-    if (truncatedFrac.length > 0 || lastSep !== -1) {
-      // Use current locale decimal symbol
-      return sign + groupedInt + localeSeparators.value.decimal + truncatedFrac;
-    }
-    return sign + groupedInt;
+
+    return result.trim();
   };
 
   /**
@@ -258,39 +196,42 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     return formatNumberForBlur(numeric);
   };
 
-  const handleCurrencyInput = (event: InputEvent) => {
-    const inputEl = event.target as HTMLInputElement;
+  const handleCurrencyInput = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    let raw = target.value;
 
-    let raw = inputEl.value;
-
+    // Remove spaces
     raw = raw.replace(/\s+/g, '');
 
-    let sign = '';
+    // Only allow digits and dots (.) as decimal separator
+    // Reject commas (,) during typing - they will be added during formatting on blur
+    raw = raw.replace(/[^0-9.]/g, '');
 
-    if (raw.startsWith('-')) {
-      sign = '-';
-      raw = raw.slice(1);
+    // Handle multiple dots (keep only the last one as decimal separator)
+    const lastDot = raw.lastIndexOf('.');
+    if (lastDot !== -1) {
+      const beforeDecimal = raw.slice(0, lastDot).replace(/\./g, '');
+      const afterDecimal = raw.slice(lastDot + 1).replace(/\./g, '');
+      raw = beforeDecimal + '.' + afterDecimal;
     }
 
-    raw = raw.replace(/[^0-9.,-]/g, '');
-
-    const firstDot = raw.indexOf('.');
-
-    if (firstDot !== -1) {
-      raw = raw.slice(0, firstDot + 1) + raw.slice(firstDot + 1).replace(/\./g, '');
+    // Just update the value without formatting during typing
+    // Formatting happens on blur to avoid cursor jumping
+    modelValue.value = raw;
+    // Emit numeric value while typing (null for empty, parsed value otherwise)
+    const parsedNumeric = raw === '' ? null : Number(raw);
+    // Only emit if it's a valid number (not NaN) or null
+    if (parsedNumeric === null || !isNaN(parsedNumeric)) {
+      emit('getCurrencyValue', parsedNumeric);
     }
-
-    // Do not truncate fractional digits while typing; allow user to input freely.
-    const formatted = handleFormatDisplay(sign + raw);
-
-    modelValue.value = formatted;
-
-    emit('getCurrencyErrors', []);
   };
 
   const handleBlur = () => {
-    // Format only if there is a value
-    if (modelValue.value) {
+    // If input is empty and baseValue is provided, use baseValue
+    if (!modelValue.value && baseValue && baseValue.value !== undefined) {
+      modelValue.value = formatNumberForBlur(baseValue.value);
+    } else if (modelValue.value) {
+      // Format only if there is a value
       let out = modelValue.value;
 
       out = formatOnBlur(out);
@@ -306,7 +247,11 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
       rawValue: rawNumericString.value,
     });
 
-    if (numericValue.value !== null) emit('getNumericValue', numericValue.value);
+    // Emit the numeric value after blur (null for empty, numeric value otherwise)
+    // Use setTimeout to ensure the formatted value is set before emitting
+    setTimeout(() => {
+      emit('getCurrencyValue', numericValue.value ?? null);
+    }, 0);
   };
 
   const handleSelectedCurrency = (currencyRaw: unknown) => {
@@ -370,7 +315,7 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
       // Re-format current input according to new currency fraction rules only if currency actually changed
       if (preSwitchNumeric !== null && previousCurrency !== found.currency) {
         modelValue.value = formatNumberForBlur(preSwitchNumeric);
-        emit('getNumericValue', preSwitchNumeric);
+        emit('getCurrencyValue', preSwitchNumeric);
       }
     }
   };
@@ -379,7 +324,12 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     popperState.value = state;
   };
 
-  const dropdownDisplayText = computed(() => (props.displayAsCode ? selected.value.currency : selected.value.symbol));
+  const dropdownDisplayText = computed(() => {
+    if (props.displayAsSymbol) {
+      return selected.value.symbol;
+    }
+    return props.displayAsCode ? selected.value.currency : selected.value.symbol;
+  });
 
   // #region - Set Currency Options
   // Collect currency codes first so we can derive ambiguity and symbols deterministically.
@@ -508,12 +458,31 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
     handleSelectedCurrency(preSelectedCurrency.value);
     if (modelValue.value && numericValue.value !== null) {
       modelValue.value = formatNumberForBlur(numericValue.value);
-      emit('getNumericValue', numericValue.value);
+      emit('getCurrencyValue', numericValue.value);
       emit('getSelectedCurrencyMeta', {
         currency: selected.value.currency,
         symbol: selected.value.symbol,
         numericValue: numericValue.value,
         rawValue: rawNumericString.value,
+      });
+    } else if (!modelValue.value && baseValue && baseValue.value !== undefined) {
+      // If empty on mount and baseValue is provided, use it
+      modelValue.value = formatNumberForBlur(baseValue.value);
+      emit('getCurrencyValue', baseValue.value);
+      emit('getSelectedCurrencyMeta', {
+        currency: selected.value.currency,
+        symbol: selected.value.symbol,
+        numericValue: baseValue.value,
+        rawValue: String(baseValue.value),
+      });
+    } else {
+      // Always emit null for empty on mount
+      emit('getCurrencyValue', null);
+      emit('getSelectedCurrencyMeta', {
+        currency: selected.value.currency,
+        symbol: selected.value.symbol,
+        numericValue: null,
+        rawValue: null,
       });
     }
   });

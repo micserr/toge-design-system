@@ -161,6 +161,10 @@ export const useInput = (
     modelValue.value = value;
   };
 
+  const onBlur = (event: Event) => {
+    emit('blur', event);
+  };
+
   const disableClickEvent = (event: Event) => {
     if (disabled.value) {
       event.preventDefault();
@@ -172,6 +176,7 @@ export const useInput = (
     inputTextRef,
     inputClasses,
     onInput,
+    onBlur,
     disableClickEvent,
     currentLength,
     hasCharLimit,

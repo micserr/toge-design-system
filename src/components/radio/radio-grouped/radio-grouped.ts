@@ -1,4 +1,3 @@
-import { full } from '@cloudinary/url-gen/qualifiers/fontHinting';
 import type { PropType, ExtractPropTypes } from 'vue';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;

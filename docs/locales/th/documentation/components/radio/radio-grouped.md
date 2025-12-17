@@ -550,7 +550,7 @@ interface RadioOption {
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import SprRadioGrouped from "@/components/radio-grouped/radio/radio-grouped.vue";
+import SprRadioGrouped from "@/components/radio/radio-grouped/radio-grouped.vue";
 import SprLogo from "@/components/logo/logo.vue";
 
 const radioModel = ref({

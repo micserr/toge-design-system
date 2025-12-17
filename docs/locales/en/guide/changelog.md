@@ -5,7 +5,7 @@
 - Fix:
   - Added support for Radio and Radio Group choicebox.
   - Update Radio and Radio Group Documentation
-  - Fix list ddisabled state with pre-seleccted value
+  - Fix list disabled state with pre-selected value
     ([#36589](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36589) by @jarias)
 
 ## 2.26.2 (2025-12-9)

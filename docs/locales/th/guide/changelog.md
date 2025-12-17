@@ -1,5 +1,13 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.26.3 (2025-12-17)
+
+- แก้ไข:
+  - เพิ่มการรองรับ Radio และ Radio Group choicebox
+  - อัปเดตเอกสารประกอบ Radio และ Radio Group
+  - แก้ไขสถานะ list disabled พร้อมค่าที่เลือกไว้ล่วงหน้า
+    ([#36589](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36589) โดย @jarias)
+
 ## 2.26.2 (2025-12-9)
 
 - แก้ไข:

@@ -5,7 +5,6 @@ import classNames from 'classnames';
 
 import type { SetupContext } from 'vue';
 import type { RadioPropTypes, RadioEmitTypes } from './radio';
-import { c } from 'node_modules/vite/dist/node/moduleRunnerTransport.d-DJ_mE5sf';
 
 interface RadioClasses {
   baseClasses: string;

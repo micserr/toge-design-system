@@ -88,6 +88,50 @@ const radioModel = ref('');
 </script>
 ```
 
+## Choice Box
+
+Use the `choiceBox` prop to display radio buttons in a choice box style with an expanded clickable area. This makes the entire component clickable, improving usability and user experience.
+
+<div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
+  <spr-radio id="choicebox1" v-model="radioModel.radio4" name="radio_choicebox" value="option1" choice-box full-width>
+    <div class="spr-font-semibold">Option 1</div>
+    <div class="spr-text-sm">Select this option for feature A</div>
+  </spr-radio>
+  <spr-radio id="choicebox2" v-model="radioModel.radio4" name="radio_choicebox" value="option2" choice-box full-width>
+    <div class="spr-font-semibold">Option 2</div>
+    <div class="spr-text-sm">Select this option for feature B</div>
+  </spr-radio>
+  <spr-radio id="choicebox3" v-model="radioModel.radio4" name="radio_choicebox" value="option3" choice-box full-width>
+    <div class="spr-font-semibold">Option 3</div>
+    <div class="spr-text-sm">Select this option for feature C</div>
+  </spr-radio>
+</div>
+
+```vue
+<template>
+  <div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
+    <spr-radio id="choicebox1" v-model="selectedOption" name="radio_choicebox" value="option1" choice-box full-width>
+      <div class="spr-font-semibold">Option 1</div>
+      <div class="spr-text-sm">Select this option for feature A</div>
+    </spr-radio>
+    <spr-radio id="choicebox2" v-model="selectedOption" name="radio_choicebox" value="option2" choice-box full-width>
+      <div class="spr-font-semibold">Option 2</div>
+      <div class="spr-text-sm">Select this option for feature B</div>
+    </spr-radio>
+    <spr-radio id="choicebox3" v-model="selectedOption" name="radio_choicebox" value="option3" choice-box full-width>
+      <div class="spr-font-semibold">Option 3</div>
+      <div class="spr-text-sm">Select this option for feature C</div>
+    </spr-radio>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedOption = ref('option1');
+</script>
+```
+
 ## API Reference
 
 ### Props
@@ -163,6 +207,14 @@ const radioModel = ref('');
         <code>fullWidth</code>
       </td>
       <td>When set to <code>true</code>, the radio component will stretch to fill the full width of its container. When <code>false</code>, it will only be as wide as its content.</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>choiceBox</code>
+      </td>
+      <td>When set to <code>true</code>, transforms the radio button into a choice box style with an expanded clickable area that encompasses the entire component, making it easier to select by clicking anywhere on the box.</td>
       <td>boolean</td>
       <td><code>false</code></td>
     </tr>

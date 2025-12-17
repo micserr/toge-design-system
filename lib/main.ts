@@ -83,7 +83,7 @@ export { default as Modal } from '../src/components/modal/modal.vue';
 export { default as Popper } from '../src/components/popper/popper.vue';
 export { default as ProgressBar } from '../src/components/progress-bar/progress-bar.vue';
 export { default as Radio } from '../src/components/radio/radio.vue';
-export { default as RadioGrouped } from '../src/components/radio-grouped/radio-grouped.vue';
+export { default as RadioGrouped } from '../src/components/radio/radio-grouped/radio-grouped.vue';
 export { default as Select } from '../src/components/select/select.vue';
 export { default as SelectLadderized } from '../src/components/select/select-ladderized/select-ladderized.vue';
 export { default as SelectMultiple } from '../src/components/select/select-multiple/select-multiple.vue';

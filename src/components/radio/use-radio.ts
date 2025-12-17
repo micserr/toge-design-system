@@ -8,6 +8,7 @@ import type { RadioPropTypes, RadioEmitTypes } from './radio';
 
 interface RadioClasses {
   baseClasses: string;
+  baseInputClasses: string;
   baseIndicatorClasses: string;
   labelClasses: string;
   borderedClasses: string;
@@ -18,13 +19,24 @@ export const useRadioButton = (
   emit: SetupContext<RadioEmitTypes>['emit'],
   slots: Record<string, unknown>,
 ) => {
-  const { modelValue, disabled, description, bordered, fullWidth } = toRefs(props);
+  const { modelValue, disabled, description, bordered, fullWidth, choiceBox } = toRefs(props);
 
   const radioRef = ref<HTMLInputElement | null>(null);
   const isHovered = useElementHover(radioRef);
 
   const radioClasses: ComputedRef<RadioClasses> = computed(() => {
-    const baseClasses = classNames('spr-sr-only spr-peer spr-inline-block', {
+    const baseClasses = classNames('spr-relative spr-m-0', {
+      'spr-inline-block': !choiceBox.value,
+      'spr-block': choiceBox.value,
+      'spr-w-full': fullWidth.value || choiceBox.value,
+      'spr-align-middle': !choiceBox.value,
+      'spr-border-color spr-border-color-weak spr-border spr-border-solid spr-p-2 spr-rounded-lg spr-transition spr-ease-in-out spr-duration-150 active:spr-scale-[0.98]':
+        choiceBox.value,
+      'spr-cursor-pointer': choiceBox.value && !disabled.value,
+      'spr-cursor-not-allowed': disabled.value && choiceBox.value,
+    });
+
+    const baseInputClasses = classNames('spr-sr-only spr-peer spr-inline-block', {
       'spr-cursor-not-allowed': disabled.value,
     });
 
@@ -121,6 +133,7 @@ export const useRadioButton = (
 
     return {
       baseClasses,
+      baseInputClasses,
       baseIndicatorClasses,
       labelClasses,
       borderedClasses,
@@ -132,6 +145,7 @@ export const useRadioButton = (
   return {
     radioRef,
     radioClasses,
+    isHovered,
     proxyValue,
     description,
     bordered,

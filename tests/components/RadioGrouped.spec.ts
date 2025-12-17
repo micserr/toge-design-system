@@ -24,7 +24,7 @@
  */
 
 import { test, expect } from '@playwright/experimental-ct-vue';
-import RadioGrouped from '@/components/radio-grouped/radio-grouped.vue';
+import RadioGrouped from '@/components/radio/radio-grouped/radio-grouped.vue';
 
 test.describe('RadioGrouped Component', () => {
   test.describe('Rendering', () => {

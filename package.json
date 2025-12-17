@@ -44,9 +44,9 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs",
     "docs:preview": "vitepress preview docs",
-    "test:ui": "npx playwright test --ui --no-cache --config=playwright-ct.config.ts",
-    "test:components": "npx playwright test --no-cache --config=playwright-ct.config.ts --reporter=line",
-    "test:component": "npx playwright test --no-cache --config=playwright-ct.config.ts --reporter=line",
+    "test:ui": "npx playwright test --ui --config=playwright-ct.config.ts",
+    "test:components": "npx playwright test --config=playwright-ct.config.ts --reporter=line",
+    "test:component": "npx playwright test --config=playwright-ct.config.ts --reporter=line",
     "clean": "rm -rf node_modules dist coverage package-lock.json && npm install"
   },
   "dependencies": {

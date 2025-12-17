@@ -88,6 +88,50 @@ const radioModel = ref('');
 </script>
 ```
 
+## กล่องเลือก
+
+ใช้พร็อพส์ `choiceBox` เพื่อแสดงปุ่มเรดิโอในสไตล์กล่องเลือกที่มีพื้นที่คลิกขยายขึ้น ทำให้องค์ประกอบทั้งหมดสามารถคลิกได้ ซึ่งช่วยปรับปรุงการใช้งานและประสบการณ์ผู้ใช้
+
+<div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
+  <spr-radio id="choicebox1" v-model="radioModel.radio4" name="radio_choicebox" value="option1" choice-box full-width>
+    <div class="spr-font-semibold">ตัวเลือก 1</div>
+    <div class="spr-text-sm">เลือกตัวเลือกนี้สำหรับฟีเจอร์ A</div>
+  </spr-radio>
+  <spr-radio id="choicebox2" v-model="radioModel.radio4" name="radio_choicebox" value="option2" choice-box full-width>
+    <div class="spr-font-semibold">ตัวเลือก 2</div>
+    <div class="spr-text-sm">เลือกตัวเลือกนี้สำหรับฟีเจอร์ B</div>
+  </spr-radio>
+  <spr-radio id="choicebox3" v-model="radioModel.radio4" name="radio_choicebox" value="option3" choice-box full-width>
+    <div class="spr-font-semibold">ตัวเลือก 3</div>
+    <div class="spr-text-sm">เลือกตัวเลือกนี้สำหรับฟีเจอร์ C</div>
+  </spr-radio>
+</div>
+
+```vue
+<template>
+  <div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
+    <spr-radio id="choicebox1" v-model="selectedOption" name="radio_choicebox" value="option1" choice-box full-width>
+      <div class="spr-font-semibold">ตัวเลือก 1</div>
+      <div class="spr-text-sm">เลือกตัวเลือกนี้สำหรับฟีเจอร์ A</div>
+    </spr-radio>
+    <spr-radio id="choicebox2" v-model="selectedOption" name="radio_choicebox" value="option2" choice-box full-width>
+      <div class="spr-font-semibold">ตัวเลือก 2</div>
+      <div class="spr-text-sm">เลือกตัวเลือกนี้สำหรับฟีเจอร์ B</div>
+    </spr-radio>
+    <spr-radio id="choicebox3" v-model="selectedOption" name="radio_choicebox" value="option3" choice-box full-width>
+      <div class="spr-font-semibold">ตัวเลือก 3</div>
+      <div class="spr-text-sm">เลือกตัวเลือกนี้สำหรับฟีเจอร์ C</div>
+    </spr-radio>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedOption = ref('option1');
+</script>
+```
+
 ## การอ้างอิง API
 
 ### พร็อพส์
@@ -163,6 +207,14 @@ const radioModel = ref('');
         <code>fullWidth</code>
       </td>
       <td>เมื่อตั้งค่าเป็น <code>true</code> คอมโพเนนต์เรดิโอจะยืดเพื่อเติมเต็มความกว้างเต็มของคอนเทนเนอร์ เมื่อ <code>false</code> จะกว้างเพียงเท่ากับเนื้อหา</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>choiceBox</code>
+      </td>
+      <td>เมื่อตั้งค่าเป็น <code>true</code> จะแปลงปุ่มเรดิโอให้เป็นสไตล์กล่องเลือกที่มีพื้นที่คลิกขยายขึ้น ซึ่งครอบคลุมคอมโพเนนต์ทั้งหมด ทำให้ง่ายต่อการเลือกโดยคลิกในที่ใดก็ได้บนกล่อง</td>
       <td>boolean</td>
       <td><code>false</code></td>
     </tr>

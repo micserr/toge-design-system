@@ -1,5 +1,5 @@
 <template>
-  <div :class="['spr-relative']">
+  <div :class="['spr-relative', { 'spr-w-full': props.choiceBox || props.fullWidth }]">
     <div :class="radioGroupedClasses.containerClasses">
       <spr-radio
         v-for="(option, index) in renderOptions()"
@@ -9,6 +9,9 @@
         :name="props.name"
         :value="option.value"
         :disabled="isOptionDisabled(option)"
+        :choice-box="props.choiceBox"
+        :full-width="props.fullWidth || props.choiceBox"
+        :description="option.description"
       >
         {{ option.text }}
       </spr-radio>

@@ -6,6 +6,7 @@ export interface RadioOption {
   text: string;
   value: string | number | boolean;
   disabled?: boolean;
+  description?: string;
 }
 
 export const radioGroupedPropTypes = {
@@ -32,6 +33,10 @@ export const radioGroupedPropTypes = {
   description: {
     type: String,
   },
+  fullWidth: {
+    type: Boolean,
+    default: false,
+  },
   bordered: {
     type: Boolean,
     default: false,
@@ -55,6 +60,10 @@ export const radioGroupedPropTypes = {
   horizontalAlign: {
     type: String as PropType<'left' | 'center' | 'right'>,
     default: 'left',
+  },
+  choiceBox: {
+    type: Boolean,
+    default: false,
   },
 };
 

@@ -1,5 +1,10 @@
 <template>
-  <div :class="['spr-relative', { 'spr-w-full': props.fullWidth }]">
+  <div
+    :class="radioClasses.baseClasses"
+    @click="radioRef?.click()"
+    @mouseenter="isHovered = true"
+    @mouseleave="isHovered = false"
+  >
     <input
       :id="props.id"
       ref="radioRef"
@@ -8,7 +13,7 @@
       :name="props.name"
       :value="props.value"
       :disabled="props.disabled"
-      :class="radioClasses.baseClasses"
+      :class="radioClasses.baseInputClasses"
     />
     <label
       ref="radioRef"
@@ -25,8 +30,9 @@
             'spr-text-xs spr-font-normal spr-leading-4 spr-text-mushroom-600',
             { 'spr-text-color-disabled': props.disabled },
           ]"
-          >{{ props.description }}</span
         >
+          {{ props.description }}
+        </span>
       </div>
     </label>
   </div>
@@ -42,7 +48,7 @@ const props = defineProps(radioPropTypes);
 const emit = defineEmits(radioEmitTypes);
 const slots = useSlots();
 
-const { proxyValue, radioRef, radioClasses } = useRadioButton(props, emit, slots);
+const { proxyValue, radioRef, radioClasses, isHovered } = useRadioButton(props, emit, slots);
 </script>
 
 <style scoped>

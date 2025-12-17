@@ -33,6 +33,10 @@ export const radioPropTypes = {
     type: Boolean,
     default: false,
   },
+  choiceBox: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const radioEmitTypes = ['update:modelValue'];

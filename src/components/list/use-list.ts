@@ -375,7 +375,7 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
   const getListItemClasses = (item: MenuListType) => ({
     [listClasses.value.listItemClasses]: !item.disabled && !(disabledUnselectedItems.value && !isItemSelected(item)),
     'spr-background-color-single-active': isItemSelected(item) && !item.disabled && !noCheck.value,
-    'spr-cursor-not-allowed spr-flex spr-items-center spr-gap-1.5 spr-rounded-lg':
+    'spr-cursor-not-allowed spr-flex spr-items-center spr-justify-between spr-gap-1.5 spr-rounded-lg':
       item.disabled || (disabledUnselectedItems.value && !isItemSelected(item)),
     'spr-p-size-spacing-3xs': !props.lozenge,
     'spr-py-size-spacing-3xs spr-px-size-spacing-4xs': props.lozenge,
@@ -527,13 +527,13 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
       } else {
         handleSingleSelect(item);
       }
-    }    
+    }
   };
 
   const handleDeselect = (item: MenuListType) => {
     if (selectedItems.value.length === 0 || !isItemSelected(item)) {
-      selectedItems.value = [item];  
-      emit('get-single-selected-item', item);    
+      selectedItems.value = [item];
+      emit('get-single-selected-item', item);
     } else {
       selectedItems.value = [];
       emit('get-single-deselected-item', item);
@@ -542,8 +542,8 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
 
   const handleSingleSelect = (item: MenuListType) => {
     selectedItems.value = [item];
-    if (item.onClickFn) item.onClickFn();   
-    emit('get-single-selected-item', item); 
+    if (item.onClickFn) item.onClickFn();
+    emit('get-single-selected-item', item);
   };
   // #endregion - Helper Methods
 

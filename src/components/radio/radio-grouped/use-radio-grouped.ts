@@ -12,7 +12,7 @@ interface RadioGroupedClasses {
 }
 
 export const useRadioGrouped = (props: RadioGroupedPropTypes, emit: SetupContext<RadioGroupedEmitTypes>['emit']) => {
-  const { disabled, horizontalAlign, displayHelper, error } = toRefs(props);
+  const { disabled, horizontalAlign, displayHelper, error, choiceBox } = toRefs(props);
 
   const radioGroupedClasses: ComputedRef<RadioGroupedClasses> = computed(() => {
     const alignmentMap = {
@@ -58,5 +58,6 @@ export const useRadioGrouped = (props: RadioGroupedPropTypes, emit: SetupContext
     displayHelper,
     horizontalAlign,
     error,
+    choiceBox,
   };
 };

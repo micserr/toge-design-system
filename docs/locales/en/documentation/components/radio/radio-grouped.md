@@ -323,6 +323,84 @@ const selectedOption = ref('');
 </script>
 ```
 
+## Description
+
+Add helpful descriptions to each radio option using the `description` property in the options array. This provides additional context or details about each choice.
+
+<div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
+  <spr-radio-grouped
+    id="grouped-radio-desc"
+    v-model="radioModel.grouped10"
+    name="grouped_name_desc"
+    :options="[
+      { text: 'Option 1', value: 'value1', description: 'This is the first option with a helpful description' },
+      { text: 'Option 2', value: 'value2', description: 'This is the second option with more details' },
+      { text: 'Option 3', value: 'value3', description: 'This is the third option with additional information' },
+    ]"
+  />
+</div>
+
+```vue
+<template>
+  <spr-radio-grouped
+    id="grouped-radio"
+    v-model="selectedOption"
+    name="grouped_options"
+    :options="[
+      { text: 'Option 1', value: 'value1', description: 'This is the first option with a helpful description' },
+      { text: 'Option 2', value: 'value2', description: 'This is the second option with more details' },
+      { text: 'Option 3', value: 'value3', description: 'This is the third option with additional information' },
+    ]"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedOption = ref('value1');
+</script>
+```
+
+## Choice Box
+
+Use the `choice-box` prop to display radio options as full-width choice boxes with expanded clickable areas. This improves usability by making the entire component interactive.
+
+<div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
+  <spr-radio-grouped
+    id="grouped-radio-choicebox"
+    v-model="radioModel.grouped9"
+    name="grouped_name_choicebox"
+    :options="[
+      { text: 'Option 1', value: 'value1' },
+      { text: 'Option 2', value: 'value2' },
+      { text: 'Option 3', value: 'value3' },
+    ]"
+    choice-box
+  />
+</div>
+
+```vue
+<template>
+  <spr-radio-grouped
+    id="grouped-radio"
+    v-model="selectedOption"
+    name="grouped_options"
+    :options="[
+      { text: 'Option 1', value: 'value1' },
+      { text: 'Option 2', value: 'value2' },
+      { text: 'Option 3', value: 'value3' },
+    ]"
+    choice-box
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedOption = ref('value1');
+</script>
+```
+
 ## API Reference
 
 ### Props
@@ -417,6 +495,14 @@ const selectedOption = ref('');
       <td>boolean</td>
       <td><code>false</code></td>
     </tr>
+    <tr>
+      <td>
+        <code>choice-box</code>
+      </td>
+      <td>When set to <code>true</code>, transforms each radio option into a full-width choice box with an expanded clickable area, improving usability and user experience.</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+    </tr>
   </tbody>
 </table>
 
@@ -464,7 +550,7 @@ interface RadioOption {
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import SprRadioGrouped from "@/components/radio-grouped/radio-grouped.vue";
+import SprRadioGrouped from "@/components/radio/radio-grouped/radio-grouped.vue";
 import SprLogo from "@/components/logo/logo.vue";
 
 const radioModel = ref({
@@ -477,5 +563,7 @@ const radioModel = ref({
   grouped6: '',
   grouped7: '',
   grouped8: '',
+  grouped9: '',
+  grouped10: '',
 });
 </script>

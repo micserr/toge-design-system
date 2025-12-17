@@ -323,6 +323,84 @@ const selectedOption = ref('');
 </script>
 ```
 
+## คำอธิบาย
+
+เพิ่มคำอธิบายที่เป็นประโยชน์ให้กับตัวเลือกวิทยุแต่ละรายการโดยใช้คุณสมบัติ `description` ในอาร์เรย์ตัวเลือก วิธีนี้ให้บริบทหรือรายละเอียดเพิ่มเติมเกี่ยวกับแต่ละตัวเลือก
+
+<div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
+  <spr-radio-grouped
+    id="grouped-radio-desc"
+    v-model="radioModel.grouped10"
+    name="grouped_name_desc"
+    :options="[
+      { text: 'ตัวเลือก 1', value: 'value1', description: 'นี่คือตัวเลือกแรกพร้อมคำอธิบายที่เป็นประโยชน์' },
+      { text: 'ตัวเลือก 2', value: 'value2', description: 'นี่คือตัวเลือกที่สองพร้อมรายละเอียดเพิ่มเติม' },
+      { text: 'ตัวเลือก 3', value: 'value3', description: 'นี่คือตัวเลือกที่สามพร้อมข้อมูลเพิ่มเติม' },
+    ]"
+  />
+</div>
+
+```vue
+<template>
+  <spr-radio-grouped
+    id="grouped-radio"
+    v-model="selectedOption"
+    name="grouped_options"
+    :options="[
+      { text: 'Option 1', value: 'value1', description: 'This is the first option with a helpful description' },
+      { text: 'Option 2', value: 'value2', description: 'This is the second option with more details' },
+      { text: 'Option 3', value: 'value3', description: 'This is the third option with additional information' },
+    ]"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedOption = ref('value1');
+</script>
+```
+
+## กล่องเลือก
+
+ใช้พร็อพส์ `choice-box` เพื่อแสดงตัวเลือกเรดิโอเป็นกล่องเลือกแบบเต็มความกว้างที่มีพื้นที่คลิกขยายขึ้น วิธีนี้ช่วยปรับปรุงการใช้งานโดยทำให้คอมโพเนนต์ทั้งหมดเป็นแบบโต้ตอบได้
+
+<div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
+  <spr-radio-grouped
+    id="grouped-radio-choicebox"
+    v-model="radioModel.grouped9"
+    name="grouped_name_choicebox"
+    :options="[
+      { text: 'Option 1', value: 'value1' },
+      { text: 'Option 2', value: 'value2' },
+      { text: 'Option 3', value: 'value3' },
+    ]"
+    choice-box
+  />
+</div>
+
+```vue
+<template>
+  <spr-radio-grouped
+    id="grouped-radio"
+    v-model="selectedOption"
+    name="grouped_options"
+    :options="[
+      { text: 'Option 1', value: 'value1' },
+      { text: 'Option 2', value: 'value2' },
+      { text: 'Option 3', value: 'value3' },
+    ]"
+    choice-box
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedOption = ref('value1');
+</script>
+```
+
 ## ข้อมูลอ้างอิง API
 
 ### Props
@@ -413,7 +491,15 @@ const selectedOption = ref('');
       <td>
         <code>error</code>
       </td>
-      <td>เมื่อตั้งค่าเป็น <code>true</code> จะแสดงกลุ่มวิทยุในสถานะข้อผิดพลาดโดยใช้ข้อความสีแดงสำหรับข้อความตัวช่วย</td>
+      <td>เมื่อตั้งค่าเป็น <code>true</code> จะแสดงกลุ่มวิทยุในสถานะข้อผิดพลาดพร้อมข้อความตัวช่วยสีแดง</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>choice-box</code>
+      </td>
+      <td>เมื่อตั้งค่าเป็น <code>true</code> จะแปลงตัวเลือกเรดิโอแต่ละตัวเป็นกล่องเลือกแบบเต็มความกว้างที่มีพื้นที่คลิกขยายขึ้น ซึ่งช่วยปรับปรุงการใช้งานและประสบการณ์ผู้ใช้</td>
       <td>boolean</td>
       <td><code>false</code></td>
     </tr>
@@ -464,7 +550,7 @@ interface RadioOption {
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import SprRadioGrouped from "@/components/radio-grouped/radio-grouped.vue";
+import SprRadioGrouped from "@/components/radio-grouped/radio/radio-grouped.vue";
 import SprLogo from "@/components/logo/logo.vue";
 
 const radioModel = ref({
@@ -477,5 +563,7 @@ const radioModel = ref({
   grouped6: '',
   grouped7: '',
   grouped8: '',
+  grouped9: '',
+  grouped10: '',
 });
 </script>

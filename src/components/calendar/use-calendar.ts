@@ -119,7 +119,10 @@ export const useCalendar = (props: CalendarPropTypes, emit: SetupContext<Calenda
 
   const showCustomSlot = (index: number, employeeId: number) => {
     return (
-      state.hoveredCell.value === index && state.isHover.value && state.employeeId.value === employeeId && slots.cell
+      state.hoveredCell.value === index &&
+      state.isHover.value &&
+      state.employeeId.value === employeeId &&
+      slots.hoverCell
     );
   };
 

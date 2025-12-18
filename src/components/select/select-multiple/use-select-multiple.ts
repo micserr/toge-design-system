@@ -268,8 +268,9 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     }
 
     // Always keep multiSelectedListItems in sync with selected values
+    const seenValues = new Set<string>();
     multiSelectedListItems.value = multiSelectOptions.value.filter((item) => {
-      return values.some((val) => {
+      const isMatch = values.some((val) => {
         let itemVal = item.value;
         let valToCompare = val;
 
@@ -292,6 +293,16 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
         }
         return itemVal == valToCompare;
       });
+
+      if (isMatch) {
+        const itemKey = typeof item.value === 'object' ? JSON.stringify(item.value) : String(item.value);
+        if (seenValues.has(itemKey)) {
+          return false; // Skip duplicates
+        }
+        seenValues.add(itemKey);
+      }
+
+      return isMatch;
     });
 
     // Determine input text based on whether count-only mode is enabled

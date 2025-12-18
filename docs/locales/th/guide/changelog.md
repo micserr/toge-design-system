@@ -1,5 +1,13 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.26.4 (2025-12-18)
+
+- คุณสมบัติ:
+  - ปรับปรุง calendar component ด้วยการกระทำส่วนหัวที่ปรับแต่งได้และ hover cell slot
+- แก้ไข:
+  - Commit ca8610a4: ป้องกันการเลือกที่ซ้ำกันใน multi-select component
+    ([#ca8610a4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ca8610a4f517ecefb4ff7df1ca3728e924391ecd?refName=refs/heads/2025/Feature/andrea/UPDATE_CALENDAR) by @adestajo)
+
 ## 2.26.3 (2025-12-17)
 
 - แก้ไข:

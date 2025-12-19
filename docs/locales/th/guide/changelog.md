@@ -1,5 +1,10 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.26.6 (2025-12-19)
+- แก้ไข:
+  - ลบเอกสารประกอบภาษาไทยสำหรับ input component
+    ([#4345293f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4345293f35acccec5182771607cc4a6c01085ce8?refName=refs/heads/2025/Fix/andrea/ADDED-FILE) by @adestajo)
+
 ## 2.26.5 (2025-12-18)
 
 - คุณสมบัติ:

@@ -125,8 +125,12 @@ export const listPropTypes = {
   },
   allowDeselect: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
+  allowSelectAll: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const listEmitTypes = {

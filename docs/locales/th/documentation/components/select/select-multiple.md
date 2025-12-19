@@ -804,6 +804,64 @@ const options = ref([
 </script>
 ```
 
+## เลือกทั้งหมด / ยกเลิกการเลือกทั้งหมด
+
+เมื่อใช้การเลือกหลายรายการพร้อมกับ prop `allow-select-all` ที่เปิดใช้งาน ปุ่ม "เลือกทั้งหมด" / "ยกเลิกการเลือกทั้งหมด" จะถูกจัดเตรียมโดยอัตโนมัติในดร็อปดาวน์ ปุ่มนี้ช่วยให้ผู้ใช้สามารถเลือกหรือยกเลิกการเลือกรายการที่มีอยู่ทั้งหมดในรายการได้อย่างรวดเร็ว
+
+### คุณสมบัติ:
+
+- **การสลับอัตโนมัติ**: ข้อความปุ่มจะเปลี่ยนโดยอัตโนมัติตามสถานะการเลือกปัจจุบัน
+- **การเลือกอัจฉริยะ**: เฉพาะรายการที่เปิดใช้งาน (ไม่ได้ปิดใช้งาน) เท่านั้นที่จะได้รับผลกระทบจากการดำเนินการเลือกทั้งหมด
+- **ทำงานกับการกรอง**: เมื่อรายการถูกกรองผ่านการค้นหา การเลือกทั้งหมดจะส่งผลกระทบต่อรายการที่มองเห็นได้เท่านั้น
+- **ควบคุมด้วย Prop**: ปรากฏขึ้นเฉพาะเมื่อเปิดใช้งาน `allow-select-all`
+
+<div>
+  <spr-select-multiple
+    id="select-multiple-allow-select-all"
+    v-model="multiSelectModel.multiSelectAllowSelectAll"
+    label="เลือกหลายรายการพร้อมเลือกทั้งหมด"
+    placeholder="เลือกตัวเลือก"
+    :options="options"
+    searchable
+    allow-select-all
+    display-list-item-selected
+  />
+</div>
+
+```vue
+<template>
+  <spr-select-multiple
+    id="select-multiple-allow-select-all"
+    v-model="selectedItems"
+    label="เลือกหลายรายการพร้อมเลือกทั้งหมด"
+    placeholder="เลือกตัวเลือก"
+    :options="options"
+    searchable
+    allow-select-all
+    display-list-item-selected
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const options = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+  { text: 'Fig', value: 'fig' },
+  { text: 'Grape', value: 'grape' },
+  { text: 'Honeydew', value: 'honeydew' },
+]);
+</script>
+```
+
+**หมายเหตุ**: ปุ่มเลือกทั้งหมดจะปรากฏขึ้นเมื่อเปิดใช้งาน `allow-select-all` รายการที่ปิดใช้งานจะถูกแยกออกโดยอัตโนมัติจากการดำเนินการเลือกทั้งหมด
+
 ## ข้อความช่วยเหลือ
 
 ข้อความช่วยเหลือเป็นป้ายข้อความใต้ช่องป้อนข้อมูลที่ให้ข้อมูลเพิ่มเติมเกี่ยวกับคำแนะนำ การจัดรูปแบบ คำติชมการตรวจสอบ ฯลฯ
@@ -1424,6 +1482,12 @@ const optionsWithLozenge = ref([
       <td>false</td>
     </tr>
     <tr>
+      <td><code>allow-select-all</code></td>
+      <td>เปิดใช้งานปุ่ม "เลือกทั้งหมด" / "ยกเลิกการเลือกทั้งหมด" ในโหมดเลือกหลายรายการ</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
       <td><code>display-helper</code></td>
       <td>แสดงข้อความช่วยเหลือใต้ช่องป้อน</td>
       <td>Boolean</td>
@@ -1607,6 +1671,8 @@ const multiSelectModel = ref({
   multiSelectDisabledState: [],
   multiSelectErrorState: [],
   multiSelectDisplaySelectedCountOnly: [],
+  multiSelectDisplayListItemSelected: [],
+  multiSelectAllowSelectAll: [],
   multiSelectHelperMessage: [],
   multiSelectItemSubtext: [],
   multiSelectItemIcon: [],

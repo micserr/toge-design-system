@@ -165,6 +165,7 @@
             :display-list-item-selected="props.displayListItemSelected"
             :disabled-local-search="props.disabledLocalSearch"
             :disabled-unselected-items="props.disabledUnselectedItems"
+            :allow-select-all="props.allowSelectAll"
             multi-select
             @update:model-value="handleMultiSelectedItem"
             @get-single-selected-item="emit('get-single-selected-item', $event)"

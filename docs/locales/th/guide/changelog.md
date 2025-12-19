@@ -1,5 +1,11 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.26.5 (2025-12-18)
+
+- คุณสมบัติ:
+  - Commit 4869518d: feat: เพิ่มฟังก์ชัน "เลือกทั้งหมด" / "ยกเลิกการเลือกทั้งหมด" ให้กับคอมโพเนนต์ multi-select
+    ([#4869518d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4869518db76a9f50e83c2adbf57a90cb87b080fe?refName=refs/heads/2025/Feature/andrea/ENHANCEMENT-MULTI_SELECT) โดย @adestajo)
+
 ## 2.26.4 (2025-12-18)
 
 - คุณสมบัติ:

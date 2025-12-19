@@ -209,6 +209,10 @@ export const multiSelectPropTypes = {
     type: Boolean,
     default: false,
   },
+  allowSelectAll: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export const multiSelectEmitTypes = {

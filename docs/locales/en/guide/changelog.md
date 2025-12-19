@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.26.5 (2025-12-18)
+
+- Feat:
+  - Commit 4869518d: feat: add "Select All" / "Unselect All" functionality to multi-select components
+    ([#4869518d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4869518db76a9f50e83c2adbf57a90cb87b080fe?refName=refs/heads/2025/Feature/andrea/ENHANCEMENT-MULTI_SELECT) by @adestajo)
+
 ## 2.26.4 (2025-12-18)
 
 - Feat:

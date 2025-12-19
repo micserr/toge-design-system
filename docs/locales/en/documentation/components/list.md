@@ -93,6 +93,64 @@ const menuList = ref([
 </script>
 ```
 
+## Select All / Unselect All
+
+When using multi-select mode, a "Select All" / "Unselect All" button is automatically provided. This button allows users to quickly select or deselect all available items in the list.
+
+### Features:
+
+- **Automatic Toggle**: The button text automatically changes based on the current selection state
+- **Smart Selection**: Only enabled (non-disabled) items are affected by the select all action
+- **Works with Filtering**: When items are filtered through search, select all only affects the visible items
+- **Group Awareness**: Works correctly with both grouped and non-grouped lists
+
+<div
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="listModels.selectAll" :menu-list="selectAllMenuList" multi-select allow-select-all display-list-item-selected />
+</div>
+
+```vue
+<template>
+  <div
+    :class="[
+      'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
+      'spr-border-color-weak spr-border spr-border-solid',
+    ]"
+  >
+    <spr-list v-model="selectedItems" :menu-list="menuList" multi-select allow-select-all display-list-item-selected />
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const menuList = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+  { text: 'Fig', value: 'fig' },
+  { text: 'Grape', value: 'grape' },
+  { text: 'Honeydew', value: 'honeydew' },
+]);
+</script>
+```
+
+The select all button appears when:
+
+- `multi-select` prop is enabled
+- OR `display-list-item-selected` prop is enabled
+- OR `searchable-menu` prop is enabled
+
+**Note**: Disabled items are automatically excluded from select all operations to ensure only interactive items are affected.
+
 ## Grouping Items
 
 Group items using the `group-items-by` prop with values `'default'`, `'A-Z'`, or `'Z-A'`:
@@ -781,12 +839,14 @@ import { MenuListType } from '@/components/list/list';
 const listModels = ref({
   basicUsage: [],
   multiSelect: [],
+  selectAll: [],
   groupingDefault: [],
   groupingAlphabetical: [],
   searchableList: [],
   radioList: [],
   subtext: [],
   itemIcons: [],
+  iconToneFill: [],
   hierarchicalList: [],
   eventHandling: [],
   lozengeBadge: [],
@@ -816,6 +876,19 @@ const groupedMenuList = ref([
   { text: 'Honeydew', value: 'honeydew', group: 'Fruits' },
   { text: 'Kale', value: 'kale', group: 'Vegetables' },
   { text: 'Lemon', value: 'lemon', group: 'Fruits' },
+]);
+
+const selectAllMenuList = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+  { text: 'Fig', value: 'fig' },
+  { text: 'Grape', value: 'grape' },
+  { text: 'Honeydew', value: 'honeydew' },
+  { text: 'Kiwi', value: 'kiwi' },
+  { text: 'Mango', value: 'mango' },
 ]);
 
 const hierarchicalData = ref([

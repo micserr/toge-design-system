@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.26.7 (2025-12-29)
+
+- Fix:
+  - Fix the Pre-selected Value and Text issue encountered in Ladderized Select
+  - Fix the clearable issue encountered in Ladderized Select
+    ([#36628](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36628) by @jarias)
+
 ## 2.26.6 (2025-12-19)
 
 - Chore:

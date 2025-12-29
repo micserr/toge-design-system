@@ -1,6 +1,14 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.26.7 (2025-12-29)
+
+- แก้ไข:
+  - แก้ไขปัญหา Pre-selected Value และ Text ที่พบในคอมโพเนนต์ Ladderized Select
+  - แก้ไขปัญหา clearable ที่พบในคอมโพเนนต์ Ladderized Select
+    ([#36628](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36628) โดย @jarias)
+
 ## 2.26.6 (2025-12-19)
+
 - แก้ไข:
   - ลบเอกสารประกอบภาษาไทยสำหรับ input component
     ([#4345293f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4345293f35acccec5182771607cc4a6c01085ce8?refName=refs/heads/2025/Fix/andrea/ADDED-FILE) by @adestajo)

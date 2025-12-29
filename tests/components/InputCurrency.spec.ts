@@ -569,11 +569,11 @@ test.describe('InputCurrency Component', () => {
   test.describe('Get Currency Value Event', () => {
     test('emits getCurrencyValue while typing', async ({ mount }) => {
       // Test that getCurrencyValue emits during typing (numeric value)
-      const emittedValues: number[] = [];
+      const emittedValues: (number | null)[] = [];
 
       const component = await mount(InputCurrency, {
         props: {
-          onGetCurrencyValue: (value: number) => {
+          onGetCurrencyValue: (value: number | null) => {
             emittedValues.push(value);
           },
         },
@@ -583,6 +583,7 @@ test.describe('InputCurrency Component', () => {
 
       // Type each character
       await input.fill('123');
+      await input.evaluate((el) => el.dispatchEvent(new Event('input', { bubbles: true })));
 
       // Should have emitted the numeric value while typing
       expect(emittedValues.length).toBeGreaterThan(0);

@@ -153,47 +153,62 @@ export const useSelectLadderized = (
     if (disabled.value) return;
 
     wasCleared.value = true;
-
     inputText.value = '';
+    ladderizedSelectModel.value = [];
 
     emit('update:modelValue', []);
+  };
+
+  // Helper function to update input text from model value
+  const updateInputTextFromModel = (newVal: (string | number)[]) => {
+    if (isCustomInput.value) return;
+
+    if (wasCleared.value) {
+      inputText.value = '';
+      wasCleared.value = false;
+      return;
+    }
+
+    if (Array.isArray(newVal) && newVal.length > 0) {
+      // Treat the array as a single path for ladderized select
+      let currentLevel = ladderizedSelectOptions.value;
+      const pathTexts: string[] = [];
+
+      for (const value of newVal) {
+        const found = currentLevel.find((item) => item.value === value);
+
+        if (!found) break;
+
+        pathTexts.push(found.text);
+        currentLevel = found.sublevel || [];
+      }
+
+      // Only update if we successfully resolved all values in the path
+      if (pathTexts.length === newVal.length) {
+        inputText.value = prependText.value
+          ? pathTexts.slice().reverse().join(textSeperator.value)
+          : pathTexts.join(textSeperator.value);
+      }
+    } else if (Array.isArray(newVal) && newVal.length === 0) {
+      inputText.value = '';
+    }
   };
 
   // Watch for changes in modelValue to update inputText
   watchDeep(
     ladderizedSelectModel,
     (newVal) => {
-      if (isCustomInput.value) return;
-
-      if (wasCleared.value) {
-        inputText.value = '';
-        wasCleared.value = false;
-
-        return;
-      };
-
-      if (Array.isArray(newVal) && newVal.length > 0) {
-        // Treat the array as a single path for ladderized select
-        let currentLevel = ladderizedSelectOptions.value;
-
-        const pathTexts: string[] = [];
-
-        for (const value of newVal) {
-          const found = currentLevel.find((item) => item.value === value);
-
-          if (!found) break;
-
-          pathTexts.push(found.text);
-          currentLevel = found.sublevel || [];
-        }
-
-        inputText.value = prependText.value
-          ? pathTexts.slice().reverse().join(textSeperator.value)
-          : pathTexts.join(textSeperator.value);
-      }
+      updateInputTextFromModel(newVal);
     },
     { immediate: true },
   );
+
+  // Watch for changes in options to re-render text when options load
+  watch(ladderizedSelectOptions, () => {
+    if (!wasCleared.value && ladderizedSelectModel.value && ladderizedSelectModel.value.length > 0) {
+      updateInputTextFromModel(ladderizedSelectModel.value);
+    }
+  });
 
   watch(ladderizedSelectPopperState, (newState) => {
     emit('popper-state', newState);

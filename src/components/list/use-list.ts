@@ -9,6 +9,8 @@ import type { ListPropTypes, ListEmitTypes, MenuListType, GroupedMenuListType } 
 interface ListClasses {
   headerClasses: string;
   listItemClasses: string;
+  borderClasses: string;
+  listControlsClasses: string;
 }
 
 export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>['emit']) => {
@@ -23,13 +25,17 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     disabledUnselectedItems,
     stickySearchOffset,
     allowDeselect,
+    allowSelectAll,
   } = toRefs(props);
 
   const listClasses: ComputedRef<ListClasses> = computed(() => {
+    const borderClasses = classNames('spr-border-color-weak spr-border spr-border-solid');
+
     const headerClasses = classNames(
       'spr-sticky spr-z-20',
       'spr-grid spr-gap-3 spr-bg-white-50 spr-px-size-spacing-3xs spr-py-size-spacing-2xs',
-      'spr-border-color-weak spr-border spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid',
+      borderClasses,
+      'spr-border-x-0 spr-border-b spr-border-t-0',
     );
 
     const listItemClasses = classNames(
@@ -39,7 +45,9 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
       'active:spr-background-color-single-active active:spr-scale-[.98]',
     );
 
-    return { headerClasses, listItemClasses };
+    const listControlsClasses = classNames('spr-flex spr-w-full spr-items-center');
+
+    return { headerClasses, listItemClasses, borderClasses, listControlsClasses };
   });
 
   const stickyOffsetStyle = computed(() => ({
@@ -640,6 +648,36 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     event.preventDefault();
   };
 
+  // Computed property to check if any items are selected
+  const hasSelectedItems = computed(() => {
+    if (!multiSelect.value || !allowSelectAll.value) return false;
+    return selectedItems.value.length > 0;
+  });
+
+  // Function to handle select/unselect all items
+  const handleSelectAll = () => {
+    if (!multiSelect.value || !allowSelectAll.value) return;
+
+    const currentItems = hasGroupedItems.value
+      ? groupedMenuList.value.flatMap((group) => group.items)
+      : localizedMenuList.value;
+
+    // Filter out disabled items
+    const enabledItems = currentItems.filter((item) => !item.disabled);
+
+    if (hasSelectedItems.value) {
+      // If any items are selected, unselect all items completely
+      selectedItems.value = [];
+      // Also clear any preserved or API selected items
+      apiSelectedList.value = [];
+      emit('update:modelValue', []);
+    } else {
+      // If no items are selected, select all enabled items
+      selectedItems.value = [...enabledItems];
+      emit('update:modelValue', [...enabledItems]);
+    }
+  };
+
   return {
     listClasses,
     stickyOffsetStyle,
@@ -650,10 +688,12 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     apiSelectedList,
     isParentMenu,
     hasGroupedItems,
+    hasSelectedItems,
     isItemSelected,
     getListItemClasses,
     handleSearch,
     handleSelectedItem,
+    handleSelectAll,
     trackNewlySelectedItems,
     handleSearchKeyup,
   };

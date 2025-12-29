@@ -1,7 +1,9 @@
 <template>
   <div class="spr-font-main">
     <!-- Header Section -->
-    <template v-if="props.searchableMenu || props.displayListItemSelected">
+    <template
+      v-if="props.searchableMenu || props.displayListItemSelected || (props.multiSelect && props.allowSelectAll)"
+    >
       <div :class="listClasses.headerClasses" :style="stickyOffsetStyle">
         <spr-input-search
           v-if="props.searchableMenu"
@@ -10,12 +12,34 @@
           autocomplete="off"
           @keyup="handleSearchKeyup"
         />
-        <span
-          v-if="props.supportingDisplayText || props.displayListItemSelected"
-          class="spr-label-sm-medium spr-text-color-base spr-block"
-        >
-          {{ props.supportingDisplayText || `${selectedItems.length} Selected` }}
-        </span>
+        <slot name="list-controls">
+          <div
+            v-if="
+              props.supportingDisplayText ||
+              props.displayListItemSelected ||
+              (props.multiSelect && props.allowSelectAll)
+            "
+            :class="listClasses.listControlsClasses"
+          >
+            <span
+              v-if="props.supportingDisplayText || props.displayListItemSelected"
+              class="spr-label-sm-medium spr-text-color-base spr-block"
+            >
+              {{ props.supportingDisplayText || `${selectedItems.length} Selected` }}
+            </span>
+
+            <spr-button
+              v-if="props.multiSelect && props.allowSelectAll"
+              id="select-all-button"
+              :class="{ 'spr-ml-auto': true }"
+              variant="secondary"
+              size="small"
+              @click="handleSelectAll"
+            >
+              {{ hasSelectedItems ? 'Unselect All' : 'Select All' }}
+            </spr-button>
+          </div>
+        </slot>
       </div>
     </template>
 
@@ -103,6 +127,7 @@
 import { Icon } from '@iconify/vue';
 
 import SprInputSearch from '@/components/input/input-search/input-search.vue';
+import SprButton from '@/components/button/button.vue';
 import ListItem from './list-item/list-item.vue';
 
 import { listPropTypes, listEmitTypes } from './list';
@@ -119,9 +144,11 @@ const {
   localizedMenuList,
   groupedMenuList,
   hasGroupedItems,
+  hasSelectedItems,
   isItemSelected,
   getListItemClasses,
   handleSelectedItem,
+  handleSelectAll,
   handleSearchKeyup,
 } = useList(props, emit);
 </script>

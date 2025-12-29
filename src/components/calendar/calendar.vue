@@ -15,7 +15,10 @@
             <div class="spr-heading-xs">{{ weekRangeDisplay }}</div>
           </div>
 
-          <spr-button id="calendar-today" variant="secondary" size="large" @click="goToToday"> Today </spr-button>
+          <div class="spr-flex spr-items-center spr-justify-center spr-gap-size-spacing-3xs">
+            <spr-button id="calendar-today" variant="secondary" size="large" @click="goToToday"> Today </spr-button>
+            <slot name="headerActions" />
+          </div>
         </div>
         <!-- Filters -->
         <slot name="filter" />
@@ -159,9 +162,20 @@
                       </div>
                     </section>
 
+                    <section>
+                      <slot
+                        name="fixedCell"
+                        :details="{
+                          employeeId: employee.id,
+                          date: formatDate(date, dateFormat),
+                          shift: employee.schedule[formatDate(date, dateFormat)],
+                        }"
+                      />
+                    </section>
+
                     <section v-if="showCustomSlot(index, employee.id)">
                       <slot
-                        name="cell"
+                        name="hoverCell"
                         :details="{
                           employeeId: employee.id,
                           date: formatDate(date, dateFormat),

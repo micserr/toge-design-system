@@ -1,5 +1,25 @@
 # Changelog
 
+## 2.26.6 (2025-12-19)
+
+- Chore:
+  - remove Thai documentation for input component
+    ([#4345293f](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4345293f35acccec5182771607cc4a6c01085ce8?refName=refs/heads/2025/Fix/andrea/ADDED-FILE) by @adestajo)
+
+## 2.26.5 (2025-12-18)
+
+- Feat:
+  - Commit 4869518d: feat: add "Select All" / "Unselect All" functionality to multi-select components
+    ([#4869518d](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4869518db76a9f50e83c2adbf57a90cb87b080fe?refName=refs/heads/2025/Feature/andrea/ENHANCEMENT-MULTI_SELECT) by @adestajo)
+
+## 2.26.4 (2025-12-18)
+
+- Feat:
+  - enhance calendar component with customizable header actions and hover cell slot
+- Fix:
+  - Commit ca8610a4: prevent duplicate selections in multi-select component
+    ([#ca8610a4](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ca8610a4f517ecefb4ff7df1ca3728e924391ecd?refName=refs/heads/2025/Feature/andrea/UPDATE_CALENDAR) by @adestajo)
+
 ## 2.26.3 (2025-12-17)
 
 - Fix:

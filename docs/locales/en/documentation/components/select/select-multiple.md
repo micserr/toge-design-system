@@ -858,6 +858,64 @@ const options = ref([
 </script>
 ```
 
+## Select All / Unselect All
+
+When using multi-select with the `allow-select-all` prop enabled, a "Select All" / "Unselect All" button is automatically provided in the dropdown. This button allows users to quickly select or deselect all available items in the list.
+
+### Features:
+
+- **Automatic Toggle**: The button text automatically changes based on the current selection state
+- **Smart Selection**: Only enabled (non-disabled) items are affected by the select all action
+- **Works with Filtering**: When items are filtered through search, select all only affects the visible items
+- **Prop Controlled**: Only appears when `allow-select-all` is enabled
+
+<div>
+  <spr-select-multiple
+    id="select-multiple-allow-select-all"
+    v-model="multiSelectModel.multiSelectAllowSelectAll"
+    label="Select Multiple with Select All"
+    placeholder="Select options"
+    :options="options"
+    searchable
+    allow-select-all
+    display-list-item-selected
+  />
+</div>
+
+```vue
+<template>
+  <spr-select-multiple
+    id="select-multiple-allow-select-all"
+    v-model="selectedItems"
+    label="Select Multiple with Select All"
+    placeholder="Select options"
+    :options="options"
+    searchable
+    allow-select-all
+    display-list-item-selected
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const options = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+  { text: 'Fig', value: 'fig' },
+  { text: 'Grape', value: 'grape' },
+  { text: 'Honeydew', value: 'honeydew' },
+]);
+</script>
+```
+
+**Note**: The select all button appears when `allow-select-all` is enabled. Disabled items are automatically excluded from select all operations.
+
 ## Helper Message
 
 A helper message is a text label below the input field that provides additional information about instructions, formatting hints, validation feedback, etc.
@@ -1478,6 +1536,12 @@ const optionsWithLozenge = ref([
       <td>false</td>
     </tr>
     <tr>
+      <td><code>allow-select-all</code></td>
+      <td>Enables the "Select All" / "Unselect All" button in multi-select mode.</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
       <td><code>display-helper</code></td>
       <td>Show helper text below the input.</td>
       <td>Boolean</td>
@@ -1661,6 +1725,8 @@ const multiSelectModel = ref({
   multiSelectDisabledState: [],
   multiSelectErrorState: [],
   multiSelectDisplaySelectedCountOnly: [],
+  multiSelectDisplayListItemSelected: [],
+  multiSelectAllowSelectAll: [],
   multiSelectHelperMessage: [],
   multiSelectItemSubtext: [],
   multiSelectItemIcon: [],

@@ -93,6 +93,64 @@ const menuList = ref([
 </script>
 ```
 
+## เลือกทั้งหมด / ยกเลิกการเลือกทั้งหมด
+
+เมื่อใช้โหมดการเลือกหลายรายการ ปุ่ม "เลือกทั้งหมด" / "ยกเลิกการเลือกทั้งหมด" จะถูกจัดเตรียมโดยอัตโนมัติ ปุ่มนี้ช่วยให้ผู้ใช้สามารถเลือกหรือยกเลิกการเลือกรายการที่มีอยู่ทั้งหมดในรายการได้อย่างรวดเร็ว
+
+### คุณสมบัติ:
+
+- **การสลับอัตโนมัติ**: ข้อความปุ่มจะเปลี่ยนโดยอัตโนมัติตามสถานะการเลือกปัจจุบัน
+- **การเลือกอัจฉริยะ**: เฉพาะรายการที่เปิดใช้งาน (ไม่ได้ปิดใช้งาน) เท่านั้นที่จะได้รับผลกระทบจากการดำเนินการเลือกทั้งหมด
+- **ทำงานกับการกรอง**: เมื่อรายการถูกกรองผ่านการค้นหา การเลือกทั้งหมดจะส่งผลกระทบต่อรายการที่มองเห็นได้เท่านั้น
+- **ความตระหนักในการจัดกลุ่ม**: ทำงานได้อย่างถูกต้องกับทั้งรายการที่จัดกลุ่มและไม่ได้จัดกลุ่ม
+
+<div
+  :class="[
+    'spr-p-2 spr-rounded-md spr-max-h-[300px] spr-overflow-auto',
+    'spr-border spr-border-solid spr-border-color-weak'
+  ]"
+>
+  <spr-list v-model="listModels.selectAll" :menu-list="selectAllMenuList" multi-select allow-select-all display-list-item-selected />
+</div>
+
+```vue
+<template>
+  <div
+    :class="[
+      'spr-max-h-[300px] spr-overflow-auto spr-rounded-md spr-p-2',
+      'spr-border-color-weak spr-border spr-border-solid',
+    ]"
+  >
+    <spr-list v-model=\"selectedItems\" :menu-list=\"menuList\" multi-select allow-select-all display-list-item-selected />
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectedItems = ref([]);
+
+const menuList = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+  { text: 'Fig', value: 'fig' },
+  { text: 'Grape', value: 'grape' },
+  { text: 'Honeydew', value: 'honeydew' },
+]);
+</script>
+```
+
+ปุ่มเลือกทั้งหมดจะปรากฏขึ้นเมื่อ:
+
+- พร็อพส์ `multi-select` ถูกเปิดใช้งาน
+- หรือ พร็อพส์ `display-list-item-selected` ถูกเปิดใช้งาน
+- หรือ พร็อพส์ `searchable-menu` ถูกเปิดใช้งาน
+
+**หมายเหตุ**: รายการที่ปิดใช้งานจะถูกแยกออกโดยอัตโนมัติจากการดำเนินการเลือกทั้งหมดเพื่อให้แน่ใจว่าเฉพาะรายการที่โต้ตอบได้เท่านั้นที่จะได้รับผลกระทบ
+
 ## การจัดกลุ่มไอเท็ม
 
 จัดกลุ่มไอเท็มโดยใช้พร็อพส์ `group-items-by` ด้วยค่า `'default'`, `'A-Z'`, หรือ `'Z-A'`:
@@ -768,6 +826,19 @@ const groupedMenuList = ref([
   { text: 'Lemon', value: 'lemon', group: 'Fruits' },
 ]);
 
+const selectAllMenuList = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+  { text: 'Fig', value: 'fig' },
+  { text: 'Grape', value: 'grape' },
+  { text: 'Honeydew', value: 'honeydew' },
+  { text: 'Kiwi', value: 'kiwi' },
+  { text: 'Mango', value: 'mango' },
+]);
+
 const itemsWithIcons = ref([
   { text: 'Home', value: 'home', icon: 'ph:house', subtext: 'Go to home page' },
   { text: 'Settings', value: 'settings', icon: 'ph:gear', subtext: 'Configure preferences', iconColor: 'spr-text-blue-500' },
@@ -836,12 +907,14 @@ const lozengeMenuList = ref([
 const listModels = ref({
   basicUsage: [],
   multiSelect: [],
+  selectAll: [],
   groupingDefault: [],
   groupingAlphabetical: [],
   searchableList: [],
   radioList: [],
   subtext: [],
   itemIcons: [],
+  iconToneFill: [],
   hierarchicalList: [],
   eventHandling: [],
   lozengeBadge: [],

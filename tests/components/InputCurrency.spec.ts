@@ -79,12 +79,66 @@ test.describe('InputCurrency Component', () => {
       // Test preSelectedCurrency prop functionality
       const component = await mount(InputCurrency, {
         props: {
-          preSelectedCurrency: 'USD',
+          currency: 'USD',
         },
       });
 
       // Should show USD instead of default PHP
       await expect(component.getByText('USD')).toBeVisible();
+    });
+
+    test('uses currency prop with uppercase', async ({ mount }) => {
+      // Test currency prop with uppercase code
+      const component = await mount(InputCurrency, {
+        props: {
+          currency: 'USD',
+        },
+      });
+
+      // Should show USD currency
+      await expect(component.getByText('USD')).toBeVisible();
+    });
+
+    test('uses currency prop with lowercase', async ({ mount }) => {
+      // Test currency prop with lowercase code (case-insensitive support)
+      const component = await mount(InputCurrency, {
+        props: {
+          currency: 'usd',
+        },
+      });
+
+      // Should show USD currency despite lowercase input
+      await expect(component.getByText('USD')).toBeVisible();
+    });
+
+    test('defaults to PHP when no currency prop is provided', async ({ mount }) => {
+      // Test default currency fallback to PHP
+      const component = await mount(InputCurrency);
+
+      // Should show PHP as default
+      await expect(component.getByText('PHP')).toBeVisible();
+    });
+
+    test('dynamically updates currency when prop changes', async ({ mount }) => {
+      // Test reactive currency prop changes
+      const component = await mount(InputCurrency, {
+        props: {
+          currency: 'php',
+        },
+      });
+
+      // Initially PHP
+      await expect(component.getByText('PHP')).toBeVisible();
+
+      // Update to EUR
+      await component.update({
+        props: {
+          currency: 'eur',
+        },
+      });
+
+      // Should now show EUR
+      await expect(component.getByText('EUR')).toBeVisible();
     });
   });
 
@@ -310,7 +364,7 @@ test.describe('InputCurrency Component', () => {
       // Test US Dollar currency support
       const component = await mount(InputCurrency, {
         props: {
-          preSelectedCurrency: 'USD',
+          currency: 'USD',
         },
       });
 
@@ -326,7 +380,7 @@ test.describe('InputCurrency Component', () => {
       // Test Euro currency support
       const component = await mount(InputCurrency, {
         props: {
-          preSelectedCurrency: 'EUR',
+          currency: 'EUR',
         },
       });
 
@@ -342,7 +396,7 @@ test.describe('InputCurrency Component', () => {
       // Test Japanese Yen currency support (typically no decimal places)
       const component = await mount(InputCurrency, {
         props: {
-          preSelectedCurrency: 'JPY',
+          currency: 'JPY',
         },
       });
 
@@ -358,7 +412,7 @@ test.describe('InputCurrency Component', () => {
       // Test Thai Baht currency support
       const component = await mount(InputCurrency, {
         props: {
-          preSelectedCurrency: 'THB',
+          currency: 'THB',
         },
       });
 
@@ -453,7 +507,7 @@ test.describe('InputCurrency Component', () => {
       // Test fallback behavior with invalid currency
       const component = await mount(InputCurrency, {
         props: {
-          preSelectedCurrency: 'INVALID', // Invalid currency code
+          currency: 'INVALID', // Invalid currency code
         },
       });
 
@@ -508,7 +562,7 @@ test.describe('InputCurrency Component', () => {
       const component = await mount(InputCurrency, {
         props: {
           disabled: true,
-          preSelectedCurrency: 'USD',
+          currency: 'USD',
         },
       });
 
@@ -541,7 +595,7 @@ test.describe('InputCurrency Component', () => {
 
       const component = await mount(InputCurrency, {
         props: {
-          preSelectedCurrency: 'USD',
+          currency: 'USD',
           'onUpdate:modelValue': (value: string) => {
             modelValue = value;
           },
@@ -621,7 +675,7 @@ test.describe('InputCurrency Component', () => {
           autoFormat: true,
           minDecimals: 2,
           maxDecimals: 2,
-          preSelectedCurrency: 'USD',
+          currency: 'USD',
           onGetCurrencyValue: (value: number) => {
             blurEmittedValue = value;
           },
@@ -693,7 +747,7 @@ test.describe('InputCurrency Component', () => {
 
       const component = await mount(InputCurrency, {
         props: {
-          preSelectedCurrency: 'USD',
+          currency: 'USD',
           minDecimals: 2,
           maxDecimals: 2,
           onGetCurrencyValue: (value: number) => {
@@ -716,7 +770,7 @@ test.describe('InputCurrency Component', () => {
 
       const component = await mount(InputCurrency, {
         props: {
-          preSelectedCurrency: 'EUR',
+          currency: 'EUR',
           minDecimals: 2,
           maxDecimals: 2,
           onGetCurrencyValue: (value: number) => {

@@ -5,6 +5,9 @@
 - แก้ไข:
   - แก้ไขปัญหา Pre-selected Value และ Text ที่พบในคอมโพเนนต์ Ladderized Select
   - แก้ไขปัญหา clearable ที่พบในคอมโพเนนต์ Ladderized Select
+  - เพิ่มการรองรับให้คอมโพเนนต์ input currency สามารถเปลี่ยนสกุลเงินแบบไดนามิกโดยใช้ prop currency
+  - เพิ่มเอกสารประกอบภาษาไทยสำหรับคอมโพเนนต์ Input Currency
+  - เพิ่มการทดสอบสำหรับ currency prop (case-insensitive, uppercase, lowercase, default to PHP, dynamic updates)
     ([#36628](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36628) โดย @jarias)
 
 ## 2.26.6 (2025-12-19)

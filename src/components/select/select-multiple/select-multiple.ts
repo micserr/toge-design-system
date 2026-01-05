@@ -213,6 +213,14 @@ export const multiSelectPropTypes = {
     type: Boolean,
     default: false,
   },
+  avatarVariant: {
+    type: String,
+    default: '',
+  },
+  avatarSource: {
+    type: String,
+    default: '',
+  },
 };
 
 export const multiSelectEmitTypes = {

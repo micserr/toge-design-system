@@ -46,6 +46,16 @@
           >
             <Icon class="spr-text-xl" :icon="iconName" />
           </span>
+
+          <span v-if="hasAvatar">
+            <spr-avatar
+              size="sm"
+              :initial="props.avatarSource || listItem.text"
+              :variant="props.avatarVariant"
+              :src="props.avatarSource"
+            />
+          </span>
+
           <div
             :class="[
               'spr-flex spr-flex-auto spr-flex-col spr-justify-start',
@@ -106,6 +116,7 @@ import { Icon } from '@iconify/vue';
 import SprCheckbox from '@/components/checkbox/checkbox.vue';
 import SprRadio from '@/components/radio/radio.vue';
 import SprLozenge from '@/components/lozenge/lozenge.vue';
+import SprAvatar from '@/components/avatar/avatar.vue';
 
 import { LOZENGE_TONE } from '@/components/lozenge/lozenge';
 
@@ -115,5 +126,5 @@ import { useListItem } from './use-list-item';
 const props = defineProps(listItemPropTypes);
 const emit = defineEmits(listItemEmitTypes);
 
-const { listItem, hasIcon, iconName, iconClasses, hasSublevels, showLozengeMode } = useListItem(props, emit);
+const { listItem, hasIcon, iconName, iconClasses, hasSublevels, showLozengeMode, hasAvatar } = useListItem(props, emit);
 </script>

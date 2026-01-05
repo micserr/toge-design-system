@@ -1117,6 +1117,50 @@ const userList = ref([
 </script>
 ```
 
+## Avatar
+
+The avatar variant feature allows you to display an avatar image alongside the text of each option in the select list. This can help users quickly identify options based on visual cues. Use the `avatar-variant` and `avatar-source` props to specify the avatar type and source URL.
+
+<div>
+  <spr-select-multiple
+    id="select-multiple-item-icon"
+    v-model="multiSelectModel.multiSelectItemIcon"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    avatar-variant="image"
+    avatar-source="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  />
+</div>
+
+```vue
+<template>
+  <spr-select-multiple
+    id="select-multiple-item-icon"
+    v-model="multiSelectModel.multiSelectItemIcon"
+    label="Select Label"
+    placeholder="Select an option"
+    :options="options"
+    avatar-variant="image"
+    avatar-source="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const multiSelectModel = ref('');
+
+const options = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+]);
+</script>
+```
+
 ## Item Subtext
 
 The item subtext feature allows you to display additional information below the main text of each option in the select list. This can be useful for providing context or details about each option. Use the `subtext` props in the options array to specify the subtext for each option.

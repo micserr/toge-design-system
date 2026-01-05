@@ -131,6 +131,14 @@ export const listPropTypes = {
     type: Boolean,
     default: false,
   },
+  avatarVariant: {
+    type: String,
+    default: '',
+  },
+  avatarSource: {
+    type: String,
+    default: '',
+  },
 };
 
 export const listEmitTypes = {

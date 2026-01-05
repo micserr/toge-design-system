@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.26.7 (2026-01-05)
+
+- Feat:
+  - Commit 77ad7447: Add avatar support to Multi Select component and related items
+    ([#77ad7447](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/77ad74472f183ef47e1a51acfa09b2ffb80f2e87?refName=refs/heads/2025/Feature/andrea/AVATAR-MULTI-SELECT) by @adestajo)
+
 ## 2.26.6 (2025-12-19)
 
 - Chore:

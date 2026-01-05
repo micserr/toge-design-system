@@ -1,5 +1,11 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.26.8 (2026-01-05)
+
+- คุณสมบัติ:
+  - Commit 64fe466e: เพิ่มไอคอนที่กำหนดเองในเอกสารประกอบคอมโพเนนต์ Avatar และอัปเดตตรรกะสำหรับตัวแปรไอคอน
+    ([#64fe466e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/64fe466edb14c10f0c58fa81f7d80a2e80ebd6d2?refName=refs/heads/2025/feat/andrea/AVATAR_CUSTOM_ICON) โดย @adestajo)
+
 ## 2.26.7 (2026-01-05)
 
 - คุณสมบัติ:

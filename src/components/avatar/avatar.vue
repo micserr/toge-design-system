@@ -1,17 +1,17 @@
 <template>
   <div class="spr-h-fit spr-w-fit">
     <div v-if="!props.loading && !imageError" :class="avatarClasses.baseClasses">
-      <template v-if="['image', 'client', 'user', 'user-group'].includes(props.variant) || $slots.default">
-        <div :class="avatarClasses.imageContainerClasses">
+      <template v-if="props.variant === 'count' || props.variant === 'initial'">
+        <div :class="avatarClasses.initialsContainerClasses">
+          {{ props.variant === 'count' ? `+${props.count}` : getInitials }}
+        </div>
+      </template>
+      <template v-else>
+        <div v-if="props.variant || $slots.default" :class="avatarClasses.imageContainerClasses">
           <slot>
             <img v-if="src" :src="src" :alt="alt" @error="handleImageError" />
             <Icon v-else :icon="getIconVariant" />
           </slot>
-        </div>
-      </template>
-      <template v-else>
-        <div :class="avatarClasses.initialsContainerClasses">
-          {{ props.variant === 'count' ? `+${props.count}` : getInitials }}
         </div>
       </template>
 

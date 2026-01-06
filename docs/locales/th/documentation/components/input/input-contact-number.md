@@ -156,6 +156,7 @@ const inputModel = ref('');
     label="ช่องป้อนหมายเลขติดต่อ"
     @get-selected-country-calling-code="handleSelectedCountryCallingCode"
     @get-contact-number-errors="handleContactNumberErrors"
+    @get-parsed-international-number="handleParsedInternationalNumber"
   />
 
   <div class="spr-p-4 spr-bg-blue-100">
@@ -163,7 +164,7 @@ const inputModel = ref('');
     <p>รหัสประเทศที่เลือก: {{ selectedCountryCode }}</p>
     <p>รหัสประเทศที่โทรที่เลือก: {{ selectedCountryCallingCode }}</p>
     <p>การจัดการข้อผิดพลาด: {{ contactNumberErrors }}</p>
-    <p>หมายเลขระหว่างประเทศที่แยกวิเคราะห์: {{ parseInternationalNumber }}</p>
+    <p>หมายเลขระหว่างประเทศที่แยกวิเคราะห์: {{ parsedInternationalNumber }}</p>
   </div>
 </div>
 
@@ -175,6 +176,7 @@ const inputModel = ref('');
     label="ช่องป้อนหมายเลขติดต่อ"
     @get-selected-country-calling-code="handleCodes"
     @get-contact-number-errors="handleErrors"
+    @get-parsed-international-number="handleParsedNumber"
   />
 </template>
 
@@ -185,6 +187,7 @@ const inputModel = ref('');
 const selectedCountry = ref('');
 const selectedCalling = ref('');
 const errors = ref([]);
+const parsedNumber = ref('');
 
 const handleCodes = (val: { countryCode: string; countryCallingCode: string }) => {
   selectedCountry.value = val.countryCode;
@@ -193,6 +196,10 @@ const handleCodes = (val: { countryCode: string; countryCallingCode: string }) =
 
 const handleErrors = (val: { title: string; message: string }[]) => {
   errors.value = val;
+};
+
+const handleParsedNumber = (val: string) => {
+  parsedNumber.value = val;
 };
 </script>
 ```

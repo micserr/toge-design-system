@@ -91,7 +91,37 @@ export const useInputContactNumber = (
     emit('getContactNumberErrors', []);
 
     if (value.length > 0) {
+      // Try to parse the number as user types
+      const original = value.trim();
+      const hasPlus = original.startsWith('+');
+      const normalizedNumber = hasPlus ? `+${original.replace(/[^0-9]/g, '')}` : original.replace(/\D/g, '');
+
+      let phoneNumber;
+
+      try {
+        phoneNumber = hasPlus
+          ? parsePhoneNumber(normalizedNumber)
+          : parsePhoneNumber(normalizedNumber, {
+              defaultCountry: selectedCountry.value.countryCode as CountryCode,
+              extract: false,
+            });
+      } catch {
+        phoneNumber = undefined;
+      }
+
+      // Emit parsed number even if incomplete, if it was parsed
+      if (phoneNumber && phoneNumber.isValid()) {
+        emit('getParsedInternationalNumber', phoneNumber.formatInternational());
+      } else if (normalizedNumber) {
+        // For incomplete numbers, emit what we have in international format prefix
+        const prefix = `+${selectedCountry.value.countryCallingCode}`;
+        emit('getParsedInternationalNumber', `${prefix} ${value.replace(/[^0-9]/g, '')}`);
+      }
+
       formatContactNumber();
+    } else {
+      // Emit empty string when input is cleared
+      emit('getParsedInternationalNumber', '');
     }
   };
 
@@ -109,6 +139,30 @@ export const useInputContactNumber = (
       countryCode: selectedCountry.value.countryCode,
       countryCallingCode: selectedCountry.value.countryCallingCode,
     });
+
+    // Emit parsed number with new country code if there's a value
+    if (formattedValue.value) {
+      const original = formattedValue.value.trim();
+      const normalizedNumber = original.replace(/\D/g, '');
+
+      let phoneNumber;
+
+      try {
+        phoneNumber = parsePhoneNumber(normalizedNumber, {
+          defaultCountry: selectedCountry.value.countryCode as CountryCode,
+          extract: false,
+        });
+      } catch {
+        phoneNumber = undefined;
+      }
+
+      if (phoneNumber && phoneNumber.isValid()) {
+        emit('getParsedInternationalNumber', phoneNumber.formatInternational().replace(/\s/g, ''));
+      } else if (normalizedNumber) {
+        const prefix = `+${selectedCountry.value.countryCallingCode}`;
+        emit('getParsedInternationalNumber', `${prefix}${normalizedNumber}`);
+      }
+    }
   };
 
   const formatContactNumber = () => {
@@ -146,6 +200,7 @@ export const useInputContactNumber = (
       formattedValue.value = formattedNumber;
 
       emit('getContactNumberErrors', []);
+      emit('getParsedInternationalNumber', phoneNumber.formatInternational());
     } else {
       emit('getContactNumberErrors', [
         {

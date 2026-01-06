@@ -155,7 +155,8 @@ const inputModel = ref('');
     v-model="inputModels.selectedCountryCodes" 
     label="Input Contact Number"  
     @get-selected-country-calling-code="handleSelectedCountryCallingCode"
-    @get-contact-number-errors="handleContactNumberErrors" 
+    @get-contact-number-errors="handleContactNumberErrors"
+    @get-parsed-international-number="handleParsedInternationalNumber"
   />
 
   <div class="spr-p-4 spr-bg-blue-100">
@@ -163,7 +164,7 @@ const inputModel = ref('');
     <p>Selected Country Code: {{ selectedCountryCode }}</p>
     <p>Selected Country Calling Code: {{ selectedCountryCallingCode }}</p>
     <p>Error Handling: {{ contactNumberErrors }}</p>
-    <p>Parsed International Number: {{ parseInternationalNumber }}</p>
+    <p>Parsed International Number: {{ parsedInternationalNumber }}</p>
   </div>
 </div>
 
@@ -175,6 +176,7 @@ const inputModel = ref('');
     label="Input Contact Number"
     @get-selected-country-calling-code="handleCodes"
     @get-contact-number-errors="handleErrors"
+    @get-parsed-international-number="handleParsedNumber"
   />
 </template>
 
@@ -185,6 +187,7 @@ const inputModel = ref('');
 const selectedCountry = ref('');
 const selectedCalling = ref('');
 const errors = ref([]);
+const parsedNumber = ref('');
 
 const handleCodes = (val: { countryCode: string; countryCallingCode: string }) => {
   selectedCountry.value = val.countryCode;
@@ -193,6 +196,10 @@ const handleCodes = (val: { countryCode: string; countryCallingCode: string }) =
 
 const handleErrors = (val: { title: string; message: string }[]) => {
   errors.value = val;
+};
+
+const handleParsedNumber = (val: string) => {
+  parsedNumber.value = val;
 };
 </script>
 ```
@@ -461,6 +468,7 @@ const inputModels = ref({
 const selectedCountryCode = ref('');
 const selectedCountryCallingCode = ref('');
 const contactNumberErrors = ref<{ title: string; message: string }[]>([]);
+const parsedInternationalNumber = ref('');
 
 const handleSelectedCountryCallingCode = (value: string) => {
   selectedCountryCode.value = value.countryCode;
@@ -469,6 +477,10 @@ const handleSelectedCountryCallingCode = (value: string) => {
 
 const handleContactNumberErrors = (errors: { title: string; message: string }[]) => {
   contactNumberErrors.value = errors;
+};
+
+const handleParsedInternationalNumber = (value: string) => {
+  parsedInternationalNumber.value = value;
 };
 
 const parseInternationalNumber = computed(() => {

@@ -20,7 +20,7 @@ export const inputCurrencyPropTypes = {
     type: String,
     default: '0.00',
   },
-  preSelectedCurrency: {
+  currency: {
     type: String,
     default: 'PHP',
   },

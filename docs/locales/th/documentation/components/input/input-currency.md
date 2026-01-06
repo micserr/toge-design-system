@@ -210,6 +210,103 @@ const handleSelectedCurrencyMeta = (val: { currency: string; symbol: string }) =
 </template>
 ```
 
+## เปลี่ยนสกุลเงินด้วยตนเอง
+
+เปลี่ยนสกุลเงินแบบไดนามิกโดยใช้ prop `currency` องค์ประกอบนี้รองรับรหัสสกุลเงินตัวพิมพ์ใหญ่และตัวพิมพ์เล็ก หากไม่ได้ระบุ prop currency จะใช้ค่าเริ่มต้น **PHP** (เปโซฟิลิปปินส์)
+
+<div class="spr-grid spr-gap-4">
+  <spr-select 
+    id="currency-select"
+    v-model="selectedCurrency" 
+    label="เลือกสกุลเงิน"
+    :options="currencyOptions"
+    width="100%"
+  />
+  
+  <spr-input-currency 
+    v-model="inputModels.dynamicCurrency" 
+    label="อินพุตสกุลเงินแบบไดนามิก" 
+    :currency="selectedCurrency"
+    auto-format
+    placeholder="ป้อนจำนวนเงิน"
+  />
+  
+  <div class="spr-p-4 spr-bg-blue-50 spr-rounded spr-border spr-border-blue-200">
+    <p class="spr-text-sm spr-text-gray-700"><span class="spr-font-medium">สกุลเงินที่เลือก:</span> {{ selectedCurrency.toUpperCase() }}</p>
+    <p class="spr-text-sm spr-text-gray-700"><span class="spr-font-medium">จำนวนเงิน:</span> {{ inputModels.dynamicCurrency }}</p>
+  </div>
+</div>
+
+```vue
+<template>
+  <div class="spr-grid spr-gap-4">
+    <spr-select
+      id="currency-select"
+      v-model="selectedCurrency"
+      label="เลือกสกุลเงิน"
+      :options="currencyOptions"
+      width="100%"
+    />
+
+    <spr-input-currency
+      v-model="amount"
+      label="อินพุตสกุลเงินแบบไดนามิก"
+      :currency="selectedCurrency"
+      auto-format
+      placeholder="ป้อนจำนวนเงิน"
+    />
+
+    <div class="spr-rounded spr-border spr-border-blue-200 spr-bg-blue-50 spr-p-4">
+      <p class="spr-text-sm spr-text-gray-700">
+        <span class="spr-font-medium">สกุลเงินที่เลือก:</span> {{ selectedCurrency.toUpperCase() }}
+      </p>
+      <p class="spr-text-sm spr-text-gray-700"><span class="spr-font-medium">จำนวนเงิน:</span> {{ amount }}</p>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import SprSelect from '@/components/select/select.vue';
+
+const amount = ref('');
+const selectedCurrency = ref('php');
+
+const currencyOptions = [
+  { text: 'PHP (เปโซฟิลิปปินส์)', value: 'php' },
+  { text: 'USD (ดอลลาร์สหรัฐฯ)', value: 'usd' },
+  { text: 'EUR (ยูโร)', value: 'eur' },
+  { text: 'GBP (ปอนด์อังกฤษ)', value: 'gbp' },
+  { text: 'JPY (เยนญี่ปุ่น)', value: 'jpy' },
+  { text: 'AUD (ดอลลาร์ออสเตรเลีย)', value: 'aud' },
+];
+</script>
+```
+
+:::info หมายเหตุ
+
+- **ไม่คำนึงถึงตัวพิมพ์**: ทั้ง `currency="usd"` และ `currency="USD"` ทำงานเหมือนกัน
+- **ค่าเริ่มต้น**: หากไม่ระบุ prop นี้ องค์ประกอบจะใช้ `'PHP'` เป็นค่าเริ่มต้น
+- **การเปลี่ยนแปลงแบบไดนามิก**: เปลี่ยนสกุลเงินได้ตลอดเวลา และองค์ประกอบจะจัดรูปแบบอินพุตใหม่
+- **รหัสที่ถูกต้อง**: ใช้รหัสสกุลเงิน ISO 4217 มาตรฐาน (เช่น USD, EUR, PHP, JPY ฯลฯ)
+  :::
+
+ตัวอย่าง
+
+```vue
+<!-- ค่าเริ่มต้น (PHP) -->
+<spr-input-currency v-model="amount" />
+
+<!-- ตัวพิมพ์ใหญ่ที่ชัดเจน -->
+<spr-input-currency v-model="amount" currency="USD" />
+
+<!-- รองรับตัวพิมพ์เล็ก -->
+<spr-input-currency v-model="amount" currency="eur" />
+
+<!-- แบบไดนามิก/รีแอคทีฟ -->
+<spr-input-currency v-model="amount" :currency="userSelectedCurrency" />
+```
+
 ## จัดรูปแบบอัตโนมัติ
 
 นำไปใช้ตัวคั่นหลักพันและจำกัดทศนิยมตามมาตรฐานสกุลเงินโดยอัตโนมัติขณะที่พิมพ์และเมื่อเบลอ หากมีค่าอยู่แล้วเมื่อส่วนประกอบโหลด จะนำไปใช้จัดรูปแบบอัตโนมัติทันที
@@ -690,8 +787,14 @@ const amount = ref('');
       <td><code>'0.00'</code></td>
     </tr>
     <tr>
+      <td><code>currency</code></td>
+      <td>รหัสสกุลเงิน ISO 4217 (เช่น <code>USD</code>, <code>EUR</code>, <code>PHP</code>) รองรับตัวพิมพ์ใหญ่และตัวพิมพ์เล็ก สามารถเปลี่ยนสกุลเงินแบบไดนามิกได้ตลอดเวลา</td>
+      <td>String</td>
+      <td><code>'PHP'</code></td>
+    </tr>
+    <tr>
       <td><code>pre-selected-currency</code></td>
-      <td>รหัสสกุลเงิน ISO 4217 เริ่มต้น (เช่น <code>USD</code>, <code>EUR</code>) กำหนดค่าตัวเลือกของตัวเลือกเริ่มต้น</td>
+      <td><strong>เลิกใช้แล้ว:</strong> ใช้ prop `currency` แทน รหัสสกุลเงิน ISO 4217 เริ่มต้น (เช่น <code>USD</code>, <code>EUR</code>)</td>
       <td>String</td>
       <td><code>'PHP'</code></td>
     </tr>
@@ -792,6 +895,7 @@ import { ref, computed } from 'vue';
 import { Icon } from '@iconify/vue';
 
 import SprInputCurrency from '@/components/input/input-currency/input-currency.vue';
+import SprSelect from '@/components/select/select.vue';
 
 const inputModels = ref({
   basic: '',
@@ -803,6 +907,7 @@ const inputModels = ref({
   currencyCodeSymbol2: '',
   selectedCurrencyMeta: '',
   preSelectedCurrency: '',
+  dynamicCurrency: '',
   autoFormat: '',
   autoFormatExisting: '1234567.8',
   maxDecimals: '',
@@ -813,6 +918,17 @@ const inputModels = ref({
   baseValueZero: '',
   baseValueTwo: '',
 });
+
+const selectedCurrency = ref('php');
+
+const currencyOptions = [
+  { text: 'PHP (เปโซฟิลิปปินส์)', value: 'php' },
+  { text: 'USD (ดอลลาร์สหรัฐฯ)', value: 'usd' },
+  { text: 'EUR (ยูโร)', value: 'eur' },
+  { text: 'GBP (ปอนด์อังกฤษ)', value: 'gbp' },
+  { text: 'JPY (เยนญี่ปุ่น)', value: 'jpy' },
+  { text: 'AUD (ดอลลาร์ออสเตรเลีย)', value: 'aud' },
+];
 
 const meta = ref<{
   currency: string;

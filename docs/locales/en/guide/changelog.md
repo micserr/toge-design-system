@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.26.11 (2026-01-06)
+
+- Fix:
+  - parsed international number handling to contact number input component
+    ([#36637](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36637) by @jarias)
+
 ## 2.26.10 (2026-01-06)
 
 - Fix:

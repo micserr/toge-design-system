@@ -1,6 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue';
 import type { MenuListType } from '../list';
-
 export const listItemPropTypes = {
   item: {
     type: Object as PropType<MenuListType>,
@@ -49,6 +48,14 @@ export const listItemPropTypes = {
   radioList: {
     type: Boolean,
     default: false,
+  },
+  avatarVariant: {
+    type: String,
+    default: '',
+  },
+  avatarSource: {
+    type: String,
+    default: '',
   },
 };
 

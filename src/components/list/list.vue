@@ -70,6 +70,8 @@
                 :item-icon-fill="props.itemIconFill"
                 :disabled-unselected-items="props.disabledUnselectedItems"
                 :radio-list="props.radioList"
+                :avatar-variant="props.avatarVariant"
+                :avatar-source="props.avatarSource"
                 @select="handleSelectedItem(item)"
               />
               <div v-if="props.infiniteScrollLoader" class="spr-flex spr-items-center spr-justify-center spr-p-2">
@@ -98,6 +100,8 @@
             :item-icon-fill="props.itemIconFill"
             :disabled-unselected-items="props.disabledUnselectedItems"
             :radio-list="props.radioList"
+            :avatar-variant="props.avatarVariant"
+            :avatar-source="props.avatarSource"
             @select="handleSelectedItem(item)"
           />
           <div v-if="props.infiniteScrollLoader" class="spr-flex spr-items-center spr-justify-center spr-p-2">

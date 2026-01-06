@@ -177,6 +177,14 @@ export const selectPropTypes = {
     type: String,
     default: '',
   },
+  avatarVariant: {
+    type: String,
+    default: '',
+  },
+  avatarSource: {
+    type: String,
+    default: '',
+  },
 };
 
 export const selectEmitTypes = {

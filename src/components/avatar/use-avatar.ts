@@ -109,7 +109,7 @@ export const useAvatar = (props: AvatarPropTypes, emit: SetupContext<AvatarEmitT
       case 'guest':
         return 'ph:user-circle';
       default:
-        return '';
+        return `ph:${variant.value}`;
     }
   });
 

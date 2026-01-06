@@ -1,12 +1,30 @@
 # Changelog
 
-## 2.26.7 (2025-12-29)
+## 2.26.10 (2026-01-06)
 
 - Fix:
   - Fix the Pre-selected Value and Text issue encountered in Ladderized Select
   - Fix the clearable issue encountered in Ladderized Select
   - Add support for input currency component to dynamically change currency based on selected currency from select component
     ([#36628](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36628) by @jarias)
+
+## 2.26.9 (2026-01-06)
+
+- Feat:
+  - Commit 69365b31: Add avatar support to select component
+    ([#69365b31](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/69365b3132a431ff4193d1e11d4b3df1d9f6b422?refName=refs/heads/2026/FEAT/ANDREA/ADDED_AVATAR_SINGLE_SELECT) by @adestajo)
+
+## 2.26.8 (2026-01-05)
+
+- Feat:
+  - Commit 64fe466e: Add custom icons to Avatar component documentation and update logic for icon variants
+    ([#64fe466e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/64fe466edb14c10f0c58fa81f7d80a2e80ebd6d2?refName=refs/heads/2025/feat/andrea/AVATAR_CUSTOM_ICON) by @adestajo)
+
+## 2.26.7 (2026-01-05)
+
+- Feat:
+  - Commit 77ad7447: Add avatar support to Multi Select component and related items
+    ([#77ad7447](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/77ad74472f183ef47e1a51acfa09b2ffb80f2e87?refName=refs/heads/2025/Feature/andrea/AVATAR-MULTI-SELECT) by @adestajo)
 
 ## 2.26.6 (2025-12-19)
 

@@ -11,14 +11,15 @@ Selects are interactive components that allow users to choose from a list of opt
 ## Basic Usage
 
 <div class="spr-grid spr-gap-4">
-  <spr-select
+
+<spr-select
     id="select-basic"
     v-model="selectModel.selectBasic"
     label="Select Label"
     placeholder="Select an option"
     :options="options"
   />
-  
+
   <code class="spr-font-medium">
     V-Model: {{ selectModel.selectBasic ? selectModel.selectBasic : `""` }}
   </code>
@@ -1024,6 +1025,50 @@ const optionsWithSubtext = ref([
   { text: 'Cherry', value: 'cherry', subtext: 'A small red fruit' },
   { text: 'Date', value: 'date', subtext: 'A sweet brown fruit' },
   { text: 'Elderberry', value: 'elderberry', subtext: 'A small dark purple fruit' },
+]);
+</script>
+```
+
+## Avatar
+
+The avatar feature allows you to display a small avatar image next to the select input. This can be useful for providing additional context or visual identification for the selection.
+
+Use the `avatar-variant` prop to specify the avatar type (icons): `user`, `user-light`, `building`, `building-light`
+
+<div>
+  <spr-select
+    id="select-basic"
+    v-model="selectModel.selectBasic"
+    label="Select Label"
+    placeholder="Select an option"
+    avatar-variant="building-light"
+    :options="options"
+  />
+</div>
+
+```vue
+<template>
+  <spr-select
+    id="select-basic"
+    v-model="selectModel.selectBasic"
+    label="Select Label"
+    placeholder="Select an option"
+    avatar-variant="building-light"
+    :options="options"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectModel = ref('');
+
+const options = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
 ]);
 </script>
 ```

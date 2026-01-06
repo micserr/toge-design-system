@@ -1,5 +1,11 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.26.9 (2026-01-06)
+
+- คุณสมบัติ:
+  - Commit 69365b31: เพิ่มการรองรับ avatar ให้กับ select component
+    ([#69365b31](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/69365b3132a431ff4193d1e11d4b3df1d9f6b422?refName=refs/heads/2026/FEAT/ANDREA/ADDED_AVATAR_SINGLE_SELECT) by @adestajo)
+
 ## 2.26.8 (2026-01-05)
 
 - คุณสมบัติ:

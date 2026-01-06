@@ -102,6 +102,8 @@
             :infinite-scroll-loader="props.infiniteScrollLoader"
             :item-icon="props.itemIcon"
             :lozenge="props.lozenge"
+            :avatar-variant="props.avatarVariant"
+            :avatar-source="props.avatarSource"
             @update:model-value="handleSelectedItem"
           />
         </div>

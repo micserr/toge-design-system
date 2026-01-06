@@ -230,6 +230,16 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
     <spr-avatar variant="client" size="xs" />
     <spr-avatar variant="client" size="2xs" />
   </div>
+
+  <div class="spr-space-x-3 spr-flex">
+    <spr-avatar variant="users-four" size="2xl" />
+    <spr-avatar variant="user-sound" size="xl" />
+    <spr-avatar variant="airplane" size="lg" />
+    <spr-avatar variant="android-logo" size="md" />
+    <spr-avatar variant="arrow-down" size="sm" />
+    <spr-avatar variant="arrow-up" size="xs" />
+    <spr-avatar variant="arrow-left" size="2xs" />
+  </div>
 </div>
 
 ```vue
@@ -283,6 +293,17 @@ avatar component has 7 different sizes. You can use the `size` prop to set the s
       <spr-avatar variant="client" size="sm" />
       <spr-avatar variant="client" size="xs" />
       <spr-avatar variant="client" size="2xs" />
+    </div>
+
+    //CUSTOM ICONS
+    <div class="spr-space-x-3">
+      <spr-avatar variant="users-four" size="2xl" />
+      <spr-avatar variant="user-sound" size="xl" />
+      <spr-avatar variant="airplane" size="lg" />
+      <spr-avatar variant="android-logo" size="md" />
+      <spr-avatar variant="arrow-down" size="sm" />
+      <spr-avatar variant="arrow-up" size="xs" />
+      <spr-avatar variant="arrow-left" size="2xs" />
     </div>
   </div>
 </template>

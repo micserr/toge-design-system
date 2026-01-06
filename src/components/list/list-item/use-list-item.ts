@@ -14,12 +14,15 @@ export function useListItem(
   iconClasses: ComputedRef<string>;
   hasSublevels: ComputedRef<boolean>;
   showLozengeMode: ComputedRef<boolean>;
+  hasAvatar: ComputedRef<boolean>;
 } {
-  const { item, itemIcon, itemIconTone, itemIconFill, lozenge } = toRefs(props);
+  const { item, itemIcon, itemIconTone, itemIconFill, lozenge, avatarVariant } = toRefs(props);
 
   const listItem = computed(() => item?.value);
 
   const hasIcon = computed(() => !!(itemIcon.value || item?.value!.icon));
+
+  const hasAvatar = computed(() => !!(avatarVariant.value && !hasIcon.value));
 
   const iconName = computed(() => itemIcon.value || item?.value!.icon || '');
 
@@ -64,6 +67,7 @@ export function useListItem(
   return {
     listItem,
     hasIcon,
+    hasAvatar,
     iconName,
     iconClasses,
     hasSublevels,

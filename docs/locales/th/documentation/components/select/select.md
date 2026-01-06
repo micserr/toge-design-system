@@ -755,6 +755,51 @@ const getNextOptionsViaAPI = async () => {
 </template>
 ```
 
+## Avatar
+
+คุณลักษณะอวตารช่วยให้คุณแสดงรูปภาพอวตารเล็กๆ ข้างช่องป้อนเลือก สิ่งนี้สามารถมีประโยชน์ในการให้บริบทเพิ่มเติมหรือการระบุตัวตนทางภาพสำหรับการเลือก
+
+ใช้พร็อพส์ `avatar-variant` เพื่อระบุประเภทอวตาร: `user`, `user-light`, `building`, `building-light`
+
+
+<div>
+  <spr-select
+    id="select-basic"
+    v-model="selectModel.selectBasic"
+    label="Select Label"
+    placeholder="Select an option"
+    avatar-variant="building-light"
+    :options="options"
+  />
+</div>
+
+```vue
+<template>
+  <spr-select
+    id="select-basic"
+    v-model="selectModel.selectBasic"
+    label="Select Label"
+    placeholder="Select an option"
+    avatar-variant="building-light"
+    :options="options"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const selectModel = ref('');
+
+const options = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+]);
+</script>
+```
+
 ## ข้อความช่วยเหลือ
 
 ข้อความช่วยเหลือเป็นป้ายข้อความใต้ช่องป้อนข้อมูลที่ให้ข้อมูลเพิ่มเติมเกี่ยวกับคำแนะนำ การจัดรูปแบบ คำติชมการตรวจสอบ ฯลฯ

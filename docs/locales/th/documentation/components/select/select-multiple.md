@@ -1063,6 +1063,50 @@ const userList = ref([
 </script>
 ```
 
+## อวตาร
+
+คุณลักษณะตัวแปรอวตารช่วยให้คุณแสดงภาพอวตารควบคู่กับข้อความของแต่ละตัวเลือกในรายการเลือก สิ่งนี้สามารถช่วยให้ผู้ใช้ระบุตัวเลือกได้อย่างรวดเร็วตามสัญญาณภาพ ใช้พร็อพส์ `avatar-variant` และ `avatar-source` เพื่อระบุประเภทอวตารและ URL ต้นฉบับ
+
+<div>
+  <spr-select-multiple
+    id="select-multiple-item-icon"
+    v-model="multiSelectModel.multiSelectItemIcon"
+    label="ป้ายกำกับเลือก"
+    placeholder="เลือกตัวเลือก"
+    :options="options"
+    avatar-variant="image"
+    avatar-source="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  />
+</div>
+
+```vue
+<template>
+  <spr-select-multiple
+    id="select-multiple-item-icon"
+    v-model="multiSelectModel.multiSelectItemIcon"
+    label="ป้ายกำกับเลือก"
+    placeholder="เลือกตัวเลือก"
+    :options="options"
+    avatar-variant="image"
+    avatar-source="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg"
+  />
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+
+const multiSelectModel = ref('');
+
+const options = ref([
+  { text: 'Apple', value: 'apple' },
+  { text: 'Banana', value: 'banana' },
+  { text: 'Cherry', value: 'cherry' },
+  { text: 'Date', value: 'date' },
+  { text: 'Elderberry', value: 'elderberry' },
+]);
+</script>
+```
+
 ## ข้อความรองของรายการ
 
 คุณลักษณะข้อความรองของรายการช่วยให้คุณแสดงข้อมูลเพิ่มเติมใต้ข้อความหลักของแต่ละตัวเลือกในรายการเลือก สิ่งนี้สามารถมีประโยชน์ในการให้บริบทหรือรายละเอียดเกี่ยวกับแต่ละตัวเลือก ใช้พร็อพส์ `subtext` ในอาร์เรย์ตัวเลือกเพื่อระบุข้อความรองสำหรับแต่ละตัวเลือก
@@ -1109,7 +1153,7 @@ const optionsWithSubtext = ref([
 
 ไอคอนใช้ไอคอน phosphor จาก [Iconify](https://icon-sets.iconify.design/)
 
-<div>
+<div> 
   <spr-select-multiple
     id="select-multiple-item-icon"
     v-model="multiSelectModel.multiSelectItemIcon"

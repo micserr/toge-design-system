@@ -1,14 +1,30 @@
 # บันทึกการเปลี่ยนแปลง
 
-## 2.26.7 (2025-12-29)
+## 2.26.10 (2026-01-06)
 
 - แก้ไข:
-  - แก้ไขปัญหา Pre-selected Value และ Text ที่พบในคอมโพเนนต์ Ladderized Select
-  - แก้ไขปัญหา clearable ที่พบในคอมโพเนนต์ Ladderized Select
-  - เพิ่มการรองรับให้คอมโพเนนต์ input currency สามารถเปลี่ยนสกุลเงินแบบไดนามิกโดยใช้ prop currency
-  - เพิ่มเอกสารประกอบภาษาไทยสำหรับคอมโพเนนต์ Input Currency
-  - เพิ่มการทดสอบสำหรับ currency prop (case-insensitive, uppercase, lowercase, default to PHP, dynamic updates)
+  - แก้ไขปัญหาค่าที่เลือกไว้ล่วงหน้าและข้อความใน Ladderized Select
+  - แก้ไขปัญหา clearable ใน Ladderized Select
+  - เพิ่มการรองรับให้ input currency component สามารถเปลี่ยนสกุลเงินแบบไดนามิกได้ตามการเลือกจาก select component
     ([#36628](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36628) โดย @jarias)
+
+## 2.26.9 (2026-01-06)
+
+- คุณสมบัติ:
+  - Commit 69365b31: เพิ่มการรองรับ avatar ให้กับ select component
+    ([#69365b31](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/69365b3132a431ff4193d1e11d4b3df1d9f6b422?refName=refs/heads/2026/FEAT/ANDREA/ADDED_AVATAR_SINGLE_SELECT) by @adestajo)
+
+## 2.26.8 (2026-01-05)
+
+- คุณสมบัติ:
+  - Commit 64fe466e: เพิ่มไอคอนที่กำหนดเองในเอกสารประกอบคอมโพเนนต์ Avatar และอัปเดตตรรกะสำหรับตัวแปรไอคอน
+    ([#64fe466e](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/64fe466edb14c10f0c58fa81f7d80a2e80ebd6d2?refName=refs/heads/2025/feat/andrea/AVATAR_CUSTOM_ICON) โดย @adestajo)
+
+## 2.26.7 (2026-01-05)
+
+- คุณสมบัติ:
+  - Commit 77ad7447: เพิ่มการรองรับ avatar ให้กับ Multi Select component และรายการที่เกี่ยวข้อง
+    ([#77ad7447](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/77ad74472f183ef47e1a51acfa09b2ffb80f2e87?refName=refs/heads/2025/Feature/andrea/AVATAR-MULTI-SELECT) โดย @adestajo)
 
 ## 2.26.6 (2025-12-19)
 

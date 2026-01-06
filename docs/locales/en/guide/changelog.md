@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.26.10 (2026-01-06)
+
+- Fix:
+  - Fix the Pre-selected Value and Text issue encountered in Ladderized Select
+  - Fix the clearable issue encountered in Ladderized Select
+  - Add support for input currency component to dynamically change currency based on selected currency from select component
+    ([#36628](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/pullrequest/36628) by @jarias)
+
 ## 2.26.9 (2026-01-06)
 
 - Feat:

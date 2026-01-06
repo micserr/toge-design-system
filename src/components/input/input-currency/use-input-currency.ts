@@ -17,16 +17,11 @@ interface InputCurrencyClasses {
 }
 
 export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupContext<InputCurrencyEmitTypes>['emit']) => {
-  const {
-    id,
-    preSelectedCurrency,
-    disabledCountryCurrency,
-    disabled,
-    maxDecimals,
-    minDecimals,
-    disableRounding,
-    baseValue,
-  } = toRefs(props);
+  const { id, currency, disabledCountryCurrency, disabled, maxDecimals, minDecimals, disableRounding, baseValue } =
+    toRefs(props);
+
+  // Normalize currency to uppercase for case-insensitive support
+  const normalizedCurrency = computed(() => currency.value.toUpperCase());
 
   const inputCurrencyClasses: ComputedRef<InputCurrencyClasses> = computed(() => {
     const dropdownBaseClasses = classNames(
@@ -442,20 +437,23 @@ export const useInputCurrency = (props: InputCurrencyPropTypes, emit: SetupConte
 
   // Initialization of selected currency must occur AFTER currencyOptions is defined.
   const initCurrency = () => {
-    const fallback = currencyOptions.find((c) => c.value === 'USD') || currencyOptions[0];
+    const fallback =
+      currencyOptions.find((c) => c.value === 'PHP') ||
+      currencyOptions.find((c) => c.value === 'USD') ||
+      currencyOptions[0];
 
-    return currencyOptions.find((c) => c.value === preSelectedCurrency.value) || fallback;
+    return currencyOptions.find((c) => c.value === normalizedCurrency.value) || fallback;
   };
 
   const selected = ref(initCurrency());
   // #endregion - Set Currency Options
 
-  watch(preSelectedCurrency, (code) => {
+  watch(normalizedCurrency, (code) => {
     if (code) handleSelectedCurrency(code);
   });
 
   onMounted(() => {
-    handleSelectedCurrency(preSelectedCurrency.value);
+    handleSelectedCurrency(normalizedCurrency.value);
     if (modelValue.value && numericValue.value !== null) {
       modelValue.value = formatNumberForBlur(numericValue.value);
       emit('getCurrencyValue', numericValue.value);

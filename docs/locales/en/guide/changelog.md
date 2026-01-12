@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.26.12 (2026-01-12)
+
+- Fix:
+  - Commit 4968f2ce: Enhance multi-select component: manage search state and improve input text updates
+    ([#4968f2ce](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/4968f2ce96101554ad74695b0eddf061209847db?refName=refs/heads/2026/Fix/andrea/multi-select) by @adestajo)
+
 ## 2.26.11 (2026-01-06)
 
 - Fix:

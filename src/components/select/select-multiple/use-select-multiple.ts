@@ -107,6 +107,7 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
 
   const inputText = ref<string | number>('');
   const chippedInputTextRef = ref(null);
+  const isSearching = ref<boolean>(false);
 
   const search = useVModel(props, 'searchValue', emit);
   const searchInput = ref<string>('');
@@ -204,9 +205,17 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
     });
 
     hasUserSelected.value = true;
+
+    // Temporarily disable searching flag to allow inputText update
+    const wasSearching = isSearching.value;
+    isSearching.value = false;
+
     multiSelectModel.value = selectedValues;
 
-    updateMultiSelectedItemsFromValue();
+    // Restore searching state if user was searching
+    if (wasSearching) {
+      isSearching.value = true;
+    }
 
     emit('get-selected-options', multiSelectedItems);
   };
@@ -252,6 +261,11 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
    * Handles stringified objects and updates the input text accordingly.
    */
   const updateMultiSelectedItemsFromValue = () => {
+    // Don't update inputText if user is actively searching
+    if (isSearching.value) {
+      return;
+    }
+
     const values = normalizedValue.value;
 
     if (!values || !values.length) {
@@ -313,7 +327,7 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
         inputText.value = `${values.length} items selected`;
       } else {
         // Safely get display text for each value
-        inputText.value = values
+        const displayTexts = values
           .map((val) => {
             // Try to find the corresponding option for display text
             const found = multiSelectOptions.value.find((opt) => {
@@ -338,9 +352,12 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
               }
               return optVal == v;
             });
-            return found ? found.text : typeof val === 'string' || typeof val === 'number' ? String(val) : '';
+            // Only return text if found, otherwise return empty string
+            return found ? found.text : '';
           })
-          .join(', ');
+          .filter((text) => text !== ''); // Filter out empty strings from not found items
+
+        inputText.value = displayTexts.length > 0 ? displayTexts.join(', ') : '';
       }
     }
 
@@ -390,6 +407,9 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
   watch(searchInput, (newVal, oldVal) => {
     search.value = newVal;
 
+    // Track if user is actively searching
+    isSearching.value = newVal.length > 0;
+
     // Only emit search-string if value actually changed (not just modifier keys)
     // Modifier key presses alone won't change the input value
     if (newVal !== oldVal) {
@@ -421,6 +441,10 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
       }
 
       multiSelectPopperState.value = false;
+
+      // Clear search state when closing
+      isSearching.value = false;
+      searchInput.value = '';
 
       updateMultiSelectedItemsFromValue();
     },

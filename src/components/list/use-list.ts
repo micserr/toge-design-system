@@ -613,6 +613,13 @@ export const useList = (props: ListPropTypes, emit: SetupContext<ListEmitTypes>[
     handleSearch();
   });
 
+  // Sync searchString (from prop) back to searchText (local state)
+  watch(searchString, (newVal) => {
+    if (searchText.value !== newVal) {
+      searchText.value = newVal;
+    }
+  });
+
   watch(
     apiSelectedList,
     () => {

@@ -94,16 +94,16 @@ Use the `choiceBox` prop to display radio buttons in a choice box style with an 
 
 <div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
   <spr-radio id="choicebox1" v-model="radioModel.radio4" name="radio_choicebox" value="option1" choice-box full-width>
-    <div class="spr-font-semibold">Option 1</div>
-    <div class="spr-text-sm">Select this option for feature A</div>
+    <div class="spr-body-sm-regular spr-text-color-strong">Option 1</div>
+    <div class="spr-body-sm-regular spr-text-color-base">Select this option for feature A</div>
   </spr-radio>
   <spr-radio id="choicebox2" v-model="radioModel.radio4" name="radio_choicebox" value="option2" choice-box full-width>
-    <div class="spr-font-semibold">Option 2</div>
-    <div class="spr-text-sm">Select this option for feature B</div>
+    <div class="spr-body-sm-regular spr-text-color-strong">Option 2</div>
+    <div class="spr-body-sm-regular spr-text-color-base">Select this option for feature B</div>
   </spr-radio>
   <spr-radio id="choicebox3" v-model="radioModel.radio4" name="radio_choicebox" value="option3" choice-box full-width>
-    <div class="spr-font-semibold">Option 3</div>
-    <div class="spr-text-sm">Select this option for feature C</div>
+    <div class="spr-body-sm-regular spr-text-color-strong">Option 3</div>
+    <div class="spr-body-sm-regular spr-text-color-base">Select this option for feature C</div>
   </spr-radio>
 </div>
 
@@ -111,16 +111,16 @@ Use the `choiceBox` prop to display radio buttons in a choice box style with an 
 <template>
   <div class="spr-flex spr-flex-col spr-items-start spr-gap-2">
     <spr-radio id="choicebox1" v-model="selectedOption" name="radio_choicebox" value="option1" choice-box full-width>
-      <div class="spr-font-semibold">Option 1</div>
-      <div class="spr-text-sm">Select this option for feature A</div>
+      <div class="spr-body-sm-regular spr-text-color-strong">Option 1</div>
+      <div class="spr-body-sm-regular spr-text-color-base">Select this option for feature A</div>
     </spr-radio>
     <spr-radio id="choicebox2" v-model="selectedOption" name="radio_choicebox" value="option2" choice-box full-width>
-      <div class="spr-font-semibold">Option 2</div>
-      <div class="spr-text-sm">Select this option for feature B</div>
+      <div class="spr-body-sm-regular spr-text-color-strong">Option 2</div>
+      <div class="spr-body-sm-regular spr-text-color-base">Select this option for feature B</div>
     </spr-radio>
     <spr-radio id="choicebox3" v-model="selectedOption" name="radio_choicebox" value="option3" choice-box full-width>
-      <div class="spr-font-semibold">Option 3</div>
-      <div class="spr-text-sm">Select this option for feature C</div>
+      <div class="spr-body-sm-regular spr-text-color-strong">Option 3</div>
+      <div class="spr-body-sm-regular spr-text-color-base">Select this option for feature C</div>
     </spr-radio>
   </div>
 </template>

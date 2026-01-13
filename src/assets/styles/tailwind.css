@@ -705,6 +705,10 @@
   .spr-text-color-accent-pressed {
     @apply spr-text-wintermelon-900;
   }
+
+  .spr-text-color-specialty-token-dark {
+    @apply spr-text-mushroom-950;
+  }
   /* #endregion - Text Colors */
 
   /* #region - Background Colors */

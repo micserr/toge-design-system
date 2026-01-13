@@ -39,6 +39,16 @@ export const useRadioGrouped = (props: RadioGroupedPropTypes, emit: SetupContext
     };
   });
 
+  const getOptionLabelClasses = (option: RadioOption, proxyValue): string => {
+    return classNames('spr-body-sm-regular', {
+      'spr-text-color-disabled': disabled.value || (option.disabled ?? false),
+      'spr-text-color-strong':
+        !disabled.value && !(option.disabled ?? false) && (!choiceBox.value || proxyValue !== option.value),
+      'spr-text-color-specialty-token-dark':
+        choiceBox.value && !disabled.value && !(option.disabled ?? false) && proxyValue === option.value,
+    });
+  };
+
   const proxyValue = useVModel(props, 'modelValue', emit);
 
   const renderOptions = (): RadioOption[] => {
@@ -54,6 +64,7 @@ export const useRadioGrouped = (props: RadioGroupedPropTypes, emit: SetupContext
     proxyValue,
     renderOptions,
     isOptionDisabled,
+    getOptionLabelClasses,
     disabled,
     displayHelper,
     horizontalAlign,

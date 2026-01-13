@@ -13,7 +13,9 @@
         :full-width="props.fullWidth || props.choiceBox"
         :description="option.description"
       >
-        {{ option.text }}
+        <span :class="getOptionLabelClasses(option, proxyValue)">
+          {{ option.text }}
+        </span>
       </spr-radio>
     </div>
 
@@ -36,5 +38,8 @@ import { useRadioGrouped } from './use-radio-grouped';
 const props = defineProps(radioGroupedPropTypes);
 const emit = defineEmits(radioGroupedEmitTypes);
 
-const { radioGroupedClasses, proxyValue, renderOptions, isOptionDisabled } = useRadioGrouped(props, emit);
+const { radioGroupedClasses, proxyValue, renderOptions, isOptionDisabled, getOptionLabelClasses } = useRadioGrouped(
+  props,
+  emit,
+);
 </script>

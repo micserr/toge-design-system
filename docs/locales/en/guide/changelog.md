@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.26.14 (2026-01-13)
+
+- Feat:
+  - Commit b7895b02: feat: enhance multi-select handling with selection caching and improved input text updates
+    ([#b7895b02](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/b7895b02632691a76ba20ba33bc870c679b4b7df?refName=refs/heads/2026/FEAT/ANDREA/multi-select-update) by @adestajo)
+
 ## 2.26.13 (2026-01-13)
 
 - Fix:

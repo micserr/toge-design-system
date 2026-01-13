@@ -104,6 +104,8 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
   const multiSelectedListItems = ref<MenuListType[]>([]);
   const multiSelectOptions = ref<MenuListType[]>([]);
   const hasUserSelected = ref(false);
+  const isHandlingSelection = ref<boolean>(false);
+  const selectedItemsCache = ref<Map<string, MenuListType>>(new Map());
 
   const inputText = ref<string | number>('');
   const chippedInputTextRef = ref(null);
@@ -193,6 +195,8 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
    * Converts stringified objects back to objects if needed.
    */
   const handleMultiSelectedItem = (multiSelectedItems: MenuListType[]) => {
+    isHandlingSelection.value = true;
+
     const selectedValues = multiSelectedItems.map((item) => {
       if (typeof item.value === 'string' && item.value.startsWith('{') && item.value.endsWith('}')) {
         try {
@@ -206,17 +210,36 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
 
     hasUserSelected.value = true;
 
-    // Temporarily disable searching flag to allow inputText update
-    const wasSearching = isSearching.value;
+    // Clear searching flag to allow inputText update
     isSearching.value = false;
+
+    // Update cache with all selected items
+    selectedItemsCache.value.clear();
+    multiSelectedItems.forEach((item) => {
+      const key = typeof item.value === 'object' ? JSON.stringify(item.value) : String(item.value);
+      selectedItemsCache.value.set(key, item);
+    });
 
     multiSelectModel.value = selectedValues;
 
-    // Restore searching state if user was searching
-    if (wasSearching) {
-      isSearching.value = true;
+    // Directly update the selected items list without filtering from potentially filtered options
+    multiSelectedListItems.value = multiSelectedItems;
+
+    // Update inputText directly based on the selected items
+    if (!persistentDisplayText.value) {
+      if (props.displaySelectedCountOnly && multiSelectedItems.length) {
+        inputText.value = `${multiSelectedItems.length} item${multiSelectedItems.length === 1 ? '' : 's'} selected`;
+      } else if (multiSelectedItems.length > 3) {
+        inputText.value = `${multiSelectedItems.length} items selected`;
+      } else if (multiSelectedItems.length > 0) {
+        const displayTexts = multiSelectedItems.map((item) => item.text).filter((text) => text !== '');
+        inputText.value = displayTexts.length > 0 ? displayTexts.join(', ') : '';
+      } else {
+        inputText.value = displayText.value || '';
+      }
     }
 
+    isHandlingSelection.value = false;
     emit('get-selected-options', multiSelectedItems);
   };
 
@@ -261,8 +284,8 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
    * Handles stringified objects and updates the input text accordingly.
    */
   const updateMultiSelectedItemsFromValue = () => {
-    // Don't update inputText if user is actively searching
-    if (isSearching.value) {
+    // Don't interfere if we're in the middle of handling a selection
+    if (isHandlingSelection.value) {
       return;
     }
 
@@ -270,6 +293,7 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
 
     if (!values || !values.length) {
       multiSelectedListItems.value = [];
+      selectedItemsCache.value.clear();
 
       // Always show displayText if provided and no selected items
       if (displayText.value) {
@@ -281,10 +305,26 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
       return;
     }
 
-    // Always keep multiSelectedListItems in sync with selected values
+    // First try to build from cache, then fall back to filtering options
     const seenValues = new Set<string>();
-    multiSelectedListItems.value = multiSelectOptions.value.filter((item) => {
-      const isMatch = values.some((val) => {
+    const itemsFromCache: MenuListType[] = [];
+    const valuesNotInCache: (string | number | Record<string, unknown>)[] = [];
+
+    values.forEach((val) => {
+      const key = typeof val === 'object' ? JSON.stringify(val) : String(val);
+      if (selectedItemsCache.value.has(key)) {
+        if (!seenValues.has(key)) {
+          itemsFromCache.push(selectedItemsCache.value.get(key)!);
+          seenValues.add(key);
+        }
+      } else {
+        valuesNotInCache.push(val);
+      }
+    });
+
+    // For values not in cache, search in multiSelectOptions
+    const itemsFromOptions = multiSelectOptions.value.filter((item) => {
+      const isMatch = valuesNotInCache.some((val) => {
         let itemVal = item.value;
         let valToCompare = val;
 
@@ -317,6 +357,15 @@ export const useMultiSelect = (props: MultiSelectPropTypes, emit: SetupContext<M
       }
 
       return isMatch;
+    });
+
+    // Combine items from cache and options, update cache for new items
+    multiSelectedListItems.value = [...itemsFromCache, ...itemsFromOptions];
+
+    // Update cache with newly found items
+    itemsFromOptions.forEach((item) => {
+      const key = typeof item.value === 'object' ? JSON.stringify(item.value) : String(item.value);
+      selectedItemsCache.value.set(key, item);
     });
 
     // Determine input text based on whether count-only mode is enabled

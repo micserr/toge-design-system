@@ -1,5 +1,17 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.26.16 (2026-01-15)
+
+- การดูแลรักษา:
+  - Commit 7ba60a35: อัปเดตการกำหนดค่าไฟล์ใน package.json เพื่อรวมไฟล์การกระจายและเอกสารอย่างถูกต้อง
+    ([#7ba60a35](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7ba60a35c972536f416085d4fb8ba84e668f9bba?refName=refs%2Fheads%2F2025%2Fchore%2Fjef%2Fhide-to-npm-files) โดย @jmari)
+
+## 2.26.15 (2026-01-15)
+
+- คุณสมบัติ:
+  - เพิ่ม badge ให้กับคอมโพเนนต์ tabs
+    ([#0e558bd0](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0e558bd00b1a7eb95256496190fca1c7ad475e7e?refName=refs%2Fheads%2F2026%2Ffeat%2FPaulo%2FTabsWithBadge) โดย @jbanares)
+
 ## 2.26.14 (2026-01-13)
 
 - คุณสมบัติ:

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.26.16 (2026-01-15)
+
+- Chore:
+  - Commit 7ba60a35: Update package.json files configuration to properly include distribution files and documentation
+    ([#7ba60a35](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/7ba60a35c972536f416085d4fb8ba84e668f9bba?refName=refs%2Fheads%2F2025%2Fchore%2Fjef%2Fhide-to-npm-files) by @jmari)
+
 ## 2.26.15 (2026-01-15)
 
 - Feat:

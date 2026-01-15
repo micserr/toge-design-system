@@ -43,7 +43,7 @@
       <div
         v-if="!underlined && activeTab.index === index"
         :class="[
-          'spr-background-color-single-active spr-tw-w-full spr-absolute spr-bottom-0 spr-left-0 spr-z-[5] spr-block spr-h-full spr-w-full',
+          'spr-background-color-single-active spr-tw-w-full spr-absolute spr-bottom-0 spr-left-0 spr-z-[5] spr-block spr-h-full spr-w-full spr-',
           {
             'spr-rounded-l-md': activeTab.index === 0,
             'spr-rounded-r-md': activeTab.index === tabElements.length - 1,
@@ -69,6 +69,14 @@
         <div v-if="!!tab.label">
           {{ tab.label }}
         </div>
+        <div v-if="props.showBadge" class="tab-badge spr-pl-size-spacing-5xs">
+          <spr-badge
+            v-if="!!tab.badge"
+            :text="tab.badge.text"
+            :variant="tab.badge.variant"
+            :size="tab.badge.size"
+          />
+        </div>
       </div>
     </div>
 
@@ -92,6 +100,8 @@ import { Icon } from '@iconify/vue';
 
 import { tabsPropTypes, tabsEmitTypes } from './tabs';
 import { useTabs } from './use-tabs';
+
+import SprBadge from '../badge/badge.vue';
 
 const emit = defineEmits(tabsEmitTypes);
 const props = defineProps(tabsPropTypes);

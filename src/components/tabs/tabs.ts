@@ -1,4 +1,5 @@
 import type { PropType, ExtractPropTypes, Component } from 'vue';
+import type { BadgePropTypes } from '../badge/badge';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
@@ -7,6 +8,7 @@ type List = {
   icon?: string;
   iconFill?: Component;
   disabled?: boolean;
+  badge?: BadgePropTypes;
 };
 
 export const tabsPropTypes = {
@@ -32,6 +34,10 @@ export const tabsPropTypes = {
     type: String,
     default: '',
   },
+  showBadge: {
+    type: Boolean,
+    default: false,
+  }
 };
 
 export const tabsEmitTypes = {

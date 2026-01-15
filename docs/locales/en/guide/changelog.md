@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.26.15 (2026-01-15)
+
+- Feat:
+  - feat: Add badge to tabs
+    ([#0e558bd0](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/0e558bd00b1a7eb95256496190fca1c7ad475e7e?refName=refs%2Fheads%2F2026%2Ffeat%2FPaulo%2FTabsWithBadge) by @jbanares)
+
 ## 2.26.14 (2026-01-13)
 
 - Feat:

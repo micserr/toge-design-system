@@ -190,6 +190,52 @@ const tabsIconOnly = [
 </script>
 ```
 
+## Badge
+
+Tabs can display badges on each tab item to show notifications, counters, or status indicators. Enable badges by setting the `showBadge` prop to `true` and adding a `badge` object to each tab item.
+
+<h5 class="spr-mb-4">Tabs with Badges:</h5>
+
+<spr-tabs :list="tabsWithBadges" :show-badge="true" />
+
+```vue
+<template>
+  <spr-tabs :list="tabsWithBadges" :show-badge="true" />
+</template>
+
+<script lang="ts" setup>
+import SprTabs from '@/components/tabs/tabs.vue';
+import { ref } from 'vue';
+
+const tabsWithBadges = ref([
+  { label: "tab", badge: { text: "5", variant: "brand", size: "small" } },
+  { label: "tab", badge: { text: "12", variant: "information", size: "small" } },
+  { label: "tab", badge: { text: "2", variant: "danger", size: "small" } },
+]);
+</script>
+```
+
+<h5 class="spr-mb-4">Underlined Tabs with Badges:</h5>
+
+<spr-tabs :list="tabsUnderlinedWithBadges" :underlined="true" :show-badge="true" />
+
+```vue
+<template>
+  <spr-tabs :list="tabsUnderlinedWithBadges" :underlined="true" :show-badge="true" />
+</template>
+
+<script lang="ts" setup>
+import SprTabs from '@/components/tabs/tabs.vue';
+import { ref } from 'vue';
+
+const tabsUnderlinedWithBadges = ref([
+  { label: "title", badge: { text: "3", variant: "brand", size: "small" } },
+  { label: "title", badge: { text: "8", variant: "information", size: "small" } },
+  { label: "title", badge: { text: "2", variant: "danger", size: "small" } },
+]);
+</script>
+```
+
 ## API Reference
 
 ### Props
@@ -221,6 +267,12 @@ const tabsIconOnly = [
       <td>Sets which tab should be active by matching its label. If provided, the tab with the matching label will be activated on component mount. If not provided or no match is found, the first tab will be active by default.</td>
       <td>string</td>
       <td>''</td>
+    </tr>
+    <tr>
+      <td>showBadge</td>
+      <td>Controls whether badges are displayed on tabs. When <code>true</code>, badges defined in each tab item will be rendered. When <code>false</code>, badges are hidden even if defined in the tab items.</td>
+      <td>boolean</td>
+      <td>false</td>
     </tr>
   </tbody>
 </table>
@@ -278,6 +330,12 @@ const tabsIconOnly = [
       <td>disabled</td>
       <td>Whether the tab is disabled. Disabled tabs cannot be selected and have a visual disabled state.</td>
       <td>boolean</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>badge</td>
+      <td>Badge configuration object displayed on the tab. Requires the <code>showBadge</code> prop to be enabled. The badge object should contain <code>text</code> (badge content), <code>variant</code> (visual style), and <code>size</code> (badge size).</td>
+      <td>BadgePropTypes</td>
       <td>No</td>
     </tr>
   </tbody>
@@ -343,5 +401,17 @@ const tabsUnderlinedWithIcon = ref([
   { label: "title", disabled: false, icon: 'ph:plant-light', iconFill: 'ph:plant-fill' },
   { label: "title", disabled: false, icon: 'ph:leaf-light', iconFill: 'ph:leaf-fill' },
   { label: "title", disabled: false, icon: 'ph:tree-light', iconFill: 'ph:tree-fill' },
+]);
+
+const tabsWithBadges = ref([
+  { label: "tab", badge: { text: "5", variant: "brand", size: "small" } },
+  { label: "tab", badge: { text: "12", variant: "information", size: "small" } },
+  { label: "tab", badge: { text: "2", variant: "danger", size: "small" } },
+]);
+
+const tabsUnderlinedWithBadges = ref([
+  { label: "title", badge: { text: "3", variant: "brand", size: "small" } },
+  { label: "title", badge: { text: "8", variant: "information", size: "small" } },
+  { label: "title", badge: { text: "2", variant: "danger", size: "small" } },
 ]);
 </script>

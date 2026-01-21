@@ -33,6 +33,8 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
 
   const isQuckActionMenuVisible = ref(false);
   const isUserMenuVisible = ref(false);
+  const isMobileUserMenuVisible = ref(false);
+  const isMobileMenuExpanded = ref(false);
 
   const handleRedirect = (objectItem: ObjectItem, parentNav: string, menu: string, submenu: string) => {
     if (objectItem && objectItem.redirect) {
@@ -306,6 +308,8 @@ export const useSidenav = (props: SidenavPropTypes, emit: SetupContext<SidenavEm
     navLinks,
     isQuckActionMenuVisible,
     isUserMenuVisible,
+    isMobileUserMenuVisible,
+    isMobileMenuExpanded,
     handleRedirect,
     generateId,
     transformedNavItems,

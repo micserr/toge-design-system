@@ -1,5 +1,7 @@
 <template>
   <div v-for="(navLink, navLinkIndex) in navLinks" :key="navLinkIndex" class="spr-grid spr-gap-2">
+
+    <!-- Desktop -->
     <template v-for="(parentLink, parentLinkIndex) in navLink.parentLinks" :key="parentLinkIndex">
       <!-- #region - Parent Links with Menus -->
       <template v-if="parentLink.menuLinks && parentLink.menuLinks.length > 0">
@@ -35,6 +37,7 @@
                 :alt="`${parentLink.title} icon`"
                 class="spr-h-[1.25em] spr-w-[1.25em] spr-max-w-[1.25em]"
               />
+              <span>sds</span>
             </template>
             <template v-else>
               <Icon

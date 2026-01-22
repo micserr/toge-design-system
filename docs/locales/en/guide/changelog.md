@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.26.17 (2026-01-22)
+
+- Fix:
+  - Fix issue in table header dropdown where click events inside the popper closes the dropdown.
+    ([#cf963ea7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cf963ea7a8d79a725f7935decfe6974bd9553718?refName=refs/heads/2026/fix/dustin/table-header-dropdown-fix) by @despiritu)
+
 ## 2.26.16 (2026-01-15)
 
 - Chore:

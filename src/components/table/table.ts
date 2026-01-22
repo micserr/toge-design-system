@@ -191,6 +191,10 @@ export const tablePropTypes = {
   showHeaderFilter: {
     type: Boolean, 
     default: false,
+  },
+  id: {
+    type: String,
+    default: 'spr-table',
   }
 };
 

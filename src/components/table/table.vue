@@ -53,6 +53,7 @@
                 :is-sortable="true"
                 :header-classes="getTableClasses.headerNameClass"
                 :filter-options="header.filterList"
+                :has-select-all="header.hasSelectAll"
                 @on-apply-filter="(filters) => emit('onApplyFilter', filters)"
               />
               <!-- Default Header -->

@@ -11,7 +11,12 @@
     <div :class="props.headerClasses" @click="showDropdown">
       <span> {{ props.header.name }} </span>
       <span>
-        <Icon class="!spr-justify-normal spr-text-[#4B685E]" icon="ph:funnel-simple" height="20px" width="20px" />
+        <Icon          
+          class="!spr-justify-normal spr-text-[#4B685E]"
+          icon="ph:funnel-simple"
+          height="20px"
+          width="20px"          
+        />
       </span>
     </div>
 
@@ -62,7 +67,7 @@ import SprDropdown from '@/components/dropdown/dropdown.vue';
 import SprCard from '@/components/card/card.vue';
 import SprButton from '@/components/button/button.vue';
 import SprList from '@/components/list/list.vue';
-import Icon from '@/components/icon/icon.vue';
+import { Icon } from '@iconify/vue';
 import { tableHeaderDropdownEmitTypes, tableHeaderDropdownPropTypes } from './table-header-dropdown';
 import { ref } from 'vue';
 import { MenuListType } from '@/components/list/list';

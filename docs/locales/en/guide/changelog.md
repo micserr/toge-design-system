@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.26.18 (2026-01-22)
+
+- Fix:
+  - fix table-header-dropdown not working when there are multiple instances of table component
+    ([#c3a7ca35](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c3a7ca35352ae06472c1092e1f9f04d45d3b6f7c?refName=refs/heads/2026/fix/dustin/table-header-dropdown-fix) by @despiritu)
+
 ## 2.26.17 (2026-01-22)
 
 - Fix:

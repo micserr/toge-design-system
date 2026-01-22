@@ -17,7 +17,7 @@
       </spr-table-actions>
     </div>
     <div :class="getTableClasses.tableBackgroundClasses">
-      <table :key="tableKey" aria-describedby="describe" class="spr-h-full spr-w-full" cellspacing="0" cellpadding="0">
+      <table :id="props.id" :key="tableKey" aria-describedby="describe" class="spr-h-full spr-w-full" cellspacing="0" cellpadding="0">
         <thead>
           <tr v-if="!(props.removeHeaderOnEmpty && tableData.length <= 0)">
             <th
@@ -47,7 +47,7 @@
               <!-- Header with Dropdown Filter -->
               <spr-table-header-dropdown
                 v-if="props.showHeaderFilter"
-                :id="`th-dropdown-${keyHeader}`"
+                :id="`${props.id}-th-dropdown-${keyHeader}`"
                 :ref="(el: unknown) => setHeaderDropdownRef(el, keyHeader)"
                 :header="header"
                 :is-sortable="true"

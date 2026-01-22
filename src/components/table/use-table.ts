@@ -81,6 +81,10 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
         if (isTouchDevice.value) {
           clearDraggedItemDataInLocalStorage();
         }
+        
+        if (tableData.value.length === 0) {
+          tableKey.value = tableKey.value + 1;
+        }        
       },
       onAdd: (evt: SortableEvent) => {
         const typedEvt = evt as SortableDragEvent;
@@ -93,6 +97,9 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
         const newData = [...tableData.value];
         newData.splice(evt.newIndex!, 0, draggedItem);
         tableData.value = newData;
+        if (tableData.value.length > 0) {
+          tableKey.value = tableKey.value + 1;
+        }        
 
         emit('onDragAdd', { element: draggedItem, newIndex: evt.newIndex!, updatedList: newData });
       },
@@ -202,7 +209,7 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
       {
         'spr-overflow-hidden': isDraggable.value,
         'spr-overflow-auto': !isDraggable.value,
-      }
+      },
     );
     const tableFooterClasses = classNames('spr-w-full spr-bottom-0 spr-left-0', {
       'spr-background-color-surface': props.variant === 'surface',
@@ -397,12 +404,8 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
   });
 
   const clearSelectedData = () => {
-    selectedData.value = [];    
-  }
-
-  watch(tableData, () => {
-    tableKey.value = tableKey.value + 1;
-  });
+    selectedData.value = [];
+  };
 
   onMounted(() => {
     if (sortedData.value.length > 0) {
@@ -437,6 +440,6 @@ export const useTable = (props: TablePropTypes, emit: SetupContext<TableEmitType
     getRowKey,
     isDragging: toRef(() => isDragging.value),
     tableKey,
-    clearSelectedData
+    clearSelectedData,
   };
 };

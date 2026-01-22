@@ -29,6 +29,10 @@ export const tableHeaderDropdownPropTypes = {
     type: Array as PropType<MenuListType[]>,
     default: () => defaultSortOptions.value,
   },
+  hasSelectAll: {
+    type: Boolean,
+    default: true,
+  }
 };
 
 export interface TableHeaderFilterType {

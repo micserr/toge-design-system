@@ -16,6 +16,8 @@ export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext
     loading,
     customColor,
     customBorderSize,
+    lineThrough,
+    disabled,
   } = toRefs(props);
   const offlineStatus = ['restday', 'vacation', 'holiday', 'exempt', 'sick', 'emergency'];
   const shiftLabels: Record<string, string> = {
@@ -61,16 +63,15 @@ export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext
     'fixed-flexible': 'spr-border-[#C771A6] spr-bg-[#FFF2FA]',
   };
 
+  const getCellIcon = computed((): string => {
+    return icon.value || iconMap[type.value];
+  });
   const hasContent = computed(() => title.value || description.value || getShiftLabel.value);
-  const hasIconStatus = computed(() => offlineStatus.includes(type.value) && status.value != 'error');
+  const hasIconStatus = computed(() => status.value != 'error' && getCellIcon.value);
   const isError = computed(() => status.value === 'error');
 
   const getShiftLabel = computed((): string => {
     return subDescription.value || shiftLabels[type.value];
-  });
-
-  const getCellIcon = computed((): string => {
-    return icon.value || iconMap[type.value];
   });
 
   const getCellClasses = computed((): string => {
@@ -111,6 +112,7 @@ export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext
       'spr-border-dashed': status.value === 'pending',
       'spr-border-solid spr-border-color-danger-base': status.value === 'error',
       'spr-border-solid': !status.value || (status.value !== 'pending' && status.value !== 'error'),
+      'spr-border-opacity-50 ': disabled.value,
     });
 
     const titleClasses = classNames('spr-text-color-strong spr-body-sm-regular-medium', {
@@ -128,12 +130,18 @@ export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext
 
     const getMainClasses = classNames(calendarCellWrapper, getCellClasses.value, statusCellClasses);
 
+    const getTextFormatClasses = classNames('spr-break-words', {
+      'spr-line-through': lineThrough.value,
+      'spr-opacity-50': disabled.value,
+    });
+
     return {
       titleClasses,
       descriptionClasses,
       getTypeLabelClassess,
       getMainClasses,
       getCellClasses,
+      getTextFormatClasses,
     };
   });
 

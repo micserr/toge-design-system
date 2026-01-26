@@ -27,6 +27,10 @@ export const useCalendar = (props: CalendarPropTypes, emit: SetupContext<Calenda
     employeeId: ref<number>(),
     sort: ref<string>(''),
     tableBodyRef: ref<HTMLElement | null>(null),
+
+    isClick: ref<boolean>(false),
+    clickedCellIndex: ref<number>(),
+    employeeIdClickedCell: ref<number>(),
   };
 
   const searchEmployee = useVModel(props, 'search', emit);
@@ -126,6 +130,13 @@ export const useCalendar = (props: CalendarPropTypes, emit: SetupContext<Calenda
     );
   };
 
+  const handleClick = (isClick: boolean, index: number, employeeId: number) => {
+    state.isClick.value = isClick;
+    state.clickedCellIndex.value = index;
+    state.employeeIdClickedCell.value = employeeId;
+    emit('onClick', { isClick, index, employeeId });
+  };
+
   const handleSorting = () => {
     if (state.sort.value === 'asc') state.sort.value = '';
     else state.sort.value = state.sort.value === 'desc' ? 'asc' : 'desc';
@@ -203,6 +214,7 @@ export const useCalendar = (props: CalendarPropTypes, emit: SetupContext<Calenda
     showCopyShift,
     handleSorting,
     showCustomSlot,
+    handleClick,
 
     ...state,
   };

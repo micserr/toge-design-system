@@ -59,6 +59,14 @@ export const calendarCellPropTypes = {
     type: String,
     default: null,
   },
+  lineThrough: {
+    type: Boolean,
+    default: false,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 };
 
 export type CalendarCellPropTypes = ExtractPropTypes<typeof calendarCellPropTypes>;

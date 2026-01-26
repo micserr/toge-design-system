@@ -93,6 +93,7 @@ export const calendarEmitTypes = [
   'update:selectedDepartment',
   'update:selectedBranch',
   'onClickEmptyButton',
+  'onClick',
 ];
 export type CalendarEmitTypes = typeof calendarEmitTypes;
 

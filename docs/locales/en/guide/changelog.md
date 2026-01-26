@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.26.19 (2026-01-26)
+
+- Feat:
+  - feat: add support for custom icons in calendar cell component; update icon handling logic
+    feat: add lineThrough and disabled props to calendar cell; update click event emission
+    refactor: remove unused popper state and click outside handling
+    feat: add click handling for calendar cells with state management
+    ([#c3a7ca35](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ed0f0ead27f08436343b2c4d98814f87c5aea742?refName=refs/heads/2026/FEATURE/ANDREA/CALENDARCLICKED) by @adestajo)
+
 ## 2.26.18 (2026-01-22)
 
 - Fix:

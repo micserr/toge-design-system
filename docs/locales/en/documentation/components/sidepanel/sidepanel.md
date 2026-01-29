@@ -492,7 +492,7 @@ The Sidepanel component provides three slots for customizing different sections 
     </tr>
     <tr>
       <td><code>isActivePanel</code></td>
-      <td>Specifies if the sidepanel is currently shown in a stacked sidepanels.</td>
+      <td>Specifies if the sidepanel is currently shown in a stacked sidepanels. Inactive Panels have pointer events disabled.</td>
       <td>boolean</td>
       <td>false</td>
     </tr>

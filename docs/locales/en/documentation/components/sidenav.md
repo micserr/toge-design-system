@@ -1203,6 +1203,7 @@ Switch to loading to see the loading state.
     :request-count="`99+`"
     :user-menu="userMenu"
     :loading="loading"
+    :teleport-to-body="false"
     @get-navlink-item="handleGetNavLinkItem"
     @search="handleSearch"
     @notifications="handleNotifications"
@@ -1211,7 +1212,7 @@ Switch to loading to see the loading state.
       <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
   </spr-sidenav>
-  <div class="spr-flex-1 spr-px-4 spr-py-4 spr-w-full spr-max-w-[calc(100%-60px)] spr-ml-[60px] spr-overflow-auto">
+  <div class="spr-flex-1 spr-px-4 spr-py-4 spr-w-full [@media(min-width:1024px)]:spr-max-w-[calc(100%-68px)] [@media(min-width:1024px)]:spr-ml-[68px] spr-ml-0 [@media(min-width:1024px)]:spr-mt-0 spr-mt-[54px] spr-overflow-auto">
     <h1>Lorem Ipsum</h1>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quis est in quam efficitur tempor. Integer blandit egestas risus, non consequat massa rhoncus eget. Donec commodo luctus diam, egestas scelerisque justo fermentum vel. Morbi vestibulum quis arcu sit amet sollicitudin. Vestibulum fringilla et risus at porttitor. Sed at augue non nunc tempus sagittis quis a magna. Mauris lacinia neque massa, sed fermentum libero dignissim et. Vivamus faucibus aliquet arcu, a viverra leo vehicula at. Aliquam ut turpis vitae mi scelerisque blandit in non diam. Nulla molestie, ipsum id interdum auctor, sem odio bibendum turpis, sed accumsan nisl nunc id lacus. Vestibulum ante eros, accumsan sit amet mollis et, fermentum at est. In hac habitasse platea dictumst.
@@ -1750,6 +1751,7 @@ Here's a complete implementation example using the sidenav component with `isNav
     :request-count="3"
     :user-menu="userMenu"
     :loading="loading"
+    :teleport-to-body="false"
     has-search
     @get-navlink-item="handleNavClick"
     @search="handleSearch"
@@ -1760,7 +1762,7 @@ Here's a complete implementation example using the sidenav component with `isNav
       <img src="@/assets/images/sprout-hr-logo.svg" alt="logo" />
     </template>
   </spr-sidenav>
-  <div class="spr-flex-1 spr-px-4 spr-py-4 spr-w-full spr-max-w-[calc(100%-60px)] spr-ml-[60px] spr-overflow-auto">
+  <div class="spr-flex-1 spr-px-4 spr-py-4 spr-w-full [@media(min-width:1024px)]:spr-max-w-[calc(100%-68px)] [@media(min-width:1024px)]:spr-ml-[68px] spr-ml-0 [@media(min-width:1024px)]:spr-mt-0 spr-mt-[54px] spr-overflow-auto">
     <h1>API-Driven Navigation Example</h1>
     <p>
       This example demonstrates how the sidenav component works with real API data structure. The navigation is dynamically generated from the API response, supporting complex nested hierarchies with multiple levels of menus and submenus.

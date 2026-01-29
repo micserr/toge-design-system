@@ -1,6 +1,8 @@
 <template>
-  <div v-for="loader in count" :key="loader" class="spr-m-auto spr-flex">
-    <div class="spr-skeletal-loader spr-h-[24px] spr-w-[24px] spr-rounded" />
+  <div v-for="loader in count" :key="loader" class="spr-flex [@media(min-width:1024px)]:spr-m-auto">
+    <div
+      class="spr-skeletal-loader spr-h-[40px] spr-w-full spr-rounded [@media(min-width:1024px)]:spr-h-[24px] [@media(min-width:1024px)]:spr-w-[24px]"
+    />
   </div>
 </template>
 

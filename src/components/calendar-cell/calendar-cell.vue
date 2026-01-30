@@ -5,12 +5,12 @@
     :style="props.customColor ? getCustomColorStyles : {}"
     @click="handleClick"
   >
-    <slot name="prefix">
-      <Icon v-if="hasIconStatus" :icon="getCellIcon" />
-    </slot>
     <slot>
+      <slot name="prefix">
+        <Icon v-if="hasIconStatus" :icon="getCellIcon" />
+      </slot>
       <spr-status v-if="isError" :state="props.state" size="sm" />
-      <div v-if="hasContent" class="spr-break-words">
+      <div v-if="hasContent" :class="getCalendarCellClassess.getTextFormatClasses">
         <div v-if="props.title" :class="getCalendarCellClassess.titleClasses">
           {{ props.title }}
         </div>

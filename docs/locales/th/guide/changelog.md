@@ -1,5 +1,26 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.26.19 (2026-01-26)
+
+- คุณสมบัติ:
+  - feat: เพิ่มการรองรับไอคอนที่กำหนดเองในคอมโพเนนต์ calendar cell และอัปเดตตรรกะการจัดการไอคอน
+  - feat: เพิ่ม props lineThrough และ disabled ให้กับ calendar cell; อัปเดตการส่ง click event
+  - refactor: ลบ popper state และการจัดการ click outside ที่ไม่ได้ใช้งาน
+  - feat: เพิ่มการจัดการ click สำหรับ calendar cells พร้อมการจัดการสถานะ
+    ([#c3a7ca35](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ed0f0ead27f08436343b2c4d98814f87c5aea742?refName=refs/heads/2026/FEATURE/ANDREA/CALENDARCLICKED) by @adestajo)
+
+## 2.26.18 (2026-01-22)
+
+- แก้ไข:
+  - แก้ไขปัญหา table-header-dropdown ไม่ทำงานเมื่อมีหลายอินสแตนซ์ของคอมโพเนนต์ตาราง
+    ([#c3a7ca35](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c3a7ca35352ae06472c1092e1f9f04d45d3b6f7c?refName=refs/heads/2026/fix/dustin/table-header-dropdown-fix) by @despiritu)
+
+## 2.26.17 (2026-01-22)
+
+- แก้ไข:
+  - แก้ไขปัญหาใน table header dropdown ที่ click events ภายใน popper ทำให้ dropdown ปิด
+    ([#cf963ea7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cf963ea7a8d79a725f7935decfe6974bd9553718?refName=refs/heads/2026/fix/dustin/table-header-dropdown-fix) by @despiritu)
+
 ## 2.26.16 (2026-01-15)
 
 - การดูแลรักษา:

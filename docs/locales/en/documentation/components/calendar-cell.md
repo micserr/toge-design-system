@@ -310,6 +310,55 @@ You can override the default color scheme using the `custom-color` prop. For pro
 When using custom colors, hexadecimal format (e.g., `#b134eb`) is recommended for proper background opacity effects. The `type` prop's color styling will be ignored when `custom-color` is provided.
 :::
 
+### Custom Icons
+
+You can provide a custom icon using the `icon` prop to override the default icons.
+
+<div class="spr-grid spr-grid-cols-2 spr-gap-4">
+  <spr-calendar-cell 
+    title="Custom Icon" 
+    description="Using a custom icon"
+    icon="ph:map-pin"
+  />
+  <spr-calendar-cell 
+    title="Normal Icon" 
+    description="Using a normal icon"
+  />
+  <spr-calendar-cell 
+    title="Slot Icon" 
+    description="Using a slot for icon"
+  >
+    <template #prefix>
+      <spr-icon icon="ph:map-pin" />
+    </template>
+  </spr-calendar-cell>
+
+  <spr-calendar-cell type="vacation" description="Using slot to override default icon">
+    <template #prefix>
+      <spr-icon icon="ph:car" />
+    </template>
+  </spr-calendar-cell>
+  <spr-calendar-cell type="vacation" description="Using slot to override default icon" icon="ph:airplane" />
+</div>
+
+```vue
+<template>
+  <spr-calendar-cell title="Custom Icon" description="Using a custom icon" icon="ph:map-pin" />
+  <spr-calendar-cell title="Normal Icon" description="Using a normal icon" />
+  <spr-calendar-cell title="Slot Icon" description="Using a slot for icon">
+    <template #prefix>
+      <spr-icon icon="ph:map-pin" />
+    </template>
+  </spr-calendar-cell>
+  <spr-calendar-cell type="vacation" description="Using slot to override default icon">
+    <template #prefix>
+      <spr-icon icon="ph:car" />
+    </template>
+  </spr-calendar-cell>
+  <spr-calendar-cell type="vacation" description="Using slot to override default icon" icon="ph:airplane" />
+</template>
+```
+
 ## API Reference
 
 ### Props
@@ -454,6 +503,7 @@ When using custom colors, hexadecimal format (e.g., `#b134eb`) is recommended fo
 <script lang="ts" setup>
 import SprCalendarCell from '@/components/calendar-cell/calendar-cell.vue'
 import SprLogo from "@/components/logo/logo.vue";
+import SprIcon from '@/components/icon/icon.vue';
 
 const shifts = [
   { type: 'standard', branchName: 'Main Branch', timeRange: '9:00 AM - 5:00 PM', hours: 8 },

@@ -113,76 +113,105 @@
                     ]"
                     @mouseover="handleHover(true, index, employee.id)"
                     @mouseleave="handleHover(false, index, employee.id)"
+                    @click.self="handleClick(true, index, employee.id)"
                   >
-                    <section
-                      v-if="
-                        employee.schedule[formatDate(date, dateFormat)] &&
-                        employee.schedule[formatDate(date, dateFormat)].length > 0
-                      "
-                      class="spr-flex spr-flex-col spr-justify-start spr-gap-size-spacing-3xs"
+                    <slot
+                      name="calendarData"
+                      :details="{
+                        data: { ...employee },
+                        date: formatDate(date, dateFormat),
+                        shift: employee.schedule[formatDate(date, dateFormat)],
+                        index: index,
+                        employeeId: employee.id,
+                      }"
                     >
-                      <div
-                        v-for="(schedule, scheduleIndex) in employee.schedule[formatDate(date, dateFormat)]"
-                        :key="scheduleIndex"
-                        class="spr-w-full"
+                      <section
+                        v-if="
+                          employee.schedule[formatDate(date, dateFormat)] &&
+                          employee.schedule[formatDate(date, dateFormat)].length > 0
+                        "
+                        class="spr-flex spr-flex-col spr-justify-start spr-gap-size-spacing-3xs"
                       >
                         <div
-                          v-if="schedule.type === 'restday' || schedule.type === 'exempted'"
-                          class="spr-flex spr-flex-col spr-items-center spr-justify-start"
-                          @click="
-                            onCellClick({
-                              employeeId: employee.id,
-                              date: formatDate(date, dateFormat),
-                              shift: 'restday',
-                            })
-                          "
+                          v-for="(schedule, scheduleIndex) in employee.schedule[formatDate(date, dateFormat)]"
+                          :key="scheduleIndex"
+                          class="spr-w-full"
                         >
-                          <spr-calendar-cell :type="schedule.type === 'restday' ? 'restday' : 'exempt'" fullwidth />
+                          <div
+                            v-if="schedule.type === 'restday' || schedule.type === 'exempted'"
+                            class="spr-flex spr-flex-col spr-items-center spr-justify-start"
+                            @click="
+                              onCellClick({
+                                employeeId: employee.id,
+                                date: formatDate(date, dateFormat),
+                                shift: 'restday',
+                              })
+                            "
+                          >
+                            <spr-calendar-cell :type="schedule.type === 'restday' ? 'restday' : 'exempt'" fullwidth>
+                              <template v-if="schedule.type === 'restday'" #prefix>
+                                <Icon icon="ph:bed" />
+                              </template>
+                            </spr-calendar-cell>
+                          </div>
+                          <div
+                            v-else
+                            class="spr-flex spr-flex-col spr-items-center spr-justify-start"
+                            @click="
+                              onCellClick({
+                                employeeId: employee.id,
+                                date: formatDate(date, dateFormat),
+                                shift: schedule,
+                              })
+                            "
+                          >
+                            <spr-calendar-cell
+                              :view-only="false"
+                              :title="`${schedule.startTime} - ${schedule.endTime}`"
+                              :description="schedule.location"
+                              :sub-description="schedule.type"
+                              :type="schedule.color"
+                              fullwidth
+                            />
+                          </div>
                         </div>
-                        <div
-                          v-else
-                          class="spr-flex spr-flex-col spr-items-center spr-justify-start"
-                          @click="
-                            onCellClick({
-                              employeeId: employee.id,
-                              date: formatDate(date, dateFormat),
-                              shift: schedule,
-                            })
-                          "
-                        >
-                          <spr-calendar-cell
-                            :view-only="false"
-                            :title="`${schedule.startTime} - ${schedule.endTime}`"
-                            :description="schedule.location"
-                            :sub-description="schedule.type"
-                            :type="schedule.color"
-                            fullwidth
-                          />
-                        </div>
-                      </div>
-                    </section>
+                      </section>
 
-                    <section>
-                      <slot
-                        name="fixedCell"
-                        :details="{
-                          employeeId: employee.id,
-                          date: formatDate(date, dateFormat),
-                          shift: employee.schedule[formatDate(date, dateFormat)],
-                        }"
-                      />
-                    </section>
+                      <section>
+                        <slot
+                          name="fixedCell"
+                          :details="{
+                            employeeId: employee.id,
+                            date: formatDate(date, dateFormat),
+                            shift: employee.schedule[formatDate(date, dateFormat)],
+                          }"
+                        />
+                      </section>
 
-                    <section v-if="showCustomSlot(index, employee.id)">
-                      <slot
-                        name="hoverCell"
-                        :details="{
-                          employeeId: employee.id,
-                          date: formatDate(date, dateFormat),
-                          shift: employee.schedule[formatDate(date, dateFormat)],
-                        }"
-                      />
-                    </section>
+                      <section v-if="showCustomSlot(index, employee.id)">
+                        <slot
+                          name="hoverCell"
+                          :details="{
+                            employeeId: employee.id,
+                            date: formatDate(date, dateFormat),
+                            shift: employee.schedule[formatDate(date, dateFormat)],
+                          }"
+                        />
+                      </section>
+
+                      <section
+                        v-if="clickedCellIndex === index && employeeIdClickedCell === Number(employee.id) && isClick"
+                      >
+                        <slot
+                          name="clickedCell"
+                          :details="{
+                            employeeId: employee.id,
+                            date: formatDate(date, dateFormat),
+                            shift: employee.schedule[formatDate(date, dateFormat)],
+                          }"
+                        />
+                      </section>
+                    </slot>
 
                     <section v-if="showCopyShift(index, employee.id)">
                       <slot
@@ -326,5 +355,9 @@ const {
   showCopyShift,
   handleSorting,
   showCustomSlot,
+  handleClick,
+  clickedCellIndex,
+  employeeIdClickedCell,
+  isClick,
 } = useCalendar(props, emit, slots);
 </script>

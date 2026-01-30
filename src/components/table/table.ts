@@ -21,6 +21,7 @@ export interface Header {
   customTailwindClasses?: string;
   width?: string;
   filterList?: MenuListType[]; // List of filter options for table header dropdown
+  hasSelectAll?: boolean; // Option to show select all button in header dropdown
 }
 
 export interface TableData {
@@ -190,6 +191,10 @@ export const tablePropTypes = {
   showHeaderFilter: {
     type: Boolean, 
     default: false,
+  },
+  id: {
+    type: String,
+    default: 'spr-table',
   }
 };
 

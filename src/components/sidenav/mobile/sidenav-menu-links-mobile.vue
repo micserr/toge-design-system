@@ -27,7 +27,7 @@
         <!-- Back Button -->
         <div
           class="active:spr-background-color-pressed select-none -webkit-tap-highlight-color-transparent spr-flex spr-w-full spr-cursor-pointer spr-items-center spr-gap-size-spacing-3xs spr-py-size-spacing-3xs"
-          style="-webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; -webkit-user-select: none"
+          style="-webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; -webkit-user-select: none;"
           @click="goBack"
         >
           <Icon icon="ph:arrow-left" class="spr-h-5 spr-w-5" />

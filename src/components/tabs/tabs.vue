@@ -1,5 +1,5 @@
 <template>
-  <div class="spr-relative spr-flex">
+  <div ref="tabContainer" class="spr-relative spr-flex">
     <div
       v-for="(tab, index) in list"
       :key="index"
@@ -89,7 +89,7 @@
       ]"
       :style="{
         width: `${activeTab.width}px`,
-        left: `${activeTab.undelineLeftOffset}px`,
+        left: `${activeTab.underlineLeftOffset}px`,
       }"
     />
   </div>
@@ -106,5 +106,5 @@ import SprBadge from '../badge/badge.vue';
 const emit = defineEmits(tabsEmitTypes);
 const props = defineProps(tabsPropTypes);
 
-const { tabsClasses, activeTab, tabElements, updateSelectedTabIndex } = useTabs(props, emit);
+const { tabsClasses, activeTab, tabElements, tabContainer, updateSelectedTabIndex } = useTabs(props, emit);
 </script>

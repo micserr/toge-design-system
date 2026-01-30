@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.26.20 (2026-01-30)
+
+- Fix:
+  - fix: Responsive Underlined Tabs
+    ([#ea81eec0](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ea81eec0d04d6cb7c9139426359ae466dbb668c2?refName=refs%2Fheads%2F2026%2Fenhancement%2FPaulo%2FResponsiveUnderlinedTabs) by @jbanares)
+
 ## 2.26.19 (2026-01-26)
 
 - Feat:

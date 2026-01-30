@@ -1,8 +1,7 @@
 import { ref, computed, onMounted, SetupContext, watch } from 'vue';
-
 import classNames from 'classnames';
-
 import type { TabsPropTypes, TabsEmitTypes } from './tabs';
+import { useElementSize } from '@vueuse/core';
 
 export const useTabs = (props: TabsPropTypes, emit: SetupContext<TabsEmitTypes>['emit']) => {
   const tabsClasses = computed(() => {
@@ -18,7 +17,7 @@ export const useTabs = (props: TabsPropTypes, emit: SetupContext<TabsEmitTypes>[
     index: 0,
     previousIndex: -1,
     width: 0,
-    undelineLeftOffset: 0,
+    underlineLeftOffset: 0,
   });
 
   const setActiveTab = () => {
@@ -40,13 +39,21 @@ export const useTabs = (props: TabsPropTypes, emit: SetupContext<TabsEmitTypes>[
 
     if (currentTab) {
       activeTab.value.width = currentTab.clientWidth;
-      activeTab.value.undelineLeftOffset = currentTab.offsetLeft;
+      activeTab.value.underlineLeftOffset = currentTab.offsetLeft;
     }
 
     emit('tabIndex', activeTab.value.index);
   };
 
   const tabElements = ref<HTMLElement[]>([]);
+
+  // For responsive underline adjustment
+  const tabContainer = ref<HTMLElement | null>(null);
+  const { width: tabContainerWidth } = useElementSize(tabContainer);
+  watch(tabContainerWidth, () => {
+    activeTab.value.width = tabElements.value[activeTab.value.index].clientWidth;
+    activeTab.value.underlineLeftOffset = tabElements.value[activeTab.value.index].offsetLeft;
+  });
 
   const updateSelectedTabIndex = (index: number, disabled = false) => {
     if (disabled) return;
@@ -68,7 +75,7 @@ export const useTabs = (props: TabsPropTypes, emit: SetupContext<TabsEmitTypes>[
 
     // If moving to the right (increasing index), increase the left offset
     // If moving to the left (decreasing index), decrease the left offset
-    activeTab.value.undelineLeftOffset += leftOffsetDifference;
+    activeTab.value.underlineLeftOffset += leftOffsetDifference;
 
     emit('tabIndex', index);
   };
@@ -90,6 +97,7 @@ export const useTabs = (props: TabsPropTypes, emit: SetupContext<TabsEmitTypes>[
     tabsClasses,
     activeTab,
     tabElements,
+    tabContainer,
     updateSelectedTabIndex,
   };
 };

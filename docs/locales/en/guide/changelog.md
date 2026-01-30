@@ -1,5 +1,32 @@
 # Changelog
 
+## 2.26.20 (2026-01-30)
+
+- Fix:
+  - fix: Responsive Underlined Tabs
+    ([#ea81eec0](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ea81eec0d04d6cb7c9139426359ae466dbb668c2?refName=refs%2Fheads%2F2026%2Fenhancement%2FPaulo%2FResponsiveUnderlinedTabs) by @jbanares)
+
+## 2.26.19 (2026-01-26)
+
+- Feat:
+  - feat: add support for custom icons in calendar cell component; update icon handling logic
+    feat: add lineThrough and disabled props to calendar cell; update click event emission
+    refactor: remove unused popper state and click outside handling
+    feat: add click handling for calendar cells with state management
+    ([#c3a7ca35](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/ed0f0ead27f08436343b2c4d98814f87c5aea742?refName=refs/heads/2026/FEATURE/ANDREA/CALENDARCLICKED) by @adestajo)
+
+## 2.26.18 (2026-01-22)
+
+- Fix:
+  - fix table-header-dropdown not working when there are multiple instances of table component
+    ([#c3a7ca35](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c3a7ca35352ae06472c1092e1f9f04d45d3b6f7c?refName=refs/heads/2026/fix/dustin/table-header-dropdown-fix) by @despiritu)
+
+## 2.26.17 (2026-01-22)
+
+- Fix:
+  - Fix issue in table header dropdown where click events inside the popper closes the dropdown.
+    ([#cf963ea7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/cf963ea7a8d79a725f7935decfe6974bd9553718?refName=refs/heads/2026/fix/dustin/table-header-dropdown-fix) by @despiritu)
+
 ## 2.26.16 (2026-01-15)
 
 - Chore:

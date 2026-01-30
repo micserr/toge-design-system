@@ -539,13 +539,13 @@
           <div
             v-if="isMobileMenuExpanded"
             id="mobile_sidenav_content"
+            ref="mobileSideNavContentRef"
             :class="[
               'spr-border-color-weak spr-border-b-0 spr-border-l-0 spr-border-t-0 spr-border-solid [@media(min-width:481px)]:spr-border-r',
               'spr-absolute spr-left-0 spr-top-[54px] spr-box-border spr-flex-1 spr-px-size-spacing-2xs spr-py-size-spacing-2xs',
               'spr-background-color spr-h-[calc(100vh-54px)] spr-w-screen [@media(min-width:481px)]:spr-w-[380px]',
               'spr-z-[2] spr-transition-all spr-duration-300 spr-ease-in-out',
             ]"
-            ref="mobileSideNavContentRef"
           >
             <template v-if="props.loading">
               <div class="spr-flex spr-flex-col spr-gap-size-spacing-3xs">
@@ -574,32 +574,6 @@
     </div>
   </Teleport>
 </template>
-
-<style scoped>
-.mobile-sidenav-enter-from {
-  opacity: 0;
-  transform: translateX(-100%);
-}
-
-.mobile-sidenav-enter-to {
-  opacity: 1;
-  transform: translateX(0);
-}
-.mobile-sidenav-enter-active,
-.mobile-sidenav-leave-active {
-  transition: all 0.25s linear;
-}
-
-.mobile-sidenav-leave-from {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.mobile-sidenav-leave-to {
-  opacity: 0;
-  transform: translateX(-100%);
-}
-</style>
 
 <script lang="ts" setup>
 import { Menu, hideAllPoppers, recomputeAllPoppers } from 'floating-vue';
@@ -660,3 +634,29 @@ const {
   generateId,
 } = useSidenav(props, emit);
 </script>
+
+<style scoped>
+.mobile-sidenav-enter-from {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.mobile-sidenav-enter-to {
+  opacity: 1;
+  transform: translateX(0);
+}
+.mobile-sidenav-enter-active,
+.mobile-sidenav-leave-active {
+  transition: all 0.25s linear;
+}
+
+.mobile-sidenav-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.mobile-sidenav-leave-to {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+</style>

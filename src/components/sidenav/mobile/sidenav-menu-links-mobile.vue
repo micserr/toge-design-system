@@ -17,7 +17,7 @@
           </template>
           <div
             v-if="compiledNavLinks.length > 0 && navLinkIndex < compiledNavLinks.length - 1"
-            class="spr-background-color-hover spr-h-[2px] spr-w-full spr-my-size-spacing-3xs"
+            class="spr-background-color-hover spr-my-size-spacing-3xs spr-h-[2px] spr-w-full"
           ></div>
         </div>
       </div>
@@ -132,6 +132,7 @@ const props = defineProps({
   ...sidenavPropTypes,
   compiledNavLinks: {
     type: Array as PropType<ParentLink[]>,
+    default: () => [],
   },
 });
 const emit = defineEmits(sidenavEmitTypes);
@@ -205,11 +206,10 @@ const goBack = () => {
 const backButtonLabel = computed(() => {
   if (currentLevel.value === 1) {
     return currentParent.value?.title ?? '';
-  } else if (currentLevel.value === 2) {
+  } else {
     return currentMenu.value?.title ?? '';
   }
 });
-
 </script>
 
 <style scoped>

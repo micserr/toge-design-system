@@ -12,7 +12,7 @@
           isActiveNav,
       },
     ]"
-    style="-webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; -webkit-user-select: none"
+    style="-webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; -webkit-user-select: none;"
     @click="handleOnLinkClick"
   >
     <!-- Icon -->

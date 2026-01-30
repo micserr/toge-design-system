@@ -2231,6 +2231,22 @@ The following props are available for the Sidenav component:
       <td>boolean</td>
       <td><code>false</code></td>
     </tr>
+    <tr>
+      <td>
+        <code>loading</code>
+      </td>
+      <td>When set to true, the component will render skeleton loaders.</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>
+        <code>teleport-to-body</code>
+      </td>
+      <td>When set to true, the component will be teleported under the body element.</td>
+      <td>boolean</td>
+      <td><code>true</code></td>
+    </tr>
   </tbody>
 </table>
 

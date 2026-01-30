@@ -78,20 +78,6 @@ export default {
         xl: '96px',
         xxl: '104px',
       },
-      screens: {
-        sm: '575.98px',
-        md: '767.98px',
-        lg: '991.98px',
-        xl: '1199.98px',
-        xxl: '1399.98px',
-      },
-    },
-    screens: {
-      xxl: { max: '1399.98px' },
-      xl: { max: '1199.98px' },
-      lg: { max: '991.98px' },
-      md: { max: '767.98px' },
-      sm: { max: '575.98px' },
     },
   },
   plugins: [

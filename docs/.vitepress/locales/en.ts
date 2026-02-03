@@ -54,6 +54,10 @@ export const enConfig = {
           ],
         },
         {
+          text: 'Claude Skills',
+          link: '/en/guide/claude-skills',
+        },
+        {
           text: 'Changelog',
           link: '/en/guide/changelog',
         },

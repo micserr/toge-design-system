@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.26.21 (2026-02-03)
+
+- Docs:
+  - docs: Add Claude Skills page and sprout-design-system skill for AI-assisted development with Claude Code
+
 ## 2.26.20 (2026-01-30)
 
 - Fix:

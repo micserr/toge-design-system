@@ -362,8 +362,8 @@
           class="header spr-border-color-weak spr-background-color spr-box-border spr-flex spr-h-full spr-max-h-[54px] spr-items-center spr-justify-between spr-border-b spr-border-l-0 spr-border-r spr-border-t-0 spr-border-solid spr-px-3 spr-py-2"
         >
           <div
-            ref="mobileButtonRef"
             id="mobile_sidenav_button"
+            ref="mobileButtonRef"            
             class="left-menus spr-flex spr-h-full spr-cursor-pointer spr-items-center"
             @click="isMobileMenuExpanded = !isMobileMenuExpanded"
           >
@@ -453,8 +453,8 @@
             <div v-if="props.userMenu">
               <Menu
                 v-model:shown="isMobileUserMenuVisible"
-                aria-id="mobile-user-menu-wrapper"
                 id="mobile-user-menu"
+                aria-id="mobile-user-menu-wrapper"
                 :distance="props.userMenu.profileImage ? '-2' : '2'"
                 skidding="-65"
                 placement="top"

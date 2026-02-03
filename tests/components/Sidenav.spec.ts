@@ -165,19 +165,19 @@ test.describe('Sidenav Component', () => {
   };
 
   test.describe('Loading States', () => {
-    test('does not show loader when loading is false by default', async ({ mount }) => {
+    test('does not show loader when loading is false by default', async ({ mount, page }) => {
       const component = await mount(Sidenav, {
         props: {
-          navLinks: mockNavLinks,
+          navLinks: mockNavLinks,          
         },
-      });
-
+      });             
+            
       // Should not show any loader components
       const loaders = component.locator('.spr-skeletal-loader');
-      await expect(loaders).not.toBeAttached();
+      await expect(loaders).not.toBeAttached();             
 
-      // Should show actual navigation content
-      const dashboardLink = component.locator('#dashboard');
+      // Should show actual navigation content       
+      const dashboardLink = component.locator('#dashboard')      
       await expect(dashboardLink).toBeAttached();
     });
 
@@ -1281,4 +1281,475 @@ test.describe('Sidenav Component', () => {
       await expect(notificationButton).toBeAttached();
     });
   });
+
+  test.describe('Mobile Responsiveness', () => {
+    test('renders correctly on mobile viewport', async ({ mount, page }) => {
+      await page.setViewportSize({ width: 375, height: 667 }); // iPhone SE
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          notificationCount: 5,
+          requestCount: 2,
+        },
+      });
+
+      await expect(component).toBeVisible();
+
+      // Mobile button should be visible
+      const mobileButton = component.locator('#mobile_sidenav_button');
+      await expect(mobileButton).toBeVisible();
+    });
+
+    test('mobile menu button opens and closes navigation', async ({ mount, page }) => {
+      await page.setViewportSize({ width: 375, height: 667 });
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+        },
+      });
+
+      const mobileButton = component.locator('#mobile_sidenav_button');
+      await expect(mobileButton).toBeVisible();
+
+      // Initially closed - content should not be visible
+      const mobileContent = component.locator('#mobile_sidenav_content');
+      await expect(mobileContent).not.toBeVisible();
+
+      // Click to open
+      await mobileButton.click();
+      await expect(mobileContent).toBeVisible();
+
+      // Click to close
+      await mobileButton.click();
+      await expect(mobileContent).not.toBeVisible();
+    });
+
+    test('all navigation items are accessible after opening mobile menu', async ({ mount, page }) => {
+      await page.setViewportSize({ width: 375, height: 667 });
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+        },
+      });
+
+      // Open mobile menu
+      const mobileButton = component.locator('#mobile_sidenav_button');
+      await mobileButton.click();
+
+      // Wait for menu to be visible
+      const mobileContent = component.locator('#mobile_sidenav_content');
+      await expect(mobileContent).toBeVisible();
+
+      // Dashboard link should be accessible
+      const dashboardLink = component.locator('#mobile_dashboard');
+      await expect(dashboardLink).toBeVisible();
+    });
+
+    test('all interactive elements are accessible on small screens', async ({ mount, page }) => {
+      await page.setViewportSize({ width: 320, height: 568 }); // iPhone 5/SE
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          notificationCount: 5,
+          requestCount: 2,
+          userMenu: mockUserMenu,
+        },
+      });
+
+      // Header elements should be visible
+      const notificationButton = component.locator('#mobile_sidenav_notification');
+      await expect(notificationButton).toBeVisible();
+
+      const requestButton = component.locator('#mobile_sidenav_request');
+      await expect(requestButton).toBeVisible();
+
+      // Open mobile menu to check navigation
+      const mobileButton = component.locator('#mobile_sidenav_button');
+      await mobileButton.click();
+
+      const mobileContent = component.locator('#mobile_sidenav_content');
+      await expect(mobileContent).toBeVisible();
+
+      const dashboardLink = component.locator('#mobile_dashboard');
+      await expect(dashboardLink).toBeVisible();
+    });
+
+    test('navigation items remain accessible on tablet viewport', async ({ mount, page }) => {
+      await page.setViewportSize({ width: 768, height: 1024 }); // iPad
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinksWithMenus,
+          quickActions: mockQuickActions,
+        },
+      });
+
+      // Open mobile menu
+      const mobileButton = component.locator('#mobile_sidenav_button');
+      await mobileButton.click();
+
+      const mobileContent = component.locator('#mobile_sidenav_content');
+      await expect(mobileContent).toBeVisible();
+
+      const analyticsLink = component.locator('#mobile_analytics');
+      await expect(analyticsLink).toBeVisible();
+      await analyticsLink.click();
+    });
+
+    test('mobile menu icon changes when opened', async ({ mount, page }) => {
+      await page.setViewportSize({ width: 375, height: 667 });
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+        },
+      });
+
+      const mobileButton = component.locator('#mobile_sidenav_button');
+
+      // Should show list icon when closed
+      const listIcon = mobileButton.locator('svg[class*="iconify"]').first();
+      await expect(listIcon).toBeVisible();
+
+      // Click to open
+      await mobileButton.click();
+
+      // Should show X icon when opened
+      const closeIcon = mobileButton.locator('svg[class*="iconify"]').first();
+      await expect(closeIcon).toBeVisible();
+    });
+
+    test('mobile overlay appears when menu is opened', async ({ mount, page }) => {
+      await page.setViewportSize({ width: 375, height: 667 });
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+        },
+      });
+
+      const overlay = component.locator('#mobile_sidenav_content_overlay');
+      await expect(overlay).not.toBeVisible();
+
+      // Open mobile menu
+      const mobileButton = component.locator('#mobile_sidenav_button');
+      await mobileButton.click();
+
+      await expect(overlay).toBeVisible();
+    });
+
+    test('notification and request icons are visible on mobile header', async ({ mount, page }) => {
+      await page.setViewportSize({ width: 320, height: 568 });
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          notificationCount: 99,
+          requestCount: 5,
+        },
+      });
+
+      const notificationButton = component.locator('#mobile_sidenav_notification');
+      await expect(notificationButton).toBeVisible();
+
+      const requestButton = component.locator('#mobile_sidenav_request');
+      await expect(requestButton).toBeVisible();
+    });
+
+    test('handles orientation change from portrait to landscape', async ({ mount, page }) => {
+      // Start in portrait
+      await page.setViewportSize({ width: 375, height: 667 });
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+        },
+      });
+
+      await expect(component).toBeVisible();
+
+      // Switch to landscape
+      await page.setViewportSize({ width: 667, height: 375 });
+
+      // Mobile button should still be functional
+      const mobileButton = component.locator('#mobile_sidenav_button');
+      await mobileButton.click();
+
+      const mobileContent = component.locator('#mobile_sidenav_content');
+      await expect(mobileContent).toBeVisible();
+    });
+
+    test('scrollable content works on mobile with long navigation lists', async ({ mount, page }) => {
+      await page.setViewportSize({ width: 375, height: 500 });
+
+      // Create longer navigation list
+      const longNavLinks: NavLinks = {
+        top: [
+          {
+            parentLinks: Array.from({ length: 15 }, (_, i) => ({
+              title: `Item ${i + 1}`,
+              icon: 'ph:circle',
+              redirect: {
+                openInNewTab: false,
+                isAbsoluteURL: false,
+                link: `/item-${i + 1}`,
+              },
+              menuLinks: [],
+              hidden: false,
+            })),
+          },
+        ],
+        bottom: [],
+      };
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: longNavLinks,
+        },
+      });
+
+      // Open mobile menu
+      const mobileButton = component.locator('#mobile_sidenav_button');
+      await mobileButton.click();
+
+      const mobileSidenavLinks = component.locator('#mobile_sidenav_links');
+      await expect(mobileSidenavLinks).toBeVisible();
+
+      // Should have scrollable container
+      const hasOverflow = await mobileSidenavLinks.evaluate((el) => {
+        return el.scrollHeight > el.clientHeight;
+      });
+      expect(hasOverflow).toBe(true);
+    });
+
+    test('loading state displays correctly on mobile', async ({ mount, page }) => {
+      await page.setViewportSize({ width: 375, height: 667 });
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          notificationCount: 5,
+          loading: true,
+        },
+      });
+
+      // Open mobile menu
+      const mobileButton = component.locator('#mobile_sidenav_button');
+      await mobileButton.click();
+
+      const mobileContent = component.locator('#mobile_sidenav_content');
+      await expect(mobileContent).toBeVisible();
+
+      // Should show loaders
+      const loaders = mobileContent.locator('.spr-skeletal-loader');
+      await expect(loaders.first()).toBeVisible();
+    });
+
+    test('user menu displays correctly on mobile', async ({ mount, page }) => {
+      await page.setViewportSize({ width: 375, height: 667 });
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+          userMenu: mockUserMenu,
+        },
+      });
+
+      // User avatar should be visible in mobile header (right-menus section)
+      const mobileUserMenu = component.locator('#mobile-user-menu');
+      await expect(mobileUserMenu).toBeVisible();
+
+      // Click to open user menu
+      await mobileUserMenu.click();
+
+      // Menu popper should appear with user information
+      const userMenuPopper = page.locator('#mobile-user-menu-wrapper');
+      await expect(userMenuPopper).toBeVisible();
+    });
+
+    test('nested menus work on mobile without overflow issues', async ({ mount, page }) => {
+      await page.setViewportSize({ width: 375, height: 667 });
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinksWithMenus,
+        },
+      });
+
+      // Open mobile menu
+      const mobileButton = component.locator('#mobile_sidenav_button');
+      await mobileButton.click();
+
+      const mobileContent = component.locator('#mobile_sidenav_content');
+      await expect(mobileContent).toBeVisible();
+
+      const analyticsLink = component.locator('#mobile_analytics');
+      await expect(analyticsLink).toBeVisible();
+
+      await analyticsLink.click();
+
+      // Menu should open without causing horizontal scroll
+      const hasHorizontalScroll = await page.evaluate(() => {
+        return document.documentElement.scrollWidth > document.documentElement.clientWidth;
+      });
+      expect(hasHorizontalScroll).toBe(false);
+    });
+
+    test('responds correctly to viewport size changes', async ({ mount, page }) => {
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+        },
+      });
+
+      // Start desktop
+      await page.setViewportSize({ width: 1920, height: 1080 });
+      await expect(component).toBeVisible();
+      
+      // Desktop view - no mobile button
+      const mobileButton = component.locator('#mobile_sidenav_button');
+      await expect(mobileButton).not.toBeVisible();
+
+      // Resize to mobile
+      await page.setViewportSize({ width: 375, height: 667 });
+      await expect(mobileButton).toBeVisible();
+
+      // Open menu
+      await mobileButton.click();
+      const mobileContent = component.locator('#mobile_sidenav_content');
+      await expect(mobileContent).toBeVisible();
+    });
+
+    test('all features work together on mobile viewport', async ({ mount, page }) => {
+      await page.setViewportSize({ width: 375, height: 667 });
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinksWithMenus,
+          notificationCount: 10,
+          requestCount: 5,
+          userMenu: mockUserMenu,
+        },
+      });
+
+      // Header features should be accessible
+      const notificationButton = component.locator('#mobile_sidenav_notification');
+      await expect(notificationButton).toBeVisible();
+
+      const requestButton = component.locator('#mobile_sidenav_request');
+      await expect(requestButton).toBeVisible();
+
+      // Open mobile menu
+      const mobileButton = component.locator('#mobile_sidenav_button');
+      await mobileButton.click();
+
+      const mobileContent = component.locator('#mobile_sidenav_content');
+      await expect(mobileContent).toBeVisible();
+
+      // Navigation should be accessible
+      const analyticsLink = component.locator('#mobile_analytics');
+      await expect(analyticsLink).toBeVisible();
+
+      // User avatar should be in header
+      const mobileUserMenu = component.locator('#mobile-user-menu');
+      await expect(mobileUserMenu).toBeVisible();      
+    });
+
+    test('handles very small viewports gracefully', async ({ mount, page }) => {
+      await page.setViewportSize({ width: 280, height: 480 }); // Very small phone
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+        },
+      });
+
+      await expect(component).toBeVisible();
+
+      const mobileButton = component.locator('#mobile_sidenav_button');
+      await expect(mobileButton).toBeVisible();
+
+      // Open menu
+      await mobileButton.click();
+      const mobileContent = component.locator('#mobile_sidenav_content');
+      await expect(mobileContent).toBeVisible();
+
+      // Should not cause layout breaking
+      const hasHorizontalScroll = await page.evaluate(() => {
+        return document.documentElement.scrollWidth > document.documentElement.clientWidth;
+      });
+      expect(hasHorizontalScroll).toBe(false);
+    });
+
+    test('handles very large mobile viewports', async ({ mount, page }) => {
+      await page.setViewportSize({ width: 428, height: 926 }); // iPhone 14 Pro Max
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinksWithMenus,
+          notificationCount: 5,
+          requestCount: 2,
+          userMenu: mockUserMenu,
+        },
+      });
+
+      await expect(component).toBeVisible();
+
+      // Open mobile menu
+      const mobileButton = component.locator('#mobile_sidenav_button');
+      await mobileButton.click();
+
+      const mobileContent = component.locator('#mobile_sidenav_content');
+      await expect(mobileContent).toBeVisible();
+
+      // All elements should be properly visible
+      const analyticsLink = component.locator('#mobile_analytics');
+      await expect(analyticsLink).toBeVisible();
+    });
+
+    test('mobile menu width respects breakpoint on larger mobile devices', async ({ mount, page }) => {
+      await page.setViewportSize({ width: 600, height: 800 }); // Large phone/small tablet
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+        },
+      });
+
+      // Open mobile menu
+      const mobileButton = component.locator('#mobile_sidenav_button');
+      await mobileButton.click();
+
+      const mobileContent = component.locator('#mobile_sidenav_content');
+      await expect(mobileContent).toBeVisible();
+
+      // At 481px+, menu should be 380px wide, not full screen
+      const boundingBox = await mobileContent.boundingBox();
+      expect(boundingBox).not.toBeNull();
+      if (boundingBox) {
+        expect(boundingBox.width).toBe(380);
+      }
+    });
+
+    test('maintains proper width on mobile devices', async ({ mount, page }) => {
+      await page.setViewportSize({ width: 375, height: 667 });
+
+      const component = await mount(Sidenav, {
+        props: {
+          navLinks: mockNavLinks,
+        },
+      });
+
+      const boundingBox = await component.boundingBox();
+      expect(boundingBox).not.toBeNull();
+      if (boundingBox) {
+        expect(boundingBox.width).toBeLessThanOrEqual(page.viewportSize()!.width);
+      }
+    });
+  });
+  
 });

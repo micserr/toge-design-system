@@ -1,5 +1,6 @@
 <template>
-  <div v-for="(navLink, navLinkIndex) in navLinks" :key="navLinkIndex" class="spr-grid spr-gap-2">
+  <div v-for="(navLink, navLinkIndex) in positionedNavLinks" :key="navLinkIndex" class="spr-grid spr-gap-2">
+    <!-- Desktop -->
     <template v-for="(parentLink, parentLinkIndex) in navLink.parentLinks" :key="parentLinkIndex">
       <!-- #region - Parent Links with Menus -->
       <template v-if="parentLink.menuLinks && parentLink.menuLinks.length > 0">
@@ -298,7 +299,7 @@
 
     <!-- Divider -->
     <div
-      v-if="navLinks.length > 0 && navLinkIndex < navLinks.length - 1"
+      v-if="positionedNavLinks.length > 0 && navLinkIndex < positionedNavLinks.length - 1"
       class="spr-background-color-hover spr-h-[2px] spr-w-full"
     ></div>
   </div>
@@ -310,13 +311,29 @@ import { Icon } from '@iconify/vue';
 
 import 'floating-vue/dist/style.css';
 
-import { sidenavPropTypes, sidenavEmitTypes } from './sidenav';
+import { sidenavPropTypes, sidenavEmitTypes, type NavLinks } from './sidenav';
 import { useSidenav } from './use-sidenav';
 
 import SprLozenge from '../lozenge/lozenge.vue';
 import SprTooltip from '../tooltip/tooltip.vue';
+import { computed, type PropType } from 'vue';
 
-const props = defineProps(sidenavPropTypes);
+const props = defineProps({
+  ...sidenavPropTypes,
+  navLinkPosition: {
+    type: String as PropType<'top' | 'bottom'>,
+    required: true,
+  },
+});
+
+const positionedNavLinks = computed(() => {
+  if (props.navLinkPosition === 'top') {
+    return (props.navLinks as NavLinks).top;
+  } else {
+    return (props.navLinks as NavLinks).bottom;
+  }
+});
+
 const emit = defineEmits(sidenavEmitTypes);
 
 const { handleRedirect, generateId, getLozengeLabel, getLozengeTone, convertAttributesToArray } = useSidenav(

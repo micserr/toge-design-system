@@ -363,6 +363,7 @@
         >
           <div
             ref="mobileButtonRef"
+            id="mobile_sidenav_button"
             class="left-menus spr-flex spr-h-full spr-cursor-pointer spr-items-center"
             @click="isMobileMenuExpanded = !isMobileMenuExpanded"
           >
@@ -392,7 +393,7 @@
               <spr-tooltip text="NOTIFICATIONS" placement="top" :distance="4" :fit-content="false">
                 <div
                   v-if="props.notificationCount || props.notificationCount === 0"
-                  id="sidenav_notification_mobile"
+                  id="mobile_sidenav_notification"
                   :class="[
                     'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md',
                     'spr-h-9 spr-w-9 spr-transition spr-duration-150 spr-ease-in-out',
@@ -422,7 +423,7 @@
               <spr-tooltip text="REQUESTS" placement="top" :distance="4" :fit-content="false">
                 <div
                   v-if="props.requestCount || props.requestCount === 0"
-                  id="sidenav_request_mobile"
+                  id="mobile_sidenav_request"
                   :class="[
                     'spr-relative spr-flex spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md',
                     'spr-h-9 spr-w-9 spr-transition spr-duration-150 spr-ease-in-out',
@@ -453,12 +454,14 @@
               <Menu
                 v-model:shown="isMobileUserMenuVisible"
                 aria-id="mobile-user-menu-wrapper"
+                id="mobile-user-menu"
                 :distance="props.userMenu.profileImage ? '-2' : '2'"
                 skidding="-65"
                 placement="top"
                 :triggers="['click']"
                 instant-move
                 :delay="0"
+                popper-class="mobile-user-menu-popper"
               >
                 <template v-if="props.userMenu.profileImage">
                   <spr-avatar

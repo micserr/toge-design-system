@@ -196,7 +196,7 @@ export const sidenavPropTypes = {
   teleportToBody: {
     type: Boolean,
     validator: (value: unknown) => typeof value === 'boolean',
-    default: true,
+    default: false,
   }
 };
 

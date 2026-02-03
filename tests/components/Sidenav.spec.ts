@@ -165,7 +165,7 @@ test.describe('Sidenav Component', () => {
   };
 
   test.describe('Loading States', () => {
-    test('does not show loader when loading is false by default', async ({ mount, page }) => {
+    test('does not show loader when loading is false by default', async ({ mount }) => {
       const component = await mount(Sidenav, {
         props: {
           navLinks: mockNavLinks,          

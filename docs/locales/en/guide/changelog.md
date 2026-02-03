@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.27.0 (2026-02-03)
+
+- Feat:
+  - Mobile Sidenav
+- Chore:
+  - Fix Stacking Sidepanel Docs
+  - Fix Sidenav errors
+    ([#08b36d81](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/08b36d81177ee04bfb4fdc5c57d6f68c5d6ea377?refName=refs/heads/2026/feat/dustin/sidenav-mobile) by @despiritu)
+
 ## 2.26.21 (2026-02-03)
 
 - Docs:

@@ -63,7 +63,8 @@
   #quick-action-menu-wrapper,
   #sidenav-menu-wrapper,
   #sidenav-submenu-l1-wrapper,
-  #user-menu-wrapper {
+  #user-menu-wrapper,
+  #mobile-user-menu-wrapper {
     @apply spr-background-color spr-border-color-base spr-overflow-y-auto spr-overflow-x-hidden spr-rounded-xl spr-border spr-border-solid spr-drop-shadow-md;
 
     .v-popper__wrapper {

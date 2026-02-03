@@ -1,6 +1,6 @@
 import type { PropType, ExtractPropTypes } from 'vue';
 
-import { LozengePropTypes } from '../lozenge/lozenge';
+import { LozengePropTypes, type LOZENGE_TONE } from '../lozenge/lozenge';
 
 export type QuickAction = {
   menuHeading: string;
@@ -17,8 +17,12 @@ export type QuickActionItem = {
 };
 
 export type NavLinks = {
-  top: { parentLinks: ParentLinkItem[] }[];
-  bottom: { parentLinks: ParentLinkItem[] }[];
+  top: ParentLink[];
+  bottom: ParentLink[];
+};
+
+export type ParentLink = {
+  parentLinks: ParentLinkItem[];
 };
 
 export type NavAPILinks = {
@@ -98,6 +102,12 @@ export type Attributes = {
   value: unknown | string | number | boolean | AttrLozenge;
 };
 
+export type ActiveNav = {
+  parentNav: string;
+  menu: string;
+  submenu: string;
+};
+
 export type AttrLozenge = LozengePropTypes;
 
 export interface MappedNavItem {
@@ -119,6 +129,11 @@ export interface MappedNavItem {
   }[];
 }
 
+export interface ConvertedNavAttribute extends Attributes {
+  lozengeLabel?: string;
+  lozengeTone?: (typeof LOZENGE_TONE)[number];
+}
+
 export const sidenavPropTypes = {
   quickActions: {
     type: Array as PropType<QuickAction[]>,
@@ -131,7 +146,7 @@ export const sidenavPropTypes = {
     default: false,
   },
   activeNav: {
-    type: Object as PropType<{ parentNav: string; menu: string; submenu: string }>,
+    type: Object as PropType<ActiveNav>,
     validator: (value: unknown) => typeof value === 'object',
     default: () => ({ parentNav: '', menu: '', submenu: '' }),
   },
@@ -178,6 +193,11 @@ export const sidenavPropTypes = {
     validator: (value: unknown) => typeof value === 'boolean',
     default: false,
   },
+  teleportToBody: {
+    type: Boolean,
+    validator: (value: unknown) => typeof value === 'boolean',
+    default: false,
+  }
 };
 
 export const sidenavEmitTypes = {

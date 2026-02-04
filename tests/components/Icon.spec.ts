@@ -407,8 +407,7 @@ test.describe('Icon Component', () => {
       });
 
       // Should combine all styles correctly
-      await expect(component).toHaveClass(/spr-h-6/); // small size
-      await expect(component).toHaveClass(/spr-rounded-border-radius-sm/); // small border radius
+      await expect(component).toHaveClass(/spr-font-size-300/); // small size font
       await expect(component).toHaveClass(/spr-text-color-success-base/); // success tertiary
       await expect(component).toHaveClass(/spr-bg-transparent/); // tertiary transparent bg
     });

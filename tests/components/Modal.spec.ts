@@ -45,13 +45,8 @@ import { test, expect } from '@playwright/experimental-ct-vue';
 import Modal from '@/components/modal/modal.vue';
 
 test.describe('Modal Component', () => {
-  // Helper function to wait for modal visibility
-  const waitForModalTransition = async (page: any) => {
-    await page.waitForTimeout(200);
-  };
-
   test.describe('Basic Rendering', () => {
-    test('renders modal when modelValue is true', async ({ mount, page }) => {
+    test('renders modal when modelValue is true', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -59,16 +54,14 @@ test.describe('Modal Component', () => {
         },
       });
 
-      await waitForModalTransition(page);
-
       // Check if modal exists in DOM and has content
       const modal = component.locator('#modal');
-      await expect(modal).toBeAttached();
+      await expect(modal).toBeVisible();
       await expect(component).toContainText('Test Modal');
 
       // Check if backdrop exists in DOM
       const backdrop = component.locator('.spr-fixed.spr-bg-\\[\\#4C5857\\]');
-      await expect(backdrop).toBeAttached();
+      await expect(backdrop).toBeVisible();
 
       // Verify modal has proper classes for positioning
       await expect(modal).toHaveClass(/spr-fixed/);
@@ -90,15 +83,13 @@ test.describe('Modal Component', () => {
       await expect(backdrop).not.toBeVisible();
     });
 
-    test('renders with default props', async ({ mount, page }) => {
+    test('renders with default props', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
           title: 'Modal Title', // Add title so header renders and close button shows
         },
       });
-
-      await waitForModalTransition(page);
 
       const modal = component.locator('#modal');
       await expect(modal).toBeAttached();
@@ -112,7 +103,7 @@ test.describe('Modal Component', () => {
       await expect(content).toHaveClass(/spr-p-4/);
     });
 
-    test('renders with custom slot content', async ({ mount, page }) => {
+    test('renders with custom slot content', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -122,8 +113,6 @@ test.describe('Modal Component', () => {
         },
       });
 
-      await waitForModalTransition(page);
-
       const content = component.getByTestId('modal-content');
       await expect(content).toBeAttached();
       await expect(content).toHaveText('Custom modal content');
@@ -131,7 +120,7 @@ test.describe('Modal Component', () => {
   });
 
   test.describe('Title and Header', () => {
-    test('displays title in header when provided', async ({ mount, page }) => {
+    test('displays title in header when provided', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -140,14 +129,13 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const header = component.locator('header');
       await expect(header).toBeVisible();
       await expect(header).toContainText('Modal Title');
     });
 
-    test('renders custom header slot', async ({ mount, page }) => {
+    test('renders custom header slot', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -158,14 +146,13 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const customHeader = component.getByTestId('custom-header');
       await expect(customHeader).toBeVisible();
       await expect(customHeader).toHaveText('Custom Header Content');
     });
 
-    test('renders header with custom slot only (title is hidden)', async ({ mount, page }) => {
+    test('renders header with custom slot only (title is hidden)', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -177,7 +164,6 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const header = component.locator('header');
       await expect(header).toBeVisible();
@@ -189,7 +175,7 @@ test.describe('Modal Component', () => {
       await expect(headerSlot).toBeVisible();
     });
 
-    test('does not render header when no title or header slot', async ({ mount, page }) => {
+    test('does not render header when no title or header slot', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -197,7 +183,6 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const header = component.locator('header');
       await expect(header).not.toBeVisible();
@@ -205,7 +190,7 @@ test.describe('Modal Component', () => {
   });
 
   test.describe('Close Button', () => {
-    test('shows close button X by default', async ({ mount, page }) => {
+    test('shows close button X by default', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -214,7 +199,6 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const closeButtonIcon = component.locator('svg');
       await expect(closeButtonIcon).toBeVisible();
@@ -224,7 +208,7 @@ test.describe('Modal Component', () => {
       await expect(closeButtonSpan).toBeVisible();
     });
 
-    test('hides close button when closeButtonX is false', async ({ mount, page }) => {
+    test('hides close button when closeButtonX is false', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -234,13 +218,12 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const closeButtonIcon = component.locator('svg');
       await expect(closeButtonIcon).not.toBeVisible();
     });
 
-    test('close button has proper hover and active states', async ({ mount, page }) => {
+    test('close button has proper hover and active states', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -249,7 +232,6 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const closeButton = component.locator('.spr-text-color-weak.spr-cursor-pointer');
       await expect(closeButton).toBeVisible();
@@ -271,7 +253,7 @@ test.describe('Modal Component', () => {
     ];
 
     for (const { size, width, maxWidth } of sizes) {
-      test(`renders ${size} size modal with correct dimensions`, async ({ mount, page }) => {
+      test(`renders ${size} size modal with correct dimensions`, async ({ mount }) => {
         const component = await mount(Modal, {
           props: {
             modelValue: true,
@@ -281,7 +263,6 @@ test.describe('Modal Component', () => {
         });
 
         // Wait for transitions
-        await waitForModalTransition(page);
 
         const modal = component.locator('#modal');
         await expect(modal).toBeVisible();
@@ -290,7 +271,7 @@ test.describe('Modal Component', () => {
       });
     }
 
-    test('defaults to md size when size prop not provided', async ({ mount, page }) => {
+    test('defaults to md size when size prop not provided', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -299,7 +280,6 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const modal = component.locator('#modal');
       await expect(modal).toHaveClass(/spr-w-\[480px\]/);
@@ -308,7 +288,7 @@ test.describe('Modal Component', () => {
   });
 
   test.describe('Content Padding', () => {
-    test('applies content padding by default', async ({ mount, page }) => {
+    test('applies content padding by default', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -319,14 +299,13 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const content = component.locator('.spr-body-sm-regular');
-      await expect(content).toHaveClass(/spr-p-4/);
-      await expect(content).toHaveClass(/sm:spr-p-2/);
+      await expect(content).toHaveClass(/spr-p-2/);
+      await expect(content).toHaveClass(/sm:spr-p-4/);
     });
 
-    test('removes content padding when contentPadding is false', async ({ mount, page }) => {
+    test('removes content padding when contentPadding is false', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -338,16 +317,15 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const content = component.locator('.spr-body-sm-regular');
-      await expect(content).not.toHaveClass(/spr-p-4/);
-      await expect(content).not.toHaveClass(/sm:spr-p-2/);
+      await expect(content).not.toHaveClass(/spr-p-2/);
+      await expect(content).not.toHaveClass(/sm:spr-p-4/);
     });
   });
 
   test.describe('Footer Slot', () => {
-    test('renders footer when footer slot is provided', async ({ mount, page }) => {
+    test('renders footer when footer slot is provided', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -359,7 +337,6 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const footer = component.locator('footer');
       await expect(footer).toBeVisible();
@@ -368,7 +345,7 @@ test.describe('Modal Component', () => {
       await expect(footerContent).toHaveText('Footer Content');
     });
 
-    test('does not render footer when no footer slot provided', async ({ mount, page }) => {
+    test('does not render footer when no footer slot provided', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -377,13 +354,12 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const footer = component.locator('footer');
       await expect(footer).not.toBeVisible();
     });
 
-    test('footer has correct styling classes', async ({ mount, page }) => {
+    test('footer has correct styling classes', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -394,7 +370,6 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const footer = component.locator('footer');
       await expect(footer).toHaveClass(/spr-border-color-weak/);
@@ -406,7 +381,7 @@ test.describe('Modal Component', () => {
   });
 
   test.describe('Static Backdrop Behavior', () => {
-    test('closes modal on backdrop click by default', async ({ mount, page }) => {
+    test('closes modal on backdrop click by default', async ({ mount }) => {
       let emittedValue: boolean | null = null;
 
       const component = await mount(Modal, {
@@ -421,8 +396,6 @@ test.describe('Modal Component', () => {
         },
       });
 
-      await waitForModalTransition(page);
-
       // Test the event directly by clicking on close button instead
       // since backdrop clicking with transitions is complex in component tests
       const closeButton = component.locator('.spr-cursor-pointer');
@@ -432,7 +405,7 @@ test.describe('Modal Component', () => {
       await expect.poll(() => emittedValue).toBe(false);
     });
 
-    test('does not close modal on backdrop click when staticBackdrop is true', async ({ mount, page }) => {
+    test('does not close modal on backdrop click when staticBackdrop is true', async ({ mount }) => {
       let emittedValue: boolean | null = null;
 
       const component = await mount(Modal, {
@@ -448,8 +421,6 @@ test.describe('Modal Component', () => {
         },
       });
 
-      await waitForModalTransition(page);
-
       // Verify that close button still works but backdrop behavior differs
       // Since backdrop clicking is complex in component tests, we test the prop effect
       const modal = component.locator('#modal');
@@ -459,7 +430,7 @@ test.describe('Modal Component', () => {
       await expect.poll(() => emittedValue).toBe(null);
     });
 
-    test('shows static backdrop modal configuration', async ({ mount, page }) => {
+    test('shows static backdrop modal configuration', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -467,8 +438,6 @@ test.describe('Modal Component', () => {
           staticBackdrop: true,
         },
       });
-
-      await waitForModalTransition(page);
 
       const modal = component.locator('#modal');
       await expect(modal).toBeAttached();
@@ -481,7 +450,7 @@ test.describe('Modal Component', () => {
   });
 
   test.describe('Event Handling', () => {
-    test('emits update:modelValue false when close button is clicked', async ({ mount, page }) => {
+    test('emits update:modelValue false when close button is clicked', async ({ mount }) => {
       let emittedValue: boolean | null = null;
 
       const component = await mount(Modal, {
@@ -497,7 +466,6 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const closeButton = component.locator('.spr-cursor-pointer');
       await closeButton.click();
@@ -505,7 +473,7 @@ test.describe('Modal Component', () => {
       await expect.poll(() => emittedValue).toBe(false);
     });
 
-    test('does not emit when close button is hidden', async ({ mount, page }) => {
+    test('does not emit when close button is hidden', async ({ mount }) => {
       let emittedValue: boolean | null = null;
 
       const component = await mount(Modal, {
@@ -522,7 +490,6 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       // Close button should not exist
       const closeButton = component.locator('svg');
@@ -534,14 +501,12 @@ test.describe('Modal Component', () => {
   });
 
   test.describe('Styling and Layout', () => {
-    test('applies correct backdrop styling', async ({ mount, page }) => {
+    test('applies correct backdrop styling', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
         },
       });
-
-      await waitForModalTransition(page);
 
       const backdrop = component.locator('.spr-fixed.spr-bg-\\[\\#4C5857\\]');
       await expect(backdrop).toBeAttached();
@@ -554,7 +519,7 @@ test.describe('Modal Component', () => {
       await expect(backdrop).toHaveClass(/spr-opacity-60/);
     });
 
-    test('applies correct modal positioning and styling', async ({ mount, page }) => {
+    test('applies correct modal positioning and styling', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -563,7 +528,6 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const modal = component.locator('#modal');
       await expect(modal).toHaveClass(/spr-fixed/);
@@ -576,7 +540,7 @@ test.describe('Modal Component', () => {
       await expect(modal).toHaveClass(/spr-border/);
     });
 
-    test('applies correct header styling', async ({ mount, page }) => {
+    test('applies correct header styling', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -585,7 +549,6 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const header = component.locator('header');
       await expect(header).toHaveClass(/spr-flex/);
@@ -599,7 +562,7 @@ test.describe('Modal Component', () => {
       await expect(header).toHaveClass(/spr-rounded-tr-xl/);
     });
 
-    test('applies correct content styling with overflow handling', async ({ mount, page }) => {
+    test('applies correct content styling with overflow handling', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -610,7 +573,6 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const content = component.locator('.spr-body-sm-regular');
       await expect(content).toHaveClass(/spr-max-h-\[calc\(100vh-200px\)\]/);
@@ -620,15 +582,13 @@ test.describe('Modal Component', () => {
   });
 
   test.describe('Accessibility', () => {
-    test('modal has proper focus management', async ({ mount, page }) => {
+    test('modal has proper focus management', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
           title: 'Accessible Modal',
         },
       });
-
-      await waitForModalTransition(page);
 
       const modal = component.locator('#modal');
       await expect(modal).toBeAttached();
@@ -640,7 +600,7 @@ test.describe('Modal Component', () => {
       // Just check that it doesn't throw an error when focused
     });
 
-    test('close button is keyboard accessible', async ({ mount, page }) => {
+    test('close button is keyboard accessible', async ({ mount }) => {
       let emittedValue: boolean | null = null;
 
       const component = await mount(Modal, {
@@ -655,8 +615,6 @@ test.describe('Modal Component', () => {
         },
       });
 
-      await waitForModalTransition(page);
-
       const closeButton = component.locator('.spr-cursor-pointer');
 
       // Click the close button directly instead of using keyboard
@@ -665,7 +623,7 @@ test.describe('Modal Component', () => {
       await expect.poll(() => emittedValue).toBe(false);
     });
 
-    test('modal content is properly structured for screen readers', async ({ mount, page }) => {
+    test('modal content is properly structured for screen readers', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -677,7 +635,6 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const modal = component.locator('#modal');
       await expect(modal).toBeVisible();
@@ -693,15 +650,13 @@ test.describe('Modal Component', () => {
   });
 
   test.describe('Edge Cases', () => {
-    test('handles empty title gracefully', async ({ mount, page }) => {
+    test('handles empty title gracefully', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
           title: '',
         },
       });
-
-      await waitForModalTransition(page);
 
       const modal = component.locator('#modal');
       await expect(modal).toBeAttached();
@@ -711,7 +666,7 @@ test.describe('Modal Component', () => {
       await expect(header).not.toBeAttached();
     });
 
-    test('handles very long title text', async ({ mount, page }) => {
+    test('handles very long title text', async ({ mount }) => {
       const longTitle =
         'This is a very long modal title that might cause layout issues if not handled properly and should wrap appropriately';
 
@@ -722,14 +677,12 @@ test.describe('Modal Component', () => {
         },
       });
 
-      await waitForModalTransition(page);
-
       const header = component.locator('header');
       await expect(header).toBeAttached();
       await expect(header).toContainText(longTitle);
     });
 
-    test('handles complex content in slots', async ({ mount, page }) => {
+    test('handles complex content in slots', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -740,8 +693,6 @@ test.describe('Modal Component', () => {
           footer: '<div><button>Cancel</button><button>OK</button></div>',
         },
       });
-
-      await waitForModalTransition(page);
 
       const modal = component.locator('#modal');
       await expect(modal).toBeAttached();
@@ -755,14 +706,12 @@ test.describe('Modal Component', () => {
       await expect(component.getByRole('button', { name: 'OK' })).toBeAttached();
     });
 
-    test('works with minimal props', async ({ mount, page }) => {
+    test('works with minimal props', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
         },
       });
-
-      await waitForModalTransition(page);
 
       const modal = component.locator('#modal');
       await expect(modal).toBeAttached();
@@ -774,7 +723,7 @@ test.describe('Modal Component', () => {
   });
 
   test.describe('Prop Combinations', () => {
-    test('large static backdrop modal with no close button', async ({ mount, page }) => {
+    test('large static backdrop modal with no close button', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -784,8 +733,6 @@ test.describe('Modal Component', () => {
           title: 'Large Static Modal',
         },
       });
-
-      await waitForModalTransition(page);
 
       const modal = component.locator('#modal');
       await expect(modal).toBeAttached();
@@ -801,7 +748,7 @@ test.describe('Modal Component', () => {
       await expect(modal).toBeAttached();
     });
 
-    test('small modal with no padding and footer', async ({ mount, page }) => {
+    test('small modal with no padding and footer', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -816,7 +763,6 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const modal = component.locator('#modal');
       await expect(modal).toHaveClass(/spr-w-\[360px\]/);
@@ -829,7 +775,7 @@ test.describe('Modal Component', () => {
       await expect(footer).toContainText('Footer Button');
     });
 
-    test('extra large modal with custom header and footer', async ({ mount, page }) => {
+    test('extra large modal with custom header and footer', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -844,7 +790,6 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const modal = component.locator('#modal');
       await expect(modal).toHaveClass(/spr-w-\[1200px\]/);
@@ -859,7 +804,7 @@ test.describe('Modal Component', () => {
   });
 
   test.describe('Responsive Behavior', () => {
-    test('applies responsive classes for small screens', async ({ mount, page }) => {
+    test('applies responsive classes for small screens', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -868,15 +813,16 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const modal = component.locator('#modal');
-      // Should have responsive width classes
-      await expect(modal).toHaveClass(/sm:spr-w-\[calc\(100%-2rem\)\]/);
-      await expect(modal).toHaveClass(/sm:spr-max-w-\[calc\(100%-2rem\)\]/);
+      // Should have mobile-first responsive width classes
+      await expect(modal).toHaveClass(/spr-w-\[calc\(100%-2rem\)\]/);
+      await expect(modal).toHaveClass(/spr-max-w-\[calc\(100%-2rem\)\]/);
+      await expect(modal).toHaveClass(/md:spr-w-\[720px\]/);
+      await expect(modal).toHaveClass(/md:spr-max-w-\[960px\]/);
     });
 
-    test('header applies responsive padding', async ({ mount, page }) => {
+    test('header applies responsive padding', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -885,13 +831,14 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const header = component.locator('header');
-      await expect(header).toHaveClass(/sm:spr-p-2/);
+      await expect(header).toHaveClass(/spr-p-2/);
+      await expect(header).toHaveClass(/sm:spr-px-4/);
+      await expect(header).toHaveClass(/sm:spr-py-3/);
     });
 
-    test('content applies responsive padding', async ({ mount, page }) => {
+    test('content applies responsive padding', async ({ mount }) => {
       const component = await mount(Modal, {
         props: {
           modelValue: true,
@@ -902,10 +849,10 @@ test.describe('Modal Component', () => {
       });
 
       // Wait for transitions
-      await waitForModalTransition(page);
 
       const content = component.locator('.spr-body-sm-regular');
-      await expect(content).toHaveClass(/sm:spr-p-2/);
+      await expect(content).toHaveClass(/spr-p-2/);
+      await expect(content).toHaveClass(/sm:spr-p-4/);
     });
   });
 });

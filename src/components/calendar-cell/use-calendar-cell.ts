@@ -97,7 +97,7 @@ export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext
 
   const getCalendarCellClassess = computed(() => {
     const calendarCellWrapper = classNames(
-      'spr-flex spr-items-center spr-p-size-spacing-3xs spr-gap-size-spacing-3xs spr-relative spr-rounded-lg spr-border-2 spr-transition-all sm:spr-flex-col spr-overflow-hidden',
+      'spr-flex spr-items-center spr-p-size-spacing-3xs spr-gap-size-spacing-3xs spr-relative spr-rounded-lg spr-border-2 spr-transition-all spr-flex-col sm:spr-flex-row spr-overflow-hidden',
 
       {
         'spr-w-full': fullwidth.value,

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.27.1 (2026-02-03)
+
+- Feat:
+  - Commit c4bea3b2: feat: Add readonly2 prop to date picker and update related components
+    ([#c4bea3b2](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c4bea3b27c6211986083ef97b778dfd0c278bfa6?refName=refs/heads/2026/Fix/andrea/CALENDAR) by @adestajo)
+
 ## 2.27.0 (2026-02-03)
 
 - Feat:

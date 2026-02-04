@@ -206,7 +206,11 @@ const dateModel = ref('');
 
 เพิ่ม prop `readonly` เพื่อทำให้ปฏิทินวันที่อ่านได้อย่างเดียว
 
+<div class="spr-space-y-3">
 <spr-date-picker id="date-picker-readonly" v-model="dateModel.readonly" label="วันที่" readonly />
+
+<spr-date-picker id="date-picker-readonly" v-model="dateModel.readonly" label="วันที่" readonly2 />
+</div>
 
 ```vue
 <template>
@@ -658,6 +662,12 @@ const datePickerModel = ref('');
     <tr>
       <td>readonly</td>
       <td>ทำให้ปฏิทินวันที่อ่านได้อย่างเดียว</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>readonly2</td>
+      <td>ทำให้ปฏิทินวันที่อ่านได้อย่างเดียวโดยไม่มีเส้นขอบ</td>
       <td>Boolean</td>
       <td>false</td>
     </tr>

@@ -39,7 +39,7 @@
                 placeholder="MMM"
                 maxlength="3"
                 :disabled="props.disabled"
-                :readonly="props.readonly"
+                :readonly="props.readonly || props.readonly2"
                 autocomplete="off"
                 @input="handleMonthInput"
                 @keyup="handleMonthInput"
@@ -55,7 +55,7 @@
                 placeholder="DD"
                 maxlength="2"
                 :disabled="props.disabled"
-                :readonly="props.readonly"
+                :readonly="props.readonly || props.readonly2"
                 autocomplete="off"
                 @input="handleDateInput"
                 @keyup="handleDateInput"
@@ -71,14 +71,14 @@
                 placeholder="YYYY"
                 maxlength="4"
                 :disabled="props.disabled"
-                :readonly="props.readonly"
+                :readonly="props.readonly || props.readonly2"
                 autocomplete="off"
                 @input="handleYearInput"
                 @keyup="handleYearInput"
                 @keydown="handleBackspace('year', $event)"
               />
             </div>
-            <div class="spr-flex spr-items-center spr-justify-center">
+            <div v-if="!props.readonly2 && !props.readonly" class="spr-flex spr-items-center spr-justify-center">
               <Icon class="spr-text-color-supporting spr-h-4 spr-w-4" icon="ph:calendar-blank" />
             </div>
           </div>

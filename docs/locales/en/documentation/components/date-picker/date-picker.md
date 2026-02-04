@@ -220,11 +220,16 @@ const datePickerModel = ref('');
 
 Add the `readonly` prop to make date picker as read only.
 
+<div class="spr-space-y-3">
 <spr-date-picker :id="datePickerId.date5" class="[&>p]:spr-m-0" v-model="datePickerModel.date5" label="Date Picker" readonly />
+
+<spr-date-picker id="datepicker" v-model="datePickerModel.date5" label="Date Picker Read Only 1" readonly2 />
+</div>
 
 ```vue
 <template>
-  <spr-date-picker id="datepicker" v-model="datePickerModel" label="Date Picker" readonly />
+  <spr-date-picker id="datepicker" v-model="datePickerModel" label="Date Picker Read only" readonly />
+  <spr-date-picker id="datepicker" v-model="datePickerModel" label="Date Picker Read Only 1" readonly2 />
 </template>
 
 <script lang="ts" setup>
@@ -1130,6 +1135,12 @@ const clearDate = () => {
     <tr>
       <td>readonly</td>
       <td>Makes the date picker read-only</td>
+      <td>Boolean</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>readonly2</td>
+      <td>Makes the date picker read-only with no borders</td>
       <td>Boolean</td>
       <td>false</td>
     </tr>

@@ -55,7 +55,7 @@ export const useIcon = (props: IconPropTypes) => {
     const variantClasses = classNames({
       'spr-border-0': variant.value === 'primary',
       'spr-border': variant.value === 'secondary',
-      'spr-border-0 spr-bg-transparent': variant.value === 'tertiary' || !variant.value,
+      'spr-border-0 spr-bg-transparent spr-h-0 spr-min-w-0': variant.value === 'tertiary' || !variant.value,
     });
 
     return classNames(variantClasses, BASE_CLASSES, sizeClasses, toneClasses);

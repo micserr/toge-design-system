@@ -29,7 +29,8 @@ interface MonthsList {
 }
 
 export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<DatePickerEmitTypes>['emit']) => {
-  const { active, disabled, readonly, error, currentYear, minMaxYear, restDays, disabledDates, format } = toRefs(props);
+  const { active, disabled, readonly, error, currentYear, minMaxYear, restDays, disabledDates, format, readonly2 } =
+    toRefs(props);
 
   const modelValue = useVModel(props, 'modelValue', emit);
 
@@ -43,11 +44,12 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       {
         // Normal State
         'spr-border spr-border-solid spr-border-mushroom-200 focus:spr-border-kangkong-700':
-          (!error.value && !disabled.value && !active.value && !datePopperState.value) || readonly.value,
+          (!error.value && !disabled.value && !active.value && !datePopperState.value && !readonly2.value) ||
+          readonly.value,
 
         // Active State
         'spr-border spr-border-solid spr-border-kangkong-700 spr-border-[1.5px] spr-border-solid':
-          (active.value || datePopperState.value === true) && !readonly.value,
+          (active.value || datePopperState.value === true) && !readonly.value && !readonly2.value,
 
         // Error State
         'spr-border spr-border-solid spr-border-tomato-600 focus:spr-border-tomato-600': error.value,
@@ -57,7 +59,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
           disabled.value,
 
         // Readonly State
-        'spr-cursor-default': readonly.value,
+        'spr-cursor-default': readonly.value || readonly2.value,
       },
     );
 
@@ -66,8 +68,9 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
       'spr-font-size-200',
       'placeholder:spr-text-color-weak',
       {
-        'spr-text-color-strong': !disabled.value && !readonly.value,
-        'spr-text-color-on-fill-disabled': disabled.value || readonly.value,
+        'spr-font-size-300': readonly2.value,
+        'spr-text-color-strong': !disabled.value,
+        'spr-text-color-on-fill-disabled': disabled.value,
         'spr-cursor-not-allowed': disabled.value,
       },
     );
@@ -565,7 +568,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   // #endregion - Year Tab
 
   // #region - Helper Methods
-  const isDatePickerPopperDisabled = computed(() => disabled.value || readonly.value);
+  const isDatePickerPopperDisabled = computed(() => disabled.value || readonly.value || readonly2.value);
 
   const setWarningPropsValue = (type: string) => {
     switch (type) {
@@ -879,7 +882,7 @@ export const useDatePicker = (props: DatePickerPropTypes, emit: SetupContext<Dat
   };
 
   const handleSlotClick = () => {
-    if (disabled.value || readonly.value) return;
+    if (disabled.value || readonly.value || readonly2.value) return;
     datePopperState.value = true;
   };
 

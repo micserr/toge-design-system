@@ -6,9 +6,11 @@
     @click="handleClick"
   >
     <slot>
-      <slot name="prefix">
-        <Icon v-if="hasIconStatus" :icon="getCellIcon" />
-      </slot>
+      <div v-if="$slots.prefix || getCellIcon" :class="getCalendarCellClassess.getTextFormatClasses">
+        <slot name="prefix">
+          <Icon v-if="hasIconStatus" :icon="getCellIcon" />
+        </slot>
+      </div>
       <spr-status v-if="isError" :state="props.state" size="sm" />
       <div v-if="hasContent" :class="getCalendarCellClassess.getTextFormatClasses">
         <div v-if="props.title" :class="getCalendarCellClassess.titleClasses">

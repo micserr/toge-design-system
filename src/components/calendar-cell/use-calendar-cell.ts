@@ -102,7 +102,7 @@ export const useCalendarCell = (props: CalendarCellPropTypes, emit: SetupContext
       {
         'spr-w-full': fullwidth.value,
         'spr-max-w-[217px]': !fullwidth.value,
-        'hover:spr-drop-shadow-sm spr-cursor-pointer': !viewOnly.value,
+        'spr-cursor-pointer': !viewOnly.value,
         'spr-h-[80px] spr-skeletal-loader': loading.value,
         [`spr-border-[${customBorderSize.value}px]`]: customBorderSize.value,
       },

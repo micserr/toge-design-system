@@ -49,6 +49,10 @@ export const datePickerPropTypes = {
     type: Boolean,
     default: false,
   },
+  readonly2: {
+    type: Boolean,
+    default: false,
+  },
   error: {
     type: Boolean,
     default: false,

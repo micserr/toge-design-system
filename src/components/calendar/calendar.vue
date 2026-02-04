@@ -37,7 +37,7 @@
                     ]"
                   >
                     <div :class="getCalendarClasses.headerContent">
-                      <div>Employee Name</div>
+                      <div class="spr-font-size-200">Employee Name</div>
                       <div
                         id="calendar-sort-button"
                         :class="['spr-flex spr-cursor-pointer spr-flex-row spr-items-center spr-p-size-spacing-6xs']"
@@ -84,7 +84,6 @@
                         :initial="employee.name"
                         size="md"
                         :variant="employee.avatar ? 'image' : 'initial'"
-                        color="tertiary"
                       />
                       <div class="spr-label-xs-regular">
                         {{ employee.name }}
@@ -109,7 +108,7 @@
                     :key="index"
                     :class="[
                       getCalendarClasses.borderClasses,
-                      'spr-min-w-[180px] spr-content-start spr-space-y-size-spacing-3xs spr-border-x spr-border-b spr-border-t-0 spr-p-size-spacing-sm last:spr-mb-size-spacing-lg last:spr-border-r-0',
+                      'spr-min-w-[180px] spr-content-start spr-space-y-size-spacing-3xs spr-border-x spr-border-b spr-border-t-0 spr-p-size-spacing-3xs last:spr-mb-size-spacing-lg last:spr-border-r-0',
                     ]"
                     @mouseover="handleHover(true, index, employee.id)"
                     @mouseleave="handleHover(false, index, employee.id)"

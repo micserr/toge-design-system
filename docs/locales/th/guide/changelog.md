@@ -1,5 +1,11 @@
 # บันทึกการเปลี่ยนแปลง
 
+## 2.27.1 (2026-02-03)
+
+- คุณสมบัติ:
+  - Commit c4bea3b2: feat: เพิ่ม readonly2 prop ให้กับ date picker และอัปเดต components ที่เกี่ยวข้อง
+    ([#c4bea3b2](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/c4bea3b27c6211986083ef97b778dfd0c278bfa6?refName=refs/heads/2026/Fix/andrea/CALENDAR) by @adestajo)
+
 ## 2.26.19 (2026-01-26)
 
 - คุณสมบัติ:

@@ -39,13 +39,22 @@ export const useIcon = (props: IconPropTypes) => {
     };
 
     const SIZE_MAP = {
-      '2xl': 'spr-h-20 spr-min-w-20 spr-font-size-700',
-      xl: 'spr-h-14 spr-min-w-14 spr-font-size-600',
-      lg: 'spr-h-10 spr-min-w-10 spr-font-size-500',
-      md: 'spr-h-9 spr-min-w-9 spr-font-size-400',
-      sm: 'spr-h-6 spr-min-w-6 spr-font-size-300 spr-rounded-border-radius-sm',
-      xs: 'spr-h-5 spr-min-w-5 spr-font-size-250 spr-rounded-border-radius-xs',
-      '2xs': 'spr-h-4 spr-min-w-4  spr-font-size-250 spr-rounded-border-radius-xs',
+      '2xl': variant.value === 'tertiary' ? 'spr-font-size-700' : 'spr-h-20 spr-min-w-20 spr-font-size-700',
+      xl: variant.value === 'tertiary' ? 'spr-font-size-600' : 'spr-h-14 spr-min-w-14 spr-font-size-600',
+      lg: variant.value === 'tertiary' ? 'spr-font-size-500' : 'spr-h-10 spr-min-w-10 spr-font-size-500',
+      md: variant.value === 'tertiary' ? 'spr-font-size-400' : 'spr-h-9 spr-min-w-9 spr-font-size-400',
+      sm:
+        variant.value === 'tertiary'
+          ? 'spr-font-size-300'
+          : 'spr-h-6 spr-min-w-6 spr-font-size-300 spr-rounded-border-radius-sm',
+      xs:
+        variant.value === 'tertiary'
+          ? 'spr-font-size-250'
+          : 'spr-h-5 spr-min-w-5 spr-font-size-250 spr-rounded-border-radius-xs',
+      '2xs':
+        variant.value === 'tertiary'
+          ? 'spr-font-size-250'
+          : 'spr-h-4 spr-min-w-4  spr-font-size-250 spr-rounded-border-radius-xs',
     };
 
     const toneClasses = classNames('spr-border spr-border-solid', TONE_MAP[tone.value]?.[variant.value] || '');
@@ -55,7 +64,7 @@ export const useIcon = (props: IconPropTypes) => {
     const variantClasses = classNames({
       'spr-border-0': variant.value === 'primary',
       'spr-border': variant.value === 'secondary',
-      'spr-border-0 spr-bg-transparent spr-h-0 spr-min-w-0': variant.value === 'tertiary' || !variant.value,
+      'spr-border-0 spr-bg-transparent ': variant.value === 'tertiary' || !variant.value,
     });
 
     return classNames(variantClasses, BASE_CLASSES, sizeClasses, toneClasses);

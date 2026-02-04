@@ -26,23 +26,23 @@ export const useModal = (props: ModalPropTypes, emit: SetupContext<ModalEmitType
       'spr-fixed spr-z-[1100] spr-left-1/2 spr-top-1/2 spr-transform -spr-translate-x-1/2 -spr-translate-y-1/2',
       'spr-background-color spr-rounded-xl',
       'spr-border spr-border-solid spr-border-color-weak',
-      'sm:spr-w-[calc(100%-2rem)] sm:spr-max-w-[calc(100%-2rem)]',
+      'spr-w-[calc(100%-2rem)] spr-max-w-[calc(100%-2rem)]',
       {
-        'spr-w-[360px] spr-max-w-[480px]': size.value === 'sm',
-        'spr-w-[480px] spr-max-w-[720px]': size.value === 'md',
-        'spr-w-[720px] spr-max-w-[960px]': size.value === 'lg',
-        'spr-w-[900px] spr-max-w-[1200px]': size.value === 'xl',
-        'spr-w-[1200px] spr-max-w-[1400px]': size.value === 'xxl',
+        'sm:spr-w-[360px] sm:spr-max-w-[480px]': size.value === 'sm',
+        'sm:spr-w-[480px] sm:spr-max-w-[720px]': size.value === 'md',
+        'md:spr-w-[720px] md:spr-max-w-[960px]': size.value === 'lg',
+        'lg:spr-w-[900px] lg:spr-max-w-[1200px]': size.value === 'xl',
+        'xl:spr-w-[1200px] xl:spr-max-w-[1400px]': size.value === 'xxl',
       },
       { 'bounce-animation': staticBackdropClicked.value },
     );
 
     const headerClasses = classNames(
-      'spr-flex spr-items-start spr-justify-between spr-gap-2 spr-px-4 spr-py-3',
+      'spr-flex spr-items-start spr-justify-between spr-gap-2',
       'spr-text-color-strong spr-subheading-xs',
       'spr-border-color-weak spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid',
       'spr-rounded-tl-xl spr-rounded-tr-xl',
-      'sm:spr-p-2',
+      'spr-p-2 sm:spr-px-4 sm:spr-py-3',
     );
 
     const headerCloseButtonXClasses = classNames(
@@ -55,7 +55,7 @@ export const useModal = (props: ModalPropTypes, emit: SetupContext<ModalEmitType
     const contentClasses = classNames(
       'spr-body-sm-regular spr-max-h-[calc(100vh-200px)] spr-overflow-y-auto spr-overflow-x-hidden',
       {
-        'spr-p-4 sm:spr-p-2': contentPadding.value,
+        'spr-p-2 sm:spr-p-4': contentPadding.value,
       },
     );
 

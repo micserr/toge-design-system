@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.27.2 (2026-02-04)
+
+- Fix:
+  - Commit 45de0fb7: fix: update class names for responsive design in calendar cell, icon, and modal components due to removed custom screen size
+    ([#45de0fb7](https://dev.azure.com/sproutphil/Sprout%20Design%20System/_git/Sprout%20Design%20System%20Next/commit/45de0fb77682eaa0acdccd3af34533e69f7657cb?refName=refs/heads/2026/Fix/andrea/FIX-SCREEN-SIZE) by @adestajo)
+
 ## 2.27.1 (2026-02-03)
 
 - Feat:

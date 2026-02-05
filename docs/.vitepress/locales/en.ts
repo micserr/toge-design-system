@@ -306,6 +306,10 @@ export const enConfig = {
               link: '/en/documentation/utilities/border-colors',
             },
             {
+              text: 'Color Tokens',
+              link: '/en/documentation/utilities/color-tokens',
+            },
+            {
               text: 'Colors',
               link: '/en/documentation/utilities/colors',
             },

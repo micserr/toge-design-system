@@ -1,6 +1,6 @@
 ---
 title: Claude Skills
-descripttion: Learn how to use the Sprout Design System Claude Skill to accelerate development with AI-assisted coding using Claude Code.
+description: Learn how to use the Sprout Design System Claude Skill to accelerate development with AI-assisted coding using Claude Code.
 outline: deep
 ---
 
@@ -14,7 +14,7 @@ A Claude Skill is a structured knowledge package that extends Claude Code's capa
 
 - Scaffold pages and features using `spr-` prefixed components
 - Look up component APIs (props, events, slots) accurately
-- Apply design tokens (colors, typography, border-color, border-radius, max-width) with the `spr-` Tailwind prefix while using standard Tailwind for general layout, spacing, and sizing
+- Apply design tokens (colors, typography, border-color, border-radius, max-width) with the `spr-` Tailwind prefix, including semantic design color tokens from `src/assets/styles/tailwind.css`, while using standard Tailwind for general layout, spacing, and sizing
 - Use the Pinia snackbar store for notifications
 - Follow correct setup and configuration patterns
 
@@ -39,6 +39,7 @@ your-project/
 │           ├── layout-components.md
 │           ├── overlay-components.md
 │           ├── action-components.md
+│           ├── color-tokens.md
 │           └── utilities.md
 ├── src/
 └── ...
@@ -77,7 +78,8 @@ skill/sprout-design-system/
     ├── layout-components.md          # Accordion, Card, Table, Tabs, Stepper, etc.
     ├── overlay-components.md         # Modal, Tooltip, Dropdown, Snackbar, Sidepanel, etc.
     ├── action-components.md          # Button, DatePicker, TimePicker, Calendar, Filter, etc.
-    └── utilities.md                  # Colors, Typography, Spacing, Border Radius, etc.
+    ├── color-tokens.md               # Design color tokens (semantic text/background/border from tailwind.css)
+    └── utilities.md                  # Palette hex values, Typography, Spacing, Border Radius, etc.
 ```
 
 The skill uses **progressive disclosure** — Claude loads `SKILL.md` first, then pulls in only the relevant reference file based on the component category being used. This keeps context usage efficient.
@@ -117,15 +119,15 @@ The skill covers all **60+** components in the design system:
 
 The skill also includes reference for all design tokens:
 
-- **Colors** — 9 color palettes (Neutral, Blue, Green, Yellow, Orange, Red, Purple, Pink, Teal) with full shade ranges
+- **Design color tokens** — Semantic tokens from `src/assets/styles/tailwind.css`: `spr-text-color-*`, `spr-background-color-*`, `spr-border-color-*`, `spr-divide-color-*` for UI states (base, hover, disabled, success, danger, etc.). See `references/color-tokens.md`. Raw palette: 9 palettes (white, mushroom, tomato, carrot, mango, kangkong, wintermelon, blueberry, ubas) with shades 50–950.
 - **Typography** — Font families, sizes, weights, line heights, letter spacing, heading/body/label presets
 - **Border Radius** — 7 radius values from `spr-rounded-border-radius-2xs` to `spr-rounded-border-radius-full`
-- **Border Colors** — 28 semantic border color classes and 28 divider classes
+- **Border Colors** — 28 semantic border color classes and 28 divider classes (see [Border Colors](/en/documentation/utilities/border-colors))
 - **Max Width** — Container width utilities (`spr-max-w-sm`, `spr-max-w-md`, `spr-max-w-lg`)
 - **Spacing** — 15 design system spacing tokens (use standard Tailwind spacing for general layout)
 - **Skeletal Loader** — Loading state placeholder utility
 
-> **Note:** The skill instructs Claude to use standard Tailwind utility classes (`flex`, `gap-4`, `p-2`, `w-full`, etc.) for general layout, spacing, sizing, and display. The `spr-` prefixed classes are reserved for design system visual tokens: colors, typography, border-color, border-radius, max-width, and skeletal loaders.
+> **Note:** The skill instructs Claude to use standard Tailwind utility classes (`flex`, `gap-4`, `p-2`, `w-full`, etc.) for general layout, spacing, sizing, and display. The `spr-` prefixed classes are reserved for design system visual tokens: colors (semantic and palette), typography, border-color, border-radius, max-width, and skeletal loaders.
 
 ## Updating the Skill
 

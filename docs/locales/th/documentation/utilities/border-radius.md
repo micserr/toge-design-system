@@ -19,38 +19,55 @@ outline: deep
   <tbody>
     <tr>
       <td>2px</td>
-      <td>--size-50</td>
-      <td>spr-rounded-border-radius-2xs</td>
+      <td><code>--size-50</code></td>
+      <td><code>spr-rounded-border-radius-2xs</code></td>
     </tr>
     <tr>
       <td>4px</td>
-      <td>--size-100</td>
-      <td>spr-rounded-border-radius-xs</td>
+      <td><code>--size-100</code></td>
+      <td><code>spr-rounded-border-radius-xs</code></td>
     </tr>
     <tr>
       <td>6px</td>
-      <td>--size-150</td>
-      <td>spr-rounded-border-radius-sm</td>
+      <td><code>--size-150</code></td>
+      <td><code>spr-rounded-border-radius-sm</code></td>
     </tr>
     <tr>
       <td>8px</td>
-      <td>--size-200</td>
-      <td>spr-rounded-border-radius-md</td>
+      <td><code>--size-200</code></td>
+      <td><code>spr-rounded-border-radius-md</code></td>
     </tr>
     <tr>
       <td>12px</td>
-      <td>--size-250</td>
-      <td>spr-rounded-border-radius-lg</td>
+      <td><code>--size-250</code></td>
+      <td><code>spr-rounded-border-radius-lg</code></td>
     </tr>
     <tr>
       <td>16px</td>
-      <td>--size-300</td>
-      <td>spr-rounded-border-radius-xl</td>
+      <td><code>--size-300</code></td>
+      <td><code>spr-rounded-border-radius-xl</code></td>
     </tr>
     <tr>
       <td>999px</td>
       <td>-</td>
-      <td>spr-rounded-border-radius-full</td>
+      <td><code>spr-rounded-border-radius-full</code></td>
     </tr>
   </tbody>
 </table>
+
+## การใช้งาน
+
+ใส่คลาสรัศมีขอบกับองค์ประกอบใดก็ได้:
+
+```html
+<!-- รัศมีเล็ก (8px) -->
+<div class="spr-rounded-border-radius-md spr-bg-mushroom-100 p-4">เนื้อหา</div>
+
+<!-- รัศมีใหญ่ (16px) -->
+<div class="spr-rounded-border-radius-xl spr-border spr-border-solid spr-border-color-weak p-4">การ์ด</div>
+
+<!-- วงกลม/ pill เต็ม -->
+<button class="spr-rounded-border-radius-full spr-bg-kangkong-600 spr-text-color-inverted-strong px-4 py-2">
+  ปุ่ม
+</button>
+```

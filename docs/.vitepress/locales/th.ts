@@ -55,7 +55,10 @@ export const thConfig = {
         },
         {
           text: 'ขั้นสูง',
-          items: [{ text: 'บันทึกการเปลี่ยนแปลง', link: '/th/guide/changelog' }],
+          items: [
+            { text: 'Claude Skills', link: '/th/guide/claude-skills' },
+            { text: 'บันทึกการเปลี่ยนแปลง', link: '/th/guide/changelog' },
+          ],
         },
       ],
       '/th/documentation/': [
@@ -303,6 +306,10 @@ export const thConfig = {
             {
               text: 'สีขอบ',
               link: '/th/documentation/utilities/border-colors',
+            },
+            {
+              text: 'โทเค็นสี',
+              link: '/th/documentation/utilities/color-tokens',
             },
             {
               text: 'สี',

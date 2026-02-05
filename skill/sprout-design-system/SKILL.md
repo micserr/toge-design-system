@@ -7,7 +7,8 @@ description: >
   examples, (3) Setting up or configuring a project to consume design-system-next, (4) Using
   design tokens (colors, typography, border-color, border-radius, max-width) with the spr- Tailwind prefix,
   (5) Working with the Pinia snackbar store, (6) Scaffolding new pages with spr-prefixed
-  components like spr-button, spr-input, spr-modal, spr-table, spr-select, etc.
+  components like spr-button, spr-input, spr-modal, spr-table, spr-select, (7) Using design
+  color tokens from src/assets/styles/tailwind.css (semantic and raw palette).
 ---
 
 # Sprout Design System
@@ -58,9 +59,9 @@ import type { ButtonPropTypes, InputPropTypes } from 'design-system-next';
 ### When to use `spr-` prefixed classes
 
 Use `spr-` **only** for these design system tokens:
-- **Colors** — `spr-text-kangkong-700`, `spr-bg-tomato-500`, `spr-bg-white-50`
+- **Colors** — Prefer semantic tokens from `src/assets/styles/tailwind.css`: `spr-text-color-base`, `spr-background-color-hover`, `spr-border-color-brand-base`, etc. For specific shades use raw palette: `spr-text-kangkong-700`, `spr-bg-tomato-500`. Full list: [references/color-tokens.md](references/color-tokens.md)
 - **Typography** — `spr-heading-md`, `spr-body-sm-regular`, `spr-font-main`, `spr-font-size-300`
-- **Border Color** — `spr-border-color-base`, `spr-border-color-brand-base`
+- **Border Color** — `spr-border-color-base`, `spr-border-color-brand-base` (see [references/color-tokens.md](references/color-tokens.md))
 - **Border Radius** — `spr-rounded-border-radius-md`, `spr-rounded-border-radius-lg`
 - **Max Width** — `spr-max-w-sm`, `spr-max-w-md`, `spr-max-w-lg`
 - **Skeletal Loader** — `spr-skeletal-loader`
@@ -136,7 +137,8 @@ Load the appropriate reference file based on what component you need:
 - **Layout & Navigation** (Accordion, Card, Table, Tabs, Stepper, etc.): See [references/layout-components.md](references/layout-components.md)
 - **Overlays & Feedback** (Modal, Tooltip, Dropdown, Snackbar, Sidepanel, etc.): See [references/overlay-components.md](references/overlay-components.md)
 - **Actions, Pickers & Filters** (Button, DatePicker, TimePicker, Calendar, Filter, etc.): See [references/action-components.md](references/action-components.md)
-- **Design Tokens & Utilities** (Colors, Typography, Spacing, Border Radius, etc.): See [references/utilities.md](references/utilities.md)
+- **Design color tokens** (semantic text/background/border from `src/assets/styles/tailwind.css`): See [references/color-tokens.md](references/color-tokens.md)
+- **Design Tokens & Utilities** (palette hex values, Typography, Spacing, Border Radius, etc.): See [references/utilities.md](references/utilities.md)
 
 ## Common Patterns
 

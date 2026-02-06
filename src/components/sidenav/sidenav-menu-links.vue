@@ -15,6 +15,7 @@
           <!-- #region - Parent Links -->
           <div
             :id="`${generateId(parentLink.title)}`"
+            @mouseenter="hideAllPoppers"
             :class="{
               'spr-m-auto spr-box-border spr-flex spr-max-h-9 spr-max-w-9 spr-cursor-pointer spr-items-center spr-justify-center spr-rounded-border-radius-md spr-p-2 spr-transition spr-duration-150 spr-ease-in-out': true,
               'spr-background-color-single-active spr-border-color-brand-base spr-border-[1.5px] spr-border-solid active:spr-scale-90':
@@ -306,7 +307,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Menu } from 'floating-vue';
+import { Menu, hideAllPoppers } from 'floating-vue';
 import { Icon } from '@iconify/vue';
 
 import 'floating-vue/dist/style.css';

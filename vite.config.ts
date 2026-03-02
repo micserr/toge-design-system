@@ -3,9 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import Components from 'unplugin-vue-components/vite';
 import dts from 'vite-plugin-dts';
-import { libInjectCss } from 'vite-plugin-lib-inject-css';
 import gzipPlugin from 'rollup-plugin-gzip';
-import Icons from 'unplugin-icons/vite';
 
 import tailwind from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
@@ -22,13 +20,30 @@ export default defineConfig({
     vue(),
     tsconfigPaths(),
     Components(),
-    dts(),
-    libInjectCss(), // Moved to ensure CSS is processed after Tailwind
-    gzipPlugin(), // Consider conditionally applying this for production
-    Icons({
-      autoInstall: true,
-      compiler: 'vue3',
+    dts({
+      include: [
+        'lib/**/*.ts',
+        'src/components/**/*.ts',
+        'src/components/**/*.vue',
+      ],
+      outDir: 'dist',
+      insertTypesEntry: true,
+      copyDtsFiles: false,
+      staticImport: true,
+      rollupTypes: true,
+      exclude: ['src/**/*.spec.ts', 'tests/**/*', 'playwright/**/*'],
+      compilerOptions: {
+        composite: false,
+        declaration: true,
+        declarationMap: false,
+      },
+      beforeWriteFile: (filePath, content) => {
+        // Skip type checking errors during declaration generation
+        return { filePath, content };
+      },
+      logLevel: 'silent',
     }),
+    gzipPlugin(), // Consider conditionally applying this for production
   ],
   resolve: {
     alias: {
@@ -38,9 +53,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'lib/main.ts'),
-      name: 'Design System Next',
-      fileName: 'design-system-next',
-      formats: ['es'],
+      name: 'DesignSystemNext',
+      fileName: (format) => `design-system-next.${format}.js`,
+      formats: ['es', 'umd'],
     },
     rollupOptions: {
       external: ['vue'], // Add other external libraries if needed
@@ -48,6 +63,7 @@ export default defineConfig({
         globals: {
           vue: 'Vue',
         },
+        exports: 'named',
       },
     },
     cssCodeSplit: true, // Ensures CSS is split into its own file

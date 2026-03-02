@@ -22,6 +22,7 @@ yarn.lock
 package-lock.json
 .VSCodeCounter
 **/backend-mock/data
+src/App.vue
 
 # local env files
 .env.local
@@ -50,5 +51,19 @@ vite.config.ts.*
 *.sw?
 .history
 
-# unplugin
-*.d.ts
+# .d.ts files
+components.d.ts
+
+# Cursor IDE files
+.cursor
+**/*.mdc
+.cursor-test
+.cursor-cache
+.cursor-data
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+test-output.txt

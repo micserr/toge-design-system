@@ -1,257 +1,104 @@
 <template>
-  <SidenavOlympus has-quick-actions has-search :nav-links="navLinks">
-    <template #logo-image>
-      <img
-        src="https://t3-fullsync.hrtest.ph//Images/2023/Sprout-New-Logo-Black-v2.svg"
-        alt="logo"
-      />
-    </template>
-  </SidenavOlympus>
-
-  <h1 class="tw-heading-xl">askhdjahskjdhasjkhdjkashkjdas</h1>
-  <h1 class="tw-heading-lg">askhdjahskjdhasjkhdjkashkjdas</h1>
-  <h1 class="tw-heading-md">askhdjahskjdhasjkhdjkashkjdas</h1>
-  <h1 class="tw-heading-sm">askhdjahskjdhasjkhdjkashkjdas</h1>
-  <h1 class="tw-heading-xs">askhdjahskjdhasjkhdjkashkjdas</h1>
-
-  <h1 v-for="i in 100" :key="i">Sample kingkong {{ i }}</h1>
+  <div class="spr-flex spr-min-h-screen">
+    <Sidenav
+      :nav-links="navLinks"
+      :active-nav="activeNav"
+      has-search
+      :notification-count="2"
+      :request-count="0"
+      :user-menu="userMenu"
+      @search="() => {}"
+      @notifications="() => {}"
+      @requests="() => {}"
+    >
+      <template #logo-image>
+        <div class="spr-h-6 spr-w-6 spr-rounded-border-radius-md spr-bg-kangkong-500" />
+      </template>
+    </Sidenav>
+    <main class="spr-flex-1 spr-p-6 spr-min-h-screen spr-background-color [@media(min-width:1024px)]:spr-pl-[calc(68px+1.5rem)]">
+      <h1 class="spr-title-lg spr-text-color-strong spr-m-0">Test Component Here</h1>
+      <p class="spr-body-sm-regular spr-text-color-base spr-mt-2">Sidenav is on the left. Resize to see mobile.</p>
+    </main>
+  </div>
 </template>
 
-<script setup>
-import SidenavOlympus from './components/Sidenav/SidenavOlympus.vue';
+<script setup lang="ts">
+import { ref } from 'vue';
+import Sidenav from '@/components/sidenav/sidenav.vue';
+import type { NavLinks, ActiveNav, UserMenu } from '@/components/sidenav/sidenav';
 
-import IconHouseSimple from '~icons/ph/house-simple';
-import IconUsersThree from '~icons/ph/users-three';
-import IconShapes from '~icons/ph/shapes';
-import IconLeaf from '~icons/ph/leaf';
-import IconCurrencyRub from '~icons/ph/currency-rub';
-import IconWallet from '~icons/ph/wallet';
-import IconChartBar from '~icons/ph/chart-bar';
-import IconFlowArrow from '~icons/ph/flow-arrow';
-import IconGear from '~icons/ph/gear';
-import IconBookOpenText from '~icons/ph/book-open-text';
+const activeNav = ref<ActiveNav>({ parentNav: 'Home', menu: 'Dashboard', submenu: '' });
 
-const navLinks = [
-  {
-    parentLinks: [
-      {
-        title: 'Home',
-        icon: IconHouseSimple,
-        navTooltip: 'Tooltip Label',
-        menuLinks: [
-          {
-            title: 'Dashboard',
-            subMenuLinks: [
-              {
-                title: 'Home 1',
-              },
-              {
-                title: 'Home 2',
-              },
-              {
-                title: 'Home 3',
-              },
-              {
-                title: 'Home 4',
-              },
-              {
-                title: 'Home 5',
-              },
-              {
-                title: 'Home 6',
-              },
-              {
-                title: 'Home 7',
-              },
-              {
-                title: 'Home 8',
-              },
-              {
-                title: 'Home 9',
-              },
-              {
-                title: 'Home 10',
-              },
-              {
-                title: 'Home 11',
-              },
-              {
-                title: 'Home 12',
-              },
-              {
-                title: 'Home 13',
-              },
-              {
-                title: 'Home 14',
-              },
-              {
-                title: 'Home 15',
-              },
-              {
-                title: 'Home 16',
-              },
-              {
-                title: 'Home 17',
-              },
-              {
-                title: 'Home 18',
-              },
-              {
-                title: 'Home 19',
-              },
-              {
-                title: 'Home 20',
-              },
-            ],
-          },
-          {
-            title: 'Dashboard 2',
-          },
-          {
-            title: 'Dashboard 3',
-          },
-        ],
-      },
-      {
-        title: 'Employees',
-        icon: IconUsersThree,
-        navTooltip: 'Tooltip Label',
-      },
-      {
-        title: 'Absctract',
-        icon: IconShapes,
-        navTooltip: 'Tooltip Label',
-      },
-    ],
-  },
-  {
-    parentLinks: [
-      {
-        title: 'Payroll',
-        navTooltip: 'Tooltip Label',
-        icon: IconLeaf,
-        menuLinks: [
-          {
-            title: 'Payroll Runs',
-          },
-          {
-            title: 'Reports',
-            subMenuLinks: [
-              {
-                title: 'Payroll',
-              },
-              {
-                title: 'SSS',
-              },
-              {
-                title: 'PHILHEALTH',
-              },
-              {
-                title: 'PAG-IBIG',
-              },
-              {
-                title: 'BIR',
-              },
-              {
-                title: 'ONEHUB DAT FILES',
-              },
-              {
-                title: 'BPI',
-              },
-              {
-                title: 'SECURITY BANK',
-              },
-              {
-                title: 'Certificate of Contribution',
-              },
-              {
-                title: 'certificate of Loan',
-              },
-              {
-                title: 'Statutory Reports',
-              },
-              {
-                title: 'Demographic',
-              },
-              {
-                title: 'Salary History Report',
-              },
-            ],
-          },
-          {
-            title: 'Setup',
-          },
-          {
-            title: 'Employees',
-          },
-          {
-            title: 'Users',
-          },
-          {
-            title: 'Reports Logs',
-          },
-        ],
-      },
-      {
-        title: 'Money',
-        icon: IconCurrencyRub,
-        navTooltip: 'Tooltip Label',
-      },
-      {
-        title: 'Car',
-        icon: IconWallet,
-        navTooltip: 'Tooltip Label',
-      },
-      {
-        title: 'Bar',
-        icon: IconChartBar,
-        navTooltip: 'Tooltip Label',
-      },
-      {
-        title: 'Music',
-        icon: IconFlowArrow,
-        navTooltip: 'Tooltip Label',
-      },
-    ],
-  },
-  {
-    parentLinks: [
-      {
-        title: 'Settings',
-        icon: IconGear,
-        navTooltip: 'Tooltip Label',
-        menuLinks: [
-          {
-            title: 'User Profile',
-          },
-          {
-            title: 'Account Settings',
-          },
-          {
-            title: 'Company Settings',
-            subMenuLinks: [
-              {
-                title: 'Team Members',
-              },
-              {
-                title: 'Team Scores',
-              },
-            ],
-          },
-        ],
-      },
-      {
-        title: 'About Us',
-        icon: IconBookOpenText,
-        navTooltip: 'Tooltip Label',
-      },
-    ],
-  },
-];
+const defaultRedirect = () => ({ openInNewTab: false, isAbsoluteURL: false, link: '#' });
+
+const navLinks = ref<NavLinks>({
+  top: [
+    {
+      parentLinks: [
+        {
+          title: 'Home',
+          icon: 'ph:house',
+          menuLinks: [
+            { menuHeading: 'Main', items: [{ title: 'Dashboard', hidden: false, redirect: defaultRedirect(), submenuLinks: [] }, { title: 'Overview', hidden: false, redirect: defaultRedirect(), submenuLinks: [] }] },
+            { menuHeading: 'Other', items: [{ title: 'Settings', hidden: false, redirect: defaultRedirect(), submenuLinks: [] }, { title: 'Preferences', hidden: false, redirect: defaultRedirect(), submenuLinks: [] }] },
+          ],
+        },
+        {
+          title: 'Projects',
+          icon: 'ph:folder',
+          menuLinks: [
+            { menuHeading: '', items: [{ title: 'All projects', hidden: false, redirect: defaultRedirect(), submenuLinks: [] }, { title: 'Archived', hidden: false, redirect: defaultRedirect(), submenuLinks: [] }] },
+          ],
+        },
+        {
+          title: 'Team',
+          icon: 'ph:users-three',
+          menuLinks: [
+            { menuHeading: 'People', items: [{ title: 'Members', hidden: false, redirect: defaultRedirect(), submenuLinks: [] }, { title: 'Invites', hidden: false, redirect: defaultRedirect(), submenuLinks: [{ subMenuHeading: 'Pending', items: [{ title: 'By email', hidden: false, redirect: defaultRedirect() }, { title: 'By link', hidden: false, redirect: defaultRedirect() }] }] }] },
+          ],
+        },
+        {
+          title: 'Reports',
+          icon: 'ph:chart-line',
+          menuLinks: [
+            { menuHeading: 'Analytics', items: [{ title: 'Overview', hidden: false, redirect: defaultRedirect(), submenuLinks: [] }, { title: 'Exports', hidden: false, redirect: defaultRedirect(), submenuLinks: [{ subMenuHeading: 'Formats', items: [{ title: 'CSV', hidden: false, redirect: defaultRedirect() }, { title: 'PDF', hidden: false, redirect: defaultRedirect() }] }] }] },
+          ],
+        },
+        {
+          title: 'Billing',
+          icon: 'ph:credit-card',
+          menuLinks: [
+            { menuHeading: '', items: [{ title: 'Plans', hidden: false, redirect: defaultRedirect(), submenuLinks: [] }, { title: 'Invoices', hidden: false, redirect: defaultRedirect(), submenuLinks: [] }, { title: 'Payment methods', hidden: false, redirect: defaultRedirect(), submenuLinks: [] }] },
+          ],
+        },
+        {
+          title: 'Integrations',
+          icon: 'ph:plug',
+          menuLinks: [
+            { menuHeading: 'Connected', items: [{ title: 'Slack', hidden: false, redirect: defaultRedirect(), submenuLinks: [] }, { title: 'GitHub', hidden: false, redirect: defaultRedirect(), submenuLinks: [] }] },
+          ],
+        },
+      ],
+    },
+  ],
+  bottom: [
+    {
+      parentLinks: [
+        { title: 'Help', icon: 'ph:question', link: '#', menuLinks: [] },
+        { title: 'Docs', icon: 'ph:book', menuLinks: [{ menuHeading: '', items: [{ title: 'API', hidden: false, redirect: defaultRedirect(), submenuLinks: [] }, { title: 'Guides', hidden: false, redirect: defaultRedirect(), submenuLinks: [] }] }] },
+      ],
+    },
+  ],
+});
+
+const userMenu = ref<UserMenu>({
+  name: 'Jane Doe',
+  email: 'jane@example.com',
+  profileImage: '',
+  items: [
+    { title: 'Profile', icon: 'ph:user', hidden: false, redirect: { openInNewTab: false, isAbsoluteURL: false, link: '#' } },
+    { title: 'Sign out', icon: 'ph:sign-out', hidden: false, redirect: { openInNewTab: false, isAbsoluteURL: false, link: '#' } },
+  ],
+});
 </script>
 
-<style>
-body {
-  @apply tw-m-0 tw-bg-mushroom-100 tw-font-main;
-}
-</style>

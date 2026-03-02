@@ -1,9 +1,54 @@
+// docs/.vitepress/config.ts
+(globalThis as Record<string, unknown>).__VUE_PROD_DEVTOOLS__ = false;
+
 import { defineConfig } from 'vitepress';
 
-// https://vitepress.dev/reference/site-config
+import { fileURLToPath, URL } from 'url';
+
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
+
+import { enConfig } from './locales/en';
+import { thConfig } from './locales/th';
+
 export default defineConfig({
   title: 'Sprout Design System',
   description: 'Toge - The Sprout Design System',
+  base: '/toge-design-system/',
+  srcDir: './locales',
+  rewrites: {
+    'en/documentation/components/button/button/index.md': 'en/documentation/components/button/button.md',
+    'en/documentation/components/button/button-dropdown/index.md': 'en/documentation/components/button/button-dropdown.md',
+    'th/documentation/components/button/button/index.md': 'th/documentation/components/button/button.md',
+    'th/documentation/components/button/button-dropdown/index.md': 'th/documentation/components/button/button-dropdown.md',
+    'en/guide/claude-skills/index.md': 'en/guide/claude-skills.md',
+    'th/guide/claude-skills/index.md': 'th/guide/claude-skills.md',
+  },
+  vite: {
+    css: {
+      postcss: {
+        plugins: [tailwindcss(), autoprefixer()],
+      },
+    },
+    resolve: {
+      alias: [
+        { find: '@', replacement: fileURLToPath(new URL('../../src', import.meta.url)) },
+        {
+          find: /.*\/VPSidebarItem\.vue$/,
+          replacement: fileURLToPath(new URL('./theme/components/VPSidebarItem.vue', import.meta.url)),
+        },
+        {
+          find: /.*\/VPDocAsideOutline\.vue$/,
+          replacement: fileURLToPath(new URL('./theme/components/VPDocAsideOutline.vue', import.meta.url)),
+        },
+      ],
+    },
+  },
+  themeConfig: {
+    search: {
+      provider: 'local',
+    },
+  },
   head: [
     ['link', { rel: 'icon', type: 'image/ico', href: '/favicon.ico' }],
     ['meta', { name: 'theme-color', content: '#5f67ee' }],
@@ -18,87 +63,8 @@ export default defineConfig({
     ],
     ['meta', { property: 'og:site_name', content: 'Toge' }],
   ],
-  themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-    nav: [
-      { text: 'Guide', link: '/guide/changelog' },
-      {
-        text: 'Documentation',
-        link: '/documentation/development/installation',
-      },
-    ],
-
-    sidebar: {
-      '/guide/': [
-        {
-          text: 'Advanced',
-          items: [{ text: 'Changelog', link: '/guide/changelog' }],
-        },
-      ],
-      '/documentation/': [
-        {
-          text: 'Development',
-          items: [
-            {
-              text: 'Installation',
-              link: '/documentation/development/installation',
-            },
-            {
-              text: 'Quick Start',
-              link: '/documentation/development/quick-start',
-            },
-          ],
-        },
-        {
-          text: 'Components',
-          items: [
-            {
-              text: 'Button',
-              link: '/documentation/components/button',
-            },
-            {
-              text: 'Side Navigation',
-              items: [
-                {
-                  text: 'Olympus',
-                  link: '/documentation/components/side-navigation/olympus',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          text: 'Utilities',
-          items: [
-            {
-              text: 'Colors',
-              link: '/documentation/utilities/colors',
-            },
-            {
-              text: 'Typography',
-              link: '/documentation/utilities/typography',
-            },
-          ],
-        },
-      ],
-    },
-
-    socialLinks: [
-      {
-        icon: {
-          svg: '<svg width="800px" height="800px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none"><path fill="url(#azure-devops-color-16__paint0_linear_707_116)" d="M15 3.622v8.512L11.5 15l-5.425-1.975v1.958L3.004 10.97l8.951.7V4.005L15 3.622zm-2.984.428L6.994 1v2.001L2.382 4.356 1 6.13v4.029l1.978.873V5.869l9.038-1.818z"/><defs><linearGradient id="azure-devops-color-16__paint0_linear_707_116" x1="8" x2="8" y1="14.956" y2="1.026" gradientUnits="userSpaceOnUse"><stop stop-color="#0078D4"/><stop offset=".16" stop-color="#1380DA"/><stop offset=".53" stop-color="#3C91E5"/><stop offset=".82" stop-color="#559CEC"/><stop offset="1" stop-color="#5EA0EF"/></linearGradient></defs></svg>',
-        },
-        link: 'https://dev.azure.com/sproutphil/Sprout%20HR/_git/hr-spa?path=/HR.SPA/ClientApp',
-        ariaLabel: 'Link To Azure DevOps',
-      },
-    ],
-
-    search: {
-      provider: 'local',
-    },
-
-    footer: {
-      copyright: 'Copyright © 2024 Sprout Frontend Engineers',
-    },
+  locales: {
+    en: enConfig,
+    th: thConfig,
   },
 });

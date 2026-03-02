@@ -1,4 +1,4 @@
-import type { ExtractPropTypes, PropType } from 'vue';
+import type { PropType, ExtractPropTypes } from 'vue';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
@@ -42,28 +42,6 @@ export const buttonPropTypes = {
     default: 'base',
   },
   /**
-   * @description Custom element tag
-   */
-  tag: {
-    /* eslint-disable  @typescript-eslint/no-explicit-any */
-    type: definePropType<string | Record<string, any>>([String, Object]),
-    default: 'button',
-  },
-  /**
-   * @description Button that uses Anchor tag
-   */
-  href: {
-    type: String,
-    required: false,
-    /* eslint-disable  @typescript-eslint/no-explicit-any */
-    validator(value: string, props: any) {
-      if (props.tag === 'a') {
-        return typeof value === 'string' && value.trim().length > 0;
-      }
-      return true;
-    },
-  },
-  /**
    * @description Button Variant
    */
   variant: {
@@ -72,6 +50,14 @@ export const buttonPropTypes = {
     default: 'primary',
   },
   disabled: {
+    type: Boolean,
+    default: false,
+  },
+  hasIcon: {
+    type: Boolean,
+    default: false,
+  },
+  fullwidth: {
     type: Boolean,
     default: false,
   },

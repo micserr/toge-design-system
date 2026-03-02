@@ -1,10 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 
 import colorScheme from './src/assets/scripts/colors';
+import spacing from './src/assets/scripts/spacing';
+import maxWidth from './src/assets/scripts/max-width';
+import borderRadius from './src/assets/scripts/border-radius';
+import utilities from './src/assets/scripts/utilities';
+
+const plugin = require('tailwindcss/plugin');
 
 export default {
-  prefix: 'tw-',
-  content: ['./index.html', './src/**/*.{vue,js,ts}', './docs/**/*.{md,ts,js}'],
+  prefix: 'spr-',
+  content: ['./index.html', './src/**/*.{vue,js,ts}', './docs/**/*.{md,ts,js}', './docs/locales/**/*.{md,ts,js}'],
   theme: {
     extend: {
       colors: colorScheme,
@@ -38,6 +44,7 @@ export default {
         1000: '60px',
       },
       letterSpacing: {
+        'spacing-none': '0',
         'spacing-densest': '-1.3px',
         'spacing-denser': '-1px',
         'spacing-dense': '-0.7px',
@@ -53,9 +60,13 @@ export default {
         'drop-top-sm': '0px -2px 4px -1px #262B2B1F',
         'drop-top': '0px -2px 8px -2px #262B2B33',
         'drop-top-md': '0px -4px 12px 0px #262B2B29',
-        button: '0px 2px 1px 0px rgba(0, 0, 0, 0.15) inset;',
+        button: '0px 2px 1px 0px rgba(0, 0, 0, 0.15) inset',
+        'button-hover': '0px -2px 1px 0px rgba(0, 0, 0, 0.10) inset',
         'button-active': '0px 0px 0px 2px #394141',
       },
+      spacing: spacing,
+      maxWidth: maxWidth,
+      borderRadius: borderRadius,
     },
     container: {
       center: true,
@@ -67,23 +78,17 @@ export default {
         xl: '96px',
         xxl: '104px',
       },
-      screens: {
-        sm: '575.98px',
-        md: '767.98px',
-        lg: '991.98px',
-        xl: '1199.98px',
-        xxl: '1399.98px',
-      },
-    },
-    screens: {
-      xxl: { max: '1399.98px' },
-      xl: { max: '1199.98px' },
-      lg: { max: '991.98px' },
-      md: { max: '767.98px' },
-      sm: { max: '575.98px' },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      const newUtilities = {};
+      for (const [key, value] of Object.entries(utilities)) {
+        newUtilities[`.${key}`] = value;
+      }
+      addUtilities(newUtilities, ['responsive', 'hover']);
+    }),
+  ],
   corePlugins: {
     preflight: false,
   },

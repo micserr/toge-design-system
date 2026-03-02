@@ -1,0 +1,118 @@
+# Sprout Design System — Layout System
+# Defines spacing scale, grid, container rules, breakpoints, and content widths.
+# Source: tailwind.config.js, src/assets/scripts/spacing.ts, src/assets/styles/tailwind.css
+
+# ---------------------------------------------------------------------------
+# Sizing scale (shared by spacing + border-radius)
+# These are defined as CSS custom properties in :root
+# ---------------------------------------------------------------------------
+sizing-scale:
+  --size-50: 2px
+  --size-100: 4px
+  --size-150: 6px
+  --size-200: 8px
+  --size-250: 12px
+  --size-300: 16px
+  --size-400: 24px
+  --size-500: 32px
+  --size-600: 40px
+  --size-700: 48px
+  --size-800: 64px
+  --size-900: 72px
+  --size-1000: 80px
+  --size-1100: 96px
+  --size-1200: 128px
+
+# ---------------------------------------------------------------------------
+# Spacing tokens (Tailwind utility classes: spr-p-size-spacing-xs, etc.)
+# ---------------------------------------------------------------------------
+spacing:
+  size-spacing-6xs: 2px   # --size-50   — micro gap, icon padding
+  size-spacing-5xs: 4px   # --size-100  — tight inner padding
+  size-spacing-4xs: 6px   # --size-150  — small inner padding
+  size-spacing-3xs: 8px   # --size-200  — default inner gap
+  size-spacing-2xs: 12px  # --size-250  — compact section gap
+  size-spacing-xs: 16px   # --size-300  — standard section padding (p-4)
+  size-spacing-sm: 24px   # --size-400  — card padding, form gap
+  size-spacing-md: 32px   # --size-500  — section margin
+  size-spacing-lg: 40px   # --size-600  — large section margin
+  size-spacing-xl: 48px   # --size-700  — page section margin
+  size-spacing-2xl: 64px  # --size-800
+  size-spacing-3xl: 72px  # --size-900
+  size-spacing-4xl: 80px  # --size-1000
+  size-spacing-5xl: 96px  # --size-1100
+  size-spacing-6xl: 128px # --size-1200
+
+# ---------------------------------------------------------------------------
+# Breakpoints (Tailwind defaults)
+# All classes use mobile-first: sm:, md:, lg:, xl:, 2xl:
+# ---------------------------------------------------------------------------
+breakpoints:
+  sm: 640px
+  md: 768px
+  lg: 1024px
+  xl: 1280px
+  2xl: 1536px
+
+# Custom breakpoints found in component CSS (non-standard)
+custom-breakpoints:
+  mobile-landscape: 481px   # used in some component media queries
+  desktop: 1024px            # matches lg breakpoint
+
+# ---------------------------------------------------------------------------
+# Container
+# Centered, with responsive horizontal padding
+# Usage: spr-container
+# ---------------------------------------------------------------------------
+container:
+  centered: true
+  padding:
+    default: 16px
+    sm: 32px
+    md: 40px
+    lg: 48px
+    xl: 96px
+    xxl: 104px
+
+# ---------------------------------------------------------------------------
+# Content max-widths
+# Usage: spr-max-w-sm, spr-max-w-md, spr-max-w-lg
+# ---------------------------------------------------------------------------
+max-width:
+  sm: 640px
+  md: 1000px
+  lg: 1320px
+  full: 100%
+
+# ---------------------------------------------------------------------------
+# Grid
+# Sprout uses CSS Grid via Tailwind utilities
+# Standard patterns for common layouts
+# ---------------------------------------------------------------------------
+grid:
+  description: >
+    Use Tailwind grid utilities with spr- prefix.
+    Common patterns: spr-grid spr-grid-cols-2 spr-gap-4 for 2-column forms,
+    spr-grid spr-grid-cols-3 for dashboard cards.
+  common-patterns:
+    two-column-form:
+      classes: "spr-grid spr-grid-cols-2 spr-gap-4"
+      use-case: "Form fields side by side"
+    three-column-cards:
+      classes: "spr-grid spr-grid-cols-3 spr-gap-4"
+      use-case: "Dashboard cards, feature grids"
+    responsive-form:
+      classes: "spr-grid spr-grid-cols-1 md:spr-grid-cols-2 spr-gap-4"
+      use-case: "Form that stacks on mobile, side-by-side on tablet+"
+
+# ---------------------------------------------------------------------------
+# Tailwind prefix
+# ALL utility classes MUST use the spr- prefix
+# ---------------------------------------------------------------------------
+tailwind:
+  prefix: "spr-"
+  note: >
+    Standard Tailwind classes like p-4, grid, gap-4 do NOT work.
+    Always use spr-p-4, spr-grid, spr-gap-4.
+    Exception: VitePress code examples in markdown fences can use unprefixed
+    classes for illustration, but live rendered HTML must use spr- prefix.

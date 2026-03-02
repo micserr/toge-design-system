@@ -1,3 +1,42 @@
-.VPSidebarItem { 
+:root {
+  --vp-home-hero-name-color: #158039;
+
+  --vp-button-brand-bg: #158039;
+  --vp-button-brand-hover-bg: #166531;
+  --vp-button-brand-active-bg: #14532b;
+
+  --vp-code-color: #158039;
+  --vp-code-link-color: #158039;
+  --vp-code-link-hover-color: #166531;
+
+  --vp-code-tab-active-bar-color: #158039;
+}
+
+.main {
+  .text {
+    max-width: 100%;
+    .version {
+      font-size: 24px;
+    }
+  }
+}
+
+.VPSidebarItem {
   padding-left: 8px;
+}
+
+.code-block {
+  background: var(--vp-code-block-bg);
+  border-radius: 8px;
+  padding: 20px 24px;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+.code-block code {
+  font-family: var(--vp-font-family-mono);
+  font-size: var(--vp-code-font-size);
+  line-height: var(--vp-code-line-height);
+  color: var(--vp-code-block-color);
+  white-space: pre;
 }

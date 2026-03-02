@@ -1,0 +1,192 @@
+# Sprout Design System — UI Patterns
+# Reusable layout and styling patterns used across Sprout products.
+# These patterns ensure visual consistency across all product modules.
+
+# ---------------------------------------------------------------------------
+# Card container
+# All cards and card-like sections use spr-border-color-weak
+# Source: skill/sprout-ui-patterns/SKILL.md
+# ---------------------------------------------------------------------------
+card-container:
+  description: >
+    Standard bordered container for cards, panels, and sections.
+    Every card across Sprout products uses the same border token.
+  border-color: spr-border-color-weak   # mushroom-200 (#D9DEDE)
+  border-style: spr-border-solid
+  border-width: spr-border              # 1px
+  border-radius: spr-rounded-border-radius-lg  # 12px
+  padding: spr-p-4                      # 16px
+
+  classes: "spr-border spr-border-solid spr-border-color-weak spr-rounded-border-radius-lg spr-p-4"
+
+  rules:
+    - "ALWAYS use spr-border-color-weak — never spr-border-color-base or raw palette values"
+    - "Combine with spr-rounded-border-radius-lg for standard rounding"
+    - "Use spr-p-4 or spr-p-6 for internal padding"
+
+  component-alternative: >
+    <spr-card> applies spr-border-color-weak automatically when no tone is set
+    (or tone="plain"). No extra border classes needed.
+
+# ---------------------------------------------------------------------------
+# Form sections
+# Forms are divided into logical sections separated by full-width borders
+# Source: skill/sprout-ui-patterns/SKILL.md
+# ---------------------------------------------------------------------------
+form-sections:
+  description: >
+    Forms in Sprout products are divided into logical sections
+    (e.g., "Personal Info", "Contact Details", "Employment").
+    Each section is separated by a full-width border.
+
+  key-principle: >
+    The border MUST span the FULL WIDTH of the container.
+    Padding lives inside each section, NOT on the outer wrapper.
+
+  outer-container:
+    classes: "spr-border spr-border-solid spr-border-color-weak spr-rounded-border-radius-lg"
+    note: "NO horizontal padding on the outer wrapper"
+
+  section:
+    padding: spr-p-4  # 16px — consistent across all sections
+    heading-class: spr-subheading-sm  # or spr-subheading-xs for smaller
+
+  separator:
+    classes: "spr-border-0 spr-border-t spr-border-solid spr-border-color-weak"
+    note: "Full-width horizontal line between sections"
+
+  alternative:
+    description: "Using Tailwind divide-y for less markup"
+    container-classes: >
+      spr-border spr-border-solid spr-border-color-weak spr-rounded-border-radius-lg
+      spr-divide-y spr-divide-solid spr-divide-color-weak
+    section-classes: "spr-p-4"
+
+  rules:
+    - "Padding on each section (spr-p-4), NOT on the outer wrapper"
+    - "Separator uses spr-border-color-weak, same token as card border"
+    - "Section headings use spr-subheading-sm or spr-subheading-xs"
+    - "Consistent 16px padding across all sections"
+
+  anti-patterns:
+    - "DO NOT put padding on the outer container — it makes the border not span full width"
+
+# ---------------------------------------------------------------------------
+# Data table
+# Standard table layout patterns
+# ---------------------------------------------------------------------------
+data-table:
+  description: >
+    Tables use the <spr-table> component with fixed layout and
+    scrollable tbody.
+
+  container:
+    class: spr-table-wrapper
+    border: spr-border-color-weak
+    border-radius: spr-rounded-border-radius-lg
+
+  header:
+    background: spr-background-color-surface  # mushroom-50
+    text: spr-text-color-base                  # mushroom-600
+    typography: spr-label-sm-medium
+    padding: "spr-px-4 spr-py-3"
+
+  row:
+    border-bottom: spr-border-color-weak
+    hover-background: spr-background-color-hover
+    selected-background: spr-background-color-single-active
+    padding: "spr-px-4 spr-py-3"
+
+  rules:
+    - "Table header text uses spr-label-sm-medium"
+    - "Row borders use spr-border-color-weak"
+    - "Selected rows use spr-background-color-single-active (kangkong-100)"
+    - "Multi-select rows use spr-background-color-multiple-active (kangkong-50)"
+
+# ---------------------------------------------------------------------------
+# Page header
+# Standard page layout with title and action buttons
+# ---------------------------------------------------------------------------
+page-header:
+  description: "Standard page header layout with title on the left and actions on the right"
+  layout:
+    display: flex
+    justify-content: space-between
+    align-items: center
+  title:
+    typography: spr-heading-sm  # or spr-heading-xs for sub-pages
+    color: spr-text-color-strong
+  spacing:
+    margin-bottom: spr-mb-6  # 24px gap before content
+
+# ---------------------------------------------------------------------------
+# Empty state
+# Pattern for sections with no data
+# ---------------------------------------------------------------------------
+empty-state:
+  description: "Centered layout for pages or sections with no content yet"
+  layout:
+    display: flex
+    flex-direction: column
+    align-items: center
+    text-align: center
+    padding: spr-py-12
+  icon:
+    size: "48px or 64px"
+    color: spr-text-color-weak
+  title:
+    typography: spr-subheading-sm
+    color: spr-text-color-strong
+    margin-top: spr-mt-4
+  description:
+    typography: spr-body-sm-regular
+    color: spr-text-color-base
+    margin-top: spr-mt-2
+
+# ---------------------------------------------------------------------------
+# Modal / Dialog
+# Standard modal patterns
+# ---------------------------------------------------------------------------
+modal:
+  description: "Overlay dialog for confirmations, forms, and detailed views"
+  widths:
+    small: 400px
+    medium: 600px
+    large: 800px
+  overlay:
+    background: "#4C5857"
+    opacity: 0.6
+  container:
+    border-radius: spr-rounded-border-radius-xl  # 16px
+    shadow: spr-drop-shadow-md
+  sections:
+    header:
+      padding: spr-p-4
+      border-bottom: spr-border-color-weak
+    body:
+      padding: spr-p-4
+    footer:
+      padding: spr-p-4
+      border-top: spr-border-color-weak
+      layout: "flex justify-end gap-2"
+
+# ---------------------------------------------------------------------------
+# Tooltip
+# ---------------------------------------------------------------------------
+tooltip:
+  background: spr-background-color-inverted  # mushroom-950
+  text-color: spr-text-color-inverted-strong  # white-50
+  typography: spr-body-xs-regular
+  border-radius: spr-rounded-border-radius-md  # 8px
+  padding: "spr-px-2 spr-py-1.5"
+  shadow: spr-drop-shadow
+  max-width: 280px  # for full-width variant
+
+# ---------------------------------------------------------------------------
+# Dropdown / Select popper
+# ---------------------------------------------------------------------------
+dropdown:
+  border: spr-border-color-weak
+  border-radius: spr-rounded-border-radius-xl  # 16px
+  shadow: spr-drop-shadow
+  z-index: 1000

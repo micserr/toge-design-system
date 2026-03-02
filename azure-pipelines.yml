@@ -1,34 +1,39 @@
-name: Auto Publish to Artifact
-
+pr:
+  branches:
+    include:
+      - dev
 trigger:
   branches:
     include:
-      - 2024/FEATURE/JEF/azure-pipeline
+      - dev
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '20.x'
-  displayName: 'Install Node.js'
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '20.x'
+    displayName: 'Install Node.js'
 
-- script: |
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+  - script: |
+      git config --global user.email "jefersonm@sprout.ph" # Temporary, should be assign to devops account instead
+      git config --global user.name "Jef Mari" # Temporary, should be assign to devops account instead
+    displayName: 'Configure Git user'
 
-# Authenticate to Azure Artifacts
-- task: UseNpmAuth@1
-  inputs:
-    feedUri: '$(System.ArtifactsDirectory)/Design-System-Next'
-  displayName: 'Authenticate to Azure Artifacts'
+  - script: |
+      npm install
+      npm run build
+    displayName: 'npm install and build'
 
-# Publish the package to Azure Artifacts
-- script: |
-    npm publish --registry $(npm_registry)
-  displayName: 'Publish to Azure Artifacts'
-  env:
-    npm_registry: 'https://pkgs.dev.azure.com/sproutphil/Sprout%20Design%20System/_packaging/Design-System-Next/npm/registry/'
-    SYSTEM_ACCESSTOKEN: $(System.AccessToken) # Use the pipeline's access token for authentication
+  - script: |
+      npm version patch
+    displayName: 'Bump version'
+
+  - task: Npm@1
+    displayName: 'npm publish'
+    inputs:
+      command: publish
+      verbose: false
+      publishRegistry: useFeed
+      publishFeed: '2f357eec-7fbb-4d00-a381-868738c3e9d5/8c5c80bb-b669-4f4e-b4bb-306394a4c68b'

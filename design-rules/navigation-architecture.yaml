@@ -1,0 +1,202 @@
+# Sprout Design System — Navigation Architecture
+# Defines navigation patterns, routing, and wayfinding conventions.
+# Source: sidenav components, tabs, breadcrumbs in the design system.
+
+# ---------------------------------------------------------------------------
+# Sidenav (primary navigation)
+# Component: <spr-sidenav>
+# ---------------------------------------------------------------------------
+sidenav:
+  description: >
+    The sidenav is the primary navigation for all Sprout products.
+    It has a collapsed rail mode and an expanded menu mode.
+
+  rail:
+    width: 64px
+    item-height: 48px
+    icon-size: 24px
+    tooltip: true  # shows label on hover
+    z-index: 1000
+
+  expanded:
+    width: 240px
+    item-height: 36px
+    padding: "spr-px-3 spr-py-2"
+    submenu-indent: 16px
+
+  mobile:
+    behavior: "Full-screen overlay"
+    trigger: "Hamburger menu icon"
+    transition: "slide from left, 500ms ease-in-out"
+    overlay: "bg-overlay (mushroom-700, 60% opacity)"
+
+  popover-menus:
+    wrapper-width: 215px
+    max-height: 500px
+    border: spr-border-color-base
+    border-radius: spr-rounded-border-radius-xl
+    shadow: spr-drop-shadow-md
+    z-index: 1000
+
+  structure:
+    - level: "Rail icons"
+      description: "Top-level product modules (Dashboard, People, Payroll, etc.)"
+    - level: "Menu L1"
+      description: "Primary sub-sections within a module"
+    - level: "Menu L2"
+      description: "Detailed pages within a sub-section"
+
+  user-menu:
+    position: bottom of rail
+    width: 300px
+    content: "Avatar, name, role, settings, logout"
+
+  quick-actions:
+    width: 400px
+    max-height: 500px
+    content: "Frequently used actions"
+
+  rules:
+    - "Rail is always visible on desktop (lg+ breakpoints)"
+    - "On mobile (below lg), sidenav is hidden behind hamburger"
+    - "Active rail item is highlighted with brand color"
+    - "Only one popover menu open at a time — hovering another rail item closes the previous"
+    - "Submenu items support 2 levels of nesting (L1, L2)"
+
+# ---------------------------------------------------------------------------
+# Tabs (secondary navigation within pages)
+# Component: <spr-tabs>
+# ---------------------------------------------------------------------------
+tabs:
+  component: spr-tabs
+  description: >
+    Tabs provide navigation within a page, switching between related views
+    without changing the URL (unless using router integration).
+
+  anatomy:
+    tab-height: 40px
+    padding: spr-px-4
+    indicator: "2px bottom border, brand color"
+    gap: 0
+
+  states:
+    default:
+      text: spr-text-color-base
+      border: none
+    hover:
+      text: spr-text-color-strong
+      background: spr-background-color-hover
+    active:
+      text: spr-text-color-brand-base
+      border-bottom: "2px solid kangkong-700"
+    disabled:
+      text: spr-text-color-disabled
+      cursor: not-allowed
+
+  router-integration:
+    description: >
+      For documentation and multi-view pages, tabs can sync with Vue Router.
+      Each tab maps to a route. The ComponentTabBar component handles this
+      in the docs site.
+    pattern: "path-based — /component/code, /component/guidelines, etc."
+
+  rules:
+    - "Max 6 tabs visible — use scrollable tabs or dropdown for more"
+    - "Tab labels should be 1-2 words"
+    - "Tab order follows importance (most used first)"
+    - "Active tab persists when navigating back"
+
+# ---------------------------------------------------------------------------
+# Breadcrumbs
+# ---------------------------------------------------------------------------
+breadcrumbs:
+  description: "Shows the user's location within the navigation hierarchy"
+  separator: "/"
+  typography: spr-body-sm-regular
+  current-page:
+    color: spr-text-color-strong
+    weight: medium
+  parent-links:
+    color: spr-text-color-brand-base
+    hover: underline
+  rules:
+    - "Always show breadcrumbs on detail/edit pages"
+    - "Don't show breadcrumbs on top-level (L0) pages"
+    - "Max depth: 4 levels — truncate middle levels with ellipsis if deeper"
+    - "Last breadcrumb (current page) is not a link"
+
+# ---------------------------------------------------------------------------
+# Page-level routing patterns
+# ---------------------------------------------------------------------------
+routing:
+  url-conventions:
+    list-page: "/module/resource"           # e.g., /people/employees
+    detail-page: "/module/resource/:id"     # e.g., /people/employees/123
+    create-page: "/module/resource/new"     # e.g., /people/employees/new
+    edit-page: "/module/resource/:id/edit"  # e.g., /people/employees/123/edit
+
+  page-types:
+    list:
+      description: "Data table with search, filter, pagination"
+      nav: "sidenav + breadcrumbs"
+    detail:
+      description: "Read-only view of a single record"
+      nav: "sidenav + breadcrumbs + tabs (for sections)"
+    form:
+      description: "Create or edit a record"
+      nav: "sidenav + breadcrumbs"
+    dashboard:
+      description: "Overview with widgets and charts"
+      nav: "sidenav only"
+
+# ---------------------------------------------------------------------------
+# Z-index layers
+# Controls stacking order of overlapping elements
+# ---------------------------------------------------------------------------
+z-index:
+  base: 0
+  dropdown: 1000
+  select: 1000
+  date-picker: 1000
+  popper: 1000
+  filter: 50
+  time-picker: 50
+  sidenav-popover: 1000
+  modal-overlay: 2000
+  modal: 2001
+  snackbar: 3000
+  tooltip: 4000
+
+  rules:
+    - "Dropdowns, selects, and pickers all share z-1000"
+    - "Modals sit above all pickers at z-2000+"
+    - "Snackbars sit above modals at z-3000"
+    - "Tooltips are the topmost layer at z-4000"
+    - "Do NOT use arbitrary z-index values — stick to these tiers"
+
+# ---------------------------------------------------------------------------
+# Sprout products
+# Available product identifiers for <spr-logo> and routing
+# ---------------------------------------------------------------------------
+products:
+  - id: hr
+    name: "Sprout HR"
+    description: "Core HRIS module"
+  - id: hr-mobile
+    name: "Sprout HR Mobile"
+    description: "Mobile companion app"
+  - id: performance-plus
+    name: "Performance+"
+    description: "Performance management"
+  - id: recruit-plus
+    name: "Recruit+"
+    description: "Recruitment and applicant tracking"
+  - id: sail
+    name: "Sail"
+    description: "Employee self-service portal"
+  - id: readycash
+    name: "ReadyCash"
+    description: "Salary advance / earned wage access"
+  - id: readywage
+    name: "ReadyWage"
+    description: "Payroll disbursement"

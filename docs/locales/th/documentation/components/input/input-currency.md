@@ -1,0 +1,954 @@
+---
+title: อินพุตสกุลเงิน
+descripttion: องค์ประกอบอินพุตสกุลเงินช่วยให้ผู้ใช้สามารถป้อนและจัดรูปแบบค่าสกุลเงินได้โดยมีตัวเลือกรหัสและสัญลักษณ์สกุลเงินที่สามารถเลือกได้ โดยสนับสนุนคุณสมบัติต่างๆ เช่น ตัวคั่นหลักพัน ทศนิยมคงที่ และการจัดการข้อผิดพลาด
+outline: deep
+---
+
+# อินพุตสกุลเงิน
+
+อินพุตสกุลเงินพร้อมตัวเลือกรหัสสกุลเงินและการจัดรูปแบบ (ตัวคั่นหลักพัน ทศนิยมคงที่ การแสดงสัญลักษณ์/รหัส)
+
+## การใช้งานพื้นฐาน
+
+<spr-input-currency id="input-currency-basic" v-model="inputModels.basic" label="อินพุตสกุลเงิน" />
+
+```vue
+<template>
+  <spr-input-currency id="input-currency-basic" v-model="inputModel" label="อินพุตสกุลเงิน" />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const inputModel = ref('');
+</script>
+```
+
+## สถานะทำงาน
+
+<spr-input-currency id="input-currency-active-state" v-model="inputModels.activeState" label="อินพุตสกุลเงิน" active />
+
+```vue
+<template>
+  <spr-input-currency id="input-currency-active-state" v-model="inputModel" label="อินพุตสกุลเงิน" active />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const inputModel = ref('');
+</script>
+```
+
+## สถานะข้อผิดพลาด
+
+<spr-input-currency id="input-currency-error-state" v-model="inputModels.errorState" label="อินพุตสกุลเงิน" error>
+  <template #icon>
+    <Icon icon="ph:warning-circle-fill" />
+  </template>
+</spr-input-currency>
+
+```vue
+<template>
+  <spr-input-currency id="input-currency-error-state" v-model="inputModel" label="อินพุตสกุลเงิน" error>
+    <template #icon>
+      <Icon icon="ph:warning-circle-fill" />
+    </template>
+  </spr-input-currency>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const inputModel = ref('');
+</script>
+```
+
+## สถานะปิดใช้งาน
+
+<div>
+  <spr-input-currency 
+    id="input-currency-disabled-state" 
+    v-model="inputModels.disabledState" 
+    label="อินพุตสกุลเงิน" 
+    disabled 
+  />
+</div>
+
+```vue
+<template>
+  <spr-input-currency id="input-currency-disabled-state" v-model="inputModel" label="อินพุตสกุลเงิน" disabled />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const inputModel = ref('');
+</script>
+```
+
+## ปิดใช้งานการเลือกสกุลเงิน
+
+<div>
+  <spr-input-currency 
+    id="input-currency-disabled-country-currency" 
+    v-model="inputModels.disabledCountryCurrency" 
+    label="อินพุตสกุลเงิน" 
+    disabled-country-currency 
+  />
+</div>
+
+```vue
+<template>
+  <spr-input-currency
+    id="input-currency-disabled-country-currency"
+    v-model="inputModel"
+    label="อินพุตสกุลเงิน"
+    disabled-country-currency
+  />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const inputModel = ref('');
+</script>
+```
+
+## ใช้รหัสสกุลเงินหรือสัญลักษณ์
+
+ค่าเริ่มต้นขององค์ประกอบสกุลเงินคือการแสดงรหัสสกุลเงิน (เช่น USD, EUR) คุณสามารถเปลี่ยนมาแสดงสัญลักษณ์สกุลเงิน (เช่น $, €) ได้โดยตั้งค่า prop `display-as-symbol` เป็น `true`
+
+<div class="spr-grid spr-gap-3">
+  <spr-input-currency 
+    id="input-currency-code-or-symbol-1" 
+    v-model="inputModels.currencyCodeSymbol1" 
+    label="อินพุตสกุลเงิน" 
+  />
+  <spr-input-currency 
+    id="input-currency-code-or-symbol-2" 
+    v-model="inputModels.currencyCodeSymbol2" 
+    label="อินพุตสกุลเงิน" 
+    display-as-symbol
+  />
+</div>
+
+```vue
+<template>
+  <spr-input-currency id="input-currency-code-or-symbol-1" v-model="inputModel" label="อินพุตสกุลเงิน" />
+
+  <spr-input-currency
+    id="input-currency-code-or-symbol-2"
+    v-model="inputModel"
+    label="อินพุตสกุลเงิน"
+    display-as-symbol
+  />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const inputModel = ref('');
+</script>
+```
+
+## รับข้อมูลเมตาสกุลเงินที่เลือก
+
+<div class="spr-grid spr-gap-4">
+  <spr-input-currency 
+    id="input-currency-selected-currency"
+    v-model="inputModels.selectedCurrencyMeta" 
+    label="อินพุตสกุลเงิน"  
+    @get-selected-currency-meta="handleSelectedCurrencyMeta"
+  />
+
+  <div class="spr-p-4 spr-bg-blue-100">
+    <p>ผลลัพธ์ของโมเดล: {{ inputModels.selectedCurrencyMeta }}</p>
+    <p>สกุลเงินที่เลือก: {{ meta.currency }}</p>
+    <p>สัญลักษณ์ที่เลือก: {{ meta.symbol }}</p>
+    <p>ค่าดิบ: {{ meta.rawValue }}</p>
+  </div>
+</div>
+
+```vue
+<template>
+  <spr-input-currency
+    id="input-currency-selected-currency"
+    v-model="inputModel"
+    label="อินพุตสกุลเงิน"
+    @get-selected-currency-meta="handleSelectedCurrencyMeta"
+  />
+
+  <div class="spr-bg-blue-100 spr-p-4">
+    <p>ผลลัพธ์ของโมเดล: {{ inputModel }}</p>
+    <p>สกุลเงินที่เลือก: {{ selectedCurrency }}</p>
+    <p>สัญลักษณ์ที่เลือก: {{ selectedSymbol }}</p>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const inputModel = ref('');
+const selectedCurrency = ref('');
+const selectedSymbol = ref('');
+
+const handleSelectedCurrencyMeta = (val: { currency: string; symbol: string }) => {
+  selectedCurrency.value = val.currency;
+  selectedSymbol.value = val.symbol;
+};
+</script>
+```
+
+## เลือกสกุลเงินล่วงหน้า
+
+<spr-input-currency v-model="inputModels.preSelectedCurrency" label="อินพุตสกุลเงิน" pre-selected-currency="USD" />
+
+```vue
+<template>
+  <spr-input-currency v-model="inputModel" label="อินพุตสกุลเงิน" pre-selected-currency="USD" />
+</template>
+```
+
+## เปลี่ยนสกุลเงินด้วยตนเอง
+
+เปลี่ยนสกุลเงินแบบไดนามิกโดยใช้ prop `currency` องค์ประกอบนี้รองรับรหัสสกุลเงินตัวพิมพ์ใหญ่และตัวพิมพ์เล็ก หากไม่ได้ระบุ prop currency จะใช้ค่าเริ่มต้น **PHP** (เปโซฟิลิปปินส์)
+
+<div class="spr-grid spr-gap-4">
+  <spr-select 
+    id="currency-select"
+    v-model="selectedCurrency" 
+    label="เลือกสกุลเงิน"
+    :options="currencyOptions"
+    width="100%"
+  />
+  
+  <spr-input-currency 
+    v-model="inputModels.dynamicCurrency" 
+    label="อินพุตสกุลเงินแบบไดนามิก" 
+    :currency="selectedCurrency"
+    auto-format
+    placeholder="ป้อนจำนวนเงิน"
+  />
+  
+  <div class="spr-p-4 spr-bg-blue-50 spr-rounded spr-border spr-border-blue-200">
+    <p class="spr-text-sm spr-text-gray-700"><span class="spr-font-medium">สกุลเงินที่เลือก:</span> {{ selectedCurrency.toUpperCase() }}</p>
+    <p class="spr-text-sm spr-text-gray-700"><span class="spr-font-medium">จำนวนเงิน:</span> {{ inputModels.dynamicCurrency }}</p>
+  </div>
+</div>
+
+```vue
+<template>
+  <div class="spr-grid spr-gap-4">
+    <spr-select
+      id="currency-select"
+      v-model="selectedCurrency"
+      label="เลือกสกุลเงิน"
+      :options="currencyOptions"
+      width="100%"
+    />
+
+    <spr-input-currency
+      v-model="amount"
+      label="อินพุตสกุลเงินแบบไดนามิก"
+      :currency="selectedCurrency"
+      auto-format
+      placeholder="ป้อนจำนวนเงิน"
+    />
+
+    <div class="spr-rounded spr-border spr-border-blue-200 spr-bg-blue-50 spr-p-4">
+      <p class="spr-text-sm spr-text-gray-700">
+        <span class="spr-font-medium">สกุลเงินที่เลือก:</span> {{ selectedCurrency.toUpperCase() }}
+      </p>
+      <p class="spr-text-sm spr-text-gray-700"><span class="spr-font-medium">จำนวนเงิน:</span> {{ amount }}</p>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import SprSelect from '@/components/select/select.vue';
+
+const amount = ref('');
+const selectedCurrency = ref('php');
+
+const currencyOptions = [
+  { text: 'PHP (เปโซฟิลิปปินส์)', value: 'php' },
+  { text: 'USD (ดอลลาร์สหรัฐฯ)', value: 'usd' },
+  { text: 'EUR (ยูโร)', value: 'eur' },
+  { text: 'GBP (ปอนด์อังกฤษ)', value: 'gbp' },
+  { text: 'JPY (เยนญี่ปุ่น)', value: 'jpy' },
+  { text: 'AUD (ดอลลาร์ออสเตรเลีย)', value: 'aud' },
+];
+</script>
+```
+
+:::info หมายเหตุ
+
+- **ไม่คำนึงถึงตัวพิมพ์**: ทั้ง `currency="usd"` และ `currency="USD"` ทำงานเหมือนกัน
+- **ค่าเริ่มต้น**: หากไม่ระบุ prop นี้ องค์ประกอบจะใช้ `'PHP'` เป็นค่าเริ่มต้น
+- **การเปลี่ยนแปลงแบบไดนามิก**: เปลี่ยนสกุลเงินได้ตลอดเวลา และองค์ประกอบจะจัดรูปแบบอินพุตใหม่
+- **รหัสที่ถูกต้อง**: ใช้รหัสสกุลเงิน ISO 4217 มาตรฐาน (เช่น USD, EUR, PHP, JPY ฯลฯ)
+  :::
+
+ตัวอย่าง
+
+```vue
+<!-- ค่าเริ่มต้น (PHP) -->
+<spr-input-currency v-model="amount" />
+
+<!-- ตัวพิมพ์ใหญ่ที่ชัดเจน -->
+<spr-input-currency v-model="amount" currency="USD" />
+
+<!-- รองรับตัวพิมพ์เล็ก -->
+<spr-input-currency v-model="amount" currency="eur" />
+
+<!-- แบบไดนามิก/รีแอคทีฟ -->
+<spr-input-currency v-model="amount" :currency="userSelectedCurrency" />
+```
+
+## จัดรูปแบบอัตโนมัติ
+
+นำไปใช้ตัวคั่นหลักพันและจำกัดทศนิยมตามมาตรฐานสกุลเงินโดยอัตโนมัติขณะที่พิมพ์และเมื่อเบลอ หากมีค่าอยู่แล้วเมื่อส่วนประกอบโหลด จะนำไปใช้จัดรูปแบบอัตโนมัติทันที
+
+<div class="spr-grid spr-gap-3">
+  <spr-input-currency 
+    id="input-currency-auto-format" 
+    v-model="inputModels.autoFormat" 
+    label="อินพุตสกุลเงิน" 
+    auto-format
+  />
+  <spr-input-currency 
+    id="input-currency-auto-format-existing" 
+    v-model="inputModels.autoFormatExisting" 
+    label="มีค่าเริ่มต้น" 
+    auto-format
+  />
+</div>
+
+```vue
+<template>
+  <spr-input-currency
+    id="input-currency-auto-format-empty"
+    v-model="inputModelEmpty"
+    label="อินพุตสกุลเงินว่าง"
+    auto-format
+  />
+
+  <spr-input-currency
+    id="input-currency-auto-format-existing"
+    v-model="inputModelWithValue"
+    label="มีค่าเริ่มต้น"
+    auto-format
+  />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const inputModelEmpty = ref('');
+// ค่านี้จะถูกจัดรูปแบบอัตโนมัติเมื่อส่วนประกอบโหลด
+const inputModelWithValue = ref('1234567.8');
+</script>
+```
+
+## จำนวนทศนิยมสูงสุดและต่ำสุด
+
+ควบคุมจำนวนทศนิยมสูงสุดและต่ำสุดที่อนุญาตสำหรับอินพุตสกุลเงิน
+
+**กรณีการใช้งาน:**
+
+- **`max-decimals` เพียงอย่างเดียว** - จำกัดความแม่นยำโดยไม่บังคับให้มีตำแหน่งทศนิยม (เช่น ราคา cryptocurrency)
+- **`min-decimals` เพียงอย่างเดียว** - บังคับให้มีตำแหน่งทศนิยมขั้นต่ำโดยไม่จำกัดความแม่นยำ
+- **ทั้งคู่** - สร้างช่วงของตำแหน่งทศนิยมที่อนุญาต (ที่พบบ่อยที่สุด)
+
+### ตัวอย่างที่ 1: ตำแหน่งทศนิยมคงที่ (Price Field)
+
+แสดงตำแหน่งทศนิยม 2 ตำแหน่งเสมอ เหมาะสำหรับ input ราคาที่ต้องการความสอดคล้อง
+
+ลองพิมพ์: `100` → หลังจากหมดเวลาแสดง `100.00`
+
+<div>
+  <spr-input-currency 
+    id="input-currency-fixed-decimals" 
+    v-model="inputModels.fixedDecimals" 
+    label="ราคาสินค้า (ตำแหน่งทศนิยมคงที่ 2)" 
+    :min-decimals="2"
+    :max-decimals="2"
+    placeholder="ป้อนราคา"
+  />
+</div>
+
+```vue
+<template>
+  <spr-input-currency
+    id="input-currency-fixed-decimals"
+    v-model="price"
+    label="ราคาสินค้า"
+    :min-decimals="2"
+    :max-decimals="2"
+    placeholder="ป้อนราคา"
+  />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+const price = ref('');
+</script>
+```
+
+### ตัวอย่างที่ 2: ตำแหน่งทศนิยมที่ยืดหยุ่น (0-4 Range)
+
+อนุญาต 0 ถึง 4 ตำแหน่งทศนิยม มีประโยชน์สำหรับ cryptocurrency หรือการวัดที่ความแม่นยำแตกต่างกัน
+
+ลองพิมพ์: `100` → คงอยู่เป็น `100` (ไม่มีการเติมเต็ม), หรือ `100.123456` → กลายเป็น `100.1234`
+
+<div>
+  <spr-input-currency 
+    id="input-currency-flexible-decimals" 
+    v-model="inputModels.flexibleDecimals" 
+    label="จำนวน Cryptocurrency (0-4 ตำแหน่งทศนิยม)" 
+    :min-decimals="0"
+    :max-decimals="4"
+    placeholder="ป้อนจำนวน"
+  />
+</div>
+
+```vue
+<template>
+  <spr-input-currency
+    id="input-currency-flexible-decimals"
+    v-model="cryptoAmount"
+    label="จำนวน Cryptocurrency"
+    :min-decimals="0"
+    :max-decimals="4"
+    placeholder="ป้อนจำนวน"
+  />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+const cryptoAmount = ref('');
+</script>
+```
+
+### ตัวอย่างที่ 3: ความแม่นยำทางวิทยาศาสตร์ (3-6 Range)
+
+บังคับให้มีอย่างน้อย 3 ตำแหน่งทศนิยม อนุญาตให้ 6 ตำแหน่งทศนิยม มีประโยชน์สำหรับการคำนวณทางวิทยาศาสตร์หรือการเงิน
+
+ลองพิมพ์: `100` → กลายเป็น `100.000`, หรือ `100.1234567` → กลายเป็น `100.123456`
+
+<div>
+  <spr-input-currency 
+    id="input-currency-scientific-decimals" 
+    v-model="inputModels.scientificDecimals" 
+    label="การวัดทางวิทยาศาสตร์ (3-6 ตำแหน่งทศนิยม)" 
+    :min-decimals="3"
+    :max-decimals="6"
+    placeholder="ป้อนค่า"
+  />
+</div>
+
+```vue
+<template>
+  <spr-input-currency
+    id="input-currency-scientific-decimals"
+    v-model="scientificValue"
+    label="การวัดทางวิทยาศาสตร์"
+    :min-decimals="3"
+    :max-decimals="6"
+    placeholder="ป้อนค่า"
+  />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+const scientificValue = ref('');
+</script>
+```
+
+### ตัวอย่างที่ 4: Max Decimals เพียงอย่างเดียว
+
+จำกัดความแม่นยำให้ 4 ตำแหน่งทศนิยมโดยไม่บังคับให้มีการเติมเต็มขั้นต่ำ มีประโยชน์สำหรับ input ที่ยืดหยุ่น
+
+ลองพิมพ์: `100` → คงอยู่เป็น `100`, หรือ `100.12345` → กลายเป็น `100.1234`
+
+<div>
+  <spr-input-currency 
+    id="input-currency-max-decimals" 
+    v-model="inputModels.maxDecimals" 
+    label="จำนวนที่ยืดหยุ่น (Max 4 ตำแหน่งทศนิยม)" 
+    :max-decimals="4"
+    placeholder="ป้อนจำนวน"
+  />
+</div>
+
+```vue
+<template>
+  <spr-input-currency
+    id="input-currency-max-decimals"
+    v-model="amount"
+    label="จำนวนที่ยืดหยุ่น"
+    :max-decimals="4"
+    placeholder="ป้อนจำนวน"
+  />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+const amount = ref('');
+</script>
+```
+
+### ตัวอย่างที่ 5: Min Decimals เพียงอย่างเดียว
+
+บังคับให้มี 2 ตำแหน่งทศนิยมโดยไม่มีขีดจำกัดสูงสุด มีประโยชน์เมื่อคุณต้องการแสดงความแม่นยำอย่างน้อยที่สุด
+
+ลองพิมพ์: `100` → กลายเป็น `100.00`, หรือ `100.123456` → คงอยู่เป็น `100.123456`
+
+<div>
+  <spr-input-currency 
+    id="input-currency-min-decimals" 
+    v-model="inputModels.minDecimals" 
+    label="จำนวนที่มีการเติมเต็มขั้นต่ำ (Min 2 ตำแหน่งทศนิยม)" 
+    :min-decimals="2"
+    placeholder="ป้อนจำนวน"
+  />
+</div>
+
+```vue
+<template>
+  <spr-input-currency
+    id="input-currency-min-decimals"
+    v-model="minAmount"
+    label="จำนวนที่มีการเติมเต็มขั้นต่ำ"
+    :min-decimals="2"
+    placeholder="ป้อนจำนวน"
+  />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+const minAmount = ref('');
+</script>
+```
+
+## ปิดใช้งานการปัดเศษ
+
+เมื่อเปิดใช้งาน องค์ประกอบจะตัดทศนิยมแทนการปัดเศษให้เป็นทศนิยมสูงสุดที่อนุญาต
+
+<div>
+  <spr-input-currency 
+    id="input-currency-disable-rounding" 
+    v-model="inputModels.disableRounding" 
+    label="อินพุตสกุลเงิน" 
+    :disable-rounding="true"
+    :max-decimals="2"
+  />
+</div>
+
+```vue
+<template>
+  <spr-input-currency
+    id="input-currency-disable-rounding"
+    v-model="inputModel"
+    label="อินพุตสกุลเงิน"
+    :disable-rounding="true"
+    :max-decimals="2"
+  />
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const inputModel = ref('');
+</script>
+```
+
+## ข้อความช่วยเหลือแบบกำหนดเอง
+
+คุณสามารถส่งข้อความช่วยเหลือแบบกำหนดเองผ่านสล็อต `helperMessage` เพื่อแสดงการตรวจสอบความถูกต้องแบบกำหนดเองหรือข้อมูลเพิ่มเติม
+
+<div>
+  <spr-input-currency
+    id="input-currency-custom-helper"
+    v-model="inputModels.customHelper"
+    label="อินพุตสกุลเงิน"
+    placeholder="ป้อนจำนวนเงิน"
+    :display-helper="true"
+    :error="!!inputModels.customHelperError"
+  > 
+    <template #helperMessage>
+      <div class="spr-flex spr-gap-2">
+        <span v-if="inputModels.customHelperError" class="spr-text-red-500">{{ inputModels.customHelperError }}</span>
+        <span v-else class="spr-text-gray-500">จำนวนเงินขั้นต่ำคือ $100</span>
+      </div>
+    </template>
+  </spr-input-currency>
+</div>
+
+```vue
+<template>
+  <spr-input-currency
+    id="input-currency-custom-helper"
+    v-model="inputModel"
+    label="อินพุตสกุลเงิน"
+    placeholder="ป้อนจำนวนเงิน"
+    :display-helper="true"
+    :error="!!errorMessage"
+  >
+    <template #helperMessage>
+      <div class="spr-flex spr-gap-2">
+        <span v-if="errorMessage" class="spr-text-red-500">{{ errorMessage }}</span>
+        <span v-else class="spr-text-gray-500">จำนวนเงินขั้นต่ำคือ $100</span>
+      </div>
+    </template>
+  </spr-input-currency>
+</template>
+
+<script setup lang="ts">
+import { ref, computed } from 'vue';
+
+const inputModel = ref('');
+
+const errorMessage = computed(() => {
+  const numValue = Number(inputModel.value.replace(/[^0-9.-]/g, ''));
+  return numValue > 0 && numValue < 100 ? 'จำนวนเงินต้องมีค่าอย่างน้อย $100' : '';
+});
+</script>
+```
+
+## เหตุการณ์ Get Currency Value
+
+เข้าถึงค่าตัวเลขที่แยกวิเคราะห์โดยตรงไปยังเหตุการณ์ `@get-currency-value` ซึ่งส่งหอให้ค่าตัวเลขชนิด ทำให้งายต่อใช้กุดก่อนการแปลงปลายจากสตริง
+
+<div>
+  <spr-input-currency 
+    id="input-currency-get-value" 
+    v-model="inputModels.getCurrencyValue" 
+    label="รับค่าดิบ" 
+    placeholder="พิมพ์และเบลอเพื่อดูค่าดิบ"
+    @get-currency-value="onGetCurrencyValue"
+  />
+  <div v-if="displayedRawValue" class="spr-mt-4 spr-p-3 spr-bg-gray-100 spr-rounded">
+    <p class="spr-text-sm spr-text-gray-700">ค่าดิบ: <span class="spr-font-bold">{{ displayedRawValue }}</span></p>
+  </div>
+</div>
+
+```vue
+<template>
+  <div>
+    <spr-input-currency
+      id="input-currency-get-value"
+      v-model="currencyValue"
+      label="รับค่าดิบ"
+      placeholder="พิมพ์และเบลอเพื่อดูค่าดิบ"
+      @get-currency-value="handleGetCurrencyValue"
+    />
+    <div v-if="rawValue" class="spr-mt-4 spr-rounded spr-bg-gray-100 spr-p-3">
+      <p class="spr-text-sm spr-text-gray-700">
+        ค่าดิบ: <span class="spr-font-bold">{{ rawValue }}</span>
+      </p>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const currencyValue = ref('');
+const numericValue = ref<number | null>(null);
+
+const handleGetCurrencyValue = (value: number) => {
+  numericValue.value = value;
+  console.log('Numeric value:', value);
+};
+</script>
+```
+
+**ตัวอย่างการใช้งาน:**
+
+เมื่อคุณพิมพ์ `1234567.89` และเบลอ `@get-currency-value` จะปล่อย `1234567.89` (ตัวเลข)
+
+```typescript
+// ในหติวาปิดของคุณ
+const onGetCurrencyValue = (value: number) => {
+  // ใช้ค่าตัวเลขสำหรับคำนวณแต้โดยตรง
+  console.log('User entered:', value);
+  // ส่งไปยัง API
+  // เก็บไว้ในรฐานข้อมูล
+  // ทำการคำนวณ
+  const discounted = value * 0.9;
+};
+```
+
+**ประเด็นหลัก:**
+
+- `@get-currency-value` ปล่อยค่าตัวเลขโดยไม่มีตัวคั่นหลักพัน
+- ใช้ตัวคั่นทศนิยมของภาษา (เช่น `.` สำหรับ en-US, `,` สำหรับ de-DE)
+- ขณะพิมพ์: ปล่อยค่าอินพุตดิบตามที่พิมพ์ (เช่น `123`)
+- เมื่อเบลอ: ปล่อยค่าตัวเลขที่จัดรูปแบบแล้วโดยไม่มีตัวคั่นหลักพัน (เช่น `123.00`)
+- ปล่อยออกมาเมื่อ **ติดตั้งองค์ประกอบ** หากมีค่าเริ่มต้น
+- NOT ปล่อยออกมาเมื่อเลือกสกุลเงินเปลี่ยนแปลง
+- มีประโยชน์สำหรับการจัดเก็บ input ของผู้ใช้ที่ไม่มีการจัดรูปแบบหรือเพื่อการประมวลผลแบบกำหนดเอง
+
+## ค่าฐาน
+
+ใช้ prop `base-value` เพื่อกรอกค่าเริ่มต้นโดยอัตโนมัติลงในอินพุตเมื่อว่างและสูญเสียโฟกัส สิ่งนี้มีประโยชน์เพื่อให้แน่ใจว่ามีค่าต่ำสุดเสมอ
+
+<div class="spr-grid spr-gap-4">
+  <spr-input-currency 
+    id="input-currency-base-value-zero" 
+    v-model="inputModels.baseValueZero" 
+    label="ค่าฐาน 0" 
+    placeholder="พยายามว่างและเบลอ"
+    :base-value="0"
+  />
+  
+  <spr-input-currency 
+    id="input-currency-base-value-two" 
+    v-model="inputModels.baseValueTwo" 
+    label="ค่าฐาน 2" 
+    placeholder="พยายามว่างและเบลอ"
+    :base-value="2"
+  />
+</div>
+
+```vue
+<template>
+  <div class="spr-grid spr-gap-4">
+    <spr-input-currency
+      id="input-currency-base-value-zero"
+      v-model="amount"
+      label="ค่าฐาน 0"
+      placeholder="พยายามว่างและเบลอ"
+      :base-value="0"
+    />
+
+    <spr-input-currency
+      id="input-currency-base-value-two"
+      v-model="amount"
+      label="ค่าฐาน 2"
+      placeholder="พยายามว่างและเบลอ"
+      :base-value="2"
+    />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const amount = ref('');
+</script>
+```
+
+**ตัวอย่างการใช้งาน:**
+
+เมื่อตั้งค่า `base-value` และลบอินพุต เมื่อเบลอ องค์ประกอบจะเติมค่าฐานที่จัดรูปแบบโดยอัตโนมัติ:
+
+- ถ้าผู้ใช้ลบช่องด้วย `:base-value="0"` → เมื่อเบลอจะแสดง `0.00`
+- ถ้าผู้ใช้ลบช่องด้วย `:base-value="2"` → เมื่อเบลอจะแสดง `2.00`
+- ถ้าผู้ใช้ลบช่องด้วย `:base-value="100.50"` → เมื่อเบลอจะแสดง `100.50`
+
+สิ่งนี้มีประโยชน์สำหรับ:
+
+- การตรวจสอบให้แน่ใจว่ามีค่าต่ำสุดในแบบฟอร์มการเงิน
+- ปริมาณเริ่มต้นในรถเข็นช็อปปิ้ง
+- ค่าสำรองเมื่อลบอินพุต
+
+## การอ้างอิง API
+
+<table>
+  <thead>
+    <tr>
+      <th>ชื่อ</th>
+      <th>คำอธิบาย</th>
+      <th>ประเภท</th>
+      <th>ค่าเริ่มต้น</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>id</code></td>
+      <td>รหัสไอดีเฉพาะสำหรับองค์ประกอบ</td>
+      <td>String</td>
+      <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td><code>v-model</code></td>
+      <td>ค่าสตริงสกุลเงินดิบ (อาจยังไม่ได้จัดรูปแบบขณะที่พิมพ์)</td>
+      <td>String</td>
+      <td><code>''</code></td>
+    </tr>
+    <tr>
+      <td><code>placeholder</code></td>
+      <td>ข้อความตัวยึดตำแหน่งที่แสดงเมื่ออินพุตว่างเปล่า</td>
+      <td>String</td>
+      <td><code>'0.00'</code></td>
+    </tr>
+    <tr>
+      <td><code>currency</code></td>
+      <td>รหัสสกุลเงิน ISO 4217 (เช่น <code>USD</code>, <code>EUR</code>, <code>PHP</code>) รองรับตัวพิมพ์ใหญ่และตัวพิมพ์เล็ก สามารถเปลี่ยนสกุลเงินแบบไดนามิกได้ตลอดเวลา</td>
+      <td>String</td>
+      <td><code>'PHP'</code></td>
+    </tr>
+    <tr>
+      <td><code>pre-selected-currency</code></td>
+      <td><strong>เลิกใช้แล้ว:</strong> ใช้ prop `currency` แทน รหัสสกุลเงิน ISO 4217 เริ่มต้น (เช่น <code>USD</code>, <code>EUR</code>)</td>
+      <td>String</td>
+      <td><code>'PHP'</code></td>
+    </tr>
+    <tr>
+      <td><code>disabled</code></td>
+      <td>ปิดใช้งานอินพุตสกุลเงินทั้งหมด (รวมถึงตัวเลือกสกุลเงิน)</td>
+      <td>Boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>disabled-country-currency</code></td>
+      <td>ปิดใช้งานเฉพาะตัวเลือกสกุลเงินขณะให้ฟิลด์ข้อความทำงานต่อ</td>
+      <td>Boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>auto-format</code></td>
+      <td>นำไปใช้ตัวคั่นหลักพันโดยอัตโนมัติ (และจำกัดทศนิยม) เมื่อเบลอและขณะที่พิมพ์ (ที่ถูกต้อง)</td>
+      <td>Boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>max-decimals</code></td>
+      <td>จำนวนสูงสุดของหลักทศนิยมที่จะรักษาไว้เมื่อจัดรูปแบบ</td>
+      <td>Number</td>
+      <td><code>2</code></td>
+    </tr>
+    <tr>
+      <td><code>min-decimals</code></td>
+      <td>จำนวนทศนิยมขั้นต่ำ (ปัจจุบันไม่มีการเติมรหัสอัตโนมัติ)</td>
+      <td>Number</td>
+      <td><code>2</code></td>
+    </tr>
+    <tr>
+      <td><code>base-value</code></td>
+      <td>ค่าตัวเลขเริ่มต้นที่จะใช้เมื่ออินพุตว่างเมื่อเบลอ หากตั้งค่าไว้ การลบอินพุตจะคืนค่านี้เมื่อสูญเสียโฟกัส</td>
+      <td>Number</td>
+      <td><code>undefined</code></td>
+    </tr>
+    <tr>
+      <td><code>display-as-code</code></td>
+      <td>เมื่อเป็นจริง จะแสดงรหัสสกุลเงิน (เช่น <code>USD</code>); เมื่อเป็นเท็จ จะแสดงสัญลักษณ์ (หรือรหัสหากสัญลักษณ์คลุมเครือ)</td>
+      <td>Boolean</td>
+      <td><code>true</code></td>
+    </tr>
+    <tr>
+      <td><code>display-as-symbol</code></td>
+      <td>เมื่อเป็นจริง จะแสดงสัญลักษณ์สกุลเงิน (เช่น $, €) โดยไม่คำนึงถึงการตั้งค่าอื่นๆ ลำดับความสำคัญสูงกว่า <code>display-as-code</code></td>
+      <td>Boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>disable-rounding</code></td>
+      <td>เมื่อเป็นจริง หลักทศนิยมจะถูกตัด (ไม่ปัดเศษ) ให้เป็นทศนิยมสูงสุดที่อนุญาต</td>
+      <td>Boolean</td>
+      <td><code>false</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="spr-mt-4 spr-text-300">
+สำหรับ props ที่แชร์ อีเวนต์ สล็อต และการทำงานอื่นๆ ที่สืบทอดมาจากองค์ประกอบอินพุตพื้นฐาน โปรดดู
+<a href="/documentation/components/input/input.html#api-reference">การอ้างอิง API ขององค์ประกอบอินพุต</a>
+</p>
+
+### อีเวนต์
+
+<table>
+  <thead>
+    <tr>
+      <th>อีเวนต์</th>
+      <th>เพย์โหลด</th>
+      <th>คำอธิบาย</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>@update:model-value</td>
+      <td>String</td>
+      <td>ปล่อยออกมาทุกครั้งที่ค่าอินพุตที่ผูกมัดเปลี่ยนไป (การผูกมัดแบบสองทาง)</td>
+    </tr>
+    <tr>
+      <td>@get-selected-currency-meta</td>
+      <td>{ currency: String; symbol: String; numericValue: Number | null; rawValue: String | null }</td>
+      <td>ปล่อยออกมาหลังจากเลือกสกุลเงิน และเบลอ รวมถึงรหัส สัญลักษณ์ (หรือรหัสหากคลุมเครือ) numericValue (float ที่แยกวิเคราะห์) และ rawValue (สตริงที่ไม่มีการจัดรูปแบบบัญญัติ)</td>
+    </tr>
+    <tr>
+      <td>@get-currency-value</td>
+      <td>Number | null</td>
+      <td>ค่าตัวเลขที่แยกวิเคราะห์ ปล่อยออกมาขณะพิมพ์ เมื่อเบลอ เมื่อเปลี่ยนสกุลเงิน และเมื่อติดตั้ง (หากมีค่าเริ่มต้น) ปล่อยออกมาเป็น null สำหรับอินพุตว่าง ให้การเข้าถึงโดยตรงไปยังค่าตัวเลขโดยไม่ต้องแปลงสตริง</td>
+    </tr>
+  </tbody>
+</table>
+
+<script setup lang="ts">
+import { ref, computed } from 'vue';
+
+import { Icon } from '@iconify/vue';
+
+import SprInputCurrency from '@/components/input/input-currency/input-currency.vue';
+import SprSelect from '@/components/select/select.vue';
+
+const inputModels = ref({
+  basic: '',
+  activeState: '',
+  errorState: '',
+  disabledState: '',
+  disabledCountryCurrency: '',
+  currencyCodeSymbol1: '',
+  currencyCodeSymbol2: '',
+  selectedCurrencyMeta: '',
+  preSelectedCurrency: '',
+  dynamicCurrency: '',
+  autoFormat: '',
+  autoFormatExisting: '1234567.8',
+  maxDecimals: '',
+  minDecimals: '',
+  disableRounding: '',
+  customHelper: '',
+  customHelperError: '',
+  baseValueZero: '',
+  baseValueTwo: '',
+});
+
+const selectedCurrency = ref('php');
+
+const currencyOptions = [
+  { text: 'PHP (เปโซฟิลิปปินส์)', value: 'php' },
+  { text: 'USD (ดอลลาร์สหรัฐฯ)', value: 'usd' },
+  { text: 'EUR (ยูโร)', value: 'eur' },
+  { text: 'GBP (ปอนด์อังกฤษ)', value: 'gbp' },
+  { text: 'JPY (เยนญี่ปุ่น)', value: 'jpy' },
+  { text: 'AUD (ดอลลาร์ออสเตรเลีย)', value: 'aud' },
+];
+
+const meta = ref<{
+  currency: string;
+  symbol: string;
+  numericValue: number | null;
+  rawValue: string | null;
+} >({
+  currency: '',
+  symbol: '',
+  numericValue: null,
+  rawValue: null,
+});
+
+// Updated payload signature now includes numericValue and rawValue
+const handleSelectedCurrencyMeta = (payload: {
+  currency: string;
+  symbol: string;
+  numericValue: number | null;
+  rawValue: string | null;
+}) => {
+  meta.value = payload;
+};
+</script>

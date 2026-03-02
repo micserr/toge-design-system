@@ -1,0 +1,185 @@
+# Sprout Design System — Interaction Rules
+# Defines interactive states, feedback patterns, and user input behaviors.
+
+# ---------------------------------------------------------------------------
+# Button states
+# spr-button component handles these automatically via tone prop
+# ---------------------------------------------------------------------------
+button:
+  tones: [brand, danger, plain]
+  variants: [filled, outlined, ghost, link]
+
+  states:
+    brand-filled:
+      default:
+        background: spr-background-color-brand-base      # kangkong-700
+        text: spr-text-color-inverted-strong              # white-50
+        shadow: spr-shadow-button
+      hover:
+        background: spr-background-color-brand-hover      # kangkong-800
+        shadow: spr-shadow-button-hover
+      pressed:
+        background: spr-background-color-brand-pressed    # kangkong-900
+      disabled:
+        background: spr-background-color-disabled         # white-100
+        text: spr-text-color-disabled                     # white-400
+        cursor: not-allowed
+
+    brand-outlined:
+      default:
+        background: transparent
+        border: spr-border-color-brand-base               # kangkong-700
+        text: spr-text-color-brand-base                   # kangkong-700
+      hover:
+        background: spr-background-color-brand-weak       # kangkong-100
+        border: spr-border-color-brand-hover
+      pressed:
+        background: spr-background-color-brand-weak-pressed
+      disabled:
+        border: spr-border-color-disabled
+        text: spr-text-color-disabled
+
+    brand-ghost:
+      default:
+        background: transparent
+        text: spr-text-color-brand-base
+      hover:
+        background: spr-background-color-brand-weak       # kangkong-100
+      pressed:
+        background: spr-background-color-brand-weak-pressed
+
+    danger-filled:
+      default:
+        background: spr-background-color-danger-base      # tomato-600
+        text: spr-text-color-inverted-strong
+      hover:
+        background: spr-background-color-danger-hover     # tomato-700
+      pressed:
+        background: spr-background-color-danger-pressed   # tomato-800
+
+  rules:
+    - "Primary actions use tone='brand' variant='filled'"
+    - "Destructive actions use tone='danger'"
+    - "Secondary actions use variant='outlined' or 'ghost'"
+    - "Only ONE primary (filled) button per context/section"
+    - "Button group: primary on the right, secondary on the left"
+    - "Icon buttons use hasIcon prop with <Icon> component as child"
+
+# ---------------------------------------------------------------------------
+# Focus states
+# Applied consistently across all interactive elements
+# ---------------------------------------------------------------------------
+focus:
+  description: >
+    All interactive elements must have a visible focus indicator.
+    The design system uses button-active shadow as the focus ring.
+  ring:
+    shadow: "0px 0px 0px 2px #394141"  # spr-shadow-button-active (mushroom-900)
+    token: spr-shadow-button-active
+  rules:
+    - "Focus ring MUST be visible on all interactive elements"
+    - "Focus ring uses mushroom-900 (#394141) as the outline color"
+    - "Tab order follows visual reading order (left-to-right, top-to-bottom)"
+    - "Skip links are provided for keyboard navigation"
+
+# ---------------------------------------------------------------------------
+# Input states
+# spr-input, spr-select, spr-textarea
+# ---------------------------------------------------------------------------
+input:
+  states:
+    default:
+      border: spr-border-color-base         # mushroom-300
+      background: spr-background-color       # white-50
+      text: spr-text-color-strong            # mushroom-950
+      placeholder: spr-text-color-weak       # mushroom-400
+    hover:
+      border: spr-border-color-hover         # mushroom-400
+    focus:
+      border: spr-border-color-brand-base    # kangkong-700
+    error:
+      border: spr-border-color-danger-base   # tomato-700
+      helper-text: spr-text-color-danger-base
+    disabled:
+      border: spr-border-color-disabled      # white-100
+      background: spr-background-color-disabled
+      text: spr-text-color-disabled
+    read-only:
+      background: spr-background-color-surface  # mushroom-50
+      border: spr-border-color-weak
+
+  label:
+    typography: spr-body-sm-regular-medium
+    color: spr-text-color-strong
+    required-indicator: "*"
+
+  helper-text:
+    typography: spr-body-xs-regular
+    color: spr-text-color-base
+    error-color: spr-text-color-danger-base
+
+# ---------------------------------------------------------------------------
+# Snackbar / Toast notifications
+# Managed via Pinia store
+# ---------------------------------------------------------------------------
+snackbar:
+  duration:
+    default: 4000  # ms — auto-dismiss after 4 seconds
+    persistent: null  # no auto-dismiss for critical messages
+  position: bottom-center
+  store: useSprSnackbar  # Pinia store
+  api:
+    method: "sprSnackbar.open({ message, tone, duration })"
+    tones: [success, danger, information, caution, pending]
+  rules:
+    - "Success: brief confirmation ('Saved successfully')"
+    - "Danger: error with recovery hint ('Failed to save. Try again.')"
+    - "Information: neutral notification"
+    - "Always provide actionable text for errors"
+    - "Pinia must be installed BEFORE design system plugin"
+
+# ---------------------------------------------------------------------------
+# Loading states
+# ---------------------------------------------------------------------------
+loading:
+  skeleton:
+    class: spr-skeletal-loader
+    description: "Pulse animation with mushroom-50 to mushroom-200 gradient"
+    use-case: "Initial page/section load, before data arrives"
+
+  spinner:
+    component: spr-spinner
+    sizes: [sm, md, lg]
+    use-case: "Inline loading (buttons, cells), short operations"
+
+  rules:
+    - "Use skeleton loaders for initial page loads (content shape preview)"
+    - "Use spinners for in-place loading (button click, cell refresh)"
+    - "Never show both skeleton and spinner simultaneously"
+    - "Loading states should appear after 300ms delay to avoid flash"
+
+# ---------------------------------------------------------------------------
+# Selection patterns
+# ---------------------------------------------------------------------------
+selection:
+  single:
+    background: spr-background-color-single-active  # kangkong-100
+    use-case: "Table row selection, radio-like choices"
+  multiple:
+    background: spr-background-color-multiple-active  # kangkong-50
+    use-case: "Checkbox selection, multi-select tables"
+  rules:
+    - "Single selection uses kangkong-100 background"
+    - "Multiple selection uses kangkong-50 background"
+    - "Selected state is always visually distinct from hover"
+
+# ---------------------------------------------------------------------------
+# Hover patterns
+# ---------------------------------------------------------------------------
+hover:
+  generic:
+    background: spr-background-color-hover  # mushroom-950 at 8% opacity
+  rules:
+    - "Hover states use semi-transparent mushroom-950 overlay"
+    - "Interactive elements MUST have hover feedback"
+    - "Hover transitions use 150ms ease-in-out"

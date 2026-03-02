@@ -1,0 +1,198 @@
+# Sprout Design System — Motion Rules
+# Centralizes animation durations, easing functions, and transition patterns.
+# Source: values extracted from component CSS across the codebase.
+
+# ---------------------------------------------------------------------------
+# Duration scale
+# Named durations for consistent animation timing
+# ---------------------------------------------------------------------------
+durations:
+  instant:
+    value: 0ms
+    use-case: "Immediate state changes (checkbox toggle, radio selection)"
+
+  fast:
+    value: 150ms
+    use-case: "Micro-interactions: button hover, input focus, tab switch, tooltip show"
+    components:
+      - spr-button (hover/press transitions)
+      - spr-input (focus border transition)
+      - spr-tabs (tab indicator movement)
+      - spr-date-picker (opacity transition)
+      - spr-date-range-picker (opacity transition)
+
+  normal:
+    value: 300ms
+    use-case: "Content transitions: slide-in panels, progress bar fill, popper show/hide"
+    components:
+      - sidenav slide-fade enter (300ms ease-out)
+      - spr-progress-bar (width transition)
+      - VPSidebarItem indicator (color transition, 250ms)
+
+  slow:
+    value: 500ms
+    use-case: "Emphatic animations: modal entrance, mobile sidenav slide"
+    components:
+      - spr-modal (bounce animation, 0.5s)
+      - mobile sidenav (slide, 500ms ease-in-out)
+
+  extra-slow:
+    value: 800ms
+    use-case: "Exit animations that need to feel deliberate"
+    components:
+      - sidenav slide-fade leave (0.8s cubic-bezier)
+
+# ---------------------------------------------------------------------------
+# Easing functions
+# ---------------------------------------------------------------------------
+easings:
+  standard:
+    value: "ease-in-out"
+    use-case: "Default for most transitions — smooth start and end"
+    css: "transition-timing-function: ease-in-out"
+
+  enter:
+    value: "ease-out"
+    use-case: "Elements entering the viewport — fast start, gentle landing"
+    css: "transition-timing-function: ease-out"
+
+  exit:
+    value: "ease-in"
+    use-case: "Elements leaving the viewport — gentle start, fast exit"
+    css: "transition-timing-function: ease-in"
+
+  linear:
+    value: "linear"
+    use-case: "Progress bars, continuous animations"
+    css: "transition-timing-function: linear"
+
+  custom-sidenav-leave:
+    value: "cubic-bezier(1, 0.5, 0.8, 1)"
+    use-case: "Sidenav submenu leave transition — deliberate, weighted exit"
+    css: "transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1)"
+
+  bounce:
+    value: "custom keyframes"
+    use-case: "Modal entrance animation"
+    keyframes: |
+      @keyframes bounce {
+        0% { transform: scale(0.9); opacity: 0; }
+        50% { transform: scale(1.02); }
+        100% { transform: scale(1); opacity: 1; }
+      }
+
+# ---------------------------------------------------------------------------
+# Common transition patterns
+# ---------------------------------------------------------------------------
+patterns:
+  fade:
+    description: "Opacity change only"
+    properties: opacity
+    duration: fast  # 150ms
+    easing: standard
+    css: "transition: opacity 150ms ease-in-out"
+
+  slide-fade:
+    description: "Horizontal slide + fade for panel content transitions"
+    properties: "opacity, transform"
+    enter:
+      duration: normal  # 300ms
+      easing: enter  # ease-out
+      from: "translateX(-20px), opacity: 0"
+    leave:
+      duration: extra-slow  # 800ms
+      easing: custom-sidenav-leave
+      to: "translateX(-20px), opacity: 0"
+
+  scale-fade:
+    description: "Scale + fade for modals and popovers"
+    properties: "opacity, transform"
+    duration: slow  # 500ms
+    easing: bounce
+    from: "scale(0.9), opacity: 0"
+    to: "scale(1), opacity: 1"
+
+  color-transition:
+    description: "Background or text color change on state change"
+    properties: "color, background-color, border-color"
+    duration: fast  # 150ms
+    easing: standard
+
+  expand-collapse:
+    description: "Height/max-height animation for collapsible sections"
+    properties: "max-height, opacity"
+    duration: normal  # 300ms
+    easing: standard
+
+# ---------------------------------------------------------------------------
+# Component-specific animations
+# ---------------------------------------------------------------------------
+component-animations:
+  spr-modal:
+    animation: bounce
+    duration: 500ms
+    enter: "scale(0.9) → scale(1.02) → scale(1)"
+
+  spr-banner:
+    duration: 250ms
+    easing: ease
+    enter: "translateY(-100%) → translateY(0)"
+
+  spr-snackbar:
+    auto-dismiss: 4000ms
+    enter: "fade-in 300ms"
+    exit: "fade-out 300ms"
+
+  spr-skeletal-loader:
+    animation: pulse
+    duration: "continuous (2s cycle)"
+    description: "Gradient shimmer from mushroom-50 to mushroom-200"
+
+  spr-radio:
+    animation: shadowGrow
+    description: "Ring expanding outward on selection"
+
+  spr-slider:
+    transition: linear
+    description: "Thumb and track follow input linearly"
+
+  spr-sidenav:
+    desktop-hover:
+      duration: 300ms
+      easing: ease-out
+    mobile-slide:
+      duration: 500ms
+      easing: ease-in-out
+
+# ---------------------------------------------------------------------------
+# Reduced motion
+# ---------------------------------------------------------------------------
+reduced-motion:
+  media-query: "(prefers-reduced-motion: reduce)"
+  behavior:
+    - "Replace all transitions with instant state changes (duration: 0ms)"
+    - "Keep loading spinners and progress indicators (essential motion)"
+    - "Disable bounce, slide, and scale animations"
+    - "Opacity-only fades are acceptable as reduced alternatives"
+
+  implementation-note: >
+    Currently the design system does NOT universally respect
+    prefers-reduced-motion. This is a known gap.
+    Components should add: @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+# ---------------------------------------------------------------------------
+# Rules
+# ---------------------------------------------------------------------------
+rules:
+  - "Use named durations (fast/normal/slow) — never arbitrary values"
+  - "Micro-interactions (hover, focus): 150ms"
+  - "Content transitions (panels, progress): 300ms"
+  - "Emphasis animations (modals, entrance): 500ms"
+  - "Enter animations use ease-out, exit animations use ease-in"
+  - "Standard bidirectional transitions use ease-in-out"
+  - "Loading states should show after 300ms delay to avoid flash"
+  - "Respect prefers-reduced-motion — remove decorative motion"
+  - "Animations should never block user interaction"
+  - "Test animations at 0.5x and 2x speed for quality assurance"

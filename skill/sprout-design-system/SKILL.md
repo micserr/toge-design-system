@@ -13,7 +13,7 @@ description: >
 
 # Sprout Design System
 
-> **Skill version:** 1.0.0 | **Generated from design-system-next:** v2.26.21
+> **Skill version:** 2.0.0 | **Generated from design-system-next:** v2.27.2
 
 ## Installation & Setup
 
@@ -86,6 +86,35 @@ Custom breakpoints: `sm: 575.98px`, `md: 767.98px`, `lg: 991.98px`, `xl: 1199.98
 
 Preflight is disabled.
 
+## Icons (Iconify)
+
+The design system uses `@iconify/vue` for all icons.
+
+### Usage
+
+```vue
+<script setup>
+import { Icon } from '@iconify/vue';
+</script>
+
+<template>
+  <Icon icon="ph:trash" />
+  <Icon icon="ph:pencil" class="spr-text-color-brand-base" />
+  <spr-button hasIcon>
+    <Icon icon="ph:plus" />
+    Add Item
+  </spr-button>
+</template>
+```
+
+### Icon Naming Convention
+
+Icons use the `{collection}:{name}` format. The primary collection is **Phosphor** (`ph:`):
+- `ph:trash`, `ph:pencil`, `ph:check`, `ph:plus`, `ph:caret-down`
+- `ph:file-text`, `ph:check-circle`, `ph:x`
+
+Browse all icons: https://icon-sets.iconify.design/ph/
+
 ## Snackbar (Pinia Store)
 
 ```ts
@@ -110,7 +139,7 @@ snackbarRef.value?.showSuccess({ text: 'Done!' });
 
 ## Component Quick Reference
 
-### Available Components (60+)
+### Available Components (65 exported)
 
 **Actions & Buttons:** Button, ButtonDropdown, FloatingAction
 **Form Inputs:** Input, InputContactNumber, InputCurrency, InputDropdown, InputEmail, InputPassword, InputSearch, InputUrl, InputUsername, Textarea, Checkbox, Radio, RadioGrouped, Switch, Slider, Select, SelectMultiple, SelectLadderized, FileUpload
@@ -199,3 +228,24 @@ Load the appropriate reference file based on what component you need:
   />
 </template>
 ```
+
+## Sprout Products
+
+Available product logos (for `<spr-logo>`): `hr`, `hr-mobile`, `performance-plus`, `recruit-plus`, `sail`, `readycash`, `readywage`
+
+```vue
+<spr-logo name="hr" theme="dark" width="50px" />
+```
+
+## Troubleshooting
+
+| Issue | Cause | Fix |
+|---|---|---|
+| Components render unstyled | Missing CSS import | Add `import 'design-system-next/style.css'` in main.ts |
+| Snackbar doesn't work | Missing Pinia | Add `app.use(createPinia())` BEFORE `app.use(SproutDesignSystem)` |
+| `spr-` utility classes not working | Tailwind not configured | Ensure consuming app's tailwind.config includes the design system's content paths |
+| Icons not rendering | Missing @iconify/vue | Run `npm install @iconify/vue` — it's a peer dependency |
+
+## Related Skills
+
+- **design-system-docu-skills** — For creating and maintaining VitePress component documentation (tabbed docs, PropsPlayground, Guidelines, UI Specs, Accessibility pages)

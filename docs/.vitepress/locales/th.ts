@@ -12,6 +12,10 @@ export const thConfig = {
         link: '/th/documentation/components/accordion',
       },
       {
+        text: 'รูปแบบ',
+        link: '/th/patterns/design-tokens',
+      },
+      {
         text: 'พื้นที่ทดลอง',
         link: 'https://zealous-flower-090cd4100.4.azurestaticapps.net/',
       },
@@ -56,7 +60,15 @@ export const thConfig = {
         {
           text: 'ขั้นสูง',
           items: [
-            { text: 'Claude Skills', link: '/th/guide/claude-skills' },
+            {
+              text: 'Claude Skills',
+              link: '/th/guide/claude-skills',
+              items: [
+                { text: 'Sprout Design System', link: '/th/guide/claude-skills/sprout-design-system' },
+                { text: 'Docu Skills', link: '/th/guide/claude-skills/design-system-docu-skills' },
+                { text: 'UI Patterns', link: '/th/guide/claude-skills/sprout-ui-patterns' },
+              ],
+            },
             { text: 'บันทึกการเปลี่ยนแปลง', link: '/th/guide/changelog' },
           ],
         },
@@ -64,10 +76,14 @@ export const thConfig = {
       '/th/documentation/': [
         {
           text: 'ส่วนประกอบ',
+          collapsed: false,
           items: [
             {
               text: 'แอคคอร์เดียน',
               link: '/th/documentation/components/accordion',
+              items: [
+                { text: 'แอคคอร์เดียน', link: '/th/documentation/components/accordion' },
+              ],
             },
             {
               text: 'ตัวกรองคุณลักษณะ',
@@ -93,10 +109,8 @@ export const thConfig = {
               text: 'ปุ่ม',
               link: '/th/documentation/components/button/button',
               items: [
-                {
-                  text: 'ปุ่มดร็อปดาวน์',
-                  link: '/th/documentation/components/button/button-dropdown',
-                },
+                { text: 'ปุ่ม', link: '/th/documentation/components/button/button' },
+                { text: 'ปุ่มดร็อปดาวน์', link: '/th/documentation/components/button/button-dropdown' },
               ],
             },
             {
@@ -210,6 +224,7 @@ export const thConfig = {
         },
         {
           text: 'ฟอร์ม',
+          collapsed: false,
           items: [
             {
               text: 'เช็คบ็อกซ์',
@@ -298,6 +313,7 @@ export const thConfig = {
         },
         {
           text: 'ยูทิลิตี้',
+          collapsed: false,
           items: [
             {
               text: 'รัศมีขอบ',
@@ -339,6 +355,72 @@ export const thConfig = {
             {
               text: 'โลโก้ผลิตภัณฑ์',
               link: '/th/documentation/components/logo',
+            },
+          ],
+        },
+      ],
+      '/th/patterns/': [
+        {
+          text: 'พื้นฐาน',
+          items: [
+            {
+              text: 'โทเค็นการออกแบบ',
+              link: '/th/patterns/design-tokens',
+            },
+            {
+              text: 'ระบบเลย์เอาท์',
+              link: '/th/patterns/layout-system',
+            },
+            {
+              text: 'ความหนาแน่น',
+              link: '/th/patterns/density',
+            },
+            {
+              text: 'การเคลื่อนไหว',
+              link: '/th/patterns/motion',
+            },
+          ],
+        },
+        {
+          text: 'รูปแบบ UI',
+          items: [
+            {
+              text: 'ขอบการ์ด',
+              link: '/th/patterns/card-borders',
+            },
+            {
+              text: 'ส่วนฟอร์ม',
+              link: '/th/patterns/form-sections',
+            },
+            {
+              text: 'การแสดงข้อมูล',
+              link: '/th/patterns/data-visualization',
+            },
+          ],
+        },
+        {
+          text: 'พฤติกรรม',
+          items: [
+            {
+              text: 'กฎการโต้ตอบ',
+              link: '/th/patterns/interaction-rules',
+            },
+            {
+              text: 'การนำทาง',
+              link: '/th/patterns/navigation',
+            },
+          ],
+        },
+        {
+          text: 'แนวทาง',
+          items: [
+            {
+              text: 'การเข้าถึง',
+              link: '/th/patterns/accessibility',
+            },
+            {
+              text: 'แนวทางเนื้อหา',
+              link: '/th/patterns/content-guidelines',
             },
           ],
         },

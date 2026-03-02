@@ -1,9 +1,14 @@
 import DefaultTheme from 'vitepress/theme';
+import type { Theme } from 'vitepress';
 
 import pkg from '../../../package.json';
 
 import '../../../src/assets/styles/tailwind.css';
 import './custom.css';
+
+import Layout from './Layout.vue';
+import ComponentTabBar from './components/ComponentTabBar.vue';
+import PropsPlayground from './components/PropsPlayground.vue';
 
 const setPackageVersion = () => {
   if (typeof window !== 'undefined') {
@@ -66,4 +71,9 @@ setLocalesOnChange();
 
 export default {
   extends: DefaultTheme,
-};
+  Layout,
+  enhanceApp({ app }) {
+    app.component('ComponentTabBar', ComponentTabBar);
+    app.component('PropsPlayground', PropsPlayground);
+  },
+} satisfies Theme;

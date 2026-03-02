@@ -1,0 +1,146 @@
+# Sprout Design System — Density Rules
+# Defines spacing and sizing conventions for different density contexts.
+# Sprout products are data-heavy, so density control is critical for usability.
+
+# ---------------------------------------------------------------------------
+# Density modes
+# Not all components support all modes — this defines the conceptual scale
+# ---------------------------------------------------------------------------
+density-modes:
+  compact:
+    description: "Maximizes visible data. Used for tables, lists, dashboards."
+    row-height: 32px
+    vertical-padding: spr-py-1.5  # 6px
+    horizontal-padding: spr-px-3  # 12px (approximate — use size-spacing-2xs)
+    font-size: spr-body-xs-regular  # 12px
+    icon-size: 16px
+    gap: spr-gap-2  # 8px
+
+  default:
+    description: "Standard density. Used for forms, detail pages, general content."
+    row-height: 40px
+    vertical-padding: spr-py-2.5  # ~10px
+    horizontal-padding: spr-px-4  # 16px
+    font-size: spr-body-sm-regular  # 14px
+    icon-size: 20px
+    gap: spr-gap-4  # 16px
+
+  spacious:
+    description: "Generous whitespace. Used for landing pages, onboarding, marketing."
+    row-height: 48px
+    vertical-padding: spr-py-4  # 16px
+    horizontal-padding: spr-px-6  # 24px
+    font-size: spr-body-md-regular  # 16px
+    icon-size: 24px
+    gap: spr-gap-6  # 24px
+
+# ---------------------------------------------------------------------------
+# Table density
+# spr-table supports density prop
+# ---------------------------------------------------------------------------
+table:
+  compact:
+    row-height: 32px
+    cell-padding: "spr-px-3 spr-py-1.5"
+    font: spr-body-xs-regular
+    header-font: spr-label-xs-medium
+    use-case: "Data-heavy lists (employee directory, payroll records, time logs)"
+
+  default:
+    row-height: 40px
+    cell-padding: "spr-px-4 spr-py-2"
+    font: spr-body-sm-regular
+    header-font: spr-label-sm-medium
+    use-case: "General-purpose tables"
+
+  spacious:
+    row-height: 48px
+    cell-padding: "spr-px-4 spr-py-3"
+    font: spr-body-sm-regular
+    header-font: spr-label-sm-medium
+    use-case: "Tables with action buttons or complex cell content"
+
+# ---------------------------------------------------------------------------
+# Form density
+# ---------------------------------------------------------------------------
+form:
+  compact:
+    field-gap: spr-gap-3  # 12px between fields
+    section-gap: spr-gap-4  # 16px between sections
+    label-size: spr-body-xs-regular-medium
+    input-height: 32px
+    use-case: "Inline editing, filters, compact settings panels"
+
+  default:
+    field-gap: spr-gap-4  # 16px between fields
+    section-gap: spr-gap-6  # 24px between sections
+    label-size: spr-body-sm-regular-medium
+    input-height: 40px
+    use-case: "Standard forms (employee profile, job posting, leave request)"
+
+  spacious:
+    field-gap: spr-gap-6  # 24px between fields
+    section-gap: spr-gap-8  # 32px between sections
+    label-size: spr-body-sm-regular-medium
+    input-height: 48px
+    use-case: "Onboarding forms, multi-step wizards"
+
+# ---------------------------------------------------------------------------
+# Card density
+# ---------------------------------------------------------------------------
+card:
+  compact:
+    padding: spr-p-3  # 12px
+    title: spr-subheading-xs
+    body: spr-body-xs-regular
+    gap: spr-gap-2
+
+  default:
+    padding: spr-p-4  # 16px
+    title: spr-subheading-sm
+    body: spr-body-sm-regular
+    gap: spr-gap-3
+
+  spacious:
+    padding: spr-p-6  # 24px
+    title: spr-subheading-sm
+    body: spr-body-md-regular
+    gap: spr-gap-4
+
+# ---------------------------------------------------------------------------
+# Navigation density
+# ---------------------------------------------------------------------------
+navigation:
+  sidenav:
+    rail-item-height: 48px  # icon-only rail
+    menu-item-height: 36px  # expanded menu items
+    menu-item-padding: "spr-px-3 spr-py-2"
+    submenu-indent: 16px
+
+  tabs:
+    tab-height: 40px
+    tab-padding: "spr-px-4"
+    gap: 0  # tabs are flush against each other
+
+# ---------------------------------------------------------------------------
+# Icon density
+# Standard icon sizes used across the system
+# ---------------------------------------------------------------------------
+icon-sizes:
+  xs: 12px   # inline with body-xs text
+  sm: 16px   # inline with body-sm text, compact UI
+  md: 20px   # default icon size, inline with body-md
+  lg: 24px   # prominent icons, buttons with text
+  xl: 32px   # feature icons, card headers
+  2xl: 48px  # empty states, onboarding illustrations
+
+# ---------------------------------------------------------------------------
+# Rules
+# ---------------------------------------------------------------------------
+rules:
+  - "Default density is the standard — use compact only when data density demands it"
+  - "Compact mode should never sacrifice readability or touch-target size (min 32px)"
+  - "Spacious mode is reserved for marketing-style or onboarding content"
+  - "Density should be consistent within a section — don't mix modes"
+  - "Mobile views should use default or spacious density for touch targets"
+  - "Table density is controlled via the density prop on spr-table"

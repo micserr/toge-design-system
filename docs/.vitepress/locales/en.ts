@@ -12,6 +12,10 @@ export const enConfig = {
         link: '/en/documentation/components/accordion',
       },
       {
+        text: 'Patterns',
+        link: '/en/patterns/design-tokens',
+      },
+      {
         text: 'Playground',
         link: 'https://zealous-flower-090cd4100.4.azurestaticapps.net/',
       },
@@ -56,6 +60,11 @@ export const enConfig = {
         {
           text: 'Claude Skills',
           link: '/en/guide/claude-skills',
+          items: [
+            { text: 'Sprout Design System', link: '/en/guide/claude-skills/sprout-design-system' },
+            { text: 'Docu Skills', link: '/en/guide/claude-skills/design-system-docu-skills' },
+            { text: 'UI Patterns', link: '/en/guide/claude-skills/sprout-ui-patterns' },
+          ],
         },
         {
           text: 'Changelog',
@@ -65,10 +74,14 @@ export const enConfig = {
       '/en/documentation/': [
         {
           text: 'Components',
+          collapsed: false,
           items: [
             {
               text: 'Accordion',
               link: '/en/documentation/components/accordion',
+              items: [
+                { text: 'Accordion', link: '/en/documentation/components/accordion' },
+              ],
             },
             {
               text: 'Attribute Filter',
@@ -94,10 +107,8 @@ export const enConfig = {
               text: 'Button',
               link: '/en/documentation/components/button/button',
               items: [
-                {
-                  text: 'Button Dropdown',
-                  link: '/en/documentation/components/button/button-dropdown',
-                },
+                { text: 'Button', link: '/en/documentation/components/button/button' },
+                { text: 'Button Dropdown', link: '/en/documentation/components/button/button-dropdown' },
               ],
             },
             {
@@ -211,6 +222,7 @@ export const enConfig = {
         },
         {
           text: 'Forms',
+          collapsed: false,
           items: [
             {
               text: 'Checkbox',
@@ -296,6 +308,7 @@ export const enConfig = {
         },
         {
           text: 'Utilities',
+          collapsed: false,
           items: [
             {
               text: 'Border Radius',
@@ -337,6 +350,72 @@ export const enConfig = {
             {
               text: 'Product Logo',
               link: '/en/documentation/components/logo',
+            },
+          ],
+        },
+      ],
+      '/en/patterns/': [
+        {
+          text: 'Foundations',
+          items: [
+            {
+              text: 'Design Tokens',
+              link: '/en/patterns/design-tokens',
+            },
+            {
+              text: 'Layout System',
+              link: '/en/patterns/layout-system',
+            },
+            {
+              text: 'Density',
+              link: '/en/patterns/density',
+            },
+            {
+              text: 'Motion',
+              link: '/en/patterns/motion',
+            },
+          ],
+        },
+        {
+          text: 'UI Patterns',
+          items: [
+            {
+              text: 'Card Borders',
+              link: '/en/patterns/card-borders',
+            },
+            {
+              text: 'Form Sections',
+              link: '/en/patterns/form-sections',
+            },
+            {
+              text: 'Data Visualization',
+              link: '/en/patterns/data-visualization',
+            },
+          ],
+        },
+        {
+          text: 'Behavior',
+          items: [
+            {
+              text: 'Interaction Rules',
+              link: '/en/patterns/interaction-rules',
+            },
+            {
+              text: 'Navigation',
+              link: '/en/patterns/navigation',
+            },
+          ],
+        },
+        {
+          text: 'Guidelines',
+          items: [
+            {
+              text: 'Accessibility',
+              link: '/en/patterns/accessibility',
+            },
+            {
+              text: 'Content Guidelines',
+              link: '/en/patterns/content-guidelines',
             },
           ],
         },

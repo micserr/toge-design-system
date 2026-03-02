@@ -1,0 +1,208 @@
+# Sprout Design System — Accessibility Rules
+# WCAG 2.1 AA compliance guidelines and implementation patterns.
+# Testing: @axe-core/playwright is used for automated accessibility testing.
+
+# ---------------------------------------------------------------------------
+# Target compliance level
+# ---------------------------------------------------------------------------
+compliance:
+  standard: "WCAG 2.1"
+  level: "AA"
+  testing-tool: "@axe-core/playwright v4.10.2"
+
+# ---------------------------------------------------------------------------
+# Color contrast
+# WCAG 2.1 AA minimum contrast ratios
+# ---------------------------------------------------------------------------
+contrast:
+  normal-text:
+    ratio: "4.5:1"
+    applies-to: "Text smaller than 18px (or 14px bold)"
+    examples:
+      - "spr-text-color-strong (mushroom-950) on white-50 — passes"
+      - "spr-text-color-base (mushroom-600) on white-50 — passes"
+      - "spr-text-color-weak (mushroom-400) on white-50 — verify per context"
+
+  large-text:
+    ratio: "3:1"
+    applies-to: "Text 18px+ (or 14px+ bold)"
+    examples:
+      - "Headings (spr-heading-*) — meets ratio with mushroom-950"
+
+  ui-components:
+    ratio: "3:1"
+    applies-to: "Interactive element boundaries, icons, focus indicators"
+    examples:
+      - "Input borders: mushroom-300 on white-50 — verify"
+      - "Focus ring: mushroom-900 (#394141) — passes"
+
+  non-text:
+    ratio: "3:1"
+    applies-to: "Graphical objects, chart elements, icons conveying meaning"
+
+  rules:
+    - "NEVER rely on color alone to convey information"
+    - "Pair color coding with icons, text labels, or patterns"
+    - "Disabled states (white-400 text) are exempt from contrast requirements"
+    - "Placeholder text (mushroom-400) must not be the only way to convey instructions"
+
+# ---------------------------------------------------------------------------
+# Keyboard navigation
+# ---------------------------------------------------------------------------
+keyboard:
+  tab-order:
+    rule: "Tab order MUST follow visual reading order (left-to-right, top-to-bottom)"
+    implementation: "Natural DOM order — avoid tabindex > 0"
+
+  focus-visible:
+    rule: "All interactive elements MUST show a visible focus indicator"
+    style:
+      shadow: "0px 0px 0px 2px #394141"  # mushroom-900
+      token: spr-shadow-button-active
+    note: "The design system components apply focus styles automatically"
+
+  key-bindings:
+    enter: "Activate buttons, submit forms, confirm dialogs"
+    space: "Toggle checkboxes, switches, activate buttons"
+    escape: "Close modals, popovers, dropdowns"
+    arrow-keys: "Navigate within lists, menus, radio groups, tabs"
+    tab: "Move to next focusable element"
+    shift-tab: "Move to previous focusable element"
+    home: "Move to first item in list/menu"
+    end: "Move to last item in list/menu"
+
+  skip-link:
+    rule: "Provide a skip-to-main-content link as the first focusable element"
+    text: "Skip to main content"
+
+  focus-trap:
+    rule: "Modals and dialogs MUST trap focus within the overlay"
+    implementation: "Focus cycles between first and last focusable element"
+
+# ---------------------------------------------------------------------------
+# ARIA patterns
+# Common ARIA patterns used in design system components
+# ---------------------------------------------------------------------------
+aria-patterns:
+  button:
+    role: button
+    attributes:
+      - "aria-label for icon-only buttons"
+      - "aria-disabled='true' instead of removing from tab order"
+    note: "spr-button handles this automatically"
+
+  modal:
+    role: dialog
+    attributes:
+      - "aria-modal='true'"
+      - "aria-labelledby pointing to title"
+      - "aria-describedby pointing to body content (optional)"
+    focus: "Move focus to first focusable element on open, return to trigger on close"
+
+  tabs:
+    role: tablist
+    tab-role: tab
+    panel-role: tabpanel
+    attributes:
+      - "aria-selected='true' on active tab"
+      - "aria-controls linking tab to its panel"
+      - "aria-labelledby on panel linking back to tab"
+
+  menu:
+    role: menu
+    item-role: menuitem
+    attributes:
+      - "aria-expanded on trigger"
+      - "aria-haspopup='true' on trigger"
+
+  combobox:
+    role: combobox
+    attributes:
+      - "aria-expanded"
+      - "aria-autocomplete"
+      - "aria-activedescendant for highlighted option"
+    note: "spr-select implements this pattern"
+
+  table:
+    role: "implicit via <table>"
+    attributes:
+      - "aria-sort on sortable column headers"
+      - "aria-selected on selected rows"
+      - "aria-label or caption for table purpose"
+
+  alert:
+    role: alert
+    note: "Used for snackbar/toast messages. Automatically announced by screen readers."
+
+  form:
+    attributes:
+      - "aria-required='true' on required fields"
+      - "aria-invalid='true' on fields with errors"
+      - "aria-describedby linking to helper/error text"
+      - "aria-errormessage for error descriptions"
+
+# ---------------------------------------------------------------------------
+# Reduced motion
+# ---------------------------------------------------------------------------
+reduced-motion:
+  media-query: "(prefers-reduced-motion: reduce)"
+  behavior:
+    - "Disable all decorative animations (transitions, transforms)"
+    - "Keep essential motion (loading spinners, progress indicators)"
+    - "Replace slide/fade transitions with instant show/hide"
+  implementation: >
+    Components should check prefers-reduced-motion and skip animations.
+    Currently NOT fully implemented — this is aspirational for the design system.
+
+# ---------------------------------------------------------------------------
+# Screen reader guidelines
+# ---------------------------------------------------------------------------
+screen-reader:
+  images:
+    - "Decorative images: alt=''"
+    - "Informative images: descriptive alt text"
+    - "Complex images (charts): aria-describedby linking to text description"
+
+  icons:
+    - "Decorative icons (next to text label): aria-hidden='true'"
+    - "Standalone icons (icon-only buttons): aria-label on the button"
+
+  live-regions:
+    - "Snackbar notifications: role='alert' or aria-live='assertive'"
+    - "Loading states: aria-live='polite' with status message"
+    - "Form validation: aria-live='polite' on error container"
+
+  landmarks:
+    - "<header> for site header / sidenav top"
+    - "<nav> for navigation (sidenav, breadcrumbs, tabs)"
+    - "<main> for primary content area"
+    - "<footer> for page footer"
+    - "Use aria-label to differentiate multiple nav elements"
+
+# ---------------------------------------------------------------------------
+# Touch targets (mobile)
+# ---------------------------------------------------------------------------
+touch-targets:
+  minimum-size: 44px  # WCAG 2.5.8 — Target Size (Minimum)
+  recommended-size: 48px
+  spacing: 8px  # minimum space between adjacent targets
+  rules:
+    - "All interactive elements must be at least 44x44px on touch devices"
+    - "Recommended 48x48px for primary actions"
+    - "8px minimum spacing between adjacent touch targets"
+    - "Compact table rows (32px) should expand tap area via padding"
+
+# ---------------------------------------------------------------------------
+# Rules summary
+# ---------------------------------------------------------------------------
+rules:
+  - "WCAG 2.1 AA is the minimum compliance target"
+  - "All interactive elements must be keyboard accessible"
+  - "Focus indicators must be visible and meet 3:1 contrast"
+  - "Color must never be the sole means of conveying information"
+  - "Modals must trap focus and return focus on close"
+  - "Form fields must have associated labels (visible or aria-label)"
+  - "Error messages must be programmatically associated with their fields"
+  - "Dynamic content changes must use aria-live regions"
+  - "Test with @axe-core/playwright for automated checks"
+  - "Manual testing: keyboard-only navigation + screen reader (VoiceOver / NVDA)"

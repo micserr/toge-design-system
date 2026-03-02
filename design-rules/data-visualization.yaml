@@ -1,0 +1,152 @@
+# Sprout Design System — Data Visualization Rules
+# Defines color palettes, chart conventions, and data display patterns.
+# These guidelines ensure consistent data presentation across Sprout products.
+
+# ---------------------------------------------------------------------------
+# Chart color palette
+# Ordered for maximum distinguishability and accessibility
+# ---------------------------------------------------------------------------
+chart-colors:
+  primary: kangkong-600       # #17AD49 — main/default data series
+  secondary: blueberry-600    # #1679FA — second series
+  tertiary: carrot-600        # #FF7F00 — third series
+
+  # Full categorical palette for multi-series charts (max 8 recommended)
+  categorical:
+    - kangkong-600   # #17AD49
+    - blueberry-600  # #1679FA
+    - carrot-600     # #FF7F00
+    - ubas-600       # #8139EE
+    - wintermelon-600 # #0592B5
+    - mango-600      # #E29300
+    - tomato-500     # #EC4750
+    - mushroom-500   # #738482
+
+  # Sequential palette for heatmaps, gradients (single hue, light to dark)
+  sequential:
+    kangkong: [kangkong-100, kangkong-200, kangkong-300, kangkong-400, kangkong-500, kangkong-600, kangkong-700, kangkong-800]
+    blueberry: [blueberry-100, blueberry-200, blueberry-300, blueberry-400, blueberry-500, blueberry-600, blueberry-700, blueberry-800]
+
+  # Semantic colors for status-based data
+  semantic:
+    positive: kangkong-600     # success, growth, approved
+    negative: tomato-600       # loss, decline, rejected
+    neutral: mushroom-400      # no change, pending
+    warning: carrot-600        # at risk, needs attention
+    information: blueberry-600 # informational highlight
+
+# ---------------------------------------------------------------------------
+# Chart typography
+# ---------------------------------------------------------------------------
+chart-typography:
+  title:
+    class: spr-subheading-sm
+    color: spr-text-color-strong
+  subtitle:
+    class: spr-body-sm-regular
+    color: spr-text-color-base
+  axis-label:
+    class: spr-body-xs-regular
+    color: spr-text-color-base
+  axis-tick:
+    class: spr-body-xs-regular
+    color: spr-text-color-weak
+  data-label:
+    class: spr-body-xs-regular-medium
+    color: spr-text-color-strong
+  legend:
+    class: spr-body-xs-regular
+    color: spr-text-color-base
+
+# ---------------------------------------------------------------------------
+# Chart layout rules
+# ---------------------------------------------------------------------------
+chart-layout:
+  container:
+    border: spr-border-color-weak
+    border-radius: spr-rounded-border-radius-lg
+    padding: spr-p-4
+    note: "Charts live inside standard card containers"
+
+  grid-lines:
+    color: spr-border-color-weak  # mushroom-200 — subtle grid
+    style: dashed
+    note: "Only show horizontal grid lines by default"
+
+  axis:
+    line-color: spr-border-color-base  # mushroom-300
+    rules:
+      - "Y-axis always starts at 0 for bar charts"
+      - "X-axis labels rotate at 45deg if overlapping"
+      - "Max 6-8 tick marks per axis"
+
+  tooltip:
+    background: spr-background-color-inverted
+    text: spr-text-color-inverted-strong
+    border-radius: spr-rounded-border-radius-md
+    shadow: spr-drop-shadow
+
+  legend:
+    position: bottom  # default position
+    alignment: center
+    spacing: spr-gap-4
+    rules:
+      - "Legend below chart for 3+ series"
+      - "Inline legend for 1-2 series"
+      - "Interactive legends (click to toggle visibility)"
+
+# ---------------------------------------------------------------------------
+# Specific chart type rules
+# ---------------------------------------------------------------------------
+chart-types:
+  bar:
+    border-radius: "spr-rounded-border-radius-xs (top corners only)"
+    min-bar-width: 16px
+    gap-ratio: 0.3  # 30% gap between bars
+
+  line:
+    stroke-width: 2px
+    dot-radius: 4px
+    dot-active-radius: 6px
+    area-opacity: 0.1  # for area charts
+
+  pie-donut:
+    stroke-color: white-50  # white gap between slices
+    stroke-width: 2px
+    donut-thickness: 40%
+    max-slices: 6  # group remainder as "Other"
+    label-placement: outside
+
+# ---------------------------------------------------------------------------
+# Data formatting
+# ---------------------------------------------------------------------------
+data-formatting:
+  numbers:
+    thousands-separator: ","
+    decimal-places: 2  # default, adjust per context
+    currency: "PHP"  # Philippine Peso (Sprout is PH-based)
+    abbreviation:
+      thousands: "K"
+      millions: "M"
+      billions: "B"
+
+  percentages:
+    decimal-places: 1
+    suffix: "%"
+
+  dates:
+    format-short: "MMM D"      # Jan 1
+    format-medium: "MMM D, YYYY"  # Jan 1, 2025
+    format-long: "MMMM D, YYYY"  # January 1, 2025
+
+# ---------------------------------------------------------------------------
+# Rules
+# ---------------------------------------------------------------------------
+rules:
+  - "Maximum 8 series in a single chart — beyond that, consider filtering or grouping"
+  - "Always include a chart title and optional subtitle for context"
+  - "Use semantic colors (positive/negative) for status-based visualizations"
+  - "Avoid red/green only encoding — pair with icons or patterns for colorblind users"
+  - "Charts must be keyboard-navigable and screen-reader accessible"
+  - "Provide data tables as alternative for complex charts"
+  - "Empty state: show illustration + 'No data available' when chart has zero data"

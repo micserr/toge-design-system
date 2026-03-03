@@ -191,8 +191,8 @@ import TogeAccordion from '@/toge/patterns/accordion/accordion.vue'
 import TogeTabs from '@/toge/patterns/tabs/tabs.vue'
 import TogeStepper from '@/toge/patterns/stepper/stepper.vue'
 import TogeStep from '@/toge/patterns/stepper/step/step.vue'
-import TogeAuditTrail from '@/toge/components/audit-trail/audit-trail.vue'
-import TogeTimePicker from '@/toge/components/time-picker/time-picker.vue'
+import TogeAuditTrail from '@/toge/patterns/audit-trail/audit-trail.vue'
+import TogeTimePicker from '@/toge/patterns/time-picker/time-picker.vue'
 
 // Phase 2
 import TogeInput from '@/toge/primitives/input/input.vue'
@@ -220,11 +220,11 @@ import TogeFloatingAction from '@/toge/primitives/floating-action/floating-actio
 import TogeEventCell from '@/toge/primitives/event-cell/event-cell.vue'
 
 // Phase 4
-import TogeList from '@/toge/components/list/list.vue'
+import TogeList from '@/toge/patterns/list/list.vue'
 import TogeDropdown from '@/toge/primitives/dropdown/dropdown.vue'
-import TogeSelect from '@/toge/components/select/select.vue'
-import TogeSelectMultiple from '@/toge/components/select-multiple/select-multiple.vue'
-import TogeSelectLadderized from '@/toge/components/select-ladderized/select-ladderized.vue'
+import TogeSelect from '@/toge/patterns/select/select.vue'
+import TogeSelectMultiple from '@/toge/patterns/select-multiple/select-multiple.vue'
+import TogeSelectLadderized from '@/toge/patterns/select-ladderized/select-ladderized.vue'
 import TogeFilter from '@/toge/components/filter/filter.vue'
 import TogeAttributeFilter from '@/toge/components/attribute-filter/attribute-filter.vue'
 import TogeTable from '@/toge/components/table/table.vue'

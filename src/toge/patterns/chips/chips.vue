@@ -48,7 +48,7 @@ import { Icon } from '@iconify/vue'
 import type { ChipsProps, ChipsEmits } from './chips.types'
 import { getChipsIcon } from './chips.styles'
 import TogeBadge from '../../primitives/badge/badge.vue'
-import TogeAvatar from '../../primitives/avatar/avatar.vue'
+import TogeAvatar from '../../molecules/avatar/avatar.vue'
 import TogeChip from '../../primitives/chip/chip.vue'
 
 const props = withDefaults(defineProps<ChipsProps>(), {

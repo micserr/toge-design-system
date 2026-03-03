@@ -45,7 +45,7 @@ import {
   getAvatarInitials,
 } from './avatar.styles'
 import { useAvatarImageState } from './avatar.state'
-import TogeBadge from '../badge/badge.vue'
+import TogeBadge from '../../primitives/badge/badge.vue'
 
 const props = withDefaults(defineProps<AvatarProps>(), {
   alt: 'Avatar',

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import type { TableCellProps } from './table-cell.types'
-import TogeChip from '../chip/chip.vue'
-import TogeLozenge from '../lozenge/lozenge.vue'
-import TogeBadge from '../badge/badge.vue'
+import TogeChip from '../../primitives/chip/chip.vue'
+import TogeLozenge from '../../primitives/lozenge/lozenge.vue'
+import TogeBadge from '../../primitives/badge/badge.vue'
 
 const props = defineProps<TableCellProps>()
 </script>

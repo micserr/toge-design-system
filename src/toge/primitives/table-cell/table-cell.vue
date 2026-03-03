@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { TableCellProps } from './table-cell.types'
-import TogeChips from '../../components/chips/chips.vue'
+import TogeChip from '../chip/chip.vue'
 import TogeLozenge from '../lozenge/lozenge.vue'
 import TogeBadge from '../badge/badge.vue'
 
@@ -9,16 +9,11 @@ const props = defineProps<TableCellProps>()
 
 <template>
   <div class="spr-flex spr-items-center">
-    <TogeChips
+    <TogeChip
       v-if="props.cell.type === 'chip'"
       :label="props.cell.title"
       :icon="props.cell.icon"
       :icon-weight="props.cell.iconWeight"
-      :badge="props.cell.badge"
-      :badge-text="props.cell.badgeText"
-      :badge-variant="props.cell.badgeVariant"
-      :avatar-url="props.cell.avatarUrl"
-      :avatar-variant="props.cell.avatarVariant"
     />
     <TogeLozenge
       v-else-if="props.cell.type === 'lozenge'"

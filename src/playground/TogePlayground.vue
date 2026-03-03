@@ -231,11 +231,11 @@ import TogeTable from '@/toge/patterns/table/table.vue'
 import TogeTableActions from '@/toge/patterns/table-actions/table-actions.vue'
 import TogeTableCell from '@/toge/primitives/table-cell/table-cell.vue'
 import TogeTablePagination from '@/toge/patterns/table-pagination/table-pagination.vue'
-import TogeDateCalendarPicker from '@/toge/components/date-calendar-picker/date-calendar-picker.vue'
-import TogeDatePicker from '@/toge/components/date-picker/date-picker.vue'
-import TogeDateRangePicker from '@/toge/components/date-range-picker/date-range-picker.vue'
-import TogeMonthYearPicker from '@/toge/components/month-year-picker/month-year-picker.vue'
-import TogeSnackbar from '@/toge/components/snackbar/snackbar.vue'
+import TogeDateCalendarPicker from '@/toge/patterns/date-calendar-picker/date-calendar-picker.vue'
+import TogeDatePicker from '@/toge/patterns/date-picker/date-picker.vue'
+import TogeDateRangePicker from '@/toge/patterns/date-range-picker/date-range-picker.vue'
+import TogeMonthYearPicker from '@/toge/patterns/month-year-picker/month-year-picker.vue'
+import TogeSnackbar from '@/toge/patterns/snackbar/snackbar.vue'
 
 interface PropDef {
   name: string

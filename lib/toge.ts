@@ -6,7 +6,7 @@ const PREFIX = 'toge-'
 
 // Dynamically import all toge components
 // @ts-ignore
-const components = import.meta.glob('../src/toge/components/**/*.vue', { eager: true })
+const components = import.meta.glob('../src/toge/{primitives,patterns}/**/*.vue', { eager: true })
 
 // Global install
 const install = (app: App) => {
@@ -130,11 +130,11 @@ export { default as TogeTable } from '../src/toge/patterns/table/table.vue'
 export { default as TogeTableActions } from '../src/toge/patterns/table-actions/table-actions.vue'
 export { default as TogeTableCell } from '../src/toge/primitives/table-cell/table-cell.vue'
 export { default as TogeTablePagination } from '../src/toge/patterns/table-pagination/table-pagination.vue'
-export { default as TogeDateCalendarPicker } from '../src/toge/components/date-calendar-picker/date-calendar-picker.vue'
-export { default as TogeDatePicker } from '../src/toge/components/date-picker/date-picker.vue'
-export { default as TogeDateRangePicker } from '../src/toge/components/date-range-picker/date-range-picker.vue'
-export { default as TogeMonthYearPicker } from '../src/toge/components/month-year-picker/month-year-picker.vue'
-export { default as TogeSnackbar } from '../src/toge/components/snackbar/snackbar.vue'
+export { default as TogeDateCalendarPicker } from '../src/toge/patterns/date-calendar-picker/date-calendar-picker.vue'
+export { default as TogeDatePicker } from '../src/toge/patterns/date-picker/date-picker.vue'
+export { default as TogeDateRangePicker } from '../src/toge/patterns/date-range-picker/date-range-picker.vue'
+export { default as TogeMonthYearPicker } from '../src/toge/patterns/month-year-picker/month-year-picker.vue'
+export { default as TogeSnackbar } from '../src/toge/patterns/snackbar/snackbar.vue'
 
 // ─── Snackbar store (separate from component) ────────────────────────────────
 export { useSnackbarStore } from '../src/toge/stores/useSnackbarStore'
@@ -151,8 +151,8 @@ export type * from '../src/toge/patterns/table/table.types'
 export type * from '../src/toge/patterns/table-actions/table-actions.types'
 export type * from '../src/toge/primitives/table-cell/table-cell.types'
 export type * from '../src/toge/patterns/table-pagination/table-pagination.types'
-export type * from '../src/toge/components/date-calendar-picker/date-calendar-picker.types'
-export type * from '../src/toge/components/date-picker/date-picker.types'
-export type * from '../src/toge/components/date-range-picker/date-range-picker.types'
-export type * from '../src/toge/components/month-year-picker/month-year-picker.types'
-export type * from '../src/toge/components/snackbar/snackbar.types'
+export type * from '../src/toge/patterns/date-calendar-picker/date-calendar-picker.types'
+export type * from '../src/toge/patterns/date-picker/date-picker.types'
+export type * from '../src/toge/patterns/date-range-picker/date-range-picker.types'
+export type * from '../src/toge/patterns/month-year-picker/month-year-picker.types'
+export type * from '../src/toge/patterns/snackbar/snackbar.types'

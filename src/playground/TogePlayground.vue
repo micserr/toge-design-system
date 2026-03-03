@@ -212,9 +212,9 @@ import TogeSwitch from '@/toge/primitives/switch/switch.vue'
 import TogeSlider from '@/toge/primitives/slider/slider.vue'
 import TogeFileUpload from '@/toge/patterns/file-upload/file-upload.vue'
 import TogeProgressBar from '@/toge/primitives/progress-bar/progress-bar.vue'
-import TogeEmptyState from '@/toge/patterns/empty-state/empty-state.vue'
-import TogeBanner from '@/toge/patterns/banner/banner.vue'
-import TogeCard from '@/toge/patterns/card/card.vue'
+import TogeEmptyState from '@/toge/molecules/empty-state/empty-state.vue'
+import TogeBanner from '@/toge/molecules/banner/banner.vue'
+import TogeCard from '@/toge/molecules/card/card.vue'
 import TogeLogo from '@/toge/primitives/logo/logo.vue'
 import TogeFloatingAction from '@/toge/primitives/floating-action/floating-action.vue'
 import TogeEventCell from '@/toge/primitives/event-cell/event-cell.vue'
@@ -235,7 +235,7 @@ import TogeDateCalendarPicker from '@/toge/patterns/date-calendar-picker/date-ca
 import TogeDatePicker from '@/toge/patterns/date-picker/date-picker.vue'
 import TogeDateRangePicker from '@/toge/patterns/date-range-picker/date-range-picker.vue'
 import TogeMonthYearPicker from '@/toge/patterns/month-year-picker/month-year-picker.vue'
-import TogeSnackbar from '@/toge/patterns/snackbar/snackbar.vue'
+import TogeSnackbar from '@/toge/molecules/snackbar/snackbar.vue'
 
 interface PropDef {
   name: string

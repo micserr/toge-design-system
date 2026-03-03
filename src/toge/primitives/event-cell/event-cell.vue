@@ -10,11 +10,11 @@
     @keydown.space.prevent="handleClick"
   >
     <slot name="prefix">
-      <Icon v-if="resolvedIcon" :icon="resolvedIcon" class="spr-flex-none" />
+      <Icon v-if="props.icon" :icon="props.icon" class="spr-flex-none" />
     </slot>
     <slot>
       <div class="spr-flex spr-flex-col spr-flex-1 spr-min-w-0">
-        <span :class="[classes.typeLabel, classes.textFormat]">{{ shiftLabel }}</span>
+        <span v-if="timeLabel" :class="[classes.title, classes.textFormat]">{{ timeLabel }}</span>
         <span v-if="props.title" :class="[classes.title, classes.textFormat]">{{ props.title }}</span>
         <span v-if="props.description" :class="[classes.description, classes.textFormat]">{{ props.description }}</span>
         <span v-if="props.subDescription" :class="[classes.description, classes.textFormat, 'spr-body-xs-regular']">{{ props.subDescription }}</span>
@@ -25,44 +25,37 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
-import type { CalendarCellProps, CalendarCellEmits } from './calendar-cell.types'
-import { getCalendarCellClasses, SHIFT_LABELS, ICON_MAP } from './calendar-cell.styles'
+import type { EventCellProps, EventCellEmits, EventCellSlots } from './event-cell.types'
+import { getEventCellClasses } from './event-cell.styles'
 
-const props = withDefaults(defineProps<CalendarCellProps>(), {
-  type: 'standard',
-  status: 'default',
-  state: 'danger',
+const props = withDefaults(defineProps<EventCellProps>(), {
+  state: 'information',
   fullwidth: false,
   viewOnly: true,
   loading: false,
-  customColor: '',
   lineThrough: false,
   disabled: false,
 })
 
-const emit = defineEmits<CalendarCellEmits>()
+const emit = defineEmits<EventCellEmits>()
 
-defineSlots<{
-  default(props: {}): any
-  prefix(props: {}): any
-}>()
+defineSlots<EventCellSlots>()
 
-const classes = computed(() => getCalendarCellClasses({
-  type: props.type!,
-  status: props.status!,
+const classes = computed(() => getEventCellClasses({
   state: props.state!,
   fullwidth: props.fullwidth!,
   viewOnly: props.viewOnly!,
   loading: props.loading!,
-  customColor: props.customColor!,
   lineThrough: props.lineThrough!,
   disabled: props.disabled!,
-  hasCustomBorderSize: false,
-  customBorderSize: '',
 }))
 
-const shiftLabel = computed(() => SHIFT_LABELS[props.type!] ?? props.type)
-const resolvedIcon = computed(() => props.icon || ICON_MAP[props.type!] || '')
+const timeLabel = computed(() => {
+  if (props.startTime && props.endTime) return `${props.startTime} - ${props.endTime}`
+  if (props.startTime) return props.startTime
+  if (props.endTime) return props.endTime
+  return ''
+})
 
 function handleClick(evt: MouseEvent | KeyboardEvent) {
   if (!props.viewOnly && !props.disabled) emit('click', evt as MouseEvent)

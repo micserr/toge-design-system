@@ -217,7 +217,7 @@ import TogeBanner from '@/toge/components/banner/banner.vue'
 import TogeCard from '@/toge/components/card/card.vue'
 import TogeLogo from '@/toge/primitives/logo/logo.vue'
 import TogeFloatingAction from '@/toge/primitives/floating-action/floating-action.vue'
-import TogeCalendarCell from '@/toge/components/calendar-cell/calendar-cell.vue'
+import TogeEventCell from '@/toge/primitives/event-cell/event-cell.vue'
 
 // Phase 4
 import TogeList from '@/toge/components/list/list.vue'
@@ -645,12 +645,14 @@ const componentRegistry: Record<string, ComponentConfig> = {
       { name: 'show', type: 'boolean', default: true },
     ],
   },
-  'calendar-cell': {
-    component: TogeCalendarCell,
-    tag: 'toge-calendar-cell',
+  'event-cell': {
+    component: TogeEventCell,
+    tag: 'toge-event-cell',
     propDefs: [
-      { name: 'title', type: 'text', default: '09:00 AM' },
-      { name: 'description', type: 'text', default: 'Team Meeting' },
+      { name: 'title', type: 'text', default: 'Team Meeting' },
+      { name: 'description', type: 'text', default: 'Conference Room A' },
+      { name: 'startTime', type: 'text', default: '09:00 AM' },
+      { name: 'endTime', type: 'text', default: '10:00 AM' },
       { name: 'state', type: 'select', options: ['success', 'information', 'pending', 'caution', 'danger'], default: 'information' },
       { name: 'fullwidth', type: 'boolean', default: false },
       { name: 'viewOnly', type: 'boolean', default: false },

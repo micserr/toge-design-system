@@ -65,7 +65,7 @@ export { default as TogeBanner } from '../src/toge/components/banner/banner.vue'
 export { default as TogeCard } from '../src/toge/components/card/card.vue'
 export { default as TogeLogo } from '../src/toge/primitives/logo/logo.vue'
 export { default as TogeFloatingAction } from '../src/toge/primitives/floating-action/floating-action.vue'
-export { default as TogeCalendarCell } from '../src/toge/components/calendar-cell/calendar-cell.vue'
+export { default as TogeEventCell } from '../src/toge/primitives/event-cell/event-cell.vue'
 
 // ─── Type re-exports — Phase 1 ───────────────────────────────────────────────
 export type * from '../src/toge/primitives/button/button.types'
@@ -104,7 +104,7 @@ export type * from '../src/toge/components/empty-state/empty-state.types'
 export type * from '../src/toge/components/banner/banner.types'
 export type * from '../src/toge/components/card/card.types'
 export type * from '../src/toge/primitives/logo/logo.types'
-export type * from '../src/toge/components/calendar-cell/calendar-cell.types'
+export type * from '../src/toge/primitives/event-cell/event-cell.types'
 
 // ─── Type re-exports — Phase 3 ───────────────────────────────────────────────
 export type * from '../src/toge/components/modal/modal.types'

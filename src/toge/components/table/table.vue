@@ -151,7 +151,7 @@ import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
 import type { TableProps, TableEmits, TableSlots, SortOrder, TableHeader } from './table.types'
 import { getTableClasses } from './table.styles'
-import TogeCheckbox from '../checkbox/checkbox.vue'
+import TogeCheckbox from '../../primitives/checkbox/checkbox.vue'
 import TogeBadge from '../../primitives/badge/badge.vue'
 
 const props = withDefaults(defineProps<TableProps>(), {

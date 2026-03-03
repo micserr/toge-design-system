@@ -37,7 +37,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
-import TogeRadio from '../radio/radio.vue'
+import TogeRadio from '../../primitives/radio/radio.vue'
 import type { RadioGroupedProps, RadioGroupedEmits, RadioOption } from './radio-grouped.types'
 import { getRadioGroupedClasses, getOptionLabelClasses } from './radio-grouped.styles'
 

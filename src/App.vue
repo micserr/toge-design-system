@@ -16,8 +16,7 @@
       </template>
     </Sidenav>
     <main class="spr-flex-1 spr-p-6 spr-min-h-screen spr-background-color [@media(min-width:1024px)]:spr-pl-[calc(68px+1.5rem)]">
-      <h1 class="spr-title-lg spr-text-color-strong spr-m-0">Test Component Here</h1>
-      <p class="spr-body-sm-regular spr-text-color-base spr-mt-2">Sidenav is on the left. Resize to see mobile.</p>
+      <TogePlayground />
     </main>
   </div>
 </template>
@@ -25,6 +24,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import Sidenav from '@/components/sidenav/sidenav.vue';
+import TogePlayground from '@/playground/TogePlayground.vue';
 import type { NavLinks, ActiveNav, UserMenu } from '@/components/sidenav/sidenav';
 
 const activeNav = ref<ActiveNav>({ parentNav: 'Home', menu: 'Dashboard', submenu: '' });

@@ -25,6 +25,8 @@ export default defineConfig({
         'lib/**/*.ts',
         'src/components/**/*.ts',
         'src/components/**/*.vue',
+        'src/toge/**/*.ts',
+        'src/toge/**/*.vue',
       ],
       outDir: 'dist',
       insertTypesEntry: true,

@@ -26,11 +26,16 @@
     "./types": {
       "types": "./dist/design-system-next.es.d.ts",
       "import": "./dist/design-system-next.es.d.ts"
+    },
+    "./toge": {
+      "import": "./dist/toge.es.js",
+      "types": "./dist/toge.es.d.ts"
     }
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:toge": "vite build --config vite.toge.config.ts",
     "watch-build": "vite build --watch",
     "types": "vue-tsc --noEmit",
     "preview": "vite preview",

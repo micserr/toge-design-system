@@ -41,15 +41,15 @@ export { default as TogeTooltip } from '../src/toge/primitives/tooltip/tooltip.v
 export { default as TogePopper } from '../src/toge/primitives/popper/popper.vue'
 
 // ─── Phase 2 — Form controls ─────────────────────────────────────────────────
-export { default as TogeInput } from '../src/toge/components/input/input.vue'
-export { default as TogeInputSearch } from '../src/toge/components/input/input-search/input-search.vue'
-export { default as TogeInputDropdown } from '../src/toge/components/input/input-dropdown/input-dropdown.vue'
-export { default as TogeInputEmail } from '../src/toge/components/input/input-email/input-email.vue'
-export { default as TogeInputPassword } from '../src/toge/components/input/input-password/input-password.vue'
-export { default as TogeInputUrl } from '../src/toge/components/input/input-url/input-url.vue'
-export { default as TogeInputUsername } from '../src/toge/components/input/input-username/input-username.vue'
-export { default as TogeInputContactNumber } from '../src/toge/components/input/input-contact-number/input-contact-number.vue'
-export { default as TogeInputCurrency } from '../src/toge/components/input/input-currency/input-currency.vue'
+export { default as TogeInput } from '../src/toge/primitives/input/input.vue'
+export { default as TogeInputSearch } from '../src/toge/primitives/input/input-search/input-search.vue'
+export { default as TogeInputDropdown } from '../src/toge/primitives/input/input-dropdown/input-dropdown.vue'
+export { default as TogeInputEmail } from '../src/toge/primitives/input/input-email/input-email.vue'
+export { default as TogeInputPassword } from '../src/toge/primitives/input/input-password/input-password.vue'
+export { default as TogeInputUrl } from '../src/toge/primitives/input/input-url/input-url.vue'
+export { default as TogeInputUsername } from '../src/toge/primitives/input/input-username/input-username.vue'
+export { default as TogeInputContactNumber } from '../src/toge/primitives/input/input-contact-number/input-contact-number.vue'
+export { default as TogeInputCurrency } from '../src/toge/primitives/input/input-currency/input-currency.vue'
 export { default as TogeTextarea } from '../src/toge/components/textarea/textarea.vue'
 export { default as TogeCheckbox } from '../src/toge/components/checkbox/checkbox.vue'
 export { default as TogeRadio } from '../src/toge/components/radio/radio.vue'
@@ -89,7 +89,7 @@ export { default as TogeAuditTrail } from '../src/toge/components/audit-trail/au
 export { default as TogeTimePicker } from '../src/toge/components/time-picker/time-picker.vue'
 
 // ─── Type re-exports — Phase 2 ───────────────────────────────────────────────
-export type * from '../src/toge/components/input/input.types'
+export type * from '../src/toge/primitives/input/input.types'
 export type * from '../src/toge/components/textarea/textarea.types'
 export type * from '../src/toge/components/checkbox/checkbox.types'
 export type * from '../src/toge/components/radio/radio.types'

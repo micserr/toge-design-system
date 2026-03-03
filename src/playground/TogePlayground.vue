@@ -179,9 +179,9 @@ import TogeLozenge from '@/toge/primitives/lozenge/lozenge.vue'
 import TogeStatus from '@/toge/primitives/status/status.vue'
 import TogeChips from '@/toge/components/chips/chips.vue'
 import TogeAvatar from '@/toge/primitives/avatar/avatar.vue'
-import TogeCollapsible from '@/toge/components/collapsible/collapsible.vue'
-import TogeTooltip from '@/toge/components/tooltip/tooltip.vue'
-import TogePopper from '@/toge/components/popper/popper.vue'
+import TogeCollapsible from '@/toge/primitives/collapsible/collapsible.vue'
+import TogeTooltip from '@/toge/primitives/tooltip/tooltip.vue'
+import TogePopper from '@/toge/primitives/popper/popper.vue'
 
 // Phase 3
 import TogeModal from '@/toge/components/modal/modal.vue'
@@ -221,7 +221,7 @@ import TogeCalendarCell from '@/toge/components/calendar-cell/calendar-cell.vue'
 
 // Phase 4
 import TogeList from '@/toge/components/list/list.vue'
-import TogeDropdown from '@/toge/components/dropdown/dropdown.vue'
+import TogeDropdown from '@/toge/primitives/dropdown/dropdown.vue'
 import TogeSelect from '@/toge/components/select/select.vue'
 import TogeSelectMultiple from '@/toge/components/select-multiple/select-multiple.vue'
 import TogeSelectLadderized from '@/toge/components/select-ladderized/select-ladderized.vue'

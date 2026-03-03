@@ -73,7 +73,7 @@
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue'
 import TogeAvatar from '../../primitives/avatar/avatar.vue'
-import TogeCollapsible from '../collapsible/collapsible.vue'
+import TogeCollapsible from '../../primitives/collapsible/collapsible.vue'
 import type { AuditTrailProps, AuditTrailEmits } from './audit-trail.types'
 import { useAuditTrailState } from './audit-trail.state'
 

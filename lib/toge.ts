@@ -36,9 +36,9 @@ export { default as TogeLozenge } from '../src/toge/primitives/lozenge/lozenge.v
 export { default as TogeStatus } from '../src/toge/primitives/status/status.vue'
 export { default as TogeChips } from '../src/toge/components/chips/chips.vue'
 export { default as TogeAvatar } from '../src/toge/primitives/avatar/avatar.vue'
-export { default as TogeCollapsible } from '../src/toge/components/collapsible/collapsible.vue'
-export { default as TogeTooltip } from '../src/toge/components/tooltip/tooltip.vue'
-export { default as TogePopper } from '../src/toge/components/popper/popper.vue'
+export { default as TogeCollapsible } from '../src/toge/primitives/collapsible/collapsible.vue'
+export { default as TogeTooltip } from '../src/toge/primitives/tooltip/tooltip.vue'
+export { default as TogePopper } from '../src/toge/primitives/popper/popper.vue'
 
 // ─── Phase 2 — Form controls ─────────────────────────────────────────────────
 export { default as TogeInput } from '../src/toge/components/input/input.vue'
@@ -73,9 +73,9 @@ export type * from '../src/toge/primitives/lozenge/lozenge.types'
 export type * from '../src/toge/primitives/status/status.types'
 export type * from '../src/toge/components/chips/chips.types'
 export type * from '../src/toge/primitives/avatar/avatar.types'
-export type * from '../src/toge/components/collapsible/collapsible.types'
-export type * from '../src/toge/components/tooltip/tooltip.types'
-export type * from '../src/toge/components/popper/popper.types'
+export type * from '../src/toge/primitives/collapsible/collapsible.types'
+export type * from '../src/toge/primitives/tooltip/tooltip.types'
+export type * from '../src/toge/primitives/popper/popper.types'
 
 // ─── Phase 3 — Layout + UI-State Components ──────────────────────────────────
 export { default as TogeModal } from '../src/toge/components/modal/modal.vue'
@@ -118,7 +118,7 @@ export { generateTimeSlots } from '../src/toge/components/time-picker/time-picke
 
 // ─── Phase 4 — Data-Driven Components ────────────────────────────────────────
 export { default as TogeList } from '../src/toge/components/list/list.vue'
-export { default as TogeDropdown } from '../src/toge/components/dropdown/dropdown.vue'
+export { default as TogeDropdown } from '../src/toge/primitives/dropdown/dropdown.vue'
 export { default as TogeSelect } from '../src/toge/components/select/select.vue'
 export { default as TogeSelectMultiple } from '../src/toge/components/select-multiple/select-multiple.vue'
 export { default as TogeSelectLadderized } from '../src/toge/components/select-ladderized/select-ladderized.vue'
@@ -140,7 +140,7 @@ export { useSnackbarStore } from '../src/toge/stores/useSnackbarStore'
 
 // ─── Type re-exports — Phase 4 ───────────────────────────────────────────────
 export type * from '../src/toge/components/list/list.types'
-export type * from '../src/toge/components/dropdown/dropdown.types'
+export type * from '../src/toge/primitives/dropdown/dropdown.types'
 export type * from '../src/toge/components/select/select.types'
 export type * from '../src/toge/components/select-multiple/select-multiple.types'
 export type * from '../src/toge/components/select-ladderized/select-ladderized.types'

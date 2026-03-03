@@ -1,6 +1,6 @@
 ---
 name: toge-component-builder
-description: Use when building, scaffolding, or refactoring toge components (the v2 Sprout Design System). Applies when creating new .vue/.types.ts/.styles.ts/.state.ts files under src/toge/components/, wiring lib/toge.ts exports, adding playground registry entries, or migrating v1 spr- components to toge pattern.
+description: Use when building, scaffolding, or refactoring toge components (the v2 Sprout Design System). Applies when creating new .vue/.types.ts/.styles.ts/.state.ts files under src/toge/primitives/ or src/toge/patterns/, wiring lib/toge.ts exports, adding playground registry entries, or migrating v1 spr- components to toge pattern.
 ---
 
 # Toge Component Builder
@@ -20,15 +20,46 @@ description: Use when building, scaffolding, or refactoring toge components (the
 Every toge component follows this exact structure:
 
 ```
-src/toge/components/{name}/
+# For PRIMITIVES (visual atoms — pass the 4-question atomic test):
+src/toge/primitives/{name}/
   {name}.vue          ← render shell, template + script setup
   {name}.types.ts     ← Props, Emits, Slots interfaces
   {name}.styles.ts    ← pure classNames function, ZERO Vue imports
   {name}.state.ts     ← ONLY if justified UI-only state exists
   index.ts            ← re-exports everything
+
+# For PATTERNS (composed shells — slot-driven, UI-state owners):
+src/toge/patterns/{name}/
+  {name}.vue
+  ...
 ```
 
-Sub-components live in a subfolder: `src/toge/components/stepper/step/step.vue`
+Sub-components live in a subfolder: `src/toge/primitives/stepper/step/step.vue`
+
+---
+
+## Which Tier?
+
+Apply the 4-Question Atomic Test before creating any component:
+
+1. Does it render **one** thing?
+2. Can it exist without knowing **why** it's being used?
+3. Is its only input **props + slots**?
+4. Can **two completely different products** use it unchanged?
+
+**All YES → Primitive** (`src/toge/primitives/`)
+**Any NO → Pattern** (`src/toge/patterns/`)
+
+### One-Way Dependency Rule
+
+```
+primitives/ → tokens only (@iconify/vue, floating-vue, classnames, spr- Tailwind)
+patterns/   → can import from ../primitives/ freely
+            → can import from sibling patterns/ (sparingly)
+
+❌ primitives/ MUST NOT import from patterns/
+❌ DS components MUST NOT import domain types
+```
 
 ---
 
@@ -183,14 +214,17 @@ Group 6: special cases (snackbar)
 After all components in a phase are built:
 
 ```typescript
-// Component exports
-export { default as TogeButton } from '../src/toge/components/button/button.vue'
+// Primitive export:
+export { default as TogeButton } from '../src/toge/primitives/button/button.vue'
+
+// Pattern export:
+export { default as TogeChips } from '../src/toge/patterns/chips/chips.vue'
 
 // Type re-exports
-export type * from '../src/toge/components/button/button.types'
+export type * from '../src/toge/primitives/button/button.types'
 
 // Utility exports (if any)
-export { generateTimeSlots } from '../src/toge/components/time-picker/time-picker.styles'
+export { generateTimeSlots } from '../src/toge/patterns/time-picker/time-picker.styles'
 
 // Store exports (special cases only)
 export { useSnackbarStore } from '../src/toge/stores/useSnackbarStore'
@@ -215,7 +249,10 @@ After wiring `lib/toge.ts`, add to `src/playground/TogePlayground.vue`:
 
 **Import:**
 ```typescript
-import TogeButton from '@/toge/components/button/button.vue'
+// Primitive:
+import TogeButton from '@/toge/primitives/button/button.vue'
+// Pattern:
+import TogeChips from '@/toge/patterns/chips/chips.vue'
 ```
 
 **Registry entry (ComponentConfig interface):**
@@ -276,17 +313,20 @@ Check diagnostics:
 | `createPinia()` in component | Move to store, accept data as prop |
 | `DEFAULT_OPTIONS` const in defineProps default | Inline the value directly |
 | Forgetting `defineSlots<{...}>()` | Always declare even if template uses `$slots` |
+| Placing a composed/stateful component in primitives/ | Run the 4-question test; composed shells belong in patterns/ |
+| Importing from patterns/ inside primitives/ | One-way rule violation — primitives must only use tokens/peer deps |
 
 ---
 
 ## Phase Reference
 
-| Phase | Components | Count |
-|---|---|---|
-| Phase 1 | button, button-dropdown, badge, icon, lozenge, status, chips, avatar, collapsible, tooltip, popper | 11 |
-| Phase 2 | input, input-search, input-dropdown, input-email, input-password, input-url, input-username, input-contact-number, input-currency, textarea, checkbox, radio, radio-grouped, switch, slider, file-upload, progress-bar, empty-state, banner, card, logo, floating-action, calendar-cell | 23 |
-| Phase 3 | modal, sidepanel, stacking-sidepanel, accordion, tabs, stepper, step, audit-trail, time-picker | 9 |
-| Phase 4 | list, dropdown, select, select-multiple, select-ladderized, filter, attribute-filter, table, table-actions, table-chips-title, table-lozenge-title, table-pagination, date-calendar-picker, date-picker, date-range-picker, month-year-picker, snackbar | 17 |
+| Phase | Components | Count | Tier | Status |
+|---|---|---|---|---|
+| Phase 1 | button, button-dropdown, badge, icon, lozenge, status, chips, avatar, collapsible, tooltip, popper | 11 | Mixed | ✅ Done |
+| Phase 2 | input (all variants), textarea, checkbox, radio, radio-grouped, switch, slider, file-upload, progress-bar, empty-state, banner, card, logo, floating-action, calendar-cell | 23 | Mixed | ✅ Done |
+| Phase 3 | modal, sidepanel, stacking-sidepanel, accordion, tabs, stepper, step, audit-trail, time-picker | 9 | Patterns | ✅ Done |
+| Phase 4 | list, dropdown, select, select-multiple, select-ladderized, filter, attribute-filter, table, table-actions, table-pagination, date-calendar-picker, date-picker, date-range-picker, month-year-picker, snackbar | 17 | Patterns | ✅ Done |
+| Two-Tier Refactor | primitives/ + patterns/ split, chip, event-cell, table-cell | 3 new | Primitives | ✅ Done |
 
 ---
 
@@ -299,3 +339,4 @@ After every successful toge task, review this skill:
 4. Update the Phase Reference table if a new phase completes.
 
 **Update this file at:** `~/.claude/skills/toge-component-builder/SKILL.md`
+**Also sync to:** `skill/toge-component-builder/SKILL.md` (project-local copy)

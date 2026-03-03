@@ -1,15 +1,16 @@
 <template>
-  <div
+  <TogeChip
     v-if="props.visible"
-    :class="chipsBaseClasses"
+    :size="props.size"
+    :tone="props.tone"
+    :variant="props.variant"
     :disabled="props.disabled"
-    role="button"
-    tabindex="0"
+    :active="props.active"
+    :closable="props.closable"
     :aria-label="props.ariaLabel || undefined"
     :aria-pressed="props.active"
     @click="handleClick"
-    @keyup.enter="handleClick"
-    @keydown.space.prevent="handleClick"
+    @close="handleClose"
   >
     <template v-if="$slots.default">
       <slot />
@@ -34,33 +35,21 @@
       <span v-if="props.badge" class="chips-badge">
         <TogeBadge :text="props.badgeText" :variant="props.badgeVariant" size="small" position="default" />
       </span>
-      <span
-        v-if="props.closable"
-        class="chips-close"
-        role="button"
-        tabindex="0"
-        :aria-disabled="props.disabled"
-        @click.stop="handleClose"
-        @keyup.enter.stop="handleClose"
-      >
-        <slot name="close-icon">
-          <Icon icon="ph:x" />
-        </slot>
-      </span>
     </template>
     <template v-else>
       {{ props.day?.charAt(0) }}
     </template>
-  </div>
+  </TogeChip>
 </template>
 
 <script lang="ts" setup>
 import { computed, useSlots } from 'vue'
 import { Icon } from '@iconify/vue'
 import type { ChipsProps, ChipsEmits } from './chips.types'
-import { getChipsBaseClasses, getChipsIcon } from './chips.styles'
+import { getChipsIcon } from './chips.styles'
 import TogeBadge from '../../primitives/badge/badge.vue'
 import TogeAvatar from '../../primitives/avatar/avatar.vue'
+import TogeChip from '../../primitives/chip/chip.vue'
 
 const props = withDefaults(defineProps<ChipsProps>(), {
   label: '',
@@ -94,10 +83,6 @@ defineSlots<{
 
 const slots = useSlots()
 
-const chipsBaseClasses = computed(() =>
-  getChipsBaseClasses(props.variant, props.size, props.disabled, props.active, props.tone),
-)
-
 const resolvedIcon = computed(() => getChipsIcon(props.icon, props.iconWeight))
 
 const hasAvatar = computed(() => props.avatarUrl || props.avatarVariant || props.avatarInitials)
@@ -109,9 +94,9 @@ const handleClick = () => {
   }
 }
 
-const handleClose = (event: MouseEvent | KeyboardEvent) => {
+const handleClose = (event?: MouseEvent | KeyboardEvent) => {
   if (!props.disabled) {
-    emit('close', event)
+    emit('close', (event || new MouseEvent('click')) as MouseEvent | KeyboardEvent)
   }
 }
 </script>

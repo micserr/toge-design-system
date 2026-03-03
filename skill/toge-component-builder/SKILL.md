@@ -1,6 +1,6 @@
 ---
 name: toge-component-builder
-description: Use when building, scaffolding, or refactoring toge components (the v2 Sprout Design System). Applies when creating new .vue/.types.ts/.styles.ts/.state.ts files under src/toge/primitives/ or src/toge/patterns/, wiring lib/toge.ts exports, adding playground registry entries, or migrating v1 spr- components to toge pattern.
+description: Use when building, scaffolding, or refactoring toge components (the v2 Sprout Design System). Applies when creating new .vue/.types.ts/.styles.ts/.state.ts files under src/toge/primitives/, src/toge/molecules/, or src/toge/patterns/, wiring lib/toge.ts exports, adding playground registry entries, or migrating v1 spr- components to toge pattern.
 ---
 
 # Toge Component Builder
@@ -28,6 +28,14 @@ src/toge/primitives/{name}/
   {name}.state.ts     ← ONLY if justified UI-only state exists
   index.ts            ← re-exports everything
 
+# For MOLECULES (named UI concepts composed from 2–3 primitives):
+src/toge/molecules/{name}/
+  {name}.vue
+  {name}.types.ts
+  {name}.styles.ts
+  {name}.state.ts     ← ONLY if justified UI-only state exists
+  index.ts
+
 # For PATTERNS (composed shells — slot-driven, UI-state owners):
 src/toge/patterns/{name}/
   {name}.vue
@@ -40,26 +48,26 @@ Sub-components live in a subfolder: `src/toge/primitives/stepper/step/step.vue`
 
 ## Which Tier?
 
-Apply the 4-Question Atomic Test before creating any component:
+**Tier 1 — Primitives** (`src/toge/primitives/`): ONE indivisible visual element
+**Tier 2 — Molecules** (`src/toge/molecules/`): 2–3 atoms forming a new named UI concept
+**Tier 3 — Patterns** (`src/toge/patterns/`): layout shell with product-injected slots
 
-1. Does it render **one** thing?
-2. Can it exist without knowing **why** it's being used?
-3. Is its only input **props + slots**?
-4. Can **two completely different products** use it unchanged?
+4-Question Test for Primitives:
+1. Does it render ONE thing?
+2. Can it exist without knowing WHY?
+3. Only props + slots as input?
+4. Can two different products use it unchanged?
+→ All YES = Primitive. Any NO = Molecule or Pattern.
 
-**All YES → Primitive** (`src/toge/primitives/`)
-**Any NO → Pattern** (`src/toge/patterns/`)
+Molecule vs Pattern:
+- Self-contained visual concept (chip, banner, datepicker) → Molecule
+- Layout shell with named slots for product content → Pattern
 
-### One-Way Dependency Rule
-
-```
-primitives/ → tokens only (@iconify/vue, floating-vue, classnames, spr- Tailwind)
-patterns/   → can import from ../primitives/ freely
-            → can import from sibling patterns/ (sparingly)
-
-❌ primitives/ MUST NOT import from patterns/
-❌ DS components MUST NOT import domain types
-```
+One-Way Rule:
+primitives → tokens only
+molecules  → primitives + sibling molecules
+patterns   → molecules + primitives
+❌ Never import upward (patterns → molecules is OK, molecules → patterns is NOT)
 
 ---
 
@@ -214,17 +222,18 @@ Group 6: special cases (snackbar)
 After all components in a phase are built:
 
 ```typescript
-// Primitive export:
+// Primitive:
 export { default as TogeButton } from '../src/toge/primitives/button/button.vue'
-
-// Pattern export:
-export { default as TogeChips } from '../src/toge/patterns/chips/chips.vue'
+// Molecule:
+export { default as TogeAvatar } from '../src/toge/molecules/avatar/avatar.vue'
+// Pattern:
+export { default as TogeAccordion } from '../src/toge/patterns/accordion/accordion.vue'
 
 // Type re-exports
 export type * from '../src/toge/primitives/button/button.types'
 
 // Utility exports (if any)
-export { generateTimeSlots } from '../src/toge/patterns/time-picker/time-picker.styles'
+export { generateTimeSlots } from '../src/toge/molecules/time-picker/time-picker.styles'
 
 // Store exports (special cases only)
 export { useSnackbarStore } from '../src/toge/stores/useSnackbarStore'
@@ -251,8 +260,10 @@ After wiring `lib/toge.ts`, add to `src/playground/TogePlayground.vue`:
 ```typescript
 // Primitive:
 import TogeButton from '@/toge/primitives/button/button.vue'
+// Molecule:
+import TogeAvatar from '@/toge/molecules/avatar/avatar.vue'
 // Pattern:
-import TogeChips from '@/toge/patterns/chips/chips.vue'
+import TogeAccordion from '@/toge/patterns/accordion/accordion.vue'
 ```
 
 **Registry entry (ComponentConfig interface):**
@@ -313,20 +324,22 @@ Check diagnostics:
 | `createPinia()` in component | Move to store, accept data as prop |
 | `DEFAULT_OPTIONS` const in defineProps default | Inline the value directly |
 | Forgetting `defineSlots<{...}>()` | Always declare even if template uses `$slots` |
-| Placing a composed/stateful component in primitives/ | Run the 4-question test; composed shells belong in patterns/ |
+| Placing a composed/stateful component in primitives/ | Run the 4-question test; composed shells belong in molecules/ or patterns/ |
 | Importing from patterns/ inside primitives/ | One-way rule violation — primitives must only use tokens/peer deps |
+| Importing from patterns/ inside molecules/ | One-way rule violation — molecules must not import from patterns/ |
 
 ---
 
 ## Phase Reference
 
-| Phase | Components | Count | Tier | Status |
-|---|---|---|---|---|
-| Phase 1 | button, button-dropdown, badge, icon, lozenge, status, chips, avatar, collapsible, tooltip, popper | 11 | Mixed | ✅ Done |
-| Phase 2 | input (all variants), textarea, checkbox, radio, radio-grouped, switch, slider, file-upload, progress-bar, empty-state, banner, card, logo, floating-action, calendar-cell | 23 | Mixed | ✅ Done |
-| Phase 3 | modal, sidepanel, stacking-sidepanel, accordion, tabs, stepper, step, audit-trail, time-picker | 9 | Patterns | ✅ Done |
-| Phase 4 | list, dropdown, select, select-multiple, select-ladderized, filter, attribute-filter, table, table-actions, table-pagination, date-calendar-picker, date-picker, date-range-picker, month-year-picker, snackbar | 17 | Patterns | ✅ Done |
-| Two-Tier Refactor | primitives/ + patterns/ split, chip, event-cell, table-cell | 3 new | Primitives | ✅ Done |
+| Phase | Components | Count | Tier | Architecture | Status |
+|---|---|---|---|---|---|
+| Phase 1 | button, button-dropdown, badge, icon, lozenge, status, chips, avatar, collapsible, tooltip, popper | 11 | Mixed | 2-tier | ✅ Done |
+| Phase 2 | input (all variants), textarea, checkbox, radio, radio-grouped, switch, slider, file-upload, progress-bar, empty-state, banner, card, logo, floating-action, calendar-cell | 23 | Mixed | 2-tier | ✅ Done |
+| Phase 3 | modal, sidepanel, stacking-sidepanel, accordion, tabs, stepper, step, audit-trail, time-picker | 9 | Patterns | 2-tier | ✅ Done |
+| Phase 4 | list, dropdown, select, select-multiple, select-ladderized, filter, attribute-filter, table, table-actions, table-pagination, date-calendar-picker, date-picker, date-range-picker, month-year-picker, snackbar | 17 | Patterns | 2-tier | ✅ Done |
+| Two-Tier Refactor | primitives/ + patterns/ split, chip, event-cell, table-cell | 3 new | Primitives | 2-tier | ✅ Done |
+| 3-Tier Migration | avatar, tooltip, table-cell, banner, snackbar, card, empty-state, date-calendar-picker, date-picker, date-range-picker, month-year-picker, time-picker, audit-trail, chips → molecules/ | 14 moved | Molecules | 3-tier | ✅ Done |
 
 ---
 

@@ -4,13 +4,15 @@ import pkg from '../package.json'
 
 // ─── ONE-WAY DEPENDENCY RULE ─────────────────────────────────────────────────
 // primitives → tokens only (@iconify/vue, floating-vue, classnames, spr- Tailwind)
-// patterns   → can import from primitives/
-// ❌ primitives MUST NOT import from patterns/
+// molecules  → can import from primitives + sibling molecules
+// patterns   → can import from molecules + primitives
+// ❌ primitives MUST NOT import from molecules or patterns
+// ❌ molecules MUST NOT import from patterns
 // ❌ DS components MUST NOT import domain types
 // ─────────────────────────────────────────────────────────────────────────────
 
 const PREFIX = 'toge-'
-const components = import.meta.glob('../src/toge/{primitives,patterns}/**/*.vue', { eager: true })
+const components = import.meta.glob('../src/toge/{primitives,molecules,patterns}/**/*.vue', { eager: true })
 
 const install = (app: App) => {
   // Register all toge components globally with toge- prefix
@@ -38,9 +40,7 @@ export { default as TogeIcon } from '../src/toge/primitives/icon/icon.vue'
 export { default as TogeLozenge } from '../src/toge/primitives/lozenge/lozenge.vue'
 export { default as TogeStatus } from '../src/toge/primitives/status/status.vue'
 export { default as TogeChip } from '../src/toge/primitives/chip/chip.vue'
-export { default as TogeAvatar } from '../src/toge/molecules/avatar/avatar.vue'
 export { default as TogeCollapsible } from '../src/toge/primitives/collapsible/collapsible.vue'
-export { default as TogeTooltip } from '../src/toge/molecules/tooltip/tooltip.vue'
 export { default as TogePopper } from '../src/toge/primitives/popper/popper.vue'
 export { default as TogeInput } from '../src/toge/primitives/input/input.vue'
 export { default as TogeInputSearch } from '../src/toge/primitives/input/input-search/input-search.vue'
@@ -61,15 +61,26 @@ export { default as TogeLogo } from '../src/toge/primitives/logo/logo.vue'
 export { default as TogeFloatingAction } from '../src/toge/primitives/floating-action/floating-action.vue'
 export { default as TogeEventCell } from '../src/toge/primitives/event-cell/event-cell.vue'
 export { default as TogeDropdown } from '../src/toge/primitives/dropdown/dropdown.vue'
+
+// ─── Molecules ───────────────────────────────────────────────────────────────
+export { default as TogeAvatar } from '../src/toge/molecules/avatar/avatar.vue'
+export { default as TogeTooltip } from '../src/toge/molecules/tooltip/tooltip.vue'
 export { default as TogeTableCell } from '../src/toge/molecules/table-cell/table-cell.vue'
+export { default as TogeBanner } from '../src/toge/molecules/banner/banner.vue'
+export { default as TogeSnackbar } from '../src/toge/molecules/snackbar/snackbar.vue'
+export { default as TogeCard } from '../src/toge/molecules/card/card.vue'
+export { default as TogeEmptyState } from '../src/toge/molecules/empty-state/empty-state.vue'
+export { default as TogeDateCalendarPicker } from '../src/toge/molecules/date-calendar-picker/date-calendar-picker.vue'
+export { default as TogeDatePicker } from '../src/toge/molecules/date-picker/date-picker.vue'
+export { default as TogeDateRangePicker } from '../src/toge/molecules/date-range-picker/date-range-picker.vue'
+export { default as TogeMonthYearPicker } from '../src/toge/molecules/month-year-picker/month-year-picker.vue'
+export { default as TogeTimePicker } from '../src/toge/molecules/time-picker/time-picker.vue'
+export { default as TogeAuditTrail } from '../src/toge/molecules/audit-trail/audit-trail.vue'
+export { default as TogeChips } from '../src/toge/molecules/chips/chips.vue'
 
 // ─── Patterns ────────────────────────────────────────────────────────────────
-export { default as TogeChips } from '../src/toge/molecules/chips/chips.vue'
 export { default as TogeRadioGrouped } from '../src/toge/patterns/radio-grouped/radio-grouped.vue'
 export { default as TogeFileUpload } from '../src/toge/patterns/file-upload/file-upload.vue'
-export { default as TogeEmptyState } from '../src/toge/molecules/empty-state/empty-state.vue'
-export { default as TogeBanner } from '../src/toge/molecules/banner/banner.vue'
-export { default as TogeCard } from '../src/toge/molecules/card/card.vue'
 export { default as TogeModal } from '../src/toge/patterns/modal/modal.vue'
 export { default as TogeSidepanel } from '../src/toge/patterns/sidepanel/sidepanel.vue'
 export { default as TogeStackingSidepanel } from '../src/toge/patterns/stacking-sidepanel/stacking-sidepanel.vue'
@@ -77,8 +88,6 @@ export { default as TogeAccordion } from '../src/toge/patterns/accordion/accordi
 export { default as TogeTabs } from '../src/toge/patterns/tabs/tabs.vue'
 export { default as TogeStepper } from '../src/toge/patterns/stepper/stepper.vue'
 export { default as TogeStep } from '../src/toge/patterns/stepper/step/step.vue'
-export { default as TogeAuditTrail } from '../src/toge/molecules/audit-trail/audit-trail.vue'
-export { default as TogeTimePicker } from '../src/toge/molecules/time-picker/time-picker.vue'
 export { default as TogeList } from '../src/toge/patterns/list/list.vue'
 export { default as TogeSelect } from '../src/toge/patterns/select/select.vue'
 export { default as TogeSelectMultiple } from '../src/toge/patterns/select-multiple/select-multiple.vue'
@@ -88,11 +97,6 @@ export { default as TogeAttributeFilter } from '../src/toge/patterns/attribute-f
 export { default as TogeTable } from '../src/toge/patterns/table/table.vue'
 export { default as TogeTableActions } from '../src/toge/patterns/table-actions/table-actions.vue'
 export { default as TogeTablePagination } from '../src/toge/patterns/table-pagination/table-pagination.vue'
-export { default as TogeDateCalendarPicker } from '../src/toge/molecules/date-calendar-picker/date-calendar-picker.vue'
-export { default as TogeDatePicker } from '../src/toge/molecules/date-picker/date-picker.vue'
-export { default as TogeDateRangePicker } from '../src/toge/molecules/date-range-picker/date-range-picker.vue'
-export { default as TogeMonthYearPicker } from '../src/toge/molecules/month-year-picker/month-year-picker.vue'
-export { default as TogeSnackbar } from '../src/toge/molecules/snackbar/snackbar.vue'
 
 // ─── Stores ──────────────────────────────────────────────────────────────────
 export { useSnackbarStore } from '../src/toge/stores/useSnackbarStore'
@@ -107,9 +111,7 @@ export type * from '../src/toge/primitives/icon/icon.types'
 export type * from '../src/toge/primitives/lozenge/lozenge.types'
 export type * from '../src/toge/primitives/status/status.types'
 export type * from '../src/toge/primitives/chip/chip.types'
-export type * from '../src/toge/molecules/avatar/avatar.types'
 export type * from '../src/toge/primitives/collapsible/collapsible.types'
-export type * from '../src/toge/molecules/tooltip/tooltip.types'
 export type * from '../src/toge/primitives/popper/popper.types'
 export type * from '../src/toge/primitives/input/input.types'
 export type * from '../src/toge/primitives/textarea/textarea.types'
@@ -121,15 +123,26 @@ export type * from '../src/toge/primitives/progress-bar/progress-bar.types'
 export type * from '../src/toge/primitives/logo/logo.types'
 export type * from '../src/toge/primitives/event-cell/event-cell.types'
 export type * from '../src/toge/primitives/dropdown/dropdown.types'
+
+// ─── Type re-exports — Molecules ─────────────────────────────────────────────
+export type * from '../src/toge/molecules/avatar/avatar.types'
+export type * from '../src/toge/molecules/tooltip/tooltip.types'
 export type * from '../src/toge/molecules/table-cell/table-cell.types'
+export type * from '../src/toge/molecules/banner/banner.types'
+export type * from '../src/toge/molecules/snackbar/snackbar.types'
+export type * from '../src/toge/molecules/card/card.types'
+export type * from '../src/toge/molecules/empty-state/empty-state.types'
+export type * from '../src/toge/molecules/date-calendar-picker/date-calendar-picker.types'
+export type * from '../src/toge/molecules/date-picker/date-picker.types'
+export type * from '../src/toge/molecules/date-range-picker/date-range-picker.types'
+export type * from '../src/toge/molecules/month-year-picker/month-year-picker.types'
+export type * from '../src/toge/molecules/time-picker/time-picker.types'
+export type * from '../src/toge/molecules/audit-trail/audit-trail.types'
+export type * from '../src/toge/molecules/chips/chips.types'
 
 // ─── Type re-exports — Patterns ──────────────────────────────────────────────
-export type * from '../src/toge/molecules/chips/chips.types'
 export type * from '../src/toge/patterns/radio-grouped/radio-grouped.types'
 export type * from '../src/toge/patterns/file-upload/file-upload.types'
-export type * from '../src/toge/molecules/empty-state/empty-state.types'
-export type * from '../src/toge/molecules/banner/banner.types'
-export type * from '../src/toge/molecules/card/card.types'
 export type * from '../src/toge/patterns/modal/modal.types'
 export type * from '../src/toge/patterns/sidepanel/sidepanel.types'
 export type * from '../src/toge/patterns/stacking-sidepanel/stacking-sidepanel.types'
@@ -137,8 +150,6 @@ export type * from '../src/toge/patterns/accordion/accordion.types'
 export type * from '../src/toge/patterns/tabs/tabs.types'
 export type * from '../src/toge/patterns/stepper/stepper.types'
 export type * from '../src/toge/patterns/stepper/step/step.types'
-export type * from '../src/toge/molecules/audit-trail/audit-trail.types'
-export type * from '../src/toge/molecules/time-picker/time-picker.types'
 export type * from '../src/toge/patterns/list/list.types'
 export type * from '../src/toge/patterns/select/select.types'
 export type * from '../src/toge/patterns/select-multiple/select-multiple.types'
@@ -148,8 +159,3 @@ export type * from '../src/toge/patterns/attribute-filter/attribute-filter.types
 export type * from '../src/toge/patterns/table/table.types'
 export type * from '../src/toge/patterns/table-actions/table-actions.types'
 export type * from '../src/toge/patterns/table-pagination/table-pagination.types'
-export type * from '../src/toge/molecules/date-calendar-picker/date-calendar-picker.types'
-export type * from '../src/toge/molecules/date-picker/date-picker.types'
-export type * from '../src/toge/molecules/date-range-picker/date-range-picker.types'
-export type * from '../src/toge/molecules/month-year-picker/month-year-picker.types'
-export type * from '../src/toge/molecules/snackbar/snackbar.types'

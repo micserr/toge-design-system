@@ -229,8 +229,7 @@ import TogeFilter from '@/toge/components/filter/filter.vue'
 import TogeAttributeFilter from '@/toge/components/attribute-filter/attribute-filter.vue'
 import TogeTable from '@/toge/components/table/table.vue'
 import TogeTableActions from '@/toge/components/table-actions/table-actions.vue'
-import TogeTableChipsTitle from '@/toge/components/table-chips-title/table-chips-title.vue'
-import TogeTableLozengeTitle from '@/toge/components/table-lozenge-title/table-lozenge-title.vue'
+import TogeTableCell from '@/toge/primitives/table-cell/table-cell.vue'
 import TogeTablePagination from '@/toge/components/table-pagination/table-pagination.vue'
 import TogeDateCalendarPicker from '@/toge/components/date-calendar-picker/date-calendar-picker.vue'
 import TogeDatePicker from '@/toge/components/date-picker/date-picker.vue'
@@ -978,31 +977,13 @@ const componentRegistry: Record<string, ComponentConfig> = {
       { name: 'toggleFilter', type: 'boolean', default: false },
     ],
   },
-  'table-chips-title': {
-    component: TogeTableChipsTitle,
-    tag: 'toge-table-chips-title',
-    extraProps: {
-      cell: {
-        title: 'John Doe',
-        icon: 'ph:user',
-        badge: true,
-        badgeText: '3',
-        badgeVariant: 'brand',
-      },
-    },
+  'table-cell': {
+    component: TogeTableCell,
+    tag: 'toge-table-cell',
     propDefs: [],
-  },
-  'table-lozenge-title': {
-    component: TogeTableLozengeTitle,
-    tag: 'toge-table-lozenge-title',
     extraProps: {
-      cell: {
-        title: 'Active',
-        tone: 'success',
-        fill: true,
-      },
+      cell: { type: 'chip', title: 'John Doe', icon: 'ph:user' },
     },
-    propDefs: [],
   },
   'table-pagination': {
     component: TogeTablePagination,

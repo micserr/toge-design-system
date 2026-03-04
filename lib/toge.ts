@@ -60,7 +60,7 @@ export { default as TogeProgressBar } from '../src/toge/primitives/progress-bar/
 export { default as TogeLogo } from '../src/toge/primitives/logo/logo.vue'
 export { default as TogeFloatingAction } from '../src/toge/primitives/floating-action/floating-action.vue'
 export { default as TogeEventCell } from '../src/toge/primitives/event-cell/event-cell.vue'
-export { default as TogeDropdown } from '../src/toge/primitives/dropdown/dropdown.vue'
+export { default as TogePopover } from '../src/toge/primitives/popover/popover.vue'
 
 // ─── Molecules ───────────────────────────────────────────────────────────────
 export { default as TogeAvatar } from '../src/toge/molecules/avatar/avatar.vue'
@@ -122,7 +122,7 @@ export type * from '../src/toge/primitives/slider/slider.types'
 export type * from '../src/toge/primitives/progress-bar/progress-bar.types'
 export type * from '../src/toge/primitives/logo/logo.types'
 export type * from '../src/toge/primitives/event-cell/event-cell.types'
-export type * from '../src/toge/primitives/dropdown/dropdown.types'
+export type * from '../src/toge/primitives/popover/popover.types'
 
 // ─── Type re-exports — Molecules ─────────────────────────────────────────────
 export type * from '../src/toge/molecules/avatar/avatar.types'

@@ -19,7 +19,7 @@ export type TriggerEvent = 'click' | 'hover' | 'focus' | 'touch'
 
 export type PopperStrategy = 'fixed' | 'absolute'
 
-export interface DropdownProps {
+export interface PopoverProps {
   placement?: PlacementType
   distance?: number
   triggers?: TriggerEvent[]
@@ -33,11 +33,11 @@ export interface DropdownProps {
   width?: string
 }
 
-export interface DropdownEmits {
+export interface PopoverEmits {
   'popper-state': [state: boolean]
 }
 
-export interface DropdownSlots {
+export interface PopoverSlots {
   default(props: Record<string, never>): unknown
   reference(props: Record<string, never>): unknown
 }

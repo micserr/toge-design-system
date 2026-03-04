@@ -34,10 +34,10 @@
 import { computed } from 'vue'
 import { Menu } from 'floating-vue'
 import 'floating-vue/dist/style.css'
-import type { DropdownProps, DropdownEmits, DropdownSlots } from './dropdown.types'
-import { getDropdownClasses } from './dropdown.styles'
+import type { PopoverProps, PopoverEmits, PopoverSlots } from './popover.types'
+import { getPopoverClasses } from './popover.styles'
 
-const props = withDefaults(defineProps<DropdownProps>(), {
+const props = withDefaults(defineProps<PopoverProps>(), {
   placement: 'bottom',
   distance: 6,
   triggers: () => ['click'],
@@ -47,12 +47,12 @@ const props = withDefaults(defineProps<DropdownProps>(), {
   disabled: false,
 })
 
-const emit = defineEmits<DropdownEmits>()
+const emit = defineEmits<PopoverEmits>()
 
-defineSlots<DropdownSlots>()
+defineSlots<PopoverSlots>()
 
 const classes = computed(() =>
-  getDropdownClasses({
+  getPopoverClasses({
     width: props.width,
     popperInnerWidth: props.popperInnerWidth,
   }),

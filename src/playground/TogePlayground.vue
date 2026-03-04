@@ -10,7 +10,15 @@
       <div class="toge-playground__selector-row">
         <label class="toge-playground__label" for="component-select">Component</label>
         <select id="component-select" class="toge-playground__select" v-model="selectedKey">
-          <option v-for="key in componentKeys" :key="key" :value="key">{{ key }}</option>
+          <optgroup label="Primitives">
+            <option v-for="key in groupedComponents.primitive" :key="key" :value="key">{{ key }}</option>
+          </optgroup>
+          <optgroup label="Molecules">
+            <option v-for="key in groupedComponents.molecule" :key="key" :value="key">{{ key }}</option>
+          </optgroup>
+          <optgroup label="Patterns">
+            <option v-for="key in groupedComponents.pattern" :key="key" :value="key">{{ key }}</option>
+          </optgroup>
         </select>
       </div>
     </div>
@@ -50,7 +58,7 @@
 
         <!-- dropdown: needs a reference slot trigger -->
         <template v-else-if="selectedKey === 'dropdown'">
-          <TogeDropdown v-bind="currentProps">
+          <TogePopover v-bind="currentProps">
             <template #reference>
               <button class="toge-playground__collapsible-btn">Open Dropdown</button>
             </template>
@@ -61,7 +69,7 @@
                 {{ item }}
               </div>
             </div>
-          </TogeDropdown>
+          </TogePopover>
         </template>
 
         <!-- snackbar: teleports to body — show a note in the preview -->
@@ -221,7 +229,7 @@ import TogeEventCell from '@/toge/primitives/event-cell/event-cell.vue'
 
 // Phase 4
 import TogeList from '@/toge/patterns/list/list.vue'
-import TogeDropdown from '@/toge/primitives/dropdown/dropdown.vue'
+import TogePopover from '@/toge/primitives/popover/popover.vue'
 import TogeSelect from '@/toge/patterns/select/select.vue'
 import TogeSelectMultiple from '@/toge/patterns/select-multiple/select-multiple.vue'
 import TogeSelectLadderized from '@/toge/patterns/select-ladderized/select-ladderized.vue'
@@ -254,12 +262,14 @@ interface ComponentConfig {
   hasModel?: boolean
   /** initial modelValue for hasModel components */
   modelDefault?: unknown
+  category: 'primitive' | 'molecule' | 'pattern'
 }
 
 const componentRegistry: Record<string, ComponentConfig> = {
   button: {
     component: TogeButton,
     tag: 'toge-button',
+    category: 'primitive',
     defaultSlot: 'Click me',
     propDefs: [
       { name: 'tone', type: 'select', options: ['neutral', 'success', 'danger'], default: 'neutral' },
@@ -273,6 +283,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'button-dropdown': {
     component: TogeButtonDropdown,
     tag: 'toge-button-dropdown',
+    category: 'primitive',
     defaultSlot: 'Actions',
     extraProps: {
       dropdownId: 'playground-btn-dropdown',
@@ -288,6 +299,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   badge: {
     component: TogeBadge,
     tag: 'toge-badge',
+    category: 'primitive',
     propDefs: [
       { name: 'text', type: 'text', default: '99' },
       { name: 'variant', type: 'select', options: ['neutral', 'danger', 'disabled', 'information', 'brand'], default: 'brand' },
@@ -298,6 +310,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   icon: {
     component: TogeIcon,
     tag: 'toge-icon',
+    category: 'primitive',
     propDefs: [
       { name: 'icon', type: 'text', default: 'ph:star' },
       { name: 'size', type: 'select', options: ['2xs', 'xs', 'sm', 'md', 'lg', 'xl', '2xl'], default: 'md' },
@@ -308,6 +321,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   lozenge: {
     component: TogeLozenge,
     tag: 'toge-lozenge',
+    category: 'primitive',
     propDefs: [
       { name: 'label', type: 'text', default: 'Status' },
       { name: 'tone', type: 'select', options: ['plain', 'pending', 'information', 'success', 'danger', 'neutral', 'caution'], default: 'neutral' },
@@ -320,6 +334,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   status: {
     component: TogeStatus,
     tag: 'toge-status',
+    category: 'primitive',
     propDefs: [
       { name: 'state', type: 'select', options: ['success', 'information', 'pending', 'caution', 'danger'], default: 'success' },
       { name: 'size', type: 'select', options: ['2xs', 'xs', 'sm', 'base', 'lg', 'xl', '2xl'], default: 'base' },
@@ -328,6 +343,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   chips: {
     component: TogeChips,
     tag: 'toge-chips',
+    category: 'molecule',
     propDefs: [
       { name: 'label', type: 'text', default: 'Label' },
       { name: 'size', type: 'select', options: ['lg', 'md', 'sm'], default: 'md' },
@@ -341,6 +357,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   avatar: {
     component: TogeAvatar,
     tag: 'toge-avatar',
+    category: 'molecule',
     propDefs: [
       { name: 'variant', type: 'select', options: ['image', 'initial', 'client', 'user', 'user-group', 'count'], default: 'initial' },
       { name: 'size', type: 'select', options: ['2xl', 'xl', 'lg', 'md', 'sm', 'xs', '2xs'], default: 'md' },
@@ -354,6 +371,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   collapsible: {
     component: TogeCollapsible,
     tag: 'toge-collapsible',
+    category: 'primitive',
     propDefs: [
       { name: 'transitionDuration', type: 'number', default: 150 },
     ],
@@ -361,6 +379,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   tooltip: {
     component: TogeTooltip,
     tag: 'toge-tooltip',
+    category: 'molecule',
     propDefs: [
       { name: 'text', type: 'text', default: 'This is a tooltip' },
       { name: 'placement', type: 'select', options: ['top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'right'], default: 'top' },
@@ -371,6 +390,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   popper: {
     component: TogePopper,
     tag: 'toge-popper',
+    category: 'primitive',
     propDefs: [],
   },
 
@@ -378,6 +398,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   input: {
     component: TogeInput,
     tag: 'toge-input',
+    category: 'primitive',
     hasModel: true,
     modelDefault: '',
     propDefs: [
@@ -393,6 +414,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'input-search': {
     component: TogeInputSearch,
     tag: 'toge-input-search',
+    category: 'primitive',
     hasModel: true,
     modelDefault: '',
     propDefs: [
@@ -404,6 +426,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'input-dropdown': {
     component: TogeInputDropdown,
     tag: 'toge-input-dropdown',
+    category: 'primitive',
     hasModel: true,
     modelDefault: '',
     propDefs: [
@@ -415,6 +438,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'input-email': {
     component: TogeInputEmail,
     tag: 'toge-input-email',
+    category: 'primitive',
     hasModel: true,
     modelDefault: '',
     propDefs: [
@@ -427,6 +451,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'input-password': {
     component: TogeInputPassword,
     tag: 'toge-input-password',
+    category: 'primitive',
     hasModel: true,
     modelDefault: '',
     propDefs: [
@@ -439,6 +464,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'input-url': {
     component: TogeInputUrl,
     tag: 'toge-input-url',
+    category: 'primitive',
     hasModel: true,
     modelDefault: '',
     propDefs: [
@@ -451,6 +477,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'input-username': {
     component: TogeInputUsername,
     tag: 'toge-input-username',
+    category: 'primitive',
     hasModel: true,
     modelDefault: '',
     propDefs: [
@@ -463,6 +490,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'input-contact-number': {
     component: TogeInputContactNumber,
     tag: 'toge-input-contact-number',
+    category: 'primitive',
     hasModel: true,
     modelDefault: '',
     propDefs: [
@@ -475,6 +503,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'input-currency': {
     component: TogeInputCurrency,
     tag: 'toge-input-currency',
+    category: 'primitive',
     hasModel: true,
     modelDefault: '',
     propDefs: [
@@ -487,6 +516,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   textarea: {
     component: TogeTextarea,
     tag: 'toge-textarea',
+    category: 'primitive',
     hasModel: true,
     modelDefault: '',
     propDefs: [
@@ -503,6 +533,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   checkbox: {
     component: TogeCheckbox,
     tag: 'toge-checkbox',
+    category: 'primitive',
     hasModel: true,
     modelDefault: false,
     propDefs: [
@@ -515,6 +546,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   radio: {
     component: TogeRadio,
     tag: 'toge-radio',
+    category: 'primitive',
     hasModel: true,
     modelDefault: 'option1',
     defaultSlot: 'Radio Option',
@@ -528,6 +560,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'radio-grouped': {
     component: TogeRadioGrouped,
     tag: 'toge-radio-grouped',
+    category: 'pattern',
     hasModel: true,
     modelDefault: 'option1',
     extraProps: {
@@ -549,6 +582,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   switch: {
     component: TogeSwitch,
     tag: 'toge-switch',
+    category: 'primitive',
     hasModel: true,
     modelDefault: false,
     propDefs: [
@@ -558,6 +592,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   slider: {
     component: TogeSlider,
     tag: 'toge-slider',
+    category: 'primitive',
     hasModel: true,
     modelDefault: 0,
     propDefs: [
@@ -571,6 +606,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'file-upload': {
     component: TogeFileUpload,
     tag: 'toge-file-upload',
+    category: 'pattern',
     propDefs: [
       { name: 'type', type: 'select', options: ['default', 'center'], default: 'default' },
       { name: 'title', type: 'text', default: 'Upload a file' },
@@ -581,6 +617,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'progress-bar': {
     component: TogeProgressBar,
     tag: 'toge-progress-bar',
+    category: 'primitive',
     propDefs: [
       { name: 'value', type: 'number', default: 40 },
       { name: 'max', type: 'number', default: 100 },
@@ -594,6 +631,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'empty-state': {
     component: TogeEmptyState,
     tag: 'toge-empty-state',
+    category: 'molecule',
     propDefs: [
       { name: 'image', type: 'select', options: ['bug', 'clock', 'dashboard', 'employees', 'government-id', 'integration', 'list', 'social-media-handles', 'work-in-progress', 'work-location'], default: 'list' },
       { name: 'description', type: 'text', default: 'No items found' },
@@ -605,6 +643,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   banner: {
     component: TogeBanner,
     tag: 'toge-banner',
+    category: 'molecule',
     hasModel: true,
     modelDefault: true,
     propDefs: [
@@ -616,6 +655,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   card: {
     component: TogeCard,
     tag: 'toge-card',
+    category: 'molecule',
     defaultSlot: 'Card content goes here.',
     extraProps: { style: 'width: 320px;' },
     propDefs: [
@@ -630,6 +670,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   logo: {
     component: TogeLogo,
     tag: 'toge-logo',
+    category: 'primitive',
     propDefs: [
       { name: 'name', type: 'select', options: ['hr', 'payroll', 'recruit', 'finances', 'engage', 'insight', 'wellness', 'ecosystem', 'benchmark', 'procurement', 'sail', 'sidekick'], default: 'hr' },
       { name: 'theme', type: 'select', options: ['white', 'dark', 'gray', 'green'], default: 'dark' },
@@ -639,6 +680,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'floating-action': {
     component: TogeFloatingAction,
     tag: 'toge-floating-action',
+    category: 'primitive',
     defaultSlot: '+',
     propDefs: [
       { name: 'show', type: 'boolean', default: true },
@@ -647,6 +689,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'event-cell': {
     component: TogeEventCell,
     tag: 'toge-event-cell',
+    category: 'primitive',
     propDefs: [
       { name: 'title', type: 'text', default: 'Team Meeting' },
       { name: 'description', type: 'text', default: 'Conference Room A' },
@@ -665,6 +708,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   modal: {
     component: TogeModal,
     tag: 'toge-modal',
+    category: 'pattern',
     hasModel: true,
     modelDefault: false,
     defaultSlot: 'Modal body content goes here.',
@@ -679,6 +723,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   sidepanel: {
     component: TogeSidepanel,
     tag: 'toge-sidepanel',
+    category: 'pattern',
     hasModel: true,
     modelDefault: false,
     defaultSlot: 'Sidepanel content goes here.',
@@ -693,6 +738,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   accordion: {
     component: TogeAccordion,
     tag: 'toge-accordion',
+    category: 'pattern',
     extraProps: {
       items: [
         { collapseId: 'item-1', title: 'First Panel', subtitle: 'Optional subtitle' },
@@ -710,6 +756,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   tabs: {
     component: TogeTabs,
     tag: 'toge-tabs',
+    category: 'pattern',
     hasModel: true,
     modelDefault: 0,
     extraProps: {
@@ -728,6 +775,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   stepper: {
     component: TogeStepper,
     tag: 'toge-stepper',
+    category: 'pattern',
     extraProps: {
       steps: [
         { number: 1, label: 'Personal Info', status: 'completed' },
@@ -744,6 +792,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   step: {
     component: TogeStep,
     tag: 'toge-step',
+    category: 'pattern',
     propDefs: [
       { name: 'number', type: 'number', default: 1 },
       { name: 'label', type: 'text', default: 'Step Label' },
@@ -755,6 +804,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'audit-trail': {
     component: TogeAuditTrail,
     tag: 'toge-audit-trail',
+    category: 'molecule',
     extraProps: {
       logs: [
         {
@@ -781,6 +831,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'time-picker': {
     component: TogeTimePicker,
     tag: 'toge-time-picker',
+    category: 'molecule',
     hasModel: true,
     modelDefault: '',
     propDefs: [
@@ -797,6 +848,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   list: {
     component: TogeList,
     tag: 'toge-list',
+    category: 'pattern',
     hasModel: true,
     modelDefault: [],
     extraProps: {
@@ -815,8 +867,9 @@ const componentRegistry: Record<string, ComponentConfig> = {
     ],
   },
   dropdown: {
-    component: TogeDropdown,
-    tag: 'toge-dropdown',
+    component: TogePopover,
+    tag: 'toge-popover',
+    category: 'primitive',
     propDefs: [
       { name: 'placement', type: 'select', options: ['bottom', 'bottom-start', 'bottom-end', 'top', 'top-start', 'top-end', 'left', 'right'], default: 'bottom' },
       { name: 'distance', type: 'number', default: 6 },
@@ -827,6 +880,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   select: {
     component: TogeSelect,
     tag: 'toge-select',
+    category: 'pattern',
     hasModel: true,
     modelDefault: null,
     extraProps: {
@@ -849,6 +903,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'select-multiple': {
     component: TogeSelectMultiple,
     tag: 'toge-select-multiple',
+    category: 'pattern',
     hasModel: true,
     modelDefault: [],
     extraProps: {
@@ -871,6 +926,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'select-ladderized': {
     component: TogeSelectLadderized,
     tag: 'toge-select-ladderized',
+    category: 'pattern',
     hasModel: true,
     modelDefault: [],
     extraProps: {
@@ -896,6 +952,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   filter: {
     component: TogeFilter,
     tag: 'toge-filter',
+    category: 'pattern',
     hasModel: true,
     modelDefault: [],
     extraProps: {
@@ -915,6 +972,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'attribute-filter': {
     component: TogeAttributeFilter,
     tag: 'toge-attribute-filter',
+    category: 'pattern',
     hasModel: true,
     modelDefault: {},
     extraProps: {
@@ -946,6 +1004,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   table: {
     component: TogeTable,
     tag: 'toge-table',
+    category: 'pattern',
     extraProps: {
       headers: [
         { name: 'Name', field: 'name', sort: true },
@@ -969,6 +1028,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'table-actions': {
     component: TogeTableActions,
     tag: 'toge-table-actions',
+    category: 'pattern',
     hasModel: true,
     modelDefault: '',
     propDefs: [
@@ -980,6 +1040,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'table-cell': {
     component: TogeTableCell,
     tag: 'toge-table-cell',
+    category: 'molecule',
     propDefs: [],
     extraProps: {
       cell: { type: 'chip', title: 'John Doe', icon: 'ph:user' },
@@ -988,6 +1049,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'table-pagination': {
     component: TogeTablePagination,
     tag: 'toge-table-pagination',
+    category: 'pattern',
     extraProps: {
       totalItems: 247,
     },
@@ -1000,6 +1062,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'date-calendar-picker': {
     component: TogeDateCalendarPicker,
     tag: 'toge-date-calendar-picker',
+    category: 'molecule',
     hasModel: true,
     modelDefault: '',
     propDefs: [
@@ -1011,6 +1074,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'date-picker': {
     component: TogeDatePicker,
     tag: 'toge-date-picker',
+    category: 'molecule',
     hasModel: true,
     modelDefault: '',
     propDefs: [
@@ -1025,6 +1089,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'date-range-picker': {
     component: TogeDateRangePicker,
     tag: 'toge-date-range-picker',
+    category: 'molecule',
     hasModel: true,
     modelDefault: { startDate: '', endDate: '' },
     propDefs: [
@@ -1038,6 +1103,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   'month-year-picker': {
     component: TogeMonthYearPicker,
     tag: 'toge-month-year-picker',
+    category: 'molecule',
     hasModel: true,
     modelDefault: '',
     propDefs: [
@@ -1050,6 +1116,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   snackbar: {
     component: TogeSnackbar,
     tag: 'toge-snackbar',
+    category: 'molecule',
     extraProps: {
       snacks: [
         { id: 1, text: 'Action completed successfully', tone: 'success', showIcon: true },
@@ -1063,6 +1130,18 @@ const componentRegistry: Record<string, ComponentConfig> = {
 }
 
 const componentKeys = Object.keys(componentRegistry)
+
+const groupedComponents = computed(() => {
+  const groups: Record<'primitive' | 'molecule' | 'pattern', string[]> = {
+    primitive: [],
+    molecule: [],
+    pattern: [],
+  }
+  for (const key of componentKeys) {
+    groups[componentRegistry[key].category].push(key)
+  }
+  return groups
+})
 
 const selectedKey = ref<keyof typeof componentRegistry>('button')
 const collapsibleOpen = ref(false)

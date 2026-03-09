@@ -1,9 +1,16 @@
 {
   "name": "@toge-design-system/tokens",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "typecheck": "tsc --noEmit"
+  },
   "exports": {
-    ".": "./src/scripts/index.ts",
+    ".": {
+      "types": "./src/scripts/index.ts",
+      "import": "./src/scripts/index.ts"
+    },
     "./styles": "./src/styles/tailwind.css",
     "./tailwind": "./tailwind.config.js"
   },

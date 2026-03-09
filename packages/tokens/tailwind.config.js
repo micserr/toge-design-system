@@ -1,16 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 
-import colorScheme from './src/assets/scripts/colors';
-import spacing from './src/assets/scripts/spacing';
-import maxWidth from './src/assets/scripts/max-width';
-import borderRadius from './src/assets/scripts/border-radius';
-import utilities from './src/assets/scripts/utilities';
-
-const plugin = require('tailwindcss/plugin');
+import plugin from 'tailwindcss/plugin';
+import colorScheme from './src/scripts/colors';
+import spacing from './src/scripts/spacing';
+import maxWidth from './src/scripts/max-width';
+import borderRadius from './src/scripts/border-radius';
+import utilities from './src/scripts/utilities';
 
 export default {
+  // No content here — consumers define their own content paths
+  content: [],
   prefix: 'spr-',
-  content: ['./index.html', './src/**/*.{vue,js,ts}', './docs/**/*.{md,ts,js}', './docs/locales/**/*.{md,ts,js}'],
   theme: {
     extend: {
       colors: colorScheme,

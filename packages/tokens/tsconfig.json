@@ -4,7 +4,10 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "declaration": true,
+    "declarationDir": "dist/types",
+    "outDir": "dist"
   },
   "include": ["src"]
 }

@@ -67,3 +67,4 @@ components.d.ts
 /blob-report/
 /playwright/.cache/
 test-output.txt
+.worktrees/

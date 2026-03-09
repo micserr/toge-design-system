@@ -1,0 +1,14 @@
+{
+  "name": "@toge-design-system/tokens",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/scripts/index.ts",
+    "./styles": "./src/styles/tailwind.css",
+    "./tailwind": "./tailwind.config.js"
+  },
+  "files": ["src", "tailwind.config.js"],
+  "peerDependencies": {
+    "tailwindcss": "^3.0.0"
+  }
+}

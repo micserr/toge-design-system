@@ -1,0 +1,1217 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --size-50: 2px;
+    --size-100: 4px;
+    --size-150: 6px;
+    --size-200: 8px;
+    --size-250: 12px;
+    --size-300: 16px;
+    --size-400: 24px;
+    --size-500: 32px;
+    --size-600: 40px;
+    --size-700: 48px;
+    --size-800: 64px;
+    --size-900: 72px;
+    --size-1000: 80px;
+    --size-1100: 96px;
+    --size-1200: 128px;
+  }
+
+  *::-webkit-scrollbar {
+    @apply spr-h-[8px] spr-w-[8px];
+  }
+
+  *::-webkit-scrollbar-track {
+    @apply spr-bg-white-200;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply spr-rounded-full spr-bg-white-300;
+  }
+}
+
+@layer components {
+  /* #region - Sidenav */
+  #quick-action-menu-wrapper {
+    @apply spr-max-h-[500px] spr-w-[400px];
+  }
+
+  #sidenav-menu-wrapper {
+    @apply spr-max-h-[500px] spr-w-[215px];
+  }
+
+  #sidenav-submenu-l1-wrapper {
+    @apply spr-max-h-[500px] spr-w-[215px];
+  }
+
+  #sidenav-submenu-l2-wrapper {
+    @apply spr-hidden;
+  }
+
+  #user-menu-wrapper {
+    @apply !spr-top-[-20px] spr-max-h-[500px] spr-w-[300px];
+  }
+
+  #quick-action-menu-wrapper,
+  #sidenav-menu-wrapper,
+  #sidenav-submenu-l1-wrapper,
+  #user-menu-wrapper,
+  #mobile-user-menu-wrapper {
+    @apply spr-background-color spr-border-color-base spr-overflow-y-auto spr-overflow-x-hidden spr-rounded-xl spr-border spr-border-solid spr-drop-shadow-md;
+
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-overflow-hidden spr-rounded-none spr-border-none spr-bg-transparent spr-shadow-none;
+
+        .slide-fade-enter-active {
+          @apply spr-duration-300 spr-ease-out;
+        }
+
+        .slide-fade-leave-active {
+          transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+        }
+
+        .slide-fade-enter-from,
+        .slide-fade-leave-to {
+          @apply spr-translate-x-[-20px] spr-opacity-0;
+        }
+      }
+
+      .v-popper__arrow-container {
+        @apply spr-hidden;
+      }
+    }
+  }
+  /* #endregion - Sidenav */
+
+  /* #region - Tooltips */
+  #tooltip-wrapper,
+  #tooltip-full-width-wrapper {
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-background-color-inverted spr-text-color-inverted-strong spr-body-xs-regular spr-break-words spr-rounded-border-radius-md spr-px-2 spr-py-1.5 spr-font-main spr-opacity-100 spr-shadow-drop;
+      }
+
+      .v-popper__arrow-outer {
+        @apply spr-hidden;
+      }
+    }
+  }
+
+  #tooltip-wrapper {
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-max-w-full spr-shadow-drop;
+      }
+    }
+  }
+
+  #tooltip-full-width-wrapper {
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-max-w-[280px] spr-shadow-drop;
+      }
+    }
+  }
+  /* #endregion - Tooltips */
+
+  /* #region - Dropdown */
+  #dropdown-wrapper {
+    @apply spr-border-color-weak spr-z-[1000] spr-w-[inherit] spr-overflow-hidden spr-rounded-xl spr-border spr-border-solid spr-shadow-drop;
+
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-w-full spr-rounded-none spr-border-none spr-font-main spr-shadow-none;
+
+        &::-webkit-scrollbar-track {
+          @apply spr-rounded-br-xl spr-rounded-tr-xl;
+        }
+      }
+
+      .v-popper__arrow-container {
+        @apply spr-hidden;
+      }
+    }
+  }
+  /* #endregion - Dropdown */
+
+  /* #region - Select */
+  #select-wrapper,
+  #multi-select-wrapper,
+  #ladderized-select-wrapper {
+    @apply spr-border-color-weak spr-z-[1000] spr-w-[inherit] spr-overflow-hidden spr-rounded-xl spr-border spr-border-solid spr-shadow-drop;
+
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-w-full spr-rounded-none spr-border-none spr-font-main spr-shadow-none;
+
+        &::-webkit-scrollbar-track {
+          @apply spr-rounded-br-xl spr-rounded-tr-xl;
+        }
+      }
+
+      .v-popper__arrow-container {
+        @apply spr-hidden;
+      }
+    }
+  }
+  /* #endregion - Select */
+
+  /* #region - Avatar */
+  .avatar__slot img {
+    @apply spr-h-full spr-w-full spr-object-cover;
+  }
+  /* #endregion - Avatar */
+
+  /* #region - Table */
+  .spr-table-wrapper {
+    tbody {
+      @apply spr-block spr-w-full spr-overflow-y-auto;
+    }
+
+    tr {
+      @apply spr-table spr-w-full spr-table-fixed;
+    }
+
+    thead {
+      @apply spr-pr-size-spacing-6xs;
+    }
+
+    tbody::-webkit-scrollbar {
+      @apply spr-h-0 spr-w-0; /* Hides the scrollbar in WebKit browsers */
+    }
+
+    .empty-table-dropzone-dragged-class {
+      @apply spr-hidden;
+    }
+  }
+  /* #endregion - Table */
+
+  /* #region - Date Picker */
+  #date-picker-wrapper {
+    @apply spr-z-[1000] spr-overflow-hidden spr-rounded-xl spr-shadow-drop spr-transition-opacity spr-duration-150 spr-ease-in-out;
+
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-border-color-weak spr-m-auto spr-w-[336px] spr-min-w-[336px] spr-overflow-y-auto spr-rounded-xl spr-border spr-border-solid spr-font-main spr-shadow-none sm:spr-w-[calc(100%-20px)] sm:spr-min-w-full;
+
+        &::-webkit-scrollbar-track {
+          @apply spr-rounded-br-xl spr-rounded-tr-xl;
+        }
+      }
+
+      .v-popper__arrow-container {
+        @apply spr-hidden;
+      }
+    }
+  }
+  /* #endregion - Date Picker */
+
+  /* #region - Date Range Picker */
+  #date-range-picker-wrapper {
+    @apply spr-z-[1000] spr-overflow-hidden spr-rounded-xl spr-shadow-drop spr-transition-opacity spr-duration-150 spr-ease-in-out;
+
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-border-color-weak spr-m-auto spr-w-[336px] spr-min-w-[336px] spr-overflow-y-auto spr-rounded-xl spr-border spr-border-solid spr-font-main spr-shadow-none sm:spr-w-[calc(100%-20px)] sm:spr-min-w-full;
+
+        &::-webkit-scrollbar-track {
+          @apply spr-rounded-br-xl spr-rounded-tr-xl;
+        }
+      }
+
+      .v-popper__arrow-container {
+        @apply spr-hidden;
+      }
+    }
+  }
+  /* #endregion - Date Range Picker */
+
+  /* #region - Filter, time-picker */
+  #time-picker-wrapper-full-width,
+  #time-picker-wrapper,
+  #filter-option-wrapper,
+  #filter-menu-wrapper {
+    @apply spr-background-color spr-border-color-weak spr-z-50 spr-overflow-x-hidden spr-rounded-[12px] spr-border spr-border-solid;
+
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-overflow-hidden spr-rounded-none spr-border-none spr-bg-transparent spr-shadow-none;
+
+        .resize-observer {
+          display: none;
+        }
+      }
+
+      .v-popper__arrow-container {
+        @apply spr-hidden;
+      }
+    }
+  }
+
+  #time-picker-wrapper {
+    @apply spr-max-w-[240px];
+  }
+
+  #time-picker-wrapper-full-width,
+  #filter-option-wrapper {
+    @apply spr-w-full;
+  }
+
+  #filter-menu-wrapper {
+    @apply spr-min-w-[328px] spr-drop-shadow-md;
+  }
+  /* #endregion - Filter, time-picker */
+
+  /* #region - Popper */
+  #popper-wrapper {
+    @apply spr-border-color-weak spr-border-color-weak spr-z-[1000] spr-w-[inherit] spr-min-w-[240px] spr-rounded-border-radius-xl spr-border spr-border-solid spr-shadow-drop;
+
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-w-full spr-rounded-border-radius-xl spr-border-none spr-font-main spr-shadow-none;
+
+        &::-webkit-scrollbar-track {
+          @apply spr-rounded-br-xl spr-rounded-tr-xl;
+        }
+      }
+
+      .v-popper__arrow-container {
+        @apply spr-hidden;
+      }
+    }
+  }
+  /* #endregion - Popper */
+}
+
+@layer utilities {
+  .spr-hidden-scrolls {
+    &::-webkit-scrollbar {
+      @apply spr-hidden;
+    }
+  }
+
+  /* #region - Headings */
+  .spr-heading-xl {
+    @apply spr-font-size-900 spr-line-height-1000 spr-letter-spacing-densest spr-font-main spr-font-medium;
+  }
+
+  .spr-heading-lg {
+    @apply spr-font-size-800 spr-line-height-900 spr-letter-spacing-denser spr-font-main spr-font-medium;
+  }
+
+  .spr-heading-md {
+    @apply spr-font-size-700 spr-line-height-800 spr-letter-spacing-denser spr-font-main spr-font-medium;
+  }
+
+  .spr-heading-sm {
+    @apply spr-font-size-600 spr-line-height-700 spr-letter-spacing-dense spr-font-main spr-font-medium;
+  }
+
+  .spr-heading-xs {
+    @apply spr-font-size-500 spr-line-height-600 spr-letter-spacing-dense spr-font-main spr-font-medium;
+  }
+  /* #endregion - Headings */
+
+  /* #region - Subheadings */
+  .spr-subheading-sm {
+    @apply spr-font-size-400 spr-line-height-500 spr-letter-spacing-dense spr-font-main spr-font-medium;
+  }
+
+  .spr-subheading-xs {
+    @apply spr-font-size-300 spr-line-height-400 spr-letter-spacing-normal spr-font-main spr-font-medium;
+  }
+  /* #endregion - Subheadings */
+
+  /* #region - Paragraphs */
+  .spr-body-lg {
+    @apply spr-font-size-400 spr-line-height-600 spr-letter-spacing-normal spr-font-main;
+  }
+
+  .spr-body-lg-regular {
+    @apply spr-body-lg spr-font-normal;
+  }
+
+  .spr-body-lg-regular-underline {
+    @apply spr-body-lg spr-font-normal spr-decoration-solid;
+  }
+
+  .spr-body-lg-regular-medium {
+    @apply spr-body-lg spr-font-medium;
+  }
+
+  .spr-body-lg-medium-underline {
+    @apply spr-body-lg spr-font-medium spr-decoration-solid;
+  }
+
+  .spr-body-md {
+    @apply spr-font-size-300 spr-line-height-500 spr-letter-spacing-normal spr-font-main;
+  }
+
+  .spr-body-md-regular {
+    @apply spr-body-md spr-font-normal;
+  }
+
+  .spr-body-md-regular-underline {
+    @apply spr-body-md spr-font-normal spr-decoration-solid;
+  }
+
+  .spr-body-md-regular-medium {
+    @apply spr-body-md spr-font-medium;
+  }
+
+  .spr-body-md-medium-underline {
+    @apply spr-body-md spr-font-medium spr-decoration-solid;
+  }
+
+  .spr-body-sm {
+    @apply spr-font-size-200 spr-line-height-400 spr-letter-spacing-normal spr-font-main;
+  }
+
+  .spr-body-sm-regular {
+    @apply spr-body-sm spr-font-normal;
+  }
+
+  .spr-body-sm-regular-underline {
+    @apply spr-body-sm spr-font-normal spr-decoration-solid;
+  }
+
+  .spr-body-sm-regular-medium {
+    @apply spr-body-sm spr-font-medium;
+  }
+
+  .spr-body-sm-medium-underline {
+    @apply spr-body-sm spr-font-medium spr-decoration-solid;
+  }
+
+  .spr-body-xs {
+    @apply spr-font-size-100 spr-line-height-300 spr-letter-spacing-normal spr-font-main;
+  }
+
+  .spr-body-xs-regular {
+    @apply spr-body-xs spr-font-normal;
+  }
+
+  .spr-body-xs-regular-underline {
+    @apply spr-body-xs spr-font-normal spr-decoration-solid;
+  }
+
+  .spr-body-xs-regular-medium {
+    @apply spr-body-xs spr-font-medium;
+  }
+
+  .spr-body-xs-medium-underline {
+    @apply spr-body-xs spr-font-medium spr-decoration-solid;
+  }
+  /* #endregion - Paragraphs */
+
+  /* #region - Labels */
+  .spr-label-xs {
+    @apply spr-font-size-100 spr-line-height-100 spr-letter-spacing-wide spr-font-main;
+  }
+
+  .spr-label-xs-regular {
+    @apply spr-label-xs spr-font-normal;
+  }
+
+  .spr-label-xs-medium {
+    @apply spr-label-xs spr-font-medium;
+  }
+
+  .spr-label-sm {
+    @apply spr-font-size-200 spr-line-height-200 spr-letter-spacing-wide spr-font-main;
+  }
+
+  .spr-label-sm-regular {
+    @apply spr-label-sm spr-font-normal;
+  }
+
+  .spr-label-sm-medium {
+    @apply spr-label-sm spr-font-medium;
+  }
+
+  /* #endregion - Labels */
+
+  /* #region - Attribute Filter */
+  #attribute_filter_wrapper {
+    @apply spr-z-[1000] spr-w-[inherit] spr-overflow-hidden;
+
+    .v-popper__wrapper {
+      .v-popper__inner {
+        @apply spr-border-color-weak spr-w-full spr-rounded-xl spr-border spr-border-solid spr-font-main spr-shadow-none;
+
+        &::-webkit-scrollbar-track {
+          @apply spr-rounded-br-xl spr-rounded-tr-xl;
+        }
+      }
+
+      .v-popper__arrow-container {
+        @apply spr-hidden;
+      }
+    }
+  }
+  /* #endregion - Attribute Filter */
+
+  /* #region - Font Size */
+  .spr-font-size-100 {
+    @apply spr-text-100;
+  }
+
+  .spr-font-size-200 {
+    @apply spr-text-200;
+  }
+
+  .spr-font-size-300 {
+    @apply spr-text-300;
+  }
+
+  .spr-font-size-400 {
+    @apply spr-text-400;
+  }
+
+  .spr-font-size-500 {
+    @apply spr-text-500;
+  }
+
+  .spr-font-size-600 {
+    @apply spr-text-600;
+  }
+
+  .spr-font-size-700 {
+    @apply spr-text-700;
+  }
+
+  .spr-font-size-800 {
+    @apply spr-text-800;
+  }
+
+  .spr-font-size-900 {
+    @apply spr-text-900;
+  }
+
+  .spr-font-size-1000 {
+    @apply spr-text-1000;
+  }
+  /* #endregion - Font Size */
+
+  /* #region - Line Height */
+  .spr-line-height-none {
+    @apply spr-leading-none;
+  }
+
+  .spr-line-height-100 {
+    @apply spr-leading-100;
+  }
+
+  .spr-line-height-200 {
+    @apply spr-leading-200;
+  }
+
+  .spr-line-height-300 {
+    @apply spr-leading-300;
+  }
+
+  .spr-line-height-400 {
+    @apply spr-leading-400;
+  }
+
+  .spr-line-height-500 {
+    @apply spr-leading-500;
+  }
+
+  .spr-line-height-600 {
+    @apply spr-leading-600;
+  }
+
+  .spr-line-height-700 {
+    @apply spr-leading-700;
+  }
+
+  .spr-line-height-800 {
+    @apply spr-leading-800;
+  }
+
+  .spr-line-height-900 {
+    @apply spr-leading-900;
+  }
+
+  .spr-line-height-1000 {
+    @apply spr-leading-1000;
+  }
+  /* #endregion - Line Height */
+
+  /* #region - Letter Spacing */
+  .spr-letter-spacing-none {
+    @apply spr-tracking-spacing-none;
+  }
+
+  .spr-letter-spacing-densest {
+    @apply spr-tracking-spacing-densest;
+  }
+
+  .spr-letter-spacing-denser {
+    @apply spr-tracking-spacing-denser;
+  }
+
+  .spr-letter-spacing-dense {
+    @apply spr-tracking-spacing-dense;
+  }
+
+  .spr-letter-spacing-normal {
+    @apply spr-tracking-spacing-normal;
+  }
+
+  .spr-letter-spacing-wide {
+    @apply spr-tracking-spacing-wide;
+  }
+
+  .spr-letter-spacing-wider {
+    @apply spr-tracking-spacing-wider;
+  }
+
+  .spr-letter-spacing-widest {
+    @apply spr-tracking-spacing-widest;
+  }
+  /* #endregion - Letter Spacing */
+
+  /* #region - Text Colors */
+  .spr-text-color-strong {
+    @apply spr-text-mushroom-950;
+  }
+
+  .spr-text-color-supporting {
+    @apply spr-text-mushroom-500;
+  }
+
+  .spr-text-color-base {
+    @apply spr-text-mushroom-600;
+  }
+
+  .spr-text-color-weak {
+    @apply spr-text-mushroom-400;
+  }
+
+  .spr-text-color-disabled {
+    @apply spr-text-white-400;
+  }
+
+  .spr-text-color-on-fill-disabled {
+    @apply spr-text-white-500;
+  }
+
+  .spr-text-color-inverted-strong {
+    @apply spr-text-white-50;
+  }
+
+  .spr-text-color-inverted-base {
+    @apply spr-text-mushroom-200;
+  }
+
+  .spr-text-color-inverted-weak {
+    @apply spr-text-mushroom-400;
+  }
+
+  .spr-text-color-inverted-disabled {
+    @apply spr-text-white-600;
+  }
+
+  .spr-text-color-brand-base {
+    @apply spr-text-kangkong-700;
+  }
+
+  .spr-text-color-brand-hover {
+    @apply spr-text-kangkong-800;
+  }
+
+  .spr-text-color-brand-pressed {
+    @apply spr-text-kangkong-900;
+  }
+
+  .spr-text-color-success-base {
+    @apply spr-text-kangkong-700;
+  }
+
+  .spr-text-color-success-hover {
+    @apply spr-text-kangkong-800;
+  }
+
+  .spr-text-color-success-pressed {
+    @apply spr-text-kangkong-900;
+  }
+
+  .spr-text-color-information-base {
+    @apply spr-text-blueberry-800;
+  }
+
+  .spr-text-color-information-hover {
+    @apply spr-text-blueberry-900;
+  }
+
+  .spr-text-color-information-pressed {
+    @apply spr-text-blueberry-950;
+  }
+
+  .spr-text-color-danger-base {
+    @apply spr-text-tomato-700;
+  }
+
+  .spr-text-color-danger-hover {
+    @apply spr-text-tomato-800;
+  }
+
+  .spr-text-color-danger-pressed {
+    @apply spr-text-tomato-900;
+  }
+
+  .spr-text-color-pending-base {
+    @apply spr-text-mango-800;
+  }
+
+  .spr-text-color-pending-hover {
+    @apply spr-text-mango-900;
+  }
+
+  .spr-text-color-pending-pressed {
+    @apply spr-text-mango-950;
+  }
+
+  .spr-text-color-caution-base {
+    @apply spr-text-carrot-800;
+  }
+
+  .spr-text-color-caution-hover {
+    @apply spr-text-carrot-900;
+  }
+
+  .spr-text-color-caution-pressed {
+    @apply spr-text-carrot-950;
+  }
+
+  .spr-text-color-accent-base {
+    @apply spr-text-wintermelon-700;
+  }
+
+  .spr-text-color-accent-hover {
+    @apply spr-text-wintermelon-800;
+  }
+
+  .spr-text-color-accent-pressed {
+    @apply spr-text-wintermelon-900;
+  }
+
+  .spr-text-color-specialty-token-dark {
+    @apply spr-text-mushroom-950;
+  }
+  /* #endregion - Text Colors */
+
+  /* #region - Background Colors */
+  .spr-background-color {
+    @apply spr-bg-white-50;
+  }
+
+  .spr-background-color-default {
+    @apply spr-bg-mushroom-200;
+  }
+
+  .spr-background-color-surface {
+    @apply spr-bg-mushroom-50;
+  }
+  .spr-background-color-surface-adaptive {
+    @apply spr-bg-mushroom-950/[0.05];
+  }
+
+  .spr-background-color-base {
+    @apply spr-bg-mushroom-100;
+  }
+
+  .spr-background-color-hover {
+    @apply spr-bg-mushroom-950/[0.08];
+  }
+
+  .spr-background-color-pressed {
+    @apply spr-bg-mushroom-950/[0.12];
+  }
+
+  .spr-background-color-disabled {
+    @apply spr-bg-white-100;
+  }
+
+  .spr-background-color-inverted {
+    @apply spr-bg-mushroom-950;
+  }
+
+  .spr-background-color-inverted-hover {
+    @apply spr-bg-mushroom-900;
+  }
+
+  .spr-background-color-inverted-pressed {
+    @apply spr-bg-mushroom-800;
+  }
+
+  .spr-background-color-single-active {
+    @apply spr-bg-kangkong-100;
+  }
+
+  .spr-background-color-multiple-active {
+    @apply spr-bg-kangkong-50;
+  }
+
+  /* BRAND COLORS */
+  .spr-background-color-brand-base {
+    @apply spr-bg-kangkong-700;
+  }
+
+  .spr-background-color-brand-hover {
+    @apply spr-bg-kangkong-800;
+  }
+
+  .spr-background-color-brand-pressed {
+    @apply spr-bg-kangkong-900;
+  }
+
+  .spr-background-color-brand-weak {
+    @apply spr-bg-kangkong-100;
+  }
+
+  .spr-background-color-brand-weak-hover {
+    @apply spr-bg-kangkong-200;
+  }
+  .spr-background-color-brand-weak-pressed {
+    @apply spr-bg-kangkong-300;
+  }
+
+  .spr-background-color-success-base {
+    @apply spr-bg-kangkong-600;
+  }
+
+  /* SUCCESS COLORS */
+  .spr-background-color-success-hover {
+    @apply spr-bg-kangkong-700;
+  }
+
+  .spr-background-color-success-pressed {
+    @apply spr-bg-kangkong-800;
+  }
+
+  .spr-background-color-success-weak {
+    @apply spr-bg-kangkong-100;
+  }
+
+  .spr-background-color-success-weak-hover {
+    @apply spr-bg-kangkong-200;
+  }
+  .spr-background-color-success-weak-pressed {
+    @apply spr-bg-kangkong-300;
+  }
+
+  /* INFORMATION COLORS */
+  .spr-background-color-information-base {
+    @apply spr-bg-blueberry-600;
+  }
+
+  .spr-background-color-information-hover {
+    @apply spr-bg-blueberry-700;
+  }
+
+  .spr-background-color-information-pressed {
+    @apply spr-bg-blueberry-800;
+  }
+
+  .spr-background-color-information-weak {
+    @apply spr-bg-blueberry-100;
+  }
+  .spr-background-color-information-weak-hover {
+    @apply spr-bg-blueberry-200;
+  }
+  .spr-background-color-information-weak-pressed {
+    @apply spr-bg-blueberry-300;
+  }
+
+  /* PENDING COLORS */
+  .spr-background-color-pending-base {
+    @apply spr-bg-mango-500;
+  }
+
+  .spr-background-color-pending-hover {
+    @apply spr-bg-mango-600;
+  }
+
+  .spr-background-color-pending-pressed {
+    @apply spr-bg-mango-700;
+  }
+
+  .spr-background-color-pending-weak {
+    @apply spr-bg-mango-100;
+  }
+  .spr-background-color-pending-weak-hover {
+    @apply spr-bg-mango-200;
+  }
+  .spr-background-color-pending-weak-pressed {
+    @apply spr-bg-mango-300;
+  }
+
+  /* CAUTION COLORS */
+  .spr-background-color-caution-base {
+    @apply spr-bg-carrot-500;
+  }
+
+  .spr-background-color-caution-hover {
+    @apply spr-bg-carrot-600;
+  }
+
+  .spr-background-color-caution-pressed {
+    @apply spr-bg-carrot-700;
+  }
+
+  .spr-background-color-caution-weak {
+    @apply spr-bg-carrot-100;
+  }
+  .spr-background-color-caution-weak-hover {
+    @apply spr-bg-carrot-200;
+  }
+  .spr-background-color-caution-weak-pressed {
+    @apply spr-bg-carrot-300;
+  }
+
+  /* ACCENT COLORS */
+  .spr-background-color-accent-base {
+    @apply spr-bg-wintermelon-600;
+  }
+
+  .spr-background-color-accent-hover {
+    @apply spr-bg-wintermelon-700;
+  }
+
+  .spr-background-color-accent-pressed {
+    @apply spr-bg-wintermelon-800;
+  }
+
+  .spr-background-color-accent-weak {
+    @apply spr-bg-wintermelon-100;
+  }
+  .spr-background-color-accent-weak-hover {
+    @apply spr-bg-wintermelon-200;
+  }
+  .spr-background-color-accent-weak-pressed {
+    @apply spr-bg-wintermelon-300;
+  }
+
+  /* DANGER COLORS */
+  .spr-background-color-danger-base {
+    @apply spr-bg-tomato-600;
+  }
+
+  .spr-background-color-danger-hover {
+    @apply spr-bg-tomato-700;
+  }
+
+  .spr-background-color-danger-pressed {
+    @apply spr-bg-tomato-800;
+  }
+
+  .spr-background-color-danger-weak {
+    @apply spr-bg-tomato-100;
+  }
+  .spr-background-color-danger-weak-hover {
+    @apply spr-bg-tomato-200;
+  }
+  .spr-background-color-danger-weak-pressed {
+    @apply spr-bg-tomato-300;
+  }
+
+  .spr-switch-background-default {
+    @apply spr-bg-mushroom-200;
+  }
+
+  .spr-switch-background-hover {
+    @apply spr-bg-mushroom-300;
+  }
+
+  .spr-switch-background-pressed {
+    @apply spr-bg-mushroom-400;
+  }
+  /* #endregion - Background Colors */
+
+  /* #region - Border Colors */
+  .spr-border-color-strong {
+    @apply spr-border-mushroom-500;
+  }
+
+  .spr-border-color-supporting {
+    @apply spr-border-mushroom-400;
+  }
+
+  .spr-border-color-base {
+    @apply spr-border-mushroom-300;
+  }
+
+  .spr-border-color-hover {
+    @apply spr-border-mushroom-400;
+  }
+
+  .spr-border-color-pressed {
+    @apply spr-border-mushroom-500;
+  }
+
+  .spr-border-color-weak {
+    @apply spr-border-mushroom-200;
+  }
+
+  .spr-border-color-disabled {
+    @apply spr-border-white-100;
+  }
+
+  .spr-border-color-on-fill-disabled {
+    @apply spr-border-white-200;
+  }
+
+  /* BRAND COLORS */
+  .spr-border-color-brand-base {
+    @apply spr-border-kangkong-700;
+  }
+
+  .spr-border-color-brand-hover {
+    @apply spr-border-kangkong-800;
+  }
+
+  .spr-border-color-brand-pressed {
+    @apply spr-border-kangkong-900;
+  }
+
+  /* SUCCESS COLORS */
+  .spr-border-color-success-base {
+    @apply spr-border-kangkong-700;
+  }
+
+  .spr-border-color-success-hover {
+    @apply spr-border-kangkong-800;
+  }
+
+  .spr-border-color-success-pressed {
+    @apply spr-border-kangkong-900;
+  }
+
+  /* INFORMATION COLORS */
+  .spr-border-color-information-base {
+    @apply spr-border-blueberry-800;
+  }
+
+  .spr-border-color-information-hover {
+    @apply spr-border-blueberry-900;
+  }
+
+  .spr-border-color-information-pressed {
+    @apply spr-border-blueberry-950;
+  }
+
+  /* DANGER COLORS */
+  .spr-border-color-danger-base {
+    @apply spr-border-tomato-700;
+  }
+
+  .spr-border-color-danger-hover {
+    @apply spr-border-tomato-800;
+  }
+
+  .spr-border-color-danger-pressed {
+    @apply spr-border-tomato-900;
+  }
+
+  /* PENDING COLORS */
+  .spr-border-color-pending-base {
+    @apply spr-border-mango-800;
+  }
+
+  .spr-border-color-pending-hover {
+    @apply spr-border-mango-900;
+  }
+
+  .spr-border-color-pending-pressed {
+    @apply spr-border-mango-950;
+  }
+
+  /* CAUTION COLORS */
+  .spr-border-color-caution-base {
+    @apply spr-border-carrot-800;
+  }
+
+  .spr-border-color-caution-hover {
+    @apply spr-border-carrot-900;
+  }
+
+  .spr-border-color-caution-pressed {
+    @apply spr-border-carrot-950;
+  }
+
+  /* ACCENT COLORS */
+  .spr-border-color-accent-base {
+    @apply spr-border-wintermelon-700;
+  }
+
+  .spr-border-color-accent-hover {
+    @apply spr-border-wintermelon-800;
+  }
+
+  .spr-border-color-accent-pressed {
+    @apply spr-border-wintermelon-900;
+  }
+  /* #endregion - Border Colors */
+
+  /* #region - Box Shadows */
+  .spr-drop-shadow-sm {
+    @apply spr-shadow-drop-sm;
+  }
+
+  .spr-drop-shadow {
+    @apply spr-shadow-drop;
+  }
+
+  .spr-drop-shadow-md {
+    @apply spr-shadow-drop-md;
+  }
+
+  .spr-drop-shadow-top-sm {
+    @apply spr-shadow-drop-top-sm;
+  }
+
+  .spr-drop-shadow-top {
+    @apply spr-shadow-drop-top;
+  }
+
+  .spr-drop-shadow-top-md {
+    @apply spr-shadow-drop-top-md;
+  }
+  /* #endregion - Box Shadows */
+
+  /* #region - Divide Colors */
+  .spr-divide-color-strong {
+    @apply spr-divide-mushroom-500;
+  }
+
+  .spr-divide-color-supporting {
+    @apply spr-divide-mushroom-400;
+  }
+
+  .spr-divide-color-base {
+    @apply spr-divide-mushroom-300;
+  }
+
+  .spr-divide-color-hover {
+    @apply spr-divide-mushroom-400;
+  }
+
+  .spr-divide-color-pressed {
+    @apply spr-divide-mushroom-500;
+  }
+
+  .spr-divide-color-weak {
+    @apply spr-divide-mushroom-200;
+  }
+
+  .spr-divide-color-disabled {
+    @apply spr-divide-white-100;
+  }
+
+  .spr-divide-color-on-fill-disabled {
+    @apply spr-divide-white-200;
+  }
+
+  .spr-divide-color-brand-base {
+    @apply spr-divide-kangkong-700;
+  }
+
+  .spr-divide-color-brand-hover {
+    @apply spr-divide-kangkong-800;
+  }
+
+  .spr-divide-color-brand-pressed {
+    @apply spr-divide-kangkong-900;
+  }
+
+  .spr-divide-color-success-base {
+    @apply spr-divide-kangkong-700;
+  }
+
+  .spr-divide-color-success-hover {
+    @apply spr-divide-kangkong-800;
+  }
+
+  .spr-divide-color-success-pressed {
+    @apply spr-divide-kangkong-900;
+  }
+
+  .spr-divide-color-information-base {
+    @apply spr-divide-blueberry-700;
+  }
+
+  .spr-divide-color-information-hover {
+    @apply spr-divide-blueberry-800;
+  }
+
+  .spr-divide-color-information-pressed {
+    @apply spr-divide-blueberry-900;
+  }
+
+  .spr-divide-color-danger-base {
+    @apply spr-divide-tomato-600;
+  }
+
+  .spr-divide-color-danger-hover {
+    @apply spr-divide-tomato-700;
+  }
+
+  .spr-divide-color-danger-pressed {
+    @apply spr-divide-tomato-800;
+  }
+
+  .spr-divide-color-pending-base {
+    @apply spr-divide-mango-700;
+  }
+
+  .spr-divide-color-pending-hover {
+    @apply spr-divide-mango-800;
+  }
+
+  .spr-divide-color-pending-pressed {
+    @apply spr-divide-mango-900;
+  }
+
+  .spr-divide-color-caution-base {
+    @apply spr-divide-carrot-700;
+  }
+
+  .spr-divide-color-caution-hover {
+    @apply spr-divide-carrot-800;
+  }
+
+  .spr-divide-color-caution-pressed {
+    @apply spr-divide-carrot-900;
+  }
+
+  .spr-divide-color-accent-base {
+    @apply spr-divide-wintermelon-700;
+  }
+
+  .spr-divide-color-accent-hover {
+    @apply spr-divide-wintermelon-800;
+  }
+
+  .spr-divide-color-accent-pressed {
+    @apply spr-divide-wintermelon-900;
+  }
+  /* #endregion - Divide Colors */
+
+  /* #region - skeletal animation */
+  .spr-skeletal-loader {
+    @apply spr-animate-pulse spr-border-neutral-200 spr-bg-[linear-gradient(270deg,var(--Light-Mushroom-50,#EFF1F1)_0%,var(--Light-Mushroom-200,#D9DEDE)_100%)];
+  }
+  /* #endregion - skeletal animation */
+}

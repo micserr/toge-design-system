@@ -53,7 +53,7 @@ export default defineConfig({
       formats: ['es'],
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'pinia', 'floating-vue'],
       output: {
         globals: { vue: 'Vue' },
         exports: 'named',

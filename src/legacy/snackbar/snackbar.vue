@@ -28,8 +28,8 @@
 <script lang="ts" setup>
 import { useSnackbarStore } from '@/stores/useSnackbarStore';
 
-import SprSnack from '@/components/snackbar/snack/snack.vue';
-import { useSnackbar } from '@/components/snackbar/use-snackbar';
+import SprSnack from '@/snackbar/snack/snack.vue';
+import { useSnackbar } from '@/snackbar/use-snackbar';
 
 import { SnackPropTypes } from './snack/snack';
 import { createPinia } from 'pinia';

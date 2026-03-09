@@ -24,9 +24,9 @@
 </template>
 
 <script setup lang="ts">
-import SprStep from '@/components/stepper/step/step.vue';
-import { stepperPropTypes } from '@/components/stepper/stepper';
-import { useStepper } from '@/components/stepper/use-stepper';
+import SprStep from '@/stepper/step/step.vue';
+import { stepperPropTypes } from '@/stepper/stepper';
+import { useStepper } from '@/stepper/use-stepper';
 
 const props = defineProps(stepperPropTypes);
 

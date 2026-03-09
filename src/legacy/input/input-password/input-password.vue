@@ -17,8 +17,8 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
 
-import SprInput from '@/components/input/input.vue';
-import { inputPropTypes, inputEmitTypes } from '@/components/input/input';
+import SprInput from '@/input/input.vue';
+import { inputPropTypes, inputEmitTypes } from '@/input/input';
 
 import { useInputPassword } from './use-input-password';
 

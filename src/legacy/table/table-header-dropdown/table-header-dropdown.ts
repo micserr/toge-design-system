@@ -1,4 +1,4 @@
-import type { MenuListType } from '@/components/list/list';
+import type { MenuListType } from '@/list/list';
 import { type PropType, type ExtractPropTypes, ref } from 'vue';
 import type { Header } from '../table';
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;

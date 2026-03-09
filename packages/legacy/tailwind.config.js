@@ -6,7 +6,7 @@ import tokensConfig from '@toge-design-system/tokens/tailwind';
 export default {
   ...tokensConfig,
   content: [
-    './src/**/*.{vue,js,ts}',
+    '../../src/legacy/**/*.{vue,js,ts}',
     './lib/**/*.{ts,js}',
   ],
 };

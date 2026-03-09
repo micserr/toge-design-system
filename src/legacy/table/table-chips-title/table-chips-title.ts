@@ -1,6 +1,6 @@
 import type { PropType, ExtractPropTypes } from 'vue';
-import type { AVATAR_VARIANT } from '@/components/avatar/avatar';
-import type { ICON_WEIGHTS } from '@/components/chips/chips';
+import type { AVATAR_VARIANT } from '@/avatar/avatar';
+import type { ICON_WEIGHTS } from '@/chips/chips';
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
 export interface ChipTitle {

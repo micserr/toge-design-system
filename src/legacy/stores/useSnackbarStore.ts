@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { SnackPropTypes } from "@/components/snackbar/snack/snack";
+import { SnackPropTypes } from "@/snackbar/snack/snack";
 import { ref, type Ref } from "vue";
 
 const createSnack = (payload: SnackPropTypes): SnackStoreTypes => ({

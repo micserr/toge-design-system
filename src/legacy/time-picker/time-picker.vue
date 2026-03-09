@@ -73,7 +73,7 @@
 import { Icon } from '@iconify/vue';
 import { Menu } from 'floating-vue';
 import 'floating-vue/dist/style.css';
-import SprInput from '@/components/input/input.vue';
+import SprInput from '@/input/input.vue';
 
 import { timePickerPropTypes, timePickerEmitTypes } from './time-picker';
 import { useTimePicker } from './use-time-picker';

@@ -35,8 +35,8 @@ import { Icon } from '@iconify/vue';
 import { buttonDropdownEmits, buttonDropdownProps } from './button-dropdown';
 import { useButtonDropdown } from './use-button-dropdown';
 
-import SprButton from '@/components/button/button.vue';
-import SprDropdown from '@/components/dropdown/dropdown.vue';
+import SprButton from '@/button/button.vue';
+import SprDropdown from '@/dropdown/dropdown.vue';
 
 const props = defineProps(buttonDropdownProps);
 const emits = defineEmits(buttonDropdownEmits);

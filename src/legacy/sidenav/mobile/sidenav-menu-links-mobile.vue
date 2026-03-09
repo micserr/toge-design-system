@@ -123,8 +123,8 @@ import {
   type ConvertedNavAttribute,
   type MenuLinkItem,
   type ParentLinkItem,
-} from '@/components/sidenav/sidenav';
-import { useSidenav } from '@/components/sidenav/use-sidenav';
+} from '@/sidenav/sidenav';
+import { useSidenav } from '@/sidenav/use-sidenav';
 
 import SidenavNavLinkItem from './sidenav-nav-link-item.vue';
 

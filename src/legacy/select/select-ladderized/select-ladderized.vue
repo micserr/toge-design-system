@@ -102,8 +102,8 @@ import { Icon } from '@iconify/vue';
 
 import 'floating-vue/dist/style.css';
 
-import SprInput from '@/components/input/input.vue';
-import SprLadderizedList from '@/components/list/ladderized-list/ladderized-list.vue';
+import SprInput from '@/input/input.vue';
+import SprLadderizedList from '@/list/ladderized-list/ladderized-list.vue';
 
 import { selectLadderizedPropTypes, selectLadderizedEmitTypes, SelectLadderizedEmitFn } from './select-ladderized';
 import { useSelectLadderized } from './use-select-ladderized';

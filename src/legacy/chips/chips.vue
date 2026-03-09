@@ -56,9 +56,9 @@ import { useSlots } from 'vue';
 import { Icon } from '@iconify/vue';
 import { chipsPropTypes } from './chips';
 import { useChips } from './use-chips';
-import SprBadge from '@/components/badge/badge.vue';
+import SprBadge from '@/badge/badge.vue';
 import { chipsEmitTypes } from './chips';
-import SprAvatar from '@/components/avatar/avatar.vue';
+import SprAvatar from '@/avatar/avatar.vue';
 
 const props = defineProps(chipsPropTypes);
 const emit = defineEmits(chipsEmitTypes);

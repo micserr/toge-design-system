@@ -36,7 +36,7 @@ import { Icon } from '@iconify/vue';
 import { avatarPropTypes, avatarEmitTypes } from './avatar';
 import { useAvatar } from './use-avatar';
 
-import SprBadge from '@/components/badge/badge.vue';
+import SprBadge from '@/badge/badge.vue';
 
 const props = defineProps(avatarPropTypes);
 const emit = defineEmits(avatarEmitTypes);

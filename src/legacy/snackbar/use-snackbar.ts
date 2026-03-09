@@ -1,4 +1,4 @@
-import { SnackPropTypes } from "@/components/snackbar/snack/snack";
+import { SnackPropTypes } from "@/snackbar/snack/snack";
 import { useSnackbarStore } from '@/stores/useSnackbarStore';
 
 export const useSnackbar = () => {

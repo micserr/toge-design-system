@@ -1,4 +1,4 @@
-import type { StepPropTypes } from '@/components/stepper/step/step';
+import type { StepPropTypes } from '@/stepper/step/step';
 import type { ExtractPropTypes, PropType } from 'vue';
 
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;

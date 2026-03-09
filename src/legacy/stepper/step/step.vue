@@ -22,8 +22,8 @@
 </template>
 
 <script setup lang="ts">
-import { stepEmitTypes, stepPropTypes } from '@/components/stepper/step/step';
-import { useStep } from '@/components/stepper/step/use-step';
+import { stepEmitTypes, stepPropTypes } from '@/stepper/step/step';
+import { useStep } from '@/stepper/step/use-step';
 import { Icon } from '@iconify/vue'; 
 
 const props = defineProps(stepPropTypes);

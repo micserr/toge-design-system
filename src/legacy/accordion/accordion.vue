@@ -58,8 +58,8 @@ import { Icon } from '@iconify/vue';
 import { accordionPropTypes } from './accordion';
 import { useAccordion } from './use-accordion';
 
-import SprCollapsible from '@/components/collapsible/collapsible.vue';
-import SprButton from '@/components/button/button.vue';
+import SprCollapsible from '@/collapsible/collapsible.vue';
+import SprButton from '@/button/button.vue';
 
 const props = defineProps(accordionPropTypes);
 

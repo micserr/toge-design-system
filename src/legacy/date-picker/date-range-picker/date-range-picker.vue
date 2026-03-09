@@ -367,7 +367,7 @@ import 'floating-vue/dist/style.css';
 import { dateRangePickerPropTypes, dateRangePickerEmitTypes } from './date-range-picker';
 import { useDateRangePicker } from './use-date-range-picker';
 
-import SprButton from '@/components/button/button.vue';
+import SprButton from '@/button/button.vue';
 
 const props = defineProps(dateRangePickerPropTypes);
 const emit = defineEmits(dateRangePickerEmitTypes);

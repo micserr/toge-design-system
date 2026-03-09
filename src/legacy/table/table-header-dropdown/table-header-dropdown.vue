@@ -63,14 +63,14 @@
 </template>
 
 <script setup lang="ts">
-import SprDropdown from '@/components/dropdown/dropdown.vue';
-import SprCard from '@/components/card/card.vue';
-import SprButton from '@/components/button/button.vue';
-import SprList from '@/components/list/list.vue';
+import SprDropdown from '@/dropdown/dropdown.vue';
+import SprCard from '@/card/card.vue';
+import SprButton from '@/button/button.vue';
+import SprList from '@/list/list.vue';
 import { Icon } from '@iconify/vue';
 import { tableHeaderDropdownEmitTypes, tableHeaderDropdownPropTypes } from './table-header-dropdown';
 import { ref } from 'vue';
-import { MenuListType } from '@/components/list/list';
+import { MenuListType } from '@/list/list';
 
 const tableHeaderDropdown = ref<InstanceType<typeof SprDropdown> | null>(null);
 const showDropdown = () => {

@@ -127,7 +127,7 @@ import { computed, ref } from 'vue';
 import { Icon } from '@iconify/vue';
 import classNames from 'classnames';
 
-import SprButton from '@/components/button/button.vue';
+import SprButton from '@/button/button.vue';
 import DatePickerCalendarTab from '../tabs/DatePickerCalendarTab.vue';
 import DatePickerMonthTab from '../tabs/DatePickerMonthTab.vue';
 import DatePickerYearTab from '../tabs/DatePickerYearTab.vue';

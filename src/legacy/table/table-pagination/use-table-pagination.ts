@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import type {
   TablePaginationPropTypes,
   TablePaginationEmitTypes,
-} from '@/components/table/table-pagination/table-pagination';
+} from '@/table/table-pagination/table-pagination';
 import { useVModel } from '@vueuse/core';
 
 interface TablePaginationClasses {

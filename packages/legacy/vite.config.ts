@@ -23,8 +23,8 @@ export default defineConfig({
     dts({
       include: [
         'lib/**/*.ts',
-        'src/components/**/*.ts',
-        'src/components/**/*.vue',
+        '../../src/legacy/**/*.ts',
+        '../../src/legacy/**/*.vue',
       ],
       outDir: 'dist',
       insertTypesEntry: true,
@@ -47,7 +47,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'),
+      '@': resolve(__dirname, '../../src/legacy'),
     },
   },
   build: {

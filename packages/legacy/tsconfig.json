@@ -2,9 +2,9 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": { "@/*": ["src/*"] },
+    "paths": { "@/*": ["../../src/legacy/*"] },
     "noEmit": true,
     "allowImportingTsExtensions": true
   },
-  "include": ["src", "lib"]
+  "include": ["../../src/legacy", "lib"]
 }

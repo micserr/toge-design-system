@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": { "@/*": ["src/*"] },
+    "noEmit": true,
+    "allowImportingTsExtensions": true
+  },
+  "include": ["src", "lib"]
+}

@@ -1,0 +1,36 @@
+{
+  "name": "@toge-design-system/toge",
+  "version": "0.1.0",
+  "type": "module",
+  "private": false,
+  "exports": {
+    ".": {
+      "types": "./dist/toge.es.d.ts",
+      "import": "./dist/toge.es.js"
+    },
+    "./style.css": "./dist/toge.css"
+  },
+  "files": ["dist", "lib"],
+  "scripts": {
+    "build": "vite build --config vite.config.ts",
+    "watch-build": "vite build --watch --config vite.config.ts",
+    "types": "vue-tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@iconify/vue": "^5.0.0",
+    "@toge-design-system/tokens": "*",
+    "classnames": "^2.5.1",
+    "countries-list": "^3.1.1",
+    "dayjs": "^1.11.18",
+    "floating-vue": "^5.2.2",
+    "libphonenumber-js": "^1.12.24",
+    "lodash": "^4.17.21",
+    "pinia": "^3.0.3",
+    "sortablejs": "^1.15.6"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0",
+    "tailwindcss": "^3.0.0"
+  }
+}

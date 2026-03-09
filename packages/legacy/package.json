@@ -1,0 +1,50 @@
+{
+  "name": "@toge-design-system/design-system-next",
+  "version": "2.27.3",
+  "type": "module",
+  "private": false,
+  "main": "./dist/design-system-next.umd.js",
+  "module": "./dist/design-system-next.es.js",
+  "types": "./dist/design-system-next.es.d.ts",
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/design-system-next.es.d.ts",
+      "import": "./dist/design-system-next.es.js",
+      "require": "./dist/design-system-next.umd.js"
+    },
+    "./style.css": "./dist/main.css",
+    "./types": {
+      "types": "./dist/design-system-next.es.d.ts",
+      "import": "./dist/design-system-next.es.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "watch-build": "vite build --watch",
+    "types": "vue-tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@cloudinary/url-gen": "^1.22.0",
+    "@iconify-icons/ph": "^1.2.5",
+    "@iconify/vue": "^5.0.0",
+    "@toge-design-system/tokens": "*",
+    "classnames": "^2.5.1",
+    "countries-list": "^3.1.1",
+    "dayjs": "^1.11.18",
+    "floating-vue": "^5.2.2",
+    "libphonenumber-js": "^1.12.24",
+    "lodash": "^4.17.21",
+    "pinia": "^3.0.3",
+    "sortablejs": "^1.15.6",
+    "uifork-vue": "github:maaraquel08/design-fork",
+    "vue": "^3.0.0"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  }
+}

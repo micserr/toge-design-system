@@ -1,11 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 
 import plugin from 'tailwindcss/plugin';
-import colorScheme from './src/scripts/colors';
-import spacing from './src/scripts/spacing';
-import maxWidth from './src/scripts/max-width';
-import borderRadius from './src/scripts/border-radius';
-import utilities from './src/scripts/utilities';
+import colorScheme from '../../src/tokens/scripts/colors';
+import spacing from '../../src/tokens/scripts/spacing';
+import maxWidth from '../../src/tokens/scripts/max-width';
+import borderRadius from '../../src/tokens/scripts/border-radius';
+import utilities from '../../src/tokens/scripts/utilities';
 
 export default {
   // No content here — consumers define their own content paths

@@ -8,13 +8,13 @@
   },
   "exports": {
     ".": {
-      "types": "./src/scripts/index.ts",
-      "import": "./src/scripts/index.ts"
+      "types": "../../src/tokens/scripts/index.ts",
+      "import": "../../src/tokens/scripts/index.ts"
     },
-    "./styles": "./src/styles/tailwind.css",
+    "./styles": "../../src/tokens/styles/tailwind.css",
     "./tailwind": "./tailwind.config.js"
   },
-  "files": ["src", "tailwind.config.js"],
+  "files": ["tailwind.config.js"],
   "peerDependencies": {
     "tailwindcss": "^3.0.0"
   }

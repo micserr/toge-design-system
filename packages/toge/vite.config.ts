@@ -11,7 +11,7 @@ import { resolve } from 'path';
 export default defineConfig({
   css: {
     postcss: {
-      plugins: [tailwind(), autoprefixer()],
+      plugins: [tailwind({ config: resolve(__dirname, './tailwind.config.js') }), autoprefixer()],
     },
   },
   plugins: [

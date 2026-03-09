@@ -12,7 +12,11 @@ import pkg from '../package.json'
 // ─────────────────────────────────────────────────────────────────────────────
 
 const PREFIX = 'toge-'
-const components = import.meta.glob('../src/toge/{primitives,molecules,patterns}/**/*.vue', { eager: true })
+// button-dropdown excluded — still depends on spr-dropdown, pending full toge migration
+const components = import.meta.glob(
+  ['../src/toge/{primitives,molecules,patterns}/**/*.vue', '!../src/toge/primitives/button/button-dropdown/**'],
+  { eager: true }
+)
 
 const install = (app: App) => {
   // Register all toge components globally with toge- prefix
@@ -34,7 +38,8 @@ export default { install, version: pkg.version }
 
 // ─── Primitives ──────────────────────────────────────────────────────────────
 export { default as TogeButton } from '../src/toge/primitives/button/button.vue'
-export { default as TogeButtonDropdown } from '../src/toge/primitives/button/button-dropdown/button-dropdown.vue'
+// TODO: TogeButtonDropdown still depends on spr-dropdown — pending full toge migration
+// export { default as TogeButtonDropdown } from '../src/toge/primitives/button/button-dropdown/button-dropdown.vue'
 export { default as TogeBadge } from '../src/toge/primitives/badge/badge.vue'
 export { default as TogeIcon } from '../src/toge/primitives/icon/icon.vue'
 export { default as TogeLozenge } from '../src/toge/primitives/lozenge/lozenge.vue'

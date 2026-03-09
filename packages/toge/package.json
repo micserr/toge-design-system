@@ -20,6 +20,7 @@
   "dependencies": {
     "@iconify/vue": "^5.0.0",
     "@toge-design-system/tokens": "*",
+    "@vueuse/core": "^12.0.0",
     "classnames": "^2.5.1",
     "countries-list": "^3.1.1",
     "dayjs": "^1.11.18",

@@ -13,7 +13,7 @@ import { resolve } from 'path';
 export default defineConfig({
   css: {
     postcss: {
-      plugins: [tailwind(), autoprefixer()],
+      plugins: [tailwind({ config: resolve(__dirname, './tailwind.config.js') }), autoprefixer()],
     },
   },
   plugins: [
@@ -25,14 +25,12 @@ export default defineConfig({
         'lib/**/*.ts',
         'src/components/**/*.ts',
         'src/components/**/*.vue',
-        'src/toge/**/*.ts',
-        'src/toge/**/*.vue',
       ],
       outDir: 'dist',
       insertTypesEntry: true,
       copyDtsFiles: false,
       staticImport: true,
-      rollupTypes: true,
+      rollupTypes: false,
       exclude: ['src/**/*.spec.ts', 'tests/**/*', 'playwright/**/*'],
       compilerOptions: {
         composite: false,

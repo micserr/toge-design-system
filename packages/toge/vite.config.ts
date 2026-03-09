@@ -20,8 +20,8 @@ export default defineConfig({
     dts({
       include: [
         'lib/toge.ts',
-        'src/toge/**/*.ts',
-        'src/toge/**/*.vue',
+        '../../src/toge/**/*.ts',
+        '../../src/toge/**/*.vue',
       ],
       outDir: 'dist',
       insertTypesEntry: true,
@@ -42,7 +42,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'),
+      '@': resolve(__dirname, '../../src'),
     },
   },
   build: {

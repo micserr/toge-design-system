@@ -1,6 +1,7 @@
 {
   "name": "@toge-design-system/design-system-next",
-  "private": false,
+  "private": true,
+  "workspaces": ["packages/*"],
   "version": "2.27.3",
   "main": "./dist/design-system-next.umd.js",
   "module": "./dist/design-system-next.es.js",

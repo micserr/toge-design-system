@@ -10,7 +10,7 @@
  */
 
 import { test, expect } from '@playwright/experimental-ct-vue';
-import Sidepanel from '../../src/components/sidepanel/sidepanel.vue';
+import Sidepanel from '../../src/legacy/sidepanel/sidepanel.vue';
 
 // ASSUMPTIONS:
 // - Icon component is available and functional

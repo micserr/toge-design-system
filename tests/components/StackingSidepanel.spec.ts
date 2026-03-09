@@ -17,7 +17,7 @@
  */
 
 import { test, expect } from '@playwright/experimental-ct-vue';
-import StackingSidepanel from '../../src/components/sidepanel/stacking-sidepanel/stacking-sidepanel.vue';
+import StackingSidepanel from '../../src/legacy/sidepanel/stacking-sidepanel/stacking-sidepanel.vue';
 
 test.describe('StackingSidepanel Component', () => {
   test.describe('Basic Rendering', () => {

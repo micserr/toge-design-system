@@ -1,5 +1,5 @@
 // Export all component prop types explicitly
-// Note: These will resolve to the compiled .d.ts files in dist/src/components
+// Note: These will resolve to the compiled .d.ts files in dist/src/legacy
 export type { AccordionPropTypes, AccordionItem } from '../src/legacy/accordion/accordion';
 export type { AttributeFilterPropTypes } from '../src/legacy/attribute-filter/attribute-filter';
 export type { AuditTrailPropTypes } from '../src/legacy/audit-trail/audit-trail';

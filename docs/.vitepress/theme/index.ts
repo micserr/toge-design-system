@@ -3,7 +3,7 @@ import type { Theme } from 'vitepress';
 
 import pkg from '../../../package.json';
 
-import '../../../src/assets/styles/tailwind.css';
+import '../../../src/tokens/styles/tailwind.css';
 import './custom.css';
 
 import Layout from './Layout.vue';

@@ -1,6 +1,6 @@
 import { App } from 'vue';
 
-import '@/assets/styles/tailwind.css';
+import '@toge-design-system/tokens/styles';
 import pkg from '../package.json';
 
 // Prefix constant (no need for dynamic setPrefix)

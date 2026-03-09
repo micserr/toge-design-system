@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import App from '@/App.vue';
 
-import '@/assets/styles/tailwind.css';
+import '@/tokens/styles/tailwind.css';
 
 import FloatingVue from 'floating-vue';
 

@@ -23,8 +23,8 @@ export default defineConfig({
     dts({
       include: [
         'lib/**/*.ts',
-        'src/components/**/*.ts',
-        'src/components/**/*.vue',
+        'src/legacy/**/*.ts',
+        'src/legacy/**/*.vue',
         'src/toge/**/*.ts',
         'src/toge/**/*.vue',
       ],

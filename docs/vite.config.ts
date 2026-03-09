@@ -15,7 +15,7 @@ export default {
   },
   plugins: [],
   resolve: {
-    alias: { '@': fileURLToPath(new URL('../src', import.meta.url)) },
+    alias: { '@': fileURLToPath(new URL('../src/legacy', import.meta.url)) },
   },
   server: {
     port: 8888,

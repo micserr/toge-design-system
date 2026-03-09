@@ -1,10 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 
-import colorScheme from './src/assets/scripts/colors';
-import spacing from './src/assets/scripts/spacing';
-import maxWidth from './src/assets/scripts/max-width';
-import borderRadius from './src/assets/scripts/border-radius';
-import utilities from './src/assets/scripts/utilities';
+import colorScheme from './src/tokens/scripts/colors';
+import spacing from './src/tokens/scripts/spacing';
+import maxWidth from './src/tokens/scripts/max-width';
+import borderRadius from './src/tokens/scripts/border-radius';
+import utilities from './src/tokens/scripts/utilities';
 
 const plugin = require('tailwindcss/plugin');
 

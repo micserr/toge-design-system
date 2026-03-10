@@ -321,12 +321,12 @@
 <script setup lang="ts">
 import { useSlots } from 'vue';
 import { Icon } from '@iconify/vue';
-import SprButton from '@/button/button.vue';
-import SprAvatar from '@/avatar/avatar.vue';
-import SprCard from '@/card/card.vue';
-import SprLozenge from '@/lozenge/lozenge.vue';
-import SprCalendarCell from '@/calendar-cell/calendar-cell.vue';
-import SprEmptyState from '@/empty-state/empty-state.vue';
+import SprButton from '@/legacy/button/button.vue';
+import SprAvatar from '@/legacy/avatar/avatar.vue';
+import SprCard from '@/legacy/card/card.vue';
+import SprLozenge from '@/legacy/lozenge/lozenge.vue';
+import SprCalendarCell from '@/legacy/calendar-cell/calendar-cell.vue';
+import SprEmptyState from '@/legacy/empty-state/empty-state.vue';
 import { calendarPropTypes, calendarEmitTypes } from './calendar';
 
 const props = defineProps(calendarPropTypes);

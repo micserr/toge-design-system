@@ -13,14 +13,13 @@ export interface DateRangePickerProps {
   disabled?: boolean
   readonly?: boolean
   error?: boolean
-  active?: boolean
   separator?: string
   width?: string
   format?: string
   placement?: 'bottom' | 'bottom-start' | 'top' | 'top-start'
   popperStrategy?: 'fixed' | 'absolute'
   popperContainer?: string
-  displayHelper?: boolean
+  showHelper?: boolean
   helperText?: string
   helperIcon?: string
   minMaxYear?: MinMaxYear

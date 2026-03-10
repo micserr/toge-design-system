@@ -36,6 +36,12 @@ export interface DateCalendarPickerProps {
   readonly?: boolean
   mode?: DatePickerMode
   format?: string
+  // Range mode — passed by date-range-picker
+  startDate?: string
+  endDate?: string
+  hoveredDate?: string | null
+  // Render without outer shadow/border/bg (for embedding inside a parent container)
+  naked?: boolean
 }
 
 export interface DateCalendarPickerEmits {
@@ -43,4 +49,8 @@ export interface DateCalendarPickerEmits {
   'update:month': [month: number]
   'update:year': [year: number]
   'update:day': [day: number]
+  'prev-month': []
+  'next-month': []
+  'day-hover': [date: string]
+  'day-leave': []
 }

@@ -1,5 +1,5 @@
 import { computed } from 'vue';
-import type { TableChipsTitlePropTypes } from '@/table/table-chips-title/table-chips-title';
+import type { TableChipsTitlePropTypes } from '@/legacy/table/table-chips-title/table-chips-title';
 
 export const useTableChipsTitle = (props: TableChipsTitlePropTypes) => {
   const computeIcon = computed(() => props.cell?.icon || '');

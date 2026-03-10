@@ -50,16 +50,6 @@ export function getAvatarInitialsContainerClasses(size: AvatarSize): string {
   )
 }
 
-export function getAvatarNotificationClasses(size: AvatarSize): string {
-  return classNames('spr-absolute spr-right-0 spr-top-0', {
-    'spr-right-[-5px] spr-top-[-6.3px]': size === 'xl',
-    'spr-right-[-7px] spr-top-[-8px]': size === 'lg',
-    'spr-right-[-5px] spr-top-[-6px]': size === 'md',
-    'spr-right-[-7px] spr-top-[-7px]': size === 'sm',
-    'spr-right-[-5px] spr-top-[-4px]': size === 'xs',
-    'spr-right-[-4px] spr-top-[-4px]': size === '2xs',
-  })
-}
 
 export function getAvatarOnlineNotificationClasses(size: AvatarSize): string {
   return classNames('spr-absolute spr-bottom-0 spr-right-0', {
@@ -71,11 +61,9 @@ export function getAvatarOnlineNotificationClasses(size: AvatarSize): string {
   })
 }
 
-export function getAvatarSizeConfig(size: AvatarSize): { notif: string; badge: string } {
-  if (size === '2xl') return { notif: 'big', badge: 'big' }
-  if (size === 'xl' || size === 'lg') return { notif: 'big', badge: 'tiny' }
-  if (size === 'md' || size === 'sm') return { notif: 'small', badge: 'tiny' }
-  return { notif: 'tiny', badge: 'tiny' }
+export function getAvatarSizeConfig(size: AvatarSize): { badge: string } {
+  if (size === '2xl') return { badge: 'big' }
+  return { badge: 'tiny' }
 }
 
 export function getAvatarIconVariant(variant: string): string {

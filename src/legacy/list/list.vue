@@ -130,8 +130,8 @@
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue';
 
-import SprInputSearch from '@/input/input-search/input-search.vue';
-import SprButton from '@/button/button.vue';
+import SprInputSearch from '@/legacy/input/input-search/input-search.vue';
+import SprButton from '@/legacy/button/button.vue';
 import ListItem from './list-item/list-item.vue';
 
 import { listPropTypes, listEmitTypes } from './list';

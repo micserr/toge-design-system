@@ -1,79 +1,67 @@
 <template>
-  <div :id="props.id" :class="[classes.base, classes.flexBox]">
-    <div
-      v-if="props.showHeader"
-      :class="classes.header"
-      :role="props.hasCollapsible ? 'button' : undefined"
-      :tabindex="props.hasCollapsible ? 0 : undefined"
-      :aria-expanded="props.hasCollapsible ? isOpen : undefined"
-      @click="props.hasCollapsible ? handleToggle() : undefined"
-      @keyup.enter="props.hasCollapsible ? handleToggle() : undefined"
-    >
+  <div :id="props.id" :class="[classes.base, { 'spr-flex spr-flex-col spr-h-full': props.flexbox }]">
+
+    <!-- Header -->
+    <div v-if="props.showHeader" :class="classes.header">
       <slot name="header">
-        <Icon v-if="props.headerIcon" :icon="props.headerIcon" class="spr-mr-size-spacing-3xs" />
+        <Icon v-if="props.headerIcon" :icon="props.headerIcon" class="spr-mr-size-spacing-3xs spr-shrink-0" />
         <div class="spr-flex spr-flex-col spr-flex-1">
           <span v-if="props.title" class="spr-body-sm-regular-medium spr-text-color-strong">{{ props.title }}</span>
           <span v-if="props.subtitle" class="spr-body-xs-regular spr-text-color-base">{{ props.subtitle }}</span>
         </div>
-        <Icon v-if="props.hasCollapsible" :icon="isOpen ? 'ph:caret-up' : 'ph:caret-down'" />
       </slot>
     </div>
 
-    <div v-show="!props.hasCollapsible || isOpen" :class="classes.contentPadding">
-      <slot name="content">
-        <slot />
+    <!-- Body -->
+    <div :class="classes.body">
+      <slot />
+    </div>
+
+    <!-- Footer -->
+    <div v-if="props.showFooter" :class="classes.footer">
+      <slot name="footer">
+        <div class="spr-flex spr-items-center spr-gap-size-spacing-3xs">
+          <TogeButton variant="secondary" size="small" @click="emit('secondary')">
+            {{ props.secondaryLabel }}
+          </TogeButton>
+          <TogeButton variant="primary" tone="success" size="small" @click="emit('primary')">
+            {{ props.primaryLabel }}
+          </TogeButton>
+        </div>
       </slot>
     </div>
 
-    <div v-if="props.showFooter && $slots.footer" :class="classes.footer">
-      <slot name="footer" />
-    </div>
   </div>
 </template>
+
 <script lang="ts" setup>
-import { ref, computed, useSlots } from 'vue'
+import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
 import type { CardProps, CardEmits } from './card.types'
 import { getCardClasses } from './card.styles'
+import TogeButton from '../../primitives/button/button.vue'
 
 const props = withDefaults(defineProps<CardProps>(), {
-  tone: 'plain',
-  showHeader: true,
-  showFooter: true,
   borderRadiusSize: 'xl',
-  hasCollapsible: false,
-  isCollapsibleOpen: false,
-  hasContentPadding: true,
+  showHeader: false,
+  showFooter: false,
   flexbox: false,
+  primaryLabel: 'Confirm',
+  secondaryLabel: 'Cancel',
 })
 
 const emit = defineEmits<CardEmits>()
 
 defineSlots<{
   header(props: {}): any
-  content(props: {}): any
   default(props: {}): any
   footer(props: {}): any
 }>()
 
-const slots = useSlots()
-const isOpen = ref(props.isCollapsibleOpen)
-
-const classes = computed(() => getCardClasses({
-  tone: props.tone!,
-  borderRadiusSize: props.borderRadiusSize!,
-  hasCollapsible: props.hasCollapsible!,
-  isCollapsibleOpen: isOpen.value,
-  hasContentPadding: props.hasContentPadding!,
-  flexbox: props.flexbox!,
-  hasTitle: !!props.title,
-  hasHeaderIcon: !!props.headerIcon,
-  hasHeaderSlot: !!slots.header,
-  hasContentSlot: !!slots.content || !!slots.default,
-}))
-
-function handleToggle() {
-  isOpen.value = !isOpen.value
-  emit('toggle', isOpen.value)
-}
+const classes = computed(() =>
+  getCardClasses({
+    borderRadiusSize: props.borderRadiusSize!,
+    flexbox: props.flexbox!,
+  }),
+)
 </script>

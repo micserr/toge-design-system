@@ -22,8 +22,8 @@
 
 <script setup lang="ts">
 import { useTableActions } from './use-table-actions';
-import SprInputSearch from '@/input/input-search/input-search.vue';
-import SprButton from '@/button/button.vue';
+import SprInputSearch from '@/legacy/input/input-search/input-search.vue';
+import SprButton from '@/legacy/button/button.vue';
 import { Icon } from '@iconify/vue';
 import { tableActionEmitTypes, tableActionPropTypes } from './table-actions';
 

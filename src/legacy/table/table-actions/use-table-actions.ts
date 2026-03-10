@@ -1,6 +1,6 @@
 import type { SetupContext } from 'vue';
 
-import type { TableActionEmitTypes } from '@/table/table-actions/table-actions';
+import type { TableActionEmitTypes } from '@/legacy/table/table-actions/table-actions';
 
 export const useTableActions = (emit:SetupContext<TableActionEmitTypes>['emit'] ) => {
   const tableActionsBaseClasses = "spr-h-max spr-p-size-spacing-2xs spr-flex spr-justify-between" as const

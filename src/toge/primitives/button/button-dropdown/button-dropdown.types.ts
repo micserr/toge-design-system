@@ -1,6 +1,6 @@
 import type { ButtonSize, ButtonNativeType } from '../button.types'
-import type { MenuListType } from '@/components/list/list'
-import type { PLACEMENTS_TYPES } from '@/components/dropdown/dropdown'
+import type { MenuListType } from '@/legacy/list/list'
+import type { PLACEMENTS_TYPES } from '@/legacy/dropdown/dropdown'
 
 // button-dropdown restricts tone and variant relative to the base button
 export type ButtonDropdownTone = 'neutral' | 'success'

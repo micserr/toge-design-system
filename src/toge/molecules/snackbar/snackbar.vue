@@ -14,26 +14,19 @@
               v-if="snack.showIcon !== false"
               :icon="getSnackIcon(snack.tone ?? 'neutral')"
               :class="getSnackClasses(snack.tone ?? 'neutral').icon"
-              width="20"
-              height="20"
+              width="24"
+              height="24"
             />
             <span :class="getSnackClasses(snack.tone ?? 'neutral').text">{{ snack.text }}</span>
-            <button
+            <TogeButton
               v-if="snack.showAction"
-              :class="getSnackClasses(snack.tone ?? 'neutral').action"
-              type="button"
+              variant="text"
               @click="emit('action', snack)"
             >
-              {{ snack.actionText ?? 'Undo' }}
-            </button>
-            <button
-              :class="getSnackClasses(snack.tone ?? 'neutral').dismiss"
-              type="button"
-              aria-label="Dismiss"
-              @click="emit('dismiss', snack)"
-            >
-              <Icon icon="material-symbols:close-rounded" width="20" height="20" />
-            </button>
+              <span :class="getSnackClasses(snack.tone ?? 'neutral').actionLabel">
+                {{ snack.actionText ?? 'Undo' }}
+              </span>
+            </TogeButton>
           </slot>
         </div>
       </TransitionGroup>
@@ -44,6 +37,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { Icon } from '@iconify/vue'
+import TogeButton from '../../primitives/button/button.vue'
 import type { SnackbarProps, SnackbarEmits, SnackbarSlots, SnackTone } from './snackbar.types'
 import { getSnackbarPositionClasses, getSnackClasses } from './snackbar.styles'
 
@@ -61,7 +55,7 @@ function getSnackIcon(tone: SnackTone): string {
   const icons: Record<SnackTone, string> = {
     success: 'material-symbols:check-circle-rounded',
     warning: 'material-symbols:warning-rounded',
-    error: 'material-symbols:cancel-rounded',
+    error: 'material-symbols:error-rounded',
     info: 'material-symbols:info-rounded',
     neutral: 'material-symbols:notifications-rounded',
   }

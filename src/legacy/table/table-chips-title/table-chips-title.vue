@@ -13,9 +13,9 @@
 
 
 <script lang="ts" setup>
-import SprChips from '@/chips/chips.vue';
+import SprChips from '@/legacy/chips/chips.vue';
 
-import { tableChipsTitlePropTypes } from '@/table/table-chips-title/table-chips-title';
+import { tableChipsTitlePropTypes } from '@/legacy/table/table-chips-title/table-chips-title';
 import { useTableChipsTitle } from './use-table-chips-title';
 
 const props = defineProps(tableChipsTitlePropTypes);

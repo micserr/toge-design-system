@@ -1,5 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue';
-import type { MenuListType } from '@/list/list';
+import type { MenuListType } from '@/legacy/list/list';
 
 const PLACEMENTS_TYPES = [
   'auto',

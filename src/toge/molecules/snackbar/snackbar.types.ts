@@ -16,7 +16,6 @@ export interface SnackbarProps {
 }
 
 export interface SnackbarEmits {
-  'dismiss': [snack: Snack]
   'action': [snack: Snack]
 }
 

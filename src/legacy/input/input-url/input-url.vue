@@ -16,5 +16,5 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
 
-import SprInput from '@/input/input.vue';
+import SprInput from '@/legacy/input/input.vue';
 </script>

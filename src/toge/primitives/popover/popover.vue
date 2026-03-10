@@ -1,5 +1,6 @@
 <template>
   <Menu
+    v-model:shown="shown"
     :placement="props.placement"
     :distance="props.distance"
     :triggers="props.triggers"
@@ -9,6 +10,7 @@
     :auto-hide="props.autoHide"
     :disabled="props.disabled"
     :style="props.width ? { width: props.width } : undefined"
+    popper-class="toge-popover-popper"
     @apply-show="emit('popper-state', true)"
     @apply-hide="emit('popper-state', false)"
   >
@@ -51,6 +53,8 @@ const emit = defineEmits<PopoverEmits>()
 
 defineSlots<PopoverSlots>()
 
+const shown = defineModel<boolean>('shown', { default: undefined })
+
 const classes = computed(() =>
   getPopoverClasses({
     width: props.width,
@@ -58,3 +62,4 @@ const classes = computed(() =>
   }),
 )
 </script>
+

@@ -256,11 +256,11 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
 import { Menu } from 'floating-vue';
-import SprInput from '@/input/input.vue';
-import SprButton from '@/button/button.vue';
-import SprChips from '@/chips/chips.vue';
-import SprCheckbox from '@/checkbox/checkbox.vue';
-import SprAvatar from '@/avatar/avatar.vue';
+import SprInput from '@/legacy/input/input.vue';
+import SprButton from '@/legacy/button/button.vue';
+import SprChips from '@/legacy/chips/chips.vue';
+import SprCheckbox from '@/legacy/checkbox/checkbox.vue';
+import SprAvatar from '@/legacy/avatar/avatar.vue';
 import 'floating-vue/dist/style.css';
 import { useFilter } from './use-filter';
 import { filterPropTypes, filterEmitTypes } from './filter';

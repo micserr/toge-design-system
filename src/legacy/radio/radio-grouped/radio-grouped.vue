@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
-import SprRadio from '@/radio/radio.vue';
+import SprRadio from '@/legacy/radio/radio.vue';
 
 import { radioGroupedPropTypes, radioGroupedEmitTypes } from './radio-grouped';
 import { useRadioGrouped } from './use-radio-grouped';

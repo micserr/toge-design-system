@@ -29,6 +29,16 @@
 
         <span :class="labelClasses">{{ props.label }}</span>
 
+        <button
+          v-if="props.removable"
+          type="button"
+          class="spr-flex spr-h-3 spr-w-3 spr-items-center spr-justify-center spr-cursor-pointer spr-border-none spr-bg-transparent spr-p-0 spr-leading-none spr-text-current"
+          :aria-label="`Remove ${props.label}`"
+          @click.stop="emit('remove')"
+        >
+          <Icon icon="ph:x-bold" class="spr-h-3 spr-w-3" />
+        </button>
+
         <div
           v-if="$slots.postfixIcon || props.postfixIcon || props.dropdown"
           class="spr-lozenge__prefix-icon spr-flex spr-h-3 spr-w-3 spr-items-center spr-overflow-hidden"

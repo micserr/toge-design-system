@@ -1,3 +1,7 @@
+// Shared base classes for the input container — import this in other components
+// (e.g. select) to stay visually in sync with TogeInput without duplication.
+export const INPUT_CONTAINER_BASE = 'spr-relative spr-flex spr-items-center spr-rounded-border-radius-md spr-border spr-border-solid spr-bg-white-50'
+
 export interface InputStyleState {
   disabled: boolean
   readonly: boolean
@@ -28,8 +32,18 @@ export function getInputClasses(state: InputStyleState) {
     .join(' ')
 
   // Input base: the border container (relative, flex, items-center, padding, rounded, border)
+  // Border rule: always 1px — only color changes per state (no thickness change = no layout shift)
+  //   default   → border-color-weak
+  //   focused   → kangkong-700 — pure CSS via focus-within
+  //   error     → border-color-danger-base (error always wins regardless of focus state)
+  //   disabled  → mushroom-100
+  //
+  // Why focus-within over JS isFocused:
+  //   spr-border-color-brand-base is a custom CSS class (defined via @apply in tailwind.css),
+  //   NOT a raw Tailwind utility. Tailwind JIT cannot generate focus-within: variants for it.
+  //   Solution: use the raw token spr-border-kangkong-700 for focus-within variants directly.
   const inputBaseParts = [
-    'spr-relative spr-flex spr-items-center spr-p-[1.5px] spr-rounded-border-radius-md spr-border-[1.5px] spr-border-solid',
+    'spr-relative spr-flex spr-items-center spr-rounded-border-radius-md spr-border spr-border-solid spr-bg-white-50',
   ]
 
   if (state.disabled) {
@@ -37,7 +51,11 @@ export function getInputClasses(state: InputStyleState) {
   } else if (state.error) {
     inputBaseParts.push('spr-border-color-danger-base')
   } else {
-    inputBaseParts.push('spr-border-color-weak')
+    // Default: weak border; on focus-within swap to brand color
+    inputBaseParts.push(
+      'spr-border-color-weak',
+      'focus-within:spr-border-kangkong-700',
+    )
   }
 
   const inputBase = inputBaseParts.join(' ')
@@ -73,17 +91,17 @@ export function getInputClasses(state: InputStyleState) {
     state.error ? 'spr-text-tomato-600' : 'spr-text-mushroom-300',
   ].join(' ')
 
-  // Trailing slot container
-  const trailing = [
-    'spr-flex spr-items-center spr-h-8 spr-w-full spr-px-2',
+  // Unified container for trailing + icon slots — single background, no gap between them
+  const trailingArea = [
+    'spr-flex spr-items-center spr-h-8',
     state.error ? 'spr-text-tomato-600' : 'spr-text-mushroom-300',
   ].join(' ')
 
-  // Icon slot container
-  const icon = [
-    'spr-flex spr-items-center spr-justify-center spr-h-8 spr-px-2 [&>svg]:spr-min-h-4 [&>svg]:spr-min-w-4',
-    state.error ? 'spr-text-tomato-600' : 'spr-text-mushroom-300',
-  ].join(' ')
+  // Trailing slot: inline content (text, lozenges, etc.)
+  const trailing = 'spr-flex spr-items-center spr-h-full spr-px-2'
+
+  // Icon slot: fixed-size icon button
+  const icon = 'spr-flex spr-items-center spr-justify-center spr-h-full spr-px-2 [&>svg]:spr-min-h-4 [&>svg]:spr-min-w-4'
 
   // Helper text row
   const helper = [
@@ -98,6 +116,7 @@ export function getInputClasses(state: InputStyleState) {
     inputBase,
     input,
     prefix,
+    trailingArea,
     trailing,
     icon,
     helper,

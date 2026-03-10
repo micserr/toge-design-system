@@ -38,7 +38,7 @@ import type { ButtonDropdownProps, ButtonDropdownEmits } from './button-dropdown
 import { getButtonDropdownClasses } from './button-dropdown.styles'
 
 import TogeButton from '../button.vue'
-import SprDropdown from '@/components/dropdown/dropdown.vue'
+import SprDropdown from '@/legacy/dropdown/dropdown.vue'
 
 const props = withDefaults(defineProps<ButtonDropdownProps>(), {
   modelValue: () => [],

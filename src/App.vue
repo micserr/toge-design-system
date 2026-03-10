@@ -15,17 +15,38 @@
         <div class="spr-h-6 spr-w-6 spr-rounded-border-radius-md spr-bg-kangkong-500" />
       </template>
     </Sidenav>
-    <main class="spr-flex-1 spr-p-6 spr-min-h-screen spr-background-color [@media(min-width:1024px)]:spr-pl-[calc(68px+1.5rem)]">
-      <TogePlayground />
+    <main class="spr-flex-1 spr-min-h-screen spr-background-color [@media(min-width:1024px)]:spr-pl-[calc(68px+1.5rem)]">
+      <!-- Tab bar -->
+      <div class="spr-border-color-base spr-sticky spr-top-0 spr-z-10 spr-background-color spr-border-b spr-border-solid spr-px-6">
+        <TogeTabs v-model="activeTabIndex" :list="tabs" underlined />
+      </div>
+
+      <!-- Content -->
+      <div class="spr-p-6">
+        <div v-if="activeTabIndex === 0" class="spr-max-w-4xl spr-mx-auto">
+          <TokensShowcase />
+        </div>
+        <div v-else-if="activeTabIndex === 1">
+          <TogePlayground />
+        </div>
+      </div>
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import Sidenav from '@/components/sidenav/sidenav.vue';
+import Sidenav from '@/legacy/sidenav/sidenav.vue';
+import TogeTabs from '@/toge/patterns/tabs/tabs.vue';
+import TokensShowcase from '@/playground/TokensShowcase.vue';
 import TogePlayground from '@/playground/TogePlayground.vue';
-import type { NavLinks, ActiveNav, UserMenu } from '@/components/sidenav/sidenav';
+import type { NavLinks, ActiveNav, UserMenu } from '@/legacy/sidenav/sidenav';
+
+const activeTabIndex = ref(0);
+const tabs = [
+  { label: 'Design Tokens' },
+  { label: 'Playground' },
+];
 
 const activeNav = ref<ActiveNav>({ parentNav: 'Home', menu: 'Dashboard', submenu: '' });
 

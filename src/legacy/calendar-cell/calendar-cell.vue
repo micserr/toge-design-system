@@ -35,7 +35,7 @@ import { Icon } from '@iconify/vue';
 import { calendarCellPropTypes, calendarCellEmitTypes } from './calendar-cell';
 import { useCalendarCell } from './use-calendar-cell';
 
-import SprStatus from '@/status/status.vue';
+import SprStatus from '@/legacy/status/status.vue';
 
 const props = defineProps(calendarCellPropTypes);
 const emit = defineEmits(calendarCellEmitTypes);

@@ -26,10 +26,10 @@
 </template>
 
 <script lang="ts" setup>
-import { useSnackbarStore } from '@/stores/useSnackbarStore';
+import { useSnackbarStore } from '@/legacy/stores/useSnackbarStore';
 
-import SprSnack from '@/snackbar/snack/snack.vue';
-import { useSnackbar } from '@/snackbar/use-snackbar';
+import SprSnack from '@/legacy/snackbar/snack/snack.vue';
+import { useSnackbar } from '@/legacy/snackbar/use-snackbar';
 
 import { SnackPropTypes } from './snack/snack';
 import { createPinia } from 'pinia';

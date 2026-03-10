@@ -3,7 +3,6 @@ export interface CheckboxProps {
   label?: string
   description?: string
   disabled?: boolean
-  bordered?: boolean
   indeterminate?: boolean
   ariaLabel?: string
 }

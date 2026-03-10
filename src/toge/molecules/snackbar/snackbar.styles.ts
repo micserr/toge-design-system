@@ -1,6 +1,14 @@
 import classNames from 'classnames'
 import type { SnackbarProps, SnackTone } from './snackbar.types'
 
+const toneColor: Record<SnackTone, string> = {
+  success: 'spr-text-kangkong-500',
+  warning: 'spr-text-carrot-500',
+  error: 'spr-text-tomato-500',
+  info: 'spr-text-blueberry-500',
+  neutral: 'spr-text-mushroom-300',
+}
+
 export function getSnackbarPositionClasses(position: SnackbarProps['position'] = 'bottom-left') {
   return classNames(
     'spr-fixed spr-z-[9999] spr-flex spr-flex-col spr-gap-size-spacing-xs',
@@ -18,19 +26,16 @@ export function getSnackbarPositionClasses(position: SnackbarProps['position'] =
 export function getSnackClasses(tone: SnackTone = 'neutral') {
   return {
     wrapper: classNames(
-      'spr-flex spr-items-center spr-gap-size-spacing-xs spr-px-size-spacing-sm spr-py-size-spacing-xs',
-      'spr-rounded-border-radius-md spr-shadow-lg spr-min-w-[280px] spr-max-w-[480px]',
-      {
-        'spr-bg-kangkong-700 spr-text-white': tone === 'success',
-        'spr-bg-marigold-600 spr-text-white': tone === 'warning',
-        'spr-bg-tomato-600 spr-text-white': tone === 'error',
-        'spr-bg-blueberry-700 spr-text-white': tone === 'info',
-        'spr-bg-mushroom-700 spr-text-white': tone === 'neutral',
-      }
+      'spr-flex spr-items-center spr-gap-2',
+      'spr-px-3 spr-py-2',
+      'spr-rounded-border-radius-xl',
+      'spr-border spr-border-solid spr-border-mushroom-500',
+      'spr-bg-mushroom-950',
+      'spr-drop-shadow-sm',
+      'spr-min-w-[200px] spr-max-w-[360px] spr-min-h-14',
     ),
-    icon: classNames('spr-flex-shrink-0'),
-    text: classNames('spr-flex-1 spr-body-sm-regular'),
-    action: classNames('spr-body-sm-semibold spr-cursor-pointer spr-underline'),
-    dismiss: classNames('spr-flex-shrink-0 spr-cursor-pointer spr-opacity-70 hover:spr-opacity-100'),
+    icon: classNames('spr-shrink-0', toneColor[tone]),
+    text: classNames('spr-flex-1 spr-body-sm-regular spr-text-color-inverted-strong'),
+    actionLabel: classNames('spr-body-sm-semibold', toneColor[tone]),
   }
 }

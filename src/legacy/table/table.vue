@@ -226,18 +226,18 @@
 <script lang="ts" setup>
 import { useSlots, ref, watch } from 'vue';
 import { Icon } from '@iconify/vue';
-import SprAvatar from '@/avatar/avatar.vue';
-import SprEmptyState from '@/empty-state/empty-state.vue';
-import SprBadge from '@/badge/badge.vue';
-import SprTableActions from '@/table/table-actions/table-actions.vue';
-import SprTableLozengeTitle from '@/table/table-lozenge-title/table-lozenge-title.vue';
-import SprTableChipsTitle from '@/table/table-chips-title/table-chips-title.vue';
-import SprCheckbox from '@/checkbox/checkbox.vue';
-import SprTableHeaderDropdown from '@/table/table-header-dropdown/table-header-dropdown.vue';
+import SprAvatar from '@/legacy/avatar/avatar.vue';
+import SprEmptyState from '@/legacy/empty-state/empty-state.vue';
+import SprBadge from '@/legacy/badge/badge.vue';
+import SprTableActions from '@/legacy/table/table-actions/table-actions.vue';
+import SprTableLozengeTitle from '@/legacy/table/table-lozenge-title/table-lozenge-title.vue';
+import SprTableChipsTitle from '@/legacy/table/table-chips-title/table-chips-title.vue';
+import SprCheckbox from '@/legacy/checkbox/checkbox.vue';
+import SprTableHeaderDropdown from '@/legacy/table/table-header-dropdown/table-header-dropdown.vue';
 
 import { tablePropTypes, tableEmitTypes } from './table';
-import type { ChipTitle } from '@/table/table-chips-title/table-chips-title';
-import type { LozengeTitle } from '@/table/table-lozenge-title/table-lozenge-title';
+import type { ChipTitle } from '@/legacy/table/table-chips-title/table-chips-title';
+import type { LozengeTitle } from '@/legacy/table/table-lozenge-title/table-lozenge-title';
 import { useTable } from './use-table';
 import { useDraggableTableRows } from './use-draggable-table-rows';
 

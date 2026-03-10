@@ -1,5 +1,5 @@
 <template>
-  <TogeInput v-bind="$attrs" :type="inputType" v-model="model">
+  <TogeInput v-bind="{ ...props, ...$attrs }" :type="inputType" v-model="model">
     <template v-for="(_, slotName) in $slots" #[slotName]>
       <slot :name="slotName" />
     </template>
@@ -20,7 +20,7 @@ import TogeInput from '../input.vue'
 import type { InputPasswordProps } from './input-password.types'
 import { useInputPasswordState } from './input-password.state'
 
-defineProps<InputPasswordProps>()
+const props = defineProps<InputPasswordProps>()
 
 defineSlots<{
   prefix(props: {}): any

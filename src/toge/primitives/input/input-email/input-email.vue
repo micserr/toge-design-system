@@ -1,5 +1,5 @@
 <template>
-  <TogeInput v-bind="$attrs" type="email" v-model="model">
+  <TogeInput v-bind="{ ...props, ...$attrs }" type="email" v-model="model">
     <template v-for="(_, slotName) in $slots" #[slotName]>
       <slot :name="slotName" />
     </template>
@@ -14,7 +14,7 @@ import { Icon } from '@iconify/vue'
 import TogeInput from '../input.vue'
 import type { InputEmailProps } from './input-email.types'
 
-defineProps<InputEmailProps>()
+const props = defineProps<InputEmailProps>()
 
 defineSlots<{
   prefix(props: {}): any

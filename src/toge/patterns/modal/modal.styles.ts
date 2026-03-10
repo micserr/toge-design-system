@@ -47,7 +47,7 @@ export function getModalClasses(p: ModalStyleProps): ModalClasses {
     ),
     footer: classNames(
       'spr-border-color-weak spr-border-x-0 spr-border-b-0 spr-border-t spr-border-solid',
-      'spr-flex spr-w-full spr-items-center spr-px-size-spacing-xs spr-py-size-spacing-2xs spr-text-color-strong spr-subheading-xs',
+      'spr-flex spr-w-full spr-items-center spr-gap-2 spr-px-size-spacing-xs spr-py-size-spacing-2xs spr-text-color-strong spr-subheading-xs',
     ),
   }
 }

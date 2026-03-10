@@ -1,7 +1,7 @@
 import type { ExtractPropTypes, PropType } from 'vue';
 import { buttonPropTypes } from '../button';
-import type { MenuListType } from '@/list/list';
-import { PLACEMENTS_TYPES } from '@/dropdown/dropdown';
+import type { MenuListType } from '@/legacy/list/list';
+import { PLACEMENTS_TYPES } from '@/legacy/dropdown/dropdown';
 
 const BUTTON_DROPDOWN_VARIANTS = ['primary', 'secondary'] as const;
 const BUTTON_DROPDOWN_TONES = ['neutral', 'success'] as const;

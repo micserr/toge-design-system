@@ -67,9 +67,9 @@ import { Icon } from '@iconify/vue';
 import { tablePaginationEmitTypes, tablePaginationPropTypes } from './table-pagination';
 import { useTablePagination } from './use-table-pagination';
 
-import SprInput from '@/input/input.vue';
-import SprButton from '@/button/button.vue';
-import SprDropdown from '@/dropdown/dropdown.vue';
+import SprInput from '@/legacy/input/input.vue';
+import SprButton from '@/legacy/button/button.vue';
+import SprDropdown from '@/legacy/dropdown/dropdown.vue';
 import { useSlots } from 'vue';
 
 const emit = defineEmits(tablePaginationEmitTypes);

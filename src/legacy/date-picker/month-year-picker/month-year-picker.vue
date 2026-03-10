@@ -191,7 +191,7 @@ import 'floating-vue/dist/style.css';
 import { monthYearPickerPropTypes, monthYearPickerEmitTypes } from './month-year-picker';
 import { useMonthYearPicker } from './use-month-year-picker';
 
-import SprButton from '@/button/button.vue';
+import SprButton from '@/legacy/button/button.vue';
 
 const props = defineProps(monthYearPickerPropTypes);
 const emit = defineEmits(monthYearPickerEmitTypes);

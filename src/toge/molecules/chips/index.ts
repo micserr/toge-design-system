@@ -5,6 +5,4 @@ export type {
   ChipsSize,
   ChipsTone,
   ChipsIconWeight,
-  ChipsVariant,
-  ChipsDay,
 } from './chips.types'

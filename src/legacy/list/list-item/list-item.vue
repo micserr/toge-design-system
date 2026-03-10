@@ -113,12 +113,12 @@
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue';
 
-import SprCheckbox from '@/checkbox/checkbox.vue';
-import SprRadio from '@/radio/radio.vue';
-import SprLozenge from '@/lozenge/lozenge.vue';
-import SprAvatar from '@/avatar/avatar.vue';
+import SprCheckbox from '@/legacy/checkbox/checkbox.vue';
+import SprRadio from '@/legacy/radio/radio.vue';
+import SprLozenge from '@/legacy/lozenge/lozenge.vue';
+import SprAvatar from '@/legacy/avatar/avatar.vue';
 
-import { LOZENGE_TONE } from '@/lozenge/lozenge';
+import { LOZENGE_TONE } from '@/legacy/lozenge/lozenge';
 
 import { listItemPropTypes, listItemEmitTypes } from './list-item';
 import { useListItem } from './use-list-item';

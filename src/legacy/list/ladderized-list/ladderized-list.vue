@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import SprList from '@/list/list.vue';
+import SprList from '@/legacy/list/list.vue';
 
 import { ladderizedListPropTypes, ladderizedListEmitTypes } from './ladderized-list';
 import { useLadderizedList } from './use-ladderized-list';

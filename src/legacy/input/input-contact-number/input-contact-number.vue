@@ -43,8 +43,8 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue';
 
-import SprInput from '@/input/input.vue';
-import SprDropdown from '@/dropdown/dropdown.vue';
+import SprInput from '@/legacy/input/input.vue';
+import SprDropdown from '@/legacy/dropdown/dropdown.vue';
 
 import { useInputContactNumber } from './use-input-contact-number';
 import { COUNTRY_OPTIONS, inputContactNumberPropTypes, inputContactNumberEmitTypes } from './input-contact-number';

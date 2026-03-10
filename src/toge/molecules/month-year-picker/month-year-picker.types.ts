@@ -8,14 +8,13 @@ export interface MonthYearPickerProps {
   disabled?: boolean
   readonly?: boolean
   error?: boolean
-  active?: boolean
+  showHelper?: boolean
+  helperText?: string
+  helperIcon?: string
   width?: string
   placement?: 'bottom' | 'bottom-start' | 'top' | 'top-start'
   popperStrategy?: 'fixed' | 'absolute'
   popperContainer?: string
-  displayHelper?: boolean
-  helperText?: string
-  helperIcon?: string
   minMaxYear?: MinMaxYear
   format?: string
 }

@@ -8,8 +8,6 @@ export interface AvatarProps {
   alt?: string
   badge?: boolean
   size?: AvatarSize
-  notification?: boolean
-  notificationText?: string
   initial?: string
   color?: AvatarColor
   status?: AvatarStatus

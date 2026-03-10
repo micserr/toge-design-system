@@ -1,76 +1,72 @@
 <template>
-  <div :class="[classes.wrapper, { 'spr-opacity-60 spr-pointer-events-none': props.disabled }]">
+  <div :class="[classes.wrapper, { 'spr-opacity-60 spr-pointer-events-none': props.disabled }]" @mouseleave="emit('day-leave')">
     <!-- Header -->
     <div :class="classes.header">
       <!-- Tab buttons: show Month/Year in 'full' and 'month-year' mode; Year only in 'year-only' -->
       <div :class="classes.headerTabs">
-        <button
+        <TogeButton
           v-if="props.mode !== 'year-only'"
-          :class="[
-            'spr-cursor-pointer spr-rounded-border-radius-md spr-px-3 spr-py-1 spr-border spr-border-solid spr-body-sm-semibold',
-            currentTab === 'tab-months'
-              ? classes.tabActive + ' spr-border-mushroom-200'
-              : 'spr-border-mushroom-200 hover:spr-background-color-hover',
-          ]"
-          type="button"
+          variant="secondary"
+          size="small"
+          :aria-pressed="currentTab === 'tab-months'"
           @click="handleTabClick('tab-months')"
         >
           {{ MONTH_NAMES[currentMonth] }}
-        </button>
-        <button
-          :class="[
-            'spr-cursor-pointer spr-rounded-border-radius-md spr-px-3 spr-py-1 spr-border spr-border-solid spr-body-sm-semibold',
-            currentTab === 'tab-years'
-              ? classes.tabActive + ' spr-border-mushroom-200'
-              : 'spr-border-mushroom-200 hover:spr-background-color-hover',
-          ]"
-          type="button"
+        </TogeButton>
+        <TogeButton
+          variant="secondary"
+          size="small"
+          :aria-pressed="currentTab === 'tab-years'"
           @click="handleTabClick('tab-years')"
         >
           {{ currentYear }}
-        </button>
+        </TogeButton>
       </div>
 
       <!-- Prev/Next navigation -->
       <div :class="classes.headerNav">
         <!-- Calendar tab: prev/next month -->
         <template v-if="currentTab === 'tab-calendar'">
-          <button
-            class="spr-cursor-pointer spr-rounded-border-radius-md spr-px-2 spr-py-1 spr-border spr-border-solid spr-border-mushroom-200 hover:spr-background-color-hover disabled:spr-opacity-40 disabled:spr-cursor-not-allowed"
-            type="button"
+          <TogeButton
+            variant="secondary"
+            size="small"
+            :has-icon="true"
             :disabled="isMinMonth"
-            @click="prevMonth"
+            @click="handlePrevMonth"
           >
             <Icon icon="ph:caret-left" />
-          </button>
-          <button
-            class="spr-cursor-pointer spr-rounded-border-radius-md spr-px-2 spr-py-1 spr-border spr-border-solid spr-border-mushroom-200 hover:spr-background-color-hover disabled:spr-opacity-40 disabled:spr-cursor-not-allowed"
-            type="button"
+          </TogeButton>
+          <TogeButton
+            variant="secondary"
+            size="small"
+            :has-icon="true"
             :disabled="isMaxMonth"
-            @click="nextMonth"
+            @click="handleNextMonth"
           >
             <Icon icon="ph:caret-right" />
-          </button>
+          </TogeButton>
         </template>
 
         <!-- Year tab: prev/next page -->
         <template v-if="currentTab === 'tab-years'">
-          <button
-            class="spr-cursor-pointer spr-rounded-border-radius-md spr-px-2 spr-py-1 spr-border spr-border-solid spr-border-mushroom-200 hover:spr-background-color-hover disabled:spr-opacity-40 disabled:spr-cursor-not-allowed"
-            type="button"
+          <TogeButton
+            variant="secondary"
+            size="small"
+            :has-icon="true"
             :disabled="yearPageIndex === 0"
             @click="yearPageIndex--"
           >
             <Icon icon="ph:caret-left" />
-          </button>
-          <button
-            class="spr-cursor-pointer spr-rounded-border-radius-md spr-px-2 spr-py-1 spr-border spr-border-solid spr-border-mushroom-200 hover:spr-background-color-hover disabled:spr-opacity-40 disabled:spr-cursor-not-allowed"
-            type="button"
+          </TogeButton>
+          <TogeButton
+            variant="secondary"
+            size="small"
+            :has-icon="true"
             :disabled="(yearPageIndex + 1) * YEARS_PER_PAGE >= yearsArray.length"
             @click="yearPageIndex++"
           >
             <Icon icon="ph:caret-right" />
-          </button>
+          </TogeButton>
         </template>
       </div>
     </div>
@@ -98,11 +94,37 @@
               isToday: isToday(day.fullDate),
               isDisabled: isDateDisabled(day.fullDate, props.disabledDates),
               isRestDay: isRestDay(day.fullDate, props.restDays ?? [], props.modelValue),
+              isStartDate: props.startDate ? day.fullDate === props.startDate : undefined,
+              isEndDate: props.endDate ? day.fullDate === props.endDate : undefined,
+              isInRange: isInRange(day.fullDate),
             })]"
             @click="!isDateDisabled(day.fullDate, props.disabledDates) && !props.readonly ? handleDayClick(day) : undefined"
+            @mouseenter="emit('day-hover', day.fullDate)"
           >
-            <span>{{ day.date }}</span>
-            <div v-if="isToday(day.fullDate)" :class="classes.todayDot" />
+            <!-- Half range-fill behind endpoint circle -->
+            <div
+              v-if="hasActiveRange && day.fullDate === visualStart"
+              :class="[classes.rangeHalfBg, 'spr-right-0']"
+            />
+            <div
+              v-else-if="hasActiveRange && day.fullDate === visualEnd"
+              :class="[classes.rangeHalfBg, 'spr-left-0']"
+            />
+
+            <!-- Endpoint circle (confirmed start or end) -->
+            <div
+              v-if="day.fullDate === props.startDate || day.fullDate === props.endDate"
+              :class="classes.endpointCircle"
+            >
+              <span>{{ day.date }}</span>
+              <div v-if="isToday(day.fullDate)" :class="classes.todayDot" />
+            </div>
+
+            <!-- Regular day content -->
+            <template v-else>
+              <span>{{ day.date }}</span>
+              <div v-if="isToday(day.fullDate)" :class="classes.todayDot" />
+            </template>
           </div>
           <div v-else />
         </template>
@@ -155,6 +177,7 @@ import { Icon } from '@iconify/vue'
 import type { DateCalendarPickerProps, DateCalendarPickerEmits } from './date-calendar-picker.types'
 import { useDateCalendarPickerState } from './date-calendar-picker.state'
 import { getCalendarClasses, getDayCellClasses, getMonthCellClasses, getYearCellClasses } from './date-calendar-picker.styles'
+import TogeButton from '../../primitives/button/button.vue'
 
 const props = withDefaults(defineProps<DateCalendarPickerProps>(), {
   modelValue: '',
@@ -168,13 +191,17 @@ const props = withDefaults(defineProps<DateCalendarPickerProps>(), {
   readonly: false,
   mode: 'full',
   format: 'MM-DD-YYYY',
+  startDate: undefined,
+  endDate: undefined,
+  hoveredDate: undefined,
+  naked: false,
 })
 
 const emit = defineEmits<DateCalendarPickerEmits>()
 
 defineSlots<{ default(props: {}): unknown }>()
 
-const classes = getCalendarClasses()
+const classes = computed(() => getCalendarClasses(props.naked))
 const YEARS_PER_PAGE = 12
 
 const {
@@ -263,6 +290,54 @@ const selectedYearValue = computed(() => {
 function isWithinMinMaxYear(fullDate: string): boolean {
   const year = parseInt(fullDate.slice(0, 4), 10)
   return year >= props.minMaxYear.min && year <= props.minMaxYear.max
+}
+
+// Confirmed range endpoints (both start and end selected)
+const visualStart = computed(() => {
+  if (!props.startDate || !props.endDate) return null
+  const s = new Date(props.startDate).getTime()
+  const e = new Date(props.endDate).getTime()
+  return s <= e ? props.startDate : props.endDate
+})
+
+const visualEnd = computed(() => {
+  if (!props.startDate || !props.endDate) return null
+  const s = new Date(props.startDate).getTime()
+  const e = new Date(props.endDate).getTime()
+  return s <= e ? props.endDate : props.startDate
+})
+
+const hasActiveRange = computed(() =>
+  visualStart.value !== null && visualEnd.value !== null && visualStart.value !== visualEnd.value,
+)
+
+function isInRange(fullDate: string): boolean {
+  const start = props.startDate
+  const end = props.endDate
+  const hovered = props.hoveredDate
+  if (!start) return false
+  const d = new Date(fullDate).getTime()
+  const s = new Date(start).getTime()
+  if (end) {
+    const e = new Date(end).getTime()
+    return d > s && d < e
+  }
+  if (hovered) {
+    const h = new Date(hovered).getTime()
+    if (h > s) return d > s && d < h
+    if (h < s) return d > h && d < s
+  }
+  return false
+}
+
+function handlePrevMonth() {
+  prevMonth()
+  emit('prev-month')
+}
+
+function handleNextMonth() {
+  nextMonth()
+  emit('next-month')
 }
 
 function handleTabClick(tab: 'tab-calendar' | 'tab-months' | 'tab-years') {

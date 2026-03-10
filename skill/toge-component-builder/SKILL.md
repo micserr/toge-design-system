@@ -312,6 +312,80 @@ Check diagnostics:
 
 ---
 
+## Floating-Vue Clipping Pattern
+
+Any toge component that uses `<Menu>` from floating-vue must follow this pattern.
+
+**The DOM floating-vue generates:**
+```
+.v-popper__wrapper
+  .v-popper__inner          ← floating-vue owns this: sets border-radius:6px, bg, border, shadow
+    <anonymous div>         ← floating-vue slot wrapper
+      <div class="...">     ← our classes.menu div (from .styles.ts)
+        <slot />
+```
+
+**The rule:**
+1. **Visual ownership lives in `.styles.ts`** — border, bg, shadow, border-radius on `classes.menu` using design tokens. Never hardcode these in raw CSS.
+2. **`.v-popper__inner` must be neutralized** via a `<style>` block scoped with `popper-class`. Reset its border, bg, shadow to none. Set `overflow: hidden`.
+3. **`border-radius` on `.v-popper__inner` MUST match our inner div's radius** — if it's smaller, `overflow:hidden` clips our rounded corners at the wrong shape.
+4. **Use `popper-class="toge-{name}-popper"`** on `<Menu>` to scope the CSS override without leaking to other floating-vue instances.
+
+**Template pattern:**
+```vue
+<Menu popper-class="toge-popover-popper" ...>
+  <template #default><slot name="reference" /></template>
+  <template #popper>
+    <div :class="classes.menu">  <!-- owns all visual styling -->
+      <slot />
+    </div>
+  </template>
+</Menu>
+```
+
+**Style block pattern** (`popover.vue`):
+```css
+<style>
+/* Neutralize floating-vue's .v-popper__inner — our classes.menu div owns the visual.
+   border-radius MUST match the token used in classes.menu (e.g. border-radius-lg = --size-250).
+   If they differ, overflow:hidden clips our rounded corners at the wrong shape. */
+.toge-popover-popper .v-popper__inner {
+  border-radius: var(--size-250) !important; /* sync with classes.menu radius */
+  overflow: hidden !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+</style>
+```
+
+**See reference implementation:** `src/toge/primitives/popover/popover.vue` + `popover.styles.ts`
+
+---
+
+## Border-Radius Nesting Rule (R2 = R1 + D)
+
+When a container wraps rounded inner content with padding, the outer radius should equal the inner radius plus the gap:
+
+```
+R2 (outer container) = R1 (inner content radius) + D (padding between them)
+```
+
+**Design token values:**
+| Token | px |
+|---|---|
+| `border-radius-2xs` | 2px |
+| `border-radius-xs` | 4px |
+| `border-radius-sm` | 6px |
+| `border-radius-md` | 8px |
+| `border-radius-lg` | 12px |
+| `border-radius-xl` | 16px |
+| `border-radius-full` | 999px |
+
+**Example (popover + list):** list item R1=8px (`border-radius-md`) + popover padding D=8px (`p-2`) → popover R2 should be 16px (`border-radius-xl`). User may choose the nearest token that looks right visually.
+
+---
+
 ## Common Mistakes
 
 | Mistake | Fix |

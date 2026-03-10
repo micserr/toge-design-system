@@ -1,29 +1,22 @@
 export type ChipsSize = 'lg' | 'md' | 'sm'
 export type ChipsTone = 'subtle' | 'default'
 export type ChipsIconWeight = 'regular' | 'bold' | 'thin' | 'light' | 'fill' | 'duotone'
-export type ChipsVariant = 'tag' | 'day'
-export type ChipsDay = 'Sunday' | 'Monday' | 'Tuesday' | 'Wednesday' | 'Thursday' | 'Friday' | 'Saturday'
 
 export interface ChipsProps {
   label?: string
   size?: ChipsSize
+  tone?: ChipsTone
   disabled?: boolean
-  active?: boolean
   closable?: boolean
+  avatar?: boolean
+  avatarSize?: '2xl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs' | '2xs'
   avatarUrl?: string
-  avatarVariant?: string
   avatarInitials?: string
   icon?: string
   iconWeight?: ChipsIconWeight
-  closeIconSize?: number
   badge?: boolean
   badgeText?: string
-  badgeVariant?: string
-  removable?: boolean
   visible?: boolean
-  variant?: ChipsVariant
-  day?: ChipsDay
-  tone?: ChipsTone
   ariaLabel?: string
 }
 

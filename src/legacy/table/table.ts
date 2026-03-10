@@ -1,6 +1,6 @@
 import type { PropType, ExtractPropTypes } from 'vue';
-import type { ChipTitle } from '@/table/table-chips-title/table-chips-title';
-import type { LozengeTitle } from '@/table/table-lozenge-title/table-lozenge-title';
+import type { ChipTitle } from '@/legacy/table/table-chips-title/table-chips-title';
+import type { LozengeTitle } from '@/legacy/table/table-lozenge-title/table-lozenge-title';
 import { type SortableEvent } from 'sortablejs';
 import type { MenuListType } from '../list/list';
 import type { TableHeaderFilterType } from './table-header-dropdown/table-header-dropdown';

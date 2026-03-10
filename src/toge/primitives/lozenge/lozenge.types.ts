@@ -17,6 +17,7 @@ export interface LozengeProps {
 }
 
 export interface LozengeEmits {
-  (e: 'click', event: KeyboardEvent): void
+  'click': [event: KeyboardEvent]
+  'remove': []
 }
 

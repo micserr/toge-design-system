@@ -75,8 +75,8 @@ import {
   type SubmenuLinkItem,
   type ActiveNav,
   type ConvertedNavAttribute,
-} from '@/sidenav/sidenav';
-import SprLozenge from '@/lozenge/lozenge.vue';
+} from '@/legacy/sidenav/sidenav';
+import SprLozenge from '@/legacy/lozenge/lozenge.vue';
 import { Icon } from '@iconify/vue';
 
 const props = defineProps({

@@ -4,9 +4,6 @@ export interface RadioProps {
   value?: string | number | boolean
   description?: string
   disabled?: boolean
-  bordered?: boolean
-  choiceBox?: boolean
-  fullWidth?: boolean
   ariaLabel?: string
 }
 

@@ -9,8 +9,7 @@ export interface DatePickerProps {
   disabled?: boolean
   readonly?: boolean
   error?: boolean
-  active?: boolean
-  displayHelper?: boolean
+  showHelper?: boolean
   helperText?: string
   helperIcon?: string
   width?: string

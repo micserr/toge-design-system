@@ -9,7 +9,7 @@
       </div>
       <div class="toge-playground__selector-row">
         <label class="toge-playground__label" for="component-select">Component</label>
-        <select id="component-select" class="toge-playground__select" v-model="selectedKey">
+        <select id="component-select" v-model="selectedKey" class="toge-playground__select">
           <optgroup label="Primitives">
             <option v-for="key in groupedComponents.primitive" :key="key" :value="key">{{ key }}</option>
           </optgroup>
@@ -27,15 +27,18 @@
 
       <!-- Preview -->
       <div class="toge-playground__preview">
-        <!-- collapsible: needs v-model + named trigger slot -->
+        <!-- collapsible: trigger slot + default content slot -->
         <template v-if="selectedKey === 'collapsible'">
-          <TogeCollapsible v-bind="currentProps" v-model="collapsibleOpen">
-            <template #trigger="{ toggleCollapsible, isOpen }">
-              <button class="toge-playground__collapsible-btn" @click="toggleCollapsible" :aria-expanded="isOpen">
-                {{ isOpen ? '▼ Collapse' : '▶ Expand' }}
-              </button>
+          <TogeCollapsible v-bind="currentProps">
+            <template #trigger="{ isOpen, toggle }">
+              <TogeButton variant="secondary" @click="toggle">Open me</TogeButton>
             </template>
-            <div class="toge-playground__collapsible-content">This is the collapsible content area.</div>
+            <div class="spr-flex spr-flex-col spr-gap-size-spacing-2xs spr-py-size-spacing-2xs">
+              <p class="spr-body-md-regular-medium spr-text-color-strong">Details</p>
+              <p class="spr-body-md-regular spr-text-color-supporting">
+                This content is revealed when the button is clicked. Any component or layout can go inside the collapsible slot.
+              </p>
+            </div>
           </TogeCollapsible>
         </template>
 
@@ -46,30 +49,71 @@
           </TogeTooltip>
         </template>
 
-        <!-- popper: needs id + content slot -->
-        <template v-else-if="selectedKey === 'popper'">
-          <TogePopper id="playground-popper">
-            <button class="toge-playground__collapsible-btn">Click to toggle popper</button>
-            <template #content>
-              <div style="padding: 12px 16px; font-size: 13px;">Popper content renders here.</div>
-            </template>
-          </TogePopper>
-        </template>
 
-        <!-- dropdown: needs a reference slot trigger -->
-        <template v-else-if="selectedKey === 'dropdown'">
+        <!-- popover: needs a reference slot trigger -->
+        <template v-else-if="selectedKey === 'popover'">
           <TogePopover v-bind="currentProps">
             <template #reference>
               <button class="toge-playground__collapsible-btn">Open Dropdown</button>
             </template>
-            <div style="padding: 8px 0; min-width: 160px;">
-              <div v-for="item in ['Edit', 'Duplicate', 'Archive', 'Delete']" :key="item"
-                style="padding: 8px 16px; cursor: pointer; font-size: 13px;"
-                onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background=''">
-                {{ item }}
-              </div>
-            </div>
+            <TogeList
+              :items="[
+                { text: 'Edit', value: 'edit', icon: 'ph:pencil' },
+                { text: 'Duplicate', value: 'duplicate', icon: 'ph:copy' },
+                { text: 'Archive', value: 'archive', icon: 'ph:archive' },
+                { text: 'Delete', value: 'delete', icon: 'ph:trash' },
+              ]"
+              class="spr-min-w-40"
+            />
           </TogePopover>
+        </template>
+
+        <!-- table: composed modular demo with all sub-component features -->
+        <template v-else-if="selectedKey === 'table'">
+          <TogeTable :bordered="propValues.bordered as boolean">
+            <TogeTableCaption v-if="propValues.showCaption" :position="(propValues.captionPosition as any)">Employee Directory — Q1 2024</TogeTableCaption>
+            <TogeTableHeader>
+              <TogeTableRow>
+                <TogeTableHead
+                  :align="(propValues.headAlign as any)"
+                  :sort="propValues.sortable as boolean"
+                  :sort-order="tableSortOrder"
+                  :active="tableSortField === 'name'"
+                  @sort="handleTableSort('name')"
+                >Name</TogeTableHead>
+                <TogeTableHead
+                  :align="(propValues.headAlign as any)"
+                  :sort="propValues.sortable as boolean"
+                  :sort-order="tableSortOrder"
+                  :active="tableSortField === 'department'"
+                  @sort="handleTableSort('department')"
+                >Department</TogeTableHead>
+                <TogeTableHead :align="(propValues.headAlign as any)">Status</TogeTableHead>
+                <TogeTableHead :align="(propValues.headAlign as any)">Tag</TogeTableHead>
+              </TogeTableRow>
+            </TogeTableHeader>
+            <TogeTableBody>
+              <TogeTableRow
+                v-for="(row, idx) in tableRows"
+                :key="idx"
+                :hoverable="propValues.hoverable as boolean"
+                :striped="propValues.striped as boolean"
+                :selected="propValues.selected as boolean"
+                :index="idx"
+              >
+                <TogeTableCell :align="(propValues.cellAlign as any)">{{ row.name }}</TogeTableCell>
+                <TogeTableCell :align="(propValues.cellAlign as any)">{{ row.department }}</TogeTableCell>
+                <TogeTableCell :align="(propValues.cellAlign as any)" :cell="{ type: 'lozenge', label: row.status, tone: row.status === 'Active' ? 'success' : 'plain' }" />
+                <TogeTableCell :align="(propValues.cellAlign as any)" :cell="{ type: 'chip', label: row.tag }" />
+              </TogeTableRow>
+            </TogeTableBody>
+            <TogeTableFooter v-if="propValues.showFooter">
+              <TogeTableRow>
+                <TogeTableCell class="spr-body-md-semibold spr-text-color-strong" :colspan="3">Total Employees</TogeTableCell>
+                <TogeTableCell class="spr-body-md-semibold spr-text-color-strong">{{ tableRows.length }}</TogeTableCell>
+              </TogeTableRow>
+            </TogeTableFooter>
+          </TogeTable>
         </template>
 
         <!-- snackbar: teleports to body — show a note in the preview -->
@@ -78,7 +122,43 @@
             <p style="margin-bottom: 8px;">Snackbar renders via <code>Teleport to="body"</code>.</p>
             <p>Notifications appear at the selected position on screen.</p>
           </div>
-          <TogeSnackbar v-bind="currentProps" />
+          <TogeSnackbar
+            :position="propValues.position as any"
+            :snacks="[
+              { id: 1, text: 'Action completed successfully', tone: 'success', showIcon: !!propValues.showIcon, showAction: !!propValues.showAction },
+              { id: 2, text: 'Something went wrong', tone: 'error', showIcon: !!propValues.showIcon, showAction: !!propValues.showAction },
+              { id: 3, text: 'Please review your input', tone: 'warning', showIcon: !!propValues.showIcon, showAction: !!propValues.showAction },
+              { id: 4, text: 'New update available', tone: 'info', showIcon: !!propValues.showIcon, showAction: !!propValues.showAction },
+            ]"
+          />
+        </template>
+
+        <!-- sidepanel: trigger button opens the teleported sidepanel -->
+        <template v-else-if="selectedKey === 'sidepanel'">
+          <button class="toge-playground__collapsible-btn" @click="formModelValue = true">
+            Open Sidepanel
+          </button>
+          <TogeSidepanel v-bind="currentProps" v-model="formModelValue as boolean">
+            <template #default>Sidepanel body content goes here.</template>
+            <template #footer>
+              <TogeButton variant="secondary" size="medium" @click="formModelValue = false">Cancel</TogeButton>
+              <TogeButton tone="success" size="medium" @click="formModelValue = false">Confirm</TogeButton>
+            </template>
+          </TogeSidepanel>
+        </template>
+
+        <!-- modal: trigger button opens the teleported modal -->
+        <template v-else-if="selectedKey === 'modal'">
+          <button class="toge-playground__collapsible-btn" @click="formModelValue = true">
+            Open Modal
+          </button>
+          <TogeModal v-bind="currentProps" v-model="formModelValue as boolean">
+            <template #default>Modal body content goes here.</template>
+            <template #footer>
+              <TogeButton variant="secondary" size="medium" @click="formModelValue = false">Cancel</TogeButton>
+              <TogeButton tone="success" size="medium" @click="formModelValue = false">Confirm</TogeButton>
+            </template>
+          </TogeModal>
         </template>
 
         <!-- all other components (with optional v-model wiring for form controls) -->
@@ -101,16 +181,21 @@
           <h3 class="toge-playground__section-title">Props</h3>
 
           <!-- Slot content row (only for components that accept meaningful slot text) -->
-          <div v-if="currentConfig.defaultSlot !== undefined && !['collapsible','tooltip','popper'].includes(selectedKey)" class="toge-playground__control">
+          <div v-if="currentConfig.defaultSlot !== undefined && !['collapsible','tooltip'].includes(selectedKey)" class="toge-playground__control">
             <label class="toge-playground__ctrl-label" for="ctrl-slot">
               slot
               <span class="toge-playground__type-badge">text</span>
             </label>
-            <input id="ctrl-slot" class="toge-playground__input" type="text" v-model="slotText" />
+            <input id="ctrl-slot" v-model="slotText" class="toge-playground__input" type="text" />
           </div>
 
           <!-- Dynamic prop rows -->
-          <div v-for="prop in currentConfig.propDefs" :key="prop.name" class="toge-playground__control">
+          <div
+            v-for="prop in currentConfig.propDefs"
+            v-show="!prop.showWhen || propValues[prop.showWhen.prop] === prop.showWhen.value"
+            :key="prop.name"
+            class="toge-playground__control"
+          >
             <label class="toge-playground__ctrl-label" :for="'ctrl-' + prop.name">
               {{ prop.name }}
               <span class="toge-playground__type-badge">{{ prop.type }}</span>
@@ -170,6 +255,38 @@
         </div>
 
       </div>
+
+      <!-- Auto variants showcase: renders one instance per option for each select prop -->
+      <template v-if="variantProps.length > 0">
+        <div
+          v-for="varProp in variantProps"
+          :key="varProp.name"
+          class="toge-playground__variant-group"
+        >
+          <div class="toge-playground__variant-group-header">
+            <span class="toge-playground__variant-group-title">{{ varProp.name }}</span>
+          </div>
+          <div class="toge-playground__variant-row">
+            <div
+              v-for="opt in varProp.options"
+              :key="opt"
+              class="toge-playground__variant-item"
+            >
+              <div class="toge-playground__variant-preview">
+                <component
+                  :is="currentConfig.component"
+                  v-bind="{ ...allBoundProps, [varProp.name]: opt }"
+                  @update:model-value="formModelValue = $event"
+                >
+                  <template v-if="currentConfig.defaultSlot !== undefined" #default>{{ slotText }}</template>
+                </component>
+              </div>
+              <span class="toge-playground__variant-label">{{ opt }}</span>
+            </div>
+          </div>
+        </div>
+      </template>
+
     </div>
   </div>
 </template>
@@ -185,37 +302,34 @@ import TogeBadge from '@/toge/primitives/badge/badge.vue'
 import TogeIcon from '@/toge/primitives/icon/icon.vue'
 import TogeLozenge from '@/toge/primitives/lozenge/lozenge.vue'
 import TogeStatus from '@/toge/primitives/status/status.vue'
+import TogeChipDay from '@/toge/primitives/chip-day/chip-day.vue'
 import TogeChips from '@/toge/molecules/chips/chips.vue'
 import TogeAvatar from '@/toge/molecules/avatar/avatar.vue'
-import TogeCollapsible from '@/toge/primitives/collapsible/collapsible.vue'
+import TogeCollapsible from '@/toge/patterns/collapsible/collapsible.vue'
 import TogeTooltip from '@/toge/molecules/tooltip/tooltip.vue'
-import TogePopper from '@/toge/primitives/popper/popper.vue'
 
 // Phase 3
 import TogeModal from '@/toge/patterns/modal/modal.vue'
 import TogeSidepanel from '@/toge/patterns/sidepanel/sidepanel.vue'
-import TogeStackingSidepanel from '@/toge/patterns/stacking-sidepanel/stacking-sidepanel.vue'
-import TogeAccordion from '@/toge/patterns/accordion/accordion.vue'
 import TogeTabs from '@/toge/patterns/tabs/tabs.vue'
 import TogeStepper from '@/toge/patterns/stepper/stepper.vue'
 import TogeStep from '@/toge/patterns/stepper/step/step.vue'
-import TogeAuditTrail from '@/toge/molecules/audit-trail/audit-trail.vue'
 import TogeTimePicker from '@/toge/molecules/time-picker/time-picker.vue'
 
 // Phase 2
 import TogeInput from '@/toge/primitives/input/input.vue'
 import TogeInputSearch from '@/toge/primitives/input/input-search/input-search.vue'
-import TogeInputDropdown from '@/toge/primitives/input/input-dropdown/input-dropdown.vue'
 import TogeInputEmail from '@/toge/primitives/input/input-email/input-email.vue'
 import TogeInputPassword from '@/toge/primitives/input/input-password/input-password.vue'
 import TogeInputUrl from '@/toge/primitives/input/input-url/input-url.vue'
 import TogeInputUsername from '@/toge/primitives/input/input-username/input-username.vue'
 import TogeInputContactNumber from '@/toge/primitives/input/input-contact-number/input-contact-number.vue'
 import TogeInputCurrency from '@/toge/primitives/input/input-currency/input-currency.vue'
+import TogeInputFlexible from '@/toge/primitives/input/input-flexible/input-flexible.vue'
 import TogeTextarea from '@/toge/primitives/textarea/textarea.vue'
 import TogeCheckbox from '@/toge/primitives/checkbox/checkbox.vue'
+import TogeChoicebox from '@/toge/molecules/choicebox/choicebox.vue'
 import TogeRadio from '@/toge/primitives/radio/radio.vue'
-import TogeRadioGrouped from '@/toge/patterns/radio-grouped/radio-grouped.vue'
 import TogeSwitch from '@/toge/primitives/switch/switch.vue'
 import TogeSlider from '@/toge/primitives/slider/slider.vue'
 import TogeFileUpload from '@/toge/patterns/file-upload/file-upload.vue'
@@ -228,16 +342,17 @@ import TogeFloatingAction from '@/toge/primitives/floating-action/floating-actio
 import TogeEventCell from '@/toge/primitives/event-cell/event-cell.vue'
 
 // Phase 4
-import TogeList from '@/toge/patterns/list/list.vue'
+import TogeList from '@/toge/molecules/list/list.vue'
 import TogePopover from '@/toge/primitives/popover/popover.vue'
-import TogeSelect from '@/toge/patterns/select/select.vue'
-import TogeSelectMultiple from '@/toge/patterns/select-multiple/select-multiple.vue'
-import TogeSelectLadderized from '@/toge/patterns/select-ladderized/select-ladderized.vue'
-import TogeFilter from '@/toge/patterns/filter/filter.vue'
-import TogeAttributeFilter from '@/toge/patterns/attribute-filter/attribute-filter.vue'
+import TogeSelect from '@/toge/molecules/select/select.vue'
 import TogeTable from '@/toge/patterns/table/table.vue'
-import TogeTableActions from '@/toge/patterns/table-actions/table-actions.vue'
-import TogeTableCell from '@/toge/molecules/table-cell/table-cell.vue'
+import TogeTableHeader from '@/toge/patterns/table/header/header.vue'
+import TogeTableBody from '@/toge/patterns/table/body/body.vue'
+import TogeTableRow from '@/toge/patterns/table/row/row.vue'
+import TogeTableHead from '@/toge/patterns/table/head/head.vue'
+import TogeTableCell from '@/toge/patterns/table/cell/cell.vue'
+import TogeTableCaption from '@/toge/patterns/table/caption/caption.vue'
+import TogeTableFooter from '@/toge/patterns/table/footer/footer.vue'
 import TogeTablePagination from '@/toge/patterns/table-pagination/table-pagination.vue'
 import TogeDateCalendarPicker from '@/toge/molecules/date-calendar-picker/date-calendar-picker.vue'
 import TogeDatePicker from '@/toge/molecules/date-picker/date-picker.vue'
@@ -250,6 +365,8 @@ interface PropDef {
   type: 'boolean' | 'select' | 'text' | 'number'
   options?: string[]
   default: unknown
+  /** Only show this prop control when another prop matches a value, e.g. { prop: 'variant', value: 'checkbox' } */
+  showWhen?: { prop: string; value: unknown }
 }
 
 interface ComponentConfig {
@@ -303,7 +420,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
     propDefs: [
       { name: 'text', type: 'text', default: '99' },
       { name: 'variant', type: 'select', options: ['neutral', 'danger', 'disabled', 'information', 'brand'], default: 'brand' },
-      { name: 'size', type: 'select', options: ['tiny', 'small', 'big'], default: 'big' },
+      { name: 'size', type: 'select', options: ['tiny', 'big'], default: 'big' },
       { name: 'position', type: 'select', options: ['top', 'bottom', 'default'], default: 'default' },
     ],
   },
@@ -340,18 +457,34 @@ const componentRegistry: Record<string, ComponentConfig> = {
       { name: 'size', type: 'select', options: ['2xs', 'xs', 'sm', 'base', 'lg', 'xl', '2xl'], default: 'base' },
     ],
   },
+  chipDay: {
+    component: TogeChipDay,
+    tag: 'toge-chip-day',
+    category: 'primitive',
+    propDefs: [
+      { name: 'day', type: 'select', options: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], default: 'Monday' },
+      { name: 'active', type: 'boolean', default: false },
+      { name: 'disabled', type: 'boolean', default: false },
+    ],
+  },
   chips: {
     component: TogeChips,
     tag: 'toge-chips',
     category: 'molecule',
     propDefs: [
-      { name: 'label', type: 'text', default: 'Label' },
+      { name: 'label', type: 'text', default: 'Chip Label' },
       { name: 'size', type: 'select', options: ['lg', 'md', 'sm'], default: 'md' },
       { name: 'tone', type: 'select', options: ['default', 'subtle'], default: 'default' },
-      { name: 'variant', type: 'select', options: ['tag', 'day'], default: 'tag' },
       { name: 'disabled', type: 'boolean', default: false },
       { name: 'active', type: 'boolean', default: false },
       { name: 'closable', type: 'boolean', default: false },
+      { name: 'icon', type: 'text', default: '' },
+      { name: 'avatar', type: 'boolean', default: false },
+      { name: 'avatarSize', type: 'select', options: ['2xl', 'xl', 'lg', 'md', 'sm', 'xs', '2xs'], default: 'xs', showWhen: { prop: 'avatar', value: true } },
+      { name: 'avatarUrl', type: 'text', default: '', showWhen: { prop: 'avatar', value: true } },
+      { name: 'avatarInitials', type: 'text', default: 'JD', showWhen: { prop: 'avatar', value: true } },
+      { name: 'badge', type: 'boolean', default: false },
+      { name: 'badgeText', type: 'text', default: '5', showWhen: { prop: 'badge', value: true } },
     ],
   },
   avatar: {
@@ -363,18 +496,16 @@ const componentRegistry: Record<string, ComponentConfig> = {
       { name: 'size', type: 'select', options: ['2xl', 'xl', 'lg', 'md', 'sm', 'xs', '2xs'], default: 'md' },
       { name: 'initial', type: 'text', default: 'JD' },
       { name: 'color', type: 'select', options: ['primary', 'secondary', 'tertiary'], default: 'primary' },
+      { name: 'src', type: 'text', default: '', showWhen: { prop: 'variant', value: 'image' } },
       { name: 'badge', type: 'boolean', default: false },
-      { name: 'notification', type: 'boolean', default: false },
       { name: 'loading', type: 'boolean', default: false },
     ],
   },
   collapsible: {
     component: TogeCollapsible,
     tag: 'toge-collapsible',
-    category: 'primitive',
-    propDefs: [
-      { name: 'transitionDuration', type: 'number', default: 150 },
-    ],
+    category: 'pattern',
+    propDefs: [],
   },
   tooltip: {
     component: TogeTooltip,
@@ -386,12 +517,6 @@ const componentRegistry: Record<string, ComponentConfig> = {
       { name: 'hasMaxWidth', type: 'boolean', default: true },
       { name: 'autoHide', type: 'boolean', default: false },
     ],
-  },
-  popper: {
-    component: TogePopper,
-    tag: 'toge-popper',
-    category: 'primitive',
-    propDefs: [],
   },
 
   // ─── Phase 2 — Form Controls ─────────────────────────────────────────────
@@ -407,7 +532,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
       { name: 'disabled', type: 'boolean', default: false },
       { name: 'readonly', type: 'boolean', default: false },
       { name: 'error', type: 'boolean', default: false },
-      { name: 'displayHelper', type: 'boolean', default: false },
+      { name: 'showHelper', type: 'boolean', default: false },
       { name: 'helperText', type: 'text', default: 'Helper text' },
     ],
   },
@@ -420,18 +545,6 @@ const componentRegistry: Record<string, ComponentConfig> = {
     propDefs: [
       { name: 'label', type: 'text', default: 'Search' },
       { name: 'placeholder', type: 'text', default: 'Search...' },
-      { name: 'disabled', type: 'boolean', default: false },
-    ],
-  },
-  'input-dropdown': {
-    component: TogeInputDropdown,
-    tag: 'toge-input-dropdown',
-    category: 'primitive',
-    hasModel: true,
-    modelDefault: '',
-    propDefs: [
-      { name: 'label', type: 'text', default: 'Label' },
-      { name: 'placeholder', type: 'text', default: 'Enter text...' },
       { name: 'disabled', type: 'boolean', default: false },
     ],
   },
@@ -513,6 +626,20 @@ const componentRegistry: Record<string, ComponentConfig> = {
       { name: 'error', type: 'boolean', default: false },
     ],
   },
+  'input-flexible': {
+    component: TogeInputFlexible,
+    tag: 'toge-input-flexible',
+    category: 'primitive',
+    hasModel: true,
+    modelDefault: '',
+    propDefs: [
+      { name: 'label', type: 'text', default: 'Label' },
+      { name: 'placeholder', type: 'text', default: 'Enter text...' },
+      { name: 'icon', type: 'text', default: 'ph:star' },
+      { name: 'disabled', type: 'boolean', default: false },
+      { name: 'error', type: 'boolean', default: false },
+    ],
+  },
   textarea: {
     component: TogeTextarea,
     tag: 'toge-textarea',
@@ -539,8 +666,22 @@ const componentRegistry: Record<string, ComponentConfig> = {
     propDefs: [
       { name: 'label', type: 'text', default: 'Check me' },
       { name: 'disabled', type: 'boolean', default: false },
-      { name: 'bordered', type: 'boolean', default: false },
       { name: 'indeterminate', type: 'boolean', default: false },
+    ],
+  },
+  choicebox: {
+    component: TogeChoicebox,
+    tag: 'toge-choicebox',
+    category: 'molecule',
+    hasModel: true,
+    modelDefault: undefined,
+    propDefs: [
+      { name: 'variant', type: 'select', options: ['checkbox', 'radio', 'slot'], default: 'checkbox' },
+      { name: 'label', type: 'text', default: 'Choice label' },
+      { name: 'description', type: 'text', default: 'Supporting description' },
+      { name: 'disabled', type: 'boolean', default: false },
+      { name: 'fullWidth', type: 'boolean', default: false },
+      { name: 'indeterminate', type: 'boolean', default: false, showWhen: { prop: 'variant', value: 'checkbox' } },
     ],
   },
   radio: {
@@ -548,35 +689,11 @@ const componentRegistry: Record<string, ComponentConfig> = {
     tag: 'toge-radio',
     category: 'primitive',
     hasModel: true,
-    modelDefault: 'option1',
+    modelDefault: undefined,
     defaultSlot: 'Radio Option',
     extraProps: { value: 'option1', name: 'playground-radio' },
     propDefs: [
       { name: 'disabled', type: 'boolean', default: false },
-      { name: 'bordered', type: 'boolean', default: false },
-      { name: 'choiceBox', type: 'boolean', default: false },
-    ],
-  },
-  'radio-grouped': {
-    component: TogeRadioGrouped,
-    tag: 'toge-radio-grouped',
-    category: 'pattern',
-    hasModel: true,
-    modelDefault: 'option1',
-    extraProps: {
-      name: 'playground-radio-grouped',
-      options: [
-        { text: 'Option 1', value: 'option1' },
-        { text: 'Option 2', value: 'option2' },
-        { text: 'Option 3', value: 'option3' },
-      ],
-    },
-    propDefs: [
-      { name: 'disabled', type: 'boolean', default: false },
-      { name: 'bordered', type: 'boolean', default: false },
-      { name: 'choiceBox', type: 'boolean', default: false },
-      { name: 'fullWidth', type: 'boolean', default: false },
-      { name: 'error', type: 'boolean', default: false },
     ],
   },
   switch: {
@@ -656,15 +773,16 @@ const componentRegistry: Record<string, ComponentConfig> = {
     component: TogeCard,
     tag: 'toge-card',
     category: 'molecule',
-    defaultSlot: 'Card content goes here.',
+    defaultSlot: 'Card body content goes here.',
     extraProps: { style: 'width: 320px;' },
     propDefs: [
-      { name: 'tone', type: 'select', options: ['plain', 'neutral', 'success', 'information', 'pending', 'caution', 'accent', 'danger'], default: 'plain' },
-      { name: 'title', type: 'text', default: 'Card Title' },
-      { name: 'showHeader', type: 'boolean', default: true },
+      { name: 'borderRadiusSize', type: 'select', options: ['xl', 'lg', 'md', 'sm', 'xs', '2xs'], default: 'xl' },
+      { name: 'showHeader', type: 'boolean', default: false },
+      { name: 'title', type: 'text', default: 'Card Title', showWhen: { prop: 'showHeader', value: true } },
+      { name: 'subtitle', type: 'text', default: 'Subtitle text', showWhen: { prop: 'showHeader', value: true } },
       { name: 'showFooter', type: 'boolean', default: false },
-      { name: 'hasCollapsible', type: 'boolean', default: false },
-      { name: 'hasContentPadding', type: 'boolean', default: true },
+      { name: 'primaryLabel', type: 'text', default: 'Confirm', showWhen: { prop: 'showFooter', value: true } },
+      { name: 'secondaryLabel', type: 'text', default: 'Cancel', showWhen: { prop: 'showFooter', value: true } },
     ],
   },
   logo: {
@@ -726,31 +844,14 @@ const componentRegistry: Record<string, ComponentConfig> = {
     category: 'pattern',
     hasModel: true,
     modelDefault: false,
-    defaultSlot: 'Sidepanel content goes here.',
     propDefs: [
-      { name: 'headerTitle', type: 'text', default: 'Sidepanel Header' },
+      { name: 'title', type: 'text', default: 'Sidepanel Title' },
       { name: 'size', type: 'select', options: ['sm', 'md', 'lg', 'xl'], default: 'sm' },
+      { name: 'position', type: 'select', options: ['right', 'left'], default: 'right' },
+      { name: 'closeButtonX', type: 'boolean', default: true },
+      { name: 'contentPadding', type: 'boolean', default: true },
       { name: 'hasBackdrop', type: 'boolean', default: true },
-      { name: 'closeOutside', type: 'boolean', default: true },
-      { name: 'isExpandable', type: 'boolean', default: false },
-    ],
-  },
-  accordion: {
-    component: TogeAccordion,
-    tag: 'toge-accordion',
-    category: 'pattern',
-    extraProps: {
-      items: [
-        { collapseId: 'item-1', title: 'First Panel', subtitle: 'Optional subtitle' },
-        { collapseId: 'item-2', title: 'Second Panel' },
-        { collapseId: 'item-3', title: 'Third Panel' },
-      ],
-    },
-    propDefs: [
-      { name: 'alwaysOpen', type: 'boolean', default: false },
-      { name: 'isDefaultOpen', type: 'boolean', default: false },
-      { name: 'trigger', type: 'select', options: ['button', 'header'], default: 'button' },
-      { name: 'bordered', type: 'boolean', default: true },
+      { name: 'staticBackdrop', type: 'boolean', default: false },
     ],
   },
   tabs: {
@@ -801,33 +902,6 @@ const componentRegistry: Record<string, ComponentConfig> = {
       { name: 'type', type: 'select', options: ['compact', 'solid'], default: 'compact' },
     ],
   },
-  'audit-trail': {
-    component: TogeAuditTrail,
-    tag: 'toge-audit-trail',
-    category: 'molecule',
-    extraProps: {
-      logs: [
-        {
-          userName: 'John Doe',
-          title: 'Updated employee profile',
-          logs: [
-            { label: ['Personal Info', 'First Name'], oldValue: 'Jon', newValue: 'John' },
-            { label: ['Contact'], oldValue: 'N/A', newValue: '+63 917 123 4567' },
-          ],
-        },
-        {
-          userName: 'Jane Smith',
-          title: 'Changed department assignment',
-          logs: [
-            { label: ['Department'], oldValue: 'Engineering', newValue: 'Product' },
-          ],
-        },
-      ],
-    },
-    propDefs: [
-      { name: 'alwaysOpen', type: 'boolean', default: true },
-    ],
-  },
   'time-picker': {
     component: TogeTimePicker,
     tag: 'toge-time-picker',
@@ -841,6 +915,8 @@ const componentRegistry: Record<string, ComponentConfig> = {
       { name: 'disabled', type: 'boolean', default: false },
       { name: 'error', type: 'boolean', default: false },
       { name: 'disableTyping', type: 'boolean', default: false },
+      { name: 'showHelper', type: 'boolean', default: false },
+      { name: 'helperText', type: 'text', default: '', showWhen: { prop: 'showHelper', value: true } },
     ],
   },
 
@@ -848,25 +924,25 @@ const componentRegistry: Record<string, ComponentConfig> = {
   list: {
     component: TogeList,
     tag: 'toge-list',
-    category: 'pattern',
+    category: 'molecule',
     hasModel: true,
     modelDefault: [],
     extraProps: {
       items: [
-        { text: 'Option A', value: 'a', subtext: 'Sub A' },
+        { text: 'Option A', value: 'a' },
         { text: 'Option B', value: 'b' },
-        { text: 'Option C', value: 'c', disabled: true },
-        { text: 'Option D', value: 'd', icon: 'ph:star' },
+        { text: 'Option C', value: 'c' },
+        { text: 'Option D', value: 'd' },
       ],
     },
     propDefs: [
+      { name: 'disabled', type: 'boolean', default: false },
       { name: 'multiSelect', type: 'boolean', default: false },
-      { name: 'searchable', type: 'boolean', default: false },
       { name: 'noCheck', type: 'boolean', default: false },
       { name: 'optionsLoader', type: 'boolean', default: false },
     ],
   },
-  dropdown: {
+  popover: {
     component: TogePopover,
     tag: 'toge-popover',
     category: 'primitive',
@@ -880,7 +956,7 @@ const componentRegistry: Record<string, ComponentConfig> = {
   select: {
     component: TogeSelect,
     tag: 'toge-select',
-    category: 'pattern',
+    category: 'molecule',
     hasModel: true,
     modelDefault: null,
     extraProps: {
@@ -897,168 +973,29 @@ const componentRegistry: Record<string, ComponentConfig> = {
       { name: 'disabled', type: 'boolean', default: false },
       { name: 'error', type: 'boolean', default: false },
       { name: 'clearable', type: 'boolean', default: false },
-      { name: 'searchable', type: 'boolean', default: false },
-    ],
-  },
-  'select-multiple': {
-    component: TogeSelectMultiple,
-    tag: 'toge-select-multiple',
-    category: 'pattern',
-    hasModel: true,
-    modelDefault: [],
-    extraProps: {
-      id: 'playground-select-multiple',
-      options: [
-        { text: 'Option A', value: 'a' },
-        { text: 'Option B', value: 'b' },
-        { text: 'Option C', value: 'c' },
-      ],
-    },
-    propDefs: [
-      { name: 'label', type: 'text', default: 'Multi Select' },
-      { name: 'placeholder', type: 'text', default: 'Choose options' },
-      { name: 'disabled', type: 'boolean', default: false },
-      { name: 'error', type: 'boolean', default: false },
-      { name: 'clearable', type: 'boolean', default: false },
-      { name: 'searchable', type: 'boolean', default: false },
-    ],
-  },
-  'select-ladderized': {
-    component: TogeSelectLadderized,
-    tag: 'toge-select-ladderized',
-    category: 'pattern',
-    hasModel: true,
-    modelDefault: [],
-    extraProps: {
-      id: 'playground-select-ladderized',
-      options: [
-        { text: 'Region 1', value: 'r1', sublevel: [
-          { text: 'City A', value: 'c1a' },
-          { text: 'City B', value: 'c1b' },
-        ]},
-        { text: 'Region 2', value: 'r2', sublevel: [
-          { text: 'City C', value: 'c2a' },
-          { text: 'City D', value: 'c2b' },
-        ]},
-      ],
-    },
-    propDefs: [
-      { name: 'label', type: 'text', default: 'Select Region' },
-      { name: 'placeholder', type: 'text', default: 'Choose a location' },
-      { name: 'disabled', type: 'boolean', default: false },
-      { name: 'clearable', type: 'boolean', default: false },
-    ],
-  },
-  filter: {
-    component: TogeFilter,
-    tag: 'toge-filter',
-    category: 'pattern',
-    hasModel: true,
-    modelDefault: [],
-    extraProps: {
-      options: [
-        { label: 'All', value: 'all' },
-        { label: 'Active', value: 'active' },
-        { label: 'Inactive', value: 'inactive' },
-        { label: 'Pending', value: 'pending' },
-      ],
-    },
-    propDefs: [
-      { name: 'multiple', type: 'boolean', default: false },
-      { name: 'disabled', type: 'boolean', default: false },
-      { name: 'size', type: 'select', options: ['sm', 'md', 'lg'], default: 'sm' },
-    ],
-  },
-  'attribute-filter': {
-    component: TogeAttributeFilter,
-    tag: 'toge-attribute-filter',
-    category: 'pattern',
-    hasModel: true,
-    modelDefault: {},
-    extraProps: {
-      groups: [
-        {
-          id: 'status',
-          label: 'Status',
-          items: [
-            { label: 'Active', value: 'active' },
-            { label: 'Inactive', value: 'inactive' },
-          ],
-        },
-        {
-          id: 'department',
-          label: 'Department',
-          items: [
-            { label: 'Engineering', value: 'eng' },
-            { label: 'Product', value: 'prod' },
-            { label: 'Design', value: 'des' },
-          ],
-        },
-      ],
-    },
-    propDefs: [
-      { name: 'disabled', type: 'boolean', default: false },
-      { name: 'placement', type: 'select', options: ['bottom', 'bottom-start', 'bottom-end', 'top', 'top-start', 'top-end'], default: 'bottom' },
+      { name: 'showHelper', type: 'boolean', default: false },
+      { name: 'helperText', type: 'text', default: 'Helper text', showWhen: { prop: 'showHelper', value: true } },
     ],
   },
   table: {
     component: TogeTable,
     tag: 'toge-table',
     category: 'pattern',
-    extraProps: {
-      headers: [
-        { name: 'Name', field: 'name', sort: true },
-        { name: 'Department', field: 'department', sort: true },
-        { name: 'Status', field: 'status' },
-      ],
-      tableData: [
-        { name: 'John Doe', department: 'Engineering', status: 'Active' },
-        { name: 'Jane Smith', department: 'Product', status: 'Inactive' },
-        { name: 'Bob Johnson', department: 'Design', status: 'Active' },
-      ],
-    },
     propDefs: [
-      { name: 'isMultiSelect', type: 'boolean', default: false },
-      { name: 'loading', type: 'boolean', default: false },
+      { name: 'bordered', type: 'boolean', default: false },
       { name: 'striped', type: 'boolean', default: false },
       { name: 'hoverable', type: 'boolean', default: true },
-      { name: 'stickyHeader', type: 'boolean', default: false },
+      { name: 'sortable', type: 'boolean', default: false },
+      { name: 'selected', type: 'boolean', default: false },
+      { name: 'showCaption', type: 'boolean', default: false },
+      { name: 'captionPosition', type: 'select', options: ['top', 'bottom'], default: 'bottom', showWhen: { prop: 'showCaption', value: true } },
+      { name: 'showFooter', type: 'boolean', default: false },
+      { name: 'headAlign', type: 'select', options: ['left', 'center', 'right'], default: 'left' },
+      { name: 'cellAlign', type: 'select', options: ['left', 'center', 'right'], default: 'left' },
     ],
   },
-  'table-actions': {
-    component: TogeTableActions,
-    tag: 'toge-table-actions',
-    category: 'pattern',
-    hasModel: true,
-    modelDefault: '',
-    propDefs: [
-      { name: 'toggleSearch', type: 'boolean', default: true },
-      { name: 'toggleOption', type: 'boolean', default: false },
-      { name: 'toggleFilter', type: 'boolean', default: false },
-    ],
-  },
-  'table-cell': {
-    component: TogeTableCell,
-    tag: 'toge-table-cell',
-    category: 'molecule',
-    propDefs: [],
-    extraProps: {
-      cell: { type: 'chip', title: 'John Doe', icon: 'ph:user' },
-    },
-  },
-  'table-pagination': {
-    component: TogeTablePagination,
-    tag: 'toge-table-pagination',
-    category: 'pattern',
-    extraProps: {
-      totalItems: 247,
-    },
-    propDefs: [
-      { name: 'currentPage', type: 'number', default: 1 },
-      { name: 'itemsPerPage', type: 'number', default: 10 },
-      { name: 'showRowCount', type: 'boolean', default: true },
-    ],
-  },
+
+
   'date-calendar-picker': {
     component: TogeDateCalendarPicker,
     tag: 'toge-date-calendar-picker',
@@ -1084,6 +1021,8 @@ const componentRegistry: Record<string, ComponentConfig> = {
       { name: 'readonly', type: 'boolean', default: false },
       { name: 'error', type: 'boolean', default: false },
       { name: 'clearable', type: 'boolean', default: false },
+      { name: 'showHelper', type: 'boolean', default: false },
+      { name: 'helperText', type: 'text', default: 'Please select a date', showWhen: { prop: 'showHelper', value: true } },
     ],
   },
   'date-range-picker': {
@@ -1098,6 +1037,8 @@ const componentRegistry: Record<string, ComponentConfig> = {
       { name: 'error', type: 'boolean', default: false },
       { name: 'separator', type: 'text', default: 'to' },
       { name: 'allowSameDay', type: 'boolean', default: false },
+      { name: 'showHelper', type: 'boolean', default: false },
+      { name: 'helperText', type: 'text', default: 'Please select a date range', showWhen: { prop: 'showHelper', value: true } },
     ],
   },
   'month-year-picker': {
@@ -1111,20 +1052,18 @@ const componentRegistry: Record<string, ComponentConfig> = {
       { name: 'disabled', type: 'boolean', default: false },
       { name: 'error', type: 'boolean', default: false },
       { name: 'format', type: 'text', default: 'MM-YYYY' },
+      { name: 'showHelper', type: 'boolean', default: false },
+      { name: 'helperText', type: 'text', default: 'Please select a month and year', showWhen: { prop: 'showHelper', value: true } },
     ],
   },
   snackbar: {
     component: TogeSnackbar,
     tag: 'toge-snackbar',
     category: 'molecule',
-    extraProps: {
-      snacks: [
-        { id: 1, text: 'Action completed successfully', tone: 'success', showIcon: true },
-        { id: 2, text: 'Something went wrong', tone: 'error', showIcon: true },
-      ],
-    },
     propDefs: [
       { name: 'position', type: 'select', options: ['bottom-left', 'bottom-center', 'bottom-right', 'top-left', 'top-center', 'top-right'], default: 'bottom-left' },
+      { name: 'showIcon', type: 'boolean', default: true },
+      { name: 'showAction', type: 'boolean', default: false },
     ],
   },
 }
@@ -1144,13 +1083,41 @@ const groupedComponents = computed(() => {
 })
 
 const selectedKey = ref<keyof typeof componentRegistry>('button')
-const collapsibleOpen = ref(false)
 const formModelValue = ref<unknown>('')
+
+// Table demo state
+const tableSortField = ref<string>('')
+const tableSortOrder = ref<'asc' | 'desc' | null>(null)
+const tableRows = [
+  { name: 'John Doe', department: 'Engineering', status: 'Active', tag: 'Frontend' },
+  { name: 'Jane Smith', department: 'Product', status: 'Inactive', tag: 'Strategy' },
+  { name: 'Bob Johnson', department: 'Design', status: 'Active', tag: 'UI' },
+  { name: 'Alice Chen', department: 'Engineering', status: 'Active', tag: 'Backend' },
+]
+function handleTableSort(field: string) {
+  if (tableSortField.value !== field) {
+    tableSortField.value = field
+    tableSortOrder.value = 'asc'
+  } else if (tableSortOrder.value === 'asc') {
+    tableSortOrder.value = 'desc'
+  } else {
+    tableSortField.value = ''
+    tableSortOrder.value = null
+  }
+}
 const slotText = ref('')
 const copied = ref(false)
 const propValues = reactive<Record<string, unknown>>({})
 
 const currentConfig = computed(() => componentRegistry[selectedKey.value])
+
+// Keys with fully custom preview renders — skip auto-variants for these
+const CUSTOM_RENDER_KEYS = new Set(['collapsible', 'popover', 'snackbar', 'modal', 'sidepanel', 'table'])
+
+const variantProps = computed(() => {
+  if (CUSTOM_RENDER_KEYS.has(selectedKey.value as string)) return []
+  return currentConfig.value.propDefs.filter((p) => p.type === 'select')
+})
 
 function resetProps() {
   const config = componentRegistry[selectedKey.value]
@@ -1163,7 +1130,6 @@ function resetProps() {
   for (const p of config.propDefs) {
     propValues[p.name] = p.default
   }
-  collapsibleOpen.value = false
 }
 
 watch(selectedKey, resetProps, { immediate: true })
@@ -1196,9 +1162,9 @@ const generatedCode = computed(() => {
   const tag = currentConfig.value.tag
 
   if (selectedKey.value === 'collapsible') {
-    const dur = propValues.transitionDuration
-    const durAttr = dur !== 150 ? ` :transition-duration="${dur}"` : ''
-    return `<${tag} v-model="isOpen"${durAttr}>\n  <template #trigger="{ toggleCollapsible, isOpen }">\n    <button @click="toggleCollapsible" :aria-expanded="isOpen">\n      Toggle\n    </button>\n  </template>\n  Content goes here\n</${tag}>`
+    const changedAttrs = buildAttrString(currentConfig.value.propDefs)
+    const attrPart = changedAttrs.length ? '\n  ' + changedAttrs.join('\n  ') : ''
+    return `<${tag}${attrPart}>\n  <template #trigger="{ isOpen, toggle }">\n    <!-- your trigger content -->\n  </template>\n  <!-- your content -->\n</${tag}>`
   }
 
   if (selectedKey.value === 'tooltip') {
@@ -1207,9 +1173,6 @@ const generatedCode = computed(() => {
     return `<${tag}${attrPart ? attrPart : ' '}>\n  <template #popper-content>${propValues.text || 'Tooltip text'}</template>\n  <button>Hover me</button>\n</${tag}>`
   }
 
-  if (selectedKey.value === 'popper') {
-    return `<${tag} id="my-popper">\n  <button>Toggle popper</button>\n  <template #content>\n    Popper content\n  </template>\n</${tag}>`
-  }
 
   const changedAttrs = buildAttrString(currentConfig.value.propDefs)
   const slot = slotText.value || ''
@@ -1491,5 +1454,65 @@ async function copyCode() {
   border: 1px solid #e5e7eb;
   border-top: none;
   border-radius: 0 0 6px 6px;
+}
+
+/* ── Auto variants showcase ──────────────────────────────────── */
+.toge-playground__variant-group {
+  grid-column: 1 / -1;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.toge-playground__variant-group-header {
+  padding: 8px 16px;
+  border-bottom: 1px solid #f3f4f6;
+  background: #f9fafb;
+}
+
+.toge-playground__variant-group-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #6b7280;
+  font-family: ui-monospace, monospace;
+}
+
+.toge-playground__variant-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.toge-playground__variant-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 20px;
+  border-right: 1px solid #f3f4f6;
+  flex: 1;
+  min-width: 120px;
+}
+
+.toge-playground__variant-item:last-child {
+  border-right: none;
+}
+
+.toge-playground__variant-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+}
+
+.toge-playground__variant-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #9ca3af;
+  font-family: ui-monospace, monospace;
+  text-align: center;
 }
 </style>

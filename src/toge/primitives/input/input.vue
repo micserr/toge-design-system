@@ -34,24 +34,25 @@
         @change="(evt) => emit('change', evt)"
       />
 
-      <div v-if="slots.trailing" :class="classes.trailing">
-        <slot name="trailing" />
-      </div>
-
-      <div
-        v-if="slots.icon"
-        :class="classes.icon"
-        @click="onIconClick"
-      >
-        <slot name="icon" />
+      <div v-if="slots.trailing || slots.icon" :class="classes.trailingArea">
+        <div v-if="slots.trailing" :class="classes.trailing">
+          <slot name="trailing" />
+        </div>
+        <div
+          v-if="slots.icon"
+          :class="classes.icon"
+          @click="onIconClick"
+        >
+          <slot name="icon" />
+        </div>
       </div>
     </div>
 
     <div
-      v-if="props.displayHelper || props.showCharCount"
+      v-if="props.showHelper || props.showCharCount"
       class="spr-flex spr-flex-row spr-items-start spr-justify-between spr-w-full spr-mt-1"
     >
-      <div v-if="props.displayHelper" :class="classes.helper">
+      <div v-if="props.showHelper" :class="classes.helper">
         <slot name="helperMessage">
           <Icon
             v-if="props.helperIcon"
@@ -83,7 +84,7 @@ const props = withDefaults(defineProps<InputProps>(), {
   readonly: false,
   error: false,
   showCharCount: false,
-  displayHelper: false,
+  showHelper: false,
 })
 
 const emit = defineEmits<InputEmits>()

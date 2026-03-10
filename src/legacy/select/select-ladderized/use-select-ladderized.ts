@@ -3,7 +3,7 @@ import { useVModel, onClickOutside, watchDeep } from '@vueuse/core';
 
 import type { SelectLadderizedPropTypes } from './select-ladderized';
 
-import type { MenuListType } from '@/list/list';
+import type { MenuListType } from '@/legacy/list/list';
 
 export const useSelectLadderized = (
   props: SelectLadderizedPropTypes,

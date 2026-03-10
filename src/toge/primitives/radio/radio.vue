@@ -21,7 +21,7 @@
     />
     <label
       :for="props.id"
-      :class="[classes.labelClasses, { [classes.borderedClasses]: props.bordered }]"
+      :class="classes.labelClasses"
     >
       <span :class="classes.baseIndicatorClasses"></span>
       <div class="spr-flex spr-flex-col spr-gap-size-spacing-6xs">
@@ -51,9 +51,6 @@ const props = withDefaults(defineProps<RadioProps>(), {
   value: undefined,
   description: undefined,
   disabled: false,
-  bordered: false,
-  choiceBox: false,
-  fullWidth: false,
   ariaLabel: undefined,
 })
 
@@ -63,7 +60,7 @@ defineSlots<{
   default(props: {}): any
 }>()
 
-const model = defineModel<string | number | boolean>()
+const model = defineModel<string | number | boolean | undefined>({ default: undefined })
 const radioInputRef = ref<HTMLInputElement | null>(null)
 const isHovered = ref(false)
 const slots = useSlots()
@@ -72,9 +69,6 @@ const classes = computed(() =>
   getRadioClasses({
     isSelected: model.value === props.value,
     disabled: props.disabled,
-    bordered: props.bordered,
-    fullWidth: props.fullWidth,
-    choiceBox: props.choiceBox,
     hasSlot: !!slots.default,
     isHovered: isHovered.value,
   }),

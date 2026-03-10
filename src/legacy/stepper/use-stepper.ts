@@ -1,5 +1,5 @@
-import type { StepPropTypes } from '@/stepper/step/step';
-import type { StepperPropTypes } from '@/stepper/stepper';
+import type { StepPropTypes } from '@/legacy/stepper/step/step';
+import type { StepperPropTypes } from '@/legacy/stepper/stepper';
 import classNames from 'classnames';
 import { computed, ComputedRef } from 'vue';
 

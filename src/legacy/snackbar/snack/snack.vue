@@ -48,7 +48,7 @@
 
 <script lang="ts" setup>
 import { Icon } from '@iconify/vue';
-import SprButton from '@/button/button.vue';
+import SprButton from '@/legacy/button/button.vue';
 import { snackEmitTypes, snackPropTypes } from './snack';
 import { useSnack } from './use-snack';
 

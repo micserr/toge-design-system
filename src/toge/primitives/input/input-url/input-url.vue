@@ -1,5 +1,5 @@
 <template>
-  <TogeInput v-bind="$attrs" type="url" v-model="model">
+  <TogeInput v-bind="{ ...props, ...$attrs }" type="url" v-model="model">
     <template v-for="(_, slotName) in $slots" #[slotName]>
       <slot :name="slotName" />
     </template>
@@ -14,7 +14,7 @@ import { Icon } from '@iconify/vue'
 import TogeInput from '../input.vue'
 import type { InputUrlProps } from './input-url.types'
 
-defineProps<InputUrlProps>()
+const props = defineProps<InputUrlProps>()
 
 defineSlots<{
   prefix(props: {}): any

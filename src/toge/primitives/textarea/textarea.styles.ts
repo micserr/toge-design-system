@@ -20,9 +20,9 @@ export interface TextareaClasses {
 export function getTextareaClasses(state: TextareaStyleState): TextareaClasses {
   const { error, disabled, readonly, displayHelper, hasCounter } = state
 
-  const wrapperClasses = classNames('spr-flex spr-flex-col spr-gap-size-spacing-4xs')
+  const wrapperClasses = classNames('spr-flex spr-flex-col spr-gap-size-spacing-4xs spr-w-full spr-min-w-0')
 
-  const labelClasses = classNames('spr-body-sm-regular spr-text-color-strong spr-flex spr-gap-2', {
+  const labelClasses = classNames('spr-body-sm-regular spr-text-color-strong spr-flex spr-w-full spr-gap-2', {
     'spr-text-color-on-fill-disabled': disabled,
     'spr-text-color-base': readonly,
   })
@@ -33,7 +33,7 @@ export function getTextareaClasses(state: TextareaStyleState): TextareaClasses {
   })
 
   const textAreaClasses = classNames(
-    'spr-block spr-w-full spr-px-size-spacing-2xs spr-py-size-spacing-4xs spr-rounded-border-radius-md spr-outline-none spr-ring-0 spr-resize-none spr-font-main',
+    'spr-block spr-px-size-spacing-2xs spr-py-size-spacing-4xs spr-rounded-border-radius-md spr-outline-none spr-ring-0 spr-resize-none spr-font-main',
     'spr-text-color-strong spr-font-size-200',
     'spr-border spr-border-solid',
     'placeholder:spr-text-mushroom-300',
@@ -52,7 +52,7 @@ export function getTextareaClasses(state: TextareaStyleState): TextareaClasses {
     'spr-text-color-supporting': !error,
   })
 
-  const slotWrapperClasses = classNames('spr-flex spr-items-start', {
+  const slotWrapperClasses = classNames('spr-flex spr-items-start spr-w-full', {
     'spr-justify-between': displayHelper && hasCounter,
     'spr-justify-end': !displayHelper && hasCounter,
   })

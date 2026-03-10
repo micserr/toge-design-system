@@ -31,7 +31,7 @@ import {
 const props = withDefaults(defineProps<BadgeProps>(), {
   text: '0',
   variant: 'brand',
-  size: 'small',
+  size: 'big',
   position: 'default',
 })
 

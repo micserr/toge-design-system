@@ -1,5 +1,5 @@
 <template>
-  <label :class="[classes.baseClasses, { [classes.borderedClasses]: props.bordered }]">
+  <label :class="classes.baseClasses">
     <div class="spr-relative spr-flex spr-items-center">
       <input
         :id="props.id"
@@ -41,7 +41,6 @@ const props = withDefaults(defineProps<CheckboxProps>(), {
   label: undefined,
   description: undefined,
   disabled: false,
-  bordered: false,
   indeterminate: false,
   ariaLabel: undefined,
 })
@@ -58,8 +57,6 @@ const classes = computed(() =>
   getCheckboxClasses({
     isChecked: model.value,
     disabled: props.disabled,
-    bordered: props.bordered,
-    fullWidth: false,
     indeterminate: props.indeterminate,
   }),
 )

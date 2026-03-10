@@ -1,5 +1,5 @@
 import type { PropType, ExtractPropTypes } from 'vue';
-import type { LOZENGE_TONE } from '@/lozenge/lozenge';
+import type { LOZENGE_TONE } from '@/legacy/lozenge/lozenge';
 export const definePropType = <T>(val: unknown): PropType<T> => val as PropType<T>;
 
 export interface LozengeTitle {

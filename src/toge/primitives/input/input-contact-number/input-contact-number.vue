@@ -1,5 +1,5 @@
 <template>
-  <TogeInput v-bind="$attrs" type="tel" v-model="model">
+  <TogeInput v-bind="{ ...props, ...$attrs }" type="tel" v-model="model">
     <template v-for="(_, slotName) in $slots" #[slotName]>
       <slot :name="slotName" />
     </template>
@@ -14,7 +14,7 @@ import { Icon } from '@iconify/vue'
 import TogeInput from '../input.vue'
 import type { InputContactNumberProps } from './input-contact-number.types'
 
-defineProps<InputContactNumberProps>()
+const props = defineProps<InputContactNumberProps>()
 
 defineSlots<{
   prefix(props: {}): any

@@ -12,7 +12,7 @@ export interface InputProps {
   minLength?: number
   maxLength?: number
   showCharCount?: boolean
-  displayHelper?: boolean
+  showHelper?: boolean
   helperIcon?: string
   helperText?: string
 }

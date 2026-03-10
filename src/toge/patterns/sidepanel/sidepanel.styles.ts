@@ -3,87 +3,58 @@ import classNames from 'classnames'
 export interface SidepanelStyleProps {
   size: string
   position: string
-  isExpanded: boolean
-  footerNoPadding: boolean
-  footerNoTopBorder: boolean
+  contentPadding: boolean
+  staticBackdropClicked: boolean
 }
 
 export interface SidepanelClasses {
+  backdrop: string
+  container: string
   base: string
   header: string
-  headerTitle: string
-  headerSubtitle: string
-  headerIcons: string
+  closeBtn: string
   content: string
   footer: string
-  backdrop: string
-  transitionActive: string
-  transitionHidden: string
-  transitionVisible: string
 }
 
 export function getSidepanelClasses(p: SidepanelStyleProps): SidepanelClasses {
-  const base = classNames(
-    'spr-right-4 spr-top-1/2 spr-z-[1015] spr-flex spr-h-full spr-min-h-[200px] spr-translate-y-[-50%] spr-flex-col spr-rounded-border-radius-xl spr-bg-white-50 spr-drop-shadow spr-transition-all spr-ease-[ease-in-out] spr-duration-[150ms]',
-    'spr-fixed',
-    {
-      'spr-w-[360px]': p.size === 'sm' && !p.isExpanded,
-      'spr-w-[420px]': p.size === 'md' && !p.isExpanded,
-      'spr-w-[480px]': p.size === 'lg' && !p.isExpanded,
-      '[@media(max-width:360px)]:spr-w-[calc(100vw-35px)]': p.size === 'sm' && !p.isExpanded,
-      '[@media(max-width:420px)]:spr-w-[calc(100vw-35px)]': p.size === 'md' && !p.isExpanded,
-      '[@media(max-width:480px)]:spr-w-[calc(100vw-35px)]': p.size === 'lg' && !p.isExpanded,
-      'spr-w-[calc(100vw-50px)]': p.isExpanded,
-    },
-  )
-
-  const header = classNames(
-    'spr-tw-min-h-12 spr-text-color-strong spr-flex spr-justify-between spr-border-0 spr-border-b spr-border-solid spr-border-mushroom-200 spr-p-4',
-  )
-
-  const headerTitle = classNames('spr-subheading-xs')
-
-  const headerSubtitle = classNames('spr-text-200 spr-max-w-[95%]')
-
-  const headerIcons = classNames('spr-text-color-weak spr-h-5 spr-w-5 spr-cursor-pointer')
-
-  const content = classNames('spr-h-full spr-overflow-y-auto')
-
-  const footer = classNames(
-    'spr-bottom-0 spr-left-0 spr-w-full spr-rounded-b-border-radius-xl spr-border-0 spr-border-solid spr-border-mushroom-200 spr-bg-white-50',
-    {
-      'spr-py-3': !p.footerNoPadding,
-      'spr-border-t': !p.footerNoTopBorder,
-    },
-  )
-
-  const backdrop = classNames(
-    'spr-fixed spr-left-0 spr-top-0 spr-z-[1010] spr-h-full spr-w-full spr-bg-mushroom-700/60',
-  )
-
-  const transitionActive = classNames(
-    'spr-transition-all spr-duration-[150ms] spr-ease-[ease-in-out]',
-  )
-
-  const transitionHidden = classNames('spr-opacity-0', {
-    'spr-translate-x-full -spr-translate-y-2/4': p.position === 'right',
-  })
-
-  const transitionVisible = classNames({
-    'spr-translate-x-0 -spr-translate-y-2/4': p.position === 'right',
-  })
-
   return {
-    base,
-    header,
-    headerTitle,
-    headerSubtitle,
-    headerIcons,
-    content,
-    footer,
-    backdrop,
-    transitionActive,
-    transitionHidden,
-    transitionVisible,
+    backdrop: classNames('spr-fixed spr-inset-0 spr-z-[1050] spr-h-full spr-w-full spr-bg-[#4C5857] spr-opacity-60'),
+    container: classNames(
+      'spr-fixed spr-top-0 spr-bottom-0 spr-z-[1100]',
+      'spr-p-6 spr-flex spr-items-stretch',
+      {
+        'spr-right-0': p.position === 'right',
+        'spr-left-0': p.position === 'left',
+        'spr-w-[calc(100%-2rem)] sm:spr-w-[360px]': p.size === 'sm',
+        'spr-w-[calc(100%-2rem)] sm:spr-w-[480px]': p.size === 'md',
+        'spr-w-[calc(100%-2rem)] md:spr-w-[720px]': p.size === 'lg',
+        'spr-w-[calc(100%-2rem)] lg:spr-w-[900px]': p.size === 'xl',
+      },
+    ),
+    base: classNames(
+      'spr-flex spr-flex-col spr-w-full spr-h-full',
+      'spr-background-color spr-border spr-border-solid spr-border-color-weak',
+      'spr-rounded-xl spr-overflow-hidden',
+      { 'bounce-animation': p.staticBackdropClicked },
+    ),
+    header: classNames(
+      'spr-flex spr-items-start spr-justify-between spr-gap-2 spr-text-color-strong spr-subheading-xs',
+      'spr-border-color-weak spr-border-x-0 spr-border-b spr-border-t-0 spr-border-solid',
+      'spr-p-2 sm:spr-px-4 sm:spr-py-3',
+    ),
+    closeBtn: classNames(
+      'spr-text-color-weak spr-subheading-xs spr-mt-0.5 spr-cursor-pointer',
+      'spr-transition spr-duration-150 spr-ease-in-out hover:spr-text-color-base',
+      'active:spr-text-color-strong active:spr-scale-75',
+    ),
+    content: classNames(
+      'spr-flex-1 spr-body-sm-regular spr-overflow-y-auto spr-overflow-x-hidden',
+      { 'spr-p-2 sm:spr-p-4': p.contentPadding },
+    ),
+    footer: classNames(
+      'spr-border-color-weak spr-border-x-0 spr-border-b-0 spr-border-t spr-border-solid',
+      'spr-flex spr-w-full spr-items-center spr-gap-2 spr-px-size-spacing-xs spr-py-size-spacing-2xs spr-text-color-strong',
+    ),
   }
 }

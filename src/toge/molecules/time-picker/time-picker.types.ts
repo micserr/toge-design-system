@@ -9,6 +9,7 @@ export interface TimePickerProps {
   disableTyping?: boolean
   fullWidth?: boolean
   helperText?: string
+  showHelper?: boolean
   placeholder?: string
   id?: string
 }

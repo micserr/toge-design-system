@@ -2,7 +2,7 @@
 import classNames from 'classnames'
 
 export function getCollapsibleContainerClasses(): string {
-  return classNames('spr-w-full')
+  return classNames('spr:w-full')
 }
 
 export function getCollapsibleContentStyle(transitionDuration: number): Record<string, string> {

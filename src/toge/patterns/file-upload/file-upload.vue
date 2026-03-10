@@ -9,17 +9,17 @@
     >
       <div :class="inputAreaClasses">
         <label
-          class="spr-flex spr-items-center spr-gap-size-spacing-3xs spr-cursor-pointer"
-          :class="{ 'spr-cursor-not-allowed': props.disabled }"
+          class="spr:flex spr:items-center spr:gap-size-spacing-3xs spr:cursor-pointer"
+          :class="{ 'spr:cursor-not-allowed': props.disabled }"
         >
-          <Icon icon="ph:upload-simple" class="spr-h-5 spr-w-5 spr-flex-none" />
+          <Icon icon="ph:upload-simple" class="spr:h-5 spr:w-5 spr:flex-none" />
           <div v-if="!props.hideDropzoneLabel" :class="sublabelClasses">
             <span class="spr-body-sm-regular-medium">{{ props.title || 'Click to upload' }}</span>
             <span class="spr-body-xs-regular">or drag and drop</span>
           </div>
           <input
             type="file"
-            class="spr-hidden"
+            class="spr:hidden"
             :multiple="props.multiple"
             :accept="props.fileTypes?.join(',')"
             :disabled="props.disabled"
@@ -29,7 +29,7 @@
       </div>
       <span
         v-if="props.showSupportedFileTypeLabel && !props.hideDropzoneLabel"
-        class="spr-body-xs-regular spr-text-color-supporting spr-mt-size-spacing-3xs"
+        class="spr-body-xs-regular spr-text-color-supporting spr:mt-size-spacing-3xs"
       >
         {{ props.supportedFileTypeLabel || (props.fileTypes?.join(', ') ?? '') }}
       </span>
@@ -39,28 +39,28 @@
       <div
         v-for="(file, index) in model"
         :key="index"
-        class="spr-flex spr-items-center spr-justify-between spr-gap-size-spacing-3xs"
+        class="spr:flex spr:items-center spr:justify-between spr:gap-size-spacing-3xs"
       >
-        <div class="spr-flex spr-items-center spr-gap-size-spacing-3xs spr-min-w-0">
-          <Icon v-if="!props.hideFilePreviewIcon" icon="ph:file" class="spr-flex-none" />
-          <span class="spr-body-sm-regular spr-truncate">{{ file.name }}</span>
+        <div class="spr:flex spr:items-center spr:gap-size-spacing-3xs spr:min-w-0">
+          <Icon v-if="!props.hideFilePreviewIcon" icon="ph:file" class="spr:flex-none" />
+          <span class="spr-body-sm-regular spr:truncate">{{ file.name }}</span>
         </div>
-        <button type="button" class="spr-flex-none" aria-label="Remove file" @click="removeFile(index)">
+        <button type="button" class="spr:flex-none" aria-label="Remove file" @click="removeFile(index)">
           <Icon icon="ph:x" />
         </button>
       </div>
     </div>
 
-    <div v-if="props.showProgress" class="spr-mt-size-spacing-3xs">
-      <div class="spr-h-1 spr-w-full spr-rounded-full spr-background-color-surface spr-overflow-hidden">
+    <div v-if="props.showProgress" class="spr:mt-size-spacing-3xs">
+      <div class="spr:h-1 spr:w-full spr:rounded-full spr-background-color-surface spr:overflow-hidden">
         <div
-          class="spr-h-full spr-background-color-brand-base spr-transition-all"
+          class="spr:h-full spr-background-color-brand-base spr:transition-all"
           :style="{ width: `${props.progressValue}%` }"
         />
       </div>
     </div>
 
-    <div v-if="props.showError && props.errorMessages?.length" class="spr-mt-size-spacing-3xs">
+    <div v-if="props.showError && props.errorMessages?.length" class="spr:mt-size-spacing-3xs">
       <p
         v-for="(msg, i) in props.errorMessages"
         :key="i"

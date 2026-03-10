@@ -13,7 +13,7 @@ export interface BannerClasses {
 
 export function getBannerClasses(s: BannerStyleState): BannerClasses {
   const base = classNames(
-    'spr-w-full spr-flex spr-p-size-spacing-3xs spr-items-start spr-justify-between spr-rounded-border-radius-md spr-gap-size-spacing-3xs',
+    'spr:w-full spr:flex spr:p-size-spacing-3xs spr:items-start spr:justify-between spr:rounded-border-radius-md spr:gap-size-spacing-3xs',
     {
       'spr-background-color-success-weak': s.type === 'success',
       'spr-background-color-danger-weak': s.type === 'error',
@@ -23,7 +23,7 @@ export function getBannerClasses(s: BannerStyleState): BannerClasses {
     },
   )
 
-  const message = classNames('spr-block spr-m-0 spr-body-sm-regular', {
+  const message = classNames('spr:block spr:m-0 spr-body-sm-regular', {
     'spr-text-color-success-pressed': s.type === 'success',
     'spr-text-color-danger-pressed': s.type === 'error',
     'spr-text-color-information-pressed': s.type === 'info',
@@ -32,7 +32,7 @@ export function getBannerClasses(s: BannerStyleState): BannerClasses {
   })
 
   const close = classNames(
-    'spr-cursor-pointer spr-p-0 spr-m-0 spr-border-0 spr-bg-transparent spr-inline-flex spr-items-center spr-leading-[0] spr-shrink-0',
+    'spr:cursor-pointer spr:p-0 spr:m-0 spr:border-0 spr:bg-transparent spr:inline-flex spr:items-center spr:leading-[0] spr:shrink-0',
     {
       'spr-text-color-success-base': s.type === 'success',
       'spr-text-color-danger-base': s.type === 'error',

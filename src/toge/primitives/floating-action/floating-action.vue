@@ -3,8 +3,8 @@
     <div v-show="props.show" :class="classes.wrapper" aria-live="polite">
       <div :class="classes.inner">
         <slot>
-          <span v-if="$slots.message" class="spr-flex-1"><slot name="message" /></span>
-          <div class="spr-flex spr-items-center spr-gap-size-spacing-3xs"><slot name="actions" /></div>
+          <span v-if="$slots.message" class="spr:flex-1"><slot name="message" /></span>
+          <div class="spr:flex spr:items-center spr:gap-size-spacing-3xs"><slot name="actions" /></div>
         </slot>
       </div>
     </div>

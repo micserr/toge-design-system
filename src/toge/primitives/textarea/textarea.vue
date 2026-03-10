@@ -35,7 +35,7 @@
         <slot name="helperMessage">
           <Icon
             v-if="props.helperIcon"
-            class="spr-h-5 spr-min-h-5 spr-w-5 spr-min-w-5"
+            class="spr:h-5 spr:min-h-5 spr:w-5 spr:min-w-5"
             :icon="props.helperIcon"
             width="20px"
             height="20px"

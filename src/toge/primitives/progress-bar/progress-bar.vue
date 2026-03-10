@@ -1,8 +1,8 @@
 <template>
   <div :class="classes.wrapper">
     <div
-      class="spr-flex spr-w-full spr-items-center spr-gap-size-spacing-3xs"
-      :class="{ 'spr-flex-row': props.labelPlacement === 'left', 'spr-flex-row-reverse': props.labelPlacement === 'right' }"
+      class="spr:flex spr:w-full spr:items-center spr:gap-size-spacing-3xs"
+      :class="{ 'spr:flex-row': props.labelPlacement === 'left', 'spr:flex-row-reverse': props.labelPlacement === 'right' }"
     >
       <div
         :class="classes.track"
@@ -23,7 +23,7 @@
 
     <div
       v-if="props.label && !['left', 'right'].includes(props.labelPlacement!)"
-      class="spr-flex spr-w-full spr-items-center spr-justify-between"
+      class="spr:flex spr:w-full spr:items-center spr:justify-between"
     >
       <span :class="classes.label">{{ percentage }}%</span>
       <span v-if="props.supportingLabel" :class="classes.label">{{ props.supportingLabel }}</span>

@@ -2,20 +2,14 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import dts from 'vite-plugin-dts';
-
-import tailwind from 'tailwindcss';
-import autoprefixer from 'autoprefixer';
+import tailwindcss from '@tailwindcss/vite';
 
 import { resolve } from 'path';
 
 export default defineConfig({
-  css: {
-    postcss: {
-      plugins: [tailwind({ config: resolve(__dirname, './tailwind.config.js') }), autoprefixer()],
-    },
-  },
   plugins: [
     vue(),
+    tailwindcss(),
     tsconfigPaths(),
     dts({
       include: [

@@ -3,7 +3,7 @@ import classNames from 'classnames'
 
 export function getTooltipWrapperClasses(fitContent: boolean): string {
   return classNames({
-    'spr-w-fit': fitContent,
-    'spr-w-full': !fitContent,
+    'spr:w-fit': fitContent,
+    'spr:w-full': !fitContent,
   })
 }

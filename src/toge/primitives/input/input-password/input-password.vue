@@ -6,7 +6,7 @@
     <template #icon>
       <Icon
         :icon="showPassword ? 'ph:eye-slash' : 'ph:eye'"
-        class="spr-cursor-pointer"
+        class="spr:cursor-pointer"
         @click="togglePassword"
       />
     </template>

@@ -15,8 +15,8 @@
 
       <div
         :class="{
-          'spr-relative spr-z-[10] spr-flex spr-items-center spr-gap-size-spacing-5xs spr-leading-none': true,
-          'spr-cursor-not-allowed': tab.disabled,
+          'spr:relative spr:z-[10] spr:flex spr:items-center spr:gap-size-spacing-5xs spr:leading-none': true,
+          'spr:cursor-not-allowed': tab.disabled,
         }"
       >
         <div v-if="tab.icon">
@@ -31,7 +31,7 @@
         <div v-if="tab.label">
           {{ tab.label }}
         </div>
-        <div v-if="props.showBadge && tab.badge" class="tab-badge spr-pl-size-spacing-5xs">
+        <div v-if="props.showBadge && tab.badge" class="tab-badge spr:pl-size-spacing-5xs">
           <TogeBadge
             :text="tab.badge.text"
             :variant="(tab.badge.variant as BadgeVariant | undefined)"

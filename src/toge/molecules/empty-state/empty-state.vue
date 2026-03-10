@@ -2,11 +2,11 @@
   <div :class="classes.container">
     <div :class="classes.imageSize">
       <slot>
-        <img v-if="props.image" :src="imageUrl" alt="empty state" class="spr-h-full spr-w-full spr-object-cover" />
+        <img v-if="props.image" :src="imageUrl" alt="empty state" class="spr:h-full spr:w-full spr:object-cover" />
       </slot>
     </div>
-    <section class="spr-flex spr-flex-col spr-items-center spr-justify-center spr-gap-size-spacing-md">
-      <div class="spr-text-color-strong spr-body-md spr-body-md-regular-medium spr-flex spr-flex-col spr-text-center">
+    <section class="spr:flex spr:flex-col spr:items-center spr:justify-center spr:gap-size-spacing-md">
+      <div class="spr-text-color-strong spr-body-md spr-body-md-regular-medium spr:flex spr:flex-col spr:text-center">
         <span>{{ props.description }}</span>
         <div class="spr-text-color-base spr-body-sm-regular">{{ props.subDescription }}</div>
       </div>

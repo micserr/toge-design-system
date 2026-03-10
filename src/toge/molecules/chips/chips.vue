@@ -12,12 +12,12 @@
       <slot />
     </template>
     <template v-else>
-      <span v-if="hasIcon" class="chips-icon spr-inline-flex spr-items-center spr-leading-[0]">
+      <span v-if="hasIcon" class="chips-icon spr:inline-flex spr:items-center spr:leading-[0]">
         <slot name="icon">
           <Icon :icon="resolvedIcon" class="spr-font-size-300" />
         </slot>
       </span>
-      <span v-if="props.avatar" class="spr-flex spr-items-center spr-justify-center">
+      <span v-if="props.avatar" class="spr:flex spr:items-center spr:justify-center">
         <TogeAvatar
           :size="props.avatarSize"
           :src="props.avatarUrl"
@@ -25,7 +25,7 @@
           :initial="props.avatarInitials"
         />
       </span>
-      <span class="spr-chips-label">
+      <span class="spr:chips-label">
         {{ props.label }}
       </span>
       <span v-if="props.badge" class="chips-badge">

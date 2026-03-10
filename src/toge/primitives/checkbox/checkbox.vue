@@ -1,6 +1,6 @@
 <template>
   <label :class="classes.baseClasses">
-    <div class="spr-relative spr-flex spr-items-center">
+    <div class="spr:relative spr:flex spr:items-center">
       <input
         :id="props.id"
         type="checkbox"
@@ -16,7 +16,7 @@
         <Icon :icon="checkboxIcon" />
       </span>
     </div>
-    <div v-if="props.label || props.description || $slots.default" class="spr-grid spr-gap-0.5">
+    <div v-if="props.label || props.description || $slots.default" class="spr:grid spr:gap-0.5">
       <span v-if="$slots.default" :class="classes.labelClasses">
         <slot />
       </span>

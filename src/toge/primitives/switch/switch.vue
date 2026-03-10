@@ -1,6 +1,6 @@
 <template>
-  <div :class="['spr-flex spr-items-center spr-gap-2', textClasses]">
-    <label v-if="hasLeftText" :for="inputId" class="spr-cursor-pointer">
+  <div :class="['spr:flex spr:items-center spr:gap-2', textClasses]">
+    <label v-if="hasLeftText" :for="inputId" class="spr:cursor-pointer">
       <slot name="leftText">
         <slot />
       </slot>
@@ -22,8 +22,8 @@
         v-model="model"
         type="checkbox"
         :disabled="props.disabled"
-        class="spr-absolute spr-left-0 spr-top-0 spr-z-10 spr-m-0 spr-h-6 spr-w-12 spr-opacity-0"
-        :class="props.disabled ? 'spr-cursor-not-allowed' : 'spr-cursor-pointer'"
+        class="spr:absolute spr:left-0 spr:top-0 spr:z-10 spr:m-0 spr:h-6 spr:w-12 spr:opacity-0"
+        :class="props.disabled ? 'spr:cursor-not-allowed' : 'spr:cursor-pointer'"
         tabindex="-1"
       />
       <span :class="trackClasses">
@@ -31,7 +31,7 @@
       </span>
     </div>
 
-    <label v-if="hasRightText" :for="inputId" class="spr-cursor-pointer">
+    <label v-if="hasRightText" :for="inputId" class="spr:cursor-pointer">
       <slot name="rightText" />
     </label>
   </div>

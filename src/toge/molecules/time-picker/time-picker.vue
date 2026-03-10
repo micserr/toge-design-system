@@ -25,7 +25,7 @@
         </TogeInput>
       </template>
 
-      <div class="spr-max-h-[300px] spr-overflow-y-auto">
+      <div class="spr:max-h-[300px] spr:overflow-y-auto">
         <TogeList
           :items="timeItems"
           :model-value="selectedValues"
@@ -36,11 +36,11 @@
 
     <div
       v-if="props.showHelper"
-      class="spr-flex spr-flex-row spr-items-start spr-justify-between spr-w-full spr-mt-1"
+      class="spr:flex spr:flex-row spr:items-start spr:justify-between spr:w-full spr:mt-1"
     >
       <div
         :class="[
-          'spr-body-sm-regular spr-flex spr-items-center spr-gap-size-spacing-5xs spr-flex-1',
+          'spr-body-sm-regular spr:flex spr:items-center spr:gap-size-spacing-5xs spr:flex-1',
           props.error ? 'spr-text-color-danger-base' : 'spr-text-color-supporting',
         ]"
       >

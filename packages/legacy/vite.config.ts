@@ -47,7 +47,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, '../../src/legacy'),
+      '@': resolve(__dirname, '../../src'),
     },
   },
   build: {

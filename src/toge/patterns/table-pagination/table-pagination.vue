@@ -1,7 +1,7 @@
 <template>
   <div :class="classes.baseClasses">
     <!-- Items per page selector -->
-    <div class="spr-flex spr-items-center spr-gap-size-spacing-2xs">
+    <div class="spr:flex spr:items-center spr:gap-size-spacing-2xs">
       <span :class="classes.itemsPerPageLabelClasses">Rows per page:</span>
       <select
         :class="classes.selectClasses"

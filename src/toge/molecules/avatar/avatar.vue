@@ -1,5 +1,5 @@
 <template>
-  <div class="spr-h-fit spr-w-fit" :aria-label="props.ariaLabel || undefined">
+  <div class="spr:h-fit spr:w-fit" :aria-label="props.ariaLabel || undefined">
     <div v-if="!props.loading" :class="baseClasses">
       <template v-if="props.variant === 'count' || props.variant === 'initial'">
         <div :class="initialsContainerClasses">

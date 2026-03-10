@@ -3,16 +3,16 @@ import type { LozengeTone } from './lozenge.types'
 
 export function getLozengeWrapperClasses(loading: boolean): string {
   return classNames({
-    'spr-h-fit spr-w-fit': !loading,
-    'spr-flex spr-w-full': loading,
+    'spr:h-fit spr:w-fit': !loading,
+    'spr:flex spr:w-full': loading,
   })
 }
 
 export function getLozengeBaseClasses(fill: boolean, loading: boolean): string {
   return classNames({
-    'spr-flex spr-flex-wrap spr-rounded-md': !fill,
-    'spr-flex spr-flex-wrap': fill,
-    'spr-skeletal-loader spr-flex spr-h-6 spr-w-full spr-rounded-md': loading,
+    'spr:flex spr:flex-wrap spr:rounded-md': !fill,
+    'spr:flex spr:flex-wrap': fill,
+    'spr-skeletal-loader spr:flex spr:h-6 spr:w-full spr:rounded-md': loading,
   })
 }
 
@@ -24,12 +24,12 @@ export function getLozengeToneClasses(
   hasAvatarSlot: boolean,
 ): string {
   return classNames(
-    'spr-box-border spr-h-[20px] spr-inline-flex spr-items-center spr-gap-size-spacing-6xs spr-rounded-md spr-border-solid spr-p-size-spacing-5xs spr-text-xs spr-uppercase',
+    'spr:box-border spr:h-[20px] spr:inline-flex spr:items-center spr:gap-size-spacing-6xs spr:rounded-md spr:border-solid spr:p-size-spacing-5xs spr:text-xs spr:uppercase',
     {
-      'spr-h-[20px]': !hasUrl,
-      'spr-h-[24px]': hasUrl || hasAvatarSlot,
-      'spr-border': !fill,
-      'spr-cursor-pointer': isInteractive,
+      'spr:h-[20px]': !hasUrl,
+      'spr:h-[24px]': hasUrl || hasAvatarSlot,
+      'spr:border': !fill,
+      'spr:cursor-pointer': isInteractive,
 
       // Pending hollow
       'spr-text-color-pending-base spr-background-color-pending-weak spr-border-color-pending-base':
@@ -73,7 +73,7 @@ export function getLozengeToneClasses(
         (tone === 'neutral' || tone === 'plain') && !fill && isInteractive,
 
       // Filled shared
-      'spr-border-0': fill,
+      'spr:border-0': fill,
       'spr-text-color-strong':
         fill &&
         (tone === 'pending' || tone === 'neutral' || tone === 'caution' || tone === 'plain'),
@@ -120,6 +120,6 @@ export function getLozengeToneClasses(
 
 export function getLozengeLabelClasses(): string {
   return classNames(
-    'spr-lozenge__label spr-label-xs-medium spr-flex-1 spr-min-w-0 spr-whitespace-nowrap spr-text-ellipsis spr-overflow-hidden',
+    'spr:lozenge__label spr-label-xs-medium spr:flex-1 spr:min-w-0 spr:whitespace-nowrap spr:text-ellipsis spr:overflow-hidden',
   )
 }

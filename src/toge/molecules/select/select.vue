@@ -43,7 +43,7 @@
           <div :class="classes.triggerInner">
             <slot name="display" :selected="selectedOption" :is-open="isOpen">
               <span
-                class="spr-font-main spr-font-size-200"
+                class="spr:font-main spr-font-size-200"
                 :class="triggerText ? 'spr-text-color-strong' : classes.placeholder"
               >
                 {{ triggerText || props.placeholder }}
@@ -60,18 +60,18 @@
               aria-label="Clear selection"
               @click.stop="clearSelection"
             >
-              <Icon icon="ph:x" class="spr-h-4 spr-w-4" />
+              <Icon icon="ph:x" class="spr:h-4 spr:w-4" />
             </span>
             <Icon
               v-if="props.inputLoader"
               icon="svg-spinners:270-ring"
-              class="spr-h-4 spr-w-4 spr-text-color-supporting"
+              class="spr:h-4 spr:w-4 spr-text-color-supporting"
             />
             <Icon
               v-else
               icon="ph:caret-down"
-              :class="[classes.chevron, { 'spr-rotate-180': isOpen }]"
-              class="spr-h-4 spr-w-4"
+              :class="[classes.chevron, { 'spr:rotate-180': isOpen }]"
+              class="spr:h-4 spr:w-4"
             />
           </div>
         </button>
@@ -103,13 +103,13 @@
 
       <!-- Dropdown panel -->
       <template #popper>
-        <div class="spr-rounded-border-radius-lg spr-border spr-border-solid spr-border-color-weak spr-background-color spr-shadow-md spr-overflow-hidden spr-p-2">
+        <div class="spr:rounded-border-radius-lg spr:border spr:border-solid spr-border-color-weak spr-background-color spr:shadow-md spr:overflow-hidden spr:p-2">
           <TogeList
             :items="(props.options as any)"
             :model-value="model !== null && model !== undefined ? [model] : []"
             :options-loader="props.optionsLoader"
             :infinite-scroll-loader="props.infiniteScrollLoader"
-            class="spr-max-h-[300px]"
+            class="spr:max-h-[300px]"
             @select="handleListSelect"
             @infinite-scroll-trigger="emit('infinite-scroll-trigger', $event)"
           >
@@ -129,7 +129,7 @@
       <div :class="classes.helperText">
         <Icon
           v-if="props.helperIcon"
-          class="spr-h-5 spr-min-h-5 spr-w-5 spr-min-w-5"
+          class="spr:h-5 spr:min-h-5 spr:w-5 spr:min-w-5"
           :icon="props.helperIcon"
         />
         <span>{{ props.helperText }}</span>

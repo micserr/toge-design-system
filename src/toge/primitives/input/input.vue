@@ -50,13 +50,13 @@
 
     <div
       v-if="props.showHelper || props.showCharCount"
-      class="spr-flex spr-flex-row spr-items-start spr-justify-between spr-w-full spr-mt-1"
+      class="spr:flex spr:flex-row spr:items-start spr:justify-between spr:w-full spr:mt-1"
     >
       <div v-if="props.showHelper" :class="classes.helper">
         <slot name="helperMessage">
           <Icon
             v-if="props.helperIcon"
-            class="spr-h-5 spr-min-h-5 spr-w-5 spr-min-w-5"
+            class="spr:h-5 spr:min-h-5 spr:w-5 spr:min-w-5"
             :icon="props.helperIcon"
           />
           <span>{{ props.helperText }}</span>
@@ -64,7 +64,7 @@
       </div>
       <div
         v-if="props.showCharCount"
-        class="spr-ml-auto spr-body-2xs-regular spr-text-right spr-text-xs spr-text-color-supporting"
+        class="spr:ml-auto spr-body-2xs-regular spr:text-right spr:text-xs spr-text-color-supporting"
       >
         {{ model?.toString().length ?? 0 }}{{ props.maxLength ? '/' + props.maxLength : '' }}
       </div>

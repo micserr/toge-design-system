@@ -1,8 +1,8 @@
 <template>
-  <div :class="['spr-lozenge__wrapper', wrapperClasses]">
-    <div v-if="props.visible && !props.loading" :class="['spr-lozenge__base', baseClasses]">
+  <div :class="['spr:lozenge__wrapper', wrapperClasses]">
+    <div v-if="props.visible && !props.loading" :class="['spr:lozenge__base', baseClasses]">
       <div
-        :class="['spr-lozenge__tone', toneClasses]"
+        :class="['spr:lozenge__tone', toneClasses]"
         :tabindex="props.interactive || props.dropdown ? 0 : -1"
         :style="{ maxWidth: props.maxWidth }"
         :aria-label="props.ariaLabel || undefined"
@@ -12,17 +12,17 @@
       >
         <div
           v-if="$slots.icon || props.icon"
-          class="spr-lozenge__prefix-icon spr-flex spr-h-3 spr-w-3 spr-items-center spr-overflow-hidden"
+          class="spr:lozenge__prefix-icon spr:flex spr:h-3 spr:w-3 spr:items-center spr:overflow-hidden"
         >
           <slot name="icon">
             <Icon :icon="props.icon!" />
           </slot>
         </div>
 
-        <div v-if="$slots.avatar || props.url" class="spr-lozenge__avatar">
+        <div v-if="$slots.avatar || props.url" class="spr:lozenge__avatar">
           <slot name="avatar">
-            <div v-if="props.url" class="spr-h-4 spr-w-4 spr-overflow-hidden">
-              <img class="spr-h-full spr-w-full spr-rounded-full spr-object-cover" :src="props.url" alt="avatar" />
+            <div v-if="props.url" class="spr:h-4 spr:w-4 spr:overflow-hidden">
+              <img class="spr:h-full spr:w-full spr:rounded-full spr:object-cover" :src="props.url" alt="avatar" />
             </div>
           </slot>
         </div>
@@ -32,16 +32,16 @@
         <button
           v-if="props.removable"
           type="button"
-          class="spr-flex spr-h-3 spr-w-3 spr-items-center spr-justify-center spr-cursor-pointer spr-border-none spr-bg-transparent spr-p-0 spr-leading-none spr-text-current"
+          class="spr:flex spr:h-3 spr:w-3 spr:items-center spr:justify-center spr:cursor-pointer spr:border-none spr:bg-transparent spr:p-0 spr:leading-none spr:text-current"
           :aria-label="`Remove ${props.label}`"
           @click.stop="emit('remove')"
         >
-          <Icon icon="ph:x-bold" class="spr-h-3 spr-w-3" />
+          <Icon icon="ph:x-bold" class="spr:h-3 spr:w-3" />
         </button>
 
         <div
           v-if="$slots.postfixIcon || props.postfixIcon || props.dropdown"
-          class="spr-lozenge__prefix-icon spr-flex spr-h-3 spr-w-3 spr-items-center spr-overflow-hidden"
+          class="spr:lozenge__prefix-icon spr:flex spr:h-3 spr:w-3 spr:items-center spr:overflow-hidden"
         >
           <slot name="postfixIcon">
             <Icon v-if="props.postfixIcon" :icon="props.postfixIcon" />
@@ -50,7 +50,7 @@
         </div>
       </div>
     </div>
-    <div v-if="props.visible && props.loading" :class="['spr-lozenge__loading', baseClasses]" />
+    <div v-if="props.visible && props.loading" :class="['spr:lozenge__loading', baseClasses]" />
   </div>
 </template>
 

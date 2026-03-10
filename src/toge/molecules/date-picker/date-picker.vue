@@ -17,7 +17,7 @@
     >
       <!-- Input trigger -->
       <div
-        :class="{ 'spr-cursor-pointer': !props.disabled && !props.readonly, 'spr-cursor-not-allowed': props.disabled }"
+        :class="{ 'spr:cursor-pointer': !props.disabled && !props.readonly, 'spr:cursor-not-allowed': props.disabled }"
         @click="!props.disabled && !props.readonly ? (isOpen = !isOpen) : undefined"
       >
         <TogeInput
@@ -31,7 +31,7 @@
         >
           <template v-if="props.clearable && model" #trailing>
             <Icon
-              class="spr-text-color-supporting spr-h-4 spr-w-4 hover:spr-text-color-strong"
+              class="spr-text-color-supporting spr:h-4 spr:w-4 hover:spr-text-color-strong"
               style="pointer-events: all; cursor: pointer"
               icon="ph:x"
               @click.stop="clearDate"
@@ -63,10 +63,10 @@
     <!-- Helper rendered outside Menu so the popover anchors to the input only -->
     <div
       v-if="props.showHelper"
-      class="spr-flex spr-flex-row spr-items-start spr-justify-between spr-w-full spr-mt-1"
+      class="spr:flex spr:flex-row spr:items-start spr:justify-between spr:w-full spr:mt-1"
     >
-      <div :class="['spr-body-sm-regular spr-flex spr-items-center spr-gap-size-spacing-5xs spr-flex-1', props.error ? 'spr-text-color-danger-base' : 'spr-text-color-supporting']">
-        <Icon v-if="props.helperIcon" class="spr-h-5 spr-min-h-5 spr-w-5 spr-min-w-5" :icon="props.helperIcon" />
+      <div :class="['spr-body-sm-regular spr:flex spr:items-center spr:gap-size-spacing-5xs spr:flex-1', props.error ? 'spr-text-color-danger-base' : 'spr-text-color-supporting']">
+        <Icon v-if="props.helperIcon" class="spr:h-5 spr:min-h-5 spr:w-5 spr:min-w-5" :icon="props.helperIcon" />
         <span>{{ props.helperText }}</span>
       </div>
     </div>

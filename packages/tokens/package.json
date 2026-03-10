@@ -12,6 +12,7 @@
       "import": "../../src/tokens/scripts/index.ts"
     },
     "./styles": "../../src/tokens/styles/tailwind.css",
+    "./styles-v4": "../../src/tokens/styles/tailwind-v4.css",
     "./tailwind": "./tailwind.config.js"
   },
   "files": ["tailwind.config.js"],

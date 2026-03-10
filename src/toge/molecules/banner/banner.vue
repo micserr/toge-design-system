@@ -1,7 +1,7 @@
 <template>
   <div v-show="model" :class="classes.base" role="alert">
-    <div class="spr-flex spr-items-start spr-gap-size-spacing-3xs spr-flex-1">
-      <TogeStatus :state="statusState" size="base" class="spr-shrink-0" />
+    <div class="spr:flex spr:items-start spr:gap-size-spacing-3xs spr:flex-1">
+      <TogeStatus :state="statusState" size="base" class="spr:shrink-0" />
       <slot>
         <span :class="classes.message">{{ props.message }}</span>
       </slot>

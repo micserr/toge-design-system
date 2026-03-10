@@ -1,9 +1,9 @@
 <template>
   <Teleport to="body">
-    <Transition name="spr-backdrop">
+    <Transition name="spr:backdrop">
       <div v-if="model && props.hasBackdrop" :class="classes.backdrop" @click="handleBackdropClick" />
     </Transition>
-    <Transition :name="`spr-sidepanel-${props.position}`">
+    <Transition :name="`spr:sidepanel-${props.position}`">
       <div v-if="model" :class="classes.container">
         <div
           role="dialog"
@@ -20,7 +20,7 @@
               aria-label="Close sidepanel"
               @click="closePanel"
             >
-              <Icon class="spr-h-5 spr-w-5" icon="ph:x" />
+              <Icon class="spr:h-5 spr:w-5" icon="ph:x" />
             </span>
           </header>
           <div :class="classes.content">
@@ -82,18 +82,18 @@ const classes = computed(() =>
 </script>
 
 <style scoped>
-.spr-backdrop-enter-active,
-.spr-backdrop-leave-active { transition: opacity 150ms ease-in-out; }
-.spr-backdrop-enter-from,
-.spr-backdrop-leave-to { opacity: 0; }
+.spr:backdrop-enter-active,
+.spr:backdrop-leave-active { transition: opacity 150ms ease-in-out; }
+.spr:backdrop-enter-from,
+.spr:backdrop-leave-to { opacity: 0; }
 
-.spr-sidepanel-right-enter-active,
-.spr-sidepanel-right-leave-active { transition: transform 150ms ease-in-out, opacity 150ms ease-in-out; }
-.spr-sidepanel-right-enter-from,
-.spr-sidepanel-right-leave-to { transform: translateX(100%); opacity: 0; }
+.spr:sidepanel-right-enter-active,
+.spr:sidepanel-right-leave-active { transition: transform 150ms ease-in-out, opacity 150ms ease-in-out; }
+.spr:sidepanel-right-enter-from,
+.spr:sidepanel-right-leave-to { transform: translateX(100%); opacity: 0; }
 
-.spr-sidepanel-left-enter-active,
-.spr-sidepanel-left-leave-active { transition: transform 150ms ease-in-out, opacity 150ms ease-in-out; }
-.spr-sidepanel-left-enter-from,
-.spr-sidepanel-left-leave-to { transform: translateX(-100%); opacity: 0; }
+.spr:sidepanel-left-enter-active,
+.spr:sidepanel-left-leave-active { transition: transform 150ms ease-in-out, opacity 150ms ease-in-out; }
+.spr:sidepanel-left-enter-from,
+.spr:sidepanel-left-leave-to { transform: translateX(-100%); opacity: 0; }
 </style>

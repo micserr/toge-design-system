@@ -11,7 +11,7 @@
     @keydown.enter.prevent="handleClick"
   >
     <!-- Checkbox control -->
-    <div v-if="props.variant === 'checkbox'" class="spr-relative spr-flex spr-items-center spr-shrink-0">
+    <div v-if="props.variant === 'checkbox'" class="spr:relative spr:flex spr:items-center spr:shrink-0">
       <input
         :id="props.id"
         type="checkbox"
@@ -34,7 +34,7 @@
     <slot v-else name="control" />
 
     <!-- Text content -->
-    <div v-if="props.label || props.description || $slots.default" class="spr-grid spr-gap-0.5 spr-flex-1 spr-min-w-0">
+    <div v-if="props.label || props.description || $slots.default" class="spr:grid spr:gap-0.5 spr:flex-1 spr:min-w-0">
       <slot>
         <span :class="classes.label">{{ props.label }}</span>
         <span v-if="props.description" :class="classes.description">{{ props.description }}</span>

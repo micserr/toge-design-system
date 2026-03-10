@@ -1,9 +1,9 @@
 <template>
   <Teleport to="body">
-    <Transition name="spr-backdrop">
+    <Transition name="spr:backdrop">
       <div v-if="model" :class="classes.backdrop" @click="handleBackdropClick" />
     </Transition>
-    <Transition name="spr-modal">
+    <Transition name="spr:modal">
       <div
         v-if="model"
         role="dialog"
@@ -21,7 +21,7 @@
             aria-label="Close modal"
             @click="closeModal"
           >
-            <Icon class="spr-h-5 spr-w-5" icon="ph:x" />
+            <Icon class="spr:h-5 spr:w-5" icon="ph:x" />
           </span>
         </header>
         <div :class="classes.content">
@@ -81,17 +81,17 @@ const classes = computed(() =>
 </script>
 
 <style scoped>
-.spr-backdrop-enter-active,
-.spr-backdrop-leave-active { transition: opacity 150ms ease-in-out; }
-.spr-backdrop-enter-from,
-.spr-backdrop-leave-to { opacity: 0; }
+.spr:backdrop-enter-active,
+.spr:backdrop-leave-active { transition: opacity 150ms ease-in-out; }
+.spr:backdrop-enter-from,
+.spr:backdrop-leave-to { opacity: 0; }
 
-.spr-modal-enter-active,
-.spr-modal-leave-active { transition: opacity 150ms ease-in-out, transform 150ms ease-in-out; }
-.spr-modal-enter-from,
-.spr-modal-leave-to { opacity: 0; transform: translateX(-50%) translateY(-50%) scale(0.9); }
-.spr-modal-enter-to,
-.spr-modal-leave-from { opacity: 1; transform: translateX(-50%) translateY(-50%) scale(1); }
+.spr:modal-enter-active,
+.spr:modal-leave-active { transition: opacity 150ms ease-in-out, transform 150ms ease-in-out; }
+.spr:modal-enter-from,
+.spr:modal-leave-to { opacity: 0; transform: translateX(-50%) translateY(-50%) scale(0.9); }
+.spr:modal-enter-to,
+.spr:modal-leave-from { opacity: 1; transform: translateX(-50%) translateY(-50%) scale(1); }
 
 .bounce-animation { animation: bounce 0.5s ease; }
 @keyframes bounce {

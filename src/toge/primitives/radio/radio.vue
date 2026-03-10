@@ -24,12 +24,12 @@
       :class="classes.labelClasses"
     >
       <span :class="classes.baseIndicatorClasses"></span>
-      <div class="spr-flex spr-flex-col spr-gap-size-spacing-6xs">
+      <div class="spr:flex spr:flex-col spr:gap-size-spacing-6xs">
         <slot />
         <span
           v-if="props.description"
           :class="[
-            'spr-text-xs spr-font-normal spr-leading-4 spr-text-mushroom-600',
+            'spr:text-xs spr:font-normal spr:leading-4 spr:text-mushroom-600',
             { 'spr-text-color-disabled': props.disabled },
           ]"
         >

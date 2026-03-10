@@ -8,7 +8,7 @@ export interface LogoClasses {
 
 export function getLogoClasses(_s: LogoStyleState): LogoClasses {
   return {
-    img: 'spr-block',
+    img: 'spr:block',
   }
 }
 

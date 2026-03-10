@@ -1,12 +1,12 @@
 <template>
-  <div class="spr-flex spr-gap-2">
+  <div class="spr:flex spr:gap-2">
     <slot />
 
     <div :class="baseClasses">
       <section :class="positionClasses">
         <div
           :class="[
-            'spr-flex spr-items-center spr-justify-center',
+            'spr:flex spr:items-center spr:justify-center',
             variantClasses,
             sizeClasses,
           ]"

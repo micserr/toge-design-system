@@ -1,5 +1,5 @@
 import { App } from 'vue'
-import '@toge-design-system/tokens/styles'
+import '../tailwind-v4.css'
 import pkg from '../package.json'
 
 // ─── ONE-WAY DEPENDENCY RULE ─────────────────────────────────────────────────

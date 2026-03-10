@@ -1,11 +1,11 @@
 <template>
-  <div :id="props.id" :class="[classes.base, { 'spr-flex spr-flex-col spr-h-full': props.flexbox }]">
+  <div :id="props.id" :class="[classes.base, { 'spr:flex spr:flex-col spr:h-full': props.flexbox }]">
 
     <!-- Header -->
     <div v-if="props.showHeader" :class="classes.header">
       <slot name="header">
-        <Icon v-if="props.headerIcon" :icon="props.headerIcon" class="spr-mr-size-spacing-3xs spr-shrink-0" />
-        <div class="spr-flex spr-flex-col spr-flex-1">
+        <Icon v-if="props.headerIcon" :icon="props.headerIcon" class="spr:mr-size-spacing-3xs spr:shrink-0" />
+        <div class="spr:flex spr:flex-col spr:flex-1">
           <span v-if="props.title" class="spr-body-sm-regular-medium spr-text-color-strong">{{ props.title }}</span>
           <span v-if="props.subtitle" class="spr-body-xs-regular spr-text-color-base">{{ props.subtitle }}</span>
         </div>
@@ -20,7 +20,7 @@
     <!-- Footer -->
     <div v-if="props.showFooter" :class="classes.footer">
       <slot name="footer">
-        <div class="spr-flex spr-items-center spr-gap-size-spacing-3xs">
+        <div class="spr:flex spr:items-center spr:gap-size-spacing-3xs">
           <TogeButton variant="secondary" size="small" @click="emit('secondary')">
             {{ props.secondaryLabel }}
           </TogeButton>

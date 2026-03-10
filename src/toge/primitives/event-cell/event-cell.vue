@@ -10,10 +10,10 @@
     @keydown.space.prevent="handleClick"
   >
     <slot name="prefix">
-      <Icon v-if="props.icon" :icon="props.icon" class="spr-flex-none" />
+      <Icon v-if="props.icon" :icon="props.icon" class="spr:flex-none" />
     </slot>
     <slot>
-      <div class="spr-flex spr-flex-col spr-flex-1 spr-min-w-0">
+      <div class="spr:flex spr:flex-col spr:flex-1 spr:min-w-0">
         <span v-if="timeLabel" :class="[classes.title, classes.textFormat]">{{ timeLabel }}</span>
         <span v-if="props.title" :class="[classes.title, classes.textFormat]">{{ props.title }}</span>
         <span v-if="props.description" :class="[classes.description, classes.textFormat]">{{ props.description }}</span>

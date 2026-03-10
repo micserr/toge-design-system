@@ -1,5 +1,5 @@
 <template>
-  <div class="spr-flex spr-h-fit spr-flex-row">
+  <div class="spr:flex spr:h-fit spr:flex-row">
     <TogeButton
       v-bind="buttonPassthroughProps"
       :class="classes.mainButtonClasses"

@@ -13,7 +13,7 @@ export interface CardClasses {
   footer: string
 }
 
-function getBorderRadiusClass(size: CardBorderRadius, prefix: 'spr-rounded' | 'spr-rounded-t' | 'spr-rounded-b'): string {
+function getBorderRadiusClass(size: CardBorderRadius, prefix: 'spr:rounded' | 'spr:rounded-t' | 'spr:rounded-b'): string {
   const map: Record<CardBorderRadius, string> = {
     '2xs': `${prefix}-border-radius-2xs`,
     'xs': `${prefix}-border-radius-xs`,
@@ -27,24 +27,24 @@ function getBorderRadiusClass(size: CardBorderRadius, prefix: 'spr-rounded' | 's
 
 export function getCardClasses(s: CardStyleState): CardClasses {
   const base = classNames(
-    'spr-background-color spr-border spr-border-solid spr-border-color-weak spr-overflow-hidden',
+    'spr-background-color spr:border spr:border-solid spr-border-color-weak spr:overflow-hidden',
     {
-      'spr-flex spr-flex-col spr-h-full': s.flexbox,
-      [getBorderRadiusClass(s.borderRadiusSize, 'spr-rounded')]: true,
+      'spr:flex spr:flex-col spr:h-full': s.flexbox,
+      [getBorderRadiusClass(s.borderRadiusSize, 'spr:rounded')]: true,
     },
   )
 
   const header = classNames(
-    'spr-flex spr-items-center spr-py-size-spacing-2xs spr-px-size-spacing-xs spr-border-0 spr-border-b spr-border-solid spr-border-color-weak',
+    'spr:flex spr:items-center spr:py-size-spacing-2xs spr:px-size-spacing-xs spr:border-0 spr:border-b spr:border-solid spr-border-color-weak',
   )
 
   const body = classNames(
-    'spr-py-size-spacing-2xs spr-px-size-spacing-xs spr-body-sm-regular spr-text-color-base',
-    { 'spr-flex-1': s.flexbox },
+    'spr:py-size-spacing-2xs spr:px-size-spacing-xs spr-body-sm-regular spr-text-color-base',
+    { 'spr:flex-1': s.flexbox },
   )
 
   const footer = classNames(
-    'spr-flex spr-items-center spr-border-0 spr-border-t spr-border-solid spr-border-color-weak spr-py-size-spacing-2xs spr-px-size-spacing-xs',
+    'spr:flex spr:items-center spr:border-0 spr:border-t spr:border-solid spr-border-color-weak spr:py-size-spacing-2xs spr:px-size-spacing-xs',
   )
 
   return { base, header, body, footer }

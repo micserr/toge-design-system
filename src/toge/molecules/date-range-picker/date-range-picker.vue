@@ -3,7 +3,7 @@
     <!-- Label outside Menu so popover anchors to inputs row only -->
     <label
       v-if="props.label"
-      class="spr-body-sm-regular spr-text-color-strong spr-block spr-mb-size-spacing-4xs"
+      class="spr-body-sm-regular spr-text-color-strong spr:block spr:mb-size-spacing-4xs"
     >
       {{ props.label }}
     </label>
@@ -24,11 +24,11 @@
       style="position: relative; width: 100%"
     >
       <!-- Dual input row -->
-      <div class="spr-flex spr-w-full spr-items-center spr-gap-2">
+      <div class="spr:flex spr:w-full spr:items-center spr:gap-2">
         <!-- Start date input -->
         <div
-          class="spr-flex-1"
-          :class="{ 'spr-cursor-pointer': !props.disabled && !props.readonly, 'spr-cursor-not-allowed': props.disabled }"
+          class="spr:flex-1"
+          :class="{ 'spr:cursor-pointer': !props.disabled && !props.readonly, 'spr:cursor-not-allowed': props.disabled }"
           @click="!props.disabled && !props.readonly ? openForStart() : undefined"
         >
           <TogeInput
@@ -50,8 +50,8 @@
 
         <!-- End date input -->
         <div
-          class="spr-flex-1"
-          :class="{ 'spr-cursor-pointer': !props.disabled && !props.readonly, 'spr-cursor-not-allowed': props.disabled }"
+          class="spr:flex-1"
+          :class="{ 'spr:cursor-pointer': !props.disabled && !props.readonly, 'spr:cursor-not-allowed': props.disabled }"
           @click="!props.disabled && !props.readonly ? openForEnd() : undefined"
         >
           <TogeInput
@@ -89,7 +89,7 @@
             @next-month="navigateLeft('next')"
           />
 
-          <div class="spr-self-stretch spr-flex-shrink-0 spr-w-[1px] spr-bg-mushroom-200" />
+          <div class="spr:self-stretch spr:flex-shrink-0 spr:w-[1px] spr:bg-mushroom-200" />
 
           <TogeDateCalendarPicker
             mode="full"
@@ -115,10 +115,10 @@
     <!-- Helper rendered outside Menu so popover anchors to inputs only -->
     <div
       v-if="props.showHelper"
-      class="spr-flex spr-flex-row spr-items-start spr-justify-between spr-w-full spr-mt-1"
+      class="spr:flex spr:flex-row spr:items-start spr:justify-between spr:w-full spr:mt-1"
     >
-      <div :class="['spr-body-sm-regular spr-flex spr-items-center spr-gap-size-spacing-5xs spr-flex-1', props.error ? 'spr-text-color-danger-base' : 'spr-text-color-supporting']">
-        <Icon v-if="props.helperIcon" class="spr-h-5 spr-min-h-5 spr-w-5 spr-min-w-5" :icon="props.helperIcon" />
+      <div :class="['spr-body-sm-regular spr:flex spr:items-center spr:gap-size-spacing-5xs spr:flex-1', props.error ? 'spr-text-color-danger-base' : 'spr-text-color-supporting']">
+        <Icon v-if="props.helperIcon" class="spr:h-5 spr:min-h-5 spr:w-5 spr:min-w-5" :icon="props.helperIcon" />
         <span>{{ props.helperText }}</span>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <div :class="[classes.wrapper, { 'spr-opacity-60 spr-pointer-events-none': props.disabled }]" @mouseleave="emit('day-leave')">
+  <div :class="[classes.wrapper, { 'spr:opacity-60 spr:pointer-events-none': props.disabled }]" @mouseleave="emit('day-leave')">
     <!-- Header -->
     <div :class="classes.header">
       <!-- Tab buttons: show Month/Year in 'full' and 'month-year' mode; Year only in 'year-only' -->
@@ -104,11 +104,11 @@
             <!-- Half range-fill behind endpoint circle -->
             <div
               v-if="hasActiveRange && day.fullDate === visualStart"
-              :class="[classes.rangeHalfBg, 'spr-right-0']"
+              :class="[classes.rangeHalfBg, 'spr:right-0']"
             />
             <div
               v-else-if="hasActiveRange && day.fullDate === visualEnd"
-              :class="[classes.rangeHalfBg, 'spr-left-0']"
+              :class="[classes.rangeHalfBg, 'spr:left-0']"
             />
 
             <!-- Endpoint circle (confirmed start or end) -->

@@ -1,5 +1,5 @@
 <template>
-  <div class="spr-w-full spr-overflow-x-auto spr-rounded-border-radius-md">
+  <div class="spr:w-full spr:overflow-x-auto spr:rounded-border-radius-md">
     <table
       :id="props.id"
       :class="classes"

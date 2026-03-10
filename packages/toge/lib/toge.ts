@@ -14,7 +14,7 @@ import pkg from '../package.json'
 const PREFIX = 'toge-'
 // button-dropdown excluded — still depends on spr-dropdown, pending full toge migration
 const components = import.meta.glob(
-  ['../../../../../src/toge/{primitives,molecules,patterns}/**/*.vue', '!../../../../../src/toge/primitives/button/button-dropdown/**'],
+  ['../../../src/toge/{primitives,molecules,patterns}/**/*.vue', '!../../../src/toge/primitives/button/button-dropdown/**'],
   { eager: true }
 )
 

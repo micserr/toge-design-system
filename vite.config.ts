@@ -10,10 +10,29 @@ import autoprefixer from 'autoprefixer';
 
 import { resolve } from 'path';
 
+// PostCSS plugin: unwrap @layer blocks from toge v4 CSS before tailwind v3 sees them.
+// Tailwind v3 errors on @layer without a matching @tailwind directive. Toge's compiled
+// dist CSS (v4) uses native CSS @layer — this strips the wrappers so v3 passes it through.
+const unwrapTogeLayers = {
+  postcssPlugin: 'unwrap-toge-layers',
+  Once(root: any, { result }: any) {
+    const file: string = result.opts?.from ?? '';
+    if (file.includes('packages/toge')) {
+      root.walkAtRules('layer', (rule: any) => {
+        if (rule.nodes?.length) {
+          rule.replaceWith(rule.nodes);
+        } else {
+          rule.remove();
+        }
+      });
+    }
+  },
+};
+
 export default defineConfig({
   css: {
     postcss: {
-      plugins: [tailwind(), autoprefixer()],
+      plugins: [unwrapTogeLayers, tailwind(), autoprefixer()],
     },
   },
   plugins: [

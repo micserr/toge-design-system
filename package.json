@@ -1,7 +1,9 @@
 {
   "name": "@toge-design-system/design-system-next",
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "version": "2.27.3",
   "main": "./dist/design-system-next.umd.js",
   "module": "./dist/design-system-next.es.js",
@@ -51,7 +53,9 @@
     "docs:preview": "vitepress preview docs",
     "test:ui": "npx playwright test --ui --config=playwright-ct.config.ts",
     "test:components": "npx playwright test --config=playwright-ct.config.ts --reporter=line",
-    "clean": "rm -rf node_modules dist coverage package-lock.json && npm install"
+    "clean": "rm -rf node_modules dist coverage package-lock.json && npm install",
+    "build:toge-watch": "npm run build --workspace=packages/toge -- --watch",
+    "dev:full": "npm run build:toge-watch & npm run dev"
   },
   "dependencies": {
     "@cloudinary/url-gen": "^1.22.0",
